@@ -1,0 +1,68 @@
+=== MAIN.PY SYNTAX ===
+FAIL: expected 'except' or 'finally' block (<unknown>, line 6996)
+=== CUSTOMER_BOT SYNTAX ===
+PASS
+=== ALL PY FILES SYNTAX ===
+./main.py: expected 'except' or 'finally' block (<unknown>, line 6996)
+=== TRY/EXCEPT BALANCE CHECK ===
+Net try/except balance: -3 (should be 0)
+
+=== Lines 6990-7010 ===
+6909:         for row in topup_sh.get_all_values()[1:]:
+6910:             if len(row) < 8:
+200:                 continue
+6964:             d = _parse_date_mmt(row[0])
+3540:             if not d or d.year != year_i or d.month != mon_i:
+200:                 continue
+6996: res["topup_wave"] += _int(row[10]) if len(row) > 10 else 0
+6997:             res["topup_cb"]   += _int(row[11]) if len(row) > 11 else 0
+6998:             res["topup_aya"]  += _int(row[12]) if len(row) > 12 else 0
+6999:             res["topup_amount"] += _int(row[4])
+7000:             res["topup_kpay"]   += _int(row[5]) if len(row) > 5 else 0
+7001:             res["topup_cash"]   += _int(row[6]) if len(row) > 6 else 0
+7002:             res["topup_mins"]   += _int(row[7]) if len(row) > 7 else 0
+503:     except Exception as e:
+7004:         logging.warning("calc_pnl topup: %s", e)
+14: 
+7006:     # Per-member revenue: deducted_mins × each member's own stored rate
+7007:     # Falls back to alltime_rate for members without a stored rate (legacy / missing)
+7008:     member_game_rev = 0
+7009:     for m_id, mins in member_deduct.items():
+7010:         rate = rate_dict.get(m_id, alltime_rate)
+=== FUNCTIONS ===
+main.py:
+0
+bot/handlers.py:
+0
+bot/__init__.py:
+0
+bot/app.py:
+0
+customer_bot.py:
+0
+=== REPLIT APIS ===
+main.py:
+8313:def _replit_get(path: str, timeout: int = 30):
+8328:def _replit_patch(path: str, body: dict):
+8359:def _replit_post(path: str, body: dict, timeout: int = 30):
+bot/__init__.py:
+1131:def _replit_get(path: str, timeout: int = 8):
+1146:def _replit_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
+1167:def _replit_delete(path: str, timeout: int = 10) -> dict | None:
+=== _replit_patch IN HANDLERS ===
+2323:                    _replit_patch,
+7628:        _replit_patch,
+7885:def _replit_patch(path: str, body: dict):
+9345:        _replit_patch,
+9584:        result = await asyncio.to_thread(_replit_patch, f"bookings/{bk_id}/status", patch_body)
+9600:        result = await asyncio.to_thread(_replit_patch, f"bookings/{bk_id}/status", patch_body)
+=== AUTH MIDDLEWARE ===
+main.py:
+bot/app.py:
+=== CONVERSATION HANDLER STATES ===
+main.py states:
+1
+bot/app.py ConversationHandler states:
+=== RUNNING BOT SERVICES ===
+ls: cannot access '/etc/systemd/system/psvibe*.service': No such file or directory
+=== BOT PROCESSES ===

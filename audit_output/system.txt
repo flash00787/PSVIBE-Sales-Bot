@@ -1,0 +1,36 @@
+=== UNAME ===
+Linux bot-server-01 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Tue May  5 19:26:24 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+=== NODE ===
+v22.22.2
+=== NPM ===
+10.9.7
+=== PM2 ===
+7.0.1
+=== FREE ===
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       2.4Gi       162Mi       3.8Mi       1.6Gi       1.5Gi
+Swap:          2.0Gi       190Mi       1.8Gi
+=== DF ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1       116G   21G   95G  18% /
+=== UPTIME ===
+ 20:58:56 up 14:22,  4 users,  load average: 1.21, 0.64, 0.36
+=== NETSTAT ===
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                                                 
+LISTEN 0      128          0.0.0.0:5002       0.0.0.0:*    users:(("python3",pid=26806,fd=5))                     
+LISTEN 0      128          0.0.0.0:5001       0.0.0.0:*    users:(("python3",pid=26805,fd=5))                     
+LISTEN 0      511          0.0.0.0:3000       0.0.0.0:*    users:(("node",pid=2970,fd=21))                        
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=491,fd=15))              
+LISTEN 0      4096         0.0.0.0:80         0.0.0.0:*    users:(("docker-proxy",pid=59044,fd=8))                
+LISTEN 0      4096         0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=1473,fd=3),("systemd",pid=1,fd=171))
+LISTEN 0      4096         0.0.0.0:443        0.0.0.0:*    users:(("docker-proxy",pid=59065,fd=8))                
+LISTEN 0      4096         0.0.0.0:18789      0.0.0.0:*    users:(("docker-proxy",pid=61574,fd=8))                
+LISTEN 0      4096       127.0.0.1:5678       0.0.0.0:*    users:(("docker-proxy",pid=59104,fd=8))                
+LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=491,fd=17))              
+LISTEN 0      4096            [::]:80            [::]:*    users:(("docker-proxy",pid=59049,fd=8))                
+LISTEN 0      4096            [::]:22            [::]:*    users:(("sshd",pid=1473,fd=4),("systemd",pid=1,fd=173))
+LISTEN 0      4096            [::]:443           [::]:*    users:(("docker-proxy",pid=59076,fd=8))                
+LISTEN 0      4096            [::]:18789         [::]:*    users:(("docker-proxy",pid=61580,fd=8))                
+=== PS AGRI ===
+root       79190  0.0  0.0   4752  3408 ?        Ss   20:58   0:00 bash -c echo "=== UNAME ===" && uname -a && echo "=== NODE ===" && node -v && echo "=== NPM ===" && npm -v && echo "=== PM2 ===" && pm2 -v 2>/dev/null && echo "=== FREE ===" && free -h && echo "=== DF ===" && df -h / && echo "=== UPTIME ===" && uptime && echo "=== NETSTAT ===" && netstat -tlnp 2>/dev/null || ss -tlnp && echo "=== PS AGRI ===" && ps aux | grep -i agri
+root       79218  0.0  0.0   3956  2144 ?        S    20:58   0:00 grep -i agri

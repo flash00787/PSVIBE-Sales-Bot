@@ -1,0 +1,47 @@
+=== AUDIT A8: API Server ===
+Date: 2026-05-28 07:50 MMT
+
+--- OVERVIEW ---
+- Framework: FastAPI + uvicorn
+- Port: 8000 (was crashing, now stable)
+- PID: 276375
+- Venv: /root/psvibe_api_server/venv/
+- Requirements: fastapi, uvicorn, gspread, pydantic
+
+--- CRASH HISTORY ---
+- 19 restarts between May 27 22:17 and May 28 07:16
+- Error: "[Errno 98] address already in use" — V2 had same port conflict
+- Eventually stopped old process and started clean at 07:17
+- Now running reliably
+
+--- CONFIG ---
+- config.py: PORT=8000, SHEET_ID set, API_KEY set
+- SA file: /root/psvibe_api_server/service_account.json (valid, readable)
+- Sheets connected: 27 sheets available
+- Sheets cache: 300s config, 180s members, 30s bookings, 600s games
+
+--- ROUTES ---
+/api/health → 200 OK
+/api/fetch_console_status → 401 (API_KEY required)
+/api/sheets/config → 401
+/api/fetch_members → 401
+/api/fetch_staff → 401
+/api/fetch_games → 401
+/api/fetch_base_rate → 401
+/api/next_voucher → 401
+
+--- AUTH ISSUE ---
+All data endpoints return 401 Unauthorized
+Bot requests include _API_KEY but it doesn't match server's API_KEY
+Need to sync API_KEY between .env and API server config
+
+--- MYSQL ROUTES ---
+/db/status → 404 (not implemented)
+/db/health → 404 (not implemented)
+API server has NO MySQL routes, even though MySQL Docker is running
+
+--- OBSERVATIONS ---
+1. API is running + Sheets connected = core data pipeline WORKING
+2. Auth mismatch = bots can't use API
+3. MySQL Docker is ready but API has no MySQL integration yet
+4. Cache TTLs reasonably tuned

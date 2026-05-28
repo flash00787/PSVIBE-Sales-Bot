@@ -1,0 +1,26 @@
+/opt/agri-bot/:
+total 36
+drwxr-xr-x 3 root root 4096 May 13 13:16 .
+drwxr-xr-x 6 root root 4096 May 13 13:05 ..
+-rw------- 1 root root  260 May 13 13:13 .env
+-rw------- 1 root root 2369 May 13 13:14 .google-sa.json
+-rw------- 1 root root  170 May 13 13:16 .secrets
+drwxr-xr-x 2 root root 4096 May 13 13:05 dist
+-rw-r--r-- 1 root root  185 May 13 13:16 ecosystem.config.cjs
+-rw-r--r-- 1 root root 1056 May 13 13:13 package.json
+-rwxr-xr-x 1 root root  358 May 13 13:16 start.sh
+
+/opt/agri-bot/dist:
+total 12724
+drwxr-xr-x 2 root root    4096 May 13 13:05 .
+drwxr-xr-x 3 root root    4096 May 13 13:16 ..
+-rw-r--r-- 1 root root 4525700 May 13 13:12 index.mjs
+-rw-r--r-- 1 root root 7330602 May 13 13:13 index.mjs.map
+-rw-r--r-- 1 root root  145464 May 13 13:13 pino-file.mjs
+-rw-r--r-- 1 root root  234541 May 13 13:13 pino-file.mjs.map
+-rw-r--r-- 1 root root  117327 May 13 13:12 pino-pretty.mjs
+-rw-r--r-- 1 root root  208807 May 13 13:13 pino-pretty.mjs.map
+-rw-r--r-- 1 root root  157102 May 13 13:13 pino-worker.mjs
+-rw-r--r-- 1 root root  263033 May 13 13:13 pino-worker.mjs.map
+-rw-r--r-- 1 root root    7501 May 13 13:13 thread-stream-worker.mjs
+-rw-r--r-- 1 root root   12320 May 13 13:12 thread-stream-worker.mjs.map

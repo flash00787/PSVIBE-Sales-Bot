@@ -1,0 +1,62 @@
+name: openclaw-agents
+
+services:
+  nova:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-nova
+    ports:
+      - "3002:3000"
+    volumes:
+      - /opt/openclaw/nova:/home/node/.openclaw
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=nova-gateway-token-2026
+    labels:
+      - "agent=Nova"
+      - "description=Nova - Ye Yint Oo agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  coco:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-coco
+    ports:
+      - "3003:3000"
+    volumes:
+      - /opt/openclaw/coco:/home/node/.openclaw
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=coco-gateway-token-2026
+    labels:
+      - "agent=CoCo"
+      - "description=CoCo - Project agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  gayzoelay:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-gayzoelay
+    ports:
+      - "3004:3000"
+    volumes:
+      - /opt/openclaw/gayzoelay:/home/node/.openclaw
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=gayzoelay-gateway-token-2026
+    labels:
+      - "agent=GayZoeLay"
+      - "description=GayZoeLay - Project agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

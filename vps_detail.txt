@@ -1,0 +1,524 @@
+
+========== SALES_BOT_DIR ==========
+total 664
+drwxr-xr-x  8 root root   4096 May 28 07:46 .
+drwx------ 29 root root   4096 May 28 07:48 ..
+-rw-r--r--  1 root root   1176 May 28 07:30 AGENT_STATUS.md
+-rw-r--r--  1 root root  29825 May 26 20:36 app.py
+drwxr-xr-x  5 root root   4096 May 28 07:20 bot
+-rw-r--r--  1 root root 339546 May 28 07:48 bot_status.log
+-rw-r--r--  1 root root   5382 May 27 21:29 check_sheets_access.py
+-rw-r--r--  1 root root   2286 May 28 07:30 COORDINATION.md
+-rw-r--r--  1 root root   5382 May 26 20:36 create_refactored_init.py
+drwxr-xr-x  4 root root   4096 May 28 07:17 customer_bot
+-rw-r--r--  1 root root  11556 May 26 20:36 deploy_refactored.sh
+-rw-------  1 root root    534 May 27 22:14 .env
+-rw-r--r--  1 root root     72 May 27 22:31 fix_29_status.txt
+drwxr-xr-x  2 root root   4096 May 26 20:36 handlers
+-rw-r--r--  1 root root    213 May 26 20:36 __init___outer_minimal.py
+-rw-r--r--  1 root root    213 May 26 20:36 __init__.py
+-rw-r--r--  1 root root  80386 May 26 20:36 INIT_REFACTORED
+-rw-r--r--  1 root root  80386 May 26 20:36 __init___refactored.py
+-rw-r--r--  1 root root   9494 May 27 22:17 main_customer.py
+-rw-r--r--  1 root root   4142 May 28 07:30 main.py
+-rw-r--r--  1 root root   1664 May 28 07:30 MENU_FIX_COORDINATION.md
+drwxr-xr-x  2 root root   4096 May 28 07:46 __pycache__
+-rw-r--r--  1 root root   2376 May 26 20:36 service_account.json
+-rw-r--r--  1 root root   3027 May 28 07:30 SHEETS_403_FIX.md
+-rw-r--r--  1 root root  16969 May 26 20:36 split_handlers_v3.py
+drwxr-xr-x  2 root root   4096 May 26 23:30 sqlite
+drwxr-xr-x  2 root root   4096 May 28 06:56 trash
+
+========== SALES_BOT_STRUCTURE ==========
+/root/psvibe-sale-bot/sqlite/setup.py
+/root/psvibe-sale-bot/sqlite/db_manager.py
+/root/psvibe-sale-bot/__init__.py
+/root/psvibe-sale-bot/split_handlers_v3.py
+/root/psvibe-sale-bot/check_sheets_access.py
+/root/psvibe-sale-bot/bot/__init__.py
+/root/psvibe-sale-bot/bot/keep_alive.py
+/root/psvibe-sale-bot/bot/app.py
+/root/psvibe-sale-bot/app.py
+/root/psvibe-sale-bot/customer_bot/__init__.py
+/root/psvibe-sale-bot/customer_bot/ai.py
+/root/psvibe-sale-bot/customer_bot/api.py
+/root/psvibe-sale-bot/customer_bot/main.py
+/root/psvibe-sale-bot/customer_bot/handlers.py
+/root/psvibe-sale-bot/handlers/broadcast.py
+/root/psvibe-sale-bot/handlers/finance.py
+/root/psvibe-sale-bot/handlers/admin_bookings.py
+/root/psvibe-sale-bot/handlers/stock.py
+/root/psvibe-sale-bot/handlers/members.py
+/root/psvibe-sale-bot/handlers/__init__.py
+/root/psvibe-sale-bot/handlers/sales.py
+/root/psvibe-sale-bot/handlers/salary_adv.py
+/root/psvibe-sale-bot/handlers/commands.py
+/root/psvibe-sale-bot/handlers/ssd_disc.py
+/root/psvibe-sale-bot/handlers/admin.py
+/root/psvibe-sale-bot/handlers/console.py
+/root/psvibe-sale-bot/handlers/waitlist.py
+/root/psvibe-sale-bot/handlers/referral.py
+/root/psvibe-sale-bot/handlers/games.py
+/root/psvibe-sale-bot/handlers/notify.py
+/root/psvibe-sale-bot/handlers/reports.py
+/root/psvibe-sale-bot/handlers/discount.py
+/root/psvibe-sale-bot/handlers/ginst.py
+/root/psvibe-sale-bot/handlers/stock_in.py
+/root/psvibe-sale-bot/handlers/main_menu.py
+/root/psvibe-sale-bot/handlers/booking_flow.py
+/root/psvibe-sale-bot/handlers/booking.py
+/root/psvibe-sale-bot/handlers/help.py
+/root/psvibe-sale-bot/handlers/payroll.py
+/root/psvibe-sale-bot/handlers/console_mgmt.py
+/root/psvibe-sale-bot/handlers/attendance.py
+/root/psvibe-sale-bot/__init___refactored.py
+/root/psvibe-sale-bot/create_refactored_init.py
+/root/psvibe-sale-bot/main_customer.py
+/root/psvibe-sale-bot/main.py
+/root/psvibe-sale-bot/__init___outer_minimal.py
+---
+/root/psvibe-sale-bot
+/root/psvibe-sale-bot/bot
+/root/psvibe-sale-bot/bot/handlers
+/root/psvibe-sale-bot/bot/__pycache__
+/root/psvibe-sale-bot/bot/receipts
+/root/psvibe-sale-bot/customer_bot
+/root/psvibe-sale-bot/customer_bot/data
+/root/psvibe-sale-bot/customer_bot/__pycache__
+/root/psvibe-sale-bot/handlers
+/root/psvibe-sale-bot/__pycache__
+/root/psvibe-sale-bot/sqlite
+/root/psvibe-sale-bot/trash
+
+========== CUSTOMER_BOT_DIR ==========
+total 136
+drwxr-xr-x 4 root root  4096 May 28 07:17 .
+drwxr-xr-x 8 root root  4096 May 28 07:46 ..
+-rw-r--r-- 1 root root 22364 May 27 22:20 ai.py
+-rw-r--r-- 1 root root 20201 May 27 22:20 ai.py.bak
+-rw-r--r-- 1 root root 19015 May 27 22:31 api.py
+drwxr-xr-x 3 root root  4096 May 28 07:20 data
+-rw-r--r-- 1 root root   908 May 27 22:19 FIX_STATUS.md
+-rw-r--r-- 1 root root 37818 May 27 22:21 handlers.py
+-rw-r--r-- 1 root root   792 May 28 07:20 __init__.py
+-rw-r--r-- 1 root root  7006 May 28 07:20 main.py
+drwxr-xr-x 2 root root  4096 May 28 07:46 __pycache__
+
+========== SALES_CONFIG_FILES ==========
+/root/psvibe-sale-bot/.env
+
+========== WALLET_CONFIG_FILES ==========
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/telegram/_passport/credentials.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/flask/config.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/google/auth/compute_engine/credentials.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/google/auth/credentials.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/google/auth/aio/credentials.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/google/oauth2/credentials.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/setuptools/tests/config
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/setuptools/_distutils/command/config.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/setuptools/config
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/pip/_internal/configuration.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/pip/_internal/commands/configuration.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/pip/_vendor/pygments/token.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/oauthlib/openid/connect/core/tokens.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/endpoints/token.py
+/root/Personal-Wallet-Tele-Bot/bot/venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/tokens.py
+/root/Personal-Wallet-Tele-Bot/bot/.env
+
+========== SALES_MAIN_HEAD ==========
+#!/usr/bin/env python3
+"""PS VIBE Gaming Lounge — Staff Bot Entry Point.
+Modularized in Phase 4. All code lives in bot/ package.
+"""
+import os
+import sys
+import time
+import signal
+import asyncio
+import logging
+
+# Import the entire bot package (infrastructure + handlers + app)
+
+
+from bot import main, keep_alive, ensure_sheet_headers
+from bot import _load_cfg, _load_members, _bg_cache_refresh
+
+# ── Centralised Logging Configuration ──────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.FileHandler('/root/psvibe-sale-bot/bot_status.log'),
+        logging.StreamHandler()
+    ]
+)
+
+
+if __name__ == "__main__":
+    import subprocess
+
+    _my_pid   = os.getpid()
+    _LOCK_PATH = "/tmp/ps_vibe_bot.lock"
+
+    # ── Step 1: Kill ALL other python3 main.py processes (no cooperation needed) ──
+    try:
+        _result = subprocess.run(
+            ["pgrep", "-f", "python3 main.py"],
+            capture_output=True, text=True,
+        )
+        for _pid_str in _result.stdout.strip().split("\n"):
+            try:
+                _pid = int(_pid_str.strip())
+            except ValueError:
+                continue
+            if _pid == _my_pid:
+                continue
+            logging.warning("Duplicate bot process found (PID %d) — killing...", _pid)
+            try:
+                os.kill(_pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+        time.sleep(2)   # give SIGTERM a moment to land
+        # Force-kill anything still alive
+        for _pid_str in _result.stdout.strip().split("\n"):
+            try:
+                _pid = int(_pid_str.strip())
+            except ValueError:
+                continue
+            if _pid == _my_pid:
+
+========== CUSTOMER_MAIN_HEAD ==========
+"""PS VIBE Customer Bot — Clean V2 Entry Point.
+Refactored from _v1_compat.py (removed 2026-05-28).
+Booking conversation handlers need to be migrated from _v1_compat.py backup.
+"""
+import asyncio
+import logging
+import os
+import signal
+import sys
+import time
+
+# Ensure parent dir + customer_bot dir are on path for imports
+_pkg_dir = os.path.dirname(os.path.abspath(__file__))
+_parent_dir = os.path.dirname(_pkg_dir)
+for _d in (_pkg_dir, _parent_dir):
+    if _d not in sys.path:
+        sys.path.insert(0, _d)
+
+from telegram import BotCommand
+from telegram.ext import (
+    Application, ApplicationBuilder, CommandHandler, ConversationHandler,
+    MessageHandler, filters, CallbackQueryHandler,
+)
+
+from customer_bot.handlers import (
+    BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
+    BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
+    BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_END,
+    cmd_start, cmd_menu, cmd_today, cmd_rate, cmd_myid,
+    cmd_contact, cmd_promotions, cmd_help, cmd_refresh,
+    cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
+    cmd_book, cmd_cancel, cmd_feedback, cmd_mybookings, cmd_refer, cmd_waitlist,
+    cb_feedback_rating, cb_feedback_comment_prompt, cb_feedback_skip,
+    handle_menu_buttons, show_main_menu,
+)
+
+_log = logging.getLogger(__name__)
+BOT_TOKEN = os.environ.get("CUSTOMER_BOT_TOKEN", "")
+
+
+def _register_handlers(app: Application) -> None:
+    """Register all command and callback handlers."""
+
+    # Simple commands
+    app.add_handler(CommandHandler("start",  cmd_start))
+    app.add_handler(CommandHandler("menu",   cmd_menu))
+    app.add_handler(CommandHandler("today",  cmd_today))
+    app.add_handler(CommandHandler("rate",   cmd_rate))
+    app.add_handler(CommandHandler("myid",   cmd_myid))
+    app.add_handler(CommandHandler("help",   cmd_help))
+    app.add_handler(CommandHandler("contact",cmd_contact))
+    app.add_handler(CommandHandler("location",cmd_location))
+    app.add_handler(CommandHandler("promotions",cmd_promotions))
+    app.add_handler(CommandHandler("refresh",cmd_refresh))
+    app.add_handler(CommandHandler("balance",cmd_balance))
+    app.add_handler(CommandHandler("games",  cmd_game_library))
+    app.add_handler(CommandHandler("status", cmd_console_status))
+    app.add_handler(CommandHandler("book",   cmd_book))
+    app.add_handler(CommandHandler("booking",cmd_book))
+
+========== WALLET_MAIN_HEAD ==========
+"""Finance Telegram Bot — Replit Core Always On (deploy as Reserved VM).
+
+Architecture notes
+──────────────────
+• keep_alive.py (Flask, port 5000) runs as a daemon thread for UptimeRobot.
+• PicklePersistence keeps ConversationHandler state across restarts.
+• The __main__ block wraps main() in a while-True/try-except so the process
+  self-heals from any unhandled exception, restarting automatically in 5 s.
+• drop_pending_updates=True prevents 409 Conflict when restarting.
+• Rotating file log written to bot/bot_status.log (5 MB × 3 backups).
+
+Transaction_Log column map (1-indexed, as gspread Cell uses):
+  col  1  A  ARRAYFORMULA  ← NEVER written — managed by Sheets formula
+  col  2  B  Date          ← bot writes "YYYY-MM-DD"
+  col  3  C  ARRAYFORMULA  ← NEVER written
+  col  4  D  ARRAYFORMULA  ← NEVER written — formula fills date here (used by /summary)
+  col  5  E  Type
+  col  6  F  Category
+  col  7  G  AccountFrom
+  col  8  H  AccountTo
+  col  9  I  Amount
+  col 10  J  Project
+  col 11  K  ARRAYFORMULA  ← NEVER written
+  col 12  L  ARRAYFORMULA  ← NEVER written
+  col 13  M  ARRAYFORMULA  ← NEVER written
+  col 14  N  Scope
+
+  save_transaction() uses gspread.Cell objects for ONLY cols 2,5,6,7,8,9,10,14.
+  update_cells() sends EXACTLY those cells — cols 1,3,4,11,12,13 are never
+  addressed and the Google Sheets ARRAYFORMULA in col 4 fills itself from col 2.
+
+Opening_Balances columns: A=Date  B=Type  C=Entity/Name  D=Amount  E=Notes
+
+New sheet constants:
+  SAAS_SHEET = "Saas_Tracker"  → subscriptions list
+
+New commands (all read-only from sheet):
+  /debts    — Receivable / Payable overview from Opening_Balances
+  /networth — Full net worth snapshot grouped by asset type
+  /fx       — Currency converter using Settings exchange rates
+  /setrate  — Update exchange rate in Settings sheet
+  /saas     — SaaS subscription list + monthly cost
+  /project  — Per-project P&L from Transaction_Log col J
+  /split    — Business vs Personal expense bar chart
+"""
+
+import os
+import io
+import re
+import sys
+import time
+import base64
+import asyncio
+import socket
+import fcntl
+import calendar
+import functools
+import logging
+import warnings
+import threading
+
+========== DOCKER_COMPOSE ==========
+(empty)
+========== MYSQL_ENV ==========
+MYSQL_ROOT_PASSWORD=PsVibe@MySQL2024!
+MYSQL_DATABASE=psvibe_api
+MYSQL_USER=psvibe_user
+MYSQL_PASSWORD=PsVibe@User2024!
+HOME=/root
+
+========== MYSQL_DATABASES ==========
+MYSQL_AUTH_FAIL
+
+========== MYSQL_USERS ==========
+MYSQL_USERS_FAIL
+
+========== GSHEET_REFS_SALES ==========
+(empty)
+========== GSHEET_REFS_WALLET ==========
+(empty)
+========== MYSQL_REFS_SALES ==========
+(empty)
+========== MYSQL_REFS_WALLET ==========
+(empty)
+========== API_REFS_SALES ==========
+(empty)
+========== API_REFS_WALLET ==========
+(empty)
+========== SERVICE_FILES ==========
+=== /etc/systemd/system/psvibe-api.service ===
+[Unit]
+Description=PS VIBE API Server 
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/psvibe_api_server
+EnvironmentFile=/etc/psvibe/secrets.env
+Environment=PYTHONUNBUFFERED=1
+Environment=SHEET_ID=1VFNvhdcYVlVrr5TS49n2peIZa3U6y_AI-Mfo7q7gVsA
+Environment=SERVICE_ACCOUNT_FILE=/root/psvibe_api_server/service_account.json
+ExecStart=/root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+StandardOutput=append:/root/psvibe_api_server/server.log
+StandardError=append:/root/psvibe_api_server/server.log
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe_api_server /root/psvibe_sales_bot "/root/Aung Chan Myint"
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+=== /etc/systemd/system/psvibe-sale-bot.service ===
+[Unit]
+Description=PS VIBE Sales Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/psvibe-sale-bot
+EnvironmentFile=/root/psvibe-sale-bot/.env
+EnvironmentFile=/etc/psvibe/secrets.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/root/psvibe-sale-bot
+ExecStart=/root/venv/bin/python3 /root/psvibe-sale-bot/main.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=psvibe-sale-bot
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe-sale-bot "/root/Aung Chan Myint"
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+=== /etc/systemd/system/psvibe-wallet.service ===
+[Unit]
+Description=PS Vibe Personal Wallet Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/Personal-Wallet-Tele-Bot/bot
+EnvironmentFile=/root/Personal-Wallet-Tele-Bot/bot/.env
+EnvironmentFile=/etc/psvibe/secrets.env
+ExecStart=/root/Personal-Wallet-Tele-Bot/bot/venv/bin/python3 /root/Personal-Wallet-Tele-Bot/bot/main.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+StandardError=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+TimeoutStopSec=15
+KillSignal=SIGTERM
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe_sales_bot "/root/Aung Chan Myint" /root/Personal-Wallet-Tele-Bot
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+=== psvibe_customer_bot ===
+[Unit]
+Description=PS VIBE Customer Bot (@psvibe_customer_service_bot)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Workin
+========== VENV_CHECK ==========
+/root/venv/bin/python3
+aiohttp              3.13.5
+google-auth          2.53.0
+google-auth-oauthlib 1.4.0
+google-genai         2.6.0
+gspread              6.2.1
+httpx                0.28.1
+python-telegram-bot  22.7
+requests             2.34.2
+requests-oauthlib    2.0.0
+
+========== WALLET_VENV_CHECK ==========
+/root/Personal-Wallet-Tele-Bot/bot/venv/bin/python3
+google-auth          2.50.0
+google-auth-oauthlib 1.3.1
+gspread              6.2.1
+httpx                0.28.1
+python-telegram-bot  22.7
+requests             2.34.2
+requests-oauthlib    2.0.0
+
+========== N8N_WEBHOOKS ==========
+bash: -c: line 1: syntax error near unexpected token `('
+bash: -c: line 1: `curl -s -H "accept: application/json" http://127.0.0.1:5678/rest/workflows 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); ws=d.get("data",[]); print(f"Workflows: {len(ws)}"); [print(f"  - {w.get("name","?")}") for w in ws]" 2>/dev/null || echo "N8N_API_FAIL"'
+
+========== TEST_SALES_BOT_API ==========
+HTTP 200
+========== TEST_API_SERVICE ==========
+May 28 07:16:38 openClawAgent systemd[1]: psvibe-api.service: Main process exited, code=exited, status=1/FAILURE
+May 28 07:16:38 openClawAgent systemd[1]: psvibe-api.service: Failed with result 'exit-code'.
+May 28 07:16:43 openClawAgent systemd[1]: psvibe-api.service: Scheduled restart job, restart counter is at 2.
+May 28 07:16:43 openClawAgent systemd[1]: Started psvibe-api.service - PS VIBE API Server (V2 Python).
+May 28 07:16:45 openClawAgent systemd[1]: psvibe-api.service: Main process exited, code=exited, status=1/FAILURE
+May 28 07:16:45 openClawAgent systemd[1]: psvibe-api.service: Failed with result 'exit-code'.
+May 28 07:16:50 openClawAgent systemd[1]: psvibe-api.service: Scheduled restart job, restart counter is at 3.
+May 28 07:16:50 openClawAgent systemd[1]: Started psvibe-api.service - PS VIBE API Server (V2 Python).
+May 28 07:16:51 openClawAgent systemd[1]: psvibe-api.service: Main process exited, code=exited, status=1/FAILURE
+May 28 07:16:51 openClawAgent systemd[1]: psvibe-api.service: Failed with result 'exit-code'.
+May 28 07:16:56 openClawAgent systemd[1]: psvibe-api.service: Scheduled restart job, restart counter is at 4.
+May 28 07:16:56 openClawAgent systemd[1]: Started psvibe-api.service - PS VIBE API Server (V2 Python).
+May 28 07:16:58 openClawAgent systemd[1]: psvibe-api.service: Main process exited, code=exited, status=1/FAILURE
+May 28 07:16:58 openClawAgent systemd[1]: psvibe-api.service: Failed with result 'exit-code'.
+May 28 07:17:03 openClawAgent systemd[1]: psvibe-api.service: Scheduled restart job, restart counter is at 5.
+May 28 07:17:03 openClawAgent systemd[1]: Started psvibe-api.service - PS VIBE API Server (V2 Python).
+May 28 07:17:05 openClawAgent systemd[1]: psvibe-api.service: Main process exited, code=exited, status=1/FAILURE
+May 28 07:17:05 openClawAgent systemd[1]: psvibe-api.service: Failed with result 'exit-code'.
+May 28 07:17:09 openClawAgent systemd[1]: Stopped psvibe-api.service - PS VIBE API Server (V2 Python).
+May 28 07:17:10 openClawAgent systemd[1]: Started psvibe-api.service - PS VIBE API Server (V2 Python).
+
+========== TEST_SALES_LOGS ==========
+May 28 07:42:23 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:42:23,551 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:42:49 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:42:49,608 [WARNING] API GET /sheets/config failed: <urlopen error [Errno 111] Connection refused>
+May 28 07:42:50 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:42:50,002 [INFO] Background cache refresh done
+May 28 07:42:53 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:42:53,759 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:43:23 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:43:23,945 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:43:54 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:43:54,124 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:44:24 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:44:24,321 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:44:54 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:44:54,517 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:45:24 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:45:24,708 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:45:50 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:45:50,029 [WARNING] API GET /sheets/config failed: <urlopen error [Errno 111] Connection refused>
+May 28 07:45:50 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:45:50,460 [INFO] Background cache refresh done
+May 28 07:45:54 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:45:54,903 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:25 openClawAgent psvibe-sale-bot[282190]: 2026-05-28 07:46:25,091 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:55 openClawAgent psvibe-sale-bot[282190]
+========== TEST_CUSTOMER_LOGS ==========
+May 28 07:45:44 openClawAgent psvibe_customer_bot[285331]: RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+May 28 07:45:54 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:45:54,266 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:04 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:04,460 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:14 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:14,646 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:24 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:24,848 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:35 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:35,037 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:45 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:45,223 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:46:55 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:46:55,414 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:47:05 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:47:05,601 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:47:15 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:47:15,788 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:47:25 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:47:25,976 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:47:36 openClawAgent psvibe_customer_bot[285331]: 2026-05-28 07:47:36,162 [INFO] HTTP Request: POST https://api.telegram.org/bot8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs/getUpdates "HTTP/1.1 200 OK"
+May 28 07:47:46 openClaw
+========== TEST_WALLET_LOGS ==========
+May 27 21:40:21 openClawAgent systemd[1]: Started psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 21:41:18 openClawAgent systemd[1]: Stopping psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot...
+May 27 21:41:19 openClawAgent systemd[1]: psvibe-wallet.service: Deactivated successfully.
+May 27 21:41:19 openClawAgent systemd[1]: Stopped psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 21:41:19 openClawAgent systemd[1]: psvibe-wallet.service: Consumed 1.830s CPU time, 70.3M memory peak, 0B memory swap peak.
+May 27 21:41:19 openClawAgent systemd[1]: Started psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 21:50:15 openClawAgent systemd[1]: Stopping psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot...
+May 27 21:50:16 openClawAgent systemd[1]: psvibe-wallet.service: Deactivated successfully.
+May 27 21:50:16 openClawAgent systemd[1]: Stopped psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 21:50:16 openClawAgent systemd[1]: psvibe-wallet.service: Consumed 1.793s CPU time, 70.0M memory peak, 0B memory swap peak.
+May 27 21:50:16 openClawAgent systemd[1]: Started psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 22:14:58 openClawAgent systemd[1]: /etc/systemd/system/psvibe-wallet.service:20: ReadWritePaths= path is not absolute, ignoring: Chan
+May 27 22:14:58 openClawAgent systemd[1]: /etc/systemd/system/psvibe-wallet.service:20: ReadWritePaths= path is not absolute, ignoring: Myint
+May 27 22:21:46 openClawAgent systemd[1]: Stopping psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot...
+May 27 22:21:50 openClawAgent systemd[1]: psvibe-wallet.service: Deactivated successfully.
+May 27 22:21:50 openClawAgent systemd[1]: Stopped psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.
+May 27 22:21:50 openClawAgent systemd[1]: psvibe-wallet.service: Consumed 2.796s CPU time, 70.0M memory peak, 0B memory swap peak.
+May 27 22:21:50 openClawAgent systemd[1]: Started psvibe-wallet.service - PS Vibe Personal Wallet Telegram Bot.

@@ -1,0 +1,690 @@
+================================================================================
+  PS VIBE SALES BOT & CUSTOMER BOT — DEEP AUDIT REPORT
+  Generated: 2026-05-26 21:00 UTC
+  Server: 167.71.196.120 (DigitalOcean Droplet)
+================================================================================
+
+TABLE OF CONTENTS
+  1. Executive Summary
+  2. Architecture Analysis
+  3. Security Audit
+  4. Google Sheets Integration
+  5. Error Handling Review
+  6. Telegram API & ConversationHandler
+  7. Performance & Resource Usage
+  8. Code Quality Assessment
+  9. Backup & Rollback Mechanisms
+  10. Monitoring & Health Checks
+  11. Refactored Code Assessment
+  12. Severity-Ranked Recommendations
+
+================================================================================
+1. EXECUTIVE SUMMARY
+================================================================================
+
+The PS VIBE system consists of two Telegram bots running on a single VPS:
+  — Sales Bot (staff bot): Entry at main.py → bot/ package (__init__.py + handlers.py + app.py)
+  — Customer Bot: Original monolithic customer_bot.py running from refactored service
+
+Both bots share ONE Google Sheet (SHEET_ID=1VFNvhdcYVlVrr5TS49n2peIZa3U6y_AI-Mfo7q7gVsA)
+across 9+ worksheets. The system handles member management, daily sales, console
+booking, stock tracking, finance/accounting, game library, SSD management, and
+waitlist management — a very broad feature set.
+
+A partial refactoring exists at /root/Sales-Tele-Bot_refactored/ but some
+services still run the monolithic code. The current state is transitional:
+the refactored staff bot IS running, while the customer bot runs the monolithic
+file from a "refactored" systemd unit (confusingly).
+
+OVERALL GRADE: C+ (Serious issues exist, some mitigated)
+
+================================================================================
+2. ARCHITECTURE ANALYSIS
+================================================================================
+
+2.1 SALES BOT (Original) — /root/Sales-Tele-Bot/
+
+  Entry Point: main.py (99 lines)
+    - Duplicate-process killer via pgrep
+    - PID lock file at /tmp/ps_vibe_bot.lock
+    - Keep-alive Flask server for Replit-style uptime (not needed on VPS)
+    - Outer infinite loop with crash recovery (restart after 5s, 30s for Conflict)
+
+  bot/__init__.py  —  1,655 lines (~68 KB)
+    - Google Sheets auth & initialization (9 worksheet refs in global scope)
+    - All data models, helpers, constants (177 states, button labels)
+    - Config/member/booking/game caching layer
+    - Retry wrapper for gspread API calls
+    - API client (REST calls to API server)
+    - Receipt generation helpers
+    - Re-exports everything via `from bot.handlers import *`
+
+  bot/app.py  —  457 lines (~30 KB)
+    - Application builder & ConversationHandler assembly
+    - Auth middleware (whitelist-based)
+    - ALL state→handler mappings for 177 ConversationHandler states
+    - 30+ fallback command handlers
+    - Global CallbackQuery handlers (extend timer, booking mgmt)
+    - Bot command registration
+    - Background cache startup
+
+  bot/handlers.py  —  12,094 lines (~484 KB)
+    - ALL handler functions in one monolithic file
+    - Staff bot whitelist [8539344655, 8336350778, 6296803251]
+    - Main menu, daily sales, member management, new member, top-up
+    - Stock in/out, inventory, attendance, salary advance
+    - Console booking, game library, SSD management
+    - Finance module (OPEX, assets, prepaid, transfer, payables, receivables)
+    - Admin panel, broadcasts, promotions, waitlist
+    - Global error_handler at line 11538
+
+  Severity: HIGH — 12,000 lines in a single file is extremely difficult to
+  maintain, debug, and review. Any change risks breaking unrelated flows.
+
+2.2 CUSTOMER BOT (Original) — /root/Sales-Tele-Bot/customer_bot.py
+
+  - Single monolithic file: 294,651 bytes, ~5,829 lines (observed from refactored copy)
+  - Includes embedded FAQ/Knowledge Base data (100+ lines of Q&A)
+  - Gemini AI integration for free-text messages
+  - Direct Telegram API usage (no python-telegram-bot wrapper for some calls)
+  - Custom API client class (RateLimitedApiClient) with retry logic
+  - ConversationHandler with ~10 states (much simpler than staff bot)
+  - Promotions, rates, booking, member lookup, game info
+
+  Severity: MEDIUM — Monolithic but somewhat manageable at ~6K lines.
+  The embedded FAQ data should be externalized.
+
+2.3 CURRENT RUNNING STATE (Observed)
+
+  Staff Bot:
+    psvibe-bot.service (ACTIVE) — runs original code
+    psvibe-bot-refactored.service (ACTIVE) — runs refactored code
+    **TWO STAFF BOTS RUNNING SIMULTANEOUSLY** — Telegram Conflict likely!
+
+  Customer Bot:
+    psvibe-customer.service (FAILED) — timed out, killed
+    psvibe-customer-refactored.service (ACTIVE) — runs ORIGINAL
+      customer_bot.py, NOT the refactored customer bot
+
+  Severity: CRITICAL — Two staff bot instances will cause Telegram API
+  conflicts (only one can poll updates). The customer bot's refactored
+  service runs the monolithic file anyway, rendering the refactoring
+  incomplete.
+
+================================================================================
+3. SECURITY AUDIT
+================================================================================
+
+3.1 CREDENTIAL EXPOSURE
+
+  CRITICAL — .env file contains REAL tokens:
+    - CUSTOMER_BOT_TOKEN: 8639289328:AAEltJxEgcGbc5D09EHcmMpmCgaaB71vWYs
+    - BOT_TOKEN: 8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU
+    - GEMINI_API_KEY: AIzaSyB0F48vkY4JjlXDU_YbsNHfytnLzWVjWOg
+    - API_KEY: JWIErd82Apo3j-KKWW8HjOjfizo9s_tpJZhcSb7D-AQ
+    - STOCK_PIN: 481999 (duplicated)
+    - N8N webhook URLs
+
+  CRITICAL — start.sh hardcodes BOT_TOKEN and SHEET_ID with Export commands
+    (used for screen-based restarts, not currently active but present)
+
+  HIGH — service_account.json present in repo root; this gives Google API
+    access to anyone who can read the file
+
+  HIGH — kora_drive_sa.json (second service account) present in root
+
+  MEDIUM — Admin user IDs hardcoded in _ALLOWED_USER_IDS list in handlers.py
+    (not configurable via Sheet)
+
+  MEDIUM — Stock PIN hardcoded as env fallback "1234" in __init__.py
+
+  LOW — .env.example properly excludes secrets, but .env has .gitignore protection
+
+3.2 RUNTIME PRIVILEGES
+
+  HIGH — All bot services run as root user
+    - Unnecessary; a dedicated 'psvibe' user should be created
+    - Any code execution bug could compromise the entire server
+
+3.3 NETWORK EXPOSURE
+
+  LOW — Flask keep-alive server runs on default port (only for uptime)
+  NOTE — API server (psvibe-api.service) runs Node.js on some port; check
+    Caddy/nginx config for proper HTTPS
+
+================================================================================
+4. GOOGLE SHEETS INTEGRATION
+================================================================================
+
+4.1 SHEET INITIALIZATION (CRITICAL BLOCKING)
+
+  All 9 worksheets are opened at module import time (lines ~62-70 of __init__.py):
+    sales_sh, setting_sh, member_sh, stock_sh, stock_in_sh, topup_sh, inv_sh
+  Plus on-demand worksheets: att_sh, booking_sh, salary_adv_sh, game_lib_sh,
+    console_games_sh, and finance sheets.
+
+  This means:
+    - ANY sheets API failure at startup kills the entire bot
+    - Bot cannot "degrade gracefully" if one sheet is temporarily unavailable
+    - Bot restart loops if Sheets API is down
+
+  Severity: HIGH
+
+4.2 RETRY WRAPPER
+
+  GOOD: gspread Worksheet methods are monkey-patched with _sheets_retry decorator
+    - Retries on 429, 500, 503 with exponential backoff (1s/2s/4s)
+    - Also retries on ConnectionError, TimeoutError, OSError
+    - Max 3 retries, then propagate
+
+  Issue: Only gspread.Worksheet methods are wrapped. Direct calls to
+    gspread.Spreadsheet or gspread.Client are NOT wrapped (except
+    add_worksheet which is explicitly wrapped).
+
+4.3 CACHING STRATEGY
+
+  Config:  5 min TTL (base_rate, console_multipliers, bonus_table, etc.)
+  Members: 3 min TTL (Card_Wallet rows)
+  Booking: 30 sec TTL (active session overlay)
+  Games:   10 min TTL (Game_Library rows)
+  Console Games: 5 min TTL
+  Promotions: 2 min TTL
+
+  Issue: fetch_balance_mins() bypasses cache (calls get_all_values directly)
+    — correct for wallet balance but adds API calls per interaction
+
+  Issue: check_disc_session_conflict() calls get_all_values() directly
+    — could be cached in the 30s booking cache
+
+4.4 API CALL ANALYSIS PER TYPICAL SALES FLOW
+
+  A single Daily Sale (new sale → select member → select console → enter mins
+  → discount → confirm) triggers approximately:
+    - 6-10 sheets API calls (member lookup, console lookup, balance check,
+      rate check, write sale, update wallet)
+    - Plus API server calls for receipt push
+
+  This is acceptable for a manual-use internal tool but could be optimized
+  by batching writes.
+
+================================================================================
+5. ERROR HANDLING REVIEW
+================================================================================
+
+5.1 GLOBAL ERROR HANDLER
+
+  handlers.py line 11538:
+    async def error_handler(update, context):
+      - Logs NetworkError/TimedOut as WARNING (auto-retry)
+      - Logs Conflict as WARNING (auto-resolve)
+      - Logs everything else as ERROR with exc_info
+
+  GOOD: Prevents bot crashes from unhandled exceptions
+  ISSUE: No user notification on failure. A staff member submits a sale,
+    it fails silently (just logged), and no retry/notification happens.
+
+5.2 TRY/EXCEPT PATTERNS
+
+  handlers.py: ~200+ try/except blocks
+    - Most catch generic Exception
+    - Many silently suppress (except: pass or except Exception: pass)
+    - Some log warnings but continue as if nothing happened
+
+  Customer Bot: Better structured
+    - Specific HTTP error handling (HTTPError, URLError, TimeoutError)
+    - API client has built-in retry for transient errors
+    - Gemini AI failures fall back gracefully
+
+5.3 SILENT FAILURES (Examples)
+
+  - end_booking(): "except Exception: pass; return False"
+  - cancel_booking(): Same pattern
+  - fetch_console_status(): "except Exception: pass" at end
+  - fetch_games(): "except Exception: return []"
+
+  Severity: MEDIUM — Data integrity risk if writes fail silently
+
+5.4 MISSING ERROR RECOVERY
+
+  - No retry queue for failed writes
+  - No dead-letter queue
+  - No idempotency keys on API calls (double-write risk on retry)
+
+================================================================================
+6. TELEGRAM API & CONVERSATIONHANDLER
+================================================================================
+
+6.1 CONVERSATION HANDLER COMPLEXITY
+
+  States: 177 (range(177))
+  Each state has 1 MessageHandler(filters.TEXT & ~filters.COMMAND, handler)
+  Total handler entries in states dict: ~100+
+  Fallback command handlers: 35+
+
+  Severity: HIGH — This is the largest ConversationHandler I've ever seen.
+  The Python Telegram Bot library is not designed for state machines this large.
+  Each incoming message must iterate through ALL states looking for a match.
+
+6.2 GROUP HANDLER ORDER
+
+  Group -999: Auth middleware (TypeHandler)
+  Group -1:   Custom extend reply handler
+  Group 0:    ConversationHandler (implicit)
+  Group 10:   Cancel note input handler
+
+  Plus global CallbackQuery handlers (no group, added after conv)
+
+  This ordering means the auth middleware blocks everything before it
+  reaches the conversation handler — GOOD for security.
+
+6.3 CUSTOMER BOT APPROACH
+
+  The customer bot (monolithic) has a simpler handler setup:
+    - One main ConversationHandler with ~10 states
+    - All free-text messages → Gemini AI response
+    - Bot commands (/start, /menu, etc.) as entry points and fallbacks
+
+  This is architecturally cleaner but the monolithic structure is problematic.
+
+6.4 TELEGRAM API CALL FREQUENCY
+
+  Both bots use long-polling (getUpdates) — visible in logs at ~10s intervals
+  This is the standard python-telegram-bot behavior and acceptable.
+
+  No webhook usage; polling is used exclusively.
+
+================================================================================
+7. PERFORMANCE & RESOURCE USAGE
+================================================================================
+
+7.1 MEMORY USAGE
+
+  Staff Bot (original): 54.3 MB (peak 54.8 MB) — acceptable
+  Staff Bot (refactored): not measured separately
+  Customer Bot (refactored svc): 96.5 MB (peak 97.0 MB) — HIGH
+    MemoryMax=512M set — generous but prevents OOM kills
+  Wallet Bot 1: ~89 MB
+  Wallet Bot 2: ~80 MB
+
+  TOTAL Python memory: ~320 MB across 4 bots
+  System total: 3,915 MB, used 2,247 MB (57%)
+  Available: 1,667 MB
+
+7.2 DISK USAGE
+
+  /root/Sales-Tele-Bot/: 377 MB total
+    .venv/: 192 MB (installed packages)
+    bot_status.log: 8.2 MB (growing unbounded)
+    receipts/: unknown size
+    logs/bot.log: 12.5 MB
+    logs/customer_bot.log: 26.6 MB (old, not growing since May 22)
+
+  Total used: 21 GB / 116 GB (18%)
+  No immediate disk pressure
+
+7.3 LOG ROTATION
+
+  CRITICAL — No log rotation configured
+    bot_status.log: 8.2 MB and growing
+    logs/bot.log: 12.5 MB and growing
+    Monitoring logs are rotated (tail -n 1000), but bot logs are NOT
+
+7.4 STARTUP PERFORMANCE
+
+  Staff Bot cold start: Opens 9+ worksheets, loads config cache, loads member
+    cache, registers 100+ handler states. Estimated startup time: 5-15 seconds.
+
+  The pre-warming of config + member cache in main() helps first-interaction
+  latency but adds to startup time.
+
+7.5 BOT_STATUS.LOG SIZE
+
+  The log file contains all bot activity. At 8.2 MB and growing, it will
+  eventually consume significant disk space if not rotated.
+
+================================================================================
+8. CODE QUALITY ASSESSMENT
+================================================================================
+
+8.1 DUPLICATED CODE
+
+  HIGH — TWO copies of the staff bot handlers exist:
+    1. /root/Sales-Tele-Bot/bot/handlers/ — the refactored modular version
+    2. /root/Sales-Tele-Bot_refactored/bot/handlers/ — different refactored version
+    3. /root/Sales-Tele-Bot_refactored/handlers/ — YET ANOTHER copy
+
+  HIGH — TWO copies of __init__.py with nearly identical ~2,000-line content:
+    1. /root/Sales-Tele-Bot_refactored/bot/__init__.py
+    2. /root/Sales-Tele-Bot_refactored/__init___refactored.py
+
+8.2 MAGIC NUMBERS & HARDCODED VALUES
+
+  - "1234" as fallback STOCK_PIN
+  - Staff whitelist hardcoded in handlers.py [8539344655, 8336350778, 6296803251]
+  - Cache TTLs hardcoded (though as named constants, which is good)
+  - VALID_CONSOLES = {"C - 01" through "C - 10"} hardcoded
+  - Member ranks (Warrior/Master/Immortal) with thresholds in Sheets only
+
+8.3 FUNCTION LENGTH
+
+  The handlers.py file is 12,000+ lines with individual handler functions
+  ranging from 10-200+ lines. Some complex handlers like step_confirm()
+  and step_sale_confirm() are notably long.
+
+8.4 DEAD CODE
+
+  - keep_alive.py reference: "from keep_alive import keep_alive" — may not exist
+  - start.sh uses screen-based startup but systemd is the actual runner
+  - update_bot.sh references Replit sync URL that may be defunct
+  - Multiple .backup. and .bak. files (38 for customer_bot.py, many for bot files)
+
+8.5 TYPE HINTS
+
+  GOOD: The code uses Python 3.12+ type hints consistently
+    - function signatures have return types
+    - list[dict], dict[str, float], etc.
+  This is a positive sign of code quality awareness.
+
+8.6 UNTESTED CODE
+
+  NO tests found anywhere in the project. No pytest, no unittest files.
+  This is a MAJOR risk for a system handling financial transactions.
+
+  Severity: HIGH
+
+================================================================================
+9. BACKUP & ROLLBACK MECHANISMS
+================================================================================
+
+9.1 AUTOMATED BACKUPS
+
+  Cron: 30 20 * * * /root/backups/psvibe_backup.sh
+    - Runs daily at 20:30 UTC
+    - Logs to /root/backups/psvibe/backup.log
+    - Purpose: Backs up bot source files
+
+9.2 MANUAL BACKUPS
+
+  EXCELLENT: 38 timestamped backup files for customer_bot.py
+  GOOD: Multiple .bak files for handlers.py and main.py
+
+  The backup naming convention is descriptive:
+    customer_bot.py.bak.phase1
+    customer_bot.py.bak.booking_flow
+    customer_bot.py.bak.ai_games
+    handlers.py.bak.audit
+    handlers.py.bak.extend_fix
+    etc.
+
+  This makes rollback easy and traceable.
+
+9.3 GIT VERSION CONTROL
+
+  - Git repository exists with 10 commits
+  - Latest commit: "Update screenshot reflecting current bot status"
+  - MANY untracked files (all the real bot code is untracked!)
+  - The refactored code is completely outside git
+
+  Severity: HIGH — The actual production code is UNTRACKED in git.
+  Git only contains old Replit artifacts. None of the bot/ package is
+  committed.
+
+9.4 ROLLBACK CAPABILITY
+
+  Good: With 38 timestamped backups, rolling back the customer_bot.py is
+  trivial (just cp the .bak file back).
+
+  Good: Bot/ handlers/*.py have their own *.bak.phase1, *.bak.phase2 backups.
+
+  Issue: No backup of the actual Google Sheet data. Sheet data corruption
+  cannot be rolled back from the bot side.
+
+================================================================================
+10. MONITORING & HEALTH CHECKS
+================================================================================
+
+10.1 CRON-BASED MONITORING (GOOD)
+
+  */15 * * * * /root/monitoring/health.sh     — systemd service status
+  */15 * * * * /root/monitoring/resources.sh   — CPU/memory for bot processes
+  */30 * * * * /root/monitoring/ratelimit.sh   — rate limit monitoring
+  */30 * * * * /root/monitoring/uptime.sh       — uptime tracking
+  0 * * * * /root/monitoring/check_alerts.sh    — hourly alert check
+
+  All monitoring scripts are concise (< 30 lines each) and appropriate.
+
+10.2 ALERTING
+
+  check_alerts.sh reads /root/monitoring/alert.txt — if it exists and has
+  content, it dumps it and moves to cleared log. But nothing WRITES to
+  alert.txt currently. The alert pipeline is incomplete.
+
+  No external alerting (no Telegram notification, no email, no webhook).
+
+  Severity: MEDIUM
+
+10.3 SERVICE HEALTH
+
+  psvibe-bot.service: OK (running since 20:40 UTC)
+  psvibe-bot-refactored.service: OK (but DUPLICATE of psvibe-bot!)
+  psvibe-customer.service: FAILED (killed by timeout)
+  psvibe-customer-refactored.service: OK (running monolithic file)
+  psvibe-api.service: Status unknown (not checked)
+  psvibe-wallet.service: OK
+  psvibe-wallet2.service: OK
+
+================================================================================
+11. REFACTORED CODE ASSESSMENT
+================================================================================
+
+11.1 STAFF BOT REFACTORING
+
+  Location: /root/Sales-Tele-Bot_refactored/bot/handlers/
+  Status: Partially deployed (psvibe-bot-refactored running)
+
+  Modules (34 handler files, 20-2,600 lines each):
+    admin.py (548), admin_bookings.py (234), attendance.py (170),
+    booking.py (1076), booking_flow.py (716), broadcast.py (142),
+    commands.py (43), console.py (337), console_mgmt.py (146),
+    discount.py (434), finance.py (2559), games.py (408),
+    ginst.py (234), help.py (85), main_menu.py (98),
+    members.py (1136), notify.py (71), payroll.py (231),
+    referral.py (134), reports.py (338), salary_adv.py (124),
+    sales.py (1269), ssd_disc.py (451), stock.py (213),
+    stock_in.py (284), waitlist.py (274)
+
+  The modular split is GOOD and makes the code MUCH more maintainable.
+  Each module is a reasonable size. The largest is finance.py at 2,559 lines.
+
+  BUT: There is ALSO a /root/Sales-Tele-Bot_refactored/handlers/ directory
+  with nearly identical files — confusion about which is canonical.
+
+11.2 CUSTOMER BOT REFACTORING
+
+  Location: /root/Sales-Tele-Bot_refactored/customer_bot/
+  Status: NOT deployed (service still runs monolithic file)
+
+  Modules:
+    __init__.py (20), ai.py (476), api.py (426), handlers.py (840),
+    main.py (111), data/__init__.py (14), data/faq.py (61),
+    data/games.py (208), data/prompts.py (419)
+
+  This is a clean, well-structured refactoring:
+    - AI logic separated (ai.py)
+    - API client separated (api.py)
+    - Data (FAQ, games, prompts) separated into data/ module
+    - main entry point is clean at 111 lines
+
+  TOTAL refactored lines: ~2,500 (vs 5,829 monolithic)
+  This represents a ~57% reduction in duplication!
+
+11.3 SQLITE INTEGRATION (NEW)
+
+  /root/Sales-Tele-Bot_refactored/sqlite/
+    db_manager.py (539), setup.py (486), psvibe.db (160 KB)
+  Plus: cron_wrapper.sh running every 5 min for sync
+
+  This suggests a move toward SQLite for caching/bookings instead of
+  relying entirely on Google Sheets. This is a good architectural
+  improvement but appears incomplete/work-in-progress.
+
+================================================================================
+12. SEVERITY-RANKED RECOMMENDATIONS
+================================================================================
+
+CRITICAL (Fix Immediately)
+──────────────────────────
+  C1. STOP duplicate Staff Bot — disable psvibe-bot.service or
+      psvibe-bot-refactored.service. Two instances polling the same
+      bot token causes 409 Conflict errors and message loss.
+
+  C2. ROTATE all exposed credentials — the .env file was shared in this
+      audit with bot tokens, API keys, and GEMINI_API_KEY visible.
+      All tokens should be regenerated via @BotFather and Google Cloud.
+
+  C3. Remove kora_drive_sa.json from the directory if not needed, or
+      restrict file permissions (chmod 600). Same for service_account.json.
+
+  C4. Fix the customer bot service to actually run the refactored code:
+      psvibe-customer-refactored.service's ExecStart points to the
+      ORIGINAL customer_bot.py, not the refactored version.
+
+HIGH (Fix This Week)
+────────────────────
+  H1. Commit all bot source code to git. Currently 100+ untracked files
+      including all actual production code. Add .env to .gitignore
+      (it's already there but untracked in git status).
+
+  H2. Configure log rotation for bot_status.log, logs/bot.log, and
+      logs/customer_bot.log. Use logrotate or Python's RotatingFileHandler.
+
+  H3. Run bots as a dedicated non-root user:
+      - useradd -r -s /bin/false psvibe
+      - chown -R psvibe:psvibe /root/Sales-Tele-Bot/
+      - Update systemd services with User=psvibe
+
+  H4. Implement proper idempotency on Google Sheets writes:
+      - Add a "pending" status column for sales entries
+      - Only mark "confirmed" after successful write with retry
+      - This prevents double-entry on retry
+
+  H5. Add alerting to monitoring:
+      - When health.sh detects a down service, write to alert.txt
+      - Send Telegram notification to a staff alert channel
+      - Monitor bot_status.log for ERROR patterns
+
+  H6. Add proper input validation on all user inputs:
+      - Amount fields: validate numeric
+      - Member IDs: validate format (PSV_A_\d{3})
+      - Console IDs: validate against known list
+      - Phone numbers: basic format validation
+
+MEDIUM (Fix This Month)
+───────────────────────
+  M1. Complete the refactored customer bot deployment:
+      - Verify the refactored code works correctly
+      - Update psvibe-customer-refactored.service to point to
+        /root/Sales-Tele-Bot_refactored/customer_bot/main.py
+      - Test with a real user before switching
+
+  M2. Remove the duplicate handlers/ directory (either
+      Sales-Tele-Bot_refactored/handlers/ or bot/handlers/).
+      Keep only one canonical copy.
+
+  M3. Implement Sheet data backup:
+      - Daily export of all 9+ worksheets to JSON/CSV
+      - Store in /root/backups/psvibe/sheets/
+      - This protects against accidental Sheet edits
+
+  M4. Externalize FAQ/game data from customer_bot.py:
+      - Move to data/faq.py and data/games.py (already done in refactored!)
+      - Deploy the refactored version
+
+  M5. Add rate-limit monitoring to bot itself:
+      - Track Google Sheets API calls per minute
+      - Alert if approaching quota (60 req/min per user per project)
+
+  M6. Implement health-check endpoint in the API server and have bots
+      ping it to verify connectivity.
+
+  M7. Reduce ConversationHandler states by merging similar flows:
+      - Many finance states could be parameterized (OPEX/Asset/Capital
+        all follow similar CRUD patterns)
+
+LOW (Nice to Have)
+──────────────────
+  L1. Write integration tests for critical flows:
+      - New member registration
+      - Top-up with bonus calculation
+      - Daily sale with discount
+      - Booking with waitlist
+
+  L2. Add a /health command for staff to manually check system status
+      (Sheet connectivity, API server health, memory usage)
+
+  L3. Implement graceful degradation: if one Sheet worksheet is
+      temporarily unavailable, allow other operations to continue.
+
+  L4. Consider migrating from Google Sheets to SQLite for:
+      - Console bookings (lower latency)
+      - Session tracking
+      - Keep Sheets for reporting/audit trail
+
+  L5. Add bot version tracking in a dedicated Sheet column so staff
+      can verify which code version is running.
+
+  L6. Implement structured JSON logging instead of plain text
+      to enable better search and analysis of bot behavior.
+
+================================================================================
+APPENDIX A: FILE SIZE SUMMARY
+================================================================================
+
+  Original (monolithic):
+    /root/Sales-Tele-Bot/bot/__init__.py      67,981 bytes  1,655 lines
+    /root/Sales-Tele-Bot/bot/handlers.py     484,387 bytes 12,094 lines
+    /root/Sales-Tele-Bot/bot/app.py           29,824 bytes    457 lines
+    /root/Sales-Tele-Bot/customer_bot.py     294,651 bytes  5,829 lines
+    /root/Sales-Tele-Bot/main.py               3,325 bytes     99 lines
+
+  Refactored:
+    bot/handlers/* (25 modules)                          ~12,000 lines total
+    customer_bot/* (7 modules)                            ~2,500 lines total
+
+  Log files:
+    bot_status.log                        8,151,650 bytes
+    logs/bot.log                         12,455,203 bytes
+    logs/customer_bot.log                26,621,325 bytes (stale)
+
+================================================================================
+APPENDIX B: SERVICE INVENTORY
+================================================================================
+  psvibe-bot.service              — Staff Bot (ORIGINAL, active)
+  psvibe-bot-refactored.service   — Staff Bot (REFACTORED, active) ⚠ DUPLICATE
+  psvibe-customer.service         — Customer Bot (ORIGINAL, FAILED)
+  psvibe-customer-refactored.svc  — Customer Bot (REFACTORED unit, runs ORIGINAL code) ⚠
+  psvibe-api.service              — Node.js API Server (active, not checked)
+  psvibe-wallet.service           — Wallet Bot 1 (active)
+  psvibe-wallet2.service          — Wallet Bot 2 (active)
+  pm2-root.service                — PM2 process manager (active)
+
+================================================================================
+APPENDIX C: GOOGLE SHEETS WORKSHEETS
+================================================================================
+  1. Sales_Daily       — Daily sales transactions
+  2. Setting           — Config (rates, consoles, bonus table, promotions)
+  3. Card_Wallet       — Member data + wallet balances
+  4. Stock_Out         — Stock out records
+  5. Stock_In          — Stock in / restock records
+  6. TopUp_Log         — Top-up transaction log
+  7. Inventory         — Current inventory
+  8. Console_Booking   — Console booking/session records
+  9. Attendance_Log    — Staff attendance
+  10. Salary_Advance   — Staff salary advances
+  11. Game_Library     — Game catalog with console availability
+  12. Console_Games    — Per-console game installations
+  13. Finance sheets   — OPEX, Assets, Prepaid, Payables, Receivables (8+ sheets)
+
+================================================================================
+END OF REPORT
+================================================================================

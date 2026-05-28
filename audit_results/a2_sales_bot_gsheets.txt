@@ -1,0 +1,35 @@
+=== AUDIT A2b: Sales Bot Google Sheets Integration ===
+Date: 2026-05-28 07:50 MMT
+
+--- DIRECT GSPREAD VS API-BASED ACCESS ---
+Direct gspread (ACTIVE):
+- bot/__init__.py has full gspread implementation
+- SA file loaded directly, Sheet ID from env
+- 64-worker thread pool for gspread ops
+- Retry decorator for 429/500/503
+- 403 → SheetsPermissionError (critical log)
+
+API-based (BROKEN):
+- urllib.request to API_BASE_URL (localhost:3000) — WRONG PORT
+- "API GET /sheets/config failed: Connection refused" repeated every ~3 min
+- "api_get: API_BASE not set" warnings in log
+
+Conclusion: Sales bot is running ENTIRELY on direct gspread.
+API calls silently fail, bot continues on gspread fallback.
+
+--- SHEET ACCESS RELIABILITY ---
+- 429 rate limits encountered (sync.log evidence)
+- Retry decorator: 3 retries, exponential backoff (1s, 2s, 4s)
+- 64 thread pool workers — HIGH concurrency may trigger more 429s
+- Background cache refresh (every ~3 min) adds to request count
+
+--- COLUMN H (Card_Wallet) ACCESS PATTERN ---
+- bot/__init__.py loads full sheet data for Card_Wallet
+- Column H = Balance Mins (as per SOP)
+- No column-specific query — loads entire worksheet
+
+--- RECOMMENDATIONS ---
+1. Fix API_BASE_URL → port 8000
+2. Route ALL gspread calls through API Server
+3. Reduce thread pool workers (64 → 8-16) to avoid 429s
+4. Add column-specific queries to minimize read quota usage

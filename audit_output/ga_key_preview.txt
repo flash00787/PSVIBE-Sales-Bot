@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "agri-eco-accounting",
+  "private_key_id": "23663aa9c14eeb01f2caaeb6aee9d9eb95c8ab70",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDt68MPv8O/oeF+\n9oN6Kc1QE/TdibkmwIZ31MjA0HFsyFpG+gATq+aYoqpXflJuHMBzyFZNcESKzgfy\ncqBckcEkIz9tjZrtzgtNNnNLN/Q0rXpz7d0qVwFbrqzu0r+ooWavh0QwJkN7eDOP\nxtikvu+oRyifdH63P7bhGSxa7lJ9j2L1DKGZo0Rrl4rrKDTMPQraw0JDTJEFpqKa\nEhZX2SGJPZFawUVjjGLV0WmZ4aTkcSBxaNNjRZrIqy6nGH3EgL704BnTdldtNtGz\nK2ft7+qOVdxwKvWJWkcOXmCAQ9cBxLrR2GdQS4dsXoiLW904iy080pFqtCfMcOUi\n87oOOyf3AgMBAAECggEAGcyHZdVLAiQpIg3UGvKed1D6q+0rvRaCXkseC75uljex\nhmHEkV2CD0oQQ5WIlbUbb1KpfRMv84c82F7yoacSdPs3fQcuZhwCILjHTsA+BFpN\nXXXNFjLCDHGIAgurSbtauazmyXvUtHZHzQ7oXhDwRuSUdJn6xZ8skwMaSq/uFPw6\nWAwthAs0OzoZVL932XNcIasqiFt7lkOqC9pQVPDhvNdghQaa0AJJLXshybgF9aAp\nv6jPgTcS/cxUTOJD9yF5Q6cMvijyTDxZSwpfeL8Vk6ERVjjNCyhmOneEiky4G9N+\nYbLFK+Jqp9Y0FFOdpnx6q2164buD8hxXALQIHbzXeQKBgQD+Zpk7iBBajyW1IRZC\nIGkVBwUw6cgWrJ1/KmqPE2PJpCeD8L7LbqfcsP8N3iqP+poCFE9tBGsE8A23vWrA\nEC/HkD14vMuydwV1gtXu9zRyw6OyMTjQ9Io9grSpc1ZtgWZsWMcUmxEHFPwcrbs6\nhHimyaaF2xcvg0wiwSr4HYqgaQKBgQDvaqSM4DbGHEQjLEuHG764tmQFJ6kdnWGH\nT2/B8Lbho+E2DUyQcviL2At2s74nY1e5/bBwnkUnK0JXAaZcltC6HOIpA9+i4j+k\ncAkDMvq2m9xCcXIWmxCTxaI40C7DBJIHUeMFDdMmHJlzNqJY9b0ACDabW8wZmk/b\nb0YSQzh5XwKBgDW5VQLNaSa2tC/cHOc6EPbv1JjPxgGD0n7YZkhwv9IFaJLkdGZh\np/FjL3muQS7GrV9jCqLrG+6fA0aaKcEFqhFq1JB6zkmR+QUn7CXa7qiNyDQJUQZP\nniH/SEfAo6/cc9TNqr0fQilMtTEZP0DMWO5gB1qdOfg+sgVk5b4f/vaBAoGAJ1gt\nJoGKPtBSWj1jRBbJJu3CTh6Qai984ZGqWgLG6xnVXt6coHhkZAbjC2TKcQqgVg5c\nuoUn9CHlywqYXkrijlNEz1y1mbz4nHtU39O249+FON4P06sz9DTcTd3YcXAE13Mb\nja8R7gdxKD/oOhpYLvMqlillxydWzEbjCwlE9J0CgYEAqI3Wcy1pl0aA01nvRra8\nlqsGNn9EVFCcQcBlgqtiuhBGuYN+gUb6CSGcIyYADM5k/ZML6Uz5VLMpwUS/XQ6F\nPoKFvzaswnfE/dHjBO4cAtHykc3PZV9KuPxLhO0Q9z3yQEKO6alpnJyzNWzhWP1I\n0iQtsm5U6Fhtn/vQfatxov0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sheet-bot@agri-eco-accounting.iam.gserviceaccount.com",
+  "client_id": "116588887034470009901",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sheet-bot%40agri-eco-accounting.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,123 @@
+"""PS VIBE API Server — Pydantic Models"""
+from typing import Optional, Any
+from pydantic import BaseModel, Field
+
+
+class HealthResponse(BaseModel):
+    status: str = "ok"
+    version: str = "1.0.0"
+    sheets_connected: bool = True
+    timestamp: str = ""
+
+
+class SuccessResponse(BaseModel):
+    success: bool = True
+    data: Optional[Any] = None
+    message: str = ""
+
+
+class ErrorResponse(BaseModel):
+    success: bool = False
+    error: str
+    detail: str = ""
+===HEAD50===
+"""PS VIBE API Server — FastAPI REST API
+Auto-generated from function_map.json (2026-05-27)
+
+All endpoint names match function_map.json functions exactly,
+per Boss's requirement.
+"""
+import logging
+import re
+import time
+from datetime import datetime, timezone, timedelta
+
+from fastapi import FastAPI, HTTPException, Query, Depends, Request
+from fastapi.middleware.cors import CORSMiddleware
+
+from config import (
+    API_TITLE, API_VERSION, API_DESCRIPTION,
+    HOST, PORT, DEBUG, API_KEY,
+    SHEET_SALES_DAILY, SHEET_SETTING, SHEET_CARD_WALLET,
+    SHEET_TOPUP_LOG, SHEET_ATTENDANCE_LOG, SHEET_CONSOLE_BOOKING,
+    SHEET_SALARY_ADVANCE, SHEET_GAME_LIBRARY, SHEET_CONSOLE_GAMES,
+    MMT_HOURS, MMT_MINUTES,
+)
+from sheets_client import (
+    get_workbook, get_worksheet, get_member_rows, get_booking_rows,
+    get_game_rows, get_console_game_rows,
+    invalidate_cache, int_safe, float_safe,
+)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+logger = logging.getLogger("psvibe_api")
+
+app = FastAPI(
+    title=API_TITLE,
+    version=API_VERSION,
+    description=API_DESCRIPTION,
+    docs_url="/docs",
+    redoc_url="/redoc",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+async def verify_api_key(
+    api_key: str = Query(None, alias="api_key"),
+    request: Request = None,
+):
+    """Accept API key via query param (?api_key=...) or X-API-Key header."""
+    key = api_key
+    if not key and request:
+        key = request.headers.get("X-API-Key", "").strip()
+    if API_KEY:
+        if not key or key != API_KEY:
+            raise HTTPException(status_code=401, detail="Invalid or missing API key")
+    return key
+
+
+def now_mmt():
+    mmt = timezone(timedelta(hours=MMT_HOURS, minutes=MMT_MINUTES))
+    return datetime.now(mmt)
+
+
+def today_str():
+    return now_mmt().strftime("%-m/%-d/%Y")
+
+
+def _norm_cid(cid: str) -> str:
+    return cid.replace(" ", "").upper()
+
+
+def ok(data=None, message=""):
+    d = {"success": True, "data": data}
+    if message:
+        d["message"] = message
+    return d
+
+
+# ═══════════════════════════════════════
+#  HEALTH
+# ═══════════════════════════════════════
+@app.get("/api/health", tags=["System"])
+async def health_check():
+    try:
+        wb = get_workbook()
+        wb.worksheets()
+        sheets_ok = True
+    except Exception:
+        sheets_ok = False
+    return {
+        "status": "ok",
+        "version": API_VERSION,
+        "sheets_connected": sheets_ok,

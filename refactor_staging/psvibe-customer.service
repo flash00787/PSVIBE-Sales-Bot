@@ -1,0 +1,20 @@
+[Unit]
+Description=PS VIBE Customer Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/Sales-Tele-Bot
+EnvironmentFile=/root/Sales-Tele-Bot/.env
+ExecStart=/usr/bin/python3 customer_bot.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+TimeoutStartSec=30
+KillMode=mixed
+KillSignal=SIGTERM
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target

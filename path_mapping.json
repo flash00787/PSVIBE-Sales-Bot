@@ -1,0 +1,50 @@
+{
+  "// _comment": "Obfuscated path mapping — agents NEVER use raw paths. Use these keys only.",
+  "// version": "1.0",
+  "// updated": "2026-05-27",
+
+  "bots": {
+    "sales_bot_dir": "/root/Sales-Tele-Bot",
+    "sales_bot_refactored_dir": "/root/Sales-Tele-Bot_refactored",
+    "sales_bot_staging_dir": "/root/Sales-Tele-Bot_staging",
+    "sales_bot_main_py": "/root/Sales-Tele-Bot/main.py",
+    "sales_bot_customer_py": "/root/Sales-Tele-Bot/customer_bot.py",
+    "sales_bot_start_sh": "/root/Sales-Tele-Bot/start.sh",
+    "sales_bot_venv": "/root/Sales-Tele-Bot/.venv",
+    "sales_bot_env": "/root/Sales-Tele-Bot/.env",
+
+    "wallet_bot_dir": "/root/Personal-Wallet-Tele-Bot",
+    "wallet_bot_main_py": "/root/Personal-Wallet-Tele-Bot/bot/main.py",
+    "wallet_bot_start_sh": "/root/Personal-Wallet-Tele-Bot/start_wallet_bot.sh",
+    "wallet_bot_venv": "/root/Personal-Wallet-Tele-Bot/bot/venv",
+
+    "wallet_bot2_dir": "/root/Personal-Wallet-Tele-Bot-2",
+    "wallet_bot2_main_py": "/root/Personal-Wallet-Tele-Bot-2/bot/main.py",
+    "wallet_bot2_start_sh": "/root/Personal-Wallet-Tele-Bot-2/start_wallet_bot.sh",
+    "wallet_bot2_venv": "/root/Personal-Wallet-Tele-Bot-2/bot/venv"
+  },
+
+  "coordination": {
+    "coordination_dir": "/root/.coordination",
+    "coordination_md": "/root/.coordination/COORDINATION.md",
+    "path_mapping_json": "/root/.coordination/path_mapping.json",
+    "agent_status_md": "/root/.coordination/AGENT_STATUS.md",
+    "task_md": "/root/.coordination/TASK.md"
+  },
+
+  "shared": {
+    "google_drive_sa": "/root/Sales-Tele-Bot/kora_drive_sa.json",
+    "logs_dir": "/root/Sales-Tele-Bot/logs",
+    "receipts_dir": "/root/Sales-Tele-Bot/receipts",
+    "monolithic_ref_dir": "/root/staging/monolithic_ref",
+    "staging_bot_src": "/root/staging/bot_src",
+    "staging_scripts_dir": "/root/staging/scripts",
+    "backups_dir": "/root/backups"
+  },
+
+  "services": {
+    "n8n_data_dir": "/home/node/.n8n",
+    "caddy_data_dir": "/etc/caddy",
+    "docker_compose_dir": "/root"
+  }
+}

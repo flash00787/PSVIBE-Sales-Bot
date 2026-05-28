@@ -1,0 +1,37 @@
+=== AUDIT A4: Sales Bot API Connectivity ===
+Date: 2026-05-28 07:50 MMT
+
+--- CRITICAL: API_BASE_URL MISMATCH ---
+- .env says: API_BASE_URL=http://localhost:3000
+- API server runs on: http://0.0.0.0:8000 (uvicorn)
+- Result: Sales bot can NEVER reach the API server via this URL
+
+--- "API_BASE not set" WARNING ---
+- Repeated hundreds of times in bot_status.log
+- bot/__init__.py has _api_get_base_url() reading API_BASE_URL env var
+- If env var is empty or incorrectly set → "API_BASE not set" warning
+- Env file has API_BASE_URL but code path reads it differently
+- Code: `os.environ.get("API_BASE_URL", "").rstrip("/")`
+
+--- CONNECTION REFUSED IMPACT ---
+- Every ~3 minutes: "API GET /sheets/config failed: [Errno 111] Connection refused"
+- Sales bot's background cache refresh is BROKEN
+- Customer bot ALSO calls API (via aiohttp) but uses different env vars (API_BASE, API_KEY)
+- Customer bot shows 401 errors — reaches the API but auth fails
+
+--- FLASK KEEP_ALIVE ON PORT 8080 ---
+- Purpose: Keep bot process alive (pingdom/uptime check endpoint)
+- NOT an API replacement — serves simple health check
+- Doesn't proxy to port 8000
+
+--- API AUTH BREAKDOWN ---
+- Sales bot: urllib.request calls with NO API_KEY header → 401
+- Customer bot: aiohttp calls WITH API_KEY header → 401 (key mismatch)
+- API server requires API_KEY sent as header/X-API-Key
+- The API_KEY in .env doesn't match what bots are sending
+
+--- RECOMMENDATIONS ---
+1. Fix API_BASE_URL → http://localhost:8000 or http://localhost:8000/api
+2. Fix API_KEY matching between .env files
+3. Add request logging to diagnose auth flow
+4. Consider removing urllib in favor of aiohttp (like customer bot)

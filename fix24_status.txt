@@ -1,0 +1,1 @@
+FIX-24 | Loop Cleanup | DONE | Added `loop.close()` in `finally` block inside the while True restart loop at line 101-106. Loop reference stored at line 87 and closed cleanly with exception-safe try/except wrapping.

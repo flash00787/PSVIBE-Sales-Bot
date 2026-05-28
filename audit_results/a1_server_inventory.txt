@@ -1,0 +1,44 @@
+=== AUDIT A1: Server Inventory ===
+Date: 2026-05-28 07:50 MMT
+
+--- SYSTEM ---
+- Hostname: openClawAgent (Linux 6.8.0-117-generic x86_64)
+- OS: Ubuntu 24.04.4 LTS
+- Uptime: 17h 40m
+- Disk: 150G total, 30G used (21%)
+- Memory: 15Gi total, 4.0Gi used, 11Gi free
+- Load: 1.34 / 0.94 / 0.72
+
+--- SYSTEMD SERVICES (Running) ---
+1. psvibe-api.service — PS VIBE API Server (PID 276375, uvicorn port 8000)
+2. psvibe-sale-bot.service — PS VIBE Sales Bot (PID 282190)
+3. psvibe-wallet.service — Personal Wallet Telegram Bot (PID 221767)
+4. psvibe_customer_bot.service — Customer Bot @psvibe_customer_service_bot (PID 285331)
+
+--- DOCKER CONTAINERS ---
+1. psvibe-mysql — MySQL 8, port 3306 (Up 11h)
+2. oc-nova — Nova agent, port 3002 (Up ~1h, healthy)
+3. root-caddy-1 — Caddy, ports 80/443 (Up 12h)
+4. openclaw-openclaw-gateway-1 — Gateway, ports 18789-18790 (Up 12h)
+5. root-n8n-1 — n8n, port 5678 (Up 18h)
+
+--- MYSQL DOCKER DATABASES ---
+Database: psvibe_api
+Tables: console_status, games_library, member_wallets, staff_records, sync_status
+Sample data: members=3, staff=2, games=37, consoles=10
+Connection: MySQL is live but has only 1 active connection (monitoring)
+
+--- NETWORK PORTS ---
+LISTEN:
+- 3306 — MySQL (docker-proxy)
+- 5678 — n8n (127.0.0.1 only)
+- 80 — HTTP (Caddy)
+- 443 — HTTPS (Caddy)
+- 8080 — Sales Bot Flask keep_alive (PID 282190)
+- 8000 — API Server (uvicorn, PID 276375)
+
+--- NOTES ---
+- API server history: Had ~20+ restarts overnight (V2 Python kept crashing on port 8000 address-in-use)
+- Currently running on /root/psvibe_api_server (venv)
+- SA file valid at /root/psvibe_api_server/service_account.json
+- Sheets connected and working (27 sheets available)

@@ -1,0 +1,661 @@
+================================================================================
+  CONSTRUCTION BOT — COMPREHENSIVE SECURITY & CODE AUDIT REPORT
+================================================================================
+  Date:        2026-05-26
+  Auditor:     OpenClaw (subagent)
+  Target:      VPS 167.71.196.120, Docker container: construction_bot
+  Source:      /opt/construction-bot/bot.js (359,665 bytes, 6,107 lines)
+  Version:     Git HEAD fae5a4f, 5 commits (main branch)
+================================================================================
+
+TABLE OF CONTENTS
+  1.  Executive Summary
+  2.  Architecture Overview
+  3.  Security Findings
+  4.  Code Quality & Structure
+  5.  Error Handling & Resilience
+  6.  Google Sheets Usage
+  7.  Dependencies Analysis
+  8.  Performance & Resource Usage
+  9.  Monitoring & Logging
+  10. Backup & Rollback
+  11. Telegraf Bot Framework Usage
+  12. Detailed Findings Table
+================================================================================
+
+1. EXECUTIVE SUMMARY
+================================================================================
+
+The Construction Bot is a Telegram-based accounting bot for "Three Brothers
+Construction" built with Node.js + Telegraf v4. It uses Google Sheets as its
+sole persistent storage (acting as a "database"). The bot provides 27+ wizard
+scenes for recording financial transactions: income/expense, projects, assets,
+payables, receivables, advances, equity/dividends, materials inventory,
+subcontracts, equipment rental, maintenance, and driver payroll.
+
+OVERALL SEVERITY: HIGH
+- 4 CRITICAL findings
+- 10 HIGH findings
+- 8 MEDIUM findings
+- 6 LOW findings
+- 5 INFO observations
+
+The bot is FUNCTIONAL but has SEVERE security vulnerabilities. Both the
+Telegram bot token and Google Service Account private key are exposed in plain
+text. The codebase is a 360KB/6,107-line monolith with no backup mechanism,
+repeated duplicate write patterns, and silent error suppression.
+
+================================================================================
+
+2. ARCHITECTURE OVERVIEW
+================================================================================
+
+Stack:
+  - Runtime:       Node.js 22.22.2 (Alpine Docker)
+  - Framework:     Telegraf 4.16.3 (Telegram Bot API)
+  - Storage:       Google Sheets (google-spreadsheet 4.1.4)
+  - Auth:          Google JWT Service Account
+  - Build:         Docker Compose v5.1.3, custom Dockerfile (node:22-alpine)
+  - Config:        Hardcoded JS + Google Sheet "Config" tab
+  - Update:        shell script via git pull (GitHub origin/main)
+
+Pattern:
+  - Bot starts → loads COA accounts + Config from Sheets → registers scenes
+  - Uses Telegraf's Scenes.WizardScene for multi-step data entry forms
+  - Every transaction writes to Google Sheets row (no local cache/queue)
+  - All reports read from Google Sheets on demand (full scan, no indexing)
+  - No webhook configured — uses long polling (bot.launch())
+
+Tabs (Google Sheets):
+  Transactions, OPEX, Account_Transfers, Advance_Payments, Assets_Master,
+  Inventory_Lots, Inventory_Movements, Payables, Receivables,
+  Projects_Master, Materials_Master, Dividends, OM_Bonus,
+  Materials_Purchases, Subcontracts, Subcontract_Payments,
+  Equipment_Rentals, Maintenance_Log, Driver_Payments, Driver_Advances,
+  Drivers_Master, Dashboard_Data, Monthly_Summary, Project_Ledger,
+  Chart_of_Accounts, Config
+
+Bot operates as a single Docker container, restart policy: unless-stopped.
+No container orchestration, no load balancing, no health check.
+
+================================================================================
+
+3. SECURITY FINDINGS
+================================================================================
+
+[CRITICAL] Secrets Exposed in .env.example
+  The file /opt/construction-bot/.env.example contains the ACTUAL (not example)
+  BOT_TOKEN and GOOGLE_PRIVATE_KEY values. The .env.example file is clearly
+  intended as a template (it even says "your-service-account@..." for email)
+  but the token and private key are the real ones. This is a catastrophic
+  leak — anyone with access to this repository can control the bot and
+  read/write the Google Sheet.
+
+  .env.example content:
+    BOT_TOKEN=8679803019:AAHeQys5Za3l5two21eR73pdO2oOX15zxgo
+    GOOGLE_PRIVATE_KEY=...(real 2,274 byte RSA key)...
+
+  RECOMMEND: Immediately rotate BOT_TOKEN and Google SA key. Replace
+  .env.example with placeholder values only.
+
+[CRITICAL] Bot Token Exposed in Docker Container Environment
+  The Docker inspect command revealed the full BOT_TOKEN in the container's
+  environment variables. While this is expected for Docker apps using env_file,
+  the BOT_TOKEN could be leaked through:
+    - Docker inspect output (accessible to any user in docker group)
+    - CI/CD logs if docker inspect is run
+    - Monitoring tools that capture container env
+
+  RECOMMEND: Use Docker secrets or a secrets manager. At minimum, ensure
+  docker group access is restricted.
+
+[CRITICAL] Google Service Account Private Key in Plain Text
+  The full 2,274-byte RSA private key is stored in both:
+    - /opt/construction-bot/.env (plain text)
+    - Docker container environment variables
+  Anyone with read access to these files can impersonate the SA and access
+  the Google Sheet directly, bypassing all bot logic.
+
+  RECOMMEND: Use Google Cloud Secret Manager or HashiCorp Vault. At minimum,
+  restrict file permissions to root only (chmod 600 .env).
+
+[CRITICAL] No Authorization / Access Control
+  The ALLOWED_USER_IDS environment variable exists but is EMPTY. The code does
+  NOT check user IDs against this list anywhere. Any Telegram user who knows
+  the bot username can:
+    - View all financial data
+    - Create/delete transactions
+    - Reset entire data (RESET_DATA_EXEC action)
+    - Access equity/dividend information with shareholder names and amounts
+    - Access the balance sheet with capital figures
+
+  There is NO middleware checking ctx.from.id against an authorized list.
+
+  RECOMMEND: Implement user whitelist middleware. Require authentication
+  before any command execution.
+
+[HIGH] Secret Key in .env.example on Git Host (Probable)
+  The .env.example file is tracked in git (it's in the file listing). If the
+  repository is pushed to a public GitHub host, the secrets are exposed to the
+  internet. The git log shows origin/main, suggesting a remote repository.
+
+  RECOMMEND: Check if repo is public. If so, assume keys are compromised.
+  Add .env and .env.example to .gitignore (but .gitignore only has 32 bytes
+  and may not cover .env.example).
+
+[HIGH] Token Visible in Docker Compose env_file Passthrough
+  docker-compose.yml uses "env_file: .env" which passes all variables to the
+  container. While convenient, this means docker-compose config will show
+  secrets in plain text.
+
+[MEDIUM] No API Rate Limiting Protection
+  The bot has no rate limiting on user input. A malicious user could flood
+  transactions and exhaust Google Sheets API quotas (60 req/min per user or
+  300 req/min per project).
+
+[MEDIUM] Hardcoded Financial Logic
+  SHAREHOLDERS array, OM_BONUS_PCT (30%), and TOTAL_CAPITAL (360M MMK) are
+  hardcoded in bot.js. If the company structure changes, the code must be
+  modified and redeployed — no admin interface to update these values.
+
+================================================================================
+
+4. CODE QUALITY & STRUCTURE
+================================================================================
+
+[CRITICAL] 360KB Monolithic Single File
+  bot.js is 359,665 bytes across 6,107 lines in ONE file. This is extremely
+  difficult to:
+    - Review for bugs
+    - Test in isolation
+    - Navigate or maintain
+    - Collaborate on (merge conflicts guaranteed)
+    - Onboard new developers
+
+  The file contains 27+ wizard scenes, each 50-150 lines of repetitive
+  callback logic, all in the same file.
+
+  RECOMMEND: Split into modules:
+    - src/scenes/transaction.js
+    - src/scenes/project.js
+    - src/scenes/asset.js
+    - src/scenes/inventory.js
+    - src/scenes/equity.js
+    - src/db/sheets.js (Google Sheets abstraction)
+    - src/reports/pnl.js, balance-sheet.js, cashflow.js
+    - src/config.js
+
+[HIGH] Massive Code Duplication
+  The wizard pattern is repeated 27+ times with nearly identical structure:
+    1. initScene → define fields array
+    2. async ctx => { handle callback or text for each step }
+    3. buildForm for rendering
+    4. renderXxxStep for navigation
+    5. Save step with appendToTab
+
+  Each wizard is ~100-200 lines. A generic wizard factory would reduce the
+  codebase by an estimated 40-60% and make bugs easier to fix once.
+
+  Estimated duplication: 70%+ of wizard code is boilerplate.
+
+[HIGH] No Unit Tests
+  There are zero test files anywhere in the repository. A 6,100-line
+  production system with financial data has no automated tests.
+
+  RECOMMEND: Start with integration tests for Google Sheets CRUD. Add unit
+  tests for calculation functions (calcYearProfit, calcAccumDep, fifoConsume,
+  etc.)
+
+[HIGH] No TypeScript / Type Safety
+  Pure JavaScript with no JSDoc annotations or TypeScript. Financial
+  calculations use parseFloat without consistent type checking. The
+  parseAmt() function casts to string then float — input validation is
+  string-based, not type-based.
+
+[CRITICAL DOUBLE-ENTRY BUG] Transactions Duplicated Across Tabs
+  When recording a Materials Purchase, the code writes to BOTH:
+    - Materials_Purchases tab (for project P&L)
+    - Transactions tab (for cash balance tracking)
+  This is intentional design but creates a risk of double-counting in reports.
+  The code tries to filter out "Direct Materials" and "Subcontractor Costs"
+  from Transaction-based reports using exclusion sets (EXCL_TX), but any
+  missed exclusion will double-count expenses.
+
+  The pattern repeats for:
+    - Materials Purchase → Materials_Purchases + Transactions (or Payables)
+    - Subcontract Payment → Subcontract_Payments + Transactions
+    - Driver Payments → Driver_Payments + Transactions
+    - Inventory Purchase → Inventory_Lots + Transactions (or Payables)
+    - Inventory Transfer → Inventory_Movements + Materials_Purchases
+    - Maintenance → Maintenance_Log + Transactions
+
+  This creates 7+ parallel write paths that must all succeed atomically but
+  cannot (Google Sheets has no transaction support).
+
+[INFO] Naming Convention: Wide Character Support
+  The bot uses Burmese text extensively in UI messages (အမည်, ပမာဏ, etc.),
+  which is appropriate for the target audience. However, the code itself
+  is entirely in English variable names — good practice.
+
+[INFO] Docker Runs as Non-Root User
+  Dockerfile explicitly creates a 'bot' user and sets USER bot. This is
+  proper security hardening for the container runtime.
+
+================================================================================
+
+5. ERROR HANDLING & RESILIENCE
+================================================================================
+
+[HIGH] Silent Error Suppression (Empty Catch Blocks)
+  Throughout the code, there are numerous empty catch blocks:
+
+    try { ... } catch (_) {}      (found 20+ times)
+    .catch(() => {})              (found 15+ times)
+
+  Examples:
+    - refreshProjects:     catch (_) {}
+    - refreshAccounts:     catch(e) { console.log("COA load failed") }
+    - editForm outer try:  catch (_) {} (edit silently fails)
+    - deleteMessage:       } catch(_) {}
+    - getTabRows fallback: .catch(() => [])
+    - Many scene handlers: catch(err) { await editForm(...) } (partial)
+
+  This means:
+    - Sheet read failures are SILENT — stale data used
+    - Message edits that fail are retried as new messages (may flood chat)
+    - Failed data writes may go unnoticed
+
+  RECOMMEND: Replace empty catches with structured error logging. Consider
+  a circuit breaker pattern for repeated Sheet failures.
+
+[HIGH] Bot Crashes with ETIMEDOUT (Observed in Logs)
+  Docker logs show the bot repeatedly crashing and restarting:
+    "ETIMEDOUT" — TLS socket error
+    "🤖 Starting Three Brothers Construction Bot…" appears 9+ times in
+    last 80 log lines, indicating ~9 restarts in recent operation.
+
+  The crash pattern suggests intermittent Google Sheets API timeouts or
+  Telegram API connection issues. The bot has NO retry logic or exponential
+  backoff. Telegraf's built-in error handling via bot.catch() logs the error
+  but does not prevent the crash.
+
+  RECOMMEND: Implement retry with exponential backoff for Google Sheets
+  calls. Add a health check that catches unhandled rejections.
+
+[MEDIUM] Global Error Handler Is Minimal
+  bot.catch() logs to console but sends a generic "⚠️ Error occurred" message
+  to the user. No structured logging, no error aggregation, no alerting.
+
+[MEDIUM] No Graceful Shutdown Verification
+  The code has SIGINT/SIGTERM handlers calling bot.stop(), but there's no
+  verification that in-flight Transactions are saved before shutdown.
+
+[LOW] Punycode Deprecation Warning on Every Startup
+  "The 'punycode' module is deprecated" appears on every boot. This comes
+  from a transitive dependency of telegraf/google-auth-library. While
+  harmless for now, it will eventually break in future Node.js versions.
+
+================================================================================
+
+6. GOOGLE SHEETS USAGE
+================================================================================
+
+[CRITICAL] No Atomic Transactions / No Rollback
+  Google Sheets does NOT support database transactions. When the bot writes
+  to multiple tabs for a single logical operation (e.g., Materials Purchase
+  writes to Materials_Purchases + Transactions + Inventory_Lots), there is
+  NO guarantee of atomicity. If one write fails mid-operation:
+    - Materials_Purchases may have the row but Transactions does not
+    - Account balances become inconsistent
+    - No recovery mechanism exists
+
+  The dashboard relies on sheet formulas (SUMPRODUCT, SUMIF) that will
+  reflect inconsistent data.
+
+[HIGH] Full Table Scans for Every Report
+  Every report function reads ALL rows from Google Sheets:
+    - sendMonthlyReport: reads Transactions, OPEX, Materials_Purchases,
+      Subcontracts, Equipment_Rentals, Maintenance_Log, Driver_Payments
+      → 7 parallel full scans per report request
+    - sendBalanceSheetReport: reads 12+ tabs
+    - calcYearProfit: reads 5 tabs
+
+  With Google Sheets API latencies of 200-500ms per read, a single balance
+  sheet request could take 3-5 seconds or more. As data grows, all reports
+  will get progressively slower.
+
+[HIGH] No Caching Strategy
+  getDoc() caches the authenticated document object but does NOT cache row
+  data. Every report recalculates everything from scratch. The COA and config
+  are cached in memory, but project data and transactions are re-fetched
+  on every request.
+
+  RECOMMEND: Implement a simple in-memory cache with TTL (e.g., 30 seconds
+  for transaction data, 5 minutes for project list).
+
+[HIGH] Rate Limit Risk (Google Sheets API)
+  Google Sheets API quotas:
+    - 60 requests per minute per user
+    - 300 requests per minute per project
+
+  A single balance sheet report with 12 tabs = 12 API requests.
+  A user navigating through 5 wizards quickly = 20+ requests.
+  No throttling, no batch operations, no request queuing.
+
+  RECOMMEND: Implement request batching with Promise.all, add a simple
+  token-bucket rate limiter.
+
+[MEDIUM] No Data Validation on Write
+  appendToTab() writes whatever data the wizard collected without:
+    - Duplicate detection (same amount + project + date)
+    - Negative balance checks (account can go negative)
+    - Reasonableness checks (e.g., amount > 1B MMK)
+
+[MEDIUM] Hardcoded Row Ranges (5000 rows)
+  All sheet formulas reference rows 2-5000 (e.g., Transactions!$A$2:$A$5000).
+  After 5,000 transactions, formulas on Dashboard_Data will silently start
+  missing data. The formulas in setup-sheets.js use $A$2:$A$5000 but the bot
+  itself has no row limit check.
+
+  RECOMMEND: Use open-ended ranges ($A$2:$A) or increase to 50,000.
+
+[INFO] Schema Changes Handled
+  getOrCreateTab() checks header counts and updates missing columns. This is
+  a good practice for schema evolution via Sheets.
+
+================================================================================
+
+7. DEPENDENCIES ANALYSIS
+================================================================================
+
+  Package: construction-bot v1.0.0
+  Dependencies (production only):
+    dotenv:                 ^16.4.5    (Latest: 16.5.0)   — MINOR behind OK
+    google-auth-library:    ^9.14.2    (Latest: 9.15.1)   — MINOR behind OK
+    google-spreadsheet:     ^4.1.4     (Latest: 4.1.4)    — CURRENT ✓
+    telegraf:               ^4.16.3    (Latest: 4.16.3)   — CURRENT ✓
+
+[LOW] No Dependency Audit
+  package-lock.json exists (26KB) but there's no evidence of `npm audit`
+  being run. Running npm audit now would reveal any CVEs in the dependency
+  tree. The project uses `npm install --omit=dev` in Dockerfile, which is
+  good practice for production.
+
+[LOW] No Version Pinning
+  All dependencies use caret (^) ranges, meaning minor/patch versions can
+  auto-update. This is generally acceptable but could introduce breaking
+  changes in minor versions.
+
+[INFO] All Dependencies Are Current
+  telegraf and google-spreadsheet are at their latest versions. No critical
+  CVEs known for these packages as of audit date.
+
+================================================================================
+
+8. PERFORMANCE & RESOURCE USAGE
+================================================================================
+
+[INFO] Docker Resource Usage (Very Low)
+  CPU:     0.00% (idle when not processing)
+  Memory:  27.95 MiB / 3.824 GiB (0.71%)
+  PIDs:    11
+  Network: 262kB in / 203kB out
+  Block:   11.4MB written / 0B read
+
+  The bot is extremely lightweight. Even under load, Node.js 22 on Alpine
+  should stay well under 100MB RAM.
+
+  RECOMMEND: Set Docker memory limit to 256MB to prevent runaway.
+
+[MEDIUM] Long Polling vs Webhook
+  The bot uses bot.launch() which is Telegraf's long-polling mode. This
+  means:
+    - The bot polls Telegram every few seconds, even when idle
+    - Higher latency than webhook mode
+    - No need for public HTTPS endpoint (simpler setup)
+    - Less reliable if network is unstable
+
+  RECOMMEND: Switch to webhook mode with Caddy reverse proxy (Caddy is
+  already running on the same VPS). This would reduce latency and polling
+  overhead.
+
+[INFO] Docker Logging Configuration
+  docker-compose.yml configures:
+    max-size: 10m
+    max-file: 3
+  This limits log storage to 30MB total. Adequate for this bot but log
+  rotation may lose error context during debugging.
+
+================================================================================
+
+9. MONITORING & LOGGING
+================================================================================
+
+[HIGH] No Health Check Endpoint
+  The Docker container has NO healthcheck configured in docker-compose.yml.
+  Docker cannot detect if the bot has crashed or is unresponsive.
+  The ETIMEDOUT crashes would not trigger any alert.
+
+  RECOMMEND: Add healthcheck to docker-compose.yml:
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+[HIGH] No Structured Logging
+  All logging uses console.log/console.error with simple string messages.
+  No timestamps, no correlation IDs, no log levels, no JSON format. Debugging
+  production issues requires reading unstructured Docker logs.
+
+  RECOMMEND: Use a lightweight logger (pino or winston) with JSON output.
+
+[HIGH] No Alerting / Notification System
+  There is no mechanism to alert the owner when:
+    - The bot crashes
+    - Google Sheets API fails
+    - Unauthorized user attempts access
+    - Data consistency issues are detected
+
+[MEDIUM] Bot Restart Count Indicative of Instability
+  The docker logs show 9+ restart messages ("Starting Three Brothers
+  Construction Bot…") in the last 80 log lines. This indicates the bot
+  crashes frequently, likely due to network timeouts. The restart policy
+  (unless-stopped) keeps it running but the underlying issue is not tracked.
+
+[LOW] No Performance Metrics
+  No request latency tracking, no Sheet API call counting, no error rate
+  monitoring. This is expected for a small bot but limits troubleshooting.
+
+================================================================================
+
+10. BACKUP & ROLLBACK
+================================================================================
+
+[HIGH] No Automated Backup of Google Sheets Data
+  Google Sheets IS the database, but there is no automated export, backup,
+  or snapshot mechanism. If the Sheet is accidentally deleted or corrupted:
+    - All financial data is permanently lost
+    - Google Sheets has version history but no guaranteed recovery point
+
+  RECOMMEND:
+    - Schedule daily export to CSV/JSON via Google Sheets API
+    - Store backups in a separate file or cloud storage
+    - Test restore procedure
+
+[MEDIUM] Code Backup via Git
+  The repository has git version control with 5 commits. This provides
+  basic rollback capability for code changes. However:
+    - Only bot.js seems actively versioned
+    - The git remote URL is unknown
+    - No evidence of off-site backup of the git repository
+    - bot.js.bak exists (13,777 bytes) but this is an OLD version of just
+      the bot file — NOT the current 360KB version
+
+[LOW] Update Script Exists But No Rollback
+  update.sh pulls from GitHub and restarts the container. There is no:
+    - Pre-deployment backup of current state
+    - Rollback mechanism if deployment fails
+    - Smoke test after deployment
+
+  RECOMMEND: Add pre-deploy backup and automated rollback to update.sh.
+
+================================================================================
+
+11. TELEGRAF BOT FRAMEWORK USAGE
+================================================================================
+
+[GOOD] Proper Session Middleware Usage
+  bot.use(session()) is properly registered before stage middleware. This
+  is correct for Telegraf scene sessions.
+
+[GOOD] Scene Escape Handling
+  The middleware handles /cancel and menu button texts to escape from
+  active scenes. This prevents users getting stuck in wizards.
+
+[GOOD] Keyboard Menu + Inline Buttons
+  The bot properly uses both reply keyboard (persistent menu) and inline
+  keyboard (contextual actions within scenes). This provides good UX.
+
+[ISSUE] editForm Fallback Creates New Messages
+  When ctx.telegram.editMessageText fails (message too old or deleted),
+  editForm falls back to ctx.reply(), creating a NEW message. This can
+  result in multiple concurrent messages in a scene, confusing users and
+  potentially orphaning old messages.
+
+[MEDIUM] No Session Store / In-Memory Only
+  Telegraf sessions use default in-memory storage. If the bot restarts:
+    - All active scenes/wizards are lost
+    - Users must start over
+    - No warning is given to affected users
+
+  RECOMMEND: For production, use Redis-backed session store or at minimum
+  notify users on restart.
+
+[INFO] 27 WizardScenes Registered
+  Total scenes: ENTRY, PROJECT, RENAME_PROJECT, ASSET, PAYABLE, RECEIVABLE,
+  ADVANCE, DIVIDEND, OM_BONUS, OPEX, EDIT_TX, INSERT_TX, INV_ADDMAT,
+  MAT_EDIT, INV_BUY, INV_TRANSFER, INV_SELL, ACC_TRANSFER, MAT_PURCHASE,
+  SUBCONTRACT, SUBPAY, EQUIP_RENT, MAINT_LOG, DRIVER_MASTER, DRIVER_PAY,
+  DRIVER_ADV_GIVE, DRIVER_ADV_SETTLE
+
+  All scenes use the same pattern. Memory overhead is low but middleware
+  stack depth is significant.
+
+================================================================================
+
+12. DETAILED FINDINGS TABLE
+================================================================================
+
+  #  SEVERITY    CATEGORY          FINDING
+  --  ---------  ----------------  ---------------------------------------
+  1   CRITICAL   Security          Secrets exposed in .env.example file
+  2   CRITICAL   Security          Bot token visible in Docker env vars
+  3   CRITICAL   Security          Google SA private key in plain text .env
+  4   CRITICAL   Security          No authorization — ALLOWED_USER_IDS empty
+  5   CRITICAL   Architecture      360KB/6107-line monolithic single file
+  6   CRITICAL   Data Integrity    No atomic transactions across Sheets tabs
+  7   CRITICAL   Data Integrity    Double-entry pattern risks data corruption
+  8   HIGH       Security          Probable public Git repo with secrets
+  9   HIGH       Code Quality      70%+ code duplication in wizard scenes
+  10  HIGH       Code Quality      Zero unit tests for financial code
+  11  HIGH       Error Handling    Silent error suppression (20+ empty catches)
+  12  HIGH       Error Handling    Bot crashes with ETIMEDOUT (9+ restarts)
+  13  HIGH       Google Sheets     Full table scans for every report
+  14  HIGH       Google Sheets     No caching — redundant API calls
+  15  HIGH       Monitoring        No health check endpoint
+  16  HIGH       Monitoring        No structured logging
+  17  HIGH       Monitoring        No alerting system
+  18  HIGH       Backup            No automated data backup
+  19  HIGH       Code Quality      No TypeScript or type safety
+  20  MEDIUM     Security          No API rate limiting
+  21  MEDIUM     Security          Hardcoded financial logic (SHAREHOLDERS)
+  22  MEDIUM     Google Sheets     Hardcoded 5000-row limits in formulas
+  23  MEDIUM     Google Sheets     No data validation on write
+  24  MEDIUM     Google Sheets     Rate limit risk with 12+ parallel reads
+  25  MEDIUM     Performance       Long polling instead of webhook
+  26  MEDIUM     Session Mgmt      In-memory sessions lost on restart
+  27  MEDIUM     Error Handling    Global error handler is minimal
+  28  LOW        Dependencies      Punycode deprecation warning on startup
+  29  LOW        Dependencies      No npm audit / CVE scanning
+  30  LOW        Dependencies      Caret ranges, no version pinning
+  31  LOW        Monitoring        No performance metrics
+  32  LOW        Backup            bot.js.bak is outdated (13KB vs 360KB)
+  33  LOW        Code Quality      editForm fallback creates duplicate msgs
+  34  INFO       Architecture      Docker runs as non-root user ✓
+  35  INFO       Architecture      Git version control in use ✓
+  36  INFO       Performance       Resource usage very low (28MB) ✓
+  37  INFO       Framework         Proper Telegraf session/scene usage ✓
+  38  INFO       Schema            Header migration supported ✓
+
+================================================================================
+
+13. RECOMMENDATIONS (PRIORITIZED)
+================================================================================
+
+  IMMEDIATE (Week 1):
+    1. Rotate ALL secrets (BOT_TOKEN, Google SA key)
+    2. Remove secrets from .env.example immediately
+    3. Implement user authorization middleware
+    4. Add health check to docker-compose.yml
+    5. Investigate and fix ETIMEDOUT crashes
+    6. Set up automated Google Sheets backup (daily export)
+
+  SHORT-TERM (Month 1):
+    7. Split bot.js into modules (at minimum: scenes/, db/, reports/)
+    8. Create generic wizard factory to eliminate 70% duplication
+    9. Add structured logging (pino)
+    10. Implement request-level caching with 30s TTL
+    11. Add data validation before writes
+    12. Implement exponential backoff for Sheet API calls
+    13. Switch from long polling to webhook
+
+  MEDIUM-TERM (Quarter 1):
+    14. Add unit tests for calculation functions
+    15. Add integration tests for Google Sheets operations
+    16. Migrate to TypeScript
+    17. Implement Redis-backed session store
+    18. Set up monitoring + alerting (UptimeRobot or similar)
+    19. Review double-entry pattern for potential data inconsistency
+
+  LONG-TERM:
+    20. Consider migrating from Google Sheets to PostgreSQL/SQLite
+        for ACID compliance and better query performance
+    21. Add transaction journal/audit log separate from data tabs
+    22. Implement admin web dashboard for non-Telegram access
+    23. Set up CI/CD pipeline with automated testing
+
+================================================================================
+
+14. CONCLUSION
+================================================================================
+
+The Construction Bot is a well-intentioned, functionally rich Telegram bot
+that demonstrates significant effort in building a complete construction
+accounting system. The feature set is impressive: 27 wizards, full COA,
+inventory with FIFO, equipment rental tracking, driver payroll, equity
+distribution, and four financial statements (P&L, Balance Sheet, Cash Flow,
+Depreciation Schedule).
+
+However, the implementation has critical deficiencies:
+
+  SECURITY: Secrets are exposed in plain text in multiple locations.
+  The bot has ZERO access control. Anyone can access financial data.
+
+  CODE QUALITY: A 360KB monolith with no tests, massive duplication, and
+  no type safety. Maintenance will become increasingly difficult.
+
+  DATA INTEGRITY: Google Sheets as a database without atomic transactions
+  creates risk of partial writes. The double-entry pattern across multiple
+  tabs amplifies this risk.
+
+  RELIABILITY: The bot crashes frequently (ETIMEDOUT) and has no monitoring.
+  Silent error suppression hides problems until they compound.
+
+The path forward should address the CRITICAL security issues immediately,
+then systematically refactor for maintainability while preserving the
+extensive business logic that has been carefully built.
+
+================================================================================
+  END OF AUDIT REPORT
+================================================================================

@@ -1,0 +1,39 @@
+=== AUDIT A2: Database Integration (API Server) ===
+Date: 2026-05-28 07:50 MMT
+
+--- API SERVER OVERVIEW ---
+- Location: /root/psvibe_api_server/
+- Framework: FastAPI + uvicorn (port 8000)
+- Google Sheets: Connected (27 sheets) — gspread via SA file
+- Full sheets list: Dashboard, Sales_Daily, Stock_Out, Game_Library, TopUp_Log, Card_Wallet, Inventory, Stock_In, Setting, Salary_Payroll, Attendance_Log, Salary_Advance, Receipts, Console_Booking, Console_Games, Capital_Setup, Assets_Register, OPEX_Log, Accounts, Account_Transfers, Payables, Receivables, Advance_Staff, Prepaid_Expenses, Advance_Payments, Promotions, Promotions_Log
+
+--- API ROUTES ---
+- /api/health — working (200 OK)
+- /api/fetch_console_status — exists, requires API_KEY
+- /api/sheets/config — exists, requires API_KEY
+- /api/fetch_members — exists, requires API_KEY
+- /api/fetch_staff — exists, requires API_KEY
+- /api/fetch_games — exists, requires API_KEY
+- /api/fetch_base_rate — exists, requires API_KEY
+- /api/next_voucher — exists, requires API_KEY
+- /docs — Swagger docs (200 OK)
+- /openapi.json — OpenAPI schema (200 OK)
+
+--- HTTP 401 PATTERN ---
+All data endpoints returning 401 Unauthorized:
+- API_KEY from .env not matching what customer bot/sales bot sends
+- Sales bot uses urllib with API_BASE_URL env var (no API key header visible)
+- Customer bot uses aiohttp with _API_KEY header
+
+--- MYSQL DOCKER STATE ---
+Container: psvibe-mysql (Up 11h)
+Database: psvibe_api
+Tables: console_status, games_library, member_wallets, staff_records, sync_status
+Schema inspected: Has tables but NO code currently reads/writes to MySQL
+sync_status table likely tracks Google Sheets sync state
+
+--- OBSERVATIONS ---
+1. API server is PRIMARY data layer for Google Sheets (proxy pattern)
+2. MySQL Docker is running but orphaned — no code references pymysql/mysql-connector
+3. sync_status table suggests PAST or PLANNED sync functionality
+4. No direct MySQL access in any bot code

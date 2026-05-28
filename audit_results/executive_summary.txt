@@ -1,0 +1,80 @@
+╔══════════════════════════════════════════════════════════════╗
+║         PS VIBE — COMPREHENSIVE SERVER AUDIT                ║
+║         Date: 2026-05-28 07:50 MMT                          ║
+║         Server: openClawAgent (5.223.81.16)                 ║
+╚══════════════════════════════════════════════════════════════╝
+
+=== SYSTEM HEALTH ===
+✅ OS: Ubuntu 24.04 — Stable
+✅ Disk: 21% used (115G free) — Healthy
+✅ Memory: 4Gi/15Gi used — Healthy
+✅ Load: 1.34 — Low/Normal
+✅ Uptime: 17h 40m (since last deployment)
+
+=== SERVICES STATUS ===
+✅ psvibe-api.service — RUNNING (FastAPI on port 8000)
+✅ psvibe-sale-bot.service — RUNNING (Telegram polling OK)
+✅ psvibe-wallet.service — RUNNING (clean)
+✅ psvibe_customer_bot.service — RUNNING (Telegram polling OK)
+
+=== DOCKER ===
+✅ psvibe-mysql — RUNNING (port 3306, 5 tables)
+✅ root-caddy-1 — RUNNING (ports 80/443)
+✅ oc-nova — RUNNING (port 3002)
+✅ root-n8n-1 — RUNNING (port 5678, localhost only)
+
+=== CRITICAL ISSUES (Priority Order) ===
+
+🔴 CRITICAL #1: API_BASE_URL WRONG IN SALES BOT
+- .env says: API_BASE_URL=http://localhost:3000
+- API runs on: port 8000
+- Impact: All API calls fail with Connection refused
+- Bot runs on gspread directly (no API) as fallback
+- Fix: Change to http://localhost:8000 or http://localhost:8000/api
+
+🔴 CRITICAL #2: API KEY MISMATCH
+- All /api/* endpoints return 401 Unauthorized
+- Bot sends API_KEY that doesn't match server's API_KEY
+- Impact: Customer bot can't fetch data via API (uses cached/fallback)
+- Fix: Sync API_KEY across all .env files
+
+🟡 MEDIUM #3: MySQL Docker ORPHANED
+- MySQL running with psvibe_api database
+- Tables: console_status, games_library, member_wallets, staff_records, sync_status
+- NO code (sales bot, customer bot, wallet bot, API server) references MySQL
+- sync_status table suggests planned sync was started
+- Fix: Integrate MySQL as primary data store → Sheets as sync target
+
+🟡 MEDIUM #4: GSPREAD 429 Rate Limiting
+- Repeated quota exceeded errors
+- sync.log shows continuous failures
+- Project: 708801534021 (Read requests per minute per user)
+- Workaround: Retry decorator, but still causing latency
+- Fix: MySQL + local cache would eliminate 90% of Sheets reads
+
+🟢 LOW #5: Sales bot/__init__.py still monolithic (~2100+ lines)
+- Handlers are split (26 modules) but core library is one giant file
+- Refactoring previously done but not deployed (V.2)
+
+🟢 LOW #6: Systemd ReadWritePaths parse error
+- psvibe-wallet.service line 20 has "Chan Myint" as non-absolute path
+- No functional impact
+
+=== FILE COUNTS ===
+Sales Bot: 40 files (26 handlers, core lib, customer bot, sqlite)
+API Server: ~12 files (FastAPI routes, config, sheets client, models)
+Wallet Bot: 2 files (main.py, keep_alive.py)
+Total: ~15,000+ lines of code across all bots
+
+=== DATA FLOW (Current) ===
+1. Sales Bot → gspread (direct) + urllib → API (FAILS)
+2. Customer Bot → aiohttp → API (401 auth) → Fallback to cached data
+3. Wallet Bot → gspread (direct)
+4. API Server → gspread → Google Sheets ✅ (working standalone)
+
+=== RECOMMENDED DATA FLOW (Target) ===
+1. All Bots → API Server (REST) → MySQL (primary)
+2. API Server → gspread → Sheets (sync/cache layer)
+3. MySQL Docker as read-through cache
+4. Eliminate direct gspread access from bots
+5. Benefits: No 429 errors, faster reads, data integrity

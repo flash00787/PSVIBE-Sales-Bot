@@ -1,0 +1,1 @@
+/home/node/.openclaw/workspace/_run_audit.sh: line 11: ssh: command not found

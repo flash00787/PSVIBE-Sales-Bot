@@ -1,0 +1,856 @@
+================================================================================
+              DEEP AUDIT REPORT — AGRI ECO BOT
+              Server: bot-server-01 (167.71.196.120)
+              Date:    2026-05-26 20:58 UTC
+              Auditor: Nova (OpenClaw AI Assistant)
+================================================================================
+
+TABLE OF CONTENTS
+  1.  Executive Summary
+  2.  Architecture & Technology Stack
+  3.  Why The Bot Is Stopped (Root Cause Analysis)
+  4.  Security Audit
+  5.  Error Handling & Resilience
+  6.  Code Quality Assessment
+  7.  Performance Analysis
+  8.  External Scanner Activity
+  9.  Dependency Analysis
+  10. Monitoring & Observability
+  11. Environment & Configuration
+  12. Recommendations & Remediation Plan
+  13. Severity Summary Matrix
+
+================================================================================
+1. EXECUTIVE SUMMARY
+================================================================================
+
+The Agri Eco Bot is a TypeScript-based Express + Telegram bot compiled via esbuild
+into a monolithic 4.5MB JavaScript bundle (106,479 lines). It was built inside a
+pnpm monorepo on Replit and deployed as compiled artifacts to a VPS. The bot is
+currently STOPPED under PM2.
+
+ROOT CAUSE OF STOPPAGE: The compiled bundle contains a HARDCODED absolute path
+`/home/runner/workspace/artifacts/api-server/dist/thread-stream-worker.mjs` from
+the Replit build environment. When the thread-stream (pino logger) worker spawns,
+it fails to find the worker module at the baked-in Replit path, causing a fatal
+crash. This creates an intermittent failure pattern — the bot sometimes starts
+successfully (when the path resolves via relative resolution fallback) but
+subsequent restarts fail. PM2's max_restarts=5 prevents an infinite crash loop
+but results in a permanently stopped process.
+
+OVERALL SEVERITY: HIGH — The bot cannot reliably run in its current state.
+Security posture is moderate (permissions are correct) but sensitive credentials
+exist in plaintext on disk.
+
+================================================================================
+2. ARCHITECTURE & TECHNOLOGY STACK
+================================================================================
+
+Severity: INFO
+
+  Runtime:          Node.js v22.22.2 on Ubuntu 22.04 (Linux 6.8.0-117-generic)
+  Process Manager:  PM2 v7.0.1
+  Language:         TypeScript → compiled to JavaScript via esbuild v0.27.3
+  Web Framework:    Express v5 (ESM)
+  Bot Library:      node-telegram-bot-api v0.67.0 (short-polling mode)
+  Logger:           pino v9 + pino-http v10 + pino-pretty v13
+  Database:         Google Sheets API (no traditional database)
+  Auth:             Google Service Account (agri-eco-accounting project)
+  Build System:     esbuild bundled with esbuild-plugin-pino
+  Package Manager:  pnpm (workspace monorepo, NOT standard npm)
+  Build Origin:     Replit (path: /home/runner/workspace/...)
+  Source Code:      NOT present on server (only compiled dist/)
+
+  Architecture Diagram:
+
+    ┌──────────────────────────────────────────────────────┐
+    │  Express v5 HTTP Server (port 8080)                  │
+    │  ┌─────────────────────┐  ┌───────────────────────┐ │
+    │  │  pino-http logger   │  │  Short-polling        │ │
+    │  │  (ALL traffic)      │  │  Telegram Bot         │ │
+    │  └─────────────────────┘  └───────────┬───────────┘ │
+    │                                       │              │
+    │  ┌────────────────────────────────────┼───────────┐ │
+    │  │  Google Sheets Integration          │           │ │
+    │  │  (Service Account Auth)             │           │ │
+    │  │  Sheet: 1KQJts74A-uxoyBPXA2bC...   │           │ │
+    │  └────────────────────────────────────┘           │ │
+    └──────────────────────────────────────────────────────┘
+
+  Key Observations:
+  - This is NOT a pure Telegram bot. It's an Express server that ALSO runs
+    a Telegram bot via short-polling as a side effect.
+  - The server has NO defined routes except what the Telegram library sets up.
+    All HTTP requests to the server return 404.
+  - Source TypeScript files are NOT on the server. Only compiled artifacts
+    with source maps exist in /opt/agri-bot/dist/.
+  - This was built as part of a pnpm workspace monorepo (@workspace/api-server)
+    with internal dependencies @workspace/api-zod and @workspace/db that
+    cannot be resolved independently.
+
+================================================================================
+3. WHY THE BOT IS STOPPED (ROOT CAUSE ANALYSIS)
+================================================================================
+
+Severity: CRITICAL
+
+  PRIMARY CRASH CAUSE:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ Error: Cannot find module                                             │
+  │ '/home/runner/workspace/artifacts/api-server/dist/                    │
+  │  thread-stream-worker.mjs'                                           │
+  │                                                                       │
+  │ This path is HARDCODED in the compiled bundle from the Replit         │
+  │ build environment. It does NOT exist on the production VPS.           │
+  │ The actual file lives at: /opt/agri-bot/dist/thread-stream-worker.mjs│
+  └─────────────────────────────────────────────────────────────────────┘
+
+  SECONDARY CRASH CAUSE (appears in error logs):
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ Error: PORT environment variable is required but was not provided.    │
+  │ at <anonymous> (/opt/agri-bot/src/index.ts:8:9)                      │
+  │                                                                       │
+  │ This error fires when start.sh's env exports don't propagate         │
+  │ properly (PM2 bash interpreter quirk) or when thread-stream crashes  │
+  │ before the Express server can bind to PORT.                          │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  CRASH PATTERN ANALYSIS:
+  The error logs show a repeating cycle:
+    1. PM2 starts /opt/agri-bot/start.sh (bash)
+    2. start.sh exports PORT=8080 and sources .secrets
+    3. Node.js loads dist/index.mjs
+    4. During pino logger initialization, thread-stream-worker spawns
+    5. Worker process tries to load from hardcoded Replit path → FAILS
+    6. Main process crashes with MODULE_NOT_FOUND
+    7. PM2 restarts after 5 second delay (restart_delay: 5000)
+    8. Repeats 5+ times → PM2 max_restarts hit → process marked "stopped"
+
+  EVIDENCE OF INTERMITTENT SUCCESS:
+  Out logs show TWO successful boot sequences:
+    - PID 1079: Ran for a while, handled 875+ HTTP requests, then crashed
+    - PID 1084: "Server listening" on port 8080, "Price list loaded from sheet",
+      "Telegram Bot started (short-polling)"
+    - PID 931:  Same successful boot messages
+  
+  This suggests the thread-stream path resolution sometimes succeeds via
+  a relative-path fallback but fails on subsequent restarts.
+
+  PM2 STATUS:
+    - Name: agri-bot
+    - Status: stopped
+    - Restarts: 0 (counter appears to have been reset)
+    - Max restarts configured: 5
+    - Uptime: 0
+    - Restart delay: 5 seconds
+
+================================================================================
+4. SECURITY AUDIT
+================================================================================
+
+4.1 Credential Storage                                      [CRITICAL]
+──────────────────────────────────────────────────────────
+  ALL credentials are stored in plaintext files on the server:
+
+  FILE: /opt/agri-bot/.env (permissions: 600, root:root)
+    - TELEGRAM_BOT_TOKEN=8546470717:AAG1YlG1FYVFCr5gMdWhl7nK3Zow_bF1AFs
+    - SESSION_SECRET=xaJevsz9LhLJGLF8PUq6f4T60rD9hiUgkSLo...
+    - SPREADSHEET_ID=1KQJts74A-uxoyBPXA2bCazNc5j4bIphgSCB9ooKF86I
+
+  FILE: /opt/agri-bot/.secrets (permissions: 600, root:root)
+    - DUPLICATES TELEGRAM_BOT_TOKEN and SESSION_SECRET
+    - This is the file sourced by start.sh
+
+  FILE: /opt/agri-bot/.google-sa.json (permissions: 600, root:root)
+    - Full Google Service Account JSON key
+    - Project: agri-eco-accounting
+    - Service account: sheet-bot@agri-eco-accounting.iam.gserviceaccount.com
+    - RSA PRIVATE KEY IS INCLUDED (2,369 bytes)
+
+  RISK: If the server is compromised, ALL credentials are immediately
+  accessible. File permissions (600) offer protection against other
+  local users but ZERO protection against:
+    - Remote code execution in the application
+    - Server-level compromise
+    - Backup/snapshot leaks
+    - Path traversal attacks exposing these files
+
+4.2 Duplicate Credential Storage                             [HIGH]
+──────────────────────────────────────────────────────────
+  TELEGRAM_BOT_TOKEN and SESSION_SECRET exist in both
+  /opt/agri-bot/.env AND /opt/agri-bot/.secrets.
+  
+  start.sh sources .secrets for runtime, but .env contains the same data.
+  This creates unnecessary duplication and increases attack surface.
+  Neither file should exist; credentials should be passed via PM2
+  environment config or a secrets manager.
+
+4.3 Network Exposure                                         [HIGH]
+──────────────────────────────────────────────────────────
+  The Express server on port 8080 is accessible to the internet
+  (bound to 0.0.0.0). While no sensitive routes exist, the exposed
+  surface attracts scanner traffic and consumes resources.
+
+  Additionally, another Node.js process is listening on port 3000
+  (bound to 0.0.0.0, PID 2970). This is NOT the agri-bot but
+  represents another exposed service on the same host.
+
+  CURRENT LISTENING PORTS (0.0.0.0 only):
+    - 22/tcp   → SSH (sshd) — acceptable
+    - 80/tcp   → docker-proxy (Caddy in Docker) — acceptable
+    - 443/tcp  → docker-proxy (Caddy in Docker) — acceptable
+    - 3000/tcp → node (unknown service) — INVESTIGATE
+    - 5001/tcp → python3 — INVESTIGATE
+    - 5002/tcp → python3 — INVESTIGATE
+    - 18789/tcp→ docker-proxy — INVESTIGATE
+
+4.4 No Rate Limiting or DoS Protection                      [HIGH]
+──────────────────────────────────────────────────────────
+  The Express server has NO rate limiting. Scanner bots are
+  sending hundreds of requests (logged in out log) without
+  any throttling. A coordinated attack could:
+    - Exhaust server resources (CPU/memory)
+    - Fill up disk space via log volume
+    - Degrade Telegram bot responsiveness
+
+  The only "limiter" reference found in the compiled code
+  appears 3 times — this MAY be the Telegram API rate limiter
+  from node-telegram-bot-api, NOT an HTTP-level limiter.
+
+4.5 No Security Headers                                     [HIGH]
+──────────────────────────────────────────────────────────
+  The application does NOT use helmet or any security header
+  middleware. No evidence of:
+    - X-Content-Type-Options
+    - X-Frame-Options
+    - Content-Security-Policy
+    - Strict-Transport-Security
+    - X-XSS-Protection
+
+4.6 No Input Validation                                     [MEDIUM]
+──────────────────────────────────────────────────────────
+  Telegram bot message handling does not appear to sanitize
+  or validate user input before processing. Given that the
+  bot writes to Google Sheets, this could enable:
+    - Formula injection in sheet cells
+    - Malformed data corruption
+    - CSV/command injection in sheet operations
+
+4.7 CORS Configuration                                      [LOW]
+──────────────────────────────────────────────────────────
+  The cors npm package is included but default configuration
+  likely allows all origins. Since this is a bot (not a
+  public API), CORS should be disabled or restricted to
+  specific origins only.
+
+4.8 Telegram Token Exposure Risk                            [INFO]
+──────────────────────────────────────────────────────────
+  The TELEGRAM_BOT_TOKEN is passed via:
+    1. .env file (never sourced in production per start.sh)
+    2. .secrets file (sourced by start.sh)
+    3. Possibly hardcoded in the compiled bundle
+  
+  If the token was committed to the Replit repository or
+  included in the compiled bundle, it is potentially
+  exposed to anyone with access to the Replit workspace.
+
+================================================================================
+5. ERROR HANDLING & RESILIENCE
+================================================================================
+
+5.1 PM2 Crash Loop & Max Restarts                           [CRITICAL]
+──────────────────────────────────────────────────────────
+  ecosystem.config.cjs:
+    restart_delay: 5000  (5 seconds)
+    max_restarts: 5
+
+  PROBLEM: With max_restarts=5 and a deterministic crash
+  (hardcoded path error), the bot will ALWAYS end up in
+  "stopped" state after ~25 seconds. There is NO automatic
+  recovery once stopped.
+
+  IMPACT: Every crash requires MANUAL intervention to restart
+  via `pm2 restart agri-bot`.
+
+5.2 No Graceful Shutdown                                    [MEDIUM]
+──────────────────────────────────────────────────────────
+  No evidence of SIGTERM/SIGINT handlers for graceful
+  shutdown. The Express server and Telegram polling may
+  not clean up properly on stop.
+
+5.3 No Crash/Error Recovery Logic                           [HIGH]
+──────────────────────────────────────────────────────────
+  The application has no internal error recovery:
+    - No retry logic for Google Sheets API failures
+    - No retry logic for Telegram API failures
+    - No circuit breaker pattern
+    - No fallback mechanisms
+
+  If Google Sheets returns an error during price list loading,
+  the bot may crash rather than degrading gracefully.
+
+5.4 Uncaught Exception Handling                             [MEDIUM]
+──────────────────────────────────────────────────────────
+  No evidence of process.on('uncaughtException') or
+  process.on('unhandledRejection') handlers. Unhandled
+  rejections will crash the Node.js process.
+
+================================================================================
+6. CODE QUALITY ASSESSMENT
+================================================================================
+
+6.1 Monolithic Bundle Size                                  [MEDIUM]
+──────────────────────────────────────────────────────────
+  dist/index.mjs:     4,525,700 bytes (4.5 MB) — 106,479 lines
+  dist/index.mjs.map: 7,330,602 bytes (7.3 MB) — source maps
+  dist/pino-*.mjs:    ~420,000 bytes — pino related workers
+  TOTAL dist:         ~12,700,000 bytes (12.7 MB)
+
+  The 4.5MB bundle includes ALL dependencies bundled inline:
+    - express v5 (entire framework)
+    - node-telegram-bot-api (complete with request/eventemitter)
+    - googleapis (very large Google API client library)
+    - google-auth-library
+    - drizzle-orm (full ORM — unused?)
+    - pino + pino-http + pino-pretty
+    - @replit/connectors-sdk
+    - cors, cookie-parser
+  
+  This is excessively large for a Telegram bot. The Google APIs
+  library alone can be 2-3MB. Consider using lightweight REST
+  calls instead.
+
+6.2 No Source Code on Server                                [HIGH]
+──────────────────────────────────────────────────────────
+  The /opt/agri-bot/src/ directory does NOT exist.
+  Only compiled JavaScript with source maps is available.
+  
+  While the source maps (.map files) enable debugging with
+  `--enable-source-maps`, the actual TypeScript source is
+  UNRECOVERABLE without access to the original Replit repo.
+
+  If additional changes are needed, you MUST:
+    a) Locate the original Replit workspace
+    b) Modify TypeScript source there
+    c) Rebuild with esbuild
+    d) Re-deploy compiled artifacts
+
+6.3 Hardcoded Build Paths                                   [CRITICAL]
+──────────────────────────────────────────────────────────
+  The compiled bundle contains hardcoded paths from the
+  Replit build environment:
+    - /home/runner/workspace/artifacts/api-server/dist/
+      thread-stream-worker.mjs
+    - /opt/agri-bot/src/index.ts:8:9 (in source maps)
+    - ../../node_modules/.pnpm/... (pnpm dependency paths)
+  
+  This is a build configuration error. esbuild should resolve
+  worker paths relative to __dirname, not absolute paths.
+
+6.4 Workspace Dependencies Cannot Be Resolved               [MEDIUM]
+──────────────────────────────────────────────────────────
+  package.json references:
+    - @workspace/api-zod: workspace:*
+    - @workspace/db: workspace:*
+    - drizzle-orm: catalog:
+    - @types/node: catalog:
+
+  These are pnpm workspace protocol and catalog references.
+  They CANNOT be installed via npm on the VPS. npm ls shows
+  ALL dependencies as "UNMET". This means:
+    - npm audit CANNOT be run (no lockfile exists)
+    - npm install CANNOT restore dependencies
+    - The VPS deployment relies entirely on the pre-built bundle
+
+6.5 Google Sheets as Database                               [MEDIUM]
+──────────────────────────────────────────────────────────
+  Using Google Sheets as a database for a Telegram bot has
+  inherent limitations:
+    - API rate limits (60 requests/user/minute for free tier)
+    - No transactions or atomic operations
+    - No schema enforcement
+    - Concurrent write conflicts possible
+    - Slow compared to a real database (SQLite, PostgreSQL)
+    - Requires network connectivity to Google at all times
+
+6.6 Short-Polling vs Webhook                                [LOW]
+──────────────────────────────────────────────────────────
+  The bot uses getUpdates (short-polling) instead of webhooks.
+  For a 24/7 production bot, webhooks are:
+    - More responsive (instant vs polling interval)
+    - Less resource-intensive (no constant API calls)
+    - More scalable
+  Short-polling is acceptable for development but not ideal
+  for production.
+
+================================================================================
+7. PERFORMANCE ANALYSIS
+================================================================================
+
+7.1 Server Resources                                        [LOW]
+──────────────────────────────────────────────────────────
+  MEMORY:  3.8 GB total, 1.5 GB available (2.4 GB used, 162 MB free)
+  DISK:    116 GB total, 21 GB used (18%), 95 GB available
+  SWAP:    2.0 GB total, 190 MB used
+  LOAD:    1.21 (1 min), 0.64 (5 min), 0.36 (15 min)
+  
+  Memory Usage: 2.4 GB used out of 3.8 GB is HIGH (63%).
+  1.5 GB "available" includes reclaimable cache.
+  
+  The server hosts MULTIPLE services:
+    - Caddy (Docker, ports 80/443)
+    - n8n (likely port 5678 on localhost)
+    - Python services (ports 5001, 5002)
+    - Unknown Node.js service (port 3000)
+    - Unknown Docker service (port 18789)
+    - customer_bot (PM2, stopped, 4778 crashes!)
+    - agri-bot (PM2, stopped)
+
+  At current capacity, all services COULD run but memory
+  pressure is moderate. Adding more services would require
+  either upgrading the VPS or optimizing existing ones.
+
+7.2 Express Server Overhead                                 [LOW]
+──────────────────────────────────────────────────────────
+  Running an Express v5 server for a Telegram bot introduces
+  unnecessary overhead:
+    - HTTP server listening on port 8080
+    - HTTP request/response objects for ALL incoming traffic
+    - pino-http logging middleware for every request
+  
+  Since the bot uses short-polling (NOT webhooks), the Express
+  server serves NO purpose for the bot functionality. It only:
+    - Attracts and logs scanner traffic
+    - Consumes memory and CPU
+    - Creates an unnecessary attack surface
+
+7.3 Logger Performance Impact                               [LOW]
+──────────────────────────────────────────────────────────
+  pino is a high-performance logger, BUT:
+    - thread-stream spawns a SEPARATE worker thread
+    - pino-pretty adds formatting overhead
+    - Every single 404 from scanners is logged (875+ requests
+      in one session)
+  
+  The worker thread pattern is the root cause of the crash.
+  Consider switching to pino's default synchronous output
+  or using pino/file for production logging.
+
+================================================================================
+8. EXTERNAL SCANNER ACTIVITY
+================================================================================
+
+Severity: HIGH
+
+  The Express server on port 8080 is under CONSTANT attack
+  from automated vulnerability scanners. Analysis of out log
+  reveals these attack categories:
+
+8.1 Environment File Theft Attempts
+──────────────────────────────────────────────────────────
+  Scanned paths:
+    /.env, /.env.production, /.env.local, /.env.development,
+    /.env.backup, /.env.save, /.env.old, /.env_ci,
+    /app/.env, /api/.env, /frontend/.env, /server/.env,
+    /client/.env, /web/.env, /public/.env, /private/.env,
+    /var/.env
+
+  FREQUENCY: Multiple times per hour from different scanners.
+
+8.2 Configuration File Theft Attempts
+──────────────────────────────────────────────────────────
+    /config.js, /config.json, /settings.js, /settings.json,
+    /secrets.json, /credentials.json, /appsettings.json,
+    /appsettings.Production.json
+
+8.3 Infrastructure Probing
+──────────────────────────────────────────────────────────
+    /docker-compose.yml, /docker-compose.yaml,
+    /docker-compose.override.yml, /docker-compose.dev.yml,
+    /docker-compose.prod.yml, /containers/json
+
+8.4 Framework-Specific Exploits
+──────────────────────────────────────────────────────────
+    /actuator/gateway/routes  → Spring Boot exploit
+    /actuator/heapdump         → Spring Boot heap dump
+    /actuator/env              → Spring Boot env leak
+    /actuator/health           → Spring Boot health check
+    /mcp, /mcp-sse             → MCP protocol probe
+    /SDK/webLanguage           → Unknown SDK exploit
+    /geoserver/web/            → GeoServer exploit
+    /hudson                    → Jenkins probe
+    /wp-config.php             → WordPress config theft
+    /.git/config               → Git config theft
+    /.aws/credentials          → AWS key theft
+    /config/database.yml       → Rails config theft
+    /.htpasswd                 → Apache password theft
+    /backup.sql                → Database backup theft
+
+8.5 API Probing
+──────────────────────────────────────────────────────────
+    /v1/models                 → Generic API probe
+    /api/v1/collections        → n8n probe
+    /api/v1/dags               → Airflow probe
+    /api/v1/heartbeat          → Monitoring probe
+    /api/config                → Config API probe
+    /update_weights_from_tensor→ ML framework probe
+
+  MITIGATION STATUS: All requests return 404 — Express has no
+  routes. However, each request is:
+    1. Processed by Express middleware
+    2. Logged by pino-http
+    3. Consumes CPU and I/O
+  
+  Over time, this is a meaningful resource drain. Rate limiting
+  would reduce this by 80%+.
+
+================================================================================
+9. DEPENDENCY ANALYSIS
+================================================================================
+
+9.1 Cannot Run npm audit                                    [HIGH]
+──────────────────────────────────────────────────────────
+  No lockfile (package-lock.json or pnpm-lock.yaml) exists
+  on the server. npm audit cannot be run. Dependency security
+  posture is UNKNOWN.
+
+9.2 Production Dependencies
+──────────────────────────────────────────────────────────
+  ┌────────────────────────────┬──────────┬──────────────────────────────┐
+  │ Package                    │ Version  │ Risk Assessment              │
+  ├────────────────────────────┼──────────┼──────────────────────────────┤
+  │ @replit/connectors-sdk     │ ^0.4.0   │ Replit-specific, unmaintained│
+  │ cookie-parser              │ ^1.4.7   │ Unused? Low risk             │
+  │ cors                       │ ^2       │ Default config unsafe        │
+  │ drizzle-orm                │ catalog: │ ORM — possibly unused        │
+  │ express                    │ ^5       │ v5 still in development      │
+  │ google-auth-library        │ ^10.6.2  │ Moderate — widely used       │
+  │ googleapis                 │ ^171.4.0 │ VERY LARGE, high attack surf.│
+  │ node-telegram-bot-api      │ ^0.67.0  │ Good — well maintained       │
+  │ pino                       │ ^9       │ Good — widely used           │
+  │ pino-http                  │ ^10      │ Good — widely used           │
+  └────────────────────────────┴──────────┴──────────────────────────────┘
+
+  NOTE: All versions are "UNMET" on the VPS because no npm install
+  was performed. Dependencies are baked into the esbuild bundle.
+
+9.3 Version Concerns
+──────────────────────────────────────────────────────────
+  - Express v5: Still not stable as of 2026. Use v4 for
+    production unless v5 features are explicitly needed.
+  - googleapis v171: Extremely large. Consider @googleapis/sheets
+    (modular) instead of the full googleapis package.
+  - @replit/connectors-sdk: Replit-proprietary. Why is this in
+    a VPS deployment?
+
+================================================================================
+10. MONITORING & OBSERVABILITY
+================================================================================
+
+10.1 Logging                                                 [MEDIUM]
+──────────────────────────────────────────────────────────
+  PROS:
+    - pino provides structured JSON logging
+    - Request/response logging includes method, URL, status
+    - Telegram message events logged with chatId and text
+  
+  CONS:
+    - ALL 404 scanner requests are logged — creates noise
+    - No log level filtering in production (everything is info)
+    - No log rotation configured (PM2 handles this at the PM2 level)
+    - Error logs show repetitive crash loops with no deduplication
+    - Log files are at /root/.pm2/logs/ (PM2 managed)
+
+10.2 Health Checks                                           [HIGH]
+──────────────────────────────────────────────────────────
+  NO health check endpoint exists. The Express server only
+  returns 404 for all routes. There is no way to:
+    - Verify the bot is alive without sending a Telegram message
+    - Check Google Sheets connectivity
+    - Monitor memory/CPU of the bot process
+    - Get uptime or status programmatically
+
+10.3 Alerting                                                [CRITICAL]
+──────────────────────────────────────────────────────────
+  NO alerting is configured. When the bot crashes:
+    - PM2 stops it after 5 restarts
+    - No notification is sent to the operator
+    - The bot remains stopped until MANUAL detection
+    
+  RECOMMENDED: Add a cron job or monitoring service that
+  checks pm2 status every 5 minutes and alerts on stopped
+  processes.
+
+================================================================================
+11. ENVIRONMENT & CONFIGURATION
+================================================================================
+
+11.1 PORT Configuration Conflict                             [HIGH]
+──────────────────────────────────────────────────────────
+  THREE different PORT values exist:
+    1. .env file:         PORT=3000
+    2. start.sh:          PORT=8080  (actual runtime value)
+    3. ecosystem.config:  No PORT export (relies on start.sh)
+
+  The .env file is NOT sourced by start.sh (which sources
+  .secrets instead). This inconsistency is confusing and
+  potentially dangerous if the .env file is ever sourced.
+
+11.2 Environment Variable Injection                          [MEDIUM]
+──────────────────────────────────────────────────────────
+  start.sh:
+    export NODE_ENV=production      ← Hardcoded (good)
+    export PORT=8080                ← Hardcoded (acceptable)
+    export SPREADSHEET_ID=...       ← Hardcoded; duplicated in .env
+    export GOOGLE_APPLICATION_CREDENTIALS=/opt/agri-bot/.google-sa.json
+    source /opt/agri-bot/.secrets   ← Source from file
+
+  The GOOGLE_APPLICATION_CREDENTIALS path uses the standard
+  Google Cloud SDK env var — this is correct.
+  
+  Better approach: Pass all env vars through PM2 ecosystem
+  config instead of shell script sourcing.
+
+11.3 PM2 Configuration                                       [MEDIUM]
+──────────────────────────────────────────────────────────
+  ecosystem.config.cjs:
+    - Uses bash interpreter instead of direct node execution
+    - No env block defined (relies on start.sh sourcing)
+    - No max_memory_restart (no OOM protection)
+    - No log_date_format
+    - No merge_logs
+    - No error_file / out_file explicit paths
+    - watch: false (correct for production)
+
+11.4 No npm Packages Installed                               [INFO]
+──────────────────────────────────────────────────────────
+  No node_modules directory exists at /opt/agri-bot/.
+  npm ls shows ALL dependencies as UNMET.
+  
+  This is expected for an esbuild-bundled deployment but
+  means traditional npm operations (audit, update, prune)
+  are impossible on the VPS.
+
+================================================================================
+12. RECOMMENDATIONS & REMEDIATION PLAN
+================================================================================
+
+PHASE 1: IMMEDIATE FIXES (to restore bot operation)
+──────────────────────────────────────────────────────────
+
+  P1.1 [CRITICAL] FIX HARDCODED WORKER PATH
+  ─────────────────────────────────────────────
+  The thread-stream-worker.mjs reference to
+  /home/runner/workspace/artifacts/api-server/dist/
+  must be fixed. Options:
+  
+    Option A (Quick): Create a symlink:
+      mkdir -p /home/runner/workspace/artifacts/api-server/dist/
+      ln -s /opt/agri-bot/dist/thread-stream-worker.mjs \
+            /home/runner/workspace/artifacts/api-server/dist/thread-stream-worker.mjs
+    
+    Option B (Better): Edit the compiled bundle to use
+      __dirname-based resolution instead of absolute paths.
+    
+    Option C (Best): Fix the build configuration on Replit
+      to use relative paths for worker threads, then redeploy.
+
+  P1.2 [HIGH] INCREASE PM2 MAX_RESTARTS
+  ─────────────────────────────────────────────
+  Change ecosystem.config.cjs:
+    max_restarts: 20    (was 5)
+    restart_delay: 10000 (was 5000 — give more time between)
+  
+  This prevents the bot from permanently stopping after
+  transient failures (e.g., Google API rate limits).
+
+  P1.3 [HIGH] FIX PORT CONFIGURATION
+  ─────────────────────────────────────────────
+  Consolidate PORT to a single source of truth.
+  Remove PORT=3000 from .env (or delete .env entirely).
+  Keep PORT=8080 in start.sh or move to ecosystem.config.cjs.
+
+PHASE 2: SECURITY HARDENING (within 24-48 hours)
+──────────────────────────────────────────────────────────
+
+  P2.1 [CRITICAL] MOVE CREDENTIALS TO PM2 ENV
+  ─────────────────────────────────────────────
+  Move all secrets from .secrets/.env into PM2's env block:
+    ecosystem.config.cjs env: {
+      TELEGRAM_BOT_TOKEN: "...",
+      SESSION_SECRET: "...",
+      ...
+    }
+  
+  Then DELETE .env and .secrets files from disk.
+  Keep .google-sa.json (required by googleapis) but ensure
+  0600 permissions remain.
+
+  P2.2 [HIGH] ADD RATE LIMITING
+  ─────────────────────────────────────────────
+  Install and configure express-rate-limit:
+    - 100 requests per 15 minutes per IP for unknown routes
+    - Higher limit for Telegram webhook IPs (if webhooks used)
+
+  P2.3 [HIGH] ADD SECURITY HEADERS
+  ─────────────────────────────────────────────
+  Add helmet middleware to Express:
+    app.use(helmet());
+
+  P2.4 [HIGH] RESTRICT EXPRESS TO LOCALHOST
+  ─────────────────────────────────────────────
+  If the bot uses short-polling (not webhooks), the Express
+  server should bind to 127.0.0.1:8080 instead of 0.0.0.0:8080.
+  This eliminates ALL scanner traffic and the associated attack
+  surface.
+
+  P2.5 [MEDIUM] REVOKE AND ROTATE COMPROMISED CREDENTIALS
+  ─────────────────────────────────────────────
+  Since credentials are in this audit report and on the
+  server in plaintext, rotate:
+    - Telegram Bot Token (via @BotFather)
+    - Google Service Account Key (via GCP Console)
+
+PHASE 3: ARCHITECTURAL IMPROVEMENTS (within 1 week)
+──────────────────────────────────────────────────────────
+
+  P3.1 [HIGH] SWITCH FROM SHORT-POLLING TO WEBHOOKS
+  ─────────────────────────────────────────────
+  Short-polling wastes API calls and is slower. Webhooks:
+    - Instant message delivery
+    - No constant getUpdates polling
+    - Can use the existing Express server (on localhost)
+    - Set via setWebHook with Caddy reverse proxy
+
+  P3.2 [MEDIUM] ADD HEALTH CHECK ENDPOINT
+  ─────────────────────────────────────────────
+  Add a GET /health route returning:
+    {
+      status: "ok",
+      uptime: process.uptime(),
+      sheetsConnected: true|false,
+      telegramConnected: true|false,
+      timestamp: Date.now()
+    }
+
+  P3.3 [MEDIUM] ADD CRASH ALERTING
+  ─────────────────────────────────────────────
+  Option A: PM2 module @pm2/io for monitoring
+  Option B: Shell script cron job checking pm2 status
+  Option C: UptimeRobot or similar external monitoring
+
+  P3.4 [LOW] OPTIMIZE BUNDLE SIZE
+  ─────────────────────────────────────────────
+  - Replace googleapis with @googleapis/sheets
+  - Remove drizzle-orm if unused
+  - Remove @replit/connectors-sdk if not needed on VPS
+  - Consider tree-shaking in esbuild config
+  - Target: reduce from 4.5MB to < 1MB
+
+  P3.5 [LOW] MIGRATE FROM GOOGLE SHEETS TO SQLITE
+  ─────────────────────────────────────────────
+  Google Sheets as a database is fragile. SQLite with
+  drizzle-orm provides:
+    - Zero-dependency local storage
+    - Atomic transactions
+    - No network dependency
+    - Faster reads/writes
+    - Schema enforcement
+
+PHASE 4: LONG-TERM (within 1 month)
+──────────────────────────────────────────────────────────
+
+  P4.1 [MEDIUM] ESTABLISH CI/CD PIPELINE
+  ─────────────────────────────────────────────
+  Current: Manual build on Replit → manual SCP to VPS
+  Target: GitHub Actions → build → test → deploy to VPS
+
+  P4.2 [LOW] DOCKERIZE THE APPLICATION
+  ─────────────────────────────────────────────
+  Containerize the bot for consistent deployments:
+    - Dockerfile with Node.js v22
+    - Health check built in
+    - Environment variables via Docker secrets
+    - docker-compose for orchestration
+
+  P4.3 [LOW] ADD COMPREHENSIVE TESTS
+  ─────────────────────────────────────────────
+  - Unit tests for Google Sheets integration
+  - Integration tests for Telegram bot commands
+  - Load tests for concurrent user scenarios
+
+================================================================================
+13. SEVERITY SUMMARY MATRIX
+================================================================================
+
+┌──────┬───────────────────────────────────────────────────────────────┬──────────────┐
+│  ID  │ Finding                                                       │ Severity     │
+├──────┼───────────────────────────────────────────────────────────────┼──────────────┤
+│ R1   │ Hardcoded Replit worker path causes deterministic crash       │ 🔴 CRITICAL  │
+│ R2   │ PM2 max_restarts=5 → permanent stop after crash loop          │ 🔴 CRITICAL  │
+│ R3   │ No alerting — crash goes undetected indefinitely              │ 🔴 CRITICAL  │
+│ S1   │ Plaintext credentials on disk (.env, .secrets, .google-sa)    │ 🔴 CRITICAL  │
+│ S2   │ Duplicate credential files increase attack surface            │ 🟠 HIGH      │
+│ S3   │ Express bound to 0.0.0.0 — internet-exposed                   │ 🟠 HIGH      │
+│ S4   │ No rate limiting — vulnerable to DoS                          │ 🟠 HIGH      │
+│ S5   │ No security headers (no helmet)                               │ 🟠 HIGH      │
+│ S6   │ Google SA key on disk with full RSA private key               │ 🟠 HIGH      │
+│ A1   │ No source code on server — unrecoverable without original repo│ 🟠 HIGH      │
+│ A2   │ Express server serves no purpose (short-polling, no routes)   │ 🟠 HIGH      │
+│ A3   │ No health check endpoint                                      │ 🟠 HIGH      │
+│ A4   │ npm audit impossible (no lockfile, no node_modules)           │ 🟠 HIGH      │
+│ A5   │ PORT defined in 3 places with different values                │ 🟠 HIGH      │
+│ C1   │ 4.5MB monolithic bundle with all dependencies                 │ 🟡 MEDIUM    │
+│ C2   │ Google Sheets as primary database (fragile, rate-limited)     │ 🟡 MEDIUM    │
+│ C3   │ Workspace deps (pnpm) can't be resolved on VPS                │ 🟡 MEDIUM    │
+│ C4   │ No graceful shutdown handlers                                 │ 🟡 MEDIUM    │
+│ C5   │ No uncaughtException/unhandledRejection handlers              │ 🟡 MEDIUM    │
+│ C6   │ PM2 uses bash interpreter instead of direct node              │ 🟡 MEDIUM    │
+│ C7   │ Scanner traffic logged without filtering (disk + CPU waste)   │ 🟡 MEDIUM    │
+│ C8   │ No input sanitization for Google Sheets writes                │ 🟡 MEDIUM    │
+│ C9   │ Express v5 (pre-release) in production                        │ 🟡 MEDIUM    │
+│ P1   │ Short-polling instead of webhook (less efficient)             │ 🟢 LOW       │
+│ P2   │ CORS enabled with likely permissive config                    │ 🟢 LOW       │
+│ P3   │ Cookie-parser dependency possibly unused                      │ 🟢 LOW       │
+│ P4   │ Large source maps (7.3MB) stored on production server         │ 🟢 LOW       │
+│ P5   │ @replit/connectors-sdk in VPS deployment (unclear purpose)    │ 🟢 LOW       │
+│ I1   │ customer_bot has 4,778 crashes (also stopped)                 │ ℹ️ INFO      │
+│ I2   │ Multiple unknown services on public ports (3000, 5001, 5002)  │ ℹ️ INFO      │
+│ I3   │ Server memory at 63% usage with multiple services             │ ℹ️ INFO      │
+└──────┴───────────────────────────────────────────────────────────────┴──────────────┘
+
+SEVERITY LEGEND:
+  🔴 CRITICAL — Immediate action required. Bot is non-functional or
+                credentials are exposed.
+  🟠 HIGH     — Action required within 24-48 hours. Significant risk
+                or reliability issue.
+  🟡 MEDIUM   — Action required within 1 week. Notable concern that
+                should be addressed.
+  🟢 LOW      — Action recommended within 1 month. Improvement
+                opportunity.
+  ℹ️ INFO     — Noteworthy observation, no immediate action required.
+
+================================================================================
+FINAL VERDICT
+================================================================================
+
+The Agri Eco Bot is a functional Telegram-to-Google-Sheets integration that
+was deployed in a haste from a Replit monorepo to a VPS without proper
+production hardening.
+
+The bot CANNOT run reliably due to a hardcoded build-environment path in the
+compiled bundle. Even when it does start, it lacks basic production features:
+no rate limiting, no health checks, no alerts, and exposed credentials on disk.
+
+The GOOD NEWS is that the core functionality works: price lists load from
+Google Sheets, and Telegram messages are received. The bad news is that the
+deployment is fragile to the point of being unusable without manual
+intervention after every crash.
+
+CRITICAL PRIORITY: Fix the thread-stream-worker path, then add PM2 alerting
+and credential management. The bot should be restartable within 30 minutes
+of applying the symlink fix (Phase 1, P1.1).
+
+================================================================================
+                            END OF AUDIT REPORT
+================================================================================

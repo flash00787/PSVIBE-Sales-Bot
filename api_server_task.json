@@ -1,0 +1,65 @@
+{
+  "task": "Generate API Server for PS VIBE Sales Bot",
+  "objective": "Create a FastAPI-based REST API server that wraps the PS VIBE bot's data functions as HTTP endpoints, using actual function names from the V1/V2 codebase.",
+  
+  "context": {
+    "mysql_container_running": true,
+    "function_map": "/root/agent_output/function_map.json",
+    "v2_code_path": "/root/psvibe_sales_bot/",
+    "v1_backup_mainpy": "/root/backups/v1_standalone/main.py",
+    "sa_key": "/root/Sales-Tele-Bot/kora_drive_sa.json",
+    "target_output": "/root/psvibe_api_server/"
+  },
+  
+  "api_design_rules": [
+    "Function names from function_map.json MUST be used directly as API endpoint names",
+    "Each function -> one API endpoint (e.g., fetch_member_data -> GET /api/fetch_member_data)",
+    "Use FastAPI with async support",
+    "Connect to Google Sheets via SA Key for read operations",
+    "Support MySQL sync for caching",
+    "Include proper error handling, logging, validation"
+  ],
+  
+  "endpoints_to_create": [
+    "GET /api/fetch_members",
+    "GET /api/fetch_member_data/{phone}", 
+    "GET /api/fetch_wallet_mins/{phone}",
+    "GET /api/fetch_balance_mins/{phone}",
+    "GET /api/fetch_member_tier/{phone}",
+    "GET /api/fetch_staff",
+    "GET /api/fetch_food_prices",
+    "GET /api/fetch_games",
+    "GET /api/fetch_console_games/{console}",
+    "GET /api/fetch_base_rate",
+    "GET /api/fetch_console_multiplier/{console}",
+    "GET /api/fetch_new_member_defaults",
+    "GET /api/fetch_rank_thresholds",
+    "GET /api/fetch_bonus_table",
+    "GET /api/fetch_console_status",
+    "GET /api/fetch_staff_names",
+    "GET /api/fetch_food_costs",
+    "POST /api/topup_member (mutation)",
+    "POST /api/new_member (mutation)",
+    "GET /api/health",
+    "GET /api/docs"
+  ],
+  
+  "tech_stack": {
+    "framework": "FastAPI",
+    "database": "MySQL via aiomysql + Google Sheets API (direct read)",
+    "auth": "API Key (simple, configurable)",
+    "deployment": "Docker container (port 8000)",
+    "logging": "Structlog + file logging"
+  },
+  
+  "output_files": {
+    "main": "/root/psvibe_api_server/app.py",
+    "requirements": "/root/psvibe_api_server/requirements.txt",
+    "dockerfile": "/root/psvibe_api_server/Dockerfile",
+    "config": "/root/psvibe_api_server/config.py",
+    "sheets_client": "/root/psvibe_api_server/sheets_client.py",
+    "models": "/root/psvibe_api_server/models.py"
+  },
+  
+  "validation": "Each endpoint must be tested with curl after creation"
+}

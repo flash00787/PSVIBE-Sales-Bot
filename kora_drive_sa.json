@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "open-claw-agent-497416",
+  "private_key_id": "4ad6d2746938294e0a3ffeecf723fa993f56742c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4kKpof0GKD85S\njrjI155GeenQtZbF2AJCWFjAPk5oW2TSV3K1GmdFHVSeSnkNjmBcnMswzdYRnJ2k\nouVkms7h4Apb40mpmoUM81qPvElfnq2kJlFV7mhwZrq9+zMbtPFmxsSJoJlbGtjn\njKbMmWie5LCOXx8FGx0Lu2etSpSITrpeQ15dSKb++jSkWnD48PKeJQj3GfpgUAIx\nwSK7ByG4bvp7TP3ZfdSunKAWSiQdjEr1oGWFDVyy4Zg6tjCZox2J1aWk4AOWwal7\nTN8JK2/OlvbL5kR/zlyHTkNma39xYJtCwcWZcsPiIPisKTM7dDvQsfWeGO9I+0VM\nyNdf7Bw7AgMBAAECggEADJ09OwQg4hiUyjldRsN52qjqwpbOoGSpjt2ZP0ENkdNW\nmjZbgtDe/a8fVpbncXY+1Brr8Ot4izPwOvgz2Rg9izGJSQtz6ubChjE8X3YycO8Y\nQLpVCnGkwLM8uyRSiL0UAf6+ywXnb/3ElQVyFv9l0kpLXjJWcpO4/KbJKLkKsCAi\nRwFFGkljZncKQ+F4m+M66T6HN3UPEtyPurBnUOwNARtWmTbuG7y/u0xPGZZbDiNK\nWKDA6+YPeG3UbdMANgdP7zwitlZRMbtpwwV/hyQMppPaOdcHly9qdF+jhkYydn+U\nbVeXpzgg5ak6WUTy3SSb5C49Kx6fznUuspgCYJvmtQKBgQDkJjJxogav11Opk4Yf\n/HtojNR4ygANQ8CMe+m6+6+nEZOQMTr4+I2c3fZ/CKNuM6o2z8I4sMBBBDU1Xw9M\n7LVovGEb1ARontR6+81d+Dk0FCjrJ2ddA4icOZVGe+3GLaKzw5by0JdJDkE2FDv1\nRH6VxA5FCinme4EJq3QEjLhyvQKBgQDPGHBAJz18vZFMLD/hOwhIazYJY9kcxci9\n0G3j3b7V+8vR0eJuCoGxyZQhsBzPZRiHIFjLi5zOf0Q2htSjgm7/xCUM5iB0VuPx\nMfRaBb1eZOPUvFLaNqsuXVu4IwDUa5973LUWY45Er82VsxYSEzk4nMrIJvkRrQFh\n7SI0zGJ2VwKBgGzuW+lrfhvZCKYPvNtq1pVtoEjn0ayDq9ynkUpov05akwUmrEyR\niDPcusOeoUGNw3iWK9qbcb/ZPXp1H74PyvHt98OssEovg64QqdZzHQTjl0Hnt29u\nr3w/9ikIJNgZk/SWr2zR8Vm9R5+Fe7c4c+QYDuQh3S2hzFOMnEFL2wlVAoGBAIGL\n5Av9f/UcEFv6Aiu+ZbwHdNIC57mb76rtSxCTkeEBlco25NG5ONAiLMu2Aw+pSeKd\nVW5ec0SpT95cEYAHA7By3kpnWj3sbMJgYV4+4Oq/adWVyK5ALGzgcZOKMeavPCCb\nO5w5wrEs2Amg8Vl1NQI48pCp8HwiIQ9E63TjtWQZAoGAL+LUBAflWK0l0bfWsjaI\n8y+1r0nSI28IhV3enIj+snCMbN0D2Sowd2imS/LQXHXPhfrhcjqD3fctDG3SBYB4\nUc8piQ5AbMSutF+gO+hJzv2FmwMsx86UVsNAcV5+BkBDczy3/2H0bvzBiWPz7oMQ\n828KLWEMbBpC258xeFV+XyA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "openclawagent@open-claw-agent-497416.iam.gserviceaccount.com",
+  "client_id": "107762358739210240964",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/openclawagent%40open-claw-agent-497416.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
