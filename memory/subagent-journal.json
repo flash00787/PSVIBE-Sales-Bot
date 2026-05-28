@@ -2,7 +2,7 @@
   "version": 2,
   "metadata": {
     "description": "Durable journal of all sub-agent spawns, completions, and results.",
-    "lastUpdated": "2026-05-28T11:00:52.671484Z",
+    "lastUpdated": "2026-05-28T11:20:45.384777Z",
     "upgradedToV2": true
   },
   "entries": [
@@ -136,6 +136,32 @@
       "completed": "2026-05-28T10:48:48.112445Z",
       "status": "completed",
       "summary": "subagent actually completed successfully"
+    },
+    {
+      "id": "1779967239-test-final-check",
+      "taskName": "test-final-check",
+      "task": "Final system verification test",
+      "model": "deepseek/deepseek-v4-pro",
+      "spawned": "2026-05-28T11:20:39.626645Z",
+      "completed": "2026-05-28T11:20:45.384777Z",
+      "status": "completed",
+      "summary": "Final verification passed",
+      "sessionKey": "agent:main:telegram:default:direct:6296803251",
+      "channel": "telegram",
+      "resultFile": null
+    },
+    {
+      "id": "1779967239-test-cleanup",
+      "taskName": "test-cleanup",
+      "task": "Cleanup test entry",
+      "model": "deepseek/deepseek-v4-pro",
+      "spawned": "2026-05-28T11:20:39.715259Z",
+      "completed": "2026-05-28T11:20:39.755754Z",
+      "status": "completed",
+      "summary": "Test passed",
+      "sessionKey": "agent:main:telegram:default:direct:6296803251",
+      "channel": "telegram",
+      "resultFile": null
     }
   ]
 }
