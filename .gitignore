@@ -1,0 +1,9 @@
+*.b64
+*.tar.gz
+*.pyc
+__pycache__/
+node_modules/
+.memory/.git/
+.DS_Store
+env/
+venv/
