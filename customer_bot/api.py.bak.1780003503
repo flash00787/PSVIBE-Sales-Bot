@@ -20,7 +20,7 @@ import aiohttp
 
 # ── Globals (injected at startup by main.py) ──────────────────────────────────
 API_BASE: str = os.environ.get("API_BASE_URL", "").rstrip("/")
-_API_KEY: str = os.environ.get("API_KEY", "")
+_API_KEY: str = os.environ.get(API_KEY, )""
 CUSTOMER_BOT_TOKEN: str = ""
 STAFF_NOTIFY_CHAT: str = ""
 
