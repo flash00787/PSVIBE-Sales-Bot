@@ -1,0 +1,8822 @@
+{
+  "version": 1,
+  "updated": "2026-05-28T11:03:18Z",
+  "nodes": [
+    {
+      "id": "agent-coordination",
+      "type": "concept",
+      "label": "Agent Coordination"
+    },
+    {
+      "id": "agri-bot",
+      "type": "project",
+      "label": "Agri Bot"
+    },
+    {
+      "id": "apparmor",
+      "type": "technology",
+      "label": "AppArmor"
+    },
+    {
+      "id": "backup-strategy",
+      "type": "concept",
+      "label": "Backup Strategy"
+    },
+    {
+      "id": "boot-protocol",
+      "type": "concept",
+      "label": "Boot Protocol"
+    },
+    {
+      "id": "boss",
+      "type": "person",
+      "label": "Boss (Ko Aung Chan Myint)"
+    },
+    {
+      "id": "caddy",
+      "type": "technology",
+      "label": "Caddy"
+    },
+    {
+      "id": "chan-su-su-hlaing",
+      "type": "person",
+      "label": "Chan Su Su Hlaing"
+    },
+    {
+      "id": "claude-sonnet",
+      "type": "technology",
+      "label": "Claude Sonnet 4"
+    },
+    {
+      "id": "coco-bot",
+      "type": "project",
+      "label": "CoCo Bot"
+    },
+    {
+      "id": "coding-rules",
+      "type": "concept",
+      "label": "Coding Rules (Pro Model)"
+    },
+    {
+      "id": "consolidator",
+      "type": "concept",
+      "label": "Memory Consolidation"
+    },
+    {
+      "id": "daily-digest",
+      "type": "concept",
+      "label": "Daily Digest"
+    },
+    {
+      "id": "deepseek",
+      "type": "technology",
+      "label": "DeepSeek"
+    },
+    {
+      "id": "deploy-process",
+      "type": "concept",
+      "label": "Deploy Process"
+    },
+    {
+      "id": "docker",
+      "type": "technology",
+      "label": "Docker"
+    },
+    {
+      "id": "gayzoelay-bot",
+      "type": "project",
+      "label": "GayZoeLay Bot"
+    },
+    {
+      "id": "gemini-api",
+      "type": "technology",
+      "label": "Gemini API"
+    },
+    {
+      "id": "git-backup",
+      "type": "concept",
+      "label": "Git Auto-Backup"
+    },
+    {
+      "id": "github",
+      "type": "technology",
+      "label": "GitHub"
+    },
+    {
+      "id": "gmail-api",
+      "type": "technology",
+      "label": "Gmail API"
+    },
+    {
+      "id": "google-drive-api",
+      "type": "technology",
+      "label": "Google Drive API"
+    },
+    {
+      "id": "google-sheets",
+      "type": "technology",
+      "label": "Google Sheets"
+    },
+    {
+      "id": "grok",
+      "type": "technology",
+      "label": "Grok (xAI)"
+    },
+    {
+      "id": "heartbeat-routine",
+      "type": "concept",
+      "label": "Heartbeat Routine"
+    },
+    {
+      "id": "knowledge-graph-concept",
+      "type": "concept",
+      "label": "Knowledge Graph"
+    },
+    {
+      "id": "kora",
+      "type": "person",
+      "label": "Kora AI"
+    },
+    {
+      "id": "memory-index",
+      "type": "concept",
+      "label": "Memory Topic Index"
+    },
+    {
+      "id": "memory-upgrade",
+      "type": "concept",
+      "label": "Memory Upgrade"
+    },
+    {
+      "id": "mysql",
+      "type": "technology",
+      "label": "MySQL"
+    },
+    {
+      "id": "n8n",
+      "type": "technology",
+      "label": "n8n"
+    },
+    {
+      "id": "nova",
+      "type": "person",
+      "label": "Nova AI"
+    },
+    {
+      "id": "nova-bot",
+      "type": "project",
+      "label": "Nova Bot"
+    },
+    {
+      "id": "oauth2",
+      "type": "technology",
+      "label": "OAuth 2.0"
+    },
+    {
+      "id": "openclaw",
+      "type": "technology",
+      "label": "OpenClaw"
+    },
+    {
+      "id": "openrouter",
+      "type": "technology",
+      "label": "OpenRouter"
+    },
+    {
+      "id": "personal-wallet-bot",
+      "type": "project",
+      "label": "Personal Wallet Bot"
+    },
+    {
+      "id": "phase-2",
+      "type": "concept",
+      "label": "Memory Phase 2"
+    },
+    {
+      "id": "phase-3",
+      "type": "concept",
+      "label": "Memory Phase 3"
+    },
+    {
+      "id": "priority-memory",
+      "type": "concept",
+      "label": "Priority Memory System"
+    },
+    {
+      "id": "ps-vibe",
+      "type": "project",
+      "label": "PS VIBE Gaming Lounge"
+    },
+    {
+      "id": "python",
+      "type": "technology",
+      "label": "Python"
+    },
+    {
+      "id": "sales-tele-bot",
+      "type": "project",
+      "label": "Sales Telegram Bot"
+    },
+    {
+      "id": "session-summary",
+      "type": "concept",
+      "label": "Session Auto-Summary"
+    },
+    {
+      "id": "smart-pruning",
+      "type": "concept",
+      "label": "Smart Pruning & Dedup"
+    },
+    {
+      "id": "spawn-protocol",
+      "type": "concept",
+      "label": "Spawn Protocol"
+    },
+    {
+      "id": "ssh",
+      "type": "technology",
+      "label": "SSH"
+    },
+    {
+      "id": "subagent-tracking",
+      "type": "concept",
+      "label": "Sub-agent Tracking"
+    },
+    {
+      "id": "synergy-hub",
+      "type": "project",
+      "label": "Synergy Hub"
+    },
+    {
+      "id": "telegram",
+      "type": "technology",
+      "label": "Telegram Bot API"
+    },
+    {
+      "id": "vps",
+      "type": "technology",
+      "label": "VPS (DigitalOcean)"
+    },
+    {
+      "id": "ye-myat",
+      "type": "person",
+      "label": "Ye Myat"
+    },
+    {
+      "id": "ye-yint-oo",
+      "type": "person",
+      "label": "Ye Yint Oo"
+    },
+    {
+      "id": "you-ko-htet",
+      "type": "person",
+      "label": "You Ko Htet"
+    }
+  ],
+  "edges": [
+    {
+      "source": "agri-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "agri-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "agri-bot",
+      "target": "personal-wallet-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "agri-bot",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "apparmor",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "apparmor",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "apparmor",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "apparmor",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "kora",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "nova",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "python",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "ye-yint-oo",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "caddy",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "deepseek",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
+      "target": "gayzoelay-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "consolidator",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "consolidator",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "daily-digest",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "deepseek",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "deepseek",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "deepseek",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "gemini-api",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "git-backup",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "gmail-api",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "gmail-api",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "google-drive-api",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "google-drive-api",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "google-sheets",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "github",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "python",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "ye-yint-oo",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "nova-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "phase-3",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "priority-memory",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "github",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "spawn-protocol",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ssh",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "synergy-hub",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "synergy-hub",
+      "target": "github",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "synergy-hub",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ye-myat",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "agent-coordination",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agent-coordination",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "coco-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "gayzoelay-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "nova-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "ps-vibe",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "agri-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "caddy",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "claude-sonnet",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "deepseek",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "apparmor",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "backup-strategy",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "chan-su-su-hlaing",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "phase-2",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "ye-myat",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "claude-sonnet",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "deepseek",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "kora",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "nova",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "phase-2",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "ye-myat",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "ye-yint-oo",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "chan-su-su-hlaing",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "claude-sonnet",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "nova-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "personal-wallet-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "ps-vibe",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coding-rules",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "deploy-process",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "nova-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "personal-wallet-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "ps-vibe",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "github",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "gmail-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "google-drive-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "google-sheets",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-drive-api",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "grok",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "grok",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "heartbeat-routine",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "knowledge-graph-concept",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "nova",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "phase-2",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "ye-myat",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "ye-yint-oo",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-index",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "memory-upgrade",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "phase-2",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "ye-myat",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "personal-wallet-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "ps-vibe",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "sales-tele-bot",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "openrouter",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openclaw",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "openrouter",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "ps-vibe",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "personal-wallet-bot",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-2",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-3",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-3",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-3",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "phase-3",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "priority-memory",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "priority-memory",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "priority-memory",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "synergy-hub",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "session-summary",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "session-summary",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "session-summary",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "smart-pruning",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "smart-pruning",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ssh",
+      "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "gmail-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "synergy-hub",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "telegram",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "agent-coordination",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "backup-strategy",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "daily-digest",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "memory-upgrade",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "priority-memory",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "session-summary",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "spawn-protocol",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "subagent-tracking",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "ye-yint-oo",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ye-myat",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "phase-2",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ye-yint-oo",
+      "target": "you-ko-htet",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "agent-coordination",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "agri-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "apparmor",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "backup-strategy",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "claude-sonnet",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "coco-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "coding-rules",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "consolidator",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "daily-digest",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "deepseek",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "deploy-process",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "docker",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "google-sheets",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "grok",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "heartbeat-routine",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "knowledge-graph-concept",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "memory-index",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "memory-upgrade",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "nova-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "openrouter",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "personal-wallet-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "phase-3",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "priority-memory",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "python",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "smart-pruning",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "spawn-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "subagent-tracking",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "synergy-hub",
+      "relation": "owns",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "you-ko-htet",
+      "target": "vps",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 1
+    }
+  ]
+}
