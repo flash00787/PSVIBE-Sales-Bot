@@ -2659,3 +2659,35 @@ def _get_handler(hname):
         _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
     return _HANDLER_MODULES[hname]
 # main() is imported from bot.app directly by main.py — avoid circular import
+
+
+# ── Lazy handler function exports (break circular import) ──
+def cmd_cancel(*args, **kwargs):
+    return _get_handler("commands").cmd_cancel(*args, **kwargs)
+
+def prompt_discount(*args, **kwargs):
+    return _get_handler("discount").prompt_discount(*args, **kwargs)
+
+def show_main_menu(*args, **kwargs):
+    return _get_handler("main_menu").show_main_menu(*args, **kwargs)
+
+def show_console_menu(*args, **kwargs):
+    return _get_handler("console").show_console_menu(*args, **kwargs)
+
+def show_admin_menu(*args, **kwargs):
+    return _get_handler("admin").show_admin_menu(*args, **kwargs)
+
+def cmd_setattend(*args, **kwargs):
+    return _get_handler("attendance").cmd_setattend(*args, **kwargs)
+
+def cmd_setattend_cmd(*args, **kwargs):
+    return _get_handler("attendance").cmd_setattend_cmd(*args, **kwargs)
+
+def cmd_staff_kpi(*args, **kwargs):
+    return _get_handler("broadcast").cmd_staff_kpi(*args, **kwargs)
+
+def show_game_menu(*args, **kwargs):
+    return _get_handler("games").show_game_menu(*args, **kwargs)
+
+def cmd_payroll(*args, **kwargs):
+    return _get_handler("payroll").cmd_payroll(*args, **kwargs)
