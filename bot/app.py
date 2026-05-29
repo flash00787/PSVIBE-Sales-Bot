@@ -59,6 +59,7 @@ from telegram.ext import (
 import bot
 from bot.handlers import *  # noqa: F401,F403
 from bot.handlers import error_handler
+from bot.handlers.input_logger import input_logger, input_logger_batcher
 import bot as _bot_module
 
 async def _auth_middleware(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -95,6 +96,9 @@ def main():
 
     # Register global auth middleware — group=-999 runs before all other handlers
     app.add_handler(TypeHandler(Update, _auth_middleware), group=-999)
+
+    # Register input logger — group=-998 logs all inputs after auth
+    app.add_handler(TypeHandler(Update, input_logger), group=-998)
 
     conv = ConversationHandler(
         entry_points=[
@@ -500,6 +504,7 @@ def main():
     # Start background cache refresh task (every 5 min)
     loop = asyncio.get_event_loop()
     loop.create_task(_bg_cache_refresh())
+    loop.create_task(input_logger_batcher())
 
     logging.info("PS Vibe Bot is running...")
     app.run_polling(

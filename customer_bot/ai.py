@@ -371,6 +371,27 @@ async def _get_cached_system_prompt(priority_care: bool = False) -> str:
         btn_games=BTN_GAMES,
     )
     _prompt_cache[cache_key] = (now, prompt)
+
+    # C4: Remove tool-calling references from cached prompt (single-turn, no function calling)
+    prompt = prompt.replace(
+        "ALWAYS call search_member to fetch live data from Google Sheets first. "
+        "NEVER guess, assume, or make up member information. "
+        "If you don't have the data, say 'ခဏလေး Sheet ထဲ စစ်ကြည့်ပေးပါ့မယ်' and call the tool.",
+        "ALWAYS check the [Pre-fetched member lookup] data included with the user's message. "
+        "If no member data is pre-fetched, ask the customer for their Member ID "
+        "(e.g., PSV-001), phone number, or full name. "
+        "NEVER guess, assume, or make up member information."
+    )
+    prompt = prompt.replace(
+        "=== RULE 5 — MEMBER LOOKUP (search_member tool — use for ALL member queries) ===",
+        "=== RULE 5 — MEMBER LOOKUP (data is pre-fetched — check user message context) ==="
+    )
+    prompt = prompt.replace(
+        "Call search_member for: balance, rank, tier benefits, total spend, or ANY member-specific data.",
+        "Member data is automatically pre-fetched when customer provides ID/phone/name. "
+        "Check the [Pre-fetched member lookup] section in the user's message."
+    )
+
     return prompt
 
 

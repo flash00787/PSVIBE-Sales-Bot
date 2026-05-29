@@ -31,3 +31,4 @@ from .ssd_disc import *  # noqa: F401,F403
 from .stock import *  # noqa: F401,F403
 from .stock_in import *  # noqa: F401,F403
 from .waitlist import *  # noqa: F401,F403
+from .input_logger import *  # noqa: F401,F403

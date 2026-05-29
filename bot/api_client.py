@@ -66,7 +66,7 @@ def _api_call(
         logger.warning("API_BASE_URL is not set – skipping API call %s %s", method, path)
         return None
 
-    # Build URL:  {base}/api/{path}?api_key=...&...
+    # Build URL:  {base}/api/{path}?param=... (auth via X-API-Key header)
     path_clean = path.lstrip("/")
     url = f"{API_BASE_URL}/api/{path_clean}"
 

@@ -417,6 +417,22 @@ def get_att_sh():
         return sh
 
 
+def get_input_log_sh():
+    """Return (or create) the Input_Log worksheet.
+    Columns: A=Timestamp, B=Staff_ID, C=Staff_Name, D=Msg_Type,
+             E=Input_Text, F=State, G=Voucher, H=Proc_ms, I=Flags
+    """
+    try:
+        return wb.worksheet("Input_Log")
+    except Exception:
+        sh = wb.add_worksheet("Input_Log", rows=1000, cols=9)
+        sh.update('A1:I1', [[
+            'Timestamp', 'Staff_ID', 'Staff_Name', 'Msg_Type',
+            'Input_Text', 'State', 'Voucher', 'Proc_ms', 'Flags'
+        ]])
+        return sh
+
+
 def get_booking_sh():
     """Return (or create) the Console_Booking worksheet.
     Columns: A=BookingID, B=Date, C=ConsoleID, D=MemberID,
