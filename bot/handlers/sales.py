@@ -12,7 +12,7 @@ from bot import (
     fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
     next_voucher, next_write_row, now_mmt, sales_sh, save_receipt_json,
-    show_console_menu, show_main_menu, step_hdr, stock_sh, prompt_discount, today_str,
+    show_console_menu, show_main_menu, step_hdr, stock_sh, prompt_book_console, prompt_discount, today_str,
 )
 
 try:
@@ -26,7 +26,7 @@ except ImportError:
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
-import logging, re, json
+import asyncio, logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 

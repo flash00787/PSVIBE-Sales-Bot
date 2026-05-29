@@ -316,6 +316,7 @@ stock_sh    = _LazyWorksheet("Stock_Out")
 stock_in_sh = _LazyWorksheet("Stock_In")
 topup_sh    = _LazyWorksheet("TopUp_Log")
 inv_sh      = _LazyWorksheet("Inventory")
+input_log_sh = _LazyWorksheet("Input_Log")
 
 # ─────────────────────────────────────────
 
@@ -2694,3 +2695,9 @@ def cmd_payroll(*args, **kwargs):
 
 def prompt_kpay(*args, **kwargs):
     return _get_handler("sales").prompt_kpay(*args, **kwargs)
+
+def prompt_book_console(*args, **kwargs):
+    return _get_handler("booking").prompt_book_console(*args, **kwargs)
+
+def prompt_end_session(*args, **kwargs):
+    return _get_handler("booking").prompt_end_session(*args, **kwargs)

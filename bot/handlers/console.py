@@ -10,6 +10,7 @@ from bot import (
     calc_duration, cmd_cancel, end_booking, fetch_console_games,
     fetch_console_status, get_games_on_console, now_mmt,
     show_console_menu, show_game_menu, show_main_menu,
+    prompt_book_console,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove

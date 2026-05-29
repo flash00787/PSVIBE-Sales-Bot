@@ -23868,3 +23868,538 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-29 18:16:50,809 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-29 18:17:20,990 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-29 18:17:51,164 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:18:21,340 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:18:51,516 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:18:57,503 [INFO] Background cache refresh done
+2026-05-29 18:19:21,690 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:19:51,867 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:13,722 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:15,419 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:20:23,490 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:24,601 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:20:28,816 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:29,536 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteMessage "HTTP/1.1 200 OK"
+2026-05-29 18:20:29,912 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:20:31,839 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:32,212 [ERROR] Unhandled error: name 'show_si_items' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/conversationhandler.py", line 841, in handle_update
+    new_state: object = await handler.handle_update(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/psvibe-sales-bot/bot/handlers/stock.py", line 126, in step_stock_menu
+    return await show_si_items(update, context)
+                 ^^^^^^^^^^^^^
+NameError: name 'show_si_items' is not defined
+2026-05-29 18:20:35,094 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:35,478 [ERROR] Unhandled error: name 'show_si_items' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/conversationhandler.py", line 841, in handle_update
+    new_state: object = await handler.handle_update(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/psvibe-sales-bot/bot/handlers/stock.py", line 126, in step_stock_menu
+    return await show_si_items(update, context)
+                 ^^^^^^^^^^^^^
+NameError: name 'show_si_items' is not defined
+2026-05-29 18:20:36,463 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:20:37,982 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:21:07,353 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:21:37,529 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:21:57,530 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:21:57,926 [INFO] Background cache refresh done
+2026-05-29 18:22:07,707 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:22:37,886 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:23:08,063 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:23:38,239 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:24:08,417 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:24:38,594 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:24:57,954 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:24:58,546 [INFO] Background cache refresh done
+2026-05-29 18:25:08,769 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:25:38,946 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:26:09,122 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:26:39,298 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:27:09,476 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:27:39,651 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:27:58,566 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:27:58,952 [INFO] Background cache refresh done
+2026-05-29 18:28:09,828 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:28:40,005 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:29:10,182 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:29:40,358 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:30:10,537 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:30:40,713 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:30:58,986 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:30:59,616 [INFO] Background cache refresh done
+2026-05-29 18:31:10,889 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:31:41,064 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:32:11,240 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:32:41,418 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:33:11,594 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:33:41,771 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:33:59,659 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:34:00,038 [INFO] Background cache refresh done
+2026-05-29 18:34:11,948 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:34:42,124 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:35:12,299 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:35:42,475 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:36:12,651 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:36:42,826 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:37:00,060 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:37:00,666 [INFO] Background cache refresh done
+2026-05-29 18:37:13,005 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:37:43,185 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:38:13,362 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:38:43,539 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:39:13,719 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:39:43,894 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:40:00,696 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:40:01,136 [INFO] Background cache refresh done
+2026-05-29 18:40:14,071 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:40:44,246 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:41:14,423 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:41:44,599 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:42:14,775 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:42:44,951 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:43:01,168 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:43:01,642 [INFO] Background cache refresh done
+2026-05-29 18:43:15,129 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:43:45,309 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:44:15,484 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:44:45,659 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:45:15,834 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:45:46,011 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:46:01,669 [WARNING] API GET /sheets/config failed: <urlopen error [Errno -5] No address associated with hostname> — returning dict
+2026-05-29 18:46:02,071 [INFO] Background cache refresh done
+2026-05-29 18:46:16,187 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:46:46,363 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:47:16,538 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:47:46,719 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:48:16,898 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:48:47,077 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:49:02,105 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:49:02,618 [INFO] Background cache refresh done
+2026-05-29 18:49:17,254 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:49:47,429 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:50:17,605 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:50:47,781 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:51:17,958 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:51:48,134 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:52:02,657 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:52:03,037 [INFO] Background cache refresh done
+2026-05-29 18:52:18,314 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:52:48,494 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:53:18,669 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:53:48,845 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:54:19,022 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:54:49,199 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:54:52,207 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:54:52,225 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:54:52,747 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:54:53,768 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:54:53,768 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:54:54,794 [INFO] Staff whitelist loaded from Sheet: [6296803251, 8336350778, 8539344655]
+2026-05-29 18:54:54,821 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:54:55,340 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:54:56,362 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:54:56,362 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:54:56,661 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:54:57,191 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:54:57,210 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:54:57,735 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:54:58,756 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:54:58,756 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:54:58,770 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:54:59,287 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:00,305 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:00,305 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:00,307 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:00,679 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:00,702 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:01,222 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:02,248 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:02,248 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:02,275 [WARNING] API GET fetch_members attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:02,797 [WARNING] API GET fetch_members attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:03,823 [WARNING] API GET fetch_members failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:03,823 [WARNING] API api_fetch_members() failed, falling back to gspread
+2026-05-29 18:55:04,502 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:04,522 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:04,883 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:04,899 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:05,420 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:06,438 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:06,438 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:06,458 [WARNING] API GET fetch_members attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:06,975 [WARNING] API GET fetch_members attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:07,999 [WARNING] API GET fetch_members failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:07,999 [WARNING] API api_fetch_members() failed, falling back to gspread
+2026-05-29 18:55:08,504 [INFO] Background cache refresh done
+2026-05-29 18:55:08,505 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:08,877 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:08,904 [WARNING] API GET fetch_members attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:09,426 [WARNING] API GET fetch_members attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:10,447 [WARNING] API GET fetch_members failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:10,447 [WARNING] API api_fetch_members() failed, falling back to gspread
+2026-05-29 18:55:11,275 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:11,295 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:11,815 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:12,832 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:12,832 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:12,847 [WARNING] API GET fetch_members attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:13,364 [WARNING] API GET fetch_members attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:14,383 [WARNING] API GET fetch_members failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:14,383 [WARNING] API api_fetch_members() failed, falling back to gspread
+2026-05-29 18:55:14,810 [WARNING] API GET fetch_wallet_mins/PSV_A_000 attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:15,336 [WARNING] API GET fetch_wallet_mins/PSV_A_000 attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:16,351 [WARNING] API GET fetch_wallet_mins/PSV_A_000 failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:16,352 [WARNING] API api_fetch_wallet_mins(member_id) failed, falling back to gspread
+2026-05-29 18:55:16,373 [WARNING] API GET fetch_console_status attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:16,896 [WARNING] API GET fetch_console_status attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:17,910 [WARNING] API GET fetch_console_status failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:17,910 [WARNING] API api_fetch_console_status() failed, falling back to gspread
+2026-05-29 18:55:17,926 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:19,763 [WARNING] API GET fetch_console_status attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:20,283 [WARNING] API GET fetch_console_status attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:21,298 [WARNING] API GET fetch_console_status failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:21,298 [WARNING] API api_fetch_console_status() failed, falling back to gspread
+2026-05-29 18:55:21,314 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:23,014 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:23,752 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:23,770 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:24,285 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:25,305 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:25,305 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:25,678 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:25,698 [WARNING] API GET fetch_console_status attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:26,218 [WARNING] API GET fetch_console_status attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:27,233 [WARNING] API GET fetch_console_status failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:27,234 [WARNING] API api_fetch_console_status() failed, falling back to gspread
+2026-05-29 18:55:27,248 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:28,824 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:28,920 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:28,937 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:29,453 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:30,472 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:30,472 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:30,492 [WARNING] API GET fetch_console_status attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:31,008 [WARNING] API GET fetch_console_status attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:32,025 [WARNING] API GET fetch_console_status failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:32,025 [WARNING] API api_fetch_console_status() failed, falling back to gspread
+2026-05-29 18:55:32,040 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:33,792 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:55:36,951 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:55:36,975 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:37,491 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:38,500 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:38,500 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:55:38,516 [WARNING] API GET fetch_base_rate attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:39,038 [WARNING] API GET fetch_base_rate attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:40,054 [WARNING] API GET fetch_base_rate failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:40,054 [WARNING] API api_fetch_base_rate() failed, falling back to gspread
+2026-05-29 18:55:40,062 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:40,722 [WARNING] API GET fetch_food_prices attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:55:41,243 [WARNING] API GET fetch_food_prices attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:55:42,278 [WARNING] API GET fetch_food_prices failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:55:42,278 [WARNING] API api_fetch_food_prices() failed, falling back to gspread
+2026-05-29 18:55:42,293 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:43,801 [WARNING] API GET /sheets/inventory failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:43,820 [WARNING] API GET /sheets/inventory failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:55:44,570 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:56:14,370 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:56:44,556 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:14,742 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:16,064 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:16,084 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:16,604 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:17,615 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:17,615 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:18,345 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:22,511 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:22,531 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:23,048 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:24,063 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:24,063 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:24,081 [WARNING] API GET /sheets/inventory failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:24,816 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:29,955 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:29,979 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:30,504 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:31,526 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:31,526 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:31,542 [WARNING] API GET /sheets/inventory failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:32,519 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:34,490 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:34,511 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:35,020 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:36,036 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:36,036 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:36,062 [WARNING] API GET fetch_base_rate attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:36,578 [WARNING] API GET fetch_base_rate attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:37,599 [WARNING] API GET fetch_base_rate failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:37,599 [WARNING] API api_fetch_base_rate() failed, falling back to gspread
+2026-05-29 18:57:37,614 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:38,872 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:40,641 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:40,665 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:41,186 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:42,201 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:42,201 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:42,220 [WARNING] API GET fetch_promotions_cached attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:42,736 [WARNING] API GET fetch_promotions_cached attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:43,759 [WARNING] API GET fetch_promotions_cached failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:43,760 [WARNING] API api_fetch_promotions_cached() failed, falling back to gspread
+2026-05-29 18:57:43,774 [WARNING] API GET /sheets/promotions failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:44,206 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:45,546 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:45,569 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:46,083 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:47,108 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:47,108 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:47,123 [WARNING] API GET /sheets/payment-methods failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:47,611 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:50,199 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:50,213 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:50,735 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:51,751 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:51,751 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:51,767 [WARNING] API GET /sheets/payment-methods failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:57:52,150 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:57,260 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:57:57,278 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:57:57,795 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:57:58,815 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:57:58,815 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:57:59,580 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:57:59,946 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:58:02,073 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:58:02,089 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:58:02,615 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:58:03,640 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:58:03,640 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 18:58:04,338 [WARNING] API GET fetch_food_costs attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 18:58:04,867 [WARNING] API GET fetch_food_costs attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 18:58:05,892 [WARNING] API GET fetch_food_costs failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 18:58:05,892 [WARNING] API api_fetch_food_costs() failed, falling back to gspread
+2026-05-29 18:58:05,914 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:58:07,287 [WARNING] Failed to push receipt to API server: HTTP Error 403: Forbidden
+2026-05-29 18:58:08,009 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:58:08,520 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 18:58:08,656 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 18:58:08,657 [ERROR] Unhandled error: name 'asyncio' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/conversationhandler.py", line 841, in handle_update
+    new_state: object = await handler.handle_update(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/psvibe-sales-bot/bot/handlers/sales.py", line 1272, in step_sale_confirm
+    asyncio.create_task(_sale_bg())
+    ^^^^^^^
+NameError: name 'asyncio' is not defined. Did you forget to import 'asyncio'
+2026-05-29 18:58:09,291 [INFO] Background cache refresh done
+2026-05-29 18:58:38,054 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:59:08,227 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 18:59:38,403 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:00:03,413 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 19:00:08,575 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:00:38,750 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:01:08,927 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:01:09,319 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 19:01:09,677 [INFO] Background cache refresh done
+2026-05-29 19:01:39,103 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:02:09,277 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:02:39,451 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:03:09,623 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:03:39,796 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:04:09,729 [WARNING] API GET /sheets/config failed: HTTP Error 403: Forbidden — returning dict
+2026-05-29 19:04:09,968 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:04:10,121 [INFO] Background cache refresh done
+2026-05-29 19:04:29,667 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:04:29,691 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 19:04:30,205 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 19:04:31,229 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 19:04:31,229 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 19:04:31,592 [INFO] Staff whitelist loaded from Sheet: [6296803251, 8336350778, 8539344655]
+2026-05-29 19:04:31,613 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 19:04:32,133 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 19:04:33,152 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 19:04:33,152 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 19:04:33,932 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:04:36,036 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:04:36,052 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 19:04:36,572 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 19:04:37,587 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 19:04:37,588 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 19:04:37,977 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:04:39,800 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:04:39,816 [WARNING] API GET fetch_allowed_staff_ids attempt 1/3 failed: HTTP Error 403: Forbidden, retrying in 0.5s...
+2026-05-29 19:04:40,336 [WARNING] API GET fetch_allowed_staff_ids attempt 2/3 failed: HTTP Error 403: Forbidden, retrying in 1.0s...
+2026-05-29 19:04:41,357 [WARNING] API GET fetch_allowed_staff_ids failed after 3 attempts: HTTP Error 403: Forbidden
+2026-05-29 19:04:41,357 [WARNING] API api_fetch_allowed_staff_ids() failed, falling back to gspread
+2026-05-29 19:04:41,357 [ERROR] Unhandled error: name 'prompt_book_console' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/conversationhandler.py", line 841, in handle_update
+    new_state: object = await handler.handle_update(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/psvibe-sales-bot/bot/handlers/console.py", line 127, in step_console_menu
+    return await prompt_book_console(update, context)
+                 ^^^^^^^^^^^^^^^^^^^
+NameError: name 'prompt_book_console' is not defined
+2026-05-29 19:05:11,539 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:05:41,711 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:05:50,383 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:05:50,384 [INFO] Application is stopping. This might take a moment.
+2026-05-29 19:05:50,384 [INFO] Application.stop() complete
+2026-05-29 19:05:50,386 [INFO] Bot process exiting (PID 1056235).
+2026-05-29 19:05:50,423 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1986> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 19:05:51,446 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 19:05:55,606 [INFO] Bot started — PID 1076039
+2026-05-29 19:05:59,437 [INFO] Health server started on port 8080
+2026-05-29 19:05:59,550 [INFO] Pre-warming config and member cache...
+2026-05-29 19:06:03,891 [INFO] PS Vibe Bot is running...
+2026-05-29 19:06:04,670 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 19:06:05,027 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 19:06:05,202 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 19:06:05,203 [INFO] Application started
+2026-05-29 19:06:35,751 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:07:05,939 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:07:36,125 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:08:06,323 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:08:36,511 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:09:06,698 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:09:08,072 [INFO] Background cache refresh done
+2026-05-29 19:09:36,887 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:10:07,072 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:10:37,259 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:11:07,491 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:11:13,319 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:11:13,320 [INFO] Application is stopping. This might take a moment.
+2026-05-29 19:11:13,320 [INFO] Application.stop() complete
+2026-05-29 19:11:13,322 [INFO] Bot process exiting (PID 1076039).
+2026-05-29 19:11:13,354 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1986> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 19:11:14,276 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 19:11:17,808 [INFO] Bot started — PID 1078204
+2026-05-29 19:11:21,066 [INFO] Health server started on port 8080
+2026-05-29 19:11:21,159 [INFO] Pre-warming config and member cache...
+2026-05-29 19:11:25,622 [INFO] PS Vibe Bot is running...
+2026-05-29 19:11:26,406 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 19:11:26,758 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 19:11:26,931 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 19:11:26,933 [INFO] Application started
+2026-05-29 19:11:57,707 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:12:27,882 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:12:58,058 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:13:28,235 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:13:58,411 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:14:28,587 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:14:30,544 [INFO] Background cache refresh done
+2026-05-29 19:14:47,166 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:14:47,166 [INFO] Application is stopping. This might take a moment.
+2026-05-29 19:14:47,167 [INFO] Application.stop() complete
+2026-05-29 19:14:47,169 [INFO] Bot process exiting (PID 1078204).
+2026-05-29 19:14:47,217 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1986> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 19:14:48,180 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 19:14:51,590 [INFO] Bot started — PID 1080593
+2026-05-29 19:14:54,809 [INFO] Health server started on port 8080
+2026-05-29 19:14:54,901 [INFO] Pre-warming config and member cache...
+2026-05-29 19:14:59,253 [INFO] PS Vibe Bot is running...
+2026-05-29 19:14:59,816 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 19:15:00,201 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 19:15:00,389 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 19:15:00,391 [INFO] Application started
+2026-05-29 19:15:11,779 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:15:11,780 [INFO] Application is stopping. This might take a moment.
+2026-05-29 19:15:11,780 [INFO] Application.stop() complete
+2026-05-29 19:15:11,782 [INFO] Bot process exiting (PID 1080593).
+2026-05-29 19:15:11,832 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1986> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 19:15:12,762 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 19:15:16,651 [INFO] Bot started — PID 1081450
+2026-05-29 19:15:19,749 [WARNING] Sheets API 429 error (attempt 1/3), retrying in 1s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 19:15:21,133 [WARNING] Sheets API 429 error (attempt 2/3), retrying in 2s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 19:15:23,516 [WARNING] Sheets API 429 error (attempt 3/3), retrying in 4s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 19:15:27,792 [WARNING] Sheets API 429 error (attempt 1/3), retrying in 1s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 19:15:30,230 [INFO] Health server started on port 8080
+2026-05-29 19:15:30,299 [INFO] Pre-warming config and member cache...
+2026-05-29 19:15:30,592 [WARNING] API GET /sheets/config failed: HTTP Error 500: Internal Server Error — returning dict
+2026-05-29 19:15:31,151 [INFO] PS Vibe Bot is running...
+2026-05-29 19:15:31,716 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 19:15:32,093 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 19:15:32,285 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 19:15:32,287 [INFO] Application started
+2026-05-29 19:16:02,836 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:16:33,015 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:17:03,202 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:17:33,386 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:18:03,574 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:18:33,753 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:18:36,494 [INFO] Background cache refresh done
+2026-05-29 19:19:03,934 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:12,540 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:15,331 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:19:16,356 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:17,978 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:19:19,046 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:19,884 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:19:21,207 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:22,033 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:19:23,141 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:19:24,253 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-29 19:19:54,059 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:20:24,246 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:20:54,424 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:21:24,603 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:21:36,792 [WARNING] API GET /sheets/config failed: HTTP Error 500: Internal Server Error — returning dict
+2026-05-29 19:21:38,084 [INFO] Background cache refresh done
+2026-05-29 19:21:54,789 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:22:24,974 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:22:55,153 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:23:25,342 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:23:55,521 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:24:25,704 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:24:42,802 [INFO] Background cache refresh done
+2026-05-29 19:24:55,888 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:25:26,070 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:25:56,253 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:26:26,436 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:26:56,618 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:27:26,815 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:27:46,913 [INFO] Background cache refresh done
+2026-05-29 19:27:56,997 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:28:27,189 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:28:57,369 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:29:27,551 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:29:57,737 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:30:27,921 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:30:51,519 [INFO] Background cache refresh done
+2026-05-29 19:30:58,105 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:31:28,292 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:31:58,473 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:32:28,655 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:32:58,839 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:33:29,023 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:33:55,854 [INFO] Background cache refresh done
+2026-05-29 19:33:59,205 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:34:29,391 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 19:34:59,578 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"

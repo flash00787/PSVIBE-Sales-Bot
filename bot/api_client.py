@@ -5,8 +5,8 @@ Wraps all 48 endpoints from the local FastAPI server (localhost:8000).
 
 Uses only stdlib (urllib, json, os, logging) — no external dependencies.
 
-API key auth is sent as an ``?api_key=...`` query parameter on every call,
-which the server accepts alongside the ``X-API-Key`` header.
+API key auth is sent as an ``X-API-Key`` header parameter on every call,
+which secures all authenticated endpoints.
 """
 
 from __future__ import annotations
@@ -71,8 +71,6 @@ def _api_call(
     url = f"{API_BASE_URL}/api/{path_clean}"
 
     qs_parts = {}
-    if API_KEY:
-        qs_parts["api_key"] = API_KEY
     if params:
         qs_parts.update(params)
 
@@ -83,6 +81,8 @@ def _api_call(
     # Build request
     data_bytes = None
     headers: dict[str, str] = {}
+    if API_KEY:
+        headers["X-API-Key"] = API_KEY
 
     if json_data is not None:
         data_bytes = json.dumps(json_data, ensure_ascii=False).encode("utf-8")

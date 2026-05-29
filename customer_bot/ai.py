@@ -1,6 +1,7 @@
 """
 PS Vibe Customer Bot — Gemini AI integration.
 System prompt builder, Gemini client, _ai_reply(), search_member, rate limiting.
+C4 REFACTOR — Single-Turn AI: pre-fetch all data, ONE Gemini call, no function calling tools.
 """
 import asyncio
 import hashlib
@@ -63,20 +64,27 @@ def _set_cached_ai(query: str, system_prompt: str, response: str) -> None:
     _ai_query_cache[key] = {"response": response, "ts": time.time()}
 
 
-# ── Gemini Client ─────────────────────────────────────────────────────────────
+# ── Gemini Client (Pre-Warmed — C3 optimization) ──────────────────────────────
 _gemini_client: Optional["_genai.Client"] = None
 _client_init_lock = asyncio.Lock()  # Prevent init race
+_client_last_used = 0.0
+_CLIENT_IDLE_TTL = 300.0  # 5 minutes — recreate client if idle too long
+
 
 async def _get_gemini_client() -> Optional["_genai.Client"]:
-    global _gemini_client
+    """Return pre-warmed Gemini client. Recreate if idle > 5min."""
+    global _gemini_client, _client_last_used
     async with _client_init_lock:
-        if _gemini_client is not None:
+        now = time.time()
+        if _gemini_client is not None and (now - _client_last_used) < _CLIENT_IDLE_TTL:
+            _client_last_used = now
             return _gemini_client
         if not _GEMINI_AVAILABLE or not GEMINI_API_KEY:
             return None
         try:
             _gemini_client = _genai.Client(api_key=GEMINI_API_KEY)
-            logging.info("Gemini AI client ready (gemini-2.5-flash)")
+            _client_last_used = now
+            logging.info("Gemini AI client ready (pre-warmed, idle refresh)")
         except Exception as e:
             logging.error("Gemini client init failed: %s", e)
     return _gemini_client
@@ -233,43 +241,42 @@ async def _search_member(query: str) -> dict:
     }
 
 
-# ── Search Tool Definition ────────────────────────────────────────────────────
+# ── Member Query Detection (C4 — pre-fetch trigger) ───────────────────────────
 
-_SEARCH_TOOL = None
-_search_tool_lock = asyncio.Lock()
+# Keywords that suggest the user is asking about a specific member account
+_MEMBER_QUERY_PATTERNS = [
+    # Explicit member ID pattern: PSV-001, PSV001, psv 123
+    re.compile(r'PSV[-\s]?\d+', re.IGNORECASE),
+    # Phone number patterns (Myanmar: 09...)
+    re.compile(r'09\d{7,9}'),
+]
 
-async def _build_search_tool():
-    global _SEARCH_TOOL
-    async with _search_tool_lock:
-        if _SEARCH_TOOL is not None:
-            return _SEARCH_TOOL
-        if not _GEMINI_AVAILABLE:
-            return None
-        _SEARCH_TOOL = _genai_types.Tool(
-            function_declarations=[
-                _genai_types.FunctionDeclaration(
-                    name="search_member",
-                    description=(
-                        "Look up a PS Vibe member's full profile from Google Sheets — "
-                        "returns balance_mins (remaining gaming minutes), rank (Warrior/Master/Immortal), "
-                        "net_spend (total spend), name, phone, and member_id. "
-                        "ALWAYS call this for ANY question about a specific member's balance, rank, tier, "
-                        "benefits, or status. Never guess or assume member data."
-                    ),
-                    parameters=_genai_types.Schema(
-                        type=_genai_types.Type.OBJECT,
-                        properties={
-                            "query": _genai_types.Schema(
-                                type=_genai_types.Type.STRING,
-                                description="Search term: Member ID (e.g. PSV-001), phone, or full name",
-                            )
-                        },
-                        required=["query"],
-                    ),
-                )
-            ]
-        )
-    return _SEARCH_TOOL
+_MEMBER_QUERY_KEYWORDS = [
+    # English
+    "balance", "rank", "member", "spend", "wallet", "tier",
+    "minutes", "points", "account", "status", "profile",
+    "member id", "topup", "top up", "credit",
+    # Burmese
+    "လက်ကျန်", "အဆင့်", "သုံးစွဲမှု", "မာစတာ", "ဝါရီယာ",
+    "အဖွဲ့ဝင်", "မိနစ်", "ဖုန်း", "ငွေဖြည့်",
+    "ဘယ်လောက်", "ကျန်သေး", "မှတ်ပုံတင်",
+    # Mixed
+    "my balance", "my rank", "my account", "check balance",
+]
+
+
+def _looks_like_member_query(text: str) -> bool:
+    """Quick heuristic: does this message likely ask about a member account?"""
+    # Check explicit patterns first (fast)
+    for pat in _MEMBER_QUERY_PATTERNS:
+        if pat.search(text):
+            return True
+    # Check keywords
+    text_lower = text.lower()
+    for kw in _MEMBER_QUERY_KEYWORDS:
+        if kw.lower() in text_lower:
+            return True
+    return False
 
 
 # ── MarkdownV2 escape ─────────────────────────────────────────────────────────
@@ -308,17 +315,46 @@ def _resp_text(resp) -> str:
     return ""
 
 
-# Cached system prompts (rebuilt every 60s)
+# Cached system prompts (rebuilt every 60s, background-refreshed every 30s)
 _prompt_cache: dict[str, tuple[float, str]] = {}
-_PROMPT_CACHE_TTL = 60  # seconds
+_PROMPT_CACHE_TTL = 60  # seconds — max age before forced rebuild
+_PROMPT_BG_REFRESH = 30  # seconds — trigger background refresh after this age
+_prompt_refresh_lock = asyncio.Lock()  # prevent concurrent background refresh
 
 
 async def _get_cached_system_prompt(priority_care: bool = False) -> str:
-    """Return cached or freshly-built system prompt. 60s TTL."""
+    """
+    Return cached or freshly-built system prompt.
+    Cache TTL: 60s. If > 30s old, trigger background refresh for next request.
+    """
     now = asyncio.get_event_loop().time()
     cache_key = f"_ai_prompt_{priority_care}_{now_mmt().hour}"
     cached = _prompt_cache.get(cache_key)
+
     if cached and (now - cached[0]) < _PROMPT_CACHE_TTL:
+        # If cache is > 30s old, trigger background refresh
+        if (now - cached[0]) > _PROMPT_BG_REFRESH:
+            async def _bg_refresh():
+                if _prompt_refresh_lock.locked():
+                    return  # another refresh already in progress
+                async with _prompt_refresh_lock:
+                    try:
+                        from .handlers import BTN_CONTACT, BTN_GAMES
+                        prompt = await _build_ai_system_prompt(
+                            priority_care=priority_care,
+                            fetch_config_fn=_api._fetch_config,
+                            build_rate_lines_fn=_api._build_rate_lines,
+                            build_bonus_table_fn=_api._build_bonus_table_text,
+                            fetch_games_full_fn=_api._fetch_games_full,
+                            build_live_game_library_fn=_build_live_game_library_sync,
+                            btc_contact=BTN_CONTACT,
+                            btn_games=BTN_GAMES,
+                        )
+                        _prompt_cache[cache_key] = (asyncio.get_event_loop().time(), prompt)
+                        logging.debug("System prompt background-refreshed")
+                    except Exception as exc:
+                        logging.warning("Background prompt refresh failed: %s", exc)
+            asyncio.create_task(_bg_refresh())
         return cached[1]
 
     # Need button label references for the prompt
@@ -348,13 +384,16 @@ async def _ai_reply(
     update: Update, context: ContextTypes.DEFAULT_TYPE,
     user_text: str, priority_care: bool = False,
 ) -> None:
-    """Pass free-text message to Gemini AI and reply; supports search_member tool."""
+    """
+    C4 SINGLE-TURN AI REPLY:
+    Pre-fetch member data → build complete prompt → ONE Gemini call.
+    No function calling / tools. No Turn 2.
+    """
     from .handlers import show_main_menu
 
     # Rate limit check
     user_id = update.effective_user.id
     if not _check_ai_rate_limit(user_id):
-        # Silently skip — user is sending too fast
         logging.info("AI rate limit hit for user %s", user_id)
         return
 
@@ -363,7 +402,6 @@ async def _ai_reply(
         await show_main_menu(update, context)
         return
 
-    search_tool = await _build_search_tool()
     system_prompt = await _get_cached_system_prompt(priority_care)
 
     # ── Check AI query cache (skip Gemini for duplicate queries within 120s) ───
@@ -387,6 +425,20 @@ async def _ai_reply(
             logging.exception("send_reply_markdown failed, falling back to raw: %s", e)
             await update.message.reply_text(cached_reply)
         return
+
+    # ── C4 PRE-FETCH: Detect member query and fetch data before AI call ────────
+    member_context = None
+    if _looks_like_member_query(user_text):
+        try:
+            member = await _search_member(user_text)
+            if member.get("found"):
+                member_context = member
+                logging.info(
+                    "C4 pre-fetch: member found (%s match%s)",
+                    member.get("count", 0), "es" if member.get("count", 1) > 1 else ""
+                )
+        except Exception as exc:
+            logging.warning("C4 pre-fetch: member search error (non-fatal): %s", exc)
 
     # ── Typing indicator loop ─────────────────────────────────────────────────
     _typing_active = True
@@ -413,44 +465,32 @@ async def _ai_reply(
             for h in raw_history
         ]
 
-        # ── Call AI (with function calling) using model fallback chain ────────
-        def _call_gemini_sync():
-            """Turn 1: intent detection with tools. Tries MODEL_CHAIN in order."""
+        # Build augmented user message with pre-fetched member data
+        if member_context:
+            member_json = json.dumps(member_context, ensure_ascii=False)
+            augmented_text = (
+                f"{user_text}\n\n"
+                f"[System: Pre-fetched member lookup result — {member_json}]\n"
+                f"Use this data to answer the customer about their account "
+                f"in Burmese. Include balance_mins, rank, and net_spend in "
+                f"your response if relevant."
+            )
+        else:
+            augmented_text = user_text
 
-            def _gen_with_model(contents, config, model, retries=4, backoff=1):
-                """Call Gemini with retries for transient errors."""
-                for attempt in range(retries):
-                    try:
-                        return client.models.generate_content(
-                            model=model,
-                            contents=contents,
-                            config=config,
-                        )
-                    except Exception as _exc:
-                        err = str(_exc)
-                        if attempt < retries - 1 and (
-                            "503" in err or "UNAVAILABLE" in err or "502" in err
-                        ):
-                            import time as _time
-                            logging.warning(
-                                "Gemini %s on attempt %d — retrying in %ds",
-                                err[:60], attempt + 1, backoff,
-                            )
-                            _time.sleep(backoff)
-                            backoff = min(backoff * 2, 4)
-                        else:
-                            raise
-
-            cfg_tools = _genai_types.GenerateContentConfig(
+        # ── SINGLE-TURN: One Gemini call, NO function calling / tools ─────────
+        def _call_gemini_single_turn():
+            """Single-turn AI call. Tries MODEL_CHAIN in order. No tools."""
+            cfg = _genai_types.GenerateContentConfig(
                 system_instruction=system_prompt,
-                tools=[search_tool] if search_tool else [],
                 max_output_tokens=300,
                 temperature=0.7,
                 thinking_config=_genai_types.ThinkingConfig(thinking_budget=0),
+                # No tools — C4 single-turn
             )
             base_contents: list = list(history) + [
                 _genai_types.Content(
-                    role="user", parts=[_genai_types.Part(text=user_text)],
+                    role="user", parts=[_genai_types.Part(text=augmented_text)],
                 )
             ]
 
@@ -458,48 +498,41 @@ async def _ai_reply(
             for entry in MODEL_CHAIN:
                 try:
                     if entry["provider"] == "openrouter":
-                        # OpenRouter: direct text response, no function calling
                         logging.info(
-                            "Turn 1: trying OpenRouter %s (no function calling)",
-                            entry["model"],
+                            "C4 single-turn: trying OpenRouter %s", entry["model"],
                         )
                         or_messages = _contents_to_openrouter_messages(base_contents)
                         text = _call_openrouter_sync(
                             or_messages, system_prompt, entry["model"]
                         )
-                        return _TextResponse(text), None, None
+                        return _TextResponse(text)
                     else:
-                        # Gemini: full SDK call with function calling
-                        logging.info("Turn 1: trying Gemini %s", entry["model"])
-                        resp = _gen_with_model(
-                            base_contents, cfg_tools, entry["model"]
-                        )
-
-                        # Detect function call
-                        fn_call = None
-                        query = None
-                        cand0_parts = []
-                        if resp.candidates:
-                            cand0_parts = getattr(
-                                getattr(resp.candidates[0], "content", None),
-                                "parts", None,
-                            ) or []
-                        for part in cand0_parts:
-                            fc = getattr(part, "function_call", None)
-                            if fc and getattr(fc, "name", ""):
-                                fn_call = fc
-                                query = (fc.args.get("query") or "").strip()
-                                break
-
-                        if fn_call and fn_call.name == "search_member":
-                            return resp, fn_call, query
-
-                        return resp, None, None
-
+                        logging.info("C4 single-turn: trying Gemini %s", entry["model"])
+                        for attempt in range(4):
+                            try:
+                                return client.models.generate_content(
+                                    model=entry["model"],
+                                    contents=base_contents,
+                                    config=cfg,
+                                )
+                            except Exception as _exc:
+                                err = str(_exc)
+                                if attempt < 3 and (
+                                    "503" in err or "UNAVAILABLE" in err or "502" in err
+                                ):
+                                    import time as _time
+                                    backoff = min(2 ** attempt, 4)
+                                    logging.warning(
+                                        "Gemini %s on attempt %d — retrying in %ds",
+                                        err[:60], attempt + 1, backoff,
+                                    )
+                                    _time.sleep(backoff)
+                                else:
+                                    raise
                 except Exception as exc:
                     err = str(exc)
                     logging.warning(
-                        "Turn 1: provider %s/%s failed: %s",
+                        "C4 single-turn: provider %s/%s failed: %s",
                         entry["provider"], entry["model"], err[:120],
                     )
                     last_error = exc
@@ -507,96 +540,14 @@ async def _ai_reply(
 
             # All providers in chain failed
             logging.error(
-                "Turn 1: ALL models in chain failed, last error: %s", last_error,
+                "C4 single-turn: ALL models in chain failed, last error: %s", last_error,
             )
-            return _TextResponse(""), None, None
+            return _TextResponse("")
 
         # Run Gemini in thread (SDK is sync)
-        resp, fn_call, search_query = await asyncio.to_thread(_call_gemini_sync)
+        resp = await asyncio.to_thread(_call_gemini_single_turn)
 
-        if fn_call and search_query:
-            try:
-                fn_result = await _search_member(search_query)
-            except Exception as exc:
-                logging.warning("search_member error: %s", exc)
-                fn_result = {"found": False, "query": search_query}
-
-            logging.info("search_member(%r) → %s", search_query, fn_result)
-
-            # Turn 2: fresh TEXT-ONLY call with member data as context
-            # Uses the same MODEL_CHAIN fallback
-            def _call_gemini_with_result():
-                """Turn 2: text-only response with member data. Tries MODEL_CHAIN."""
-                cfg_text = _genai_types.GenerateContentConfig(
-                    system_instruction=system_prompt,
-                    max_output_tokens=300,
-                    temperature=0.7,
-                    thinking_config=_genai_types.ThinkingConfig(thinking_budget=0),
-                )
-
-                fn_json = json.dumps(fn_result, ensure_ascii=False)
-                augmented_msg = (
-                    f"{user_text}\n\n"
-                    f"[Member lookup result: {fn_json}]\n\n"
-                    "Please respond to the customer with their balance and rank "
-                    "information in Burmese, using the data above."
-                )
-
-                contents = list(history) + [
-                    _genai_types.Content(
-                        role="user",
-                        parts=[_genai_types.Part(text=augmented_msg)],
-                    ),
-                ]
-
-                for entry in MODEL_CHAIN:
-                    try:
-                        if entry["provider"] == "openrouter":
-                            logging.info(
-                                "Turn 2: trying OpenRouter %s", entry["model"],
-                            )
-                            or_messages = _contents_to_openrouter_messages(contents)
-                            text = _call_openrouter_sync(
-                                or_messages, system_prompt, entry["model"],
-                            )
-                            return _TextResponse(text)
-                        else:
-                            # Gemini with retries
-                            logging.info("Turn 2: trying Gemini %s", entry["model"])
-                            for attempt in range(4):
-                                try:
-                                    return client.models.generate_content(
-                                        model=entry["model"],
-                                        contents=contents,
-                                        config=cfg_text,
-                                    )
-                                except Exception as _exc:
-                                    err = str(_exc)
-                                    if attempt < 3 and (
-                                        "503" in err or "UNAVAILABLE" in err or "502" in err
-                                    ):
-                                        import time as _time
-                                        backoff = min(2 ** attempt, 4)
-                                        logging.warning(
-                                            "Gemini Turn2 %s on attempt %d — retrying in %ds",
-                                            err[:60], attempt + 1, backoff,
-                                        )
-                                        _time.sleep(backoff)
-                                    else:
-                                        raise
-                    except Exception as exc:
-                        err = str(exc)
-                        logging.warning(
-                            "Turn 2: provider %s/%s failed: %s",
-                            entry["provider"], entry["model"], err[:120],
-                        )
-                        continue
-
-                # All providers failed in Turn 2
-                logging.error("Turn 2: ALL models in chain failed")
-                return _TextResponse("")
-
-            resp = await asyncio.to_thread(_call_gemini_with_result)
+        # ── No Turn 2! Single response only. ──────────────────────────────────
 
         # Extract reply text once; log diagnostics when empty (fallback)
         reply_raw = _resp_text(resp)
