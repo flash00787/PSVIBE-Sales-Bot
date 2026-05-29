@@ -12,22 +12,6 @@ from bot.handlers.games import show_game_menu
 from bot.handlers.sales import next_voucher, prompt_member
 
 from bot import *
-    BTN_DAILY_SALES, BTN_MEMBER_MGMT, BTN_CONSOLES,
-    BTN_TODAY_REPORT, BTN_STAFF_BOOK, BTN_INVENTORY_VIEW,
-    BTN_FINANCIAL_REPORT, BTN_ADMIN,
-    BTN_BACK_MAIN, BTN_SBK_WAITLIST, BTN_SBK_NEW, BTN_SBK_CONFIRMED,
-    BTN_GAME_LIB_MENU,
-    MAIN_MENU, ADMIN_PIN,
-    now_mmt, fetch_allowed_staff_ids,
-)
-
-# BTN constants unique to main_menu (not in bot.__init__.py)
-BTN_GAMES = "🎮 Games"
-BTN_STOCK_MGMT = "📊 Stock Management"
-BTN_DISC_MGMT = "🏷️ Discount Management"
-BTN_SSD_DISC = "🔄 SSD Discount"
-BTN_FOOD_SETUP = "🍽️ Food Setup"
-
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode

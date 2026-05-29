@@ -2559,4 +2559,4 @@ def fetch_payment_methods():
 from bot.constants import *
 from bot.helpers import *
 from bot.handlers import *  # noqa: F401,F403,E402
-from bot.app import main as main  # noqa: F401,E402
+# main() is imported from bot.app directly by main.py — avoid circular import

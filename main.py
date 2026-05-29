@@ -7,7 +7,8 @@ import signal
 import asyncio
 import logging
 
-from bot import main, keep_alive, ensure_sheet_headers
+from bot import keep_alive, ensure_sheet_headers
+from bot.app import main
 
 logging.basicConfig(
     level=logging.INFO,
