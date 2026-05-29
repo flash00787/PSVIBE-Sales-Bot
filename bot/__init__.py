@@ -2555,13 +2555,8 @@ def fetch_payment_methods():
         pass
     return list(PAY_METHODS)
 
-# ── Lazy handler imports to break circular dependency ──
-# Handlers are now imported on first use via _HANDLER_MODULES
-_HANDLER_MODULES = {}
-def _get_handler(hname):
-    if hname not in _HANDLER_MODULES:
-        import importlib
-        _HANDLER_MODULES[hname] = importlib.import_module(f'bot.handlers.{hname}')
-    return _HANDLER_MODULES[hname]
-# To use: _get_handler('sales').prompt_member(update, context)
+
+from bot.constants import *
+from bot.helpers import *
+from bot.handlers import *  # noqa: F401,F403,E402
 from bot.app import main as main  # noqa: F401,E402

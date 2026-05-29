@@ -11,7 +11,7 @@ from bot.handlers.booking import cmd_staff_book_hub, cmd_staff_booking, cmd_conf
 from bot.handlers.games import show_game_menu
 from bot.handlers.sales import next_voucher, prompt_member
 
-from bot import (
+from bot import *
     BTN_DAILY_SALES, BTN_MEMBER_MGMT, BTN_CONSOLES,
     BTN_TODAY_REPORT, BTN_STAFF_BOOK, BTN_INVENTORY_VIEW,
     BTN_FINANCIAL_REPORT, BTN_ADMIN,
