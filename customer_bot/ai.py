@@ -61,7 +61,7 @@ async def _get_gemini_client() -> Optional["_genai.Client"]:
             return None
         try:
             _gemini_client = _genai.Client(api_key=GEMINI_API_KEY)
-            logging.info("Gemini AI client ready (gemini-3.5-flash)")
+            logging.info("Gemini AI client ready (gemini-2.5-flash)")
         except Exception as e:
             logging.error("Gemini client init failed: %s", e)
     return _gemini_client
@@ -330,7 +330,7 @@ async def _ai_reply(
                 for attempt in range(retries):
                     try:
                         return client.models.generate_content(
-                            model="gemini-3.5-flash",
+                            model="gemini-2.5-flash",
                             contents=contents,
                             config=config,
                         )
@@ -417,7 +417,7 @@ async def _ai_reply(
                     for attempt in range(retries):
                         try:
                             return client.models.generate_content(
-                                model="gemini-3.5-flash",
+                                model="gemini-2.5-flash",
                                 contents=contents,
                                 config=config,
                             )
