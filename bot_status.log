@@ -22386,3 +22386,12 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1893> wait_for=<Future pending cb=[Task.task_wakeup()]>>
 2026-05-29 13:40:50,479 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-29 13:40:53,583 [INFO] Bot started — PID 943797
+2026-05-29 13:40:55,598 [INFO] Health server started on port 8080
+2026-05-29 13:40:55,689 [INFO] Pre-warming config and member cache...
+2026-05-29 13:40:55,974 [WARNING] API GET /sheets/config failed: HTTP Error 500: Internal Server Error — returning dict
+2026-05-29 13:40:56,305 [INFO] PS Vibe Bot is running...
+2026-05-29 13:40:56,876 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 13:40:57,231 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 13:40:57,424 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 13:40:57,426 [INFO] Application started
+2026-05-29 13:41:28,006 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
