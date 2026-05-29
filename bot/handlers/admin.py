@@ -8,6 +8,7 @@ from bot import (
     cmd_staff_kpi, fetch_base_rate, fetch_staff, get_salary_adv_sh,
     now_mmt, sales_sh, show_admin_menu, show_console_menu,
     show_main_menu, stock_in_sh, stock_sh, topup_sh,
+    show_stock_menu,    show_stock_menu,
 )
 
 """PS VIBE Bot — Handler module.

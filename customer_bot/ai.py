@@ -22,8 +22,8 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 # Tried in order. First success wins.
 MODEL_CHAIN = [
     # Top 3 Gemini models (best Burmese → fallback)
-    {"provider": "gemini",       "model": "gemini-3.5-flash"},
     {"provider": "gemini",       "model": "gemini-3.1-flash-lite"},
+    {"provider": "gemini",       "model": "gemini-3.5-flash"},
     {"provider": "gemini",       "model": "gemini-2.5-flash"},
     # DeepSeek via OpenRouter (last resort)
     {"provider": "openrouter",   "model": "deepseek/deepseek-v4-flash"},
@@ -399,6 +399,43 @@ async def _build_live_game_library_sync(games):
     """Bridge: use data/games.py builder with already-fetched games."""
     from .data.games import _build_live_game_library_text
     return _build_live_game_library_text(lambda: games)
+
+
+
+_FAQ_PATTERNS = {
+    "balance|account|wallet|mins|\\u1000\\u103b\\u1014\\u103a\\u1010\\u1032\\u1037": "balance_check",
+    "rank|level|tier|point|\\u1021\\u102c\\u1006\\u1004\\u103a\\u1037": "rank_check",
+    "price|rate|cost|fee|\\u1018\\u103a\\u101c\\u103d\\u1014\\u103a\\u1038": "price_check",
+    "menu|game|food|play|console|\\u1002\\u102d\\u102e\\u1019\\u103a\\u1038": "menu_check",
+    "hour|open|close|time|\\u1014\\u102c\\u101b\\u102e": "hours_check",
+    "promo|discount|sale|off|special|\\u1015\\u101b\\u102d\\u102f\\u1019\\u102d\\u102f\\u1038": "promo_check",
+    "locat|address|where|\\u1014\\u1031\\u101b\\u102c|\\u101c\\u1019\\u103a\\u1038|\\u1018\\u103a\\u1019\\u103e\\u1000\\u103a\\u1019\\u103d\\u102c": "location_check",
+}
+
+def _build_faq_template(intent, member_data=None):
+    templates = {
+        "balance_check": "\\U0001f4b3 **Your Balance**\\nTime: {mins} mins\\nValue: {value:,} Ks\\nTop up at counter! \\U0001f3ae",
+        "rank_check": "\\U0001f3c6 **Rank**\\nCurrent: {rank}\\nPlay more! \\U0001f3af",
+        "price_check": "\\U0001f4b0 **Pricing**\\nPS5: 1,000 Ks/30min\\nFood: 1,000-5,000 Ks\\nMember discounts! \\U0001f525",
+        "menu_check": "\\U0001f3ae **Games**\\nFIFA 25, Tekken 8, GTA V,\\nSpider-Man 2, CoD & more!\\nTell us what to play!",
+        "hours_check": "\\U0001f554 **Hours**\\nMon-Sun: 10AM-11PM\\nCome play! \\U0001f3ae",
+        "promo_check": "\\U0001f389 **Promos**\\nAsk staff for latest deals! \\U0001f525",
+        "location_check": "\\U0001f4cd **PS VIBE**\\nPlay The Game. Share The VIBE! \\U0001f3ae",
+    }
+    t = templates.get(intent, "")
+    if member_data:
+        t = t.replace("{mins}", str(member_data.get("mins", 0)))
+        t = t.replace("{value}", str(member_data.get("mins", 0) * 100))
+        t = t.replace("{rank}", str(member_data.get("rank", "Bronze")))
+    return t
+
+def _detect_ai_bypass(user_text):
+    text = user_text.lower()
+    for pattern, intent in _FAQ_PATTERNS.items():
+        import re as _re
+        if _re.search(pattern, text):
+            return True, intent
+    return False, None
 
 
 async def _ai_reply(

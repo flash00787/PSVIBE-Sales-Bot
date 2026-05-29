@@ -2621,7 +2621,10 @@ def save_receipt_json(voucher_id: str, data: dict) -> None:
 
 def get_receipt_url(voucher_id: str) -> str:
     """Return the public receipt URL or empty string if API_BASE_URL not set."""
-    base = _api_base()
+    import os
+    base = os.environ.get("RECEIPT_BASE_URL", "").rstrip("/")
+    if not base:
+        base = _api_base()
     if not base:
         return ""
     safe_id = voucher_id.replace("/", "-").replace("\\", "-")
@@ -2717,3 +2720,5 @@ def prompt_book_console(*args, **kwargs):
 
 def prompt_end_session(*args, **kwargs):
     return _get_handler("booking").prompt_end_session(*args, **kwargs)
+def show_stock_menu(*args, **kwargs):
+    return _get_handler("stock").show_stock_menu(*args, **kwargs)
