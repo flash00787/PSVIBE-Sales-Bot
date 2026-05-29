@@ -234,6 +234,7 @@ async def step_si_pay_split(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _show_si_review(update, context)
 
 async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from bot.handlers.stock import update_inv_total_k1
     text = update.message.text.strip()
     if text == BTN_BACK_MAIN:
         return await show_si_cart(update, context)

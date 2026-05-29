@@ -16,6 +16,7 @@ import asyncio
 
 
 async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from bot.handlers.admin import show_admin_menu
     await update.message.reply_text("⏳ Pending bookings စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
     bookings = _replit_get("bookings?status=pending")
     if not bookings:

@@ -10,7 +10,7 @@ import sys as _sys
 
 def __getattr__(name):
     """Lazy import from bot to break circular dependency at module load."""
-    if name in ('__getattr__', '_bot_lazy_loaded'):
+    if name in ('__getattr__', '_bot_lazy_loaded', '__all__', '__path__', '__spec__', '__loader__', '__package__'):
         raise AttributeError(name)
     _bot = _sys.modules.get('bot')
     if _bot is None:

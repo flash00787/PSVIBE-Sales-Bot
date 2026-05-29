@@ -22408,3 +22408,91 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-29 13:42:43,123 [INFO] Bot process exiting (PID 943797).
 2026-05-29 13:42:43,169 [ERROR] Task was destroyed but it is pending!
 task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1893> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 13:42:51,150 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:42:54,918 [INFO] Bot started — PID 945625
+2026-05-29 13:42:57,400 [INFO] Health server started on port 8080
+2026-05-29 13:42:57,466 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:42:57,468 [INFO] Bot process exiting (PID 945625).
+2026-05-29 13:43:10,825 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:43:13,961 [INFO] Bot started — PID 945847
+2026-05-29 13:43:16,289 [INFO] Health server started on port 8080
+2026-05-29 13:43:16,370 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:43:16,373 [INFO] Bot process exiting (PID 945847).
+2026-05-29 13:43:29,909 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:43:33,183 [INFO] Bot started — PID 946195
+2026-05-29 13:43:35,512 [INFO] Health server started on port 8080
+2026-05-29 13:43:35,606 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:43:35,609 [INFO] Bot process exiting (PID 946195).
+2026-05-29 13:43:49,125 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:43:52,298 [INFO] Bot started — PID 946485
+2026-05-29 13:43:54,284 [INFO] Health server started on port 8080
+2026-05-29 13:43:54,365 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:43:54,368 [INFO] Bot process exiting (PID 946485).
+2026-05-29 13:44:18,680 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:44:21,344 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:44:25,423 [INFO] Bot started — PID 946669
+2026-05-29 13:44:26,841 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:44:28,949 [INFO] Health server started on port 8080
+2026-05-29 13:44:29,016 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:44:29,019 [INFO] Bot process exiting (PID 946669).
+2026-05-29 13:44:49,093 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:44:53,643 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:44:56,906 [INFO] Bot started — PID 947079
+2026-05-29 13:44:58,975 [INFO] Health server started on port 8080
+2026-05-29 13:44:59,060 [ERROR] Bot crashed: name 'step_con_mgmt_menu' is not defined
+Traceback (most recent call last):
+  File "/root/psvibe-sales-bot/main.py", line 79, in <module>
+    main()
+  File "/root/psvibe-sales-bot/bot/app.py", line 228, in main
+    CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
+                                                                         ^^^^^^^^^^^^^^^^^^
+NameError: name 'step_con_mgmt_menu' is not defined
+2026-05-29 13:44:59,062 [INFO] Bot process exiting (PID 947079).
+2026-05-29 13:45:03,200 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:45:07,609 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:45:12,251 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:45:12,540 [WARNING] Sheets API 429 error (attempt 1/3), retrying in 1s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:45:13,802 [WARNING] Sheets API 429 error (attempt 2/3), retrying in 2s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:45:16,054 [WARNING] Sheets API 429 error (attempt 3/3), retrying in 4s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:45:51,575 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:45:57,401 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:46:00,498 [INFO] Bot started — PID 947805
+2026-05-29 13:46:02,658 [INFO] Health server started on port 8080
+2026-05-29 13:46:02,751 [INFO] Pre-warming config and member cache...
+2026-05-29 13:46:07,504 [INFO] PS Vibe Bot is running...
+2026-05-29 13:46:08,064 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
