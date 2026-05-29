@@ -205,6 +205,99 @@ logging.basicConfig(
     handlers=[_file_handler, _console_handler],
 )
 
+# ── In-memory Cache System ──
+import threading
+_GLOBAL_CACHE = {}
+_CACHE_LOCK = threading.Lock()
+_CACHE_TTL = 300  # 5 seconds default TTL
+
+def _cached(ttl=_CACHE_TTL):
+    """Decorator: cache function results with TTL in seconds."""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            key = (func.__name__, args, tuple(sorted(kwargs.items())))
+            now = time.time()
+            with _CACHE_LOCK:
+                if key in _GLOBAL_CACHE:
+                    val, ts = _GLOBAL_CACHE[key]
+                    if now - ts < ttl:
+                        return val
+            result = func(*args, **kwargs)
+            with _CACHE_LOCK:
+                _GLOBAL_CACHE[key] = (result, now)
+            return result
+        return wrapper
+    return decorator
+
+def _clear_cache():
+    """Clear all cached data."""
+    with _CACHE_LOCK:
+        _GLOBAL_CACHE.clear()
+
+def _clear_cache_prefix(prefix: str):
+    """Clear cache entries matching a prefix."""
+    with _CACHE_LOCK:
+        keys_to_remove = [k for k in _GLOBAL_CACHE if k[0].startswith(prefix)]
+        for k in keys_to_remove:
+            del _GLOBAL_CACHE[k]
+
+
+# ── Lazy Worksheet Proxy ──
+class _LazyWorksheet:
+    """Worksheet that connects lazily — only on first actual use."""
+    def __init__(self, name: str):
+        self._name = name
+        self._ws = None
+        self._lock = threading.Lock()
+    def _get(self):
+        if self._ws is None:
+            with self._lock:
+                if self._ws is None:  # double-check
+                    self._ws = wb.worksheet(self._name)
+        return self._ws
+    def __getattr__(self, name):
+        if name.startswith('_'):
+            raise AttributeError(name)
+        return getattr(self._get(), name)
+    def __iter__(self):
+        return iter(self._get())
+    def __len__(self):
+        return len(self._get())
+    def __getitem__(self, key):
+        return self._get()[key]
+    # gspread common methods
+    def get_all_values(self, *a, **kw):
+        return self._get().get_all_values(*a, **kw)
+    def get_all_records(self, *a, **kw):
+        return self._get().get_all_records(*a, **kw)
+    def col_values(self, *a, **kw):
+        return self._get().col_values(*a, **kw)
+    def row_values(self, *a, **kw):
+        return self._get().row_values(*a, **kw)
+    def acell(self, *a, **kw):
+        return self._get().acell(*a, **kw)
+    def cell(self, *a, **kw):
+        return self._get().cell(*a, **kw)
+    def range(self, *a, **kw):
+        return self._get().range(*a, **kw)
+    def update(self, *a, **kw):
+        return self._get().update(*a, **kw)
+    def update_cell(self, *a, **kw):
+        return self._get().update_cell(*a, **kw)
+    def append_row(self, *a, **kw):
+        return self._get().append_row(*a, **kw)
+    def batch_update(self, *a, **kw):
+        return self._get().batch_update(*a, **kw)
+    def format(self, *a, **kw):
+        return self._get().format(*a, **kw)
+    def find(self, *a, **kw):
+        return self._get().find(*a, **kw)
+    def findall(self, *a, **kw):
+        return self._get().findall(*a, **kw)
+    def title(self):
+        return self._name
+
+
 # ─────────────────────────────────────────
 #  SHEET AUTH
 # ─────────────────────────────────────────
@@ -216,13 +309,13 @@ scope = [
 creds       = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
 gc          = gspread.authorize(creds)
 wb          = gc.open_by_key(os.environ["SHEET_ID"])
-sales_sh    = wb.worksheet("Sales_Daily")
-setting_sh  = wb.worksheet("Setting")
-member_sh   = wb.worksheet("Card_Wallet")
-stock_sh    = wb.worksheet("Stock_Out")
-stock_in_sh = wb.worksheet("Stock_In")
-topup_sh    = wb.worksheet("TopUp_Log")
-inv_sh      = wb.worksheet("Inventory")
+sales_sh    = _LazyWorksheet("Sales_Daily")
+setting_sh  = _LazyWorksheet("Setting")
+member_sh   = _LazyWorksheet("Card_Wallet")
+stock_sh    = _LazyWorksheet("Stock_Out")
+stock_in_sh = _LazyWorksheet("Stock_In")
+topup_sh    = _LazyWorksheet("TopUp_Log")
+inv_sh      = _LazyWorksheet("Inventory")
 
 # ─────────────────────────────────────────
 
