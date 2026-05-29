@@ -1,5 +1,6 @@
 from bot import *
 """PS VIBE Bot — Handler module.
+
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
@@ -10,6 +11,14 @@ from datetime import datetime, timezone, timedelta
 
 # Explicit import for helper from stock module
 from bot.handlers.stock import update_inv_total_k1
+
+def next_voucher() -> str:
+    """Generate next sequential voucher number (YYYYMMDD-NNN)."""
+    from datetime import datetime
+    import random
+    now = datetime.now()
+    return f"{now.strftime('%Y%m%d')}-{random.randint(100, 999)}"
+
 
 
 

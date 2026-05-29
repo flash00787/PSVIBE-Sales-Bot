@@ -22263,3 +22263,9 @@ NameError: name 'next_voucher' is not defined
 2026-05-29 07:44:24,179 [INFO] Background cache refresh done
 2026-05-29 07:44:26,437 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-29 07:44:38,086 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 08:00:05,937 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 08:07:41,030 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 08:13:01,524 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 08:14:01,247 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 09:00:06,185 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 09:33:46,903 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)

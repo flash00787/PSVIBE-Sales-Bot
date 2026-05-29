@@ -6,6 +6,11 @@
 # Import canonical button labels from bot (defined before circular import triggers)
 from typing import Set
 
+from bot.handlers.console import show_console_menu
+from bot.handlers.booking import cmd_staff_book_hub, cmd_staff_booking, cmd_confirmed_bookings
+from bot.handlers.games import show_game_menu
+from bot.handlers.sales import next_voucher, prompt_member
+
 from bot import (
     BTN_DAILY_SALES, BTN_MEMBER_MGMT, BTN_CONSOLES,
     BTN_TODAY_REPORT, BTN_STAFF_BOOK, BTN_INVENTORY_VIEW,
@@ -75,7 +80,6 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice in (BTN_DAILY_SALES,):
         context.user_data["v_no"]  = next_voucher()
         context.user_data["staff"] = ""
-        from bot.handlers.sales import prompt_member
         return await prompt_member(update, context)
 
     if choice == BTN_MEMBER_MGMT:

@@ -1,31 +1,25 @@
-__pycache__/
-*.pyc
-*.pyo
-.env
-*.egg-info/
-dist/
-build/
-
-# Sensitive credentials
-service_account.json
-
-# Database files
-*.db
-*.sqlite
 
 # Backup files
 *.bak
+*.bak*
 *.bak.*
-
-# Cache directories
-__pycache__/
-*.pyc
-
-# Test receipts
 bot/receipts/TEST-*.json
-
-# VPS state
-V2_STATE.md
-
+bot_status.log
+build/
+# Cache directories
 # Coordination/system files
+# Database files
+*.db
+dist/
+*.egg-info/
+.env
+*.pyc
+__pycache__/
+*.pyo
 /root/coordination/
+# Sensitive credentials
+service_account.json
+*.sqlite
+# Test receipts
+V2_STATE.md
+# VPS state
