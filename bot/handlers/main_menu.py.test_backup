@@ -4,8 +4,6 @@
 # ========== Main Menu Handler ==========
 
 # Import canonical button labels from bot (defined before circular import triggers)
-from typing import Set
-
 from bot import (
     BTN_DAILY_SALES, BTN_MEMBER_MGMT, BTN_CONSOLES,
     BTN_TODAY_REPORT, BTN_STAFF_BOOK, BTN_INVENTORY_VIEW,

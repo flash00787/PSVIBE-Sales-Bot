@@ -1,5 +1,31 @@
-service_account.json
-.env
 __pycache__/
 *.pyc
+*.pyo
+.env
+*.egg-info/
+dist/
+build/
+
+# Sensitive credentials
+service_account.json
+
+# Database files
+*.db
+*.sqlite
+
+# Backup files
 *.bak
+*.bak.*
+
+# Cache directories
+__pycache__/
+*.pyc
+
+# Test receipts
+bot/receipts/TEST-*.json
+
+# VPS state
+V2_STATE.md
+
+# Coordination/system files
+/root/coordination/

@@ -7,7 +7,7 @@ import re
 from telegram.ext import filters as _ptb_filters
 
 # ── Timezone (consolidated — single source in bot package) ────────────────────
-from bot.utils.time_utils import MMT, now_mmt, today_str  # noqa: E402
+from .time_utils import MMT, now_mmt, today_str  # noqa: E402
 today_mmt = today_str
 
 # ── Opening hours ─────────────────────────────────────────────────────────────
@@ -202,7 +202,7 @@ async def _build_ai_system_prompt(
     live_library = ""
     if build_live_game_library_fn and fetch_games_full_fn:
         games_data = await fetch_games_full_fn()
-        live_library = build_live_game_library_fn(games_data)
+        live_library = await build_live_game_library_fn(games_data)
 
     games_btn = btn_games or "[Games]"
 
@@ -415,4 +415,3 @@ async def _build_ai_system_prompt(
         "Example: 'ဟုတ်ကဲ့ဗျာ! \"booking\" လို့ ရိုက်ပြီး form လေး ဖြည့်ပေးပါ — ၅ မိနစ်ပဲ ကြာမှာ 🎮'\n"
         "You may answer general questions about sessions, duration, or cancellation policy naturally."
     )
-

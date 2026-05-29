@@ -1,6 +1,6 @@
 """PS VIBE Bot — Command shortcut handlers (/cancel, /topup, /member, /check, /newmember, /ranks).
 """
-from bot.handlers import *
+# Using bot.* namespace instead of direct handler imports to avoid circular deps
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler

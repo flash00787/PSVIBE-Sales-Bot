@@ -1,4 +1,6 @@
 from bot import *
+from bot import wb
+import asyncio
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -11,6 +13,8 @@ from datetime import datetime, timezone, timedelta
 
 
 
+# TODO: Migrate to MySQL via API -- direct gspread is fallback only
+# These helper functions return gspread worksheet objects directly.
 def get_opex_sh():
     return wb.worksheet("OPEX_Log")
 
@@ -1985,6 +1989,7 @@ async def step_pay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_
 async def step_rec_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_confirm(update, context, "receivable")
 
+# TODO: Migrate to MySQL via API -- direct gspread is fallback only
 def get_capital_sh():
     return wb.worksheet("Capital_Setup")
 
@@ -2281,6 +2286,7 @@ async def step_cap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
     try:
         def _do():
+            # TODO: Migrate to MySQL via API -- direct gspread is fallback only
             sh = wb.worksheet("Accounts")
             # Check if account row already exists; update if so, append if not
             rows = sh.get_all_values()
@@ -2574,4 +2580,3 @@ async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_finance(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Shortcut: /finance — PIN then Finance menu."""
     return await _pin_then("finance", "Finance", update, context)
-

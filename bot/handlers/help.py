@@ -1,6 +1,6 @@
 """PS VIBE Bot — Help, Version & Error Handler.
 """
-from bot.handlers import *
+# Using bot.* namespace instead of direct handler imports to avoid circular deps
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
@@ -9,6 +9,7 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
+from bot import BOT_VERSION, now_mmt
 
 async def cmd_version(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show the running bot version and build date."""

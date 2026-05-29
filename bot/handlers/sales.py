@@ -160,6 +160,33 @@ async def step_adjust_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     prices     = context.user_data.get("food_prices", {})
     cart_items = context.user_data.get("food_items", [])
+
+    # ── Safety: rebuild stock_map if missing/empty ──
+    stock_map = context.user_data.get("food_stock_map")
+    if not stock_map:
+        try:
+            inv_data = _replit_get("sheets/inventory")
+            if inv_data and isinstance(inv_data, dict):
+                stock_map = {i["name"]: max(0, i.get("current_stock", 0))
+                             for i in inv_data.get("items", [])}
+                if stock_map:
+                    prices = {k: v for k, v in prices.items()
+                              if stock_map.get(k, 1) > 0}
+                    context.user_data["food_prices"] = prices
+            stock_map = stock_map or {}
+        except Exception as e:
+            logger.warning("prompt_food_menu: stock_map rebuild failed: %s", e)
+            stock_map = {}
+        context.user_data["food_stock_map"] = stock_map
+
+    # If prices empty after stock filter, return gracefully to main menu
+    if not prices:
+        await update.message.reply_text(
+            "\u26a0\ufe0f Food Menu \u1019\u101b\u1014\u102d\u102f\u1004\u103a\u1015\u102b (stock data \u1019\u1006\u103d\u1032\u1014\u102d\u102f\u1004\u103a)\u104a Main Menu \u101e\u102d\u102f\u1037\u1015\u103c\u1014\u103a\u101e\u103d\u102c\u1038\u1015\u102b\u1019\u100a\u1037\u103a\u104b",
+            reply_markup=ReplyKeyboardRemove(),
+        )
+        return await cmd_cancel(update, context)
+
     names      = list(prices.keys())
     rows       = [names[i: i + 2] for i in range(0, len(names), 2)]
     clear_row  = [[BTN_CLEAR_CART]] if cart_items else []
@@ -656,10 +683,16 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Fetch food prices and filter out 0-stock items
     food_prices = fetch_food_prices()
     stock_map: dict = {}
-    inv_data = _replit_get("sheets/inventory")
-    if inv_data:
-        stock_map = {i["name"]: max(0, i.get("current_stock", 0)) for i in inv_data.get("items", [])}
-        food_prices = {k: v for k, v in food_prices.items() if stock_map.get(k, 1) > 0}
+    try:
+        inv_data = _replit_get("sheets/inventory")
+        if inv_data and isinstance(inv_data, dict):
+            stock_map = {i["name"]: max(0, i.get("current_stock", 0))
+                         for i in inv_data.get("items", [])}
+            food_prices = {k: v for k, v in food_prices.items()
+                           if stock_map.get(k, 1) > 0}
+    except Exception as e:
+        logger.warning("step_mins: stock fetch failed, showing all items: %s", e)
+        stock_map = {}
     context.user_data["food_prices"]    = food_prices
     context.user_data["food_stock_map"] = stock_map
     return await prompt_food_menu(update, context)
@@ -690,7 +723,7 @@ async def step_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["last_food"] = choice
 
     # Calculate remaining available stock (minus already in cart)
-    stock_map   = context.user_data.get("food_stock_map", {})
+    stock_map   = context.user_data.get("food_stock_map", {}) or {}
     total_stock = stock_map.get(choice, 999)
     carted_qty  = sum(i["qty"] for i in context.user_data.get("food_items", []) if i["name"] == choice)
     max_qty     = max(0, total_stock - carted_qty)
@@ -1054,6 +1087,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "disc_target":     disc_target,
         "foc_item_price":  foc_item_price,
     })
+    booking_id = d.get("booking_id", "")
+    payments_data = d.get("payments", {})
     context.user_data.clear()
 
     # ── Build discount/bonus lines for receipt ───────────────────────────────
@@ -1098,7 +1133,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"━━━━━━━━━━━━━━━━━━\n"
         f"{receipt_disc_line}"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"{_build_payment_receipt_lines(kpay, cash, d.get('payments', {}))}"
+        f"{_build_payment_receipt_lines(kpay, cash, payments_data)}"
         f"{wallet_bal_line}",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
@@ -1136,7 +1171,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
             if food_sold:
                 update_inv_total_k1()
-                _replit_get("sheets/inventory?nocache=1")
+                try: _replit_get("sheets/inventory?nocache=1")
+                except Exception: pass
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
             if _promo_id and (_disc or _bonus_mins):
                 _replit_post("sheets/promotions-log", {
@@ -1171,7 +1207,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             logging.error("sale_bg_write: %s", _e)
     asyncio.create_task(_sale_bg())
     # ── Mark linked booking as completed ─────────────────────────────────────
-    _linked_bk_id = d.get("booking_id", "")
+    _linked_bk_id = booking_id
     if _linked_bk_id and not is_guest:
         async def _mark_bk_completed():
             try:
@@ -1186,7 +1222,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         asyncio.create_task(_mark_bk_completed())
 
     # ── Waitlist notify (non-blocking) ───────────────────────────────────────
-    _wl_cid = d.get("c_id", "")
+    _wl_cid = c_id
     if _wl_cid and _wl_cid not in ("-", ""):
         async def _wl_notify():
             try:
@@ -1214,7 +1250,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             "member_id":        m_id,
                             "console_id":       c_id,
                             "duration_mins":    play_mins,
-                            "booking_id":       d.get("booking_id", ""),
+                            "booking_id":       booking_id,
                         },
                     )
                     logging.info("session_end_notify sent: member=%s", m_id)
@@ -1255,12 +1291,16 @@ async def launch_session_sale(
     # Fetch food prices filtered by stock
     food_prices = fetch_food_prices()
     stock_map: dict = {}
-    inv_data = _replit_get("sheets/inventory")
-    if inv_data:
-        stock_map = {i["name"]: max(0, i.get("current_stock", 0))
-                     for i in inv_data.get("items", [])}
-        food_prices = {k: v for k, v in food_prices.items()
-                       if stock_map.get(k, 1) > 0}
+    try:
+        inv_data = _replit_get("sheets/inventory")
+        if inv_data and isinstance(inv_data, dict):
+            stock_map = {i["name"]: max(0, i.get("current_stock", 0))
+                         for i in inv_data.get("items", [])}
+            food_prices = {k: v for k, v in food_prices.items()
+                           if stock_map.get(k, 1) > 0}
+    except Exception as e:
+        logger.warning("launch_session_sale: stock fetch failed, showing all items: %s", e)
+        stock_map = {}
 
     m_id = "0 (Guest)" if is_guest else member_id
 
@@ -1276,7 +1316,11 @@ async def launch_session_sale(
         "food_prices":      food_prices,
         "food_stock_map":   stock_map,
         "staff":            session_staff,
-        "from_session":     True,
+        # from_session flag: True when this sale originated from an active session
+        # end/launch flow. Enables the +/-10 min time-adjust step so staff can
+        # fine-tune recorded play time before proceeding to the food menu.
+        # Safety: only True when valid session context data (cid + play mins) exists.
+        "from_session":     bool(total_mins > 0 and cid),
         "booking_id":       booking_id,
     })
 
@@ -1284,8 +1328,11 @@ async def launch_session_sale(
         game_amt = round((total_mins * base_rate * multiplier) / 60)
         context.user_data["wallet_mins"] = None
         context.user_data["game_amt"]    = game_amt
-        # Show time-adjust step for session-originated sales
-        if context.user_data.get("from_session"):
+        # Show time-adjust step when from_session flag is True AND session data
+        # (c_id, mins) is present. Guards against stale flags from prior flows.
+        if (context.user_data.get("from_session")
+                and context.user_data.get("c_id")
+                and context.user_data.get("mins", 0) > 0):
             return await prompt_adjust_time(update, context)
         return await prompt_food_menu(update, context)
 
@@ -1308,8 +1355,11 @@ async def launch_session_sale(
     if wallet_balance >= effective_cost_mins:
         # Sufficient — wallet covers it fully
         context.user_data["game_amt"] = 0
-        # Show time-adjust step for session-originated sales
-        if context.user_data.get("from_session"):
+        # Show time-adjust step when from_session flag is True AND session data
+        # (c_id, mins) is present. Guards against stale flags from prior flows.
+        if (context.user_data.get("from_session")
+                and context.user_data.get("c_id")
+                and context.user_data.get("mins", 0) > 0):
             return await prompt_adjust_time(update, context)
         return await prompt_food_menu(update, context)
 
@@ -1358,6 +1408,7 @@ async def prompt_session_shortfall(update, context):
 
 async def step_session_shortfall(update, context):
     """Handle the Top Up / Cash Down / Skip choice after insufficient balance."""
+    from bot.handlers.console import show_console_menu
     text = update.message.text.strip()
 
     if text == BTN_SKIP_SALES or text == BTN_CANCEL:
@@ -1413,4 +1464,3 @@ async def step_session_shortfall(update, context):
 
     # Unrecognised input — re-show screen
     return await prompt_session_shortfall(update, context)
-

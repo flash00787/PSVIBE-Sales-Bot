@@ -1,6 +1,7 @@
 
 """PS VIBE Bot — Handler module.
 """
+from bot import *
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
@@ -16,7 +17,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     await update.message.reply_text("⏳ Console status ဆွဲနေသည်…", parse_mode="Markdown")
 
     data = await asyncio.to_thread(_replit_get, "sheets/consoles")
-    api_consoles = (data.get("consoles", []) if isinstance(data, dict) else [])
+    api_consoles = (data.get("consoles", []) if isinstance(data, dict) else (data if isinstance(data, list) else []))
 
     if not api_consoles:
         # Fallback: Google Sheet only (no reservations)
@@ -334,6 +335,8 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     _linked_bk_id = ""
     try:
         _bks = _replit_get(f"bookings?memberId={mbr}") or []
+        if not isinstance(_bks, list):
+            _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
         for _b in _bks:
             if (_b.get("status") in ("confirmed", "arrived")
                     and (_b.get("consoleId") or "").strip() == cid):
@@ -345,3 +348,5 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
                                      booking_id=_linked_bk_id)
 
+
+from bot import *

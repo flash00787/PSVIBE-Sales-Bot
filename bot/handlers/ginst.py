@@ -9,6 +9,7 @@ from datetime import datetime, timezone, timedelta
 
 
 
+from bot import *
 async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     records = fetch_console_games()
     count   = len(records)
@@ -232,4 +233,3 @@ async def step_ginst_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE
     else:
         await update.message.reply_text("❌ ဖျက်မရပါ — ထပ်ကြိုးစားပါ")
     return await show_ginst_menu(update, context)
-

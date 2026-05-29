@@ -6,6 +6,7 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
+from bot import *
 
 
 
@@ -69,4 +70,3 @@ async def _check_low_balance_alert(member_id: str, console_id: str) -> None:
         logging.info("low_balance_alert sent: member=%s balance=%d", member_id, balance)
     except Exception as e:
         logging.warning("_check_low_balance_alert %s: %s", member_id, e)
-

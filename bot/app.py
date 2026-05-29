@@ -85,7 +85,9 @@ def main():
             CommandHandler("waitlist",   cmd_waitlist_mgmt),
             CommandHandler("newbooking", cmd_staff_booking),
             MessageHandler(filters.Regex(r"^/approve_\d+$"), cmd_approve_booking),
+            CommandHandler("approve", cmd_approve_booking),
             MessageHandler(filters.Regex(r"^/reject_\d+$"),  cmd_reject_booking),
+            CommandHandler("reject", cmd_reject_booking),
             # Stock
             CommandHandler("stock",      cmd_stock_menu),
             CommandHandler("stockin",    cmd_stockin_direct),
@@ -354,7 +356,9 @@ def main():
             CommandHandler("bookings",   cmd_admin_bookings),
             CommandHandler("newbooking", cmd_staff_booking),
             MessageHandler(filters.Regex(r"^/approve_\d+$"), cmd_approve_booking),
+            CommandHandler("approve", cmd_approve_booking),
             MessageHandler(filters.Regex(r"^/reject_\d+$"),  cmd_reject_booking),
+            CommandHandler("reject", cmd_reject_booking),
             # Stock
             CommandHandler("stock",      cmd_stock_menu),
             CommandHandler("stockin",    cmd_stockin_direct),
@@ -464,5 +468,3 @@ def main():
         timeout=30,
         drop_pending_updates=True,
     )
-
-

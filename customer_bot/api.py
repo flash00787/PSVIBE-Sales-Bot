@@ -14,7 +14,7 @@ import json
 import logging
 import time
 import os
-from typing import Optional, Any
+from typing import Optional, Any, Union, List, Dict
 
 import aiohttp
 
@@ -265,14 +265,19 @@ async def _fetch_games(console_type: str = "") -> list[str]:
     return sorted(titles)
 
 
-async def _fetch_games_full() -> list[dict]:
+async def _fetch_games_full() -> List[Any]:
     """Fetch full game objects (title, platform, genre, players, status, notes) — 10-min cache."""
     cached = await _cache_get("games_full")
     if cached is not None:
         return cached
     try:
         data = await _api_get("fetch_games")
-        games = (data or {}).get("data", [])
+        if isinstance(data, list):
+            games = data
+        elif isinstance(data, dict):
+            games = data.get("data", [])
+        else:
+            games = []
     except ValueError as e:
         logging.warning("fetch_games_full: %s", e)
         games = []
@@ -373,14 +378,19 @@ async def _get_linked_member_id(chat_id: int) -> str | None:
     return None
 
 
-async def _fetch_consoles() -> list:
+async def _fetch_consoles() -> List[Any]:
     """Fetch console list from Sheets API (cached)."""
     cached = await _cache_get("consoles")
     if cached is not None:
         return cached
     try:
-        data = await _api_get("fetch_console_status")
-        raw_consoles = (data or {}).get("data", [])
+        data: Union[List[Any], Dict[str, Any], None] = await _api_get("fetch_console_status")
+        if isinstance(data, list):
+            raw_consoles = data
+        elif isinstance(data, dict):
+            raw_consoles = data.get("data", [])
+        else:
+            raw_consoles = []
         consoles = []
         for x in raw_consoles:
             if isinstance(x, dict):
@@ -402,7 +412,10 @@ async def _fetch_contacts() -> list:
         return cached
     try:
         data = await _api_get("fetch_staff")
-        raw = (data or {}).get("data", [])
+        if isinstance(data, list):
+            raw = data
+        else:
+            raw = (data or {}).get("data", [])
         contacts = [{"username": s.get("username", "")} for s in raw if isinstance(s, dict)]
     except ValueError as e:
         logging.warning("fetch_contacts: %s", e)
@@ -411,14 +424,19 @@ async def _fetch_contacts() -> list:
     return contacts
 
 
-async def _fetch_promotions() -> list[dict]:
+async def _fetch_promotions() -> List[Any]:
     """Fetch active promotions (60s TTL)."""
     cached = await _cache_get("promotions")
     if cached is not None:
         return cached
     try:
-        data = await _api_get("fetch_promotions_cached")
-        promos = (data or {}).get("data", [])
+        data: Union[List[Any], Dict[str, Any], None] = await _api_get("fetch_promotions_cached")
+        if isinstance(data, list):
+            promos = data
+        elif isinstance(data, dict):
+            promos = data.get("data", [])
+        else:
+            promos = []
     except ValueError as e:
         logging.warning("fetch_promotions: %s", e)
         promos = []
@@ -587,4 +605,3 @@ async def warm_cache() -> None:
         len((await _cache_get("members")) or {}),
         len((await _cache_get("contacts")) or []),
     )
-

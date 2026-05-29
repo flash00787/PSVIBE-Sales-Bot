@@ -134,7 +134,7 @@ async def _get_available_slots(date_str: str) -> list[str]:
     """Get available time slots for a given date."""
     # Get confirmed bookings for the date
     try:
-        bks = await _api._api_get(f"bookings?date={date_str}&status=confirmed")
+        bks = await _api._api_get(f"bookings/search?date={date_str}&status=confirmed")
     except Exception:
         bks = []
     bks = bks if isinstance(bks, list) else []
@@ -696,7 +696,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         time_str = context.user_data.get("bk_time", "")
         try:
             existing = await _api._api_get(
-                f"bookings?telegramChatId={uid}&date={date_str}&status=confirmed"
+                f"bookings/search?telegram_chat_id={uid}&date={date_str}&status=confirmed"
             )
             existing = existing if isinstance(existing, list) else []
             dupes = [b for b in existing if b.get("timeSlot") == time_str]

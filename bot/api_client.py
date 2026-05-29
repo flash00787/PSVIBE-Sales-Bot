@@ -25,7 +25,7 @@ API_KEY = os.environ.get("API_KEY", "")
 
 logger = logging.getLogger("psvibe_api_client")
 
-DEFAULT_TIMEOUT = 10
+DEFAULT_TIMEOUT = 15  # Increased for reliability
 
 
 # ---------------------------------------------------------------------------

@@ -329,6 +329,9 @@ async def cb_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Fetch current booking info for confirmation display
     bk_info = await asyncio.to_thread(_replit_get, f"bookings/{bk_id}")
+    if not bk_info or not isinstance(bk_info, dict):
+        await query.message.reply_text("❌ Booking ဒ\ါ\တ\ာ \မ\ရ\ိ\ပ\ါ\း (Server \န\ှ\င\့\် \ဆ\က\်\သ\ွ\ယ\်\မ\ှ\ု \မ\ရ\ှ\ိ)")
+        return CONSOLE_MENU
     if not bk_info or isinstance(bk_info, list):
         bk_info = {}
 
@@ -740,4 +743,3 @@ async def handle_custom_extend_reply(update: Update, context: ContextTypes.DEFAU
 
     await _do_extend(context.bot, None, cid, member_id, chat_id, extra_mins)
     raise ApplicationHandlerStop  # done — don't let conv handler see this message
-

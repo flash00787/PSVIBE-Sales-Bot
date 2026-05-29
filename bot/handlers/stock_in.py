@@ -248,6 +248,7 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         for e in cart:
             logging.warning("DEPRECATED: direct gspread write in step_si_confirm — should use API endpoint")
+            # TODO: Migrate to MySQL via API -- direct gspread is fallback only
             stock_in_sh.append_row(
                 [today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot"],
                 value_input_option="USER_ENTERED",
@@ -287,4 +288,3 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
     return MAIN_MENU
-

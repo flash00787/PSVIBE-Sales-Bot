@@ -6,6 +6,7 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
+from bot import *
 
 
 
@@ -281,4 +282,3 @@ async def cb_wl_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 logger.error("cb_wl_action: %s", e, exc_info=True)
                 pass
-

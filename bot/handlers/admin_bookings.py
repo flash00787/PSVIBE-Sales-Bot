@@ -4,6 +4,9 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKe
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
 import logging, re, json
+
+from bot import *
+
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
@@ -234,4 +237,3 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             duration_mins=int(b.get("durationMins") or 60),
             tg_chat=tg_chat,
         ))
-

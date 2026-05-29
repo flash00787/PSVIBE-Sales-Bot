@@ -12,6 +12,7 @@ def update_inv_total_k1() -> int:
     """Calculate total inventory value from Inventory!G col and write to K1. Returns total.
     DEPRECATED: direct gspread write — should use API endpoint when available."""
     try:
+    # TODO: Migrate to MySQL via API -- direct gspread is fallback only
         vals = inv_sh.col_values(7)[1:]          # col G = Inventory Value, skip header
         total = 0
         for v in vals:
@@ -193,6 +194,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total_cogs  = cost_price * qty
 
     try:
+        # TODO: Migrate to MySQL via API -- direct gspread is fallback only
         logging.warning("DEPRECATED: direct gspread write in step_stock_qty — should use API endpoint")
         stock_sh.append_row(
             [today, ref, item, qty, sell_price, total_val, cost_price, total_cogs],
@@ -238,4 +240,3 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
     return MAIN_MENU
-

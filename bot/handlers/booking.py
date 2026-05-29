@@ -14,7 +14,7 @@ import asyncio
 def _sbk_console_kb() -> list:
     """Return keyboard of all consoles with live+reserved status via API."""
     try:
-        data = _replit_get("sheets/consoles")
+        data = _replit_get("sheets/consoles") or {}
         consoles = data.get("consoles", []) if isinstance(data, dict) else []
     except Exception as e:
         logging.warning("Failed to fetch consoles via API for staff booking keyboard: %s", e)
@@ -1084,4 +1084,3 @@ async def step_book_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # BTN_NO_RESELECT / BTN_CANCEL / anything else → back to member selection
     context.user_data["bk_console"] = cid
     return BOOK_MEMBER
-

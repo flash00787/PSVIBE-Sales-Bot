@@ -241,7 +241,7 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
         lines.append("🎮 Sales data မရပါ")
 
     # Per-staff breakdown from Sales_Daily
-    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call)
+    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
     staff_stats = sb.get("staff", {}) if sb else {}
 
     if staff_stats:
@@ -347,4 +347,3 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
         reply_markup=kb,
     )
     return MAIN_MENU
-

@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-merge-conflict
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types: [python]
+        args: ["--strict", "--ignore-missing-imports"]
+      - id: import-scanner
+        name: import scanner
+        entry: python3 /root/coordination/import_scanner.py scan --all-handlers
+        language: system
+        pass_filenames: false
+        always_run: true
