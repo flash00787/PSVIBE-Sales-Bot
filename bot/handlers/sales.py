@@ -12,7 +12,7 @@ from bot import (
     fetch_food_prices, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
     next_voucher, next_write_row, now_mmt, sales_sh, save_receipt_json,
-    show_console_menu, show_main_menu, step_hdr, stock_sh, today_str,
+    show_console_menu, show_main_menu, step_hdr, stock_sh, prompt_discount, today_str,
 )
 
 try:
