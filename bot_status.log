@@ -22496,3 +22496,13 @@ NameError: name 'step_con_mgmt_menu' is not defined
 2026-05-29 13:46:02,751 [INFO] Pre-warming config and member cache...
 2026-05-29 13:46:07,504 [INFO] PS Vibe Bot is running...
 2026-05-29 13:46:08,064 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 13:46:08,424 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 13:46:08,620 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 13:46:08,622 [INFO] Application started
+2026-05-29 13:46:14,227 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-29 13:46:14,228 [INFO] Application is stopping. This might take a moment.
+2026-05-29 13:46:14,229 [INFO] Application.stop() complete
+2026-05-29 13:46:14,231 [INFO] Bot process exiting (PID 947805).
+2026-05-29 13:46:14,281 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:1893> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 13:46:18,054 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)

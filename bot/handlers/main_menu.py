@@ -56,6 +56,13 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return MAIN_MENU
 
 async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from bot.handlers.sales import prompt_member
+    from bot.handlers.sales import next_voucher
+    from bot.handlers.games import show_game_menu
+    from bot.handlers.booking import cmd_confirmed_bookings
+    from bot.handlers.booking import cmd_staff_booking
+    from bot.handlers.booking import cmd_staff_book_hub
+    from bot.handlers.console import show_console_menu
     from bot.handlers.members import show_mm_menu
     from bot.handlers.reports import cmd_inventory, cmd_today_report, cmd_financial_report
     from bot.handlers.waitlist import cmd_waitlist_mgmt
