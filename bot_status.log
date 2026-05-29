@@ -22311,3 +22311,22 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-29 13:29:52,140 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-29 13:30:06,655 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-29 13:30:08,325 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:30:13,862 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:30:28,344 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:30:42,907 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:30:57,770 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:31:12,678 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:31:27,222 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:31:41,873 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:31:56,917 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:32:11,674 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:32:12,683 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:32:26,192 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:32:36,488 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:32:36,800 [WARNING] Sheets API 429 error (attempt 1/3), retrying in 1s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:32:38,063 [WARNING] Sheets API 429 error (attempt 2/3), retrying in 2s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:32:40,323 [WARNING] Sheets API 429 error (attempt 3/3), retrying in 4s: APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute
+2026-05-29 13:32:58,564 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:33:13,676 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:33:28,112 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 13:33:32,053 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)

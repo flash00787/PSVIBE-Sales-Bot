@@ -7,9 +7,7 @@ import signal
 import asyncio
 import logging
 
-from bot import keep_alive, ensure_sheet_headers
-from bot.app import main as main
-import bot.handlers  # Load all handler modules (moved from bot/__init__.py to avoid circular import)
+from bot import main, keep_alive, ensure_sheet_headers
 
 logging.basicConfig(
     level=logging.INFO,

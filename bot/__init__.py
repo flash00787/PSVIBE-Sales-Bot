@@ -129,8 +129,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timezone, timedelta
 
 # ── Re-export from focused modules (backward compatible) ──
-from bot.constants import *
-from bot.helpers import *
 from enum import IntEnum
 
 # Myanmar Time — GMT+6:30
@@ -2557,6 +2555,5 @@ def fetch_payment_methods():
         pass
     return list(PAY_METHODS)
 
-
-from bot.constants import *
-from bot.helpers import *
+from bot.handlers import *  # noqa: F401,F403,E402
+from bot.app import main as main  # noqa: F401,E402
