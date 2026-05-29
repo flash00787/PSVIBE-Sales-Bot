@@ -20,9 +20,12 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 # ── Model Fallback Chain ──────────────────────────────────────────────────────
 # Tried in order. First success wins.
 MODEL_CHAIN = [
+    # Top 3 Gemini models (best Burmese → fallback)
     {"provider": "gemini",       "model": "gemini-3.5-flash"},
-    {"provider": "openrouter",   "model": "deepseek/deepseek-v4-flash"},
+    {"provider": "gemini",       "model": "gemini-3.1-flash-lite"},
     {"provider": "gemini",       "model": "gemini-2.5-flash"},
+    # DeepSeek via OpenRouter (last resort)
+    {"provider": "openrouter",   "model": "deepseek/deepseek-v4-flash"},
 ]
 
 try:
