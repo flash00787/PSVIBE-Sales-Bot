@@ -1,4 +1,9 @@
-from bot import *
+from bot import (
+    BTN_BACK_MAIN, SAL_ADV_AMT, SAL_ADV_CONFIRM, SAL_ADV_PAY,
+    SAL_ADV_STAFF, fetch_staff, get_salary_adv_sh, now_mmt,
+    show_admin_menu, today_str,
+)
+
 try:
     from bot.api_client import api_add_salary_advance
 except ImportError:

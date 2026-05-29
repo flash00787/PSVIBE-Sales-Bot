@@ -1,4 +1,10 @@
-from bot import *
+from bot import (
+    BTN_BACK_MAIN, BTN_INVENTORY_VIEW, BTN_STOCK_IN_M, BTN_STOCK_OUT,
+    MAIN_MENU, STOCK_ACCESS_PIN, STOCK_ITEM, STOCK_MENU, STOCK_PIN,
+    STOCK_QTY, _replit_get, fetch_food_costs, fetch_food_prices, inv_sh,
+    now_mmt, show_main_menu, stock_sh,
+)
+
 try:
     from bot.api_client import api_add_stock_out
 except ImportError:

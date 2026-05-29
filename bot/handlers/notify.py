@@ -6,7 +6,10 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-from bot import *
+from bot import (
+    CUSTOMER_BOT_TOKEN, _replit_get, fetch_balance_mins,
+)
+
 
 
 

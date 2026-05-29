@@ -1,4 +1,8 @@
-from bot import *
+from bot import (
+    ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _replit_get, now_mmt,
+    today_str,
+)
+
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove

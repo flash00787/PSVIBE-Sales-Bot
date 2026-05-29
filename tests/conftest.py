@@ -1,5 +1,5 @@
 """Shared fixtures — PS VIBE bot test framework."""
-import pytest, sys, types, os
+import pytest, sys, types, os, re
 from unittest.mock import AsyncMock, MagicMock, patch
 
 _BOT_DIR = '/root/psvibe-sales-bot/bot'
@@ -142,6 +142,63 @@ def _build_bot_mock():
     bot.re = __import__('re')
     bot.json = __import__('json')
     bot.asyncio = __import__('asyncio')
+
+
+    # ── Auto-populate all __all__ entries not yet defined ──
+    # Parse the real bot/__init__.py __all__ list
+    _init_path = os.path.join(_BOT_DIR, '__init__.py')
+    if os.path.exists(_init_path):
+        with open(_init_path) as _f:
+            _init_src = _f.read()
+        _idx = _init_src.find("__all__")
+        _start = _init_src.find("[", _idx)
+        _end = _init_src.find("]", _start)
+        _all_str = _init_src[_start:_end+1]
+        _all_list = re.findall(r"'([^']+)'", _all_str)
+        for _name in _all_list:
+            if not hasattr(bot, _name):
+                if _name.startswith("BTN_") or _name in ("NAV_ROW", "VALID_CONSOLES", "RECEIPTS_DIR"):
+                    setattr(bot, _name, f"[{_name}]")
+                elif _name.isupper():
+                    setattr(bot, _name, 9999)
+                elif _name.startswith("_"):
+                    setattr(bot, _name, MagicMock())
+                elif _name.startswith(("cmd_", "show_")):
+                    setattr(bot, _name, AsyncMock(return_value=-1))
+                elif _name.startswith(("fetch_", "get_", "save_", "build_", "display_", "rank_", "update_", "ensure_", "next_", "step_", "calc_", "check_", "create_", "end_", "cancel_", "add_", "remove_", "set_", "today_", "keep_")):
+                    setattr(bot, _name, MagicMock())
+                else:
+                    setattr(bot, _name, MagicMock())
+        # Also scan module-level function definitions in bot/__init__.py
+        # (these may not be in __all__ but are importable)
+        import ast as _ast
+        try:
+            with open(_init_path) as _f:
+                _tree = _ast.parse(_f.read())
+            for _node in _ast.walk(_tree):
+                if isinstance(_node, (_ast.FunctionDef, _ast.AsyncFunctionDef)):
+                    _fname = _node.name
+                    if not hasattr(bot, _fname):
+                        if _fname.startswith("_"):
+                            setattr(bot, _fname, MagicMock())
+                        elif _fname.startswith(("cmd_", "show_")):
+                            setattr(bot, _fname, AsyncMock(return_value=-1))
+                        else:
+                            setattr(bot, _fname, MagicMock())
+        except Exception:
+            pass
+        # Handler re-exports (not defined in bot/__init__.py itself)
+        _handler_reexports = [
+            "cmd_cancel", "show_main_menu", "show_admin_menu",
+            "show_console_menu", "show_game_menu", "show_ginst_menu",
+            "cmd_payroll", "cmd_staff_kpi", "cmd_setattend", "cmd_setattend_cmd",
+        ]
+        for _name in _handler_reexports:
+            if not hasattr(bot, _name):
+                if _name.startswith(("cmd_", "show_")):
+                    setattr(bot, _name, AsyncMock(return_value=-1))
+                else:
+                    setattr(bot, _name, MagicMock())
 
     return bot
 

@@ -9,7 +9,10 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
-from bot import *
+from bot import (
+    BOT_VERSION, MMT, now_mmt,
+)
+
 
 async def cmd_version(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show the running bot version and build date."""

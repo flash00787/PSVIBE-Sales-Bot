@@ -5,7 +5,11 @@ from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
 import logging, re, json
 
-from bot import *
+from bot import (
+    CUSTOMER_BOT_TOKEN, _replit_get, _replit_patch,
+    check_disc_session_conflict, get_consoles_with_game, show_admin_menu,
+)
+
 
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta

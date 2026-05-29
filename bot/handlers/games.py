@@ -6,7 +6,16 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-from bot import *
+from bot import (
+    BTN_ADD_GAME, BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
+    BTN_CONSOLE_INSTALL, BTN_DEL_GAME, BTN_DISC_RECORD, BTN_EDIT_GAME,
+    BTN_SSD_MANAGE, BTN_VIEW_GAMES, DISC_SELECT, GAME_ADD_GENRE,
+    GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT,
+    GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
+    fetch_console_games, fetch_games, get_game_lib_sh, show_game_menu,
+    show_main_menu,
+)
+
 
 
 

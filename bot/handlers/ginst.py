@@ -9,7 +9,15 @@ from datetime import datetime, timezone, timedelta
 
 
 
-from bot import *
+from bot import (
+    BTN_BACK, BTN_CANCEL, BTN_GINST_ADD, BTN_GINST_DISC, BTN_GINST_HDD,
+    BTN_GINST_REMOVE, BTN_GINST_SSD, BTN_GINST_VIEW, GINST_ADD_CONS,
+    GINST_ADD_GAME, GINST_ADD_TYPE, GINST_DEL_CONS, GINST_DEL_GAME,
+    GINST_MENU, GINST_VIEW_CONS, add_console_game, fetch_console_games,
+    fetch_games, get_consoles_from_setting, get_games_on_console,
+    remove_console_game, show_game_menu, update_game_library_install,
+)
+
 async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     records = fetch_console_games()
     count   = len(records)

@@ -7,7 +7,10 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
-from bot import *
+from bot import (
+    BTN_BACK_MAIN, MAIN_MENU, _replit_get, cmd_staff_kpi, today_str,
+)
+
 import asyncio
 
 

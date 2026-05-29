@@ -1,4 +1,10 @@
-from bot import *
+from bot import (
+    BTN_BACK_MAIN, BTN_CONFIRM_SAVE, BTN_SI_ADD, BTN_SI_FINISH,
+    BTN_SI_SPLIT, MAIN_MENU, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM,
+    SI_PAY, SI_PAY_SPLIT, SI_QTY, fetch_food_costs, fetch_food_prices,
+    now_mmt, show_main_menu, stock_in_sh,
+)
+
 try:
     from bot.api_client import api_add_stock_in
 except ImportError:

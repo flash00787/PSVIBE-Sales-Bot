@@ -1,4 +1,20 @@
-from bot import *
+from bot import (
+    BTN_ASSIGN_REFERRAL, BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
+    BTN_CHECK_MEMBER, BTN_CONFIRM_ID, BTN_CONFIRM_SAVE,
+    BTN_FIRST_PURCHASE, BTN_NM_CUSTOM, BTN_NM_GIFT, BTN_SKIP_EMAIL,
+    BTN_SKIP_REFERRAL, BTN_TOP_UP, BTN_VIEW_RANKS, MM_LOOKUP, MM_MENU,
+    NAV_ROW, NM_AMT, NM_CONFIRM, NM_EMAIL, NM_GIFT_PIN, NM_ID, NM_KPAY,
+    NM_NAME, NM_PHONE, NM_REFERRAL, STOCK_ACCESS_PIN, TU_AMT, TU_CONFIRM,
+    TU_KPAY, TU_MEMBER, build_rank_bonus_lines, cmd_cancel, display_rank,
+    fetch_balance_mins, fetch_base_rate, fetch_bonus_table,
+    fetch_member_data, fetch_member_effective_rate, fetch_member_tier,
+    fetch_members, fetch_new_member_defaults, fetch_rank_table_display,
+    fetch_rank_thresholds, fetch_staff, get_bonus_mins, get_receipt_kb,
+    member_sh, next_member_id, next_member_row_no, next_write_row,
+    now_mmt, rank_emoji, save_receipt_json, show_main_menu, step_hdr,
+    today_str, topup_sh, update_member_effective_rate,
+)
+
 try:
     from bot.api_client import api_add_member, api_add_topup
 except ImportError:

@@ -1,6 +1,11 @@
 """PS VIBE Bot — Handler module.
 """
-from bot import *
+from bot import (
+    BTN_BACK, BTN_CANCEL, BTN_MANUAL_DISC, BTN_PROMO_APPLY,
+    BTN_SKIP_DISC, BUNDLE_FOC, DISCOUNT, NAV_ROW, PROMO_SELECT,
+    cmd_cancel, fetch_base_rate, fetch_promotions_cached,
+)
+
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
