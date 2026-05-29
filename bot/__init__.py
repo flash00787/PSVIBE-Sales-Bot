@@ -129,8 +129,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timezone, timedelta
 
 # ── Re-export from focused modules (backward compatible) ──
-# (moved to end of file) from bot.constants import *
-# (moved to end of file) from bot.helpers import *
+from bot.constants import *
+from bot.helpers import *
 from enum import IntEnum
 
 # Myanmar Time — GMT+6:30
