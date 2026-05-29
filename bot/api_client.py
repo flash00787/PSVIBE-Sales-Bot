@@ -492,8 +492,23 @@ def api_add_salary_advance(data: dict) -> dict | None:
 
 
 def api_add_sales_record(data: dict) -> dict | None:
-    """Add a sales record."""
-    return _api_call("POST", "sales/record", json_data=data)
+    """Add a sales record.
+
+    Transforms caller field names to match /api/sales/record endpoint expectations.
+    """
+    # Map caller field names → endpoint field names
+    mapped: dict = {
+        "receipt_no": data.get("voucher_no", ""),
+        "receipt_date": data.get("date", ""),
+        "member_id": data.get("member_id", ""),
+        "amount": data.get("net_total", 0),
+        "items": f"Console:{data.get('console_id','')}|Play:{data.get('play_mins',0)}min|Game:{data.get('game_amount',0)}",
+        "payment_method": f"KPay:{data.get('kpay',0)}|Cash:{data.get('cash',0)}",
+        "staff_name": data.get("staff", ""),
+        "food_items": str(data.get("food_total", "")),
+        "food_cost": data.get("food_total", 0),
+    }
+    return _api_call("POST", "sales/record", json_data=mapped)
 
 
 def api_add_stock_out(data: dict) -> dict | None:
@@ -514,4 +529,3 @@ def api_add_member(data: dict) -> dict | None:
 def api_add_topup(data: dict) -> dict | None:
     """Log a top-up transaction."""
     return _api_call("POST", "topup/log", json_data=data)
-
