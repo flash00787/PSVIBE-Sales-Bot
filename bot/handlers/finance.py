@@ -3,7 +3,7 @@ try:
     from bot.api_client import api_add_opex
 except ImportError:
     def api_add_opex(data): return None
-from bot import wb
+from bot import *
 import asyncio
 """PS VIBE Bot — Handler module.
 """
