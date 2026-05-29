@@ -2560,4 +2560,3 @@ def fetch_payment_methods():
 
 from bot.constants import *
 from bot.helpers import *
-from bot.app import main as main  # noqa: F401,E402
