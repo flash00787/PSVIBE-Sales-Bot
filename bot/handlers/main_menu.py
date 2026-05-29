@@ -9,7 +9,7 @@ from typing import Set
 # from bot.handlers.console import show_console_menu
 # from bot.handlers.booking import cmd_staff_book_hub, cmd_staff_booking, cmd_confirmed_bookings
 # from bot.handlers.games import show_game_menu
-# from bot.handlers.sales import next_voucher, prompt_member
+from bot.handlers.sales import next_voucher, prompt_member
 
 from bot import *
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
