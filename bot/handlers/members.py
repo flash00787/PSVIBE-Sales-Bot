@@ -1,4 +1,9 @@
 from bot import *
+try:
+    from bot.api_client import api_add_member, api_add_topup
+except ImportError:
+    def api_add_member(data): return None
+    def api_add_topup(data): return None
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -740,10 +745,36 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ]
             if nm_email:
                 batch.append({"range": f"M{cw_row}", "values": [[nm_email]]})
+            # ── API write (best-effort) ──
+            try:
+                api_add_member({
+                    "member_id": nm_id,
+                    "name": nm_name,
+                    "phone": phone,
+                    "staff": nm_staff,
+                    "email": nm_email or "",
+                    "row_no": row_no,
+                })
+            except Exception as e:
+                logging.warning("Member API write failed (GSheet fallback OK): %s", e)
             member_sh.batch_update(batch, value_input_option="USER_ENTERED")
             # 2. TopUp_Log (cols A–C, E–I, J)
             # If referral code used, add +30 bonus mins to new member's added_mins
             _nm_added_mins = nm_mins + (30 if nm_referral_code and nm_referrer_id else 0)
+            # ── API write (best-effort) ──
+            try:
+                api_add_topup({
+                    "date": today,
+                    "member_id": nm_id,
+                    "type": "New Member",
+                    "amount": nm_amt,
+                    "kpay": nm_kpay,
+                    "cash": nm_cash,
+                    "minutes": _nm_added_mins,
+                    "staff": nm_staff,
+                })
+            except Exception as e:
+                logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
             topup_sh.batch_update(
                 [{"range": f"A{tl_row}:C{tl_row}",
                   "values": [[today, nm_id, "New Member"]]},
@@ -758,6 +789,20 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # 4. Referral bonus: +30 mins to referrer via a new TopUp_Log row
             if nm_referral_code and nm_referrer_id:
                 _ref_tl_row = next_write_row(topup_sh)
+                # ── API write (best-effort) ──
+                try:
+                    api_add_topup({
+                        "date": today,
+                        "member_id": nm_referrer_id,
+                        "type": "Referral Bonus",
+                        "amount": 0,
+                        "kpay": 0,
+                        "cash": 0,
+                        "minutes": 30,
+                        "staff": nm_staff,
+                    })
+                except Exception as e:
+                    logging.warning("Referral topup API write failed (GSheet fallback OK): %s", e)
                 topup_sh.batch_update(
                     [{"range": f"A{_ref_tl_row}:C{_ref_tl_row}",
                       "values": [[today, nm_referrer_id, "Referral Bonus"]]},
@@ -1082,6 +1127,20 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ── SHEET WRITES — background ─────────────────────────────────
     async def _tu_bg():
         def _do():
+            # ── API write (best-effort) ──
+            try:
+                api_add_topup({
+                    "date": today,
+                    "member_id": tu_id,
+                    "type": "Top Up",
+                    "amount": tu_amt,
+                    "kpay": tu_kpay,
+                    "cash": tu_cash,
+                    "minutes": tu_mins,
+                    "tier": current_tier,
+                })
+            except Exception as e:
+                logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
             topup_sh.batch_update(
                 [{"range": f"A{tl_row}:C{tl_row}",
                   "values": [[today, tu_id, current_tier]]},

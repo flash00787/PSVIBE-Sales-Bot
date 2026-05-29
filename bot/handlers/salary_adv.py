@@ -1,4 +1,8 @@
 from bot import *
+try:
+    from bot.api_client import api_add_salary_advance
+except ImportError:
+    def api_add_salary_advance(data): return None
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -100,6 +104,17 @@ async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYP
     try:
         sh = get_salary_adv_sh()
         sh.append_row([today_str, staff, amt, payment, ""])
+
+        # ── API write (best-effort) ──
+        try:
+            api_add_salary_advance({
+                "staff_name": staff,
+                "date": today_str,
+                "amount": amt,
+                "payment": payment,
+            })
+        except Exception as e:
+            logging.warning("Salary advance API write failed (GSheet fallback OK): %s", e)
         advances  = fetch_salary_advances(month_str)
         staff_adv = advances.get(staff, {"total": 0, "cash": 0, "kpay": 0})
         cum       = staff_adv["total"]

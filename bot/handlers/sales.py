@@ -1,4 +1,9 @@
 from bot import *
+try:
+    from bot.api_client import api_add_sales_record, api_add_stock_out
+except ImportError:
+    def api_add_sales_record(data): return None
+    def api_add_stock_out(data): return None
 """PS VIBE Bot — Handler module.
 
 """
@@ -1163,6 +1168,26 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         def _do():
             # Col N = wallet_deduct_mins (effective_cost_mins for members, blank for guests)
             _w_deduct = 0 if (not _m_id or _m_id.strip() in ("", "0 (Guest)")) else wallet_deduct
+            # ── API write (best-effort, non-blocking) ──
+            try:
+                api_add_sales_record({
+                    "date": today,
+                    "voucher_no": v_no,
+                    "member_id": _m_id,
+                    "console_id": c_id,
+                    "play_mins": play_mins,
+                    "game_amount": game_amt,
+                    "food_total": food_total,
+                    "discount": _disc,
+                    "net_total": net_total,
+                    "kpay": kpay,
+                    "cash": cash,
+                    "wallet_deduct": _w_deduct,
+                    "staff": staff_name,
+                })
+            except Exception as e:
+                logging.warning("Sales API write failed (GSheet fallback OK): %s", e)
+
             sales_sh.batch_update(
                 [{"range": f"A{s_row}:K{s_row}",
                   "values": [[today, v_no, _m_id, c_id, play_mins,
@@ -1173,6 +1198,20 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             for item in food_sold:
                 cp = food_costs.get(item["name"], 0)
+                # ── API write for stock-out (best-effort) ──
+                try:
+                    api_add_stock_out({
+                        "date": today,
+                        "voucher_no": v_no,
+                        "item_name": item["name"],
+                        "qty": item["qty"],
+                        "unit_price": item.get("unit_price", 0),
+                        "subtotal": item.get("subtotal", 0),
+                        "cost_price": cp,
+                        "cost_total": cp * item["qty"],
+                    })
+                except Exception as e:
+                    logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
                 stock_sh.append_row(
                     [today, v_no, item["name"], item["qty"],
                      item.get("unit_price", 0), item.get("subtotal", 0), cp, cp * item["qty"]],

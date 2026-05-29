@@ -1,4 +1,8 @@
 from bot import *
+try:
+    from bot.api_client import api_add_opex
+except ImportError:
+    def api_add_opex(data): return None
 from bot import wb
 import asyncio
 """PS VIBE Bot — Handler module.
@@ -259,6 +263,21 @@ async def step_opex_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 value_input_option="USER_ENTERED",
             )
         await asyncio.to_thread(_do)
+
+        # ── API write (non-blocking, best-effort) ──
+        async def _api_write():
+            try:
+                api_add_opex({
+                    "date": today_str(),
+                    "category": d["opex_cat"],
+                    "description": d.get("opex_desc", ""),
+                    "amount": d["opex_amt"],
+                    "account": d["opex_acct"],
+                    "payment": d["opex_pay"],
+                })
+            except Exception as e:
+                logging.warning("OPEX API write failed (GSheet fallback OK): %s", e)
+        asyncio.create_task(_api_write())
         await update.message.reply_text(
             f"✅ *OPEX မှတ်တမ်း သိမ်းဆည်းပြီး!*\n"
             f"━━━━━━━━━━━━━━━━━━\n"

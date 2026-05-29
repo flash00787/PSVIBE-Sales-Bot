@@ -1,4 +1,8 @@
 from bot import *
+try:
+    from bot.api_client import api_add_stock_out
+except ImportError:
+    def api_add_stock_out(data): return None
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -196,6 +200,20 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         # TODO: Migrate to MySQL via API -- direct gspread is fallback only
         logging.warning("DEPRECATED: direct gspread write in step_stock_qty — should use API endpoint")
+        # ── API write (best-effort) ──
+        try:
+            api_add_stock_out({
+                "date": today,
+                "reference": ref,
+                "item_name": item,
+                "qty": qty,
+                "sell_price": sell_price,
+                "total_value": total_val,
+                "cost_price": cost_price,
+                "total_cogs": total_cogs,
+            })
+        except Exception as e:
+            logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
         stock_sh.append_row(
             [today, ref, item, qty, sell_price, total_val, cost_price, total_cogs],
             value_input_option="USER_ENTERED",

@@ -16,6 +16,7 @@ import logging
 import os
 import urllib.request
 import urllib.parse
+import time
 
 # ---------------------------------------------------------------------------
 # Module-level config
@@ -26,6 +27,8 @@ API_KEY = os.environ.get("API_KEY", "")
 logger = logging.getLogger("psvibe_api_client")
 
 DEFAULT_TIMEOUT = 15  # Increased for reliability
+DEFAULT_MAX_RETRIES = 2  # Exponential backoff: 3 total attempts (1 + 2 retries)
+DEFAULT_RETRY_BASE_DELAY = 0.5  # Seconds, doubles each retry
 
 
 # ---------------------------------------------------------------------------
@@ -87,23 +90,37 @@ def _api_call(
 
     req = urllib.request.Request(url, data=data_bytes, method=method, headers=headers)
 
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            body = resp.read().decode("utf-8")
-            data = json.loads(body)
-            # Unwrap API envelope: {success: true, data: ...}
-            if isinstance(data, dict) and 'success' in data:
-                if not data.get('success'):
-                    logger.warning(
-                        'API %s %s responded success=false: %s',
-                        method, path_clean, data.get('error', 'unknown'),
-                    )
-                    return None
-                return data.get('data')
-            return data
-    except Exception as exc:
-        logger.warning("API %s %s failed: %s", method, path_clean, exc)
-        return None
+    last_error: Exception | None = None
+    for attempt in range(DEFAULT_MAX_RETRIES + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                body = resp.read().decode("utf-8")
+                data = json.loads(body)
+                # Unwrap API envelope: {success: true, data: ...}
+                if isinstance(data, dict) and 'success' in data:
+                    if not data.get('success'):
+                        logger.warning(
+                            'API %s %s responded success=false: %s',
+                            method, path_clean, data.get('error', 'unknown'),
+                        )
+                        return None
+                    return data.get('data')
+                return data
+        except Exception as exc:
+            last_error = exc
+            if attempt < DEFAULT_MAX_RETRIES:
+                delay = DEFAULT_RETRY_BASE_DELAY * (2 ** attempt)
+                logger.warning(
+                    'API %s %s attempt %d/%d failed: %s, retrying in %.1fs...',
+                    method, path_clean, attempt + 1, DEFAULT_MAX_RETRIES + 1, exc, delay,
+                )
+                time.sleep(delay)
+            else:
+                logger.warning(
+                    'API %s %s failed after %d attempts: %s',
+                    method, path_clean, DEFAULT_MAX_RETRIES + 1, exc,
+                )
+    return None
 
 
 # ===================================================================
@@ -458,3 +475,43 @@ def api_remove_console_game(console_id: str, game_title: str) -> dict | None:
 def api_remove_console_from_setting(console_id: str) -> dict | None:
     """Remove a console entry from the Setting sheet."""
     return _api_call("DELETE", f"remove_console_from_setting/{console_id}")
+
+# ===================================================================
+#  Phase 2 – New POST endpoints
+# ===================================================================
+
+
+def api_add_opex(data: dict) -> dict | None:
+    """Add an operational expense record."""
+    return _api_call("POST", "finance/opex", json_data=data)
+
+
+def api_add_salary_advance(data: dict) -> dict | None:
+    """Add a salary advance record."""
+    return _api_call("POST", "staff/salary-advance", json_data=data)
+
+
+def api_add_sales_record(data: dict) -> dict | None:
+    """Add a sales record."""
+    return _api_call("POST", "sales/record", json_data=data)
+
+
+def api_add_stock_out(data: dict) -> dict | None:
+    """Add a stock-out (sale/consumption) record."""
+    return _api_call("POST", "inventory/stock-out", json_data=data)
+
+
+def api_add_stock_in(data: dict) -> dict | None:
+    """Add a stock-in (restock) record."""
+    return _api_call("POST", "inventory/stock-in", json_data=data)
+
+
+def api_add_member(data: dict) -> dict | None:
+    """Register a new member."""
+    return _api_call("POST", "members/register", json_data=data)
+
+
+def api_add_topup(data: dict) -> dict | None:
+    """Log a top-up transaction."""
+    return _api_call("POST", "topup/log", json_data=data)
+

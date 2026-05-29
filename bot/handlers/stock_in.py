@@ -1,4 +1,8 @@
 from bot import BTN_BACK_MAIN, BTN_CONFIRM_SAVE, BTN_SI_ADD, BTN_SI_FINISH, BTN_SI_SPLIT, MAIN_MENU, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM, SI_PAY, SI_PAY_SPLIT, SI_QTY, fetch_food_costs, fetch_food_prices, now_mmt, stock_in_sh
+try:
+    from bot.api_client import api_add_stock_in
+except ImportError:
+    def api_add_stock_in(data): return None
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -249,6 +253,19 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for e in cart:
             logging.warning("DEPRECATED: direct gspread write in step_si_confirm — should use API endpoint")
             # TODO: Migrate to MySQL via API -- direct gspread is fallback only
+            # ── API write (best-effort) ──
+            try:
+                api_add_stock_in({
+                    "date": today,
+                    "item_name": e["item"],
+                    "qty": e["qty"],
+                    "cost_price": e["cost"],
+                    "total": e["total"],
+                    "payment": payment,
+                    "staff": "Bot",
+                })
+            except Exception as ex:
+                logging.warning("Stock-in API write failed (GSheet fallback OK): %s", ex)
             stock_in_sh.append_row(
                 [today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot"],
                 value_input_option="USER_ENTERED",
