@@ -1,4 +1,4 @@
-from bot import *
+from bot import ATTEND_DEDUCT, ATTEND_LATE, ATTEND_LEAVE, ATTEND_STAFF, BTN_ATTEND_DONE, BTN_ATTEND_SKIP, BTN_CANCEL, amt, fetch_staff, lines, m, n, now_mmt, s, save_attendance, staff
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove

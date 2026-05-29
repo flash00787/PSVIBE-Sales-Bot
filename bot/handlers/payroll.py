@@ -1,4 +1,4 @@
-from bot import *
+from bot import bonus, col, empty, fallback, fetch_attendance, fetch_base_salaries, fetch_staff, filled, fmt, hrs, lines, m, mins, n, now_mmt, parts, row, s, sales_sh, staff, topup_sh, total, val
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove

@@ -6,7 +6,7 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-from bot import *
+from bot import BTN_ADD_CONSOLE, BTN_BACK, BTN_CANCEL, BTN_DEL_CONSOLE, BTN_LIST_CONSOLE, CON_ADD_ID, CON_ADD_MULT, CON_ADD_TYPE, CON_DEL_SELECT, CON_MGMT_MENU, VALID_CONSOLES, add_console_to_setting, b, existing, get_consoles_from_setting, i, lines, mult, n, remove_console_from_setting
 
 
 

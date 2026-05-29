@@ -11,7 +11,7 @@ with open(path) as f:
 # Find and replace the damaged block.
 
 old_marker = "# ── PIN-then-action wrapper ──"
-import_marker = "from bot.handlers import *  # noqa: F401,F403,E402"
+from bot import ADMIN_PIN, PAY_METHODS, b, data, fallback, fetch_payment_methods, path, start, w, wrapper
 
 old_start = content.find(old_marker)
 import_start = content.find(import_marker)

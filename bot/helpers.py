@@ -2,7 +2,7 @@
 #
 # Extracted from bot/__init__.py to improve modularity.
 # Imported back by __init__.py for 100% backward compatibility.
-#   from bot.helpers import *
+from bot import BOT_VERSION, MMT, RECEIPTS_DIR, base, cleaned, data, date, empty, filled, get_receipt_kb, get_receipt_url, m, n, now, now_mmt, path, payload, req, s, safe_id, save_receipt_json, secret, step_hdr, today, today_str, total, url, val, w
 
 import json
 import logging

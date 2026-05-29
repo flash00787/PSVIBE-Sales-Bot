@@ -22270,3 +22270,4 @@ NameError: name 'next_voucher' is not defined
 2026-05-29 09:00:06,185 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-29 09:33:46,903 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-29 09:38:19,789 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 10:00:05,392 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)

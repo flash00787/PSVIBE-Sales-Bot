@@ -57,7 +57,7 @@ for cat_line in reversed(category_constants):
 print(f'FIX 2: Added category constants after line {nav_pos}')
 
 # ── FIX 3: Add _pin_then and fetch_payment_methods before import handlers ──
-# Find the last import line or the 'from bot.handlers import *' line
+from bot import ADMIN_PIN, ASSET_CATEGORIES, BTN_ATTEND_DONE, BTN_ATTEND_SKIP, BTN_NO_MORE, CAPITAL_ACCOUNTS, FINANCE_ACCOUNTS, NAV_ROW, OPEX_CATEGORIES, PAY_METHODS, PREPAID_CATEGORIES, data, date, fallback, fetch_payment_methods, i, last, lines, n, now, path, start, w, wrapper
 for i in range(len(lines) - 1, -1, -1):
     if 'from bot.handlers import *' in lines[i]:
         import_pos = i
