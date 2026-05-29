@@ -9,9 +9,21 @@ import logging
 import os
 import re
 import time
+import urllib.request
+import urllib.error
 from typing import Optional
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+
+# ── Model Fallback Chain ──────────────────────────────────────────────────────
+# Tried in order. First success wins.
+MODEL_CHAIN = [
+    {"provider": "gemini",       "model": "gemini-3.5-flash"},
+    {"provider": "openrouter",   "model": "deepseek/deepseek-v4-flash"},
+    {"provider": "gemini",       "model": "gemini-2.5-flash"},
+]
 
 try:
     from google import genai as _genai
@@ -80,6 +92,80 @@ def _check_ai_rate_limit(user_id: int) -> bool:
         return False
     _ai_last_call[user_id] = now
     return True
+
+
+# ── OpenRouter HTTP Client ────────────────────────────────────────────────────
+
+class _TextResponse:
+    """Wrapper to make plain-text responses look like Gemini Response objects."""
+    def __init__(self, text: str):
+        self._text = text
+
+    @property
+    def text(self) -> str:
+        return self._text
+
+    @property
+    def candidates(self) -> list:
+        return []
+
+
+def _contents_to_openrouter_messages(contents: list) -> list[dict]:
+    """Convert Gemini Content objects to OpenRouter-compatible message dicts."""
+    messages = []
+    for c in contents:
+        role = c.role
+        if role == "model":
+            role = "assistant"
+        text = ""
+        for part in (c.parts or []):
+            t = getattr(part, "text", None)
+            if t:
+                text += t
+        messages.append({"role": role, "content": text})
+    return messages
+
+
+def _call_openrouter_sync(messages: list[dict], system_prompt: str, model: str) -> str:
+    """Call OpenRouter API synchronously. Returns text content."""
+    if not OPENROUTER_KEY:
+        raise RuntimeError("OPENROUTER_API_KEY not set")
+
+    payload = json.dumps({
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            *messages,
+        ],
+        "stream": False,
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        OPENROUTER_URL,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {OPENROUTER_KEY}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://ps-vibe.com",
+            "X-Title": "PS VIBE Customer Bot",
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+            if not content and data.get("error"):
+                raise RuntimeError(f"OpenRouter API error: {data['error']}")
+            logging.info("OpenRouter (%s) response: %d chars", model, len(content))
+            return content.strip()
+    except urllib.error.HTTPError as e:
+        err_body = ""
+        try:
+            err_body = e.read().decode("utf-8", errors="replace")[:200]
+        except Exception:
+            pass
+        raise RuntimeError(f"OpenRouter HTTP {e.code}: {err_body}") from e
 
 
 # ── Member search / rank helpers ──────────────────────────────────────────────
@@ -249,7 +335,7 @@ async def _get_cached_system_prompt(priority_care: bool = False) -> str:
     return prompt
 
 
-def _build_live_game_library_sync(games):
+async def _build_live_game_library_sync(games):
     """Bridge: use data/games.py builder with already-fetched games."""
     from .data.games import _build_live_game_library_text
     return _build_live_game_library_text(lambda: games)
@@ -324,13 +410,16 @@ async def _ai_reply(
             for h in raw_history
         ]
 
-        # ── Call Gemini (with function calling) ───────────────────────────────
+        # ── Call AI (with function calling) using model fallback chain ────────
         def _call_gemini_sync():
-            def _gen(contents, config, retries=4, backoff=1):
+            """Turn 1: intent detection with tools. Tries MODEL_CHAIN in order."""
+
+            def _gen_with_model(contents, config, model, retries=4, backoff=1):
+                """Call Gemini with retries for transient errors."""
                 for attempt in range(retries):
                     try:
                         return client.models.generate_content(
-                            model="gemini-2.5-flash",
+                            model=model,
                             contents=contents,
                             config=config,
                         )
@@ -349,7 +438,6 @@ async def _ai_reply(
                         else:
                             raise
 
-            # Turn 1: intent detection with tools enabled
             cfg_tools = _genai_types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 tools=[search_tool] if search_tool else [],
@@ -362,27 +450,63 @@ async def _ai_reply(
                     role="user", parts=[_genai_types.Part(text=user_text)],
                 )
             ]
-            resp = _gen(base_contents, cfg_tools)
 
-            # Detect function call
-            fn_call = None
-            cand0_parts = []
-            if resp.candidates:
-                cand0_parts = getattr(
-                    getattr(resp.candidates[0], "content", None), "parts", None
-                ) or []
-            for part in cand0_parts:
-                fc = getattr(part, "function_call", None)
-                if fc and getattr(fc, "name", ""):
-                    fn_call = fc
-                    break
+            last_error = None
+            for entry in MODEL_CHAIN:
+                try:
+                    if entry["provider"] == "openrouter":
+                        # OpenRouter: direct text response, no function calling
+                        logging.info(
+                            "Turn 1: trying OpenRouter %s (no function calling)",
+                            entry["model"],
+                        )
+                        or_messages = _contents_to_openrouter_messages(base_contents)
+                        text = _call_openrouter_sync(
+                            or_messages, system_prompt, entry["model"]
+                        )
+                        return _TextResponse(text), None, None
+                    else:
+                        # Gemini: full SDK call with function calling
+                        logging.info("Turn 1: trying Gemini %s", entry["model"])
+                        resp = _gen_with_model(
+                            base_contents, cfg_tools, entry["model"]
+                        )
 
-            if fn_call and fn_call.name == "search_member":
-                query = (fn_call.args.get("query") or "").strip()
-                # We need to run this async — handled below
-                return resp, fn_call, query
+                        # Detect function call
+                        fn_call = None
+                        query = None
+                        cand0_parts = []
+                        if resp.candidates:
+                            cand0_parts = getattr(
+                                getattr(resp.candidates[0], "content", None),
+                                "parts", None,
+                            ) or []
+                        for part in cand0_parts:
+                            fc = getattr(part, "function_call", None)
+                            if fc and getattr(fc, "name", ""):
+                                fn_call = fc
+                                query = (fc.args.get("query") or "").strip()
+                                break
 
-            return resp, None, None
+                        if fn_call and fn_call.name == "search_member":
+                            return resp, fn_call, query
+
+                        return resp, None, None
+
+                except Exception as exc:
+                    err = str(exc)
+                    logging.warning(
+                        "Turn 1: provider %s/%s failed: %s",
+                        entry["provider"], entry["model"], err[:120],
+                    )
+                    last_error = exc
+                    continue
+
+            # All providers in chain failed
+            logging.error(
+                "Turn 1: ALL models in chain failed, last error: %s", last_error,
+            )
+            return _TextResponse(""), None, None
 
         # Run Gemini in thread (SDK is sync)
         resp, fn_call, search_query = await asyncio.to_thread(_call_gemini_sync)
@@ -397,7 +521,9 @@ async def _ai_reply(
             logging.info("search_member(%r) → %s", search_query, fn_result)
 
             # Turn 2: fresh TEXT-ONLY call with member data as context
+            # Uses the same MODEL_CHAIN fallback
             def _call_gemini_with_result():
+                """Turn 2: text-only response with member data. Tries MODEL_CHAIN."""
                 cfg_text = _genai_types.GenerateContentConfig(
                     system_instruction=system_prompt,
                     max_output_tokens=300,
@@ -413,37 +539,59 @@ async def _ai_reply(
                     "information in Burmese, using the data above."
                 )
 
-                def _gen(contents, config, retries=4, backoff=1):
-                    for attempt in range(retries):
-                        try:
-                            return client.models.generate_content(
-                                model="gemini-2.5-flash",
-                                contents=contents,
-                                config=config,
-                            )
-                        except Exception as _exc:
-                            err = str(_exc)
-                            if attempt < retries - 1 and (
-                                "503" in err or "UNAVAILABLE" in err or "502" in err
-                            ):
-                                import time as _time
-                                logging.warning(
-                                    "Gemini %s on attempt %d — retrying in %ds",
-                                    err[:60], attempt + 1, backoff,
-                                )
-                                _time.sleep(backoff)
-                                backoff = min(backoff * 2, 4)
-                            else:
-                                raise
+                contents = list(history) + [
+                    _genai_types.Content(
+                        role="user",
+                        parts=[_genai_types.Part(text=augmented_msg)],
+                    ),
+                ]
 
-                return _gen(
-                    list(history) + [
-                        _genai_types.Content(
-                            role="user", parts=[_genai_types.Part(text=augmented_msg)],
+                for entry in MODEL_CHAIN:
+                    try:
+                        if entry["provider"] == "openrouter":
+                            logging.info(
+                                "Turn 2: trying OpenRouter %s", entry["model"],
+                            )
+                            or_messages = _contents_to_openrouter_messages(contents)
+                            text = _call_openrouter_sync(
+                                or_messages, system_prompt, entry["model"],
+                            )
+                            return _TextResponse(text)
+                        else:
+                            # Gemini with retries
+                            logging.info("Turn 2: trying Gemini %s", entry["model"])
+                            for attempt in range(4):
+                                try:
+                                    return client.models.generate_content(
+                                        model=entry["model"],
+                                        contents=contents,
+                                        config=cfg_text,
+                                    )
+                                except Exception as _exc:
+                                    err = str(_exc)
+                                    if attempt < 3 and (
+                                        "503" in err or "UNAVAILABLE" in err or "502" in err
+                                    ):
+                                        import time as _time
+                                        backoff = min(2 ** attempt, 4)
+                                        logging.warning(
+                                            "Gemini Turn2 %s on attempt %d — retrying in %ds",
+                                            err[:60], attempt + 1, backoff,
+                                        )
+                                        _time.sleep(backoff)
+                                    else:
+                                        raise
+                    except Exception as exc:
+                        err = str(exc)
+                        logging.warning(
+                            "Turn 2: provider %s/%s failed: %s",
+                            entry["provider"], entry["model"], err[:120],
                         )
-                    ],
-                    cfg_text,
-                )
+                        continue
+
+                # All providers failed in Turn 2
+                logging.error("Turn 2: ALL models in chain failed")
+                return _TextResponse("")
 
             resp = await asyncio.to_thread(_call_gemini_with_result)
 
@@ -502,8 +650,8 @@ async def _ai_reply(
         _typing_active = False
         try:
             _typing_task.cancel()
-        except Exception as e:
-            logging.exception("_ai_reply: cancel typing task failed: %s", e)
+        except Exception as _cancel_err:
+            logging.exception("_ai_reply: cancel typing task failed: %s", _cancel_err)
 
         err_str = str(e)
         logging.error("Gemini AI error: %s", e)

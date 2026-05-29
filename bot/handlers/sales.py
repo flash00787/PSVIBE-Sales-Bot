@@ -9,7 +9,7 @@ from bot import (
     _replit_get, _replit_patch, _replit_post, calc_duration, cmd_cancel,
     end_booking, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status, fetch_food_costs,
-    fetch_food_prices, fetch_member_data, fetch_members,
+    fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
     next_voucher, next_write_row, now_mmt, sales_sh, save_receipt_json,
     show_console_menu, show_main_menu, step_hdr, stock_sh, prompt_discount, today_str,
@@ -199,9 +199,9 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i["name"]: max(0, i.get("current_stock", 0))
                              for i in inv_data.get("items", [])}
-                if stock_map:
+                if stock_map is not None:
                     prices = {k: v for k, v in prices.items()
-                              if stock_map.get(k, 1) > 0}
+                              if stock_map.get(k, 0) > 0}
                     context.user_data["food_prices"] = prices
             stock_map = stock_map or {}
         except Exception as e:

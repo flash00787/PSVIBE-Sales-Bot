@@ -65,8 +65,7 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("balance",cmd_balance))
     app.add_handler(CommandHandler("games",  cmd_game_library))
     app.add_handler(CommandHandler("status", cmd_console_status))
-    app.add_handler(CommandHandler("book",   cmd_book))
-    app.add_handler(CommandHandler("booking",cmd_book))
+        # /book and /booking handled by ConversationHandler below
     app.add_handler(CommandHandler("cancel", cmd_cancel))
     app.add_handler(CommandHandler("feedback",cmd_feedback))
     app.add_handler(CommandHandler("mybookings",cmd_mybookings))
