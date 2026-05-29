@@ -24724,3 +24724,18 @@ NameError: name 'show_si_items' is not defined
 2026-05-29 20:59:07,867 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-29 20:59:38,072 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-29 20:59:46,866 [INFO] Background cache refresh done
+2026-05-29 21:48:47,949 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 21:48:52,050 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 21:48:54,609 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:2003> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-29 21:48:55,471 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-29 21:48:59,149 [INFO] Bot started — PID 1144519
+2026-05-29 21:49:02,355 [INFO] Health server started on port 8080
+2026-05-29 21:49:02,453 [INFO] Pre-warming config and member cache...
+2026-05-29 21:49:03,049 [WARNING] API GET /sheets/config failed: HTTP Error 500: Internal Server Error — returning dict
+2026-05-29 21:49:03,371 [INFO] PS Vibe Bot is running...
+2026-05-29 21:49:03,955 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-29 21:49:04,330 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-29 21:49:04,522 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-29 21:49:04,523 [INFO] Application started
+2026-05-29 21:49:35,083 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"

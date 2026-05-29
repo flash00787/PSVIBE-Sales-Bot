@@ -89,6 +89,7 @@ async def step_stock_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if entered == STOCK_ACCESS_PIN:
         dest = context.user_data.pop("stock_dest", "menu")
         if dest == "stockin":
+            from bot.handlers.stock_in import show_si_items
             return await show_si_items(update, context)
         if dest == "stockout":
             return await show_stock_out_items(update, context)
@@ -123,6 +124,7 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_STOCK_OUT:
         return await show_stock_out_items(update, context)
     if choice == BTN_STOCK_IN_M:
+        from bot.handlers.stock_in import show_si_items
         return await show_si_items(update, context)
     if choice == BTN_INVENTORY_VIEW:
         await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
