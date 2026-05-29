@@ -349,4 +349,4 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                      booking_id=_linked_bk_id)
 
 
-from bot import *
+# Duplicate import removed - already imported at top

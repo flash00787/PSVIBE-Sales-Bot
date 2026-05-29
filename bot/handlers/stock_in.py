@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
 # Explicit import for helper from stock module
-from bot.handlers.stock import update_inv_total_k1
+# update_inv_total_k1 imported lazily in functions below
 
 
 

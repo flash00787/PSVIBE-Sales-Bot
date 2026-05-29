@@ -6,7 +6,19 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-from bot import *
+import sys as _sys
+
+def __getattr__(name):
+    """Lazy import from bot to break circular dependency at module load."""
+    if name in ('__getattr__', '_bot_lazy_loaded'):
+        raise AttributeError(name)
+    _bot = _sys.modules.get('bot')
+    if _bot is None:
+        import bot as _bot
+    val = getattr(_bot, name)
+    # Cache in module dict for performance
+    _sys.modules[__name__].__dict__[name] = val
+    return val
 
 
 

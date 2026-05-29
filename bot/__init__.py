@@ -2556,7 +2556,13 @@ def fetch_payment_methods():
     return list(PAY_METHODS)
 
 
-from bot.constants import *
-from bot.helpers import *
-from bot.handlers import *  # noqa: F401,F403,E402
+# constants imported by bot package itself
+# helpers imported by bot package itself
+# Handlers imported lazily to break circular dependency
+_HANDLER_MODULES = {}
+def _get_handler(hname):
+    if hname not in _HANDLER_MODULES:
+        import importlib
+        _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
+    return _HANDLER_MODULES[hname]
 # main() is imported from bot.app directly by main.py — avoid circular import

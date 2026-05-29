@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
 import asyncio
-from bot.handlers.admin import show_admin_menu
+# show_admin_menu imported lazily in functions below
 
 
 
