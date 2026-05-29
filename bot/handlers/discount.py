@@ -1,6 +1,7 @@
 """PS VIBE Bot — Handler module.
 """
 from bot import (
+    prompt_kpay,
     BTN_BACK, BTN_CANCEL, BTN_MANUAL_DISC, BTN_PROMO_APPLY,
     BTN_SKIP_DISC, BUNDLE_FOC, DISCOUNT, NAV_ROW, PROMO_SELECT,
     cmd_cancel, fetch_base_rate, fetch_promotions_cached,

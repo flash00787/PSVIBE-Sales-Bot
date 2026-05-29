@@ -2691,3 +2691,6 @@ def show_game_menu(*args, **kwargs):
 
 def cmd_payroll(*args, **kwargs):
     return _get_handler("payroll").cmd_payroll(*args, **kwargs)
+
+def prompt_kpay(*args, **kwargs):
+    return _get_handler("sales").prompt_kpay(*args, **kwargs)
