@@ -921,7 +921,7 @@ async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="Markdown",
         )
         d["kpay"] = payments.get("KPay", 0)
-        d["cash"] = net - sum(payments.values())
+        d["cash"] = payments.get("Cash", 0)
         return await _show_payment_review(update, context)
 
     await update.message.reply_text(
