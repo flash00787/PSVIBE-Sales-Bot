@@ -80,7 +80,7 @@ def _register_handlers(app: Application) -> None:
         ],
         states={
             BK_MEMBER_CHECK:  [CallbackQueryHandler(bk_member_check_entry, pattern=r"^bk_mem:")],
-            BK_MEMBER_SELECT: [CallbackQueryHandler(bk_member_select, pattern=r"^bk_sel:")],
+            BK_MEMBER_SELECT: [CallbackQueryHandler(bk_member_select, pattern=r"^bk_sel:"), MessageHandler(filters.TEXT & ~filters.COMMAND, bk_member_select)],
             BK_PHONE_VERIFY:  [MessageHandler(filters.TEXT & ~filters.COMMAND, bk_phone_verify)],
             BK_DATA_CONFIRM:  [CallbackQueryHandler(bk_data_confirm, pattern=r"^bk_dc:")],
             BK_NAME:          [MessageHandler(filters.TEXT & ~filters.COMMAND, bk_name_entry)],
@@ -92,7 +92,7 @@ def _register_handlers(app: Application) -> None:
             ],
             BK_CONSOLE:       [CallbackQueryHandler(bk_console_select, pattern=r"^bk_con:")],
             BK_DURATION:      [CallbackQueryHandler(bk_duration_select, pattern=r"^bk_dur:")],
-            BK_GAME:          [CallbackQueryHandler(bk_game_select, pattern=r"^bk_game:")],
+            BK_GAME:          [CallbackQueryHandler(bk_game_select, pattern=r"^(bk_game:|bk_game_page:)")],
             BK_CONSOLE_PREF:  [CallbackQueryHandler(bk_console_pref, pattern=r"^bk_con:")],
             BK_CONFIRM:       [CallbackQueryHandler(bk_confirm, pattern=r"^bk_ok:")],
             BK_DUP_WARN:      [CallbackQueryHandler(bk_dup_warn, pattern=r"^(bk_warn:|bk_ok:)")],
@@ -101,7 +101,6 @@ def _register_handlers(app: Application) -> None:
             BK_END:           [MessageHandler(filters.TEXT & ~filters.COMMAND, bk_end_handler)],
         },
         fallbacks=[CommandHandler("cancel", cmd_cancel)],
-        per_message=True,
     )
     app.add_handler(bk_conv)
 
