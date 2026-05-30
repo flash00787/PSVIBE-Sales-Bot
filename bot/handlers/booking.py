@@ -255,7 +255,15 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        return await cmd_staff_booking(update, context)
+        # Go back to customer name step (preserve context)
+        name = context.user_data.get("sbk_cust_name", "")
+        kb = [[BTN_SBK_SKIP_PHONE], [BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            "👤 Customer: <b>" + name + "</b>\n\n📞 Phone number ထည့်ပါ (optional — Skip နှိပ်နိုင်)",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return SBK_CUST_NAME
 
     phone = "—" if text == BTN_SBK_SKIP_PHONE else text
     context.user_data["sbk_phone"] = phone

@@ -17,7 +17,6 @@ for _d in (_pkg_dir, _parent_dir):
     if _d not in sys.path:
         sys.path.insert(0, _d)
 
-from telegram import BotCommand
 from telegram.error import Conflict
 from telegram.ext import (
     Application, ApplicationBuilder, CommandHandler, ConversationHandler,
@@ -114,21 +113,8 @@ def _register_handlers(app: Application) -> None:
 
 
 async def _post_init(app: Application) -> None:
-    """Set bot commands."""
-    await app.bot.set_my_commands([
-        BotCommand("start",    "Restart the bot"),
-        BotCommand("menu",     "View PS VIBE menu"),
-        BotCommand("book",     "Book a console"),
-        BotCommand("today",    "Today's bookings"),
-        BotCommand("rate",     "Rate & pricing"),
-        BotCommand("myid",     "Your member info"),
-        BotCommand("contact",  "Contact PS VIBE"),
-        BotCommand("promotions", "Current promotions"),
-        BotCommand("feedback", "Send feedback"),
-        BotCommand("refresh",  "Refresh data"),
-    ])
-
-
+    """Post-init hook — command menu intentionally removed (handlers remain active)."""
+    pass  # Command menu removed per 2026-05-30
 async def _error_handler(update, context) -> None:
     """Global error handler - 409 Conflict handled gracefully."""
     err = context.error
