@@ -662,6 +662,7 @@ def api_add_sales_record(data: dict) -> dict | None:
         "staff_name": data.get("staff", ""),
         "food_items": str(data.get("food_total", "")),
         "food_cost": data.get("food_total", 0),
+        "mins_used": data.get("mins_used", data.get("play_mins", 0)),
     }
     return _api_call("POST", "sales/record", json_data=mapped)
 
@@ -697,3 +698,68 @@ def api_add_member(data: dict) -> dict | None:
 def api_add_topup(data: dict) -> dict | None:
     """Log a top-up transaction."""
     return _api_call("POST", "topup/log", json_data=data)
+
+
+# ===================================================================
+#  Phase 1 — Async write endpoints (POST)
+# ===================================================================
+
+
+async def api_add_sales_record_async(data: dict) -> dict | None:
+    """Async: Record a sale + update member wallet via API."""
+    mapped: dict = {
+        "receipt_no": data.get("voucher_no", ""),
+        "voucher_no": data.get("voucher_no", ""),
+        "receipt_date": _normalize_date(data.get("date", "")),
+        "member_id": data.get("member_id", ""),
+        "amount": data.get("net_total", 0),
+        "gross": data.get("gross", data.get("net_total", 0)),
+        "discount": data.get("discount", 0),
+        "net": data.get("net_total", 0),
+        "items": f"Console:{data.get('console_id','')}|Play:{data.get('play_mins',0)}min|Game:{data.get('game_amount',0)}",
+        "payment_method": f"KPay:{data.get('kpay',0)}|Cash:{data.get('cash',0)}",
+        "staff_name": data.get("staff", ""),
+        "food_items": str(data.get("food_total", "")),
+        "food_cost": data.get("food_total", 0),
+        "mins_used": data.get("mins_used", data.get("play_mins", 0)),
+    }
+    return await _api_call_async("POST", "sales/record", json_data=mapped)
+
+
+async def api_member_topup_async(data: dict) -> dict | None:
+    """Async: Top-up member wallet (log + update balance)."""
+    return await _api_call_async("POST", "member/topup", json_data=data)
+
+
+async def api_wallet_deduct_async(data: dict) -> dict | None:
+    """Async: Deduct wallet minutes."""
+    return await _api_call_async("POST", "wallet/deduct", json_data=data)
+
+
+async def api_wallet_bonus_async(data: dict) -> dict | None:
+    """Async: Add bonus minutes to wallet."""
+    return await _api_call_async("POST", "wallet/bonus", json_data=data)
+
+
+async def api_member_create_async(data: dict) -> dict | None:
+    """Async: Create a new member with wallet."""
+    return await _api_call_async("POST", "member/create", json_data=data)
+
+
+async def api_add_topup_async(data: dict) -> dict | None:
+    """Async: Log a top-up transaction + update wallet."""
+    return await _api_call_async("POST", "topup/log", json_data=data)
+
+
+async def api_add_stock_in_async(data: dict) -> dict | None:
+    """Async: Record stock-in entry."""
+    if "date" in data:
+        data["date"] = _normalize_date(data["date"])
+    return await _api_call_async("POST", "stock/in", json_data=data)
+
+
+async def api_add_stock_out_async(data: dict) -> dict | None:
+    """Async: Record stock-out entry."""
+    if "date" in data:
+        data["date"] = _normalize_date(data["date"])
+    return await _api_call_async("POST", "stock/out", json_data=data)
