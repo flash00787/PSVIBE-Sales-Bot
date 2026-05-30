@@ -201,7 +201,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
                              for i in inv_data.get("items", [])}
                 if stock_map is not None:
                     prices = {k: v for k, v in prices.items()
-                              if stock_map.get(k, 1) > 0}  # 1=unlimited if no stock entry
+                              if stock_map.get(k, 0) > 0}  # 1=unlimited if no stock entry
                     context.user_data["food_prices"] = prices
             stock_map = stock_map or {}
         except Exception as e:
@@ -719,7 +719,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("items", [])}
             food_prices = {k: v for k, v in food_prices.items()
-                           if stock_map.get(k, 1) > 0}
+                           if stock_map.get(k, 0) > 0}
     except Exception as e:
         logger.warning("step_mins: stock fetch failed, showing all items: %s", e)
         stock_map = {}
@@ -1361,7 +1361,7 @@ async def launch_session_sale(
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("items", [])}
             food_prices = {k: v for k, v in food_prices.items()
-                           if stock_map.get(k, 1) > 0}
+                           if stock_map.get(k, 0) > 0}
     except Exception as e:
         logger.warning("launch_session_sale: stock fetch failed, showing all items: %s", e)
         stock_map = {}
