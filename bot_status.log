@@ -25458,3 +25458,10 @@ NameError: name '_check_low_balance_alert' is not defined
 2026-05-30 06:52:40,862 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-30 06:52:54,913 [INFO] Background cache refresh done
 2026-05-30 06:53:11,051 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 07:50:30,649 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 07:50:42,098 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:2003> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-30 07:50:42,971 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 07:50:46,334 [INFO] Bot started — PID 1316570
+2026-05-30 07:50:49,296 [INFO] Health server started on port 8080
+2026-05-30 07:50:49,390 [INFO] Pre-warming config and member cache...
