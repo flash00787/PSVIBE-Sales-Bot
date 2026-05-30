@@ -837,7 +837,7 @@ async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
         payments = d.get("payments", {})
         d["kpay"] = payments.get("KPay", 0)
         total_paid = sum(payments.values())
-        d["cash"] = net - total_paid
+        d["cash"] = payments.get("Cash", 0)
         return await _show_payment_review(update, context)
 
     if text == BTN_ADD_PAY:
