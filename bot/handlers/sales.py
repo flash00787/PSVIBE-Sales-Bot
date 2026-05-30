@@ -198,7 +198,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             inv_data = _replit_get("stock/current")
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                             for i in inv_data.get("items", [])}
+                             for i in inv_data.get("data", {}).get("items", [])}
                 if stock_map is not None:
                     prices = {k: v for k, v in prices.items()
                               if stock_map.get(k, 0) > 0}  # 1=unlimited if no stock entry
@@ -717,7 +717,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
         inv_data = _replit_get("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                         for i in inv_data.get("items", [])}
+                         for i in inv_data.get("data", {}).get("items", [])}
             food_prices = {k: v for k, v in food_prices.items()
                            if stock_map.get(k, 0) > 0}
     except Exception as e:
@@ -1359,7 +1359,7 @@ async def launch_session_sale(
         inv_data = _replit_get("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                         for i in inv_data.get("items", [])}
+                         for i in inv_data.get("data", {}).get("items", [])}
             food_prices = {k: v for k, v in food_prices.items()
                            if stock_map.get(k, 0) > 0}
     except Exception as e:
