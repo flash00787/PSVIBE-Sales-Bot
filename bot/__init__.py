@@ -35,7 +35,7 @@ try:
         api_create_booking, api_end_booking, api_cancel_booking,
         api_save_attendance, api_add_console_game, api_remove_console_game,
         api_set_game_disc_count, api_update_game_library_install,
-        api_add_console_to_setting, api_remove_console_from_setting,
+        api_add_console_to_setting, api_remove_console_from_setting, api_update_console_multiplier,
     )
     _HAS_API = True
 except ImportError:
@@ -1010,6 +1010,26 @@ def remove_console_from_setting(console_id: str) -> bool:
         logging.exception("remove_console_from_setting: %s", e)
     return False
 
+
+
+def update_console_multiplier(console_id: str, multiplier: float) -> bool:
+    """Update multiplier for an existing console in Setting!J. Returns True on success."""
+    if _HAS_API:
+        result = api_update_console_multiplier(console_id, multiplier)
+        if result is not None:
+            return True
+        logging.warning("API api_update_console_multiplier() failed, falling back to gspread")
+    try:
+        names = setting_sh.col_values(8)
+        for i, name in enumerate(names):
+            if name.strip() == console_id.strip():
+                row = i + 1
+                setting_sh.update(f"J{row}", [[str(multiplier)]],
+                              value_input_option="USER_ENTERED")
+                return True
+    except Exception as e:
+        logging.exception("update_console_multiplier: %s", e)
+    return False
 
 def get_consoles_from_setting() -> list[dict]:
     """Return all consoles from Setting!H:J as list of dicts."""
