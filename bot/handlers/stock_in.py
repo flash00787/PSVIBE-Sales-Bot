@@ -273,7 +273,7 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 })
             except Exception as ex:
                 logging.warning("Stock-in API write failed (GSheet fallback OK): %s", ex)
-            stock_in_sh.append_row([today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot"],
+            stock_in_sh.append_row([today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot", e["qty"]],
                 value_input_option="USER_ENTERED",
             )
             logging.info("Stock in saved: %s x%d cost=%d", e["item"], e["qty"], e["cost"])
