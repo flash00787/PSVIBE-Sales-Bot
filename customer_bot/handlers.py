@@ -19,7 +19,7 @@ from .data.prompts import (
     PROMO_INTROS, PROMO_EMPTY, PROMO_CLOSING,
 )
 from . import api as _api
-from .ai import _ai_reply
+from .ai import _ai_reply, _detect_ai_bypass, _build_faq_template
 
 # ── Conversation States ───────────────────────────────────────────────────────
 (
@@ -122,8 +122,8 @@ def _bk_step(d: dict, base: int) -> tuple[int, int]:
 
 async def _bk_intercept_menu(text: str, update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Check if text is a menu button.
-    
-    Returns ConversationHandler.END for one-shot commands, 
+
+    Returns ConversationHandler.END for one-shot commands,
     BK_MEMBER_CHECK for booking (to continue conversation flow).
     """
     menu_actions = {
@@ -783,6 +783,28 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
         logging.info("Priority Care triggered for user %s: %r",
                      update.effective_user.id if update.effective_user else "?",
                      text[:60])
+
+    # C1 FAQ Bypass — instant reply for common queries (no AI call)
+    bypass, intent = _detect_ai_bypass(text)
+    if bypass:
+        # For balance/rank checks, fetch member data for personalized reply
+        member_data = None
+        if intent in ("balance_check", "rank_check"):
+            try:
+                from .ai import _search_member
+                member = await _search_member(None)  # search by telegram ID
+                if member.get("found"):
+                    member_data = {
+                        "mins": member.get("balance_mins", 0),
+                        "rank": member.get("rank", "Bronze"),
+                    }
+            except Exception:
+                pass
+        faq_reply = _build_faq_template(intent, member_data)
+        if faq_reply:
+            from telegram.constants import ParseMode
+            await update.message.reply_text(faq_reply, parse_mode=ParseMode.MARKDOWN_V2)
+            return
     await _ai_reply(update, context, text, priority_care=priority_care)
 
 
