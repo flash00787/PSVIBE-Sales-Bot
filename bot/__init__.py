@@ -2172,6 +2172,9 @@ def fetch_new_member_defaults():
     if _HAS_API:
         result = api_fetch_new_member_defaults()
         if result is not None:
+            # API returns {"card_price": N, "base_mins": N} — unpack keys
+            if isinstance(result, dict):
+                return result.get("card_price", 0), result.get("base_mins", 0)
             return result
         logging.warning("API api_fetch_new_member_defaults() failed, falling back to gspread")
     cfg = _get_cfg()

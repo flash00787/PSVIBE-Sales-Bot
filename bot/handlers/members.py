@@ -381,11 +381,11 @@ async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         price = int(str(price).replace(",", ""))
     except (ValueError, TypeError):
-        pass
+        price = 0
     try:
         base_mins = int(str(base_mins).replace(",", ""))
     except (ValueError, TypeError):
-        pass
+        base_mins = 0
     context.user_data["nm_default_price"] = price
     context.user_data["nm_default_mins"]  = base_mins
 
