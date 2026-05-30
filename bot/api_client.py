@@ -517,8 +517,20 @@ def api_add_stock_out(data: dict) -> dict | None:
 
 
 def api_add_stock_in(data: dict) -> dict | None:
-    """Add a stock-in (restock) record."""
-    return _api_call("POST", "inventory/stock-in", json_data=data)
+    """Add a stock-in (restock) record.
+
+    Transforms caller field names to match /api/inventory/stock-in endpoint expectations.
+    """
+    # Map caller field names to endpoint field names
+    mapped: dict = {
+        "item_name": data.get("item_name", ""),
+        "quantity": data.get("qty", 0),
+        "cost": data.get("cost_price", 0),
+        "staff_name": data.get("staff", ""),
+        "supplier": data.get("supplier", data.get("payment", "")),
+        "date": data.get("date", ""),
+    }
+    return _api_call("POST", "inventory/stock-in", json_data=mapped)
 
 
 def api_add_member(data: dict) -> dict | None:
