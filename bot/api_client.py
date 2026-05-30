@@ -485,6 +485,12 @@ def api_remove_console_from_setting(console_id: str) -> dict | None:
     """Remove a console entry from the Setting sheet."""
     return _api_call("DELETE", f"remove_console_from_setting/{console_id}")
 
+
+def api_update_console_multiplier(console_id: str, multiplier: float) -> dict | None:
+    """Update rate multiplier for an existing console in Setting!J."""
+    return _api_call("PUT", f"update_console_multiplier/{console_id}",
+                      json_data={"multiplier": multiplier})
+
 # ===================================================================
 #  Phase 2 – New POST endpoints
 # ===================================================================
