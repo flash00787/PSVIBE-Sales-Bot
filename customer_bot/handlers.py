@@ -121,7 +121,11 @@ def _bk_step(d: dict, base: int) -> tuple[int, int]:
 
 
 async def _bk_intercept_menu(text: str, update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Check if text is a menu button — if so, execute it and return ConversationHandler.END."""
+    """Check if text is a menu button.
+    
+    Returns ConversationHandler.END for one-shot commands, 
+    BK_MEMBER_CHECK for booking (to continue conversation flow).
+    """
     menu_actions = {
         BTN_STATUS:     cmd_console_status,
         BTN_MYBOOKINGS: cmd_mybookings,
@@ -135,7 +139,10 @@ async def _bk_intercept_menu(text: str, update: Update, context: ContextTypes.DE
         BTN_BOOK:       cmd_book,
     }
     if text in menu_actions:
-        await menu_actions[text](update, context)
+        next_state = await menu_actions[text](update, context)
+        # If cmd_book returns BK_MEMBER_CHECK, preserve it for conversation flow
+        if text == BTN_BOOK and next_state is not None:
+            return next_state
         return ConversationHandler.END
     return None
 
