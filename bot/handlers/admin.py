@@ -551,3 +551,4 @@ async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     await update.message.reply_text(msg, parse_mode="Markdown")
     return await show_admin_menu(update, context)
+
