@@ -1272,6 +1272,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
                             _new_bal = max(0, _cur_bal - _w_deduct)
                             member_sh.update_cell(_wi + 1, 8, _new_bal)
+                            _current_j = int(str(_wr[9]).replace(',', '').strip() or 0)
+                            member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
                             logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
                             break
                 except Exception as _be:
@@ -1285,6 +1287,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
                             _new_bal = _cur_bal + _bonus_mins
                             member_sh.update_cell(_wi + 1, 8, _new_bal)
+                            _current_i = int(str(_wr[8]).replace(',', '').strip() or 0)
+                            member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
                             logging.info("bonus_mins: %s +%d mins → %d", _m_id, _bonus_mins, _new_bal)
                             break
                 except Exception as _be:

@@ -1174,6 +1174,8 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 for _ti, _tr in enumerate(_tu_rows):
                     if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
                         member_sh.update_cell(_ti + 1, 8, bal_mins)
+                        _current_i = int(str(_tr[8]).replace(',', '').strip() or 0)
+                        member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)
                         logging.info("topup: %s %d → %d mins", tu_id, prev_bal, bal_mins)
                         break
             except Exception as _te:
@@ -1223,4 +1225,3 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_food_menu(update, context)
 
     return await show_main_menu(update, context)
-
