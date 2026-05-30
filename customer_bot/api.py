@@ -256,11 +256,9 @@ async def _fetch_games(console_type: str = "") -> list[str]:
         status = (g.get("status") or "").strip()
         if not title:
             continue
-        is_not_installed = status.lower() == "not installed"
-        has_console      = "C -" in status or "c -" in status.lower()
-        is_ref_error     = status == "#REF!"
-        if not (is_not_installed or has_console or is_ref_error):
-            continue
+        # FIXED 2026-05-30: MySQL migration — all games now have status "0" from MySQL
+        # Old Sheets-based status filter removed — API server returns clean data
+        # Previously this filter blocked ALL games (status "0" matched nothing)
         titles.append(title)
     return sorted(titles)
 
