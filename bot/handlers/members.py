@@ -377,6 +377,15 @@ async def step_nm_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show default card price from Setting!B20/B21 with a one-tap confirm button."""
     price, base_mins = fetch_new_member_defaults()
+    # Safe int conversion - gspread/API may return strings
+    try:
+        price = int(str(price).replace(",", ""))
+    except (ValueError, TypeError):
+        pass
+    try:
+        base_mins = int(str(base_mins).replace(",", ""))
+    except (ValueError, TypeError):
+        pass
     context.user_data["nm_default_price"] = price
     context.user_data["nm_default_mins"]  = base_mins
 
