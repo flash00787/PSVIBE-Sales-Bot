@@ -1,4 +1,5 @@
 from bot import (
+    log_duration,
     ADJUST_TIME, BTN_ADD_PAY, BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
     BTN_CASH_DOWN, BTN_CLEAR_CART, BTN_CONFIRM_SAVE, BTN_DONE,
     BTN_NO_MORE, BTN_NO_RESELECT, BTN_PAY_DONE, BTN_SKIP_SALES,
@@ -50,6 +51,7 @@ def next_voucher() -> str:
 
 
 
+@log_duration("sales:prompt_member")
 async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
                         search_results: list | None = None, query: str = ""):
     v_no    = context.user_data["v_no"]
@@ -75,6 +77,7 @@ async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
     )
     return MEMBER
 
+@log_duration("sales:prompt_console")
 async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     m_id        = context.user_data.get("m_id", "")
     is_guest    = m_id.strip() == "0 (Guest)"
@@ -104,6 +107,7 @@ async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return CONSOLE
 
+@log_duration("sales:prompt_mins")
 async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     wallet_mins = context.user_data.get("wallet_mins")
     m_id        = context.user_data.get("m_id", "")
@@ -133,6 +137,7 @@ async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return MINS
 
+@log_duration("sales:prompt_adjust_time")
 async def prompt_adjust_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show ±10 min time adjustment step (only for from_session=True flows)."""
     mins = context.user_data.get("mins", 0)
@@ -154,6 +159,7 @@ async def prompt_adjust_time(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return ADJUST_TIME
 
+@log_duration("sales:step_adjust_time")
 async def step_adjust_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle time adjustment input."""
     text = update.message.text.strip()
@@ -193,6 +199,7 @@ async def step_adjust_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return await prompt_food_menu(update, context)
 
+@log_duration("sales:prompt_food_menu")
 async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     prices     = context.user_data.get("food_prices", {})
     cart_items = context.user_data.get("food_items", [])
@@ -254,6 +261,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return FOOD_MENU
 
+@log_duration("sales:prompt_confirm")
 async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d         = context.user_data
     mins      = d["mins"]
@@ -367,6 +375,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return CONFIRM_SUMMARY
 
+@log_duration("sales:prompt_kpay")
 async def prompt_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show dynamic payment method buttons from Setting!Y + Done button."""
     d = context.user_data
@@ -404,6 +413,7 @@ async def prompt_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_METHOD
 
+@log_duration("sales:step_member")
 async def step_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
 
@@ -454,6 +464,7 @@ async def step_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return await prompt_member(update, context)
 
+@log_duration("sales:step_console")
 async def step_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -555,6 +566,7 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     return await launch_session_sale(update, context,
                                      session_cid, m_id, total_mins, session_staff)
 
+@log_duration("sales:step_ds_member_in_session")
 async def step_ds_member_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle session-end choice after member-in-session warning in Daily Sales."""
     text    = update.message.text.strip()
@@ -655,6 +667,7 @@ async def _check_console_in_session(update, context, console_id: str):
     )
     return DS_CONSOLE_IN_SESSION
 
+@log_duration("sales:step_ds_console_in_session")
 async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle Yes/No after console-in-session warning in Daily Sales."""
     text = update.message.text.strip()
@@ -694,6 +707,7 @@ async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAU
     return await _check_console_in_session(update, context,
                                             context.user_data.get("c_id", ""))
 
+@log_duration("sales:step_mins")
 async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -738,6 +752,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["food_stock_map"] = stock_map
     return await prompt_food_menu(update, context)
 
+@log_duration("sales:step_food_menu")
 async def step_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = update.message.text
 
@@ -784,6 +799,7 @@ async def step_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return FOOD_QTY
 
+@log_duration("sales:step_food_qty")
 async def step_food_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -821,6 +837,7 @@ async def step_food_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     })
     return await prompt_food_menu(update, context)
 
+@log_duration("sales:step_confirm")
 async def step_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = update.message.text
 
@@ -833,6 +850,7 @@ async def step_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     return await prompt_confirm(update, context)
 
+@log_duration("sales:step_pay_method")
 async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle payment method selection from dynamic buttons."""
     text = update.message.text.strip()
@@ -880,6 +898,7 @@ async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_AMOUNT
 
+@log_duration("sales:step_pay_amount")
 async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Validate and store payment amount for the selected method."""
     text = update.message.text
@@ -949,6 +968,7 @@ async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_METHOD
 
+@log_duration("sales:step_kpay")
 async def step_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Legacy handler — delegates to PAY_METHOD/PAY_AMOUNT flow."""
     text = update.message.text
@@ -1025,6 +1045,7 @@ def _build_payment_receipt_lines(kpay: int, cash: int, payments: dict) -> str:
         lines.append(f"  • {method}: *{amt:,} Ks*")
     return "💳 Payments:\n" + "\n".join(lines)
 
+@log_duration("sales:step_sale_confirm")
 async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -1355,6 +1376,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     return await show_main_menu(update, context)
 
+@log_duration("sales:cmd_sales_direct")
 async def cmd_sales_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Shortcut: /sales — new sale entry."""
     context.user_data.clear()
@@ -1462,6 +1484,7 @@ async def launch_session_sale(
     context.user_data["shortfall_ks"]   = shortfall_ks
     return await prompt_session_shortfall(update, context)
 
+@log_duration("sales:prompt_session_shortfall")
 async def prompt_session_shortfall(update, context):
     """Show the insufficient-balance screen with Top Up / Cash Down / Skip options."""
     d              = context.user_data
@@ -1498,6 +1521,7 @@ async def prompt_session_shortfall(update, context):
     )
     return SESSION_SHORTFALL
 
+@log_duration("sales:step_session_shortfall")
 async def step_session_shortfall(update, context):
     """Handle the Top Up / Cash Down / Skip choice after insufficient balance."""
     from bot.handlers.console import show_console_menu

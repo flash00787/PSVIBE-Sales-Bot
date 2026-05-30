@@ -1,4 +1,5 @@
 from bot import (
+    log_duration,
     BTN_ASSIGN_REFERRAL, BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
     BTN_CHECK_MEMBER, BTN_CONFIRM_ID, BTN_CONFIRM_SAVE,
     BTN_FIRST_PURCHASE, BTN_NM_CUSTOM, BTN_NM_GIFT, BTN_SKIP_EMAIL,
@@ -98,6 +99,7 @@ async def show_rank_info(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return MM_MENU
 
+@log_duration("members:step_mm_menu")
 async def step_mm_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = update.message.text
 
@@ -149,6 +151,7 @@ async def prompt_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE,
     )
     return MM_LOOKUP
 
+@log_duration("members:step_mm_lookup")
 async def step_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_BACK:
@@ -252,6 +255,7 @@ async def prompt_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_NAME
 
+@log_duration("members:step_nm_name")
 async def step_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -275,6 +279,7 @@ async def prompt_nm_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_PHONE
 
+@log_duration("members:step_nm_phone")
 async def step_nm_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -309,6 +314,7 @@ async def prompt_nm_email(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_EMAIL
 
+@log_duration("members:step_nm_email")
 async def step_nm_email(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -352,6 +358,7 @@ async def prompt_nm_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_ID
 
+@log_duration("members:step_nm_id")
 async def step_nm_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -397,6 +404,7 @@ async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_AMT
 
+@log_duration("members:step_nm_amt")
 async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text    = update.message.text
     d       = context.user_data
@@ -458,6 +466,7 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d.pop("nm_is_gift", None)
     return await prompt_nm_kpay(update, context)
 
+@log_duration("members:step_nm_gift_pin")
 async def step_nm_gift_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Verify admin PIN before allowing Gift / Free Card."""
     text = update.message.text.strip()
@@ -522,6 +531,7 @@ async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_KPAY
 
+@log_duration("members:step_nm_kpay")
 async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -588,6 +598,7 @@ async def prompt_nm_referral(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return NM_REFERRAL
 
+@log_duration("members:step_nm_referral")
 async def step_nm_referral(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle referral code entry. Validate against Card_Wallet col Q."""
     text = update.message.text
@@ -657,6 +668,7 @@ async def _show_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return NM_CONFIRM
 
+@log_duration("members:step_nm_confirm")
 async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -760,6 +772,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 {"range": f"A{cw_row}:H{cw_row}",
                  "values": [[row_no, nm_id, nm_name, phone, "", "", "", bal_mins]]},
                 {"range": f"K{cw_row}", "values": [[nm_staff]]},
+                {"range": f"I{cw_row}", "values": [[nm_mins]]},
             ]
             if nm_email:
                 batch.append({"range": f"M{cw_row}", "values": [[nm_email]]})
@@ -857,6 +870,7 @@ async def prompt_tu_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
     )
     return TU_MEMBER
 
+@log_duration("members:step_tu_member")
 async def step_tu_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -943,6 +957,7 @@ async def prompt_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return TU_AMT
 
+@log_duration("members:step_tu_amt")
 async def step_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -990,6 +1005,7 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return TU_KPAY
 
+@log_duration("members:step_tu_kpay")
 async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -1064,6 +1080,7 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return TU_CONFIRM
 
+@log_duration("members:step_tu_confirm")
 async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:

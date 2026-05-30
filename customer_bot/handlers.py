@@ -161,6 +161,21 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ══════════════════════════════════════════════════════════════════════════════
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # ── Referral deep-link parsing (e.g., ?start=ref_12345) ──
+    referred_by = None
+    if context.args and len(context.args) > 0:
+        arg = context.args[0]
+        if arg.startswith("ref_"):
+            referrer_id = arg[4:]  # Extract "12345" from "ref_12345"
+            context.user_data["referred_by"] = referrer_id
+            referred_by = referrer_id
+            # Fire-and-forget: track referral via API
+            asyncio.create_task(_api._api_post("track_referral", {
+                "referrer_id": referrer_id,
+                "referred_user_id": str(update.effective_user.id),
+                "referred_username": update.effective_user.username or "",
+            }))
+
     asyncio.create_task(_api.track_usage(update.effective_user, "start"))
     name = update.effective_user.first_name or "ညီ/မ"
     uid  = str(update.effective_user.id)
@@ -202,8 +217,13 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"ဟိုင်း *{name}*! ညကျပြီ — PS5 session လေးတက်မလား? 😏",
         ])
 
+    # Add referral welcome if user came via referral link
+    referral_msg = ""
+    if referred_by:
+        referral_msg = f"\n🎉 *Referral* link ကနေ ဝင်လာတာပါနော်! (ref: `{referred_by}`) ကြိုဆိုပါတယ်!"
+
     await update.message.reply_text(
-        time_greet + banner,
+        time_greet + referral_msg + banner,
         parse_mode="Markdown",
         reply_markup=MAIN_MENU_KB,
     )
@@ -792,7 +812,7 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
         if intent in ("balance_check", "rank_check"):
             try:
                 from .ai import _search_member
-                member = await _search_member(None)  # search by telegram ID
+                member = await _search_member(text)  # search by user text
                 if member.get("found"):
                     member_data = {
                         "mins": member.get("balance_mins", 0),

@@ -245,7 +245,7 @@ async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TY
     # Handle ReplyKeyboard text
     if not update.callback_query and text in (BTN_MEM_YES, "ရှိပါတယ်"):
         return await _handle_member_yes_text(update, context)
-    elif not update.callback_query and text in (BTN_MEM_NO, "မရှိဘူး (Guest)"):
+    elif not update.callback_query and (text in (BTN_MEM_NO, "မရှိဘူး (Guest)", "မရှိဘူး") or text.lower() == "no"):
         context.user_data.pop("bk_member_id", None)
         context.user_data.pop("bk_member_data", None)
         await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
@@ -289,14 +289,16 @@ async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_
             context.user_data["bk_name"] = m.get("name", "")
             context.user_data["bk_phone"] = phone
             context.user_data["bk_member_data"] = m
+            context.user_data["bk_expected_phone"] = m.get("phone", "")
             msg = (
-                f"👤 Member found: *{m.get('name', '?')}*\n📞 Phone: *{phone}*\n\n✅ မှန်ကန်ပါသလား?"
+                f"👤 Member found: *{m.get('name', '?')}*\n"
+                f"📞 ဖုန်းနံပါတ်နောက်ဆုံး ၃/၄ လုံးရိုက်ပါ (သို့မဟုတ် 'no' ရိုက်ပြီး ကျော်ပါ):"
             )
             if update.message:
-                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]))
+                await update.message.reply_text(msg, parse_mode="Markdown")
             else:
-                await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]))
-            return BK_DATA_CONFIRM
+                await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
+            return BK_PHONE_VERIFY
         elif len(matched) > 1:
             buttons = []
             for mid, m in matched[:10]:
@@ -310,13 +312,15 @@ async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_
                 await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(buttons))
             return BK_MEMBER_SELECT
 
-    # No phone match — let them pick member by ID
-    msg = "📋 Member ID ရိုက်ထည့်ပေးပါ (သို့မဟုတ် member card နံပါတ်):\n\n_Member card မရှိပါက 'no' ဟုရိုက်ပါ_"
+    # No phone match — go directly to phone verification
+    context.user_data["bk_member_id"] = None
+    context.user_data["bk_expected_phone"] = None
+    msg = "📞 Phone last digits (or type no to skip):"
     if update.message:
-        await update.message.reply_text(msg, parse_mode="Markdown")
+        await update.message.reply_text(msg)
     else:
-        await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
-    return BK_MEMBER_SELECT
+        await update.callback_query.edit_message_text(msg)
+    return BK_PHONE_VERIFY
 
 
 # ── State 1: BK_MEMBER_SELECT — Select a member ──────────────────────────────
@@ -348,7 +352,8 @@ async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return await _lookup_and_confirm_member(update, context, mid)
 
     # Text input: member ID or "no"
-    if text.lower() == "no" or text == "မရှိပါ":
+    NO_MEMBER_TEXTS = {"မရှိပါ", "မရှိဘူး", "မရှိဘူး (Guest)", "Guest"}
+    if text.lower() == "no" or text in NO_MEMBER_TEXTS or text.lower() in {t.lower() for t in NO_MEMBER_TEXTS}:
         await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
         return BK_NAME
 
@@ -410,10 +415,21 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await _cleanup_and_end(update, context)
 
-    member = context.user_data.get("bk_member_data", {})
-    expected_phone = member.get("phone", "")
+    # Allow skip to manual entry
+    NO_MEMBER_TEXTS = {"မရှိပါ", "မရှိဘူး", "မရှိဘူး (Guest)", "Guest"}
+    if text.lower() == "no" or text in NO_MEMBER_TEXTS or text.lower() in {t.lower() for t in NO_MEMBER_TEXTS}:
+        await update.message.reply_text("👤 နာမည်အမှန် ရိုက်ထည့်ပေးပါ:")
+        context.user_data.pop("bk_member_id", None)
+        context.user_data.pop("bk_member_data", None)
+        context.user_data.pop("bk_expected_phone", None)
+        return BK_NAME
 
-    if text == expected_phone or (len(text) >= 4 and expected_phone.endswith(text)):
+    expected_phone = context.user_data.get("bk_expected_phone", "")
+    member = context.user_data.get("bk_member_data", {})
+    if not expected_phone:
+        expected_phone = member.get("phone", "")
+
+    if text == expected_phone or (len(text) >= 3 and expected_phone.endswith(text)):
         await update.message.reply_text(
             "✅ ဖုန်းနံပါတ် မှန်ကန်ပါသည်!",
             reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]),
@@ -1343,6 +1359,22 @@ async def bk_time_text_input(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 
 # ── State -1: BK_END — Fallback handler ────────────────────────────────────
+
+async def bk_catch_all(update, context):
+    """Catch-all: prevent unmatched text from falling through to Gemini AI."""
+    text = (update.message.text or "").strip() if update.message else ""
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
+    if text == BTN_CANCEL or text.lower() == "cancel":
+        context.user_data.clear()
+        await update.message.reply_text("Canceled", reply_markup=MAIN_MENU_KB)
+        return ConversationHandler.END
+    await update.message.reply_text(
+        "Please use menu buttons for booking.\nType cancel to exit.",
+        parse_mode="Markdown",
+    )
+    return None
 
 async def bk_end_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fallback handler for BK_END state (sentinel -1)."""

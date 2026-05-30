@@ -54,12 +54,33 @@ except ImportError:
 #  403 = permission denied → critical log, no retry
 # ─────────────────────────────────────────
 _gsheets_executor = concurrent.futures.ThreadPoolExecutor(
-    max_workers=64, thread_name_prefix="gsheets"
+    max_workers=8, thread_name_prefix="gsheets"
 )
 
 _SHEETS_RETRY_CODES = (429, 500, 503)
 _SHEETS_MAX_RETRIES = 3
 _SHEETS_BASE_DELAY  = 1  # seconds
+
+# ─────────────────────────────────────────
+#  HANDLER DURATION LOGGING
+#  Logs execution time of every state handler
+# ─────────────────────────────────────────
+import time as _time_module
+
+def log_duration(handler_name: str):
+    """Decorator that logs handler execution duration in milliseconds."""
+    def decorator(func):
+        async def wrapper(*args, **kwargs):
+            start = _time_module.monotonic()
+            try:
+                result = await func(*args, **kwargs)
+                return result
+            finally:
+                elapsed = (_time_module.monotonic() - start) * 1000
+                logging.info(f"duration:{handler_name} took {elapsed:.0f}ms")
+        return wrapper
+    return decorator
+
 
 
 class SheetsPermissionError(Exception):

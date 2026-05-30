@@ -1,4 +1,5 @@
 from bot import (
+    log_duration,
     ACCT_TRF_AMT, ACCT_TRF_CONFIRM, ACCT_TRF_FROM, ACCT_TRF_NOTE,
     ACCT_TRF_TO, ADVPAY_ACCT, ADVPAY_AMT, ADVPAY_CONFIRM, ADVPAY_DESC,
     ADVPAY_DUE, ADVPAY_LIST, ADVPAY_NOTE, ADVPAY_PARTY,
@@ -91,6 +92,7 @@ async def show_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return FINANCE_MENU
 
+@log_duration("finance:step_finance_menu")
 async def step_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Route Finance menu choices."""
     choice = update.message.text.strip()
@@ -142,6 +144,7 @@ async def prompt_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_CAT
 
+@log_duration("finance:step_opex_cat")
 async def step_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -162,6 +165,7 @@ async def step_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_DESC
 
+@log_duration("finance:step_opex_desc")
 async def step_opex_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -176,6 +180,7 @@ async def step_opex_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_AMT
 
+@log_duration("finance:step_opex_amt")
 async def step_opex_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -198,6 +203,7 @@ async def step_opex_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_ACCT
 
+@log_duration("finance:step_opex_acct")
 async def step_opex_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -231,6 +237,7 @@ async def step_opex_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_CONFIRM
 
+@log_duration("finance:step_opex_pay")
 async def step_opex_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -263,6 +270,7 @@ async def step_opex_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return OPEX_CONFIRM
 
+@log_duration("finance:step_opex_confirm")
 async def step_opex_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -325,6 +333,7 @@ async def prompt_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_NAME
 
+@log_duration("finance:step_asset_name")
 async def step_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -343,6 +352,7 @@ async def step_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_CAT
 
+@log_duration("finance:step_asset_cat")
 async def step_asset_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -363,6 +373,7 @@ async def step_asset_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_DATE
 
+@log_duration("finance:step_asset_date")
 async def step_asset_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -382,6 +393,7 @@ async def step_asset_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_COST
 
+@log_duration("finance:step_asset_cost")
 async def step_asset_cost(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -412,6 +424,7 @@ async def step_asset_cost(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_QTY
 
+@log_duration("finance:step_asset_qty")
 async def step_asset_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -439,6 +452,7 @@ async def step_asset_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_LIFE
 
+@log_duration("finance:step_asset_life")
 async def step_asset_life(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -473,6 +487,7 @@ async def step_asset_life(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_SALVAGE
 
+@log_duration("finance:step_asset_salvage")
 async def step_asset_salvage(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -498,6 +513,7 @@ async def step_asset_salvage(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return ASSET_PAY
 
+@log_duration("finance:step_asset_pay")
 async def step_asset_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -551,6 +567,7 @@ async def step_asset_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ASSET_CONFIRM
 
+@log_duration("finance:step_asset_confirm")
 async def step_asset_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -691,6 +708,7 @@ async def prompt_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT
     )
     return ASSET_DISPOSE_SEL
 
+@log_duration("finance:step_asset_dispose_sel")
 async def step_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -721,6 +739,7 @@ async def step_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_T
     )
     return ASSET_DISPOSE_DATE
 
+@log_duration("finance:step_asset_dispose_date")
 async def step_asset_dispose_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -747,6 +766,7 @@ async def step_asset_dispose_date(update: Update, context: ContextTypes.DEFAULT_
     )
     return ASSET_DISPOSE_QTY
 
+@log_duration("finance:step_asset_dispose_qty")
 async def step_asset_dispose_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -776,6 +796,7 @@ async def step_asset_dispose_qty(update: Update, context: ContextTypes.DEFAULT_T
     )
     return ASSET_DISPOSE_PROCEEDS
 
+@log_duration("finance:step_asset_dispose_proceeds")
 async def step_asset_dispose_proceeds(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -835,6 +856,7 @@ async def step_asset_dispose_proceeds(update: Update, context: ContextTypes.DEFA
     )
     return ASSET_DISPOSE_CONFIRM
 
+@log_duration("finance:step_asset_dispose_confirm")
 async def step_asset_dispose_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -899,6 +921,7 @@ async def prompt_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE
     )
     return PREPAID_DESC
 
+@log_duration("finance:step_prepaid_desc")
 async def step_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -914,6 +937,7 @@ async def step_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PREPAID_CAT
 
+@log_duration("finance:step_prepaid_cat")
 async def step_prepaid_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -931,6 +955,7 @@ async def step_prepaid_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PREPAID_AMT
 
+@log_duration("finance:step_prepaid_amt")
 async def step_prepaid_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -958,6 +983,7 @@ async def step_prepaid_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PREPAID_ACCT
 
+@log_duration("finance:step_prepaid_acct")
 async def step_prepaid_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1005,6 +1031,7 @@ def _prepaid_add_months(date_str: str, months: int) -> str:
     day = min(d.day, _cal.monthrange(yr, mo)[1])
     return f"{mo}/{day}/{yr}"
 
+@log_duration("finance:step_prepaid_start")
 async def step_prepaid_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1028,6 +1055,7 @@ async def step_prepaid_start(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return PREPAID_END
 
+@log_duration("finance:step_prepaid_end")
 async def step_prepaid_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle period months input; auto-calculate end date."""
     text = update.message.text.strip()
@@ -1071,6 +1099,7 @@ async def step_prepaid_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PREPAID_CONFIRM
 
+@log_duration("finance:step_prepaid_confirm")
 async def step_prepaid_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1118,6 +1147,7 @@ async def prompt_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYP
     )
     return ACCT_TRF_FROM
 
+@log_duration("finance:step_acct_trf_from")
 async def step_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1137,6 +1167,7 @@ async def step_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return ACCT_TRF_TO
 
+@log_duration("finance:step_acct_trf_to")
 async def step_acct_trf_to(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1154,6 +1185,7 @@ async def step_acct_trf_to(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ACCT_TRF_AMT
 
+@log_duration("finance:step_acct_trf_amt")
 async def step_acct_trf_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1182,6 +1214,7 @@ async def step_acct_trf_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ACCT_TRF_NOTE
 
+@log_duration("finance:step_acct_trf_note")
 async def step_acct_trf_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1209,6 +1242,7 @@ async def step_acct_trf_note(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return ACCT_TRF_CONFIRM
 
+@log_duration("finance:step_acct_trf_confirm")
 async def step_acct_trf_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1255,6 +1289,7 @@ async def prompt_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_VENDOR
 
+@log_duration("finance:step_pay_vendor")
 async def step_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1269,6 +1304,7 @@ async def step_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_DESC
 
+@log_duration("finance:step_pay_desc")
 async def step_pay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1283,6 +1319,7 @@ async def step_pay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_AMT
 
+@log_duration("finance:step_pay_amt")
 async def step_pay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1310,6 +1347,7 @@ async def step_pay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_DUE
 
+@log_duration("finance:step_pay_due")
 async def step_pay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1329,6 +1367,7 @@ async def step_pay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_ACCT
 
+@log_duration("finance:step_pay_acct")
 async def step_pay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1358,6 +1397,7 @@ async def step_pay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return PAY_CONFIRM
 
+@log_duration("finance:step_pay_confirm")
 async def step_pay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1404,6 +1444,7 @@ async def prompt_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_CUST
 
+@log_duration("finance:step_rec_cust")
 async def step_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1418,6 +1459,7 @@ async def step_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_DESC
 
+@log_duration("finance:step_rec_desc")
 async def step_rec_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1432,6 +1474,7 @@ async def step_rec_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_AMT
 
+@log_duration("finance:step_rec_amt")
 async def step_rec_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1459,6 +1502,7 @@ async def step_rec_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_DUE
 
+@log_duration("finance:step_rec_due")
 async def step_rec_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1478,6 +1522,7 @@ async def step_rec_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_ACCT
 
+@log_duration("finance:step_rec_acct")
 async def step_rec_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1507,6 +1552,7 @@ async def step_rec_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REC_CONFIRM
 
+@log_duration("finance:step_rec_confirm")
 async def step_rec_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1695,6 +1741,7 @@ async def prompt_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE
     )
     return ADVPAY_PARTY
 
+@log_duration("finance:step_advpay_party")
 async def step_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1708,6 +1755,7 @@ async def step_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_DESC
 
+@log_duration("finance:step_advpay_desc")
 async def step_advpay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1725,6 +1773,7 @@ async def step_advpay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_AMT
 
+@log_duration("finance:step_advpay_amt")
 async def step_advpay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1751,6 +1800,7 @@ async def step_advpay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_ACCT
 
+@log_duration("finance:step_advpay_acct")
 async def step_advpay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1774,6 +1824,7 @@ async def step_advpay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_DUE
 
+@log_duration("finance:step_advpay_due")
 async def step_advpay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1790,6 +1841,7 @@ async def step_advpay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_NOTE
 
+@log_duration("finance:step_advpay_note")
 async def step_advpay_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1820,6 +1872,7 @@ async def step_advpay_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_CONFIRM
 
+@log_duration("finance:step_advpay_confirm")
 async def step_advpay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1892,6 +1945,7 @@ async def show_advpay_settle(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return ADVPAY_LIST
 
+@log_duration("finance:step_advpay_list")
 async def step_advpay_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1934,6 +1988,7 @@ async def step_advpay_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADVPAY_SETTLE_CONFIRM
 
+@log_duration("finance:step_advpay_settle_confirm")
 async def step_advpay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -1970,15 +2025,19 @@ async def step_advpay_settle_confirm(update: Update, context: ContextTypes.DEFAU
         await update.message.reply_text(f"❌ Error: {e}")
     return await show_finance_menu(update, context)
 
+@log_duration("finance:step_pay_settle_list")
 async def step_pay_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_list(update, context, "payable")
 
+@log_duration("finance:step_rec_settle_list")
 async def step_rec_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_list(update, context, "receivable")
 
+@log_duration("finance:step_pay_settle_acct")
 async def step_pay_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_acct(update, context, "payable")
 
+@log_duration("finance:step_rec_settle_acct")
 async def step_rec_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_acct(update, context, "receivable")
 
@@ -2027,9 +2086,11 @@ async def _handle_settle_confirm(update: Update, context: ContextTypes.DEFAULT_T
         await update.message.reply_text(f"❌ Error: {e}")
     return await show_finance_menu(update, context)
 
+@log_duration("finance:step_pay_settle_confirm")
 async def step_pay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_confirm(update, context, "payable")
 
+@log_duration("finance:step_rec_settle_confirm")
 async def step_rec_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _handle_settle_confirm(update, context, "receivable")
 
@@ -2102,6 +2163,7 @@ async def prompt_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SHARE_NAME
 
+@log_duration("finance:step_share_name")
 async def step_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2124,6 +2186,7 @@ async def step_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SHARE_ROLE
 
+@log_duration("finance:step_share_role")
 async def step_share_role(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2143,6 +2206,7 @@ async def step_share_role(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SHARE_CAP
 
+@log_duration("finance:step_share_cap")
 async def step_share_cap(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2172,6 +2236,7 @@ async def step_share_cap(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SHARE_OWN
 
+@log_duration("finance:step_share_own")
 async def step_share_own(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2206,6 +2271,7 @@ async def step_share_own(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SHARE_CONFIRM
 
+@log_duration("finance:step_share_confirm")
 async def step_share_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2257,6 +2323,7 @@ async def prompt_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return CAP_ACCT
 
+@log_duration("finance:step_cap_acct")
 async def step_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2276,6 +2343,7 @@ async def step_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return CAP_AMT
 
+@log_duration("finance:step_cap_amt")
 async def step_cap_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2311,6 +2379,7 @@ async def step_cap_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return CAP_CONFIRM
 
+@log_duration("finance:step_cap_confirm")
 async def step_cap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -2376,6 +2445,7 @@ async def show_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYP
     )
     return FIN_REPORT_MENU
 
+@log_duration("finance:step_fin_report_menu")
 async def step_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = update.message.text.strip()
     if choice == BTN_FIN_BACK:

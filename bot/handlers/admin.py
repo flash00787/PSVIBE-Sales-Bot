@@ -1,4 +1,5 @@
 from bot import (
+    log_duration,
     ADMIN_MENU, BTN_ADMIN_ATTEND, BTN_ADMIN_BOOK, BTN_ADMIN_CF,
     BTN_ADMIN_LIB, BTN_ADMIN_PNL, BTN_ADMIN_SAL_ADV, BTN_BACK_MAIN,
     BTN_CONSOLES, BTN_CON_MANAGE, BTN_FINANCE, BTN_PAYROLL,
@@ -28,6 +29,7 @@ async def cmd_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Shortcut: /admin — Admin Panel PIN prompt."""
     return await _pin_then("admin", "Admin Panel", update, context)
 
+@log_duration("admin:step_admin_pin")
 async def step_admin_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Verify Admin PIN — delete message then route."""
     entered = update.message.text.strip()
@@ -75,6 +77,7 @@ async def show_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return ADMIN_MENU
 
+@log_duration("admin:step_admin_menu")
 async def step_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Route Admin menu choices."""
     choice = update.message.text.strip()
@@ -552,4 +555,3 @@ async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     await update.message.reply_text(msg, parse_mode="Markdown")
     return await show_admin_menu(update, context)
-

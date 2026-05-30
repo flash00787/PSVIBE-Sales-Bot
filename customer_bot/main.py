@@ -37,6 +37,7 @@ from customer_bot.handlers import (
     handle_menu_buttons, show_main_menu, BTN_BOOK,
 )
 from customer_bot.booking_handlers import (
+    bk_catch_all,
     bk_member_check_entry, bk_member_select, bk_phone_verify, bk_data_confirm,
     bk_name_entry, bk_phone_entry, bk_date_select, bk_time_select,
     bk_console_select, bk_duration_select, bk_game_select, bk_console_pref,
@@ -163,7 +164,10 @@ def _register_handlers(app: Application) -> None:
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_end_handler),
             ],
         },
-        fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        fallbacks=[
+            CommandHandler("cancel", cmd_cancel),
+            MessageHandler(filters.TEXT & ~filters.COMMAND, bk_catch_all),
+        ],
     )
     app.add_handler(bk_conv)
 
