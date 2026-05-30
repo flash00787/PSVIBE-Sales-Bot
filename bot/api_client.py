@@ -75,7 +75,9 @@ def _api_call(
 
     # Build URL:  {base}/api/{path}?param=... (auth via X-API-Key header)
     path_clean = path.lstrip("/")
-    url = f"{API_BASE_URL}/api/{path_clean}"
+    # URL-encode each path segment (fixes spaces in console IDs like "C - 01")
+    path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
+    url = f"{API_BASE_URL}/api/{path_encoded}"
 
     qs_parts = {}
     if params:
