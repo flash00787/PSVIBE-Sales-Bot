@@ -28,7 +28,8 @@ async def show_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
     count = len(cons)
     kb    = [
         [BTN_LIST_CONSOLE, BTN_ADD_CONSOLE],
-        [BTN_DEL_CONSOLE,  BTN_BACK],
+        [BTN_EDIT_MULT,    BTN_DEL_CONSOLE],
+        [BTN_BACK],
     ]
     await update.message.reply_text(
         f"⚙️ *Console စီမံ* ({count} console)\n"
@@ -78,6 +79,20 @@ async def step_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
             reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
         )
         return CON_DEL_SELECT
+    if choice == BTN_EDIT_MULT:
+        cons = get_consoles_from_setting()
+        if not cons:
+            await update.message.reply_text("\u2139\ufe0f \u1015\u103c\u1004\u1039\u101b\u1031\u102c\u1000\u1039\u101b\u1014\u1039 Console \u1019\u103b\u101b\u102d\u101e\u101e\u1019\u1039\u1016\u102b")
+            return await show_con_mgmt_menu(update, context)
+        context.user_data["edit_mult_cons"] = cons
+        kb = [[c["id"]] for c in cons] + [[BTN_BACK]]
+        await update.message.reply_text(
+            "\u2699\ufe0f *Mult \u1015\u103c\u1004\u1039\u1019\u102a*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+            "Mult \u1015\u103c\u1004\u1039\u1019\u102a Console \u101b\u103d\u1031\u1038\u1015\u102b:",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+        )
+        return CON_EDIT_MULT_SELECT
     return await show_con_mgmt_menu(update, context)
 
 async def step_con_add_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -137,6 +152,59 @@ async def step_con_add_mult(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await update.message.reply_text("❌ Save မအောင်မြင်ပါ — GSheet စစ်ကြည့်ပါ")
     return await show_con_mgmt_menu(update, context)
+
+async def step_con_edit_mult_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_BACK:
+        return await show_con_mgmt_menu(update, context)
+    cons = context.user_data.get("edit_mult_cons", [])
+    target = next((c for c in cons if c["id"] == text), None)
+    if not target:
+        await update.message.reply_text("\u26a0\ufe0f Keyboard \u1019\u103e \u101b\u103d\u1031\u1038\u1015\u1034\u1015\u102b")
+        return CON_EDIT_MULT_SELECT
+    context.user_data["edit_mult_console"] = target
+    current_mult = target.get("mult", "1.0")
+    kb = [["1.0", "1.5", "2.0"], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"\u2699\ufe0f *Mult \u1015\u103c\u1004\u1039\u1019\u102a*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+        f"\U0001f579\ufe0f <b>{target['id']}</b>\n"
+        f"\u26b2\ufe0f \u2039\u101c\u103d\u1010\u1039\u1038 Mult: <b>{current_mult}</b>\n\n"
+        "Mult \u1010\u1014\u1039\u1016\u102c\u101b\u102d\u1019\u1039 \u101b\u102d\u1021\u1039\u1015\u102b\u1004\u1039\u1019\u103c\u1031\u1018\u102b:\n"
+        "_(\u1014\u103d\u1019\u1039\u1019\u104a 1.0 > Normal \u00b7 1.5 > Premium \u00b7 2.0 > VR/Pro)_",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return CON_EDIT_MULT_VALUE
+
+
+async def step_con_edit_mult_value(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await show_con_mgmt_menu(update, context)
+    try:
+        mult = float(text)
+    except ValueError:
+        await update.message.reply_text("\u26a0\ufe0f \u1002\u1012\u1014\u1039\u1038 \u1011\u102d\u1034\u1000\u1039\u1015\u102b (\u1025\u1019\u1039\u1019\u104a: 1.0)")
+        return CON_EDIT_MULT_VALUE
+    target = context.user_data.get("edit_mult_console", {})
+    cid = target.get("id", "")
+    if not cid:
+        return await show_con_mgmt_menu(update, context)
+    ok = update_console_multiplier(cid, mult)
+    if ok:
+        await update.message.reply_text(
+            f"\u2705 <b>Mult \u1015\u103c\u1004\u1039\u1014\u1010\u1039!</b>\n"
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+            f"\U0001f579\ufe0f <b>{cid}</b>\n"
+            f"\u26b2\ufe0f New Mult: <b>\u00d7{mult:g}</b>",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("\u274c Save \u1019\u1021\u1031\u102c\u1004\u1039\u1019\u1000\u1039\u1015\u102b\u1019\u1039\u101e\u1031\u1019\u102c\u1021\u101b\u103e\u1014\u1039\u1005\u1005\u1039\u1000\u103c\u1019\u1039\u1015\u102b")
+    context.user_data.pop("edit_mult_console", None)
+    context.user_data.pop("edit_mult_cons", None)
+    return await show_con_mgmt_menu(update, context)
+
 
 async def step_con_del_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()

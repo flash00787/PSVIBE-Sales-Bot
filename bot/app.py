@@ -10,7 +10,7 @@ from bot import (
     ATTEND_STAFF, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_LINK,
     BOOK_MEMBER, BOOK_MINS, BUNDLE_FOC, CAP_ACCT, CAP_AMT, CAP_CONFIRM,
     CONFIRM_SUMMARY, CONSOLE, CONSOLE_MENU, CON_ADD_ID, CON_ADD_MULT,
-    CON_ADD_TYPE, CON_DEL_SELECT, CON_MGMT_MENU, DISCOUNT, DISC_SELECT,
+    CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, DISCOUNT, DISC_SELECT,
     DISC_SET_QTY, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION,
     END_SESSION_SELECT, FINANCE_MENU, FIN_REPORT_MENU, FOOD_MENU,
     FOOD_QTY, GAME_ADD_GENRE, GAME_ADD_PLATFORM, GAME_ADD_STATUS,
@@ -273,6 +273,8 @@ def main():
             CON_ADD_TYPE:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_add_type)],
             CON_ADD_MULT:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_add_mult)],
             CON_DEL_SELECT:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_del_select)],
+            CON_EDIT_MULT_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_edit_mult_select)],
+            CON_EDIT_MULT_VALUE:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_edit_mult_value)],
 
             # ── Session → Daily Sales bridge ──
             SESSION_SHORTFALL:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_session_shortfall)],
