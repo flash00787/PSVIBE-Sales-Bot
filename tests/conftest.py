@@ -98,6 +98,14 @@ def _build_bot_mock():
     bot.fetch_console_games = MagicMock(return_value=[])
     bot.get_consoles_from_setting = MagicMock(return_value=[])
     bot.fetch_promotions_cached = MagicMock(return_value=[])
+    # -- Async hot-path mocks (Phase: async migration) --
+    bot.fetch_base_rate_async = AsyncMock(return_value=5000)
+    bot.fetch_wallet_mins_async = AsyncMock(return_value=100)
+    bot.fetch_food_prices_async = AsyncMock(return_value={})
+    bot.fetch_food_costs_async = AsyncMock(return_value={})
+    bot.fetch_console_multiplier_async = AsyncMock(return_value=1.5)
+    bot.fetch_members_async = AsyncMock(return_value=['PSV_A001', 'PSV_A002', 'PSV_A003'])
+    bot.fetch_allowed_staff_ids_async = AsyncMock(return_value=[12345])
     bot.step_hdr = MagicMock(return_value='📋 Step 1/6\n')
 
     bot.cmd_cancel = AsyncMock(return_value=-1)

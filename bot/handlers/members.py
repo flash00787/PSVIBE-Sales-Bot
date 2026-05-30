@@ -13,6 +13,8 @@ from bot import (
     member_sh, next_member_id, next_member_row_no, next_write_row,
     now_mmt, rank_emoji, save_receipt_json, show_main_menu, step_hdr,
     today_str, topup_sh, update_member_effective_rate,
+    fetch_members_async,
+    fetch_base_rate_async,
 )
 
 try:
@@ -130,7 +132,7 @@ async def step_mm_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def prompt_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE,
                            search_results: list | None = None, query: str = ""):
-    members = fetch_members()
+    members = await fetch_members_async()
     if search_results is not None:
         display = search_results
         hint    = f"🔍 *\"{query}\"* — {len(display)} ရလဒ် တွေ့သည်\n" if display else f"❌ *\"{query}\"* — မတွေ့ပါ — ထပ်ရှာပါ\n"
@@ -153,7 +155,7 @@ async def step_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_mm_menu(update, context)
 
     member_id = text.strip()
-    members   = fetch_members()
+    members   = await fetch_members_async()
     if member_id not in members:
         # Treat input as search query — filter by substring match
         q       = member_id.lower()
@@ -838,7 +840,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def prompt_tu_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
                            search_results: list | None = None, query: str = ""):
-    members = fetch_members()
+    members = await fetch_members_async()
     if search_results is not None:
         display = search_results
         hint    = f"🔍 *\"{query}\"* — {len(display)} ရလဒ် တွေ့သည်\n" if display else f"❌ *\"{query}\"* — မတွေ့ပါ — ထပ်ရှာပါ\n"
@@ -863,7 +865,7 @@ async def step_tu_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_mm_menu(update, context)
 
     member_id = text.strip()
-    members   = fetch_members()
+    members   = await fetch_members_async()
 
     # If not an exact ID, treat as search query
     if member_id not in members:
@@ -959,7 +961,7 @@ async def step_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚠️ ပမာဏ 0 ထက်ကြီးရမည် -")
         return TU_AMT
 
-    hourly_rate = fetch_base_rate()
+    hourly_rate = await fetch_base_rate_async()
     base_mins   = round((amt * 60) / hourly_rate) if hourly_rate else 0
     rank        = context.user_data.get("tu_rank", "Warrior")
     bonus_table = context.user_data.get("tu_bonus_table") or fetch_bonus_table()
@@ -1190,7 +1192,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         eff_cost    = session_snap.get("effective_cost_mins", session_snap.get("mins", 0))
         total_mins  = session_snap.get("actual_play_mins", session_snap.get("mins", 0))
         multiplier  = session_snap.get("multiplier", 1.0)
-        base_rate   = session_snap.get("base_rate", fetch_base_rate())
+        base_rate   = session_snap.get("base_rate", await fetch_base_rate_async())
 
         if new_wallet >= eff_cost:
             # Now sufficient after top-up — normal wallet flow

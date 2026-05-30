@@ -11,6 +11,7 @@ which secures all authenticated endpoints.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import re as _re_date
 import logging
@@ -124,6 +125,80 @@ def _api_call(
                     method, path_clean, attempt + 1, DEFAULT_MAX_RETRIES + 1, exc, delay,
                 )
                 time.sleep(delay)
+            else:
+                logger.warning(
+                    'API %s %s failed after %d attempts: %s',
+                    method, path_clean, DEFAULT_MAX_RETRIES + 1, exc,
+                )
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Async internal helpers
+# ---------------------------------------------------------------------------
+
+def _sync_urlopen(req: urllib.request.Request, timeout: int) -> bytes:
+    """Perform a synchronous urlopen + read — used as asyncio.to_thread target."""
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read()
+
+
+async def _api_call_async(
+    method: str,
+    path: str,
+    params: dict | None = None,
+    json_data: dict | None = None,
+    timeout: int = DEFAULT_TIMEOUT,
+) -> dict | None:
+    """Async version of _api_call — runs urllib in thread pool to avoid blocking event loop."""
+    if not API_BASE_URL:
+        logger.warning("API_BASE_URL is not set – skipping API call %s %s", method, path)
+        return None
+
+    path_clean = path.lstrip("/")
+    path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
+    url = f"{API_BASE_URL}/api/{path_encoded}"
+
+    qs_parts = {}
+    if params:
+        qs_parts.update(params)
+    if qs_parts:
+        query = urllib.parse.urlencode(qs_parts)
+        url = f"{url}?{query}"
+
+    data_bytes = None
+    headers: dict[str, str] = {}
+    if API_KEY:
+        headers["X-API-Key"] = API_KEY
+    if json_data is not None:
+        data_bytes = json.dumps(json_data, ensure_ascii=False).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+
+    req = urllib.request.Request(url, data=data_bytes, method=method, headers=headers)
+
+    last_error: Exception | None = None
+    for attempt in range(DEFAULT_MAX_RETRIES + 1):
+        try:
+            body = await asyncio.to_thread(_sync_urlopen, req, timeout)
+            data = json.loads(body.decode("utf-8"))
+            if isinstance(data, dict) and 'success' in data:
+                if not data.get('success'):
+                    logger.warning(
+                        'API %s %s responded success=false: %s',
+                        method, path_clean, data.get('error', 'unknown'),
+                    )
+                    return None
+                return data.get('data')
+            return data
+        except Exception as exc:
+            last_error = exc
+            if attempt < DEFAULT_MAX_RETRIES:
+                delay = DEFAULT_RETRY_BASE_DELAY * (2 ** attempt)
+                logger.warning(
+                    'API %s %s attempt %d/%d failed: %s, retrying in %.1fs...',
+                    method, path_clean, attempt + 1, DEFAULT_MAX_RETRIES + 1, exc, delay,
+                )
+                await asyncio.sleep(delay)
             else:
                 logger.warning(
                     'API %s %s failed after %d attempts: %s',
@@ -313,6 +388,71 @@ def api_fetch_referral_code(member_id: str) -> dict | None:
 def api_fetch_sheets_config() -> dict | None:
     """Fetch spreadsheet configuration metadata."""
     return _api_call("GET", "sheets/config")
+
+
+# ===================================================================
+#  GET  endpoints (async)
+# ===================================================================
+
+
+async def api_fetch_wallet_mins_async(member_id: str) -> dict | None:
+    """Async: Fetch wallet minutes for a member."""
+    return await _api_call_async("GET", f"fetch_wallet_mins/{member_id}")
+
+
+async def api_fetch_members_async() -> dict | None:
+    """Async: Fetch all member records."""
+    return await _api_call_async("GET", "fetch_members")
+
+
+async def api_fetch_member_data_async(member_id: str) -> dict | None:
+    """Async: Fetch full data for a single member."""
+    return await _api_call_async("GET", f"fetch_member_data/{member_id}")
+
+
+async def api_fetch_base_rate_async() -> dict | None:
+    """Async: Fetch the default hourly rate."""
+    return await _api_call_async("GET", "fetch_base_rate")
+
+
+async def api_fetch_food_prices_async() -> dict | None:
+    """Async: Fetch food price table."""
+    return await _api_call_async("GET", "fetch_food_prices")
+
+
+async def api_fetch_food_costs_async() -> dict | None:
+    """Async: Fetch food cost table."""
+    return await _api_call_async("GET", "fetch_food_costs")
+
+
+async def api_fetch_console_multiplier_async(console_id: str) -> dict | None:
+    """Async: Fetch rate multiplier for a console."""
+    return await _api_call_async("GET", f"fetch_console_multiplier/{console_id}")
+
+
+async def api_fetch_allowed_staff_ids_async() -> dict | None:
+    """Async: Fetch the list of allowed staff Telegram IDs."""
+    return await _api_call_async("GET", "fetch_allowed_staff_ids")
+
+
+async def api_fetch_console_status_async() -> dict | None:
+    """Async: Fetch active/free status for all consoles."""
+    return await _api_call_async("GET", "fetch_console_status")
+
+
+async def api_fetch_rank_thresholds_async() -> dict | None:
+    """Async: Fetch rank/tier thresholds."""
+    return await _api_call_async("GET", "fetch_rank_thresholds")
+
+
+async def api_fetch_bonus_table_async() -> dict | None:
+    """Async: Fetch bonus minutes table."""
+    return await _api_call_async("GET", "fetch_bonus_table")
+
+
+async def api_fetch_new_member_defaults_async() -> dict | None:
+    """Async: Fetch default values for new members."""
+    return await _api_call_async("GET", "fetch_new_member_defaults")
 
 
 # ===================================================================

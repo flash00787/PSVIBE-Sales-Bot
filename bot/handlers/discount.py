@@ -5,6 +5,7 @@ from bot import (
     BTN_BACK, BTN_CANCEL, BTN_MANUAL_DISC, BTN_PROMO_APPLY,
     BTN_SKIP_DISC, BUNDLE_FOC, DISCOUNT, NAV_ROW, PROMO_SELECT,
     cmd_cancel, fetch_base_rate, fetch_promotions_cached,
+    fetch_base_rate_async,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -29,7 +30,7 @@ async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # For member wallet sessions: game_amt=0, compute wallet game equivalent value
     # base_rate is always set at step_mins (line 1726), so d.get is safe
-    base_rate = d.get("base_rate") or fetch_base_rate()
+    base_rate = d.get("base_rate") or await fetch_base_rate_async()
     mult      = d.get("multiplier", 1.0)
     eff_mins  = d.get("effective_cost_mins") or d.get("mins", 0)
 

@@ -1,6 +1,6 @@
 """Tests for main_menu.py — Main menu navigation handlers."""
 import pytest, sys
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 
 class TestMainMenuHandler:
@@ -8,7 +8,7 @@ class TestMainMenuHandler:
     @pytest.mark.asyncio
     async def test_show_main_menu_authorized(self, mock_update, mock_context):
         """Authorized user should get menu with keyboard."""
-        sys.modules['bot'].fetch_allowed_staff_ids.return_value = [12345]
+        sys.modules['bot'].fetch_allowed_staff_ids_async = AsyncMock(return_value=[12345])
         mock_update.effective_user.id = 12345
         from bot.handlers.main_menu import show_main_menu
         result = await show_main_menu(mock_update, mock_context)
@@ -17,7 +17,7 @@ class TestMainMenuHandler:
     @pytest.mark.asyncio
     async def test_show_main_menu_unauthorized(self, mock_update, mock_context):
         """Unauthorized user gets access denied."""
-        sys.modules['bot'].fetch_allowed_staff_ids.return_value = [99999]
+        sys.modules['bot'].fetch_allowed_staff_ids_async = AsyncMock(return_value=[99999])
         mock_update.effective_user.id = 99998
         from bot.handlers.main_menu import show_main_menu
         result = await show_main_menu(mock_update, mock_context)
@@ -34,7 +34,7 @@ class TestMainMenuHandler:
     @pytest.mark.asyncio
     async def test_main_menu_clears_user_data(self, mock_update, mock_context):
         """show_main_menu should clear user_data."""
-        sys.modules['bot'].fetch_allowed_staff_ids.return_value = [12345]
+        sys.modules['bot'].fetch_allowed_staff_ids_async = AsyncMock(return_value=[12345])
         mock_context.user_data = {"old": "state"}
         mock_update.effective_user.id = 12345
         from bot.handlers.main_menu import show_main_menu
@@ -44,7 +44,7 @@ class TestMainMenuHandler:
     @pytest.mark.asyncio
     async def test_main_menu_keyboard_layout(self, mock_update, mock_context):
         """Menu should include keyboard markup."""
-        sys.modules['bot'].fetch_allowed_staff_ids.return_value = [12345]
+        sys.modules['bot'].fetch_allowed_staff_ids_async = AsyncMock(return_value=[12345])
         mock_update.effective_user.id = 12345
         from bot.handlers.main_menu import show_main_menu
         await show_main_menu(mock_update, mock_context)

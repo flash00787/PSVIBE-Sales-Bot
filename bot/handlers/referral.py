@@ -4,6 +4,7 @@ from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, MM_MENU, REFERRAL_CODE,
     cmd_cancel, fetch_members, fetch_referral_code, member_sh,
     save_referral_code,
+    fetch_members_async,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -54,7 +55,7 @@ async def step_referral_code(update: Update, context: ContextTypes.DEFAULT_TYPE)
         return await show_mm_menu(update, context)
 
     # Validate member still exists
-    members = fetch_members()
+    members = await fetch_members_async()
     if member_id not in members:
         await update.message.reply_text(
             "⚠️ Member မတွေ့ပါ — ထပ်ကြိုးစာပါ",

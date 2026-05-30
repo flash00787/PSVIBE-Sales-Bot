@@ -3,6 +3,8 @@ from bot import (
     BTN_SI_SPLIT, MAIN_MENU, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM,
     SI_PAY, SI_PAY_SPLIT, SI_QTY, fetch_food_costs, fetch_food_prices,
     now_mmt, show_main_menu, stock_in_sh,
+    fetch_food_prices_async,
+    fetch_food_costs_async,
 )
 
 try:
@@ -26,7 +28,7 @@ from datetime import datetime, timezone, timedelta
 
 async def show_si_items(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show food item list for Stock In (restock) recording."""
-    food_prices = fetch_food_prices()
+    food_prices = await fetch_food_prices_async()
     context.user_data["si_food_prices"] = food_prices
     names = list(food_prices.keys())
     rows  = [names[i: i + 2] for i in range(0, len(names), 2)]
@@ -69,7 +71,7 @@ async def step_si_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return SI_QTY
     context.user_data["si_qty"] = qty
     item = context.user_data.get("si_item", "")
-    food_costs = fetch_food_costs()
+    food_costs = await fetch_food_costs_async()
     default_cost = food_costs.get(item, 0)
     hint = f" (Default: {default_cost:,} Ks)" if default_cost else ""
     kb = [[BTN_BACK_MAIN]]

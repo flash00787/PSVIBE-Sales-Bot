@@ -9,6 +9,7 @@ from bot import (
     now_mmt, sales_sh, show_admin_menu, show_console_menu,
     show_main_menu, stock_in_sh, stock_sh, topup_sh,
     show_stock_menu,    show_stock_menu,
+        fetch_base_rate_async,
 )
 
 """PS VIBE Bot — Handler module.

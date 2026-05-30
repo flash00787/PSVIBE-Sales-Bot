@@ -37,6 +37,7 @@ from bot import (
     STOCK_MENU, STOCK_PIN, STOCK_QTY, TU_AMT, TU_CONFIRM, TU_KPAY,
     TU_MEMBER, WL_MENU, _bg_cache_refresh, _get_cfg, _get_member_rows,
     _load_cfg, _load_members, fetch_allowed_staff_ids,
+    fetch_allowed_staff_ids_async,
 )
 
 # app.py imports
@@ -65,7 +66,7 @@ import bot as _bot_module
 async def _auth_middleware(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Block all updates from users not in the staff whitelist (loaded from Google Sheets)."""
     user = update.effective_user
-    allowed = fetch_allowed_staff_ids()
+    allowed = await fetch_allowed_staff_ids_async()
     if user and user.id in allowed:
         return  # authorized — let the update pass through
     # Unauthorized — send a single rejection message and swallow the update

@@ -13,6 +13,12 @@ from bot import (
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
     next_voucher, next_write_row, now_mmt, sales_sh, save_receipt_json,
     show_console_menu, show_main_menu, step_hdr, stock_sh, prompt_book_console, prompt_discount, today_str,
+    fetch_wallet_mins_async,
+    fetch_members_async,
+    fetch_base_rate_async,
+    fetch_food_prices_async,
+    fetch_food_costs_async,
+    fetch_console_multiplier_async,
 )
 
 try:
@@ -47,7 +53,7 @@ def next_voucher() -> str:
 async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
                         search_results: list | None = None, query: str = ""):
     v_no    = context.user_data["v_no"]
-    members = fetch_members()
+    members = await fetch_members_async()
 
     if search_results is not None:
         # Filtered view after a search query
@@ -251,7 +257,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d         = context.user_data
     mins      = d["mins"]
-    base_rate = fetch_base_rate()
+    base_rate = await fetch_base_rate_async()
     d["base_rate"] = base_rate
     is_guest  = d["m_id"].strip() == "0 (Guest)"
 
@@ -262,7 +268,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_sec = "\n".join(food_lines) if food_lines else "  • မရှိပါ"
 
     if is_guest:
-        multiplier   = fetch_console_multiplier(d.get("c_id", ""))
+        multiplier   = await fetch_console_multiplier_async(d.get("c_id", ""))
         game_amt     = round((mins * base_rate * multiplier) / 60)
         net_total    = game_amt + food_total
         mult_display = f"{multiplier:g}"
@@ -311,7 +317,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 # previous cash-down session), redirect to shortfall screen instead of
                 # allowing a negative-balance save.
                 if remaining < 0:
-                    base_rate_val = d.get("base_rate", fetch_base_rate())
+                    base_rate_val = d.get("base_rate", await fetch_base_rate_async())
                     shortfall_mins = -remaining
                     shortfall_ks   = round(shortfall_mins * base_rate_val / 60)
                     d["shortfall_mins"] = shortfall_mins
@@ -408,13 +414,13 @@ async def step_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_BACK:
         return await prompt_member(update, context)
 
-    members = fetch_members()
+    members = await fetch_members_async()
 
     # ── Exact match (keyboard tap or exact type) ──────────────────────────
     if text == "0 (Guest)" or text in members:
         context.user_data["m_id"] = text
         if text != "0 (Guest)":
-            context.user_data["wallet_mins"] = fetch_wallet_mins(text)
+            context.user_data["wallet_mins"] = await fetch_wallet_mins_async(text)
         else:
             context.user_data["wallet_mins"] = None
         if text != "0 (Guest)":
@@ -428,7 +434,7 @@ async def step_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(matches) == 1:
         # Auto-select the single result
         context.user_data["m_id"] = matches[0]
-        context.user_data["wallet_mins"] = fetch_wallet_mins(matches[0])
+        context.user_data["wallet_mins"] = await fetch_wallet_mins_async(matches[0])
         await update.message.reply_text(
             f"✅ *{matches[0]}* ကို ရွေးချယ်လိုက်သည်",
             parse_mode="Markdown",
@@ -585,7 +591,7 @@ async def step_ds_member_in_session(update: Update, context: ContextTypes.DEFAUL
             bk_id   = ac.get("booking_id", "")
             start_t = ac.get("start", "")
             mins, dfmt = calc_duration(start_t) if start_t else (0, "?")
-            mult_i  = fetch_console_multiplier(ac["id"])
+            mult_i  = await fetch_console_multiplier_async(ac["id"])
             eff_i   = round(mins * mult_i)
             total_mins           += mins
             total_effective_mins += eff_i
@@ -708,15 +714,15 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     context.user_data["mins"]       = mins
     context.user_data["food_items"] = []
-    context.user_data["base_rate"]  = fetch_base_rate()
+    context.user_data["base_rate"]  = await fetch_base_rate_async()
     # Fetch console multiplier for members (guests handled in prompt_confirm)
     if context.user_data.get("m_id", "").strip() != "0 (Guest)":
         c_id = context.user_data.get("c_id", "")
         if c_id:
-            context.user_data["multiplier"] = fetch_console_multiplier(c_id)
+            context.user_data["multiplier"] = await fetch_console_multiplier_async(c_id)
 
     # Fetch food prices and filter out 0-stock items
-    food_prices = fetch_food_prices()
+    food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
         inv_data = _replit_get("stock/current")
@@ -1058,7 +1064,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ── Pre-compute (lightweight sync) ────────────────────────────
     s_row      = next_write_row(sales_sh)   # reserve row before background write
     staff_name = d.get("staff", "")
-    food_costs = fetch_food_costs()
+    food_costs = await fetch_food_costs_async()
     food_sold  = list(d.get("food_items", []))
 
     # Wallet deduct: play_mins × multiplier (Phase B — no sheet read needed)
@@ -1365,13 +1371,13 @@ async def launch_session_sale(
     """
     is_guest = member_id in ("Guest", "0 (Guest)", "")
 
-    base_rate  = fetch_base_rate()
+    base_rate  = await fetch_base_rate_async()
     # For combined cids (e.g. "C-09+C-10") multiplier lookup returns 1.0 — that's fine
     # because pre_effective_mins already encodes the per-console multipliers.
-    multiplier = fetch_console_multiplier(cid) if "+" not in cid else 1.0
+    multiplier = await fetch_console_multiplier_async(cid) if "+" not in cid else 1.0
 
     # Fetch food prices filtered by stock
-    food_prices = fetch_food_prices()
+    food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
         inv_data = _replit_get("stock/current")
@@ -1420,7 +1426,7 @@ async def launch_session_sale(
 
     # Member — check wallet balance
     try:
-        wallet_balance = fetch_wallet_mins(member_id) or 0
+        wallet_balance = await fetch_wallet_mins_async(member_id) or 0
     except Exception as e:
         logger.error("launch_session_sale: %s", e, exc_info=True)
         wallet_balance = 0
@@ -1501,7 +1507,7 @@ async def step_session_shortfall(update, context):
         d          = context.user_data
         wallet_bal = d.get("wallet_mins", 0)
         multiplier = d.get("multiplier", 1.0)
-        base_rate  = d.get("base_rate", fetch_base_rate())
+        base_rate  = d.get("base_rate", await fetch_base_rate_async())
         shortfall_ks = d.get("shortfall_ks", 0)
 
         # Record only the wallet-covered portion in Sales_Daily col E

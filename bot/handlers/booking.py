@@ -13,6 +13,7 @@ from bot import (
     fetch_members, fetch_staff, get_consoles_with_game,
     get_games_on_console, now_mmt, show_admin_menu, show_console_menu,
     show_main_menu, today_str,
+    fetch_members_async,
 )
 
 """PS VIBE Bot — Handler module.
@@ -214,7 +215,7 @@ async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Offer member list for quick selection
     try:
-        members = fetch_members()
+        members = await fetch_members_async()
     except Exception as e:
         logging.warning("Failed to fetch members for staff booking: %s", e)
         members = []
@@ -811,7 +812,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_book_console(update, context)
 
     context.user_data["bk_console"] = cid
-    members = fetch_members()
+    members = await fetch_members_async()
     kb = [["0 (Guest)"]] + [[m] for m in members] + [[BTN_BACK, BTN_CANCEL]]
     await update.message.reply_text(
         f"🕹️ *{cid}* — session\n\n"
@@ -832,7 +833,7 @@ async def step_book_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     cid = context.user_data.get("bk_console", "")
     try:
-        members = fetch_members()
+        members = await fetch_members_async()
     except Exception as e:
         await update.message.reply_text(f"❌ Member list ဖတ်မရပါ: {e}\nထပ်ကြိုးစားပါ")
         return BOOK_MEMBER

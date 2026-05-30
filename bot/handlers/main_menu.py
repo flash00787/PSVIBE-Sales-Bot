@@ -18,6 +18,7 @@ from bot import (
     BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
     next_voucher, now_mmt, show_console_menu, show_game_menu,
     show_main_menu,
+    fetch_allowed_staff_ids_async,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -30,7 +31,7 @@ from datetime import datetime, timezone, timedelta
 async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Authorization check — only whitelisted users can access staff bot
     user = update.effective_user
-    if not user or user.id not in fetch_allowed_staff_ids():
+    if not user or user.id not in await fetch_allowed_staff_ids_async():
         await update.message.reply_text(
             "🚫 *Access Denied*\n"
             "ဒီ bot ကို authorized staff တွေသာ သုံးနိုင်ပါတယ်။",

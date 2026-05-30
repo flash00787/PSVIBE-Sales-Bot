@@ -29,6 +29,12 @@ try:
         api_fetch_member_effective_rate, api_build_member_rate_dict,
         api_fetch_base_salaries, api_fetch_attendance, api_fetch_salary_advances,
         api_fetch_promotions_cached, api_fetch_allowed_staff_ids, api_next_voucher,
+        # -- Async READ imports (Phase: async migration) --
+        api_fetch_wallet_mins_async, api_fetch_members_async, api_fetch_member_data_async,
+        api_fetch_base_rate_async, api_fetch_food_prices_async, api_fetch_food_costs_async,
+        api_fetch_console_multiplier_async, api_fetch_allowed_staff_ids_async,
+        api_fetch_console_status_async, api_fetch_rank_thresholds_async,
+        api_fetch_bonus_table_async, api_fetch_new_member_defaults_async,
         api_next_member_id, api_next_member_row_no, api_fetch_referral_code,
         api_fetch_console_status,
         # ── WRITE operations  ──
@@ -1687,6 +1693,16 @@ def fetch_members():
     return [m.strip() for m in raw if m.strip()]
 
 
+async def fetch_members_async():
+    """Async version - hot-path: called on every sales flow and member management."""
+    if _HAS_API:
+        result = await api_client.api_fetch_members_async()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_members_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_members)
+
+
 def fetch_attendance(month_str: str) -> dict[str, dict]:
     """Read Attendance_Log for given month. Returns {staff: {leave, late, deduct_per_late}}."""
     if _HAS_API:
@@ -2073,6 +2089,19 @@ def fetch_allowed_staff_ids() -> set[int]:
     return fallback
 
 
+async def fetch_allowed_staff_ids_async() -> set[int]:
+    """Async version - hot-path: called on every main menu access."""
+    if _HAS_API:
+        result = await api_client.api_fetch_allowed_staff_ids_async()
+        if result is not None:
+            if isinstance(result, list):
+                return set(result)
+            return set(result.get("data", []))
+        logging.warning("API api_fetch_allowed_staff_ids_async() failed, falling back to gspread")
+    # Fallback to sync logic (wrapped in thread to avoid blocking)
+    return await asyncio.to_thread(fetch_allowed_staff_ids)
+
+
 def fetch_wallet_mins(member_id):
     if _HAS_API:
         result = api_fetch_wallet_mins(member_id)
@@ -2085,6 +2114,16 @@ def fetch_wallet_mins(member_id):
     return None
 
 
+async def fetch_wallet_mins_async(member_id):
+    """Async version - hot-path: called on every sales flow."""
+    if _HAS_API:
+        result = await api_client.api_fetch_wallet_mins_async(member_id)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_wallet_mins_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_wallet_mins, member_id)
+
+
 def fetch_base_rate():
     if _HAS_API:
         result = api_fetch_base_rate()
@@ -2095,6 +2134,16 @@ def fetch_base_rate():
     if cfg.get("base_rate"):
         return cfg["base_rate"]
     return _int(setting_sh.cell(2, 2).value)
+
+
+async def fetch_base_rate_async():
+    """Async version - hot-path: called on every sales flow."""
+    if _HAS_API:
+        result = await api_client.api_fetch_base_rate_async()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_base_rate_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_base_rate)
 
 
 def fetch_new_member_defaults():
@@ -2129,6 +2178,16 @@ def fetch_food_prices():
     return {n.strip(): _int(p) for n, p in zip(names, prices) if n and p}
 
 
+async def fetch_food_prices_async():
+    """Async version - hot-path: called on every sales flow."""
+    if _HAS_API:
+        result = await api_client.api_fetch_food_prices_async()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_food_prices_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_food_prices)
+
+
 def fetch_food_costs():
     if _HAS_API:
         result = api_fetch_food_costs()
@@ -2141,6 +2200,16 @@ def fetch_food_costs():
     names = setting_sh.col_values(4)[1:]
     costs = setting_sh.col_values(6)[1:]
     return {n.strip(): (_int(c) if str(c).strip() else 0) for n, c in zip(names, costs) if n.strip()}
+
+
+async def fetch_food_costs_async():
+    """Async version - hot-path: called on every sales flow."""
+    if _HAS_API:
+        result = await api_client.api_fetch_food_costs_async()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_food_costs_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_food_costs)
 
 
 def fetch_console_multiplier(console_id):
@@ -2163,6 +2232,16 @@ def fetch_console_multiplier(console_id):
     except Exception as e:
         logging.exception("fetch_console_multiplier: %s", e)
     return 1.0
+
+
+async def fetch_console_multiplier_async(console_id):
+    """Async version - hot-path: called on every sales flow."""
+    if _HAS_API:
+        result = await api_client.api_fetch_console_multiplier_async(console_id)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_console_multiplier_async failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_console_multiplier, console_id)
 
 
 def fetch_rank_thresholds():

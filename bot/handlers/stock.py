@@ -3,6 +3,8 @@ from bot import (
     MAIN_MENU, STOCK_ACCESS_PIN, STOCK_ITEM, STOCK_MENU, STOCK_PIN,
     STOCK_QTY, _replit_get, fetch_food_costs, fetch_food_prices, inv_sh,
     now_mmt, show_main_menu, stock_sh,
+    fetch_food_prices_async,
+    fetch_food_costs_async,
 )
 
 try:
@@ -150,7 +152,7 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def show_stock_out_items(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show food item list for manual stock-out recording."""
-    food_prices = fetch_food_prices()
+    food_prices = await fetch_food_prices_async()
     context.user_data["stock_food_prices"] = food_prices
     names = list(food_prices.keys())
     rows  = [names[i: i + 2] for i in range(0, len(names), 2)]
@@ -199,7 +201,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ref   = "STK-" + now_mmt().strftime("%Y%m%d-%H%M%S")
 
     food_prices = context.user_data.get("stock_food_prices", {})
-    food_costs  = fetch_food_costs()
+    food_costs  = await fetch_food_costs_async()
     sell_price  = food_prices.get(item, 0)
     cost_price  = food_costs.get(item, 0)
     total_val   = sell_price * qty
