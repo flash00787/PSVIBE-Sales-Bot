@@ -76,7 +76,7 @@ async def show_mm_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_rank_info(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fetch and display the full Rank Bonus table from Setting!O1:R5."""
     table = fetch_rank_table_display()
-    master_thresh, immortal_thresh = fetch_rank_thresholds()
+    master_thresh, immortal_thresh = map(int, fetch_rank_thresholds())
     lines = [
         "\U0001f3c6 *Member Rank Bonus*",
         "",
@@ -165,16 +165,16 @@ async def step_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return await prompt_mm_lookup(update, context, search_results=results, query=member_id)
 
     data                           = fetch_member_data(member_id)
-    master_thresh, immortal_thresh = fetch_rank_thresholds()
+    master_thresh, immortal_thresh = map(int, fetch_rank_thresholds())
     r    = display_rank(data["rank_raw"])
     r_em = rank_emoji(r)
     net  = data["net_spend"]
 
     # Progress to next tier
-    if r == "Warrior" and master_thresh > 0:
+    if r == "Warrior" and int(master_thresh) > 0:
         remaining    = max(master_thresh - net, 0)
         progress_ln  = f"📊 Master ရရန်: *{remaining:,} Ks* လိုသေးသည်"
-    elif r == "Master" and immortal_thresh > 0:
+    elif r == "Master" and int(immortal_thresh) > 0:
         remaining    = max(immortal_thresh - net, 0)
         progress_ln  = f"📊 Immortal ရရန်: *{remaining:,} Ks* လိုသေးသည်"
     else:
@@ -878,7 +878,7 @@ async def step_tu_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Single consolidated Card_Wallet read
     data                           = fetch_member_data(member_id)
-    master_thresh, immortal_thresh = fetch_rank_thresholds()
+    master_thresh, immortal_thresh = map(int, fetch_rank_thresholds())
     bonus_table                    = fetch_bonus_table()
     context.user_data["tu_rank"]            = data["rank_raw"]
     context.user_data["tu_total_spend"]     = data["net_spend"]
@@ -906,13 +906,13 @@ async def prompt_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     r_em  = rank_emoji(r)
 
     # Next-tier progress line
-    if r == "Warrior" and master_thresh > 0:
+    if r == "Warrior" and int(master_thresh) > 0:
         remaining = max(master_thresh - net_spend, 0)
         progress  = (
             f"📈 Ranking Progress: *{net_spend:,} Ks*\n"
             f"🏅 Master ရရန် *{remaining:,} Ks* လိုသေးသည်"
         )
-    elif r == "Master" and immortal_thresh > 0:
+    elif r == "Master" and int(immortal_thresh) > 0:
         remaining = max(immortal_thresh - net_spend, 0)
         progress  = (
             f"📈 Ranking Progress: *{net_spend:,} Ks*\n"
@@ -1025,14 +1025,14 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     master_thresh   = d.get("tu_master_thresh", 0)
     immortal_thresh = d.get("tu_immortal_thresh", 0)
     tu_amt          = d.get("tu_amt", 0)
-    if r == "Warrior" and master_thresh > 0:
+    if r == "Warrior" and int(master_thresh) > 0:
         remaining = master_thresh - (net_spend + tu_amt)
         next_tier_ln = (
             f"\n📊 After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
             f"🏅 Remaining to Master: *{max(remaining,0):,} Ks*"
             + ("\n🎉 ဤသွင်းမှုပြီးပါက 🏅 *Master* ဖြစ်သွားမည်!" if remaining <= 0 else "")
         )
-    elif r == "Master" and immortal_thresh > 0:
+    elif r == "Master" and int(immortal_thresh) > 0:
         remaining = immortal_thresh - (net_spend + tu_amt)
         next_tier_ln = (
             f"\n📊 After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"

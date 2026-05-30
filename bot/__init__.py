@@ -2143,11 +2143,11 @@ def fetch_rank_thresholds():
     if _HAS_API:
         result = api_fetch_rank_thresholds()
         if result is not None:
-            return result
+            return _int(result.get("master_threshold", 0)), _int(result.get("immortal_threshold", 0))
         logging.warning("API api_fetch_rank_thresholds() failed, falling back to gspread")
     cfg = _get_cfg()
     if cfg.get("master_threshold") is not None:
-        return cfg["master_threshold"], cfg.get("immortal_threshold", 0)
+        return _int(cfg["master_threshold"]), _int(cfg.get("immortal_threshold", 0))
     try:
         master   = _int(setting_sh.cell(3, 13).value)
         immortal = _int(setting_sh.cell(4, 13).value)
