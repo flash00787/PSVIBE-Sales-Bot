@@ -1237,16 +1237,6 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 update_inv_total_k1()
                 try: _replit_get("stock/current?nocache=1")
                 except Exception: pass
-            # ── FIFO inventory deduction ──────────────────────────────────────
-            if food_sold:
-                try:
-                    _replit_post("stock/deduct", {
-                        "items": [{"name": item["name"], "qty": item["qty"]} for item in food_sold],
-                        "voucher_no": v_no,
-                    })
-                    logging.info("FIFO deducted for %s: %d food items", v_no, len(food_sold))
-                except Exception as _fe:
-                    logging.warning("FIFO deduct failed (data already in Stock_Out): %s", _fe)
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
             if _promo_id and (_disc or _bonus_mins):
                 _replit_post("sheets/promotions-log", {
@@ -1262,19 +1252,6 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "net_total":    net_total,
                     "staff":        staff_name,
                 })
-            # ── Wallet deduction: subtract play minutes from Card_Wallet ──────
-            if _w_deduct > 0 and not is_guest and _m_id not in ("-", "0 (Guest)"):
-                try:
-                    _wallet_rows = member_sh.get_all_values()
-                    for _wi, _wr in enumerate(_wallet_rows):
-                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
-                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
-                            _new_bal = _cur_bal - _w_deduct
-                            member_sh.update_cell(_wi + 1, 8, _new_bal)
-                            logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
-                            break
-                except Exception as _we:
-                    logging.error("wallet_deduct_error: %s", _we)
             # ── Bonus minutes: add to member wallet ──────────────────────────────────────
             if _bonus_mins and not is_guest and _m_id not in ("-", "0 (Guest)"):
                 try:

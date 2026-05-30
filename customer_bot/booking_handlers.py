@@ -647,12 +647,12 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     data = query.data or ""
 
-    if data == "bk_cp:cancel":
+    if data == "bk_con:cancel":
         context.user_data.clear()
         await query.edit_message_text("❌ Booking ဖျက်လိုက်ပါပြီ")
         return ConversationHandler.END
 
-    if data.startswith("bk_cp:"):
+    if data.startswith("bk_con:"):
         pref = data.split(":", 1)[1]
         if pref == "not_sure":
             context.user_data["bk_console_pref"] = "Any"

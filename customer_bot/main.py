@@ -93,7 +93,7 @@ def _register_handlers(app: Application) -> None:
             BK_CONSOLE:       [CallbackQueryHandler(bk_console_select, pattern=r"^bk_con:")],
             BK_DURATION:      [CallbackQueryHandler(bk_duration_select, pattern=r"^bk_dur:")],
             BK_GAME:          [CallbackQueryHandler(bk_game_select, pattern=r"^bk_game:")],
-            BK_CONSOLE_PREF:  [CallbackQueryHandler(bk_console_pref, pattern=r"^bk_cp:")],
+            BK_CONSOLE_PREF:  [CallbackQueryHandler(bk_console_pref, pattern=r"^bk_con:")],
             BK_CONFIRM:       [CallbackQueryHandler(bk_confirm, pattern=r"^bk_ok:")],
             BK_DUP_WARN:      [CallbackQueryHandler(bk_dup_warn, pattern=r"^(bk_warn:|bk_ok:)")],
             BK_DISC_WARN:     [CallbackQueryHandler(bk_disc_warn, pattern=r"^(bk_warn:|bk_ok:)")],
@@ -101,6 +101,7 @@ def _register_handlers(app: Application) -> None:
             BK_END:           [MessageHandler(filters.TEXT & ~filters.COMMAND, bk_end_handler)],
         },
         fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        per_message=True,
     )
     app.add_handler(bk_conv)
 
