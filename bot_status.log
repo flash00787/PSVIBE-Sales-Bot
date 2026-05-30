@@ -24959,3 +24959,9 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-30 05:09:49,850 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-30 05:09:59,262 [INFO] Background cache refresh done
 2026-05-30 05:10:00,449 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:10:10,313 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:10:10,314 [INFO] Application is stopping. This might take a moment.
+2026-05-30 05:10:10,314 [INFO] Application.stop() complete
+2026-05-30 05:10:10,316 [INFO] Bot process exiting (PID 1253629).
+2026-05-30 05:10:10,353 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:2003> wait_for=<Future pending cb=[Task.task_wakeup()]>>
