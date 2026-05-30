@@ -577,9 +577,16 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def cmd_book(update: Update, context: ContextTypes.DEFAULT_TYPE):
     asyncio.create_task(_api.track_usage(update.effective_user, "book_start"))
     context.user_data["bk_reserved_console"] = None
+    kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("ဝန်ဆောင်မှုခံယူဖူးပါတယ်", callback_data="bk_mem:yes")],
+        [InlineKeyboardButton("ပထမဆုံးအကြိမ်ပါ", callback_data="bk_mem:no")],
+    ])
     await update.message.reply_text(
-        "📅 *Booking Form*\n\nပထမဆုံး — Member card ရှိတယ်ဆိုရင် အားသာချက်များစွာ ရတယ်နော် 🎫",
+        "📅 *Booking Form*
+
+ပထမဆုံး — Member card ရှိတယ်ဆိုရင် အားသာချက်များစွာ ရတယ်နော် 🎫",
         parse_mode="Markdown",
+        reply_markup=kb,
     )
     return BK_MEMBER_CHECK
 
