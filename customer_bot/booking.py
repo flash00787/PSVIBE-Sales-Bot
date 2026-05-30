@@ -11,7 +11,7 @@ async def cmd_mybookings(update, context):
     """Show user's current bookings from API"""
     uid = str(update.effective_user.id)
     try:
-        data = await _api._api_get(f"bookings/search?telegram_id={uid}", timeout=10)
+        data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
         if not data or not isinstance(data, list):
             data = []
     except Exception:

@@ -105,9 +105,9 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(bk_conv)
 
     # Feedback callbacks
-    app.add_handler(CallbackQueryHandler(cb_feedback_rating,         pattern=r"^fb:rate:"))
-    app.add_handler(CallbackQueryHandler(cb_feedback_comment_prompt, pattern=r"^fb:comment_prompt:"))
-    app.add_handler(CallbackQueryHandler(cb_feedback_skip,           pattern=r"^fb:skip$"))
+    app.add_handler(CallbackQueryHandler(cb_feedback_rating,         pattern=r"^fb:\d+:"))
+    app.add_handler(CallbackQueryHandler(cb_feedback_comment_prompt, pattern=r"^fbc:"))
+    app.add_handler(CallbackQueryHandler(cb_feedback_skip,           pattern=r"^fbskip$"))
 
     # Menu buttons catch-all
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu_buttons))

@@ -578,13 +578,11 @@ async def cmd_book(update: Update, context: ContextTypes.DEFAULT_TYPE):
     asyncio.create_task(_api.track_usage(update.effective_user, "book_start"))
     context.user_data["bk_reserved_console"] = None
     kb = InlineKeyboardMarkup([
-        [InlineKeyboardButton("ဝန်ဆောင်မှုခံယူဖူးပါတယ်", callback_data="bk_mem:yes")],
-        [InlineKeyboardButton("ပထမဆုံးအကြိမ်ပါ", callback_data="bk_mem:no")],
+        [InlineKeyboardButton("\u101d\u1014\u103a\u1006\u1031\u102c\u1004\u103a\u1019\u103e\u102f\u1001\u103b\u101a\u103a\u101a\u1030\u1016\u1030\u1038\u1015\u102b\u1010\u101a\u103a", callback_data="bk_mem:yes")],
+        [InlineKeyboardButton("\u1015\u1011\u1019\u1006\u102f\u1036\u1038\u1021\u1000\u103c\u102d\u1019\u103a\u1015\u102b", callback_data="bk_mem:no")],
     ])
     await update.message.reply_text(
-        "📅 *Booking Form*
-
-ပထမဆုံး — Member card ရှိတယ်ဆိုရင် အားသာချက်များစွာ ရတယ်နော် 🎫",
+        "\U0001f4c5 *Booking Form*\n\n\u1015\u1011\u1019\u1006\u102f\u1036\u1038 \u2014 Member card \u101b\u103e\u102d\u1010\u101a\u103a\u1006\u102d\u102f\u101b\u1004\u103a \u1021\u102c\u1038\u101e\u102c\u1001\u103b\u1000\u103a\u1019\u103b\u102c\u1038\u1005\u103d\u102c \u101b\u1010\u101a\u103a\u1014\u1031\u102b\u103a \U0001f3ab",
         parse_mode="Markdown",
         reply_markup=kb,
     )
