@@ -339,7 +339,7 @@ async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     consoles = consoles or []
     bks = bks if isinstance(bks, list) else []
 
-    free  = sum(1 for c in consoles if c.get("liveStatus","").lower() == "free")
+    free  = sum(1 for c in consoles if c.get("status","").lower() == "free")
     total = len(consoles)
 
     upcoming = sorted(
@@ -558,7 +558,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     for c in consoles:
         cid = c.get("id", "?")
         ctype = c.get("type", "PS5")
-        status = c.get("liveStatus", "unknown").lower()
+        status = c.get("status", "unknown").lower()
         icon = {"free": "🟢", "active": "🔴", "inactive": "⚫", "reserved": "🟡"}.get(status, "⚪")
         dur = dur_map.get(cid, 0)
         dur_str = f" ({dur} min)" if dur else ""
