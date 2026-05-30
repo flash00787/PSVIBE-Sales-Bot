@@ -24854,3 +24854,10 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-30 04:38:55,889 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-30 04:38:59,636 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-30 04:39:03,067 [INFO] Bot started — PID 1253629
+2026-05-30 04:39:12,945 [INFO] Health server started on port 8080
+2026-05-30 04:39:13,047 [INFO] Pre-warming config and member cache...
+2026-05-30 04:39:17,773 [INFO] PS Vibe Bot is running...
+2026-05-30 04:39:18,330 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-30 04:39:18,705 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-30 04:39:18,890 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-30 04:39:18,891 [INFO] Application started
