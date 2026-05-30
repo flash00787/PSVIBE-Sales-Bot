@@ -51,6 +51,7 @@ async def step_admin_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if after == "setattend":
         return await cmd_setattend(update, context)
     if after == "finance":
+        from bot.handlers.finance import show_finance_menu
         return await show_finance_menu(update, context)
     return await show_admin_menu(update, context)
 
@@ -108,6 +109,7 @@ async def step_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_PROMO_REPORTS:
         return await cmd_promo_reports(update, context)
     if choice == BTN_FINANCE:
+        from bot.handlers.finance import show_finance_menu
         return await show_finance_menu(update, context)
 
     return await show_admin_menu(update, context)
@@ -549,4 +551,3 @@ async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     await update.message.reply_text(msg, parse_mode="Markdown")
     return await show_admin_menu(update, context)
-
