@@ -12,6 +12,7 @@ which secures all authenticated endpoints.
 from __future__ import annotations
 
 import json
+import re as _re_date
 import logging
 import os
 import urllib.request
@@ -28,6 +29,12 @@ logger = logging.getLogger("psvibe_api_client")
 
 DEFAULT_TIMEOUT = 15  # Increased for reliability
 DEFAULT_MAX_RETRIES = 2  # Exponential backoff: 3 total attempts (1 + 2 retries)
+def _normalize_date(date_str):
+    if not date_str: return date_str
+    if _re_date.match(r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$", date_str): return date_str
+    m = _re_date.match(r"^([0-9]+)/([0-9]+)/([0-9]+)$", date_str)
+    if m: return f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+    return date_str
 DEFAULT_RETRY_BASE_DELAY = 0.5  # Seconds, doubles each retry
 
 
@@ -499,7 +506,7 @@ def api_add_sales_record(data: dict) -> dict | None:
     # Map caller field names → endpoint field names
     mapped: dict = {
         "receipt_no": data.get("voucher_no", ""),
-        "receipt_date": data.get("date", ""),
+        "receipt_date": _normalize_date(data.get("date", "")),
         "member_id": data.get("member_id", ""),
         "amount": data.get("net_total", 0),
         "items": f"Console:{data.get('console_id','')}|Play:{data.get('play_mins',0)}min|Game:{data.get('game_amount',0)}",
@@ -513,6 +520,7 @@ def api_add_sales_record(data: dict) -> dict | None:
 
 def api_add_stock_out(data: dict) -> dict | None:
     """Add a stock-out (sale/consumption) record."""
+    if "date" in data: data["date"] = _normalize_date(data["date"])
     return _api_call("POST", "inventory/stock-out", json_data=data)
 
 
@@ -528,7 +536,7 @@ def api_add_stock_in(data: dict) -> dict | None:
         "cost": data.get("cost_price", 0),
         "staff_name": data.get("staff", ""),
         "supplier": data.get("supplier", data.get("payment", "")),
-        "date": data.get("date", ""),
+        "date": _normalize_date(data.get("date", "")),
     }
     return _api_call("POST", "inventory/stock-in", json_data=mapped)
 

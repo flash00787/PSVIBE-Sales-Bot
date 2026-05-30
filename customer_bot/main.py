@@ -171,9 +171,25 @@ def main() -> None:
     app.run_polling(drop_pending_updates=True)
 
 
+# Global flag for graceful shutdown
+_shutdown_requested = False
+
+
+def _handle_shutdown_signal(signum, frame):
+    global _shutdown_requested
+    sig_name = signal.Signals(signum).name
+    _log.info("Received %s — initiating graceful shutdown...", sig_name)
+    _shutdown_requested = True
+
+
 def run() -> None:
-    """Run with crash recovery."""
+    """Run with crash recovery and graceful shutdown."""
+    signal.signal(signal.SIGTERM, _handle_shutdown_signal)
+    signal.signal(signal.SIGINT, _handle_shutdown_signal)
     while True:
+        if _shutdown_requested:
+            _log.info("Shutdown flag set — exiting main loop")
+            break
         try:
             asyncio.set_event_loop(asyncio.new_event_loop())
             main()
@@ -181,9 +197,15 @@ def run() -> None:
             _log.info("Shutdown by KeyboardInterrupt")
             break
         except Conflict as exc:
+            if _shutdown_requested:
+                _log.info("Conflict during shutdown — exiting")
+                break
             _log.warning("409 Conflict in polling: %s - will retry in 3s", exc)
             time.sleep(3)
         except Exception as exc:
+            if _shutdown_requested:
+                _log.info("Exception during shutdown — exiting")
+                break
             _log.error("Customer bot crashed: %s — restart in 5s", exc, exc_info=True)
             time.sleep(5)
 
