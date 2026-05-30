@@ -584,11 +584,10 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def cmd_book(update: Update, context: ContextTypes.DEFAULT_TYPE):
     asyncio.create_task(_api.track_usage(update.effective_user, "book_start"))
     context.user_data["bk_reserved_console"] = None
-    kb = ReplyKeyboardMarkup(
-        [["ရှိပါတယ်"], ["မရှိဘူး (Guest)"]],
-        resize_keyboard=True,
-        one_time_keyboard=True,
-    )
+    kb = InlineKeyboardMarkup([
+        [InlineKeyboardButton("ရှိပါတယ်", callback_data="bk_mem:yes")],
+        [InlineKeyboardButton("မရှိဘူး (Guest)", callback_data="bk_mem:no")],
+    ])
     await update.message.reply_text(
         "\U0001f4c5 *Booking Form*\n\nMember Card ရှိပါသလား?",
         parse_mode="Markdown",
