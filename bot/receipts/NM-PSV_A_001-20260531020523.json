@@ -1,0 +1,21 @@
+{
+  "type": "new_member",
+  "voucher_id": "NM-PSV_A_001-20260531020523",
+  "date": "5/31/2026",
+  "name": "Smart On Live",
+  "member_id": "PSV_A_001",
+  "phone": "09685340237",
+  "email": "",
+  "amount": 0,
+  "mins": 600,
+  "kpay": 0,
+  "cash": 0,
+  "balance_mins": 600,
+  "rank": "New Member",
+  "prev_balance": 0,
+  "balance_change": 600,
+  "balance_after": 600,
+  "is_gift": true,
+  "referral_code": "",
+  "referral_bonus": 0
+}
