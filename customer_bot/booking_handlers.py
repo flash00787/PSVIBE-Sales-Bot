@@ -18,6 +18,7 @@ from .handlers import (
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
     BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
     BK_END, MAIN_MENU_KB, CONSOLE_TYPES, DURATION_OPTS,
+    _bk_intercept_menu,
 )
 from .data.prompts import today_mmt, OPEN_HOUR, CLOSE_HOUR
 
@@ -171,6 +172,12 @@ def _format_booking_summary(context: ContextTypes.DEFAULT_TYPE) -> str:
 
 async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Called after cmd_book — present member card Yes/No."""
+    if not update.callback_query:
+        text = (update.message.text or "").strip()
+        menu_result = await _bk_intercept_menu(text, update, context)
+        if menu_result:
+            return menu_result
+
     query = update.callback_query
     await query.answer()
     data = query.data or ""
@@ -279,14 +286,20 @@ async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return ConversationHandler.END
 
     # MessageHandler: manual member ID input
-    text = (update.message.text or "").strip().lower()
-    if text == "no" or text == "မရှိပါ":
+    text = (update.message.text or "").strip()
+    # Check for menu buttons
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
+
+    text_lower = text.lower()
+    if text_lower == "no" or text == "မရှိပါ":
         await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
         return BK_NAME
 
     # Try to look up by member ID
     members = await _api._fetch_members()
-    m = members.get(text)
+    m = members.get(text_lower)
     if m:
         context.user_data["bk_member_id"] = text
         context.user_data["bk_name"] = m.get("name", "")
@@ -318,9 +331,13 @@ async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Verify phone number entered by user."""
+    text = (update.message.text or "").strip()
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
     member = context.user_data.get("bk_member_data", {})
     expected_phone = member.get("phone", "")
-    text = (update.message.text or "").strip()
+
 
     if text == expected_phone or (len(text) >= 4 and expected_phone.endswith(text)):
         # Phone verified
@@ -371,6 +388,9 @@ async def bk_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def bk_name_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Store customer name and ask for phone."""
     text = (update.message.text or "").strip()
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
     if not text or len(text) < 1:
         await update.message.reply_text("နာမည် ထည့်ပေးပါ:")
         return BK_NAME
@@ -388,6 +408,9 @@ async def bk_name_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Store phone number and proceed to date selection."""
     text = (update.message.text or "").strip()
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
     if not text:
         await update.message.reply_text("ဖုန်းနံပါတ် ထည့်ပေးပါ:")
         return BK_PHONE
@@ -896,6 +919,9 @@ async def bk_time_text_input(update: Update, context: ContextTypes.DEFAULT_TYPE)
     """Handle custom time text input in BK_TIME state (HH:MM format)."""
     text = (update.message.text or "").strip()
     logger.info("bk_time_text_input received: %s", text)
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
 
     m = re.match(r'^(\d{1,2}):(\d{2})$', text)
     if m:
@@ -927,6 +953,10 @@ async def bk_time_text_input(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def bk_end_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fallback handler for BK_END state (sentinel -1)."""
+    text = (update.message.text or "").strip()
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
     await update.message.reply_text(
         "Booking session ended. Use 📅 Booking to start a new booking.",
         reply_markup=MAIN_MENU_KB,
