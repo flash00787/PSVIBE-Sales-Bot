@@ -24820,3 +24820,17 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-30 04:03:49,627 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
 2026-05-30 04:03:54,076 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
 2026-05-30 04:24:59,786 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 04:31:53,161 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 04:31:56,534 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 04:31:59,218 [ERROR] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:2003> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-30 04:32:00,047 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 04:32:03,433 [INFO] Bot started — PID 1244203
+2026-05-30 04:32:06,727 [INFO] Health server started on port 8080
+2026-05-30 04:32:06,824 [INFO] Pre-warming config and member cache...
+2026-05-30 04:32:10,795 [INFO] PS Vibe Bot is running...
+2026-05-30 04:32:11,369 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-30 04:32:11,731 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-30 04:32:11,917 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-30 04:32:11,918 [INFO] Application started
+2026-05-30 04:32:42,495 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
