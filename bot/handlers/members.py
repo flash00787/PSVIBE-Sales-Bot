@@ -755,8 +755,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Col E = Lifetime Spend (formula in sheet — do NOT overwrite)
             # Col M = Email
             batch = [
-                {"range": f"A{cw_row}:D{cw_row}",
-                 "values": [[row_no, nm_id, nm_name, phone]]},
+                {"range": f"A{cw_row}:H{cw_row}",
+                 "values": [[row_no, nm_id, nm_name, phone, "", "", "", bal_mins]]},
                 {"range": f"K{cw_row}", "values": [[nm_staff]]},
             ]
             if nm_email:
@@ -1166,6 +1166,16 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             if new_rate > 0:
                 update_member_effective_rate(tu_id, new_rate)
+            # Update Card_Wallet Column H with new balance
+            try:
+                _tu_rows = member_sh.get_all_values()
+                for _ti, _tr in enumerate(_tu_rows):
+                    if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
+                        member_sh.update_cell(_ti + 1, 8, bal_mins)
+                        logging.info("topup: %s %d → %d mins", tu_id, prev_bal, bal_mins)
+                        break
+            except Exception as _te:
+                logging.error("topup_wallet_update: %s", _te)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:

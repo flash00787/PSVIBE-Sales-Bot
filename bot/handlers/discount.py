@@ -35,7 +35,11 @@ async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if game_amt == 0:
         # Wallet session (with or without food) — compute wallet game value
-        wallet_val = round(eff_mins * base_rate * mult / 60)
+        # If effective_cost_mins is set (session flow), multiplier already baked in
+        if d.get("effective_cost_mins"):
+            wallet_val = round(eff_mins * base_rate / 60)
+        else:
+            wallet_val = round(eff_mins * base_rate * mult / 60)
         gross = wallet_val + food_total
         d["wallet_game_value"] = wallet_val
     else:

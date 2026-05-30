@@ -709,6 +709,11 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["mins"]       = mins
     context.user_data["food_items"] = []
     context.user_data["base_rate"]  = fetch_base_rate()
+    # Fetch console multiplier for members (guests handled in prompt_confirm)
+    if context.user_data.get("m_id", "").strip() != "0 (Guest)":
+        c_id = context.user_data.get("c_id", "")
+        if c_id:
+            context.user_data["multiplier"] = fetch_console_multiplier(c_id)
 
     # Fetch food prices and filter out 0-stock items
     food_prices = fetch_food_prices()
@@ -1252,6 +1257,19 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "net_total":    net_total,
                     "staff":        staff_name,
                 })
+            # ── Wallet deduction: subtract wallet_deduct from Card_Wallet Column H ────────
+            if not is_guest and _w_deduct > 0 and _m_id not in ("-", "0 (Guest)"):
+                try:
+                    _wallet_rows = member_sh.get_all_values()
+                    for _wi, _wr in enumerate(_wallet_rows):
+                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
+                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
+                            _new_bal = max(0, _cur_bal - _w_deduct)
+                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+                            logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
+                            break
+                except Exception as _be:
+                    logging.error("wallet_deduct_update: %s", _be)
             # ── Bonus minutes: add to member wallet ──────────────────────────────────────
             if _bonus_mins and not is_guest and _m_id not in ("-", "0 (Guest)"):
                 try:
