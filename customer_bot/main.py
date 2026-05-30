@@ -9,6 +9,7 @@ import os
 import signal
 import sys
 import time
+import re
 
 # Ensure parent dir + customer_bot dir are on path for imports
 _pkg_dir = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +34,7 @@ from customer_bot.handlers import (
     cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
     cmd_book, cmd_cancel, cmd_feedback, cmd_mybookings, cmd_refer, cmd_waitlist,
     cb_feedback_rating, cb_feedback_comment_prompt, cb_feedback_skip,
-    handle_menu_buttons, show_main_menu,
+    handle_menu_buttons, show_main_menu, BTN_BOOK,
 )
 from customer_bot.booking_handlers import (
     bk_member_check_entry, bk_member_select, bk_phone_verify, bk_data_confirm,
@@ -76,6 +77,7 @@ def _register_handlers(app: Application) -> None:
         entry_points=[
             CommandHandler("book", cmd_book),
             CommandHandler("booking", cmd_book),
+            MessageHandler(filters.Regex("^" + re.escape(BTN_BOOK) + "$"), cmd_book),
         ],
         states={
             BK_MEMBER_CHECK:  [CallbackQueryHandler(bk_member_check_entry, pattern=r"^bk_mem:")],
