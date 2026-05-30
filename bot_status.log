@@ -24981,3 +24981,45 @@ task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psv
 2026-05-30 05:10:31,337 [ERROR] Task was destroyed but it is pending!
 task: <Task pending name='Task-1' coro=<_bg_cache_refresh() running at /root/psvibe-sales-bot/bot/__init__.py:2003> wait_for=<Future pending cb=[Task.task_wakeup()]>>
 2026-05-30 05:10:32,248 [INFO] Google Sheets retry wrapper applied (max 3 retries, backoff 1s/2s/4s)
+2026-05-30 05:10:35,553 [INFO] Bot started — PID 1265033
+2026-05-30 05:10:38,520 [INFO] Health server started on port 8080
+2026-05-30 05:10:38,611 [INFO] Pre-warming config and member cache...
+2026-05-30 05:10:42,538 [INFO] PS Vibe Bot is running...
+2026-05-30 05:10:43,127 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getMe "HTTP/1.1 200 OK"
+2026-05-30 05:10:43,501 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/setMyCommands "HTTP/1.1 200 OK"
+2026-05-30 05:10:43,690 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-30 05:10:43,692 [INFO] Application started
+2026-05-30 05:11:14,275 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:11:44,469 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:12:14,663 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:12:44,859 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:13:15,056 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:13:45,257 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:13:46,545 [INFO] Background cache refresh done
+2026-05-30 05:14:15,451 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:14:45,651 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:15:15,838 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:15:46,023 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:16:16,208 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:16:46,393 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:16:50,584 [INFO] Background cache refresh done
+2026-05-30 05:17:16,578 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:17:46,766 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:16,951 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:31,799 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:33,974 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:34,921 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:36,356 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:37,817 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:39,307 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:40,534 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:41,900 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:43,320 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:18:46,721 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:47,091 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:18:47,797 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+2026-05-30 05:19:16,529 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:19:46,713 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:19:54,688 [INFO] Background cache refresh done
+2026-05-30 05:20:16,898 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+2026-05-30 05:20:47,082 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
