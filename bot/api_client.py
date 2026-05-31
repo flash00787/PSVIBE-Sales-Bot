@@ -28,8 +28,8 @@ API_KEY = os.environ.get("API_KEY", "")
 
 logger = logging.getLogger("psvibe_api_client")
 
-DEFAULT_TIMEOUT = 15  # Increased for reliability
-DEFAULT_MAX_RETRIES = 2  # Exponential backoff: 3 total attempts (1 + 2 retries)
+DEFAULT_TIMEOUT = 5  # Fast-fail local network
+DEFAULT_MAX_RETRIES = 1  # 2 total attempts (1 + 1 retry)
 def _normalize_date(date_str):
     if not date_str: return date_str
     if _re_date.match(r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$", date_str): return date_str
