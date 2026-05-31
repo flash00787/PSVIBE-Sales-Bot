@@ -179,7 +179,7 @@ async def step_mm_lookup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Progress to next tier
     if r == "Warrior" and int(master_thresh) > 0:
         remaining    = max(master_thresh - net, 0)
-        progress_ln  = f"🏅 Remaining to Master: *{remaining:,} Ks*"
+        progress_ln  = f"📊 Master ရရန်: *{remaining:,} Ks* လိုသေးသည်"
     elif r == "Master" and int(immortal_thresh) > 0:
         remaining    = max(immortal_thresh - net, 0)
         progress_ln  = f"📊 Immortal ရရန်: *{remaining:,} Ks* လိုသေးသည်"
@@ -252,7 +252,7 @@ async def prompt_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
         step_hdr(1, 6, "Member Name") +
         "👤 Member Name ရိုက်ပါ -",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup([[BTN_NM_GIFT], NAV_ROW], resize_keyboard=True),
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
     )
     return NM_NAME
 
@@ -454,18 +454,18 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"ကောက်ခံမည့် ပမာဏ (Ks) ရိုက်ပါ -\n"
             f"_(Default: {default_price:,} Ks)_",
             parse_mode="Markdown",
-            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+            reply_markup=ReplyKeyboardMarkup([[BTN_NM_GIFT], NAV_ROW], resize_keyboard=True),
         )
         return NM_AMT
 
     # Free-text entry (custom amount typed by staff)
-    # Gift from custom amount sub-menu
+    # Gift card request from custom amount sub-menu
     if text == BTN_NM_GIFT:
         d["nm_gift_pending"] = True
-        d["nm_custom_mode"] = False
+        d["nm_custom_mode"] = False if d.get("nm_custom_mode") else False
         await update.message.reply_text(
-            "\U0001f514 *Gift Card \u2014 PIN Required*\n\n"
-            "Admin PIN \u1011\u100a\u1039\u1015\u102b\u1038 -",
+            "🔐 *Gift Card — PIN လိုအပ်သည်*\n\n"
+            "Admin PIN ထည့်ပါ -",
             parse_mode="Markdown",
             reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
         )
@@ -539,119 +539,360 @@ async def step_nm_gift_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardMarkup([[BTN_CONFIRM_SAVE], NAV_ROW], resize_keyboard=True),
     )
     return NM_CONFIRM
+
 async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show dynamic payment method buttons for New Member."""
+
+    """Show dynamic payment method buttons for New Member (like Sale Daily)."""
+
     d   = context.user_data
+
     amt = d.get("nm_amt", 0)
 
+
+
     if "nm_payments" not in d:
+
         d["nm_payments"] = {}
 
-    if amt <= 0:
-        d["nm_kpay"] = 0
-        d["nm_cash"] = 0
-        return await step_nm_confirm(update, context)
+
 
     methods = fetch_payment_methods()
+
     paid_so_far = sum(d["nm_payments"].values())
+
     remaining = amt - paid_so_far
 
-    # Auto-confirm when full payment complete
-    if remaining <= 0:
-        d["nm_kpay"] = d["nm_payments"].get("KPay", 0)
-        d["nm_cash"] = d["nm_payments"].get("Cash", 0)
-        return await step_nm_confirm(update, context)
+
 
     kb = [[m] for m in methods]
+
     kb.append([BTN_PAY_DONE])
+
     kb.append(NAV_ROW)
 
+
+
     payment_status = ""
+
     if d["nm_payments"]:
+
         ll = []
+
         for method, ap in d["nm_payments"].items():
+
             ll.append(f"  \u2022 {method}: *{ap:,} Ks*")
         payment_status = "\n".join(ll)
+
         payment_status += f"\n  \u2500 Paid: *{paid_so_far:,} Ks*  |  Remaining: *{remaining:,} Ks*\n\n"
 
+
+
     await update.message.reply_text(
+
         step_hdr(6, 6, "Payment \u2014 Method") +
-        f"\U0001f464 *{d.get('nm_name','')}*  |  \U0001faaa *{d.get('nm_id','')}*\n"
+
+        f"\U0001f464 *{d.get("nm_name",chr(39))}*  |  \U0001faaa *{d.get("nm_id",chr(39))}*\n"
+
         f"\U0001f4b5 Card Amount: *{amt:,} Ks*\n\n"
+
         f"{payment_status}"
+
         "\U0001f4b3 Payment Method \u1012\u1039\u101b\u1032\u1015\u102b\u1038 -",
+
         parse_mode="Markdown",
+
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+
     )
+
     return NM_KPAY
 
 
 @log_duration("members:step_nm_kpay")
+
 async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle dynamic payment method + amount for New Member."""
+
+    """Handle dynamic payment method + amount for New Member (like Sale Daily)."""
+
     text = update.message.text
+
     d = context.user_data
+
     amt = d.get("nm_amt", 0)
 
+
+
     if text == BTN_CANCEL:
+
         return await cmd_cancel(update, context)
+
     if text == BTN_BACK:
+
         context.user_data.pop("nm_amt", None)
+
         return await prompt_nm_amt(update, context)
 
+
+
     # Check if text is a payment method
+
     methods = fetch_payment_methods()
+
     if text in methods:
+
         d["nm_current_pay_method"] = text
+
         psf = sum(d.get("nm_payments", {}).values())
+
         rem = amt - psf
+
         await update.message.reply_text(
-            f"\U0001f4b3 *{text}* \u1015\u1019\u102b\u100f \u101b\u102d\u102f\u1000\u103a\u1015\u102b\n"
+
+            f"\U0001f4b3 *{text}* \u1019\u1019\u102d\u1014\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038\n"
+
             f"\u2501" * 30 + f"\n"
-            f"\U0001f4b5 Card Amount: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
+
+            f"\U0001f4b5 Amount: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
+
             f"\u2501" * 30 + f"\n"
-            f"(0 - {rem:,}) \u1011\u100a\u1039\u1037\u1015\u102b\u1038 -",
+
+            f"(0 - {rem:,}) \u100a\u1037\u1014\u1031\u1000\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -",
+
             parse_mode="Markdown",
+
             reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+
         )
+
         return NM_KPAY
 
-    # Check if text is BTN_PAY_DONE
+
+
+    # Check if text is BTN_PAY_DONE - finalize payments
+
     if text == BTN_PAY_DONE:
+
         payments = d.get("nm_payments", {})
-        psf = sum(payments.values())
-        if psf <= 0:
-            await update.message.reply_text("\u26a0\ufe0f \u1021\u1014\u102c\u100a\u1036\u1006\u1031\u1038 payment method \u1010\u1005\u1039 \u1011\u102d\u1004\u1039\u1015\u102b\u1038 -")
-            return await prompt_nm_kpay(update, context)
+
         d["nm_kpay"] = payments.get("KPay", 0)
+
         d["nm_cash"] = payments.get("Cash", 0)
-        # Show review via referral (old flow: step_nm_kpay showed review → referral → confirm)
-        return await prompt_nm_referral(update, context)
 
-    # Try to parse as amount for current method
-    try:
-        method_amt = int(text.replace(",", "").strip())
-    except ValueError:
-        await update.message.reply_text("\u26a0\ufe0f \u1002\u1014\u103a\u1000\u103e\u1019\u103a\u1001\u1005\u1037\u1001\u1005\u1037 \u101b\u102d\u102f\u1000\u103a\u1015\u102b -")
-        return NM_KPAY
+        psf = sum(payments.values())
 
-    current_method = d.get("nm_current_pay_method", "")
-    if not current_method:
-        return await prompt_nm_kpay(update, context)
+        if psf < amt and psf > 0:
 
-    psf = sum(d.get("nm_payments", {}).values())
-    rem = amt - psf
-    if method_amt < 0 or method_amt > rem:
+            d["nm_cash"] = d.get("nm_cash", 0) + (amt - psf)
+
+        elif psf <= 0:
+ait update.message.reply_text(
+
+        step_hdr(6, 6, "Payment \u2014 Method") +
+
+        f"\U0001f464 *{d.get("nm_name",chr(39))}*  |  \U0001faaa *{d.get("nm_id",chr(39))}*\n"
+
+        f"\U0001f4b5 Card Amount: *{amt:,} Ks*\n\n"
+
+        f"{payment_status}"
+
+        "\U0001f4b3 Payment Method \u1012\u1039\u101b\u1032\u1015\u102b\u1038 -",
+
+        parse_mode="Markdown",
+
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+
+    )
+
+    return NM_KPAY
+
+
+@log_duration("members:step_nm_kpay")
+
+async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    """Handle dynamic payment method + amount for New Member (like Sale Daily)."""
+
+    text = update.message.text
+
+    d = context.user_data
+
+    amt = d.get("nm_amt", 0)
+
+
+
+    if text == BTN_CANCEL:
+
+        return await cmd_cancel(update, context)
+
+    if text == BTN_BACK:
+
+        context.user_data.pop("nm_amt", None)
+
+        return await prompt_nm_amt(update, context)
+
+
+
+    # Check if text is a payment method
+
+    methods = fetch_payment_methods()
+
+    if text in methods:
+
+        d["nm_current_pay_method"] = text
+
+        psf = sum(d.get("nm_payments", {}).values())
+
+        rem = amt - psf
+
         await update.message.reply_text(
-            f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b -",
+
+            f"\U0001f4b3 *{text}* \u1019\u1019\u102d\u1014\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038\n"
+
+            f"\u2501" * 30 + f"\n"
+
+            f"\U0001f4b5 Amount: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
+
+            f"\u2501" * 30 + f"\n"
+
+            f"(0 - {rem:,}) \u100a\u1037\u1014\u1031\u1000\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -",
+
             parse_mode="Markdown",
+
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+
         )
+
         return NM_KPAY
 
-    if "nm_payments" not in d:
-        d["nm_payments"] = {}
-    d["nm_payments"][current_method] = method_amt
-    return await prompt_nm_kpay(update, context)
+
+
+    # Check if text is BTN_PAY_DONE - finalize payments
+
+    if text == BTN_PAY_DONE:
+
+        payments = d.get("nm_payments", {})
+
+        d["nm_kpay"] = payments.get("KPay", 0)
+
+        d["nm_cash"] = payments.get("Cash", 0)
+
+        psf = sum(payments.values())
+
+        if psf < amt and psf > 0:
+
+            d["nm_cash"] = d.get("nm_cash", 0) + (amt - psf)
+
+        elif psf <= 0:
+
+            await update.message.reply_text("\u26a0\ufe0f \u1021\u1014\u102c\u100a\u1036\u1006\u1031\u1038 payment method \u1010\u1005\u103a \u1011\u102d\u1004\u103a\u1015\u102b\u1038 -")
+
+            return await prompt_nm_kpay(update, context)
+
+    else:
+
+        # Try to parse as amount
+
+        try:
+
+            method_amt = int(text.replace(",", "").strip())
+
+        except ValueError:
+
+            await update.message.reply_text("\u26a0\ufe0f \u1002\u1014\u103a\u1000\u103e\u1019\u103a\u1001\u1005\u1037\u1001\u1005\u1037 \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -")
+
+            return NM_KPAY
+
+
+
+        current_method = d.get("nm_current_pay_method", "")
+
+        if not current_method:
+
+            return await prompt_nm_kpay(update, context)
+
+
+
+        psf = sum(d.get("nm_payments", {}).values())
+
+        rem = amt - psf
+
+        if method_amt < 0 or method_amt > rem:
+
+            await update.message.reply_text(
+
+                f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -",
+
+                parse_mode="Markdown",
+
+            )
+
+            return NM_KPAY
+
+
+
+        if "nm_payments" not in d:
+
+            d["nm_payments"] = {}
+
+        d["nm_payments"][current_method] = method_amt
+
+
+
+    # Show full Review Your Entry summary
+
+    kpay = d.get("nm_kpay", 0)
+
+    cash = d.get("nm_cash", 0)
+
+    payments = d.get("nm_payments", {})
+
+    pay_lines = []
+
+    for method, a in payments.items():
+
+        pay_lines.append(f"  \u2022 {method}: *{a:,} Ks*")
+
+    pay_display = "\n".join(pay_lines)
+
+
+
+    phone_display = d.get("nm_phone", "-")
+
+    email_display = d.get("nm_email", "") or "\u2014"
+
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+
+    await update.message.reply_text(
+
+        f"\U0001f4cb *Review Your Entry \u2014 First Purchase*\n"
+
+        f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+
+        f"\U0001f464 Name: *{d["nm_name"]}*\n"
+
+        f"\U0001faaa Member ID: *{d["nm_id"]}*\n"
+
+        f"\U0001f4de Phone: *{phone_display}*\n"
+
+        f"\U0001f4e7 Email: *{email_display}*\n"
+
+        f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+
+        f"\U0001f4b5 Total Amount: *{d["nm_amt"]:,} Ks*\n"
+
+        f"{pay_display}\n\n"
+
+        f"\u1019\u1039\u1000\u1014\u1039\u1000\u102d\u102f\u1015\u102b\u101e\u101c\u102c\u1038? \u2705 Confirm & Save \u1014\u103a\u102d\u1000\u1039\u1015\u102b\u1038 -",
+
+        parse_mode="Markdown",
+
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+
+    )
+
+    return await prompt_nm_referral(update, context)
+
+
 async def prompt_nm_referral(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Ask staff to enter a referral code (optional). Both parties get +30 mins."""
     d = context.user_data
@@ -780,7 +1021,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Snapshot all fields before clearing user_data
     nm_id    = d["nm_id"];  nm_name = d["nm_name"]
     nm_amt   = d["nm_amt"]; nm_mins = d["nm_mins"]
-    nm_kpay  = d["nm_kpay"]; nm_cash = d["nm_cash"]
+    nm_kpay  = d["nm_kpay"]; nm_cash = d["nm_cash"]; nm_payments = d.get("nm_payments", {})
     nm_email        = d.get("nm_email", "")
     nm_referral_code = d.get("nm_referral_code", "")
     nm_referrer_id   = d.get("nm_referrer_id", "")
@@ -823,7 +1064,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     save_receipt_json(nm_vid, {
         "type": "new_member", "voucher_id": nm_vid, "date": today,
         "name": nm_name, "member_id": nm_id, "phone": phone, "email": nm_email,
-        "amount": nm_amt, "mins": nm_mins, "kpay": nm_kpay, "cash": nm_cash,
+        "amount": nm_amt, "mins": nm_mins, "kpay": nm_kpay, "cash": nm_cash, "payments": nm_payments,
         "balance_mins": bal_mins, "rank": "New Member",
         "prev_balance": 0, "balance_change": nm_mins + _ref_bonus, "balance_after": bal_mins,
         "is_gift": is_gift,
@@ -877,10 +1118,9 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "member_id": nm_id,
                     "type": "New Member",
                     "amount": nm_amt,
-                    "kpay": nm_kpay,
-                    "cash": nm_cash,
+                    "payment_method": json.dumps(nm_payments) if nm_payments else f"Kpay:{nm_kpay}/Cash:{nm_cash}",
                     "mins_added": _nm_added_mins,
-                    "staff": nm_staff,
+                    "staff_name": nm_staff,
                 })
             except Exception as e:
                 logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
@@ -905,10 +1145,9 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "member_id": nm_referrer_id,
                         "type": "Referral Bonus",
                         "amount": 0,
-                        "kpay": 0,
-                        "cash": 0,
+                        "payment_method": "Kpay:0/Cash:0",
                         "mins_added": 30,
-                        "staff": nm_staff,
+                        "staff_name": nm_staff,
                     })
                 except Exception as e:
                     logging.warning("Referral topup API write failed (GSheet fallback OK): %s", e)
@@ -1085,10 +1324,13 @@ async def step_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["tu_bonus_mins"] = bonus_mins
     context.user_data["tu_mins"]       = total_mins   # saved to sheet col H
     return await prompt_tu_kpay(update, context)
+
 async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show dynamic payment method buttons for Top Up."""
+    """Show dynamic payment method buttons for Top Up (like Sale Daily)."""
     d   = context.user_data
     amt = d.get("tu_amt", 0)
+    r   = display_rank(d.get("tu_rank", "Warrior"))
+    r_em = rank_emoji(r)
 
     if "tu_payments" not in d:
         d["tu_payments"] = {}
@@ -1102,12 +1344,6 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     paid_so_far = sum(d["tu_payments"].values())
     remaining = amt - paid_so_far
 
-    # Auto-confirm when full payment complete
-    if remaining <= 0:
-        d["tu_kpay"] = d["tu_payments"].get("KPay", 0)
-        d["tu_cash"] = d["tu_payments"].get("Cash", 0)
-        return await step_tu_confirm(update, context)
-
     kb = [[m] for m in methods]
     kb.append([BTN_PAY_DONE])
     kb.append(NAV_ROW)
@@ -1120,13 +1356,11 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         payment_status = "\n".join(ll)
         payment_status += f"\n  \u2500 Paid: *{paid_so_far:,} Ks*  |  Remaining: *{remaining:,} Ks*\n\n"
 
-    r   = display_rank(d.get("tu_rank", "Warrior"))
-    r_em = rank_emoji(r)
     await update.message.reply_text(
         step_hdr(3, 3, "Payment \u2014 Method") +
-        f"\U0001faaa *{d.get('tu_id','')}* \u2014 {d.get('tu_name','')}\n"
+        f"\U0001faaa *{d.get("tu_id","")}* \u2014 {d.get("tu_name","")}\n"
         f"\U0001f396 Rank: *{r_em} {r}*  |  \U0001f4b0 Top Up: *{amt:,} Ks*\n"
-        f"\u23f1 {d.get('tu_base_mins',0):,} base + {d.get('tu_bonus_mins',0)} bonus mins\n\n"
+        f"\u23f1 {d.get("tu_base_mins",0):,} base + {d.get("tu_bonus_mins",0)} bonus mins\n\n"
         f"{payment_status}"
         "\U0001f4b3 Payment Method \u1012\u1039\u101b\u1032\u1015\u102b\u1038 -",
         parse_mode="Markdown",
@@ -1134,10 +1368,9 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return TU_KPAY
 
-
 @log_duration("members:step_tu_kpay")
 async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle dynamic payment method + amount for Top Up."""
+    """Handle dynamic payment method + amount for Top Up (like Sale Daily)."""
     text = update.message.text
     d = context.user_data
     amt = d.get("tu_amt", 0)
@@ -1148,34 +1381,62 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.pop("tu_amt", None)
         return await prompt_tu_amt(update, context)
 
-    # Check if text is a payment method
+    # Check if text is a payment method (selection)
     methods = fetch_payment_methods()
     if text in methods:
         d["tu_current_pay_method"] = text
         psf = sum(d.get("tu_payments", {}).values())
         rem = amt - psf
         await update.message.reply_text(
-            f"\U0001f4b3 *{text}* \u1015\u1019\u102b\u100f \u101b\u102d\u102f\u1000\u103a\u1015\u102b\n"
+            f"\U0001f4b3 *{text}* \u1019\u1019\u102d\u1014\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038\n"
             f"\u2501" * 30 + f"\n"
             f"\U0001f4b0 Top Up: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
             f"\u2501" * 30 + f"\n"
-            f"(0 - {rem:,}) \u1011\u100a\u1039\u1037\u1015\u102b\u1038 -",
+            f"(0 - {rem:,}) \u100a\u1037\u1014\u1031\u1000\u103a \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -",
             parse_mode="Markdown",
             reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
         )
         return TU_KPAY
 
-    # Check if text is BTN_PAY_DONE
+    # Check if text is BTN_PAY_DONE - finalize payments
     if text == BTN_PAY_DONE:
         payments = d.get("tu_payments", {})
-        psf = sum(payments.values())
-        if psf <= 0:
-            await update.message.reply_text("\u26a0\ufe0f \u1021\u1014\u102c\u100a\u1036\u1006\u1031\u1038 payment method \u1010\u1005\u1039 \u1011\u102d\u1004\u1039\u1015\u102b\u1038 -")
-            return await prompt_tu_kpay(update, context)
         d["tu_kpay"] = payments.get("KPay", 0)
         d["tu_cash"] = payments.get("Cash", 0)
+        psf = sum(payments.values())
+        if psf < amt and psf > 0:
+            # Assume remaining goes to Cash
+            # removed auto-fill
+        elif psf <= 0:
+            await update.message.reply_text("\u26a0\ufe0f \u1021\u1014\u102c\u100a\u1036\u1006\u1031\u1038 payment method \u1010\u1005\u103a \u1011\u102d\u1004\u103a\u1015\u102b\u1038 -")
+            return await prompt_tu_kpay(update, context)
+    else:
+        # Try to parse as amount for current method
+        try:
+            method_amt = int(text.replace(",", "").strip())
+        except ValueError:
+            await update.message.reply_text("\u26a0\ufe0f \u1002\u1014\u103a\u1000\u103e\u1019\u103a\u1001\u1005\u1037\u1001\u1005\u1037 \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -")
+            return TU_KPAY
 
-    # Show review (common for both BTN_PAY_DONE and amount parse)
+        current_method = d.get("tu_current_pay_method", "")
+        if not current_method:
+            return await prompt_tu_kpay(update, context)
+
+        psf = sum(d.get("tu_payments", {}).values())
+        rem = amt - psf
+        if method_amt < 0 or method_amt > rem:
+            await update.message.reply_text(
+                f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b\u1038 -",
+                parse_mode="Markdown",
+            )
+            return TU_KPAY
+
+        if "tu_payments" not in d:
+            d["tu_payments"] = {}
+        d["tu_payments"][current_method] = method_amt
+        psf = sum(d["tu_payments"].values())
+
+    # Show review (or continue payment selection)
     r          = display_rank(d.get("tu_rank", "Warrior"))
     r_em       = rank_emoji(r)
     base_mins  = d.get("tu_base_mins", 0)
@@ -1183,79 +1444,55 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total_mins = d.get("tu_mins", 0)
     kpay       = d.get("tu_kpay", 0)
     cash       = d.get("tu_cash", 0)
-    tu_amt     = d.get("tu_amt", 0)
 
     # Build dynamic payment display
     payments = d.get("tu_payments", {})
     pay_lines = []
     for method, a in payments.items():
         pay_lines.append(f"  \u2022 {method}: *{a:,} Ks*")
-    pay_display = "\n".join(pay_lines)
+    pay_display = "\\n".join(pay_lines)
 
     net_spend       = d.get("tu_total_spend", 0)
     master_thresh   = d.get("tu_master_thresh", 0)
     immortal_thresh = d.get("tu_immortal_thresh", 0)
+    tu_amt          = d.get("tu_amt", 0)
     if r == "Warrior" and int(master_thresh) > 0:
         remaining = master_thresh - (net_spend + tu_amt)
         next_tier_ln = (
-            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
-            f"\U0001f3c5 Remaining to Master: *{max(remaining,0):,} Ks*"
-            + ("\n🎉 *New Tier Unlocked!* 🏅" if remaining <= 0 else "")
+            f"\\n\\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\\n"
+            f"\\U0001f3c5 Remaining to Master: *{max(remaining,0):,} Ks*"
+            + ("\\n\\U0001f389 \u101e\u101d\u1004\u1039\u1019\u103d\u1014\u1039\u1015\u102d\u1019\u1039\u1015\u1000\u1039 \U0001f3c5 *Master* \u1016\u103c\u1005\u1039\u101e\u102d\u1000\u1039\u101e\u102c\u1019\u1039!" if remaining <= 0 else "")
         )
     elif r == "Master" and int(immortal_thresh) > 0:
         remaining = immortal_thresh - (net_spend + tu_amt)
         next_tier_ln = (
-            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
-            f"\U0001f48e Remaining to Immortal: *{max(remaining,0):,} Ks*"
-            + ("\n🎉 *New Tier Unlocked!* 💎" if remaining <= 0 else "")
+            f"\\n\\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\\n"
+            f"\\U0001f48e Remaining to Immortal: *{max(remaining,0):,} Ks*"
+            + ("\\n\\U0001f389 \u101e\u101d\u1004\u1039\u1019\u103d\u1014\u1039\u1015\u102d\u1019\u1039\u1015\u1000\u1039 \U0001f48e *Immortal* \u1016\u103c\u1005\u1039\u101e\u102d\u1000\u1039\u101e\u102c\u1019\u1039!" if remaining <= 0 else "")
         )
     else:
-        next_tier_ln = "\n\U0001f3c6 _Top Rank \u2014 Immortal!_"
+        next_tier_ln = "\\n\\U0001f3c6 _Top Rank \u2014 Immortal!_"
 
     kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
     await update.message.reply_text(
-        f"\U0001f4cb *Review Your Entry \u2014 Top Up*\n"
-        f"\u2501" * 30 + f"\n"
-        f"\U0001faaa *{d["tu_id"]}* \u2014 {d.get("tu_name","")}\n"
-        f"\U0001f396 Rank: *{r_em} {r}*\n"
-        f"\u2501" * 30 + f"\n"
-        f"\U0001f4b0 Top Up Amount: *{tu_amt:,} Ks*\n"
-        f"\u23f1 Base Mins: *{base_mins:,} mins*\n"
-        f"\U0001f389 Rank Bonus: *+{bonus_mins} mins*\n"
-        f"\U0001f525 Total to be Added: *{total_mins:,} mins*\n"
-        f"\u2501" * 30 + f"\n"
+        f"\\U0001f4cb *Review Your Entry \u2014 Top Up*\\n"
+        f"\u2501" * 30 + f"\\n"
+        f"\\U0001faaa *{d["tu_id"]}* \u2014 {d.get("tu_name","")}\\n"
+        f"\\U0001f396 Rank: *{r_em} {r}*\\n"
+        f"\u2501" * 30 + f"\\n"
+        f"\\U0001f4b0 Top Up Amount: *{tu_amt:,} Ks*\\n"
+        f"\\u23f1 Base Mins: *{base_mins:,} mins*\\n"
+        f"\\U0001f381 Rank Bonus: *+{bonus_mins} mins*\\n"
+        f"\\U0001f525 Total to be Added: *{total_mins:,} mins*\\n"
+        f"\u2501" * 30 + f"\\n"
         f"{pay_display}"
-        f"{next_tier_ln}\n\n"
+        f"{next_tier_ln}\\n\\n"
         f"\u1019\u1039\u1000\u1014\u1039\u1000\u102d\u102f\u1015\u102b\u101e\u101c\u102c\u1038? \u2705 Confirm & Save \u1014\u103a\u102d\u1000\u1039\u1015\u102b\u1038 -",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
     return TU_CONFIRM
 
-    # Try to parse as amount for current method
-    try:
-        method_amt = int(text.replace(",", "").strip())
-    except ValueError:
-        await update.message.reply_text("\u26a0\ufe0f \u1002\u1014\u103a\u1000\u103e\u1019\u103a\u1001\u1005\u1037\u1001\u1005\u1037 \u101b\u102d\u102f\u1000\u103a\u1015\u102b -")
-        return TU_KPAY
-
-    current_method = d.get("tu_current_pay_method", "")
-    if not current_method:
-        return await prompt_tu_kpay(update, context)
-
-    psf = sum(d.get("tu_payments", {}).values())
-    rem = amt - psf
-    if method_amt < 0 or method_amt > rem:
-        await update.message.reply_text(
-            f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b -",
-            parse_mode="Markdown",
-        )
-        return TU_KPAY
-
-    if "tu_payments" not in d:
-        d["tu_payments"] = {}
-    d["tu_payments"][current_method] = method_amt
-    return await prompt_tu_kpay(update, context)
 @log_duration("members:step_tu_confirm")
 async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
@@ -1290,12 +1527,13 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Snapshot all fields before clearing user_data
     tu_id       = d["tu_id"];       tu_amt  = d["tu_amt"]
-    tu_kpay     = d["tu_kpay"];     tu_cash = d["tu_cash"]
+    tu_kpay     = d["tu_kpay"];     tu_cash = d["tu_cash"]; tu_payments = d.get("tu_payments", {})
     tu_mins     = d["tu_mins"];     tu_name = d.get("tu_name", "")
     tu_base     = d.get("tu_base_mins", 0)
     tu_bonus    = d.get("tu_bonus_mins", 0)
     tu_phone    = d.get("tu_phone", "-")
     tu_rank_raw = d.get("tu_rank", "Warrior")
+    tu_staff    = d.get("staff", "")
     today       = today_str()
     session_snap = d.get("_session_snap")
     after_topup  = d.get("after_topup")
@@ -1322,7 +1560,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "type": "topup", "voucher_id": tu_vid, "date": today,
         "member_id": tu_id, "rank": r_saved, "amount": tu_amt,
         "base_mins": tu_base, "bonus_mins": tu_bonus, "total_mins": tu_mins,
-        "kpay": tu_kpay, "cash": tu_cash, "phone": tu_phone,
+        "kpay": tu_kpay, "cash": tu_cash, "payments": tu_payments, "phone": tu_phone,
         "balance_mins": bal_mins, "prev_balance": prev_bal,
         "balance_change": tu_mins, "balance_after": bal_mins,
     })
@@ -1345,10 +1583,9 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "member_id": tu_id,
                     "type": "Top Up",
                     "amount": tu_amt,
-                    "kpay": tu_kpay,
-                    "cash": tu_cash,
+                    "payment_method": json.dumps(tu_payments) if tu_payments else f"Kpay:{tu_kpay}/Cash:{tu_cash}",
                     "mins_added": tu_mins,
-                    "tier": current_tier,
+                    "staff_name": tu_staff,
                 })
             except Exception as e:
                 logging.warning("Topup API write failed (GSheet fallback OK): %s", e)

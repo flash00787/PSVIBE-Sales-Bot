@@ -505,7 +505,13 @@ def main():
     _load_members()
 
     # Start background cache refresh task (every 5 min)
+    def _handle_task_exception(loop, context):
+        """Log and suppress unhandled task exceptions to prevent bot crash."""
+        msg = context.get("exception", context.get("message", "Unknown task error"))
+        logging.error("Unhandled task exception: %s", msg, exc_info=context.get("exception"))
+    
     loop = asyncio.get_event_loop()
+    loop.set_exception_handler(_handle_task_exception)
     loop.create_task(_bg_cache_refresh())
     loop.create_task(input_logger_batcher())
 

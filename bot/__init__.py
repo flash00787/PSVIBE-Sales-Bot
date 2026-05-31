@@ -2543,6 +2543,18 @@ def fetch_bonus_table():
     if _HAS_API:
         result = api_fetch_bonus_table()
         if result is not None:
+            # API returns [{threshold, warrior_bonus, master_bonus, immortal_bonus}, ...]
+            # Convert to [(threshold, w_bonus, m_bonus, i_bonus), ...] tuple format
+            if result and isinstance(result, list):
+                converted = []
+                for row in result:
+                    t = int(row.get("threshold", 0) or 0)
+                    w = int(row.get("warrior_bonus", 0) or 0)
+                    m = int(row.get("master_bonus", 0) or 0)
+                    i = int(row.get("immortal_bonus", 0) or 0)
+                    if t > 0 or w or m or i:
+                        converted.append((t, w, m, i))
+                return converted
             return result
         logging.warning("API api_fetch_bonus_table() failed, falling back to gspread")
     cfg = _get_cfg()
