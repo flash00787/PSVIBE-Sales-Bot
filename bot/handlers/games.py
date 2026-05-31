@@ -68,7 +68,7 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 solo_multi = g.get("solo_multi", "").strip()
                 genre      = g.get("genre", "").strip()
                 discs_str   = f" 💿<b>{discs}pc</b>" if discs and discs not in ("", "0") else ""
-                install_str = f"🖥️ {', '.join(cons_list)}" if cons_list else "🖥️ <i>Not installed</i>"
+                install_str = f"├─ 📀 <b>Installed</b>: {', '.join(cons_list)}" if cons_list else "├─ <i>Not installed</i>"
                 sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
                 tags = ""
                 if sm_icon and solo_multi:
@@ -416,4 +416,3 @@ async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYP
         else:
             await update.message.reply_text(f"❌ ဖျက်မရပါ: {err_str}")
     return await show_game_menu(update, context)
-
