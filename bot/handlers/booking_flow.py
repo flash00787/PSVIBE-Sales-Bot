@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional
 import asyncio
+import time
 
 # Module-level state
 _pending_cancel_note: Dict[int, dict] = {}
@@ -610,6 +611,8 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # handle_custom_extend_reply will match by presser_id from personal chat
         context.bot_data[f"_extend_pending_{presser_id}"] = {
             "cid": cid, "member_id": member_id, "chat_id": chat_id,
+            "expect_chat_id": presser_id,
+            "created_at": time.time(),
         }
         # Edit group chat message to show we're waiting
         await query.edit_message_text(
@@ -721,6 +724,13 @@ async def handle_custom_extend_reply(update: Update, context: ContextTypes.DEFAU
     if pending is None:
         return  # not our message — let ConversationHandler handle it normally
 
+    # Stale pending guard: if created > 300s ago, clear and pass through
+    if pending.get("created_at") and time.time() - pending["created_at"] > 300:
+        context.bot_data.pop(f"_extend_pending_{presser_id}", None)
+        context.user_data.pop("_extend_pending", None)
+        return  # stale pending — let ConversationHandler handle it
+
+
     text = update.message.text.strip()
     try:
         extra_mins = int(text)
@@ -741,6 +751,14 @@ async def handle_custom_extend_reply(update: Update, context: ContextTypes.DEFAU
     cid       = pending["cid"]
     member_id = pending["member_id"]
     chat_id   = pending["chat_id"]
+    # Guard: verify this message is from the expected chat
+    expect_chat = pending.get("expect_chat_id")
+    if expect_chat is not None and update.effective_chat.id != expect_chat:
+        # Stale pending from a different chat — clear and pass through
+        context.bot_data.pop(f"_extend_pending_{presser_id}", None)
+        context.user_data.pop("_extend_pending", None)
+        return  # let ConversationHandler handle it
+
     # Clear from bot_data (keyed by presser_id)
     context.bot_data.pop(f"_extend_pending_{presser_id}", None)
     context.user_data.pop("_extend_pending", None)
