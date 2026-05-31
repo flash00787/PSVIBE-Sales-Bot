@@ -143,11 +143,11 @@ async def _get_user_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def _get_available_slots(date_str: str) -> list[str]:
     """Get available time slots for a given date."""
     try:
-        bks = await _api._api_get(f"bookings/search?date={date_str}&status=confirmed")
+        bks = await _api._api_get(f"bookings/search?date={date_str}")
     except Exception:
         bks = []
     bks = bks if isinstance(bks, list) else []
-    booked_slots = {b.get("timeSlot", "") for b in bks}
+    booked_slots = {b.get("timeSlot", "") for b in bks if b.get("status", "").lower() not in ("cancelled", "done")}
     all_slots = [f"{h:02d}:00" for h in range(OPEN_HOUR, CLOSE_HOUR)]
     return [s for s in all_slots if s not in booked_slots]
 
@@ -1094,10 +1094,11 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Check for duplicate booking
             try:
                 existing = await _api._api_get(
-                    f"bookings/search?telegram_chat_id={uid}&date={date_str}&status=confirmed"
+                    f"bookings/search?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing if isinstance(existing, list) else []
-                dupes = [b for b in existing if b.get("timeSlot") == time_str]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
+                dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
                 if dupes:
                     await update.message.reply_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"
@@ -1138,10 +1139,11 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             try:
                 existing = await _api._api_get(
-                    f"bookings/search?telegram_chat_id={uid}&date={date_str}&status=confirmed"
+                    f"bookings/search?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing if isinstance(existing, list) else []
-                dupes = [b for b in existing if b.get("timeSlot") == time_str]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
+                dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
                 if dupes:
                     await query.edit_message_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"

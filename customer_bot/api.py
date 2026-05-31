@@ -502,19 +502,26 @@ async def _build_bonus_table_text(config: dict) -> str:
 
 
 async def _build_rate_lines() -> list[str]:
-    """Build per-console-type rate lines using base_rate × per-console multiplier."""
-    config   = await _fetch_config()
-    consoles = await _fetch_consoles()
-    base     = config.get("base_rate", 0)
-    if not base or not consoles:
+    """Build per-console-type rate lines using base_rate * per-console multiplier.
+    Reads console_multipliers directly from Settings tab (via sheets/config API),
+    NOT from live console status (which may mix in staff/booking data)."""
+    config = await _fetch_config()
+    base   = config.get("base_rate", 0)
+    cmults = config.get("console_multipliers", {})
+    if not base or not cmults:
         return []
 
+    # Map console IDs (e.g. "C - 01") to types and multipliers
+    # Use the Settings-tab multipliers directly
     type_mults: dict[str, set] = {}
+    consoles = await _fetch_consoles()
     for c in consoles:
+        cid   = (c.get("id") or "").strip()
         ctype = (c.get("type") or "").strip()
-        mult  = c.get("multiplier") or 1.0
+        # Prefer Settings-tab multiplier, fall back to console status multiplier
+        mult  = float(cmults.get(cid, c.get("multiplier") or 1.0))
         if ctype:
-            type_mults.setdefault(ctype, set()).add(float(mult))
+            type_mults.setdefault(ctype, set()).add(mult)
 
     lines = []
     for ctype in sorted(type_mults.keys()):
