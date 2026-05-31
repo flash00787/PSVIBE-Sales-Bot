@@ -1,0 +1,30 @@
+name: Deploy Bot to VPS
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /root/psvibe-sales-bot
+            python3 /root/coordination/fix_protocol.py --start .
+            git pull origin master
+            pip install -r requirements.txt --quiet
+            python3 -m pytest tests/ -q --tb=short
+            if [ $? -eq 0 ]; then
+              systemctl restart psvibe-sale-bot psvibe_customer_bot
+              python3 /root/coordination/fix_protocol.py --complete
+              python3 /root/coordination/notifier.py send --title "✅ Deploy OK" --message "Bot deployed: $(git log -1 --format=%h %s)" --level success
+            else
+              python3 /root/coordination/fix_protocol.py --complete --rollback
+              python3 /root/coordination/notifier.py send --title "❌ Deploy FAILED" --message "Tests failed. Rolled back." --level error
+              exit 1
+            fi
