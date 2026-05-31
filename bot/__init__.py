@@ -11,7 +11,6 @@ import fcntl
 import signal
 import asyncio
 import logging
-from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import gspread
 from gspread.exceptions import APIError
@@ -166,7 +165,7 @@ def now_mmt() -> datetime:
 
 BOT_VERSION = "2026.05.05-r1"   # Console double-booking conflict check (409 guard)
 
-__all__ = ['wb', 'MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']
+__all__ = ['wb', 'MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_HELP', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']
 # Inline health-check server (stdlib only — no extra deps)
 import os as _os, json as _json, time as _time, threading as _threading, logging as _logging
 from http.server import HTTPServer as _HTTPServer, BaseHTTPRequestHandler as _BaseHandler
@@ -223,12 +222,7 @@ from telegram.ext import (
 )
 
 _log_formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
-_file_handler = RotatingFileHandler(
-    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs", "psvibe-sale-bot.log"),
-    maxBytes=10*1024*1024,
-    backupCount=5,
-    encoding="utf-8"
-)
+_file_handler  = logging.FileHandler("bot_status.log", encoding="utf-8")
 _file_handler.setFormatter(_log_formatter)
 _console_handler = logging.StreamHandler()
 _console_handler.setFormatter(_log_formatter)
@@ -1006,37 +1000,43 @@ def cancel_booking(booking_id: str) -> bool:
     return False
 
 
-
-def add_console_to_setting(console_id: str, console_type: str = "PS5", console_mult: float = 1.0) -> bool:
-    """Add a new console to MySQL via API (fallback to gspread)."""
-    try:
-        from bot.api_client import _api_call
-        result = _api_call("POST", "console_status", {"id": console_id, "type": console_type, "mult": console_mult})
-        if result and isinstance(result, dict) and result.get("success"):
+def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
+    """Append a new console to Setting!H:J. Returns True on success."""
+    if _HAS_API:
+        result = api_add_console_to_setting(console_id, ctype, multiplier)
+        if result is not None:
             return True
+        logging.warning("API api_add_console_to_setting() failed, falling back to gspread")
+    try:
+        names    = setting_sh.col_values(8)      # includes header row
+        next_row = len(names) + 1
+        setting_sh.update(f"H{next_row}:J{next_row}",
+                          [[console_id, ctype, str(multiplier)]],
+                          value_input_option="USER_ENTERED")
+        return True
     except Exception as e:
-        logging.warning("add_console_to_setting API: %s", e)
-    # Fallback: direct gspread
-    global _CONS_SETTING
-    _CONS_SETTING = None  # invalidate cache
-    setting_sh.update(...)
-    return True
-
+        logging.error("add_console_to_setting error: %s", e)
+        return False
 
 
 def remove_console_from_setting(console_id: str) -> bool:
-    """Remove a console from MySQL via API (fallback to gspread)."""
-    try:
-        from bot.api_client import _api_call
-        result = _api_call("DELETE", f"console_status/{console_id}")
-        if result and isinstance(result, dict) and result.get("success"):
-            global _CONS_SETTING
-            _CONS_SETTING = None
+    """Clear a console row from Setting!H:J. Returns True if found."""
+    if _HAS_API:
+        result = api_remove_console_from_setting(console_id)
+        if result is not None:
             return True
+        logging.warning("API api_remove_console_from_setting() failed, falling back to gspread")
+    try:
+        names = setting_sh.col_values(8)
+        for i, name in enumerate(names):
+            if name.strip() == console_id.strip():
+                row = i + 1
+                setting_sh.update(f"H{row}:J{row}", [["", "", ""]])
+                return True
     except Exception as e:
-        logging.warning("remove_console_from_setting API: %s", e)
-    # Fallback: direct gspread
-    return True
+        logging.exception("remove_console_from_setting: %s", e)
+    return False
+
 
 
 def update_console_multiplier(console_id: str, multiplier: float) -> bool:
@@ -1059,24 +1059,427 @@ def update_console_multiplier(console_id: str, multiplier: float) -> bool:
     return False
 
 
-
 def get_consoles_from_setting() -> list[dict]:
-    """Return list of console dicts from MySQL API (cached global)."""
+    """Return all consoles from Setting!H:J as list of dicts."""
     try:
-        from bot.api_client import api_fetch_console_status
-        cs = api_fetch_console_status()
-        if cs and isinstance(cs, dict) and cs.get("success"):
-            data = cs.get("data", [])
-            if isinstance(data, list):
-                return [{"id": c.get("id", ""), "type": c.get("type", ""),
-                         "mult": float(c.get("mult", 1.0)),
-                         "status": c.get("status", "Free")} for c in data if isinstance(c, dict)]
-    except Exception as e:
-        logging.warning("get_consoles_from_setting API: %s", e)
-    # Fallback to cached global
-    global _CONS_SETTING  # type: ignore
-    return _CONS_SETTING  # type: ignore
+        names = setting_sh.col_values(8)[1:]
+        types = setting_sh.col_values(9)[1:]
+        mults = setting_sh.col_values(10)[1:]
+        result = []
+        for i, name in enumerate(names):
+            if not name.strip():
+                continue
+            result.append({
+                "id":   name.strip(),
+                "type": types[i].strip() if i < len(types) else "",
+                "mult": mults[i].strip() if i < len(mults) else "1",
+            })
+        return result
+    except Exception:
+        return []
 
+# ─────────────────────────────────────────
+
+class BotState(IntEnum):
+    """Bot conversation states with integer values for ConversationHandler."""
+    MAIN_MENU = 0
+    MEMBER = 1
+    CONSOLE = 2
+    MINS = 3
+    FOOD_MENU = 4
+    FOOD_QTY = 5
+    CONFIRM_SUMMARY = 6
+    DISCOUNT = 7
+    KPAY_AMT = 8
+    SALE_CONFIRM = 9
+    MM_MENU = 10
+    NM_NAME = 11
+    NM_PHONE = 12
+    NM_EMAIL = 13
+    NM_ID = 14
+    NM_AMT = 15
+    NM_KPAY = 16
+    NM_REFERRAL = 17
+    NM_CONFIRM = 18
+    NM_GIFT_PIN = 19
+    TU_MEMBER = 20
+    TU_AMT = 21
+    TU_KPAY = 22
+    TU_CONFIRM = 23
+    MM_LOOKUP = 24
+    STOCK_PIN = 25
+    STOCK_MENU = 26
+    STOCK_ITEM = 27
+    STOCK_QTY = 28
+    SI_ITEM = 29
+    SI_QTY = 30
+    SI_COST = 31
+    SI_CART = 32
+    SI_PAY = 33
+    SI_CONFIRM = 34
+    ATTEND_STAFF = 37
+    ATTEND_LEAVE = 38
+    ATTEND_LATE = 39
+    ATTEND_DEDUCT = 40
+    ADMIN_PIN = 41
+    ADMIN_MENU = 42
+    SI_PAY_SPLIT = 43
+    SAL_ADV_STAFF = 44
+    SAL_ADV_AMT = 45
+    SAL_ADV_PAY = 46
+    SAL_ADV_CONFIRM = 47
+    BOOK_LINK = 48
+    BOOK_CONSOLE = 49
+    BOOK_MEMBER = 50
+    CONSOLE_MENU = 51
+    END_SESSION_SELECT = 52
+    GAME_MENU = 53
+    GAME_ADD_TITLE = 54
+    GAME_ADD_PLATFORM = 55
+    GAME_ADD_GENRE = 56
+    GAME_ADD_STATUS = 57
+    GAME_DEL_SELECT = 58
+    CON_MGMT_MENU = 59
+    CON_ADD_ID = 60
+    CON_ADD_TYPE = 61
+    CON_ADD_MULT = 62
+    CON_DEL_SELECT = 63
+    CON_EDIT_MULT_SELECT = 101
+    CON_EDIT_MULT_VALUE = 102
+    SESSION_SHORTFALL = 64
+    DS_MEMBER_IN_SESSION = 65
+    DS_CONSOLE_IN_SESSION = 66
+    BOOK_DUP_WARN = 67
+    BOOK_GAME = 68
+    BOOK_MINS = 69
+    GAME_CHANGE_CONS = 70
+    GAME_CHANGE_GAME = 71
+    SBK_CONSOLE = 72
+    SBK_CUST_NAME = 73
+    SBK_DATE = 74
+    SBK_TIME = 75
+    SBK_DUR = 76
+    SBK_GAME = 77
+    SBK_CONFIRM = 78
+    GINST_MENU = 79
+    GINST_VIEW_CONS = 80
+    GINST_ADD_CONS = 81
+    GINST_ADD_GAME = 82
+    GINST_ADD_TYPE = 83
+    GINST_DEL_CONS = 84
+    GINST_DEL_GAME = 85
+    SSD_MENU = 86
+    SSD_VIEW_SSD = 87
+    SSD_ADD_SSD = 88
+    SSD_ADD_GAME = 89
+    SSD_ADD_TYPE = 90
+    SSD_DEL_SSD = 91
+    SSD_DEL_GAME = 92
+    SSD_XFER_SSD = 93
+    SSD_XFER_GAME = 94
+    SSD_XFER_CONS = 95
+    SSD_RET_CONS = 96
+    SSD_RET_GAME = 97
+    DISC_SELECT = 98
+    DISC_SET_QTY = 99
+    FINANCE_MENU = 100
+    OPEX_CAT = 101
+    OPEX_DESC = 102
+    OPEX_AMT = 103
+    OPEX_ACCT = 104
+    OPEX_PAY = 105
+    OPEX_CONFIRM = 106
+    ASSET_NAME = 107
+    ASSET_CAT = 108
+    ASSET_DATE = 109
+    ASSET_COST = 110
+    ASSET_QTY = 111
+    ASSET_LIFE = 112
+    ASSET_SALVAGE = 113
+    ASSET_PAY = 114
+    ASSET_CONFIRM = 115
+    ASSET_DISPOSE_SEL = 116
+    ASSET_DISPOSE_DATE = 117
+    ASSET_DISPOSE_QTY = 118
+    ASSET_DISPOSE_PROCEEDS = 119
+    ASSET_DISPOSE_CONFIRM = 120
+    PREPAID_DESC = 121
+    PREPAID_CAT = 122
+    PREPAID_AMT = 123
+    PREPAID_ACCT = 124
+    PREPAID_START = 125
+    PREPAID_END = 126
+    PREPAID_CONFIRM = 127
+    ACCT_TRF_FROM = 128
+    ACCT_TRF_TO = 129
+    ACCT_TRF_AMT = 130
+    ACCT_TRF_NOTE = 131
+    ACCT_TRF_CONFIRM = 132
+    PAY_VENDOR = 133
+    PAY_DESC = 134
+    PAY_AMT = 135
+    PAY_DUE = 136
+    PAY_ACCT = 137
+    PAY_CONFIRM = 138
+    REC_CUST = 139
+    REC_DESC = 140
+    REC_AMT = 141
+    REC_DUE = 142
+    REC_ACCT = 143
+    REC_CONFIRM = 144
+    FIN_REPORT_MENU = 145
+    CAP_ACCT = 146
+    CAP_AMT = 147
+    CAP_CONFIRM = 148
+    SHARE_NAME = 149
+    SHARE_ROLE = 150
+    SHARE_CAP = 151
+    SHARE_OWN = 152
+    SHARE_CONFIRM = 153
+    PAY_SETTLE_LIST = 154
+    PAY_SETTLE_ACCT = 155
+    PAY_SETTLE_CONFIRM = 156
+    REC_SETTLE_LIST = 157
+    REC_SETTLE_ACCT = 158
+    REC_SETTLE_CONFIRM = 159
+    ADVPAY_PARTY = 160
+    ADVPAY_DESC = 161
+    ADVPAY_AMT = 162
+    ADVPAY_ACCT = 163
+    ADVPAY_DUE = 164
+    ADVPAY_NOTE = 165
+    ADVPAY_CONFIRM = 166
+    ADVPAY_LIST = 167
+    ADVPAY_SETTLE_CONFIRM = 168
+    PROMO_SELECT = 169
+    BUNDLE_FOC = 170
+    REFERRAL_CODE = 171
+    PAY_METHOD = 177
+    PAY_AMOUNT = 178
+    GAME_EDIT_SELECT = 172
+    GAME_EDIT_FIELD = 173
+    GAME_EDIT_VALUE = 174
+    ADJUST_TIME = 175
+    WL_MENU = 176
+
+# ── Module-level aliases for backward compatibility ──
+MAIN_MENU = BotState.MAIN_MENU
+MEMBER = BotState.MEMBER
+CONSOLE = BotState.CONSOLE
+MINS = BotState.MINS
+FOOD_MENU = BotState.FOOD_MENU
+FOOD_QTY = BotState.FOOD_QTY
+CONFIRM_SUMMARY = BotState.CONFIRM_SUMMARY
+DISCOUNT = BotState.DISCOUNT
+KPAY_AMT = BotState.KPAY_AMT
+SALE_CONFIRM = BotState.SALE_CONFIRM
+MM_MENU = BotState.MM_MENU
+NM_NAME = BotState.NM_NAME
+NM_PHONE = BotState.NM_PHONE
+NM_EMAIL = BotState.NM_EMAIL
+NM_ID = BotState.NM_ID
+NM_AMT = BotState.NM_AMT
+NM_KPAY = BotState.NM_KPAY
+NM_REFERRAL = BotState.NM_REFERRAL
+NM_CONFIRM = BotState.NM_CONFIRM
+NM_GIFT_PIN = BotState.NM_GIFT_PIN
+TU_MEMBER = BotState.TU_MEMBER
+TU_AMT = BotState.TU_AMT
+TU_KPAY = BotState.TU_KPAY
+TU_CONFIRM = BotState.TU_CONFIRM
+MM_LOOKUP = BotState.MM_LOOKUP
+STOCK_PIN = BotState.STOCK_PIN
+STOCK_MENU = BotState.STOCK_MENU
+STOCK_ITEM = BotState.STOCK_ITEM
+STOCK_QTY = BotState.STOCK_QTY
+SI_ITEM = BotState.SI_ITEM
+SI_QTY = BotState.SI_QTY
+SI_COST = BotState.SI_COST
+SI_CART = BotState.SI_CART
+SI_PAY = BotState.SI_PAY
+SI_CONFIRM = BotState.SI_CONFIRM
+ATTEND_STAFF = BotState.ATTEND_STAFF
+ATTEND_LEAVE = BotState.ATTEND_LEAVE
+ATTEND_LATE = BotState.ATTEND_LATE
+ATTEND_DEDUCT = BotState.ATTEND_DEDUCT
+ADMIN_PIN = BotState.ADMIN_PIN
+ADMIN_MENU = BotState.ADMIN_MENU
+SI_PAY_SPLIT = BotState.SI_PAY_SPLIT
+SAL_ADV_STAFF = BotState.SAL_ADV_STAFF
+SAL_ADV_AMT = BotState.SAL_ADV_AMT
+SAL_ADV_PAY = BotState.SAL_ADV_PAY
+SAL_ADV_CONFIRM = BotState.SAL_ADV_CONFIRM
+BOOK_LINK = BotState.BOOK_LINK
+BOOK_CONSOLE = BotState.BOOK_CONSOLE
+BOOK_MEMBER = BotState.BOOK_MEMBER
+CONSOLE_MENU = BotState.CONSOLE_MENU
+END_SESSION_SELECT = BotState.END_SESSION_SELECT
+GAME_MENU = BotState.GAME_MENU
+GAME_ADD_TITLE = BotState.GAME_ADD_TITLE
+GAME_ADD_PLATFORM = BotState.GAME_ADD_PLATFORM
+GAME_ADD_GENRE = BotState.GAME_ADD_GENRE
+GAME_ADD_STATUS = BotState.GAME_ADD_STATUS
+GAME_DEL_SELECT = BotState.GAME_DEL_SELECT
+CON_MGMT_MENU = BotState.CON_MGMT_MENU
+CON_ADD_ID = BotState.CON_ADD_ID
+CON_ADD_TYPE = BotState.CON_ADD_TYPE
+CON_ADD_MULT = BotState.CON_ADD_MULT
+CON_DEL_SELECT = BotState.CON_DEL_SELECT
+CON_EDIT_MULT_SELECT = BotState.CON_EDIT_MULT_SELECT
+CON_EDIT_MULT_VALUE = BotState.CON_EDIT_MULT_VALUE
+SESSION_SHORTFALL = BotState.SESSION_SHORTFALL
+DS_MEMBER_IN_SESSION = BotState.DS_MEMBER_IN_SESSION
+DS_CONSOLE_IN_SESSION = BotState.DS_CONSOLE_IN_SESSION
+BOOK_DUP_WARN = BotState.BOOK_DUP_WARN
+BOOK_GAME = BotState.BOOK_GAME
+BOOK_MINS = BotState.BOOK_MINS
+GAME_CHANGE_CONS = BotState.GAME_CHANGE_CONS
+GAME_CHANGE_GAME = BotState.GAME_CHANGE_GAME
+SBK_CONSOLE = BotState.SBK_CONSOLE
+SBK_CUST_NAME = BotState.SBK_CUST_NAME
+SBK_DATE = BotState.SBK_DATE
+SBK_TIME = BotState.SBK_TIME
+SBK_DUR = BotState.SBK_DUR
+SBK_GAME = BotState.SBK_GAME
+SBK_CONFIRM = BotState.SBK_CONFIRM
+GINST_MENU = BotState.GINST_MENU
+GINST_VIEW_CONS = BotState.GINST_VIEW_CONS
+GINST_ADD_CONS = BotState.GINST_ADD_CONS
+GINST_ADD_GAME = BotState.GINST_ADD_GAME
+GINST_ADD_TYPE = BotState.GINST_ADD_TYPE
+GINST_DEL_CONS = BotState.GINST_DEL_CONS
+GINST_DEL_GAME = BotState.GINST_DEL_GAME
+SSD_MENU = BotState.SSD_MENU
+SSD_VIEW_SSD = BotState.SSD_VIEW_SSD
+SSD_ADD_SSD = BotState.SSD_ADD_SSD
+SSD_ADD_GAME = BotState.SSD_ADD_GAME
+SSD_ADD_TYPE = BotState.SSD_ADD_TYPE
+SSD_DEL_SSD = BotState.SSD_DEL_SSD
+SSD_DEL_GAME = BotState.SSD_DEL_GAME
+SSD_XFER_SSD = BotState.SSD_XFER_SSD
+SSD_XFER_GAME = BotState.SSD_XFER_GAME
+SSD_XFER_CONS = BotState.SSD_XFER_CONS
+SSD_RET_CONS = BotState.SSD_RET_CONS
+SSD_RET_GAME = BotState.SSD_RET_GAME
+DISC_SELECT = BotState.DISC_SELECT
+DISC_SET_QTY = BotState.DISC_SET_QTY
+FINANCE_MENU = BotState.FINANCE_MENU
+OPEX_CAT = BotState.OPEX_CAT
+OPEX_DESC = BotState.OPEX_DESC
+OPEX_AMT = BotState.OPEX_AMT
+OPEX_ACCT = BotState.OPEX_ACCT
+OPEX_PAY = BotState.OPEX_PAY
+OPEX_CONFIRM = BotState.OPEX_CONFIRM
+ASSET_NAME = BotState.ASSET_NAME
+ASSET_CAT = BotState.ASSET_CAT
+ASSET_DATE = BotState.ASSET_DATE
+ASSET_COST = BotState.ASSET_COST
+ASSET_QTY = BotState.ASSET_QTY
+ASSET_LIFE = BotState.ASSET_LIFE
+ASSET_SALVAGE = BotState.ASSET_SALVAGE
+ASSET_PAY = BotState.ASSET_PAY
+ASSET_CONFIRM = BotState.ASSET_CONFIRM
+ASSET_DISPOSE_SEL = BotState.ASSET_DISPOSE_SEL
+ASSET_DISPOSE_DATE = BotState.ASSET_DISPOSE_DATE
+ASSET_DISPOSE_QTY = BotState.ASSET_DISPOSE_QTY
+ASSET_DISPOSE_PROCEEDS = BotState.ASSET_DISPOSE_PROCEEDS
+ASSET_DISPOSE_CONFIRM = BotState.ASSET_DISPOSE_CONFIRM
+PREPAID_DESC = BotState.PREPAID_DESC
+PREPAID_CAT = BotState.PREPAID_CAT
+PREPAID_AMT = BotState.PREPAID_AMT
+PREPAID_ACCT = BotState.PREPAID_ACCT
+PREPAID_START = BotState.PREPAID_START
+PREPAID_END = BotState.PREPAID_END
+PREPAID_CONFIRM = BotState.PREPAID_CONFIRM
+ACCT_TRF_FROM = BotState.ACCT_TRF_FROM
+ACCT_TRF_TO = BotState.ACCT_TRF_TO
+ACCT_TRF_AMT = BotState.ACCT_TRF_AMT
+ACCT_TRF_NOTE = BotState.ACCT_TRF_NOTE
+ACCT_TRF_CONFIRM = BotState.ACCT_TRF_CONFIRM
+PAY_VENDOR = BotState.PAY_VENDOR
+PAY_DESC = BotState.PAY_DESC
+PAY_AMT = BotState.PAY_AMT
+PAY_DUE = BotState.PAY_DUE
+PAY_ACCT = BotState.PAY_ACCT
+PAY_CONFIRM = BotState.PAY_CONFIRM
+REC_CUST = BotState.REC_CUST
+REC_DESC = BotState.REC_DESC
+REC_AMT = BotState.REC_AMT
+REC_DUE = BotState.REC_DUE
+REC_ACCT = BotState.REC_ACCT
+REC_CONFIRM = BotState.REC_CONFIRM
+FIN_REPORT_MENU = BotState.FIN_REPORT_MENU
+CAP_ACCT = BotState.CAP_ACCT
+CAP_AMT = BotState.CAP_AMT
+CAP_CONFIRM = BotState.CAP_CONFIRM
+SHARE_NAME = BotState.SHARE_NAME
+SHARE_ROLE = BotState.SHARE_ROLE
+SHARE_CAP = BotState.SHARE_CAP
+SHARE_OWN = BotState.SHARE_OWN
+SHARE_CONFIRM = BotState.SHARE_CONFIRM
+PAY_SETTLE_LIST = BotState.PAY_SETTLE_LIST
+PAY_SETTLE_ACCT = BotState.PAY_SETTLE_ACCT
+PAY_SETTLE_CONFIRM = BotState.PAY_SETTLE_CONFIRM
+REC_SETTLE_LIST = BotState.REC_SETTLE_LIST
+REC_SETTLE_ACCT = BotState.REC_SETTLE_ACCT
+REC_SETTLE_CONFIRM = BotState.REC_SETTLE_CONFIRM
+ADVPAY_PARTY = BotState.ADVPAY_PARTY
+ADVPAY_DESC = BotState.ADVPAY_DESC
+ADVPAY_AMT = BotState.ADVPAY_AMT
+ADVPAY_ACCT = BotState.ADVPAY_ACCT
+ADVPAY_DUE = BotState.ADVPAY_DUE
+ADVPAY_NOTE = BotState.ADVPAY_NOTE
+ADVPAY_CONFIRM = BotState.ADVPAY_CONFIRM
+ADVPAY_LIST = BotState.ADVPAY_LIST
+ADVPAY_SETTLE_CONFIRM = BotState.ADVPAY_SETTLE_CONFIRM
+PROMO_SELECT = BotState.PROMO_SELECT
+BUNDLE_FOC = BotState.BUNDLE_FOC
+REFERRAL_CODE = BotState.REFERRAL_CODE
+PAY_METHOD = BotState.PAY_METHOD
+PAY_AMOUNT = BotState.PAY_AMOUNT
+GAME_EDIT_SELECT = BotState.GAME_EDIT_SELECT
+GAME_EDIT_FIELD = BotState.GAME_EDIT_FIELD
+GAME_EDIT_VALUE = BotState.GAME_EDIT_VALUE
+ADJUST_TIME = BotState.ADJUST_TIME
+WL_MENU = BotState.WL_MENU
+
+
+# ─────────────────────────────────────────
+#  BUTTON LABELS
+# ─────────────────────────────────────────
+BTN_BACK         = "⬅️ ပြန်သွား"
+BTN_BACK_MAIN    = "⬅️ Main Menu သို့ပြန်"
+BTN_DONE         = "Done ✅"
+BTN_YES          = "Yes ✅"
+BTN_SAVE         = "သိမ်းမည် ✅"
+BTN_NEW_SALE     = "📝 New Sale"
+BTN_CANCEL       = "❌ Cancel"
+BTN_CONFIRM_SAVE = "✅ Confirm & Save"
+BTN_PAY_DONE  = "✅ Payment Done"
+BTN_ADD_PAY   = "➕ Add Payment"
+BTN_NO_MORE   = "❌ No More"
+
+# Attendance flow buttons
+BTN_ATTEND_DONE = "✅ ပြီးပါပြီ"
+BTN_ATTEND_SKIP = "⏭ Skip"
+
+NAV_ROW = [BTN_BACK, BTN_CANCEL]   # appended to every wizard keyboard
+
+# ── Finance Category Lists ──
+OPEX_CATEGORIES = [
+    "လစာ", "ငှားရမ်းခ", "မီတာခ", "အင်တာနက်",
+    "ပြုပြင်စရိတ်", "ရုံးသုံးစရိတ်", "အခြား",
+]
+PAY_METHODS = ["Cash", "KPay", "WavePay", "Bank Transfer"]
+ASSET_CATEGORIES = ["Furniture", "Equipment", "Electronics", "Vehicle", "Gaming Console", "Other"]
+PREPAID_CATEGORIES = ["Rent", "Insurance", "Subscription", "Software License", "Other"]
+FINANCE_ACCOUNTS = ["Cash", "KPay", "WavePay", "CB Bank", "AYA Bank", "Other"]
+CAPITAL_ACCOUNTS = ["Cash", "KPay", "WavePay", "CB Bank", "AYA Bank", "Other"]
+_SHARE_ROLES = ["Owner", "Partner", "Investor", "Staff"]
+
+# Business start date for depreciation calculations
+from datetime import datetime as _dt  # noqa: F811
+_BIZ_START = _dt(2023, 1, 1)
 
 def get_valid_consoles() -> set:
     """Return the set of active console IDs from the Settings sheet."""
@@ -1106,6 +1509,7 @@ BTN_STAFF_KPI          = "📈 Staff KPI"
 BTN_PAYROLL            = "💰 Payroll"
 BTN_FINANCIAL_REPORT   = "💹 Financial Report"
 BTN_ADMIN              = "🔧 Admin Panel"
+BTN_HELP               = "📋 Commands"
 BTN_ADMIN_ATTEND  = "📅 Attendance"
 BTN_ADMIN_PNL     = "📊 Monthly P&L"
 BTN_ADMIN_CF      = "💵 Cash Flow"

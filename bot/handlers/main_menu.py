@@ -12,7 +12,7 @@ from typing import Set
 from bot.handlers.sales import next_voucher, prompt_member
 
 from bot import (
-    ADMIN_PIN, BTN_ADMIN, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
+    ADMIN_PIN, BTN_ADMIN, BTN_HELP, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
     BTN_FINANCIAL_REPORT, BTN_GAME_LIB_MENU, BTN_INVENTORY_VIEW,
     BTN_MEMBER_MGMT, BTN_SBK_CONFIRMED, BTN_SBK_NEW, BTN_SBK_WAITLIST,
     BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
@@ -53,6 +53,7 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [BTN_CONSOLES,         BTN_TODAY_REPORT],
         [BTN_STAFF_BOOK,       BTN_INVENTORY_VIEW],
         [BTN_FINANCIAL_REPORT, BTN_ADMIN],
+        [BTN_HELP],
     ]
     await update.message.reply_text(
         f"🎮 *PS Vibe — Staff Bot*\n"
@@ -75,6 +76,7 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from bot.handlers.members import show_mm_menu
     from bot.handlers.reports import cmd_inventory, cmd_today_report, cmd_financial_report
     from bot.handlers.waitlist import cmd_waitlist_mgmt
+    from bot.handlers.help import cmd_help
     choice = update.message.text
 
     if choice in (BTN_DAILY_SALES,):
@@ -118,6 +120,9 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardRemove(),
         )
         return ADMIN_PIN
+
+    if choice == BTN_HELP:
+        return await cmd_help(update, context)
 
     # Any back from sub-states that lands here
     if choice == BTN_BACK_MAIN:
