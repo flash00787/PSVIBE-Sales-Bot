@@ -252,7 +252,7 @@ async def prompt_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
         step_hdr(1, 6, "Member Name") +
         "👤 Member Name ရိုက်ပါ -",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        reply_markup=ReplyKeyboardMarkup([[BTN_NM_GIFT], NAV_ROW], resize_keyboard=True),
     )
     return NM_NAME
 
@@ -602,13 +602,6 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if text is a payment method
     methods = fetch_payment_methods()
     if text in methods:
-        if text in d.get("nm_payments", {}):
-            already = d["nm_payments"][text]
-            await update.message.reply_text(
-                f"\u26a0\ufe0f *{text}* ({already:,} Ks) already entered. Choose another method or \u2705 Payment Done.",
-                parse_mode="Markdown",
-            )
-            return NM_KPAY
         d["nm_current_pay_method"] = text
         psf = sum(d.get("nm_payments", {}).values())
         rem = amt - psf
@@ -1158,13 +1151,6 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if text is a payment method
     methods = fetch_payment_methods()
     if text in methods:
-        if text in d.get("tu_payments", {}):
-            already = d["tu_payments"][text]
-            await update.message.reply_text(
-                f"\u26a0\ufe0f *{text}* ({already:,} Ks) already entered. Choose another method or \u2705 Payment Done.",
-                parse_mode="Markdown",
-            )
-            return TU_KPAY
         d["tu_current_pay_method"] = text
         psf = sum(d.get("tu_payments", {}).values())
         rem = amt - psf
@@ -1178,6 +1164,29 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
         )
         return TU_KPAY
+
+    # Try to parse as amount for current method
+    try:
+        method_amt = int(text.replace(",", "").strip())
+    except ValueError:
+        # Not a number - continue to check BTN_PAY_DONE
+        pass
+    else:
+        current_method = d.get("tu_current_pay_method", "")
+        if not current_method:
+            return await prompt_tu_kpay(update, context)
+        psf = sum(d.get("tu_payments", {}).values())
+        rem = amt - psf
+        if method_amt < 0 or method_amt > rem:
+            await update.message.reply_text(
+                f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b -",
+                parse_mode="Markdown",
+            )
+            return TU_KPAY
+        if "tu_payments" not in d:
+            d["tu_payments"] = {}
+        d["tu_payments"][current_method] = method_amt
+        return await prompt_tu_kpay(update, context)
 
     # Check if text is BTN_PAY_DONE
     if text == BTN_PAY_DONE:
@@ -1246,30 +1255,6 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return TU_CONFIRM
 
-    # Try to parse as amount for current method
-    try:
-        method_amt = int(text.replace(",", "").strip())
-    except ValueError:
-        await update.message.reply_text("\u26a0\ufe0f \u1002\u1014\u103a\u1000\u103e\u1019\u103a\u1001\u1005\u1037\u1001\u1005\u1037 \u101b\u102d\u102f\u1000\u103a\u1015\u102b -")
-        return TU_KPAY
-
-    current_method = d.get("tu_current_pay_method", "")
-    if not current_method:
-        return await prompt_tu_kpay(update, context)
-
-    psf = sum(d.get("tu_payments", {}).values())
-    rem = amt - psf
-    if method_amt < 0 or method_amt > rem:
-        await update.message.reply_text(
-            f"\u26a0\ufe0f 0 \u1014\u101c\u1039 {rem:,} \u1000\u1032 \u1014\u1031\u1000\u103a \u1002\u1014\u103a\u1000\u103e  \u101b\u102d\u102f\u1000\u103a\u1015\u102b -",
-            parse_mode="Markdown",
-        )
-        return TU_KPAY
-
-    if "tu_payments" not in d:
-        d["tu_payments"] = {}
-    d["tu_payments"][current_method] = method_amt
-    return await prompt_tu_kpay(update, context)
 @log_duration("members:step_tu_confirm")
 async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
