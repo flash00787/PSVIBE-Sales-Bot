@@ -6,6 +6,7 @@ import time
 import signal
 import asyncio
 import logging
+from logging.handlers import RotatingFileHandler
 
 from bot import keep_alive, ensure_sheet_headers
 from bot.app import main
@@ -14,7 +15,12 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
     handlers=[
-        logging.FileHandler("/root/psvibe-sales-bot/bot_status.log"),
+        RotatingFileHandler(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs", "psvibe-sale-bot.log"),
+            maxBytes=10*1024*1024,
+            backupCount=5,
+            encoding="utf-8"
+        ),
         logging.StreamHandler()
     ]
 )

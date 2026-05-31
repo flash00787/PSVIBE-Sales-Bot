@@ -11,6 +11,7 @@ import fcntl
 import signal
 import asyncio
 import logging
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import gspread
 from gspread.exceptions import APIError
@@ -222,7 +223,12 @@ from telegram.ext import (
 )
 
 _log_formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
-_file_handler  = logging.FileHandler("bot_status.log", encoding="utf-8")
+_file_handler = RotatingFileHandler(
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs", "psvibe-sale-bot.log"),
+    maxBytes=10*1024*1024,
+    backupCount=5,
+    encoding="utf-8"
+)
 _file_handler.setFormatter(_log_formatter)
 _console_handler = logging.StreamHandler()
 _console_handler.setFormatter(_log_formatter)

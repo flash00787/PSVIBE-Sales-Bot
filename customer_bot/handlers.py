@@ -492,7 +492,7 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     def _is_shown_game(g: dict) -> bool:
         title  = (g.get("title")  or "").strip()
         st     = (g.get("status") or "").strip()
-        has_st = st.lower() == "not installed" or "C -" in st
+        has_st = True  # MySQL: status="0" for all; accept all real games
         return has_st and _is_real_game(title)
 
     real_games = sorted(
