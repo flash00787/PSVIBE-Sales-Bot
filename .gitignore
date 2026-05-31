@@ -24,3 +24,4 @@ service_account.json
 V2_STATE.md
 # VPS state
 bot_status.log
+logs/
