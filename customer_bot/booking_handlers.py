@@ -198,7 +198,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             bk_id = result["id"]
             context.user_data["_bk_last_id"] = bk_id
             msg = (
-                f"✅ *Booking Confirmed!*\n\n"
+                f"✅ *Booking Submitted — Pending Confirmation*\n\n"
                 f"🎫 Booking #{bk_id}\n"
                 f"📅 {payload['date']}  ⏰ {payload['timeSlot']}\n"
                 f"🎮 {payload['consoleType']}  ⏱️ {payload['durationMins']} mins\n"
@@ -906,21 +906,23 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if text in (BTN_NOT_SURE, "🤷 မရွေးတတ်ပါ"):
             context.user_data["bk_game"] = "Any"
+            summary = _format_booking_summary(context)
             await update.message.reply_text(
-                f"🕹️ Game: *Any*\n\n💻 Console preference ရွေးပါ:",
+                f"🕹️ Game: *Any*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
                 parse_mode="Markdown",
-                reply_markup=_make_console_keyboard(),
+                reply_markup=_make_confirm_keyboard(),
             )
-            return BK_CONSOLE_PREF
+            return BK_CONFIRM
 
         if text == BTN_SKIP:
             context.user_data["bk_game"] = "Any"
+            summary = _format_booking_summary(context)
             await update.message.reply_text(
-                f"🕹️ Game: *Any*\n\n💻 Console preference ရွေးပါ:",
+                f"🕹️ Game: *Any*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
                 parse_mode="Markdown",
-                reply_markup=_make_console_keyboard(),
+                reply_markup=_make_confirm_keyboard(),
             )
-            return BK_CONSOLE_PREF
+            return BK_CONFIRM
 
         if text == "◀️ Previous":
             page = context.user_data.get("_bk_game_page", 0) - 1
@@ -953,13 +955,13 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             context.user_data["bk_game"] = text[:50]
 
+        summary = _format_booking_summary(context)
         await update.message.reply_text(
-            f"🕹️ Game: *{context.user_data['bk_game']}*\n\n"
-            "💻 Console preference ရွေးပါ:",
+            f"🕹️ Game: *{context.user_data['bk_game']}*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
             parse_mode="Markdown",
-            reply_markup=_make_console_keyboard(),
+            reply_markup=_make_confirm_keyboard(),
         )
-        return BK_CONSOLE_PREF
+        return BK_CONFIRM
 
     # Callback path (keep for safety)
     if update.callback_query:
@@ -987,13 +989,13 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             else:
                 context.user_data["bk_game"] = game
 
+            summary = _format_booking_summary(context)
             await query.edit_message_text(
-                f"🕹️ Game: *{context.user_data['bk_game']}*\n\n"
-                "💻 Console preference ရွေးပါ:",
+                f"🕹️ Game: *{context.user_data['bk_game']}*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
                 parse_mode="Markdown",
-                reply_markup=_make_console_keyboard(),
+                reply_markup=_make_confirm_keyboard(),
             )
-            return BK_CONSOLE_PREF
+            return BK_CONFIRM
 
         await query.edit_message_text("❌ Invalid game selection.")
         return BK_GAME

@@ -48,7 +48,6 @@ from customer_bot.booking_handlers import (
 _log = logging.getLogger(__name__)
 BOT_TOKEN = os.environ.get("CUSTOMER_BOT_TOKEN", "")
 
-
 def _register_handlers(app: Application) -> None:
     """Register all command and callback handlers."""
 
@@ -134,11 +133,6 @@ def _register_handlers(app: Application) -> None:
                 CallbackQueryHandler(bk_game_select, pattern=r"^(bk_game:|bk_game_page:)"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_game_select),
             ],
-            # BK_CONSOLE_PREF — ReplyKeyboard: PS5 / PS5 Pro / 🤷 / ❌ ပယ်ဖျက်မည်
-            BK_CONSOLE_PREF: [
-                CallbackQueryHandler(bk_console_pref, pattern=r"^bk_con:"),
-                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_console_pref),
-            ],
             # BK_CONFIRM — ReplyKeyboard: ✅ Confirm Booking / ❌ ပယ်ဖျက်မည်
             BK_CONFIRM: [
                 CallbackQueryHandler(bk_confirm, pattern=r"^bk_ok:"),
@@ -179,11 +173,9 @@ def _register_handlers(app: Application) -> None:
     # Menu buttons catch-all (handles main menu clicks when not in conversation)
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu_buttons))
 
-
 async def _post_init(app: Application) -> None:
     """Post-init hook — command menu intentionally removed (handlers remain active)."""
     pass  # Command menu removed per 2026-05-30
-
 
 async def _error_handler(update, context) -> None:
     """Global error handler - 409 Conflict handled gracefully."""
@@ -200,7 +192,6 @@ async def _error_handler(update, context) -> None:
             )
     except Exception:
         pass
-
 
 def main() -> None:
     """Build app, register handlers, start polling."""
@@ -226,17 +217,14 @@ def main() -> None:
     _log.info("Customer bot (clean V2, ReplyKeyboard booking flow) starting polling...")
     app.run_polling(drop_pending_updates=True)
 
-
 # Global flag for graceful shutdown
 _shutdown_requested = False
-
 
 def _handle_shutdown_signal(signum, frame):
     global _shutdown_requested
     sig_name = signal.Signals(signum).name
     _log.info("Received %s — initiating graceful shutdown...", sig_name)
     _shutdown_requested = True
-
 
 def run() -> None:
     """Run with crash recovery and graceful shutdown."""
@@ -264,7 +252,6 @@ def run() -> None:
                 break
             _log.error("Customer bot crashed: %s — restart in 5s", exc, exc_info=True)
             time.sleep(5)
-
 
 if __name__ == "__main__":
     run()
