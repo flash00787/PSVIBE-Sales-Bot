@@ -631,11 +631,18 @@ async def step_nm_referral(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Look up referrer in Card_Wallet col Q
     referrer_id = ""
     try:
-        rows = member_sh.get_all_values()
-        for row in rows[1:]:
-            if len(row) > 16 and row[16].strip().upper() == code.upper():
-                referrer_id = row[1].strip()  # col B = member_id
-                break
+        # Look up referrer via API (MySQL) instead of direct sheet read
+        members_list = fetch_members()
+        for m_id in (members_list or []):
+            try:
+                m_data = fetch_member_data(m_id)
+                if m_data and isinstance(m_data, dict):
+                    ref_code = (m_data.get("referral_code") or "").strip().upper()
+                    if ref_code == code.upper():
+                        referrer_id = str(m_id).strip()
+                        break
+            except Exception:
+                continue
     except Exception as _e:
         logging.error("nm_referral_lookup: %s", _e)
     if not referrer_id:
@@ -856,15 +863,21 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logging.info("referral_bonus: referrer %s +30 mins via TopUp_Log", nm_referrer_id)
                 # Update referrer Card_Wallet Column H with +30 bonus mins
                 try:
-                    _ref_rows = member_sh.get_all_values()
-                    for _ri, _rr in enumerate(_ref_rows):
-                        if _rr and len(_rr) > 1 and _rr[1].strip() == nm_referrer_id.strip():
-                            _ref_prev_bal = int(str(_rr[7]).replace(',', '').strip() or 0) if len(_rr) > 7 else 0
-                            member_sh.update_cell(_ri + 1, 8, _ref_prev_bal + 30)
-                            _ref_prev_i = int(str(_rr[8]).replace(',', '').strip() or 0) if len(_rr) > 8 else 0
-                            member_sh.update_cell(_ri + 1, 9, _ref_prev_i + 30)
-                            logging.info("referral_bonus_wallet: referrer %s %d → %d mins", nm_referrer_id, _ref_prev_bal, _ref_prev_bal + 30)
-                            break
+                    # Read referrer wallet via API instead of sheet scan
+                    ref_data = fetch_member_data(nm_referrer_id)
+                    _ref_prev_bal = ref_data.get("wallet_mins", 0) if isinstance(ref_data, dict) else 0
+                    _ref_prev_i = _ref_prev_bal  # total_bought_mins
+                    # Write back via sheet (API write path handles MySQL sync)
+                    try:
+                        _ref_rows_chk = member_sh.get_all_values()
+                        for _ri, _rr in enumerate(_ref_rows_chk):
+                            if _rr and len(_rr) > 1 and _rr[1].strip() == nm_referrer_id.strip():
+                                member_sh.update_cell(_ri + 1, 8, _ref_prev_bal + 30)
+                                member_sh.update_cell(_ri + 1, 9, _ref_prev_i + 30)
+                                break
+                    except Exception:
+                        pass
+                    logging.info("referral_bonus_wallet: referrer %s %d → %d mins via API", nm_referrer_id, _ref_prev_bal, _ref_prev_bal + 30)
                 except Exception as _rte:
                     logging.error("referral_bonus_wallet_update: %s", _rte)
         try:
@@ -1211,14 +1224,20 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 update_member_effective_rate(tu_id, new_rate)
             # Update Card_Wallet Column H with new balance
             try:
-                _tu_rows = member_sh.get_all_values()
-                for _ti, _tr in enumerate(_tu_rows):
-                    if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
-                        member_sh.update_cell(_ti + 1, 8, bal_mins)
-                        _current_i = int(str(_tr[8]).replace(',', '').strip() or 0)
-                        member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)
-                        logging.info("topup: %s %d → %d mins", tu_id, prev_bal, bal_mins)
-                        break
+                # Read member data via API instead of sheet scan
+                tu_data = fetch_member_data(tu_id)
+                _current_i = tu_data.get("wallet_mins", 0) if isinstance(tu_data, dict) else 0
+                # Write back via sheet (API write path handles MySQL sync)
+                try:
+                    _tu_rows_chk = member_sh.get_all_values()
+                    for _ti, _tr in enumerate(_tu_rows_chk):
+                        if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
+                            member_sh.update_cell(_ti + 1, 8, bal_mins)
+                            member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)
+                            break
+                except Exception:
+                    pass
+                logging.info("topup: %s %d → %d mins via API", tu_id, prev_bal, bal_mins)
             except Exception as _te:
                 logging.error("topup_wallet_update: %s", _te)
         try:

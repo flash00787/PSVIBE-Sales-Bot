@@ -25,7 +25,13 @@ def update_inv_total_k1() -> int:
     DEPRECATED: direct gspread write — should use API endpoint when available."""
     try:
     # TODO: Migrate to MySQL via API -- direct gspread is fallback only
-        vals = inv_sh.col_values(7)[1:]          # col G = Inventory Value, skip header
+        food_prices = fetch_food_prices()
+        food_costs = fetch_food_costs()
+        vals = []
+        if food_prices and isinstance(food_prices, dict):
+            for k, v in food_prices.items():
+                cost = float(str(food_costs.get(k, 0)).replace(",", "")) if food_costs else 0
+                vals.append(str(v * cost))          # col G = Inventory Value, skip header
         total = 0
         for v in vals:
             try:
@@ -224,10 +230,17 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
             })
         except Exception as e:
             logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
-        stock_sh.append_row(
-            [today, ref, item, qty, sell_price, total_val, cost_price, total_cogs],
-            value_input_option="USER_ENTERED",
-        )
+        # Use API for stock-out recording
+        api_add_stock_out({
+            "date": today,
+            "reference": ref,
+            "item_name": item,
+            "qty": qty,
+            "sell_price": sell_price,
+            "total_value": total_val,
+            "cost_price": cost_price,
+            "total_cogs": total_cogs,
+        })
         logging.info("Stock out saved: %s x%d ref=%s", item, qty, ref)
         msg = (
             f"✅ *Stock Out မှတ်တမ်းတင်ပြီး*\n\n"

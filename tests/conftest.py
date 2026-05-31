@@ -208,6 +208,41 @@ def _build_bot_mock():
                 else:
                     setattr(bot, _name, MagicMock())
 
+
+
+    # ── Ensure async mocks survive auto-population ──
+    bot.fetch_members_async = AsyncMock(return_value=['PSV_A001', 'PSV_A002', 'PSV_A003'])
+    bot.fetch_wallet_mins_async = AsyncMock(return_value=100)
+    bot.fetch_base_rate_async = AsyncMock(return_value=5000)
+    bot.fetch_food_prices_async = AsyncMock(return_value={})
+    bot.fetch_food_costs_async = AsyncMock(return_value={})
+    bot.fetch_console_multiplier_async = AsyncMock(return_value=1.5)
+    bot.fetch_allowed_staff_ids_async = AsyncMock(return_value=[12345])
+    # Handler functions that are awaited from bot.* imports
+    bot.prompt_member = AsyncMock(return_value=1)
+    bot.prompt_console = AsyncMock(return_value=2)
+    bot.show_mm_menu = AsyncMock(return_value=3)
+    bot.cmd_inventory = AsyncMock(return_value=4)
+    bot.cmd_today_report = AsyncMock(return_value=5)
+    bot.cmd_staff_book_hub = AsyncMock(return_value=6)
+    bot.cmd_waitlist_mgmt = AsyncMock(return_value=7)
+    bot.cmd_staff_booking = AsyncMock(return_value=8)
+    bot.cmd_confirmed_bookings = AsyncMock(return_value=9)
+    bot.cmd_financial_report = AsyncMock(return_value=10)
+    bot.cmd_payroll = AsyncMock(return_value=11)
+    bot.cmd_staff_kpi = AsyncMock(return_value=12)
+    bot.prompt_book_console = AsyncMock(return_value=13)
+    bot.prompt_discount = AsyncMock(return_value=14)
+    bot.end_booking = AsyncMock(return_value=15)
+    bot.cmd_setattend = AsyncMock(return_value=16)
+    bot.cmd_setattend_cmd = AsyncMock(return_value=17)
+    def _identity_log_duration(msg):
+        """Pass-through decorator so @log_duration doesn't corrupt handler imports."""
+        def dec(func):
+            return func
+        return dec
+    bot.log_duration = _identity_log_duration
+
     return bot
 
 _bot = _build_bot_mock()
@@ -262,12 +297,15 @@ def mock_message(mock_user, mock_chat):
 
 @pytest.fixture
 def mock_update(mock_user, mock_chat, mock_message):
-    update = MagicMock()
+    update = AsyncMock()
     update.update_id = 1
     update.message = mock_message
     update.effective_user = mock_user
     update.effective_chat = mock_chat
-    update.callback_query = None
+    update.callback_query = AsyncMock()
+    update.callback_query.answer = AsyncMock()
+    update.callback_query.edit_text = AsyncMock()
+    update.callback_query.data = "test_data"
     return update
 
 @pytest.fixture

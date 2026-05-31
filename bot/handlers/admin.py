@@ -119,50 +119,23 @@ async def step_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await show_admin_menu(update, context)
 
 def fetch_salary_advances(month_str: str) -> dict[str, dict]:
-    """Return {staff: {total, cash, kpay}} for the given month (YYYY-MM).
-    Sheet cols: A=Date, B=Staff, C=Amount, D=Payment(Cash/KPay), E=Note
-    """
-    year_i, mon_i = int(month_str[:4]), int(month_str[5:7])
+    """Aggregate salary advances from MySQL API."""
     result: dict[str, dict] = {}
     try:
-        sh = get_salary_adv_sh()
-        for row in sh.get_all_values()[1:]:
-            if len(row) < 3 or not row[0].strip():
-                continue
-            d = _parse_date_mmt(row[0].strip())
-            if not d or d.year != year_i or d.month != mon_i:
-                continue
-            staff   = row[1].strip()
-            amount  = _int(row[2])
-            payment = row[3].strip().lower() if len(row) > 3 else "cash"
-            if staff and amount > 0:
-                if staff not in result:
-                    result[staff] = {"total": 0, "cash": 0, "kpay": 0}
-                result[staff]["total"] += amount
-                if "kpay" in payment:
-                    result[staff]["kpay"] += amount
-                else:
-                    result[staff]["cash"] += amount
+        adv = api_fetch_salary_advances(month_str)
+        if adv and isinstance(adv, dict) and adv.get("data"):
+            for r in adv["data"]:
+                staff  = str(r.get("staff", "")).strip()
+                amt    = int(float(str(r.get("amount", 0))))
+                pay    = str(r.get("payment", "cash")).lower()
+                if staff and amt > 0:
+                    if staff not in result:
+                        result[staff] = {"total": 0, "cash": 0, "kpay": 0}
+                    result[staff]["total"] += amt
+                    result[staff][pay if pay in ("cash","kpay") else "cash"] += amt
     except Exception as e:
         logging.warning("fetch_salary_advances: %s", e)
     return result
-
-async def cmd_admin_sal_adv(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Admin: start Salary Advance recording."""
-    staff_list = fetch_staff()
-    if not staff_list:
-        await update.message.reply_text("❌ Staff list ရှာမတွေ့ပါ။")
-        return await show_admin_menu(update, context)
-
-    kb = [[s] for s in staff_list] + [[BTN_BACK_MAIN]]
-    await update.message.reply_text(
-        "💸 *Salary Advance မှတ်တမ်း*\n"
-        "━━━━━━━━━━━━━━━━━━\n"
-        "Advance ပေးမည့် Staff ကို ရွေးပါ:",
-        parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
-    return SAL_ADV_STAFF
 
 def _parse_date_mmt(val: str):
     for fmt in ("%m/%d/%Y", "%-m/%-d/%Y"):
@@ -173,31 +146,13 @@ def _parse_date_mmt(val: str):
     return None
 
 def fetch_alltime_effective_rate() -> float:
-    """All-time average Ks/min across every TopUp_Log row (incl. bonus mins).
-
-    This is the only correct rate to use for both:
-      - Member earned revenue  (mins used × this rate)
-      - Card Liability         (wallet balance mins × this rate)
-
-    Example: member paid 90,000 for 600 base + 100 bonus = 700 total mins
-             → rate = 90,000 / 700 = 128.57 Ks/min  (NOT 166.67 Ks/min)
-    """
-    total_paid = 0
-    total_mins = 0
+    """All-time average Ks/min from MySQL API."""
     try:
-        for row in topup_sh.get_all_values()[1:]:
-            if len(row) < 8:
-                continue
-            amt  = _int(row[4])
-            mins = _int(row[7])   # col H = AddedMins (including bonus)
-            if amt > 0 and mins > 0:
-                total_paid += amt
-                total_mins += mins
+        result = api_fetch_alltime_effective_rate()
+        if result and isinstance(result, dict) and result.get("success"):
+            return float(result.get("rate", 0))
     except Exception as e:
-        logging.warning("fetch_alltime_effective_rate: %s", e)
-    if total_mins > 0:
-        return round(total_paid / total_mins, 2)
-    # Hard fallback — avoids using naive base_rate
+        logging.warning("fetch_alltime_effective_rate API: %s", e)
     return fetch_base_rate() or 150.0
 
 def calc_monthly_pnl(month_str: str) -> dict:

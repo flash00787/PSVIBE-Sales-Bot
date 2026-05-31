@@ -46,23 +46,49 @@ from datetime import datetime, timezone, timedelta
 # TODO: Migrate to MySQL via API -- direct gspread is fallback only
 # These helper functions return gspread worksheet objects directly.
 def get_opex_sh():
+    try:
+        result = api_fetch_finance_opex()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("OPEX_Log")
-
 def get_assets_sh():
+    try:
+        result = api_fetch_finance_assets()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("Assets_Register")
-
 def get_prepaid_fin_sh():
+    try:
+        result = api_fetch_finance_prepaid()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("Prepaid_Expenses")
 
 def get_acct_trf_sh():
     return wb.worksheet("Account_Transfers")
 
 def get_payables_sh():
+    try:
+        result = api_fetch_finance_payables()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("Payables")
-
 def get_receivables_sh():
+    try:
+        result = api_fetch_finance_receivables()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("Receivables")
-
 def get_advpay_sh():
     return wb.worksheet("Advance_Payments")
 
@@ -1423,6 +1449,21 @@ async def step_pay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 value_input_option="USER_ENTERED",
             )
         await asyncio.to_thread(_do)
+        # ── API write ──
+        async def _api_write():
+            try:
+                api_add_payable({
+                    "date": today_str(),
+                    "vendor": d["pay_vendor"],
+                    "description": d["pay_desc"],
+                    "amount": d["pay_amt"],
+                    "due_date": d["pay_due"],
+                    "status": "Pending",
+                    "account": d.get("pay_acct", ""),
+                })
+            except Exception:
+                pass
+        asyncio.ensure_future(_api_write())
         await update.message.reply_text(
             f"✅ *Payable မှတ်တမ်း သိမ်းပြီး!*\n"
             f"📤 {d['pay_vendor']} — {d['pay_desc']}\n"
@@ -1896,6 +1937,22 @@ async def step_advpay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE
                 value_input_option="USER_ENTERED",
             )
         await asyncio.to_thread(_do)
+        # ── API write ──
+        async def _api_write():
+            try:
+                api_add_advance({
+                    "advance_date": today_str(),
+                    "party": d["advpay_party"],
+                    "description": d["advpay_desc"],
+                    "amount": d["advpay_amt"],
+                    "account": d["advpay_acct"],
+                    "due_date": d["advpay_due"],
+                    "status": "Pending",
+                    "notes": d.get("advpay_note", ""),
+                })
+            except Exception:
+                pass
+        asyncio.ensure_future(_api_write())
         await update.message.reply_text(
             f"✅ *Advance Payment မှတ်ပြီး!*\n"
             f"👤 {d['advpay_party']}  |  💰 {d['advpay_amt']:,} Ks\n"
@@ -2005,8 +2062,15 @@ async def step_advpay_settle_confirm(update: Update, context: ContextTypes.DEFAU
     try:
         def _do():
             sh = get_advpay_sh()
-            sh.update_cell(sheet_row, 7, "Settled")       # col G = Status
-            sh.update_cell(sheet_row, 8, today_str())     # col H = Settle Date (overwrites Notes)
+            # ── API update ──
+            api_update_finance_advance(sheet_row, {
+                "status": "Settled",
+                "settle_date": today_str(),
+                "notes": d.get("advpay_note", ""),
+            })
+            # ── GSheet fallback ──
+            sh.update_cell(sheet_row, 7, "Settled")
+            sh.update_cell(sheet_row, 8, today_str())
         await asyncio.to_thread(_do)
         party = (r[1] if len(r) > 1 else "?").strip()
         amt   = (r[3] if len(r) > 3 else "0").strip()
@@ -2059,10 +2123,21 @@ async def _handle_settle_confirm(update: Update, context: ContextTypes.DEFAULT_T
     try:
         def _do():
             sh = get_payables_sh() if is_pay else get_receivables_sh()
-            sh.update_cell(sheet_row, 6, status_new)   # col F = Status
-            sh.update_cell(sheet_row, 7, today_str())  # col G = Paid/Received Date
+            # ── API update ──
+            update_data = {
+                "status": status_new,
+                "paid_date": today_str(),
+                "settle_account": settle_acct,
+            }
+            if is_pay:
+                api_update_finance_payable(sheet_row, update_data)
+            else:
+                api_update_finance_receivable(sheet_row, update_data)
+            # ── GSheet fallback ──
+            sh.update_cell(sheet_row, 6, status_new)
+            sh.update_cell(sheet_row, 7, today_str())
             if settle_acct:
-                sh.update_cell(sheet_row, 8, settle_acct)  # col H = Account
+                sh.update_cell(sheet_row, 8, settle_acct)
         await asyncio.to_thread(_do)
         r     = d.get("settle_data", [])
         party = (r[1] if len(r) > 1 else "?").strip()
@@ -2096,8 +2171,13 @@ async def step_rec_settle_confirm(update: Update, context: ContextTypes.DEFAULT_
 
 # TODO: Migrate to MySQL via API -- direct gspread is fallback only
 def get_capital_sh():
+    try:
+        result = api_fetch_finance_accounts()
+        if result is not None:
+            return result
+    except Exception:
+        pass
     return wb.worksheet("Capital_Setup")
-
 async def show_shareholder_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show shareholders list (A=Name, B=Role, C=Capital, D=Ownership%) + Add button."""
     await update.message.reply_text("⏳ Shareholders ဆွဲယူနေသည်...")
@@ -2298,6 +2378,19 @@ async def step_share_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE)
             sh = get_capital_sh()
             sh.append_row([name, role, cap, own], value_input_option="USER_ENTERED")
         await asyncio.to_thread(_do)
+        # ── API write ──
+        async def _api_write():
+            try:
+                api_add_advance({
+                    "advance_date": today_str(),
+                    "staff": name,
+                    "amount": cap,
+                    "description": f"Share capital: {role} ({own:.0f}%)",
+                    "status": "active"
+                })
+            except Exception:
+                pass
+        asyncio.ensure_future(_api_write())
         await update.message.reply_text(
             f"✅ *Shareholder မှတ်တမ်း သိမ်းပြီး!*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
@@ -2399,16 +2492,38 @@ async def step_cap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
     try:
         def _do():
-            # TODO: Migrate to MySQL via API -- direct gspread is fallback only
+            # ── API write (MySQL) ──
+            try:
+                existing = api_fetch_finance_accounts()
+                if existing and isinstance(existing, dict) and existing.get("success"):
+                    data = existing.get("data", [])
+                    found = False
+                    for item in data:
+                        if isinstance(item, dict) and str(item.get("name", "")).strip() == acct:
+                            # Update existing
+                            api_update_finance_opex(item.get("id", 0), {"amount": amt})
+                            found = True
+                            return "updated"
+                    if not found:
+                        # Append new
+                        api_add_opex({
+                            "date": today_str(),
+                            "category": "Capital",
+                            "description": f"{acct} - Initial Capital",
+                            "amount": amt,
+                            "account": acct,
+                            "payment": "Cash"
+                        })
+                        return "added"
+            except Exception:
+                pass
+            # ── GSheet fallback ──
             sh = wb.worksheet("Accounts")
-            # Check if account row already exists; update if so, append if not
             rows = sh.get_all_values()
             for i, row in enumerate(rows[1:], start=2):
                 if (row[0] if row else "").strip() == acct:
-                    # Update opening balance column C (index 2)
                     sh.update_cell(i, 3, amt)
                     return "updated"
-            # Append new row: Name, Type, Opening, Notes
             acct_type = "Bank" if ("bank" in acct.lower() or "kbz" in acct.lower() or "aya" in acct.lower()) else ("Digital" if "mmqr" in acct.lower() else "Cash")
             sh.append_row([acct, acct_type, amt, "Initial Capital"], value_input_option="USER_ENTERED")
             return "added"

@@ -705,6 +705,57 @@ def api_add_topup(data: dict) -> dict | None:
 # ===================================================================
 
 
+# ── Finance Read (MySQL API) ──
+def api_fetch_finance_opex() -> dict | None:
+    """Fetch OPEX records from MySQL via API."""
+    return _api_call("GET", "/api/finance/opex")
+
+def api_fetch_finance_assets() -> dict | None:
+    """Fetch asset records from MySQL via API."""
+    return _api_call("GET", "/api/finance/assets")
+
+def api_fetch_finance_prepaid() -> dict | None:
+    """Fetch prepaid expense records from MySQL via API."""
+    return _api_call("GET", "/api/finance/prepaid")
+
+def api_fetch_finance_payables() -> dict | None:
+    """Fetch payable records from MySQL via API."""
+    return _api_call("GET", "/api/finance/payables")
+
+def api_fetch_finance_receivables() -> dict | None:
+    """Fetch receivable records from MySQL via API."""
+    return _api_call("GET", "/api/finance/receivables")
+
+def api_fetch_finance_advances() -> dict | None:
+    """Fetch advance payment records from MySQL via API."""
+    return _api_call("GET", "/api/finance/advances")
+
+# ── Finance Write (MySQL API) ──
+def api_add_asset(data: dict) -> dict | None:
+    """Create asset record via MySQL API."""
+    return _api_call("POST", "/api/finance/assets", data)
+
+def api_add_prepaid(data: dict) -> dict | None:
+    """Create prepaid expense record via MySQL API."""
+    return _api_call("POST", "/api/finance/prepaid", data)
+
+def api_add_payable(data: dict) -> dict | None:
+    """Create payable record via MySQL API."""
+    return _api_call("POST", "/api/finance/payables", data)
+
+def api_add_receivable(data: dict) -> dict | None:
+    """Create receivable record via MySQL API."""
+    return _api_call("POST", "/api/finance/receivables", data)
+
+def api_add_advance(data: dict) -> dict | None:
+    """Create advance payment record via MySQL API."""
+    return _api_call("POST", "/api/finance/advances", data)
+
+def api_fetch_finance_accounts() -> dict | None:
+    """Fetch accounts list from MySQL via API."""
+    return _api_call("GET", "/api/finance/accounts")
+
+
 async def api_add_sales_record_async(data: dict) -> dict | None:
     """Async: Record a sale + update member wallet via API."""
     mapped: dict = {
@@ -763,3 +814,29 @@ async def api_add_stock_out_async(data: dict) -> dict | None:
     if "date" in data:
         data["date"] = _normalize_date(data["date"])
     return await _api_call_async("POST", "stock/out", json_data=data)
+
+
+def api_update_finance_asset(item_id: int, data: dict) -> dict | None:
+    """Update a finance asset record."""
+    return _api_call("PUT", f"finance/assets/{item_id}", data)
+
+def api_update_finance_payable(item_id: int, data: dict) -> dict | None:
+    """Update a finance payable record."""
+    return _api_call("PUT", f"finance/payables/{item_id}", data)
+
+def api_update_finance_receivable(item_id: int, data: dict) -> dict | None:
+    """Update a finance receivable record."""
+    return _api_call("PUT", f"finance/receivables/{item_id}", data)
+
+def api_update_finance_opex(item_id: int, data: dict) -> dict | None:
+    """Update a finance opex record."""
+    return _api_call("PUT", f"finance/opex/{item_id}", data)
+
+def api_update_finance_prepaid(item_id: int, data: dict) -> dict | None:
+    """Update a finance prepaid record."""
+    return _api_call("PUT", f"finance/prepaid/{item_id}", data)
+
+def api_update_finance_advance(item_id: int, data: dict) -> dict | None:
+    """Update a finance advance record."""
+    return _api_call("PUT", f"finance/advances/{item_id}", data)
+

@@ -48,19 +48,17 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
         task.cancel()
 
 def _is_session_active(cid: str) -> bool:
-    """Quick sync check: is this console still Active in Console_Booking today?"""
+    """Quick sync check: is this console Active today? (via MySQL API)."""
     try:
-        sh   = get_booking_sh()
-        rows = sh.get_all_values()
-        td   = today_str()
-        for row in rows[1:]:
-            if len(row) < 7:
-                continue
-            if row[1].strip() == td and row[2].strip() == cid and row[6].strip() == "Active":
-                return True
+        bk_data = _replit_get("console_booking")
+        if bk_data and isinstance(bk_data, list):
+            td = today_str()
+            for row in bk_data:
+                if isinstance(row, dict) and row.get("date", "").strip() == td and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
+                    return True
     except Exception as e:
         logger.error("_is_session_active: %s", e, exc_info=True)
-        return True   # assume active if can't read sheet
+        return True
     return False
 
 async def _remind_loop(
