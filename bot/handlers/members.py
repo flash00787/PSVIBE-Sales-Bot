@@ -252,7 +252,7 @@ async def prompt_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
         step_hdr(1, 6, "Member Name") +
         "👤 Member Name ရိုက်ပါ -",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup([[BTN_NM_GIFT], NAV_ROW], resize_keyboard=True),
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
     )
     return NM_NAME
 
@@ -602,6 +602,13 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if text is a payment method
     methods = fetch_payment_methods()
     if text in methods:
+        if text in d.get("nm_payments", {}):
+            already = d["nm_payments"][text]
+            await update.message.reply_text(
+                f"\u26a0\ufe0f *{text}* ({already:,} Ks) already entered. Choose another method or \u2705 Payment Done.",
+                parse_mode="Markdown",
+            )
+            return NM_KPAY
         d["nm_current_pay_method"] = text
         psf = sum(d.get("nm_payments", {}).values())
         rem = amt - psf
@@ -1151,6 +1158,13 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if text is a payment method
     methods = fetch_payment_methods()
     if text in methods:
+        if text in d.get("tu_payments", {}):
+            already = d["tu_payments"][text]
+            await update.message.reply_text(
+                f"\u26a0\ufe0f *{text}* ({already:,} Ks) already entered. Choose another method or \u2705 Payment Done.",
+                parse_mode="Markdown",
+            )
+            return TU_KPAY
         d["tu_current_pay_method"] = text
         psf = sum(d.get("tu_payments", {}).values())
         rem = amt - psf
