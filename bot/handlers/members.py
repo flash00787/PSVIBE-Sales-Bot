@@ -795,6 +795,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "staff": nm_staff,
                     "email": nm_email or "",
                     "row_no": row_no,
+                    "initial_mins": bal_mins,
                 })
             except Exception as e:
                 logging.warning("Member API write failed (GSheet fallback OK): %s", e)
@@ -811,7 +812,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "amount": nm_amt,
                     "kpay": nm_kpay,
                     "cash": nm_cash,
-                    "minutes": _nm_added_mins,
+                    "mins_added": _nm_added_mins,
                     "staff": nm_staff,
                 })
             except Exception as e:
@@ -839,7 +840,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "amount": 0,
                         "kpay": 0,
                         "cash": 0,
-                        "minutes": 30,
+                        "mins_added": 30,
                         "staff": nm_staff,
                     })
                 except Exception as e:
@@ -853,6 +854,19 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     value_input_option="USER_ENTERED",
                 )
                 logging.info("referral_bonus: referrer %s +30 mins via TopUp_Log", nm_referrer_id)
+                # Update referrer Card_Wallet Column H with +30 bonus mins
+                try:
+                    _ref_rows = member_sh.get_all_values()
+                    for _ri, _rr in enumerate(_ref_rows):
+                        if _rr and len(_rr) > 1 and _rr[1].strip() == nm_referrer_id.strip():
+                            _ref_prev_bal = int(str(_rr[7]).replace(',', '').strip() or 0) if len(_rr) > 7 else 0
+                            member_sh.update_cell(_ri + 1, 8, _ref_prev_bal + 30)
+                            _ref_prev_i = int(str(_rr[8]).replace(',', '').strip() or 0) if len(_rr) > 8 else 0
+                            member_sh.update_cell(_ri + 1, 9, _ref_prev_i + 30)
+                            logging.info("referral_bonus_wallet: referrer %s %d → %d mins", nm_referrer_id, _ref_prev_bal, _ref_prev_bal + 30)
+                            break
+                except Exception as _rte:
+                    logging.error("referral_bonus_wallet_update: %s", _rte)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:
@@ -1181,7 +1195,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "amount": tu_amt,
                     "kpay": tu_kpay,
                     "cash": tu_cash,
-                    "minutes": tu_mins,
+                    "mins_added": tu_mins,
                     "tier": current_tier,
                 })
             except Exception as e:
