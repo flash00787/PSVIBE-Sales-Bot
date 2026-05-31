@@ -7,7 +7,7 @@ from bot import (
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
     SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
-    _delete_session_game, _replit_get, _replit_post, calc_duration,
+    add_console_game, _delete_session_game, _replit_get, _replit_post, calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking,
     fetch_console_games, fetch_console_status, fetch_games,
     fetch_members, fetch_staff, get_consoles_with_game,
@@ -648,7 +648,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
                 logger.error("_in_window: %s", e, exc_info=True)
                 return True
         pending_bks = [
-            b for b in bks_raw
+            b for b in bks_raw if isinstance(b, dict)
             if b.get("status") in ("confirmed", "arrived")
             and b.get("date", "") == today
             and _in_window(b)
@@ -1051,7 +1051,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         try:
             # Remove any previous Session entry for this console first
             _delete_session_game(cid)
-            write_console_game(cid, game, "Session", f"BK:{bk_id}")
+            add_console_game(cid, game, "Session", f"BK:{bk_id}")
         except Exception as e:
             logger.error("_do_create_booking: %s", e, exc_info=True)
             pass
