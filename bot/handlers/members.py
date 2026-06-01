@@ -597,6 +597,16 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d = context.user_data
     amt = d.get("nm_amt", 0)
 
+    # Rate-limiter: prevent rapid-fire duplicate processing (spam guard)
+    import time
+    _last_kpay_ts = d.get("_nm_kpay_last_ts", 0)
+    _last_kpay_text = d.get("_nm_kpay_last_text", "")
+    _now = time.time()
+    if text == _last_kpay_text and (_now - _last_kpay_ts) < 0.5:
+        return NM_KPAY  # duplicate within 500ms → silently ignore
+    d["_nm_kpay_last_ts"] = _now
+    d["_nm_kpay_last_text"] = text
+
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
@@ -606,8 +616,8 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if text is a payment method
     methods = fetch_payment_methods()
     if text in methods:
-        d["nm_current_pay_method"] = text
         prev_method = d.get("nm_current_pay_method", "")
+        d["nm_current_pay_method"] = text
         is_new_method = (prev_method != text)
         has_payment = bool(d.get("nm_payments"))
         psf = sum(d.get("nm_payments", {}).values())
