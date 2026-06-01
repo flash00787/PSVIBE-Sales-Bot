@@ -230,17 +230,6 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
             })
         except Exception as e:
             logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
-        # Use API for stock-out recording
-        api_add_stock_out({
-            "date": today,
-            "reference": ref,
-            "item_name": item,
-            "qty": qty,
-            "sell_price": sell_price,
-            "total_value": total_val,
-            "cost_price": cost_price,
-            "total_cogs": total_cogs,
-        })
         logging.info("Stock out saved: %s x%d ref=%s", item, qty, ref)
         msg = (
             f"✅ *Stock Out မှတ်တမ်းတင်ပြီး*\n\n"

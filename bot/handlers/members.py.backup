@@ -1102,22 +1102,6 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     paid_so_far = sum(d["tu_payments"].values())
     remaining = amt - paid_so_far
 
-    # Show amount input when method selected but no amount entered yet
-    if d.get("tu_show_amount_input") and d.get("tu_current_pay_method"):
-        method = d["tu_current_pay_method"]
-        d.pop("tu_show_amount_input", None)
-        await update.message.reply_text(
-            f"💳 *{method}* ပမာဏ ရိုက်ပါ\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"💰 Top Up: *{amt:,} Ks*  |  Remaining: *{remaining:,} Ks*\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"(0 - {remaining:,}) ထည့်ပါ -",
-            parse_mode="Markdown",
-            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
-        )
-        return TU_KPAY
-
-
     # Auto-confirm when full payment complete
     if remaining <= 0:
         d["tu_kpay"] = d["tu_payments"].get("KPay", 0)
@@ -1168,8 +1152,19 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     methods = fetch_payment_methods()
     if text in methods:
         d["tu_current_pay_method"] = text
-        d["tu_show_amount_input"] = True
-        return await prompt_tu_kpay(update, context)
+        psf = sum(d.get("tu_payments", {}).values())
+        rem = amt - psf
+        await update.message.reply_text(
+            f"\U0001f4b3 *{text}* \u1015\u1019\u102b\u100f \u101b\u102d\u102f\u1000\u103a\u1015\u102b\n"
+            f"\u2501" * 30 + f"\n"
+            f"\U0001f4b0 Top Up: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
+            f"\u2501" * 30 + f"\n"
+            f"(0 - {rem:,}) \u1011\u100a\u1039\u1037\u1015\u102b\u1038 -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return TU_KPAY
+
     # Try to parse as amount for current method
     try:
         method_amt = int(text.replace(",", "").strip())
@@ -1191,7 +1186,6 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if "tu_payments" not in d:
             d["tu_payments"] = {}
         d["tu_payments"][current_method] = method_amt
-        d.pop("tu_show_amount_input", None)
         return await prompt_tu_kpay(update, context)
 
     # Check if text is BTN_PAY_DONE

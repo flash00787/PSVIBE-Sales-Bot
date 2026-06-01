@@ -212,9 +212,9 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i["name"]: max(0, i.get("quantity", 0))
                              for i in inv_data.get("data", {}).get("items", [])}
-                if stock_map is not None:
+                if stock_map:  # only filter when stock_map has actual entries
                     prices = {k: v for k, v in prices.items()
-                              if stock_map.get(k, 0) > 0}  # 1=unlimited if no stock entry
+                              if stock_map.get(k, 1) > 0}  # 1=unlimited (items not in stock_map shown)
                     context.user_data["food_prices"] = prices
             stock_map = stock_map or {}
         except Exception as e:
@@ -744,7 +744,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("data", {}).get("items", [])}
             food_prices = {k: v for k, v in food_prices.items()
-                           if stock_map.get(k, 0) > 0}
+                           if stock_map.get(k, 1) > 0}
     except Exception as e:
         logger.warning("step_mins: stock fetch failed, showing all items: %s", e)
         stock_map = {}
@@ -867,7 +867,15 @@ async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d["kpay"] = payments.get("KPay", 0)
         total_paid = sum(payments.values())
         d["cash"] = payments.get("Cash", 0)
-        return await _show_payment_review(update, context)
+        try:
+            return await _show_payment_review(update, context)
+        except Exception as e:
+            logger.error("_show_payment_review (step_pay_method) failed: %s", e, exc_info=True)
+            await update.message.reply_text(
+                "⚠️ Review screen error — /cancel နှိပ်၍ ပြန်စပါ",
+                reply_markup=ReplyKeyboardMarkup([[BTN_CANCEL]], resize_keyboard=True),
+            )
+            return PAY_METHOD
 
     if text == BTN_ADD_PAY:
         return await prompt_kpay(update, context)
@@ -952,7 +960,15 @@ async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         d["kpay"] = payments.get("KPay", 0)
         d["cash"] = payments.get("Cash", 0)
-        return await _show_payment_review(update, context)
+        try:
+            return await _show_payment_review(update, context)
+        except Exception as e:
+            logger.error("_show_payment_review failed: %s", e, exc_info=True)
+            await update.message.reply_text(
+                "⚠️ Review screen error — /cancel နှိပ်၍ ပြန်စပါ",
+                reply_markup=ReplyKeyboardMarkup([[BTN_CANCEL]], resize_keyboard=True),
+            )
+            return SALE_CONFIRM
 
     await update.message.reply_text(
         f"✅ *{method}* {amt:,} Ks ထည့်ပြီးပါပြီ\n"
@@ -1054,6 +1070,10 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_kpay(update, context)
 
     if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text(
+            '⚠️ Confirm & Save ခလုတ်ကိုသာ နှိပ်ပါ -',
+            reply_markup=ReplyKeyboardMarkup([[BTN_CONFIRM_SAVE], NAV_ROW], resize_keyboard=True),
+        )
         return SALE_CONFIRM
 
     d     = context.user_data
