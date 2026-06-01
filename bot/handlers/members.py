@@ -1395,22 +1395,23 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 update_member_effective_rate(tu_id, new_rate)
             # Update Card_Wallet Column H with new balance
             try:
-                # Read member data via API instead of sheet scan
-                tu_data = fetch_member_data(tu_id)
-                _current_i = tu_data.get("wallet_mins", 0) if isinstance(tu_data, dict) else 0
-                # Write back via sheet (API write path handles MySQL sync)
-                try:
-                    _tu_rows_chk = member_sh.get_all_values()
-                    for _ti, _tr in enumerate(_tu_rows_chk):
-                        if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
-                            member_sh.update_cell(_ti + 1, 8, bal_mins)
-                            member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)
-                            break
-                except Exception:
-                    pass
-                logging.info("topup: %s %d → %d mins via API", tu_id, prev_bal, bal_mins)
+                _tu_rows_chk = member_sh.get_all_values()
+                _found = False
+                for _ti, _tr in enumerate(_tu_rows_chk):
+                    if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
+                        # Column H: wallet balance (pre-computed bal_mins)
+                        member_sh.update_cell(_ti + 1, 8, bal_mins)
+                        # Column I: cumulative total bought mins (read from sheet, not API)
+                        _cur_i = int(str(_tr[8]).replace(',', '').strip() or 0) if len(_tr) > 8 else 0
+                        member_sh.update_cell(_ti + 1, 9, _cur_i + tu_mins)
+                        _found = True
+                        break
+                if _found:
+                    logging.info("topup: %s %d → %d mins (sheet updated)", tu_id, prev_bal, bal_mins)
+                else:
+                    logging.warning("topup_wallet_update: member %s not found in Card_Wallet", tu_id)
             except Exception as _te:
-                logging.error("topup_wallet_update: %s", _te)
+                logging.error("topup_wallet_update: %s", _te, exc_info=True)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:
