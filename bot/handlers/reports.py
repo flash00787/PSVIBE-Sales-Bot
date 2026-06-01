@@ -283,15 +283,19 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Low stock alert
     if inv:
-        low = [i for i in inv.get("items", []) if i.get("status", "") in ("Low Stock", "Out of Stock")]
-        if low:
+        low = [i for i in inv.get("items", []) if 0 < i.get("qty", 0) <= 5]
+        out_of_stock = [i for i in inv.get("items", []) if i.get("qty", 0) == 0]
+        if low or out_of_stock:
             lines.append(f"━━━━━━━━━━━━━━━━━━")
             lines.append("⚠️ *Low/Out Stock Alert:*")
-            for i in low:
-                em = "🔴" if i.get("status") == "Out of Stock" else "🟡"
+            for i in out_of_stock:
                 name = i.get("name", "?")
-                stock_qty = i.get("current_stock", 0)
-                lines.append(f"  {em} *{name}* — {stock_qty} pcs")
+                stock_qty = i.get("qty", 0)
+                lines.append(f"  🔴 *{name}* — {stock_qty} pcs (Out of Stock)")
+            for i in low:
+                name = i.get("name", "?")
+                stock_qty = i.get("qty", 0)
+                lines.append(f"  🟡 *{name}* — {stock_qty} pcs (Low Stock)")
 
     await update.message.reply_text("\n".join(lines), parse_mode="Markdown", reply_markup=kb)
     return MAIN_MENU

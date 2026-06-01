@@ -225,6 +225,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "\u26a0\ufe0f stock \u101c\u1000\u103a\u1000\u103b\u1014\u103a\u1019\u101b\u103e\u102d\u1015\u102b \u2014 \u1015\u1005\u1039\u1005\u100a\u103a\u1038\u1021\u102c\u1038\u101c\u102f\u1036\u1038\u1015\u103c\u1019\u100a\u1037\u103a",
             reply_markup=ReplyKeyboardRemove(),
         )
+        return await cmd_cancel(update, context)
     elif stock_map:
         # Filter out items with zero stock
         prices = {k: v for k, v in prices.items()
