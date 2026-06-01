@@ -481,7 +481,24 @@ def fetch_console_status() -> list[dict]:
     if _HAS_API:
         result = api_fetch_console_status()
         if result is not None:
-            return result
+            # API returns {"consoles": [...]} with MySQL keys; map to GSheet-era format
+            api_consoles = result.get("consoles", [])
+            mapped = []
+            # Pull multipliers from settings_config
+            mults = _get_cfg().get("console_multipliers", {})
+            for c in api_consoles:
+                cid = c.get("console_id", "")
+                mapped.append({
+                    "id": cid,
+                    "type": c.get("console_type", ""),
+                    "mult": float(mults.get(cid, 1.0)),
+                    "status": c.get("status", "Free"),
+                    "member": c.get("current_member"),
+                    "start": c.get("start_time"),
+                    "staff": c.get("staff_name"),
+                    "booking_id": c.get("booking_id"),
+                })
+            return mapped
         logging.warning("API api_fetch_console_status() failed, falling back to gspread")
     today = today_str()
     # Use cached console_multipliers if available, fallback to direct Sheets read
@@ -608,7 +625,8 @@ def fetch_games() -> list[dict]:
     if _HAS_API:
         result = api_fetch_games()
         if result is not None:
-            return result
+            # API returns {"games": [...]}; unwrap
+            return result.get("games", [])
         logging.warning("API api_fetch_games() failed, falling back to gspread")
     try:
         global _GAME_ROWS, _GAME_TS
@@ -693,7 +711,8 @@ def fetch_console_games() -> list[dict]:
     if _HAS_API:
         result = api_fetch_console_games()
         if result is not None:
-            return result
+            # API returns {"console_games": [...]}; unwrap
+            return result.get("console_games", [])
         logging.warning("API api_fetch_console_games() failed, falling back to gspread")
     try:
         global _CGAME_ROWS, _CGAME_TS
@@ -2027,11 +2046,13 @@ def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
 def _load_cfg() -> None:
     global _CFG, _CFG_TS
     data = _replit_get("sheets/config")
-    if data and "base_rate" in data:
+    # API returns {"config": {...}} — unwrap nested config dict
+    cfg = data.get("config", data) if isinstance(data, dict) else data
+    if cfg and isinstance(cfg, dict) and "base_rate" in cfg:
         with _THREAD_CACHE_LOCK:
-            _CFG    = data
+            _CFG    = cfg
             _CFG_TS = time.time()
-        logging.info("Config cache refreshed (base_rate=%s)", data.get("base_rate"))
+        logging.info("Config cache refreshed (base_rate=%s, keys=%d)", cfg.get("base_rate"), len(cfg))
 
 
 def _get_cfg() -> dict:
