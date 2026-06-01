@@ -796,6 +796,27 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
     if m:
         return await _text_cancel_booking(update, context, int(m.group(1)))
 
+    # Unknown free-text -> sentiment check -> Gemini AI
+    # Skip AI for button texts, commands, and short non-question texts
+    _skip_ai_patterns = [
+        r"^[\u2705\u274c\U0001f504\U0001f4c5\U0001f3ae\U0001f4b0\U0001f4cb\U0001f579\U0001f519\U0001f937\u26a0\U00002139\U0001f4b3\U0001f465\U0001f4de\U0001f4cd\U0001f381]",
+        r"^(ok|yes|no|hello|hi|bye|thanks|thank you|good|bad)$",
+        r"^(cancel|menu|back|home|start|help|book|booking|status|rate|games|balance|refresh)$",
+        r"^[/]",
+    ]
+    _skip_ai = False
+    for pat in _skip_ai_patterns:
+        if re.match(pat, text.lower()):
+            _skip_ai = True
+            break
+    if _skip_ai:
+        await update.message.reply_text(
+            "\u2139\ufe0f Menu \u1011\u1032\u1000 button \u1010\u103d\u101e\u102f\u1036\u1038\u1015\u102b\u104b "
+            "\u1012\u102b\u1019\u103e\u1019\u101f\u102f\u1010\u103a \u1019\u1031\u1038\u1001\u103b\u1004\u103a\u1010\u102c\u1000\u102d\u102f "
+            "\u1021\u1004\u103a\u1039\u1002\u101c\u102d\u1015\u103a\u101c\u102d\u102f \u101b\u102d\u102f\u1000\u103a\u1019\u1031\u1038\u1014\u102d\u102f\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b"
+        )
+        return
+
     # Unknown free-text → sentiment check → Gemini AI
     sentiment = _detect_sentiment(text)
     priority_care = sentiment == "frustrated"

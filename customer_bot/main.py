@@ -173,6 +173,29 @@ def _register_handlers(app: Application) -> None:
     # Menu buttons catch-all (handles main menu clicks when not in conversation)
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu_buttons))
 
+    # Bot Commands (shown in chat menu)
+    from telegram import BotCommand
+    async def _set_bot_commands(app):
+        await app.bot.set_my_commands([
+            BotCommand("start", "Start"),
+            BotCommand("book", "Booking"),
+            BotCommand("status", "Console Status"),
+            BotCommand("games", "Game Library"),
+            BotCommand("mybookings", "My Bookings"),
+            BotCommand("balance", "Check Balance"),
+            BotCommand("rate", "View Rate"),
+            BotCommand("promotions", "Promotions"),
+            BotCommand("refer", "Refer a Friend"),
+            BotCommand("contact", "Contact Us"),
+            BotCommand("location", "Our Location"),
+            BotCommand("help", "Help & FAQ"),
+            BotCommand("refresh", "Refresh Data"),
+            BotCommand("cancel", "Cancel Booking"),
+            BotCommand("feedback", "Give Feedback"),
+            BotCommand("menu", "Main Menu"),
+        ])
+    app.post_init = _set_bot_commands
+
 async def _post_init(app: Application) -> None:
     """Post-init hook — command menu intentionally removed (handlers remain active)."""
     pass  # Command menu removed per 2026-05-30
