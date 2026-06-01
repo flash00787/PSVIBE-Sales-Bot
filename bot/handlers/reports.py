@@ -26,7 +26,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return
-    items = data.get("items", [])
+    items = data.get("data", {}).get("items", [])
     STATUS_EMOJI = {
         "In Stock":     "🟢",
         "Low Stock":    "🟡",
@@ -35,13 +35,22 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     }
     lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
     for item in items:
-        em    = STATUS_EMOJI.get(item.get("status", "No Stock"), "⚫")
-        stock = max(0, item.get("current_stock", 0))
-        val   = item.get("inv_value", 0)
+        qty_val = item.get("qty", 0)
+    if qty_val > 5:
+        derived_status = "In Stock"
+    elif qty_val > 0:
+        derived_status = "Low Stock"
+    elif qty_val == 0:
+        derived_status = "Out of Stock"
+    else:
+        derived_status = "No Stock"
+    em    = STATUS_EMOJI.get(derived_status, "⚫")
+        stock = max(0, item.get("qty", 0))
+        val   = item.get("total", 0)
         name  = item.get("name", "?")
         val_str = f"  _{val:,} Ks_" if val > 0 else ""
         lines.append(f"{em} *{name}*: {stock} pcs{val_str}")
-    total_val = sum(i.get("inv_value", 0) for i in items)
+    total_val = sum(i.get("total", 0) for i in items)
     if total_val:
         lines.append(f"\n━━━━━━━━━━━━━━━━━━\n💰 Total Inv Value (FIFO): *{total_val:,} Ks*")
     await update.message.reply_text(
@@ -57,7 +66,7 @@ async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not data:
         await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
         return
-    items = data.get("items", [])
+    items = data.get("data", {}).get("items", [])
     if not items:
         await update.message.reply_text("ℹ️ ဒီနေ့ ပစ္စည်းများ မရောင်းရသေးပါ။")
         return
