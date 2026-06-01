@@ -252,7 +252,7 @@ async def prompt_nm_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
         step_hdr(1, 6, "Member Name") +
         "👤 Member Name ရိုက်ပါ -",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup([[BTN_NM_GIFT], NAV_ROW], resize_keyboard=True),
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
     )
     return NM_NAME
 
@@ -400,7 +400,7 @@ async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d    = context.user_data
     name = d.get("nm_name", "")
     m_id = d.get("nm_id", "")
-    kb   = [[default_btn], [BTN_NM_CUSTOM], NAV_ROW]
+    kb   = [[default_btn], [BTN_NM_GIFT], NAV_ROW]
     await update.message.reply_text(
         step_hdr(5, 6, "Card Amount") +
         f"👤 *{name}*  |  🪪 *{m_id}*\n"
@@ -408,7 +408,7 @@ async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"💵 Card Price  : {price_line}\n"
         f"⏱️ Base Mins   : {mins_line}\n\n"
         f"ဤပမာဏ ကောက်ခံမည်လား?\n"
-        f"_(ကွဲပြားသော ပမာဏ ✏️ | မဲဖောက်/Influencer/Gift ဆိုလျှင် 🎁 Gift နှိပ်ပါ)_",
+        f"_(Gift Card ဆိုလျှင် 🎁 Gift နှိပ်ပါ)_",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
