@@ -562,8 +562,12 @@ async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d["nm_cash"] = d["nm_payments"].get("Cash", 0)
         return await step_nm_confirm(update, context)
 
-    kb = [[m] for m in methods]
-    kb.append([BTN_PAY_DONE])
+    # Filter out already-used payment methods (prevent duplicate selection)
+    used = {m for m, v in d.get("nm_payments", {}).items() if v > 0}
+    avail = [m for m in methods if m not in used]
+    kb = [[m] for m in avail] if avail else []
+    if kb:
+        kb.append([BTN_PAY_DONE])
     kb.append(NAV_ROW)
 
     payment_status = ""
@@ -603,18 +607,25 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     methods = fetch_payment_methods()
     if text in methods:
         d["nm_current_pay_method"] = text
+        prev_method = d.get("nm_current_pay_method", "")
+        is_new_method = (prev_method != text)
+        has_payment = bool(d.get("nm_payments"))
         psf = sum(d.get("nm_payments", {}).values())
         rem = amt - psf
-        await update.message.reply_text(
-            f"\U0001f4b3 *{text}* \u1015\u1019\u102b\u100f \u101b\u102d\u102f\u1000\u103a\u1015\u102b\n"
-            f"\u2501" * 30 + f"\n"
-            f"\U0001f4b5 Card Amount: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
-            f"\u2501" * 30 + f"\n"
-            f"(0 - {rem:,}) \u1011\u100a\u1039\u1037\u1015\u102b\u1038 -",
-            parse_mode="Markdown",
-            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
-        )
-        return NM_KPAY
+        if is_new_method:
+            await update.message.reply_text(
+                f"\U0001f4b3 *{text}* \u1015\u1019\u102b\u100f \u101b\u102d\u102f\u1000\u103a\u1015\u102b\n"
+                f"\u2501" * 30 + f"\n"
+                f"\U0001f4b5 Card Amount: *{amt:,} Ks*  |  Remaining: *{rem:,} Ks*\n"
+                f"\u2501" * 30 + f"\n"
+                f"(0 - {rem:,}) \u1011\u100a\u1039\u1037\u1015\u102b\u1038 -",
+                parse_mode="Markdown",
+                reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+            )
+            return NM_KPAY
+        else:
+            # Same method tapped again - silently ignore (dedup)
+            return NM_KPAY
 
     # Check if text is BTN_PAY_DONE
     if text == BTN_PAY_DONE:
@@ -751,11 +762,12 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        # Gift cards skip Kpay step — go back to amount selection
-        if context.user_data.get("nm_is_gift"):
-            context.user_data.pop("nm_is_gift", None)
-            return await prompt_nm_amt(update, context)
-        return await prompt_nm_kpay(update, context)
+        # Clear payments and go back to amount selection (prevents auto-confirm loop)
+        context.user_data.pop("nm_payments", None)
+        context.user_data.pop("nm_kpay", None)
+        context.user_data.pop("nm_cash", None)
+        context.user_data.pop("nm_is_gift", None)
+        return await prompt_nm_amt(update, context)
 
     if text != BTN_CONFIRM_SAVE:
         return NM_CONFIRM
@@ -1193,8 +1205,12 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d["tu_cash"] = d["tu_payments"].get("Cash", 0)
         return await _show_tu_review(update, context)
 
-    kb = [[m] for m in methods]
-    kb.append([BTN_PAY_DONE])
+    # Filter out already-used payment methods (prevent duplicate selection)
+    used = {m for m, v in d.get("nm_payments", {}).items() if v > 0}
+    avail = [m for m in methods if m not in used]
+    kb = [[m] for m in avail] if avail else []
+    if kb:
+        kb.append([BTN_PAY_DONE])
     kb.append(NAV_ROW)
 
     payment_status = ""
