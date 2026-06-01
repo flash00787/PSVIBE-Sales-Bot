@@ -1085,6 +1085,75 @@ async def step_tu_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["tu_bonus_mins"] = bonus_mins
     context.user_data["tu_mins"]       = total_mins   # saved to sheet col H
     return await prompt_tu_kpay(update, context)
+async def _show_tu_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Top Up review summary before confirmation."""
+    d = context.user_data
+    r          = display_rank(d.get("tu_rank", "Warrior"))
+    r_em       = rank_emoji(r)
+    base_mins  = d.get("tu_base_mins", 0)
+    bonus_mins = d.get("tu_bonus_mins", 0)
+    total_mins = d.get("tu_mins", 0)
+    kpay       = d.get("tu_kpay", 0)
+    cash       = d.get("tu_cash", 0)
+    tu_amt     = d.get("tu_amt", 0)
+    tu_id      = d.get("tu_id", "")
+    tu_name    = d.get("tu_name", "")
+
+    # Build dynamic payment display
+    payments = d.get("tu_payments", {})
+    pay_lines = []
+    for method, a in payments.items():
+        pay_lines.append(f"  \u2022 {method}: *{a:,} Ks*")
+    pay_display = "\n".join(pay_lines)
+
+    net_spend       = d.get("tu_total_spend", 0)
+    master_thresh   = d.get("tu_master_thresh", 0)
+    immortal_thresh = d.get("tu_immortal_thresh", 0)
+    if r == "Warrior" and int(master_thresh) > 0:
+        remaining = master_thresh - (net_spend + tu_amt)
+        next_tier_ln = (
+            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
+            f"\U0001f3c5 Remaining to Master: *{max(remaining,0):,} Ks*"
+            + ("\n\U0001f389 *New Tier Unlocked!* \U0001f3c5" if remaining <= 0 else "")
+        )
+    elif r == "Master" and int(immortal_thresh) > 0:
+        remaining = immortal_thresh - (net_spend + tu_amt)
+        next_tier_ln = (
+            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
+            f"\U0001f48e Remaining to Immortal: *{max(remaining,0):,} Ks*"
+            + ("\n\U0001f389 *New Tier Unlocked!* \U0001f48e" if remaining <= 0 else "")
+        )
+    else:
+        next_tier_ln = "\n\U0001f3c6 _Top Rank \u2014 Immortal!_"
+
+    # Build confirmation message using parts to avoid f-string quoting issues
+    header = "\U0001f4cb *Review Your Entry \u2014 Top Up*"
+    sep = "\u2501" * 30
+    header2 = f"\U0001faaa *{tu_id}* \u2014 {tu_name}"
+    rank_line = f"\U0001f396 Rank: *{r_em} {r}*"
+    amt_line = f"\U0001f4b0 Top Up Amount: *{tu_amt:,} Ks*"
+    base_line = f"\u23f1 Base Mins: *{base_mins:,} mins*"
+    bonus_line = f"\U0001f389 Rank Bonus: *+{bonus_mins} mins*"
+    total_line = f"\U0001f525 Total to be Added: *{total_mins:,} mins*"
+    confirm_line = "\u1019\u1039\u1000\u1014\u1039\u1000\u102d\u102f\u1015\u102b\u101e\u101c\u102c\u1038? \u2705 Confirm & Save \u1014\u103a\u102d\u1000\u1039\u1015\u102b\u1038 -"
+
+    msg = (
+        header + "\n" + sep + "\n" + header2 + "\n" +
+        rank_line + "\n" + sep + "\n" + amt_line + "\n" +
+        base_line + "\n" + bonus_line + "\n" + total_line + "\n" +
+        sep + "\n" + pay_display +
+        next_tier_ln + "\n\n" + confirm_line
+    )
+
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        msg,
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return TU_CONFIRM
+
+
 async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show dynamic payment method buttons for Top Up."""
     d   = context.user_data
@@ -1118,11 +1187,11 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return TU_KPAY
 
 
-    # Auto-confirm when full payment complete
+    # Auto-confirm when full payment complete — show review, let user press Confirm & Save
     if remaining <= 0:
         d["tu_kpay"] = d["tu_payments"].get("KPay", 0)
         d["tu_cash"] = d["tu_payments"].get("Cash", 0)
-        return await step_tu_confirm(update, context)
+        return await _show_tu_review(update, context)
 
     kb = [[m] for m in methods]
     kb.append([BTN_PAY_DONE])
@@ -1203,63 +1272,11 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return await prompt_tu_kpay(update, context)
         d["tu_kpay"] = payments.get("KPay", 0)
         d["tu_cash"] = payments.get("Cash", 0)
+        return await _show_tu_review(update, context)
 
-    # Show review (common for both BTN_PAY_DONE and amount parse)
-    r          = display_rank(d.get("tu_rank", "Warrior"))
-    r_em       = rank_emoji(r)
-    base_mins  = d.get("tu_base_mins", 0)
-    bonus_mins = d.get("tu_bonus_mins", 0)
-    total_mins = d.get("tu_mins", 0)
-    kpay       = d.get("tu_kpay", 0)
-    cash       = d.get("tu_cash", 0)
-    tu_amt     = d.get("tu_amt", 0)
-
-    # Build dynamic payment display
-    payments = d.get("tu_payments", {})
-    pay_lines = []
-    for method, a in payments.items():
-        pay_lines.append(f"  \u2022 {method}: *{a:,} Ks*")
-    pay_display = "\n".join(pay_lines)
-
-    net_spend       = d.get("tu_total_spend", 0)
-    master_thresh   = d.get("tu_master_thresh", 0)
-    immortal_thresh = d.get("tu_immortal_thresh", 0)
-    if r == "Warrior" and int(master_thresh) > 0:
-        remaining = master_thresh - (net_spend + tu_amt)
-        next_tier_ln = (
-            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
-            f"\U0001f3c5 Remaining to Master: *{max(remaining,0):,} Ks*"
-            + ("\n🎉 *New Tier Unlocked!* 🏅" if remaining <= 0 else "")
-        )
-    elif r == "Master" and int(immortal_thresh) > 0:
-        remaining = immortal_thresh - (net_spend + tu_amt)
-        next_tier_ln = (
-            f"\n\U0001f4ca After Top-Up Spend: *{net_spend + tu_amt:,} Ks*\n"
-            f"\U0001f48e Remaining to Immortal: *{max(remaining,0):,} Ks*"
-            + ("\n🎉 *New Tier Unlocked!* 💎" if remaining <= 0 else "")
-        )
-    else:
-        next_tier_ln = "\n\U0001f3c6 _Top Rank \u2014 Immortal!_"
-
-    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
-    await update.message.reply_text(
-        f"\U0001f4cb *Review Your Entry \u2014 Top Up*\n"
-        f"\u2501" * 30 + f"\n"
-        f"\U0001faaa *{d["tu_id"]}* \u2014 {d.get("tu_name","")}\n"
-        f"\U0001f396 Rank: *{r_em} {r}*\n"
-        f"\u2501" * 30 + f"\n"
-        f"\U0001f4b0 Top Up Amount: *{tu_amt:,} Ks*\n"
-        f"\u23f1 Base Mins: *{base_mins:,} mins*\n"
-        f"\U0001f389 Rank Bonus: *+{bonus_mins} mins*\n"
-        f"\U0001f525 Total to be Added: *{total_mins:,} mins*\n"
-        f"\u2501" * 30 + f"\n"
-        f"{pay_display}"
-        f"{next_tier_ln}\n\n"
-        f"\u1019\u1039\u1000\u1014\u1039\u1000\u102d\u102f\u1015\u102b\u101e\u101c\u102c\u1038? \u2705 Confirm & Save \u1014\u103a\u102d\u1000\u1039\u1015\u102b\u1038 -",
-        parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
-    return TU_CONFIRM
+    # Unrecognized input — re-prompt
+    await update.message.reply_text("⚠️ ကြေးဇူးပြု၊ payment method တစ္ချယ်တွင်းပါး သို့မဟုတ် ပြီလား တော် Done နှိပ်ပါး -")
+    return await prompt_tu_kpay(update, context)
 
 @log_duration("members:step_tu_confirm")
 async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
