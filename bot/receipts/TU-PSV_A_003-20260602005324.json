@@ -1,0 +1,18 @@
+{
+  "type": "topup",
+  "voucher_id": "TU-PSV_A_003-20260602005324",
+  "date": "6/2/2026",
+  "member_id": "PSV_A_003",
+  "rank": "Warrior",
+  "amount": 300000,
+  "base_mins": 1800,
+  "bonus_mins": 60,
+  "total_mins": 1860,
+  "kpay": 300000,
+  "cash": 0,
+  "phone": "09756412123",
+  "balance_mins": 3045,
+  "prev_balance": 1185,
+  "balance_change": 1860,
+  "balance_after": 3045
+}
