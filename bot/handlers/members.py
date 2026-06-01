@@ -1267,17 +1267,26 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
+        d = context.user_data
+        d.pop("tu_kpay", None)
+        d.pop("tu_cash", None)
+        d.pop("tu_payments", None)
+        d.pop("tu_methods", None)
         return await prompt_tu_kpay(update, context)
 
     if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text(
+            '⚠️ Top Up ကို အပြီးသတ်ရန် "✅ Confirm & Save" ကိုသာ နှိပ်ပါ —',
+            reply_markup=ReplyKeyboardMarkup([[BTN_CONFIRM_SAVE], NAV_ROW], resize_keyboard=True),
+        )
         return TU_CONFIRM
 
     d = context.user_data
     # ── Pre-compute (lightweight sync — reserve row before background) ──
     # 0. Capture tier + balance BEFORE write (needed for col C and rate calc)
-    current_tier = fetch_member_tier(d["tu_id"])
-    prev_bal     = fetch_balance_mins(d["tu_id"])
-    tl_row       = next_write_row(topup_sh)
+    current_tier = await asyncio.to_thread(fetch_member_tier, d["tu_id"])
+    prev_bal     = await asyncio.to_thread(fetch_balance_mins, d["tu_id"])
+    tl_row       = await asyncio.to_thread(next_write_row, topup_sh)
 
     # 1. Balance = previous balance + mins just added (Phase B — no sheet re-read)
     bal_mins = prev_bal + d["tu_mins"]
@@ -1297,6 +1306,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tu_id       = d["tu_id"];       tu_amt  = d["tu_amt"]
     tu_kpay     = d["tu_kpay"];     tu_cash = d["tu_cash"]
     tu_mins     = d["tu_mins"];     tu_name = d.get("tu_name", "")
+    tu_name_safe = tu_name.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("]", "\\]").replace("(", "\\(").replace(")", "\\)").replace("`", "\\`")
     tu_base     = d.get("tu_base_mins", 0)
     tu_bonus    = d.get("tu_bonus_mins", 0)
     tu_phone    = d.get("tu_phone", "-")
@@ -1312,7 +1322,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = (
         f"✅ *Top Up သိမ်းဆည်းပြီးပါပြီ!*\n"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"🪪 *{tu_id}* — {tu_name}\n"
+        f"🪪 *{tu_id}* — {tu_name_safe}\n"
         f"🎖 Rank: *{r_em} {r_saved}*\n"
         f"💰 Amount: *{tu_amt:,} Ks*\n"
         f"⏳ Base: *{tu_base:,} mins*  "
@@ -1388,7 +1398,9 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await asyncio.to_thread(_do)
         except Exception as _e:
             logging.error("tu_bg_write: %s", _e)
-    asyncio.create_task(_tu_bg())
+    if "bg_tasks" not in context.user_data:
+        context.user_data["bg_tasks"] = []
+    context.user_data["bg_tasks"].append(asyncio.create_task(_tu_bg()))
 
     if after_topup == "console_sale" and session_snap:
         # Restore session data and update wallet balance
