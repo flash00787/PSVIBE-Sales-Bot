@@ -212,15 +212,24 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i["name"]: max(0, i.get("quantity", 0))
                              for i in inv_data.get("data", {}).get("items", [])}
-                if stock_map:  # only filter when stock_map has actual entries
-                    prices = {k: v for k, v in prices.items()
-                              if stock_map.get(k, 1) > 0}  # 1=unlimited (items not in stock_map shown)
-                    context.user_data["food_prices"] = prices
             stock_map = stock_map or {}
         except Exception as e:
             logger.warning("prompt_food_menu: stock_map rebuild failed: %s", e)
             stock_map = {}
         context.user_data["food_stock_map"] = stock_map
+
+    # Check if stock_map has any positive stock; if not, show warning and show all items
+    has_any_stock = any(v > 0 for v in stock_map.values()) if stock_map else False
+    if not has_any_stock:
+        await update.message.reply_text(
+            "\u26a0\ufe0f stock \u101c\u1000\u103a\u1000\u103b\u1014\u103a\u1019\u101b\u103e\u102d\u1015\u102b \u2014 \u1015\u1005\u1039\u1005\u100a\u103a\u1038\u1021\u102c\u1038\u101c\u102f\u1036\u1038\u1015\u103c\u1019\u100a\u1037\u103a",
+            reply_markup=ReplyKeyboardRemove(),
+        )
+    elif stock_map:
+        # Filter out items with zero stock
+        prices = {k: v for k, v in prices.items()
+                  if stock_map.get(k, 1) > 0}
+        context.user_data["food_prices"] = prices
 
     # If prices empty after stock filter, return gracefully to main menu
     if not prices:
@@ -743,8 +752,10 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("data", {}).get("items", [])}
-            food_prices = {k: v for k, v in food_prices.items()
-                           if stock_map.get(k, 1) > 0}
+            # Only filter if there is actually some stock available
+            if any(v > 0 for v in stock_map.values()):
+                food_prices = {k: v for k, v in food_prices.items()
+                               if stock_map.get(k, 1) > 0}
     except Exception as e:
         logger.warning("step_mins: stock fetch failed, showing all items: %s", e)
         stock_map = {}
@@ -1430,8 +1441,10 @@ async def launch_session_sale(
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("data", {}).get("items", [])}
-            food_prices = {k: v for k, v in food_prices.items()
-                           if stock_map.get(k, 0) > 0}
+            # Only filter if there is actually some stock available
+            if any(v > 0 for v in stock_map.values()):
+                food_prices = {k: v for k, v in food_prices.items()
+                               if stock_map.get(k, 0) > 0}
     except Exception as e:
         logger.warning("launch_session_sale: stock fetch failed, showing all items: %s", e)
         stock_map = {}

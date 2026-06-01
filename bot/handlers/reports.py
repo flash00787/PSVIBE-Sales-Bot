@@ -36,15 +36,15 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
     for item in items:
         qty_val = item.get("qty", 0)
-    if qty_val > 5:
-        derived_status = "In Stock"
-    elif qty_val > 0:
-        derived_status = "Low Stock"
-    elif qty_val == 0:
-        derived_status = "Out of Stock"
-    else:
-        derived_status = "No Stock"
-    em    = STATUS_EMOJI.get(derived_status, "⚫")
+        if qty_val > 5:
+            derived_status = "In Stock"
+        elif qty_val > 0:
+            derived_status = "Low Stock"
+        elif qty_val == 0:
+            derived_status = "Out of Stock"
+        else:
+            derived_status = "No Stock"
+        em    = STATUS_EMOJI.get(derived_status, "⚫")
         stock = max(0, item.get("qty", 0))
         val   = item.get("total", 0)
         name  = item.get("name", "?")
