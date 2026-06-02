@@ -10,7 +10,7 @@ from bot import (
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
     fetch_console_status, get_games_on_console, get_games_on_console_async, now_mmt,
     show_console_menu, show_game_menu, show_main_menu,
-    prompt_book_console, launch_session_sale,
+    prompt_book_console,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -383,6 +383,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 
+    from bot.handlers.sales import launch_session_sale
     return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
                                      booking_id=_linked_bk_id)
 

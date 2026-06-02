@@ -3370,4 +3370,18 @@ async def fetch_balance_mins_async(member_id: str) -> int:
         logging.warning("API api_fetch_balance_mins_async() failed, falling back to gspread")
     return await asyncio.to_thread(fetch_balance_mins, member_id)
 
-from bot.handlers.sales import launch_session_sale
+
+async def next_voucher_async():
+    from bot.api_client import api_next_voucher_async
+    result = await api_next_voucher_async()
+    if result is not None:
+        return result
+    logging.warning("API api_next_voucher_async() failed, fallback gspread")
+    col = sales_sh.col_values(2)
+    ids = [v for v in col[1:] if v.upper().startswith("V-")]
+    if ids:
+        try:
+            return f"V-{int(ids[-1].split('-')[1]) + 1:03d}"
+        except (IndexError, ValueError):
+            pass
+    return "V-001"

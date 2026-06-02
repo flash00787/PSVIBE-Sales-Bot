@@ -9,7 +9,7 @@ from bot import (
     SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
     _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, _replit_post, _replit_post_async, calc_duration, cmd_cancel,
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
-    fetch_console_multiplier, fetch_console_status, fetch_food_costs,
+    fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
     fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
     next_voucher, next_write_row, now_mmt, sales_sh, save_receipt_json,
@@ -92,7 +92,7 @@ async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         balance_line = ""
 
     try:
-        _cons = [c["id"] for c in fetch_console_status()]
+        _cons = [c["id"] for c in fetch_console_status_async()]
     except Exception as e:
         logging.warning("Failed to fetch console status for booking keyboard: %s", e)
         _cons = sorted(VALID_CONSOLES)
@@ -493,7 +493,7 @@ async def step_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def _check_member_in_session(update, context, member_id: str):
     """Check if member has active session(s). Shows all with per-console + combined options."""
     try:
-        consoles = fetch_console_status()
+        consoles = fetch_console_status_async()
     except Exception as e:
         logging.warning("Failed to fetch console status for member session check: %s", e)
         return await prompt_console(update, context)
@@ -647,7 +647,7 @@ async def step_ds_member_in_session(update: Update, context: ContextTypes.DEFAUL
 async def _check_console_in_session(update, context, console_id: str):
     """Check if the chosen console has an active session. If yes → prompt."""
     try:
-        consoles = fetch_console_status()
+        consoles = fetch_console_status_async()
     except Exception as e:
         logging.warning("Failed to fetch console status for console session check: %s", e)
         return await prompt_mins(update, context)
