@@ -25,6 +25,7 @@ from telegram.ext import (
 )
 
 from customer_bot.handlers import (
+    cmd_my_coupons,
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
@@ -72,6 +73,7 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("mybookings",cmd_mybookings))
     app.add_handler(CommandHandler("cancelbooking",cmd_cancel_booking))
     app.add_handler(CommandHandler("refer",  cmd_refer))
+    app.add_handler(CommandHandler("mycoupons", cmd_my_coupons))
     app.add_handler(CommandHandler("waitlist",cmd_waitlist))
 
     # Booking conversation — all 16 states support ReplyKeyboard text + legacy callbacks
@@ -199,6 +201,7 @@ def _register_handlers(app: Application) -> None:
             BotCommand("help", "Help & FAQ"),
             BotCommand("refresh", "Refresh Data"),
             BotCommand("cancel", "Cancel Booking"),
+            BotCommand("mycoupons", "My CashBack Coupons"),
             BotCommand("feedback", "Give Feedback"),
             BotCommand("menu", "Main Menu"),
         ])

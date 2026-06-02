@@ -82,6 +82,8 @@ BTN_INVENTORY_VIEW   = "📊 Inventory ကြည့်ရှု"
 BTN_SKIP_DISC        = "⏩ Skip (Discount မထည့်)"
 BTN_PROMO_APPLY      = "🎁 Promotion ထည်သွင်း"
 BTN_MANUAL_DISC      = "✏️ Manual Discount ရိုက်"
+BTN_APPLY_COUPON = "🎟️ Apply Coupon"
+BTN_APPLY_COUPON = "🎟️ Apply Coupon"
 # Session → Daily Sales bridge
 BTN_CASH_DOWN        = "💵 Cash Down (ချက်ချင်းပေး)"
 BTN_TOPUP_SESSION    = "💳 Top Up ပြီး ဆက်"

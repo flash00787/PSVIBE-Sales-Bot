@@ -356,6 +356,33 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.error("step_end_session: %s", e, exc_info=True)
         pass
+    # ── CashBack Coupon: Auto-generate on June 6-7 ──
+    try:
+        from bot.api_client import api_fetch_promotions_cached, api_generate_coupon, api_get
+        from datetime import datetime
+        today_mmt_str = datetime.utcnow().strftime("%m-%d")
+        if today_mmt_str in ("06-06", "06-07"):
+            # Check active promotion
+            promo_resp = api_get("promotions/active")
+            promo_data = promo_resp.get("data") if isinstance(promo_resp, dict) else promo_resp
+            if isinstance(promo_data, dict) and promo_data.get("promotion"):
+                # Generate coupon for this member
+                member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
+                if member_id_for_coupon and total_mins > 0:
+                    gen_resp = api_post(f"coupons/generate", {
+                        "member_id": member_id_for_coupon,
+                        "session_minutes": total_mins,
+                        "session_id": _linked_bk_id or "",
+                    })
+                    gen_data = gen_resp.get("data") if isinstance(gen_resp, dict) else gen_resp
+                    if isinstance(gen_data, dict) and gen_data.get("coupon"):
+                        coupon = gen_data["coupon"]
+                        coupon_code = coupon.get("code", "?")
+                        coupon_mins = coupon.get("minutes", total_mins)
+                        context.user_data["_cashback_coupon"] = coupon_code
+    except Exception as cb_e:
+        logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
+
     return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
                                      booking_id=_linked_bk_id)
 

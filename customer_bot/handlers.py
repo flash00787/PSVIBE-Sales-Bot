@@ -922,3 +922,90 @@ BK_END = -1
 
 # ── Waitlist conversation states (100-103) ────────────────────────────────────
 WL_PREF, WL_NAME, WL_PHONE, WL_CONFIRM = range(100, 104)
+
+async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show customer's CashBack coupons."""
+    chat_id = update.effective_chat.id
+    # Find member_id by chat_id
+    member_id = await _api._get_linked_member_id(chat_id)
+    if not member_id:
+        await update.message.reply_text(
+            "မင်္ဂလာပါ 👋
+
+"
+            "သင့်မှာ CashBack Coupon မရှိသေးပါ။
+"
+            "Grand Opening 100% CashBack promotion အတွက် June 6-7 ရက်နေ့များတွင် PS VIBE မှာ session ဝယ်ယူပြီး
+"
+            "Coupon ရယူလိုက်ပါ! 🎉",
+            parse_mode="Markdown",
+        )
+        return
+    
+    # Fetch coupons via API
+    try:
+        data = await _api._api_get(f"coupons/list?member_id={member_id}")
+        if isinstance(data, dict):
+            coupons = data.get("coupons") or data.get("data", {}).get("coupons", [])
+        elif isinstance(data, list):
+            coupons = data
+        else:
+            coupons = []
+    except Exception as e:
+        await update.message.reply_text(f"❌ Coupon ဖတ်မရပါ: {str(e)[:100]}")
+        return
+    
+    if not coupons:
+        await update.message.reply_text(
+            "🎟️ *Your CashBack Coupons*
+
+"
+            "Coupon မရှိသေးပါ။
+"
+            "June 6-7 ရက်နေ့တွင် PS VIBE မှာ session ဝယ်ယူပြီး Coupon ရယူပါ! 🎉",
+            parse_mode="Markdown",
+        )
+        return
+    
+    lines = ["🎟️ *Your CashBack Coupons*
+"]
+    for c in coupons:
+        code = c.get("code", c.get("coupon_code", "?"))
+        balance = c.get("balance_minutes", c.get("original_minutes", 0))
+        expiry = c.get("expiry_date", "")
+        status = c.get("status", "active")
+        
+        if status == "active":
+            status_icon = "✅ Active"
+        elif status == "used":
+            status_icon = "✅ Used"
+        else:
+            status_icon = f"❌ {status}"
+        
+        # Format expiry date nicely
+        if expiry:
+            try:
+                dt = expiry.split(" ")[0]
+                from datetime import datetime as dt_parse
+                d = dt_parse.strptime(dt.split("T")[0], "%Y-%m-%d")
+                months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                expiry_fmt = f"{months[d.month]} {d.day}, {d.year}"
+            except:
+                expiry_fmt = expiry[:10]
+        else:
+            expiry_fmt = "N/A"
+        
+        lines.append(f"🎫 *{code}*")
+        lines.append(f"   {balance} mins remaining")
+        lines.append(f"   Exp: {expiry_fmt}")
+        lines.append(f"   Status: {status_icon}")
+        lines.append("")
+    
+    lines.append("💡 Show this code to staff to redeem!")
+    
+    await update.message.reply_text(
+        "
+".join(lines),
+        parse_mode="Markdown",
+    )
+
