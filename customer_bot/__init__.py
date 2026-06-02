@@ -4,7 +4,7 @@ from .handlers import (
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
-    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_END,
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_SPECIFIC_CONSOLE, BK_END,
     cmd_start, cmd_menu, cmd_today, cmd_rate, cmd_myid,
     cmd_contact, cmd_promotions, cmd_help, cmd_refresh,
     cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
