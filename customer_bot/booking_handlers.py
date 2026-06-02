@@ -167,7 +167,24 @@ async def _get_available_slots(date_str: str) -> list[str]:
         bks = bks["bookings"]
     booked_slots = {b.get("timeSlot", "") for b in bks if b.get("status", "").lower() not in ("cancelled", "done")}
     all_slots = [f"{h:02d}:00" for h in range(OPEN_HOUR, CLOSE_HOUR)]
-    return [s for s in all_slots if s not in booked_slots]
+    available = [s for s in all_slots if s not in booked_slots]
+
+    # [FEATURE] Filter past time slots for today (MMT)
+    try:
+        today_str = datetime.utcnow().strftime("%Y-%m-%d")
+        if date_str == today_str:
+            now_mmt = datetime.utcnow() + timedelta(hours=6, minutes=30)
+            grace = now_mmt + timedelta(minutes=30)
+            cutoff = grace.hour * 60 + grace.minute
+            available = [
+                s for s in available
+                if (int(s.split(":")[0]) * 60 + int(s.split(":")[1])) >= cutoff
+            ]
+    except Exception:
+        pass
+
+    return available
+
 
 
 
