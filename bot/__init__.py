@@ -22,7 +22,7 @@ try:
         api_fetch_members, api_fetch_member_data, api_fetch_wallet_mins,
         api_fetch_balance_mins, api_fetch_member_tier, api_fetch_staff,
         api_fetch_staff_names, api_fetch_food_prices, api_fetch_food_costs,
-        api_fetch_games, api_fetch_console_games, api_get_games_on_console,
+        api_fetch_games, api_fetch_game_library, api_fetch_console_games, api_get_games_on_console,
         api_get_consoles_with_game, api_fetch_base_rate, api_fetch_console_multiplier,
         api_fetch_new_member_defaults, api_fetch_rank_thresholds, api_fetch_bonus_table,
         api_fetch_rank_table_display, api_fetch_alltime_effective_rate,
@@ -623,11 +623,21 @@ def fetch_games() -> list[dict]:
     Filters out garbage/metadata rows (empty title or non-game status).
     """
     if _HAS_API:
-        result = api_fetch_games()
+        result = api_fetch_game_library()   # has final_status + disc_count
         if result is not None:
-            # API returns {"games": [...]}; unwrap
-            return result.get("games", [])
-        logging.warning("API api_fetch_games() failed, falling back to gspread")
+            # Map MySQL keys → GSheet-era keys for handler compatibility
+            mapped = []
+            for i, g in enumerate(result.get("games", [])):
+                mapped.append({
+                    "row":        i + 2,  # 1-indexed + header
+                    "title":      g.get("game_title", ""),
+                    "status":     g.get("final_status", ""),
+                    "discs":      str(g.get("disc_count", "")),
+                    "solo_multi": g.get("solo_multi", ""),
+                    "genre":      g.get("genre", ""),
+                })
+            return mapped
+        logging.warning("API api_fetch_game_library() failed, falling back to gspread")
     try:
         global _GAME_ROWS, _GAME_TS
         if not _GAME_ROWS or (time.time() - _GAME_TS) > _GAME_TTL:

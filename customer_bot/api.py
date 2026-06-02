@@ -273,7 +273,7 @@ async def _fetch_games_full() -> List[Any]:
         if isinstance(data, list):
             games = data
         elif isinstance(data, dict):
-            games = data.get("data", [])
+            games = data.get("games", [])
         else:
             games = []
     except ValueError as e:
@@ -449,7 +449,11 @@ async def _fetch_config() -> dict:
         return cached
     try:
         data = await _api_get("sheets/config")
-        data = (data or {}).get("data", {}) if isinstance(data, dict) else {}
+        if isinstance(data, dict):
+            if "config" in data:
+                data = data["config"]
+            else:
+                data = data
         if data:
             await _cache_set("config", data, ttl=600)
         return data or {}
@@ -465,7 +469,7 @@ async def _fetch_sales_data() -> dict:
         return cached
     try:
         raw = await _api_get("analytics/daily_sales")
-        raw = (raw or {}).get("data", {}) if isinstance(raw, dict) else {}
+        raw = raw if isinstance(raw, dict) else {}
         data = {
             "today_sales": raw.get("total_sales_ks", 0),
             "weekly_sales": 0,
