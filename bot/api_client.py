@@ -491,8 +491,9 @@ def api_save_attendance(
         "POST",
         "save_attendance",
         json_data={
-            "month_str": month_str,
             "staff": staff,
+            "staff_name": staff,
+            "status": "Present",
             "leave_days": leave_days,
             "late_count": late_count,
             "deduct_per_late": deduct_per_late,
@@ -523,6 +524,7 @@ def api_add_console_game(
             "console_id": console_id,
             "game_title": game_title,
             "install_type": install_type,
+            "genre": "",
             "notes": notes,
         },
     )

@@ -711,8 +711,20 @@ def fetch_console_games() -> list[dict]:
     if _HAS_API:
         result = api_fetch_console_games()
         if result is not None:
-            # API returns {"console_games": [...]}; unwrap
-            return result.get("console_games", [])
+            # API returns {"console_games": [{console_id, console_name, game_id, game_title, genre, status, slot_position}]}
+            # Map MySQL keys to GSheet-era keys for handler compatibility
+            raw = result.get("console_games", [])
+            mapped = []
+            for i, g in enumerate(raw):
+                mapped.append({
+                    "row":          i + 2,
+                    "console_id":   g.get("console_id", ""),
+                    "game_title":   g.get("game_title", ""),
+                    "install_type": g.get("status", ""),
+                    "date":         g.get("created_at", "") or "",
+                    "notes":        "",
+                })
+            return mapped
         logging.warning("API api_fetch_console_games() failed, falling back to gspread")
     try:
         global _CGAME_ROWS, _CGAME_TS
@@ -745,7 +757,17 @@ def get_games_on_console(console_id: str) -> list[str]:
     if _HAS_API:
         result = api_get_games_on_console(console_id)
         if result is not None:
-            return result
+            # API returns {console_id, games: [{game_title, genre, status, slot_position}]}
+            # Extract game titles from games array
+            games_raw = result.get("games", []) if isinstance(result, dict) else result
+            seen = set()
+            titles = []
+            for g in (games_raw if isinstance(games_raw, list) else []):
+                t = g.get("game_title", "")
+                if t and t not in seen:
+                    seen.add(t)
+                    titles.append(t)
+            return titles
         logging.warning("API api_get_games_on_console(console_id) failed, falling back to gspread")
     seen = set()
     result = []
@@ -765,7 +787,12 @@ def get_consoles_with_game(game_title: str) -> list[str]:
     if _HAS_API:
         result = api_get_consoles_with_game(game_title)
         if result is not None:
-            return result
+            # API returns {game_title, consoles: [{console_id, console_name}]}
+            # Extract console_ids from consoles array
+            cons_raw = result.get("consoles", []) if isinstance(result, dict) else result
+            if isinstance(cons_raw, list):
+                return [r.get("console_id", "") for r in cons_raw if r.get("console_id")]
+            return list(cons_raw) if isinstance(cons_raw, (list, set)) else []
         logging.warning("API api_get_consoles_with_game(game_title) failed, falling back to gspread")
     gl = game_title.strip().lower()
     return [
@@ -1749,7 +1776,20 @@ def fetch_attendance(month_str: str) -> dict[str, dict]:
     if _HAS_API:
         result = api_fetch_attendance(month_str)
         if result is not None:
-            return result
+            # API returns {"attendance": [{staff_name, login_time, logout_time, date, hours_worked, status}]}
+            # Convert to bot format: {staff_name: {leave_days, late_count, deduct_per_late}}
+            att_list = result.get("attendance", []) if isinstance(result, dict) else []
+            converted = {}
+            for a in att_list:
+                sname = a.get("staff_name", "")
+                if sname:
+                    status = a.get("status", "")
+                    converted[sname] = {
+                        "leave_days": 1 if status and status.lower() != "present" else 0,
+                        "late_count": 1 if status and "late" in status.lower() else 0,
+                        "deduct_per_late": 500,
+                    }
+            return converted
         logging.warning("API api_fetch_attendance(month_str) failed, falling back to gspread")
     result: dict[str, dict] = {}
     try:
@@ -1810,7 +1850,14 @@ def fetch_base_salaries() -> dict[str, int]:
     if _HAS_API:
         result = api_fetch_base_salaries()
         if result is not None:
-            return result
+            # API returns {"salaries": [{staff_name, base_salary, role}]}
+            # Convert to {staff_name: base_salary} dict
+            sal_list = []
+            if isinstance(result, dict):
+                sal_list = result.get("salaries", [])
+            elif isinstance(result, list):
+                sal_list = result
+            return {s.get("staff_name", ""): int(float(s.get("base_salary", 0) or 0)) for s in sal_list if s.get("staff_name")}
         logging.warning("API api_fetch_base_salaries() failed, falling back to gspread")
     try:
         staff   = setting_sh.col_values(19)[1:]   # S = staff names
@@ -1900,7 +1947,10 @@ def fetch_promotions_cached() -> list:
     if _HAS_API:
         result = api_fetch_promotions_cached()
         if result is not None:
-            return result
+            # API returns {"promotions": [{id, promo_name, ...}]} or list
+            if isinstance(result, dict):
+                return result.get("promotions", [])
+            return result if isinstance(result, list) else []
         logging.warning("API api_fetch_promotions_cached() failed, falling back to gspread")
     global _PROMO_CACHE, _PROMO_TS
     with _THREAD_CACHE_LOCK:
@@ -2431,7 +2481,10 @@ def fetch_member_effective_rate(member_id: str) -> float:
     if _HAS_API:
         result = api_fetch_member_effective_rate(member_id)
         if result is not None:
-            return result
+            # API returns {"member_id": ..., "effective_rate": float} - extract float
+            if isinstance(result, dict):
+                return float(result.get("effective_rate", 0.0) or 0.0)
+            return float(result) if result else 0.0
         logging.warning("API api_fetch_member_effective_rate(member_id) failed, falling back to gspread")
     try:
         for row in _get_member_rows()[1:]:

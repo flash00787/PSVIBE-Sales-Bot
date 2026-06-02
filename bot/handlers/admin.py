@@ -149,8 +149,11 @@ def fetch_alltime_effective_rate() -> float:
     """All-time average Ks/min from MySQL API."""
     try:
         result = api_fetch_alltime_effective_rate()
-        if result and isinstance(result, dict) and result.get("success"):
-            return float(result.get("rate", 0))
+        if result is not None:
+            if isinstance(result, dict):
+                # API returns {"alltime_effective_rate": float, ...}
+                rate_val = result.get("alltime_effective_rate") or result.get("rate", 0)
+                return float(rate_val)
     except Exception as e:
         logging.warning("fetch_alltime_effective_rate API: %s", e)
     return fetch_base_rate() or 150.0
