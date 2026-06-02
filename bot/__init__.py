@@ -1020,15 +1020,22 @@ def update_game_library_install(game_title: str, console_id: str, installed: boo
 
 
 def calc_duration(start_time_str: str) -> tuple[int, str]:
-    """Calculate elapsed minutes from HH:MM start string. Returns (minutes, 'Xh Ym')."""
+    """Calculate elapsed minutes from start string. Returns (minutes, 'Xh Ym').
+    Supports HH:MM and YYYY-MM-DD HH:MM:SS formats."""
     try:
-        from datetime import timedelta
-        now   = now_mmt()
-        h, m  = map(int, start_time_str.strip().split(":"))
-        start = now.replace(hour=h, minute=m, second=0, microsecond=0)
-        if start > now:
-            start -= timedelta(days=1)
-        total_mins = int((now - start).total_seconds() // 60)
+        from datetime import timedelta, datetime as _dt
+        now = now_mmt()
+        s = start_time_str.strip()
+        # HH:MM format or full DATETIME format
+        if " " in s:
+            start = _dt.strptime(s, "%Y-%m-%d %H:%M:%S")
+            total_mins = max(0, int((now - start).total_seconds() // 60))
+        else:
+            h, m = map(int, s.split(":"))
+            start = now.replace(hour=h, minute=m, second=0, microsecond=0)
+            if start > now:
+                start -= timedelta(days=1)
+            total_mins = int((now - start).total_seconds() // 60)
         hrs  = total_mins // 60
         mins = total_mins % 60
         fmt  = (f"{hrs}h {mins}m" if hrs > 0 else f"{mins}m")

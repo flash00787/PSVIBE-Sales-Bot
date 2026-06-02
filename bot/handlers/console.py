@@ -361,7 +361,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         from bot.api_client import api_fetch_promotions_cached, api_generate_coupon, api_get
         from datetime import datetime
         today_mmt_str = datetime.utcnow().strftime("%m-%d")
-        if today_mmt_str in ("06-06", "06-07"):
+        if today_mmt_str in ("06-03", "06-04", "06-05", "06-06", "06-07"):
             # Check active promotion
             promo_resp = api_get("promotions/active")
             promo_data = promo_resp.get("data") if isinstance(promo_resp, dict) else promo_resp
