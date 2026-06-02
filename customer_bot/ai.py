@@ -418,7 +418,7 @@ def _build_faq_template(intent, member_data=None):
         "rank_check": "\\U0001f3c6 **Rank**\\nCurrent: {rank}\\nPlay more! \\U0001f3af",
         "price_check": "\\U0001f4b0 **Pricing**\\nPS5: 1,000 Ks/30min\\nFood: 1,000-5,000 Ks\\nMember discounts! \\U0001f525",
         "menu_check": "\\U0001f3ae **Games**\\nFIFA 25, Tekken 8, GTA V,\\nSpider-Man 2, CoD & more!\\nTell us what to play!",
-        "hours_check": "\\U0001f554 **Hours**\\nMon-Sun: 10AM-11PM\\nCome play! \\U0001f3ae",
+        "hours_check": "\\U0001f554 **Hours**\\nMon\-Sun\: 9AM\-9PM\\nCome play\! \\U0001f3ae",
         "promo_check": "\\U0001f389 **Promos**\\nAsk staff for latest deals! \\U0001f525",
         "location_check": "\\U0001f4cd **PS VIBE**\\nPlay The Game. Share The VIBE! \\U0001f3ae",
     }

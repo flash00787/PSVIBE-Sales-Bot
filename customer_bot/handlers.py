@@ -852,7 +852,8 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
         faq_reply = _build_faq_template(intent, member_data)
         if faq_reply:
             from telegram.constants import ParseMode
-            await update.message.reply_text(faq_reply, parse_mode=ParseMode.MARKDOWN_V2)
+            from .ai import _to_mdv2 as _esc
+            await update.message.reply_text(_esc(faq_reply), parse_mode=ParseMode.MARKDOWN_V2)
             return
     await _ai_reply(update, context, text, priority_care=priority_care)
 
