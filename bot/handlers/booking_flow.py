@@ -451,6 +451,26 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
             pass
         return
 
+
+    # Clean up any Scheduled Console_Booking row for this booking's console
+    _cancel_console = (result.get("consoleId") or "").strip() if isinstance(result, dict) else ""
+    if _cancel_console:
+        try:
+            _bk_sh = get_booking_sh()
+            _today = today_str()
+            _rows_data = _bk_sh.get("A:I")
+            for _i, _row in enumerate(_rows_data[1:], start=2):
+                if (len(_row) >= 7
+                        and (_row[1] or "").strip() == _today
+                        and (_row[2] or "").strip() == _cancel_console
+                        and (_row[6] or "").strip() == "Scheduled"):
+                    _bk_sh.update(f"G{_i}", [["Done"]])
+                    _bk_sh.update(f"I{_i}", [[f"Cancelled (BK#{bk_id})"]])
+                    logger.info("Console_Booking row %d marked Done (booking #%d cancelled)", _i, bk_id)
+                    break
+        except Exception as _e:
+            logger.warning("Console_Booking cleanup on cancel failed: %s", _e, exc_info=True)
+
     done_txt = (
         f"🚫 <b>Booking #{bk_id} Cancelled</b>\n"
         f"━━━━━━━━━━━━━━━━━━\n"
@@ -695,6 +715,27 @@ async def cb_booking_arrive(update: Update, context: ContextTypes.DEFAULT_TYPE):
         patch_body = {"status": "no_show", "staffNote": f"No-Show — marked by {staff_name}"}
         result = await asyncio.to_thread(_replit_patch, f"bookings/{bk_id}/status", patch_body)
         if result:
+            # Clean up Scheduled Console_Booking row for no-show
+            try:
+                _ns_bk_data = await asyncio.to_thread(_replit_get, f"bookings/{bk_id}")
+                _ns_console = ""
+                if isinstance(_ns_bk_data, dict):
+                    _ns_console = (_ns_bk_data.get("consoleId") or "").strip()
+                if _ns_console:
+                    _bk_sh = get_booking_sh()
+                    _today = today_str()
+                    _rows_data = _bk_sh.get("A:I")
+                    for _i, _row in enumerate(_rows_data[1:], start=2):
+                        if (len(_row) >= 7
+                                and (_row[1] or "").strip() == _today
+                                and (_row[2] or "").strip() == _ns_console
+                                and (_row[6] or "").strip() == "Scheduled"):
+                            _bk_sh.update(f"G{_i}", [["Done"]])
+                            _bk_sh.update(f"I{_i}", [[f"No-show (BK#{bk_id})"]])
+                            break
+            except Exception as _e:
+                logger.warning("Console_Booking cleanup on no-show failed: %s", _e, exc_info=True)
+
             await query.edit_message_text(
                 f"❌ <b>No-Show မှတ်တမ်းတင်ပြီ</b>\n"
                 f"━━━━━━━━━━━━━━━━━━\n"

@@ -7,7 +7,8 @@ import logging, re, json
 
 from bot import (
     CUSTOMER_BOT_TOKEN, _replit_get, _replit_patch,
-    check_disc_session_conflict, get_consoles_with_game, show_admin_menu,
+    check_disc_session_conflict, get_booking_sh, get_consoles_with_game,
+    now_mmt, show_admin_menu,
 )
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
 from bot.handlers.booking_flow import _post_n8n_booking_reminder
@@ -247,6 +248,23 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 f"📞 ဆက်သွယ်ရန် @psvibeofficial"
             )
         await asyncio.to_thread(_notify_customer, tg_chat, cust_msg)
+
+    # Write Scheduled row to Console_Booking so console appears busy in status board
+    if assigned_console:
+        try:
+            _sched_sh = get_booking_sh()
+            _sched_now = now_mmt()
+            _date_str = _sched_now.strftime("%-m/%-d/%Y")
+            _sched_id = f"BK-{_sched_now.strftime('%Y%m%d')}-{assigned_console.replace(' ','').replace('-','')}-S{_sched_now.strftime('%H%M')}"
+            _sched_sh.append_row([
+                _sched_id, _date_str, assigned_console,
+                b.get("customerName", "") or b.get("memberId", ""),
+                b.get("timeSlot", ""), "", "Scheduled",
+                staff_name, f"API_BK#{bk_id}"
+            ], value_input_option="USER_ENTERED")
+            logger.info("Console %s marked as Scheduled (API BK#%d)", assigned_console, bk_id)
+        except Exception as e:
+            logger.warning("Console_Booking Scheduled write failed: %s", e, exc_info=True)
 
     # Fire n8n reminder when customer booking approved
     if action == "approve":
