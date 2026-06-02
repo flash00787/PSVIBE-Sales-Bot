@@ -45,6 +45,7 @@ from customer_bot.booking_handlers import (
     bk_time_text_input,
 )
 
+from customer_bot.booking import cmd_cancel_booking
 _log = logging.getLogger(__name__)
 BOT_TOKEN = os.environ.get("CUSTOMER_BOT_TOKEN", "")
 
