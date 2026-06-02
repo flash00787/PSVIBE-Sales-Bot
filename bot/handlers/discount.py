@@ -371,10 +371,13 @@ COUPON_CONFIRM = 998
 
 async def prompt_coupon_entry(update, context):
     kb = [[BTN_SKIP_DISC], [BTN_BACK, BTN_CANCEL]]
-    await update.message.reply_text("🎟️ *Apply Coupon*
-
-Coupon Code ရိုက်ထည့်ပါ -
-သို့မဟုတ် *Skip* နှိပ်ပါ", parse_mode="Markdown", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+    await update.message.reply_text(
+        "🎟️ *Apply Coupon*" + chr(10) + chr(10) +
+        "Coupon Code ရိုက်ထည့်ပါ -" + chr(10) +
+        "သို့မဟုတ် *Skip* နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
     return COUPON_APPLY
 
 async def step_coupon_validate(update, context):
@@ -384,9 +387,11 @@ async def step_coupon_validate(update, context):
     if text == BTN_CANCEL: return await cmd_cancel(update, context)
     resp = _api_post_coupon("coupons/validate", {"code": text})
     if isinstance(resp, dict) and "error" in resp:
-        await update.message.reply_text("❌ " + resp.get("error", "Invalid") + "
-
-ထပ်ရိုက်ပါ သို့ Skip နှိပ်ပါ -", parse_mode="Markdown")
+        await update.message.reply_text(
+            "❌ " + resp.get("error", "Invalid") + chr(10) + chr(10) +
+            "ထပ်ရိုက်ပါ သို့ Skip နှိပ်ပါ -",
+            parse_mode="Markdown",
+        )
         return COUPON_APPLY
     data = resp.get("data") if isinstance(resp, dict) and "data" in resp else resp
     coupon = data.get("coupon") if isinstance(data, dict) else None
@@ -401,13 +406,15 @@ async def step_coupon_validate(update, context):
     base_rate = context.user_data.get("base_rate") or 500
     coupon_value_ks = round(balance * base_rate / 60)
     kb = [["✅ Confirm Coupon"], [BTN_SKIP_DISC], [BTN_BACK, BTN_CANCEL]]
-    await update.message.reply_text(f"🎟️ *Coupon Valid* ✅
-
-Code: *{code}*
-Balance: *{balance} mins* (~{coupon_value_ks:,} Ks)
-Expiry: {expiry}
-
-Coupon ကို အသုံးပြုလိုပါသလား?", parse_mode="Markdown", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+    await update.message.reply_text(
+        "🎟️ *Coupon Valid* ✅" + chr(10) + chr(10) +
+        "Code: " + code + chr(10) +
+        "Balance: " + str(balance) + " mins (~" + str(coupon_value_ks) + " Ks)" + chr(10) +
+        "Expiry: " + expiry + chr(10) + chr(10) +
+        "Coupon ကို အသုံးပြုလိုပါသလား?",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
     return COUPON_CONFIRM
 
 async def step_coupon_confirm(update, context):
@@ -444,9 +451,12 @@ async def step_coupon_confirm(update, context):
                 d["net_total"] = max(0, _food_tv - d["discount"])
             else:
                 d["net_total"] = max(0, gross - d["discount"])
-            await update.message.reply_text(f"✅ *Coupon Applied!*
-🎟️ {code}: -{coupon_value_ks:,} Ks ({deducted} mins)
-💰 Net Payable: *{d["net_total"]:,} Ks*", parse_mode="Markdown")
+            await update.message.reply_text(
+                "✅ *Coupon Applied!*" + chr(10) +
+                "🎟️ " + code + ": -" + str(coupon_value_ks) + " Ks (" + str(deducted) + " mins)" + chr(10) +
+                "💰 Net Payable: " + str(d["net_total"]) + " Ks*",
+                parse_mode="Markdown",
+            )
             d.pop("_coupon_code", None)
             d.pop("_coupon_balance", None)
             return await prompt_kpay(update, context)
