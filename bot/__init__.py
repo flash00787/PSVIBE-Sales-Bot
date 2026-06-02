@@ -2014,10 +2014,16 @@ def _replit_get(path: str, timeout: int = 8):
                 return fallback
             # Auto-unwrap {"data": [...], "success": true} envelope for list paths
             if is_list_path and isinstance(data, dict) and "data" in data:
-                if isinstance(data["data"], list):
-                    return data["data"]
-                if data.get("success") and isinstance(data.get("bookings"), list):
-                    return data.get("bookings", [])
+                inner = data["data"]
+                if isinstance(inner, list):
+                    return inner
+                if isinstance(inner, dict):
+                    # Try common list keys inside data
+                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                        if _list_key in inner and isinstance(inner[_list_key], list):
+                            return inner[_list_key]
+                    # Single-item dict (e.g. {"booking": {...}}) — return inner
+                    return inner
             return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)

@@ -121,6 +121,13 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     if action == "approve":
         bk_data      = await asyncio.to_thread(_replit_get, f"bookings/{bk_id}")
         bk_info      = bk_data or {}
+        # Unwrap {"data": {"booking": {...}}} envelope
+        if isinstance(bk_info, dict) and bk_info.get("data") and isinstance(bk_info["data"], dict):
+            inner = bk_info["data"]
+            if "booking" in inner:
+                bk_info = inner["booking"]
+            else:
+                bk_info = inner
         console_type = bk_info.get("consoleType", "")
         game_name    = (bk_info.get("gameName") or "").strip()
 
@@ -172,19 +179,17 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         await reply_fn(f"❌ Booking #{bk_id} ကို update မရပါ")
         return
 
-    # Console conflict — 409 response
-    if isinstance(result, dict) and result.get("error") == "console_conflict":
-        conflict_msg = result.get("message", "")
-        await reply_fn(
-            f"⚠️ *Console Conflict!*\n\n"
-            f"🖥️ {assigned_console} သည် ထပ်နေပြီ ဖြစ်သည်\n"
-            f"_{conflict_msg}_\n\n"
-            f"📌 Booking #{bk_id} ကို manually console ပြောင်းပြီး ထပ်ကြိုးစားပါ",
-            parse_mode="Markdown",
-        )
-        return
-
-    b = result
+    # Unwrap {"data": {"booking": {...}}} envelope
+    if isinstance(result, dict):
+        data_outer = result.get("data") or {}
+        if isinstance(data_outer, dict) and "booking" in data_outer:
+            b = data_outer["booking"]
+        elif isinstance(data_outer, dict) and "bookings" in data_outer:
+            b = data_outer["bookings"][0] if data_outer["bookings"] else result
+        else:
+            b = result
+    else:
+        b = result
     if action == "approve":
         console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
         game_line    = f"\n🕹️ Game: <b>{b.get('gameName') or '—'}</b>" if b.get("gameName") else ""
