@@ -74,3 +74,41 @@ async def _check_low_balance_alert(member_id: str, console_id: str) -> None:
         logging.info("low_balance_alert sent: member=%s balance=%d", member_id, balance)
     except Exception as e:
         logging.warning("_check_low_balance_alert %s: %s", member_id, e)
+
+
+async def send_cashback_coupon_notification(context, chat_id: int, coupon_code: str, member_id: str, minutes: int):
+    """Send CashBack coupon notification to customer via Telegram."""
+    from bot import CUSTOMER_BOT_TOKEN
+    import urllib.request, json
+    
+    msg = (
+        f"🎉 *Grand Opening 100% CashBack Coupon!* 🎉
+
+"
+        f"ကျေးဇူးတင်ပါတယ် {member_id}!
+"
+        f"သင့်ရဲ့ session အတွက် CashBack Coupon ရရှိပါပြီ။
+
+"
+        f"🎫 Coupon Code: *{coupon_code}*
+"
+        f"⏱ {minutes} mins
+
+"
+        f"📅 Expiry: July 7, 2026
+
+"
+        f"💡 PS VIBE မှာ ပြန်လည်အသုံးပြုနိုင်ပါတယ်!
+"
+        f"Coupon Code ကို staff ကိုပြပြီး အသုံးပြုပါ။"
+    )
+    
+    url = f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage"
+    payload = json.dumps({"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"}).encode()
+    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+    try:
+        resp = urllib.request.urlopen(req, timeout=10)
+        return json.loads(resp.read().decode())
+    except Exception as e:
+        print(f"Failed to send coupon notification: {e}")
+        return None

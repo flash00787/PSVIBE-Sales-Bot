@@ -842,3 +842,34 @@ def api_update_finance_advance(item_id: int, data: dict) -> dict | None:
     """Update a finance advance record."""
     return _api_call("PUT", f"finance/advances/{item_id}", data)
 
+
+
+def api_post(path: str, body: dict) -> dict:
+    """Synchronous POST to internal API (using urllib) - for cashback coupon ops."""
+    import urllib.request, urllib.parse, json, os
+    api_base = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
+    api_key = os.environ.get("API_KEY", "")
+    url = f"{api_base}/api/{path}?api_key={api_key}"
+    data = json.dumps(body).encode()
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    try:
+        resp = urllib.request.urlopen(req, timeout=10)
+        return json.loads(resp.read().decode())
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def api_get(path: str) -> dict:
+    """Synchronous GET to internal API (using urllib) - for cashback coupon ops."""
+    import urllib.request, json, os
+    api_base = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
+    api_key = os.environ.get("API_KEY", "")
+    url = f"{api_base}/api/{path}&api_key={api_key}"
+    if "?" not in path:
+        url = f"{api_base}/api/{path}?api_key={api_key}"
+    req = urllib.request.Request(url)
+    try:
+        resp = urllib.request.urlopen(req, timeout=10)
+        return json.loads(resp.read().decode())
+    except Exception as e:
+        return {"error": str(e)}
