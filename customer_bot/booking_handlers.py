@@ -31,6 +31,18 @@ logger = logging.getLogger(__name__)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 TODAY = today_mmt
+def _push_state(context, state):
+    stack = context.user_data.setdefault("_bk_state_stack", [])
+    stack.append(state)
+
+def _pop_state(context):
+    stack = context.user_data.get("_bk_state_stack", [])
+    return stack.pop() if stack else None
+
+def _get_previous_state(context):
+    stack = context.user_data.get("_bk_state_stack", [])
+    return stack[-1] if stack else None
+
 BK_END = -1  # sentinel for end
 
 BTN_CANCEL = "❌ ပယ်ဖျက်မည်"

@@ -40,6 +40,42 @@ async def cmd_mybookings(update, context):
     await update.message.reply_text("".join(lines), parse_mode="Markdown")
 
 
+async def cmd_cancel_booking(update, context):
+    """Cancel a booking by ID."""
+    args = context.args
+    if not args:
+        await update.message.reply_text(
+            "❌ ပယ်ဖျက်လိုသော Booking ID ကို ထည့်ပေးပါ။\n"
+            "ဥပမာ: `/cancelbooking 131`",
+            parse_mode="Markdown",
+        )
+        return
+    
+    try:
+        bk_id = int(args[0])
+    except ValueError:
+        await update.message.reply_text("❌ Booking ID မှားယွင်းနေပါသည်။")
+        return
+    
+    try:
+        result = await _api._api_patch(f"bookings/{bk_id}/status", {
+            "status": "cancelled",
+            "staff_note": "Cancelled by customer",
+        })
+        if result and isinstance(result, dict) and result.get("success"):
+            await update.message.reply_text(
+                f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*",
+                parse_mode="Markdown",
+            )
+        else:
+            await update.message.reply_text(
+                f"❌ Booking #{bk_id} ကို ပယ်ဖျက်မရပါ။ Admin ကို ဆက်သွယ်ပါ။",
+            )
+    except Exception as e:
+        logging.getLogger(__name__).error("Cancel booking failed: %s", e)
+        await update.message.reply_text("❌ Cancel မရပါ — ခဏနေ ပြန်ကြိုးစားပါ။")
+
+
 async def cmd_refer(update, context):
     """Generate referral link with user's Telegram info"""
     user = update.effective_user

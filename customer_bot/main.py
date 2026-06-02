@@ -69,6 +69,7 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("cancel", cmd_cancel))
     app.add_handler(CommandHandler("feedback",cmd_feedback))
     app.add_handler(CommandHandler("mybookings",cmd_mybookings))
+    app.add_handler(CommandHandler("cancelbooking",cmd_cancel_booking))
     app.add_handler(CommandHandler("refer",  cmd_refer))
     app.add_handler(CommandHandler("waitlist",cmd_waitlist))
 
@@ -171,6 +172,8 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CallbackQueryHandler(cb_feedback_skip,           pattern=r"^fbskip$"))
 
     # Menu buttons catch-all (handles main menu clicks when not in conversation)
+
+    
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu_buttons))
 
     # Bot Commands (shown in chat menu)
@@ -206,7 +209,7 @@ async def _error_handler(update, context) -> None:
     if isinstance(err, Conflict):
         _log.warning("409 Conflict: another instance polling - will resolve automatically")
         return
-    _log.error("Unhandled error: %s", err, exc_info=err)
+    _log.error("Unhandled error: %s | update=%s", err, update.update_id if update else "no-update", exc_info=err)
     try:
         if update and update.effective_chat:
             await context.bot.send_message(
