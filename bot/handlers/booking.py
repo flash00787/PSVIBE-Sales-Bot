@@ -154,7 +154,7 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
     )
 
     for b in bookings[:15]:
-        console_hint = b.get("consoleId") or b.get("consoleType", "?")
+        console_hint = b.get("console_id") or b.get("consoleType", "?")
         is_today = b.get("date", "") == today_s
         today_tag = "  🔵 Today" if is_today else ""
         card = (
@@ -468,7 +468,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "date":         date,
             "timeSlot":     slot,
             "consoleType":  ctype,
-            "consoleId":    cid,
+            "console_id":    cid,
             "durationMins": int(dur),
             "gameName":     game or None,
             "status":       "confirmed",
@@ -667,7 +667,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
     for b in pending_bks:
         bk_id   = b.get("id", "?")
         member  = b.get("memberId") or "Guest"
-        console = (b.get("consoleId") or "?").strip()
+        console = (b.get("console_id") or "?").strip()
         bk_time = b.get("timeSlot") or ""
         game    = b.get("gameName") or ""
         label   = f"#{bk_id} | {console} | {member}"
@@ -736,7 +736,7 @@ async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return BOOK_LINK
 
     bk_id   = selected_bk.get("id")
-    console = (selected_bk.get("consoleId") or "").strip()
+    console = (selected_bk.get("console_id") or "").strip()
     member  = selected_bk.get("memberId") or "Guest"
     game    = selected_bk.get("gameName") or ""
     dur     = selected_bk.get("durationMins") or 0

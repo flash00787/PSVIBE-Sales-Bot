@@ -256,66 +256,6 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     return available
 
 
-async def bk_specific_console_select(update, context):
-    """Handle specific console selection via ReplyKeyboard."""
-    text = (update.message.text or "").strip()
-    
-    menu_result = await _bk_intercept_menu(text, update, context)
-    if menu_result:
-        return menu_result
-    
-    if text == BTN_CANCEL:
-        return await _cleanup_and_end(update, context)
-    
-    if text == BTN_BACK:
-        _pop_state(context)
-        date_str = context.user_data.get("bk_date", "")
-        free_slots = await _get_available_slots(date_str) if date_str else []
-        await update.message.reply_text(
-            f"U0001f4c5 *{date_str}* — အချိန်းရွေးပါ:",
-            parse_mode="Markdown",
-            reply_markup=_make_time_keyboard(free_slots) if free_slots else _make_date_keyboard(),
-        )
-        return BK_TIME
-    
-    if text == BTN_NOT_SURE:
-        context.user_data.pop("bk_specific_console_id", None)
-        context.user_data.pop("_bk_specific_consoles", None)
-        await update.message.reply_text(
-            "U0001f3ae Console အမွိဳအရူး ရွေးပါ:",
-            reply_markup=_make_console_keyboard(),
-        )
-        return BK_CONSOLE
-    
-    # Try to parse console id from button text like "C-01 (PS5)"
-    import re as _re
-    m = _re.match(r'^([ws-]+?)s*\(', text)
-    if m:
-        cid = m.group(1).strip()
-        context.user_data["bk_specific_console_id"] = cid
-        tm = _re.search(r'\(([^)]+)\)', text)
-        if tm:
-            context.user_data["bk_console"] = tm.group(1)
-        context.user_data.pop("_bk_specific_consoles", None)
-        await update.message.reply_text(
-            f"✅ Console: {text}",
-            reply_markup=_make_duration_keyboard(),
-        )
-        return BK_DURATION
-    else:
-        cid = text.strip()
-        context.user_data["bk_specific_console_id"] = cid
-        stored = context.user_data.get("_bk_specific_consoles", [])
-        for c in stored:
-            if c.get("id") == cid:
-                context.user_data["bk_console"] = c.get("type", "PS5")
-                break
-        context.user_data.pop("_bk_specific_consoles", None)
-        await update.message.reply_text(
-            f"✅ Console: {cid}",
-            reply_markup=_make_duration_keyboard(),
-        )
-        return BK_DURATION
 
 def _format_booking_summary(context: ContextTypes.DEFAULT_TYPE) -> str:
     """Format booking summary from user_data."""
@@ -357,14 +297,40 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     """Submit booking to API. Returns (message, success_or_not)."""
     user = update.effective_user
     uid = str(user.id) if user else ""
+    
+    # AUTO-ASSIGN: Pick first free console matching selected type
+    console_id = context.user_data.get("bk_specific_console_id", "")
+    console_type = context.user_data.get("bk_console", "PS5")
+    date_str = context.user_data.get("bk_date", "")
+    time_str = context.user_data.get("bk_time", "")
+    duration_mins = context.user_data.get("bk_duration_mins", 60)
+    
+    if not console_id and date_str and time_str:
+        try:
+            available = await _get_available_consoles(date_str, time_str, duration_mins)
+            if console_type != "Any":
+                available = [c for c in available if c.get("type", "").lower() == console_type.lower()]
+            if available:
+                assigned = available[0]
+                console_id = assigned.get("id", "")
+                console_type = assigned.get("type", console_type)
+                context.user_data["bk_console"] = console_type
+                context.user_data["bk_specific_console_id"] = console_id
+        except Exception:
+            pass
+    
+    assigned_console_label = ""
+    if console_id:
+        assigned_console_label = f" ({console_id})"
+    
     payload = {
         "customerName": context.user_data.get("bk_name", ""),
         "phone": context.user_data.get("bk_phone", ""),
-        "date": context.user_data.get("bk_date", ""),
-        "timeSlot": context.user_data.get("bk_time", ""),
-        "consoleType": context.user_data.get("bk_console", "PS5"),
-        "console_id": context.user_data.get("bk_specific_console_id", ""),
-        "durationMins": context.user_data.get("bk_duration_mins", 60),
+        "date": date_str,
+        "timeSlot": time_str,
+        "consoleType": console_type,
+        "console_id": console_id,
+        "durationMins": duration_mins,
         "gameName": context.user_data.get("bk_game", ""),
         "telegramChatId": uid,
         "username": user.username or "",
@@ -379,7 +345,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 f"✅ *Booking Submitted — Pending Confirmation*\n\n"
                 f"🎫 Booking #{bk_id}\n"
                 f"📅 {payload['date']}  ⏰ {payload['timeSlot']}\n"
-                f"🎮 {payload['consoleType']}  ⏱️ {payload['durationMins']} mins\n"
+                f"🎮 {payload['consoleType']}{assigned_console_label}  ⏱️ {payload['durationMins']} mins\n"
                 f"🕹️ {payload['gameName']}\n\n"
                 f"_Staff မှ confirm လုပ်ပြီးပါက အကြောင်းကြားပါမည်_ 🎮"
             )
@@ -981,22 +947,12 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 context.user_data["bk_time"] = text
                 _push_state(context, BK_TIME)
                 date_str = context.user_data.get("bk_date", "")
-                available = await _get_available_consoles(date_str, text)
-                if available:
-                    context.user_data["_bk_specific_consoles"] = available
-                    await update.message.reply_text(
-                        f"⏰ အချိန်: *{text}*\n\n🕹️ ရနိုင်သော Console ရွေးပါ:",
-                        parse_mode="Markdown",
-                        reply_markup=_make_specific_console_keyboard(available),
-                    )
-                    return BK_SPECIFIC_CONSOLE
-                else:
-                    await update.message.reply_text(
-                        f"⏰ အချိန်: *{text}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
-                        parse_mode="Markdown",
-                        reply_markup=_make_console_keyboard(),
-                    )
-                    return BK_CONSOLE
+                await update.message.reply_text(
+                    f"⏰ အချိန်: *{text}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
+                    parse_mode="Markdown",
+                    reply_markup=_make_console_keyboard(),
+                )
+                return BK_CONSOLE
 
         # Check custom time HH:MM
         m = re.match(r'^(\d{1,2}):(\d{2})$', text)
@@ -1007,22 +963,12 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 context.user_data["bk_time"] = time_str
                 _push_state(context, BK_TIME)
                 date_str = context.user_data.get("bk_date", "")
-                available = await _get_available_consoles(date_str, time_str)
-                if available:
-                    context.user_data["_bk_specific_consoles"] = available
-                    await update.message.reply_text(
-                        f"⏰ Custom Time: *{time_str}*\n\n🕹️ ရနိုင်သော Console ရွေးပါ:",
-                        parse_mode="Markdown",
-                        reply_markup=_make_specific_console_keyboard(available),
-                    )
-                    return BK_SPECIFIC_CONSOLE
-                else:
-                    await update.message.reply_text(
-                        f"⏰ Custom Time: *{time_str}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
-                        parse_mode="Markdown",
-                        reply_markup=_make_console_keyboard(),
-                    )
-                    return BK_CONSOLE
+                await update.message.reply_text(
+                    f"⏰ Custom Time: *{time_str}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
+                    parse_mode="Markdown",
+                    reply_markup=_make_console_keyboard(),
+                )
+                return BK_CONSOLE
             else:
                 await update.message.reply_text(
                     f"⚠️ မမှန်ကန်သော အချိန် — {OPEN_HOUR}:00 မှ {CLOSE_HOUR}:00 အတွင်း "

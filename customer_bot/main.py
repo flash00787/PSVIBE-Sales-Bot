@@ -29,7 +29,7 @@ from customer_bot.handlers import (
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
-    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_SPECIFIC_CONSOLE, BK_END,
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_END,
     cmd_start, cmd_menu, cmd_today, cmd_rate, cmd_myid,
     cmd_contact, cmd_promotions, cmd_help, cmd_refresh,
     cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
@@ -42,7 +42,7 @@ from customer_bot.booking_handlers import (
     bk_member_check_entry, bk_member_select, bk_phone_verify, bk_data_confirm,
     bk_name_entry, bk_phone_entry, bk_date_select, bk_time_select,
     bk_console_select, bk_duration_select, bk_game_select, bk_console_pref,
-    bk_confirm, bk_dup_warn, bk_disc_warn, bk_con_conflict, bk_specific_console_select, bk_end_handler,
+    bk_confirm, bk_dup_warn, bk_disc_warn, bk_con_conflict, bk_end_handler,
     bk_time_text_input,
 )
 
@@ -131,10 +131,6 @@ def _register_handlers(app: Application) -> None:
             BK_DURATION: [
                 CallbackQueryHandler(bk_duration_select, pattern=r"^bk_dur:"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_duration_select),
-            ],
-            # BK_SPECIFIC_CONSOLE — ReplyKeyboard: specific console list
-            BK_SPECIFIC_CONSOLE: [
-                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_specific_console_select),
             ],
             # BK_GAME — ReplyKeyboard: game list w/ pagination + cancel
             BK_GAME: [
