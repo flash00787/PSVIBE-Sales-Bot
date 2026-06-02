@@ -613,12 +613,12 @@ async def cmd_book(update: Update, context: ContextTypes.DEFAULT_TYPE):
     asyncio.create_task(_api.track_usage(update.effective_user, "book_start"))
     context.user_data["bk_reserved_console"] = None
     kb = ReplyKeyboardMarkup(
-        [["ရှိပါတယ်"], ["မရှိဘူး (Guest)"]],
+        [["ရှိပါတယ်"], ["မရှိဘူး (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
         resize_keyboard=True,
         one_time_keyboard=True,
     )
     await update.message.reply_text(
-        "\U0001f4c5 *Booking Form*\n\nMember Card ရှိပါသလား?",
+        "\U0001f4c5 *Booking Form*\n\nMember Card ရှိပါသလား?\n\n( နောက်သို့ သွားရန် ❌ ပယ်ဖျက်မည် ကိုနှိပ်ပါ )",
         parse_mode="Markdown",
         reply_markup=kb,
     )

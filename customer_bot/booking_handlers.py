@@ -326,11 +326,17 @@ async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_
         "Member မဟုတ်ရင် `no` ရိုက်ပြီး Guest အဖြစ်ဆက်လုပ်ပါ။"
     )
     msg_source = update.message if update.message else (update.callback_query.message if update.callback_query else None)
+    kb = ReplyKeyboardMarkup(
+        [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+        resize_keyboard=True,
+        one_time_keyboard=True,
+    )
     if msg_source:
         if update.message:
-            await update.message.reply_text(msg, parse_mode="Markdown")
+            await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=kb)
         elif update.callback_query:
             await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
+            await update.callback_query.message.reply_text(msg, parse_mode="Markdown", reply_markup=kb)
     return BK_PHONE_VERIFY
 
 
@@ -452,10 +458,16 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Validate: must be at least 2 digits
     if len(digits_only) < 2 or len(digits_only) > 6:
+        kb = ReplyKeyboardMarkup(
+            [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+            resize_keyboard=True,
+            one_time_keyboard=True,
+        )
         await update.message.reply_text(
             "⚠️ ဖုန်းနံပါတ်နောက်ဆုံး **၃ လုံး** ကိုသာ ရိုက်ထည့်ပေးပါ။\n\n"
             "(ဥပမာ: `123`)  သို့မဟုတ် member မဟုတ်ရင် `no` ရိုက်ပါ။",
             parse_mode="Markdown",
+            reply_markup=kb,
         )
         return BK_PHONE_VERIFY
 
@@ -508,11 +520,17 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     else:
         # No match
+        kb = ReplyKeyboardMarkup(
+            [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+            resize_keyboard=True,
+            one_time_keyboard=True,
+        )
         await update.message.reply_text(
             f"❌ ဖုန်းနောက်ဆုံး `{digits_only}` နဲ့ကိုက်တဲ့ member မတွေ့ပါ။\n\n"
             "ထပ်ကြိုးစားလိုပါက နောက်ထပ် ၃ လုံးရိုက်ပါ၊\n"
             "Member မဟုတ်ရင် `no` ရိုက်ပြီး Guest အဖြစ်ဆက်လုပ်ပါ။",
             parse_mode="Markdown",
+            reply_markup=kb,
         )
         return BK_PHONE_VERIFY
 
