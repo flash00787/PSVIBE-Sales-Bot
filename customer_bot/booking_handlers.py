@@ -2,6 +2,8 @@
 PS Vibe Customer Bot — Booking Conversation Handlers
 All 16 states use ReplyKeyboardMarkup for selection.
 InlineKeyboard is used only for dynamic member/game lists where ReplyKeyboard is impractical.
+
+UPDATED: Added back buttons throughout + phone last-3-digit member matching
 """
 
 import asyncio
@@ -32,6 +34,7 @@ TODAY = today_mmt
 BK_END = -1  # sentinel for end
 
 BTN_CANCEL = "❌ ပယ်ဖျက်မည်"
+BTN_BACK = "🔙 နောက်သို့"
 BTN_MEM_YES = "ရှိပါတယ်"
 BTN_MEM_NO = "မရှိဘူး (Guest)"
 BTN_CONFIRM_YES = "✅ မှန်ပါသည်"
@@ -39,6 +42,7 @@ BTN_CONFIRM_NO = "❌ မဟုတ်ပါ"
 BTN_NOT_SURE = "🤷 မရွေးတတ်ပါ"
 BTN_CONFIRM_BOOK = "✅ Confirm Booking"
 BTN_SKIP = "⏭️ Skip"
+BTN_TRY_AGAIN = "🔄 ထပ်ကြိုးစားမည်"
 
 # ── Helper: build one_time ReplyKeyboardMarkup ─────────────────────────────────
 
@@ -57,7 +61,7 @@ def _make_date_keyboard() -> ReplyKeyboardMarkup:
         [f"ယနေ့ (Today)  {today.strftime('%Y-%m-%d')}"],
         [f"မနက်ဖြန် (Tomorrow)  {tomorrow.strftime('%Y-%m-%d')}"],
         [f"သဘက်ခါ (Day After)  {day_after.strftime('%Y-%m-%d')}"],
-        [BTN_CANCEL],
+        [BTN_BACK, BTN_CANCEL],
     ])
 
 
@@ -72,7 +76,7 @@ def _make_time_keyboard(free_slots: list[str]) -> ReplyKeyboardMarkup:
             row = []
     if row:
         rows.append(row)
-    rows.append(["✏️ Custom Time", BTN_CANCEL])
+    rows.append(["✏️ Custom Time", BTN_BACK, BTN_CANCEL])
     return _rp_kb(rows)
 
 
@@ -81,7 +85,7 @@ def _make_console_keyboard() -> ReplyKeyboardMarkup:
     return _rp_kb([
         CONSOLE_TYPES,
         [BTN_NOT_SURE],
-        [BTN_CANCEL],
+        [BTN_BACK, BTN_CANCEL],
     ])
 
 
@@ -91,7 +95,7 @@ def _make_duration_keyboard() -> ReplyKeyboardMarkup:
         DURATION_OPTS[:2],
         DURATION_OPTS[2:4],
         DURATION_OPTS[4:],
-        [BTN_CANCEL],
+        [BTN_BACK, BTN_CANCEL],
     ])
 
 
@@ -109,7 +113,7 @@ def _make_game_keyboard(games: list[str], page: int = 0, per_page: int = 6) -> R
     if nav_row:
         rows.append(nav_row)
     rows.append([BTN_NOT_SURE])
-    rows.append([BTN_CANCEL])
+    rows.append([BTN_BACK, BTN_CANCEL])
     return _rp_kb(rows)
 
 
@@ -117,7 +121,7 @@ def _make_confirm_keyboard() -> ReplyKeyboardMarkup:
     """Build confirmation reply keyboard."""
     return _rp_kb([
         [BTN_CONFIRM_BOOK],
-        [BTN_CANCEL],
+        [BTN_BACK, BTN_CANCEL],
     ])
 
 
@@ -147,6 +151,8 @@ async def _get_available_slots(date_str: str) -> list[str]:
     except Exception:
         bks = []
     bks = bks if isinstance(bks, list) else []
+    if isinstance(bks, dict) and "bookings" in bks:
+        bks = bks["bookings"]
     booked_slots = {b.get("timeSlot", "") for b in bks if b.get("status", "").lower() not in ("cancelled", "done")}
     all_slots = [f"{h:02d}:00" for h in range(OPEN_HOUR, CLOSE_HOUR)]
     return [s for s in all_slots if s not in booked_slots]
@@ -165,7 +171,6 @@ def _format_booking_summary(context: ContextTypes.DEFAULT_TYPE) -> str:
         f"🎮 Console: *{d.get('bk_console', '—')}*",
         f"⏱️ Duration: *{d.get('bk_duration_mins', '—')} mins*",
         f"🕹️ Game: *{d.get('bk_game', '—')}*",
-        f"💻 Console Pref: *{d.get('bk_console_pref', '—')}*",
     ]
     return "\n".join(lines)
 
@@ -174,6 +179,19 @@ def _extract_date_from_text(text: str) -> str | None:
     """Extract YYYY-MM-DD date from text like 'ယနေ့ (Today)  2026-05-30'."""
     m = re.search(r'(\d{4}-\d{2}-\d{2})', text)
     return m.group(1) if m else None
+
+
+async def _match_member_by_last_digits(last_digits: str) -> list[tuple[str, dict]]:
+    """Match members by last N digits of phone number. Returns [(mid, member_dict), ...]"""
+    if not last_digits or len(last_digits) < 2:
+        return []
+    members = await _api._fetch_members()
+    matched = []
+    for mid, m in members.items():
+        phone = (m.get("phone") or "").replace(" ", "").replace("-", "")
+        if phone.endswith(last_digits):
+            matched.append((mid, m))
+    return matched
 
 
 async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) -> tuple[str, bool]:
@@ -225,6 +243,29 @@ async def _cleanup_and_end(update: Update, context: ContextTypes.DEFAULT_TYPE, m
     return ConversationHandler.END
 
 
+def _get_previous_state(context) -> int | None:
+    """Get the previous state from user_data stack, or None."""
+    stack = context.user_data.get("_bk_state_stack", [])
+    return stack[-1] if stack else None
+
+
+def _push_state(context, state: int):
+    """Push current state onto stack."""
+    stack = context.user_data.setdefault("_bk_state_stack", [])
+    stack.append(state)
+    # Keep stack manageable (max 20)
+    if len(stack) > 20:
+        stack.pop(0)
+
+
+def _pop_state(context) -> int | None:
+    """Pop and return previous state."""
+    stack = context.user_data.get("_bk_state_stack", [])
+    if stack:
+        return stack.pop()
+    return None
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 #  Booking State Handlers
 # ══════════════════════════════════════════════════════════════════════════════
@@ -233,7 +274,7 @@ async def _cleanup_and_end(update: Update, context: ContextTypes.DEFAULT_TYPE, m
 # ── State 0: BK_MEMBER_CHECK — Ask if user has a member card ──────────────────
 
 async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle member card Yes/No — works with both ReplyKeyboard text and inline callback."""
+    """Handle member card Yes/No — entry point for booking flow."""
     text = (update.message.text or "").strip() if update.message else ""
 
     # Intercept menu buttons
@@ -248,6 +289,7 @@ async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TY
     elif not update.callback_query and (text in (BTN_MEM_NO, "မရှိဘူး (Guest)", "မရှိဘူး") or text.lower() == "no"):
         context.user_data.pop("bk_member_id", None)
         context.user_data.pop("bk_member_data", None)
+        _push_state(context, BK_MEMBER_CHECK)
         await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
         return BK_NAME
     elif not update.callback_query and text == BTN_CANCEL:
@@ -264,6 +306,7 @@ async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TY
         elif data == "bk_mem:no":
             context.user_data.pop("bk_member_id", None)
             context.user_data.pop("bk_member_data", None)
+            _push_state(context, BK_MEMBER_CHECK)
             await query.edit_message_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
             return BK_NAME
         else:
@@ -274,59 +317,27 @@ async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TY
 
 
 async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Shared logic when user says they have a member card."""
-    phone = await _get_user_phone(update, context)
-    if phone:
-        members = await _api._fetch_members()
-        phone_norm = phone.replace(" ", "").replace("-", "")
-        matched = [
-            (mid, m) for mid, m in members.items()
-            if (m.get("phone") or "").replace(" ", "").replace("-", "") == phone_norm
-        ]
-        if len(matched) == 1:
-            mid, m = matched[0]
-            context.user_data["bk_member_id"] = mid
-            context.user_data["bk_name"] = m.get("name", "")
-            context.user_data["bk_phone"] = phone
-            context.user_data["bk_member_data"] = m
-            context.user_data["bk_expected_phone"] = m.get("phone", "")
-            msg = (
-                f"👤 Member found: *{m.get('name', '?')}*\n"
-                f"📞 ဖုန်းနံပါတ်နောက်ဆုံး ၃/၄ လုံးရိုက်ပါ (သို့မဟုတ် 'no' ရိုက်ပြီး ကျော်ပါ):"
-            )
-            if update.message:
-                await update.message.reply_text(msg, parse_mode="Markdown")
-            else:
-                await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
-            return BK_PHONE_VERIFY
-        elif len(matched) > 1:
-            buttons = []
-            for mid, m in matched[:10]:
-                label = f"{m.get('name','?')} ({m.get('phone','?')})"
-                buttons.append([InlineKeyboardButton(label, callback_data=f"bk_sel:{mid}")])
-            buttons.append([InlineKeyboardButton("❌ မရှိပါ", callback_data="bk_sel:none")])
-            msg = "👥 သင့် member profile *များစွာ* တွေ့ရှိပါသည် — ရွေးပေးပါ:"
-            if update.message:
-                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(buttons))
-            return BK_MEMBER_SELECT
-
-    # No phone match — go directly to phone verification
-    context.user_data["bk_member_id"] = None
-    context.user_data["bk_expected_phone"] = None
-    msg = "📞 Phone last digits (or type no to skip):"
-    if update.message:
-        await update.message.reply_text(msg)
-    else:
-        await update.callback_query.edit_message_text(msg)
+    """User has a member card — always ask for last 3 digits of phone."""
+    _push_state(context, BK_MEMBER_CHECK)
+    msg = (
+        "မင်္ဂလာပါ! 🎮\n\n"
+        "ကျေးဇူးပြုပြီး သင့် **ဖုန်းနံပါတ်နောက်ဆုံး ၃ လုံး** ကို ရိုက်ထည့်ပေးပါ။\n"
+        "(ဥပမာ: ဖုန်းနံပါတ် 09-xxx-xxx-***123** → `123` ရိုက်ပါ)\n\n"
+        "Member မဟုတ်ရင် `no` ရိုက်ပြီး Guest အဖြစ်ဆက်လုပ်ပါ။"
+    )
+    msg_source = update.message if update.message else (update.callback_query.message if update.callback_query else None)
+    if msg_source:
+        if update.message:
+            await update.message.reply_text(msg, parse_mode="Markdown")
+        elif update.callback_query:
+            await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
     return BK_PHONE_VERIFY
 
 
 # ── State 1: BK_MEMBER_SELECT — Select a member ──────────────────────────────
 
 async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle member selection — works with both inline callback and text input."""
+    """Handle member selection when multiple matches found."""
     text = (update.message.text or "").strip() if update.message else ""
 
     # Check for menu buttons
@@ -335,9 +346,13 @@ async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if menu_result:
             return menu_result
 
-    # Handle cancel
-    if not update.callback_query and text == BTN_CANCEL:
-        return await _cleanup_and_end(update, context)
+    # Handle back/cancel
+    if not update.callback_query:
+        if text == BTN_CANCEL:
+            return await _cleanup_and_end(update, context)
+        if text == BTN_BACK:
+            _pop_state(context)
+            return await bk_member_check_entry(update, context)
 
     # Handle callback (existing inline path)
     if update.callback_query:
@@ -347,13 +362,15 @@ async def bk_member_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if data.startswith("bk_sel:"):
             mid = data.split(":", 1)[1]
             if mid == "none":
+                _push_state(context, BK_MEMBER_SELECT)
                 await query.edit_message_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
                 return BK_NAME
             return await _lookup_and_confirm_member(update, context, mid)
 
-    # Text input: member ID or "no"
+    # Text input
     NO_MEMBER_TEXTS = {"မရှိပါ", "မရှိဘူး", "မရှိဘူး (Guest)", "Guest"}
     if text.lower() == "no" or text in NO_MEMBER_TEXTS or text.lower() in {t.lower() for t in NO_MEMBER_TEXTS}:
+        _push_state(context, BK_MEMBER_SELECT)
         await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
         return BK_NAME
 
@@ -391,22 +408,24 @@ async def _lookup_and_confirm_member(update: Update, context: ContextTypes.DEFAU
     context.user_data["bk_member_data"] = m
     phone = m.get("phone", "")
     masked = phone[-4:] if len(phone) >= 4 else phone
+    _push_state(context, BK_MEMBER_SELECT)
     msg = (
         f"👤 *{m.get('name','?')}*\n"
         f"📞 ဖုန်းနံပါတ် နောက်ဆုံး ၄ လုံး: *...{masked}*\n\n"
         f"မှန်ကန်ပါက ✅ နှိပ်ပါ — သို့မဟုတ် ဖုန်းနံပါတ် အပြည့် ရိုက်ထည့်ပါ"
     )
+    kb = _rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO], [BTN_BACK, BTN_CANCEL]])
     if update.message:
-        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]))
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=kb)
     elif update.callback_query:
-        await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]))
+        await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=kb)
     return BK_DATA_CONFIRM
 
 
-# ── State 2: BK_PHONE_VERIFY — Verify phone number ──────────────────────────
+# ── State 2: BK_PHONE_VERIFY — Verify phone last-3-digits ────────────────────
 
 async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Verify phone number entered by user."""
+    """Match last-3-digits against all members' phone numbers."""
     text = (update.message.text or "").strip()
     menu_result = await _bk_intercept_menu(text, update, context)
     if menu_result:
@@ -415,29 +434,85 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await _cleanup_and_end(update, context)
 
+    if text == BTN_BACK:
+        _pop_state(context)
+        return await bk_member_check_entry(update, context)
+
     # Allow skip to manual entry
     NO_MEMBER_TEXTS = {"မရှိပါ", "မရှိဘူး", "မရှိဘူး (Guest)", "Guest"}
     if text.lower() == "no" or text in NO_MEMBER_TEXTS or text.lower() in {t.lower() for t in NO_MEMBER_TEXTS}:
+        _push_state(context, BK_PHONE_VERIFY)
         await update.message.reply_text("👤 နာမည်အမှန် ရိုက်ထည့်ပေးပါ:")
         context.user_data.pop("bk_member_id", None)
         context.user_data.pop("bk_member_data", None)
-        context.user_data.pop("bk_expected_phone", None)
         return BK_NAME
 
-    expected_phone = context.user_data.get("bk_expected_phone", "")
-    member = context.user_data.get("bk_member_data", {})
-    if not expected_phone:
-        expected_phone = member.get("phone", "")
+    # Clean input - extract only digits
+    digits_only = re.sub(r'\D', '', text)
 
-    if text == expected_phone or (len(text) >= 3 and expected_phone.endswith(text)):
+    # Validate: must be at least 2 digits
+    if len(digits_only) < 2 or len(digits_only) > 6:
         await update.message.reply_text(
-            "✅ ဖုန်းနံပါတ် မှန်ကန်ပါသည်!",
-            reply_markup=_rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO]]),
+            "⚠️ ဖုန်းနံပါတ်နောက်ဆုံး **၃ လုံး** ကိုသာ ရိုက်ထည့်ပေးပါ။\n\n"
+            "(ဥပမာ: `123`)  သို့မဟုတ် member မဟုတ်ရင် `no` ရိုက်ပါ။",
+            parse_mode="Markdown",
         )
+        return BK_PHONE_VERIFY
+
+    # Match against all members by last digits
+    matched = await _match_member_by_last_digits(digits_only)
+
+    if len(matched) == 1:
+        # Single match — auto-fill and confirm
+        mid, m = matched[0]
+        context.user_data["bk_member_id"] = mid
+        context.user_data["bk_name"] = m.get("name", "")
+        context.user_data["bk_phone"] = m.get("phone", "")
+        context.user_data["bk_member_data"] = m
+        phone = m.get("phone", "")
+        masked = phone[-4:] if len(phone) >= 4 else phone
+        balance = m.get("balance_mins", m.get("balance", "N/A"))
+
+        _push_state(context, BK_PHONE_VERIFY)
+        msg = (
+            f"✅ *Member တွေ့ရှိပါသည်!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👤 အမည်: *{m.get('name', '?')}*\n"
+            f"📞 ဖုန်း: ...{masked}\n"
+            f"💰 Balance: *{balance} mins*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"မှန်ကန်ပါက ✅ မှန်ပါသည် ကိုနှိပ်ပါ။\n"
+            f"မဟုတ်ပါက ❌ မဟုတ်ပါ ကိုနှိပ်ပြီး ကိုယ်တိုင်ရိုက်ထည့်ပါ။"
+        )
+        kb = _rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO], [BTN_BACK, BTN_CANCEL]])
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=kb)
         return BK_DATA_CONFIRM
-    else:
+
+    elif len(matched) > 1:
+        # Multiple matches — show list
+        buttons = []
+        for mid, m in matched[:10]:
+            label = f"{m.get('name','?')} (...{m.get('phone','')[-4:]})"
+            buttons.append([InlineKeyboardButton(label, callback_data=f"bk_sel:{mid}")])
+        buttons.append([InlineKeyboardButton("❌ ကျွန်တော်မဟုတ်ပါ", callback_data="bk_sel:none")])
+
+        msg = (
+            f"👥 ဖုန်းနောက်ဆုံး `{digits_only}` နဲ့ကိုက်တဲ့ member *{len(matched)} ယောက်* တွေ့ပါသည်။\n\n"
+            "ကျေးဇူးပြုပြီး သင့် profile ကို ရွေးချယ်ပါ:"
+        )
         await update.message.reply_text(
-            "❌ ဖုန်းနံပါတ် မကိုက်ညီပါ — ထပ်ကြိုးစားပါ (သို့မဟုတ် 'no' ရိုက်ပြီး skip လုပ်ပါ):",
+            msg, parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+        return BK_MEMBER_SELECT
+
+    else:
+        # No match
+        await update.message.reply_text(
+            f"❌ ဖုန်းနောက်ဆုံး `{digits_only}` နဲ့ကိုက်တဲ့ member မတွေ့ပါ။\n\n"
+            "ထပ်ကြိုးစားလိုပါက နောက်ထပ် ၃ လုံးရိုက်ပါ၊\n"
+            "Member မဟုတ်ရင် `no` ရိုက်ပြီး Guest အဖြစ်ဆက်လုပ်ပါ။",
+            parse_mode="Markdown",
         )
         return BK_PHONE_VERIFY
 
@@ -454,21 +529,30 @@ async def bk_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if menu_result:
             return menu_result
 
+        if text == BTN_CANCEL:
+            return await _cleanup_and_end(update, context)
+
+        if text == BTN_BACK:
+            prev = _pop_state(context)
+            # Go back to phone verify
+            return await _handle_member_yes_text(update, context)
+
         if text in (BTN_CONFIRM_YES, "✅ မှန်ပါသည်"):
-            context.user_data.pop("bk_member_id", None)
-            context.user_data.pop("bk_member_data", None)
+            # Keep member data, proceed to date selection
+            _push_state(context, BK_DATA_CONFIRM)
             await update.message.reply_text(
                 "📅 ဘိုကင်လုပ်မည့် ရက်ရွေးပါ:",
                 reply_markup=_make_date_keyboard(),
             )
             return BK_DATE
+
         elif text in (BTN_CONFIRM_NO, "❌ မဟုတ်ပါ"):
             context.user_data.pop("bk_member_id", None)
             context.user_data.pop("bk_member_data", None)
+            _push_state(context, BK_DATA_CONFIRM)
             await update.message.reply_text("👤 နာမည်အမှန် ရိုက်ထည့်ပေးပါ:")
             return BK_NAME
-        elif text == BTN_CANCEL:
-            return await _cleanup_and_end(update, context)
+
         return BK_DATA_CONFIRM
 
     # Callback path (keep for safety)
@@ -477,8 +561,7 @@ async def bk_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = query.data or ""
 
     if data == "bk_dc:yes":
-        context.user_data.pop("bk_member_id", None)
-        context.user_data.pop("bk_member_data", None)
+        _push_state(context, BK_DATA_CONFIRM)
         await query.edit_message_text("📅 ဘိုကင်လုပ်မည့် ရက်ရွေးပါ:")
         await query.message.reply_text(
             "📅 ဘယ်ရက်မှာ လာဆော့မလဲ?",
@@ -488,6 +571,7 @@ async def bk_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif data == "bk_dc:no":
         context.user_data.pop("bk_member_id", None)
         context.user_data.pop("bk_member_data", None)
+        _push_state(context, BK_DATA_CONFIRM)
         await query.edit_message_text("👤 နာမည်အမှန် ရိုက်ထည့်ပေးပါ:")
         return BK_NAME
     else:
@@ -507,11 +591,18 @@ async def bk_name_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await _cleanup_and_end(update, context)
 
+    if text == BTN_BACK:
+        prev = _pop_state(context)
+        if prev == BK_PHONE_VERIFY:
+            return await _handle_member_yes_text(update, context)
+        return await bk_member_check_entry(update, context)
+
     if not text or len(text) < 1:
         await update.message.reply_text("နာမည် ထည့်ပေးပါ:")
         return BK_NAME
 
     context.user_data["bk_name"] = text
+    _push_state(context, BK_NAME)
     await update.message.reply_text(
         f"👤 နာမည်: *{text}*\n\n📞 ဖုန်းနံပါတ် ရိုက်ထည့်ပေးပါ:",
         parse_mode="Markdown",
@@ -531,6 +622,12 @@ async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await _cleanup_and_end(update, context)
 
+    if text == BTN_BACK:
+        _pop_state(context)
+        _push_state(context, BK_PHONE)
+        await update.message.reply_text("👤 နာမည်ရိုက်ထည့်ပေးပါ:")
+        return BK_NAME
+
     if not text:
         await update.message.reply_text("ဖုန်းနံပါတ် ထည့်ပေးပါ:")
         return BK_PHONE
@@ -543,6 +640,7 @@ async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return BK_PHONE
 
     context.user_data["bk_phone"] = text
+    _push_state(context, BK_PHONE)
     await update.message.reply_text(
         f"📞 ဖုန်း: *{text}*\n\n📅 ဘိုကင်လုပ်မည့် ရက်ရွေးပါ:",
         parse_mode="Markdown",
@@ -566,6 +664,20 @@ async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
+        if text == BTN_BACK:
+            prev = _pop_state(context)
+            # Check which state to go back to
+            if context.user_data.get("bk_member_data") or context.user_data.get("bk_member_id"):
+                # Came from member flow → go back to data confirm
+                await _show_data_confirm(update, context)
+                return BK_DATA_CONFIRM
+            if context.user_data.get("bk_phone") and context.user_data.get("bk_name"):
+                # Manual flow with phone → go back to phone
+                await update.message.reply_text("📞 ဖုန်းနံပါတ် ရိုက်ထည့်ပေးပါ:")
+                return BK_PHONE
+            # Go all the way back to member check
+            return await bk_member_check_entry(update, context)
+
         # Try to extract date from text like "ယနေ့ (Today)  2026-05-30"
         date_str = _extract_date_from_text(text)
         if not date_str:
@@ -576,6 +688,7 @@ async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return BK_DATE
 
         context.user_data["bk_date"] = date_str
+        _push_state(context, BK_DATE)
         await update.message.reply_text("⏳ Available slots စစ်ဆေးနေသည်...")
         free_slots = await _get_available_slots(date_str)
 
@@ -632,6 +745,25 @@ async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return BK_DATE
 
 
+async def _show_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show member data confirmation message."""
+    m = context.user_data.get("bk_member_data", {})
+    name = m.get("name", context.user_data.get("bk_name", "?"))
+    phone = m.get("phone", context.user_data.get("bk_phone", "?"))
+    balance = m.get("balance_mins", m.get("balance", "N/A"))
+    masked = phone[-4:] if len(phone) >= 4 else phone
+    msg = (
+        f"👤 *{name}*\n"
+        f"📞 ...{masked} | 💰 *{balance} mins*\n\n"
+        "မှန်ကန်ပါက ✅ နှိပ်ပါ၊ မဟုတ်ပါက ❌ နှိပ်ပြီး ကိုယ်တိုင်ရိုက်ထည့်ပါ။"
+    )
+    kb = _rp_kb([[BTN_CONFIRM_YES, BTN_CONFIRM_NO], [BTN_BACK, BTN_CANCEL]])
+    if update.message:
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=kb)
+    elif update.callback_query:
+        await update.callback_query.edit_message_text(msg, parse_mode="Markdown", reply_markup=kb)
+
+
 # ── State 7: BK_TIME — Select time slot ────────────────────────────────────
 
 async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -647,6 +779,14 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
+        if text == BTN_BACK:
+            _pop_state(context)
+            await update.message.reply_text(
+                "📅 ဘိုကင်လုပ်မည့် ရက်ရွေးပါ:",
+                reply_markup=_make_date_keyboard(),
+            )
+            return BK_DATE
+
         if text == "✏️ Custom Time":
             await update.message.reply_text(
                 "✏️ လိုချင်သော အချိန်ကို HH:MM format ဖြင့် ရိုက်ထည့်ပါ\n"
@@ -661,6 +801,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             hour = int(m_hour.group(1))
             if OPEN_HOUR <= hour < CLOSE_HOUR:
                 context.user_data["bk_time"] = text
+                _push_state(context, BK_TIME)
                 await update.message.reply_text(
                     f"⏰ အချိန်: *{text}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
                     parse_mode="Markdown",
@@ -675,6 +816,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if OPEN_HOUR <= hour <= CLOSE_HOUR and minute in (0, 30) and hour != CLOSE_HOUR:
                 time_str = f"{hour:02d}:{minute:02d}"
                 context.user_data["bk_time"] = time_str
+                _push_state(context, BK_TIME)
                 await update.message.reply_text(
                     f"⏰ Custom Time: *{time_str}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
                     parse_mode="Markdown",
@@ -688,7 +830,6 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
                 return BK_TIME
         else:
-            # Invalid input — show time keyboard again
             date_str = context.user_data.get("bk_date", "")
             free_slots = await _get_available_slots(date_str) if date_str else []
             await update.message.reply_text(
@@ -733,10 +874,9 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ── State 8: BK_CONSOLE — Select console type ──────────────────────────────
 
 async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle console type selection — works with ReplyKeyboard text and inline callback."""
+    """Handle console type selection."""
     text = (update.message.text or "").strip() if update.message else ""
 
-    # Handle ReplyKeyboard text
     if not update.callback_query and text:
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
@@ -745,8 +885,20 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
+        if text == BTN_BACK:
+            _pop_state(context)
+            date_str = context.user_data.get("bk_date", "")
+            free_slots = await _get_available_slots(date_str) if date_str else []
+            await update.message.reply_text(
+                f"📅 *{date_str}* — အချိန်ရွေးပါ:",
+                parse_mode="Markdown",
+                reply_markup=_make_time_keyboard(free_slots) if free_slots else _make_date_keyboard(),
+            )
+            return BK_TIME
+
         if text in CONSOLE_TYPES:
             context.user_data["bk_console"] = text
+            _push_state(context, BK_CONSOLE)
             await update.message.reply_text(
                 f"🎮 Console: *{text}*\n\n⏱️ ကြာချိန် ရွေးပါ:",
                 parse_mode="Markdown",
@@ -755,6 +907,7 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return BK_DURATION
         elif text in (BTN_NOT_SURE, "🤷 မရွေးတတ်ပါ"):
             context.user_data["bk_console"] = "Any"
+            _push_state(context, BK_CONSOLE)
             await update.message.reply_text(
                 "🎮 Console: *Any*\n\n⏱️ ကြာချိန် ရွေးပါ:",
                 parse_mode="Markdown",
@@ -779,10 +932,7 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if data.startswith("bk_con:"):
             con = data.split(":", 1)[1]
-            if con == "not_sure":
-                context.user_data["bk_console"] = "Any"
-            else:
-                context.user_data["bk_console"] = con
+            context.user_data["bk_console"] = "Any" if con == "not_sure" else con
             await query.edit_message_text(
                 f"🎮 Console: *{context.user_data['bk_console']}*\n\n"
                 "⏱️ ကြာချိန် ရွေးပါ:",
@@ -800,10 +950,9 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ── State 9: BK_DURATION — Select duration ─────────────────────────────────
 
 async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle duration selection — works with ReplyKeyboard text and inline callback."""
+    """Handle duration selection."""
     text = (update.message.text or "").strip() if update.message else ""
 
-    # Handle ReplyKeyboard text
     if not update.callback_query and text:
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
@@ -812,12 +961,20 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
-        # Parse "X mins" format
+        if text == BTN_BACK:
+            _pop_state(context)
+            await update.message.reply_text(
+                "🎮 Console အမျိုးအစား ရွေးပါ:",
+                reply_markup=_make_console_keyboard(),
+            )
+            return BK_CONSOLE
+
         m = re.match(r'^(\d+)\s*mins?$', text)
         if m:
             mins = int(m.group(1))
             if mins in [int(d.split()[0]) for d in DURATION_OPTS]:
                 context.user_data["bk_duration_mins"] = mins
+                _push_state(context, BK_DURATION)
                 await update.message.reply_text("🕹️ Game list ဆွဲနေသည်...")
 
                 games = await _api._fetch_games(context.user_data.get("bk_console", ""))
@@ -827,7 +984,7 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 if not games:
                     await update.message.reply_text(
                         "⚠️ Game list မရဘူး — skip လုပ်မလား?",
-                        reply_markup=_rp_kb([[BTN_SKIP]]),
+                        reply_markup=_rp_kb([[BTN_SKIP], [BTN_BACK, BTN_CANCEL]]),
                     )
                     return BK_GAME
 
@@ -871,7 +1028,7 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
             if not games:
                 await query.edit_message_text(
                     "⚠️ Game list မရဘူး — skip လုပ်မလား?",
-                    reply_markup=_rp_kb([[BTN_SKIP]]),
+                    reply_markup=_rp_kb([[BTN_SKIP], [BTN_BACK, BTN_CANCEL]]),
                 )
                 return BK_GAME
 
@@ -892,10 +1049,9 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
 # ── State 10: BK_GAME — Select game ─────────────────────────────────────
 
 async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle game selection — works with ReplyKeyboard text and inline callback."""
+    """Handle game selection."""
     text = (update.message.text or "").strip() if update.message else ""
 
-    # Handle ReplyKeyboard text
     if not update.callback_query and text:
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
@@ -904,11 +1060,20 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
+        if text == BTN_BACK:
+            _pop_state(context)
+            await update.message.reply_text(
+                "⏱️ ကြာချိန် ရွေးပါ:",
+                reply_markup=_make_duration_keyboard(),
+            )
+            return BK_DURATION
+
         if text in (BTN_NOT_SURE, "🤷 မရွေးတတ်ပါ"):
             context.user_data["bk_game"] = "Any"
+            _push_state(context, BK_GAME)
             summary = _format_booking_summary(context)
             await update.message.reply_text(
-                f"🕹️ Game: *Any*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
+                f"🕹️ Game: *Any*\n\n{summary}\n\n✅ Confirm လုပ်မလား?",
                 parse_mode="Markdown",
                 reply_markup=_make_confirm_keyboard(),
             )
@@ -916,9 +1081,10 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if text == BTN_SKIP:
             context.user_data["bk_game"] = "Any"
+            _push_state(context, BK_GAME)
             summary = _format_booking_summary(context)
             await update.message.reply_text(
-                f"🕹️ Game: *Any*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
+                f"🕹️ Game: *Any*\n\n{summary}\n\n✅ Confirm လုပ်မလား?",
                 parse_mode="Markdown",
                 reply_markup=_make_confirm_keyboard(),
             )
@@ -948,16 +1114,16 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         # Treat any other text as a game selection
         games = context.user_data.get("_bk_game_list", [])
-        # Try exact match first, then partial
         matched = [g for g in games if g[:50] == text[:50]]
         if matched:
             context.user_data["bk_game"] = matched[0]
         else:
             context.user_data["bk_game"] = text[:50]
 
+        _push_state(context, BK_GAME)
         summary = _format_booking_summary(context)
         await update.message.reply_text(
-            f"🕹️ Game: *{context.user_data['bk_game']}*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
+            f"🕹️ Game: *{context.user_data['bk_game']}*\n\n{summary}\n\n✅ Confirm လုပ်မလား?",
             parse_mode="Markdown",
             reply_markup=_make_confirm_keyboard(),
         )
@@ -984,14 +1150,10 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if data.startswith("bk_game:"):
             game = data.split(":", 1)[1]
-            if game == "not_sure":
-                context.user_data["bk_game"] = "Any"
-            else:
-                context.user_data["bk_game"] = game
-
+            context.user_data["bk_game"] = "Any" if game == "not_sure" else game
             summary = _format_booking_summary(context)
             await query.edit_message_text(
-                f"🕹️ Game: *{context.user_data['bk_game']}*\n\n💻 {summary}\n\n\u2705 Confirm \u101c\u102f\u1015\u103a\u1019\u101c\u102c\u1038?",
+                f"🕹️ Game: *{context.user_data['bk_game']}*\n\n{summary}\n\n✅ Confirm လုပ်မလား?",
                 parse_mode="Markdown",
                 reply_markup=_make_confirm_keyboard(),
             )
@@ -1006,10 +1168,9 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ── State 11: BK_CONSOLE_PREF — Console preference ─────────────────────────
 
 async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle console preference selection — works with ReplyKeyboard text and inline callback."""
+    """Handle console preference selection."""
     text = (update.message.text or "").strip() if update.message else ""
 
-    # Handle ReplyKeyboard text
     if not update.callback_query and text:
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
@@ -1029,6 +1190,7 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return BK_CONSOLE_PREF
 
+        _push_state(context, BK_CONSOLE_PREF)
         summary = _format_booking_summary(context)
         await update.message.reply_text(
             summary + "\n\n✅ Confirm လုပ်မလား?",
@@ -1048,11 +1210,7 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if data.startswith("bk_con:"):
             pref = data.split(":", 1)[1]
-            if pref == "not_sure":
-                context.user_data["bk_console_pref"] = "Any"
-            else:
-                context.user_data["bk_console_pref"] = pref
-
+            context.user_data["bk_console_pref"] = "Any" if pref == "not_sure" else pref
             summary = _format_booking_summary(context)
             await query.edit_message_text(
                 summary + "\n\n✅ Confirm လုပ်မလား?",
@@ -1073,7 +1231,6 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle booking confirmation and submission to API."""
     text = (update.message.text or "").strip() if update.message else ""
 
-    # Handle ReplyKeyboard text
     if not update.callback_query and text:
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
@@ -1081,6 +1238,22 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
+
+        if text == BTN_BACK:
+            _pop_state(context)
+            games = context.user_data.get("_bk_game_list", [])
+            page = context.user_data.get("_bk_game_page", 0)
+            if games:
+                await update.message.reply_text(
+                    "🕹️ ဆော့မည့်ဂိမ်းရွေးပါ:",
+                    reply_markup=_make_game_keyboard(games, page),
+                )
+            else:
+                await update.message.reply_text(
+                    "⏱️ ကြာချိန် ရွေးပါ:",
+                    reply_markup=_make_duration_keyboard(),
+                )
+            return BK_GAME
 
         if text == BTN_CONFIRM_BOOK:
             await update.message.reply_text("⏳ Booking တင်နေသည်...")
@@ -1107,6 +1280,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         parse_mode="Markdown",
                         reply_markup=_make_warning_keyboard(),
                     )
+                    _push_state(context, BK_CONFIRM)
                     return BK_DUP_WARN
             except Exception:
                 pass
@@ -1152,6 +1326,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         parse_mode="Markdown",
                         reply_markup=_make_warning_keyboard(),
                     )
+                    _push_state(context, BK_CONFIRM)
                     return BK_DUP_WARN
             except Exception:
                 pass
@@ -1184,7 +1359,14 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return menu_result
 
         if text in (BTN_BOOK_GOBACK, "🔙 မတင်တော့ပါ"):
-            return await _cleanup_and_end(update, context)
+            _pop_state(context)
+            summary = _format_booking_summary(context)
+            await update.message.reply_text(
+                f"{summary}\n\n✅ Confirm လုပ်မလား?",
+                parse_mode="Markdown",
+                reply_markup=_make_confirm_keyboard(),
+            )
+            return BK_CONFIRM
 
         if text in (BTN_BOOK_ANYWAY, "⚠️ ဒါပေမဲ့ ဆက်တင်မည်"):
             await update.message.reply_text("⏳ Booking တင်နေသည် (duplicate warning overridden)...")
