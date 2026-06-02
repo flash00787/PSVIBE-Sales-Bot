@@ -47,14 +47,14 @@ async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if game_name_bk and b.get('timeSlot'):
             import asyncio as _asyncio
             disc_warn_bk = await _asyncio.to_thread(
-                check_disc_session_conflict, game_name_bk, b['timeSlot']
+                check_disc_session_conflict, game_name_bk, b.get('timeSlot', '?')
             )
         card = (
             f"🎫 *Booking #{b['id']}*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
-            f"👤 {b['customerName']}  📞 {b['phone']}\n"
-            f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
-            f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins\n"
+            f"👤 {b.get('customerName', 'Unknown')}  📞 {b.get('phone', '-')}\n"
+            f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
+            f"🎮 {b.get('consoleType', '-')}  ⏱️ {b.get('durationMins', '?')} mins\n"
             f"🕹️ {game_name_bk or '-'}"
             + (f"\n\n{disc_warn_bk}" if disc_warn_bk else "")
         )
@@ -199,9 +199,9 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         game_line    = f"\n🕹️ Game: <b>{b.get('gameName') or '—'}</b>" if b.get("gameName") else ""
         msg = (
             f"✅ <b>Booking #{bk_id} Confirmed!</b>\n"
-            f"👤 {b['customerName']}  📞 {b['phone']}\n"
-            f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
-            f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins"
+            f"👤 {b.get('customerName', 'Unknown')}  📞 {b.get('phone', '-')}\n"
+            f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
+            f"🎮 {b.get('consoleType', '-')}  ⏱️ {b.get('durationMins', '?')} mins"
             f"{game_line}{console_line}\n"
             f"<i>Approved by {staff_name}</i>"
             f"{install_warn}"
@@ -209,7 +209,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     else:
         msg = (
             f"❌ <b>Booking #{bk_id} Rejected</b>\n"
-            f"👤 {b['customerName']}  📅 {b['date']}  🕐 {b['timeSlot']}\n"
+            f"👤 {b.get('customerName', 'Unknown')}  📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
             f"<i>Rejected by {staff_name}</i>"
         )
     await reply_fn(msg, parse_mode="HTML")
@@ -223,8 +223,8 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 f"🎉 <b>Booking Confirmed!</b>\n"
                 f"━━━━━━━━━━━━━━━━━━\n"
                 f"🎫 Booking #{bk_id}\n"
-                f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
-                f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins{console_line}\n"
+                f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
+                f"🎮 {b.get('consoleType', '-')}  ⏱️ {b.get('durationMins', '?')} mins{console_line}\n"
                 f"━━━━━━━━━━━━━━━━━━\n"
                 f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
                 f"<i>10 မိနစ်အလိုတွင် reminder ပို့ပါမည်</i>"
@@ -232,7 +232,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         else:
             cust_msg = (
                 f"😔 <b>Booking #{bk_id} Rejected</b>\n\n"
-                f"📅 {b['date']}  🕐 {b['timeSlot']}\n\n"
+                f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n\n"
                 f"အဆင်မပြေသဖြင့် တောင်းပန်ပါသည်။ နောက်ထပ် booking ထပ်မံလုပ်နိုင်ပါသည်။\n"
                 f"📞 ဆက်သွယ်ရန် @psvibeofficial"
             )

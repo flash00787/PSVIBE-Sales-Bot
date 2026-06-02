@@ -53,7 +53,7 @@ Q: PS VIBE ဆိုင်ရဲ့ လိပ်စာ ဘာလဲ?
 A: No. 17, Mau Pin Street, Sanchaung, Yangon ပါဗျ။ 'location' လို့ ရိုက်ပြီး Google Maps link ရလို့ ရတယ်နော်။
 
 Q: ဆိုင်ဖွင့်ချိန် ဘယ်လောက်လဲ?
-A: နေ့တိုင်း ဖွင့်ပါတယ်ဗျ — မနက် 10 နာရီ မှ ည 10 နာရီ ထိပါ။
+A: နေ့တိုင်း ဖွင့်ပါတယ်ဗျ — မနက် 9 နာရီ မှ ည 9 နာရီ ထိပါ။
 
 Q: Customer Bot မှာ ဘာတွေ လုပ်လို့ ရလဲ?
 A: Console availability ကြည့်ရတယ်ဗျ၊ booking လုပ်ရတယ်၊ booking cancel လုပ်ရတယ်၊ member balance/rank စစ်ရတယ်၊ promotions ကြည့်ရတယ်၊ game library ကြည့်ရတယ်နော်။ 'status', 'booking', 'my bookings', 'promotions', 'games', 'rates' လို့ ရိုက်ပြီး ဖြတ်သွားလို့ ရတယ်ဗျ။
