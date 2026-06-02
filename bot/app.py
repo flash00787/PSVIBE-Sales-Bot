@@ -428,6 +428,7 @@ def main():
     # Global inline-button handler — works regardless of conversation state
     app.add_handler(CallbackQueryHandler(cb_extend_timer,  pattern=r"^ext:"))
     app.add_handler(CallbackQueryHandler(cb_booking_mgmt,   pattern=r"^bkm:(approve|reject):\d+$"))
+    app.add_handler(CallbackQueryHandler(cb_checkin_booking,  pattern=r"^bkm:checkin:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_wl_action,       pattern=r"^wl:(notify|remove):\d+$"))
     app.add_handler(CallbackQueryHandler(cb_cancel_booking,     pattern=r"^bkc:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_cancel_with_reason, pattern=r"^bkcr:\d+:\w+$"))
@@ -521,4 +522,5 @@ def main():
         timeout=30,
         drop_pending_updates=True,
     )
+
 
