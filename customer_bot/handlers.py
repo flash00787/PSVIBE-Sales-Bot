@@ -570,11 +570,19 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await update.message.reply_text("⚠️ Console data မရပါ — နောက်မှ ကြိုးစားပါ")
         return
 
+    from datetime import datetime as _dt
+
     dur_map: dict[str, int] = {}
-    for b in (today_bks or []):
-        cid_b = b.get("consoleId")
-        if cid_b and b.get("durationMins"):
-            dur_map[cid_b] = int(b["durationMins"])
+    bk_list = today_bks.get("bookings", []) if isinstance(today_bks, dict) else (today_bks or [])
+    for b in bk_list:
+        cid_b = b.get("console_id", "")
+        dur = 0
+        if isinstance(b.get("end_time"), str):
+            dur = max(0, int((_dt.fromisoformat(b["end_time"]) - _dt.fromisoformat(b["start_time"])).total_seconds() / 60))
+        elif isinstance(b.get("start_time"), str):
+            dur = max(0, int((_dt.now() - _dt.fromisoformat(b["start_time"])).total_seconds() / 60))
+        if cid_b and dur:
+            dur_map[cid_b] = dur
 
     now_str = now_mmt().strftime("%H:%M")
 
