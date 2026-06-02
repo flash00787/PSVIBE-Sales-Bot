@@ -9,6 +9,8 @@ from bot import (
     CUSTOMER_BOT_TOKEN, _replit_get, _replit_patch,
     check_disc_session_conflict, get_consoles_with_game, show_admin_menu,
 )
+from bot.handlers.notify import _notify_customer, get_customer_chat_id
+from bot.handlers.booking_flow import _post_n8n_booking_reminder
 
 
 logger = logging.getLogger(__name__)
@@ -34,7 +36,7 @@ async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # Show only the 20 most recent pending bookings
     recent = bookings[:20] if len(bookings) > 20 else bookings
     total = len(bookings)
-    
+
     await update.message.reply_text(
         f"📋 *Pending Bookings — {total} ခု (Showing {len(recent)} latest)*",
         parse_mode="Markdown",
@@ -216,18 +218,26 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
 
     # Notify customer via customer bot if we have their chat_id
     tg_chat = b.get("telegramChatId") or ""
+    # Fallback: look up chat_id from member data if not in booking data
+    if not tg_chat:
+        member_id = b.get("memberId") or ""
+        if member_id:
+            try:
+                tg_chat = get_customer_chat_id(member_id) or ""
+            except Exception:
+                pass  # graceful fail
     if tg_chat and CUSTOMER_BOT_TOKEN:
         if action == "approve":
             console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
             cust_msg = (
-                f"🎉 <b>Booking Confirmed!</b>\n"
-                f"━━━━━━━━━━━━━━━━━━\n"
-                f"🎫 Booking #{bk_id}\n"
+                "မင်္ဂလာပါ 🙏\n\n"
+                f"သင်၏ Booking (#{bk_id}) ကို အတည်ပြုပြီးပါပြီ။\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
                 f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
-                f"🎮 {b.get('consoleType', '-')}  ⏱️ {b.get('durationMins', '?')} mins{console_line}\n"
-                f"━━━━━━━━━━━━━━━━━━\n"
+                f"🎮 {b.get('consoleType', '')}  ⏱️ {b.get('durationMins', '?')} mins{console_line}\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
                 f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
-                f"<i>10 မိနစ်အလိုတွင် reminder ပို့ပါမည်</i>"
+                f"ကျေးဇူးတင်ပါတယ်"
             )
         else:
             cust_msg = (
