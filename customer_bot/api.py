@@ -271,11 +271,21 @@ async def _fetch_games_full() -> List[Any]:
     try:
         data = await _api_get("fetch_games")
         if isinstance(data, list):
-            games = data
+            raw_games = data
         elif isinstance(data, dict):
-            games = data.get("games", [])
+            raw_games = data.get("games", [])
         else:
-            games = []
+            raw_games = []
+        # Map MySQL keys to GSheet-era keys for AI handler compatibility
+        games = []
+        for g in raw_games:
+            if isinstance(g, dict):
+                games.append({
+                    "title":  g.get("game_title", ""),
+                    "status": g.get("final_status", ""),
+                    "genre":  g.get("genre", ""),
+                    "discs":  g.get("disc_count", ""),
+                })
     except ValueError as e:
         logging.warning("fetch_games_full: %s", e)
         games = []
@@ -386,15 +396,20 @@ async def _fetch_consoles() -> List[Any]:
         if isinstance(data, list):
             raw_consoles = data
         elif isinstance(data, dict):
-            raw_consoles = data.get("data", [])
+            raw_consoles = data.get("consoles", [])
         else:
             raw_consoles = []
+        # Map MySQL keys (console_id, console_type) to GSheet-era keys (id, type)
         consoles = []
         for x in raw_consoles:
             if isinstance(x, dict):
-                if "mult" in x and "multiplier" not in x:
-                    x["multiplier"] = x.pop("mult")
-                consoles.append(x)
+                mapped = {
+                    "id":         x.get("console_id", ""),
+                    "type":       x.get("console_type", ""),
+                    "status":     x.get("status", ""),
+                    "multiplier": float(x.get("mult", x.get("multiplier", 1.0))),
+                }
+                consoles.append(mapped)
     except ValueError as e:
         logging.warning("fetch_consoles: %s", e)
         consoles = []
