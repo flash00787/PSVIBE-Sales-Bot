@@ -3,10 +3,24 @@
 from bot import (
     prompt_kpay,
     BTN_BACK, BTN_CANCEL, BTN_MANUAL_DISC, BTN_PROMO_APPLY,
-    BTN_SKIP_DISC, BUNDLE_FOC, DISCOUNT, NAV_ROW, PROMO_SELECT,
+    BTN_SKIP_DISC, BTN_APPLY_COUPON, BUNDLE_FOC, DISCOUNT, NAV_ROW, PROMO_SELECT,
     cmd_cancel, fetch_base_rate, fetch_promotions_cached,
     fetch_base_rate_async,
 )
+
+import urllib.request, urllib.parse, json, os
+_API_BASE = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
+_API_KEY = os.environ.get("API_KEY", "")
+
+def _api_post_coupon(path, body):
+    url = f"{_API_BASE}/api/{path}?api_key={_API_KEY}"
+    data = json.dumps(body).encode()
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    try:
+        resp = urllib.request.urlopen(req, timeout=10)
+        return json.loads(resp.read().decode())
+    except Exception as e:
+        return {"error": str(e)}
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
@@ -73,7 +87,7 @@ async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if promos:
         # Build keyboard with promotion buttons + manual + skip
-        kb = [[BTN_PROMO_APPLY], [BTN_MANUAL_DISC], [BTN_SKIP_DISC], NAV_ROW]
+        kb = [[BTN_PROMO_APPLY], [BTN_MANUAL_DISC, BTN_APPLY_COUPON], [BTN_SKIP_DISC], NAV_ROW]
         promo_lines = []
         for i, p in enumerate(promos, 1):
             emoji = p.get("emoji", "🎁")
@@ -95,7 +109,7 @@ async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     else:
         # No active promotions — show manual discount only
-        kb = [[BTN_SKIP_DISC], NAV_ROW]
+        kb = [[BTN_SKIP_DISC, BTN_APPLY_COUPON], NAV_ROW]
         await update.message.reply_text(
             f"💸 *Discount ထည်မလား?*\n\n"
             f"{gross_label}\n\n"
@@ -351,6 +365,95 @@ async def step_bundle_foc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return await prompt_kpay(update, context)
 
+# Coupon apply flow
+COUPON_APPLY = 999
+COUPON_CONFIRM = 998
+
+async def prompt_coupon_entry(update, context):
+    kb = [[BTN_SKIP_DISC], [BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text("🎟️ *Apply Coupon*
+
+Coupon Code ရိုက်ထည့်ပါ -
+သို့မဟုတ် *Skip* နှိပ်ပါ", parse_mode="Markdown", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+    return COUPON_APPLY
+
+async def step_coupon_validate(update, context):
+    text = update.message.text.strip().upper()
+    if text == BTN_SKIP_DISC: return await prompt_discount(update, context)
+    if text == BTN_BACK: return await prompt_discount(update, context)
+    if text == BTN_CANCEL: return await cmd_cancel(update, context)
+    resp = _api_post_coupon("coupons/validate", {"code": text})
+    if isinstance(resp, dict) and "error" in resp:
+        await update.message.reply_text("❌ " + resp.get("error", "Invalid") + "
+
+ထပ်ရိုက်ပါ သို့ Skip နှိပ်ပါ -", parse_mode="Markdown")
+        return COUPON_APPLY
+    data = resp.get("data") if isinstance(resp, dict) and "data" in resp else resp
+    coupon = data.get("coupon") if isinstance(data, dict) else None
+    if not coupon:
+        await update.message.reply_text("❌ Coupon မတွေ့ပါ")
+        return COUPON_APPLY
+    code = coupon.get("code", text)
+    balance = coupon.get("balance_minutes", 0)
+    expiry = coupon.get("expiry_date", "")
+    context.user_data["_coupon_code"] = code
+    context.user_data["_coupon_balance"] = balance
+    base_rate = context.user_data.get("base_rate") or 500
+    coupon_value_ks = round(balance * base_rate / 60)
+    kb = [["✅ Confirm Coupon"], [BTN_SKIP_DISC], [BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text(f"🎟️ *Coupon Valid* ✅
+
+Code: *{code}*
+Balance: *{balance} mins* (~{coupon_value_ks:,} Ks)
+Expiry: {expiry}
+
+Coupon ကို အသုံးပြုလိုပါသလား?", parse_mode="Markdown", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+    return COUPON_CONFIRM
+
+async def step_coupon_confirm(update, context):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL: return await cmd_cancel(update, context)
+    if text == BTN_BACK: return await prompt_coupon_entry(update, context)
+    if text == BTN_SKIP_DISC:
+        context.user_data.pop("_coupon_code", None)
+        context.user_data.pop("_coupon_balance", None)
+        return await prompt_discount(update, context)
+    if text == "✅ Confirm Coupon":
+        d = context.user_data
+        code = d.get("_coupon_code", "")
+        balance = d.get("_coupon_balance", 0)
+        base_rate = d.get("base_rate") or 500
+        if not code:
+            await update.message.reply_text("❌ Coupon data မရှိပါ")
+            return await prompt_discount(update, context)
+        resp = _api_post_coupon("coupons/redeem", {"code": code, "minutes": balance})
+        if isinstance(resp, dict) and "error" in resp:
+            await update.message.reply_text("❌ " + resp.get("error", "Redeem failed"))
+            return await prompt_discount(update, context)
+        data = resp.get("data") if isinstance(resp, dict) and "data" in resp else resp
+        if isinstance(data, dict) and "remaining_minutes" in data:
+            deducted = data.get("deducted_minutes", balance)
+            coupon_value_ks = round(deducted * base_rate / 60)
+            d["discount"] = d.get("discount", 0) + coupon_value_ks
+            d["promo_id"] = "coupon"
+            d["promo_title"] = "CashBack Coupon (" + code + ")"
+            gross = d.get("gross_total", d.get("net_total", 0))
+            _food_tv = d.get("food_total", 0)
+            _is_wallet_s = d.get("game_amt", 0) == 0 and d.get("m_id", "0 (Guest)").strip() not in ("0 (Guest)", "-", "")
+            if _is_wallet_s:
+                d["net_total"] = max(0, _food_tv - d["discount"])
+            else:
+                d["net_total"] = max(0, gross - d["discount"])
+            await update.message.reply_text(f"✅ *Coupon Applied!*
+🎟️ {code}: -{coupon_value_ks:,} Ks ({deducted} mins)
+💰 Net Payable: *{d["net_total"]:,} Ks*", parse_mode="Markdown")
+            d.pop("_coupon_code", None)
+            d.pop("_coupon_balance", None)
+            return await prompt_kpay(update, context)
+        await update.message.reply_text("❌ Coupon redeem failed")
+        return await prompt_discount(update, context)
+    return COUPON_CONFIRM
+
 async def step_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text == BTN_CANCEL:
@@ -364,6 +467,8 @@ async def step_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_kpay(update, context)
     if text == BTN_PROMO_APPLY:
         return await prompt_promo_select(update, context)
+    if text == BTN_APPLY_COUPON:
+        return await prompt_coupon_entry(update, context)
     if text == BTN_MANUAL_DISC:
         # Show manual entry prompt
         d = context.user_data

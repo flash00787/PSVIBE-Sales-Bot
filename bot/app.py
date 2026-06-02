@@ -200,6 +200,8 @@ def main():
 
             # ── Discount step ──
             DISCOUNT:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_discount)],
+            COUPON_APPLY: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_coupon_validate)],
+            COUPON_CONFIRM: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_coupon_confirm)],
             PROMO_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_promo_select)],
             BUNDLE_FOC:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_bundle_foc)],
 
