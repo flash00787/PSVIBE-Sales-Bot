@@ -188,22 +188,23 @@ async def _get_available_slots(date_str: str) -> list[str]:
 
 
 
-def _make_specific_console_keyboard(consoles, date_str, time_str):
-    """Build inline keyboard for specific console selection."""
+def _make_specific_console_keyboard(consoles):
+    """Build ReplyKeyboard for specific console selection."""
     buttons = []
     row = []
     for console in consoles:
         cid = console.get("id", "")
         ctype = console.get("type", "")
         label = f"{cid} ({ctype})"
-        row.append(InlineKeyboardButton(label, callback_data=f"bkspc:{cid}:{ctype}"))
+        row.append(label)
         if len(row) == 2:
             buttons.append(row)
             row = []
     if row:
         buttons.append(row)
-    buttons.append([InlineKeyboardButton(BTN_NOT_SURE, callback_data="bkspc:any")])
-    return InlineKeyboardMarkup(buttons)
+    buttons.append([BTN_NOT_SURE])
+    buttons.append([BTN_BACK, BTN_CANCEL])
+    return _rp_kb(buttons)
 
 
 async def _get_available_consoles(date_str, time_str, duration_mins=60):
@@ -256,39 +257,65 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
 
 
 async def bk_specific_console_select(update, context):
-    """Handle specific console selection via inline keyboard."""
-    query = update.callback_query
-    if not query:
-        await update.message.reply_text("Console type select:", reply_markup=_make_console_keyboard())
-        return BK_CONSOLE
-    await query.answer()
-    data = query.data or ""
-    if data == "bkspc:any":
+    """Handle specific console selection via ReplyKeyboard."""
+    text = (update.message.text or "").strip()
+    
+    menu_result = await _bk_intercept_menu(text, update, context)
+    if menu_result:
+        return menu_result
+    
+    if text == BTN_CANCEL:
+        return await _cleanup_and_end(update, context)
+    
+    if text == BTN_BACK:
+        _pop_state(context)
+        date_str = context.user_data.get("bk_date", "")
+        free_slots = await _get_available_slots(date_str) if date_str else []
+        await update.message.reply_text(
+            f"U0001f4c5 *{date_str}* — အချိန်းရွေးပါ:",
+            parse_mode="Markdown",
+            reply_markup=_make_time_keyboard(free_slots) if free_slots else _make_date_keyboard(),
+        )
+        return BK_TIME
+    
+    if text == BTN_NOT_SURE:
         context.user_data.pop("bk_specific_console_id", None)
         context.user_data.pop("_bk_specific_consoles", None)
-        await query.edit_message_text("Console type select:")
-        await query.message.reply_text("Console type select:", reply_markup=_make_console_keyboard())
+        await update.message.reply_text(
+            "U0001f3ae Console အမွိဳအရူး ရွေးပါ:",
+            reply_markup=_make_console_keyboard(),
+        )
         return BK_CONSOLE
-    if data.startswith("bkspc:"):
-        parts = data.split(":", 2)
-        if len(parts) >= 2:
-            cid = parts[1]
-            ctype = parts[2] if len(parts) >= 3 else ""
-            context.user_data["bk_specific_console_id"] = cid
-            if ctype:
-                context.user_data["bk_console"] = ctype
-            context.user_data.pop("_bk_specific_consoles", None)
-            await query.edit_message_text(f"Console: {cid} ({ctype})")
-            if ctype:
-                _push_state(context, BK_SPECIFIC_CONSOLE)
-                await query.message.reply_text(f"Duration:", reply_markup=_make_duration_keyboard())
-                return BK_DURATION
-            else:
-                _push_state(context, BK_SPECIFIC_CONSOLE)
-                await query.message.reply_text("Console type:", reply_markup=_make_console_keyboard())
-                return BK_CONSOLE
-    await query.edit_message_text("Invalid. Try again:")
-    return BK_SPECIFIC_CONSOLE
+    
+    # Try to parse console id from button text like "C-01 (PS5)"
+    import re as _re
+    m = _re.match(r'^([ws-]+?)s*\(', text)
+    if m:
+        cid = m.group(1).strip()
+        context.user_data["bk_specific_console_id"] = cid
+        tm = _re.search(r'\(([^)]+)\)', text)
+        if tm:
+            context.user_data["bk_console"] = tm.group(1)
+        context.user_data.pop("_bk_specific_consoles", None)
+        await update.message.reply_text(
+            f"✅ Console: {text}",
+            reply_markup=_make_duration_keyboard(),
+        )
+        return BK_DURATION
+    else:
+        cid = text.strip()
+        context.user_data["bk_specific_console_id"] = cid
+        stored = context.user_data.get("_bk_specific_consoles", [])
+        for c in stored:
+            if c.get("id") == cid:
+                context.user_data["bk_console"] = c.get("type", "PS5")
+                break
+        context.user_data.pop("_bk_specific_consoles", None)
+        await update.message.reply_text(
+            f"✅ Console: {cid}",
+            reply_markup=_make_duration_keyboard(),
+        )
+        return BK_DURATION
 
 def _format_booking_summary(context: ContextTypes.DEFAULT_TYPE) -> str:
     """Format booking summary from user_data."""
@@ -960,7 +987,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     await update.message.reply_text(
                         f"⏰ အချိန်: *{text}*\n\n🕹️ ရနိုင်သော Console ရွေးပါ:",
                         parse_mode="Markdown",
-                        reply_markup=_make_specific_console_keyboard(available, date_str, text),
+                        reply_markup=_make_specific_console_keyboard(available),
                     )
                     return BK_SPECIFIC_CONSOLE
                 else:
@@ -986,7 +1013,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     await update.message.reply_text(
                         f"⏰ Custom Time: *{time_str}*\n\n🕹️ ရနိုင်သော Console ရွေးပါ:",
                         parse_mode="Markdown",
-                        reply_markup=_make_specific_console_keyboard(available, date_str, time_str),
+                        reply_markup=_make_specific_console_keyboard(available),
                     )
                     return BK_SPECIFIC_CONSOLE
                 else:
@@ -1746,3 +1773,4 @@ async def bk_end_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=MAIN_MENU_KB,
     )
     return ConversationHandler.END
+

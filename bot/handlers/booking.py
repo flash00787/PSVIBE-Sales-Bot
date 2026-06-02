@@ -167,7 +167,8 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
             f"🏷️ Console ID: {b.get('console_id') or b.get('consoleId') or '—'}"
         )
         kb = InlineKeyboardMarkup([[
-            InlineKeyboardButton("🚫 Cancel", callback_data=f"bkc:{b['id']}"),
+                        InlineKeyboardButton("✅ Check In", callback_data=f"bkm:checkin:{b['id']}"),
+InlineKeyboardButton("🚫 Cancel", callback_data=f"bkc:{b['id']}"),
         ]])
         await update.message.reply_text(card, parse_mode="Markdown", reply_markup=kb)
 
@@ -1111,3 +1112,4 @@ async def step_book_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # BTN_NO_RESELECT / BTN_CANCEL / anything else → back to member selection
     context.user_data["bk_console"] = cid
     return BOOK_MEMBER
+

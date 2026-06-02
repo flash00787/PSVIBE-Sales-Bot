@@ -130,6 +130,10 @@ def _register_handlers(app: Application) -> None:
                 CallbackQueryHandler(bk_duration_select, pattern=r"^bk_dur:"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_duration_select),
             ],
+            # BK_SPECIFIC_CONSOLE — ReplyKeyboard: specific console list
+            BK_SPECIFIC_CONSOLE: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_specific_console_select),
+            ],
             # BK_GAME — ReplyKeyboard: game list w/ pagination + cancel
             BK_GAME: [
                 CallbackQueryHandler(bk_game_select, pattern=r"^(bk_game:|bk_game_page:)"),
@@ -282,3 +286,4 @@ def run() -> None:
 
 if __name__ == "__main__":
     run()
+

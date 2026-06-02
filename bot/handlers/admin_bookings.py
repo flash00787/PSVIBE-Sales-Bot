@@ -112,6 +112,68 @@ async def cb_booking_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await _do_booking_action(bk_id, action, staff_name, reply_fn=edit_fn)
 
+async def _send_checkin_notification(tg_chat: str, booking_id: int):
+    """Notify customer that they've checked in."""
+    msg = (
+        f"\U0001f389 *Welcome to PS VIBE!* \ud83c\udfae\n\n"
+        f"\u2705 Booking #{booking_id} \u2014 Checked In!\n"
+        f"Your session has started. Enjoy! \ud83c\udf89"
+    )
+    try:
+        from bot import CUSTOMER_BOT_TOKEN
+        if tg_chat and CUSTOMER_BOT_TOKEN:
+            import json
+            import urllib.request
+            data = json.dumps({"chat_id": tg_chat, "text": msg, "parse_mode": "Markdown"}).encode()
+            req = urllib.request.Request(
+                f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage",
+                data=data, headers={"Content-Type": "application/json"},
+            )
+            urllib.request.urlopen(req, timeout=5)
+    except Exception:
+        pass
+
+async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Staff checks in a customer. Update booking to Active, notify customer."""
+    query = update.callback_query
+    await query.answer()
+    try:
+        _, _, bk_id_str = query.data.split(":")
+        bk_id = int(bk_id_str)
+    except Exception as e:
+        logger.error("cb_checkin_booking: %s", e, exc_info=True)
+        return
+    
+    staff_name = query.from_user.full_name or "Staff"
+    
+    # Call API to check in
+    try:
+        result = _replit_post("bookings/checkin", {"id": bk_id})
+    except Exception as e:
+        await query.edit_message_text(f"\u274c *Check-in failed:* {e}", parse_mode="Markdown")
+        return
+    
+    if result and isinstance(result, dict) and result.get("success"):
+        tg_chat = result.get("data", {}).get("telegram_chat_id", "")
+        
+        await query.edit_message_text(
+            f"\u2705 *Customer Checked In!*\n"
+            f"Booking #{bk_id}\n"
+            f"Done by: {staff_name}",
+            parse_mode="Markdown",
+        )
+        
+        # Notify customer
+        if tg_chat:
+            asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))
+    else:
+        err_msg = (result or {}).get("error") or (result or {}).get("data", {}).get("message", "Unknown error")
+        await query.edit_message_text(
+            f"\u274c *Check-in failed:* {err_msg}",
+            parse_mode="Markdown",
+        )
+
+
 async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn):
     """Shared approve/reject logic — updates DB, replies, notifies customer."""
     new_status = "confirmed" if action == "approve" else "rejected"
@@ -279,3 +341,4 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             duration_mins=int(b.get("durationMins") or 60),
             tg_chat=tg_chat,
         ))
+
