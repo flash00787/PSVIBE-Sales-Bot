@@ -321,7 +321,7 @@ async def _fetch_members() -> dict:
             async with sem:
                 try:
                     detail = await _api_get(f"fetch_member_data/{mid}")
-                    detail = (detail or {}).get("data", {}) if isinstance(detail, dict) else {}
+                    detail = detail if isinstance(detail, dict) else {}
                     if isinstance(detail, dict) and "name" in detail:
                         members[mid] = {
                             "name":         detail.get("name", ""),
