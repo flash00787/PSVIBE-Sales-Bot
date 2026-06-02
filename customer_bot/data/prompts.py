@@ -272,7 +272,7 @@ async def _build_ai_system_prompt(
         "=== RULE 3 — SHOP INFORMATION ===\n"
         "If the user asks about rates, hours, food, membership, consoles, or lounge info — "
         "answer directly and naturally from the data below. No need to redirect them to buttons.\n"
-        f"Opening Hours: Daily {open_str} – {close_str}\n"
+        f"Opening Hours: Daily {open_str} – {close_str}\n"        f"🎉 GRAND OPENING: June 6, 2026! First 10 customers get FREE 30 bonus minutes!\n"        f"📍 Address: No. 17, Mau Pin Street, Sanchaung, Yangon\n"
         f"Console Rates:\n{rates_text}\n"
         f"Food & Drinks:\n{food_text}\n\n"
 
