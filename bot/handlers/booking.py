@@ -115,7 +115,8 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
             f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
             f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
             f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins\n"
-            f"🕹️ {b.get('gameName') or '-'}"
+            f"🕹️ {b.get('gameName') or '-'}\n"
+            f"🏷️ Console ID: {b.get('console_id') or b.get('consoleId') or '—'}"
         )
         kb = InlineKeyboardMarkup([[
             InlineKeyboardButton("✅ Approve", callback_data=f"bkm:approve:{b['id']}"),
@@ -162,7 +163,8 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
             f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
             f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
             f"🎮 {console_hint}  ⏱️ {b.get('durationMins', '?')} mins\n"
-            f"🕹️ {b.get('gameName') or '-'}"
+            f"🕹️ {b.get('gameName') or '-'}\n"
+            f"🏷️ Console ID: {b.get('console_id') or b.get('consoleId') or '—'}"
         )
         kb = InlineKeyboardMarkup([[
             InlineKeyboardButton("🚫 Cancel", callback_data=f"bkc:{b['id']}"),
