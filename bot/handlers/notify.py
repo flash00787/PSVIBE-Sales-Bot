@@ -81,26 +81,15 @@ async def send_cashback_coupon_notification(context, chat_id: int, coupon_code: 
     from bot import CUSTOMER_BOT_TOKEN
     import urllib.request, json
     
+    nl = chr(10)
     msg = (
-        f"🎉 *Grand Opening 100% CashBack Coupon!* 🎉
-
-"
-        f"ကျေးဇူးတင်ပါတယ် {member_id}!
-"
-        f"သင့်ရဲ့ session အတွက် CashBack Coupon ရရှိပါပြီ။
-
-"
-        f"🎫 Coupon Code: *{coupon_code}*
-"
-        f"⏱ {minutes} mins
-
-"
-        f"📅 Expiry: July 7, 2026
-
-"
-        f"💡 PS VIBE မှာ ပြန်လည်အသုံးပြုနိုင်ပါတယ်!
-"
-        f"Coupon Code ကို staff ကိုပြပြီး အသုံးပြုပါ။"
+        f"🎉 *Grand Opening 100% CashBack Coupon!* 🎉{nl}{nl}"
+        f"Congratulations {member_id}!{nl}"
+        f"Your session CashBack Coupon is ready!{nl}{nl}"
+        f"🎫 Coupon Code: *{coupon_code}*{nl}"
+        f"⏱ {minutes} mins{nl}{nl}"
+        f"📅 Expiry: July 7, 2026{nl}{nl}"
+        f"Show this code to staff to redeem!"
     )
     
     url = f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage"

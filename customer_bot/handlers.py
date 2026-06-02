@@ -926,38 +926,68 @@ WL_PREF, WL_NAME, WL_PHONE, WL_CONFIRM = range(100, 104)
 async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show customer's CashBack coupons."""
     chat_id = update.effective_chat.id
-    # Find member_id by chat_id
     member_id = await _api._get_linked_member_id(chat_id)
     if not member_id:
         await update.message.reply_text(
-            "မင်္ဂလာပါ 👋
-
-"
-            "သင့်မှာ CashBack Coupon မရှိသေးပါ။
-"
-            "Grand Opening 100% CashBack promotion အတွက် June 6-7 ရက်နေ့များတွင် PS VIBE မှာ session ဝယ်ယူပြီး
-"
-            "Coupon ရယူလိုက်ပါ! 🎉",
+            "No coupons found.\n"
+            "Visit PS VIBE on June 6-7 to get your CashBack Coupon!",
             parse_mode="Markdown",
         )
         return
     
-    # Fetch coupons via API
     try:
         data = await _api._api_get(f"coupons/list?member_id={member_id}")
+        coupons = []
         if isinstance(data, dict):
-            coupons = data.get("coupons") or data.get("data", {}).get("coupons", [])
+            inner = data.get("coupons") or data.get("data", {}).get("coupons", [])
+            if isinstance(inner, list):
+                coupons = inner
         elif isinstance(data, list):
             coupons = data
-        else:
-            coupons = []
     except Exception as e:
-        await update.message.reply_text(f"❌ Coupon ဖတ်မရပါ: {str(e)[:100]}")
+        await update.message.reply_text("Failed to fetch coupons: " + str(e)[:100])
         return
     
     if not coupons:
         await update.message.reply_text(
-            "🎟️ *Your CashBack Coupons*
+            "No CashBack Coupons yet.\n"
+            "Visit PS VIBE on June 6-7!",
+            parse_mode="Markdown",
+        )
+        return
+    
+    lines = ["🎟️ *Your CashBack Coupons*"]
+    for c in coupons:
+        code = c.get("code") or c.get("coupon_code") or "?"
+        balance = c.get("balance_minutes") or c.get("original_minutes") or 0
+        expiry = c.get("expiry_date") or ""
+        status = c.get("status") or "active"
+        
+        if status == "active":
+            icon = "✅ Active"
+        elif status == "used":
+            icon = "✅ Used"
+        elif status == "expired":
+            icon = "❌ Expired"
+        else:
+            icon = "❌ " + status
+        
+        expiry_fmt = expiry[:10] if expiry else "N/A"
+        
+        lines.append("")
+        lines.append(f"🎫 *{code}*")
+        lines.append(f"   {balance} mins remaining")
+        lines.append(f"   Exp: {expiry_fmt}")
+        lines.append(f"   Status: {icon}")
+    
+    lines.append("")
+    lines.append("💡 Show this code to staff to redeem!")
+    
+    await update.message.reply_text(
+        chr(10).join(lines),
+        parse_mode="Markdown",
+    )
+
 
 "
             "Coupon မရှိသေးပါ။
