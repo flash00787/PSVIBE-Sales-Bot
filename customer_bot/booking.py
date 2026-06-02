@@ -8,7 +8,7 @@ from . import api as _api
 logger = logging.getLogger(__name__)
 
 async def cmd_mybookings(update, context):
-    """Show user's current bookings from API"""
+    """Show user's active/upcoming bookings with details"""
     uid = str(update.effective_user.id)
     try:
         data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
@@ -19,44 +19,68 @@ async def cmd_mybookings(update, context):
     except Exception:
         data = []
 
-    if not data:
+    # Filter: only show pending & confirmed (active/upcoming)
+    active = [b for b in data if b.get("status") in ("pending", "confirmed")]
+
+    if not active:
         await update.message.reply_text(
-            "📋 *မရှိသေးပါ။*\n\n"
-            "မှာထားတဲ့ booking မရှိသေးပါ။\n"
-            "Booking လုပ်ရန် \"📅 Booking လုပ်မည်\" ကိုနှိပ်ပါ။",
+            "📋 *Active / Upcoming Bookings*\n\n"
+            "ရှိသော စာရင်းမရှိပါ။\n"
+            'Booking လုပ်ရန် "📅 Booking လုပ်မည်" ကိုနှိပ်ပါ။',
             parse_mode="Markdown",
         )
         return
 
-    lines = ["📋 *မင်္ဂလာပါ ချိန်းဆိုထားသော*"]
-    for b in data[:10]:
+    lines = ["📋 *My Bookings (Active / Upcoming)*"]
+    for b in active[:10]:
+        bk_id = b.get("id", "?")
         status = b.get("status", "unknown")
-        emoji = {"confirmed": "✅", "pending": "⏳", "completed": "✔️", "cancelled": "❌"}.get(status, "❓")
-        console = b.get("console_id", b.get("console", "?"))
         date = b.get("booking_date", b.get("date", "?"))
-        time = b.get("booking_time", b.get("time_slot", "?"))
-        lines.append(f"\n{emoji} #{b.get('id','?')} | {console} | {date} {time}")
+        time_str = b.get("booking_time", b.get("timeSlot", b.get("startTime", "?")))
+        if "T" in str(time_str):
+            time_str = str(time_str).split("T")[1][:5]
+        console_type = b.get("console_id", b.get("consoleType", "?"))
+        duration = b.get("duration_mins", b.get("durationMins", ""))
+        game = b.get("game_name", b.get("gameName", ""))
+        phone = b.get("phone", "")
+
+        emoji = {"confirmed": "✅", "pending": "⏳"}.get(status, "❓")
+        status_text = "Pending" if status == "pending" else "Confirmed"
+
+        lines.append(
+            f"\n{emoji} *Booking #{bk_id}* \u2014 {status_text}"
+            f"\n📅 {date}  🕐 {time_str}"
+            f"\n🎮 {console_type}  ⏱️ {duration} mins"
+        )
+        if game:
+            lines.append(f"\n🕹️ {game}")
+        if phone:
+            lines.append(f"\n📞 {phone}")
+        if status == "pending":
+            lines.append(f"\n❌ Cancel: /cancelbooking_{bk_id}")
+        lines.append("\n" + "\u2500" * 20)
+
     lines.append("\n\nAdmin ကို ဆက်သွယ်ရန်: @psvibeofficial")
     await update.message.reply_text("".join(lines), parse_mode="Markdown")
-
 
 async def cmd_cancel_booking(update, context):
     """Cancel a booking by ID."""
     args = context.args
     if not args:
         await update.message.reply_text(
-            "❌ ပယ်ဖျက်လိုသော Booking ID ကို ထည့်ပေးပါ။\n"
-            "ဥပမာ: `/cancelbooking 131`",
+            "❌ Cancel လုပ်ရန် Booking ID ထည့်ပါ။\n"
+            "ဥပမာ: `/cancelbooking 131`\n\n"
+            "pending booking များကိုသာ cancel လုပ်နိုင်ပါသည်။",
             parse_mode="Markdown",
         )
         return
-    
+
     try:
         bk_id = int(args[0])
     except ValueError:
         await update.message.reply_text("❌ Booking ID မှားယွင်းနေပါသည်။")
         return
-    
+
     try:
         result = await _api._api_patch(f"bookings/{bk_id}/status", {
             "status": "cancelled",
@@ -68,12 +92,16 @@ async def cmd_cancel_booking(update, context):
                 parse_mode="Markdown",
             )
         else:
+            err = result.get("error", "") if isinstance(result, dict) else ""
             await update.message.reply_text(
-                f"❌ Booking #{bk_id} ကို ပယ်ဖျက်မရပါ။ Admin ကို ဆက်သွယ်ပါ။",
+                f"❌ Booking #{bk_id} ကို ပယ်ဖျက်မရပါ။ {err}",
             )
     except Exception as e:
+        import logging
         logging.getLogger(__name__).error("Cancel booking failed: %s", e)
         await update.message.reply_text("❌ Cancel မရပါ — ခဏနေ ပြန်ကြိုးစားပါ။")
+
+
 
 
 async def cmd_refer(update, context):

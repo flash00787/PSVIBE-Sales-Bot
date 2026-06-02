@@ -334,7 +334,7 @@ async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_
     msg = (
         "မင်္ဂလာပါ! 🎮\n\n"
         "ကျေးဇူးပြုပြီး သင့် **ဖုန်းနံပါတ်နောက်ဆုံး ၃ လုံး** ကို ရိုက်ထည့်ပေးပါ။\n"
-        "(ဥပမာ: ဖုန်းနံပါတ် 09-xxx-xxx-***123** → `123` ရိုက်ပါ)\n\n"
+        "(ဥပမာ: ဖုန်းနံပါတ် 09-xxx-xxx-**123** → `123` ရိုက်ပါ)\n\n"
         "Member မဟုတ်ရင် `no` ရိုက်ပြီး Guest အဖြစ်ဆက်လုပ်ပါ။"
     )
     msg_source = update.message if update.message else (update.callback_query.message if update.callback_query else None)

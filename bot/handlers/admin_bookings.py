@@ -31,13 +31,17 @@ async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
         return await show_admin_menu(update, context)
 
+    # Show only the 20 most recent pending bookings
+    recent = bookings[:20] if len(bookings) > 20 else bookings
+    total = len(bookings)
+    
     await update.message.reply_text(
-        f"📋 *Pending Bookings — {len(bookings)} ခု*",
+        f"📋 *Pending Bookings — {total} ခု (Showing {len(recent)} latest)*",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
 
-    for b in bookings:
+    for b in recent:
         game_name_bk = (b.get('gameName') or '').strip()
         disc_warn_bk = ""
         if game_name_bk and b.get('timeSlot'):
