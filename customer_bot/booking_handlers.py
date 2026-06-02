@@ -1096,7 +1096,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 existing = await _api._api_get(
                     f"bookings/search?telegram_chat_id={uid}&date={date_str}"
                 )
-                existing = existing if isinstance(existing, list) else []
+                existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
                 dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
                 if dupes:
@@ -1141,7 +1141,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 existing = await _api._api_get(
                     f"bookings/search?telegram_chat_id={uid}&date={date_str}"
                 )
-                existing = existing if isinstance(existing, list) else []
+                existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
                 dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
                 if dupes:
