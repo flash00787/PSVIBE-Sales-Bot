@@ -9,26 +9,39 @@ logger = logging.getLogger(__name__)
 
 async def cmd_mybookings(update, context):
     """Show user's active/upcoming bookings with details"""
+    # Guard against None user (shouldn't happen but defensive)
+    if update is None or update.effective_user is None:
+        logger.warning("cmd_mybookings: update or effective_user is None")
+        if update and update.message:
+            await update.message.reply_text(
+                "မင်္ဂလာပါ... သင့်အနေဖြင့် Booking တင်ထားခြင်း မရှိသေးပါ။"
+            )
+        return
+
     uid = str(update.effective_user.id)
+
+    # Friendly no-bookings message (in Burmese)
+    NO_BOOKINGS_MSG = (
+        "မင်္ဂလာပါ... သင့်အနေဖြင့် Booking တင်ထားခြင်း မရှိသေးပါ။"
+    )
+
     try:
         data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
         if isinstance(data, dict) and "bookings" in data:
             data = data["bookings"]
         if not isinstance(data, list):
             data = []
-    except Exception:
-        data = []
+    except Exception as e:
+        logger.warning("cmd_mybookings: API call failed: %s", e)
+        # API failed — show friendly message instead of error
+        await update.message.reply_text(NO_BOOKINGS_MSG)
+        return
 
     # Filter: only show pending & confirmed (active/upcoming)
     active = [b for b in data if b.get("status") in ("pending", "confirmed")]
 
     if not active:
-        await update.message.reply_text(
-            "📋 *Active / Upcoming Bookings*\n\n"
-            "ရှိသော စာရင်းမရှိပါ။\n"
-            'Booking လုပ်ရန် "📅 Booking လုပ်မည်" ကိုနှိပ်ပါ။',
-            parse_mode="Markdown",
-        )
+        await update.message.reply_text(NO_BOOKINGS_MSG)
         return
 
     lines = ["📋 *My Bookings (Active / Upcoming)*"]
