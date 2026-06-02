@@ -7,11 +7,11 @@ from bot import (
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
     SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
-    add_console_game, _delete_session_game, _replit_get, _replit_post, calc_duration,
-    check_disc_session_conflict, cmd_cancel, create_booking,
-    fetch_console_games, fetch_console_status, fetch_games,
-    fetch_members, fetch_staff, get_consoles_with_game,
-    get_games_on_console, now_mmt, show_admin_menu, show_console_menu,
+    add_console_game, add_console_game_async, _delete_session_game, _replit_get, _replit_get_async, _replit_post, _replit_post_async, calc_duration,
+    check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
+    fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_games, fetch_games_async,
+    fetch_members, fetch_staff, get_consoles_with_game, get_consoles_with_game_async,
+    get_games_on_console, get_games_on_console_async, now_mmt, show_admin_menu, show_console_menu,
     show_main_menu, today_str,
     fetch_members_async,
 )
@@ -28,10 +28,10 @@ import asyncio
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key
 
 
-def _sbk_console_kb() -> list:
+async def _sbk_console_kb() -> list:
     """Return keyboard of all consoles with live+reserved status via API."""
     try:
-        data = _replit_get("sheets/consoles") or {}
+        data = await _replit_get_async("sheets/consoles") or {}
         consoles = data.get("consoles", []) if isinstance(data, dict) else []
     except Exception as e:
         logging.warning("Failed to fetch consoles via API for staff booking keyboard: %s", e)
@@ -79,8 +79,8 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
     context.user_data["sbk_from_hub"] = True
 
     # Fetch counts for both statuses in parallel (sync thread)
-    pending_bks   = _replit_get("bookings?status=pending") or []
-    confirmed_bks = _replit_get("bookings?status=confirmed") or []
+    pending_bks   = await _replit_get_async("bookings?status=pending") or []
+    confirmed_bks = await _replit_get_async("bookings?status=confirmed") or []
 
     n_pending   = len(pending_bks)   if isinstance(pending_bks,   list) else 0
     n_confirmed = len(confirmed_bks) if isinstance(confirmed_bks, list) else 0
@@ -128,7 +128,7 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show upcoming confirmed bookings with Cancel button each."""
     await update.message.reply_text("⏳ Confirmed bookings စစ်နေသည်...")
-    bookings = _replit_get("bookings?status=confirmed") or []
+    bookings = await _replit_get_async("bookings?status=confirmed") or []
     if not isinstance(bookings, list):
         bookings = []
 
@@ -415,7 +415,7 @@ async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Build game keyboard
     try:
-        games = fetch_games()
+        games = await fetch_games_async()
         game_names = [g["title"] for g in games if g.get("title")][:30]
     except Exception as e:
         logging.warning("Failed to fetch games for staff booking: %s", e)
@@ -476,7 +476,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "staffNote":    f"Console: {cid} | Booked by {staff}",
         }
 
-        result = await asyncio.to_thread(_replit_post, "bookings", payload)
+        result = await _replit_post_async("bookings", payload)
         if not result or "id" not in result:
             await update.message.reply_text(
                 "❌ Booking create မအောင်မြင်ပါ\nAPI စစ်ပြီး ထပ်ကြိုးစားပါ",
@@ -524,7 +524,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         dur = context.user_data.get("sbk_dur", 60)
         context.user_data.pop("sbk_game", None)
         try:
-            games = fetch_games()
+            games = await fetch_games_async()
             game_names = [g["title"] for g in games if g.get("title")][:30]
         except Exception as e:
             logger.error("step_sbk_confirm: %s", e, exc_info=True)
@@ -562,13 +562,13 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ssd_warning = ""
     context.user_data["sbk_needs_ssd"] = False
     if game:
-        installed = await asyncio.to_thread(get_games_on_console, cid)
+        installed = await get_games_on_console_async(cid)
         installed_lower = [g.lower() for g in installed]
         if game.lower() not in installed_lower:
             # check if game exists on any console (installed anywhere)
-            consoles_with_game = await asyncio.to_thread(get_consoles_with_game, game)
+            consoles_with_game = await get_consoles_with_game_async(game)
             ssd_consoles = [
-                r["console_id"] for r in fetch_console_games()
+                r["console_id"] for r in await fetch_console_games_async()
                 if r["game_title"].lower() == game.lower()
                 and r["install_type"] == "Portable SSD"
             ]
@@ -631,7 +631,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
     """Ask staff whether to link this session to a confirmed booking (optional)."""
     try:
         today = today_str()
-        bks_raw = _replit_get("bookings") or []
+        bks_raw = await _replit_get_async("bookings") or []
         # Include confirmed + arrived; filter to today only
         # Also apply a 30-min past window so check-in'd bookings are still linkable
         from datetime import datetime as _dt
@@ -920,7 +920,7 @@ async def prompt_book_game(update, context):
     """
     cid       = context.user_data.get("bk_console", "")
     member_id = context.user_data.get("bk_member", "Guest")
-    installed = await asyncio.to_thread(get_games_on_console, cid)
+    installed = await get_games_on_console_async(cid)
     kb_rows: list = []
     if installed:
         row: list = []
@@ -1041,7 +1041,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
     if _linked_cust_bk:
         _notes = f"{game} [BK#{_linked_cust_bk}]" if game else f"[BK#{_linked_cust_bk}]"
     try:
-        bk_id = create_booking(cid, member_id, staff, notes=_notes, planned_end=_planned_end)
+        bk_id = await create_booking_async(cid, member_id, staff, notes=_notes, planned_end=_planned_end)
     except Exception as e:
         await update.message.reply_text(f"❌ Session save မအောင်မြင်ပါ: {e}")
         return await show_console_menu(update, context)
@@ -1054,7 +1054,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         try:
             # Remove any previous Session entry for this console first
             _delete_session_game(cid)
-            add_console_game(cid, game, "Session", f"BK:{bk_id}")
+            await add_console_game_async(cid, game, "Session", f"BK:{bk_id}")
         except Exception as e:
             logger.error("_do_create_booking: %s", e, exc_info=True)
             pass

@@ -6,11 +6,11 @@ from bot import (
     BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_SKIP_GAME, BTN_SSD_MANAGE,
     BTN_SSD_TRANSFER, BTN_START_SESSION, BTN_STATUS_BOARD, CONSOLE_MENU,
     END_SESSION_SELECT, GAME_CHANGE_CONS, GAME_CHANGE_GAME, MMT,
-    SSD_XFER_SSD, _delete_session_game, _replit_get, add_console_game,
-    calc_duration, cmd_cancel, end_booking, fetch_console_games,
-    fetch_console_status, get_games_on_console, now_mmt,
+    SSD_XFER_SSD, _delete_session_game, _replit_get, _replit_get_async, add_console_game,
+    calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
+    fetch_console_status, get_games_on_console, get_games_on_console_async, now_mmt,
     show_console_menu, show_game_menu, show_main_menu,
-    prompt_book_console,
+    prompt_book_console, launch_session_sale,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -27,7 +27,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     """Show live console status — uses API (Sheet + PostgreSQL reservations)."""
     await update.message.reply_text("⏳ Console status ဆွဲနေသည်…", parse_mode="Markdown")
 
-    data = await asyncio.to_thread(_replit_get, "sheets/consoles")
+    data = await _replit_get_async("sheets/consoles")
     api_consoles = (data.get("consoles", []) if isinstance(data, dict) else (data if isinstance(data, list) else []))
 
     if not api_consoles:
@@ -174,7 +174,7 @@ async def step_game_change_cons(update: Update, context: ContextTypes.DEFAULT_TY
     ]
     cur_str = f"ဘာသိသလဲ: <b>{cur_games[0]}</b>" if cur_games else "Current Game: —"
     # Only show games installed on this console
-    installed = await asyncio.to_thread(get_games_on_console, cid)
+    installed = await get_games_on_console_async(cid)
     kb_rows: list = []
     if installed:
         row: list = []
@@ -294,7 +294,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session_staff = target.get("staff", "")
     total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
 
-    ok = end_booking(bk_id) if bk_id else False
+    ok = await end_booking_async(bk_id) if bk_id else False
     if not ok:
         if bk_id:
             await update.message.reply_text(f"❌ Booking ID {bk_id} ရှာမတွေ့ပါ")
@@ -345,7 +345,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Try to find linked booking_id from bookings store
     _linked_bk_id = ""
     try:
-        _bks = _replit_get(f"bookings?memberId={mbr}") or []
+        _bks = await _replit_get_async(f"bookings?memberId={mbr}") or []
         if not isinstance(_bks, list):
             _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
         for _b in _bks:
@@ -363,13 +363,13 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         today_mmt_str = datetime.utcnow().strftime("%m-%d")
         if today_mmt_str in ("06-03", "06-04", "06-05", "06-06", "06-07"):
             # Check active promotion
-            promo_resp = api_get("promotions/active")
+            promo_resp = await _replit_get_async("promotions/active")
             promo_data = promo_resp.get("data") if isinstance(promo_resp, dict) else promo_resp
             if isinstance(promo_data, dict) and promo_data.get("promotion"):
                 # Generate coupon for this member
                 member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
                 if member_id_for_coupon and total_mins > 0:
-                    gen_resp = api_post(f"coupons/generate", {
+                    gen_resp = await _replit_post_async("coupons/generate", {
                         "member_id": member_id_for_coupon,
                         "session_minutes": total_mins,
                         "session_id": _linked_bk_id or "",

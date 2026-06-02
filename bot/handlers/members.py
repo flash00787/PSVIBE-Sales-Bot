@@ -16,6 +16,8 @@ from bot import (
     today_str, topup_sh, update_member_effective_rate,
     fetch_members_async,
     fetch_base_rate_async,
+    fetch_member_tier_async,
+    fetch_balance_mins_async,
 )
 
 try:
@@ -1327,8 +1329,8 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d = context.user_data
     # ── Pre-compute (lightweight sync — reserve row before background) ──
     # 0. Capture tier + balance BEFORE write (needed for col C and rate calc)
-    current_tier = await asyncio.to_thread(fetch_member_tier, d["tu_id"])
-    prev_bal     = await asyncio.to_thread(fetch_balance_mins, d["tu_id"])
+    current_tier = await fetch_member_tier_async(d["tu_id"])
+    prev_bal     = await fetch_balance_mins_async(d["tu_id"])
     tl_row       = await asyncio.to_thread(next_write_row, topup_sh)
 
     # 1. Balance = previous balance + mins just added (Phase B — no sheet re-read)

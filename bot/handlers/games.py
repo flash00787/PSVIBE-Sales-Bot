@@ -12,7 +12,7 @@ from bot import (
     BTN_SSD_MANAGE, BTN_VIEW_GAMES, DISC_SELECT, GAME_ADD_GENRE,
     GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
-    fetch_console_games, fetch_games, get_game_lib_sh, show_game_menu,
+    fetch_console_games_async, fetch_games_async, get_game_lib_sh, show_game_menu,
     show_main_menu,
 )
 
@@ -28,7 +28,7 @@ async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [BTN_SSD_MANAGE],
         [BTN_BACK_MAIN],
     ]
-    games = fetch_games()
+    games = await fetch_games_async()
     count = len(games)
     await update.message.reply_text(
         f"🎮 *Game Library* ({count} ဂိမ်း)\n"
@@ -101,7 +101,7 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_SSD_MANAGE:
         return await show_ssd_menu(update, context)
     if choice == BTN_DISC_RECORD:
-        games = fetch_games()
+        games = await fetch_games_async()
         if not games:
             await update.message.reply_text("ℹ️ Game Library ဗလာ ဖြစ်နေသည်")
             return await show_game_menu(update, context)
@@ -126,7 +126,7 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return DISC_SELECT
     if choice == BTN_EDIT_GAME:
-        games = fetch_games()
+        games = await fetch_games_async()
         if not games:
             await update.message.reply_text("ℹ️ ဂိမ်း မရှိပါ")
             return await show_game_menu(update, context)
@@ -140,7 +140,7 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return GAME_EDIT_SELECT
     if choice == BTN_DEL_GAME:
-        games = fetch_games()
+        games = await fetch_games_async()
         if not games:
             await update.message.reply_text("ℹ️ ဖျက်ရန် ဂိမ်းမရှိပါ")
             return await show_game_menu(update, context)

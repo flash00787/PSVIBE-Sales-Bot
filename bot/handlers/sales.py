@@ -7,8 +7,8 @@ from bot import (
     CONSOLE, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION, FOOD_MENU,
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
     SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
-    _replit_get, _replit_patch, _replit_post, calc_duration, cmd_cancel,
-    end_booking, fetch_base_rate, fetch_bonus_table,
+    _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, _replit_post, _replit_post_async, calc_duration, cmd_cancel,
+    end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status, fetch_food_costs,
     fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
@@ -208,7 +208,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     stock_map = context.user_data.get("food_stock_map")
     if not stock_map:
         try:
-            inv_data = _replit_get("stock/current")
+            inv_data = await _replit_get_async("stock/current")
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i["name"]: max(0, i.get("quantity", 0))
                              for i in inv_data.get("data", {}).get("items", [])}
@@ -559,7 +559,7 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     if STAFF_NOTIFY_CHAT:
         _cancel_remind(session_cid, int(STAFF_NOTIFY_CHAT))
 
-    ok = end_booking(bk_id) if bk_id else False
+    ok = await end_booking_async(bk_id) if bk_id else False
     if ok:
         await update.message.reply_text(
             f"✅ <b>Session ဆုံးပြီ!</b>\n"
@@ -617,7 +617,7 @@ async def step_ds_member_in_session(update: Update, context: ContextTypes.DEFAUL
             eff_i   = round(mins * mult_i)
             total_mins           += mins
             total_effective_mins += eff_i
-            end_booking(bk_id)
+            await end_booking_async(bk_id)
             cid_list.append(ac["id"])
             if not session_staff:
                 session_staff = ac.get("staff", "")
@@ -696,7 +696,7 @@ async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAU
         start_t       = active.get("start", "")
         total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
 
-        ok = end_booking(bk_id) if bk_id else False
+        ok = await end_booking_async(bk_id) if bk_id else False
         end_t = now_mmt().strftime("%H:%M")
         status_msg = (
             f"✅ <b>Session ဆုံးပြီ!</b>\n"
@@ -749,7 +749,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        inv_data = _replit_get("stock/current")
+        inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("data", {}).get("items", [])}
@@ -1356,8 +1356,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if _linked_bk_id and not is_guest:
         async def _mark_bk_completed():
             try:
-                await asyncio.to_thread(
-                    _replit_patch,
+                await _replit_patch_async(
                     f"bookings/{_linked_bk_id}/status",
                     {"status": "completed", "staffNote": f"Session completed — {v_no}"},
                 )
@@ -1371,8 +1370,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if _wl_cid and _wl_cid not in ("-", ""):
         async def _wl_notify():
             try:
-                resp = await asyncio.to_thread(
-                    _replit_post, "waitlist/notify", {"console_id": _wl_cid}
+                resp = await _replit_post_async("waitlist/notify", {"console_id": _wl_cid}
                 )
                 if resp and resp.get("notified"):
                     logging.info("Waitlist notified: %s for console %s",
@@ -1387,8 +1385,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             try:
                 chat_id = await asyncio.to_thread(get_customer_chat_id, m_id)
                 if chat_id:
-                    await asyncio.to_thread(
-                        _replit_post,
+                    await _replit_post_async(
                         "session-end-notify",
                         {
                             "telegram_chat_id": chat_id,
@@ -1438,7 +1435,7 @@ async def launch_session_sale(
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        inv_data = _replit_get("stock/current")
+        inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i["name"]: max(0, i.get("quantity", 0))
                          for i in inv_data.get("data", {}).get("items", [])}

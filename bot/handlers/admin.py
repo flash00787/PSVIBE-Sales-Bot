@@ -5,7 +5,7 @@ from bot import (
     BTN_CONSOLES, BTN_CON_MANAGE, BTN_FINANCE, BTN_PAYROLL,
     BTN_PROMO_REPORTS, BTN_SBK_CONFIRMED, BTN_STAFF_BOOK, BTN_STAFF_KPI,
     BTN_STOCK_UPDATE, SAL_ADV_STAFF, STOCK_ACCESS_PIN, _pin_then,
-    _replit_get, build_member_rate_dict, cmd_payroll, cmd_setattend,
+    _replit_get, _replit_get_async, build_member_rate_dict, cmd_payroll, cmd_setattend,
     cmd_staff_kpi, fetch_base_rate, fetch_staff, get_salary_adv_sh,
     now_mmt, sales_sh, show_admin_menu, show_console_menu,
     show_main_menu, stock_in_sh, stock_sh, topup_sh,
@@ -304,7 +304,7 @@ async def cmd_admin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        r = _replit_get("sheets/pnl")
+        r = await _replit_get_async("sheets/pnl")
         if "error" in r:
             raise RuntimeError(r["error"])
     except Exception as e:
@@ -379,7 +379,7 @@ async def cmd_admin_cashflow(update: Update, context: ContextTypes.DEFAULT_TYPE)
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        r = _replit_get("sheets/pnl")
+        r = await _replit_get_async("sheets/pnl")
         if "error" in r:
             raise RuntimeError(r["error"])
     except Exception as e:
@@ -453,8 +453,8 @@ async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        liab = _replit_get("sheets/liability")
-        pnl  = _replit_get("sheets/pnl")
+        liab = await _replit_get_async("sheets/liability")
+        pnl  = await _replit_get_async("sheets/pnl")
         if "error" in liab:
             raise RuntimeError(liab["error"])
 

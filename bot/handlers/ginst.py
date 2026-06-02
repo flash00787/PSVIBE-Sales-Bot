@@ -13,13 +13,13 @@ from bot import (
     BTN_BACK, BTN_CANCEL, BTN_GINST_ADD, BTN_GINST_DISC, BTN_GINST_HDD,
     BTN_GINST_REMOVE, BTN_GINST_SSD, BTN_GINST_VIEW, GINST_ADD_CONS,
     GINST_ADD_GAME, GINST_ADD_TYPE, GINST_DEL_CONS, GINST_DEL_GAME,
-    GINST_MENU, GINST_VIEW_CONS, add_console_game, fetch_console_games,
+    GINST_MENU, GINST_VIEW_CONS, add_console_game_async, fetch_console_games_async,
     fetch_games, get_consoles_from_setting, get_games_on_console,
-    remove_console_game, show_game_menu, update_game_library_install,
+    remove_console_game_async, show_game_menu, update_game_library_install_async,
 )
 
 async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    records = fetch_console_games()
+    records = await fetch_console_games_async()
     count   = len(records)
     kb = [
         [BTN_GINST_VIEW],
@@ -69,8 +69,8 @@ async def step_ginst_view_cons(update: Update, context: ContextTypes.DEFAULT_TYP
     if text in (BTN_BACK, BTN_CANCEL):
         return await show_ginst_menu(update, context)
     console_id = text
-    games = get_games_on_console(console_id)
-    records = [r for r in fetch_console_games()
+    games = await get_games_on_console_async(console_id)
+    records = [r for r in await fetch_console_games_async()
                if r["console_id"].upper() == console_id.upper()]
     if not records:
         await update.message.reply_text(
@@ -90,7 +90,7 @@ async def step_ginst_add_cons(update: Update, context: ContextTypes.DEFAULT_TYPE
     if text in (BTN_BACK, BTN_CANCEL):
         return await show_ginst_menu(update, context)
     context.user_data["ginst_console_id"] = text
-    games = fetch_games()
+    games = await fetch_games_async()
     if not games:
         await update.message.reply_text(
             "⚠️ Game Library ဗလာ ဖြစ်နေသည်\nGame Library မှ ဂိမ်းထည့်ပါ"
@@ -122,7 +122,7 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
     install_type = "HDD"
 
     # ── Duplicate check ───────────────────────────────────────────────────────
-    existing = await asyncio.to_thread(fetch_console_games)
+    existing = await fetch_console_games_async()
     already  = any(
         r["console_id"].strip().upper() == cid.upper()
         and r["game_title"].strip().lower() == title.strip().lower()
@@ -136,8 +136,8 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         return await show_ginst_menu(update, context)
 
     ok, gl_ok = await asyncio.gather(
-        asyncio.to_thread(add_console_game, cid, title, install_type),
-        asyncio.to_thread(update_game_library_install, title, cid, True),
+        add_console_game_async(cid, title, install_type),
+        update_game_library_install_async(title, cid, True),
     )
     if ok:
         gl_note = "  📊 Game Library ✅" if gl_ok else "  📊 Game Library ⚠️ (manual update လို)"
@@ -170,8 +170,8 @@ async def step_ginst_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE
     title = context.user_data.get("ginst_game_title", "")
     # Save to Console_Games sheet + sync Game_Library checkbox
     ok, gl_ok = await asyncio.gather(
-        asyncio.to_thread(add_console_game, cid, title, install_type),
-        asyncio.to_thread(update_game_library_install, title, cid, True),
+        add_console_game_async(cid, title, install_type),
+        update_game_library_install_async(title, cid, True),
     )
     if ok:
         icon = "💾" if install_type == "HDD" else ("💿" if install_type == "Disc" else "🔌")
@@ -194,7 +194,7 @@ async def step_ginst_del_cons(update: Update, context: ContextTypes.DEFAULT_TYPE
     if text in (BTN_BACK, BTN_CANCEL):
         return await show_ginst_menu(update, context)
     console_id = text
-    records = [r for r in fetch_console_games()
+    records = [r for r in await fetch_console_games_async()
                if r["console_id"].upper() == console_id.upper()]
     if not records:
         await update.message.reply_text(
@@ -229,8 +229,8 @@ async def step_ginst_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         return GINST_DEL_GAME
     # Remove from Console_Games + clear Game_Library checkbox
     ok, gl_ok = await asyncio.gather(
-        asyncio.to_thread(remove_console_game, cid, target["game_title"]),
-        asyncio.to_thread(update_game_library_install, target["game_title"], cid, False),
+        remove_console_game_async(cid, target["game_title"]),
+        update_game_library_install_async(target["game_title"], cid, False),
     )
     if ok:
         gl_note = "  📊 Game Library ✅" if gl_ok else "  📊 Game Library ⚠️ (manual update လို)"

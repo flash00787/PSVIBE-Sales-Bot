@@ -1,5 +1,5 @@
 from bot import (
-    ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _replit_get, now_mmt,
+    ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _replit_get, _replit_get_async, now_mmt,
     today_str,
 )
 
@@ -19,7 +19,7 @@ from datetime import datetime, timezone, timedelta
 async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current inventory levels from Replit API."""
     await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = _replit_get("sheets/inventory")
+    data = await _replit_get_async("sheets/inventory")
     if not data:
         await update.message.reply_text(
             "❌ Inventory data ရယူ၍ မရပါ။",
@@ -62,7 +62,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show today's items sold from Replit API."""
     await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = _replit_get("sheets/stock-today")
+    data = await _replit_get_async("sheets/stock-today")
     if not data:
         await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
         return
@@ -91,16 +91,16 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         # Fetch all promotions (including inactive) via API
-        promo_data = _replit_get("sheets/promotions/all")
+        promo_data = await _replit_get_async("sheets/promotions/all")
         promos = promo_data.get("promotions", []) if promo_data else []
 
         # Fetch Promotions_Log analytics
-        log_data   = _replit_get("sheets/promotions-log")
+        log_data   = await _replit_get_async("sheets/promotions-log")
         promo_logs = (log_data or {}).get("logs", [])
         promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
 
         # Fetch today's sales summary
-        rd = _replit_get("sheets/report-data")
+        rd = await _replit_get_async("sheets/report-data")
         sales = rd.get("summary") if rd else None
 
         lines = [
@@ -225,7 +225,7 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Today's combined sales + stock report with per-staff breakdown."""
     await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    rd    = _replit_get("sheets/report-data")   # single batch call (was 3 calls)
+    rd    = await _replit_get_async("sheets/report-data")   # single batch call (was 3 calls)
     sales = rd.get("summary")   if rd else None
     stock = rd.get("stock_today") if rd else None
     inv   = rd.get("inventory") if rd else None
@@ -255,7 +255,7 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
         lines.append("🎮 Sales data မရပါ")
 
     # Per-staff breakdown from Sales_Daily
-    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
+    sb = await _replit_get_async("sheets/staff-breakdown")   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
     staff_stats = sb.get("staff", {}) if sb else {}
 
     if staff_stats:
@@ -309,8 +309,8 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
     now   = now_mmt()
     m_str = now.strftime("%Y-%m")
     weekly, pnl = await asyncio.gather(
-        asyncio.to_thread(_replit_get, "sheets/weekly-report"),
-        asyncio.to_thread(_replit_get, f"sheets/pnl?m={m_str}"),
+        _replit_get_async("sheets/weekly-report"),
+        _replit_get_async(f"sheets/pnl?m={m_str}"),
     )
 
     lines: list[str] = [f"💹 <b>Financial Report</b>"]

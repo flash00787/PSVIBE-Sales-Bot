@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
 from bot import (
-    BTN_BACK_MAIN, MAIN_MENU, _replit_get, cmd_staff_kpi, today_str,
+    BTN_BACK_MAIN, MAIN_MENU, _replit_get, _replit_get_async, cmd_staff_kpi, today_str,
 )
 
 import asyncio
@@ -41,7 +41,7 @@ async def cmd_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg_text = parts[1].strip()
 
     # Fetch target IDs from API (bookings.json source)
-    data = await asyncio.to_thread(_replit_get, "bookings/broadcast-targets") or {}
+    data = await _replit_get_async("bookings/broadcast-targets") or {}
     if not data:
         await update.message.reply_text("❌ Broadcast target list ကို server မှ ရယူ၍ မရပါ။")
         return
@@ -83,7 +83,7 @@ async def cmd_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_staff_kpi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Staff KPI — today's per-staff breakdown from Sales_Daily + overall summary."""
     await update.message.reply_text("⏳ KPI data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    rd    = await asyncio.to_thread(_replit_get, "sheets/report-data") or {}  # single batch call (was 2 calls)
+    rd    = await _replit_get_async("sheets/report-data") or {}  # single batch call (was 2 calls)
     sales = rd.get("summary")     if rd else None
     stock = rd.get("stock_today") if rd else None
     date  = today_str()
@@ -104,7 +104,7 @@ async def cmd_staff_kpi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_item_count = len(stock.get("items", [])) if stock else 0
 
     # Per-staff breakdown — read Sales_Daily directly
-    sb = await asyncio.to_thread(_replit_get, "sheets/staff-breakdown") or {}  # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
+    sb = await _replit_get_async("sheets/staff-breakdown") or {}  # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
     staff_stats = sb.get("staff", {}) if sb else {}
 
     # Performance rating

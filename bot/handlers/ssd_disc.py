@@ -14,8 +14,8 @@ from bot import (
     BTN_SSD_VIEW, DISC_SELECT, DISC_SET_QTY, SSD_ADD_GAME, SSD_ADD_SSD,
     SSD_ADD_TYPE, SSD_DEL_GAME, SSD_DEL_SSD, SSD_MENU, SSD_RET_CONS,
     SSD_RET_GAME, SSD_VIEW_SSD, SSD_XFER_CONS, SSD_XFER_GAME,
-    SSD_XFER_SSD, fetch_console_games, get_consoles_from_setting,
-    remove_console_game, set_game_disc_count, show_console_menu,
+    SSD_XFER_SSD, fetch_console_games, fetch_console_games_async, get_consoles_from_setting,
+    remove_console_game, remove_console_game_async, set_game_disc_count, set_game_disc_count_async, show_console_menu,
     show_game_menu,
 )
 
@@ -79,7 +79,7 @@ async def step_disc_set_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not row:
         await update.message.reply_text("❌ Error — ထပ်ကြိုးစားပါ")
         return await show_game_menu(update, context)
-    ok = await asyncio.to_thread(set_game_disc_count, row, count)
+    ok = await set_game_disc_count_async(row, count)
     if ok:
         await update.message.reply_text(
             f"✅ <b>{title}</b>\n"
@@ -93,7 +93,7 @@ async def step_disc_set_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_ssd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """SSD Management hub."""
     # Count games per SSD
-    cgames = fetch_console_games()
+    cgames = await fetch_console_games_async()
     counts = {sid: sum(1 for r in cgames if r["console_id"] == sid) for sid in SSD_NAMES}
     count_str = "  |  ".join(f"{SSD_NAMES[s]}: {counts[s]}ဂိမ်း" for s in SSD_NAMES)
     kb = [
@@ -160,7 +160,7 @@ async def step_ssd_view(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not ssd_id:
         await update.message.reply_text("⚠️ မှန်သော SSD ရွေးပါ:", reply_markup=_ssd_kb())
         return SSD_VIEW_SSD
-    rows = [r for r in fetch_console_games() if r["console_id"] == ssd_id]
+    rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
     if not rows:
         await update.message.reply_text(
             f"📀 <b>{SSD_NAMES[ssd_id]}</b> — ဂိမ်း မရှိသေးပါ",
@@ -207,7 +207,7 @@ async def step_ssd_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     inst_type = "SSD Copy"
 
     # ── Duplicate check ───────────────────────────────────────────────────────
-    existing = await asyncio.to_thread(fetch_console_games)
+    existing = await fetch_console_games_async()
     already  = any(
         r["console_id"].strip().upper() == ssd_id.upper()
         and r["game_title"].strip().lower() == game.strip().lower()
@@ -242,7 +242,7 @@ async def step_ssd_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ssd_id   = context.user_data.get("ssd_target", "")
     game     = context.user_data.get("ssd_game", "")
     inst_type = valid[text]
-    ok = write_console_game(ssd_id, game, inst_type, "")
+    ok = await asyncio.to_thread(write_console_game, ssd_id, game, inst_type, "")
     if ok:
         await update.message.reply_text(
             f"✅ <b>{SSD_NAMES.get(ssd_id, ssd_id)}</b> ထဲ <b>\"{game}\"</b> ထည့်ပြီ",
@@ -261,7 +261,7 @@ async def step_ssd_del_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not ssd_id:
         await update.message.reply_text("⚠️ မှန်သော SSD ရွေးပါ:", reply_markup=_ssd_kb())
         return SSD_DEL_SSD
-    rows = [r for r in fetch_console_games() if r["console_id"] == ssd_id]
+    rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
     if not rows:
         await update.message.reply_text(
             f"📀 <b>{SSD_NAMES[ssd_id]}</b> — ဂိမ်း မရှိသေးပါ",
@@ -284,7 +284,7 @@ async def step_ssd_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ssd_id = context.user_data.get("ssd_target", "")
     if text == BTN_BACK:
         return await show_ssd_menu(update, context)
-    rows = [r for r in fetch_console_games() if r["console_id"] == ssd_id]
+    rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
     target = next((r for r in rows if r["game_title"] == text), None)
     if not target:
         await update.message.reply_text("⚠️ ဂိမ်း မတွေ့ပါ — ထပ်ရွေးပါ")
@@ -308,7 +308,7 @@ async def step_ssd_xfer_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not ssd_id:
         await update.message.reply_text("⚠️ မှန်သော SSD ရွေးပါ:", reply_markup=_ssd_kb())
         return SSD_XFER_SSD
-    rows = [r for r in fetch_console_games() if r["console_id"] == ssd_id]
+    rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
     if not rows:
         await update.message.reply_text(
             f"📀 <b>{SSD_NAMES[ssd_id]}</b> — ဂိမ်း မရှိသေးပါ",
@@ -335,7 +335,7 @@ async def step_ssd_xfer_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
             return await prompt_book_game(update, context)
         return await show_ssd_menu(update, context)
     ssd_id = context.user_data.get("ssd_xfer_src", "")
-    rows = [r for r in fetch_console_games() if r["console_id"] == ssd_id]
+    rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
     target = next((r for r in rows if r["game_title"] == text), None)
     if not target:
         await update.message.reply_text("⚠️ ဂိမ်း မတွေ့ပါ — ထပ်ရွေးပါ")
@@ -346,7 +346,7 @@ async def step_ssd_xfer_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if context.user_data.get("ssd_return_to_session"):
         target_cid = context.user_data.get("ssd_xfer_target_cons", "")
         src_lbl    = SSD_NAMES.get(ssd_id, ssd_id)
-        existing   = await asyncio.to_thread(fetch_console_games)
+        existing   = await fetch_console_games_async()
         already    = any(
             r["console_id"].strip().upper() == target_cid.upper()
             and r["game_title"].strip().lower() == text.strip().lower()
@@ -359,9 +359,9 @@ async def step_ssd_xfer_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 parse_mode="HTML",
             )
         else:
-            ok = write_console_game(target_cid, text, "SSD Transfer", f"From {src_lbl}")
+            ok = await asyncio.to_thread(write_console_game, target_cid, text, "SSD Transfer", f"From {src_lbl}")
             if ok:
-                await asyncio.to_thread(remove_console_game, ssd_id, text)
+                await remove_console_game_async(ssd_id, text)
                 await update.message.reply_text(
                     f"✅ <b>\"{text}\"</b> Transfer ပြီးပါပြီ\n"
                     f"📀 {src_lbl} → 🕹️ <b>{target_cid}</b>\n"
@@ -397,7 +397,7 @@ async def step_ssd_xfer_cons(update: Update, context: ContextTypes.DEFAULT_TYPE)
     src_lbl = SSD_NAMES.get(ssd_id, ssd_id)
 
     # ── Duplicate check: game already on target console? ──────────────────────
-    existing = await asyncio.to_thread(fetch_console_games)
+    existing = await fetch_console_games_async()
     already  = any(
         r["console_id"].strip().upper() == cid.upper()
         and r["game_title"].strip().lower() == game.strip().lower()
@@ -411,10 +411,10 @@ async def step_ssd_xfer_cons(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
         return await show_ssd_menu(update, context)
 
-    ok = write_console_game(cid, game, "SSD Transfer", f"From {src_lbl}")
+    ok = await asyncio.to_thread(write_console_game, cid, game, "SSD Transfer", f"From {src_lbl}")
     if ok:
         # ── Move: remove from SSD after writing to console ────────────────────
-        await asyncio.to_thread(remove_console_game, ssd_id, game)
+        await remove_console_game_async(ssd_id, game)
         await update.message.reply_text(
             f"✅ <b>\"{game}\"</b>\n"
             f"📀 {src_lbl} → 🕹️ <b>{cid}</b>\n"
@@ -432,7 +432,7 @@ async def step_ssd_ret_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_ssd_menu(update, context)
     cid  = text
     rows = [
-        r for r in fetch_console_games()
+        r for r in await fetch_console_games_async()
         if r["console_id"].upper() == cid.upper()
         and "SSD Transfer" in r.get("install_type", "")
     ]

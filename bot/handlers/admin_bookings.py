@@ -6,8 +6,8 @@ from telegram.constants import ParseMode
 import logging, re, json
 
 from bot import (
-    CUSTOMER_BOT_TOKEN, _replit_get, _replit_patch,
-    check_disc_session_conflict, get_booking_sh, get_consoles_with_game,
+    CUSTOMER_BOT_TOKEN, _replit_get, _replit_patch, _replit_get_async, _replit_post_async, _replit_patch_async,
+    check_disc_session_conflict, get_booking_sh, get_consoles_with_game, get_consoles_with_game_async,
     now_mmt, show_admin_menu,
 )
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
@@ -25,7 +25,7 @@ import asyncio
 async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from bot.handlers.admin import show_admin_menu
     await update.message.reply_text("⏳ Pending bookings စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-    bookings = _replit_get("bookings?status=pending")
+    bookings = await _replit_get_async("bookings?status=pending")
     if not bookings:
         await update.message.reply_text(
             "✅ *Pending bookings မရှိပါ*",
@@ -148,7 +148,7 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
     
     # Call API to check in
     try:
-        result = _replit_post("bookings/checkin", {"id": bk_id})
+        result = await _replit_post_async("bookings/checkin", {"id": bk_id})
     except Exception as e:
         await query.edit_message_text(f"\u274c *Check-in failed:* {e}", parse_mode="Markdown")
         return
@@ -188,7 +188,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     assigned_console = ""
     install_warn     = ""
     if action == "approve":
-        bk_data      = await asyncio.to_thread(_replit_get, f"bookings/{bk_id}")
+        bk_data      = await _replit_get_async(f"bookings/{bk_id}")
         bk_info      = bk_data or {}
         # Unwrap {"data": {"booking": {...}}} envelope
         if isinstance(bk_info, dict) and bk_info.get("data") and isinstance(bk_info["data"], dict):
@@ -201,7 +201,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         game_name    = (bk_info.get("gameName") or "").strip()
 
         if console_type:
-            consoles_data = await asyncio.to_thread(_replit_get, "sheets/consoles")
+            consoles_data = await _replit_get_async("sheets/consoles")
             consoles      = (consoles_data or {}).get("consoles", []) if consoles_data else []
             free = [c for c in consoles
                     if c.get("type", "").strip() == console_type
@@ -210,7 +210,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             chosen = None
             if free and game_name:
                 # Prefer a free console that already has the game installed
-                consoles_with_game = await asyncio.to_thread(get_consoles_with_game, game_name)
+                consoles_with_game = await get_consoles_with_game_async(game_name)
                 cw_upper  = {c.upper() for c in consoles_with_game}
                 game_free = [c for c in free if c["id"].upper() in cw_upper]
 
@@ -239,8 +239,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 assigned_console        = chosen["id"]
                 import bot as _b; _b._BK_TS = 0.0  # invalidate booking cache so status reflects new reservation
 
-    result = await asyncio.to_thread(
-        _replit_patch,
+    result = await _replit_patch_async(
         f"bookings/{bk_id}/status",
         patch_body,
     )

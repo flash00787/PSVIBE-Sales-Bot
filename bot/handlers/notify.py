@@ -8,7 +8,7 @@ import asyncio
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from bot import (
-    CUSTOMER_BOT_TOKEN, _replit_get, fetch_balance_mins,
+    CUSTOMER_BOT_TOKEN, _replit_get, fetch_balance_mins, fetch_balance_mins_async,
 )
 
 
@@ -53,7 +53,7 @@ async def _check_low_balance_alert(member_id: str, console_id: str) -> None:
     """Wait for Sheet formula to settle, then send low-balance alert to customer."""
     try:
         await asyncio.sleep(7)
-        balance = await asyncio.to_thread(fetch_balance_mins, member_id)
+        balance = await fetch_balance_mins_async(member_id)
         threshold = int(os.environ.get("LOW_BALANCE_THRESHOLD", "120"))
         if balance >= threshold:
             return

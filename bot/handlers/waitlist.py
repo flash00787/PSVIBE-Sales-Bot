@@ -8,20 +8,20 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from bot import (
     BTN_BACK_MAIN, BTN_WL_NOTIFY_NEXT, BTN_WL_REFRESH, BTN_WL_VIEW_ALL,
-    BTN_WL_VIEW_WAITING, MMT, WL_MENU, _replit_delete, _replit_get,
-    _replit_post, show_main_menu,
+    BTN_WL_VIEW_WAITING, MMT, WL_MENU, _replit_delete, _replit_delete_async, _replit_get, _replit_get_async,
+    _replit_post, _replit_post_async, show_main_menu,
 )
 
 
 
 
 
-def _wl_console_availability(console_pref: str) -> dict:
+async def _wl_console_availability(console_pref: str) -> dict:
     """
     Check live console availability for a given console_pref ("PS5", "PS5 Pro", "Any").
     Returns dict: { free: [cid,...], busy: [cid,...], total: int }
     """
-    data = _replit_get("sheets/consoles")
+    data = await _replit_get_async("sheets/consoles")
     consoles = data.get("consoles", []) if data else []
     if console_pref == "Any":
         relevant = consoles
@@ -65,7 +65,7 @@ async def cmd_waitlist_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def _show_wl_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Render waitlist summary + menu keyboard."""
     import asyncio as _asyncio
-    store = await _asyncio.to_thread(_replit_get, "waitlist")
+    store = await _replit_get_async("waitlist")
     rows = store.get("rows", []) if store else []
     waiting   = [r for r in rows if r.get("status") == "waiting"]
     notified  = [r for r in rows if r.get("status") == "notified"]
@@ -98,7 +98,7 @@ async def step_wl_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_main_menu(update, context)
 
     if choice in (BTN_WL_REFRESH, BTN_WL_VIEW_WAITING):
-        store = await _asyncio.to_thread(_replit_get, "waitlist?status=waiting")
+        store = await _replit_get_async("waitlist?status=waiting")
         rows = store.get("rows", []) if store else []
         if not rows:
             await update.message.reply_text("✅ Waitlist ဗလာပါ — ဘယ်သူမှ မစောင့်ဆိုင်းပါ")
@@ -127,7 +127,7 @@ async def step_wl_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return WL_MENU
 
     if choice == BTN_WL_VIEW_ALL:
-        store = await _asyncio.to_thread(_replit_get, "waitlist")
+        store = await _replit_get_async("waitlist")
         rows = store.get("rows", []) if store else []
         if not rows:
             await update.message.reply_text("📂 Waitlist ဗလာပါ")
@@ -160,14 +160,14 @@ async def step_wl_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if choice == BTN_WL_NOTIFY_NEXT:
         # ── Pre-check: get next waiting entry's console_pref, then verify availability ──
-        wl_store = await _asyncio.to_thread(_replit_get, "waitlist?status=waiting")
+        wl_store = await _replit_get_async("waitlist?status=waiting")
         waiting_rows = (wl_store.get("rows", []) if wl_store else [])
         if not waiting_rows:
             await update.message.reply_text("✅ Waitlist ဗလာပါ — Notify မလုပ်ရ")
             return await _show_wl_menu(update, context)
         next_entry = waiting_rows[0]
         next_pref = next_entry.get("console_pref", "Any")
-        avail = await _asyncio.to_thread(_wl_console_availability, next_pref)
+        avail = await _wl_console_availability(next_pref)
         if not avail["free"]:
             pref_label = next_pref if next_pref != "Any" else "Console"
             busy_list = ", ".join(avail["busy"][:4]) if avail["busy"] else "—"
@@ -180,7 +180,7 @@ async def step_wl_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return await _show_wl_menu(update, context)
         # Console free — proceed with notify
-        resp = await _asyncio.to_thread(_replit_post, "waitlist/notify", {})
+        resp = await _replit_post_async("waitlist/notify", {})
         if not resp:
             await update.message.reply_text("❌ Notify မအောင်မြင်ပါ — API error")
         elif not resp.get("notified"):
@@ -217,7 +217,7 @@ async def cb_wl_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if action == "notify":
-        entry_data = await _asyncio.to_thread(_replit_get, f"waitlist/{entry_id}")
+        entry_data = await _replit_get_async(f"waitlist/{entry_id}")
         if not entry_data or entry_data.get("status") != "waiting":
             try:
                 await query.edit_message_text("⚠️ Entry မတွေ့ပါ သို့မဟုတ် status ပြောင်းသွားပြီ")
@@ -227,7 +227,7 @@ async def cb_wl_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         # ── Pre-check: verify console availability for this entry's pref ──
         entry_pref = entry_data.get("console_pref", "Any")
-        avail = await _asyncio.to_thread(_wl_console_availability, entry_pref)
+        avail = await _wl_console_availability(entry_pref)
         if not avail["free"]:
             busy_list = ", ".join(avail["busy"][:4]) if avail["busy"] else "—"
             try:
@@ -243,8 +243,7 @@ async def cb_wl_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 pass
             return
         # Console free — proceed with notify
-        resp = await _asyncio.to_thread(
-            _replit_post, "waitlist/notify",
+        resp = await _replit_post_async("waitlist/notify",
             {"console_id": entry_data.get("console_pref", "")}
         )
         if resp and resp.get("notified"):
@@ -274,7 +273,7 @@ async def cb_wl_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 pass
 
     elif action == "remove":
-        resp = await _asyncio.to_thread(_replit_delete, f"waitlist/{entry_id}")
+        resp = await _replit_delete_async(f"waitlist/{entry_id}")
         if resp and resp.get("ok"):
             try:
                 await query.edit_message_text(f"🗑️ Entry #{entry_id} ကို Waitlist မှ ဖယ်ရှားပြီ")

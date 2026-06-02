@@ -42,6 +42,16 @@ try:
         api_save_attendance, api_add_console_game, api_remove_console_game,
         api_set_game_disc_count, api_update_game_library_install,
         api_add_console_to_setting, api_remove_console_from_setting, api_update_console_multiplier,
+        # ── Async core + WRITE async ──
+        _api_call_async,
+        api_fetch_balance_mins_async, api_fetch_member_tier_async,
+        api_get_consoles_with_game_async, api_get_games_on_console_async,
+        api_add_console_game_async, api_remove_console_game_async,
+        api_end_booking_async, api_cancel_booking_async, api_create_booking_async,
+        api_fetch_promotions_cached_async,
+        api_fetch_games_async, api_fetch_game_library_async,
+        api_fetch_console_games_async, api_set_game_disc_count_async,
+        api_update_game_library_install_async,
     )
     _HAS_API = True
 except ImportError:
@@ -2118,6 +2128,83 @@ def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
         logging.warning("API PUT /%s failed: %s", path, e)
         return None
 
+
+
+# ── Async API helpers ──
+async def _replit_get_async(path: str, timeout: int = 8):
+    """Async GET — same fallback logic as _replit_get but non-blocking."""
+    _list_keywords = (
+        "bookings", "waitlist", "consoles", "inventory",
+        "staff", "games", "members", "logs", "attendance",
+        "accounts", "payments", "salary", "promotions",
+    )
+    is_list_path = (
+        not path.startswith("sheets/")
+        and not path.startswith("finance/")
+        and any(kw in path for kw in _list_keywords)
+    )
+    fallback = [] if is_list_path else {}
+    try:
+        from bot.api_client import _api_call_async
+        data = await _api_call_async("GET", path, timeout=timeout)
+        if data is None:
+            return fallback
+        if is_list_path and isinstance(data, dict) and "data" in data:
+            inner = data["data"]
+            if isinstance(inner, list):
+                return inner
+            if isinstance(inner, dict):
+                for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                    if _list_key in inner and isinstance(inner[_list_key], list):
+                        return inner[_list_key]
+                return inner
+        return data
+    except Exception as e:
+        logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
+        return fallback
+
+
+async def _replit_post_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """Async POST."""
+    try:
+        from bot.api_client import _api_call_async
+        return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API POST /%s failed: %s", path, e)
+        return None
+
+
+async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
+    """Async DELETE."""
+    try:
+        from bot.api_client import _api_call_async
+        return await _api_call_async("DELETE", path, timeout=timeout)
+    except Exception as e:
+        logging.warning("API DELETE /%s failed: %s", path, e)
+        return None
+
+
+async def _replit_patch_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """Async PATCH."""
+    try:
+        from bot.api_client import _api_call_async
+        return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PATCH /%s failed: %s", path, e)
+        return None
+
+
+async def _replit_put_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """Async PUT."""
+    try:
+        from bot.api_client import _api_call_async
+        return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PUT /%s failed: %s", path, e)
+        return None
+
+
+
 def _load_cfg() -> None:
     global _CFG, _CFG_TS
     data = _replit_get("sheets/config")
@@ -2963,3 +3050,324 @@ def prompt_end_session(*args, **kwargs):
     return _get_handler("booking").prompt_end_session(*args, **kwargs)
 def show_stock_menu(*args, **kwargs):
     return _get_handler("stock").show_stock_menu(*args, **kwargs)
+
+
+# ═══════════════════════════════════════════════
+#  ASYNC API HELPERS (True async, no thread pool)
+# ═══════════════════════════════════════════════
+
+async def _replit_get_async(path: str, timeout: int = 8):
+    """Async GET — non-blocking version of _replit_get.
+    Same fallback logic (list vs dict heuristic) for handler backward compat.
+    """
+    _list_keywords = (
+        "bookings", "waitlist", "consoles", "inventory",
+        "staff", "games", "members", "logs", "attendance",
+        "accounts", "payments", "salary", "promotions",
+    )
+    is_list_path = (
+        not path.startswith("sheets/")
+        and not path.startswith("finance/")
+        and any(kw in path for kw in _list_keywords)
+    )
+    fallback = [] if is_list_path else {}
+    try:
+        data = await _api_call_async("GET", path, timeout=timeout)
+        if data is None:
+            return fallback
+        if is_list_path and isinstance(data, dict) and "data" in data:
+            inner = data["data"]
+            if isinstance(inner, list):
+                return inner
+            if isinstance(inner, dict):
+                for _lk in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                    if _lk in inner and isinstance(inner[_lk], list):
+                        return inner[_lk]
+                return inner
+        return data
+    except Exception as e:
+        logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
+        return fallback
+
+async def _replit_post_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async POST — non-blocking version of _replit_post."""
+    try:
+        return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API POST /%s failed: %s", path, e)
+        return None
+
+async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
+    """Async DELETE — non-blocking version of _replit_delete."""
+    try:
+        return await _api_call_async("DELETE", path, timeout=timeout)
+    except Exception as e:
+        logging.warning("API DELETE /%s failed: %s", path, e)
+        return None
+
+async def _replit_patch_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PATCH — non-blocking version of _replit_patch."""
+    try:
+        return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PATCH /%s failed: %s", path, e)
+        return None
+
+async def _replit_put_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PUT — non-blocking version of _replit_put."""
+    try:
+        return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PUT /%s failed: %s", path, e)
+        return None
+
+
+# ── Async version of wrapper functions used by handlers ──
+# These delegate to api_client._api_call_async with the same endpoints
+# as their sync counterparts but without thread-pool overhead.
+
+async def fetch_console_status_async() -> list[dict]:
+    return await _replit_get_async("fetch_console_status")
+
+async def end_booking_async(booking_id: str) -> bool:
+    result = await _replit_post_async(f"bookings/{booking_id}/end", {})
+    return result is not None
+
+async def create_booking_async(console_id: str, member_id: str, staff: str, notes: str = "",
+                                planned_end: str = "") -> str:
+    payload = {"console_id": console_id, "member_id": member_id, "staff": staff,
+               "notes": notes, "planned_end": planned_end}
+    result = await _replit_post_async("bookings", payload)
+    if result and isinstance(result, dict):
+        return result.get("data", {}).get("booking_id", "") or result.get("booking_id", "")
+    return ""
+
+async def cancel_booking_async(booking_id: str) -> bool:
+    result = await _replit_post_async(f"bookings/{booking_id}/cancel", {})
+    return result is not None
+
+async def fetch_games_async() -> list[dict]:
+    return await _replit_get_async("fetch_games")
+
+async def fetch_console_games_async() -> list[dict]:
+    return await _replit_get_async("fetch_console_games")
+
+async def get_games_on_console_async(console_id: str) -> list[str]:
+    return await _replit_get_async(f"get_games_on_console/{console_id}")
+
+async def get_consoles_with_game_async(game_title: str = "") -> list[str]:
+    if game_title:
+        return await _replit_get_async(f"get_consoles_with_game?game_title={game_title}")
+    return await _replit_get_async("get_consoles_with_game")
+
+async def add_console_game_async(console_id: str, game_title: str,
+                                  install_type: str = "", notes: str = "") -> bool:
+    result = await _replit_post_async("console-games", {
+        "console_id": console_id, "game_title": game_title,
+        "install_type": install_type, "notes": notes,
+    })
+    return result is not None
+
+async def remove_console_game_async(console_id: str, game_title: str) -> bool:
+    result = await _replit_post_async("console-games/remove", {
+        "console_id": console_id, "game_title": game_title,
+    })
+    return result is not None
+
+async def set_game_disc_count_async(row_num: int, count: int) -> bool:
+    result = await _replit_post_async("games/disc-count", {
+        "row_num": row_num, "count": count,
+    })
+    return result is not None
+
+async def update_game_library_install_async(game_title: str, console_id: str,
+                                              installed: bool) -> bool:
+    result = await _replit_post_async("game-library/install", {
+        "game_title": game_title, "console_id": console_id, "installed": installed,
+    })
+    return result is not None
+
+
+# ── Short-name aliases for backward compat ──
+# Handlers import from bot (not bot.api_client), so we alias the api_*_async names
+fetch_members_async = api_fetch_members_async
+fetch_base_rate_async = api_fetch_base_rate_async
+fetch_food_prices_async = api_fetch_food_prices_async
+fetch_food_costs_async = api_fetch_food_costs_async
+fetch_console_multiplier_async = api_fetch_console_multiplier_async
+fetch_allowed_staff_ids_async = api_fetch_allowed_staff_ids_async
+fetch_wallet_mins_async = api_fetch_wallet_mins_async
+fetch_balance_mins_async = api_fetch_balance_mins_async
+fetch_member_tier_async = api_fetch_member_tier_async
+fetch_member_data_async = api_fetch_member_data_async
+fetch_promotions_cached_async = api_fetch_promotions_cached_async
+
+
+# ═══════════════════════════════════════════════════
+#  Async wrappers — true async (no to_thread overhead)
+# ═══════════════════════════════════════════════════
+
+async def fetch_console_status_async() -> list[dict]:
+    """Async: Fetch console status list."""
+    if _HAS_API:
+        return await _replit_get_async("fetch_console_status")
+    return await asyncio.to_thread(lambda: _replit_get("fetch_console_status"))
+
+
+async def fetch_games_async() -> list:
+    """Async: Fetch games list."""
+    return await _replit_get_async("fetch_games")
+
+
+async def fetch_game_library_async() -> list:
+    """Async: Fetch game library."""
+    return await _replit_get_async("fetch_game_library")
+
+
+async def fetch_console_games_async() -> list:
+    """Async: Fetch console-games mapping."""
+    return await _replit_get_async("fetch_console_games")
+
+
+async def get_games_on_console_async(console_id: str) -> list:
+    """Async: Get games installed on a specific console."""
+    return await _replit_get_async(f"get_games_on_console/{console_id}")
+
+
+async def get_consoles_with_game_async(game_title: str) -> list:
+    """Async: Find which consoles have a given game."""
+    return await _replit_get_async(f"get_consoles_with_game?game_title={game_title}")
+
+
+async def create_booking_async(
+    console_id: str, member_id: str, staff: str,
+    notes: str = "", planned_end: str = "",
+) -> dict | None:
+    """Async: Create a new console booking."""
+    payload = {"console_id": console_id, "member_id": member_id, "staff": staff, "notes": notes}
+    if planned_end:
+        payload["planned_end"] = planned_end
+    return await _replit_post_async("create_booking", payload)
+
+
+async def end_booking_async(booking_id: str) -> dict | None:
+    """Async: End a booking."""
+    return await _replit_put_async(f"end_booking/{booking_id}", {})
+
+
+async def cancel_booking_async(booking_id: str) -> dict | None:
+    """Async: Cancel a booking."""
+    return await _replit_put_async(f"cancel_booking/{booking_id}", {})
+
+
+async def add_console_game_async(
+    console_id: str, game_title: str, install_type: str, notes: str = "",
+) -> dict | None:
+    """Async: Add a game to a console."""
+    return await _replit_post_async(
+        "add_console_game",
+        {"console_id": console_id, "game_title": game_title, "install_type": install_type, "genre": "", "notes": notes},
+    )
+
+
+async def remove_console_game_async(console_id: str, game_title: str) -> dict | None:
+    """Async: Remove a game from a console."""
+    return await _replit_delete_async(
+        "remove_console_game",
+        {"console_id": console_id, "game_title": game_title},
+    )
+
+
+async def set_game_disc_count_async(row_num: int, count: int) -> dict | None:
+    """Async: Set disc count for a game library row."""
+    return await _replit_put_async(
+        "set_game_disc_count",
+        {"row_num": row_num, "count": count},
+    )
+
+
+async def update_game_library_install_async(game_title: str, console_id: str, installed: bool) -> dict | None:
+    """Async: Toggle install status for a game on a console."""
+    return await _replit_put_async(
+        "update_game_library_install",
+        {"game_title": game_title, "console_id": console_id, "installed": installed},
+    )
+
+
+async def fetch_rank_thresholds_async():
+    """Async: Fetch rank thresholds."""
+    if _HAS_API:
+        result = await api_client.api_fetch_rank_thresholds_async()
+        if result is not None:
+            return _int(result.get("master_threshold", 0)), _int(result.get("immortal_threshold", 0))
+        logging.warning("API api_fetch_rank_thresholds_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_rank_thresholds)
+
+
+async def fetch_new_member_defaults_async():
+    """Async: Fetch new member defaults."""
+    if _HAS_API:
+        result = await api_client.api_fetch_new_member_defaults_async()
+        if result is not None:
+            if isinstance(result, dict):
+                return result.get("card_price", 0), result.get("base_mins", 0)
+            return result
+        logging.warning("API api_fetch_new_member_defaults_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_new_member_defaults)
+
+
+async def fetch_member_data_async(member_id: str) -> dict:
+    """Async: Fetch member data."""
+    if _HAS_API:
+        result = await api_client.api_fetch_member_data_async(member_id)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_member_data_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_member_data, member_id)
+
+
+async def fetch_staff_async() -> list:
+    """Async: Fetch staff list."""
+    return await _replit_get_async("fetch_staff")
+
+
+async def fetch_bonus_table_async():
+    """Async: Fetch bonus table."""
+    if _HAS_API:
+        result = await api_client.api_fetch_bonus_table_async()
+        if result is not None:
+            if result and isinstance(result, list):
+                converted = []
+                for row in result:
+                    t = int(row.get("threshold", 0) or 0)
+                    w = int(row.get("warrior_bonus", 0) or 0)
+                    m = int(row.get("master_bonus", 0) or 0)
+                    i = int(row.get("immortal_bonus", 0) or 0)
+                    if t > 0 or w or m or i:
+                        converted.append((t, w, m, i))
+                return converted
+            return result
+        logging.warning("API api_fetch_bonus_table_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_bonus_table)
+
+
+async def fetch_member_tier_async(member_id: str) -> str:
+    """Async: Fetch member tier."""
+    if _HAS_API:
+        result = await api_client.api_fetch_member_tier_async(member_id)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_member_tier_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_member_tier, member_id)
+
+
+async def fetch_balance_mins_async(member_id: str) -> int:
+    """Async: Fetch balance minutes."""
+    if _HAS_API:
+        result = await api_client.api_fetch_balance_mins_async(member_id)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_balance_mins_async() failed, falling back to gspread")
+    return await asyncio.to_thread(fetch_balance_mins, member_id)
+
+from bot.handlers.sales import launch_session_sale

@@ -455,6 +455,410 @@ async def api_fetch_new_member_defaults_async() -> dict | None:
     return await _api_call_async("GET", "fetch_new_member_defaults")
 
 
+
+# ===================================================================
+#  GET  endpoints (async) — continued
+# ===================================================================
+
+
+async def api_health_async() -> dict | None:
+    """Async: Check API server health."""
+    return await _api_call_async("GET", "health")
+
+
+async def api_fetch_balance_mins_async(member_id: str) -> dict | None:
+    """Async: Fetch remaining balance minutes for a member."""
+    return await _api_call_async("GET", f"fetch_balance_mins/{member_id}")
+
+
+async def api_fetch_member_tier_async(member_id: str) -> dict | None:
+    """Async: Fetch tier/rank info for a member."""
+    return await _api_call_async("GET", f"fetch_member_tier/{member_id}")
+
+
+async def api_fetch_staff_async() -> list | None:
+    """Async: Fetch staff list (raw)."""
+    return await _api_call_async("GET", "fetch_staff")
+
+
+async def api_fetch_staff_names_async() -> list | None:
+    """Async: Fetch display-friendly staff names."""
+    return await _api_call_async("GET", "fetch_staff_names")
+
+
+async def api_fetch_games_async() -> dict | None:
+    """Async: Fetch games list."""
+    return await _api_call_async("GET", "fetch_games")
+
+
+async def api_fetch_game_library_async() -> dict | None:
+    """Async: Fetch full game library."""
+    return await _api_call_async("GET", "fetch_game_library")
+
+
+async def api_fetch_console_games_async() -> dict | None:
+    """Async: Fetch all console-games mapping."""
+    return await _api_call_async("GET", "fetch_console_games")
+
+
+async def api_get_games_on_console_async(console_id: str) -> dict | None:
+    """Async: Get games installed on a specific console."""
+    return await _api_call_async("GET", f"get_games_on_console/{console_id}")
+
+
+async def api_get_consoles_with_game_async(game_title: str | None = None) -> dict | None:
+    """Async: Search which consoles have a given game installed."""
+    params = {}
+    if game_title:
+        params["game_title"] = game_title
+    return await _api_call_async("GET", "get_consoles_with_game", params=params)
+
+
+async def api_fetch_rank_table_display_async() -> dict | None:
+    """Async: Fetch formatted rank table for display."""
+    return await _api_call_async("GET", "fetch_rank_table_display")
+
+
+async def api_fetch_alltime_effective_rate_async() -> dict | None:
+    """Async: Fetch the all-time effective rate."""
+    return await _api_call_async("GET", "fetch_alltime_effective_rate")
+
+
+async def api_fetch_member_effective_rate_async(member_id: str) -> dict | None:
+    """Async: Fetch effective rate for a specific member."""
+    return await _api_call_async("GET", f"fetch_member_effective_rate/{member_id}")
+
+
+async def api_build_member_rate_dict_async() -> dict | None:
+    """Async: Build a dict of member_id -> effective_rate."""
+    return await _api_call_async("GET", "build_member_rate_dict")
+
+
+async def api_fetch_base_salaries_async() -> dict | None:
+    """Async: Fetch staff base salary table."""
+    return await _api_call_async("GET", "fetch_base_salaries")
+
+
+async def api_fetch_attendance_async(month_str: str) -> dict | None:
+    """Async: Fetch attendance log for a given month (e.g. '5/2026')."""
+    return await _api_call_async("GET", f"fetch_attendance/{month_str}")
+
+
+async def api_fetch_salary_advances_async(month_str: str) -> dict | None:
+    """Async: Fetch salary advance log for a given month."""
+    return await _api_call_async("GET", f"fetch_salary_advances/{month_str}")
+
+
+async def api_fetch_promotions_cached_async() -> dict | None:
+    """Async: Fetch cached promotions."""
+    return await _api_call_async("GET", "fetch_promotions_cached")
+
+
+async def api_next_voucher_async() -> dict | None:
+    """Async: Get the next available voucher number."""
+    return await _api_call_async("GET", "next_voucher")
+
+
+async def api_next_member_id_async() -> dict | None:
+    """Async: Get the next auto-generated member ID."""
+    return await _api_call_async("GET", "next_member_id")
+
+
+async def api_next_member_row_no_async() -> dict | None:
+    """Async: Get the next available member row number."""
+    return await _api_call_async("GET", "next_member_row_no")
+
+
+async def api_fetch_referral_code_async(member_id: str) -> dict | None:
+    """Async: Fetch the referral code for a member."""
+    return await _api_call_async("GET", f"fetch_referral_code/{member_id}")
+
+
+async def api_fetch_sheets_config_async() -> dict | None:
+    """Async: Fetch spreadsheet configuration metadata."""
+    return await _api_call_async("GET", "sheets/config")
+
+
+# ===================================================================
+#  POST / PUT / DELETE endpoints (async)
+# ===================================================================
+
+
+async def api_create_booking_async(
+    console_id: str,
+    member_id: str,
+    staff: str,
+    notes: str = "",
+    planned_end: str = "",
+) -> dict | None:
+    """Async: Create a new console booking."""
+    payload: dict = {
+        "console_id": console_id,
+        "member_id": member_id,
+        "staff": staff,
+        "notes": notes,
+    }
+    if planned_end:
+        payload["planned_end"] = planned_end
+    return await _api_call_async("POST", "create_booking", json_data=payload)
+
+
+async def api_save_attendance_async(
+    month_str: str,
+    staff: str,
+    leave_days: int = 0,
+    late_count: int = 0,
+    deduct_per_late: int = 500,
+) -> dict | None:
+    """Async: Save or update a staff attendance record."""
+    return await _api_call_async(
+        "POST",
+        "save_attendance",
+        json_data={
+            "staff": staff,
+            "staff_name": staff,
+            "status": "Present",
+            "leave_days": leave_days,
+            "late_count": late_count,
+            "deduct_per_late": deduct_per_late,
+        },
+    )
+
+
+async def api_save_receipt_json_async(voucher_id: str, data: dict) -> dict | None:
+    """Async: Persist receipt JSON data via the API."""
+    return await _api_call_async(
+        "POST",
+        "save_receipt_json",
+        json_data={"voucher_id": voucher_id, "data": data},
+    )
+
+
+async def api_add_console_game_async(
+    console_id: str,
+    game_title: str,
+    install_type: str,
+    notes: str = "",
+) -> dict | None:
+    """Async: Add a game installation record to a console."""
+    return await _api_call_async(
+        "POST",
+        "add_console_game",
+        json_data={
+            "console_id": console_id,
+            "game_title": game_title,
+            "install_type": install_type,
+            "genre": "",
+            "notes": notes,
+        },
+    )
+
+
+async def api_save_referral_code_async(member_id: str, code: str) -> dict | None:
+    """Async: Save/update a member's referral code."""
+    return await _api_call_async(
+        "POST",
+        "save_referral_code",
+        json_data={"member_id": member_id, "code": code},
+    )
+
+
+async def api_add_console_to_setting_async(
+    console_id: str,
+    ctype: str,
+    multiplier: float = 1.0,
+) -> dict | None:
+    """Async: Add a new console entry to the Setting sheet."""
+    return await _api_call_async(
+        "POST",
+        "add_console_to_setting",
+        json_data={
+            "console_id": console_id,
+            "ctype": ctype,
+            "multiplier": multiplier,
+        },
+    )
+
+
+async def api_end_booking_async(booking_id: str) -> dict | None:
+    """Async: Mark a booking as Done and record the end time."""
+    return await _api_call_async("PUT", f"end_booking/{booking_id}")
+
+
+async def api_cancel_booking_async(booking_id: str) -> dict | None:
+    """Async: Cancel an active booking."""
+    return await _api_call_async("PUT", f"cancel_booking/{booking_id}")
+
+
+async def api_set_game_disc_count_async(row_num: int, count: int) -> dict | None:
+    """Async: Update the available-disc count for a game library row."""
+    return await _api_call_async(
+        "PUT",
+        "set_game_disc_count",
+        json_data={"row_num": row_num, "count": count},
+    )
+
+
+async def api_update_game_library_install_async(
+    game_title: str,
+    console_id: str,
+    installed: bool,
+) -> dict | None:
+    """Async: Toggle the install checkbox for a game on a console."""
+    return await _api_call_async(
+        "PUT",
+        "update_game_library_install",
+        json_data={
+            "game_title": game_title,
+            "console_id": console_id,
+            "installed": installed,
+        },
+    )
+
+
+async def api_update_member_effective_rate_async(
+    member_id: str,
+    new_rate: float,
+) -> dict | None:
+    """Async: Update the effective rate for a member."""
+    return await _api_call_async(
+        "PUT",
+        "update_member_effective_rate",
+        json_data={"member_id": member_id, "rate": new_rate},
+    )
+
+
+async def api_remove_console_game_async(console_id: str, game_title: str) -> dict | None:
+    """Async: Remove a game installation from a console."""
+    return await _api_call_async(
+        "DELETE",
+        "remove_console_game",
+        json_data={"console_id": console_id, "game_title": game_title},
+    )
+
+
+async def api_remove_console_from_setting_async(console_id: str) -> dict | None:
+    """Async: Remove a console entry from the Setting sheet."""
+    return await _api_call_async("DELETE", f"remove_console_from_setting/{console_id}")
+
+
+async def api_update_console_multiplier_async(console_id: str, multiplier: float) -> dict | None:
+    """Async: Update rate multiplier for an existing console."""
+    return await _api_call_async(
+        "PUT",
+        f"update_console_multiplier/{console_id}",
+        json_data={"multiplier": multiplier},
+    )
+
+
+async def api_add_opex_async(data: dict) -> dict | None:
+    """Async: Add an operational expense record."""
+    return await _api_call_async("POST", "finance/opex", json_data=data)
+
+
+async def api_add_salary_advance_async(data: dict) -> dict | None:
+    """Async: Add a salary advance record."""
+    return await _api_call_async("POST", "staff/salary-advance", json_data=data)
+
+
+async def api_add_member_async(data: dict) -> dict | None:
+    """Async: Register a new member."""
+    return await _api_call_async("POST", "members/register", json_data=data)
+
+
+# ── Finance Read (MySQL API) async ──
+async def api_fetch_finance_opex_async() -> dict | None:
+    """Async: Fetch OPEX records from MySQL via API."""
+    return await _api_call_async("GET", "finance/opex")
+
+
+async def api_fetch_finance_assets_async() -> dict | None:
+    """Async: Fetch asset records from MySQL via API."""
+    return await _api_call_async("GET", "finance/assets")
+
+
+async def api_fetch_finance_prepaid_async() -> dict | None:
+    """Async: Fetch prepaid expense records from MySQL via API."""
+    return await _api_call_async("GET", "finance/prepaid")
+
+
+async def api_fetch_finance_payables_async() -> dict | None:
+    """Async: Fetch payable records from MySQL via API."""
+    return await _api_call_async("GET", "finance/payables")
+
+
+async def api_fetch_finance_receivables_async() -> dict | None:
+    """Async: Fetch receivable records from MySQL via API."""
+    return await _api_call_async("GET", "finance/receivables")
+
+
+async def api_fetch_finance_advances_async() -> dict | None:
+    """Async: Fetch advance payment records from MySQL via API."""
+    return await _api_call_async("GET", "finance/advances")
+
+
+async def api_fetch_finance_accounts_async() -> dict | None:
+    """Async: Fetch accounts list from MySQL via API."""
+    return await _api_call_async("GET", "finance/accounts")
+
+
+# ── Finance Write (MySQL API) async ──
+async def api_add_asset_async(data: dict) -> dict | None:
+    """Async: Create asset record via MySQL API."""
+    return await _api_call_async("POST", "finance/assets", json_data=data)
+
+
+async def api_add_prepaid_async(data: dict) -> dict | None:
+    """Async: Create prepaid expense record via MySQL API."""
+    return await _api_call_async("POST", "finance/prepaid", json_data=data)
+
+
+async def api_add_payable_async(data: dict) -> dict | None:
+    """Async: Create payable record via MySQL API."""
+    return await _api_call_async("POST", "finance/payables", json_data=data)
+
+
+async def api_add_receivable_async(data: dict) -> dict | None:
+    """Async: Create receivable record via MySQL API."""
+    return await _api_call_async("POST", "finance/receivables", json_data=data)
+
+
+async def api_add_advance_async(data: dict) -> dict | None:
+    """Async: Create advance payment record via MySQL API."""
+    return await _api_call_async("POST", "finance/advances", json_data=data)
+
+
+async def api_update_finance_asset_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance asset record."""
+    return await _api_call_async("PUT", f"finance/assets/{item_id}", json_data=data)
+
+
+async def api_update_finance_payable_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance payable record."""
+    return await _api_call_async("PUT", f"finance/payables/{item_id}", json_data=data)
+
+
+async def api_update_finance_receivable_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance receivable record."""
+    return await _api_call_async("PUT", f"finance/receivables/{item_id}", json_data=data)
+
+
+async def api_update_finance_opex_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance opex record."""
+    return await _api_call_async("PUT", f"finance/opex/{item_id}", json_data=data)
+
+
+async def api_update_finance_prepaid_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance prepaid record."""
+    return await _api_call_async("PUT", f"finance/prepaid/{item_id}", json_data=data)
+
+
+async def api_update_finance_advance_async(item_id: int, data: dict) -> dict | None:
+    """Async: Update a finance advance record."""
+    return await _api_call_async("PUT", f"finance/advances/{item_id}", json_data=data)
+
+
+
 # ===================================================================
 #  POST endpoints
 # ===================================================================
