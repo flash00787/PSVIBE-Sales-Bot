@@ -2409,7 +2409,7 @@ def fetch_food_prices():
 async def fetch_food_prices_async():
     """Async version - hot-path: called on every sales flow."""
     if _HAS_API:
-        result = await api_client.api_fetch_food_prices_async()
+        result = await api_fetch_food_prices_async()
         if result is not None and result:
             return result
         if result is not None and not result:
@@ -2439,7 +2439,7 @@ def fetch_food_costs():
 async def fetch_food_costs_async():
     """Async version - hot-path: called on every sales flow."""
     if _HAS_API:
-        result = await api_client.api_fetch_food_costs_async()
+        result = await api_fetch_food_costs_async()
         if result is not None and result:
             return result
         if result is not None and not result:
@@ -3191,7 +3191,22 @@ async def cancel_booking_async(booking_id: str) -> bool:
     return result is not None
 
 async def fetch_games_async() -> list[dict]:
-    return await _replit_get_async("fetch_games")
+    """Async version — maps API game_title → title for handler compatibility."""
+    data = await _replit_get_async("fetch_games")
+    if isinstance(data, dict) and "games" in data:
+        raw_games = data["games"]
+    elif isinstance(data, list):
+        raw_games = data
+    else:
+        return []
+    return [{
+        "row":        i + 2,
+        "title":      g.get("game_title", ""),
+        "status":     g.get("final_status", ""),
+        "discs":      str(g.get("disc_count", "")),
+        "solo_multi": g.get("solo_multi", ""),
+        "genre":      g.get("genre", ""),
+    } for i, g in enumerate(raw_games) if isinstance(g, dict)]
 
 async def fetch_console_games_async() -> list[dict]:
     return await _replit_get_async("fetch_console_games")
@@ -3236,8 +3251,6 @@ async def update_game_library_install_async(game_title: str, console_id: str,
 # Handlers import from bot (not bot.api_client), so we alias the api_*_async names
 fetch_members_async = api_fetch_members_async
 fetch_base_rate_async = api_fetch_base_rate_async
-fetch_food_prices_async = api_fetch_food_prices_async
-fetch_food_costs_async = api_fetch_food_costs_async
 fetch_console_multiplier_async = api_fetch_console_multiplier_async
 fetch_allowed_staff_ids_async = api_fetch_allowed_staff_ids_async
 fetch_wallet_mins_async = api_fetch_wallet_mins_async

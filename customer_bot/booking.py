@@ -76,9 +76,14 @@ async def cmd_mybookings(update, context):
     )
 
     try:
-        data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
-        if isinstance(data, dict) and "bookings" in data:
-            data = data["bookings"]
+        raw_data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
+        if isinstance(raw_data, dict) and "bookings" in raw_data:
+            data = raw_data["bookings"]
+        elif isinstance(raw_data, list):
+            data = raw_data
+        else:
+            logger.warning("cmd_mybookings: unexpected response format: %s", type(raw_data))
+            data = []
         if not isinstance(data, list):
             data = []
     except Exception as e:
@@ -86,8 +91,8 @@ async def cmd_mybookings(update, context):
         await update.message.reply_text(NO_BOOKINGS_MSG)
         return
 
-    # Filter by status first
-    valid_statuses = ("pending", "confirmed", "scheduled")
+    # Filter by status first — include 'active' status as well (staff-scheduled sessions show as Active)
+    valid_statuses = ("pending", "confirmed", "scheduled", "active")
     all_active = [b for b in data if str(b.get("status", "")).lower() in valid_statuses]
 
     if not all_active:

@@ -221,19 +221,21 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             stock_map = {}
         context.user_data["food_stock_map"] = stock_map
 
-    # Check if stock_map has any positive stock; if not, show warning and show all items
-    has_any_stock = any(v > 0 for v in stock_map.values()) if stock_map else False
-    if not has_any_stock:
-        await update.message.reply_text(
-            "\u26a0\ufe0f stock \u101c\u1000\u103a\u1000\u103b\u1014\u103a\u1019\u101b\u103e\u102d\u1015\u102b \u2014 \u1015\u1005\u1039\u1005\u100a\u103a\u1038\u1021\u102c\u1038\u101c\u102f\u1036\u1038\u1015\u103c\u1019\u100a\u1037\u103a",
-            reply_markup=ReplyKeyboardRemove(),
-        )
-        return await cmd_cancel(update, context)
-    elif stock_map:
-        # Filter out items with zero stock
-        prices = {k: v for k, v in prices.items()
-                  if stock_map.get(k, 1) > 0}
-        context.user_data["food_prices"] = prices
+    # Check if stock_map has any positive stock
+    if stock_map:
+        # Stock data is available — filter out items with zero stock
+        if any(v > 0 for v in stock_map.values()):
+            prices = {k: v for k, v in prices.items()
+                      if stock_map.get(k, 1) > 0}
+            context.user_data["food_prices"] = prices
+        else:
+            # Stock data available but everything is out of stock — cancel
+            await update.message.reply_text(
+                "\u26a0\ufe0f stock \u101c\u1000\u103a\u1000\u103b\u1014\u103a\u1019\u101b\u103e\u102d\u1015\u102b \u2014 \u1015\u1005\u1039\u1005\u100a\u103a\u1038\u1021\u102c\u1038\u101c\u102f\u1036\u1038\u1015\u103c\u1019\u100a\u1037\u103a",
+                reply_markup=ReplyKeyboardRemove(),
+            )
+            return await cmd_cancel(update, context)
+    # If stock_map is empty (no stock data available), show all items without filtering
 
     # If prices empty after stock filter, return gracefully to main menu
     if not prices:
