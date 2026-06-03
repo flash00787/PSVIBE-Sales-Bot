@@ -13,6 +13,7 @@ from bot import (
     prompt_book_console,
 )
 
+from bot.api_client import api_fetch_console_status_async
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
@@ -27,7 +28,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     """Show live console status — uses API (Sheet + PostgreSQL reservations)."""
     await update.message.reply_text("⏳ Console status ဆွဲနေသည်…", parse_mode="Markdown")
 
-    data = await _replit_get_async("sheets/consoles")
+    data = await api_fetch_console_status_async()
     api_consoles = (data.get("consoles", []) if isinstance(data, dict) else (data if isinstance(data, list) else []))
 
     if not api_consoles:
