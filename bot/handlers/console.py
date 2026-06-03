@@ -110,21 +110,36 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             since  = f" since {c['startTime']}" if c.get("startTime") else ""
             detail = f"Active — {mbr}{since}"
 
-        # Installed games on this console (excluding SSD-transferred ones shown separately)
+        # Installed games on this console (truncated: 3 shown + '+N more' to stay under 4096 chars)
         installed = [
             r["game_title"] for r in fetch_console_games()
-            if r["console_id"].upper() == cid.upper() and r["game_title"]
+            if r.get("console_id","").upper() == cid.upper() and r.get("game_title")
         ]
         game_str = ""
         if installed:
-            game_str = f"\n    🎮 {' · '.join(installed)}"
+            show = installed[:3]
+            game_str = "\n    🎮 " + " · ".join(show)
+            if len(installed) > 3:
+                game_str += f"  +{len(installed) - 3} more"
 
         lines.append(f"{icon} *{cid}*{ctype_str}: {detail}{game_str}")
 
-    await update.message.reply_text(
-        "\n".join(lines),
-        parse_mode="Markdown",
-    )
+    full_msg = "\n".join(lines)
+    if len(full_msg) > 4000:
+        chunks = []
+        current = ""
+        for line in lines:
+            if len(current) + len(line) + 1 > 4000 and current:
+                chunks.append(current)
+                current = line
+            else:
+                current = current + "\n" + line if current else line
+        if current:
+            chunks.append(current)
+        for chunk in chunks:
+            await update.message.reply_text(chunk, parse_mode="Markdown")
+    else:
+        await update.message.reply_text(full_msg, parse_mode="Markdown")
 
 async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Console Management submenu — accessible from Main Menu and Admin Panel."""
