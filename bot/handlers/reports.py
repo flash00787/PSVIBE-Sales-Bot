@@ -26,7 +26,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return
-    items = data.get("data", {}).get("items", [])
+    items = data.get("items", [])
     STATUS_EMOJI = {
         "In Stock":     "🟢",
         "Low Stock":    "🟡",
@@ -66,7 +66,7 @@ async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not data:
         await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
         return
-    items = data.get("data", {}).get("items", [])
+    items = data.get("items", [])
     if not items:
         await update.message.reply_text("ℹ️ ဒီနေ့ ပစ္စည်းများ မရောင်းရသေးပါ။")
         return
