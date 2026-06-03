@@ -1143,7 +1143,6 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     discount = d.get("discount", 0)
 
     # ── Pre-compute (lightweight sync) ────────────────────────────
-    s_row      = next_write_row(sales_sh)   # reserve row before background write
     staff_name = d.get("staff", "")
     food_costs = await fetch_food_costs_async()
     food_sold  = list(d.get("food_items", []))
@@ -1287,9 +1286,10 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         def _do():
             # Col N = wallet_deduct_mins (effective_cost_mins for members, blank for guests)
             _w_deduct = 0 if (not _m_id or _m_id.strip() in ("", "0 (Guest)")) else wallet_deduct
-            # ── API write (best-effort, non-blocking) ──
+            # ── Sales record: API first ──
+            _sales_api_ok = False
             try:
-                api_add_sales_record({
+                _result = _replit_post("sales/record", {
                     "date": today,
                     "voucher_no": v_no,
                     "member_id": _m_id,
@@ -1304,22 +1304,26 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "wallet_deduct": _w_deduct,
                     "staff": staff_name,
                 })
+                _sales_api_ok = _result and _result.get("success")
             except Exception as e:
-                logging.warning("Sales API write failed (GSheet fallback OK): %s", e)
+                logging.warning("Sales API failed, falling back to GSheet: %s", e)
 
-            sales_sh.batch_update(
-                [{"range": f"A{s_row}:K{s_row}",
-                  "values": [[today, v_no, _m_id, c_id, play_mins,
-                              game_amt, food_total, _disc, net_total, kpay, cash]]},
-                 {"range": f"N{s_row}", "values": [[_w_deduct if _w_deduct else ""]]},
-                 {"range": f"O{s_row}", "values": [[staff_name]]}],
-                value_input_option="USER_ENTERED",
-            )
+            if not _sales_api_ok:
+                s_row = next_write_row(sales_sh)
+                sales_sh.batch_update(
+                    [{"range": f"A{s_row}:K{s_row}",
+                      "values": [[today, v_no, _m_id, c_id, play_mins,
+                                  game_amt, food_total, _disc, net_total, kpay, cash]]},
+                     {"range": f"N{s_row}", "values": [[_w_deduct if _w_deduct else ""]]},
+                     {"range": f"O{s_row}", "values": [[staff_name]]}],
+                    value_input_option="USER_ENTERED",
+                )
             for item in food_sold:
                 cp = food_costs.get(item["name"], 0)
-                # ── API write for stock-out (best-effort) ──
+                # ── Stock-out: API first ──
+                _stockout_api_ok = False
                 try:
-                    api_add_stock_out({
+                    _result = _replit_post("stock-out/log", {
                         "date": today,
                         "voucher_no": v_no,
                         "item_name": item["name"],
@@ -1329,13 +1333,16 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "cost_price": cp,
                         "cost_total": cp * item["qty"],
                     })
+                    _stockout_api_ok = _result and _result.get("success")
                 except Exception as e:
-                    logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
-                stock_sh.append_row(
-                    [today, v_no, item["name"], item["qty"],
-                     item.get("unit_price", 0), item.get("subtotal", 0), cp, cp * item["qty"]],
-                    value_input_option="USER_ENTERED",
-                )
+                    logging.warning("Stock-out API failed, falling back to GSheet: %s", e)
+
+                if not _stockout_api_ok:
+                    stock_sh.append_row(
+                        [today, v_no, item["name"], item["qty"],
+                         item.get("unit_price", 0), item.get("subtotal", 0), cp, cp * item["qty"]],
+                        value_input_option="USER_ENTERED",
+                    )
             if food_sold:
                 _lazy_update_inv_total_k1()
                 try: _replit_get("stock/current?nocache=1")
@@ -1355,45 +1362,45 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "net_total":    net_total,
                     "staff":        staff_name,
                 })
-            # ── Wallet deduction: MySQL API (separate from GSheet) ────────
-            if not is_guest and _w_deduct > 0 and _m_id not in ("-", "0 (Guest)"):
-                # Google Sheets wallet deduction (graceful if fails)
-                try:
-                    _wallet_rows = member_sh.get_all_values()
-                    for _wi, _wr in enumerate(_wallet_rows):
-                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
-                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
-                            _new_bal = max(0, _cur_bal - _w_deduct)
-                            member_sh.update_cell(_wi + 1, 8, _new_bal)
-                            _current_j = int(str(_wr[9]).replace(",", "").strip() or 0)
-                            member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
-                            logging.info("wallet_deduct: %s -%d mins -> %d (GSheet)", _m_id, _w_deduct, _new_bal)
-                            break
-                except Exception as _be:
-                    logging.warning("wallet_deduct GSheet failed (non-critical): %s", _be)
-                # MySQL wallet deduction (always runs, independent of GSheet)
-                try:
-                    _replit_post("wallet/deduct", {
-                        "member_id": _m_id,
-                        "deduct_mins": _w_deduct,
-                        "total_mins": play_mins,
-                    })
-                except Exception as _we:
-                    logging.warning("MySQL wallet_deduct failed: %s", _we)# ── Bonus minutes: add to member wallet ──────────────────────────────────────
-            if _bonus_mins and not is_guest and _m_id not in ("-", "0 (Guest)"):
-                try:
-                    _wallet_rows = member_sh.get_all_values()
-                    for _wi, _wr in enumerate(_wallet_rows):
-                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
-                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
-                            _new_bal = _cur_bal + _bonus_mins
-                            member_sh.update_cell(_wi + 1, 8, _new_bal)
-                            _current_i = int(str(_wr[8]).replace(',', '').strip() or 0)
-                            member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
-                            logging.info("bonus_mins: %s +%d mins → %d", _m_id, _bonus_mins, _new_bal)
-                            break
-                except Exception as _be:
-                    logging.error("bonus_mins_wallet_update: %s", _be)
+            # ── Wallet update: API first ──
+            if not is_guest and _m_id not in ("-", "0 (Guest)"):
+                _wallet_needs_update = (_w_deduct > 0) or (_bonus_mins > 0)
+                if _wallet_needs_update:
+                    _wallet_api_ok = False
+                    try:
+                        _result = _replit_post("member/wallet/update", {
+                            "member_id": _m_id,
+                            "deduct_mins": _w_deduct,
+                            "bonus_mins": _bonus_mins,
+                            "total_mins": play_mins,
+                        })
+                        _wallet_api_ok = _result and _result.get("success")
+                    except Exception as _we:
+                        logging.warning("Wallet API failed, falling back to GSheet: %s", _we)
+
+                    if not _wallet_api_ok:
+                        # ── GSheet fallback ──
+                        try:
+                            _wallet_rows = member_sh.get_all_values()
+                            for _wi, _wr in enumerate(_wallet_rows):
+                                if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
+                                    _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
+                                    if _w_deduct > 0:
+                                        _new_bal = max(0, _cur_bal - _w_deduct)
+                                        member_sh.update_cell(_wi + 1, 8, _new_bal)
+                                        _current_j = int(str(_wr[9]).replace(",", "").strip() or 0)
+                                        member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
+                                        logging.info("wallet_deduct (GSheet): %s -%d mins", _m_id, _w_deduct)
+                                    if _bonus_mins > 0:
+                                        _bal_after_deduct = _cur_bal - _w_deduct if _w_deduct > 0 else _cur_bal
+                                        _new_bal2 = _bal_after_deduct + _bonus_mins
+                                        member_sh.update_cell(_wi + 1, 8, _new_bal2)
+                                        _current_i = int(str(_wr[8]).replace(",", "").strip() or 0)
+                                        member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
+                                        logging.info("bonus_mins (GSheet): %s +%d mins", _m_id, _bonus_mins)
+                                    break
+                        except Exception as _be:
+                            logging.warning("wallet_update GSheet fallback failed: %s", _be)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:

@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
-    BTN_EDIT_GAME,
+
     BTN_VIEW_GAMES, GAME_ADD_GENRE,
     GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT, GAME_DETAIL_PICK,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
@@ -174,7 +174,6 @@ async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = _build_game_list_text(games, 0, total_pages)
     kb = _build_game_kb(games, 0, total_pages)
     # Add edit option at bottom
-    kb.append([BTN_EDIT_GAME])
     kb.append([BTN_BACK_MAIN])
 
     await update.message.reply_text(text, parse_mode="HTML",
@@ -319,22 +318,6 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-
-    # ── Edit Game ──
-    if choice == BTN_EDIT_GAME:
-        games = await fetch_games_async()
-        if not games:
-            await update.message.reply_text("ℹ️ ဂိမ်း မရှိပါ")
-            return await show_game_menu(update, context)
-        context.user_data["edit_games"] = games
-        kb = [[f"{i}. {g['title']}"] for i, g in enumerate(games, 1)]
-        kb.append([BTN_BACK])
-        await update.message.reply_text(
-            "✏️ <b>Edit Game</b>\n━━━━━━━━━━━━━━━━━━\nပြင်မည့် ဂိမ်း ရွေးပါ:",
-            parse_mode="HTML",
-            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-        )
-        return GAME_EDIT_SELECT
 
 
 
@@ -644,7 +627,6 @@ async def step_game_edit_select(update: Update, context: ContextTypes.DEFAULT_TY
             break
     if not target:
         await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
-        return GAME_EDIT_SELECT
     context.user_data["edit_target"] = target
     sm = target.get("solo_multi", "") or "မသတ်မှတ်ရသေး"
     gen = target.get("genre", "") or "မသတ်မှတ်ရသေး"

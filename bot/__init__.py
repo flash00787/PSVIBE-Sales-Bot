@@ -2519,10 +2519,10 @@ def fetch_console_multiplier(console_id):
                 return val if val > 0 else 1.0
     except Exception as e:
         logging.exception("fetch_console_multiplier: %s", e)
-    # Hardcoded multiplier for C-09 and C-10 (1.2x)
+    # Hardcoded multiplier for PS5 Pro consoles C-09 and C-10 (1.5x)
     cid_clean = console_id.strip().upper() if console_id else ""
     if cid_clean in ("C-09", "C-10", "C09", "C10"):
-        return 1.2
+        return 1.5
     return 1.0
 
 
@@ -2891,6 +2891,17 @@ def next_write_row(worksheet):
     """Return the next empty row number for a worksheet.
     Uses Column B (always written by the bot, never a formula) as the anchor
     so ARRAYFORMULA-filled columns don't inflate the count."""
+    # Try API first
+    if _HAS_API:
+        try:
+            sheet_name = getattr(worksheet, 'title', '')
+            if sheet_name:
+                result = _replit_get(f"sheets/next-row/{sheet_name}")
+                if isinstance(result, dict) and "row" in result:
+                    return int(result["row"])
+        except Exception:
+            pass
+    # Fallback to GSheet
     return len(worksheet.col_values(2)) + 1
 
 
@@ -3361,10 +3372,6 @@ async def create_booking_async(
         payload["planned_end"] = planned_end
     return await _replit_post_async("create_booking", payload)
 
-
-async def end_booking_async(booking_id: str) -> dict | None:
-    """Async: End a booking."""
-    return await _replit_put_async(f"end_booking/{booking_id}", {})
 
 
 async def cancel_booking_async(booking_id: str) -> dict | None:
