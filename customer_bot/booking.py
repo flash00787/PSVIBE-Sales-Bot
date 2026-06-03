@@ -121,7 +121,7 @@ async def cmd_refer(update, context):
     """Generate referral link with user's Telegram info"""
     user = update.effective_user
     uname = f"@{user.username}" if user.username else user.full_name or user.first_name or "Friend"
-    ref_link = f"https://t.me/psvibe_customer_bot?start=ref_{user.id}"
+    ref_link = f"https://t.me/psvibe_customer_service_bot?start=ref_{user.id}"
 
     msg = (
         "🎁 *Refer a Friend*\n\n"

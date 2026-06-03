@@ -43,6 +43,30 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             await update.message.reply_text(f"❌ Error: {e}")
             return
 
+    # Normalize API keys -> handler-expected keys (MySQL API returns console_id/status/current_member/start_time)
+    _normalized = []
+    for _c in api_consoles:
+        _st = (_c.get("start_time") or _c.get("startTime") or "")
+        if "T" in _st:
+            try:
+                from datetime import datetime as _dt
+                _st = _dt.fromisoformat(_st).strftime("%H:%M")
+            except Exception:
+                pass
+        _normalized.append({
+            "id": _c.get("console_id") or _c.get("id", "?"),
+            "type": _c.get("console_type") or _c.get("type", ""),
+            "liveStatus": _c.get("status") or _c.get("liveStatus", "Free"),
+            "member": _c.get("current_member") or _c.get("member"),
+            "startTime": _st,
+            "reservedFor": _c.get("reservedFor") or _c.get("reserved_for"),
+            "reservedAt": _c.get("reservedAt") or _c.get("reserved_at"),
+            "reservedDuration": _c.get("reservedDuration") or _c.get("reserved_duration"),
+            "staff_name": _c.get("staff_name"),
+            "booking_id": _c.get("booking_id"),
+        })
+    api_consoles = _normalized
+
     free_list  = [c for c in api_consoles if c.get("liveStatus", "Free") == "Free"]
     busy_list  = [c for c in api_consoles if c.get("liveStatus", "Free") in ("Active", "Scheduled")]
     rsv_list   = [c for c in api_consoles if c.get("liveStatus", "Free") == "Reserved"]

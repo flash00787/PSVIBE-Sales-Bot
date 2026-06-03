@@ -300,7 +300,7 @@ async def cmd_promotions(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lines.append(f"\n{closing}")
     lines.append(f"🎮 [PS Vibe Facebook Page]({FB_LINK})")
 
-    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    await update.message.reply_text("\n".join(lines))
 
 
 def _format_promotion(promo: dict, index: int) -> str:
@@ -515,25 +515,25 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
         genre   = (g.get("genre")   or "").strip()
         players = (g.get("players") or "").strip()
         mp_icon = " 👥" if ("2" in players or "multi" in players.lower()) else ""
-        genre_tag = f" _{genre}_" if genre else ""
+        genre_tag = f" | {genre}" if genre else ""
         return f"{indent}▶ {title}{genre_tag}{mp_icon}"
 
     lines = [
-        f"🕹️ *PS Vibe Game Library*  |  {now_str} MMT",
-        f"_ဆိုင်မှာ ကစားလို့ရသောဂိမ်း — *{len(real_games)} titles*_",
+        f"🕹️ PS Vibe Game Library  |  {now_str} MMT",
+        f"ဆိုင်မှာ ကစားလို့ရသောဂိမ်း — {len(real_games)} titles",
     ]
 
     if has_platform:
         if ps5_games:
-            lines.append(f"\n🎮 *PS5  —  {len(ps5_games)} titles*")
+            lines.append(f"\n🎮 PS5  —  {len(ps5_games)} titles")
             for g in ps5_games:
                 lines.append(_game_line(g))
         if ps4_games:
-            lines.append(f"\n📀 *PS4  —  {len(ps4_games)} titles*")
+            lines.append(f"\n📀 PS4  —  {len(ps4_games)} titles")
             for g in ps4_games:
                 lines.append(_game_line(g))
         if both_games:
-            lines.append(f"\n🎯 *PS4 & PS5  —  {len(both_games)} titles*")
+            lines.append(f"\n🎯 PS4 & PS5  —  {len(both_games)} titles")
             for g in both_games:
                 lines.append(_game_line(g))
     else:
@@ -542,17 +542,16 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     lines += [
         "\n",
-        "_👥 = Multiplayer available_",
-        "_ဂိမ်းအကြောင်း သိချင်ရင် AI ကို တိုက်ရိုက် မေးပါ 🤖_",
+        "👥 = Multiplayer available",
+        "ဂိမ်းအကြောင်း သိချင်ရင် AI ကို တိုက်ရိုက် မေးပါ 🤖",
     ]
 
     full_text = "\n".join(lines)
     for chunk in _split_message(full_text, 4000):
-        await update.message.reply_text(chunk, parse_mode="Markdown")
+        await update.message.reply_text(chunk)
 
     await update.message.reply_text(
-        "_ဂိမ်းနာမည် ရိုက်ပြီး ရှာနိုင်တယ်နော် — AI ကို မေးလည်း ��တယ် 🤖_",
-        parse_mode="Markdown",
+        "ဂိမ်းနာမည် ရိုက်ပြီး ရှာနိုင်တယ်နော် — AI ကို မေးလည်း ��တယ် 🤖"
     )
     await update.message.reply_text("─" * 22)
 
@@ -587,7 +586,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     now_str = now_mmt().strftime("%H:%M")
 
     lines = [
-        f"🎮 *Console Status*  |  {today_mmt()}  {now_str} MMT\n",
+        f"🎮 Console Status  |  {today_mmt()}  {now_str} MMT\n",
     ]
 
     for c in consoles:
@@ -601,10 +600,10 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             "free": "FREE", "active": "IN USE", "inactive": "OFF",
             "reserved": "RESERVED",
         }.get(status, status.upper())
-        lines.append(f"{icon} {cid} ({ctype}) — *{label}*{dur_str}")
+        lines.append(f"{icon} {cid} ({ctype}) — {label}{dur_str}")
 
-    lines += ["", "_📅 Booking လုပ်ရန် Booking ကို နှိပ်ပါ_"]
-    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    lines += ["", "📅 Booking လုပ်ရန် Booking ကို နှိပ်ပါ"]
+    await update.message.reply_text("\n".join(lines))
 
 
 # ── Booking Entry Points ──────────────────────────────────────────────────────
