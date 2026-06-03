@@ -12,6 +12,7 @@ from bot import (
     BTN_SSD_MANAGE, BTN_VIEW_GAMES, DISC_SELECT, GAME_ADD_GENRE,
     GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
+    _replit_delete, _replit_post, _replit_put,
     fetch_console_games_async, fetch_games_async, get_game_lib_sh, show_game_menu,
     show_main_menu,
 )
@@ -242,20 +243,10 @@ async def step_game_add_status(update: Update, context: ContextTypes.DEFAULT_TYP
     # Metadata stored in col U (Installed_On) as "solo_multi|genre"
     meta = f"{solo_multi}|{genre}"
     try:
-        sh = get_game_lib_sh()
-        # Determine next row number and next empty row
-        all_rows = sh.get_all_values()
-        existing_nos = [int(r[0]) for r in all_rows[1:] if r and r[0].strip().isdigit()]
-        next_no   = max(existing_nos, default=0) + 1
-        next_row  = len(all_rows) + 1  # append after last row
-        # Build full row (20 cols: A-T) — Col E was Total Copies (removed)
-        new_row = [next_no, title, "Not Installed",
-                   copies, 0,
-                   False, False, False, False, False,
-                   False, False, False, False, False,
-                   False, False, False, "", meta]
-        # Use update() on specific row to avoid SSD-section column-offset bug
-        sh.update(f"A{next_row}:T{next_row}", [new_row], value_input_option="USER_ENTERED")
+        payload = {"title": title, "solo_multi": solo_multi, "genre": genre, "copies": copies}
+        result = _replit_post("add_game", payload)
+        if result is None or not result.get("success"):
+            raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         # Invalidate cache
         import bot as _bot_mod
         _bot_mod._GAME_ROWS = []
@@ -368,7 +359,10 @@ async def step_game_edit_value(update: Update, context: ContextTypes.DEFAULT_TYP
     title   = target.get("title", "?")
     try:
         sh = get_game_lib_sh()
-        sh.update_cell(row_num, 21, meta)   # col U = index 21
+        payload = {"title": title, "field": field, "value": text}
+        result = _replit_put("edit_game", payload)
+        if result is None or not result.get("success"):
+            raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         # Invalidate cache
         import bot as _bot_mod
         _bot_mod._GAME_ROWS = []
@@ -397,22 +391,13 @@ async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYP
         return GAME_DEL_SELECT
     game_name = target.get("title", "")
     try:
-        sh = get_game_lib_sh()
-        sh.delete_rows(target["row"])
+        result = _replit_delete(f"delete_game/{game_name}")
+        if result is None or not result.get("success"):
+            raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         await update.message.reply_text(
             f"🗑️ <b>\"{game_name}\"</b> ဂိမ်း ဖျက်ပြီ",
             parse_mode="HTML",
         )
     except Exception as e:
         err_str = str(e)
-        if "protected" in err_str.lower() or "400" in err_str:
-            await update.message.reply_text(
-                f"⚠️ <b>Game Library sheet protected</b> ဖြစ်သောကြောင့်\n"
-                f"bot မှ row ဖျက်ခြင်း မပြုနိုင်ပါ\n\n"
-                f"📋 Google Sheet ကို directly ဝင်ပြီး\n"
-                f"<b>\"{game_name}\"</b> row ကို ဖျက်ပေးပါ",
-                parse_mode="HTML",
-            )
-        else:
-            await update.message.reply_text(f"❌ ဖျက်မရပါ: {err_str}")
-    return await show_game_menu(update, context)
+        await update.message.reply_text(f"❌ ဖျက်မရပါ: {e}")

@@ -1697,19 +1697,12 @@ delete_console_game = remove_console_game    # alias used in SSD management
 
 
 def _delete_session_game(console_id: str) -> None:
-    """Remove any 'Session' type entry for a console from Console_Games."""
+    """Remove any 'Session' type entry for a console via API."""
     try:
-        sh   = get_console_games_sh()
-        rows = sh.get("A:C")  # OPT: range-restricted read (A=console_id, C=install_type)
-        for i, row in enumerate(rows[1:], start=2):
-            if (len(row) >= 3
-                    and row[0].strip().upper() == console_id.strip().upper()
-                    and row[2].strip() == "Session"):
-                sh.delete_rows(i)
-                # Invalidate cache
-                global _CGAME_ROWS, _CGAME_TS
-                _CGAME_TS = 0
-                return
+        result = _replit_delete(f"delete_session_game/{console_id}")
+        if result and result.get("success"):
+            global _CGAME_ROWS, _CGAME_TS
+            _CGAME_TS = 0
     except Exception as e:
         logging.exception("_delete_session_game: %s", e)
 
