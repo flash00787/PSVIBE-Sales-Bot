@@ -156,10 +156,20 @@ async def _api_call_async(
         return None
 
     path_clean = path.lstrip("/")
+    # Split query string off the path (e.g. "bookings?status=pending")
+    if "?" in path_clean:
+        path_clean, qs_extra = path_clean.split("?", 1)
+    else:
+        qs_extra = ""
     path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
     url = f"{API_BASE_URL}/api/{path_encoded}"
 
     qs_parts = {}
+    if qs_extra:
+        for pair in qs_extra.split("&"):
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                qs_parts[urllib.parse.unquote(k)] = urllib.parse.unquote(v)
     if params:
         qs_parts.update(params)
     if qs_parts:

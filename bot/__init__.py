@@ -2000,6 +2000,22 @@ def fetch_promotions_cached() -> list:
                     })
                 else:
                     normalized.append(p)
+            # Filter: only show active promos
+            from datetime import datetime as _fdt
+            import re as _fre
+            _f = []
+            for _p in normalized:
+                if not isinstance(_p, dict): _f.append(_p); continue
+                _ps = str(_p.get("status","")).strip().lower()
+                if _ps in ("inactive","expired","deleted"): continue
+                _ed = _p.get("end_date","")
+                if _ed:
+                    try:
+                        _em = _fre.match(r"(\d{4})-(\d{2})-(\d{2})", str(_ed).strip())
+                        if _em and _fdt(int(_em.group(1)),int(_em.group(2)),int(_em.group(3))) < _fdt.now(): continue
+                    except: pass
+                _f.append(_p)
+            normalized = _f
             return normalized
         logging.warning("API api_fetch_promotions_cached() failed, falling back to gspread")
     global _PROMO_CACHE, _PROMO_TS
@@ -2008,6 +2024,22 @@ def fetch_promotions_cached() -> list:
             return _PROMO_CACHE
     data = _replit_get("sheets/promotions")
     promos = (data or {}).get("promotions", [])
+    # Filter only active promos
+    from datetime import datetime as _fdt2
+    import re as _fre2
+    _f = []
+    for _p in promos:
+        if not isinstance(_p, dict): _f.append(_p); continue
+        _ps = str(_p.get("status","")).strip().lower()
+        if _ps in ("inactive","expired","deleted"): continue
+        _ed = _p.get("end_date","")
+        if _ed:
+            try:
+                _em = _fre2.match(r"(\d{4})-(\d{2})-(\d{2})", str(_ed).strip())
+                if _em and _fdt2(int(_em.group(1)),int(_em.group(2)),int(_em.group(3))) < _fdt2.now(): continue
+            except: pass
+        _f.append(_p)
+    promos = _f
     with _THREAD_CACHE_LOCK:
         _PROMO_CACHE = promos
         _PROMO_TS    = time.time()
@@ -2487,6 +2519,10 @@ def fetch_console_multiplier(console_id):
                 return val if val > 0 else 1.0
     except Exception as e:
         logging.exception("fetch_console_multiplier: %s", e)
+    # Hardcoded multiplier for C-09 and C-10 (1.2x)
+    cid_clean = console_id.strip().upper() if console_id else ""
+    if cid_clean in ("C-09", "C-10", "C09", "C10"):
+        return 1.2
     return 1.0
 
 

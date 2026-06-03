@@ -406,7 +406,6 @@ async def prompt_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         step_hdr(5, 6, "Card Amount") +
         f"👤 *{name}*  |  🪪 *{m_id}*\n"
-        f"━━━━━━━━━━━━━━━━━━\n"
         f"💵 Card Price  : {price_line}\n"
         f"⏱️ Base Mins   : {mins_line}\n\n"
         f"ဤပမာဏ ကောက်ခံမည်လား?\n"
@@ -552,7 +551,7 @@ async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if amt <= 0:
         d["nm_kpay"] = 0
         d["nm_cash"] = 0
-        return await step_nm_confirm(update, context)
+        return await prompt_nm_referral(update, context)
 
     methods = fetch_payment_methods()
     paid_so_far = sum(d["nm_payments"].values())
@@ -562,7 +561,7 @@ async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if remaining <= 0:
         d["nm_kpay"] = d["nm_payments"].get("KPay", 0)
         d["nm_cash"] = d["nm_payments"].get("Cash", 0)
-        return await step_nm_confirm(update, context)
+        return await prompt_nm_referral(update, context)
 
     # Filter out already-used payment methods (prevent duplicate selection)
     used = {m for m, v in d.get("nm_payments", {}).items() if v > 0}

@@ -454,7 +454,7 @@ async def step_coupon_confirm(update, context):
             await update.message.reply_text(
                 "✅ *Coupon Applied!*" + chr(10) +
                 "🎟️ " + code + ": -" + str(coupon_value_ks) + " Ks (" + str(deducted) + " mins)" + chr(10) +
-                "💰 Net Payable: " + str(d["net_total"]) + " Ks*",
+                "💰 Net Payable: *" + str(d["net_total"]) + " Ks*",
                 parse_mode="Markdown",
             )
             d.pop("_coupon_code", None)
