@@ -37,6 +37,8 @@ def _build_game_kb(games: list, page: int, total_pages: int, show_nav: bool = Tr
     kb = []
     for i, g in enumerate(page_games, start=start + 1):
         name = g.get("title", "").strip()
+        if not name:
+            continue
         genre = g.get("genre", "").strip()
         sm = g.get("solo_multi", "").strip()
         sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
@@ -149,24 +151,34 @@ async def _show_game_detail(update, game: dict) -> None:
 
 
 async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    kb = [
-        [BTN_VIEW_GAMES],
-        [BTN_EDIT_GAME],
-        [BTN_BACK_MAIN],
-    ]
+    """Show game library directly with paginated view and edit/delete options."""
     games = await fetch_games_async()
     count = len(games)
-    await update.message.reply_text(
-        f"🎮 *Game Library* ({count} ဂိမ်း)\n"
-        "━━━━━━━━━━━━━━━━━━\n"
-        "Action ရွေးပါ ↓",
-        parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
     # Clear any lingering game view state
     context.user_data.pop("game_list", None)
     context.user_data.pop("game_page", None)
     context.user_data.pop("game_query", None)
+    context.user_data.pop("game_searching", None)
+
+    if not games:
+        await update.message.reply_text(
+            "ℹ️ Game Library ဗလာ ဖြစ်နေသည်\nဂိမ်းထည့်ပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        return GAME_MENU
+
+    context.user_data["game_list"] = games
+    context.user_data["game_page"] = 0
+    context.user_data["game_query"] = ""
+    total_pages = max(1, (len(games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+    text = _build_game_list_text(games, 0, total_pages)
+    kb = _build_game_kb(games, 0, total_pages)
+    # Add edit option at bottom
+    kb.append([BTN_EDIT_GAME])
+    kb.append([BTN_BACK_MAIN])
+
+    await update.message.reply_text(text, parse_mode="HTML",
+                                     reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
     return GAME_MENU
 
 

@@ -120,7 +120,8 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         return await show_ginst_menu(update, context)
     cid   = context.user_data.get("ginst_console_id", "")
     title = text
-    install_type = "HDD"
+    # Save game title for next step (type selection)
+    context.user_data["ginst_game_title"] = title
 
     # ── Duplicate check ───────────────────────────────────────────────────────
     existing = await fetch_console_games_async()
@@ -136,27 +137,16 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         )
         return await show_ginst_menu(update, context)
 
-    ok, gl_ok = await asyncio.gather(
-        add_console_game_async(cid, title, install_type),
-        update_game_library_install_async(title, cid, True),
+    # Show install type selection
+    await update.message.reply_text(
+        f"🖥️ <b>{cid}</b> ─ 🎮 <b>{title}</b>\n\nInstall Type ရွေးပါ:",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(
+            [[BTN_GINST_HDD, BTN_GINST_DISC], [BTN_GINST_SSD], [BTN_BACK]],
+            resize_keyboard=True,
+        ),
     )
-    if ok:
-        gl_note = "  📊 Game Library ✅" if gl_ok else "  📊 Game Library ⚠️ (manual update လို)"
-        await update.message.reply_text(
-            f"✅ <b>Install မှတ်သားပြီ!</b>\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"🖥️ Console : <b>{cid}</b>\n"
-            f"🎮 Game    : <b>{title}</b>\n"
-            f"💾 Type    : <b>{install_type}</b>\n"
-            f"{gl_note}",
-            parse_mode="HTML",
-        )
-    else:
-        await update.message.reply_text(
-            f"❌ မှတ်သားမရပါ — ထပ်ကြိုးစားပါ\n"
-            f"(Console: {cid} | Game: {title})",
-        )
-    return await show_ginst_menu(update, context)
+    return GINST_ADD_TYPE
 
 async def step_ginst_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()

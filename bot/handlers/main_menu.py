@@ -52,8 +52,7 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [BTN_DAILY_SALES,      BTN_MEMBER_MGMT],
         [BTN_CONSOLES,         BTN_TODAY_REPORT],
         [BTN_STAFF_BOOK,       BTN_INVENTORY_VIEW],
-        [BTN_FINANCIAL_REPORT, BTN_ADMIN],
-        [BTN_HELP],
+        [BTN_ADMIN],
     ]
     await update.message.reply_text(
         f"🎮 *PS Vibe — Staff Bot*\n"

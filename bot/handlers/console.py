@@ -4,7 +4,8 @@
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, BTN_CHANGE_GAME,
     BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
-    BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT, _delete_session_game,
+    BTN_SSD_MANAGE, BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT,
+    _delete_session_game,
     _replit_get, _replit_get_async, add_console_game, _replit_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
     fetch_console_status, get_games_on_console, get_games_on_console_async, now_mmt,
@@ -144,7 +145,7 @@ async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = [
         [BTN_START_SESSION,  BTN_END_SESSION],
         [BTN_STATUS_BOARD,   BTN_GAME_LIB_MENU],
-        [BTN_CONSOLE_INSTALL],
+        [BTN_CONSOLE_INSTALL, BTN_SSD_MANAGE],
         [BTN_BACK_MAIN],
     ]
     await update.message.reply_text(
@@ -174,6 +175,9 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_game_menu(update, context)
     if choice == BTN_CONSOLE_INSTALL:
         return await show_ginst_menu(update, context)
+    if choice == BTN_SSD_MANAGE:
+        from bot.handlers.ssd_disc import show_ssd_menu
+        return await show_ssd_menu(update, context)
     return await show_console_menu(update, context)
 
 async def prompt_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -314,7 +318,6 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if cd and cd.get("code"):
                     context.user_data["_cashback_coupon"] = cd["code"]
                     context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
-    except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
