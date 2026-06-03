@@ -38,7 +38,8 @@ async def cmd_mybookings(update, context):
         return
 
     # Filter: only show pending & confirmed (active/upcoming)
-    active = [b for b in data if b.get("status") in ("pending", "confirmed")]
+    valid_statuses = ("pending", "confirmed")
+    active = [b for b in data if str(b.get("status", "")).lower() in valid_statuses]
 
     if not active:
         await update.message.reply_text(NO_BOOKINGS_MSG)

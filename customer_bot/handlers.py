@@ -180,9 +180,13 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     name = update.effective_user.first_name or "ညီ/မ"
     uid  = str(update.effective_user.id)
 
-    # Check for today's bookings
-    today_bks = await _api._api_get(f"bookings/search?telegram_chat_id={uid}")
-    today_bks = today_bks if isinstance(today_bks, list) else []
+    # Check for today active bookings (exclude cancelled/rejected)
+    today_bks_raw = await _api._api_get(f"bookings/search?telegram_chat_id={uid}")
+    today_bks = []
+    if isinstance(today_bks_raw, dict) and "bookings" in today_bks_raw:
+        today_bks = [b for b in today_bks_raw["bookings"] if str(b.get("status", "")).lower() in ("pending", "confirmed")]
+    elif isinstance(today_bks_raw, list):
+        today_bks = [b for b in today_bks_raw if str(b.get("status", "")).lower() in ("pending", "confirmed")]
 
     banner = ""
     if today_bks:

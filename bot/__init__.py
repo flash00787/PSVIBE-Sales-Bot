@@ -2142,15 +2142,21 @@ async def _replit_get_async(path: str, timeout: int = 8):
         data = await _api_call_async("GET", path, timeout=timeout)
         if data is None:
             return fallback
-        if is_list_path and isinstance(data, dict) and "data" in data:
-            inner = data["data"]
-            if isinstance(inner, list):
-                return inner
-            if isinstance(inner, dict):
-                for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                    if _list_key in inner and isinstance(inner[_list_key], list):
-                        return inner[_list_key]
-                return inner
+        if is_list_path and isinstance(data, dict):
+            # _api_call_async strips {success:, data:} envelope — check both cases
+            if "data" in data:
+                inner = data["data"]
+                if isinstance(inner, list):
+                    return inner
+                if isinstance(inner, dict):
+                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                        if _list_key in inner and isinstance(inner[_list_key], list):
+                            return inner[_list_key]
+                    return inner
+            # Already-unwrapped: data itself may contain list-like keys
+            for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                if _list_key in data and isinstance(data[_list_key], list):
+                    return data[_list_key]
         return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
@@ -3068,15 +3074,21 @@ async def _replit_get_async(path: str, timeout: int = 8):
         data = await _api_call_async("GET", path, timeout=timeout)
         if data is None:
             return fallback
-        if is_list_path and isinstance(data, dict) and "data" in data:
-            inner = data["data"]
-            if isinstance(inner, list):
-                return inner
-            if isinstance(inner, dict):
-                for _lk in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                    if _lk in inner and isinstance(inner[_lk], list):
-                        return inner[_lk]
-                return inner
+        if is_list_path and isinstance(data, dict):
+            # _api_call_async strips {success:, data:} envelope — check both cases
+            if "data" in data:
+                inner = data["data"]
+                if isinstance(inner, list):
+                    return inner
+                if isinstance(inner, dict):
+                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                        if _list_key in inner and isinstance(inner[_list_key], list):
+                            return inner[_list_key]
+                    return inner
+            # Already-unwrapped: data itself may contain list-like keys
+            for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                if _list_key in data and isinstance(data[_list_key], list):
+                    return data[_list_key]
         return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
