@@ -690,12 +690,12 @@ async def api_cancel_booking_async(booking_id: str) -> dict | None:
     return await _api_call_async("PUT", f"cancel_booking/{booking_id}")
 
 
-async def api_set_game_disc_count_async(row_num: int, count: int) -> dict | None:
-    """Async: Update the available-disc count for a game library row."""
+async def api_set_game_disc_count_async(game_title: str, count: int) -> dict | None:
+    """Async: Update the available-disc count for a game."""
     return await _api_call_async(
         "PUT",
         "set_game_disc_count",
-        json_data={"row_num": row_num, "count": count},
+        json_data={"game_title": game_title, "discs": count},
     )
 
 
@@ -975,12 +975,12 @@ def api_cancel_booking(booking_id: str) -> dict | None:
     return _api_call("PUT", f"cancel_booking/{booking_id}")
 
 
-def api_set_game_disc_count(row_num: int, count: int) -> dict | None:
-    """Update the available-disc count for a game library row."""
+def api_set_game_disc_count(game_title: str, count: int) -> dict | None:
+    """Update the available-disc count for a game."""
     return _api_call(
         "PUT",
         "set_game_disc_count",
-        json_data={"row_num": row_num, "count": count},
+        json_data={"game_title": game_title, "discs": count},
     )
 
 

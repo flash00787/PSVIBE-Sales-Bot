@@ -694,11 +694,11 @@ def fetch_games() -> list[dict]:
         return []
 
 
-def set_game_disc_count(row_num: int, count: int) -> bool:
+def set_game_disc_count(game_title: str, count: int) -> bool:
     """Update column D (Available Discs) for a game row in Game_Library. Returns True on success."""
     global _GAME_ROWS, _GAME_TS
     if _HAS_API:
-        result = api_set_game_disc_count(row_num, count)
+        result = api_set_game_disc_count(game_title, count)
         if result is not None:
             _GAME_ROWS = None                   # invalidate cache
             _GAME_TS   = 0
@@ -706,7 +706,16 @@ def set_game_disc_count(row_num: int, count: int) -> bool:
         logging.warning("API api_set_game_disc_count() failed, falling back to gspread")
     try:
         sh = get_game_lib_sh()
-        sh.update_cell(row_num, 4, count)   # col D = index 4
+        # GSheet fallback: find row by game title
+        rows_b = sh.get("B:B")
+        found = False
+        for ri, rv in enumerate(rows_b[1:], start=2):
+            if rv and rv[0].strip().lower() == game_title.strip().lower():
+                sh.update_cell(ri, 4, count)
+                found = True
+                break
+        if not found:
+            return False
         _GAME_ROWS = None                   # invalidate cache
         _GAME_TS   = 0
         return True
@@ -2000,7 +2009,7 @@ def _replit_get(path: str, timeout: int = 8):
     """
     # Heuristic: endpoints whose name suggests a list return type
     _list_keywords = (
-        "bookings", "waitlist", "consoles", "inventory",
+        "bookings", "waitlist", "console", "inventory",
         "staff", "games", "members", "logs", "attendance",
         "accounts", "payments", "salary", "promotions",
     )
@@ -2127,7 +2136,7 @@ def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
 async def _replit_get_async(path: str, timeout: int = 8):
     """Async GET — same fallback logic as _replit_get but non-blocking."""
     _list_keywords = (
-        "bookings", "waitlist", "consoles", "inventory",
+        "bookings", "waitlist", "console", "inventory",
         "staff", "games", "members", "logs", "attendance",
         "accounts", "payments", "salary", "promotions",
     )
@@ -2383,9 +2392,12 @@ def fetch_new_member_defaults():
 def fetch_food_prices():
     if _HAS_API:
         result = api_fetch_food_prices()
-        if result is not None:
+        if result is not None and result:
             return result
-        logging.warning("API api_fetch_food_prices() failed, falling back to gspread")
+        if result is not None and not result:
+            logging.warning("API api_fetch_food_prices() returned empty data, falling back to gspread")
+        else:
+            logging.warning("API api_fetch_food_prices() failed, falling back to gspread")
     cfg = _get_cfg()
     if cfg.get("food_prices"):
         return dict(cfg["food_prices"])
@@ -2398,18 +2410,24 @@ async def fetch_food_prices_async():
     """Async version - hot-path: called on every sales flow."""
     if _HAS_API:
         result = await api_client.api_fetch_food_prices_async()
-        if result is not None:
+        if result is not None and result:
             return result
-        logging.warning("API api_fetch_food_prices_async failed, falling back to gspread")
+        if result is not None and not result:
+            logging.warning("API api_fetch_food_prices_async returned empty data, falling back to gspread")
+        else:
+            logging.warning("API api_fetch_food_prices_async failed, falling back to gspread")
     return await asyncio.to_thread(fetch_food_prices)
 
 
 def fetch_food_costs():
     if _HAS_API:
         result = api_fetch_food_costs()
-        if result is not None:
+        if result is not None and result:
             return result
-        logging.warning("API api_fetch_food_costs() failed, falling back to gspread")
+        if result is not None and not result:
+            logging.warning("API api_fetch_food_costs() returned empty data, falling back to gspread")
+        else:
+            logging.warning("API api_fetch_food_costs() failed, falling back to gspread")
     cfg = _get_cfg()
     if cfg.get("food_costs"):
         return dict(cfg["food_costs"])
@@ -2422,9 +2440,12 @@ async def fetch_food_costs_async():
     """Async version - hot-path: called on every sales flow."""
     if _HAS_API:
         result = await api_client.api_fetch_food_costs_async()
-        if result is not None:
+        if result is not None and result:
             return result
-        logging.warning("API api_fetch_food_costs_async failed, falling back to gspread")
+        if result is not None and not result:
+            logging.warning("API api_fetch_food_costs_async returned empty data, falling back to gspread")
+        else:
+            logging.warning("API api_fetch_food_costs_async failed, falling back to gspread")
     return await asyncio.to_thread(fetch_food_costs)
 
 
@@ -3069,7 +3090,7 @@ async def _replit_get_async(path: str, timeout: int = 8):
     Same fallback logic (list vs dict heuristic) for handler backward compat.
     """
     _list_keywords = (
-        "bookings", "waitlist", "consoles", "inventory",
+        "bookings", "waitlist", "console", "inventory",
         "staff", "games", "members", "logs", "attendance",
         "accounts", "payments", "salary", "promotions",
     )
@@ -3301,11 +3322,11 @@ async def remove_console_game_async(console_id: str, game_title: str) -> dict | 
     )
 
 
-async def set_game_disc_count_async(row_num: int, count: int) -> dict | None:
+async def set_game_disc_count_async(game_title: str, count: int) -> dict | None:
     """Async: Set disc count for a game library row."""
     return await _replit_put_async(
         "set_game_disc_count",
-        {"row_num": row_num, "count": count},
+        {"game_title": game_title, "discs": count},
     )
 
 

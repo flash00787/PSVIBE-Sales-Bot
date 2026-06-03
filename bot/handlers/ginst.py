@@ -14,7 +14,8 @@ from bot import (
     BTN_GINST_REMOVE, BTN_GINST_SSD, BTN_GINST_VIEW, GINST_ADD_CONS,
     GINST_ADD_GAME, GINST_ADD_TYPE, GINST_DEL_CONS, GINST_DEL_GAME,
     GINST_MENU, GINST_VIEW_CONS, add_console_game_async, fetch_console_games_async,
-    fetch_games, get_consoles_from_setting, get_games_on_console,
+    fetch_games, fetch_games_async, get_consoles_from_setting,
+    get_consoles_with_game_async, get_games_on_console, get_games_on_console_async,
     remove_console_game_async, show_game_menu, update_game_library_install_async,
 )
 

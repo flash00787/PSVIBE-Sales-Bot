@@ -213,8 +213,8 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             inv_data = await _replit_get_async("stock/current")
             if inv_data and isinstance(inv_data, dict):
-                stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                             for i in inv_data.get("data", {}).get("items", [])}
+                stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
+                             for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}
             stock_map = stock_map or {}
         except Exception as e:
             logger.warning("prompt_food_menu: stock_map rebuild failed: %s", e)
@@ -768,8 +768,8 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
-            stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                         for i in inv_data.get("data", {}).get("items", [])}
+            stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
+                         for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}
             # Only filter if there is actually some stock available
             if any(v > 0 for v in stock_map.values()):
                 food_prices = {k: v for k, v in food_prices.items()
@@ -1454,8 +1454,8 @@ async def launch_session_sale(
     try:
         inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
-            stock_map = {i["name"]: max(0, i.get("quantity", 0))
-                         for i in inv_data.get("data", {}).get("items", [])}
+            stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
+                         for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}
             # Only filter if there is actually some stock available
             if any(v > 0 for v in stock_map.values()):
                 food_prices = {k: v for k, v in food_prices.items()

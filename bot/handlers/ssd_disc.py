@@ -14,9 +14,11 @@ from bot import (
     BTN_SSD_VIEW, DISC_SELECT, DISC_SET_QTY, SSD_ADD_GAME, SSD_ADD_SSD,
     SSD_ADD_TYPE, SSD_DEL_GAME, SSD_DEL_SSD, SSD_MENU, SSD_RET_CONS,
     SSD_RET_GAME, SSD_VIEW_SSD, SSD_XFER_CONS, SSD_XFER_GAME,
-    SSD_XFER_SSD, fetch_console_games, fetch_console_games_async, get_consoles_from_setting,
-    remove_console_game, remove_console_game_async, set_game_disc_count, set_game_disc_count_async, show_console_menu,
-    show_game_menu,
+    SSD_XFER_SSD, SSD_BTN_TO_ID, SSD_NAMES, delete_console_game,
+    fetch_console_games, fetch_console_games_async, fetch_game_library,
+    get_consoles_from_setting, remove_console_game, remove_console_game_async,
+    set_game_disc_count, set_game_disc_count_async, show_console_menu,
+    show_game_menu, write_console_game,
 )
 
 
@@ -79,7 +81,7 @@ async def step_disc_set_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not row:
         await update.message.reply_text("❌ Error — ထပ်ကြိုးစားပါ")
         return await show_game_menu(update, context)
-    ok = await set_game_disc_count_async(row, count)
+    ok = await set_game_disc_count_async(title, count)
     if ok:
         await update.message.reply_text(
             f"✅ <b>{title}</b>\n"
