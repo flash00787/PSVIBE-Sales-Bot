@@ -300,30 +300,22 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.error("step_end_session: %s", e, exc_info=True)
         pass
-    # ── CashBack Coupon: Auto-generate on June 6-7 ──
+    # ── CashBack Coupon: Auto-generate via MySQL API ──
     try:
-        from bot.api_client import api_fetch_promotions_cached, api_get
-        from datetime import datetime
-        today_mmt_str = datetime.utcnow().strftime("%m-%d")
-        if today_mmt_str in ("06-03", "06-04", "06-05", "06-06", "06-07"):
-            # Check active promotion
-            promo_resp = await _replit_get_async("promotions/active")
-            promo_data = promo_resp
-            if isinstance(promo_data, dict) and promo_data.get("promotion"):
-                # Generate coupon for this member
-                member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
-                if member_id_for_coupon and total_mins > 0:
-                    gen_resp = await _replit_post_async("coupons/generate", {
-                        "member_id": member_id_for_coupon,
-                        "session_minutes": total_mins,
-                        "session_id": _linked_bk_id or "",
-                    })
-                    gen_data = gen_resp
-                    if isinstance(gen_data, dict) and gen_data.get("coupon"):
-                        coupon = gen_data["coupon"]
-                        coupon_code = coupon.get("code", "?")
-                        coupon_mins = coupon.get("minutes", total_mins)
-                        context.user_data["_cashback_coupon"] = coupon_code
+        from bot.api_client import api_post
+        member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
+        if member_id_for_coupon and total_mins > 0:
+            gen_result = await asyncio.to_thread(
+                api_post, "coupons/generate",
+                {"member_id": member_id_for_coupon, "session_minutes": total_mins}
+            )
+            if gen_result and isinstance(gen_result, dict):
+                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                if cd and cd.get("code"):
+                    context.user_data["_cashback_coupon"] = cd["code"]
+                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
+    except Exception as cb_e:
+        logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 

@@ -582,6 +582,10 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     else:
         await update.message.reply_text(
             "⚠️ Session end မရပါ — data ယူပြီး ဆက်သွားပါမည်", parse_mode="HTML")
+    # Capture coupon vars before clear
+    coupon_code = d.get("_cashback_coupon", "")
+    coupon_mins = d.get("_cashback_coupon_mins", 0)
+
     context.user_data.clear()
     return await launch_session_sale(update, context,
                                      session_cid, m_id, total_mins, session_staff)
@@ -1252,12 +1256,23 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{receipt_disc_line}"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"{_build_payment_receipt_lines(kpay, cash, payments_data)}"
-        f"{wallet_bal_line}",
+        f"{coupon_line}\n{wallet_bal_line}" if coupon_code else f"{wallet_bal_line}",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
     if receipt_kb:
         await update.message.reply_text("🖨️ Receipt ပုံနှိပ်ရန် -", reply_markup=receipt_kb)
+    coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
+    if coupon_code:
+        await update.message.reply_text(
+            f"🎫 *100% CashBack Coupon!*\n"
+            f"Code: `{coupon_code}`\n"
+            f"Minutes: *{coupon_mins} mins*\n"
+            f"\u23f0 နောက်လာရင် ဒီ code ကို ပြပြီး ပြန်ဆော့လို့ရပါတယ်!",
+            parse_mode="Markdown",
+        )
+
+
 
     # ── SHEET WRITES — background (user already has receipt) ──────
     _disc = discount if discount else ""
@@ -1340,8 +1355,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "net_total":    net_total,
                     "staff":        staff_name,
                 })
-            # ── Wallet deduction: subtract wallet_deduct from Card_Wallet Column H ────────
+            # ── Wallet deduction: MySQL API (separate from GSheet) ────────
             if not is_guest and _w_deduct > 0 and _m_id not in ("-", "0 (Guest)"):
+                # Google Sheets wallet deduction (graceful if fails)
                 try:
                     _wallet_rows = member_sh.get_all_values()
                     for _wi, _wr in enumerate(_wallet_rows):
@@ -1349,22 +1365,21 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
                             _new_bal = max(0, _cur_bal - _w_deduct)
                             member_sh.update_cell(_wi + 1, 8, _new_bal)
-                            _current_j = int(str(_wr[9]).replace(',', '').strip() or 0)
+                            _current_j = int(str(_wr[9]).replace(",", "").strip() or 0)
                             member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
-                            logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
-                            # ── MySQL wallet deduction ────────
-                            try:
-                                _replit_post("wallet/deduct", {
-                                    "member_id": _m_id,
-                                    "deduct_mins": _w_deduct,
-                                    "total_mins": play_mins,
-                                })
-                            except Exception as _we:
-                                logging.warning("MySQL wallet_deduct failed (GSheet OK): %s", _we)
+                            logging.info("wallet_deduct: %s -%d mins -> %d (GSheet)", _m_id, _w_deduct, _new_bal)
                             break
                 except Exception as _be:
-                    logging.error("wallet_deduct_update: %s", _be)
-            # ── Bonus minutes: add to member wallet ──────────────────────────────────────
+                    logging.warning("wallet_deduct GSheet failed (non-critical): %s", _be)
+                # MySQL wallet deduction (always runs, independent of GSheet)
+                try:
+                    _replit_post("wallet/deduct", {
+                        "member_id": _m_id,
+                        "deduct_mins": _w_deduct,
+                        "total_mins": play_mins,
+                    })
+                except Exception as _we:
+                    logging.warning("MySQL wallet_deduct failed: %s", _we)# ── Bonus minutes: add to member wallet ──────────────────────────────────────
             if _bonus_mins and not is_guest and _m_id not in ("-", "0 (Guest)"):
                 try:
                     _wallet_rows = member_sh.get_all_values()
