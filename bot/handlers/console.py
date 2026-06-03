@@ -302,13 +302,13 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         pass
     # ── CashBack Coupon: Auto-generate on June 6-7 ──
     try:
-        from bot.api_client import api_fetch_promotions_cached, api_generate_coupon, api_get
+        from bot.api_client import api_fetch_promotions_cached, api_get
         from datetime import datetime
         today_mmt_str = datetime.utcnow().strftime("%m-%d")
         if today_mmt_str in ("06-03", "06-04", "06-05", "06-06", "06-07"):
             # Check active promotion
             promo_resp = await _replit_get_async("promotions/active")
-            promo_data = promo_resp.get("data") if isinstance(promo_resp, dict) else promo_resp
+            promo_data = promo_resp
             if isinstance(promo_data, dict) and promo_data.get("promotion"):
                 # Generate coupon for this member
                 member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
@@ -318,7 +318,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "session_minutes": total_mins,
                         "session_id": _linked_bk_id or "",
                     })
-                    gen_data = gen_resp.get("data") if isinstance(gen_resp, dict) else gen_resp
+                    gen_data = gen_resp
                     if isinstance(gen_data, dict) and gen_data.get("coupon"):
                         coupon = gen_data["coupon"]
                         coupon_code = coupon.get("code", "?")

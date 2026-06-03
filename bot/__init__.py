@@ -1981,9 +1981,26 @@ def fetch_promotions_cached() -> list:
         result = api_fetch_promotions_cached()
         if result is not None:
             # API returns {"promotions": [{id, promo_name, ...}]} or list
-            if isinstance(result, dict):
-                return result.get("promotions", [])
-            return result if isinstance(result, list) else []
+            raw_promos = result.get("promotions", []) if isinstance(result, dict) else (result if isinstance(result, list) else [])
+            # Normalize MySQL column names -> handler-expected field names
+            normalized = []
+            for p in raw_promos:
+                if isinstance(p, dict):
+                    normalized.append({
+                        "id": p.get("id", ""),
+                        "title": p.get("promo_name") or p.get("title", ""),
+                        "type": p.get("discount_type") or p.get("type", "general"),
+                        "discount_percent": p.get("discount_value") or p.get("discount_percent", ""),
+                        "emoji": p.get("emoji", "🎁"),
+                        "discount_target": p.get("discount_target", "overall"),
+                        "bundle_items": p.get("bundle_items", "") or p.get("description", ""),
+                        "start_date": p.get("start_date"),
+                        "end_date": p.get("end_date"),
+                        "status": p.get("status"),
+                    })
+                else:
+                    normalized.append(p)
+            return normalized
         logging.warning("API api_fetch_promotions_cached() failed, falling back to gspread")
     global _PROMO_CACHE, _PROMO_TS
     with _THREAD_CACHE_LOCK:
