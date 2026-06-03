@@ -500,7 +500,7 @@ async def _check_member_in_session(update, context, member_id: str):
 
     actives = [
         c for c in consoles
-        if c.get("member") == member_id and c.get("status") in ("Active", "Scheduled")
+        if isinstance(c, dict) and c.get("current_member") == member_id and c.get("status") in ("Active", "Scheduled")
     ]
     if not actives:
         return await prompt_console(update, context)
