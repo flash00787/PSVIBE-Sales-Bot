@@ -37,8 +37,13 @@ import asyncio, logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
-# Explicit import for helper from stock module
-# update_inv_total_k1 imported lazily inside functions to avoid circular deps
+# Lazy imports to avoid circular deps
+from bot.handlers.notify import _check_low_balance_alert, get_customer_chat_id
+from bot.handlers.booking_flow import _cancel_remind
+
+def _lazy_update_inv_total_k1():
+    from bot.handlers.stock import update_inv_total_k1 as _f
+    return _f()
 
 def next_voucher() -> str:
     """Generate next sequential voucher number (YYYYMMDD-NNN)."""
@@ -1317,7 +1322,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     value_input_option="USER_ENTERED",
                 )
             if food_sold:
-                update_inv_total_k1()
+                _lazy_update_inv_total_k1()
                 try: _replit_get("stock/current?nocache=1")
                 except Exception: pass
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
@@ -1347,6 +1352,15 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             _current_j = int(str(_wr[9]).replace(',', '').strip() or 0)
                             member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
                             logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
+                            # ── MySQL wallet deduction ────────
+                            try:
+                                _replit_post("wallet/deduct", {
+                                    "member_id": _m_id,
+                                    "deduct_mins": _w_deduct,
+                                    "total_mins": play_mins,
+                                })
+                            except Exception as _we:
+                                logging.warning("MySQL wallet_deduct failed (GSheet OK): %s", _we)
                             break
                 except Exception as _be:
                     logging.error("wallet_deduct_update: %s", _be)

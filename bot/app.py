@@ -14,8 +14,8 @@ from bot import (
     DISC_SET_QTY, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION,
     END_SESSION_SELECT, FINANCE_MENU, FIN_REPORT_MENU, FOOD_MENU,
     FOOD_QTY, GAME_ADD_GENRE, GAME_ADD_PLATFORM, GAME_ADD_STATUS,
-    GAME_ADD_TITLE, GAME_CHANGE_CONS, GAME_CHANGE_GAME, GAME_DEL_SELECT,
-    GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
+    GAME_ADD_TITLE, GAME_DEL_SELECT,
+    GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_DETAIL_PICK, GAME_MENU,
     GINST_ADD_CONS, GINST_ADD_GAME, GINST_ADD_TYPE, GINST_DEL_CONS,
     GINST_DEL_GAME, GINST_MENU, GINST_VIEW_CONS, KPAY_AMT, MAIN_MENU,
     MEMBER, MINS, MM_LOOKUP, MM_MENU, NM_AMT, NM_CONFIRM, NM_EMAIL,
@@ -241,6 +241,7 @@ def main():
             GAME_ADD_GENRE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_add_genre)],
             GAME_ADD_STATUS:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_add_status)],
             GAME_DEL_SELECT:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_del_select)],
+            GAME_DETAIL_PICK:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_detail_pick)],
             # ── Game Edit flow ──
             GAME_EDIT_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_edit_select)],
             GAME_EDIT_FIELD:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_edit_field)],
@@ -291,8 +292,6 @@ def main():
             # ── Booking planned duration / timer ──
             BOOK_MINS:              [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_mins)],
             # ── Game change for active session ──
-            GAME_CHANGE_CONS:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_change_cons)],
-            GAME_CHANGE_GAME:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_change_game)],
 
             # ── Staff Advance Booking flow ──
             SBK_CONSOLE:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_console)],

@@ -1,5 +1,4 @@
-"""PS VIBE Bot — Handler module.
-"""
+"""PS VIBE Bot — Game Library Handler (paginated + search)."""
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
@@ -7,10 +6,10 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from bot import (
-    BTN_ADD_GAME, BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
-    BTN_CONSOLE_INSTALL, BTN_DEL_GAME, BTN_DISC_RECORD, BTN_EDIT_GAME,
-    BTN_SSD_MANAGE, BTN_VIEW_GAMES, DISC_SELECT, GAME_ADD_GENRE,
-    GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT,
+    BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL,
+    BTN_EDIT_GAME,
+    BTN_VIEW_GAMES, GAME_ADD_GENRE,
+    GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT, GAME_DETAIL_PICK,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
     _replit_delete, _replit_post, _replit_put,
     fetch_console_games, fetch_console_games_async, fetch_games, fetch_games_async, get_game_lib_sh, show_game_menu,
@@ -19,14 +18,140 @@ from bot import (
 
 
 
+# ── Pagination constants ──
+GAMES_PER_PAGE = 8
+
+# Navigation button labels
+BTN_PREV = "⬅️ Prev"
+BTN_NEXT = "Next ➡️"
+BTN_SEARCH = "🔍 ရှာမည်"
+BTN_SHOW_ALL = "📋 အားလုံး"
+
+
+def _build_game_kb(games: list, page: int, total_pages: int, show_nav: bool = True) -> list:
+    """Build ReplyKeyboardMarkup rows for a page of games."""
+    start = page * GAMES_PER_PAGE
+    end = start + GAMES_PER_PAGE
+    page_games = games[start:end]
+
+    kb = []
+    for i, g in enumerate(page_games, start=start + 1):
+        name = g.get("title", "").strip()
+        genre = g.get("genre", "").strip()
+        sm = g.get("solo_multi", "").strip()
+        sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
+        label = f"{i}. {name}"
+        if genre:
+            label += f" · {genre}"
+        kb.append([label])
+
+    if show_nav and total_pages > 1:
+        nav_row = []
+        if page > 0:
+            nav_row.append(BTN_PREV)
+        nav_row.append(f"Page {page + 1}/{total_pages}")
+        if page < total_pages - 1:
+            nav_row.append(BTN_NEXT)
+        kb.append(nav_row)
+
+    kb.append([BTN_SEARCH, BTN_BACK])
+    return kb
+
+
+def _build_game_list_text(games: list, page: int, total_pages: int, query: str = "") -> str:
+    """Build the text display for a page of games."""
+    start = page * GAMES_PER_PAGE
+    end = start + GAMES_PER_PAGE
+    page_games = games[start:end]
+
+    header = "🎮 <b>Game Library</b>"
+    if query:
+        header += f' — "<i>{query}</i>"'
+
+    lines = [f"{header} ({len(games)} ဂိမ်း)"]
+    if total_pages > 1:
+        lines.append(f"📄 Page {page + 1}/{total_pages}")
+    lines.append("━━━━━━━━━━━━━━━━━━")
+
+    for i, g in enumerate(page_games, start=start + 1):
+        name = g.get("title", "").strip()
+        if not name:
+            continue
+        sm = g.get("solo_multi", "").strip()
+        genre = g.get("genre", "").strip()
+        discs = g.get("discs", "").strip()
+
+        sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
+        tags = ""
+        if sm_icon and sm:
+            tags += f" {sm_icon}{sm}"
+        if genre:
+            tags += f" · {genre}"
+        if discs and discs not in ("", "0"):
+            tags += f" · 💿{discs}"
+
+        lines.append(f"{i}. <b>{name}</b>{tags}")
+
+    lines.append("")
+    lines.append("🔍 ဂိမ်းနာမည်ရိုက်၍ ရှာနိုင်သည်")
+    return "\n".join(lines)
+
+
+async def _show_game_detail(update, game: dict) -> None:
+    """Show detailed info for a single game (console/SSD installs)."""
+    game_name = game.get("title", "").strip()
+    solo_multi = game.get("solo_multi", "").strip()
+    genre = game.get("genre", "").strip()
+    discs = game.get("discs", "").strip()
+
+    cgames = fetch_console_games()
+    cons_list = []
+    ssd_list = []
+    for r in cgames:
+        if r.get("game_title", "").strip().lower() == game_name.lower():
+            cid = r.get("console_id", "").strip()
+            inst_type = r.get("install_type", "").strip()
+            if cid:
+                if "SSD" in inst_type or "Transfer" in inst_type:
+                    ssd_list.append(f"{cid} ({inst_type})")
+                else:
+                    cons_list.append(cid)
+
+    sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
+    discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""
+
+    info_lines = [
+        f"🎮 <b>{game_name}</b>{discs_str}",
+        "━━━━━━━━━━━━━━━━━━",
+    ]
+    if sm_icon and solo_multi:
+        info_lines.append(f"{sm_icon} <b>Mode:</b> {solo_multi}")
+    if genre:
+        info_lines.append(f"🎯 <b>Genre:</b> {genre}")
+
+    info_lines.append("")
+    if cons_list:
+        unique_cons = sorted(set(cons_list))
+        info_lines.append(f"📀 <b>Console တွင်ရှိသည်:</b> {', '.join(unique_cons)}")
+    else:
+        info_lines.append("📀 <b>Console:</b> <i>Not installed</i>")
+
+    if ssd_list:
+        unique_ssd = sorted(set(ssd_list))
+        info_lines.append(f"💾 <b>SSD တွင်ရှိသည်:</b> {', '.join(unique_ssd)}")
+    else:
+        info_lines.append("💾 <b>SSD:</b> <i>မရှိပါ</i>")
+
+    await update.message.reply_text(
+        "\n".join(info_lines),
+        parse_mode="HTML",
+    )
 
 
 async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = [
-        [BTN_VIEW_GAMES,      BTN_ADD_GAME],
-        [BTN_CONSOLE_INSTALL, BTN_DEL_GAME],
-        [BTN_EDIT_GAME,       BTN_DISC_RECORD],
-        [BTN_SSD_MANAGE],
+        [BTN_VIEW_GAMES],
+        [BTN_EDIT_GAME],
         [BTN_BACK_MAIN],
     ]
     games = await fetch_games_async()
@@ -38,94 +163,152 @@ async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    # Clear any lingering game view state
+    context.user_data.pop("game_list", None)
+    context.user_data.pop("game_page", None)
+    context.user_data.pop("game_query", None)
     return GAME_MENU
+
 
 async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     choice = update.message.text.strip()
-    if choice in (BTN_BACK, BTN_BACK_MAIN):
-        return await show_main_menu(update, context)
-    if choice == BTN_VIEW_GAMES:
-        games       = fetch_games()
-        cgames      = fetch_console_games()  # Console_Games sheet records
-        if not games:
-            await update.message.reply_text("ℹ️ Game Library ဗလာ ဖြစ်နေသည်\nဂိမ်းထည့်ပါ")
-        else:
-            # Build a map: game_title_lower → [console_ids]
-            install_map: dict[str, list[str]] = {}
-            for r in cgames:
-                gt = r.get("game_title", "").strip()
-                cid = r.get("console_id", "").strip()
-                if gt and cid:
-                    install_map.setdefault(gt.lower(), []).append(cid)
+    game_list = context.user_data.get("game_list", [])
+    game_page = context.user_data.get("game_page", 0)
+    game_query = context.user_data.get("game_query", "")
 
-            lines = [f"🎮 <b>Game Library</b> ({len(games)} ဂိမ်း)\n━━━━━━━━━━━━━━━━━━"]
-            for i, g in enumerate(games, 1):
-                name  = g.get("title", "").strip()
-                if not name:
-                    continue
-                # Installed consoles
-                cons_list  = install_map.get(name.lower(), [])
-                discs      = g.get("discs", "").strip()
-                solo_multi = g.get("solo_multi", "").strip()
-                genre      = g.get("genre", "").strip()
-                discs_str   = f" 💿<b>{discs}pc</b>" if discs and discs not in ("", "0") else ""
-                install_str = f"├─ 📀 <b>Installed</b>: {', '.join(cons_list)}" if cons_list else "├─ <i>Not installed</i>"
-                sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
-                tags = ""
-                if sm_icon and solo_multi:
-                    tags += f" {sm_icon}{solo_multi}"
-                if genre:
-                    tags += f" · {genre}"
-                lines.append(f"{i}. <b>{name}</b>{discs_str}{tags}\n   {install_str}")
-            chunk = ""
-            for ln in lines:
-                if len(chunk) + len(ln) + 2 > 3800:
-                    await update.message.reply_text(chunk, parse_mode="HTML")
-                    chunk = ln
-                else:
-                    chunk = chunk + "\n" + ln if chunk else ln
-            if chunk:
-                await update.message.reply_text(chunk, parse_mode="HTML")
-        return await show_game_menu(update, context)
-    if choice == BTN_ADD_GAME:
-        context.user_data.pop("new_game", None)
-        context.user_data["new_game"] = {}
+    # ── Back ──
+    if choice in (BTN_BACK, BTN_BACK_MAIN):
+        context.user_data.pop("game_list", None)
+        context.user_data.pop("game_page", None)
+        context.user_data.pop("game_query", None)
+        return await show_main_menu(update, context)
+
+    # ── Page navigation (only when viewing games) ──
+    if choice == BTN_PREV and game_list:
+        game_page = max(0, game_page - 1)
+        context.user_data["game_page"] = game_page
+        total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        text = _build_game_list_text(game_list, game_page, total_pages, game_query)
+        kb = _build_game_kb(game_list, game_page, total_pages)
+        await update.message.reply_text(text, parse_mode="HTML",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return GAME_MENU
+
+    if choice == BTN_NEXT and game_list:
+        total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        game_page = min(total_pages - 1, game_page + 1)
+        context.user_data["game_page"] = game_page
+        text = _build_game_list_text(game_list, game_page, total_pages, game_query)
+        kb = _build_game_kb(game_list, game_page, total_pages)
+        await update.message.reply_text(text, parse_mode="HTML",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return GAME_MENU
+
+    # ── Search button ──
+    if choice == BTN_SEARCH and game_list:
         await update.message.reply_text(
-            "➕ *ဂိမ်းအသစ် ထည့်*\n━━━━━━━━━━━━━━━━━━\n"
-            "🎮 ဂိမ်းနာမည် ရိုက်ပါ:",
-            parse_mode="Markdown",
-            reply_markup=ReplyKeyboardMarkup([[BTN_CANCEL]], resize_keyboard=True),
+            "🔍 <b>ဂိမ်းရှာမည်</b>\n━━━━━━━━━━━━━━━━━━\n"
+            "ဂိမ်းနာမည် (သို့) genre ရိုက်ပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup([[BTN_SHOW_ALL, BTN_BACK]], resize_keyboard=True),
         )
-        return GAME_ADD_TITLE
-    if choice == BTN_CONSOLE_INSTALL:
-        return await show_ginst_menu(update, context)
-    if choice == BTN_SSD_MANAGE:
-        return await show_ssd_menu(update, context)
-    if choice == BTN_DISC_RECORD:
+        context.user_data["game_searching"] = True
+        return GAME_MENU
+
+    # ── Show all (from search) ──
+    if choice == BTN_SHOW_ALL:
+        context.user_data.pop("game_searching", None)
+        all_games = await fetch_games_async()
+        context.user_data["game_list"] = all_games
+        context.user_data["game_page"] = 0
+        context.user_data["game_query"] = ""
+        total_pages = max(1, (len(all_games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        text = _build_game_list_text(all_games, 0, total_pages)
+        kb = _build_game_kb(all_games, 0, total_pages)
+        await update.message.reply_text(text, parse_mode="HTML",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return GAME_MENU
+
+    # ── Search execution (user typed search query) ──
+    if context.user_data.get("game_searching"):
+        context.user_data.pop("game_searching", None)
+        query = choice.lower()
+        all_games = await fetch_games_async()
+        filtered = [
+            g for g in all_games
+            if query in g.get("title", "").lower()
+            or query in g.get("genre", "").lower()
+            or query in g.get("solo_multi", "").lower()
+        ]
+        if not filtered:
+            await update.message.reply_text(
+                f"🔍 '<b>{choice}</b>' နှင့် ကိုက်ညီသော ဂိမ်းမရှိပါ",
+                parse_mode="HTML",
+            )
+            # Go back to full list
+            all_games = await fetch_games_async()
+            context.user_data["game_list"] = all_games
+            context.user_data["game_page"] = 0
+            context.user_data["game_query"] = ""
+            total_pages = max(1, (len(all_games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+            text = _build_game_list_text(all_games, 0, total_pages)
+            kb = _build_game_kb(all_games, 0, total_pages)
+            await update.message.reply_text(text, parse_mode="HTML",
+                                             reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+            return GAME_MENU
+
+        context.user_data["game_list"] = filtered
+        context.user_data["game_page"] = 0
+        context.user_data["game_query"] = choice
+        total_pages = max(1, (len(filtered) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        text = _build_game_list_text(filtered, 0, total_pages, choice)
+        kb = _build_game_kb(filtered, 0, total_pages)
+        await update.message.reply_text(text, parse_mode="HTML",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return GAME_MENU
+
+    # ── Game selection from keyboard (e.g., "1. GameName · Genre") ──
+    if game_list:
+        for i, g in enumerate(game_list, 1):
+            prefix = f"{i}. "
+            if choice.startswith(prefix):
+                await _show_game_detail(update, g)
+                # Re-show the same page
+                total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+                text = _build_game_list_text(game_list, game_page, total_pages, game_query)
+                kb = _build_game_kb(game_list, game_page, total_pages)
+                await update.message.reply_text(
+                    "အခြားဂိမ်းရွေးပါ (သို့) Back နှိပ်ပါ:",
+                    parse_mode="HTML",
+                    reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+                )
+                return GAME_DETAIL_PICK
+
+    # ── View Games ──
+    if choice == BTN_VIEW_GAMES:
         games = await fetch_games_async()
         if not games:
-            await update.message.reply_text("ℹ️ Game Library ဗလာ ဖြစ်နေသည်")
+            await update.message.reply_text("ℹ️ Game Library ဗလာ ဖြစ်နေသည်\nဂိမ်းထည့်ပါ")
             return await show_game_menu(update, context)
-        context.user_data["disc_games"] = games
-        # Build label→game mapping; store by BOTH label and title for robust lookup
-        disc_map = {}
-        kb_rows  = []
-        for g in games:
-            d   = g.get("discs", "").strip()
-            lbl = f"{g['title']}  💿{d}pc" if d and d != "0" else f"{g['title']}  💿--"
-            disc_map[lbl]          = g   # exact label key
-            disc_map[g["title"]]   = g   # title-only fallback key
-            kb_rows.append([lbl])
-        kb_rows.append([BTN_BACK])
-        context.user_data["disc_map"] = disc_map
-        await update.message.reply_text(
-            "💿 <b>Game Discs Record</b>\n"
-            "━━━━━━━━━━━━━━━━━━\n"
-            "ပြင်မည့် ဂိမ်း ရွေးပါ:",
-            parse_mode="HTML",
-            reply_markup=ReplyKeyboardMarkup(kb_rows, resize_keyboard=True),
-        )
-        return DISC_SELECT
+        context.user_data["game_list"] = games
+        context.user_data["game_page"] = 0
+        context.user_data["game_query"] = ""
+        total_pages = max(1, (len(games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        text = _build_game_list_text(games, 0, total_pages)
+        kb = _build_game_kb(games, 0, total_pages)
+        await update.message.reply_text(text, parse_mode="HTML",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return GAME_MENU
+
+
+
+
+
+
+
+
+
+    # ── Edit Game ──
     if choice == BTN_EDIT_GAME:
         games = await fetch_games_async()
         if not games:
@@ -140,23 +323,189 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
         )
         return GAME_EDIT_SELECT
-    if choice == BTN_DEL_GAME:
-        games = await fetch_games_async()
-        if not games:
-            await update.message.reply_text("ℹ️ ဖျက်ရန် ဂိမ်းမရှိပါ")
-            return await show_game_menu(update, context)
-        kb = [[f"{i}. {g['title']}" ] for i, g in enumerate(games, 1)]
-        kb.append([BTN_BACK])
-        context.user_data["del_games"] = games
-        await update.message.reply_text(
-            "🗑️ *ဂိမ်းဖျက်မည်*\n━━━━━━━━━━━━━━━━━━\n"
-            "ဖျက်မည့် ဂိမ်းကို ရွေးပါ:",
-            parse_mode="Markdown",
-            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
-        )
-        return GAME_DEL_SELECT
+
+
+
     return await show_game_menu(update, context)
 
+
+async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle game detail pick — user selects a game from paginated view or navigates."""
+    text = update.message.text.strip()
+
+    game_list = context.user_data.get("game_list", [])
+    game_page = context.user_data.get("game_page", 0)
+    game_query = context.user_data.get("game_query", "")
+
+    # ── Back ──
+    if text == BTN_BACK:
+        return await show_game_menu(update, context)
+
+    # ── Page navigation ──
+    if text == BTN_PREV and game_list:
+        game_page = max(0, game_page - 1)
+        context.user_data["game_page"] = game_page
+        total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        kb = _build_game_kb(game_list, game_page, total_pages)
+        await update.message.reply_text(
+            "အခြားဂိမ်းရွေးပါ (သို့) Back နှိပ်ပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return GAME_DETAIL_PICK
+
+    if text == BTN_NEXT and game_list:
+        total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        game_page = min(total_pages - 1, game_page + 1)
+        context.user_data["game_page"] = game_page
+        kb = _build_game_kb(game_list, game_page, total_pages)
+        await update.message.reply_text(
+            "အခြားဂိမ်းရွေးပါ (သို့) Back နှိပ်ပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return GAME_DETAIL_PICK
+
+    # ── Search ──
+    if text == BTN_SEARCH and game_list:
+        await update.message.reply_text(
+            "🔍 <b>ဂိမ်းရှာမည်</b>\nဂိမ်းနာမည် (သို့) genre ရိုက်ပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup([[BTN_SHOW_ALL, BTN_BACK]], resize_keyboard=True),
+        )
+        context.user_data["detail_searching"] = True
+        return GAME_DETAIL_PICK
+
+    if text == BTN_SHOW_ALL:
+        context.user_data.pop("detail_searching", None)
+        all_games = await fetch_games_async()
+        context.user_data["game_list"] = all_games
+        context.user_data["game_page"] = 0
+        context.user_data["game_query"] = ""
+        total_pages = max(1, (len(all_games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        kb = _build_game_kb(all_games, 0, total_pages)
+        await update.message.reply_text(
+            "အသေးစိတ်ကြည့်လိုသော ဂိမ်းကို ရွေးပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return GAME_DETAIL_PICK
+
+    # ── Detail search execution ──
+    if context.user_data.get("detail_searching"):
+        context.user_data.pop("detail_searching", None)
+        query = text.lower()
+        all_games = await fetch_games_async()
+        filtered = [
+            g for g in all_games
+            if query in g.get("title", "").lower()
+            or query in g.get("genre", "").lower()
+            or query in g.get("solo_multi", "").lower()
+        ]
+        if not filtered:
+            await update.message.reply_text(
+                f"🔍 '<b>{text}</b>' နှင့် ကိုက်ညီသော ဂိမ်းမရှိပါ",
+                parse_mode="HTML",
+            )
+            all_games = await fetch_games_async()
+            context.user_data["game_list"] = all_games
+            context.user_data["game_page"] = 0
+            context.user_data["game_query"] = ""
+            total_pages = max(1, (len(all_games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+            kb = _build_game_kb(all_games, 0, total_pages)
+            await update.message.reply_text(
+                "အသေးစိတ်ကြည့်လိုသော ဂိမ်းကို ရွေးပါ:",
+                parse_mode="HTML",
+                reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+            )
+            return GAME_DETAIL_PICK
+
+        context.user_data["game_list"] = filtered
+        context.user_data["game_page"] = 0
+        context.user_data["game_query"] = text
+        total_pages = max(1, (len(filtered) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        kb = _build_game_kb(filtered, 0, total_pages)
+        await update.message.reply_text(
+            f"🔍 '<b>{text}</b>' ရှာတွေ့သည် ({len(filtered)} ဂိမ်း)\nအသေးစိတ်ကြည့်လိုသော ဂိမ်းကို ရွေးပါ:",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return GAME_DETAIL_PICK
+
+    # ── Game selection ──
+    if game_list:
+        for i, g in enumerate(game_list, 1):
+            prefix = f"{i}. "
+            if text.startswith(prefix):
+                target = g
+                game_name = target.get("title", "").strip()
+                solo_multi = target.get("solo_multi", "").strip()
+                genre = target.get("genre", "").strip()
+                discs = target.get("discs", "").strip()
+
+                cgames = fetch_console_games()
+                cons_list = []
+                ssd_list = []
+                for r in cgames:
+                    if r.get("game_title", "").strip().lower() == game_name.lower():
+                        cid = r.get("console_id", "").strip()
+                        inst_type = r.get("install_type", "").strip()
+                        if cid:
+                            if "SSD" in inst_type or "Transfer" in inst_type:
+                                ssd_list.append(f"{cid} ({inst_type})")
+                            else:
+                                cons_list.append(cid)
+
+                sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
+                discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""
+
+                info_lines = [
+                    f"🎮 <b>{game_name}</b>{discs_str}",
+                    "━━━━━━━━━━━━━━━━━━",
+                ]
+                if sm_icon and solo_multi:
+                    info_lines.append(f"{sm_icon} <b>Mode:</b> {solo_multi}")
+                if genre:
+                    info_lines.append(f"🎯 <b>Genre:</b> {genre}")
+
+                info_lines.append("")
+                if cons_list:
+                    unique_cons = sorted(set(cons_list))
+                    info_lines.append(f"📀 <b>Console တွင်ရှိသည်:</b> {', '.join(unique_cons)}")
+                else:
+                    info_lines.append("📀 <b>Console:</b> <i>Not installed</i>")
+
+                if ssd_list:
+                    unique_ssd = sorted(set(ssd_list))
+                    info_lines.append(f"💾 <b>SSD တွင်ရှိသည်:</b> {', '.join(unique_ssd)}")
+                else:
+                    info_lines.append("💾 <b>SSD:</b> <i>မရှိပါ</i>")
+
+                await update.message.reply_text("\n".join(info_lines), parse_mode="HTML")
+
+                total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+                kb = _build_game_kb(game_list, game_page, total_pages)
+                await update.message.reply_text(
+                    "အခြားဂိမ်းရွေးပါ (သို့) Back နှိပ်ပါ:",
+                    parse_mode="HTML",
+                    reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+                )
+                return GAME_DETAIL_PICK
+
+    # ── No match — show hint ──
+    if game_list:
+        total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
+        kb = _build_game_kb(game_list, game_page, total_pages)
+        await update.message.reply_text(
+            "⚠️ Keyboard မှ ရွေးပေးပါ (သို့) 🔍 ရှာမည် နှိပ်ပါ",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return GAME_DETAIL_PICK
+
+    return await show_game_menu(update, context)
+
+
+# ── Game Add Flow (unchanged) ──
 async def step_game_add_title(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -172,6 +521,7 @@ async def step_game_add_title(update: Update, context: ContextTypes.DEFAULT_TYPE
         ),
     )
     return GAME_ADD_PLATFORM
+
 
 async def step_game_add_platform(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Repurposed as Solo/Multiplayer selection step."""
@@ -200,6 +550,7 @@ async def step_game_add_platform(update: Update, context: ContextTypes.DEFAULT_T
     )
     return GAME_ADD_GENRE
 
+
 async def step_game_add_genre(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Genre selection step — then ask for copies count."""
     text = update.message.text.strip()
@@ -220,6 +571,7 @@ async def step_game_add_genre(update: Update, context: ContextTypes.DEFAULT_TYPE
     )
     return GAME_ADD_STATUS
 
+
 async def step_game_add_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Copies count step — then save to sheet."""
     text = update.message.text.strip()
@@ -237,21 +589,18 @@ async def step_game_add_status(update: Update, context: ContextTypes.DEFAULT_TYP
         return GAME_ADD_STATUS
     g = context.user_data.get("new_game", {})
     g["copies"] = copies
-    title      = g.get("title", "")
+    title = g.get("title", "")
     solo_multi = g.get("solo_multi", "")
-    genre      = g.get("genre", "")
-    # Metadata stored in col U (Installed_On) as "solo_multi|genre"
+    genre = g.get("genre", "")
     meta = f"{solo_multi}|{genre}"
     try:
         payload = {"title": title, "solo_multi": solo_multi, "genre": genre, "copies": copies}
         result = _replit_post("add_game", payload)
         if result is None or not result.get("success"):
             raise Exception(result.get("error", "API call failed") if result else "API unavailable")
-        # Invalidate cache
         import bot as _bot_mod
         _bot_mod._GAME_ROWS = []
         _bot_mod._GAME_TS = 0
-        # Solo/Multi emoji
         sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else "🧑👥")
         await update.message.reply_text(
             f"✅ <b>ဂိမ်းထည့်ပြီ!</b>\n"
@@ -268,12 +617,14 @@ async def step_game_add_status(update: Update, context: ContextTypes.DEFAULT_TYP
         await update.message.reply_text(f"❌ Save မအောင်မြင်ပါ: {e}")
     return await show_game_menu(update, context)
 
+
+# ── Game Edit Flow (unchanged) ──
 async def step_game_edit_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User picked a game to edit — ask which field to edit."""
-    text  = update.message.text.strip()
+    text = update.message.text.strip()
     if text == BTN_BACK:
         return await show_game_menu(update, context)
-    games  = context.user_data.get("edit_games", [])
+    games = context.user_data.get("edit_games", [])
     target = None
     for i, g in enumerate(games, 1):
         if text.startswith(f"{i}."):
@@ -283,8 +634,8 @@ async def step_game_edit_select(update: Update, context: ContextTypes.DEFAULT_TY
         await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
         return GAME_EDIT_SELECT
     context.user_data["edit_target"] = target
-    sm  = target.get("solo_multi", "") or "မသတ်မှတ်ရသေး"
-    gen = target.get("genre", "")      or "မသတ်မှတ်ရသေး"
+    sm = target.get("solo_multi", "") or "မသတ်မှတ်ရသေး"
+    gen = target.get("genre", "") or "မသတ်မှတ်ရသေး"
     await update.message.reply_text(
         f"✏️ <b>{target['title']}</b>\n━━━━━━━━━━━━━━━━━━\n👥 Solo/Multi : <b>{sm}</b>\n🎯 Genre      : <b>{gen}</b>\n"
         f"ဘာပြင်မလဲ?",
@@ -295,6 +646,7 @@ async def step_game_edit_select(update: Update, context: ContextTypes.DEFAULT_TY
         ),
     )
     return GAME_EDIT_FIELD
+
 
 async def step_game_edit_field(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User picked which field to edit — ask for new value."""
@@ -326,16 +678,16 @@ async def step_game_edit_field(update: Update, context: ContextTypes.DEFAULT_TYP
         return GAME_EDIT_FIELD
     return GAME_EDIT_VALUE
 
+
 async def step_game_edit_value(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User entered new value — save to col U of Game_Library sheet."""
-    text  = update.message.text.strip()
+    text = update.message.text.strip()
     if text == BTN_BACK:
         return await show_game_menu(update, context)
-    field  = context.user_data.get("edit_field", "")
+    field = context.user_data.get("edit_field", "")
     target = context.user_data.get("edit_target", {})
     if not field or not target:
         return await show_game_menu(update, context)
-    # Validate solo_multi
     if field == "solo_multi" and text not in ("Solo", "Multiplayer", "Solo & Multi"):
         await update.message.reply_text(
             "⚠️ Solo / Multiplayer / Solo & Multi မှ ရွေးပါ",
@@ -345,25 +697,23 @@ async def step_game_edit_value(update: Update, context: ContextTypes.DEFAULT_TYP
             ),
         )
         return GAME_EDIT_VALUE
-    # Build updated metadata string for col U
-    cur_sm  = target.get("solo_multi", "")
+    cur_sm = target.get("solo_multi", "")
     cur_gen = target.get("genre", "")
     if field == "solo_multi":
-        new_sm  = text
+        new_sm = text
         new_gen = cur_gen
     else:
-        new_sm  = cur_sm
+        new_sm = cur_sm
         new_gen = text
-    meta    = f"{new_sm}|{new_gen}"
+    meta = f"{new_sm}|{new_gen}"
     row_num = target.get("row", 0)
-    title   = target.get("title", "?")
+    title = target.get("title", "?")
     try:
         sh = get_game_lib_sh()
         payload = {"title": title, "field": field, "value": text}
         result = _replit_put("edit_game", payload)
         if result is None or not result.get("success"):
             raise Exception(result.get("error", "API call failed") if result else "API unavailable")
-        # Invalidate cache
         import bot as _bot_mod
         _bot_mod._GAME_ROWS = []
         _bot_mod._GAME_TS = 0
@@ -376,6 +726,8 @@ async def step_game_edit_value(update: Update, context: ContextTypes.DEFAULT_TYP
         await update.message.reply_text(f"❌ Save မအောင်မြင်ပါ: {e}")
     return await show_game_menu(update, context)
 
+
+# ── Game Delete Flow (unchanged) ──
 async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_BACK:
@@ -401,3 +753,5 @@ async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYP
     except Exception as e:
         err_str = str(e)
         await update.message.reply_text(f"❌ ဖျက်မရပါ: {e}")
+
+    return await show_game_menu(update, context)

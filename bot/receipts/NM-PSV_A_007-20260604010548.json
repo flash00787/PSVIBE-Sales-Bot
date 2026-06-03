@@ -1,0 +1,21 @@
+{
+  "type": "new_member",
+  "voucher_id": "NM-PSV_A_007-20260604010548",
+  "date": "6/4/2026",
+  "name": "Test.py",
+  "member_id": "PSV_A_007",
+  "phone": "0976676467",
+  "email": "",
+  "amount": 0,
+  "mins": 600,
+  "kpay": 0,
+  "cash": 0,
+  "balance_mins": 600,
+  "rank": "New Member",
+  "prev_balance": 0,
+  "balance_change": 600,
+  "balance_after": 600,
+  "is_gift": true,
+  "referral_code": "",
+  "referral_bonus": 0
+}

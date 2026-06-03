@@ -3,10 +3,9 @@
 """
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, BTN_CHANGE_GAME,
-    BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_SKIP_GAME, BTN_SSD_MANAGE,
-    BTN_SSD_TRANSFER, BTN_START_SESSION, BTN_STATUS_BOARD, CONSOLE_MENU,
-    END_SESSION_SELECT, GAME_CHANGE_CONS, GAME_CHANGE_GAME, MMT,
-    SSD_XFER_SSD, _delete_session_game, _replit_get, _replit_get_async, add_console_game,
+    BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
+    BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT, _delete_session_game,
+    _replit_get, _replit_get_async, add_console_game, _replit_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
     fetch_console_status, get_games_on_console, get_games_on_console_async, now_mmt,
     show_console_menu, show_game_menu, show_main_menu,
@@ -20,7 +19,6 @@ from telegram.constants import ParseMode
 import asyncio, logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-
 
 
 
@@ -110,17 +108,17 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             since  = f" since {c['startTime']}" if c.get("startTime") else ""
             detail = f"Active — {mbr}{since}"
 
-        # Installed games on this console (truncated: 3 shown + '+N more' to stay under 4096 chars)
-        installed = [
-            r["game_title"] for r in fetch_console_games()
-            if r.get("console_id","").upper() == cid.upper() and r.get("game_title")
-        ]
+        # For Active consoles, show current session game only
         game_str = ""
-        if installed:
-            show = installed[:3]
-            game_str = "\n    🎮 " + " · ".join(show)
-            if len(installed) > 3:
-                game_str += f"  +{len(installed) - 3} more"
+        if live in ("Active", "Scheduled"):
+            session_games = [
+                r["game_title"] for r in fetch_console_games()
+                if r.get("console_id","").upper() == cid.upper()
+                and r.get("install_type") == "Session"
+                and r.get("game_title")
+            ]
+            if session_games:
+                game_str = "\n    🎮 " + session_games[0]
 
         lines.append(f"{icon} *{cid}*{ctype_str}: {detail}{game_str}")
 
@@ -146,7 +144,7 @@ async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = [
         [BTN_START_SESSION,  BTN_END_SESSION],
         [BTN_STATUS_BOARD,   BTN_GAME_LIB_MENU],
-        [BTN_CHANGE_GAME,    BTN_SSD_MANAGE],
+        [BTN_CONSOLE_INSTALL],
         [BTN_BACK_MAIN],
     ]
     await update.message.reply_text(
@@ -161,6 +159,7 @@ async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from bot.handlers.main_menu import show_main_menu
     from bot.handlers.games import show_game_menu
+    from bot.handlers.ginst import show_ginst_menu
     choice = update.message.text.strip()
     if choice == BTN_BACK_MAIN:
         return await show_main_menu(update, context)
@@ -173,103 +172,8 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_console_menu(update, context)
     if choice == BTN_GAME_LIB_MENU:
         return await show_game_menu(update, context)
-    if choice == BTN_SSD_MANAGE:
-        return await show_ssd_menu(update, context)
-    if choice == BTN_CHANGE_GAME:
-        return await prompt_game_change_cons(update, context)
-    return await show_console_menu(update, context)
-
-async def prompt_game_change_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show active consoles so staff can pick which one to change game for."""
-    try:
-        consoles = fetch_console_status()
-    except Exception as e:
-        await update.message.reply_text(f"❌ Error: {e}")
-        return await show_console_menu(update, context)
-    active = [c for c in consoles if c["status"] == "Active"]
-    if not active:
-        await update.message.reply_text(
-            "ℹ️ လက်ရှိ Active session မရှိပါ",
-            reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
-        )
-        return CONSOLE_MENU
-    kb = [[f"{c['id']} ({c.get('member') or 'Guest'})"] for c in active] + [[BTN_BACK]]
-    await update.message.reply_text(
-        "🔄 <b>Game ပြောင်း</b>\n\nGame ပြောင်းမည့် Active Console ရွေးပါ:",
-        parse_mode="HTML",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
-    return GAME_CHANGE_CONS
-
-async def step_game_change_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text.strip()
-    if text == BTN_BACK:
-        return await show_console_menu(update, context)
-    cid = text.split("(")[0].strip()
-    context.user_data["gc_console"] = cid
-    # Show current game
-    cur_games = [
-        r["game_title"] for r in fetch_console_games()
-        if r["console_id"].upper() == cid.upper() and r["install_type"] == "Session"
-    ]
-    cur_str = f"ဘာသိသလဲ: <b>{cur_games[0]}</b>" if cur_games else "Current Game: —"
-    # Only show games installed on this console
-    installed = await get_games_on_console_async(cid)
-    kb_rows: list = []
-    if installed:
-        row: list = []
-        for t in installed:
-            row.append(t)
-            if len(row) == 2:
-                kb_rows.append(row)
-                row = []
-        if row:
-            kb_rows.append(row)
-    else:
-        kb_rows.append(["(ဂိမ်း မရှိသေးပါ)"])
-    kb_rows.append([BTN_SSD_TRANSFER])
-    kb_rows.append([BTN_SKIP_GAME])
-    kb_rows.append([BTN_BACK])
-    await update.message.reply_text(
-        f"🕹️ <b>{cid}</b>\n{cur_str}\n\n"
-        f"🎮 အသစ် ကစားမည့် ဂိမ်း ရွေးပါ\n"
-        f"မပါသော ဂိမ်းဆို <b>🔄 SSD Transfer</b> နှိပ်ပါ:",
-        parse_mode="HTML",
-        reply_markup=ReplyKeyboardMarkup(kb_rows, resize_keyboard=True),
-    )
-    return GAME_CHANGE_GAME
-
-async def step_game_change_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text.strip()
-    cid  = context.user_data.pop("gc_console", "")
-    if text == BTN_BACK:
-        return await prompt_game_change_cons(update, context)
-    if text == BTN_SKIP_GAME:
-        await update.message.reply_text("ℹ️ ပြောင်းမပြောင်းဘဲ ထားခဲ့သည်")
-        return await show_console_menu(update, context)
-    if text == BTN_SSD_TRANSFER:
-        # Redirect to SSD transfer; after transfer return to game-change console picker
-        context.user_data["gc_console"] = cid  # restore popped cid
-        context.user_data["ssd_return_to_session"] = True
-        context.user_data["ssd_xfer_from_game_change"] = True
-        context.user_data["ssd_xfer_target_cons"]  = cid
-        await update.message.reply_text(
-            f"🔄 <b>SSD → {cid} Transfer</b>\n\nSSD ကို ရွေးပါ:",
-            parse_mode="HTML",
-            reply_markup=_ssd_kb(),
-        )
-        return SSD_XFER_SSD
-    new_game = text
-    # Delete old Session entry, write new one
-    _delete_session_game(cid)
-    ok = add_console_game(cid, new_game, "Session", "Changed")
-    if ok:
-        await update.message.reply_text(
-            f"✅ <b>{cid}</b> → Game ပြောင်းပြီ\n🎮 <b>{new_game}</b>",
-            parse_mode="HTML",
-        )
-    else:
-        await update.message.reply_text("❌ Game ပြောင်းမရပါ — ထပ်ကြိုးစားပါ")
+    if choice == BTN_CONSOLE_INSTALL:
+        return await show_ginst_menu(update, context)
     return await show_console_menu(update, context)
 
 async def prompt_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -426,6 +330,5 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from bot.handlers.sales import launch_session_sale
     return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
                                      booking_id=_linked_bk_id)
-
 
 # Duplicate import removed - already imported at top
