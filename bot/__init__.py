@@ -2147,16 +2147,25 @@ async def _replit_get_async(path: str, timeout: int = 8):
             if "data" in data:
                 inner = data["data"]
                 if isinstance(inner, list):
-                    return inner
+                    return [x for x in inner if isinstance(x, dict)]
                 if isinstance(inner, dict):
                     for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
                         if _list_key in inner and isinstance(inner[_list_key], list):
-                            return inner[_list_key]
+                            return [x for x in inner[_list_key] if isinstance(x, dict)]
                     return inner
             # Already-unwrapped: data itself may contain list-like keys
             for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
                 if _list_key in data and isinstance(data[_list_key], list):
-                    return data[_list_key]
+                    return [x for x in data[_list_key] if isinstance(x, dict)]
+            # Dict without list-like keys — return empty list (not the dict itself)
+            logging.warning("API GET /%s returned dict without list keys — returning []", path)
+            return []
+        # If data is a list, filter to only dicts for list_path safety
+        if is_list_path and isinstance(data, list):
+            filtered = [x for x in data if isinstance(x, dict)]
+            if len(filtered) != len(data):
+                logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
+            return filtered
         return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
@@ -3079,16 +3088,25 @@ async def _replit_get_async(path: str, timeout: int = 8):
             if "data" in data:
                 inner = data["data"]
                 if isinstance(inner, list):
-                    return inner
+                    return [x for x in inner if isinstance(x, dict)]
                 if isinstance(inner, dict):
                     for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
                         if _list_key in inner and isinstance(inner[_list_key], list):
-                            return inner[_list_key]
+                            return [x for x in inner[_list_key] if isinstance(x, dict)]
                     return inner
             # Already-unwrapped: data itself may contain list-like keys
             for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
                 if _list_key in data and isinstance(data[_list_key], list):
-                    return data[_list_key]
+                    return [x for x in data[_list_key] if isinstance(x, dict)]
+            # Dict without list-like keys — return empty list (not the dict itself)
+            logging.warning("API GET /%s returned dict without list keys — returning []", path)
+            return []
+        # If data is a list, filter to only dicts for list_path safety
+        if is_list_path and isinstance(data, list):
+            filtered = [x for x in data if isinstance(x, dict)]
+            if len(filtered) != len(data):
+                logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
+            return filtered
         return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)

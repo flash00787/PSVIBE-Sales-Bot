@@ -894,20 +894,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # 2. TopUp_Log (cols A–C, E–I, J)
             # If referral code used, add +30 bonus mins to new member's added_mins
             _nm_added_mins = nm_mins + (30 if nm_referral_code and nm_referrer_id else 0)
-            # ── API write (best-effort) ──
-            try:
-                api_add_topup({
-                    "date": today,
-                    "member_id": nm_id,
-                    "type": "New Member",
-                    "amount": nm_amt,
-                    "kpay": nm_kpay,
-                    "cash": nm_cash,
-                    "mins_added": _nm_added_mins,
-                    "staff": nm_staff,
-                })
-            except Exception as e:
-                logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
+            # NOTE: api_add_member (members/register) already creates wallet + topup_log entry.
+            # No separate api_add_topup call here to avoid double-balance bug.
             topup_sh.batch_update(
                 [{"range": f"A{tl_row}:C{tl_row}",
                   "values": [[today, nm_id, "New Member"]]},

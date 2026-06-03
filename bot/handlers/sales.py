@@ -92,7 +92,10 @@ async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         balance_line = ""
 
     try:
-        _cons = [c["id"] for c in await fetch_console_status_async()]
+        raw_cons = await fetch_console_status_async()
+        _cons = [c["id"] for c in raw_cons if isinstance(c, dict) and c.get("id")]
+        if not _cons:
+            _cons = sorted(VALID_CONSOLES)
     except Exception as e:
         logging.warning("Failed to fetch console status for booking keyboard: %s", e)
         _cons = sorted(VALID_CONSOLES)
@@ -652,8 +655,13 @@ async def _check_console_in_session(update, context, console_id: str):
         logging.warning("Failed to fetch console status for console session check: %s", e)
         return await prompt_mins(update, context)
 
+    # Filter to only dicts (safety against API returning strings in list)
+    consoles_dicts = [c for c in consoles if isinstance(c, dict)]
+    if len(consoles_dicts) != len(consoles):
+        logging.warning("_check_console_in_session: filtered %d non-dict elements from consoles",
+                        len(consoles) - len(consoles_dicts))
     active = next(
-        (c for c in consoles if c.get("id") == console_id
+        (c for c in consoles_dicts if c.get("id") == console_id
          and c.get("status") in ("Active", "Scheduled")),
         None,
     )
@@ -733,7 +741,16 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return MINS
 
     if mins <= 0:
-        await update.message.reply_text("⚠️ မိနစ် 1 နှင့်အထက် ထည့်ပေးပါ -")
+        await update.message.reply_text("⚠️ မိနစ္ 1 နှင့်အထက္ ထည့်ပေးပါ -")
+        return MINS
+
+    # Anti-spam guard: max 1440 mins (24 hours) per session
+    MAX_SESSION_MINS = 1440
+    if mins > MAX_SESSION_MINS:
+        await update.message.reply_text(
+            f"⚠️ တစ်ခါတည်း {MAX_SESSION_MINS:,} မိနစ္ (24 နာရီ) အထိသာ ထည့်လို့ရပါသည် -\n"
+            f"ပြေးဇူးပြုိ့၊ {MAX_SESSION_MINS:,} အောက် ဂဏန်းရိုက်ပါ -",
+        )
         return MINS
 
     context.user_data["mins"]       = mins
