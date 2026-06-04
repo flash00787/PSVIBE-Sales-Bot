@@ -137,16 +137,24 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         )
         return await show_ginst_menu(update, context)
 
-    # Show install type selection
-    await update.message.reply_text(
-        f"🖥️ <b>{cid}</b> ─ 🎮 <b>{title}</b>\n\nInstall Type ရွေးပါ:",
-        parse_mode="HTML",
-        reply_markup=ReplyKeyboardMarkup(
-            [[BTN_GINST_HDD, BTN_GINST_DISC], [BTN_GINST_SSD], [BTN_BACK]],
-            resize_keyboard=True,
-        ),
+    # Auto-install on Internal SSD
+    install_type = "Internal SSD"
+    ok, gl_ok = await asyncio.gather(
+        add_console_game_async(cid, title, install_type),
+        update_game_library_install_async(title, cid, True),
     )
-    return GINST_ADD_TYPE
+    if ok:
+        await update.message.reply_text(
+            f"✅ <b>Install မှတ်သားပြီ!</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🖥️ Console : <b>{cid}</b>\n"
+            f"🎮 Game    : <b>{title}</b>\n"
+            f"💾 Type   : <b>{install_type}</b>",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ Save မအောင်မြင်ပါ — ထပ်ကြိုးစားပါ")
+    return await show_ginst_menu(update, context)
 
 async def step_ginst_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()

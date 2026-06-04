@@ -28,7 +28,7 @@ API_KEY = os.environ.get("API_KEY", "")
 
 logger = logging.getLogger("psvibe_api_client")
 
-DEFAULT_TIMEOUT = 5  # Fast-fail local network
+DEFAULT_TIMEOUT = 15  # Local network with MySQL queries (retries will fallback)
 DEFAULT_MAX_RETRIES = 1  # 2 total attempts (1 + 1 retry)
 def _normalize_date(date_str):
     if not date_str: return date_str

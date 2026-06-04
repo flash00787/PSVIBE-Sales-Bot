@@ -1727,9 +1727,6 @@ BTN_FIN_ADVPAY       = "💵 Advance"
 BTN_FIN_SETTLE_ADVPAY= "✅ Settle Adv"
 BTN_FIN_BACK         = "⬅️ Finance Menu"
 
-fetch_game_library  = fetch_games            # alias used in SSD management
-write_console_game  = add_console_game       # alias used in SSD management
-delete_console_game = remove_console_game    # alias used in SSD management
 
 
 def _delete_session_game(console_id: str) -> None:
@@ -2082,6 +2079,27 @@ def fetch_promotions_cached() -> list:
     return promos
 
 
+
+def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """PATCH JSON to API server. Returns parsed response dict or None on error."""
+    base = _api_base()
+    if not base:
+        return None
+    try:
+        import urllib.request as _req
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        req = _req.Request(
+            f"{base}/api/{path}",
+            data=data,
+            method="PATCH",
+            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
+        )
+        with _req.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as e:
+        logging.warning("API PATCH /%s failed: %s", path, e)
+        return None
+
 def _cfg_fresh() -> bool:
     with _THREAD_CACHE_LOCK:
         return bool(_CFG) and (time.time() - _CFG_TS) < _CFG_TTL
@@ -2179,26 +2197,6 @@ def _replit_delete(path: str, timeout: int = 10) -> dict | None:
         logging.warning("API DELETE /%s failed: %s", path, e)
         return None
 
-def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """PATCH JSON to API server. Returns parsed response dict or None on error."""
-    base = _api_base()
-    if not base:
-        return None
-    try:
-        import urllib.request as _req
-        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        req = _req.Request(
-            f"{base}/api/{path}",
-            data=data,
-            method="PATCH",
-            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
-        )
-        with _req.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except Exception as e:
-        logging.warning("API PATCH /%s failed: %s", path, e)
-        return None
-
 
 def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
     """PUT JSON to API server. Returns parsed response dict or None on error."""
@@ -2219,98 +2217,6 @@ def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
     except Exception as e:
         logging.warning("API PUT /%s failed: %s", path, e)
         return None
-
-
-
-# ── Async API helpers ──
-async def _replit_get_async(path: str, timeout: int = 8):
-    """Async GET — same fallback logic as _replit_get but non-blocking."""
-    _list_keywords = (
-        "bookings", "waitlist", "console", "inventory",
-        "staff", "games", "members", "logs", "attendance",
-        "accounts", "payments", "salary", "promotions",
-    )
-    is_list_path = (
-        not path.startswith("sheets/")
-        and not path.startswith("finance/")
-        and any(kw in path for kw in _list_keywords)
-    )
-    fallback = [] if is_list_path else {}
-    try:
-        from bot.api_client import _api_call_async
-        data = await _api_call_async("GET", path, timeout=timeout)
-        if data is None:
-            return fallback
-        if is_list_path and isinstance(data, dict):
-            # _api_call_async strips {success:, data:} envelope — check both cases
-            if "data" in data:
-                inner = data["data"]
-                if isinstance(inner, list):
-                    return [x for x in inner if isinstance(x, dict)]
-                if isinstance(inner, dict):
-                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                        if _list_key in inner and isinstance(inner[_list_key], list):
-                            return [x for x in inner[_list_key] if isinstance(x, dict)]
-                    return inner
-            # Already-unwrapped: data itself may contain list-like keys
-            for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                if _list_key in data and isinstance(data[_list_key], list):
-                    return [x for x in data[_list_key] if isinstance(x, dict)]
-            # Dict without list-like keys — return empty list (not the dict itself)
-            logging.warning("API GET /%s returned dict without list keys — returning []", path)
-            return []
-        # If data is a list, filter to only dicts for list_path safety
-        if is_list_path and isinstance(data, list):
-            filtered = [x for x in data if isinstance(x, dict)]
-            if len(filtered) != len(data):
-                logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
-            return filtered
-        return data
-    except Exception as e:
-        logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
-        return fallback
-
-
-async def _replit_post_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """Async POST."""
-    try:
-        from bot.api_client import _api_call_async
-        return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API POST /%s failed: %s", path, e)
-        return None
-
-
-async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
-    """Async DELETE."""
-    try:
-        from bot.api_client import _api_call_async
-        return await _api_call_async("DELETE", path, timeout=timeout)
-    except Exception as e:
-        logging.warning("API DELETE /%s failed: %s", path, e)
-        return None
-
-
-async def _replit_patch_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """Async PATCH."""
-    try:
-        from bot.api_client import _api_call_async
-        return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API PATCH /%s failed: %s", path, e)
-        return None
-
-
-async def _replit_put_async(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """Async PUT."""
-    try:
-        from bot.api_client import _api_call_async
-        return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API PUT /%s failed: %s", path, e)
-        return None
-
-
 
 def _load_cfg() -> None:
     global _CFG, _CFG_TS
@@ -3297,9 +3203,9 @@ async def cancel_booking_async(booking_id: str) -> bool:
 
 async def fetch_games_async() -> list[dict]:
     """Async version — maps API game_title → title for handler compatibility."""
-    data = await _replit_get_async("fetch_games")
-    if isinstance(data, dict) and "games" in data:
-        raw_games = data["games"]
+    result = await api_fetch_games_async()
+    if result and isinstance(result, dict) and "games" in result:
+        raw_games = result["games"]
     elif isinstance(data, list):
         raw_games = data
     else:
@@ -3314,8 +3220,12 @@ async def fetch_games_async() -> list[dict]:
     } for i, g in enumerate(raw_games) if isinstance(g, dict)]
 
 async def fetch_console_games_async() -> list[dict]:
-    return await _replit_get_async("fetch_console_games")
-
+    result = await api_fetch_console_games_async()
+    if result and isinstance(result, dict) and console_games in result:
+        return result[console_games]
+    if isinstance(result, list):
+        return result
+    return []
 async def get_games_on_console_async(console_id: str) -> list[str]:
     """Return list of game titles installed on a specific console (async).
     Excludes 'Session' type records (session tracking) to avoid duplicates.
@@ -3337,35 +3247,29 @@ async def get_games_on_console_async(console_id: str) -> list[str]:
     return []
 
 async def get_consoles_with_game_async(game_title: str = "") -> list[str]:
-    if game_title:
-        return await _replit_get_async(f"get_consoles_with_game?game_title={game_title}")
-    return await _replit_get_async("get_consoles_with_game")
+    result = await api_get_consoles_with_game_async(game_title)
+    if result and isinstance(result, dict) and "consoles" in result:
+        return result["consoles"]
+    if isinstance(result, list):
+        return result
+    return []
 
 async def add_console_game_async(console_id: str, game_title: str,
                                   install_type: str = "", notes: str = "") -> bool:
-    result = await _replit_post_async("add_console_game", {
-        "console_id": console_id, "game_title": game_title,
-        "install_type": install_type, "notes": notes,
-    })
+    result = await api_add_console_game_async(console_id, game_title, install_type, notes)
     return result is not None
 
 async def remove_console_game_async(console_id: str, game_title: str) -> bool:
-    result = await _replit_post_async("remove_console_game", {
-        "console_id": console_id, "game_title": game_title,
-    })
+    result = await api_remove_console_game_async(console_id, game_title)
     return result is not None
 
 async def set_game_disc_count_async(row_num: int, count: int) -> bool:
-    result = await _replit_post_async("games/disc-count", {
-        "row_num": row_num, "count": count,
-    })
+    result = await api_set_game_disc_count_async(row_num, count)
     return result is not None
 
 async def update_game_library_install_async(game_title: str, console_id: str,
                                               installed: bool) -> bool:
-    result = await _replit_post_async("game-library/install", {
-        "game_title": game_title, "console_id": console_id, "installed": installed,
-    })
+    result = await api_update_game_library_install_async(game_title, console_id, installed)
     return result is not None
 
 

@@ -18,11 +18,12 @@ from bot import (
     SSD_RET_GAME, SSD_VIEW_SSD, SSD_XFER_CONS, SSD_XFER_GAME,
     SSD_XFER_SSD, SSD_BTN_TO_ID, SSD_NAMES,
     SSD_MOVE_SSD, SSD_MOVE_GAME, SSD_MOVE_CONS,
-    SSD_MOVE_FROM_CONS, SSD_MOVE_FROM_GAME, SSD_MOVE_TO_SSD, delete_console_game,
+    SSD_MOVE_FROM_CONS, SSD_MOVE_FROM_GAME, SSD_MOVE_TO_SSD,
+    add_console_game_async,
     fetch_console_games, fetch_console_games_async, fetch_game_library,
-    get_consoles_from_setting, remove_console_game, remove_console_game_async,
+    get_consoles_from_setting, remove_console_game_async,
     set_game_disc_count, set_game_disc_count_async, show_console_menu,
-    show_game_menu, write_console_game,
+    show_game_menu,
 )
 
 
@@ -105,7 +106,7 @@ async def show_ssd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = [
         [BTN_SSD_VIEW],
         [BTN_SSD_ADD,     BTN_SSD_REMOVE],
-        [BTN_SSD_TRANSFER, BTN_SSD_RETURN],
+
         [BTN_SSD_MOVE_TO_CONSOLE, BTN_SSD_MOVE_TO_SSD],
         [BTN_BACK],
     ]
@@ -118,7 +119,7 @@ async def show_ssd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"➕ ထည့် — SSD ထဲ ဂိမ်း မှတ်သား\n"
         f"❌ ဖျက် — SSD မှ ဂိမ်း ဖျက်\n"
         f"🔄 Transfer — SSD → Console (session အတွက်)\n"
-        f"↩️ Return   — Console → SSD (session ပြီးပြီ)",
+        f"↩️ Console→SSD — Console to SSD Move",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
@@ -245,7 +246,7 @@ async def step_ssd_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await show_ssd_menu(update, context)
 
-    ok = await asyncio.to_thread(write_console_game, ssd_id, game, inst_type)
+    ok = await add_console_game_async(ssd_id, game, inst_type)
     if ok:
         await update.message.reply_text(
             f"✅ <b>{SSD_NAMES.get(ssd_id, ssd_id)}</b> ထဲ <b>\"{game}\"</b> ထည့်ပြီ",
@@ -267,7 +268,7 @@ async def step_ssd_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ssd_id   = context.user_data.get("ssd_target", "")
     game     = context.user_data.get("ssd_game", "")
     inst_type = valid[text]
-    ok = await asyncio.to_thread(write_console_game, ssd_id, game, inst_type, "")
+    ok = await add_console_game_async(ssd_id, game, inst_type)
     if ok:
         await update.message.reply_text(
             f"✅ <b>{SSD_NAMES.get(ssd_id, ssd_id)}</b> ထဲ <b>\"{game}\"</b> ထည့်ပြီ",
@@ -314,7 +315,7 @@ async def step_ssd_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not target:
         await update.message.reply_text("⚠️ ဂိမ်း မတွေ့ပါ — ထပ်ရွေးပါ")
         return SSD_DEL_GAME
-    ok = delete_console_game(ssd_id, text)
+    ok = await remove_console_game_async(ssd_id, text)
     if ok:
         await update.message.reply_text(
             f"🗑️ <b>{SSD_NAMES.get(ssd_id, ssd_id)}</b> မှ <b>\"{text}\"</b> ဖျက်ပြီ",
@@ -384,7 +385,7 @@ async def step_ssd_xfer_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 parse_mode="HTML",
             )
         else:
-            ok = await asyncio.to_thread(write_console_game, target_cid, text, "SSD Transfer", f"From {src_lbl}")
+            ok = await add_console_game_async(target_cid, text, "SSD Transfer", f"From {src_lbl}")
             if ok:
                 await remove_console_game_async(ssd_id, text)
                 await update.message.reply_text(
@@ -436,7 +437,7 @@ async def step_ssd_xfer_cons(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
         return await show_ssd_menu(update, context)
 
-    ok = await asyncio.to_thread(write_console_game, cid, game, "SSD Transfer", f"From {src_lbl}")
+    ok = await add_console_game_async(cid, game, "SSD Transfer", f"From {src_lbl}")
     if ok:
         # ── Move: remove from SSD after writing to console ────────────────────
         await remove_console_game_async(ssd_id, game)
@@ -483,7 +484,7 @@ async def step_ssd_ret_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cid  = context.user_data.get("ssd_ret_cons", "")
     if text == BTN_BACK:
         return await show_ssd_menu(update, context)
-    ok = delete_console_game(cid, text)
+    ok = await remove_console_game_async(cid, text)
     if ok:
         await update.message.reply_text(
             f"✅ <b>\"{text}\"</b> — 🕹️ <b>{cid}</b> မှ SSD ပြန်ရွေ့ပြီ ✔️",
