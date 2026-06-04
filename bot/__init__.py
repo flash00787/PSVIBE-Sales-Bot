@@ -1721,7 +1721,9 @@ delete_console_game = remove_console_game    # alias used in SSD management
 def _delete_session_game(console_id: str) -> None:
     """Remove any 'Session' type entry for a console via API."""
     try:
-        result = _replit_delete(f"delete_session_game/{console_id}")
+        import urllib.parse
+        _cid_enc = urllib.parse.quote(console_id, safe="")
+        result = _replit_delete(f"delete_session_game/{_cid_enc}")
         if result and result.get("success"):
             global _CGAME_ROWS, _CGAME_TS
             _CGAME_TS = 0
@@ -2149,8 +2151,11 @@ def _replit_delete(path: str, timeout: int = 10) -> dict | None:
         return None
     try:
         import urllib.request as _req
+        import urllib.parse
+        path_clean = path.lstrip("/")
+        path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
         req = _req.Request(
-            f"{base}/api/{path}",
+            f"{base}/api/{path_encoded}",
             method="DELETE",
             headers={"X-API-Key": _API_KEY},
         )
