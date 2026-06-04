@@ -433,7 +433,7 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Staff confirmed the default price
     default_price = d.get("nm_default_price", 0)
     if ((default_btn and text == default_btn) or
-        (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith(b"\xe2\x9c\x85")))):
+        (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("\u2705")))):
         d["nm_amt"]  = default_price
         d["nm_mins"] = d.get("nm_default_mins", 0)
         d.pop("nm_is_gift", None)
@@ -810,6 +810,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     nm_id    = d["nm_id"];  nm_name = d["nm_name"]
     nm_amt   = d["nm_amt"]; nm_mins = d["nm_mins"]
     nm_kpay  = d["nm_kpay"]; nm_cash = d["nm_cash"]
+    nm_payments = d.get("nm_payments", {})
+    _other_pay_str = _fmt_other_payments(nm_payments)
     nm_email        = d.get("nm_email", "")
     nm_referral_code = d.get("nm_referral_code", "")
     nm_referrer_id   = d.get("nm_referrer_id", "")
@@ -842,7 +844,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"━━━━━━━━━━━━━━━━━━\n"
             f"💵 Amount: *{nm_amt:,} Ks*  |  ⏱️ Added: *{nm_mins:,} mins*\n"
             f"💳 Kpay: *{nm_kpay:,} Ks*  |  💵 Cash: *{nm_cash:,} Ks*\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
+        + _other_pay_str
+            + f"━━━━━━━━━━━━━━━━━━\n"
             f"💰 *Wallet Balance: {bal_mins:,} mins*"
             + (f"\n🎁 Referral: *{nm_referral_code}* — နှစ်ပါက *+30 mins* bonus" if nm_referral_code else "")
         )
@@ -1482,9 +1485,8 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await show_main_menu(update, context)
 
 
-def _fmt_other_payments(d: dict) -> str:
+def _fmt_other_payments(payments):
     """Format payment methods beyond KPay/Cash into display string."""
-    payments = d.get("nm_payments", {})
     extras = []
     for method, amt in payments.items():
         m = method.strip()
