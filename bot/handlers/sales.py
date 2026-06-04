@@ -1291,7 +1291,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # ── Sales record: API first ──
             _sales_api_ok = False
             try:
-                _result = _replit_post("sales/record", {
+                _result = api_add_sales_record({
                     "date": today,
                     "voucher_no": v_no,
                     "member_id": _m_id,
@@ -1325,7 +1325,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 # ── Stock-out: API first ──
                 _stockout_api_ok = False
                 try:
-                    _result = _replit_post("stock-out/log", {
+                    _result = api_add_stock_out({
                         "date": today,
                         "voucher_no": v_no,
                         "item_name": item["name"],

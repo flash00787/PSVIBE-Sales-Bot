@@ -3284,5 +3284,6 @@ fetch_balance_mins_async = api_fetch_balance_mins_async
 fetch_member_tier_async = api_fetch_member_tier_async
 fetch_member_data_async = api_fetch_member_data_async
 fetch_promotions_cached_async = api_fetch_promotions_cached_async
+fetch_game_library  = fetch_games            # alias used in SSD management
 
 

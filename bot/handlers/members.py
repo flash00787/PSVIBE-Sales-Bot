@@ -895,6 +895,10 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "email": nm_email or "",
                     "row_no": row_no,
                     "initial_mins": bal_mins,
+                    "amount": nm_amt,
+                    "kpay": nm_kpay,
+                    "cash": nm_cash,
+                    "mins_added": nm_mins,
                 })
             except Exception as e:
                 logging.warning("Member API write failed (GSheet fallback OK): %s", e)
