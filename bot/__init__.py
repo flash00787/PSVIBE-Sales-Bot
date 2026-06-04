@@ -3249,7 +3249,7 @@ async def fetch_console_status_async() -> list[dict]:
     return await _replit_get_async("fetch_console_status")
 
 async def end_booking_async(booking_id: str) -> bool:
-    result = await _replit_post_async(f"bookings/{booking_id}/end", {})
+    result = await _replit_put_async(f"end_booking/{booking_id}", {})
     return result is not None
 
 async def create_booking_async(console_id: str, member_id: str, staff: str, notes: str = "",
@@ -3262,7 +3262,7 @@ async def create_booking_async(console_id: str, member_id: str, staff: str, note
     return ""
 
 async def cancel_booking_async(booking_id: str) -> bool:
-    result = await _replit_post_async(f"bookings/{booking_id}/cancel", {})
+    result = await _replit_post_async("bookings/cancel", {"id": booking_id})
     return result is not None
 
 async def fetch_games_async() -> list[dict]:
