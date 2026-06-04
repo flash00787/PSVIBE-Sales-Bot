@@ -318,6 +318,9 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if cd and cd.get("code"):
                     context.user_data["_cashback_coupon"] = cd["code"]
                     context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
+                    logger.warning("COUPON GEN OK: code=%s mins=%s member=%s", cd["code"], cd.get("minutes", total_mins), member_id_for_coupon)
+                else:
+                    logger.warning("COUPON GEN: no coupon in response: gen_result=%s", gen_result)
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 

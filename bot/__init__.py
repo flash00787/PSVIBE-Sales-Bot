@@ -508,7 +508,15 @@ def fetch_console_status() -> list[dict]:
                     "staff": c.get("staff_name"),
                     "booking_id": c.get("booking_id"),
                 })
-            return mapped
+            # Dedup by normalized console_id (safety)
+            seen = {}
+            deduped = []
+            for item in mapped:
+                norm = item["id"].replace(" ", "").upper()
+                if norm not in seen:
+                    seen[norm] = True
+                    deduped.append(item)
+            return deduped
         logging.warning("API api_fetch_console_status() failed, falling back to gspread")
     today = today_str()
     # Use cached console_multipliers if available, fallback to direct Sheets read
@@ -3259,7 +3267,7 @@ async def create_booking_async(console_id: str, member_id: str, staff: str, note
                                 planned_end: str = "") -> str:
     payload = {"console_id": console_id, "member_id": member_id, "staff": staff,
                "notes": notes, "planned_end": planned_end}
-    result = await _replit_post_async("bookings", payload)
+    result = await _replit_post_async("create_booking", payload)
     if result and isinstance(result, dict):
         return result.get("data", {}).get("booking_id", "") or result.get("booking_id", "")
     return ""
