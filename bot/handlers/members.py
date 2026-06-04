@@ -430,18 +430,17 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d.pop("nm_id", None)
         return await prompt_nm_id(update, context)
 
-    # Staff confirmed the default price — proceed to payment method selection
+    # Staff confirmed the default price — auto-collect as KPay (no spam)
     default_price = d.get("nm_default_price", 0)
     if ((default_btn and text == default_btn) or
         (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("✅")))):
         d["nm_amt"]  = default_price
         d["nm_mins"] = d.get("nm_default_mins", 0)
         d.pop("nm_is_gift", None)
-        d.pop("nm_payments", None)
-        d.pop("nm_kpay", None)
-        d.pop("nm_cash", None)
-        # Go through payment method selection so staff can choose KPay/Cash split
-        return await prompt_nm_kpay(update, context)
+        d["nm_kpay"] = default_price
+        d["nm_cash"] = 0
+        d["nm_payments"] = {"KPay": default_price}
+        return await prompt_nm_referral(update, context)
 
     # Gift / Free card — PIN verify first
     if text == BTN_NM_GIFT:

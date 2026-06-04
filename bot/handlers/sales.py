@@ -1210,6 +1210,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     })
     booking_id = d.get("booking_id", "")
     payments_data = d.get("payments", {})
+    coupon_code = d.get("_cashback_coupon", "")
+    coupon_mins = d.get("_cashback_coupon_mins", 0)
     context.user_data.clear()
 
     # ── Build discount/bonus lines for receipt ───────────────────────────────
@@ -1244,6 +1246,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"✅ *Net Payable: {net_total:,} Ks*\n"
         )
 
+    coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
     # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
     await update.message.reply_text(
         f"✅ *{v_no} သိမ်းဆည်းပြီးပါပြီ!*\n"
@@ -1261,7 +1264,6 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     if receipt_kb:
         await update.message.reply_text("🖨️ Receipt ပုံနှိပ်ရန် -", reply_markup=receipt_kb)
-    coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
     if coupon_code:
         await update.message.reply_text(
             f"🎫 *100% CashBack Coupon!*\n"
