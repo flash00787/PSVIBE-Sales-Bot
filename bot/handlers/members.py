@@ -430,19 +430,14 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d.pop("nm_id", None)
         return await prompt_nm_id(update, context)
 
-    # Staff confirmed the default price — auto-collect as KPay (no spam)
+    # Staff confirmed the default price
     default_price = d.get("nm_default_price", 0)
-    logging.warning("DBG step_nm_amt: text=%r default_btn=%r default_price=%r matches=%s", text, default_btn, default_price,
-                    (default_btn and text == default_btn) or (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("\u2705"))))
     if ((default_btn and text == default_btn) or
-        (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("✅")))):
+        (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith(b"\xe2\x9c\x85")))):
         d["nm_amt"]  = default_price
         d["nm_mins"] = d.get("nm_default_mins", 0)
         d.pop("nm_is_gift", None)
-        d["nm_kpay"] = default_price
-        d["nm_cash"] = 0
-        d["nm_payments"] = {"KPay": default_price}
-        return await prompt_nm_referral(update, context)
+        return await prompt_nm_kpay(update, context)
 
     # Gift / Free card — PIN verify first
     if text == BTN_NM_GIFT:
@@ -770,7 +765,8 @@ async def _show_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🔥 Total Added Mins: *{d['nm_mins']:,} mins*\n"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"💳 Kpay: *{d['nm_kpay']:,} Ks*  |  💵 Cash: *{d['nm_cash']:,} Ks*"
-        f"{ref_line}\n\n"
+        + _fmt_other_payments(d)
+        + f"{ref_line}\n\n"
         f"မှန်ကန်ပါသလား? ✅ Confirm & Save နှိပ်ပါ -",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
@@ -1484,3 +1480,17 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_food_menu(update, context)
 
     return await show_main_menu(update, context)
+
+
+def _fmt_other_payments(d: dict) -> str:
+    """Format payment methods beyond KPay/Cash into display string."""
+    payments = d.get("nm_payments", {})
+    extras = []
+    for method, amt in payments.items():
+        m = method.strip()
+        if m not in ("KPay", "Cash") and amt > 0:
+            extras.append(f"  \u2022 {m}: *{amt:,} Ks*")
+    if extras:
+        return "\n" + "\n".join(extras)
+    return ""
+
