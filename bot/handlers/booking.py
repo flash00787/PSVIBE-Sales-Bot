@@ -956,7 +956,6 @@ async def prompt_book_game(update, context):
 async def step_book_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle game selection for the session."""
     text = update.message.text.strip()
-    logging.warning("DBG: step_book_game: text=%s, cid=%s", text, cid)
     cid       = context.user_data.get("bk_console", "")
     member_id = context.user_data.get("bk_member", "Guest")
     staff     = context.user_data.get("bk_staff", "")

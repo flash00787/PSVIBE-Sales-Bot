@@ -782,18 +782,21 @@ def fetch_console_games() -> list[dict]:
 def get_games_on_console(console_id: str) -> list[str]:
     """Return list of game titles installed on a specific console.
     Excludes 'Session' type records (session tracking) to avoid duplicates.
+    Only includes games where status is 'Installed', 'SSD Copy', or 'Session'.
     """
     if _HAS_API:
         result = api_get_games_on_console(console_id)
         if result is not None:
             # API returns {console_id, games: [{game_title, genre, status, slot_position}]}
-            # Extract game titles from games array
+            # Extract game titles from games array, filter by status
             games_raw = result.get("games", []) if isinstance(result, dict) else result
             seen = set()
             titles = []
+            VALID_STATUSES = {"Installed", "SSD Copy", "Session"}
             for g in (games_raw if isinstance(games_raw, list) else []):
                 t = g.get("game_title", "")
-                if t and t not in seen:
+                s = g.get("status", "")
+                if t and s in VALID_STATUSES and t not in seen:
                     seen.add(t)
                     titles.append(t)
             return titles
@@ -3287,7 +3290,24 @@ async def fetch_console_games_async() -> list[dict]:
     return await _replit_get_async("fetch_console_games")
 
 async def get_games_on_console_async(console_id: str) -> list[str]:
-    return await _replit_get_async(f"get_games_on_console/{console_id}")
+    """Return list of game titles installed on a specific console (async).
+    Excludes 'Session' type records (session tracking) to avoid duplicates.
+    Only includes games where status is 'Installed', 'SSD Copy', or 'Session'.
+    """
+    result = await api_get_games_on_console_async(console_id)
+    if result is not None:
+        games_raw = result.get("games", []) if isinstance(result, dict) else result
+        seen = set()
+        titles = []
+        VALID_STATUSES = {"Installed", "SSD Copy", "Session"}
+        for g in (games_raw if isinstance(games_raw, list) else []):
+            t = g.get("game_title", "")
+            s = g.get("status", "")
+            if t and s in VALID_STATUSES and t not in seen:
+                seen.add(t)
+                titles.append(t)
+        return titles
+    return []
 
 async def get_consoles_with_game_async(game_title: str = "") -> list[str]:
     if game_title:
@@ -3296,14 +3316,14 @@ async def get_consoles_with_game_async(game_title: str = "") -> list[str]:
 
 async def add_console_game_async(console_id: str, game_title: str,
                                   install_type: str = "", notes: str = "") -> bool:
-    result = await _replit_post_async("console-games", {
+    result = await _replit_post_async("add_console_game", {
         "console_id": console_id, "game_title": game_title,
         "install_type": install_type, "notes": notes,
     })
     return result is not None
 
 async def remove_console_game_async(console_id: str, game_title: str) -> bool:
-    result = await _replit_post_async("console-games/remove", {
+    result = await _replit_post_async("remove_console_game", {
         "console_id": console_id, "game_title": game_title,
     })
     return result is not None
