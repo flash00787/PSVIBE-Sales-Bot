@@ -2014,6 +2014,15 @@ def fetch_promotions_cached() -> list:
                         _em = _fre.match(r"(\d{4})-(\d{2})-(\d{2})", str(_ed).strip())
                         if _em and _fdt(int(_em.group(1)),int(_em.group(2)),int(_em.group(3))) < _fdt.now(): continue
                     except: pass
+                # Filter out null/empty titles (fix 2026-06-04)
+                if not _p.get("title", "").strip():
+                    continue
+                # Filter out test entries (fix 2026-06-04)
+                if "Test" in _p.get("title", "") or "TEST" in _p.get("title", "").upper():
+                    continue
+                # Filter out empty discount_type (fix 2026-06-04)
+                if not _p.get("type", "").strip():
+                    continue
                 _f.append(_p)
             normalized = _f
             return normalized
@@ -2522,7 +2531,7 @@ def fetch_console_multiplier(console_id):
     # Hardcoded multiplier for PS5 Pro consoles C-09 and C-10 (1.5x)
     cid_clean = console_id.strip().upper() if console_id else ""
     if cid_clean in ("C-09", "C-10", "C09", "C10"):
-        return 1.5
+        return 1.2
     return 1.0
 
 
@@ -3336,9 +3345,7 @@ async def fetch_console_status_async() -> list[dict]:
         return await _replit_get_async("fetch_console_status")
     return await asyncio.to_thread(lambda: _replit_get("fetch_console_status"))
 
-
-async def fetch_games_async() -> list:
-    """Async: Fetch games list."""
+# (duplicate removed 2026-06-04 — handled by line 3259 with proper game_title→title mapping)
     return await _replit_get_async("fetch_games")
 
 
