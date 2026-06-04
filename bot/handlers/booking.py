@@ -610,6 +610,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE,
                               origin: str = "console"):
     """Show available consoles for booking. origin='console'|'admin'."""
+    logging.warning("DBG: prompt_book_console start, origin=%s", origin)
     context.user_data["bk_origin"] = origin
     try:
         consoles = fetch_console_status()
@@ -693,6 +694,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
 
 async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
     """Show the console selection keyboard."""
+    logging.warning("DBG: _show_console_select called, free_consoles=%s", free_consoles)
     if free_consoles is None:
         try:
             consoles = fetch_console_status()
@@ -802,6 +804,7 @@ async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
+    logging.warning("DBG: step_book_console: text=%s", text)
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text in (BTN_BACK, BTN_BACK_MAIN):
@@ -827,6 +830,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def step_book_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
+    logging.warning("DBG: step_book_member: text=%s", text)
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
@@ -952,6 +956,7 @@ async def prompt_book_game(update, context):
 async def step_book_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle game selection for the session."""
     text = update.message.text.strip()
+    logging.warning("DBG: step_book_game: text=%s, cid=%s", text, cid)
     cid       = context.user_data.get("bk_console", "")
     member_id = context.user_data.get("bk_member", "Guest")
     staff     = context.user_data.get("bk_staff", "")
@@ -1029,6 +1034,7 @@ async def step_book_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def _do_create_booking(update, context, cid: str, member_id: str,
                               staff: str, planned_mins: int = 0, game: str = ""):
     """Actually create the booking, show confirmation, and schedule timer if set."""
+    logging.warning("DBG: _do_create_booking: cid=%s member=%s staff=%s mins=%d game=%s", cid, member_id, staff, planned_mins, game)
     # Pre-compute planned end time so it can be stored in Console_Booking col F.
     # This lets the customer bot detect disc-game conflicts accurately.
     _planned_end = ""
