@@ -1213,6 +1213,26 @@ async def api_member_create_async(data: dict) -> dict | None:
     return await _api_call_async("POST", "member/create", json_data=data)
 
 
+def move_console_game(from_console, game_title, to_console):
+    """Move a game between console/SSD locations via API."""
+    result = _api_call("POST", "move_console_game", json_data={
+        "game_title": game_title,
+        "from_console": from_console,
+        "to_console": to_console,
+    })
+    return result is not None and result.get("success", False)
+
+
+async def move_console_game_async(from_console, game_title, to_console):
+    """Async: Move a game between console/SSD locations via API."""
+    return await _api_call_async("POST", "move_console_game", json_data={
+        "game_title": game_title,
+        "from_console": from_console,
+        "to_console": to_console,
+    })
+
+
+
 async def api_add_topup_async(data: dict) -> dict | None:
     """Async: Log a top-up transaction + update wallet."""
     return await _api_call_async("POST", "topup/log", json_data=data)

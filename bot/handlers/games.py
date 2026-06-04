@@ -119,11 +119,11 @@ async def _show_game_detail(update, game: dict) -> None:
                 # Show Session-loaded games (status = "Session")
                 if status == "Installed":
                     cons_list.append(cid)
-                elif status == "SSD Copy":
+                elif status in ("SSD Copy", "Moved"):
                     ssd_list.append(f"{cid} ({status})")
                 elif status == "Session":
                     ssd_list.append(f"{cid} (Session)")
-                # Skip entries with status "false" (not installed)
+                # Skip entries with status "Not Installed"
 
     sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
     discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""
@@ -457,11 +457,11 @@ async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TY
                             # Show Session-loaded games (status = "Session")
                             if status == "Installed":
                                 cons_list.append(cid)
-                            elif status == "SSD Copy":
+                            elif status in ("SSD Copy", "Moved"):
                                 ssd_list.append(f"{cid} ({status})")
                             elif status == "Session":
                                 ssd_list.append(f"{cid} (Session)")
-                            # Skip entries with status "false" (not installed)
+                            # Skip entries with status "Not Installed"
 
                 sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
                 discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""

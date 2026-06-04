@@ -33,6 +33,8 @@ from bot import (
     SHARE_OWN, SHARE_ROLE, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM, SI_PAY,
     SI_PAY_SPLIT, SI_QTY, SSD_ADD_GAME, SSD_ADD_SSD, SSD_ADD_TYPE,
     SSD_DEL_GAME, SSD_DEL_SSD, SSD_MENU, SSD_RET_CONS, SSD_RET_GAME,
+    SSD_MOVE_SSD, SSD_MOVE_GAME, SSD_MOVE_CONS, SSD_MOVE_FROM_CONS,
+    SSD_MOVE_FROM_GAME, SSD_MOVE_TO_SSD,
     SSD_VIEW_SSD, SSD_XFER_CONS, SSD_XFER_GAME, SSD_XFER_SSD, STOCK_ITEM,
     STOCK_MENU, STOCK_PIN, STOCK_QTY, TU_AMT, TU_CONFIRM, TU_KPAY,
     TU_MEMBER, WL_MENU, _bg_cache_refresh, _get_cfg, _get_member_rows,
@@ -270,6 +272,13 @@ def main():
             SSD_XFER_CONS:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_xfer_cons)],
             SSD_RET_CONS:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_ret_cons)],
             SSD_RET_GAME:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_ret_game)],
+            # ── SSD Move flows ──
+            SSD_MOVE_SSD:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_ssd)],
+            SSD_MOVE_GAME:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_game)],
+            SSD_MOVE_CONS:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_cons)],
+            SSD_MOVE_FROM_CONS:[MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_from_cons)],
+            SSD_MOVE_FROM_GAME:[MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_from_game)],
+            SSD_MOVE_TO_SSD:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_ssd_move_to_ssd)],
 
             # ── Console CRUD flows ──
             CON_MGMT_MENU:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_mgmt_menu)],
