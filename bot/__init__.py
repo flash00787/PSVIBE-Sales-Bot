@@ -3372,18 +3372,22 @@ async def get_consoles_with_game_async(game_title: str) -> list:
 async def create_booking_async(
     console_id: str, member_id: str, staff: str,
     notes: str = "", planned_end: str = "",
-) -> dict | None:
+) -> str:
     """Async: Create a new console booking."""
     payload = {"console_id": console_id, "member_id": member_id, "staff": staff, "notes": notes}
     if planned_end:
         payload["planned_end"] = planned_end
-    return await _replit_post_async("create_booking", payload)
+    result = await _replit_post_async("create_booking", payload)
+    if result and isinstance(result, dict):
+        return result.get("data", {}).get("booking_id", "") or result.get("booking_id", "")
+    return ""
 
 
 
-async def cancel_booking_async(booking_id: str) -> dict | None:
+async def cancel_booking_async(booking_id: str) -> bool:
     """Async: Cancel a booking."""
-    return await _replit_put_async(f"cancel_booking/{booking_id}", {})
+    result = await _replit_put_async(f"cancel_booking/{booking_id}", {})
+    return result is not None
 
 
 async def add_console_game_async(

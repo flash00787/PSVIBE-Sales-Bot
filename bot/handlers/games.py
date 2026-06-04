@@ -114,10 +114,13 @@ async def _show_game_detail(update, game: dict) -> None:
             cid = r.get("console_id", "").strip()
             inst_type = r.get("install_type", "").strip()
             if cid:
+                # Only show consoles where the game is actually installed (status = "Installed")
+                # Show SSD entries with status containing "SSD" or "Transfer"
                 if "SSD" in inst_type or "Transfer" in inst_type:
                     ssd_list.append(f"{cid} ({inst_type})")
-                else:
+                elif inst_type.lower() == "installed":
                     cons_list.append(cid)
+                # Skip entries with status "false" (not installed), "Session", etc.
 
     sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
     discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""
@@ -446,10 +449,13 @@ async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TY
                         cid = r.get("console_id", "").strip()
                         inst_type = r.get("install_type", "").strip()
                         if cid:
+                            # Only show consoles where the game is actually installed (status = "Installed")
+                            # Show SSD entries with status containing "SSD" or "Transfer"
                             if "SSD" in inst_type or "Transfer" in inst_type:
                                 ssd_list.append(f"{cid} ({inst_type})")
-                            else:
+                            elif inst_type.lower() == "installed":
                                 cons_list.append(cid)
+                            # Skip entries with status "false" (not installed), "Session", etc.
 
                 sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
                 discs_str = f" 💿 {discs}pc" if discs and discs not in ("", "0") else ""
