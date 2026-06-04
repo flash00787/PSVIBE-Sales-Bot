@@ -817,6 +817,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚠️ Keyboard မှ Console ရွေးပေးပါ")
         return await prompt_book_console(update, context)
 
+    context.user_data["bk_console"] = cid
     # --- Console already Active guard -----------------------------------------------
     try:
         all_consoles = fetch_console_status()
@@ -825,16 +826,24 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
             mbr  = active_consoles[0].get("member") or "Guest"
             game = active_consoles[0].get("game") or ""
             game_txt = (" (" + game + ")") if game else ""
-            msg = ("\u26a0\ufe0f <b>%s</b> \u1000 <b>Active</b> \u1016\u103c\u102d\u1014\u103a\u1035\u1014\u1031\u102b\u103a\u1015\u102b\u1010\u1030\u1000\u103b!\n"
-                   "\U0001f464 %s%s\n"
-                   "Session \u101e\u1031\u102c\u1004\u1039\u1019\u103e\u102c\u101e\u102c \u1011\u1000\u1039\u1016\u102d\u1014\u1039\u1004\u103d\u1032\u1037\u1021\u102c:\u1014\u1031\u102b\u103a\u1015\u1031\u1000\u103b!"
-                   %% (cid, mbr, game_txt))
+            msg = (
+                "\u26a0\ufe0f <b>" + cid + "</b> \u1000 <b>Active</b> \u1016\u103c\u102d\u1014\u103a\u1035\u1014\u1031\u102b\u103a\u1015\u102b\u1010\u1030\u1000\u103b!\n"
+                + "\U0001f464 " + mbr + game_txt + "\n"
+                + "Session \u101e\u1031\u102c\u1004\u1039\u1019\u103e\u102c\u101e\u102c \u1011\u1000\u1039\u1016\u102d\u1014\u1039\u1004\u103d\u1032\u1037\u1021\u102c:\u1014\u1031\u102b\u103a\u1015\u1031\u1000\u103b!"
+        )
             await update.message.reply_text(msg, parse_mode="HTML")
             return await prompt_book_console(update, context)
     except Exception as e:
-        logger.error("step_book_console: active-check %%s", e, exc_info=True)
+        logger.error("step_book_console: active-check %s", e, exc_info=True)
         pass
     # ---------------------------------------------------------------------------------
+
+    members = await fetch_members_async()
+    kb = [["0 (Guest)"]] + [[m] for m in members] + [[BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text(
+        f"🕹️ *{cid}* — session\n\n"
+        "👤 Member ID ရွေးပါ (သို့) ရိုက်ရှာပါ:",
+        parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
     )
     return BOOK_MEMBER
@@ -967,6 +976,7 @@ async def prompt_book_game(update, context):
 async def step_book_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle game selection for the session."""
     text = update.message.text.strip()
+    logging.warning("DBG: step_book_game: text=%s, cid=%s", text, cid)
     cid       = context.user_data.get("bk_console", "")
     member_id = context.user_data.get("bk_member", "Guest")
     staff     = context.user_data.get("bk_staff", "")

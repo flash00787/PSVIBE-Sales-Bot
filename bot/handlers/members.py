@@ -432,6 +432,8 @@ async def step_nm_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Staff confirmed the default price — auto-collect as KPay (no spam)
     default_price = d.get("nm_default_price", 0)
+    logging.warning("DBG step_nm_amt: text=%r default_btn=%r default_price=%r matches=%s", text, default_btn, default_price,
+                    (default_btn and text == default_btn) or (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("\u2705"))))
     if ((default_btn and text == default_btn) or
         (default_price > 0 and str(default_price) in text.replace(",","") and ("Default" in text or text.startswith("✅")))):
         d["nm_amt"]  = default_price
