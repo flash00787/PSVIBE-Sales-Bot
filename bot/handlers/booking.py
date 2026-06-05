@@ -462,6 +462,59 @@ async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SBK_CONFIRM
 
+
+async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name: str, phone: str,
+                                 date_str: str, time_str: str, dur: int, game: str, staff: str):
+    """Send 10-min advance reminder to admin group for a confirmed booking."""
+    try:
+        # Parse date and time - handle M/D/YYYY format
+        import re as _re
+        m = _re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", date_str)
+        if not m:
+            logger.warning("_sbk_advance_reminder: bad date_format=%s", date_str)
+            return
+        mo, da, yr = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        parts = time_str.split(":")
+        if len(parts) != 2:
+            logger.warning("_sbk_advance_reminder: bad time_format=%s", time_str)
+            return
+        hr, mi = int(parts[0]), int(parts[1])
+        
+        booking_dt = datetime(yr, mo, da, hr, mi, 0, tzinfo=timezone(timedelta(hours=6, minutes=30)))
+        remind_dt = booking_dt - timedelta(minutes=10)
+        now_utc = datetime.now(timezone.utc)
+        
+        # If remind time already passed but booking is still in the future, skip
+        if remind_dt <= now_utc:
+            if booking_dt > now_utc:
+                # Less than 10 min away - fire immediately
+                pass
+            else:
+                return  # Booking already started
+        
+        seconds_until_remind = max(1, int((remind_dt - now_utc).total_seconds()))
+        await asyncio.sleep(seconds_until_remind)
+        
+        notify_text = (
+            f"\u23f0 <b>Booking #{booking_id} Reminder!</b>\n"
+            f"\u23f1\ufe0f <b>10 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102e\u1019\u1000\u103a\n"
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+            f"\u2b07 Customer: <b>{name}</b>  \u2139 {phone}\n"
+            f"\u267f {date_str}  \u23f0 {time_str}\n"
+            f"\u267f Duration: <b>{dur} mins</b>  \u2694\ufe0f {game or '---'}\n"
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+            f"Staff: {staff}"
+        )
+        if STAFF_NOTIFY_CHAT:
+            await bot.send_message(
+                chat_id=int(STAFF_NOTIFY_CHAT),
+                text=notify_text,
+                parse_mode="HTML",
+            )
+            logger.info("_sbk_advance_reminder: Booking #%s reminder sent to admin", booking_id)
+    except Exception as e:
+        logger.error("_sbk_advance_reminder: %s", e, exc_info=True)
+
 async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """SBK_CONFIRM state — phase 1: receive game name and show summary.
        Phase 2: receive BTN_SBK_CONFIRM_BOOK and create the booking.
@@ -525,6 +578,12 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             console_id=cid, console_type=ctype,
             date_str=date, time_slot=slot, duration_mins=int(dur),
             tg_chat="",
+        ))
+
+        # Schedule 10-min advance reminder (non-blocking)
+        asyncio.create_task(_sbk_advance_reminder(
+            context.bot, bk_id=bk_id, cid=cid, ctype=ctype, name=name, phone=phone,
+            date_str=date, time_str=slot, dur=int(dur), game=game, staff=staff,
         ))
 
         await update.message.reply_text(
