@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 import asyncio
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key
+from bot.handlers.notify import _notify_customer
 
 
 async def _sbk_console_kb() -> list:

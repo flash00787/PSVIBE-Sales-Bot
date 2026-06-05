@@ -757,6 +757,7 @@ def fetch_console_games() -> list[dict]:
                     "console_id":   g.get("console_id", ""),
                     "game_title":   g.get("game_title", ""),
                     "install_type": g.get("status", ""),
+                    "status":       g.get("status", ""),
                     "date":         g.get("created_at", "") or "",
                     "notes":        "",
                 })
