@@ -765,7 +765,7 @@ async def _show_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🔥 Total Added Mins: *{d['nm_mins']:,} mins*\n"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"💳 Kpay: *{d['nm_kpay']:,} Ks*  |  💵 Cash: *{d['nm_cash']:,} Ks*"
-        + _fmt_other_payments(d)
+        + _fmt_other_payments(d.get("nm_payments", {}))
         + f"{ref_line}\n\n"
         f"မှန်ကန်ပါသလား? ✅ Confirm & Save နှိပ်ပါ -",
         parse_mode="Markdown",
