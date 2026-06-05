@@ -6,7 +6,8 @@ from bot import (
     BTN_TOPUP_SESSION, BTN_YES, BTN_YES_END_SESSION, CONFIRM_SUMMARY,
     CONSOLE, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION, FOOD_MENU,
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
-    SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+    SALE_CONFIRM,
+    SALE_GAME_SELECT, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
     _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, _replit_post, _replit_post_async, calc_duration, cmd_cancel,
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
@@ -20,6 +21,7 @@ from bot import (
     fetch_food_prices_async,
     fetch_food_costs_async,
     fetch_console_multiplier_async,
+    get_games_on_console_async,
 )
 
 try:
@@ -660,7 +662,7 @@ async def _check_console_in_session(update, context, console_id: str):
         consoles = await fetch_console_status_async()
     except Exception as e:
         logging.warning("Failed to fetch console status for console session check: %s", e)
-        return await prompt_mins(update, context)
+        return await prompt_game_select(update, context)
 
     # Filter to only dicts (safety against API returning strings in list)
     consoles_dicts = [c for c in consoles if isinstance(c, dict)]
@@ -673,7 +675,7 @@ async def _check_console_in_session(update, context, console_id: str):
         None,
     )
     if not active:
-        return await prompt_mins(update, context)
+        return await prompt_game_select(update, context)
 
     context.user_data["_in_session_console"] = active
     start_t  = active.get("start", "?")
@@ -691,6 +693,44 @@ async def _check_console_in_session(update, context, console_id: str):
                                          resize_keyboard=True),
     )
     return DS_CONSOLE_IN_SESSION
+
+
+async def prompt_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show installed games for console, staff picks one."""
+    cid = context.user_data.get("c_id", "")
+    if not cid:
+        return await prompt_mins(update, context)
+    try:
+        games = await get_games_on_console_async(cid)
+    except Exception as e:
+        logging.warning("prompt_game_select: %s", e)
+        games = []
+    if not games:
+        return await prompt_mins(update, context)
+    kb = [[g] for g in games]
+    kb.append(["\u23ed Skip Game"])
+    kb.append(["\u2b05 Back"])
+    await update.message.reply_text(
+        f"\U0001f3ae <b>{cid}</b> \u1019\u103a\u101b Install \u101c\u1031\u1015\u1039\u1015\u1010\u1031\u1038 \u1002\u102d\u1019\u103a\u1038\u1010\u1031\u1038\n"
+        f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+        f"\u1006\u1031\u102c\u1004\u1039\u1019\u102d\u1014\u1039 \u1002\u102d\u1019\u103a\u1038\u1000\u103b\u1031\u102c \u101b\u103d\u1031\u1038\u1015\u1031\u102b\u103a:",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SALE_GAME_SELECT
+
+async def step_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Store selected game and proceed to mins."""
+    text = update.message.text.strip()
+    if text == "\u2b05 Back":
+        context.user_data.pop("c_id", None)
+        return await prompt_console(update, context)
+    if text == "\u23ed Skip Game":
+        context.user_data["game_title"] = ""
+    else:
+        context.user_data["game_title"] = text
+    return await prompt_mins(update, context)
+
 
 @log_duration("sales:step_ds_console_in_session")
 async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):

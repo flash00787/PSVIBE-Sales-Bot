@@ -27,6 +27,7 @@ from bot import (
     PREPAID_DESC, PREPAID_END, PREPAID_START, PROMO_SELECT, REC_ACCT,
     REC_AMT, REC_CONFIRM, REC_CUST, REC_DESC, REC_DUE, REC_SETTLE_ACCT,
     REC_SETTLE_CONFIRM, REC_SETTLE_LIST, REFERRAL_CODE, SALE_CONFIRM,
+    SALE_GAME_SELECT,
     SAL_ADV_AMT, SAL_ADV_CONFIRM, SAL_ADV_PAY, SAL_ADV_STAFF,
     SBK_CONFIRM, SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME,
     SBK_TIME, SESSION_SHORTFALL, SHARE_CAP, SHARE_CONFIRM, SHARE_NAME,
@@ -172,6 +173,8 @@ def main():
             MEMBER:          [MessageHandler(filters.TEXT & ~filters.COMMAND, step_member)],
             CONSOLE:         [MessageHandler(filters.TEXT & ~filters.COMMAND, step_console)],
             MINS:            [MessageHandler(filters.TEXT & ~filters.COMMAND, step_mins)],
+            SALE_GAME_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_select)],
+
             ADJUST_TIME:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_adjust_time)],
             FOOD_MENU:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_food_menu)],
             FOOD_QTY:        [MessageHandler(filters.TEXT & ~filters.COMMAND, step_food_qty)],
