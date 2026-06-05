@@ -3106,10 +3106,13 @@ async def _replit_get_async(path: str, timeout: int = 8):
         "staff", "games", "members", "logs", "attendance",
         "accounts", "payments", "salary", "promotions",
     )
+    # If path has a numeric ID segment (e.g., "bookings/186"), it's a single resource, not a list
+    _has_id = any(seg.isdigit() for seg in path.split("/"))
     is_list_path = (
         not path.startswith("sheets/")
         and not path.startswith("finance/")
         and any(kw in path for kw in _list_keywords)
+        and not _has_id
     )
     fallback = [] if is_list_path else {}
     try:
@@ -3140,6 +3143,11 @@ async def _replit_get_async(path: str, timeout: int = 8):
             if len(filtered) != len(data):
                 logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
             return filtered
+        # For non-list paths (single-resource): unwrap wrappers like {"booking": {...}}
+        if isinstance(data, dict):
+            for _unwrap_key in ("booking", "member", "console", "game", "item", "promotion"):
+                if _unwrap_key in data and isinstance(data[_unwrap_key], dict):
+                    return data[_unwrap_key]
         return data
     except Exception as e:
         logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)

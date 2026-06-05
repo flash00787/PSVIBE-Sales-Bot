@@ -187,21 +187,32 @@ InlineKeyboardButton("🚫 Cancel", callback_data=f"bkc:{b['id']}"),
     return MAIN_MENU
 
 async def cmd_staff_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Entry point: show all consoles (free ✅ / busy 🔴) for staff advance booking."""
+    """Entry point: ask date first, then time, then check availability."""
     from_hub = context.user_data.get("sbk_from_hub", False)
+    # Clear everything EXCEPT the hub flag
+    sbk_from_hub = context.user_data.pop("sbk_from_hub", False)
     context.user_data.clear()
-    if from_hub:
+    if sbk_from_hub or from_hub:
         context.user_data["sbk_from_hub"] = True
-    rows = await _sbk_console_kb()
+
+    today    = now_mmt().date()
+    tomorrow = today + timedelta(days=1)
+    d2       = today + timedelta(days=2)
+    def dfmt(d): return d.strftime("%-m/%-d/%Y")
+    kb = [
+        [dfmt(today) + " (ယနေ့)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
+        [dfmt(d2)],
+        [BTN_SBK_CUSTOM],
+        [BTN_BACK, BTN_CANCEL],
+    ]
     await update.message.reply_text(
         "📅 *Customer Advance Booking*\n"
         "━━━━━━━━━━━━━━━━━━\n"
-        "✅ = Free   🔴 = Busy\n\n"
-        "🕹️ Console ရွေးပါ:",
+        "ပထမဦးစွာ ရက်စွဲရွေးပါ:",
         parse_mode="Markdown",
-        reply_markup=ReplyKeyboardMarkup(rows, resize_keyboard=True),
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_CONSOLE
+    return SBK_DATE
 
 async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle console selection."""
