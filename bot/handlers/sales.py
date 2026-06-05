@@ -1166,9 +1166,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             if gen_result and isinstance(gen_result, dict):
                 cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("coupon_code"):
-                    d["_cashback_coupon"] = cd["coupon_code"]
-                    d["_cashback_coupon_mins"] = cd.get("coupon_mins", _cpn_mins)
+                if cd and cd.get("code"):
+                    d["_cashback_coupon"] = cd["code"]
+                    d["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins)
         except Exception as _ecp:
             logger.warning("step_sale_confirm: coupon gen failed: %s", _ecp)
 
@@ -1587,9 +1587,9 @@ async def launch_session_sale(
             )
             if gen_result and isinstance(gen_result, dict):
                 cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("coupon_code"):
-                    context.user_data["_cashback_coupon"] = cd["coupon_code"]
-                    context.user_data["_cashback_coupon_mins"] = cd.get("coupon_mins", _cpn_mins2)
+                if cd and cd.get("code"):
+                    context.user_data["_cashback_coupon"] = cd["code"]
+                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins2)
         except Exception as _ecp:
             logger.warning("launch_session_sale: coupon gen failed: %s", _ecp)
 
