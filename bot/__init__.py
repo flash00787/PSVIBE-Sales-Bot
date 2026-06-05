@@ -3222,8 +3222,8 @@ async def fetch_games_async() -> list[dict]:
 
 async def fetch_console_games_async() -> list[dict]:
     result = await api_fetch_console_games_async()
-    if result and isinstance(result, dict) and console_games in result:
-        return result[console_games]
+    if result and isinstance(result, dict) and "console_games" in result:
+        return result["console_games"]
     if isinstance(result, list):
         return result
     return []

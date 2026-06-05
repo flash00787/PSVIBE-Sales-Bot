@@ -7,7 +7,7 @@ from bot import (
     CONSOLE, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION, FOOD_MENU,
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
     SALE_CONFIRM,
-    SALE_GAME_SELECT, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+ SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
     _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, _replit_post, _replit_post_async, calc_duration, cmd_cancel,
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
@@ -21,7 +21,6 @@ from bot import (
     fetch_food_prices_async,
     fetch_food_costs_async,
     fetch_console_multiplier_async,
-    get_games_on_console_async,
 )
 
 try:
@@ -662,7 +661,7 @@ async def _check_console_in_session(update, context, console_id: str):
         consoles = await fetch_console_status_async()
     except Exception as e:
         logging.warning("Failed to fetch console status for console session check: %s", e)
-        return await prompt_game_select(update, context)
+        return await prompt_mins(update, context)
 
     # Filter to only dicts (safety against API returning strings in list)
     consoles_dicts = [c for c in consoles if isinstance(c, dict)]
@@ -675,7 +674,7 @@ async def _check_console_in_session(update, context, console_id: str):
         None,
     )
     if not active:
-        return await prompt_game_select(update, context)
+        return await prompt_mins(update, context)
 
     context.user_data["_in_session_console"] = active
     start_t  = active.get("start", "?")
@@ -695,7 +694,7 @@ async def _check_console_in_session(update, context, console_id: str):
     return DS_CONSOLE_IN_SESSION
 
 
-async def prompt_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show installed games for console, staff picks one."""
     cid = context.user_data.get("c_id", "")
     if not cid:
@@ -703,7 +702,7 @@ async def prompt_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
     try:
         games = await get_games_on_console_async(cid)
     except Exception as e:
-        logging.warning("prompt_game_select: %s", e)
+        logging.warning("prompt_mins: %s", e)
         games = []
     if not games:
         return await prompt_mins(update, context)
