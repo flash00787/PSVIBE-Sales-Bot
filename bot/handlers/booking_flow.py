@@ -16,6 +16,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional
 import asyncio
 import time
+from bot.handlers.notify import _notify_customer
 
 # Module-level state
 _pending_cancel_note: Dict[int, dict] = {}
