@@ -82,7 +82,7 @@ async def step_ginst_view_cons(update: Update, context: ContextTypes.DEFAULT_TYP
         lines = [f"🖥️ <b>{console_id}</b> — Install ({len(records)} ဂိမ်း)\n━━━━━━━━━━━━━━━━━━"]
         for i, r in enumerate(records, 1):
             icon = "💾" if "HDD" in r["install_type"] else ("💿" if "Disc" in r["install_type"] else "🔌")
-            lines.append(f"{i}. {icon} <b>{r['game_title']}</b>  <i>{r['install_type']}</i>  <code>{r['date']}</code>")
+            lines.append(f"{i}. {icon} <b>{r['game_title']}</b>  <i>{r['install_type']}</i>  <code>{r.get('created_at', r.get('date',''))}</code>")
         await update.message.reply_text("\n".join(lines), parse_mode="HTML")
     return await show_ginst_menu(update, context)
 
