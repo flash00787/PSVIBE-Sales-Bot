@@ -1174,11 +1174,12 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── CashBack Coupon: Auto-generate via MySQL API (ALL sales flows) ──
     if play_mins > 0 and not d.get("_cashback_coupon"):
+        _cpn_mins = wallet_deduct if wallet_deduct > play_mins else play_mins
         try:
             from bot.api_client import api_post
             gen_result = await asyncio.to_thread(
                 api_post, "coupons/generate",
-                {"member_id": m_id, "session_minutes": play_mins}
+                {"member_id": m_id, "session_minutes": _cpn_mins}
             )
             if gen_result and isinstance(gen_result, dict):
                 cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
@@ -1575,17 +1576,18 @@ async def launch_session_sale(
 
     # ── CashBack Coupon: Auto-generate via MySQL API ──
     if total_mins > 0 and not context.user_data.get("_cashback_coupon"):
+        _cpn_mins2 = effective_cost_mins if effective_cost_mins > total_mins else total_mins
         try:
             from bot.api_client import api_post
             gen_result = await asyncio.to_thread(
                 api_post, "coupons/generate",
-                {"member_id": member_id, "session_minutes": total_mins}
+                {"member_id": member_id, "session_minutes": _cpn_mins2}
             )
             if gen_result and isinstance(gen_result, dict):
                 cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
                 if cd and cd.get("code"):
                     context.user_data["_cashback_coupon"] = cd["code"]
-                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
+                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins2)
                     logger.warning("COUPON GEN OK (launch_sale): code=%s mins=%s member=%s", cd["code"], cd.get("minutes", total_mins), member_id)
                 else:
                     logger.warning("COUPON GEN (launch_sale): no coupon in response: gen_result=%s", gen_result)
