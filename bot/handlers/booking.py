@@ -943,6 +943,7 @@ async def prompt_book_game(update, context):
     Offers SSD Transfer button if game is not yet installed.
     """
     cid       = context.user_data.get("bk_console", "")
+    cid = cid.replace(" ", "")  # normalize spaces in console ID
     member_id = context.user_data.get("bk_member", "Guest")
     installed = await get_games_on_console_async(cid)
     kb_rows: list = []
