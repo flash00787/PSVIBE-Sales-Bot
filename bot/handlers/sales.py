@@ -694,58 +694,27 @@ async def _check_console_in_session(update, context, console_id: str):
     return DS_CONSOLE_IN_SESSION
 
 
-async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show installed games for console, staff picks one."""
-    cid = context.user_data.get("c_id", "")
-    if not cid:
-        return await prompt_mins(update, context)
-    try:
-        games = await get_games_on_console_async(cid)
-    except Exception as e:
-        logging.warning("prompt_mins: %s", e)
-        games = []
-    if not games:
-        return await prompt_mins(update, context)
-    kb = [[g] for g in games]
-    kb.append(["\u23ed Skip Game"])
-    kb.append(["\u2b05 Back"])
-    await update.message.reply_text(
-        f"\U0001f3ae <b>{cid}</b> \u1019\u103a\u101b Install \u101c\u1031\u1015\u1039\u1015\u1010\u1031\u1038 \u1002\u102d\u1019\u103a\u1038\u1010\u1031\u1038\n"
-        f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-        f"\u1006\u1031\u102c\u1004\u1039\u1019\u102d\u1014\u1039 \u1002\u102d\u1019\u103a\u1038\u1000\u103b\u1031\u102c \u101b\u103d\u1031\u1038\u1015\u1031\u102b\u103a:",
-        parse_mode="HTML",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
-    return SALE_GAME_SELECT
-
-async def step_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Store selected game and proceed to mins."""
-    text = update.message.text.strip()
-    if text == "\u2b05 Back":
-        context.user_data.pop("c_id", None)
-        return await prompt_console(update, context)
-    if text == "\u23ed Skip Game":
-        context.user_data["game_title"] = ""
-    else:
-        context.user_data["game_title"] = text
-    return await prompt_mins(update, context)
-
-
 @log_duration("sales:step_ds_console_in_session")
+
 async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     """Handle Yes/No after console-in-session warning in Daily Sales."""
+
     text = update.message.text.strip()
+
+
 
     if text == BTN_NO_RESELECT or text == BTN_CANCEL:
+
         context.user_data.pop("_in_session_console", None)
+
         context.user_data.pop("c_id", None)
+
         return await prompt_console(update, context)
 
+
+
     if text == BTN_YES_END_SESSION:
-        active        = context.user_data.pop("_in_session_console", {})
-        bk_id         = active.get("booking_id", "")
-        session_cid   = context.user_data.get("c_id") or active.get("id", "")
-        session_mbr   = active.get("member", "Guest")
         session_staff = active.get("staff", "")
         start_t       = active.get("start", "")
         total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
