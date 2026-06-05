@@ -1067,18 +1067,20 @@ def api_add_sales_record(data: dict) -> dict | None:
 
     Transforms caller field names to match /api/sales/record endpoint expectations.
     """
-    # Map caller field names → endpoint field names
     mapped: dict = {
-        "receipt_no": data.get("voucher_no", ""),
-        "receipt_date": _normalize_date(data.get("date", "")),
+        "voucher_no": data.get("voucher_no", ""),
         "member_id": data.get("member_id", ""),
-        "amount": data.get("net_total", 0),
-        "items": f"Console:{data.get('console_id','')}|Play:{data.get('play_mins',0)}min|Game:{data.get('game_amount',0)}",
+        "console_id": data.get("console_id", ""),
+        "mins": data.get("play_mins", 0),
+        "game_amt": data.get("game_amount", 0),
+        "food_total": data.get("food_total", 0),
+        "discount": data.get("discount", 0),
+        "net_total": data.get("net_total", 0),
         "payment_method": f"KPay:{data.get('kpay',0)}|Cash:{data.get('cash',0)}",
-        "staff_name": data.get("staff", ""),
-        "food_items": str(data.get("food_total", "")),
-        "food_cost": data.get("food_total", 0),
-        "mins_used": data.get("mins_used", data.get("play_mins", 0)),
+        "staff": data.get("staff", ""),
+        "food_items": str(data.get("food_items", "")),
+        "notes": data.get("notes", ""),
+        "coupon_code": data.get("coupon_code", ""),
     }
     return _api_call("POST", "sales/record", json_data=mapped)
 
