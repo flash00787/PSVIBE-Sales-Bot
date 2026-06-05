@@ -44,6 +44,18 @@ async def _sbk_console_kb() -> list:
         except Exception as e:
             logging.warning("Failed to fetch console status (staff booking fallback): %s", e)
             return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
+    else:
+        # Map API keys to expected format (console_id→id, status→liveStatus)
+        mapped = []
+        for c in consoles:
+            if "id" not in c and "console_id" in c:
+                c["id"] = c["console_id"]
+            if "liveStatus" not in c and "status" in c:
+                c["liveStatus"] = c["status"]
+            if "type" not in c:
+                c["type"] = c.get("console_type", "")
+            mapped.append(c)
+        consoles = mapped
     rows = []
     row  = []
     for c in sorted(consoles, key=lambda x: x["id"]):
@@ -180,7 +192,7 @@ async def cmd_staff_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
     if from_hub:
         context.user_data["sbk_from_hub"] = True
-    rows = _sbk_console_kb()
+    rows = await _sbk_console_kb()
     await update.message.reply_text(
         "📅 *Customer Advance Booking*\n"
         "━━━━━━━━━━━━━━━━━━\n"
