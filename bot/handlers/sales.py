@@ -1298,9 +1298,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
     # ── SHEET WRITES — background (user already has receipt) ──────
-    _disc = discount if discount else ""
+    _disc = discount if discount else 0
     # Capture promo/bonus vars for closure (d already cleared)
-    _promo_id    = promo_id
+    _promo_id    = promo_id if promo_id else None
     _promo_title = promo_title
     _bonus_mins  = bonus_mins
     _d_gross     = d_gross
