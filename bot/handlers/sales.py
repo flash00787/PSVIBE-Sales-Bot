@@ -1172,6 +1172,25 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     foc_item_qty   = d.get("foc_item_qty", 1)
     foc_item_price = d.get("foc_item_price", 0)
 
+    # ── CashBack Coupon: Auto-generate via MySQL API (ALL sales flows) ──
+    if play_mins > 0 and not d.get("_cashback_coupon"):
+        try:
+            from bot.api_client import api_post
+            gen_result = await asyncio.to_thread(
+                api_post, "coupons/generate",
+                {"member_id": m_id, "session_minutes": play_mins}
+            )
+            if gen_result and isinstance(gen_result, dict):
+                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                if cd and cd.get("code"):
+                    d["_cashback_coupon"] = cd["code"]
+                    d["_cashback_coupon_mins"] = cd.get("minutes", play_mins)
+                    logger.warning("COUPON GEN OK (confirm): code=%s mins=%s member=%s", cd["code"], cd.get("minutes", play_mins), m_id)
+                else:
+                    logger.warning("COUPON GEN (confirm): no coupon in response: gen_result=%s", gen_result)
+        except Exception as cb_e:
+            logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
+
     # Save receipt JSON (local disk — instant)
     booking_id = d.get("booking_id", "")
     payments_data = d.get("payments", {})
@@ -1555,7 +1574,7 @@ async def launch_session_sale(
     context.user_data["effective_cost_mins"] = effective_cost_mins
 
     # ── CashBack Coupon: Auto-generate via MySQL API ──
-    if not is_guest and total_mins > 0 and not context.user_data.get("_cashback_coupon"):
+    if total_mins > 0 and not context.user_data.get("_cashback_coupon"):
         try:
             from bot.api_client import api_post
             gen_result = await asyncio.to_thread(
