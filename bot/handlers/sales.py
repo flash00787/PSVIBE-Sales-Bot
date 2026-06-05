@@ -6,8 +6,7 @@ from bot import (
     BTN_TOPUP_SESSION, BTN_YES, BTN_YES_END_SESSION, CONFIRM_SUMMARY,
     CONSOLE, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION, FOOD_MENU,
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
-    SALE_CONFIRM,
- SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+    SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
     _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, _replit_post, _replit_post_async, calc_duration, cmd_cancel,
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
@@ -494,12 +493,14 @@ async def step_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.pop("c_id", None)
         return await prompt_member(update, context)
 
+    # Normalize: remove spaces so "C - 09" matches "C-09"
+    normalized = text.replace(" ", "")
     if text not in VALID_CONSOLES:
         await update.message.reply_text("⚠️ ကျေးဇူးပြု၍ keyboard မှ Console ID ရွေးပါ -")
         return await prompt_console(update, context)
 
-    context.user_data["c_id"] = text
-    return await _check_console_in_session(update, context, text)
+    context.user_data["c_id"] = normalized
+    return await _check_console_in_session(update, context, normalized)
 
 async def _check_member_in_session(update, context, member_id: str):
     """Check if member has active session(s). Shows all with per-console + combined options."""
@@ -583,6 +584,10 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     else:
         await update.message.reply_text(
             "⚠️ Session end မရပါ — data ယူပြီး ဆက်သွားပါမည်", parse_mode="HTML")
+    # Capture coupon vars before clear
+    coupon_code = d.get("_cashback_coupon", "")
+    coupon_mins = d.get("_cashback_coupon_mins", 0)
+
     context.user_data.clear()
     return await launch_session_sale(update, context,
                                      session_cid, m_id, total_mins, session_staff)
@@ -693,28 +698,21 @@ async def _check_console_in_session(update, context, console_id: str):
     )
     return DS_CONSOLE_IN_SESSION
 
-
 @log_duration("sales:step_ds_console_in_session")
-
 async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
     """Handle Yes/No after console-in-session warning in Daily Sales."""
-
     text = update.message.text.strip()
 
-
-
     if text == BTN_NO_RESELECT or text == BTN_CANCEL:
-
         context.user_data.pop("_in_session_console", None)
-
         context.user_data.pop("c_id", None)
-
         return await prompt_console(update, context)
 
-
-
     if text == BTN_YES_END_SESSION:
+        active        = context.user_data.pop("_in_session_console", {})
+        bk_id         = active.get("booking_id", "")
+        session_cid   = context.user_data.get("c_id") or active.get("id", "")
+        session_mbr   = active.get("member", "Guest")
         session_staff = active.get("staff", "")
         start_t       = active.get("start", "")
         total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
@@ -1180,31 +1178,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     foc_item_qty   = d.get("foc_item_qty", 1)
     foc_item_price = d.get("foc_item_price", 0)
 
-    # ── CashBack Coupon: Auto-generate via MySQL API (ALL sales flows) ──
-    if play_mins > 0 and not d.get("_cashback_coupon"):
-        _cpn_mins = wallet_deduct if wallet_deduct > play_mins else play_mins
-        try:
-            from bot.api_client import api_post
-            gen_result = await asyncio.to_thread(
-                api_post, "coupons/generate",
-                {"member_id": m_id, "session_minutes": _cpn_mins}
-            )
-            if gen_result and isinstance(gen_result, dict):
-                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("code"):
-                    d["_cashback_coupon"] = cd["code"]
-                    d["_cashback_coupon_mins"] = cd.get("minutes", play_mins)
-                    logger.warning("COUPON GEN OK (confirm): code=%s mins=%s member=%s", cd["code"], cd.get("minutes", play_mins), m_id)
-                else:
-                    logger.warning("COUPON GEN (confirm): no coupon in response: gen_result=%s", gen_result)
-        except Exception as cb_e:
-            logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
-
     # Save receipt JSON (local disk — instant)
-    booking_id = d.get("booking_id", "")
-    payments_data = d.get("payments", {})
-    coupon_code = d.get("_cashback_coupon", "")
-    coupon_mins = d.get("_cashback_coupon_mins", 0)
     save_receipt_json(v_no, {
         "type":           "sale",
         "voucher_id":     v_no,
@@ -1235,9 +1209,11 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "wallet_game_value": d.get("wallet_game_value", 0),
         "disc_target":     disc_target,
         "foc_item_price":  foc_item_price,
-        "coupon_code":     coupon_code,
-        "coupon_mins":     coupon_mins,
     })
+    booking_id = d.get("booking_id", "")
+    payments_data = d.get("payments", {})
+    coupon_code = d.get("_cashback_coupon", "")
+    coupon_mins = d.get("_cashback_coupon_mins", 0)
     context.user_data.clear()
 
     # ── Build discount/bonus lines for receipt ───────────────────────────────
@@ -1285,7 +1261,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"━━━━━━━━━━━━━━━━━━\n"
         f"{receipt_disc_line}"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"{_build_payment_receipt_lines(kpay, cash, payments_data)}\n"
+        f"{_build_payment_receipt_lines(kpay, cash, payments_data)}"
         f"{_receipt_end}",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
@@ -1582,26 +1558,6 @@ async def launch_session_sale(
                           else round(total_mins * multiplier)
     context.user_data["effective_cost_mins"] = effective_cost_mins
 
-    # ── CashBack Coupon: Auto-generate via MySQL API ──
-    if total_mins > 0 and not context.user_data.get("_cashback_coupon"):
-        _cpn_mins2 = effective_cost_mins if effective_cost_mins > total_mins else total_mins
-        try:
-            from bot.api_client import api_post
-            gen_result = await asyncio.to_thread(
-                api_post, "coupons/generate",
-                {"member_id": member_id, "session_minutes": _cpn_mins2}
-            )
-            if gen_result and isinstance(gen_result, dict):
-                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("code"):
-                    context.user_data["_cashback_coupon"] = cd["code"]
-                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins2)
-                    logger.warning("COUPON GEN OK (launch_sale): code=%s mins=%s member=%s", cd["code"], cd.get("minutes", total_mins), member_id)
-                else:
-                    logger.warning("COUPON GEN (launch_sale): no coupon in response: gen_result=%s", gen_result)
-        except Exception as cb_e:
-            logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
-
     if wallet_balance >= effective_cost_mins:
         # Sufficient — wallet covers it fully
         context.user_data["game_amt"] = 0
@@ -1716,3 +1672,4 @@ async def step_session_shortfall(update, context):
 
     # Unrecognised input — re-show screen
     return await prompt_session_shortfall(update, context)
+
