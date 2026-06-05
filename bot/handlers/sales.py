@@ -1247,6 +1247,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
     coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
+
+    _receipt_end = f"{coupon_line}\n{wallet_bal_line}" if coupon_code else f"{wallet_bal_line}"
     # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
     await update.message.reply_text(
         f"✅ *{v_no} သိမ်းဆည်းပြီးပါပြီ!*\n"
@@ -1258,7 +1260,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{receipt_disc_line}"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"{_build_payment_receipt_lines(kpay, cash, payments_data)}"
-        f"{coupon_line}\n{wallet_bal_line}" if coupon_code else f"{wallet_bal_line}",
+        f"{_receipt_end}",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
