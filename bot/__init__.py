@@ -812,7 +812,7 @@ def get_games_on_console(console_id: str) -> list[str]:
     seen = set()
     result = []
     for r in fetch_console_games():
-        if (r["console_id"].upper() == console_id.upper()
+        if (r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")
                 and r["game_title"]
                 and r.get("install_type", "") != "Session"):
             t = r["game_title"]

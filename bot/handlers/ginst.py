@@ -72,7 +72,7 @@ async def step_ginst_view_cons(update: Update, context: ContextTypes.DEFAULT_TYP
     console_id = text
     games = await get_games_on_console_async(console_id)
     records = [r for r in await fetch_console_games_async()
-               if r["console_id"].upper() == console_id.upper()]
+               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")]
     if not records:
         await update.message.reply_text(
             f"ℹ️ <b>{console_id}</b> မှာ Install မှတ်တမ်း မရှိသေးပါ",
@@ -126,7 +126,7 @@ async def step_ginst_add_game(update: Update, context: ContextTypes.DEFAULT_TYPE
     # ── Duplicate check ───────────────────────────────────────────────────────
     existing = await fetch_console_games_async()
     already  = any(
-        r["console_id"].strip().upper() == cid.upper()
+        r["console_id"].upper().replace(" ", "") == cid.upper().replace(" ", "")
         and r["game_title"].strip().lower() == title.strip().lower()
         for r in existing
     )
@@ -167,6 +167,19 @@ async def step_ginst_add_type(update: Update, context: ContextTypes.DEFAULT_TYPE
     install_type = type_map[text]
     cid   = context.user_data.get("ginst_console_id", "")
     title = context.user_data.get("ginst_game_title", "")
+    # ── Duplicate check ──
+    existing = await fetch_console_games_async()
+    already  = any(
+        r["console_id"].upper().replace(" ", "") == cid.upper().replace(" ", "")
+        and r["game_title"].strip().lower() == title.strip().lower()
+        for r in existing
+    )
+    if already:
+        await update.message.reply_text(
+            f'⚠️ <b>\"{title}\"</b> သည် <b>{cid}</b> မှာ ရှိပြီးသားပါ',
+            parse_mode=HTML,
+        )
+        return await show_ginst_menu(update, context)
     # Save to Console_Games sheet + sync Game_Library checkbox
     ok, gl_ok = await asyncio.gather(
         add_console_game_async(cid, title, install_type),
@@ -194,7 +207,7 @@ async def step_ginst_del_cons(update: Update, context: ContextTypes.DEFAULT_TYPE
         return await show_ginst_menu(update, context)
     console_id = text
     records = [r for r in await fetch_console_games_async()
-               if r["console_id"].upper() == console_id.upper()]
+               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")]
     if not records:
         await update.message.reply_text(
             f"ℹ️ <b>{console_id}</b> မှာ Install မှတ်တမ်း မရှိသေးပါ",
