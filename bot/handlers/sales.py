@@ -1173,6 +1173,10 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     foc_item_price = d.get("foc_item_price", 0)
 
     # Save receipt JSON (local disk — instant)
+    booking_id = d.get("booking_id", "")
+    payments_data = d.get("payments", {})
+    coupon_code = d.get("_cashback_coupon", "")
+    coupon_mins = d.get("_cashback_coupon_mins", 0)
     save_receipt_json(v_no, {
         "type":           "sale",
         "voucher_id":     v_no,
@@ -1203,11 +1207,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "wallet_game_value": d.get("wallet_game_value", 0),
         "disc_target":     disc_target,
         "foc_item_price":  foc_item_price,
+        "coupon_code":     coupon_code,
+        "coupon_mins":     coupon_mins,
     })
-    booking_id = d.get("booking_id", "")
-    payments_data = d.get("payments", {})
-    coupon_code = d.get("_cashback_coupon", "")
-    coupon_mins = d.get("_cashback_coupon_mins", 0)
     context.user_data.clear()
 
     # ── Build discount/bonus lines for receipt ───────────────────────────────
@@ -1255,7 +1257,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"━━━━━━━━━━━━━━━━━━\n"
         f"{receipt_disc_line}"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"{_build_payment_receipt_lines(kpay, cash, payments_data)}"
+        f"{_build_payment_receipt_lines(kpay, cash, payments_data)}\n"
         f"{_receipt_end}",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
