@@ -495,7 +495,7 @@ async def step_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Normalize: remove spaces so "C - 09" matches "C-09"
     normalized = text.replace(" ", "")
-    if text not in VALID_CONSOLES:
+    if normalized not in VALID_CONSOLES:
         await update.message.reply_text("⚠️ ကျေးဇူးပြု၍ keyboard မှ Console ID ရွေးပါ -")
         return await prompt_console(update, context)
 
@@ -1155,6 +1155,24 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     _early_bonus_mins = d.get("bonus_mins", 0)
     remaining_mins = (wallet_before - wallet_deduct + _early_bonus_mins) if not is_guest and wallet_before is not None else None
 
+    # ── CashBack Coupon: Auto-generate via MySQL API (ALL sales flows) ──
+    if play_mins > 0 and not d.get("_cashback_coupon"):
+        _cpn_mins = wallet_deduct if wallet_deduct > play_mins else play_mins
+        try:
+            from bot.api_client import api_post
+            gen_result = await asyncio.to_thread(
+                api_post, "coupons/generate",
+                {"member_id": m_id, "session_minutes": _cpn_mins}
+            )
+            if gen_result and isinstance(gen_result, dict):
+                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                if cd and cd.get("coupon_code"):
+                    d["_cashback_coupon"] = cd["coupon_code"]
+                    d["_cashback_coupon_mins"] = cd.get("coupon_mins", _cpn_mins)
+        except Exception as _ecp:
+            logger.warning("step_sale_confirm: coupon gen failed: %s", _ecp)
+
+
     # Build receipt strings before clearing user_data
     food_lines_receipt = [
         f"  • {i['name']} x{i['qty']} = {i['subtotal']:,} Ks" for i in food_sold
@@ -1558,6 +1576,24 @@ async def launch_session_sale(
                           else round(total_mins * multiplier)
     context.user_data["effective_cost_mins"] = effective_cost_mins
 
+    # ── CashBack Coupon: Auto-generate via MySQL API ──
+    if total_mins > 0 and not context.user_data.get("_cashback_coupon"):
+        _cpn_mins2 = effective_cost_mins if effective_cost_mins > total_mins else total_mins
+        try:
+            from bot.api_client import api_post
+            gen_result = await asyncio.to_thread(
+                api_post, "coupons/generate",
+                {"member_id": member_id, "session_minutes": _cpn_mins2}
+            )
+            if gen_result and isinstance(gen_result, dict):
+                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                if cd and cd.get("coupon_code"):
+                    context.user_data["_cashback_coupon"] = cd["coupon_code"]
+                    context.user_data["_cashback_coupon_mins"] = cd.get("coupon_mins", _cpn_mins2)
+        except Exception as _ecp:
+            logger.warning("launch_session_sale: coupon gen failed: %s", _ecp)
+
+
     if wallet_balance >= effective_cost_mins:
         # Sufficient — wallet covers it fully
         context.user_data["game_amt"] = 0
@@ -1672,4 +1708,5 @@ async def step_session_shortfall(update, context):
 
     # Unrecognised input — re-show screen
     return await prompt_session_shortfall(update, context)
+
 
