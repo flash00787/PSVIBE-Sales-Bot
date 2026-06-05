@@ -582,10 +582,6 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     else:
         await update.message.reply_text(
             "⚠️ Session end မရပါ — data ယူပြီး ဆက်သွားပါမည်", parse_mode="HTML")
-    # Capture coupon vars before clear
-    coupon_code = d.get("_cashback_coupon", "")
-    coupon_mins = d.get("_cashback_coupon_mins", 0)
-
     context.user_data.clear()
     return await launch_session_sale(update, context,
                                      session_cid, m_id, total_mins, session_staff)
@@ -1555,6 +1551,25 @@ async def launch_session_sale(
     effective_cost_mins = pre_effective_mins if pre_effective_mins > 0 \
                           else round(total_mins * multiplier)
     context.user_data["effective_cost_mins"] = effective_cost_mins
+
+    # ── CashBack Coupon: Auto-generate via MySQL API ──
+    if not is_guest and total_mins > 0 and not context.user_data.get("_cashback_coupon"):
+        try:
+            from bot.api_client import api_post
+            gen_result = await asyncio.to_thread(
+                api_post, "coupons/generate",
+                {"member_id": member_id, "session_minutes": total_mins}
+            )
+            if gen_result and isinstance(gen_result, dict):
+                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                if cd and cd.get("code"):
+                    context.user_data["_cashback_coupon"] = cd["code"]
+                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
+                    logger.warning("COUPON GEN OK (launch_sale): code=%s mins=%s member=%s", cd["code"], cd.get("minutes", total_mins), member_id)
+                else:
+                    logger.warning("COUPON GEN (launch_sale): no coupon in response: gen_result=%s", gen_result)
+        except Exception as cb_e:
+            logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 
     if wallet_balance >= effective_cost_mins:
         # Sufficient — wallet covers it fully
