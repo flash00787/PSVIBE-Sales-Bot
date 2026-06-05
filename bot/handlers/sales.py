@@ -39,7 +39,7 @@ from datetime import datetime, timezone, timedelta
 
 # Lazy imports to avoid circular deps
 from bot.handlers.notify import _check_low_balance_alert, get_customer_chat_id
-from bot.handlers.booking_flow import _cancel_remind
+from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key
 
 def _lazy_update_inv_total_k1():
     from bot.handlers.stock import update_inv_total_k1 as _f
@@ -1481,6 +1481,22 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ── Low balance alert (non-blocking, member only) ────────────────────────
     if not is_guest:
         asyncio.create_task(_check_low_balance_alert(m_id, c_id))
+
+    # ── Timer reminder: start 5-min-before-end loop ──────────────────────────
+    if play_mins > 5 and c_id and c_id not in ("-", ""):
+        _m_id_clean = m_id.replace("0 (Guest)", "Guest").strip()
+        if _m_id_clean == "-":
+            _m_id_clean = "Guest"
+        _end_dt = now_mmt() + timedelta(minutes=play_mins)
+        _end_t  = _end_dt.strftime("%H:%M")
+        _delay  = (play_mins - 5) * 60
+        _rcid   = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else update.effective_chat.id
+        _cancel_remind(c_id, _rcid)
+        _task = asyncio.create_task(
+            _remind_loop(context.bot, _rcid, c_id, _m_id_clean,
+                         play_mins, _end_t, _delay)
+        )
+        _REMIND_TASKS[_remind_key(c_id, _rcid)] = _task
 
     return await show_main_menu(update, context)
 

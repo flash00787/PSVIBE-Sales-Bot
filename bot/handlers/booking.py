@@ -213,7 +213,7 @@ async def cmd_staff_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_DATE
+    return SBK_TIME
 
 async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle console selection."""
@@ -368,18 +368,17 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return SBK_DUR
 
 async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle time slot → ask duration."""
+    """Handle time slot -> check avail and show console selection."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        # re-ask date
         today    = now_mmt().date()
         tomorrow = today + timedelta(days=1)
         d2       = today + timedelta(days=2)
         def dfmt(d): return d.strftime("%-m/%-d/%Y")
         kb = [
-            [dfmt(today) + " (ယနေ့)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
+            [dfmt(today) + " (ယနော)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
             [dfmt(d2)],
             [BTN_SBK_CUSTOM],
             [BTN_BACK, BTN_CANCEL],
@@ -390,7 +389,6 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return SBK_TIME
 
-    # Validate HH:MM
     import re as _re2
     if not _re2.match(r"^\d{1,2}:\d{2}$", text):
         await update.message.reply_text("⚠️ Time format: HH:MM  (ဥပမာ: 14:30)")
@@ -398,18 +396,18 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     context.user_data["sbk_time"] = text
 
-    kb = [
-        ["30", "60", "90"],
-        ["120", "150", "180"],
-        ["240", "300", "360"],
-        [BTN_BACK, BTN_CANCEL],
-    ]
-    await update.message.reply_text(
-        f"⏰ {text}\n\n⏱️ Duration (မိနစ်) ရွေးပါ:",
-        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-    )
-    return SBK_GAME
-
+    rows = await _sbk_console_kb()
+    if rows and len(rows) > 1:
+        await update.message.reply_text(
+            "✅ Available Consoles:\n\nConsole ID ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(rows, resize_keyboard=True),
+        )
+    else:
+        await update.message.reply_text(
+            "⚠️ Free console မရှိပါ\nေန့ရက်အသစ်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+        )
+    return SBK_CONSOLE
 async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle duration → ask game."""
     text = update.message.text.strip()
