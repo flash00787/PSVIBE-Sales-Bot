@@ -76,9 +76,8 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("refer",  cmd_refer))
     app.add_handler(CommandHandler("mycoupons", cmd_my_coupons))
     app.add_handler(CommandHandler("waitlist",cmd_waitlist))
-    # Food Menu command (also catch /foodmenu text command)
+    # Food Menu command
     app.add_handler(CommandHandler(["foodmenu", "food"], cmd_food_menu, block=False))
-    app.add_handler(MessageHandler(filters.Regex("^" + re.escape(BTN_FOOD) + "$"), cmd_food_menu))
 
     # Booking conversation — all 16 states support ReplyKeyboard text + legacy callbacks
     bk_conv = ConversationHandler(

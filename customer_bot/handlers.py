@@ -132,12 +132,15 @@ async def _bk_intercept_menu(text: str, update: Update, context: ContextTypes.DE
         BTN_STATUS:     cmd_console_status,
         BTN_MYBOOKINGS: cmd_mybookings,
         BTN_GAMES:      cmd_game_library,
+        BTN_FOOD:       cmd_food_menu,
         BTN_HELP_BTN:   cmd_help,
         BTN_RATE:       cmd_rate,
         BTN_REFRESH:    cmd_refresh,
         BTN_CONTACT:    cmd_contact,
         BTN_LOCATION:   cmd_location,
         BTN_PROMOTIONS: cmd_promotions,
+        BTN_BALANCE:    cmd_balance,
+        BTN_REFER:      cmd_refer,
         BTN_BOOK:       cmd_book,
     }
     if text in menu_actions:
@@ -361,33 +364,6 @@ async def cmd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show Food & Beverage menu with prices."""
-    await update.message.reply_text("\U0001f355 Food Menu \u1012\u103d\u102c\u101e\u1031\u102c\u1004\u1039\u1014\u1031\u102c\u1007\u103d\u1031\u1014\u103e\u1004\u1039\u1038...")
-    resp = await _api._api_get("fetch_food_prices")
-    if not resp or not resp.get("success"):
-        await update.message.reply_text(
-            "\u26a0\ufe0f Food Menu \u1019\u101b\u1000\u1039\u1018\u102c \u2014 \u1014\u102e\u102c\u1000\u1039\u1019\u100a\u1039 \u1000\u103c\u102d\u102f\u1019\u1039\u1005\u1031\u102c\u100a\u1039\u1018\u102c\u1038",
-            reply_markup=MAIN_MENU_KB,
-        )
-        return
-
-    items = resp.get("data", {})
-    if isinstance(items, dict):
-        lines = ["\U0001f355 **PS VIBE Food Menu** \U0001f355\n"]
-        for name, price in items.items():
-            lines.append(f"  \u2022 {name} \u2014 **{price:,} Ks**")
-        msg = "\n".join(lines)
-        await update.message.reply_text(
-            msg,
-            parse_mode="Markdown",
-            reply_markup=MAIN_MENU_KB,
-        )
-    else:
-        await update.message.reply_text(
-            "\u26a0\ufe0f Food data format \u1019\u102c\u1019\u1000\u1039\u1014\u1031\u102c\u1007\u1010\u1039\u1018\u102c။",
-            reply_markup=MAIN_MENU_KB,
-        )
 async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ စစ်ဆေးနေသည်...")
     today = today_mmt()
@@ -436,6 +412,33 @@ async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lines += ["", "_Booking လုပ်ရန် 📅 Booking ကို နှိပ်ပါ_"]
     await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
 
+
+async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Food & Beverage menu with prices."""
+    await update.message.reply_text("🍕 Loading food menu...")
+    resp = await _api._api_get("fetch_food_prices")
+    if not resp:
+        await update.message.reply_text(
+            "⚠️ Food Menu မရပါ - နောက်မှ ကြိုးစားပါ",
+            reply_markup=MAIN_MENU_KB,
+        )
+        return
+    items = resp or {}
+    if isinstance(items, dict) and items:
+        lines = ["🍕 **PS VIBE Food Menu**\n"]
+        for name, price in items.items():
+            lines.append(f"\n- {name} = **{price:,} Ks**")
+        msg = "".join(lines)
+        await update.message.reply_text(
+            msg,
+            parse_mode="Markdown",
+            reply_markup=MAIN_MENU_KB,
+        )
+    else:
+        await update.message.reply_text(
+            "⚠️ No food items available yet.",
+            reply_markup=MAIN_MENU_KB,
+        )
 
 async def cmd_rate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     rate_lines = await _api._build_rate_lines()
@@ -870,7 +873,7 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     # Flexible food menu match (text-only variants)
     ft = text.lower().strip()
-    if ft in ("food menu", "menu", "food ပါ", "food ကြည့်မယ်"):
+    if ft in ("food menu", "food ပါ", "food ကြည့်မယ်"):
         return await cmd_food_menu(update, context)
 
     # C1 FAQ Bypass — instant reply for common queries (no AI call)
