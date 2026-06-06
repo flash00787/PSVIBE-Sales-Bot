@@ -33,9 +33,10 @@ from customer_bot.handlers import (
     cmd_start, cmd_menu, cmd_today, cmd_rate, cmd_myid,
     cmd_contact, cmd_promotions, cmd_help, cmd_refresh,
     cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
+    cmd_food_menu,
     cmd_book, cmd_cancel, cmd_feedback, cmd_mybookings, cmd_refer, cmd_waitlist,
     cb_feedback_rating, cb_feedback_comment_prompt, cb_feedback_skip,
-    handle_menu_buttons, show_main_menu, BTN_BOOK,
+    handle_menu_buttons, show_main_menu, BTN_BOOK, BTN_FOOD,
 )
 from customer_bot.booking_handlers import (
     bk_catch_all,
@@ -75,6 +76,9 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("refer",  cmd_refer))
     app.add_handler(CommandHandler("mycoupons", cmd_my_coupons))
     app.add_handler(CommandHandler("waitlist",cmd_waitlist))
+    # Food Menu command (also catch /foodmenu text command)
+    app.add_handler(CommandHandler(["foodmenu", "food"], cmd_food_menu, block=False))
+    app.add_handler(MessageHandler(filters.Regex("^" + re.escape(BTN_FOOD) + "$"), cmd_food_menu))
 
     # Booking conversation — all 16 states support ReplyKeyboard text + legacy callbacks
     bk_conv = ConversationHandler(

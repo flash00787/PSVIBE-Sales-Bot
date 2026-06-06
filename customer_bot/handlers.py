@@ -45,6 +45,7 @@ BTN_PROMOTIONS  = "🎁 Promotions"
 BTN_BALANCE     = "💳 Balance"
 BTN_REFER       = "👥 Refer a Friend"
 
+BTN_FOOD        = "🍕 Food Menu"
 BTN_CANCEL      = "❌ ပယ်ဖျက်မည်"
 BTN_BACK        = "🔙 နောက်သို့"
 BTN_CONFIRM     = "✅ Confirm Booking"
@@ -63,7 +64,8 @@ MAIN_MENU_KB = ReplyKeyboardMarkup([
     [BTN_RATE,       BTN_PROMOTIONS],
     [BTN_BALANCE,    BTN_REFER],
     [BTN_CONTACT,    BTN_LOCATION],
-    [BTN_HELP_BTN,   BTN_REFRESH],
+    [BTN_FOOD,       BTN_HELP_BTN],
+    [BTN_REFRESH],
 ], resize_keyboard=True)
 
 CONSOLE_TYPES = ["PS5", "PS5 Pro"]
@@ -358,6 +360,34 @@ async def cmd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await show_main_menu(update, context)
 
 
+
+async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Food & Beverage menu with prices."""
+    await update.message.reply_text("\U0001f355 Food Menu \u1012\u103d\u102c\u101e\u1031\u102c\u1004\u1039\u1014\u1031\u102c\u1007\u103d\u1031\u1014\u103e\u1004\u1039\u1038...")
+    resp = await _api._api_get("fetch_food_prices")
+    if not resp or not resp.get("success"):
+        await update.message.reply_text(
+            "\u26a0\ufe0f Food Menu \u1019\u101b\u1000\u1039\u1018\u102c \u2014 \u1014\u102e\u102c\u1000\u1039\u1019\u100a\u1039 \u1000\u103c\u102d\u102f\u1019\u1039\u1005\u1031\u102c\u100a\u1039\u1018\u102c\u1038",
+            reply_markup=MAIN_MENU_KB,
+        )
+        return
+
+    items = resp.get("data", {})
+    if isinstance(items, dict):
+        lines = ["\U0001f355 **PS VIBE Food Menu** \U0001f355\n"]
+        for name, price in items.items():
+            lines.append(f"  \u2022 {name} \u2014 **{price:,} Ks**")
+        msg = "\n".join(lines)
+        await update.message.reply_text(
+            msg,
+            parse_mode="Markdown",
+            reply_markup=MAIN_MENU_KB,
+        )
+    else:
+        await update.message.reply_text(
+            "\u26a0\ufe0f Food data format \u1019\u102c\u1019\u1000\u1039\u1014\u1031\u102c\u1007\u1010\u1039\u1018\u102c။",
+            reply_markup=MAIN_MENU_KB,
+        )
 async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ စစ်ဆေးနေသည်...")
     today = today_mmt()
@@ -785,6 +815,8 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
         return await cmd_mybookings(update, context)
     if text == BTN_GAMES:
         return await cmd_game_library(update, context)
+    if text == BTN_FOOD:
+        return await cmd_food_menu(update, context)
     if text in (BTN_HELP_BTN, "/help"):
         return await cmd_help(update, context)
     if text == BTN_RATE:
@@ -835,6 +867,11 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
         logging.info("Priority Care triggered for user %s: %r",
                      update.effective_user.id if update.effective_user else "?",
                      text[:60])
+
+    # Flexible food menu match (text-only variants)
+    ft = text.lower().strip()
+    if ft in ("food menu", "menu", "food ပါ", "food ကြည့်မယ်"):
+        return await cmd_food_menu(update, context)
 
     # C1 FAQ Bypass — instant reply for common queries (no AI call)
     bypass, intent = _detect_ai_bypass(text)
