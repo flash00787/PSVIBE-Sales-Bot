@@ -127,6 +127,10 @@ def _register_handlers(app: Application) -> None:
                 CallbackQueryHandler(bk_console_select, pattern=r"^bk_con:"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_console_select),
             ],
+            # BK_CONSOLE_PREF — Console specific selection + auto assign
+            BK_CONSOLE_PREF: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_console_pref),
+            ],
             # BK_DURATION — ReplyKeyboard: 30/60/90/120/180 mins + ❌ ပယ်ဖျက်မည်
             BK_DURATION: [
                 CallbackQueryHandler(bk_duration_select, pattern=r"^bk_dur:"),

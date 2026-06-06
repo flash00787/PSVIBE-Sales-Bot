@@ -202,8 +202,8 @@ def _make_specific_console_keyboard(consoles):
             row = []
     if row:
         buttons.append(row)
-    buttons.append([BTN_NOT_SURE])
-    buttons.append([BTN_BACK, BTN_CANCEL])
+    buttons.append([BTN_AUTO_ASSIGN])
+    buttons.append([BTN_CANCEL])
     return _rp_kb(buttons)
 
 
@@ -300,7 +300,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     
     # AUTO-ASSIGN: Pick first free console matching selected type
     console_id = context.user_data.get("bk_specific_console_id", "")
-    console_type = context.user_data.get("bk_console", "PS5")
+    console_type = context.user_data.get("bk_console") or context.user_data.get("bk_console_pref", "PS5")
     date_str = context.user_data.get("bk_date", "")
     time_str = context.user_data.get("bk_time", "")
     duration_mins = context.user_data.get("bk_duration_mins", 60)
@@ -1051,6 +1051,25 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text in CONSOLE_TYPES:
             context.user_data["bk_console"] = text
             _push_state(context, BK_CONSOLE)
+            # Show available specific consoles instead of jumping to duration
+            date_str = context.user_data.get("bk_date", "")
+            time_str = context.user_data.get("bk_time", "")
+            dur = context.user_data.get("bk_duration_mins", 60)
+            if date_str and time_str:
+                try:
+                    available = await _get_available_consoles(date_str, time_str, dur)
+                    if text != "Any":
+                        available = [c for c in available if c.get("type", "").lower() == text.lower()]
+                    if available:
+                        await update.message.reply_text(
+                            f"🎮 *{text}* အတွက် ရနိုင်သော Console များ:",
+                            parse_mode="Markdown",
+                            reply_markup=_make_specific_console_keyboard(available),
+                        )
+                        return BK_CONSOLE_PREF
+                except Exception:
+                    pass
+            # Fallback: no specific consoles or data missing → go to duration
             await update.message.reply_text(
                 f"🎮 Console: *{text}*\n\n⏱️ ကြာချိန် ရွေးပါ:",
                 parse_mode="Markdown",
@@ -1060,6 +1079,23 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif text in (BTN_NOT_SURE, "🤷 မရွေးတတ်ပါ"):
             context.user_data["bk_console"] = "Any"
             _push_state(context, BK_CONSOLE)
+            # Show available specific consoles
+            date_str = context.user_data.get("bk_date", "")
+            time_str = context.user_data.get("bk_time", "")
+            dur = context.user_data.get("bk_duration_mins", 60)
+            if date_str and time_str:
+                try:
+                    available = await _get_available_consoles(date_str, time_str, dur)
+                    if available:
+                        await update.message.reply_text(
+                            "🎮 *Any* — ရနိုင်သော Console များ:",
+                            parse_mode="Markdown",
+                            reply_markup=_make_specific_console_keyboard(available),
+                        )
+                        return BK_CONSOLE_PREF
+                except Exception:
+                    pass
+            # Fallback
             await update.message.reply_text(
                 "🎮 Console: *Any*\n\n⏱️ ကြာချိန် ရွေးပါ:",
                 parse_mode="Markdown",
@@ -1086,7 +1122,8 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             con = data.split(":", 1)[1]
             context.user_data["bk_console"] = "Any" if con == "not_sure" else con
             await query.edit_message_text(
-                f"🎮 Console: *{context.user_data['bk_console']}*\n\n"
+                f"🎮 Selected: *{context.user_data['bk_console']}*")
+            await query.message.reply_text(
                 "⏱️ ကြာချိန် ရွေးပါ:",
                 parse_mode="Markdown",
                 reply_markup=_make_duration_keyboard(),
@@ -1318,9 +1355,10 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ── State 11: BK_CONSOLE_PREF — Console preference ─────────────────────────
+BTN_AUTO_ASSIGN = "↩️ Auto Assign"
 
 async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle console preference selection."""
+    """Handle console preference selection. After type, show available specific consoles."""
     text = (update.message.text or "").strip() if update.message else ""
 
     if not update.callback_query and text:
@@ -1331,10 +1369,52 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
+        # ── Phase 2: specific console selected? ──
+        pref = context.user_data.get("bk_console_pref", "")
+        if pref:
+            # User is seeing available specific consoles - check if they picked one
+            if text == BTN_AUTO_ASSIGN:
+                # Auto assign - clear specific console, go to confirm
+                context.user_data.pop("bk_specific_console_id", None)
+                _push_state(context, BK_CONSOLE_PREF)
+                summary = _format_booking_summary(context)
+                await update.message.reply_text(
+                    summary + "\n\n✅ Confirm လုပ်မလား?",
+                    parse_mode="Markdown",
+                    reply_markup=_make_confirm_keyboard(),
+                )
+                return BK_DURATION
+            elif text in CONSOLE_TYPES:
+                # User re-picked type - update preference and re-show
+                context.user_data["bk_console_pref"] = text
+                pref = text
+            elif "(" in text and ")" in text:
+                # Looks like a specific console selection e.g. "C-01 (PS5)"
+                parts = text.split("(", 1)
+                cid = parts[0].strip()
+                ctype = parts[1].rstrip(")").strip() if len(parts) > 1 else ""
+                context.user_data["bk_specific_console_id"] = cid
+                if ctype:
+                    context.user_data["bk_console_pref"] = ctype
+                _push_state(context, BK_CONSOLE_PREF)
+                summary = _format_booking_summary(context)
+                await update.message.reply_text(
+                    summary + "\n\n✅ Confirm လုပ်မလား?",
+                    parse_mode="Markdown",
+                    reply_markup=_make_confirm_keyboard(),
+                )
+                return BK_DURATION
+        
+        # ── Phase 1: console type selection ──
         if text in CONSOLE_TYPES:
             context.user_data["bk_console_pref"] = text
+            pref = text
         elif text in (BTN_NOT_SURE, "🤷 မရွေးတတ်ပါ"):
             context.user_data["bk_console_pref"] = "Any"
+            pref = "Any"
+        elif text == BTN_BACK:
+            _pop_state(context)
+            return BK_DATE
         else:
             await update.message.reply_text(
                 "💻 ကျေးဇူးပြုပြီး console preference ရွေးပါ:",
@@ -1342,6 +1422,28 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return BK_CONSOLE_PREF
 
+        # After type selected, try to show available specific consoles
+        date_str = context.user_data.get("bk_date", "")
+        time_str = context.user_data.get("bk_time", "")
+        dur = context.user_data.get("bk_duration_mins", 60)
+        if date_str and time_str:
+            try:
+                available = await _get_available_consoles(date_str, time_str, dur)
+                if pref != "Any":
+                    available = [c for c in available if c.get("type", "").lower() == pref.lower()]
+                if available:
+                    spec_kb = _make_specific_console_keyboard(available)
+                    await update.message.reply_text(
+                        f"🎮 <b>{pref}</b> အတွက် ရနိုင်သော console များ:\n"
+                        "အောက်မှ တစ်လုံးရွေးပါ သို့မဟုတ် Auto Assign လုပ်ပါ:",
+                        parse_mode="HTML",
+                        reply_markup=spec_kb,
+                    )
+                    return BK_CONSOLE_PREF
+            except Exception:
+                pass
+        
+        # No specific consoles to show or date/time not set yet - go to confirm
         _push_state(context, BK_CONSOLE_PREF)
         summary = _format_booking_summary(context)
         await update.message.reply_text(
@@ -1349,7 +1451,7 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="Markdown",
             reply_markup=_make_confirm_keyboard(),
         )
-        return BK_CONFIRM
+        return BK_DURATION
 
     # Callback path (keep for safety)
     if update.callback_query:
@@ -1363,19 +1465,19 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if data.startswith("bk_con:"):
             pref = data.split(":", 1)[1]
             context.user_data["bk_console_pref"] = "Any" if pref == "not_sure" else pref
+            _push_state(context, BK_CONSOLE_PREF)
             summary = _format_booking_summary(context)
             await query.edit_message_text(
                 summary + "\n\n✅ Confirm လုပ်မလား?",
                 parse_mode="Markdown",
                 reply_markup=_make_confirm_keyboard(),
             )
-            return BK_CONFIRM
+            return BK_DURATION
 
         await query.edit_message_text("❌ Invalid preference selection.")
         return BK_CONSOLE_PREF
 
     return BK_CONSOLE_PREF
-
 
 # ── State 12: BK_CONFIRM — Confirm booking and submit ──────────────────────
 
