@@ -248,7 +248,7 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     for console in consoles_raw:
         cid = console.get("id", "")
         cstatus = console.get("status", "").lower()
-        if cstatus == "active":
+        if cstatus in ("active", "reserved"):
             continue
         if cid in conflicting:
             continue
@@ -352,7 +352,13 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             asyncio.create_task(_api.track_usage(user, "booking_created"))
             return msg, True
         else:
-            return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False
+            err_msg = str(result) if result else "unknown"
+            return (
+                "❌ Booking မအောင်မြင်ပါ\n"
+                f"Console {console_id} ({console_type}) သည် ထိုအချိန်တွင် မရနိုင်ပါ။\n\n"
+                "အခြားအချိန် သို့မဟုတ် အခြား console ကို ထပ်ရွေးပါ။\n"
+                "🔄 /start — ပြန်ကြိုးစားရန်"
+            ), False
     except Exception as e:
         logger.error("Booking submission failed: %s", e)
         return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False
