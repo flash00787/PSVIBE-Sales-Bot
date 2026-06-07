@@ -1700,8 +1700,8 @@ BTN_SSD_RETURN   = "↩️ Console → SSD (Return)"
 BTN_SSD_MOVE_TO_CONSOLE = "🔄 SSD→Console"
 BTN_SSD_MOVE_TO_SSD = "🔄 Console→SSD"
 BTN_SSD_T1       = "Samsung T1 Shield"
-BTN_SSD_BLUE     = "Sandisk Extreme (Blue)"
-BTN_SSD_GREY     = "Sandisk Extreme (Grey)"
+BTN_SSD_BLUE     = "SanDisk - Light Green"
+BTN_SSD_GREY     = "SanDisk - Orange"
 # Game Discs Record
 BTN_DISC_RECORD  = "💿 Game Discs"
 BTN_EDIT_GAME    = "✏️ Edit Game"
@@ -1746,8 +1746,8 @@ def _delete_session_game(console_id: str) -> None:
 
 SSD_NAMES: dict[str, str] = {
     "SSD-T1":   "Samsung T1 Shield",
-    "SSD-Blue": "Sandisk Extreme (Blue)",
-    "SSD-Grey": "Sandisk Extreme (Grey)",
+    "SSD-Blue": "SanDisk - Light Green",
+    "SSD-Grey": "SanDisk - Orange",
 }
 SSD_BTN_TO_ID: dict[str, str] = {v: k for k, v in SSD_NAMES.items()}
 

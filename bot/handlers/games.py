@@ -121,13 +121,13 @@ async def _show_game_detail(update, game: dict) -> None:
                     # SSD (external) drives have IDs starting with SSD-
                     if cid.upper().startswith("SSD"):
                         it = (r.get("install_type","") or "").strip()
-                        ssd_list.append(f"{cid} ({it})" if it else cid)
+                        ssd_list.append(f"{SSD_NAMES.get(cid, cid)} ({it})" if it else SSD_NAMES.get(cid, cid))
                     else:
                         cons_list.append(cid)
                 elif status in ("SSD Copy", "Moved"):
-                    ssd_list.append(f"{cid} ({status})")
+                    ssd_list.append(f"{SSD_NAMES.get(cid, cid)} ({status})")
                 elif status == "Session":
-                    ssd_list.append(f"{cid} (Session)")
+                    ssd_list.append(f"{SSD_NAMES.get(cid, cid)} (Session)")
                 # Skip entries with status "Not Installed"
 
     sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
@@ -464,13 +464,13 @@ async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TY
                                 # SSD (external) drives have IDs starting with SSD-
                                 if cid.upper().startswith("SSD"):
                                     it = (r.get("install_type","") or "").strip()
-                                    ssd_list.append(f"{cid} ({it})" if it else cid)
+                                    ssd_list.append(f"{SSD_NAMES.get(cid, cid)} ({it})" if it else SSD_NAMES.get(cid, cid))
                                 else:
                                     cons_list.append(cid)
                             elif status in ("SSD Copy", "Moved"):
-                                ssd_list.append(f"{cid} ({status})")
+                                ssd_list.append(f"{SSD_NAMES.get(cid, cid)} ({status})")
                             elif status == "Session":
-                                ssd_list.append(f"{cid} (Session)")
+                                ssd_list.append(f"{SSD_NAMES.get(cid, cid)} (Session)")
                             # Skip entries with status "Not Installed"
 
                 sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
