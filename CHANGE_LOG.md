@@ -19,3 +19,15 @@
 - Services restarted: psvibe-sale-bot
 - Author: Kora
 
+
+## 2026-06-07 — DB Cleanup: Removed duplicate console_games records
+
+### Changes
+- **Action:** Deleted 8 duplicate records across C-02, C-04, C-05, C-09, C-10
+- **Pattern:** Each had empty install_type (first insert glitch) + valid Internal SSD entry
+- **Root cause:** API endpoint  had no duplicate check — double-tap or race created 2 rows
+- **Fix:** Added SELECT COUNT(*) check before INSERT in API
+- **Deleted IDs:** 119, 49, 56, 66, 79, 87, 92, 94
+- **Total records:** 116 → 108
+- **Author:** Kora
+
