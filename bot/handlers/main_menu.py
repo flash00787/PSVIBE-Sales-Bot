@@ -15,7 +15,7 @@ from bot import (
     ADMIN_PIN, BTN_ADMIN, BTN_HELP, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
     BTN_FINANCIAL_REPORT, BTN_BALANCE, BTN_GAME_LIB_MENU, BTN_INVENTORY_VIEW,
     BTN_MEMBER_MGMT, BTN_SBK_CONFIRMED, BTN_SBK_NEW, BTN_SBK_WAITLIST,
-    BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
+    BTN_FOOD_SALE, BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
     next_voucher, now_mmt, show_console_menu, show_game_menu,
     show_main_menu,
     fetch_allowed_staff_ids_async, _replit_get_async,
@@ -173,9 +173,10 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         greet = "🌙 မင်္ဂလာညနေ"
     kb = [
         [BTN_DAILY_SALES,      BTN_MEMBER_MGMT],
-        [BTN_CONSOLES,         BTN_BALANCE],
-        [BTN_TODAY_REPORT,     BTN_INVENTORY_VIEW],
-        [BTN_STAFF_BOOK,       BTN_ADMIN],
+        [BTN_FOOD_SALE,        BTN_BALANCE],
+        [BTN_CONSOLES,         BTN_INVENTORY_VIEW],
+        [BTN_TODAY_REPORT,     BTN_STAFF_BOOK],
+        [BTN_ADMIN],
     ]
     await update.message.reply_text(
         f"🎮 *PS Vibe — Staff Bot*\n"
@@ -214,6 +215,10 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if choice == BTN_TODAY_REPORT:
         return await cmd_today_report(update, context)
+
+    if choice == BTN_FOOD_SALE:
+        from bot.handlers.sales import cmd_food_sale
+        return await cmd_food_sale(update, context)
 
     if choice == BTN_CONSOLES:
         return await show_console_menu(update, context)

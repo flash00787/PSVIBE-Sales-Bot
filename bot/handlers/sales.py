@@ -57,6 +57,29 @@ def next_voucher() -> str:
 
 
 @log_duration("sales:prompt_member")
+async def cmd_food_sale(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Entry point for standalone Food Sale (no console/game)."""
+    context.user_data["v_no"] = next_voucher()
+    context.user_data["staff"] = ""
+    context.user_data["food_items"] = []
+    context.user_data["food_prices"] = await fetch_food_prices_async()
+    context.user_data["is_food_sale"] = True
+    context.user_data["member_id"] = None
+    # Load stock map
+    try:
+        from bot.api_client import _replit_get_async
+        inv_data = await _replit_get_async("stock/current")
+        if inv_data and isinstance(inv_data, dict):
+            stock_list = inv_data.get("data", inv_data.get("items", inv_data.get("stock", [])))
+            context.user_data["food_stock_map"] = {
+                s["item_name"]: s["quantity"]
+                for s in stock_list if isinstance(s, dict) and s.get("item_name")
+            }
+    except Exception:
+        pass
+    return await prompt_food_menu(update, context)
+
+
 async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
                         search_results: list | None = None, query: str = ""):
     v_no    = context.user_data["v_no"]
@@ -1148,6 +1171,17 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     d     = context.user_data
 
+    # ── Food-only sale: food with no console/game ────────────────────────────────────
+    if d.get("is_food_sale"):
+        c_id = "-"
+        play_mins = 0
+        game_amt = 0
+        mult = 1.0
+        wallet_before = None
+        discount = d.get("discount", 0)
+        net_total = d.get("net_total", d.get("food_total", 0))
+        is_guest = True
+
     # ── Double-confirm guard: prevent duplicate save if user taps twice ──────────────────────────────────────────────────
     if d.get("_sale_saved"):
         await update.message.reply_text("⚠️ အခုန်အပြီးပါပြီ သိမ်းဆည်းပါပြီ — မနေးသိမ်းပါ")
@@ -1367,6 +1401,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "payment_method": _pm_str,
                     "wallet_deduct": _w_deduct,
                     "staff": staff_name,
+                    "type": "food_only" if (_m_id == "-" and play_mins == 0) else "standard",
                 })
                 _sales_api_ok = _result and _result.get("success")
             except Exception as e:

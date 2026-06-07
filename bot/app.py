@@ -109,6 +109,8 @@ def main():
             CommandHandler("menu",       show_main_menu),
             CommandHandler("cancel",     cmd_cancel),
             CommandHandler("help",       cmd_help),
+            # Food Sale (standalone)
+            MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_SALE) + r"$"), cmd_food_sale),
             CommandHandler("version",    cmd_version),
             # Sales
             CommandHandler("sales",      cmd_sales_direct),
@@ -394,6 +396,8 @@ def main():
             CommandHandler("start",      show_main_menu),
             CommandHandler("menu",       show_main_menu),
             CommandHandler("help",       cmd_help),
+            # Food Sale (standalone)
+            MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_SALE) + r"$"), cmd_food_sale),
             CommandHandler("version",    cmd_version),
             # Sales
             CommandHandler("sales",      cmd_sales_direct),
