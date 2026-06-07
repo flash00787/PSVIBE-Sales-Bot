@@ -142,6 +142,8 @@ def main():
             CommandHandler("stocktoday", cmd_stocktoday),
             # Console
             CommandHandler("balance",    cmd_balance),
+            CommandHandler("inject",     cmd_inject),
+            CommandHandler("eject",      cmd_eject),
             CommandHandler("console",    cmd_console_status),
         ],
         states={
@@ -475,6 +477,8 @@ def main():
         ("inventory",  cmd_inventory),
         ("stocktoday",  cmd_stocktoday),
         ("balance",     cmd_balance),
+        ("inject",      cmd_inject),
+        ("eject",       cmd_eject),
         ("console",     cmd_console_status),
         ("newbooking",     cmd_staff_booking),
         ("cancelbooking",  cmd_cancel_booking),

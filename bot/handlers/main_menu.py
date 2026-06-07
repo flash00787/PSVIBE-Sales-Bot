@@ -21,6 +21,7 @@ from bot import (
     fetch_allowed_staff_ids_async, _replit_get_async,
 )
 
+import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
@@ -72,6 +73,79 @@ async def cmd_balance(update, context):
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
     return MAIN_MENU
+
+
+
+
+
+# ── Cash Inject / Eject Commands (Admin only) ──────────────────────────
+async def cmd_inject(update, context):
+    """Usage: /inject <amount> <account> [note]"""
+    return await _cmd_cash_movement(update, context, "inject")
+
+async def cmd_eject(update, context):
+    """Usage: /eject <amount> <account> [note]"""
+    return await _cmd_cash_movement(update, context, "eject")
+
+async def _cmd_cash_movement(update, context, mtype):
+    """Handle inject/eject commands."""
+    user_id = str(update.effective_user.id)
+    # Allow Boss only
+    allowed = ["6296803251"]
+    try:
+        from bot.config import ALLOWED_USER_IDS
+        if isinstance(ALLOWED_USER_IDS, (list, tuple)):
+            allowed = [str(x).strip() for x in ALLOWED_USER_IDS]
+        elif ALLOWED_USER_IDS:
+            allowed = [str(ALLOWED_USER_IDS).strip()]
+    except:
+        pass
+    
+    if user_id not in allowed:
+        await update.message.reply_text("\u274c Boss only command.")
+        return
+
+    if not context.args or len(context.args) < 2:
+        await update.message.reply_text(
+            f"Usage: /{mtype} <amount> <account> [note]\n"
+            f"Example: /{mtype} 50000 Cash \u1019\u103e\u1010\u103a\u1001\n"
+            f"Accounts: Cash, KPay, Wave, AYA Pay"
+        )
+        return
+
+    try:
+        amount = int(context.args[0].replace(",", ""))
+    except:
+        await update.message.reply_text("\u274c Invalid amount")
+        return
+
+    account = context.args[1]
+    if account not in ("Cash", "KPay", "Wave", "AYA Pay"):
+        await update.message.reply_text("\u274c Use: Cash/KPay/Wave/AYA Pay")
+        return
+
+    note = " ".join(context.args[2:]) if len(context.args) > 2 else ""
+
+    try:
+        from bot.api_client import api_post
+        result = await asyncio.to_thread(
+            api_post, "finance/cash-movement",
+            {
+                "type": mtype, "account": account, "amount": amount,
+                "note": note,
+                "staff_name": update.effective_user.full_name or update.effective_user.username or "Boss",
+            }
+        )
+        if result and result.get("success"):
+            icon = "\u2795" if mtype == "inject" else "\u2796"
+            msg = f"{icon} *{mtype.title()}*: {amount:,} Ks \u2192 {account}"
+            if note:
+                msg += f"\n\ud83d\udcdd {note}"
+            await update.message.reply_text(msg, parse_mode="Markdown")
+        else:
+            await update.message.reply_text(f"\u274c Error: {result}")
+    except Exception as e:
+        await update.message.reply_text(f"\u274c Failed: {e}")
 
 
 async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
