@@ -117,22 +117,22 @@ async def cmd_mybookings(update, context):
 
     # ── Upcoming bookings ──
     if upcoming:
-        lines.append("📋 *My Bookings (Upcoming)*")
+        lines.append("📋 My Bookings (Upcoming)")
         for b in upcoming[:10]:
             lines.append(_format_booking_line(b))
     else:
-        lines.append("📋 *My Bookings*")
-        lines.append("\n_No upcoming bookings._")
+        lines.append("📋 My Bookings")
+        lines.append("\n- No upcoming bookings.")
 
     # ── Expired bookings ──
     if expired:
-        lines.append("\n\n⚠️ *Expired Bookings*")
+        lines.append("\n\n⚠️ Expired Bookings")
         lines.append("(အချိန်ကျော်သွားပါပြီ — auto-cancel ခံရနိုင်ပါသည်)")
         for b in expired[:5]:
             lines.append(_format_booking_line(b, is_expired=True))
 
     lines.append("\n\nAdmin ကို ဆက်သွယ်ရန်: @psvibeofficial")
-    await update.message.reply_text("".join(lines), parse_mode="Markdown")
+    await update.message.reply_text("".join(lines), )
 
 
 def _format_booking_line(b: dict, is_expired: bool = False) -> str:
@@ -156,7 +156,7 @@ def _format_booking_line(b: dict, is_expired: bool = False) -> str:
         status_text = "Pending" if status == "pending" else ("Scheduled" if status == "scheduled" else "Confirmed")
 
     parts = [
-        f"\n{emoji} *Booking #{bk_id}* \u2014 {status_text}",
+        f"\n{emoji} Booking #{bk_id} \u2014 {status_text}",
         f"\n📅 {date}  🕐 {time_str}",
         f"\n🎮 {console_type}  ⏱️ {duration} mins",
     ]
@@ -177,8 +177,7 @@ async def cmd_cancel_booking(update, context):
         await update.message.reply_text(
             "❌ Cancel လုပ်ရန် Booking ID ထည့်ပါ။\n"
             "ဥပမာ: `/cancelbooking 131`\n\n"
-            "pending booking များကိုသာ cancel လုပ်နိုင်ပါသည်။",
-            parse_mode="Markdown",
+            "pending booking များကိုသာ cancel လုပ်နိုင်ပါသည်။"
         )
         return
 
@@ -195,8 +194,7 @@ async def cmd_cancel_booking(update, context):
         })
         if result and isinstance(result, dict) and result.get("success"):
             await update.message.reply_text(
-                f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*",
-                parse_mode="Markdown",
+                f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*"
             )
         else:
             err = result.get("error", "") if isinstance(result, dict) else ""
@@ -223,7 +221,7 @@ async def cmd_refer(update, context):
         "ဒီ link ကို သူငယ်ချင်းတွေကို Share လုပ်ပါ။\n"
         "*Coming soon:* Referral bonus system ကို မကြာမီ စတင်ပါမည်။"
     )
-    await update.message.reply_text(msg, parse_mode="Markdown")
+    await update.message.reply_text(msg, )
 
 
 async def cmd_waitlist(update, context):
@@ -234,6 +232,5 @@ async def cmd_waitlist(update, context):
         "သင်စောင့်ဆိုင်းလိုသော console (PS5, PS4, etc.)\n"
         "နှင့် အချိန်ကို ဖော်ပြပါ။\n\n"
         "*Coming soon:* 'Auto-notify' စနစ် — console ရှင်းသည်နှင့်\n"
-        "Telegram မှ အလိုအလျောက် အကြောင်းကြားပါမည်။",
-        parse_mode="Markdown",
+        "Telegram မှ အလိုအလျောက် အကြောင်းကြားပါမည်။"
     )
