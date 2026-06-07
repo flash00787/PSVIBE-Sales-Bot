@@ -1094,14 +1094,20 @@ async def _show_payment_review(update: Update, context: ContextTypes.DEFAULT_TYP
 
 
 def _build_payment_receipt_lines(kpay: int, cash: int, payments: dict) -> str:
-    """Build dynamic payment display lines for receipt."""
-    if not payments or len(payments) <= 1:
+    """Build dynamic payment display lines for receipt (supports all methods)."""
+    if not payments:
         return f"💳 Kpay: *{kpay:,} Ks*  |  💵 Cash: *{cash:,} Ks*"
 
     lines = []
+    icon_cash = "\U0001f4b5"
+    icon_digital = "\U0001f4f1"
     for method, amt in payments.items():
-        lines.append(f"  • {method}: *{amt:,} Ks*")
-    return "💳 Payments:\n" + "\n".join(lines)
+        if int(amt) > 0:
+            ico = icon_digital if method.lower() in ("kpay", "wavepay", "wave", "aya pay") else icon_cash
+            lines.append(f"  {ico} {method}: *{int(amt):,} Ks*")
+    if not lines:
+        lines.append(f"  {icon_cash} Cash: *{cash:,} Ks*")
+    return "\n".join(lines)
 
 @log_duration("sales:step_sale_confirm")
 async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1313,6 +1319,17 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # ── Sales record: API first ──
             _sales_api_ok = False
             try:
+                # Build payment_method from ALL payment methods
+                _pm_parts = []
+                if kpay > 0:
+                    _pm_parts.append(f"KPay:{kpay}")
+                if cash > 0:
+                    _pm_parts.append(f"Cash:{cash}")
+                for _m, _a in (payments_data or {}).items():
+                    if _m not in ("KPay", "Cash") and int(_a) > 0:
+                        _pm_parts.append(f"{_m}:{int(_a)}")
+                _pm_str = "|".join(_pm_parts) if _pm_parts else f"Cash:{net_total}"
+
                 _result = api_add_sales_record({
                     "date": today,
                     "voucher_no": v_no,
@@ -1325,6 +1342,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "net_total": net_total,
                     "kpay": kpay,
                     "cash": cash,
+                    "payment_method": _pm_str,
                     "wallet_deduct": _w_deduct,
                     "staff": staff_name,
                 })
