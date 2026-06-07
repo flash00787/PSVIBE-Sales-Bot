@@ -30,35 +30,29 @@ from datetime import datetime, timezone, timedelta
 
 
 async def cmd_balance(update, context):
-    """Show account balances — grouped by Operating vs Capital (no PIN needed)."""
+    """Show operating account balances for staff (no PIN, no capital shown)."""
     await update.message.reply_text(
-        "💰 *Account Balance — ရော်နေလေပြနေး...*",
+        "💰 *Account Balance — ရှာဖွေနေပါသည်...*",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
     data = await _replit_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
-            "❌ Account Balances API ချိတ်မရိပါ",
+            "❌ Account Balances API ချိတ်၍မရပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return MAIN_MENU
     operating = data.get("operating", [])
-    capital = data.get("capital", [])
     total_op = data.get("total_operating", 0)
-    total_cap = data.get("total_capital", 0)
-    grand_total = data.get("grand_total", 0)
-    if not operating and not capital:
+    if not operating:
         await update.message.reply_text(
-            "⚠️ Account အချေး မရှိသေးပါ",
+            "⚠️ Account မှတ်တမ်း မရှိသေးပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return MAIN_MENU
-    lines = ["💰 *Account Balances*",
+    lines = ["💰 *ဆိုင်ငွေ*",
              "━━━━━━━━━━━━━━━━━━━━━━"]
-    # Operating accounts
-    lines.append("")
-    lines.append("🟢 နေ့စ္စဲလမ်ပတ္ငေး")
     icon_map = {"cash": "💵", "kpay": "📱", "wave": "📱", "aya": "📱"}
     for a in operating:
         name = a.get("name", "?")
@@ -70,18 +64,8 @@ async def cmd_balance(update, context):
                 icon = ico
                 break
         lines.append(f"{icon} {name:<16}: {int(bal):>10,} Ks")
-    lines.append(f"💰 မေးကျေး     : {int(total_op):>10,} Ks")
-    # Capital accounts
-    lines.append("")
-    lines.append("🔵 အရိန်အနေ့း")
-    for a in capital:
-        name = a.get("name", "?")
-        bal = a.get("balance", 0)
-        lines.append(f"🏦 {name:<16}: {int(bal):>10,} Ks")
-    lines.append(f"🏦 မေးကျေး     : {int(total_cap):>10,} Ks")
-    lines += ["",
-              "━━━━━━━━━━━━━━━━━━━━━━",
-              f"💰 *စ္စေးကြေးငေးငွေ* : {int(grand_total):,} Ks"]
+    lines += ["━━━━━━━━━━━━━━━━━━━━━━",
+              f"💰 *စုစုပေါင်းငွေ* : {int(total_op):,} Ks"]
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="Markdown",
