@@ -51,7 +51,7 @@ try:
         api_fetch_promotions_cached_async,
         api_fetch_games_async, api_fetch_game_library_async,
         api_fetch_console_games_async, api_set_game_disc_count_async,
-        api_update_game_library_install_async,
+        api_update_game_library_install_async, api_fetch_food_menu_async,
     )
     _HAS_API = True
 except ImportError:
@@ -3295,6 +3295,7 @@ fetch_balance_mins_async = api_fetch_balance_mins_async
 fetch_member_tier_async = api_fetch_member_tier_async
 fetch_member_data_async = api_fetch_member_data_async
 fetch_promotions_cached_async = api_fetch_promotions_cached_async
+fetch_food_menu_async = api_fetch_food_menu_async
 fetch_game_library  = fetch_games            # alias used in SSD management
 
 

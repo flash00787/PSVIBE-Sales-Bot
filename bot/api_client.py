@@ -430,6 +430,11 @@ async def api_fetch_food_prices_async() -> dict | None:
     return await _api_call_async("GET", "fetch_food_prices")
 
 
+async def api_fetch_food_menu_async() -> dict | None:
+    """Async: Fetch food menu grouped by category."""
+    return await _api_call_async("GET", "fetch_food_menu")
+
+
 async def api_fetch_food_costs_async() -> dict | None:
     """Async: Fetch food cost table."""
     return await _api_call_async("GET", "fetch_food_costs")

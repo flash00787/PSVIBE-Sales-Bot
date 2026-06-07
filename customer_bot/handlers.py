@@ -416,18 +416,25 @@ async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show Food & Beverage menu with prices."""
     await update.message.reply_text("🍕 Loading food menu...")
-    resp = await _api._api_get("fetch_food_prices")
+    resp = await _api._api_get("fetch_food_menu")
     if not resp:
         await update.message.reply_text(
             "⚠️ Food Menu မရပါ - နောက်မှ ကြိုးစားပါ",
             reply_markup=MAIN_MENU_KB,
         )
         return
-    items = resp or {}
-    if isinstance(items, dict) and items:
-        lines = ["🍕 **PS VIBE Food Menu**\n"]
-        for name, price in items.items():
-            lines.append(f"\n- {name} = **{price:,} Ks**")
+    grouped = resp or {}
+    if isinstance(grouped, dict) and grouped:
+        lines = ["🍕 **PS VIBE Food Menu**"]
+        cat_emoji = {"Drinks": "\U0001f964", "Instant Noodles": "\U0001f35c", "Snacks": "\U0001f95f", "Other": "\U0001f95a", "Food": "\U0001f354"}
+        cat_order = ["Drinks", "Instant Noodles", "Snacks", "Other", "Food"]
+        for cat in cat_order:
+            items = grouped.get(cat, {})
+            if items:
+                emoji = cat_emoji.get(cat, "\U0001f372")
+                lines.append(f"\n\n{emoji} **{cat}**")
+                for name, price in items.items():
+                    lines.append(f"\n  - {name} = **{price:,} Ks**")
         msg = "".join(lines)
         await update.message.reply_text(
             msg,

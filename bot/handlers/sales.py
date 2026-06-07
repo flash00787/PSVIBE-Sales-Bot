@@ -17,7 +17,7 @@ from bot import (
     fetch_wallet_mins_async,
     fetch_members_async,
     fetch_base_rate_async,
-    fetch_food_prices_async,
+    fetch_food_prices_async, fetch_food_menu_async,
     fetch_food_costs_async,
     fetch_console_multiplier_async,
 )
@@ -255,9 +255,23 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     clear_row  = [[BTN_CLEAR_CART]] if cart_items else []
     kb         = rows + [[BTN_DONE]] + clear_row + [NAV_ROW]
 
-    # Price list
-    price_lines = [f"  • {n}  —  {p:,} Ks" for n, p in prices.items()]
-    price_block = "\n".join(price_lines) if price_lines else "  (menu မရှိပါ)"
+    # Price list — grouped by category
+    grouped = context.user_data.get("food_menu_grouped", {})
+    if grouped:
+        price_parts = []
+        cat_emoji = {"Drinks": "🥤", "Instant Noodles": "🍜", "Snacks": "🥟", "Other": "🥚", "Food": "🍔"}
+        for cat in ["Drinks", "Instant Noodles", "Snacks", "Other", "Food"]:
+            items = grouped.get(cat, {})
+            if items:
+                emoji = cat_emoji.get(cat, "🍲")
+                price_parts.append(f"\n{emoji} <b>{cat}</b>")
+                for n, p in items.items():
+                    if n in prices:
+                        price_parts.append(f"  • {n}  —  {p:,} Ks")
+        price_block = "\n".join(price_parts) if price_parts else "  (menu မရှိပါ)"
+    else:
+        price_lines = [f"  • {n}  —  {p:,} Ks" for n, p in prices.items()]
+        price_block = "\n".join(price_lines) if price_lines else "  (menu မရှိပါ)"
 
     # Running cart (already fetched above)
     if cart_items:
@@ -790,6 +804,14 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.warning("step_mins: stock fetch failed, showing all items: %s", e)
         stock_map = {}
+    # Fetch grouped food menu for category display
+    try:
+        grouped_data = await fetch_food_menu_async()
+        if grouped_data:
+            context.user_data["food_menu_grouped"] = grouped_data
+    except Exception as e:
+        logger.warning("step_mins: grouped food menu fetch failed: %s", e)
+        context.user_data["food_menu_grouped"] = {}
     context.user_data["food_prices"]    = food_prices
     context.user_data["food_stock_map"] = stock_map
     return await prompt_food_menu(update, context)

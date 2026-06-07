@@ -1,0 +1,38 @@
+{
+  "type": "sale",
+  "voucher_id": "20260607-250",
+  "date": "6/7/2026",
+  "member_id": "0 (Guest)",
+  "console_id": "C - 04",
+  "play_mins": 140,
+  "game_amt": 23333,
+  "food_items": [
+    {
+      "name": "Yum Yum Eye",
+      "qty": 1,
+      "unit_price": 2500,
+      "subtotal": 2500
+    }
+  ],
+  "food_total": 2500,
+  "gross_total": 25833,
+  "discount": 0,
+  "promo_id": "",
+  "promo_title": "",
+  "promo_note": "",
+  "foc_item_name": "",
+  "foc_item_qty": 1,
+  "bonus_mins": 0,
+  "bonus_mins_promo": 0,
+  "net_total": 25833,
+  "kpay": 25833,
+  "cash": 0,
+  "multiplier": 1.0,
+  "is_guest": true,
+  "prev_balance": null,
+  "balance_change": null,
+  "balance_after": null,
+  "wallet_game_value": 0,
+  "disc_target": "overall",
+  "foc_item_price": 0
+}
