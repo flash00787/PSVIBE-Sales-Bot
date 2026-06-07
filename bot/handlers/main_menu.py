@@ -36,7 +36,7 @@ async def cmd_balance(update, context):
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
-    data = await _replit_get_async("finance/accounts")
+    data = await _replit_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
             "\u274c Account Balances API ချိတ်မရပါ",

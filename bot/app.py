@@ -142,7 +142,6 @@ def main():
             CommandHandler("stocktoday", cmd_stocktoday),
             # Console
             CommandHandler("balance",    cmd_balance),
-            CommandHandler("balance",    cmd_balance),
             CommandHandler("console",    cmd_console_status),
         ],
         states={
@@ -425,8 +424,6 @@ def main():
             CommandHandler("inventory",  cmd_inventory),
             CommandHandler("stocktoday", cmd_stocktoday),
             # Console
-            CommandHandler("balance",    cmd_balance),
-            CommandHandler("balance",    cmd_balance),
             CommandHandler("console",    cmd_console_status),
         ],
     )
