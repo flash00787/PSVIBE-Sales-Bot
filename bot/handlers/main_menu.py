@@ -30,41 +30,65 @@ from datetime import datetime, timezone, timedelta
 
 
 async def cmd_balance(update, context):
-    """Show account balances for staff (no PIN needed)."""
+    """Show account balances — grouped by Operating vs Capital (no PIN needed)."""
     await update.message.reply_text(
-        "\U0001f4b0 *Account Balance — ရှာဖွေနေပါသည်...*",
+        "💰 *Account Balance — ရော်နေလေပြနေး...*",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
     data = await _replit_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
-            "\u274c Account Balances API ချိတ်မရပါ",
+            "❌ Account Balances API ချိတ်မရိပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return MAIN_MENU
-    accounts = data.get("accounts", [])
-    total_bal = data.get("total_balance", 0)
-    if not accounts:
+    operating = data.get("operating", [])
+    capital = data.get("capital", [])
+    total_op = data.get("total_operating", 0)
+    total_cap = data.get("total_capital", 0)
+    grand_total = data.get("grand_total", 0)
+    if not operating and not capital:
         await update.message.reply_text(
-            "\u26a0\ufe0f Account မှတ်တမ်း မရှိသေးပါ",
+            "⚠️ Account အချေး မရှိသေးပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return MAIN_MENU
-    lines = ["\U0001f4b0 *Account Balances*", "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501"]
-    for a in accounts:
+    lines = ["💰 *Account Balances*",
+             "━━━━━━━━━━━━━━━━━━━━━━"]
+    # Operating accounts
+    lines.append("")
+    lines.append("🟢 နေ့စ္စဲလမ်ပတ္ငေး")
+    icon_map = {"cash": "💵", "kpay": "📱", "wave": "📱", "aya": "📱"}
+    for a in operating:
         name = a.get("name", "?")
-        bal = a.get("balance", a.get("opening", 0))
+        bal = a.get("balance", 0)
         low = name.lower()
-        icon = "\U0001f3e6" if ("bank" in low or "kbz" in low or "aya" in low or "cb" in low) else ("\U0001f4f1" if ("mmqr" in low or "kpay" in low or "wave" in low) else "\U0001f4b5")
+        icon = "💵"
+        for kw, ico in icon_map.items():
+            if kw in low:
+                icon = ico
+                break
         lines.append(f"{icon} {name:<16}: {int(bal):>10,} Ks")
-    lines += ["\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501", f"\U0001f4b5 *Total : {int(total_bal):,} Ks*"]
+    lines.append(f"💰 မေးကျေး     : {int(total_op):>10,} Ks")
+    # Capital accounts
+    lines.append("")
+    lines.append("🔵 အရိန်အနေ့း")
+    for a in capital:
+        name = a.get("name", "?")
+        bal = a.get("balance", 0)
+        lines.append(f"🏦 {name:<16}: {int(bal):>10,} Ks")
+    lines.append(f"🏦 မေးကျေး     : {int(total_cap):>10,} Ks")
+    lines += ["",
+              "━━━━━━━━━━━━━━━━━━━━━━",
+              f"💰 *စ္စေးကြေးငေးငွေ* : {int(grand_total):,} Ks"]
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
     return MAIN_MENU
+
 
 async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Authorization check — only whitelisted users can access staff bot
