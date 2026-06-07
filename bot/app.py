@@ -141,6 +141,8 @@ def main():
             CommandHandler("inventory",  cmd_inventory),
             CommandHandler("stocktoday", cmd_stocktoday),
             # Console
+            CommandHandler("balance",    cmd_balance),
+            CommandHandler("balance",    cmd_balance),
             CommandHandler("console",    cmd_console_status),
         ],
         states={
@@ -423,6 +425,8 @@ def main():
             CommandHandler("inventory",  cmd_inventory),
             CommandHandler("stocktoday", cmd_stocktoday),
             # Console
+            CommandHandler("balance",    cmd_balance),
+            CommandHandler("balance",    cmd_balance),
             CommandHandler("console",    cmd_console_status),
         ],
     )
@@ -473,6 +477,7 @@ def main():
         ("stockout",   cmd_stockout_direct),
         ("inventory",  cmd_inventory),
         ("stocktoday",  cmd_stocktoday),
+        ("balance",     cmd_balance),
         ("console",     cmd_console_status),
         ("newbooking",     cmd_staff_booking),
         ("cancelbooking",  cmd_cancel_booking),

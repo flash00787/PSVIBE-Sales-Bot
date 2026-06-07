@@ -13,12 +13,12 @@ from bot.handlers.sales import next_voucher, prompt_member
 
 from bot import (
     ADMIN_PIN, BTN_ADMIN, BTN_HELP, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
-    BTN_FINANCIAL_REPORT, BTN_GAME_LIB_MENU, BTN_INVENTORY_VIEW,
+    BTN_FINANCIAL_REPORT, BTN_BALANCE, BTN_GAME_LIB_MENU, BTN_INVENTORY_VIEW,
     BTN_MEMBER_MGMT, BTN_SBK_CONFIRMED, BTN_SBK_NEW, BTN_SBK_WAITLIST,
     BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
     next_voucher, now_mmt, show_console_menu, show_game_menu,
     show_main_menu,
-    fetch_allowed_staff_ids_async,
+    fetch_allowed_staff_ids_async, _replit_get_async,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -27,6 +27,44 @@ from telegram.constants import ParseMode
 import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
+
+
+async def cmd_balance(update, context):
+    """Show account balances for staff (no PIN needed)."""
+    await update.message.reply_text(
+        "\U0001f4b0 *Account Balance — ရှာဖွေနေပါသည်...*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    data = await _replit_get_async("finance/accounts")
+    if not data:
+        await update.message.reply_text(
+            "\u274c Account Balances API ချိတ်မရပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        return MAIN_MENU
+    accounts = data.get("accounts", [])
+    total_bal = data.get("total_balance", 0)
+    if not accounts:
+        await update.message.reply_text(
+            "\u26a0\ufe0f Account မှတ်တမ်း မရှိသေးပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        return MAIN_MENU
+    lines = ["\U0001f4b0 *Account Balances*", "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501"]
+    for a in accounts:
+        name = a.get("name", "?")
+        bal = a.get("balance", a.get("opening", 0))
+        low = name.lower()
+        icon = "\U0001f3e6" if ("bank" in low or "kbz" in low or "aya" in low or "cb" in low) else ("\U0001f4f1" if ("mmqr" in low or "kpay" in low or "wave" in low) else "\U0001f4b5")
+        lines.append(f"{icon} {name:<16}: {int(bal):>10,} Ks")
+    lines += ["\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501", f"\U0001f4b5 *Total : {int(total_bal):,} Ks*"]
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+    )
+    return MAIN_MENU
 
 async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Authorization check — only whitelisted users can access staff bot
@@ -50,9 +88,9 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         greet = "🌙 မင်္ဂလာညနေ"
     kb = [
         [BTN_DAILY_SALES,      BTN_MEMBER_MGMT],
-        [BTN_CONSOLES,         BTN_TODAY_REPORT],
-        [BTN_STAFF_BOOK,       BTN_INVENTORY_VIEW],
-        [BTN_ADMIN],
+        [BTN_CONSOLES,         BTN_BALANCE],
+        [BTN_TODAY_REPORT,     BTN_INVENTORY_VIEW],
+        [BTN_STAFF_BOOK,       BTN_ADMIN],
     ]
     await update.message.reply_text(
         f"🎮 *PS Vibe — Staff Bot*\n"
@@ -111,6 +149,9 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if choice == BTN_FINANCIAL_REPORT:
         return await cmd_financial_report(update, context)
+
+    if choice == BTN_BALANCE:
+        return await cmd_balance(update, context)
 
     if choice == BTN_ADMIN:
         await update.message.reply_text(
