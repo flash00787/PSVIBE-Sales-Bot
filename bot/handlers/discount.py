@@ -13,9 +13,12 @@ _API_BASE = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
 _API_KEY = os.environ.get("API_KEY", "")
 
 def _api_post_coupon(path, body):
-    url = f"{_API_BASE}/api/{path}?api_key={_API_KEY}"
+    url = f"{_API_BASE}/api/{path}"
     data = json.dumps(body).encode()
-    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    headers = {"Content-Type": "application/json"}
+    if _API_KEY:
+        headers["X-API-Key"] = _API_KEY
+    req = urllib.request.Request(url, data=data, headers=headers)
     try:
         resp = urllib.request.urlopen(req, timeout=10)
         return json.loads(resp.read().decode())
@@ -388,7 +391,7 @@ async def step_coupon_validate(update, context):
     resp = _api_post_coupon("coupons/validate", {"code": text})
     if isinstance(resp, dict) and "error" in resp:
         await update.message.reply_text(
-            "❌ " + resp.get("error", "Invalid") + chr(10) + chr(10) +
+            "❌ " + str(resp.get("error", "Invalid") or "Invalid") + chr(10) + chr(10) +
             "ထပ်ရိုက်ပါ သို့ Skip နှိပ်ပါ -",
             parse_mode="Markdown",
         )
@@ -435,7 +438,7 @@ async def step_coupon_confirm(update, context):
             return await prompt_discount(update, context)
         resp = _api_post_coupon("coupons/redeem", {"code": code, "minutes": balance})
         if isinstance(resp, dict) and "error" in resp:
-            await update.message.reply_text("❌ " + resp.get("error", "Redeem failed"))
+            await update.message.reply_text("❌ " + str(resp.get("error", "Redeem failed") or "Redeem failed"))
             return await prompt_discount(update, context)
         data = resp.get("data") if isinstance(resp, dict) and "data" in resp else resp
         if isinstance(data, dict) and "remaining_minutes" in data:
