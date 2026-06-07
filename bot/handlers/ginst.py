@@ -72,7 +72,8 @@ async def step_ginst_view_cons(update: Update, context: ContextTypes.DEFAULT_TYP
     console_id = text
     games = await get_games_on_console_async(console_id)
     records = [r for r in await fetch_console_games_async()
-               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")]
+               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")
+               and r.get("install_type", "").strip() != "Session"]
     if not records:
         await update.message.reply_text(
             f"ℹ️ <b>{console_id}</b> မှာ Install မှတ်တမ်း မရှိသေးပါ",
@@ -207,7 +208,8 @@ async def step_ginst_del_cons(update: Update, context: ContextTypes.DEFAULT_TYPE
         return await show_ginst_menu(update, context)
     console_id = text
     records = [r for r in await fetch_console_games_async()
-               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")]
+               if r["console_id"].upper().replace(" ", "") == console_id.upper().replace(" ", "")
+               and r.get("install_type", "").strip() != "Session"]
     if not records:
         await update.message.reply_text(
             f"ℹ️ <b>{console_id}</b> မှာ Install မှတ်တမ်း မရှိသေးပါ",
