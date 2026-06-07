@@ -60,6 +60,9 @@ async def cmd_balance(update, context):
         bal = a.get("balance", 0)
         low = name.lower()
         icon = "💵"
+        # Hide ACM from staff
+        if "acm" in name.lower():
+            continue
         for kw, ico in icon_map.items():
             if kw in low:
                 icon = ico
