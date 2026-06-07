@@ -118,7 +118,12 @@ async def _show_game_detail(update, game: dict) -> None:
                 # Show SSD entries with status = "SSD Copy"
                 # Show Session-loaded games (status = "Session")
                 if status == "Installed":
-                    cons_list.append(cid)
+                    # SSD (external) drives have IDs starting with SSD-
+                    if cid.upper().startswith("SSD"):
+                        it = (r.get("install_type","") or "").strip()
+                        ssd_list.append(f"{cid} ({it})" if it else cid)
+                    else:
+                        cons_list.append(cid)
                 elif status in ("SSD Copy", "Moved"):
                     ssd_list.append(f"{cid} ({status})")
                 elif status == "Session":
@@ -456,7 +461,12 @@ async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TY
                             # Show SSD entries with status = "SSD Copy"
                             # Show Session-loaded games (status = "Session")
                             if status == "Installed":
-                                cons_list.append(cid)
+                                # SSD (external) drives have IDs starting with SSD-
+                                if cid.upper().startswith("SSD"):
+                                    it = (r.get("install_type","") or "").strip()
+                                    ssd_list.append(f"{cid} ({it})" if it else cid)
+                                else:
+                                    cons_list.append(cid)
                             elif status in ("SSD Copy", "Moved"):
                                 ssd_list.append(f"{cid} ({status})")
                             elif status == "Session":
