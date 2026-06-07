@@ -52,12 +52,18 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
 async def _is_session_active(cid: str) -> bool:
     """Quick sync check: is this console Active today? (via MySQL API)."""
     try:
-        bk_data = await _replit_get_async("console_booking")
-        if bk_data and isinstance(bk_data, list):
-            td = today_str()
-            for row in bk_data:
-                if isinstance(row, dict) and row.get("date", "").strip() == td and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
-                    return True
+        # Use fetch_console_status endpoint (console_booking endpoint doesn't exist)
+        bk_data = await _replit_get_async("fetch_console_status")
+        if bk_data and isinstance(bk_data, dict):
+            consoles = bk_data.get("consoles", bk_data.get("data", []))
+            if isinstance(consoles, list):
+                for row in consoles:
+                    if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
+                        return True
+            elif isinstance(consoles, dict):
+                for row in consoles.get("consoles", []):
+                    if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
+                        return True
     except Exception as e:
         logger.error("_is_session_active: %s", e, exc_info=True)
         return True

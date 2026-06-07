@@ -1180,6 +1180,8 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         # cb_extend_timer (which embeds _target_chat in callback data) uses the same key.
         _remind_chat_id = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else chat_id
 
+        remind_dt = now + timedelta(minutes=planned_mins - 5)
+        remind_t = remind_dt.strftime("%H:%M")
         # Bot loop fires at "5 min before end", with inline-keyboard Extend/Done buttons.
         _cancel_remind(cid, _remind_chat_id)   # clear any stale task for this console
         task = asyncio.create_task(
@@ -1187,7 +1189,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
                          planned_mins, end_t, delay_secs)
         )
         _REMIND_TASKS[_remind_key(cid, _remind_chat_id)] = task
-        timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {end_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"
+        timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {remind_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"
 
     await update.message.reply_text(
         f"✅ <b>Session စတင်ပြီ!</b>\n"
