@@ -2692,29 +2692,42 @@ async def cmd_fin_bs(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_fin_accts(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fetch account balances from VPS API. Always returns to Finance main menu."""
     await update.message.reply_text("⏳ Account Balances ဆွဲယူနေသည်...")
-    data = await _replit_get_async("finance/accounts")
+    data = await _replit_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
-            "❌ Accounts API ချိတ်မရပါ\n"
-            "💡 ⚙️ Sheet Setup ဖြင့် Finance Sheets ဆောက်ပါ"
+            "❌ Account Balances API ချိတ်မရပါ\n"
+            "💡 ခဏစောင့်ပြီး ပြန်ကြိုးစားပါ"
         )
         return await show_finance_menu(update, context)
-    accounts  = data.get("accounts", [])
-    total_bal = data.get("total_balance", 0)
-    if not accounts:
-        await update.message.reply_text(
-            "⚠️ Account မှတ်တမ်း မရှိသေးပါ\n"
-            "💡 🏦 Initial Capital ဖြင့် Account ငွေ စတင်ထည့်ပါ"
-        )
-        return await show_finance_menu(update, context)
+    operating = data.get("operating", [])
+    capital = data.get("capital", [])
+    all_accounts = operating + capital
+    store_total = data.get("store_total", 0)
+    acm_total = data.get("acm_total", 0)
+    grand_total = data.get("grand_total", 0)
     lines = ["💰 *Account Balances*", "━━━━━━━━━━━━━━━━━━"]
-    for a in accounts:
+    for a in all_accounts:
         name = a.get("name", "?")
-        bal  = a.get("balance", a.get("opening", 0))
-        low  = name.lower()
-        icon = "🏦" if ("bank" in low or "kbz" in low or "aya" in low) else ("📱" if "mmqr" in low else "💵")
-        lines.append(f"{icon} {name:<16}: {int(bal):>10,} Ks")
-    lines += ["━━━━━━━━━━━━━━━━━━", f"  *Total : {int(total_bal):,} Ks*"]
+        bal = int(a.get("balance", 0))
+        low = name.lower()
+        if "kbz" in low:
+            icon = "🏦"
+        elif "acm" in low:
+            icon = "🏦"
+        elif "kpay" in low:
+            icon = "📱"
+        elif "wave" in low:
+            icon = "📱"
+        elif "aya" in low:
+            icon = "💳"
+        elif "cash" in low:
+            icon = "💵"
+        else:
+            icon = "💵"
+        lines.append(f"{icon} {name:<16}: {bal:>10,} Ks")
+    lines += ["", f"🏪 ဆိုင်ငွေ : {int(store_total):,} Ks"]
+    lines += [f"🏦 ACM's Acc: {int(acm_total):,} Ks"]
+    lines += ["━━━━━━━━━━━━━━━━━━", f"  *Grand Total : {int(grand_total):,} Ks*"]
     await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
     return await show_finance_menu(update, context)
 
