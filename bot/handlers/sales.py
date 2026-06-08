@@ -1504,28 +1504,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         logging.warning("Wallet API failed, falling back to GSheet: %s", _we)
 
                     if not _wallet_api_ok:
-                        # ── GSheet fallback ──
-                        try:
-                            _wallet_rows = member_sh.get_all_values()
-                            for _wi, _wr in enumerate(_wallet_rows):
-                                if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
-                                    _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
-                                    if _w_deduct > 0:
-                                        _new_bal = max(0, _cur_bal - _w_deduct)
-                                        member_sh.update_cell(_wi + 1, 8, _new_bal)
-                                        _current_j = int(str(_wr[9]).replace(",", "").strip() or 0)
-                                        member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
-                                        logging.info("wallet_deduct (GSheet): %s -%d mins", _m_id, _w_deduct)
-                                    if _bonus_mins > 0:
-                                        _bal_after_deduct = _cur_bal - _w_deduct if _w_deduct > 0 else _cur_bal
-                                        _new_bal2 = _bal_after_deduct + _bonus_mins
-                                        member_sh.update_cell(_wi + 1, 8, _new_bal2)
-                                        _current_i = int(str(_wr[8]).replace(",", "").strip() or 0)
-                                        member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
-                                        logging.info("bonus_mins (GSheet): %s +%d mins", _m_id, _bonus_mins)
-                                    break
-                        except Exception as _be:
-                            logging.warning("wallet_update GSheet fallback failed: %s", _be)
+                        logging.warning("Wallet API failed for %s: deduct=%d bonus=%d", _m_id, _w_deduct, _bonus_mins)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:
