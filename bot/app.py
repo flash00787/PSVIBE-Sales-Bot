@@ -69,6 +69,10 @@ async def _auth_middleware(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     """Block all updates from users not in the staff whitelist (loaded from Google Sheets)."""
     user = update.effective_user
     allowed = await fetch_allowed_staff_ids_async()
+    if allowed is None:
+        allowed = set()
+    elif isinstance(allowed, list):
+        allowed = set(allowed)
     if user and user.id in allowed:
         return  # authorized — let the update pass through
     # Unauthorized — send a single rejection message and swallow the update
