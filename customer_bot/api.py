@@ -612,6 +612,43 @@ async def track_usage(user, action: str, member_id: str = "", phone: str = "") -
 
 # ── Cache warm ────────────────────────────────────────────────────────────────
 
+
+async def _fetch_food_menu_grouped() -> str:
+    """Fetch food menu grouped by category via API (5-min cache)."""
+    cached = await _cache_get("food_menu")
+    if cached is not None:
+        return cached
+    try:
+        data = await _api_get("fetch_food_menu")
+        if isinstance(data, dict) and "items" in data:
+            items = data["items"]
+        elif isinstance(data, list):
+            items = data
+        else:
+            return ""
+        lines = []
+        for cat in items:
+            cat_name = cat.get("category", "")
+            cat_emoji = cat.get("emoji", "")
+            cat_items = cat.get("items", [])
+            if not cat_items:
+                continue
+            header = f"{cat_emoji} {cat_name}:" if cat_emoji else f"** {cat_name} **"
+            lines.append(header)
+            for item in cat_items:
+                name = item.get("name", "").strip()
+                price = item.get("price")
+                if name and price:
+                    lines.append(f"  - {name}: {int(price):,} Ks")
+                lines.append("")
+        result = "\n".join(lines).strip()
+        if result:
+            await _cache_set("food_menu", result, ttl=300)
+        return result
+    except Exception as e:
+        logging.warning("fetch_food_menu_grouped failed: %s", e)
+        return ""
+
 async def warm_cache() -> None:
     """Pre-fetch slow data at startup."""
     from .data.prompts import now_mmt

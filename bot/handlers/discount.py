@@ -19,14 +19,10 @@ def _api_post_coupon(path, body):
     if _API_KEY:
         headers["X-API-Key"] = _API_KEY
     req = urllib.request.Request(url, data=data, headers=headers)
-    import logging as _lg
     try:
         resp = urllib.request.urlopen(req, timeout=10)
-        _body = resp.read()
-        _lg.warning("COUPON_API: OK status=%s body=%s", resp.status, _body.decode()[:200])
-        return json.loads(_body.decode())
+        return json.loads(resp.read().decode())
     except Exception as e:
-        _lg.warning("COUPON_API: ERR %s", str(e)[:200])
         return {"error": str(e)}
         return {"error": str(e)}
 
@@ -394,7 +390,7 @@ async def step_coupon_validate(update, context):
     if text == BTN_BACK: return await prompt_discount(update, context)
     if text == BTN_CANCEL: return await cmd_cancel(update, context)
     resp = _api_post_coupon("coupons/validate", {"code": text})
-    if isinstance(resp, dict) and "error" in resp:
+    if isinstance(resp, dict) and resp.get("error"):
         await update.message.reply_text(
             "❌ " + str(resp.get("error", "Invalid") or "Invalid") + chr(10) + chr(10) +
             "ထပ်ရိုက်ပါ သို့ Skip နှိပ်ပါ -",
@@ -442,7 +438,7 @@ async def step_coupon_confirm(update, context):
             await update.message.reply_text("❌ Coupon data မရှိပါ")
             return await prompt_discount(update, context)
         resp = _api_post_coupon("coupons/redeem", {"code": code, "minutes": balance})
-        if isinstance(resp, dict) and "error" in resp:
+        if isinstance(resp, dict) and resp.get("error"):
             await update.message.reply_text("❌ " + str(resp.get("error", "Redeem failed") or "Redeem failed"))
             return await prompt_discount(update, context)
         data = resp.get("data") if isinstance(resp, dict) and "data" in resp else resp

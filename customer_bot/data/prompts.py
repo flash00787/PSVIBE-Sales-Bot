@@ -130,6 +130,7 @@ async def _build_ai_system_prompt(
     build_bonus_table_fn=None,
     fetch_games_full_fn=None,
     build_live_game_library_fn=None,
+    fetch_food_menu_fn=None,
     btc_contact: str = "",
     btn_games: str = "",
 ) -> str:
@@ -140,6 +141,17 @@ async def _build_ai_system_prompt(
     config = await fetch_config_fn() if fetch_config_fn else {}
     base_rate = config.get("base_rate", 0)
     food_prices: dict = config.get("food_prices", {})
+    food_menu_text = await fetch_food_menu_fn() if fetch_food_menu_fn else ""
+    if not food_menu_text and food_prices:
+        food_text = "".join(
+            f"   {name} \u2014 {int(price):,} Ks"
+            for name, price in food_prices.items()
+            if name and price
+        )
+    elif food_menu_text:
+        food_text = food_menu_text
+    else:
+        food_text = "(Menu available at the lounge)"
 
     mmt_now = now_mmt()
     hour = mmt_now.hour

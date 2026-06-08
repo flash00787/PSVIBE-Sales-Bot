@@ -347,6 +347,7 @@ async def _get_cached_system_prompt(priority_care: bool = False) -> str:
                             build_bonus_table_fn=_api._build_bonus_table_text,
                             fetch_games_full_fn=_api._fetch_games_full,
                             build_live_game_library_fn=_build_live_game_library_sync,
+                    fetch_food_menu_fn=_api._fetch_food_menu_grouped,
                             btc_contact=BTN_CONTACT,
                             btn_games=BTN_GAMES,
                         )
@@ -367,6 +368,7 @@ async def _get_cached_system_prompt(priority_care: bool = False) -> str:
         build_bonus_table_fn=_api._build_bonus_table_text,
         fetch_games_full_fn=_api._fetch_games_full,
         build_live_game_library_fn=_build_live_game_library_sync,
+                    fetch_food_menu_fn=_api._fetch_food_menu_grouped,
         btc_contact=BTN_CONTACT,
         btn_games=BTN_GAMES,
     )
