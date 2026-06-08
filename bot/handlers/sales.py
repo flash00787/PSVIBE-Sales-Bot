@@ -320,7 +320,33 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @log_duration("sales:prompt_confirm")
 async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    d         = context.user_data
+    d = context.user_data
+
+    # ── Food-only sale (no console/game) ──
+    if d.get("is_food_sale"):
+        food_lines, food_total = [], 0
+        for item in d["food_items"]:
+            food_lines.append(f"  • {item['name']} x{item['qty']} = {item['subtotal']:,} Ks")
+            food_total += item["subtotal"]
+        food_sec = "\n".join(food_lines) if food_lines else "  • မရှိပါ"
+        d["food_total"] = food_total
+        d["net_total"] = food_total
+        d["game_amt"] = 0
+        text = (
+            step_hdr(5, 6, "Review Summary") +
+            f"📋 *Food Sale စာရင်းအချုပ်*\n━━━━━━━━━━━━━━━━━━\n"
+            f"🍔 Food & Drink:\n{food_sec}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"✅ *Net Payable: {food_total:,} Ks*\n\n"
+            f"မှန်ကန်ပါသလား? Yes နှိပ်ပြီး Payment ဆက်သွားပါ -"
+        )
+        kb = [[BTN_YES], NAV_ROW]
+        await update.message.reply_text(
+            text, parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+        )
+        return CONFIRM_SUMMARY
+
     mins      = d["mins"]
     base_rate = await fetch_base_rate_async()
     d["base_rate"] = base_rate

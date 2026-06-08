@@ -1,0 +1,56 @@
+{
+  "type": "sale",
+  "voucher_id": "20260608-958",
+  "date": "6/8/2026",
+  "member_id": "-",
+  "console_id": "-",
+  "play_mins": 0,
+  "game_amt": 0,
+  "food_items": [
+    {
+      "name": "MaMa Cup Noodle",
+      "qty": 1,
+      "unit_price": 3000,
+      "subtotal": 3000
+    },
+    {
+      "name": "Yum Yum Cup Noddle",
+      "qty": 1,
+      "unit_price": 4000,
+      "subtotal": 4000
+    },
+    {
+      "name": "ကြက်အူချောင်း အသေး",
+      "qty": 5,
+      "unit_price": 1000,
+      "subtotal": 5000
+    },
+    {
+      "name": "Mala အချောင်း",
+      "qty": 1,
+      "unit_price": 3500,
+      "subtotal": 3500
+    }
+  ],
+  "food_total": 15500,
+  "gross_total": 15500,
+  "discount": 0,
+  "promo_id": "",
+  "promo_title": "",
+  "promo_note": "",
+  "foc_item_name": "",
+  "foc_item_qty": 1,
+  "bonus_mins": 0,
+  "bonus_mins_promo": 0,
+  "net_total": 15500,
+  "kpay": 0,
+  "cash": 15500,
+  "multiplier": 1.0,
+  "is_guest": false,
+  "prev_balance": null,
+  "balance_change": 0,
+  "balance_after": null,
+  "wallet_game_value": 0,
+  "disc_target": "overall",
+  "foc_item_price": 0
+}
