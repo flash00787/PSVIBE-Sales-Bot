@@ -1,0 +1,38 @@
+{
+  "type": "sale",
+  "voucher_id": "20260608-704",
+  "date": "6/8/2026",
+  "member_id": "0 (Guest)",
+  "console_id": "C - 04",
+  "play_mins": 95,
+  "game_amt": 15833,
+  "food_items": [
+    {
+      "name": "Shark",
+      "qty": 1,
+      "unit_price": 3000,
+      "subtotal": 3000
+    }
+  ],
+  "food_total": 3000,
+  "gross_total": 18833,
+  "discount": 15000,
+  "promo_id": "coupon",
+  "promo_title": "CashBack Coupon (CBRAIWNF)",
+  "promo_note": "",
+  "foc_item_name": "",
+  "foc_item_qty": 1,
+  "bonus_mins": 0,
+  "bonus_mins_promo": 0,
+  "net_total": 3833,
+  "kpay": 0,
+  "cash": 0,
+  "multiplier": 1.0,
+  "is_guest": true,
+  "prev_balance": null,
+  "balance_change": null,
+  "balance_after": null,
+  "wallet_game_value": 0,
+  "disc_target": "overall",
+  "foc_item_price": 0
+}
