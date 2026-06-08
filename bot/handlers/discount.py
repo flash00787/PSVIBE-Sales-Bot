@@ -19,10 +19,15 @@ def _api_post_coupon(path, body):
     if _API_KEY:
         headers["X-API-Key"] = _API_KEY
     req = urllib.request.Request(url, data=data, headers=headers)
+    import logging as _lg
     try:
         resp = urllib.request.urlopen(req, timeout=10)
-        return json.loads(resp.read().decode())
+        _body = resp.read()
+        _lg.warning("COUPON_API: OK status=%s body=%s", resp.status, _body.decode()[:200])
+        return json.loads(_body.decode())
     except Exception as e:
+        _lg.warning("COUPON_API: ERR %s", str(e)[:200])
+        return {"error": str(e)}
         return {"error": str(e)}
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
