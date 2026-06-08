@@ -45,7 +45,7 @@ async def cmd_balance(update, context):
         )
         return MAIN_MENU
     operating = data.get("operating", [])
-    total_op = data.get("total_operating", 0)
+    total_op = data.get("store_total", 0)
     if not operating:
         await update.message.reply_text(
             "⚠️ Account မှတ်တမ်း မရှိသေးပါ",
