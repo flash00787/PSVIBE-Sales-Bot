@@ -1290,9 +1290,12 @@ def api_post(path: str, body: dict) -> dict:
     import urllib.request, urllib.parse, json, os
     api_base = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
     api_key = os.environ.get("API_KEY", "")
-    url = f"{api_base}/api/{path}?api_key={api_key}"
+    url = f"{api_base}/api/{path}"
     data = json.dumps(body).encode()
-    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["X-API-Key"] = api_key
+    req = urllib.request.Request(url, data=data, headers=headers)
     try:
         resp = urllib.request.urlopen(req, timeout=10)
         return json.loads(resp.read().decode())
@@ -1305,10 +1308,11 @@ def api_get(path: str) -> dict:
     import urllib.request, json, os
     api_base = os.environ.get("API_BASE_URL", "http://localhost:8000").rstrip("/")
     api_key = os.environ.get("API_KEY", "")
-    url = f"{api_base}/api/{path}&api_key={api_key}"
-    if "?" not in path:
-        url = f"{api_base}/api/{path}?api_key={api_key}"
-    req = urllib.request.Request(url)
+    url = f"{api_base}/api/{path}"
+    headers = {}
+    if api_key:
+        headers["X-API-Key"] = api_key
+    req = urllib.request.Request(url, headers=headers)
     try:
         resp = urllib.request.urlopen(req, timeout=10)
         return json.loads(resp.read().decode())
