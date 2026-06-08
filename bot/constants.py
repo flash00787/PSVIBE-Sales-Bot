@@ -197,3 +197,6 @@ BTN_SI_FINISH      = "💳 Payment & Save All"
 
 # ── Rank emojis ──
 RANK_EMOJI = {"Warrior": "⚔️", "Master": "🏅", "Immortal": "💎"}
+
+# ── OPEX Categories ──────────────────────────────────────────────────────
+OPEX_CATEGORIES = ["Electricity", "Water", "Rent", "Staff Salary", "Internet", "Snacks/Drinks", "Maintenance", "Marketing", "Others"]
