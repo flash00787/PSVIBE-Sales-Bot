@@ -86,10 +86,9 @@ async def _http_request(
         "Content-Type": "application/json",
         **(headers_extra or {}),
     }
-    # Add api_key as query parameter (API server uses Depends(verify_api_key) which reads ?api_key=)
+    # Add X-API-Key header (query param auth no longer works)
     if api_key and _API_KEY:
-        sep = "&" if "?" in url else "?"
-        url = f"{url}{sep}api_key={_API_KEY}"
+        headers["X-API-Key"] = _API_KEY
     data = json.dumps(body).encode() if body else None
 
     for attempt in range(_MAX_RETRIES):

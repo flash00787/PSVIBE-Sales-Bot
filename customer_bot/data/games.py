@@ -186,7 +186,7 @@ def _build_live_game_library_text(fetch_games_fn) -> str:
             if not title or not _is_real_game(title):
                 continue
             status_lc = status.lower()
-            is_installed   = "c -" in status_lc or "c-" in status_lc
+            is_installed   = "c -" in status_lc or "c-" in status_lc or status_lc == "installed"
             is_not_inst    = status_lc == "not installed"
             is_ref_error   = status == "#REF!"
             if not (is_installed or is_not_inst or is_ref_error):

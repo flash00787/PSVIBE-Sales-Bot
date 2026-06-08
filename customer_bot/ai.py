@@ -44,6 +44,50 @@ from telegram.constants import ParseMode
 from .data.prompts import now_mmt, _build_ai_system_prompt, _detect_sentiment
 from . import api as _api
 
+# ── Persistent AI Memory (file-backed, survives restart) ──────────────────────
+_AI_MEMORY_FILE = "/root/psvibe-sales-bot/customer_bot/ai_memory.json"
+_AI_MEMORY_CACHE = None  # lazy-loaded dict
+
+def _load_ai_memory() -> dict:
+    global _AI_MEMORY_CACHE
+    if _AI_MEMORY_CACHE is not None:
+        return _AI_MEMORY_CACHE
+    try:
+        with open(_AI_MEMORY_FILE, encoding="utf-8") as f:
+            data = json.load(f)
+        _AI_MEMORY_CACHE = data
+        return data
+    except (FileNotFoundError, json.JSONDecodeError):
+        _AI_MEMORY_CACHE = {}
+        return _AI_MEMORY_CACHE
+
+def _save_ai_memory():
+    if _AI_MEMORY_CACHE is None:
+        return
+    try:
+        with open(_AI_MEMORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(_AI_MEMORY_CACHE, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        logging.warning("save_ai_memory failed: %s", e)
+
+def _clean_ai_memory():
+    """Remove entries older than 1 hour."""
+    data = _load_ai_memory()
+    cutoff = time.time() - 3600
+    changed = False
+    for chat_id in list(data.keys()):
+        history = data[chat_id]
+        if isinstance(history, list):
+            fresh = [h for h in history if h.get("ts", 0) >= cutoff]
+            if len(fresh) != len(history):
+                data[chat_id] = fresh
+                changed = True
+            if not fresh:
+                del data[chat_id]
+                changed = True
+    if changed:
+        _save_ai_memory()
+
 # ── AI Query Cache ────────────────────────────────────────────────────────────
 _ai_query_cache: dict[str, dict] = {}
 _AI_QUERY_CACHE_TTL = 120  # seconds
@@ -517,9 +561,13 @@ async def _ai_reply(
 
     try:
         # ── Chat history (last 4 turns, 8 items) ──────────────────────────────
-        if "ai_history" not in context.user_data:
-            context.user_data["ai_history"] = []
-        raw_history: list[dict] = context.user_data["ai_history"][-8:]
+        chat_id = str(update.effective_chat.id)
+        memory = _load_ai_memory()
+        if chat_id not in memory:
+            memory[chat_id] = []
+        _clean_ai_memory()
+        memory = _load_ai_memory()
+        raw_history: list[dict] = [h for h in memory.get(chat_id, []) if isinstance(h, dict)][-20:]
         history = [
             _genai_types.Content(role=h["role"], parts=[_genai_types.Part(text=h["text"])])
             for h in raw_history
@@ -648,10 +696,12 @@ async def _ai_reply(
 
         # Update conversation history — skip fallback to avoid poisoning
         if not is_fallback:
-            context.user_data["ai_history"] = (raw_history + [
-                {"role": "user",  "text": user_text},
-                {"role": "model", "text": reply_raw},
-            ])[-8:]
+            memory = _load_ai_memory()
+            memory[chat_id] = (raw_history + [
+                {"role": "user",  "text": user_text, "ts": time.time()},
+                {"role": "model", "text": reply_raw, "ts": time.time()},
+            ])[-20:]
+            _save_ai_memory()
 
         # Send reply
         try:
