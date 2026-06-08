@@ -8,9 +8,10 @@ from bot import (
 )
 
 try:
-    from bot.api_client import api_add_stock_in
+    from bot.api_client import api_add_stock_in, api_post
 except ImportError:
     def api_add_stock_in(data): return None
+    api_post = None
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -259,26 +260,44 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         payment   = d.get("si_pay", "")
     try:
+        grand_total = sum(e["total"] for e in cart)
+        is_split = d.get("si_pay_cash") is not None
+        if is_split:
+            cash_amt  = d["si_pay_cash"]
+            kpay_amt  = d["si_pay_kpay"]
         for e in cart:
-            logging.warning("DEPRECATED: direct gspread write in step_si_confirm — should use API endpoint")
-            # TODO: Migrate to MySQL via API -- direct gspread is fallback only
-            # ── API write (best-effort) ──
-            try:
-                api_add_stock_in({
-                    "date": today,
-                    "item_name": e["item"],
-                    "qty": e["qty"],
-                    "cost_price": e["cost"],
-                    "total": e["total"],
-                    "payment": payment,
-                    "staff": "Bot",
-                })
-            except Exception as ex:
-                logging.warning("Stock-in API write failed (GSheet fallback OK): %s", ex)
+            # ── API write (primary) ──
+            api_ok = False
+            if api_post:
+                try:
+                    payload = {
+                        "item_name": e["item"],
+                        "quantity": e["qty"],
+                        "unit_cost": e["cost"],
+                        "payment_method": payment,  # composite for display / GSheet compat
+                        "paid_by": "Bot",
+                        "staff_name": "Bot",
+                    }
+                    if is_split:
+                        # Split payment: compute this item's share of Cash and KPay
+                        item_cash = round(cash_amt * e["total"] / grand_total)
+                        item_kpay = e["total"] - item_cash
+                        payload["cash_amount"] = item_cash
+                        payload["kpay_amount"] = item_kpay
+                    result = api_post("stock/in", payload)
+                    if result and result.get("success"):
+                        api_ok = True
+                        logging.info("Stock-in API saved: %s x%d cost=%d payment=%s", e["item"], e["qty"], e["cost"], payment)
+                    else:
+                        logging.warning("Stock-in API returned success=False: %s", result)
+                except Exception as ex:
+                    logging.warning("Stock-in API write failed: %s", ex)
+            # ── GSheet fallback (backward compat) ──
             stock_in_sh.append_row([today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot", e["qty"]],
                 value_input_option="USER_ENTERED",
             )
-            logging.info("Stock in saved: %s x%d cost=%d", e["item"], e["qty"], e["cost"])
+            if not api_ok:
+                logging.info("Stock in saved (GSheet only): %s x%d cost=%d", e["item"], e["qty"], e["cost"])
         grand_total = sum(e["total"] for e in cart)
         inv_total   = update_inv_total_k1()
         total_note  = f"\n📊 Inv Value: *{inv_total:,} Ks*" if inv_total else ""
