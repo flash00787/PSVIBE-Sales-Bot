@@ -964,7 +964,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         m = re.match(r'^(\d{1,2}):(\d{2})$', text)
         if m:
             hour, minute = int(m.group(1)), int(m.group(2))
-            if OPEN_HOUR <= hour <= CLOSE_HOUR and minute in (0, 30) and hour != CLOSE_HOUR:
+            if OPEN_HOUR <= hour < CLOSE_HOUR and 0 <= minute <= 59:
                 time_str = f"{hour:02d}:{minute:02d}"
                 context.user_data["bk_time"] = time_str
                 _push_state(context, BK_TIME)
@@ -978,7 +978,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             else:
                 await update.message.reply_text(
                     f"⚠️ မမှန်ကန်သော အချိန် — {OPEN_HOUR}:00 မှ {CLOSE_HOUR}:00 အတွင်း "
-                    "နာရီဝက် သို့မဟုတ် နာရီပြည့်ဖြင့် ထည့်ပေးပါ",
+                    "HH:MM format ဖြင့် ထည့်ပေးပါ",
                 )
                 return BK_TIME
         else:
