@@ -2,7 +2,6 @@ from bot import (
     ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _replit_get, _replit_get_async, now_mmt,
     today_str,
 )
-
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -12,10 +11,6 @@ import logging, re, json
 import asyncio
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
-
-
-
-
 async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current inventory levels from Replit API."""
     await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
@@ -48,17 +43,12 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
         stock = max(0, item.get("qty", 0))
         val   = item.get("total", 0)
         name  = item.get("name", "?")
-        val_str = f"  _{val:,} Ks_" if val > 0 else ""
-        lines.append(f"{em} *{name}*: {stock} pcs{val_str}")
-    total_val = sum(i.get("total", 0) for i in items)
-    if total_val:
-        lines.append(f"\n━━━━━━━━━━━━━━━━━━\n💰 Total Inv Value (FIFO): *{total_val:,} Ks*")
+        lines.append(f"{em} *{name}*: {stock} pcs")
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
-
 async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show today's items sold from Replit API."""
     await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
@@ -81,41 +71,33 @@ async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
             lines.append(f"• *{name}*: {qty} pcs — {val:,} Ks")
     lines.append(f"━━━━━━━━━━━━━━━━━━\n📦 Total: *{total_qty} items*  💰 *{total_val:,} Ks*")
     await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
-
 async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show promotion analytics report for staff.
     Fetches all promotions from Promotions sheet + sales data.
     """
     await update.message.reply_text("⏳ Promo Reports ယူနေတယ်...", reply_markup=ReplyKeyboardRemove())
     kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
-
     try:
         # Fetch all promotions (including inactive) via API
         promo_data = await _replit_get_async("sheets/promotions/all")
         promos = promo_data.get("promotions", []) if promo_data else []
-
         # Fetch Promotions_Log analytics
         log_data   = await _replit_get_async("sheets/promotions-log")
         promo_logs = (log_data or {}).get("logs", [])
         promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
-
         # Fetch today's sales summary
         rd = await _replit_get_async("sheets/report-data")
         sales = rd.get("summary") if rd else None
-
         lines = [
             "📊 *Promotion Reports*",
             "━━━━━━━━━━━━━━━━━━",
         ]
-
         # Promotion summary
         total = len(promos)
         active_promos   = [p for p in promos if p.get("active")]
         inactive_promos = [p for p in promos if not p.get("active")]
-
         lines.append(f"🎁 *Promotions Overview*")
         lines.append(f"   Total: {total}  |  Active: {len(active_promos)}  |  Inactive: {len(inactive_promos)}")
-
         # Breakdown by type
         if promos:
             types_count = {}
@@ -126,7 +108,6 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 types_count[ptype]["total"] += 1
                 if p.get("active"):
                     types_count[ptype]["active"] += 1
-
             lines.append("")
             lines.append("📋 *By Type:*")
             emoji_map = {
@@ -139,7 +120,6 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
             for ptype, counts in sorted(types_count.items()):
                 emoji = emoji_map.get(ptype, "🎁")
                 lines.append(f"   {emoji} {ptype.title()}: {counts['total']} (✅ {counts['active']} active)")
-
         # Active promotions detail
         if active_promos:
             lines.append("")
@@ -153,7 +133,6 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 bundle = p.get("bundle_items", "")
                 cond  = p.get("conditions", "")
                 pid   = p.get("id", "")
-
                 detail = f"   {emoji} *{title}*"
                 if disc:
                     detail += f" — {disc}% OFF"
@@ -164,37 +143,31 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     lines.append(f"      📅 Valid until: {valid}")
                 if cond:
                     lines.append(f"      ℹ️ {cond}")
-
                 # Show usage stats from Promotions_Log
                 usage = next((s for s in promo_summ if s.get("promo_id") == pid), None)
                 if usage:
                     lines.append(f"      📈 Used: {usage['usage_count']}x  |  Total Discount: {int(usage['total_discount']):,} Ks")
-
         # Inactive promotions
         if inactive_promos:
             lines.append("")
             lines.append("⏸️ *Inactive Promotions:*")
             for p in inactive_promos:
                 lines.append(f"   • {p.get('title', '')} ({p.get('id', '')})")
-
         # ── Promotions_Log Analytics ─────────────────────────────────────────────
         if promo_summ:
             total_usage    = sum(s.get("usage_count", 0) for s in promo_summ)
             total_discount = sum(s.get("total_discount", 0) for s in promo_summ)
             total_net_rev  = sum(s.get("total_net", 0) for s in promo_summ)
-
             lines.append("")
             lines.append("━━━━━━━━━━━━━━━━━━")
             lines.append("📈 *Promotion Usage Analytics (All Time):*")
             lines.append(f"   🔢 Total Uses: {total_usage}")
             lines.append(f"   💸 Total Discount Given: {int(total_discount):,} Ks")
             lines.append(f"   💰 Net Revenue (promo sales): {int(total_net_rev):,} Ks")
-
             # Top promotion by usage
             if promo_summ:
                 top = max(promo_summ, key=lambda s: s.get("usage_count", 0))
                 lines.append(f"   🏆 Top Promo: *{top['promo_title']}* ({top['usage_count']}x used)")
-
         # Today's sales context
         if sales:
             lines.append("")
@@ -204,11 +177,9 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
             cnt = sales.get("today_count", 0)
             lines.append(f"   🎮 Sessions: {cnt}")
             lines.append(f"   💰 Revenue: {net:,} Ks")
-
         lines.append("")
         lines.append("━━━━━━━━━━━━━━━━━━")
         lines.append("💡 Google Sheets \"Promotions\" tab ကို ပြင်ဆင်နိုင်ပါ")
-
         await update.message.reply_text(
             "\n".join(lines),
             parse_mode="Markdown",
@@ -221,7 +192,6 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=kb,
         )
     return ADMIN_MENU
-
 async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Today's combined sales + stock report with per-staff breakdown."""
     await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
@@ -231,13 +201,10 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     inv   = rd.get("inventory") if rd else None
     date  = today_str()
     kb    = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
-
     if not sales and not stock:
         await update.message.reply_text("❌ Data ရယူ၍ မရပါ။", reply_markup=kb)
         return MAIN_MENU
-
     lines = [f"📊 *Today's Report — {date}*\n━━━━━━━━━━━━━━━━━━"]
-
     # Sales summary
     if sales:
         cnt      = sales.get("today_count", 0)
@@ -253,17 +220,14 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
         lines.append(f"  💵 Cash:  {cash_:,} Ks  ({cash_pct}%)")
     else:
         lines.append("🎮 Sales data မရပါ")
-
     # Per-staff breakdown from Sales_Daily
     sb = await _replit_get_async("sheets/staff-breakdown")   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
     staff_stats = sb.get("staff", {}) if sb else {}
-
     if staff_stats:
         lines.append(f"━━━━━━━━━━━━━━━━━━")
         lines.append(f"👥 *Per-Staff:*")
         for s, sd in staff_stats.items():
             lines.append(f"  👤 *{s}* — {sd['sessions']} sessions | *{sd['revenue']:,} Ks*")
-
     # Food/Drinks sold today
     if stock and stock.get("items"):
         items        = stock["items"]
@@ -280,7 +244,6 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
             lines.append(f"  • {name}: {qty} pcs — {val:,} Ks")
         if total_cog > 0:
             lines.append(f"  _{total_cog:,} Ks COGS_  |  GP: *{gross_margin}%*")
-
     # Low stock alert
     if inv:
         low = [i for i in inv.get("items", []) if 0 < i.get("qty", 0) <= 5]
@@ -296,15 +259,12 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 name = i.get("name", "?")
                 stock_qty = i.get("qty", 0)
                 lines.append(f"  🟡 *{name}* — {stock_qty} pcs (Low Stock)")
-
     await update.message.reply_text("\n".join(lines), parse_mode="Markdown", reply_markup=kb)
     return MAIN_MENU
-
 async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Quick Financial Report: this week's summary + current month P&L."""
     await update.message.reply_text("⏳ Financial report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
     kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
-
     # Fetch weekly report and monthly P&L in parallel
     now   = now_mmt()
     m_str = now.strftime("%Y-%m")
@@ -312,9 +272,7 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
         _replit_get_async("sheets/weekly-report"),
         _replit_get_async(f"sheets/pnl?m={m_str}"),
     )
-
     lines: list[str] = [f"💹 <b>Financial Report</b>"]
-
     # ── Weekly summary ──
     if weekly:
         wm = weekly.get("telegram_message", "")
@@ -335,7 +293,6 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
             )
     else:
         lines.append("📊 Weekly data မရပါ")
-
     # ── Monthly P&L ──
     if pnl:
         def _f(n): return f"{round(n or 0):,}"
@@ -358,7 +315,6 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
     else:
         lines.append("━━━━━━━━━━━━━━━━━━")
         lines.append(f"📆 {m_str} monthly data မရပါ")
-
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="HTML",
