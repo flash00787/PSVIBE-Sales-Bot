@@ -13,7 +13,7 @@ from bot import (
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
       
     fetch_console_games, fetch_console_games_async, fetch_games, fetch_games_async,  show_game_menu,
-    show_main_menu, SSD_NAMES,
+    show_main_menu, show_console_menu, SSD_NAMES,
 )
 
 
@@ -203,7 +203,7 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.pop("game_list", None)
         context.user_data.pop("game_page", None)
         context.user_data.pop("game_query", None)
-        return await show_main_menu(update, context)
+        return await show_console_menu(update, context)
 
     # ── Page navigation (only when viewing games) ──
     if choice == BTN_PREV and game_list:
