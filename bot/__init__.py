@@ -51,6 +51,14 @@ try:
         api_update_game_library_install_async, api_fetch_food_menu_async,
     )
     _HAS_API = True
+    # Re-export API functions as simple names for handler backward compat
+    create_booking_async = api_create_booking_async
+    end_booking_async = api_end_booking_async
+    cancel_booking_async = api_cancel_booking_async
+    fetch_console_status_async = api_fetch_console_status_async
+    fetch_games_async = api_fetch_games_async
+    fetch_console_games_async = api_fetch_console_games_async
+
 except ImportError:
     _HAS_API = False
 
@@ -60,13 +68,40 @@ except ImportError:
 # while the full migration to MySQL-only is in progress.
 # ═══════════════════════════════════════════════
 
+
+def _load_cfg() -> None:
+    global _CFG, _CFG_TS
+    data = _replit_get("sheets/config")
+    # API returns {"config": {...}} - unwrap nested config dict
+    cfg = data.get("config", data) if isinstance(data, dict) else data
+    if cfg and isinstance(cfg, dict) and "base_rate" in cfg:
+        with _THREAD_CACHE_LOCK:
+            _CFG    = cfg
+            _CFG_TS = time.time()
+        logging.info("Config cache refreshed (base_rate=%s, keys=%d)", cfg.get("base_rate"), len(cfg))
+
+
+def _load_members() -> None:
+    global _MBR_ROWS, _MBR_TS
+    try:
+        _MBR_ROWS = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+        with _THREAD_CACHE_LOCK:
+            _MBR_TS   = time.time()
+    except Exception as e:
+        logging.warning("Member cache refresh failed: %s", e)
+
 def _get_cfg() -> dict:
-    """Legacy config accessor — returns empty dict.
+    """Legacy config accessor - returns empty dict.
     Config now managed by API server / MySQL.
     """
     return {}
 
-# Cached rows stubs (return empty lists — data comes from API now)
+def _mbr_fresh() -> bool:
+    with _THREAD_CACHE_LOCK:
+        return bool(_MBR_ROWS) and (time.time() - _MBR_TS) < _MBR_TTL
+
+
+# Cached rows stubs (return empty lists - data comes from API now)
 _BK_ROWS = []
 _BK_TS = 0.0
 _BK_TTL = 30
@@ -99,14 +134,14 @@ from datetime import datetime, timezone, timedelta
 # ── Re-export from focused modules (backward compatible) ──
 from enum import IntEnum
 
-# Myanmar Time — GMT+6:30
+# Myanmar Time - GMT+6:30
 MMT = timezone(timedelta(hours=6, minutes=30))
 def now_mmt() -> datetime:
     return datetime.now(MMT)
 
 BOT_VERSION = "2026.05.05-r1"   # Console double-booking conflict check (409 guard)
 
-__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'fetch_console_status', 'create_booking', 'end_booking', 'fetch_games', 'set_game_disc_count', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'SALE_GAME_SELECT', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'SSD_MOVE_SSD', 'SSD_MOVE_GAME', 'SSD_MOVE_CONS', 'SSD_MOVE_FROM_CONS', 'SSD_MOVE_FROM_GAME', 'SSD_MOVE_TO_SSD', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'GAME_DETAIL_PICK', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_BALANCE', 'BTN_ADMIN', 'BTN_HELP', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_APPLY_COUPON', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_FOOD_SALE', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_MOVE_TO_CONSOLE', 'BTN_SSD_MOVE_TO_SSD', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']# Inline health-check server (stdlib only — no extra deps)
+__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'fetch_console_status', 'create_booking', 'end_booking', 'fetch_games', 'set_game_disc_count', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'SALE_GAME_SELECT', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'SSD_MOVE_SSD', 'SSD_MOVE_GAME', 'SSD_MOVE_CONS', 'SSD_MOVE_FROM_CONS', 'SSD_MOVE_FROM_GAME', 'SSD_MOVE_TO_SSD', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'GAME_DETAIL_PICK', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_BALANCE', 'BTN_ADMIN', 'BTN_HELP', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_APPLY_COUPON', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_FOOD_SALE', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_MOVE_TO_CONSOLE', 'BTN_SSD_MOVE_TO_SSD', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']# Inline health-check server (stdlib only - no extra deps)
 import os as _os, json as _json, time as _time, threading as _threading, logging as _logging
 from http.server import HTTPServer as _HTTPServer, BaseHTTPRequestHandler as _BaseHandler
 _HEALTH_LOG = _logging.getLogger("health")
@@ -267,7 +302,7 @@ def fetch_console_status() -> list[dict]:
         consoles.append({"id": name.strip(), "type": ctype, "mult": mult,
                          "status": "Free", "member": None, "start": None, "staff": None, "booking_id": None})
 
-    # Overlay active bookings — cached 30 s
+    # Overlay active bookings - cached 30 s
     try:
         global _BK_ROWS, _BK_TS
         if not _BK_ROWS or (time.time() - _BK_TS) > _BK_TTL:
@@ -382,7 +417,7 @@ def fetch_games() -> list[dict]:
                                  "samsung t - 7", "sandisk - 1", "sandisk - 2",
                                  "game data transfer record"):
                 continue
-            # col U (index 20) = Installed_On — we repurpose as "solo_multi|genre" metadata
+            # col U (index 20) = Installed_On - we repurpose as "solo_multi|genre" metadata
             meta      = row[20].strip() if len(row) > 20 else ""
             solo_multi = ""
             genre      = ""
@@ -537,7 +572,7 @@ def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
     game_obj = next((g for g in games if g["title"].strip().lower() == game_lower), None)
     if not game_obj:
         return ""
-    # Use "discs" (col D = Available Discs) — the column staff manages via the bot
+    # Use "discs" (col D = Available Discs) - the column staff manages via the bot
     _discs_raw = game_obj.get("discs", "0") or "0"
     try:
         total = int(str(_discs_raw).strip()) if str(_discs_raw).strip().isdigit() else 0
@@ -606,16 +641,16 @@ def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
         st  = s["start"] or "?"
         en  = s["end"]
         if en and len(en) == 5:
-            lines_str += f"  🔴 {cid} — {st} ~ *{en}*\n"
+            lines_str += f"  🔴 {cid} - {st} ~ *{en}*\n"
         else:
-            lines_str += f"  🔴 {cid} — {st} မှ ဆော့နေဆဲ\n"
+            lines_str += f"  🔴 {cid} - {st} မှ ဆော့နေဆဲ\n"
 
     if can_proceed_all:
         return (
-            f"ℹ️ *Disc Game — အခွေစစ်ဆေးပါ*\n"
+            f"ℹ️ *Disc Game - အခွေစစ်ဆေးပါ*\n"
             f"💿 *{game_name}* အခွေ {total} ခု ဆော့နေသည်\n"
             f"{lines_str}"
-            f"✅ Session များ *{bk_time}* မတိုင်ခင် ပြီးမည် — Booking OK"
+            f"✅ Session များ *{bk_time}* မတိုင်ခင် ပြီးမည် - Booking OK"
         )
     else:
         ends = [s["end"] for s in active_sessions if s.get("end") and len(s["end"]) == 5]
@@ -623,7 +658,7 @@ def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
         earliest = ends[0] if ends else None
         earliest_line = f"⏰ အစောဆုံး ပြီးမည်် session: *{earliest}*\n" if earliest else ""
         return (
-            f"⚠️ *Disc Game — အခွေမလောက်ဘူး!*\n"
+            f"⚠️ *Disc Game - အခွေမလောက်ဘူး!*\n"
             f"💿 *{game_name}* အခွေ {total} ခုပဲ ရှိပြီး ဆော့နေသည်\n"
             f"{lines_str}"
             f"{earliest_line}"
@@ -1278,7 +1313,7 @@ def get_valid_consoles() -> set:
                 "C - 06", "C - 07", "C - 08", "C - 09", "C - 10",
             }
 
-# Dynamic VALID_CONSOLES — call get_valid_consoles() for live data
+# Dynamic VALID_CONSOLES - call get_valid_consoles() for live data
 VALID_CONSOLES = get_valid_consoles()
 
 # Main menu
@@ -1318,8 +1353,8 @@ BTN_LIST_CONSOLE    = "📋 Console စာရင်း"
 BTN_DEL_CONSOLE     = "🗑️ Console ဖျက်"
 BTN_EDIT_MULT     = "🖋️ Mult ပြင်မည်"
 # Confirm/End
-BTN_YES_END         = "✅ Yes — ဆုံးမည်"
-BTN_NO_BACK         = "❌ No — ပြန်"
+BTN_YES_END         = "✅ Yes - ဆုံးမည်"
+BTN_NO_BACK         = "❌ No - ပြန်"
 BTN_SI_SPLIT     = "💰 ခွဲပေး (Cash + KPay)"
 BTN_STOCK_OUT        = "📦 Stock Out (ထုတ်ယူ)"
 BTN_STOCK_IN_M       = "📥 Stock In (ဝယ်ယူ)"
@@ -1430,7 +1465,7 @@ _BROADCAST_ADMIN_IDS: set[str] = {
     s.strip() for s in os.environ.get("ADMIN_USER_IDS", "").split(",") if s.strip()
 }
 
-# n8n Phase 2 — Session reminder webhook (restart-proof timer)
+# n8n Phase 2 - Session reminder webhook (restart-proof timer)
 # Test URL  : https://psvibe.app.n8n.cloud/webhook-test/session-reminder
 # Production : https://psvibe.app.n8n.cloud/webhook/session-reminder
 N8N_SESSION_WEBHOOK  = os.environ.get("N8N_SESSION_WEBHOOK", "")
@@ -1457,7 +1492,7 @@ BTN_SI_FINISH      = "💳 Payment & Save All"
 # ═════════════════════════════════════════
 
 def _int(val):
-    """Safe int from sheet value — strips commas, 'Ks', spaces, handles floats."""
+    """Safe int from sheet value - strips commas, 'Ks', spaces, handles floats."""
     try:
         cleaned = str(val).replace(",", "").replace("Ks", "").strip()
         return int(float(cleaned))
@@ -1639,7 +1674,7 @@ _PROMO_CACHE: list  = []
 _CACHE_LOCK = asyncio.Lock()  # async lock for background tasks
 _THREAD_CACHE_LOCK = _threading.Lock()  # thread-safe lock for sync cache fns
 _PROMO_TS:    float = 0.0
-_PROMO_TTL    = 120          # 2 min — promotions don't change often
+_PROMO_TTL    = 120          # 2 min - promotions don't change often
 
 def fetch_promotions_cached() -> list:
     """Return active promotions list with 2-min cache to avoid repeated API calls."""
@@ -1720,8 +1755,21 @@ def fetch_promotions_cached() -> list:
         _PROMO_TS    = time.time()
     return promos
 
+
+def _cfg_fresh() -> bool:
+    with _THREAD_CACHE_LOCK:
+        return bool(_CFG) and (time.time() - _CFG_TS) < _CFG_TTL
+
+
+def _get_member_rows() -> list:
+    if not _mbr_fresh():
+        _load_members()
+    return _MBR_ROWS
+
+
+
 async def _bg_cache_refresh() -> None:
-    """Background asyncio task — refresh config + member cache every 3 min."""
+    """Background asyncio task - refresh config + member cache every 3 min."""
     while True:
         await asyncio.sleep(180)
         try:
@@ -1825,7 +1873,7 @@ def fetch_new_member_defaults():
     if _HAS_API:
         result = api_fetch_new_member_defaults()
         if result is not None:
-            # API returns {"card_price": N, "base_mins": N} — unpack keys
+            # API returns {"card_price": N, "base_mins": N} - unpack keys
             if isinstance(result, dict):
                 return result.get("card_price", 0), result.get("base_mins", 0)
             return result
@@ -1947,7 +1995,7 @@ def fetch_rank_thresholds():
         return 0, 0
 
 def fetch_member_total_spend(member_id):
-    """Return member's ranking net spend (Col F) — uses cached member rows."""
+    """Return member's ranking net spend (Col F) - uses cached member rows."""
     if _HAS_API:
         result = api_fetch_member_data(member_id)
         if result is not None:
@@ -1962,7 +2010,7 @@ def fetch_member_total_spend(member_id):
     return 0
 
 def fetch_member_phone(member_id):
-    """Return phone (Col D) — uses cached member rows."""
+    """Return phone (Col D) - uses cached member rows."""
     if _HAS_API:
         result = api_fetch_member_data(member_id)
         if result is not None:
@@ -2046,7 +2094,7 @@ def save_referral_code(member_id: str, code: str) -> bool:
     return False
 
 def fetch_balance_mins(member_id: str) -> int:
-    """Read current wallet balance (minutes) from Card_Wallet column H — bypasses cache (must be live)."""
+    """Read current wallet balance (minutes) from Card_Wallet column H - bypasses cache (must be live)."""
     if _HAS_API:
         result = api_fetch_balance_mins(member_id)
         if result is not None:
@@ -2165,7 +2213,7 @@ def get_member_rank(total_spend, master_thresh, immortal_thresh):
     return "Warrior"
 
 def display_rank(rank):
-    """Normalise rank label for display — 'New Member' maps to 'Warrior'
+    """Normalise rank label for display - 'New Member' maps to 'Warrior'
     since all registered members hold at least Warrior status."""
     return "Warrior" if rank in ("New Member", "", None) else rank
 
@@ -2349,7 +2397,7 @@ def fetch_rank_table_display():
         return "_(fetch error)_"
 
 def get_top_up_suggestion(rank, bonus_table):
-    """Return (suggested_amount, bonus_mins) for the given rank — highest bonus tier."""
+    """Return (suggested_amount, bonus_mins) for the given rank - highest bonus tier."""
     rank_col = {"Warrior": 1, "Master": 2, "Immortal": 3}
     col      = rank_col.get(display_rank(rank), 1)
     best_amt, best_bonus = 0, 0
@@ -2368,6 +2416,11 @@ def step_hdr(step: int, total: int, label: str) -> str:
     filled = "▰" * step
     empty  = "▱" * (total - step)
     return f"*{label}*\n`{filled}{empty}` _({step}/{total})_\n━━━━━━━━━━━━━━━━━━\n"
+
+def _api_base() -> str:
+    """Return the API server base URL (no trailing slash), or empty string if not configured."""
+    return os.environ.get("API_BASE_URL", "").rstrip("/")
+
 
 # ─────────────────────────────────────────
 #  RECEIPT HELPERS
@@ -2441,7 +2494,7 @@ def _get_handler(hname):
         import importlib
         _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
     return _HANDLER_MODULES[hname]
-# main() is imported from bot.app directly by main.py — avoid circular import
+# main() is imported from bot.app directly by main.py - avoid circular import
 
 # ── Lazy handler function exports (break circular import) ──
 def cmd_cancel(*args, **kwargs):
@@ -2552,3 +2605,219 @@ fetch_member_data_async = api_fetch_member_data_async
 fetch_promotions_cached_async = api_fetch_promotions_cached_async
 fetch_food_menu_async = api_fetch_food_menu_async
 fetch_game_library  = fetch_games            # alias used in SSD management
+
+def _replit_delete(path: str, timeout: int = 10) -> dict | None:
+    """DELETE request to API server. Returns parsed response dict or None on error."""
+    base = _api_base()
+    if not base:
+        return None
+    try:
+        import urllib.request as _req
+        import urllib.parse
+        path_clean = path.lstrip("/")
+        path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
+        req = _req.Request(
+            f"{base}/api/{path_encoded}",
+            method="DELETE",
+            headers={"X-API-Key": _API_KEY},
+        )
+        with _req.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as e:
+        logging.warning("API DELETE /%s failed: %s", path, e)
+        return None
+
+async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
+    """Async DELETE - non-blocking version of _replit_delete."""
+    try:
+        return await _api_call_async("DELETE", path, timeout=timeout)
+    except Exception as e:
+        logging.warning("API DELETE /%s failed: %s", path, e)
+        return None
+
+def _replit_get(path: str, timeout: int = 8):
+    """GET JSON from API server. Returns parsed dict/list or safe empty fallback."""
+
+async def _replit_get_async(path: str, timeout: int = 8):
+    """Async GET - non-blocking version of _replit_get.
+    Same fallback logic (list vs dict heuristic) for handler backward compat.
+    """
+    _list_keywords = (
+        "bookings", "waitlist", "console", "inventory",
+        "staff", "games", "members", "logs", "attendance",
+        "accounts", "payments", "salary", "promotions",
+    )
+    # If path has a numeric ID segment (e.g., "bookings/186"), it's a single resource, not a list
+    _has_id = any(seg.isdigit() for seg in path.split("/"))
+    is_list_path = (
+        not path.startswith("sheets/")
+        and not path.startswith("finance/")
+        and any(kw in path for kw in _list_keywords)
+        and not _has_id
+    )
+    fallback = [] if is_list_path else {}
+    try:
+        data = await _api_call_async("GET", path, timeout=timeout)
+        if data is None:
+            return fallback
+        if is_list_path and isinstance(data, dict):
+            # _api_call_async strips {success:, data:} envelope - check both cases
+            if "data" in data:
+                inner = data["data"]
+                if isinstance(inner, list):
+                    return [x for x in inner if isinstance(x, dict)]
+                if isinstance(inner, dict):
+                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                        if _list_key in inner and isinstance(inner[_list_key], list):
+                            return [x for x in inner[_list_key] if isinstance(x, dict)]
+                    return inner
+            # Already-unwrapped: data itself may contain list-like keys
+            for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
+                if _list_key in data and isinstance(data[_list_key], list):
+                    return [x for x in data[_list_key] if isinstance(x, dict)]
+            # Dict without list-like keys - return empty list (not the dict itself)
+            logging.warning("API GET /%s returned dict without list keys - returning []", path)
+            return []
+        # If data is a list, filter to only dicts for list_path safety
+        if is_list_path and isinstance(data, list):
+            filtered = [x for x in data if isinstance(x, dict)]
+            if len(filtered) != len(data):
+                logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
+            return filtered
+        # For non-list paths (single-resource): unwrap wrappers like {"booking": {...}}
+        if isinstance(data, dict):
+            for _unwrap_key in ("booking", "member", "console", "game", "item", "promotion"):
+                if _unwrap_key in data and isinstance(data[_unwrap_key], dict):
+                    return data[_unwrap_key]
+        return data
+    except Exception as e:
+        logging.warning("API GET /%s failed: %s - returning %s", path, e, type(fallback).__name__)
+        return fallback
+
+def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """PATCH JSON to API server. Returns parsed response dict or None on error."""
+    base = _api_base()
+    if not base:
+        return None
+    try:
+        import urllib.request as _req
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        req = _req.Request(
+            f"{base}/api/{path}",
+            data=data,
+            method="PATCH",
+            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
+        )
+        with _req.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as e:
+        logging.warning("API PATCH /%s failed: %s", path, e)
+        return None
+
+async def _replit_patch_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PATCH - non-blocking version of _replit_patch."""
+    try:
+        return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PATCH /%s failed: %s", path, e)
+        return None
+
+def _replit_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """POST JSON to API server. Returns parsed response dict or None on error."""
+    base = _api_base()
+    if not base:
+        return None
+    try:
+        import urllib.request as _req
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        req = _req.Request(
+            f"{base}/api/{path}",
+            data=data,
+            method="POST",
+            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
+        )
+        with _req.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as e:
+        logging.warning("API POST /%s failed (payload keys: %s): %s", path, list(payload.keys()) if payload else [], e)
+        return None
+
+async def _replit_post_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async POST - non-blocking version of _replit_post."""
+    try:
+        return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API POST /%s failed: %s", path, e)
+        return None
+
+def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
+    """PUT JSON to API server. Returns parsed response dict or None on error."""
+    base = _api_base()
+    if not base:
+        return None
+    try:
+        import urllib.request as _req
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        req = _req.Request(
+            f"{base}/api/{path}",
+            data=data,
+            method="PUT",
+            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
+        )
+        with _req.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as e:
+        logging.warning("API PUT /%s failed: %s", path, e)
+
+        return None
+
+async def _replit_put_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PUT - non-blocking version of _replit_put."""
+    try:
+        return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
+    except Exception as e:
+        logging.warning("API PUT /%s failed: %s", path, e)
+        return None
+
+
+def fetch_payment_methods():
+    return list(PAY_METHODS)
+
+def get_salary_adv_sh():
+    return None
+
+def get_input_log_sh():
+    return None
+
+stock_sh = None
+stock_in_sh = None
+inv_sh = None
+
+def fetch_payment_methods():
+    return list(PAY_METHODS)
+
+def get_salary_adv_sh():
+    return None
+
+def get_input_log_sh():
+    return None
+
+stock_sh = None
+stock_in_sh = None
+inv_sh = None
+sales_sh = None
+topup_sh = None
+member_sh = None
+setting_sh = None
+def get_att_sh():
+    return None
+
+def get_booking_sh():
+    return None
+
+def get_console_games_sh():
+    return None
+
+def get_game_lib_sh():
+    return None
+wb = None  # GSheet removed
