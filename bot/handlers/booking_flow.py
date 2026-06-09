@@ -517,7 +517,11 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
         pass
 
     # Notify customer if they have Telegram
-    tg_chat = result.get("telegramChatId") or ""
+    # Fetch full booking data via GET (PATCH result has no customer fields)
+    _bk_full = await _replit_get_async(f"bookings/{bk_id}")
+    if isinstance(_bk_full, dict) and "booking" in _bk_full:
+        _bk_full = _bk_full["booking"]
+    tg_chat = _bk_full.get("telegramChatId") or ""
     if tg_chat and CUSTOMER_BOT_TOKEN:
         cust_msg = (
             f"❌ <b>Booking #{bk_id} ကို ပယ်ဖျက်ပြီ</b>\n"

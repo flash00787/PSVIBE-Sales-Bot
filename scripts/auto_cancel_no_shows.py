@@ -328,6 +328,15 @@ def send_booking_reminders():
             if tg_send(STAFF_NOTIFY_CHAT, remind_msg, token=BOT_TOKEN, parse_mode="HTML"):
                 reminded_ids.add(reminder_key)
                 print(f"  \u2713 Reminded staff about booking #{bk_id} ({customer}, {time_str})")
+                # Also notify customer
+                _cust_chat = b.get("telegram_chat_id") or b.get("telegramChatId") or ""
+                if _cust_chat and CUSTOMER_BOT_TOKEN:
+                    _cust_remind = f"\U0001F514 <b>PS VIBE Booking Reminder</b>\nBooking #{bk_id}\n\U0001F4C5 {bk_date_clean}  \U0001F550 {time_str}\n\U0001F3AE {console}  \u23F1 {duration} mins"
+                    if game:
+                        _cust_remind += f"\n\U0001F579 {game}"
+                    _cust_remind += "\n\n\u23F0 \u1014\u102d\u1029\u101b\u1031\u101b\u1000\u1039\u101b\u102e\u1019\u1031\u101c\u102c\u1031\u101b\u1019\u1039\u1019"
+                    tg_send(_cust_chat, _cust_remind, token=CUSTOMER_BOT_TOKEN, parse_mode="HTML")
+                    print(f"  \u2713 Reminded customer #{bk_id}")
         
         # Save reminded IDs to file
         with open(TRACK_FILE, 'w') as f:
