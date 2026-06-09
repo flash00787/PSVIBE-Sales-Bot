@@ -3,7 +3,7 @@
 import json, urllib.request, urllib.parse, base64, os
 from email.mime.text import MIMEText
 
-WS = "/root/.openclaw/workspace"
+WS = os.environ.get("KORA_WS", "/home/node/.openclaw/workspace")
 SECRET_FILE = os.path.join(WS, "secret.json")
 TOKEN_FILE = os.path.join(WS, "token.json")
 
@@ -51,26 +51,9 @@ def send_email(to_addr, subject, body):
     return result.get("id")
 
 if __name__ == "__main__":
-    # Test: send Kora introduction
-    subject = "Kora - Personal Digital Assistant Introduction"
-    body = """မင်္ဂလာပါ ခင်ဗျာ၊
-
-ကျွန်တော် Kora ပါ။ Aung Chan Myint အစ်ကိုရဲ့ ကိုယ်ပိုင် ဒစ်ဂျစ်တယ် လက်ထောက် (Personal Digital Assistant) ဖြစ်ပါတယ်။ OpenClaw နည်းပညာဖြင့် လည်ပတ်နေပြီး အစ်ကိုရဲ့ လုပ်ငန်းဆောင်တာများကို ထိရောက်မြန်ဆန်စွာ ကူညီပံ့ပိုးပေးနိုင်ရန် ဒီဇိုင်းထုတ်ထားပါသည်။
-
-ကျွန်တော်ဟာ AI Agent တစ်ဦးဖြစ်ပြီး အောက်ပါတို့ကို လုပ်ဆောင်နိုင်ပါသည်:
-• Google Sheets Automation, Database Management, Server Infrastructure (VPS/Docker)
-• Telegram Bots, Script & Bot Development
-• အချက်အလက်ခွဲခြမ်းစိတ်ဖြာခြင်းနှင့် အစီရင်ခံစာများ
-• ဖိုင်စီမံခန့်ခွဲမှု၊ သတင်းအချက်အလက်ရှာဖွေခြင်း
-• Coding & Debugging
-• Linux Server & Cloud Infrastructure စီမံခန့်ခွဲခြင်း
-
-ထူးခြားချက်များ: မြန်မာဘာသာစကားဖြင့် ကျွမ်းကျင်စွာ ဆက်သွယ်နိုင်ခြင်း၊ တိကျမှု၊ ပရော်ဖက်ရှင်နယ်ဆန်မှု။
-
-Aung Chan Myint အစ်ကိုရဲ့ PS VIBE နှင့် Synergy Hub လုပ်ငန်းများတွင် ကူညီပေးသကဲ့သို့ အစ်မ Chan Su Su Hlaing အတွက်လည်း အကျိုးရှိစေမည့် အကူအညီများ ပေးနိုင်လိမ့်မည်ဟု မျှော်လင့်ပါသည်။
-
-လေးစားစွာဖြင့်၊
-Kora"""
-
-    msg_id = send_email("chansusuhlaing@gmail.com", subject, body)
-    print(f"SUCCESS: Email sent! Message ID: {msg_id}")
+    print("send_email_api.py — Email sender module")
+    print("Usage: from send_email_api import send_email")
+    print("       msg_id = send_email('recipient@example.com', 'Subject', 'Body')")
+    print()
+    print("⚠️  This script is a module — do NOT run directly.")
+    print("   No emails will be sent without explicit function call.")

@@ -1,0 +1,817 @@
+======================================================================
+FALLBACK ANALYSIS
+======================================================================
+
+API functions CALLED from __init__.py:
+  Line 19: api_fetch_members
+  Line 19: api_fetch_member_data
+  Line 19: api_fetch_wallet_mins
+  Line 20: api_fetch_staff
+  Line 20: api_fetch_balance_mins
+  Line 20: api_fetch_member_tier
+  Line 21: api_fetch_staff_names
+  Line 21: api_fetch_food_prices
+  Line 21: api_fetch_food_costs
+  Line 22: api_fetch_games
+  Line 22: api_fetch_console_games
+  Line 22: api_get_games_on_console
+  Line 23: api_get_consoles_with_game
+  Line 23: api_fetch_base_rate
+  Line 23: api_fetch_console_multiplier
+  Line 24: api_fetch_new_member_defaults
+  Line 24: api_fetch_rank_thresholds
+  Line 24: api_fetch_bonus_table
+  Line 25: api_fetch_rank_table_display
+  Line 25: api_fetch_alltime_effective_rate
+  Line 26: api_fetch_member_effective_rate
+  Line 26: api_build_member_rate_dict
+  Line 27: api_fetch_base_salaries
+  Line 27: api_fetch_attendance
+  Line 27: api_fetch_salary_advances
+  Line 28: api_fetch_promotions_cached
+  Line 28: api_fetch_allowed_staff_ids
+  Line 28: api_next_voucher
+  Line 29: api_next_member_id
+  Line 29: api_next_member_row_no
+  Line 29: api_fetch_referral_code
+  Line 30: api_fetch_console_status
+
+--- Checking each function for API vs Direct Sheet access ---
+
+Functions using DIRECT sheet access (not API wrappers):
+  Line 57: _get_sa_email
+  Line 306: get_att_sh
+  Line 316: get_booking_sh
+  Line 330: fetch_console_status
+  Line 389: create_booking
+  Line 406: end_booking
+  Line 422: get_salary_adv_sh
+  Line 434: get_game_lib_sh
+  Line 443: fetch_games
+  Line 500: set_game_disc_count
+  Line 513: get_console_games_sh
+  Line 525: fetch_console_games
+  Line 556: get_games_on_console
+  Line 578: get_consoles_with_game
+  Line 698: add_console_game
+  Line 712: remove_console_game
+  Line 735: update_game_library_install
+  Line 801: cancel_booking
+  Line 815: add_console_to_setting
+  Line 829: remove_console_from_setting
+  Line 843: get_consoles_from_setting
+  Line 1430: next_voucher
+  Line 1446: fetch_members
+  Line 1456: fetch_attendance
+  Line 1484: save_attendance
+  Line 1498: fetch_staff
+  Line 1512: fetch_base_salaries
+  Line 1600: fetch_promotions_cached
+  Line 1683: _get_cfg
+  Line 1702: _get_member_rows
+  Line 1726: fetch_allowed_staff_ids
+  Line 1756: fetch_wallet_mins
+  Line 1768: fetch_base_rate
+  Line 1780: fetch_new_member_defaults
+  Line 1798: fetch_food_prices
+  Line 1812: fetch_food_costs
+  Line 1826: fetch_console_multiplier
+  Line 1848: fetch_rank_thresholds
+  Line 1865: fetch_member_total_spend
+  Line 1881: fetch_member_phone
+  Line 1897: fetch_member_data
+  Line 1932: fetch_referral_code
+  Line 1948: save_referral_code
+  Line 1967: fetch_balance_mins
+  Line 1984: fetch_member_effective_rate
+  Line 2002: update_member_effective_rate
+  Line 2018: build_member_rate_dict
+  Line 2041: fetch_member_rank_from_sheet
+  Line 2062: fetch_member_tier
+  Line 2079: get_member_rank
+  Line 2103: build_rank_bonus_lines
+  Line 2116: fetch_bonus_table
+  Line 2147: get_bonus_mins
+  Line 2163: next_member_row_no
+  Line 2184: next_write_row
+  Line 2191: next_member_id
+  Line 2216: fetch_rank_table_display
+  Line 2261: get_top_up_suggestion
+  Line 2299: save_receipt_json
+  Line 2328: get_receipt_url
+  Line 2337: get_receipt_kb
+
+======================================================================
+FUNCTION CALL FLOW ANALYSIS
+======================================================================
+
+--- fetch_members ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_members()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_members() failed, falling back to gspread")
+  raw = member_sh.col_values(2)[1:]
+  return [m.strip() for m in raw if m.strip()]
+  def fetch_attendance(month_str: str) -> dict[str, dict]:
+
+--- fetch_staff ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_staff()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_staff() failed, falling back to gspread")
+  try:
+  vals = setting_sh.col_values(19)[1:]  # col S = index 19 (1-based)
+  return [v.strip() for v in vals if v.strip()]
+  except Exception:
+  return ["Staff A", "Staff B"]
+
+--- fetch_attendance ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_attendance(month_str)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_attendance(month_str) failed, falling back to gspread")
+  result: dict[str, dict] = {}
+  try:
+  rows = get_att_sh().get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
+  for row in rows[1:]:
+  if len(row) < 4:
+
+--- save_attendance ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  sh   = get_att_sh()
+  rows = sh.get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
+  for i, row in enumerate(rows[1:], start=2):
+  if row[0].strip() == month_str and row[1].strip() == staff:
+  sh.update(f"A{i}:E{i}", [[month_str, staff, leave_days, late_count, deduct_per_late]])
+  return
+  sh.append_row([month_str, staff, leave_days, late_count, deduct_per_late])
+  except Exception as e:
+  logging.warning("save_attendance: %s", e)
+
+--- fetch_base_salaries ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_base_salaries()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_base_salaries() failed, falling back to gspread")
+  try:
+  staff   = setting_sh.col_values(19)[1:]   # S = staff names
+  salaries = setting_sh.col_values(20)[1:]  # T = base salaries
+  result: dict[str, int] = {}
+  for i, name in enumerate(staff):
+
+--- fetch_console_status ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  Reads cached console_multipliers for H/I/J info; Console_Booking for live sessions.
+  if _HAS_API:
+  result = api_fetch_console_status()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_console_status() failed, falling back to gspread")
+  today = today_str()
+  # Use cached console_multipliers if available, fallback to direct Sheets read
+  cfg = _get_cfg()
+
+--- create_booking ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: False
+  planned_end: optional planned end time (HH:MM) stored in col F so the
+  customer bot can detect disc-game conflicts accurately. Overwritten with
+  actual end time when the session ends.
+  sh     = get_booking_sh()
+  now    = now_mmt()
+  date   = now.strftime("%-m/%-d/%Y")
+  time_s = now.strftime("%H:%M")
+  seq    = now.strftime("%H%M")
+  bk_id  = f"BK-{now.strftime('%Y%m%d')}-{console_id.replace(' ','').replace('-','')}-{seq}"
+
+--- end_booking ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  sh   = get_booking_sh()
+  rows = sh.get("A:G")  # OPT: range-restricted (A=ID through G=status)
+  for i, row in enumerate(rows[1:], start=2):
+  if row and row[0].strip() == booking_id:
+  now = now_mmt()
+  sh.update(f"F{i}", [[now.strftime("%H:%M")]])
+  sh.update(f"G{i}", [["Done"]])
+  return True
+  except Exception as e:
+
+--- next_voucher ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_next_voucher()
+  if result is not None:
+  return result
+  logging.warning("API api_next_voucher() failed, falling back to gspread")
+  col = sales_sh.col_values(2)
+  ids = [v for v in col[1:] if v.upper().startswith("V-")]
+  if ids:
+  try:
+  return f"V-{int(ids[-1].split('-')[1]) + 1:03d}"
+  except (IndexError, ValueError):
+
+--- fetch_wallet_mins ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_wallet_mins(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_wallet_mins(member_id) failed, falling back to gspread")
+  for row in _get_member_rows()[1:]:
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  return _int(row[7]) if len(row) > 7 and row[7].strip() else None
+  return None
+
+--- fetch_base_rate ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_base_rate()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_base_rate() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("base_rate"):
+  return cfg["base_rate"]
+  return _int(setting_sh.cell(2, 2).value)
+
+--- fetch_food_prices ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_food_prices()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_food_prices() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("food_prices"):
+  return dict(cfg["food_prices"])
+  names  = setting_sh.col_values(4)[1:]
+  prices = setting_sh.col_values(5)[1:]
+  return {n.strip(): _int(p) for n, p in zip(names, prices) if n and p}
+
+--- fetch_games ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  Sheet columns: A=No, B=Game Name, C=Final Status, D=Available Discs,
+  E=In Use, F=C-01 ... (console checkboxes), SSD cols.
+  Filters out garbage/metadata rows (empty title or non-game status).
+  if _HAS_API:
+  result = api_fetch_games()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_games() failed, falling back to gspread")
+  try:
+
+--- fetch_console_games ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_console_games()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_console_games() failed, falling back to gspread")
+  try:
+  global _CGAME_ROWS, _CGAME_TS
+  if not _CGAME_ROWS or (time.time() - _CGAME_TS) > _CGAME_TTL:
+  _CGAME_ROWS = get_console_games_sh().get("A:E")  # OPT: range-restricted (A=console through E=notes)
+  _CGAME_TS   = time.time()
+
+--- get_games_on_console ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: False
+  Excludes 'Session' type records (session tracking) to avoid duplicates.
+  if _HAS_API:
+  result = api_get_games_on_console(console_id)
+  if result is not None:
+  return result
+  logging.warning("API api_get_games_on_console(console_id) failed, falling back to gspread")
+  seen = set()
+  result = []
+  for r in fetch_console_games():
+
+--- get_consoles_with_game ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: False
+  if _HAS_API:
+  result = api_get_consoles_with_game(game_title)
+  if result is not None:
+  return result
+  logging.warning("API api_get_consoles_with_game(game_title) failed, falling back to gspread")
+  gl = game_title.strip().lower()
+  return [
+  r["console_id"] for r in fetch_console_games()
+  if r["game_title"].strip().lower() == gl
+  ]
+
+--- fetch_member_data ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: False
+  Card_Wallet columns: A=row_no, B=member_id, C=name, D=phone,
+  E=lifetime_spend, F=ranking_net_spend, G=rank_tier, H=wallet_mins,
+  K=reg_staff, L=effective_rate, M=email, N=reserved, O=reserved, P=birthday, Q=referral_code"""
+  if _HAS_API:
+  result = api_fetch_member_data(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_member_data(member_id) failed, falling back to gspread")
+  try:
+  for row in _get_member_rows()[1:]:
+
+--- fetch_referral_code ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_referral_code(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_referral_code(member_id) failed, falling back to gspread")
+  try:
+  rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+  for row in rows[1:]:
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  return row[16].strip() if len(row) > 16 else ""
+
+--- save_referral_code ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+  for i, row in enumerate(rows[1:], start=2):  # 1-based, skip header
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  # Ensure header exists
+  if len(rows[0]) < 17 or not rows[0][16].strip():
+  member_sh.update_cell(1, 17, "Referral_Code")
+  member_sh.update_cell(i, 17, code.strip())
+  global _MBR_TS
+  _MBR_TS = 0.0  # invalidate cache
+
+--- fetch_balance_mins ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_balance_mins(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_balance_mins(member_id) failed, falling back to gspread")
+  try:
+  rows = member_sh.get("A:H")  # OPT: range-restricted read (A=row_no through H=wallet_mins)
+  for row in rows[1:]:
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  return _int(row[7]) if len(row) > 7 and row[7].strip() else 0
+
+--- fetch_member_effective_rate ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_member_effective_rate(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_member_effective_rate(member_id) failed, falling back to gspread")
+  try:
+  for row in _get_member_rows()[1:]:
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  val = row[11].strip() if len(row) > 11 else ""
+  if val:
+
+--- update_member_effective_rate ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  rows = member_sh.get("A:L")  # OPT: range-restricted read (A=row_no through L=effective_rate)
+  for i, row in enumerate(rows[1:], start=2):
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  member_sh.update_cell(i, 12, round(new_rate, 4))
+  # Invalidate member cache so next read picks up the change
+  global _MBR_TS
+  _MBR_TS = 0.0
+  return
+  logging.warning("update_member_effective_rate: member %s not found", member_id)
+
+--- build_member_rate_dict ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: True
+  if _HAS_API:
+  result = api_build_member_rate_dict()
+  if result is not None:
+  return result
+  logging.warning("API api_build_member_rate_dict() failed, falling back to gspread")
+  result: dict[str, float] = {}
+  try:
+  for row in _get_member_rows()[1:]:
+  if len(row) > 1 and row[1].strip():
+  m_id = row[1].strip()
+
+--- fetch_member_tier ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_member_tier(member_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_member_tier(member_id) failed, falling back to gspread")
+  try:
+  for row in _get_member_rows()[1:]:
+  if len(row) > 1 and row[1].strip() == member_id.strip():
+  tier = row[6].strip() if len(row) > 6 else ""
+  return tier if tier else "Warrior"
+
+--- fetch_rank_thresholds ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_rank_thresholds()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_rank_thresholds() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("master_threshold") is not None:
+  return cfg["master_threshold"], cfg.get("immortal_threshold", 0)
+  try:
+  master   = _int(setting_sh.cell(3, 13).value)
+  immortal = _int(setting_sh.cell(4, 13).value)
+
+--- fetch_bonus_table ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Returns list of (threshold, warrior_bonus, master_bonus, immortal_bonus)."""
+  if _HAS_API:
+  result = api_fetch_bonus_table()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_bonus_table() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("bonus_table"):
+  return [tuple(row) for row in cfg["bonus_table"]]
+  try:
+
+--- fetch_rank_table_display ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Row 1 = headers, rows 2-5 = data tiers."""
+  if _HAS_API:
+  result = api_fetch_rank_table_display()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_rank_table_display() failed, falling back to gspread")
+  try:
+  rows = setting_sh.get("O1:R5")
+  if not rows or len(rows) < 2:
+  return "_(no data)_"
+
+--- fetch_new_member_defaults ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_new_member_defaults()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_new_member_defaults() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("new_member_card_price") is not None:
+  return cfg["new_member_card_price"], cfg.get("new_member_base_mins", 0)
+  try:
+  price = _int(setting_sh.cell(20, 2).value)
+
+--- fetch_console_multiplier ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  if _HAS_API:
+  result = api_fetch_console_multiplier(console_id)
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_console_multiplier(console_id) failed, falling back to gspread")
+  cfg = _get_cfg()
+  mults = cfg.get("console_multipliers", {})
+  if mults:
+  return float(mults.get(console_id.strip(), 1.0)) or 1.0
+  try:
+  console_names = setting_sh.col_values(8)[1:]
+
+--- next_member_id ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Handles any trailing digits: 'PSV_A_003' → 'PSV_A_004'.
+  Returns 'PSV_A_001' when no members exist yet."""
+  if _HAS_API:
+  result = api_next_member_id()
+  if result is not None:
+  return result
+  logging.warning("API api_next_member_id() failed, falling back to gspread")
+  try:
+  ids = [v.strip() for v in member_sh.col_values(2)[1:] if v.strip()]
+  if not ids:
+
+--- next_member_row_no ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Reads all values in col A, finds the last integer, and returns +1."""
+  if _HAS_API:
+  result = api_next_member_row_no()
+  if result is not None:
+  return result
+  logging.warning("API api_next_member_row_no() failed, falling back to gspread")
+  try:
+  col_a = member_sh.col_values(1)[1:]   # skip header
+  nums  = []
+  for v in col_a:
+
+--- fetch_promotions_cached ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_promotions_cached()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_promotions_cached() failed, falling back to gspread")
+  global _PROMO_CACHE, _PROMO_TS
+  if _PROMO_CACHE and (time.time() - _PROMO_TS) < _PROMO_TTL:
+  return _PROMO_CACHE
+  data = _replit_get("sheets/promotions")
+  promos = (data or {}).get("promotions", [])
+
+--- fetch_allowed_staff_ids ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_allowed_staff_ids()
+  if result is not None:
+  return set(result.get("data", []))
+  logging.warning("API api_fetch_allowed_staff_ids() failed, falling back to gspread")
+  # Return allowed staff Telegram user IDs from Setting!B30 (comma-separated).
+  # Falls back to hardcoded defaults if the cell is empty or unreadable.
+  # Cached for 5 minutes.
+  global _STAFF_IDS, _STAFF_IDS_TS
+  if _STAFF_IDS and (time.time() - _STAFF_IDS_TS) < _STAFF_IDS_TTL:
+  return _STAFF_IDS
+
+--- save_receipt_json ---
+  Uses API: True
+  Uses GSpread Direct: False
+  Has try/except: True
+  safe_id = voucher_id.replace("/", "-").replace("\\", "-")
+  path = RECEIPTS_DIR / f"{safe_id}.json"
+  with open(path, "w", encoding="utf-8") as f:
+  json.dump(data, f, ensure_ascii=False, indent=2)
+  base = _api_base()
+  if not base:
+  return
+  try:
+  import urllib.request
+
+--- add_console_game ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  global _CGAME_ROWS
+  try:
+  sh   = get_console_games_sh()
+  date = now_mmt().strftime("%-m/%-d/%Y")
+  sh.append_row([console_id, game_title, install_type, date, notes],
+  value_input_option="USER_ENTERED")
+  _CGAME_ROWS = None   # invalidate cache so next fetch reads fresh data
+  return True
+  except Exception:
+  return False
+
+--- remove_console_game ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  global _CGAME_ROWS
+  try:
+  sh   = get_console_games_sh()
+  rows = sh.get("A:B")  # OPT: range-restricted (A=console_id, B=game_title)
+  for i, row in enumerate(rows[1:], start=2):
+  if (len(row) >= 2
+  and row[0].strip().upper() == console_id.upper()
+  and row[1].strip().lower() == game_title.strip().lower()):
+  sh.delete_rows(i)
+  _CGAME_ROWS = None   # invalidate cache
+
+--- set_game_disc_count ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  global _GAME_ROWS, _GAME_TS
+  try:
+  sh = get_game_lib_sh()
+  sh.update_cell(row_num, 4, count)   # col D = index 4
+  _GAME_ROWS = None                   # invalidate cache
+  _GAME_TS   = 0
+  return True
+  except Exception:
+  return False
+
+--- update_game_library_install ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  Column B = Game Name; columns G:S = console headers (C-01 … SD2).
+  Returns True on success.
+  try:
+  sh   = wb.worksheet("Game_Library")
+  rows = sh.get("A:U")  # OPT: range-restricted read (A=No through U=metadata)
+  if not rows:
+  return False
+  header_row = rows[0]  # row 1
+
+--- add_console_to_setting ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  names    = setting_sh.col_values(8)      # includes header row
+  next_row = len(names) + 1
+  setting_sh.update(f"H{next_row}:J{next_row}",
+  [[console_id, ctype, str(multiplier)]],
+  value_input_option="USER_ENTERED")
+  return True
+  except Exception as e:
+  logging.error("add_console_to_setting error: %s", e)
+  return False
+
+--- remove_console_from_setting ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  names = setting_sh.col_values(8)
+  for i, name in enumerate(names):
+  if name.strip() == console_id.strip():
+  row = i + 1
+  setting_sh.update(f"H{row}:J{row}", [["", "", ""]])
+  return True
+  except Exception as e:
+  logging.exception("remove_console_from_setting: %s", e)
+  return False
+
+--- cancel_booking ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  sh   = get_booking_sh()
+  rows = sh.get("A:G")  # OPT: range-restricted read (A=ID through G=status)
+  for i, row in enumerate(rows[1:], start=2):
+  if row and row[0].strip() == booking_id:
+  sh.update(f"G{i}", [["Cancelled"]])
+  return True
+  except Exception as e:
+  logging.exception("cancel_booking: %s", e)
+  return False
+
+--- fetch_food_costs ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  if _HAS_API:
+  result = api_fetch_food_costs()
+  if result is not None:
+  return result
+  logging.warning("API api_fetch_food_costs() failed, falling back to gspread")
+  cfg = _get_cfg()
+  if cfg.get("food_costs"):
+  return dict(cfg["food_costs"])
+  names = setting_sh.col_values(4)[1:]
+  costs = setting_sh.col_values(6)[1:]
+  return {n.strip(): (_int(c) if str(c).strip() else 0) for n, c in zip(names, costs) if n.strip()}
+
+--- get_att_sh ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  return wb.worksheet("Attendance_Log")
+  except Exception:
+  sh = wb.add_worksheet("Attendance_Log", rows=200, cols=6)
+  sh.update("A1:E1", [["Month", "Staff", "Leave_Days", "Late_Count", "Late_Deduct_Ks"]])
+  return sh
+  def get_booking_sh():
+
+--- get_booking_sh ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Columns: A=BookingID, B=Date, C=ConsoleID, D=MemberID,
+  E=StartTime, F=EndTime, G=Status, H=Staff, I=Notes
+  try:
+  return wb.worksheet("Console_Booking")
+  except Exception:
+  sh = wb.add_worksheet("Console_Booking", rows=1000, cols=9)
+  sh.update("A1:I1", [["BookingID", "Date", "ConsoleID", "MemberID",
+  return sh
+
+--- get_salary_adv_sh ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Columns: A=Date, B=Staff, C=Amount, D=Payment (Cash/KPay), E=Note
+  try:
+  return wb.worksheet("Salary_Advance")
+  except Exception:
+  sh = wb.add_worksheet("Salary_Advance", rows=500, cols=5)
+  sh.update("A1:E1", [["Date", "Staff", "Amount", "Payment", "Note"]])
+  return sh
+
+--- get_game_lib_sh ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: False
+  Actual columns: A=No, B=Game Name, C=Final Status, D=Available Discs,
+  E=In Use, F=C-01, G=C-02 ... (console checkboxes),
+  Q=T7, R=SD1, S=SD2, T=Free Consoles, U=Installed_On
+  return wb.worksheet("Game_Library")
+  def fetch_games() -> list[dict]:
+  Sheet columns: A=No, B=Game Name, C=Final Status, D=Available Discs,
+
+--- get_console_games_sh ---
+  Uses API: True
+  Uses GSpread Direct: True
+  Has try/except: True
+  Columns: A=Console_ID, B=Game_Title, C=Install_Type, D=Date, E=Notes
+  try:
+  return wb.worksheet("Console_Games")
+  except Exception:
+  sh = wb.add_worksheet("Console_Games", rows=1000, cols=5)
+  sh.update("A1:E1", [["Console_ID", "Game_Title", "Install_Type", "Date", "Notes"]])
+  return sh
+
+--- get_consoles_from_setting ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: True
+  try:
+  names = setting_sh.col_values(8)[1:]
+  types = setting_sh.col_values(9)[1:]
+  mults = setting_sh.col_values(10)[1:]
+  result = []
+  for i, name in enumerate(names):
+  if not name.strip():
+  continue
+  result.append({
+
+--- check_disc_session_conflict ---
+  Uses API: False
+  Uses GSpread Direct: True
+  Has try/except: False
+  Returns a warning string if all disc copies are busy at bk_time,
+  or empty string if no conflict.
+  game_lower = game_name.strip().lower()
+  games = fetch_games()
+  game_obj = next((g for g in games if g["title"].strip().lower() == game_lower), None)
+  if not game_obj:
+  return ""
+  # Use "discs" (col D = Available Discs) — the column staff manages via the bot

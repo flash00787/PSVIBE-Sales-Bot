@@ -1,0 +1,81 @@
+============================================================
+PS VIBE Sales Bot — Payment Confirm Stuck Bug Fix
+============================================================
+Date: 2026-05-31
+Status: ✅ FIXED, COMPILED, DEPLOYED, SERVICE ACTIVE
+
+ROOT CAUSE ANALYSIS
+===================
+The bug was caused by the `handle_custom_extend_reply` handler registered 
+at group=-1 in `bot/handlers/booking_flow.py`. This handler runs BEFORE 
+the ConversationHandler (group=0) and intercepts ANY numeric text message 
+from a user who has a stale `_extend_pending` entry in `context.bot_data`.
+
+BUG FLOW (exact sequence):
+1. A staff member presses "Custom" extend button for a booking in a GROUP chat
+2. The callback (cb_extend_timer) stores extend context in bot_data:
+   `context.bot_data[f"_extend_pending_{presser_id}"] = {cid, member_id, chat_id}`
+   Note: chat_id is the GROUP CHAT ID, not the personal chat
+3. A ForceReply is sent to the staff's PERSONAL chat asking for minutes
+4. The staff IGNORES the ForceReply (or doesn't see it) — pending NEVER cleared
+5. Later, same staff uses Daily Sales flow in personal chat
+6. Staff types "30000" as WavePay payment amount
+7. `handle_custom_extend_reply` at group=-1 finds `_extend_pending` in bot_data
+8. "30000" is a valid positive integer → NOT caught by ValueError
+9. `_do_extend(context.bot, None, cid, member_id, GROUP_CHAT_ID, 30000)` is called
+10. `_do_extend` sends response to GROUP CHAT (not personal chat!)
+11. `ApplicationHandlerStop` raised → ConversationHandler NEVER sees "30000"
+12. User in personal chat sees NO RESPONSE — bot is "stuck"
+
+SECONDARY ISSUE:
+The `step_pay_amount` and `step_pay_method` functions called `_show_payment_review` 
+without try/except. If `_show_payment_review` threw any exception (e.g., Markdown 
+parse error), the global `error_handler` would only LOG it without notifying the 
+user — resulting in silent failure.
+
+FIXES APPLIED
+=============
+
+FIX 1: booking_flow.py line ~613 — Added `expect_chat_id` to pending dict
+  Old: {"cid": cid, "member_id": member_id, "chat_id": chat_id}
+  New: {"cid": cid, "member_id": member_id, "chat_id": chat_id, "expect_chat_id": presser_id}
+
+FIX 2: booking_flow.py line ~745 — Added chat_id verification guard
+  Before processing extend, check that incoming message chat_id matches 
+  the expected chat_id (personal chat). If not matching, clear pending 
+  and RETURN (let ConversationHandler process the message).
+
+FIX 3: sales.py step_pay_amount — Wrapped _show_payment_review in try/except
+  On error: log, show error message with Cancel button, return SALE_CONFIRM
+
+FIX 4: sales.py step_pay_method (BTN_NO_MORE path) — Same try/except wrapper
+  On error: log, show error message with Cancel button, return PAY_METHOD
+
+VERIFICATION
+============
+✅ sales.py — py_compile OK
+✅ booking_flow.py — py_compile OK
+✅ systemctl restart psvibe-sale-bot — OK
+✅ systemctl is-active psvibe-sale-bot — active
+✅ Fix 1 verified in file (line 613)
+✅ Fix 2 verified in file (line 745-751)
+✅ Snapshots saved at /root/coordination/snapshots/
+
+HOW THIS FIX PREVENTS THE BUG
+=============================
+When `handle_custom_extend_reply` intercepts a message, it now checks:
+  pending.get("expect_chat_id") == update.effective_chat.id
+
+- If a stale pending exists from a group-chat booking extend, but the
+  user is typing in their personal chat (sales flow), the chat IDs
+  WON'T match → pending is cleared → message passes through to 
+  ConversationHandler normally.
+
+- If the user IS intentionally replying to a Custom extend ForceReply
+  in their personal chat, the chat IDs WILL match → extend proceeds.
+
+- The try/except wrappers ensure that even if _show_payment_review
+  encounters an error (Markdown, API, etc.), the user gets a visible
+  error message instead of silent nothing.
+
+=== RESULT: OK ||| ERROR: None ===

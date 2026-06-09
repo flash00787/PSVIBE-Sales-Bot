@@ -1,0 +1,296 @@
+=== FLOW 1: BOOKING TRACE ===
+--- booking.py + booking_flow.py ---
+/root/psvibe-sale-bot/bot/handlers/booking.py:76:            [[BTN_SBK_NEW], [BTN_SBK_CONFIRMED], [BTN_SBK_WAITLIST], [BTN_BACK_MAIN]],
+/root/psvibe-sale-bot/bot/handlers/booking.py:171:    return SBK_CONSOLE
+/root/psvibe-sale-bot/bot/handlers/booking.py:212:    return SBK_CUST_NAME
+/root/psvibe-sale-bot/bot/handlers/booking.py:226:    kb = [[BTN_SBK_SKIP_PHONE], [BTN_BACK, BTN_CANCEL]]
+/root/psvibe-sale-bot/bot/handlers/booking.py:233:    return SBK_DATE
+/root/psvibe-sale-bot/bot/handlers/booking.py:243:    phone = "—" if text == BTN_SBK_SKIP_PHONE else text
+/root/psvibe-sale-bot/bot/handlers/booking.py:254:        [BTN_SBK_CUSTOM],
+/root/psvibe-sale-bot/bot/handlers/booking.py:261:    return SBK_TIME
+/root/psvibe-sale-bot/bot/handlers/booking.py:271:        kb = [[BTN_SBK_SKIP_PHONE], [BTN_BACK, BTN_CANCEL]]
+/root/psvibe-sale-bot/bot/handlers/booking.py:277:        return SBK_DATE
+/root/psvibe-sale-bot/bot/handlers/booking.py:279:    if text == BTN_SBK_CUSTOM:
+/root/psvibe-sale-bot/bot/handlers/booking.py:284:        return SBK_TIME
+/root/psvibe-sale-bot/bot/handlers/booking.py:298:            return SBK_TIME
+/root/psvibe-sale-bot/bot/handlers/booking.py:315:    return SBK_DUR
+/root/psvibe-sale-bot/bot/handlers/booking.py:331:            [BTN_SBK_CUSTOM],
+/root/psvibe-sale-bot/bot/handlers/booking.py:338:        return SBK_TIME
+/root/psvibe-sale-bot/bot/handlers/booking.py:344:        return SBK_DUR
+/root/psvibe-sale-bot/bot/handlers/booking.py:358:    return SBK_GAME
+/root/psvibe-sale-bot/bot/handlers/booking.py:378:        return SBK_DUR
+/root/psvibe-sale-bot/bot/handlers/booking.py:384:        return SBK_GAME
+/root/psvibe-sale-bot/bot/handlers/booking.py:395:    kb = [[BTN_SBK_SKIP_GAME]]
+/root/psvibe-sale-bot/bot/handlers/booking.py:412:    return SBK_CONFIRM
+/root/psvibe-sale-bot/bot/handlers/booking.py:415:    """SBK_CONFIRM state — phase 1: receive game name and show summary.
+/root/psvibe-sale-bot/bot/handlers/booking.py:416:       Phase 2: receive BTN_SBK_CONFIRM_BOOK and create the booking.
+/root/psvibe-sale-bot/bot/handlers/booking.py:423:    if text == BTN_SBK_CONFIRM_BOOK:
+/root/psvibe-sale-bot/bot/handlers/booking.py:487:            f"{'📲 Reminder scheduled via n8n' if N8N_BOOKING_WEBHOOK else ''}",
+/root/psvibe-sale-bot/bot/handlers/booking.py:502:        kb = [[BTN_SBK_SKIP_GAME]]
+/root/psvibe-sale-bot/bot/handlers/booking.py:517:        return SBK_CONFIRM
+/root/psvibe-sale-bot/bot/handlers/booking.py:520:    game = "" if text == BTN_SBK_SKIP_GAME else text
+/root/psvibe-sale-bot/bot/handlers/booking.py:573:    kb = [[BTN_SBK_CONFIRM_BOOK], [BTN_BACK, BTN_CANCEL]]
+/root/psvibe-sale-bot/bot/handlers/booking.py:578:    return SBK_CONFIRM
+/root/psvibe-sale-bot/bot/handlers/booking.py:660:    return BOOK_LINK
+/root/psvibe-sale-bot/bot/handlers/booking.py:680:    return BOOK_CONSOLE
+/root/psvibe-sale-bot/bot/handlers/booking.py:704:        return BOOK_LINK
+/root/psvibe-sale-bot/bot/handlers/booking.py:791:    return BOOK_MEMBER
+/root/psvibe-sale-bot/bot/handlers/booking.py:807:        return BOOK_MEMBER
+/root/psvibe-sale-bot/bot/handlers/booking.py:827:            return BOOK_MEMBER
+/root/psvibe-sale-bot/bot/handlers/booking.py:867:                    [[BTN_BOOK_PROCEED], [BTN_NO_RESELECT]],
+/root/psvibe-sale-bot/bot/handlers/booking.py:871:            return BOOK_DUP_WARN
+/root/psvibe-sale-bot/bot/handlers/booking.py:913:    return BOOK_GAME
+--- Console_Booking in __init__.py ---
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+317:    """Return (or create) the Console_Booking worksheet.
+322:        return wb.worksheet("Console_Booking")
+324:        sh = wb.add_worksheet("Console_Booking", rows=1000, cols=9)
+332:    Reads cached console_multipliers for H/I/J info; Console_Booking for live sessions.
+390:    """Append a row to Console_Booking and return the BookingID.
+1295:BTN_CANCEL_BOOKING   = "🚫 Cancel Booking"
+1398:N8N_BOOKING_WEBHOOK  = os.environ.get("N8N_BOOKING_WEBHOOK", "")
+1579:# ── Console_Booking rows (live session overlay) ───────────────────────────────
+
+=== FLOW 2: CONSOLE MANAGEMENT TRACE ===
+--- console_mgmt.py etc in __init__.py ---
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+920:    GAME_ADD_TITLE = 54
+921:    GAME_ADD_PLATFORM = 55
+922:    GAME_ADD_GENRE = 56
+923:    GAME_ADD_STATUS = 57
+924:    GAME_DEL_SELECT = 58
+925:    CON_MGMT_MENU = 59
+926:    CON_ADD_ID = 60
+927:    CON_ADD_TYPE = 61
+928:    CON_ADD_MULT = 62
+929:    CON_DEL_SELECT = 63
+945:    GINST_MENU = 79
+946:    GINST_VIEW_CONS = 80
+947:    GINST_ADD_CONS = 81
+948:    GINST_ADD_GAME = 82
+949:    GINST_ADD_TYPE = 83
+950:    GINST_DEL_CONS = 84
+951:    GINST_DEL_GAME = 85
+952:    SSD_MENU = 86
+953:    SSD_VIEW_SSD = 87
+954:    SSD_ADD_SSD = 88
+955:    SSD_ADD_GAME = 89
+956:    SSD_ADD_TYPE = 90
+957:    SSD_DEL_SSD = 91
+958:    SSD_DEL_GAME = 92
+959:    SSD_XFER_SSD = 93
+960:    SSD_XFER_GAME = 94
+961:    SSD_XFER_CONS = 95
+962:    SSD_RET_CONS = 96
+963:    SSD_RET_GAME = 97
+--- console_mgmt.py ---
+13:    cons  = get_consoles_from_setting()
+16:        [BTN_LIST_CONSOLE, BTN_ADD_CONSOLE],
+17:        [BTN_DEL_CONSOLE,  BTN_BACK],
+20:        f"⚙️ *Console စီမံ* ({count} console)\n"
+31:        return await show_console_menu(update, context)
+32:    if choice == BTN_LIST_CONSOLE:
+33:        cons = get_consoles_from_setting()
+43:    if choice == BTN_ADD_CONSOLE:
+52:    if choice == BTN_DEL_CONSOLE:
+53:        cons = get_consoles_from_setting()
+73:    existing = {c["id"] for c in get_consoles_from_setting()}
+110:    ok = add_console_to_setting(nc.get("id",""), nc.get("type","PS4"), mult)
+112:        # Update runtime VALID_CONSOLES set
+113:        VALID_CONSOLES.add(nc.get("id",""))
+135:    ok = remove_console_from_setting(target["id"])
+137:        VALID_CONSOLES.discard(target["id"])
+--- games.py ---
+11:    BTN_VIEW_GAMES, BTN_ADD_GAME, BTN_CONSOLE_INSTALL, BTN_DEL_GAME,
+12:    BTN_EDIT_GAME, BTN_DISC_RECORD, BTN_SSD_MANAGE, BTN_BACK_MAIN,
+15:    GAME_MENU, GAME_ADD_TITLE, GAME_ADD_PLATFORM, GAME_ADD_GENRE,
+16:    GAME_ADD_STATUS, GAME_DEL_SELECT,
+18:    GAME_EDIT_SELECT, GAME_EDIT_FIELD, GAME_EDIT_VALUE,
+20:    fetch_games, fetch_console_games, get_game_lib_sh,
+28:        [BTN_VIEW_GAMES,      BTN_ADD_GAME],
+29:        [BTN_CONSOLE_INSTALL, BTN_DEL_GAME],
+30:        [BTN_EDIT_GAME,       BTN_DISC_RECORD],
+43:    return GAME_MENU
+50:    if choice == BTN_VIEW_GAMES:
+57:            install_map: dict[str, list[str]] = {}
+62:                    install_map.setdefault(gt.lower(), []).append(cid)
+70:                cons_list  = install_map.get(name.lower(), [])
+75:                install_str = f"🖥️ {', '.join(cons_list)}" if cons_list else "🖥️ <i>Not installed</i>"
+82:                lines.append(f"{i}. <b>{name}</b>{discs_str}{tags}\n   {install_str}")
+93:    if choice == BTN_ADD_GAME:
+102:        return GAME_ADD_TITLE
+103:    if choice == BTN_CONSOLE_INSTALL:
+132:    if choice == BTN_EDIT_GAME:
+
+=== FLOW 3: STOCK TRACE ===
+--- STOCK in __init__.py ---
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+212:stock_sh    = wb.worksheet("Stock_Out")
+213:stock_in_sh = wb.worksheet("Stock_In")
+891:    STOCK_PIN = 25
+892:    STOCK_MENU = 26
+893:    STOCK_ITEM = 27
+894:    STOCK_QTY = 28
+895:    SI_ITEM = 29
+896:    SI_QTY = 30
+897:    SI_COST = 31
+898:    SI_CART = 32
+899:    SI_PAY = 33
+900:    SI_CONFIRM = 34
+909:    SI_PAY_SPLIT = 43
+1070:STOCK_PIN = BotState.STOCK_PIN
+1071:STOCK_MENU = BotState.STOCK_MENU
+1072:STOCK_ITEM = BotState.STOCK_ITEM
+1073:STOCK_QTY = BotState.STOCK_QTY
+1074:SI_ITEM = BotState.SI_ITEM
+1075:SI_QTY = BotState.SI_QTY
+--- stock.py + stock_in.py ---
+/root/psvibe-sale-bot/bot/handlers/stock.py:81:        [BTN_STOCK_OUT],
+/root/psvibe-sale-bot/bot/handlers/stock.py:82:        [BTN_STOCK_IN_M],
+/root/psvibe-sale-bot/bot/handlers/stock.py:99:    if choice == BTN_STOCK_OUT:
+/root/psvibe-sale-bot/bot/handlers/stock.py:101:    if choice == BTN_STOCK_IN_M:
+/root/psvibe-sale-bot/bot/handlers/stock.py:105:        data = _replit_get("sheets/inventory")
+/root/psvibe-sale-bot/bot/handlers/stock.py:195:        # Update K1 total inventory value
+/root/psvibe-sale-bot/bot/handlers/stock.py:200:        inv_data = _replit_get("sheets/inventory")
+
+=== DEEP TRACE: booking_flow.py ===
+
+=== DEEP TRACE: console.py ===
+13:async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+14:    """Show live console status — uses API (Sheet + PostgreSQL reservations)."""
+15:    await update.message.reply_text("⏳ Console status ဆွဲနေသည်…", parse_mode="Markdown")
+17:    data = await asyncio.to_thread(_replit_get, "sheets/consoles")
+18:    api_consoles = (data.get("consoles", []) if isinstance(data, dict) else [])
+20:    if not api_consoles:
+23:            raw = fetch_console_status()
+24:            api_consoles = [{"id": c["id"], "type": c.get("type", ""),
+25:                             "liveStatus": c["status"],
+33:    free_list  = [c for c in api_consoles if c.get("liveStatus", "Free") == "Free"]
+34:    busy_list  = [c for c in api_consoles if c.get("liveStatus", "Free") in ("Active", "Scheduled")]
+35:    rsv_list   = [c for c in api_consoles if c.get("liveStatus", "Free") == "Reserved"]
+45:    for c in sorted(api_consoles, key=lambda x: x.get("id", "")):
+74:        # Installed games on this console (excluding SSD-transferred ones shown separately)
+76:            r["game_title"] for r in fetch_console_games()
+77:            if r["console_id"].upper() == cid.upper() and r["game_title"]
+90:async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+94:        [BTN_STATUS_BOARD,   BTN_GAME_LIB_MENU],
+105:    return CONSOLE_MENU
+107:async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+112:        return await prompt_book_console(update, context)
+115:    if choice == BTN_STATUS_BOARD:
+116:        await cmd_console_status(update, context)
+117:        return await show_console_menu(update, context)
+124:    return await show_console_menu(update, context)
+127:    """Show active consoles so staff can pick which one to change game for."""
+129:        consoles = fetch_console_status()
+132:        return await show_console_menu(update, context)
+133:    active = [c for c in consoles if c["status"] == "Active"]
+139:        return CONSOLE_MENU
+
+=== DEEP TRACE: ginst.py ===
+11:    BTN_GINST_VIEW, BTN_GINST_ADD, BTN_GINST_REMOVE,
+12:    BTN_GINST_HDD, BTN_GINST_DISC, BTN_GINST_SSD,
+13:    GINST_MENU, GINST_VIEW_CONS, GINST_ADD_CONS,
+14:    GINST_ADD_GAME, GINST_ADD_TYPE, GINST_DEL_CONS, GINST_DEL_GAME,
+24:        [BTN_GINST_VIEW],
+25:        [BTN_GINST_ADD, BTN_GINST_REMOVE],
+32:        "➕ ထည့် — Game install မှတ်သား\n"
+37:    return GINST_MENU
+44:    if text == BTN_GINST_VIEW:
+45:        return await _ginst_pick_console(update, context, next_state=GINST_VIEW_CONS, prompt="👁 ကြည့်မည့် Console ရွေးပါ:")
+46:    if text == BTN_GINST_ADD:
+47:        return await _ginst_pick_console(update, context, next_state=GINST_ADD_CONS, prompt="➕ Game ထည့်မည့် Console ရွေးပါ:")
+48:    if text == BTN_GINST_REMOVE:
+49:        return await _ginst_pick_console(update, context, next_state=GINST_DEL_CONS, prompt="❌ ဖျက်မည့် Console ရွေးပါ:")
+53:    """Show console selection keyboard for a GINST operation."""
+82:            icon = "💾" if "HDD" in r["install_type"] else ("💿" if "Disc" in r["install_type"] else "🔌")
+83:            lines.append(f"{i}. {icon} <b>{r['game_title']}</b>  <i>{r['install_type']}</i>  <code>{r['date']}</code>")
+113:    return GINST_ADD_GAME
+121:    install_type = "HDD"
+138:        asyncio.to_thread(add_console_game, cid, title, install_type),
+
+=== DEEP TRACE: ssd_disc.py ===
+11:    BTN_GINST_DISC, BTN_GINST_HDD, BTN_GINST_SSD,
+12:    BTN_SSD_ADD, BTN_SSD_BLUE, BTN_SSD_GREY,
+13:    BTN_SSD_REMOVE, BTN_SSD_RETURN, BTN_SSD_T1,
+14:    BTN_SSD_TRANSFER, BTN_SSD_VIEW,
+16:    SSD_MENU, SSD_VIEW_SSD, SSD_ADD_SSD, SSD_ADD_GAME, SSD_ADD_TYPE,
+17:    SSD_DEL_SSD, SSD_DEL_GAME,
+18:    SSD_XFER_SSD, SSD_XFER_GAME, SSD_XFER_CONS,
+19:    SSD_RET_CONS, SSD_RET_GAME,
+21:    SSD_NAMES, SSD_BTN_TO_ID,
+27:    """Keyboard with all 3 SSD names + Back."""
+29:        [[BTN_SSD_T1], [BTN_SSD_BLUE], [BTN_SSD_GREY], [BTN_BACK]],
+33:async def step_disc_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+35:    """User picked a game from the disc record list (button label includes disc count)."""
+40:    disc_map = context.user_data.get("disc_map", {})
+41:    target   = disc_map.get(text)
+45:        target = disc_map.get(clean)
+48:        for k, v in disc_map.items():
+55:    context.user_data["disc_target"] = target
+56:    current = target.get("discs", "").strip()
+61:        f"လက်ရှိ disc: <b>{cur_str}</b>\n\n"
+
+=== DEEP TRACE: stock.py full state machine ===
+13:async def cmd_stockin_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+24:async def cmd_stockout_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+35:async def cmd_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+46:async def step_stock_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+78:async def show_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+81:        [BTN_STOCK_OUT],
+82:        [BTN_STOCK_IN_M],
+94:async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+99:    if choice == BTN_STOCK_OUT:
+101:    if choice == BTN_STOCK_IN_M:
+103:    if choice == BTN_INVENTORY_VIEW:
+124:async def show_stock_out_items(update: Update, context: ContextTypes.DEFAULT_TYPE):
+138:async def step_stock_item(update: Update, context: ContextTypes.DEFAULT_TYPE):
+159:async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+=== DEEP TRACE: stock_in.py full state machine ===
+13:async def show_si_items(update: Update, context: ContextTypes.DEFAULT_TYPE):
+25:    return SI_ITEM
+27:async def step_si_item(update: Update, context: ContextTypes.DEFAULT_TYPE):
+34:        return SI_ITEM
+42:    return SI_QTY
+44:async def step_si_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+52:        return SI_QTY
+55:        return SI_QTY
+67:    return SI_COST
+69:async def step_si_cost(update: Update, context: ContextTypes.DEFAULT_TYPE):
+77:        return SI_COST
+80:        return SI_COST
+95:async def show_si_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
+105:    kb = [[BTN_SI_ADD], [BTN_SI_FINISH], [BTN_BACK_MAIN]]
+116:    return SI_CART
+118:async def step_si_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
+123:    if text == BTN_SI_ADD:
+125:    if text == BTN_SI_FINISH:
+128:        kb = [["Cash", "KPay"], [BTN_SI_SPLIT], [BTN_BACK_MAIN]]
+136:        return SI_PAY
+138:    return SI_CART
+140:async def _show_si_review(update, context):
+169:    return SI_CONFIRM
+171:async def step_si_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+177:    if text == BTN_SI_SPLIT:
+191:        return SI_PAY_SPLIT
+195:        return SI_PAY
+202:async def step_si_pay_split(update: Update, context: ContextTypes.DEFAULT_TYPE):
+211:        return SI_PAY_SPLIT
+214:        return SI_PAY_SPLIT
+221:        return SI_PAY_SPLIT
+228:async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+233:        return SI_CONFIRM
+
+=== API/SHEETS TRACE: booking ===
+37:    """Quick sync check: is this console still Active in Console_Booking today?"""
+
+=== API/SHEETS TRACE: console mgmt ===
+/root/psvibe-sale-bot/bot/handlers/games.py:343:    """User entered new value — save to col U of Game_Library sheet."""
+
+=== API/SHEETS TRACE: stock ===
+/root/psvibe-sale-bot/bot/handlers/stock.py:104:        await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
+/root/psvibe-sale-bot/bot/handlers/stock.py:107:            await update.message.reply_text("❌ Inventory data ရယူ၍ မရပါ။")
+/root/psvibe-sale-bot/bot/handlers/stock.py:111:        lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
+/root/psvibe-sale-bot/bot/handlers/stock.py:182:        stock_sh.append_row(
+/root/psvibe-sale-bot/bot/handlers/stock_in.py:246:            stock_in_sh.append_row(

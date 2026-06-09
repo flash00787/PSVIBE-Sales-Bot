@@ -1,0 +1,54 @@
+=== FILE: admin_bookings.py ===
+
+=== FILE: admin.py ===
+
+=== FILE: attendance.py ===
+
+=== FILE: booking_flow.py ===
+
+=== FILE: booking.py ===
+
+=== FILE: broadcast.py ===
+
+=== FILE: commands.py ===
+
+=== FILE: console_mgmt.py ===
+
+=== FILE: console.py ===
+
+=== FILE: discount.py ===
+
+=== FILE: finance.py ===
+
+=== FILE: games.py ===
+
+=== FILE: ginst.py ===
+
+=== FILE: help.py ===
+
+=== FILE: __init__.py ===
+
+=== FILE: main_menu.py ===
+
+=== FILE: members.py ===
+
+=== FILE: notify.py ===
+
+=== FILE: payroll.py ===
+
+=== FILE: referral.py ===
+
+=== FILE: reports.py ===
+
+=== FILE: salary_adv.py ===
+
+=== FILE: sales.py ===
+
+=== FILE: ssd_disc.py ===
+
+=== FILE: stock_in.py ===
+
+=== FILE: stock.py ===
+
+=== FILE: waitlist.py ===
+

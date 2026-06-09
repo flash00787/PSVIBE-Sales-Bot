@@ -1,0 +1,19 @@
+CMD 0: ls /root/psvibe-sale-bot/bot/
+api_client.py
+app.py
+handlers
+__init__.py
+keep_alive.py
+__pycache__
+receipts
+report_generator.py
+
+---
+CMD 1: ls /root/psvibe-sale-bot/bot/main.py 2>&1
+ls: cannot access '/root/psvibe-sale-bot/bot/main.py': No such file or directory
+
+---
+CMD 2: head -5 /root/psvibe-sale-bot/bot/main.py 2>&1
+head: cannot open '/root/psvibe-sale-bot/bot/main.py' for reading: No such file or directory
+
+---

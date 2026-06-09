@@ -1,0 +1,398 @@
+
+=== CUSTOMER_BOT_SERVICE (exit 0) ===
+=== CUSTOMER BOT SERVICE ===
+[Unit]
+Description=PS VIBE Customer Bot (@psvibe_customer_service_bot)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/psvibe-sales-bot
+EnvironmentFile=/etc/psvibe/secrets.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/root/venv/bin/python3 customer_bot/main.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/root/customer.log
+StandardError=append:/root/customer.log
+
+[Install]
+WantedBy=multi-user.target
+---
+● psvibe_customer_bot.service - PS VIBE Customer Bot (@psvibe_customer_service_bot)
+     Loaded: loaded (/etc/systemd/system/psvibe_customer_bot.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Thu 2026-05-28 16:09:15 UTC; 7s ago
+    Process: 462570 ExecStart=/root/venv/bin/python3 customer_bot/main.py (code=exited, status=1/FAILURE)
+   Main PID: 462570 (code=exited, status=1/FAILURE)
+        CPU: 532ms
+---DONE---
+
+
+
+=== N8N_DETAILS (exit 0) ===
+=== N8N DOCKER ===
+ff639deaa514 aungchanmyint-n8n-1 Up 8 hours docker.n8n.io/n8nio/n8n:latest
+---
+---
+construction_bot construction-bot-bot Up 38 minutes
+oc-coco ghcr.io/openclaw/openclaw:latest Up 37 seconds (healthy)
+openclaw-openclaw-cli-1 openclaw:local Up About an hour (healthy)
+openclaw-openclaw-gateway-1 openclaw:local Up About an hour (healthy)
+psvibe-mysql mysql:8.0 Up 3 hours
+aungchanmyint-caddy-1 caddy:latest Up 8 hours
+aungchanmyint-n8n-1 docker.n8n.io/n8nio/n8n:latest Up 8 hours
+oc-nova ghcr.io/openclaw/openclaw:latest Up About an hour (healthy)
+---DONE---
+
+
+
+=== DOCKER_COMPOSE_CONTENTS (exit 0) ===
+=== OPENCLAW DOCKER-COMPOSE ===
+name: openclaw-agents
+
+services:
+  nova:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-nova
+    ports:
+      - "3002:3000"
+    volumes:
+      - /opt/openclaw/nova:/home/node/.openclaw
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=nova-g…2026
+      - DEEPSEEK_API_KEY=sk-e1079b2bdeb54d76b8e04dad46e71513
+      - GEMINI_API_KEY=AIzaSyAI6XE4niET2BTy8E40usnJJEq-zYwGNso
+      - GOOGLE_API_KEY=AIzaSyAI6XE4niET2BTy8E40usnJJEq-zYwGNso
+      - XAI_API_KEY=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
+    labels:
+      - "agent=Nova"
+      - "description=Nova - Ye Yint Oo agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  coco:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-coco
+    ports:
+      - "3003:3000"
+    volumes:
+      - /opt/openclaw/coco:/home/node/.openclaw
+      - /opt/construction-bot:/opt/construction-bot:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=***
+      - DEEPSEEK_API_KEY=sk-b038a6a05f054d15a1764a78334bb21b
+      - GEMINI_API_KEY=AIzaSyDOh_u9NGyx6vjzR1sZY1iIQCVaw8SC3aY
+      - GOOGLE_API_KEY=AIzaSyDOh_u9NGyx6vjzR1sZY1iIQCVaw8SC3aY
+    labels:
+      - "agent=CoCo"
+      - "description=CoCo - Project agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  gayzoelay:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: oc-gayzoelay
+    ports:
+      - "3004:3000"
+    volumes:
+      - /opt/openclaw/gayzoelay:/home/node/.openclaw
+    environment:
+      - TZ=Asia/Yangon
+      - OPENCLAW_GATEWAY_TOKEN=gayzoe…2026
+    labels:
+      - "agent=GayZoeLay"
+      - "description=GayZoeLay - Project agent"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+=== CONSTRUCTION DOCKER-COMPOSE ===
+version: "3.9"
+services:
+  bot:
+    build: .
+    container_name: construction_bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./bot.js:/app/bot.js:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+---DONE---
+
+
+
+=== SCRIPT_FULL (exit 0) ===
+=== clean-coco-processing.sh ===
+#!/bin/bash
+# Auto-cleanup stuck .processing files for CoCo
+# Runs every 5 minutes via cron
+
+LOGFILE="/var/log/coco-cleanup.log"
+COCO_MOUNT="/opt/openclaw/coco"
+
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] Starting cleanup..." >> "$LOGFILE"
+
+# Remove .processing files older than 2 minutes
+if [ -d "$COCO_MOUNT" ]; then
+    find "$COCO_MOUNT" -name "*.processing" -type f -mmin +2 2>/dev/null | while read f; do
+        echo "[$(date "+%Y-%m-%d %H:%M:%S")] REMOVED: $f" >> "$LOGFILE"
+        rm -f "$f"
+    done
+fi
+
+# Also check /root/.openclaw if it exists
+for path in /root/.openclaw /root/openclaw /root/coco; do
+    if [ -d "$path" ]; then
+        find "$path" -name "*.processing" -type f -mmin +2 2>/dev/null | while read f; do
+            echo "[$(date "+%Y-%m-%d %H:%M:%S")] REMOVED: $f" >> "$LOGFILE"
+            rm -f "$f"
+        done
+    fi
+done
+
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] Cleanup complete." >> "$LOGFILE"
+=== check-coco-telegram.sh ===
+#!/bin/bash
+# Check if CoCo processing files are stuck and restart if needed
+
+LOGFILE="/var/log/coco-monitor.log"
+COCO_MOUNT="/opt/openclaw/coco"
+
+STATUS=$(docker inspect oc-coco --format "{{.State.Status}}" 2>/dev/null)
+
+if [ "$STATUS" != "running" ]; then
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] Container status=$STATUS. Starting..." >> "$LOGFILE"
+    docker start oc-coco >> "$LOGFILE" 2>&1
+    exit 0
+fi
+
+# Check for processing files older than 5 minutes
+PROCESSING_COUNT=$(find "$COCO_MOUNT" -name "*.processing" -type f -mmin +5 2>/dev/null | wc -l)
+
+if [ "$PROCESSING_COUNT" -gt 0 ]; then
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] Found $PROCESSING_COUNT stuck processing files. Cleaning and restarting CoCo..." >> "$LOGFILE"
+    find "$COCO_MOUNT" -name "*.processing" -type f -mmin +5 -delete 2>/dev/null
+    docker restart oc-coco >> "$LOGFILE" 2>&1
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] Restart complete." >> "$LOGFILE"
+else
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] OK - no stuck files, container running." >> "$LOGFILE"
+fi
+=== construction-bot-manager.sh ===
+#!/bin/bash
+# Construction Bot Manager for CoCo
+# Access: /opt/construction-bot (bind mount) + /var/run/docker.sock
+
+CB_DIR="/opt/construction-bot"
+CONTAINER="construction_bot"
+ACTION="${1:-status}"
+
+case "$ACTION" in
+  status)
+    if [ -f "$CB_DIR/docker-compose.yml" ]; then
+      echo "Construction bot files: accessible at $CB_DIR"
+      CONTAINER_STATUS=$(docker inspect $CONTAINER --format "{{.State.Status}}" 2>/dev/null)
+      if [ -n "$CONTAINER_STATUS" ]; then
+        HEALTH=$(docker inspect $CONTAINER --format "{{.State.Health.Status}}" 2>/dev/null)
+        echo "Container: $CONTAINER_STATUS (health: ${HEALTH:-N/A})"
+      else
+        echo "Container: not deployed"
+      fi
+    else
+      echo "Construction bot files: not accessible at $CB_DIR"
+    fi
+    ;;
+  start)
+    docker start $CONTAINER 2>/dev/null || (cd "$CB_DIR" && docker compose up -d 2>/dev/null) || (cd "$CB_DIR" && docker-compose up -d 2>/dev/null)
+    ;;
+  stop)
+    docker stop $CONTAINER 2>/dev/null || (cd "$CB_DIR" && docker compose down 2>/dev/null) || (cd "$CB_DIR" && docker-compose down 2>/dev/null)
+    ;;
+  restart)
+    docker restart $CONTAINER 2>/dev/null || (cd "$CB_DIR" && docker compose restart 2>/dev/null) || (cd "$CB_DIR" && docker-compose restart 2>/dev/null)
+    ;;
+  rebuild)
+    cd "$CB_DIR" && (docker compose up -d --build 2>/dev/null || docker-compose up -d --build 2>/dev/null)
+    ;;
+  logs)
+    docker logs $CONTAINER --tail "${2:-50}"
+    ;;
+  follow-logs)
+    docker logs $CONTAINER --tail "${2:-50}" -f
+    ;;
+  files)
+    ls -la "$CB_DIR/${2:-.}"
+    ;;
+  read)
+    cat "$CB_DIR/$2" 2>/dev/null || echo "File not found: $2"
+    ;;
+  env)
+    if [ -f "$CB_DIR/.env" ]; then
+      grep -v -E "TOKEN|KEY|PASSWORD|SECRET" "$CB_DIR/.env" || true
+    else
+      echo "No .env file"
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {status|start|stop|restart|rebuild|logs|follow-logs|files|read|env}"
+    exit 1
+    ;;
+esac
+---DONE---
+
+
+
+=== ROLLBACK_V1 (exit 0) ===
+=== rollback_v1.sh ===
+#!/bin/bash
+# ===================================================================
+# Rollback V1 Script - PS VIBE Sales Bot
+# Restores V1 customer_bot while keeping V2 is_active/handler wrappers
+# Generated: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+# ===================================================================
+set -euo pipefail
+
+SERVICE="psvibe_sales_bot"
+BOT_DIR="/root/psvibe_sales_bot"
+CUSTOMER_DIR="$BOT_DIR/customer_bot"
+BACKUP_DIR="/root/backups"
+LOG_FILE="/root/staging/logs/rollback_v1_$(date +%Y%m%d_%H%M%S).log"
+
+mkdir -p /root/staging/logs
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+echo "=========================================="
+echo "  ROLLBACK V1 - $(date)"
+echo "=========================================="
+echo ""
+
+# ---- Step 1: Stop the service ----
+echo "[1/6] Stopping $SERVICE..."
+if systemctl is-active --quiet "$SERVICE" 2>/dev/null; then
+    systemctl stop "$SERVICE"
+    sleep 2
+    echo "  ✓ Service stopped"
+else
+    echo "  ! Service was not running"
+fi
+
+# Also kill any lingering python processes
+if pgrep -f "psvibe_sales_bot" > /dev/null 2>&1; then
+    pkill -f "psvibe_sales_bot" || true
+    sleep 1
+    echo "  ✓ Killed lingering processes"
+fi
+
+# ---- Step 2: Remove _v1_compat.py ----
+echo "[2/6] Removing _v1_compat.py..."
+V1COMPAT="$CUSTOMER_DIR/_v1_compat.py"
+if [ -f "$V1COMPAT" ]; then
+    rm -f "$V1COMPAT"
+    echo "  ✓ Removed $V1COMPAT"
+else
+    echo "  ! _v1_compat.py not found (already removed?)"
+fi
+
+# ---- Step 3: Restore V1 customer_bot from backup ----
+echo "[3/6] Restoring V1 customer_bot from backup..."
+V1BACKUP="$BACKUP_DIR/v1_customer_bot_original_backup.tar.gz"
+if [ ! -f "$V1BACKUP" ]; then
+    echo "  ✗ ERROR: V1 backup not found at $V1BACKUP"
+    echo "  Available backups:"
+    ls -la "$BACKUP_DIR"/*.tar.gz 2>/dev/null || echo "  (none)"
+    exit 1
+fi
+
+# List what's in the tar before extracting (safety check)
+echo "  Archive contents:"
+tar -tzf "$V1BACKUP" | head -20
+
+# Remove current customer_bot directory contents first
+echo "  Clearing current customer_bot..."
+rm -rf "$CUSTOMER_DIR"/*.py "$CUSTOMER_DIR"/__pycache__ 2>/dev/null || true
+
+# Extract V1 files
+echo "  Extracting V1 backup..."
+tar -xzf "$V1BACKUP" -C /root/psvibe_sales_bot/
+echo "  ✓ V1 files restored"
+
+# ---- Step 4: Restore original __init__.py snapshot ----
+echo "[4/6] Restoring original __init__.py..."
+INIT_SNAP="$BACKUP_DIR/v2_init_py_snapshot.py"
+if [ -f "$INIT_SNAP" ]; then
+    cp "$INIT_SNAP" "$CUSTOMER_DIR/__init__.py"
+    echo "  ✓ __init__.py restored from snapshot"
+else
+    echo "  ✗ WARNING: No __init__.py snapshot at $INIT_SNAP"
+    echo "  Check /root/backups/ for available snapshots:"
+    ls -la "$BACKUP_DIR"/v2_* 2>/dev/null || echo "  (none)"
+fi
+
+# ---- Step 5: Restore original main.py snapshot ----
+echo "[5/6] Restoring original main.py..."
+MAIN_SNAP="$BACKUP_DIR/v2_main_py_snapshot.py"
+if [ -f "$MAIN_SNAP" ]; then
+    cp "$MAIN_SNAP" "$CUSTOMER_DIR/main.py"
+    echo "  ✓ main.py restored from snapshot"
+else
+    echo "  ✗ WARNING: No main.py snapshot at $MAIN_SNAP"
+    echo "  Check /root/backups/ for available snapshots:"
+    ls -la "$BACKUP_DIR"/v2_* 2>/dev/null || echo "  (none)"
+fi
+
+# ---- Step 6: Restart service ----
+echo "[6/6] Restarting $SERVICE..."
+systemctl daemon-reload
+systemctl restart "$SERVICE"
+sleep 2
+
+# ---- Report status ----
+echo ""
+echo "=========================================="
+echo "  ROLLBACK COMPLETE - Status Report"
+echo "=========================================="
+echo ""
+
+# Service status
+echo "Service status:"
+systemctl status "$SERVICE" --no-pager -l 2>/dev/null || systemctl is-active "$SERVICE" 2>/dev/null || echo "  Unable to query"
+
+echo ""
+echo "Files in customer_bot/:"
+ls -la "$CUSTOMER_DIR"/*.py 2>/dev/null || echo "  (no .py files)"
+
+echo ""
+echo "_v1_compat.py present?"
+if [ -f "$CUSTOMER_DIR/_v1_compat.py" ]; then
+    echo "  YES - $(wc -l < "$CUSTOMER_DIR/_v1_compat.py") lines (rollback may have been incomplete!)"
+else
+    echo "  NO - clean V1 state ✓"
+fi
+
+echo ""
+echo "__init__.py head (first 5 lines):"
+head -5 "$CUSTOMER_DIR/__init__.py" 2>/dev/null || echo "  FILE MISSING"
+
+echo ""
+echo "Log saved to: $LOG_FILE"
+echo "Rollback finished at $(date)"
+---DONE---
+
+

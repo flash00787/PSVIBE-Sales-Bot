@@ -1,0 +1,40 @@
+=== TOP UP CONFIRM FIX — COMPLETE REPORT ===
+Date: 2026-06-01 09:44 UTC
+File: /root/psvibe-sales-bot/bot/handlers/members.py
+
+=== FIX PROTOCOL ===
+  Pre-fix:  ✅ fix_protocol.py --start (baseline: 52c15577685e, locked 1 file)
+  Post-fix: ✅ fix_protocol.py --complete (clean, verified, diff-check passed)
+
+=== FIXES APPLIED (5/5) ===
+
+✅ FIX 1: Convert 3 sync gspread calls to async (ROOT CAUSE)
+  Lines 1278-1280: fetch_member_tier, fetch_balance_mins, next_write_row
+  → Wrapped with await asyncio.to_thread() to avoid blocking the event loop
+  
+✅ FIX 2: User feedback on unmatched input at confirm screen
+  Line 1272: Now sends warning message + re-shows keyboard instead of silent return
+  → "⚠️ Top Up ကို အပြီးသတ်ရန် Confirm & Save ကိုသာ နှိပ်ပါ —"
+
+✅ FIX 3: Store background task reference
+  Line 1391: asyncio.create_task(_tu_bg()) now tracked in context.user_data["bg_tasks"]
+  → Prevents orphaned tasks, enables future cleanup
+
+✅ FIX 4: Fix BTN_BACK loop at confirm
+  Line 1269: Now clears tu_kpay, tu_cash, tu_payments, tu_methods before navigating back
+  → Prevents stale data causing infinite loops
+
+✅ FIX 5: Markdown sanitization for tu_name
+  Line 1309: Added tu_name_safe with escaped special chars (_, *, [, ], (, ), `)
+  Line 1325: tu_name → tu_name_safe in Markdown message
+  → Prevents Markdown parse errors from member names with special chars
+
+=== SERVICE STATUS ===
+  Restart:   ✅ psvibe-sale-bot.service restarted
+  Active:    ✅ active (running)
+  PID:       2220210
+  Health:    ✅ Health server on port 8080, cache pre-warming OK
+  Errors:    None in startup logs
+
+=== VERDICT ===
+All 5 fixes applied, verified, committed. Bot running cleanly.

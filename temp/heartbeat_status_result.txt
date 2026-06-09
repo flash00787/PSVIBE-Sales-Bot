@@ -1,0 +1,20 @@
+
+==============================================
+  PSVIBE QUICK STATUS
+  2026-06-02 07:42:25
+==============================================
+
+✅ psvibe-sale-bot.service — active
+✅ psvibe_customer_bot.service — active
+✅ psvibe-api.service — active
+  → 3/3 services active
+
+✅ No recent errors
+🟡 48 pending finding(s)
+
+──────────────────────────────────────────────
+  Status: WARNING
+==============================================
+
+
+Exit Code: 1

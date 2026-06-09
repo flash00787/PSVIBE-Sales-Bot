@@ -1,0 +1,30 @@
+  📡 Hardcoded IPs: 0
+  📁 Hardcoded suspicious paths: 12
+  🐍 Long functions (>200 lines): 6
+  📛 Shadowed function names: 52
+    Shadowed functions:
+      - wrapper: __init__.py:85, __init__.py:223
+      - now_mmt: __init__.py:142, helpers.py:21, report_generator.py:29, time_utils.py:6, time_utils.py:6
+      - log_message: __init__.py:156, keep_alive.py:43
+      - do_GET: __init__.py:164, keep_alive.py:54
+      - do_HEAD: __init__.py:176, keep_alive.py:66
+      - keep_alive: __init__.py:180, keep_alive.py:76
+      - __init__: __init__.py:254, __init__.py:356, report_generator.py:241, ai.py:112, db_manager.py:34
+      - __getattr__: __init__.py:264, __init__.py:360, console_mgmt.py:11
+      - get_games_on_console: __init__.py:701, db_manager.py:252
+      - get_consoles_with_game: __init__.py:723, db_manager.py:260
+    Top long functions:
+      - app.py:86 `main` (432 lines)
+      - sales.py:1028 `step_sale_confirm` (329 lines)
+      - setup.py:47 `import_from_sheets` (318 lines)
+      - prompts.py:126 `_build_ai_system_prompt` (292 lines)
+      - ai.py:441 `_ai_reply` (244 lines)
+
+============================================================
+📊 SUMMARY
+============================================================
+  Async Patterns:       ✅ (0 issues)
+  ConversationHandlers: ✅ (0 issues)
+  Callback Signatures:  ✅ (0 issues)
+  Pattern Issues:       ❌ (165 issues)
+  → ALL PASSED: False

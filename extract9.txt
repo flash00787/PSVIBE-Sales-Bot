@@ -1,0 +1,80 @@
+=== Last 60 lines of finance.py ===
+        return await show_fin_report_menu(update, context)
+    ebit         = data.get("ebit", 0)
+    om_bonus     = data.get("om_bonus", 0)
+    distributable = data.get("distributable_profit", 0)
+    shareholders = data.get("shareholders", [])
+    month_label  = now.strftime("%B %Y")
+    lines = [
+        f"💸 *Profit Sharing — {month_label}*",
+        "━━━━━━━━━━━━━━━━━━",
+        f"💰 Net Profit   : *{ebit:,} Ks*",
+        f"🎯 OM Bonus     : *{om_bonus:,} Ks*",
+        f"📊 Distributable: *{distributable:,} Ks*",
+        "━━━━━━━━━━━━━━━━━━",
+    ]
+    for s in shareholders:
+        name      = s.get("name", "?")
+        pct       = s.get("ownership", 0)
+        dividend  = s.get("dividend", 0)
+        s_bonus   = s.get("om_bonus", 0)
+        total_inc = s.get("total_income", 0)
+        if s_bonus:
+            lines.append(f"👤 {name} ({pct}%) : {dividend:,} + {s_bonus:,} bonus = *{total_inc:,} Ks*")
+        else:
+            lines.append(f"👤 {name} ({pct}%) : {total_inc:,} Ks")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Create all Finance sheets via VPS API."""
+    await update.message.reply_text(
+        "⚙️ Finance Sheets ဆောက်နေသည်...\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Capital Setup | Assets Register | OPEX Log\n"
+        "Accounts | Account Transfers\n"
+        "Payables | Receivables | Advance Staff\n"
+        "Prepaid Expenses | Advance Payments",
+    )
+    result = await asyncio.to_thread(_replit_post, "finance/setup-sheets", {}, 90)
+    if result and result.get("ok"):
+        created = result.get("created", [])
+        skipped = result.get("skipped", [])
+        created_str = ", ".join(created) if created else "None"
+        skipped_str = ", ".join(skipped) if skipped else "None"
+        await update.message.reply_text(
+            f"✅ Finance Sheets ပြင်ဆင်ပြီး!\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"✅ Created : {len(created)} sheets\n"
+            f"⏩ Skipped : {len(skipped)} (ရှိပြီးသား)\n\n"
+            f"Created: {created_str}\n"
+            f"Skipped: {skipped_str}",
+        )
+    else:
+        err = result.get("error", "unknown") if result else "API ချိတ်မရ"
+        await update.message.reply_text(f"❌ Setup မအောင်မြင်ပါ: {err}")
+    return await show_finance_menu(update, context)
+
+async def cmd_finance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /finance — PIN then Finance menu."""
+    return await _pin_then("finance", "Finance", update, context)
+
+
+=== Check if constants defined in root psvibe-sale-bot ===
+/root/psvibe-sale-bot/app.py
+/root/psvibe-sale-bot/check_sheets_access.py
+/root/psvibe-sale-bot/create_refactored_init.py
+/root/psvibe-sale-bot/__init___outer_minimal.py
+/root/psvibe-sale-bot/__init__.py
+/root/psvibe-sale-bot/__init___refactored.py
+/root/psvibe-sale-bot/main_customer.py
+/root/psvibe-sale-bot/main.py
+/root/psvibe-sale-bot/send_daily_report.py
+/root/psvibe-sale-bot/split_handlers_v3.py
+
+=== Search whole project for OPEX_CATEGORIES ===
+/root/psvibe-sale-bot/bot/handlers/finance.py:101:    kb = [[c] for c in OPEX_CATEGORIES] + [NAV_ROW]
+/root/psvibe-sale-bot/bot/handlers/finance.py:117:    if text not in OPEX_CATEGORIES:
+/root/psvibe-sale-bot/handlers/finance.py:97:    kb = [[c] for c in OPEX_CATEGORIES] + [NAV_ROW]
+/root/psvibe-sale-bot/handlers/finance.py:113:    if text not in OPEX_CATEGORIES:
+

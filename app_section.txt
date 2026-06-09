@@ -1,0 +1,87 @@
+'       background: var(--bg); color: var(--text); line-height:1.5; }\n'
+'.header { background: linear-gradient(135deg, #1e1b4b, #111827); padding: 1.5rem 2rem;\n'
+'          border-bottom: 1px solid var(--border); display:flex; justify-content:space-between;\n'
+'          align-items:center; flex-wrap:wrap; gap:1rem; }\n'
+'.header h1 { font-size: 1.75rem; font-weight: 700; }\n'
+'.header h1 span { color: var(--accent); }\n'
+'.header .ts { font-size: 0.85rem; color: var(--dim); }\n'
+'.container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }\n'
+'.kpi-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n'
+'            gap:1rem; margin-bottom: 1.5rem; }\n'
+'.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px;\n'
+'            padding: 1.25rem; }\n'
+'.kpi-card .label { font-size:0.8rem; color:var(--dim); text-transform:uppercase;\n'
+'                   letter-spacing:0.05em; margin-bottom:0.25rem; }\n'
+'.kpi-card .value { font-size:1.75rem; font-weight:700; }\n'
+'.kpi-card .value.accent { color: var(--accent); }\n'
+'.kpi-card .value.green { color: var(--green); }\n'
+'.kpi-card .value.amber { color: var(--amber); }\n'
+'.row { display:grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap:1.5rem; }\n'
+'.panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px;\n'
+'         overflow:hidden; margin-bottom:1.5rem; }\n'
+'.panel h3 { padding:1rem 1.25rem; border-bottom:1px solid var(--border); font-size:1rem;\n'
+'            font-weight:600; }\n'
+'.panel-body { padding:1.25rem; }\n'
+'table { width:100%; border-collapse:collapse; font-size:0.9rem; }\n'
+'th, td { padding:0.6rem 0.75rem; text-align:left; border-bottom:1px solid var(--border); }\n'
+'th { color: var(--dim); font-weight:500; font-size:0.8rem; text-transform:uppercase; }\n'
+'tr:hover { background: rgba(255,255,255,0.02); }\n'
+'.bar { height:8px; border-radius:4px; background:var(--border); overflow:hidden; margin-top:0.25rem; }\n'
+'.bar-fill { height:100%; border-radius:4px; transition: width 0.5s; }\n'
+'.loading { text-align:center; padding:3rem; color:var(--dim); }\n'
+'.error { background: rgba(239,68,68,0.1); color: var(--red); padding:1rem; border-radius:8px; }\n'
+'.footer { text-align:center; padding:2rem; color:var(--dim); font-size:0.8rem;\n'
+'          border-top:1px solid var(--border); margin-top:2rem; }\n'
+'</style>\n'
+'</head>\n'
+'<body>\n'
+'<div class="header">\n'
+'  <h1>🎮 PS <span>VIBE</span> — BI Dashboard</h1>\n'
+'  <div class="ts" id="ts">Loading...</div>\n'
+'</div>\n'
+'<div class="container" id="app"><div class="loading">Loading dashboard data...</div></div>\n'
+'<div class="footer">PS VIBE Gaming Lounge &copy; 2026 · BI Dashboard v3.0</div>\n'
+'<script>\n'
+"const F = (n) => n != null ? Number(n).toLocaleString() : '-';\n"
+"const FKS = (n) => n != null ? Number(n).toLocaleString() + ' Ks' : '-';\n"
+"const P = (n, t) => n != null && t > 0 ? (n/t*100).toFixed(1) + '%' : '0%';\n"
+'\n'
+'async function load() {\n'
+'  try {\n'
+'    const r = await fetch(DASHBOARD_API_URL);\n'
+'    const d = (await r.json()).data;\n'
+"    if (!d) throw new Error('No data');\n"
+'    render(d);\n'
+"    document.getElementById('ts').textContent = 'Generated: ' + d.generated_at;\n"
+'  } catch(e) {\n'
+"    document.getElementById('app').innerHTML =\n"
+'      \'<div class="error">⚠ Failed to load dashboard: \' + e.message + \'</div>\';\n'
+'  }\n'
+'}\n'
+'\n'
+'function render(d) {\n'
+'  const s = d.summary, sales = d.daily_sales, mem = d.member_activity,\n'
+'        con = d.console_usage_today, tup = d.topup_trends_7d;\n'
+"  let h = '';\n"
+'  h += \'<div class="kpi-grid">\';\n'
+"  h += kpi('Today Sales', FKS(s.today_sales_ks), 'accent');\n"
+"  h += kpi('Vouchers', F(s.today_vouchers));\n"
+"  h += kpi('Avg Ticket', FKS(s.today_avg_ticket_ks));\n"
+"  h += kpi('Active Members', F(s.active_members_today), 'green');\n"
+"  h += kpi('Active Consoles', s.active_consoles + '/' + s.total_consoles);\n"
+"  h += kpi('Week Top-ups', FKS(s.week_topup_ks), 'amber');\n"
+"  h += '</div>';\n"
+'\n'
+'  h += \'<div class="row">\';\n'
+'  h += \'<div class="panel"><h3>📊 Today\'s Sales Breakdown</h3><div class="panel-body">\';\n'
+'  if (sales.by_payment && Object.keys(sales.by_payment).length) {\n'
+"    h += '<table><tr><th>Payment</th><th>Count</th><th>Amount</th></tr>';\n"
+'    for (const [k,v] of Object.entries(sales.by_payment)) {\n'
+"      h += '<tr><td>'+k+'</td><td>'+F(v.count)+'</td><td>'+FKS(v.amount)+'</td></tr>';\n"
+'    }\n'
+"    h += '</table>';\n"
+'  } else { h += \'<p style="color:var(--dim)">No sales recorded today</p>\'; }\n'
+"  h += '</div></div>';\n"
+'\n'
+'  h += \'<div class="panel"><h3>👥 Member Activity</h3><div class="panel-body">\';\n'
+"  h += '<table>';\n"

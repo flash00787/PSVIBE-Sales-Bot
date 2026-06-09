@@ -1,0 +1,336 @@
+=== EXPLORING CODEBASE ===
+total 2656
+drwxr-xr-x 10 root root    4096 May 29 07:44 .
+drwxr-xr-x 32 root root    4096 May 29 07:20 ..
+-rw-r--r--  1 root root    3611 May 28 18:45 apply_fixes.py
+-rw-r--r--  1 root root    1342 May 28 18:37 audit_imports.py
+drwxr-xr-x  2 root root    4096 May 28 20:11 backups
+drwxr-xr-x  6 root root    4096 May 29 06:57 bot
+-rw-r--r--  1 root root 2431140 May 29 08:14 bot_status.log
+-rw-r--r--  1 root root    5382 May 27 21:29 check_sheets_access.py
+drwxr-xr-x  4 root root    4096 May 29 06:51 customer_bot
+-rw-r--r--  1 root root       0 May 28 18:37 daily_report.log
+-rw-------  1 root root     780 May 28 16:02 .env
+-rw-r--r--  1 root root    1746 May 28 18:47 fix_init.py
+drwxr-xr-x  8 root root    4096 May 29 07:46 .git
+-rw-r--r--  1 root root     319 May 29 07:45 .gitignore
+-rwxr-xr-x  1 root root    2583 May 28 16:03 main.py
+drwxr-xr-x  2 root root    4096 May 28 20:09 migrations
+drwxr-xr-x  3 root root    4096 May 29 06:52 .mypy_cache
+-rw-r--r--  1 root root     365 May 29 06:52 mypy.ini
+-rw-r--r--  1 root root     670 May 29 07:41 .pre-commit-config.yaml
+-rw-r--r--  1 root root  188416 May 28 23:40 psvibe.db
+drwxr-xr-x  2 root root    4096 May 29 00:28 __pycache__
+-rw-r--r--  1 root root     896 May 28 16:01 requirements.txt
+-rw-r--r--  1 root root    3370 May 28 16:03 send_daily_report.py
+-rw-------  1 root root    2376 May 26 20:36 service_account.json
+drwxr-xr-x  3 root root    4096 May 28 23:44 sqlite
+-rw-r--r--  1 root root    1209 May 29 07:44 V2_STATE.md
+total 792
+drwxr-xr-x  6 root root   4096 May 29 06:57 .
+drwxr-xr-x 10 root root   4096 May 29 07:44 ..
+-rw-r--r--  1 root root  13532 May 28 22:54 api_client.py
+-rw-r--r--  1 root root  13503 May 28 22:52 api_client.py.bak
+-rw-r--r--  1 root root  29984 May 29 07:44 app.py
+-rw-r--r--  1 root root  29748 May 29 07:44 app.py.bak.p3
+-rw-r--r--  1 root root   8967 May 29 06:56 constants.py
+drwxr-xr-x  3 root root   4096 May 29 08:12 handlers
+-rw-r--r--  1 root root   4112 May 29 06:56 helpers.py
+-rw-r--r--  1 root root 105799 May 29 07:44 __init__.py
+-rw-r--r--  1 root root 105675 May 29 07:44 __init__.py.bak
+-rw-r--r--  1 root root  99563 May 28 17:35 __init__.py.bak-20260528-173508
+-rw-r--r--  1 root root 105384 May 29 07:44 __init__.py.bak.20260528_230322
+-rw-r--r--  1 root root 105466 May 29 07:44 __init__.py.bak.p3
+-rw-r--r--  1 root root 105675 May 29 07:44 __init__.py.orig_test
+-rw-r--r--  1 root root   2655 May 27 22:26 keep_alive.py
+drwxr-xr-x  2 root root   4096 May 29 08:09 __pycache__
+drwxr-xr-x  2 root root   4096 May 28 21:56 receipts
+-rw-r--r--  1 root root  26716 May 28 10:20 report_generator.py
+drwxr-xr-x  3 root root   4096 May 28 18:35 utils
+total 1076
+drwxr-xr-x 3 root root   4096 May 29 08:12 .
+drwxr-xr-x 6 root root   4096 May 29 06:57 ..
+-rw-r--r-- 1 root root  10766 May 29 07:44 admin_bookings.py
+-rw-r--r-- 1 root root  23232 May 28 16:13 admin.py
+-rw-r--r-- 1 root root   7998 May 28 16:13 attendance.py
+-rw-r--r-- 1 root root  36025 May 29 07:44 booking_flow.py
+-rw-r--r-- 1 root root  35761 May 29 07:44 booking_flow.py.bak
+-rw-r--r-- 1 root root  46610 May 29 07:44 booking.py
+-rw-rw-rw- 1 root root   6025 May 29 07:44 broadcast.py
+-rw-r--r-- 1 root root   5892 May 28 18:30 broadcast.py.bak
+-rw-r--r-- 1 root root   2244 May 28 22:54 commands.py
+-rw-rw-rw- 1 root root   6777 May 29 07:44 console_mgmt.py
+-rw-r--r-- 1 root root  15379 May 29 07:44 console.py
+-rw-r--r-- 1 root root  15186 May 29 07:44 console.py.bak
+-rw-r--r-- 1 root root  19409 May 28 18:33 discount.py
+-rw-r--r-- 1 root root  19372 May 28 18:30 discount.py.bak
+-rw-r--r-- 1 root root 116743 May 29 07:44 finance.py
+-rw-r--r-- 1 root root 116425 May 29 07:44 finance.py.bak
+-rw-r--r-- 1 root root  18483 May 28 16:13 games.py
+-rw-r--r-- 1 root root  10934 May 29 07:44 ginst.py
+-rw-r--r-- 1 root root   4159 May 29 06:13 help.py
+-rw-r--r-- 1 root root   1350 May 28 18:35 __init__.py
+-rw-r--r-- 1 root root   4763 May 29 08:12 main_menu.py
+-rw-r--r-- 1 root root   4502 May 28 23:13 main_menu.py.bak
+-rw-r--r-- 1 root root   4564 May 29 08:12 main_menu.py.bak.1780042375
+-rw-r--r-- 1 root root   4482 May 29 07:44 main_menu.py.bak.20260528_230615
+-rw-r--r-- 1 root root   4540 May 29 06:30 main_menu.py.test_backup
+-rw-r--r-- 1 root root  49981 May 28 16:13 members.py
+-rw-r--r-- 1 root root   2985 May 29 07:44 notify.py
+-rw-r--r-- 1 root root   3006 May 28 18:30 notify.py.bak
+-rw-r--r-- 1 root root  10109 May 28 16:13 payroll.py
+drwxr-xr-x 2 root root   4096 May 29 08:13 __pycache__
+-rw-r--r-- 1 root root   5928 May 28 18:33 referral.py
+-rw-r--r-- 1 root root   5880 May 28 18:30 referral.py.bak
+-rw-r--r-- 1 root root  16066 May 29 07:44 reports.py
+-rw-r--r-- 1 root root  15615 May 28 18:27 reports.py.bak
+-rw-r--r-- 1 root root   5409 May 28 16:13 salary_adv.py
+-rw-r--r-- 1 root root  66156 May 29 08:13 sales.py
+-rw-r--r-- 1 root root  63273 May 29 07:44 sales.py.bak
+-rw-r--r-- 1 root root  63317 May 29 07:44 sales.py.bak.20260528
+-rw-r--r-- 1 root root  65154 May 29 07:44 sales.py.bak.p2
+-rw-r--r-- 1 root root  21843 May 29 07:44 ssd_disc.py
+-rw-r--r-- 1 root root  13007 May 29 07:44 stock_in.py
+-rw-r--r-- 1 root root  12817 May 28 18:27 stock_in.py.bak
+-rw-r--r-- 1 root root  10748 May 29 07:44 stock.py
+-rw-r--r-- 1 root root  10347 May 28 18:27 stock.py.bak
+-rw-r--r-- 1 root root  13082 May 29 07:44 waitlist.py
+/root/psvibe-sales-bot/apply_fixes.py
+/root/psvibe-sales-bot/audit_imports.py
+/root/psvibe-sales-bot/bot/api_client.py
+/root/psvibe-sales-bot/bot/app.py
+/root/psvibe-sales-bot/bot/constants.py
+/root/psvibe-sales-bot/bot/handlers/admin_bookings.py
+/root/psvibe-sales-bot/bot/handlers/admin.py
+/root/psvibe-sales-bot/bot/handlers/attendance.py
+/root/psvibe-sales-bot/bot/handlers/booking_flow.py
+/root/psvibe-sales-bot/bot/handlers/booking.py
+/root/psvibe-sales-bot/bot/handlers/broadcast.py
+/root/psvibe-sales-bot/bot/handlers/commands.py
+/root/psvibe-sales-bot/bot/handlers/console_mgmt.py
+/root/psvibe-sales-bot/bot/handlers/console.py
+/root/psvibe-sales-bot/bot/handlers/discount.py
+/root/psvibe-sales-bot/bot/handlers/finance.py
+/root/psvibe-sales-bot/bot/handlers/games.py
+/root/psvibe-sales-bot/bot/handlers/ginst.py
+/root/psvibe-sales-bot/bot/handlers/help.py
+/root/psvibe-sales-bot/bot/handlers/__init__.py
+/root/psvibe-sales-bot/bot/handlers/main_menu.py
+/root/psvibe-sales-bot/bot/handlers/members.py
+/root/psvibe-sales-bot/bot/handlers/notify.py
+/root/psvibe-sales-bot/bot/handlers/payroll.py
+/root/psvibe-sales-bot/bot/handlers/referral.py
+/root/psvibe-sales-bot/bot/handlers/reports.py
+/root/psvibe-sales-bot/bot/handlers/salary_adv.py
+/root/psvibe-sales-bot/bot/handlers/sales.py
+/root/psvibe-sales-bot/bot/handlers/ssd_disc.py
+/root/psvibe-sales-bot/bot/handlers/stock_in.py
+/root/psvibe-sales-bot/bot/handlers/stock.py
+/root/psvibe-sales-bot/bot/handlers/waitlist.py
+/root/psvibe-sales-bot/bot/helpers.py
+/root/psvibe-sales-bot/bot/__init__.py
+/root/psvibe-sales-bot/bot/keep_alive.py
+/root/psvibe-sales-bot/bot/report_generator.py
+/root/psvibe-sales-bot/bot/utils/__init__.py
+/root/psvibe-sales-bot/bot/utils/time_utils.py
+/root/psvibe-sales-bot/check_sheets_access.py
+/root/psvibe-sales-bot/customer_bot/ai.py
+/root/psvibe-sales-bot/customer_bot/api.py
+/root/psvibe-sales-bot/customer_bot/booking_handlers.py
+/root/psvibe-sales-bot/customer_bot/booking.py
+/root/psvibe-sales-bot/customer_bot/data/faq.py
+/root/psvibe-sales-bot/customer_bot/data/games.py
+/root/psvibe-sales-bot/customer_bot/data/__init__.py
+/root/psvibe-sales-bot/customer_bot/data/prompts.py
+/root/psvibe-sales-bot/customer_bot/data/time_utils.py
+/root/psvibe-sales-bot/customer_bot/handlers.py
+/root/psvibe-sales-bot/customer_bot/__init__.py
+/root/psvibe-sales-bot/customer_bot/main.py
+/root/psvibe-sales-bot/fix_init.py
+/root/psvibe-sales-bot/main.py
+/root/psvibe-sales-bot/send_daily_report.py
+/root/psvibe-sales-bot/sqlite/db_manager.py
+/root/psvibe-sales-bot/sqlite/setup.py
+pytest 9.0.3
+/root/psvibe-sales-bot/bot/app.py
+/root/psvibe-sales-bot/bot/handlers/admin_bookings.py
+/root/psvibe-sales-bot/bot/handlers/admin.py
+/root/psvibe-sales-bot/bot/handlers/attendance.py
+/root/psvibe-sales-bot/bot/handlers/booking_flow.py
+/root/psvibe-sales-bot/bot/handlers/booking.py
+/root/psvibe-sales-bot/bot/handlers/broadcast.py
+/root/psvibe-sales-bot/bot/handlers/commands.py
+/root/psvibe-sales-bot/bot/handlers/console_mgmt.py
+/root/psvibe-sales-bot/bot/handlers/console.py
+/root/psvibe-sales-bot/bot/handlers/discount.py
+/root/psvibe-sales-bot/bot/handlers/finance.py
+/root/psvibe-sales-bot/bot/handlers/games.py
+/root/psvibe-sales-bot/bot/handlers/ginst.py
+/root/psvibe-sales-bot/bot/handlers/help.py
+/root/psvibe-sales-bot/bot/handlers/main_menu.py
+/root/psvibe-sales-bot/bot/handlers/members.py
+/root/psvibe-sales-bot/bot/handlers/notify.py
+/root/psvibe-sales-bot/bot/handlers/payroll.py
+/root/psvibe-sales-bot/bot/handlers/referral.py
+/root/psvibe-sales-bot/bot/handlers/reports.py
+/root/psvibe-sales-bot/bot/handlers/salary_adv.py
+/root/psvibe-sales-bot/bot/handlers/sales.py
+/root/psvibe-sales-bot/bot/handlers/ssd_disc.py
+/root/psvibe-sales-bot/bot/handlers/stock_in.py
+/root/psvibe-sales-bot/bot/handlers/stock.py
+/root/psvibe-sales-bot/bot/handlers/waitlist.py
+/root/psvibe-sales-bot/bot/helpers.py
+/root/psvibe-sales-bot/bot/__init__.py
+/root/psvibe-sales-bot/customer_bot/ai.py
+/root/psvibe-sales-bot/customer_bot/booking_handlers.py
+/root/psvibe-sales-bot/customer_bot/data/prompts.py
+/root/psvibe-sales-bot/customer_bot/handlers.py
+/root/psvibe-sales-bot/customer_bot/main.py
+#!/usr/bin/env python3
+"""PS VIBE Gaming Lounge — Staff Bot Entry Point."""
+import os
+import sys
+import time
+import signal
+import asyncio
+import logging
+
+from bot import main, keep_alive, ensure_sheet_headers
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.FileHandler("/root/psvibe-sales-bot/bot_status.log"),
+        logging.StreamHandler()
+    ]
+)
+
+if __name__ == "__main__":
+    import subprocess
+
+    _my_pid = os.getpid()
+    _LOCK_PATH = "/tmp/ps_vibe_bot.lock"
+
+    # Kill duplicates
+    try:
+        _result = subprocess.run(
+            ["pgrep", "-f", "python3 main.py"],
+            capture_output=True, text=True,
+        )
+        for _pid_str in _result.stdout.strip().split("\n"):
+            try:
+                _pid = int(_pid_str.strip())
+            except ValueError:
+                continue
+            if _pid == _my_pid:
+                continue
+            logging.warning("Duplicate bot (PID %d) — killing...", _pid)
+            try:
+                os.kill(_pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+        time.sleep(2)
+        for _pid_str in _result.stdout.strip().split("\n"):
+            try:
+                _pid = int(_pid_str.strip())
+            except ValueError:
+                continue
+            if _pid == _my_pid:
+                continue
+            try:
+                os.kill(_pid, signal.SIGKILL)
+                logging.warning("Force-killed PID %d", _pid)
+            except ProcessLookupError:
+                pass
+    except Exception as _e:
+        logging.warning("Process scan failed: %s", _e)
+
+    # PID lock
+    try:
+        with open(_LOCK_PATH, "w") as _lf:
+            _lf.write(str(_my_pid))
+    except Exception as e_:
+        logging.exception("Failed to write PID lock: %s", e_)
+    logging.info("Bot started — PID %d", _my_pid)
+    ensure_sheet_headers()
+
+    # Health server
+    if keep_alive:
+        keep_alive()
+
+    # Run once — systemd handles restarts
+    try:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        main()
+    except KeyboardInterrupt:
+        logging.info("Bot stopped by operator.")
+    except Exception as exc:
+        logging.exception("Bot crashed: %s", exc)
+    finally:
+        try:
+            loop.close()
+        except Exception:
+            pass
+
+    # Cleanup
+    try:
+        os.remove(_LOCK_PATH)
+    except OSError:
+        pass
+    logging.info("Bot process exiting (PID %d).", _my_pid)
+    sys.exit(0)
+aiohappyeyeballs==2.6.2
+aiohttp==3.13.5
+aiosignal==1.4.0
+annotated-types==0.7.0
+anyio==4.13.0
+attrs==26.1.0
+blinker==1.9.0
+certifi==2026.5.20
+cffi==2.0.0
+charset-normalizer==3.4.7
+click==8.4.1
+cryptography==48.0.0
+distro==1.9.0
+Flask==3.1.3
+frozenlist==1.8.0
+google-auth==2.53.0
+google-auth-oauthlib==1.4.0
+google-genai==2.6.0
+gspread==6.2.1
+h11==0.16.0
+httpcore==1.0.9
+httplib2==0.31.2
+httpx==0.28.1
+idna==3.16
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+multidict==6.7.1
+oauth2client==4.1.3
+oauthlib==3.3.1
+propcache==0.5.2
+pyasn1==0.6.3
+pyasn1_modules==0.4.2
+pycparser==3.0
+pydantic==2.13.4
+pydantic_core==2.46.4
+pyparsing==3.3.2
+python-dotenv==1.2.2
+python-telegram-bot==22.7
+requests==2.34.2
+requests-oauthlib==2.0.0
+rsa==4.9.1
+six==1.17.0
+sniffio==1.3.1
+tenacity==9.1.4
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+urllib3==2.7.0
+websockets==16.0
+Werkzeug==3.1.8
+yarl==1.24.2
+=== CREATING DIRECTORIES ===
+conftest.py created

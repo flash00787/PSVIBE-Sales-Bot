@@ -1,0 +1,353 @@
+# TOOLS.md - Local Notes
+
+Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+
+## What Goes Here
+
+Things like:
+
+- Camera names and locations
+- SSH hosts and aliases
+- Preferred voices for TTS
+- Speaker/room names
+- Device nicknames
+- Anything environment-specific
+
+## Contacts
+
+### Friends
+- **You Ko Htet (ယူကိုထက်):** rein020124@gmail.com
+- **Wi Wi (ဝီဝီ):** thirishetpaing.t@gmail.com
+
+### Colleagues / Business
+- **Chan Su Su Hlaing:** chansusuhlaing@gmail.com
+- **Ye Yint Oo:** yeyintoo12345678@gmail.com — Telegram ID: `8336350778`
+- **Nova** — Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup)
+- **Ye Myat (ရဲမြတ်):** yemyat.7.14.1999@gmail.com
+
+## Examples
+
+```markdown
+### Cameras
+
+- living-room → Main area, 180° wide angle
+- front-door → Entrance, motion-triggered
+
+### API Keys
+
+- **Grok (xAI):** `xai-yMs15u1BbMLE19zRPWQ4K4keAcqEaGVdFrVwjwL5dBCDKbM7VslrZxePhhR6evXayOdgzc1s5kFcIdKc`
+  - Subagent role: Researcher (Grok 4.3)
+  - New library/update research & code
+
+- **OpenRouter:** `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`
+  - ✅ Added to `auth-profiles.json` (openrouter:primary)
+  - Subagent role: Reviewer/Fixer (Claude Sonnet 4)
+  - Code error debug when DeepSeek can't solve
+  - **Model ID:** `anthropic/claude-sonnet-4` (NOT `anthropic/claude-sonnet-4-20250514` — date-specific ID expired)
+
+### SSH
+
+- **bot-server-01 (Main VPS):**
+  - Host/IP: `5.223.81.16`
+  - User: `root`
+  - Private Key: `/home/node/.openclaw/workspace/.ssh/id_rsa`
+  - Running Services: Caddy, n8n, agri-bot, Sales-Tele-Bot
+  - Connection Method: Node.js `ssh2` package (installed in workspace)
+  - SSH Secret Key: `S1_PSVIBE_2024`
+
+- **old-vps-01 (DESTROYED):**
+  - Host/IP: `167.71.196.120` (destroyed, per Boss 2026-05-29)
+  - Used password auth: `Freedom2024#RevFlash`
+  - Was running: Three Brothers Construction bot / early PS VIBE bots
+  - Status: ❌ **Destroyed** — all services migrated to main VPS
+
+### Three Brothers Construction Bot
+- **Location:** Main VPS (`5.223.81.16`) — Docker container `construction_bot`
+- **Path:** `/opt/construction-bot/`
+- **File:** `bot.js` (362KB, 6,107 lines — single monolithic Node.js)
+- **Telegram:** @three_brothers_accounting_bot
+- **Git:** `flash00787/three_brothers_construction`
+- **Google Sheet ID:** `19zHR6Ci2jSTZv-svYxk7wvHhhdbJmt_-GJ-g-8ZhtMw`
+- **SA Email:** `accounting-bot@static-smoke-495611-h3.iam.gserviceaccount.com`
+- **Manager:** `/root/scripts/construction-bot-manager.sh` (READ-ONLY mode for CoCo)
+
+### YYO Personal Wallet Bot
+- **Location:** `/root/YYO-Personal-Wallet/bot/` (symlink `/opt/yyo-personal-wallet`)
+- **Service:** `yyo-personal-wallet.service`
+- **Manager:** `/root/scripts/wallet-bot-manager.sh` (READ-ONLY for Nova)
+- **Backup:** `/root/backups/yyo_wallet_bot_20260529.tar.gz`
+- **Nova Access:** Host API only (127.0.0.1:7890), NO SSH key
+
+### Nova Setup
+- **Nova workspace mount:** `/opt/openclaw/nova/` (host) → `/home/node/.openclaw/` (container)
+- **Host API:** `127.0.0.1:7890`
+- **Token file:** `/opt/openclaw/nova/host-api-token.txt` (readable from container as `/home/node/.openclaw/host-api-token.txt`)
+- **Host access script:** `/home/node/.openclaw/host-exec.sh` (no jq dependency)
+- **Nova Access Rules:**
+  - Self-upgrade: FULL
+  - YYO Wallet: READ-ONLY
+  - Construction Bot: NO ACCESS
+
+### PS VIBE Sales Bot (Current Project)
+- **Path:** `/root/psvibe-sales-bot/` (modular, 109 .py files)
+- **Services:** `psvibe-sale-bot.service` | `psvibe_customer_bot.service` | `psvibe-api.service`
+- **Tests:** 33 tests at `/root/psvibe-sales-bot/tests/` (pytest 9.0.3)
+
+### 🏗️ Core Dev Structure Tools (at `/root/coordination/`)
+
+| Tool | Path | Lines | Purpose |
+|------|------|-------|---------|
+| 📊 Flow Analyzer | `flow_analyzer.py` | 742 | State machine analysis, BotState mapping, callback depth |
+| 🗺️ Architecture Mapper | `arch_mapper.py` | 754 | Module dependency graph, circular import detection, Mermaid/DOT |
+| 🔍 Enhanced Validator | `enhanced_validator.py` | 996 | Async pattern check, handler validation, code pattern scanning |
+| 🔧 Import Scanner | `import_scanner.py` | 112 | Import validation, star import detection, cross-module checks |
+| 🧪 Integration Tester | `integration_tester.py` | 120 | 8 health checks (services, imports, git, Python, DB, sheets, telegram) |
+| ⚙️ Fix Safety | `fix_safety.py` | 89 | Pre-fix snapshot (per-file), post-fix verify, auto-rollback |
+| 🧪 Test Runner | `test_runner.py` | 47 | pytest wrapper for CI (runs all 33 tests) |
+| 💚 Status Reporter | `status_reporter.py` | — | Quick health check, service status, error scanning |
+| 📊 Quality Gate | `quality_gate.py` | 227 | Unified quality score (0-100) — 100/100 🟢 |
+| 🔄 Tool Orchestrator | `tool_orchestrator.py` | 207 | Runs 6 tools in dependency order, unified findings |
+| 🛠️ Star Import Fixer | `star_import_fixer.py` | 335 | Incremental star import fix + auto-rollback |
+| 🧠 Smart Import Resolver | `smart_import_resolver.py` | 366 | Transitive dependency resolution (655+268 symbols) |
+| ✅ Auto Verify | `auto_verify.py` | 155 | Post-fix validation, auto-rollback on failure |
+| 🩺 Cron Health | `cron_health.py` | 115 | Hourly cron job monitoring + auto-repair |
+
+### 🚀 Phase 4 — Hybrid Batch Tools (NEW — 2026-05-30)
+
+| Tool | Path | Lines | Purpose |
+|------|------|-------|---------|
+| 🔄 Batch Coordinator | `batch_coordinator.py` | 1200 | **v2** — 11 commands: plan/dispatch/status/merge/rollback/estimate/auto-split/estimate-log/retry/remote/priority |
+| 🔒 Fix Protocol (v2) | `fix_protocol.py` | 120+ | **Upgraded** — Per-file lock now (parallel safe, different files OK) |
+| ⚡ Verify Agent | `verify_agent.py` | — | **Upgraded** — Added `--partial` quick verify + `merge-check` conflict detection |
+| 🔔 Notifier (v2) | `notifier.py` | — | **Upgraded** — Added `send-batch`, `batch-status`, `batch-summary`, `send-tg`, `batch-complete` |
+| 📋 Queue Manager | `queue_manager.py` | **NEW** | Priority queue + dead-letter + auto-dispatch when slots free |
+| ⏱️ Timeout Auto-Split | `timeout_auto_split.py` | 517 | **NEW** — Monitor/split long-running agents, daemon mode |
+| 📊 Dashboard | `dashboard.py` + `dashboard.html` | **NEW** | Self-contained web UI, 5 API endpoints, dark theme PS VIBE |
+
+### 🚀 Workflow Engine (NEW — Phase 3)
+
+| Tool | Path | Lines | Purpose |
+|------|------|-------|---------|
+| 🔄 Workflow Engine | `workflow_engine.py` | 330+ | 4 pipelines with auto-rollback, timeouts, notifications |
+| 📋 Task Bridge | `task_bridge.py` | 185 | Sub-agent ↔ Engine bridge (create/complete tasks) |
+| 🔔 Notifier | `notifier.py` | 155 | Pipeline events → Kora heartbeat notification relay |
+| 🩺 Auto Healer | `auto_healer.py` | 190 | Service watchdog: 3 failures → restart → verify → notify |
+| 🛡️ Fix Protocol | `fix_protocol.py` | 120+ | **MANDATORY pre/post safety** — git check, lock, snapshot → fix → verify → diff check → auto-commit |
+
+### 🚀 Phase 2 Tools
+
+| Tool | Path | Purpose |
+|------|------|---------|
+| 🔄 Auto Git Sync | `auto_git_sync.py` | Auto-commit (dry-run every 6h) |
+| 🛡️ Service Watchdog | `service_watchdog.py` | systemd watchdog (3 services, auto-restart) |
+| 📊 Status Board | `status_board.py` | Real-time JSON snapshot → `status_board.json` |
+| 🖥️ Health Dashboard | `health_dashboard.py` | Comprehensive project overview |
+| ⌛ CPU Watchdog | `cpu_watchdog.sh` | Auto-kill stuck processes >5 min |
+
+**Usage Examples:**
+```bash
+# ── Core Dev Tools ──
+
+# State machine audit (NOTE: use --analyze, NOT --full)
+python3 /root/coordination/flow_analyzer.py --analyze --states --report --check-await
+
+# Circular dependency check
+python3 /root/coordination/arch_mapper.py --circular --dep-text
+
+# Code quality audit (--full IS valid here)
+python3 /root/coordination/enhanced_validator.py --full
+
+# Run single tool pipeline
+python3 /root/coordination/tool_orchestrator.py 2>&1 | tail -20
+
+# Quality Gate (quick mode)
+python3 /root/coordination/quality_gate.py --quick
+
+# ── Workflow Engine ──
+
+# Check status / recent runs
+python3 /root/coordination/workflow_engine.py --status
+
+# Run pipeline
+python3 /root/coordination/workflow_engine.py --run quality
+python3 /root/coordination/workflow_engine.py --run full-audit
+python3 /root/coordination/workflow_engine.py --run safe-fix
+python3 /root/coordination/workflow_engine.py --run auto-deploy
+
+# Retry last failed pipeline
+python3 /root/coordination/workflow_engine.py --retry
+
+# View history with timestamps
+python3 /root/coordination/workflow_engine.py --history
+
+# ── Task Bridge (Sub-agent Integration) ──
+
+# Create a sub-agent task
+python3 /root/coordination/task_bridge.py create --pipeline safe-fix --step "Fix imports" --files handlers/admin.py
+
+# Check pending tasks
+python3 /root/coordination/task_bridge.py list pending
+
+# Mark task complete (done by sub-agent)
+python3 /root/coordination/task_bridge.py complete <task-id> --status ok --message "Fixed"
+
+# ── Notifier ──
+
+# Send notification
+python3 /root/coordination/notifier.py send --title "Pipeline done" --message "4/4 ✅" --level success
+
+# List unread notifications (Kora heartbeat checks this)
+python3 /root/coordination/notifier.py list --unread
+
+# ── Hybrid Batch System (NEW — 2026-05-30) ──
+
+# Estimate: Sequential vs Hybrid time comparison
+python3 /root/coordination/batch_coordinator.py --estimate bot/handlers/admin.py bot/handlers/sales.py
+
+# Auto-Split: Auto-detect dependencies, split into parallel batches
+python3 /root/coordination/batch_coordinator.py --auto-split bot/handlers/admin.py bot/handlers/sales.py bot/handlers/console_mgmt.py
+
+# Plan: Manual dependency analysis
+python3 /root/coordination/batch_coordinator.py --plan
+
+# Dispatch with priority
+python3 /root/coordination/batch_coordinator.py --dispatch batches.json --priority high
+
+# Status: Check active locks + batch progress
+python3 /root/coordination/batch_coordinator.py --status
+
+# Merge: Collect results from all parallel agents
+python3 /root/coordination/batch_coordinator.py --merge
+
+# Smart Retry: Auto-analyze failure type → re-dispatch
+python3 /root/coordination/batch_coordinator.py --retry 2
+
+# Rollback: Per-batch rollback if one fails
+python3 /root/coordination/batch_coordinator.py --rollback
+
+# Estimate log: Track actual vs estimated
+python3 /root/coordination/batch_coordinator.py --estimate-log --batch-id 1 --actual 12
+
+# Cross-bot batching
+python3 /root/coordination/batch_coordinator.py --remote --bots "sale-bot,customer-bot,api-server"
+
+# ── Queue Manager ──
+
+# Enqueue task
+python3 /root/coordination/queue_manager.py --enqueue --task "fix sales.py" --priority high
+
+# List queued tasks
+python3 /root/coordination/queue_manager.py --list
+
+# Dequeue (auto-dispatch when slots free)
+python3 /root/coordination/queue_manager.py --dequeue
+
+# Check dead-letter queue
+python3 /root/coordination/queue_manager.py --dead-letter
+
+# ── Verify Agent (Hybrid mode) ──
+
+# Quick partial verify (during parallel batch)
+python3 /root/coordination/verify_agent.py verify --files "bot/handlers/admin.py" --partial
+
+# Full verify (all 33 tests)
+python3 /root/coordination/verify_agent.py verify --full
+
+# Merge conflict check (before parallel dispatch)
+python3 /root/coordination/verify_agent.py merge-check --files "admin.py" "console_mgmt.py"
+
+# ── Notifier (Hybrid mode) ──
+
+# Send batch notification
+python3 /root/coordination/notifier.py send-batch --batch-id 1 --total 3 --results "admin:OK,sales:OK"
+
+# Check batch status
+python3 /root/coordination/notifier.py batch-status --batch-id 1
+
+# View all batch history
+python3 /root/coordination/notifier.py batch-summary
+
+# ── Fix Protocol (MANDATORY before ANY code fix) ──
+
+# START: pre-fix checks + lock + snapshot (supports per-file lock now)
+python3 /root/coordination/fix_protocol.py --start bot/handlers/admin.py    # different files = parallel OK
+python3 /root/coordination/fix_protocol.py --start bot/handlers/sales.py     # ← runs in parallel with above
+
+# COMPLETE: verify + diff check + auto-commit + release lock
+python3 /root/coordination/fix_protocol.py --complete
+
+# On failure: rollback
+python3 /root/coordination/fix_protocol.py --complete --rollback
+
+# ── Auto Healer ──
+
+# Check and heal if needed
+python3 /root/coordination/auto_healer.py check
+
+# View status
+python3 /root/coordination/auto_healer.py status
+
+# View heal history
+python3 /root/coordination/auto_healer.py history
+
+# ── Other ──
+
+# Safe fix workflow (NOTE: --target-file required, NOT --directory)
+python3 /root/coordination/fix_safety.py snapshot --target-file bot/handlers/main_menu.py
+python3 /root/coordination/fix_safety.py verify --target-file bot/handlers/main_menu.py
+
+# Health dashboard
+python3 /root/coordination/health_dashboard.py
+
+# ── Batch Dashboard (NEW — 2026-05-30) ──
+
+# Start dashboard server (port 9090)
+python3 /root/coordination/dashboard.py --port 9090
+
+# Start with custom history file path
+python3 /root/coordination/dashboard.py --port 9090 --history /tmp/batch_history.json
+
+# The server serves:
+#   /              → dashboard.html (self-contained dark-themed UI)
+#   /api/status    → batch_history.json
+#   /api/estimate  → estimate_history.json
+#   /api/queue     → task_queue.json
+#   /api/health    → health check
+# 
+# Dashboard features:
+#   - Batch history table with hover file tooltips
+#   - Stats cards (total/success/recovered/failed)
+#   - Real-time queue status (auto-refresh every 10s)
+#   - Estimate accuracy chart (CSS bars, no JS libs)
+#   - Dark theme (PS VIBE: black/cyan/magenta)
+#
+# Can run via screen/tmux or systemd
+# Not required for normal operation
+
+# Kill dashboard server
+pkill -f "dashboard.py.*9090"
+```
+
+
+### TTS
+
+- Preferred voice: "Nova" (warm, slightly British)
+- Default speaker: Kitchen HomePod
+```
+
+## Why Separate?
+
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+
+---
+
+Add whatever helps you do your job. This is your cheat sheet.
+
+## Related
+
+- [Agent workspace](/concepts/agent-workspace)
+
+## Gmail Accounts (Full Access)
+1. `chanmyint123456789@gmail.com` — ✅ Active (setup done)
+2. `aungchanmyint.psvibe@gmail.com` — ⏳ Pending setup
+3. `aungchanmyint.shs@gmail.com` — ⏳ Pending setup

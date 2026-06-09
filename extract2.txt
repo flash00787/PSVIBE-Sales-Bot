@@ -1,0 +1,880 @@
+=== FINANCE.PY: FUNCTIONS & SHEET WRITES ===
+13:def get_opex_sh():
+16:def get_assets_sh():
+19:def get_prepaid_fin_sh():
+22:def get_acct_trf_sh():
+25:def get_payables_sh():
+28:def get_receivables_sh():
+31:def get_advpay_sh():
+34:async def show_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+38:        [BTN_FIN_CAPITAL, BTN_FIN_SHAREHOLDER, BTN_FIN_TRANSFER],
+40:        [BTN_FIN_OPEX,    BTN_FIN_ASSET,       BTN_FIN_ASSET_DISPOSE],
+41:        [BTN_FIN_PREPAID],
+43:        [BTN_FIN_PAYABLE, BTN_FIN_SETTLE_PAY],
+44:        [BTN_FIN_RECEIVABLE, BTN_FIN_SETTLE_REC],
+45:        [BTN_FIN_ADVPAY,  BTN_FIN_SETTLE_ADVPAY],
+47:        [BTN_FIN_ACCTS,   BTN_FIN_REPORT],
+49:        [BTN_FIN_SETUP,   BTN_BACK_MAIN],
+60:async def step_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+65:    if choice == BTN_FIN_CAPITAL:
+67:    if choice == BTN_FIN_SHAREHOLDER:
+69:    if choice == BTN_FIN_OPEX:
+71:    if choice == BTN_FIN_ASSET:
+73:    if choice == BTN_FIN_ASSET_DISPOSE:
+75:    if choice == BTN_FIN_PREPAID:
+77:    if choice == BTN_FIN_TRANSFER:
+79:    if choice == BTN_FIN_PAYABLE:
+81:    if choice == BTN_FIN_RECEIVABLE:
+83:    if choice == BTN_FIN_SETTLE_PAY:
+85:    if choice == BTN_FIN_SETTLE_REC:
+87:    if choice == BTN_FIN_ADVPAY:
+89:    if choice == BTN_FIN_SETTLE_ADVPAY:
+91:    if choice == BTN_FIN_ACCTS:
+93:    if choice == BTN_FIN_REPORT:
+95:    if choice == BTN_FIN_SETUP:
+99:async def prompt_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+101:    kb = [[c] for c in OPEX_CATEGORIES] + [NAV_ROW]
+111:async def step_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+117:    if text not in OPEX_CATEGORIES:
+131:async def step_opex_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+145:async def step_opex_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+159:    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+167:async def step_opex_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+177:    if text not in FINANCE_ACCOUNTS:
+200:async def step_opex_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+205:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+211:    if text not in PAY_METHODS:
+232:async def step_opex_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+237:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+250:            sh = get_opex_sh()
+251:            sh.append_row(
+268:async def prompt_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+279:async def step_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+289:    kb = [[c] for c in ASSET_CATEGORIES] + [NAV_ROW]
+297:async def step_asset_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+303:    if text not in ASSET_CATEGORIES:
+317:async def step_asset_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+322:        kb = [[c] for c in ASSET_CATEGORIES] + [NAV_ROW]
+336:async def step_asset_cost(update: Update, context: ContextTypes.DEFAULT_TYPE):
+366:async def step_asset_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+393:async def step_asset_life(update: Update, context: ContextTypes.DEFAULT_TYPE):
+427:async def step_asset_salvage(update: Update, context: ContextTypes.DEFAULT_TYPE):
+445:    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+452:async def step_asset_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+465:    if text not in FINANCE_ACCOUNTS:
+466:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+505:async def step_asset_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+510:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+526:            sh = get_assets_sh()
+527:            sh.append_row(
+547:def _calc_nbv_per_unit(asset: dict, as_of: datetime) -> int:
+560:    start = max(purchase, _BIZ_START)
+567:async def prompt_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+572:            sh = get_assets_sh()
+639:async def step_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+669:async def step_asset_dispose_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+695:async def step_asset_dispose_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+724:async def step_asset_dispose_proceeds(update: Update, context: ContextTypes.DEFAULT_TYPE):
+782:async def step_asset_dispose_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+803:            sh = get_assets_sh()
+833:async def prompt_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+845:async def step_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+860:async def step_prepaid_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+877:async def step_prepaid_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+896:    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+904:async def step_prepaid_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+914:    if text not in FINANCE_ACCOUNTS:
+915:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+931:def _prepaid_add_months(date_str: str, months: int) -> str:
+950:async def step_prepaid_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+955:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+973:async def step_prepaid_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1016:async def step_prepaid_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1034:            sh = get_prepaid_fin_sh()
+1035:            sh.append_row(
+1051:async def prompt_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1053:    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+1063:async def step_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1069:    if text not in FINANCE_ACCOUNTS:
+1073:    to_accts = [a for a in FINANCE_ACCOUNTS if a != text]
+1082:async def step_acct_trf_to(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1088:    if text not in FINANCE_ACCOUNTS:
+1099:async def step_acct_trf_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1104:        to_accts = [a for a in FINANCE_ACCOUNTS if a != context.user_data["fin"].get("trf_from", "")]
+1127:async def step_acct_trf_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1154:async def step_acct_trf_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1172:            sh = get_acct_trf_sh()
+1173:            sh.append_row(
+1189:async def prompt_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1200:async def step_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1214:async def step_pay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1228:async def step_pay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1255:async def step_pay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1266:    kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+1274:async def step_pay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1303:async def step_pay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1308:        kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+1321:            sh = get_payables_sh()
+1322:            sh.append_row(
+1338:async def prompt_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1349:async def step_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1363:async def step_rec_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1377:async def step_rec_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1404:async def step_rec_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1415:    kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+1423:async def step_rec_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1452:async def step_rec_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1457:        kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+1470:            sh = get_receivables_sh()
+1471:            sh.append_row(
+1487:async def show_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+1495:            sh = get_payables_sh() if is_pay else get_receivables_sh()
+1528:    num_kb.append([BTN_FIN_BACK, BTN_CANCEL])
+1535:async def _handle_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+1539:    if text == BTN_FIN_BACK:
+1564:        kb = [[a] for a in FINANCE_ACCOUNTS] + [[BTN_BACK, BTN_CANCEL]]
+1576:async def _show_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+1608:async def _handle_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+1615:    if text not in FINANCE_ACCOUNTS:
+1616:        kb = [[a] for a in FINANCE_ACCOUNTS] + [[BTN_BACK, BTN_CANCEL]]
+1625:async def prompt_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1637:async def step_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1641:    if text == BTN_FIN_BACK or text == "⬅️ Finance Menu":
+1650:async def step_advpay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1667:async def step_advpay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1685:    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+1693:async def step_advpay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1703:    if text not in FINANCE_ACCOUNTS:
+1704:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+1716:async def step_advpay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1721:        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+1732:async def step_advpay_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1762:async def step_advpay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1777:            sh = get_advpay_sh()
+1778:            sh.append_row(
+1795:async def show_advpay_settle(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1800:            sh = get_advpay_sh()
+1825:    num_kb.append([BTN_FIN_BACK, BTN_CANCEL])
+1833:async def step_advpay_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1837:    if text == BTN_FIN_BACK:
+1874:async def step_advpay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1889:            sh = get_advpay_sh()
+1909:async def step_pay_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1912:async def step_rec_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1915:async def step_pay_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1918:async def step_rec_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1921:async def _handle_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+1938:            sh = get_payables_sh() if is_pay else get_receivables_sh()
+1965:async def step_pay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1968:async def step_rec_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1971:def get_capital_sh():
+1974:async def show_shareholder_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+1979:            return get_capital_sh().get_all_values()
+2010:    kb = [["➕ Shareholder ထည့်"], [BTN_FIN_BACK], [BTN_BACK_MAIN]]
+2018:async def step_shareholder_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2022:    if text == BTN_FIN_BACK:
+2028:async def prompt_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2039:async def step_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2045:    if text == BTN_FIN_BACK:
+2061:async def step_share_role(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2080:async def step_share_cap(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2109:async def step_share_own(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2143:async def step_share_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2166:            sh = get_capital_sh()
+2167:            sh.append_row([name, role, cap, own], value_input_option="USER_ENTERED")
+2182:async def prompt_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2194:async def step_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2213:async def step_cap_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2248:async def step_cap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2277:            sh.append_row([acct, acct_type, amt, "Initial Capital"], value_input_option="USER_ENTERED")
+2296:async def show_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2298:        [BTN_FIN_PNL,          BTN_FIN_BS],
+2299:        [BTN_FIN_DEPR,         BTN_FIN_PROFIT_SHARE],
+2300:        [BTN_FIN_BACK],
+2312:async def step_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2314:    if choice == BTN_FIN_BACK:
+2318:    if choice == BTN_FIN_PNL:
+2320:    if choice == BTN_FIN_BS:
+2322:    if choice == BTN_FIN_DEPR:
+2324:    if choice == BTN_FIN_PROFIT_SHARE:
+2328:async def cmd_fin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2396:async def cmd_fin_bs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2440:async def cmd_fin_accts(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2469:async def cmd_fin_depr(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2493:async def cmd_fin_profit_share(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2528:async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+2557:async def cmd_finance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+=== ATTENDANCE.PY ===
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def cmd_setattend_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /setattend — PIN then attendance."""
+    return await _pin_then("setattend", "Attendance", update, context)
+
+async def cmd_setattend(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Start attendance wizard — pick staff to record leave/late for."""
+    context.user_data.clear()
+    staff_list = fetch_staff()
+    context.user_data["attend_staff_list"] = staff_list
+    context.user_data["attend_idx"]        = 0
+    context.user_data["attend_records"]    = {}
+    month_str   = now_mmt().strftime("%Y-%m")
+    month_label = now_mmt().strftime("%B %Y")
+    context.user_data["attend_month"] = month_str
+    kb = [[s] for s in staff_list] + [[BTN_CANCEL]]
+    await update.message.reply_text(
+        f"📅 *Attendance — {month_label}*\n\n"
+        f"ခွင့်ယူ / နောက်ကျ မှတ်တမ်းကို Staff တစ်ယောက်ချင်း ထည့်ပေးပါ\n\n"
+        f"မှတ်မည့် Staff ကို ရွေးပါ -",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_STAFF
+
+async def step_attend_staff(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_DONE:
+        return await _attend_finish(update, context)
+    staff_list = context.user_data.get("attend_staff_list", [])
+    if text not in staff_list:
+        await update.message.reply_text("⚠️ Keyboard မှ Staff ရွေးပေးပါ -")
+        return ATTEND_STAFF
+    context.user_data["attend_current"] = text
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"👤 *{text}*\n\n"
+        f"📅 *ခွင့်ယူ ရက်* ဘယ်နှစ်ရက် ထည့်မည်နည်း?\n"
+        f"_(0 ဆိုရင် Skip နှိပ်ပါ)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_LEAVE
+
+async def step_attend_leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_leave"] = 0
+    else:
+        try:
+            days = int(text)
+            if days < 0:
+                raise ValueError
+            context.user_data["_att_leave"] = days
+        except ValueError:
+            await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ (0 ↑) -")
+            return ATTEND_LEAVE
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"⏰ *နောက်ကျ ကြိမ်* ဘယ်နှစ်ကြိမ်?\n"
+        f"_(0 ဆိုရင် Skip နှိပ်ပါ)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_LATE
+
+async def step_attend_late(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_late"] = 0
+        context.user_data["_att_deduct"] = 500
+        return await _attend_save_and_next(update, context)
+    try:
+        late = int(text)
+        if late < 0:
+            raise ValueError
+        context.user_data["_att_late"] = late
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ (0 ↑) -")
+        return ATTEND_LATE
+    if context.user_data["_att_late"] == 0:
+        context.user_data["_att_deduct"] = 500
+        return await _attend_save_and_next(update, context)
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"💸 *တစ်ကြိမ် နောက်ကျ ဖြတ်တောက်ကြေး*\n"
+        f"_(default 500 Ks — Skip နှိပ်ရင် 500 Ks သုံးမည်)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_DEDUCT
+
+async def step_attend_deduct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_deduct"] = 500
+    else:
+        try:
+            amt = int(text.replace(",", ""))
+            if amt < 0:
+                raise ValueError
+            context.user_data["_att_deduct"] = amt
+        except ValueError:
+            await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ -")
+            return ATTEND_DEDUCT
+    return await _attend_save_and_next(update, context)
+
+async def _attend_save_and_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Save current staff attendance then ask for next staff or finish."""
+    d              = context.user_data
+    staff          = d.get("attend_current", "")
+    leave_days     = d.pop("_att_leave", 0)
+    late_count     = d.pop("_att_late", 0)
+    deduct_per_late= d.pop("_att_deduct", 500)
+    month_str      = d.get("attend_month", now_mmt().strftime("%Y-%m"))
+
+    save_attendance(month_str, staff, leave_days, late_count, deduct_per_late)
+    d.setdefault("attend_records", {})[staff] = {
+        "leave": leave_days, "late": late_count, "deduct": deduct_per_late,
+    }
+
+    remaining = [s for s in d.get("attend_staff_list", []) if s not in d["attend_records"]]
+    if remaining:
+        kb = [[s] for s in remaining] + [[BTN_ATTEND_DONE], [BTN_CANCEL]]
+        await update.message.reply_text(
+            f"✅ *{staff}* — မှတ်တမ်းသိမ်းပြီး\n\n"
+            f"📅 ခွင့်: *{leave_days} ရက်*  ⏰ နောက်ကျ: *{late_count} ကြိမ်*\n\n"
+            f"နောက် Staff ရွေးပါ (သို့မဟုတ် ✅ ပြီးပါပြီ) -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ATTEND_STAFF
+    return await _attend_finish(update, context)
+
+async def _attend_finish(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show summary and exit."""
+    records    = context.user_data.get("attend_records", {})
+    month_str  = context.user_data.get("attend_month", "")
+    month_label= now_mmt().strftime("%B %Y")
+    if not records:
+        await update.message.reply_text("ℹ️ မှတ်တမ်း မထည့်ရသေး — OK ပါ။")
+        return await show_main_menu(update, context)
+    lines = [f"✅ *Attendance Saved — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for s, rec in records.items():
+        lines.append(
+            f"👤 *{s}*\n"
+            f"   📅 ခွင့်: {rec['leave']} ရက်  ⏰ နောက်ကျ: {rec['late']} ကြိမ် ({rec['deduct']:,}/ကြိမ်)"
+        )
+    lines.append("\n_/payroll နဲ့ စစ်ကြည့်နိုင်ပါပြီ_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+
+=== PAYROLL.PY ===
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+def calc_monthly_payroll(month_str: str | None = None) -> list[dict]:
+    """
+    Calculate monthly payroll for all staff.
+    month_str format: 'YYYY-MM' (default = current month).
+    Rules:
+      - New Member card: 1,500 Ks per card registered
+      - Game play bonus (BUSINESS-WIDE total mins):
+          ≥ 90,000 mins (1,500 hrs) → 50,000 Ks each
+          ≥ 120,000 mins (2,000 hrs) → 100,000 Ks each
+      - Food & Drink: daily TOTAL ≥ 50,000 Ks
+          → 5% of amount EXCEEDING 50,000 each day
+    """
+    if month_str is None:
+        month_str = now_mmt().strftime("%Y-%m")
+    year_i, mon_i = int(month_str[:4]), int(month_str[5:7])
+
+    staff_list = fetch_staff()
+    if not staff_list:
+        return []
+
+    # daily_food_total: date_key → total F&D sales for that day (ALL staff combined)
+    daily_food_total: dict[str, int] = {}
+    total_play_mins = 0   # BUSINESS-WIDE sum — col O may be empty for older sessions
+
+    def _parse_date(val: str):
+        for fmt in ("%m/%d/%Y", "%m/%d/%Y"):
+            try:
+                return datetime.strptime(val.strip(), fmt)
+            except ValueError:
+                pass
+        # fallback: try splitting manually for M/D/YYYY
+        try:
+            parts = val.strip().split("/")
+            if len(parts) == 3:
+                return datetime(int(parts[2]), int(parts[0]), int(parts[1]))
+        except Exception:
+            logging.exception("HANDLER_ERROR: datetime_parse")
+        return None
+
+    # ── Sales_Daily: col E=PlayMins (idx4), G=FoodTotal (idx6) ──
+    try:
+        sales_rows = sales_sh.get_all_values()
+        for row in sales_rows[1:]:
+            if len(row) < 7:
+                continue
+            d = _parse_date(row[0])
+            if not d or d.year != year_i or d.month != mon_i:
+                continue
+            day_key = d.strftime("%Y-%m-%d")
+
+            # Sum ALL play_mins for the month (regardless of staff field)
+            total_play_mins += _int(row[4])
+
+            # Food — accumulate daily TOTAL regardless of staff
+            daily_food_total[day_key] = daily_food_total.get(day_key, 0) + _int(row[6])
+    except Exception as e:
+        logging.warning("calc_monthly_payroll sales read: %s", e)
+
+    # ── TopUp_Log: count total new member registrations for the month ──
+    total_nm_count = 0
+    try:
+        topup_rows = topup_sh.get_all_values()
+        for row in topup_rows[1:]:
+            if len(row) < 9:
+                continue
+            if row[8].strip() != "First Purchase":
+                continue
+            d = _parse_date(row[0].strip())
+            if not d or d.year != year_i or d.month != mon_i:
+                continue
+            total_nm_count += 1
+    except Exception as e:
+        logging.warning("calc_monthly_payroll topup read: %s", e)
+
+    # ── Shared commissions (same for ALL staff) ──
+    # New Member: total cards × 1,500 each
+    shared_nm_comm = total_nm_count * 1500
+
+    # Food & Drink: days where cafe total ≥ 50,000 → 5% on amount ABOVE 50,000
+    # e.g. 60,000 → (60,000-50,000)*5% = 500; 120,000 → 70,000*5% = 3,500
+    food_days_qualified = 0
+    shared_food_comm    = 0
+    for daily_total in daily_food_total.values():
+        if daily_total >= 50000:
+            shared_food_comm += int((daily_total - 50000) * 0.05)
+            food_days_qualified += 1
+
+    base_salaries = fetch_base_salaries()
+    attendance    = fetch_attendance(month_str)
+
+    # Business-wide play bonus (same for all staff — total mins not per-staff)
+    play_hrs_total = round(total_play_mins / 60, 1)
+    game_bonus_shared = (
+        100000 if total_play_mins >= 120000 else
+        (50000 if total_play_mins >= 90000 else 0)
+    )
+
+    payroll = []
+    for s in staff_list:
+        commission = game_bonus_shared + shared_nm_comm + shared_food_comm
+        base_sal   = base_salaries.get(s, 0)
+
+        att = attendance.get(s, {})
+        leave_days      = att.get("leave_days", 0)
+        late_count      = att.get("late_count", 0)
+        deduct_per_late = att.get("deduct_per_late", 500)
+        leave_deduct    = int((base_sal / 26) * leave_days) if base_sal > 0 and leave_days > 0 else 0
+        late_deduct     = late_count * deduct_per_late
+        total_deduct    = leave_deduct + late_deduct
+        net_total       = base_sal + commission - total_deduct
+
+        payroll.append({
+            "staff":               s,
+            "base_salary":         base_sal,
+            "play_hrs":            play_hrs_total,
+            "play_mins":           total_play_mins,
+            "game_bonus":          game_bonus_shared,
+            "nm_count":            total_nm_count,
+            "nm_commission":       shared_nm_comm,
+            "food_commission":     shared_food_comm,
+            "food_days_qualified": food_days_qualified,
+            "total_commission":    commission,
+            "leave_days":          leave_days,
+            "late_count":          late_count,
+            "deduct_per_late":     deduct_per_late,
+            "leave_deduct":        leave_deduct,
+            "late_deduct":         late_deduct,
+            "total_deduct":        total_deduct,
+            "grand_total":         net_total,
+            "advance":             0,          # filled below
+            "net_total":           net_total,  # remaining = grand_total - advance
+        })
+
+    # Attach salary advances for this month
+    try:
+        advances = fetch_salary_advances(month_str)
+        for p in payroll:
+            adv_data       = advances.get(p["staff"], {"total": 0, "cash": 0, "kpay": 0})
+            p["advance"]      = adv_data["total"]
+            p["advance_cash"] = adv_data["cash"]
+            p["advance_kpay"] = adv_data["kpay"]
+            p["net_total"]    = max(0, p["grand_total"] - adv_data["total"])
+    except Exception as e:
+        logging.warning("calc_monthly_payroll advances: %s", e)
+
+    return payroll
+
+async def cmd_payroll(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show monthly payroll breakdown for all staff."""
+    month_str   = now_mmt().strftime("%Y-%m")
+    month_label = now_mmt().strftime("%B %Y")
+    await update.message.reply_text("⏳ Payroll တွက်နေသည်...", reply_markup=ReplyKeyboardRemove())
+    try:
+        payroll = calc_monthly_payroll(month_str)
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+        return await show_main_menu(update, context)
+
+    if not payroll:
+        await update.message.reply_text(
+            "⚠️ Staff ဒေတာ မရှိပါ\n\n"
+            "Google Sheet → *Setting* tab:\n"
+            "• S2:S3 — Staff Name ထည့်ပါ\n"
+            "• T2:T3 — Base Salary ထည့်ပါ",
+            parse_mode="Markdown",
+        )
+        return await show_main_menu(update, context)
+
+    lines = [f"💼 *Salary & Payroll — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for p in payroll:
+        if p["play_mins"] >= 120000:
+            bonus_note = "🏆 ≥2,000 hrs"
+        elif p["play_mins"] >= 90000:
+            bonus_note = "🎯 ≥1,500 hrs"
+        else:
+            hrs_left = round((90000 - p["play_mins"]) / 60, 1)
+            bonus_note = f"_{hrs_left:,} hrs လိုသေး_"
+        base_line = f"💵 Base Salary    : *{p['base_salary']:,} Ks*\n" if p["base_salary"] > 0 else ""
+
+        # Deduction lines
+        deduct_lines = ""
+        if p["leave_days"] > 0 or p["late_count"] > 0:
+            deduct_lines += f"─────────────────\n"
+        if p["leave_days"] > 0:
+            deduct_lines += f"📅 ခွင့်ယူ        : *{p['leave_days']} ရက်* → *-{p['leave_deduct']:,} Ks*\n"
+        if p["late_count"] > 0:
+            deduct_lines += f"⏰ နောက်ကျ       : *{p['late_count']} ကြိမ်* × {p['deduct_per_late']:,} → *-{p['late_deduct']:,} Ks*\n"
+        if p["total_deduct"] > 0:
+            deduct_lines += f"📉 ဖြတ်တောက်     : *-{p['total_deduct']:,} Ks*\n"
+
+        lines.append(
+            f"\n👤 *{p['staff']}*\n"
+            f"─────────────────\n"
+            f"{base_line}"
+            f"🎮 Game Play     : *{p['play_hrs']:,.1f} hrs*  {bonus_note}\n"
+            f"   Play Bonus   : *{p['game_bonus']:,} Ks*\n"
+            f"🆕 New Members   : *{p['nm_count']} cards* → *{p['nm_commission']:,} Ks*\n"
+            f"🍔 Food Comm     : *{p['food_days_qualified']} day(s)* → *{p['food_commission']:,} Ks*\n"
+            f"📊 Commission    : *{p['total_commission']:,} Ks*\n"
+            f"{deduct_lines}"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💰 *Gross Payable  : {p['grand_total']:,} Ks*"
+            + (
+                f"\n💸 Advance Paid    : *-{p['advance']:,} Ks*\n"
+                f"💵 *Remaining Pay  : {p['net_total']:,} Ks*"
+                if p.get("advance", 0) > 0 else ""
+            )
+        )
+    lines.append("\n\n_/setattend နဲ့ ခွင့်/နောက်ကျ ထည့်နိုင်သည်_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+async def cmd_payroll_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /payroll — PIN then payroll."""
+    return await _pin_then("payroll", "Payroll", update, context)
+
+async def cmd_kpi_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /kpi — PIN then staff KPI."""
+    return await _pin_then("kpi", "Staff KPI", update, context)
+
+
+=== SALARY_ADV.PY ===
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def step_sal_adv_staff(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_admin_menu(update, context)
+
+    staff_list = fetch_staff()
+    if choice not in staff_list:
+        await update.message.reply_text("❌ Staff မတွေ့ပါ။ ထပ်မံ ရွေးပါ:")
+        return SAL_ADV_STAFF
+
+    context.user_data["sal_adv_staff"] = choice
+    await update.message.reply_text(
+        f"💸 *{choice}* — Salary Advance\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"ပေးမည့် ပမာဏ (Ks) ရိုက်ထည့်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return SAL_ADV_AMT
+
+async def step_sal_adv_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        amt = int(update.message.text.strip().replace(",", "").replace(".", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("❌ ငွေပမာဏ မှန်ကန်စွာ ထည့်ပါ (ဂဏန်းများသာ):")
+        return SAL_ADV_AMT
+
+    context.user_data["sal_adv_amt"] = amt
+    kb = [["💵 Cash", "💙 KPay"], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        f"💸 ပေးချေနည်း ရွေးပါ:\n"
+        f"Amount: *{amt:,} Ks*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SAL_ADV_PAY
+
+async def step_sal_adv_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_admin_menu(update, context)
+
+    if "kpay" in choice.lower() or "KPay" in choice:
+        payment = "KPay"
+    elif "cash" in choice.lower() or "Cash" in choice:
+        payment = "Cash"
+    else:
+        await update.message.reply_text("❌ Cash သို့မဟုတ် KPay ရွေးပါ:")
+        return SAL_ADV_PAY
+
+    context.user_data["sal_adv_pay"] = payment
+    staff     = context.user_data["sal_adv_staff"]
+    amt       = context.user_data["sal_adv_amt"]
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    kb = [["✅ အတည်ပြုမည်"], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        f"💸 *Salary Advance အတည်ပြုချက်*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"👔 Staff    : *{staff}*\n"
+        f"💰 Amount   : *{amt:,} Ks*\n"
+        f"{pay_icon} Payment  : *{payment}*\n"
+        f"📅 Date     : *{today_str}*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"မှန်ပါသလား?",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SAL_ADV_CONFIRM
+
+async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN or choice != "✅ အတည်ပြုမည်":
+        await update.message.reply_text("❌ ပယ်ဖျက်လိုက်သည်။")
+        return await show_admin_menu(update, context)
+
+    staff     = context.user_data.get("sal_adv_staff", "")
+    amt       = context.user_data.get("sal_adv_amt", 0)
+    payment   = context.user_data.get("sal_adv_pay", "Cash")
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    month_str = now_mmt().strftime("%Y-%m")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    try:
+        sh = get_salary_adv_sh()
+        sh.append_row([today_str, staff, amt, payment, ""])
+        advances  = fetch_salary_advances(month_str)
+        staff_adv = advances.get(staff, {"total": 0, "cash": 0, "kpay": 0})
+        cum       = staff_adv["total"]
+        await update.message.reply_text(
+            f"✅ *Salary Advance မှတ်တမ်းသွင်းပြီး*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👔 {staff}\n"
+            f"💰 Amount   : *{amt:,} Ks*\n"
+            f"{pay_icon} Payment  : *{payment}*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"📊 ဒီလ စုစုပေါင်း Advance: *{cum:,} Ks*\n"
+            f"  💵 Cash: {staff_adv['cash']:,} + 💙 KPay: {staff_adv['kpay']:,}\n"
+            f"_(လစာချိန်မှာ ဒီပမာဏ နုတ်မည်)_",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        logging.error("step_sal_adv_confirm: %s", e)
+        await update.message.reply_text(f"❌ Error: {e}")
+
+    context.user_data.pop("sal_adv_staff", None)
+    context.user_data.pop("sal_adv_amt", None)
+    context.user_data.pop("sal_adv_pay", None)
+    return await show_admin_menu(update, context)
+
+
+=== DISCOUNT.PY: FUNCTIONS & SHEET WRITES ===
+12:async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+96:async def prompt_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+131:async def step_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+285:async def step_bundle_foc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+341:async def step_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+=== REPORTS.PY: FUNCTIONS ===
+23:async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
+56:async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
+75:async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
+215:async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+284:async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+355:async def cmd_daily_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+379:async def cmd_weekly_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+403:async def cmd_member_insights(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+=== REFERRAL.PY: FUNCTIONS ===
+12:async def prompt_referral_code(
+19:    existing = fetch_referral_code(member_id)
+36:async def step_referral_code(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+62:            None, save_referral_code, member_id, ""
+95:        all_rows = member_sh.get_all_values()
+115:        None, save_referral_code, member_id, text
+
+=== __init__.py: BUTTON CONSTANTS ===
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+1227:BTN_BACK         = "⬅️ ပြန်သွား"
+1228:BTN_BACK_MAIN    = "⬅️ Main Menu သို့ပြန်"
+1233:BTN_CANCEL       = "❌ Cancel"
+1234:BTN_CONFIRM_SAVE = "✅ Confirm & Save"
+1236:NAV_ROW = [BTN_BACK, BTN_CANCEL]   # appended to every wizard keyboard
+1258:BTN_PROMO_REPORTS = "📊 Promo Reports"
+1284:BTN_PROMO_APPLY      = "🎁 Promotion ထည်သွင်း"
+1295:BTN_CANCEL_BOOKING   = "🚫 Cancel Booking"
+1335:BTN_FIN_OPEX         = "📝 OPEX"
+1336:BTN_FIN_ASSET        = "🏢 Asset"
+1337:BTN_FIN_PREPAID      = "📅 Prepaid"
+1338:BTN_FIN_TRANSFER     = "💸 Transfer"
+1339:BTN_FIN_PAYABLE      = "📤 Payable"
+1340:BTN_FIN_RECEIVABLE   = "📥 Receivable"
+1341:BTN_FIN_REPORT       = "📊 Reports"
+1342:BTN_FIN_SETUP        = "⚙️ Sheet Setup"
+1343:BTN_FIN_PNL          = "📊 P&L Report"
+1344:BTN_FIN_BS           = "🏦 Balance Sheet"
+1345:BTN_FIN_ACCTS        = "💰 Accounts"
+1346:BTN_FIN_DEPR         = "📉 Depreciation"
+1347:BTN_FIN_ASSET_DISPOSE = "🔄 Dispose Asset"
+1348:BTN_FIN_PROFIT_SHARE = "💸 Profit Sharing"
+1349:BTN_FIN_CAPITAL      = "🏦 Capital"
+1350:BTN_FIN_SHAREHOLDER  = "👥 Partners"
+1351:BTN_FIN_SETTLE_PAY   = "✅ Settle Pay"
+1352:BTN_FIN_SETTLE_REC   = "✅ Settle Rec"
+1353:BTN_FIN_ADVPAY       = "💵 Advance"
+1354:BTN_FIN_SETTLE_ADVPAY= "✅ Settle Adv"
+1355:BTN_FIN_BACK         = "⬅️ Finance Menu"
+
+=== __init__.py: STATE CONSTANTS ===
+1052:DISCOUNT = BotState.DISCOUNT
+1082:ATTEND_STAFF = BotState.ATTEND_STAFF
+1089:SAL_ADV_STAFF = BotState.SAL_ADV_STAFF
+1145:FINANCE_MENU = BotState.FINANCE_MENU
+1146:OPEX_CAT = BotState.OPEX_CAT
+1152:ASSET_NAME = BotState.ASSET_NAME
+1166:PREPAID_DESC = BotState.PREPAID_DESC
+1173:ACCT_TRF_FROM = BotState.ACCT_TRF_FROM
+1178:PAY_VENDOR = BotState.PAY_VENDOR
+1184:REC_CUST = BotState.REC_CUST
+1190:FIN_REPORT_MENU = BotState.FIN_REPORT_MENU
+1191:CAP_ACCT = BotState.CAP_ACCT
+1194:SHARE_NAME = BotState.SHARE_NAME
+1199:PAY_SETTLE_LIST = BotState.PAY_SETTLE_LIST
+1202:REC_SETTLE_LIST = BotState.REC_SETTLE_LIST
+1205:ADVPAY_PARTY = BotState.ADVPAY_PARTY
+1214:PROMO_SELECT = BotState.PROMO_SELECT
+1215:BUNDLE_FOC = BotState.BUNDLE_FOC
+1216:REFERRAL_CODE = BotState.REFERRAL_CODE
+
+=== __init__.py: SPECIAL API FUNCTIONS ===
+307:    """Return (or create) the Attendance_Log worksheet."""
+309:        return wb.worksheet("Attendance_Log")
+311:        sh = wb.add_worksheet("Attendance_Log", rows=200, cols=6)
+423:    """Return (or create) the Salary_Advance worksheet.
+427:        return wb.worksheet("Salary_Advance")
+429:        sh = wb.add_worksheet("Salary_Advance", rows=500, cols=5)
+1249:BTN_PAYROLL            = "💰 Payroll"
+1456:def fetch_attendance(month_str: str) -> dict[str, dict]:
+1457:    """Read Attendance_Log for given month. Returns {staff: {leave, late, deduct_per_late}}."""
+1485:    """Insert or update row in Attendance_Log for given month+staff."""
+1932:def fetch_referral_code(member_id: str) -> str:
+1948:def save_referral_code(member_id: str, code: str) -> bool:
+
+=== __init__.py: PAYROLL REPORT FUNCTIONS ===
+27:        api_fetch_base_salaries, api_fetch_attendance, api_fetch_salary_advances,
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+1456:def fetch_attendance(month_str: str) -> dict[str, dict]:
+1459:        result = api_fetch_attendance(month_str)
+1462:        logging.warning("API api_fetch_attendance(month_str) failed, falling back to gspread")
+1480:        logging.warning("fetch_attendance: %s", e)
+1512:def fetch_base_salaries() -> dict[str, int]:
+1515:        result = api_fetch_base_salaries()
+1518:        logging.warning("API api_fetch_base_salaries() failed, falling back to gspread")
+
+=== HANDLERS/__init__.py ===
+"""PS VIBE Bot — Handlers package (Phase 6 refactor).
+Domain-split modules for maintainability.
+
+All handler functions are re-exported for backward compatibility.
+"""
+# ═══════ Domain handler modules ═══════
+
+from .admin import *  # noqa: F401,F403
+from .admin_bookings import *  # noqa: F401,F403
+from .attendance import *  # noqa: F401,F403
+from .booking import *  # noqa: F401,F403
+from .booking_flow import *  # noqa: F401,F403
+from .broadcast import *  # noqa: F401,F403
+from .commands import *  # noqa: F401,F403
+from .console import *  # noqa: F401,F403
+from .console_mgmt import *  # noqa: F401,F403
+from .discount import *  # noqa: F401,F403
+from .finance import *  # noqa: F401,F403
+from .games import *  # noqa: F401,F403
+from .ginst import *  # noqa: F401,F403
+from .help import *  # noqa: F401,F403
+from .main_menu import *  # noqa: F401,F403
+from .members import *  # noqa: F401,F403
+from .notify import *  # noqa: F401,F403
+from .payroll import *  # noqa: F401,F403
+from .referral import *  # noqa: F401,F403
+from .reports import *  # noqa: F401,F403
+from .salary_adv import *  # noqa: F401,F403
+from .sales import *  # noqa: F401,F403
+from .ssd_disc import *  # noqa: F401,F403
+from .stock import *  # noqa: F401,F403
+from .stock_in import *  # noqa: F401,F403
+from .waitlist import *  # noqa: F401,F403
+
+

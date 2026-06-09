@@ -1,0 +1,245 @@
+=== HANDLERS INIT ===
+"""PS VIBE Bot — Handlers package (Phase 6 refactor).
+Domain-split modules for maintainability.
+
+All handler functions are re-exported for backward compatibility.
+"""
+# ═══════ Domain handler modules ═══════
+
+from .admin import *  # noqa: F401,F403
+from .admin_bookings import *  # noqa: F401,F403
+from .attendance import *  # noqa: F401,F403
+from .booking import *  # noqa: F401,F403
+from .booking_flow import *  # noqa: F401,F403
+from .broadcast import *  # noqa: F401,F403
+from .commands import *  # noqa: F401,F403
+from .console import *  # noqa: F401,F403
+from .console_mgmt import *  # noqa: F401,F403
+from .discount import *  # noqa: F401,F403
+from .finance import *  # noqa: F401,F403
+from .games import *  # noqa: F401,F403
+from .ginst import *  # noqa: F401,F403
+from .help import *  # noqa: F401,F403
+from .main_menu import *  # noqa: F401,F403
+from .members import *  # noqa: F401,F403
+from .notify import *  # noqa: F401,F403
+from .payroll import *  # noqa: F401,F403
+from .referral import *  # noqa: F401,F403
+from .reports import *  # noqa: F401,F403
+from .salary_adv import *  # noqa: F401,F403
+from .sales import *  # noqa: F401,F403
+from .ssd_disc import *  # noqa: F401,F403
+from .stock import *  # noqa: F401,F403
+from .stock_in import *  # noqa: F401,F403
+from .waitlist import *  # noqa: F401,F403
+=== HELP.PY ===
+"""PS VIBE Bot — Help, Version & Error Handler.
+"""
+# Using bot.* namespace instead of direct handler imports to avoid circular deps
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+from bot import BOT_VERSION, now_mmt
+
+async def cmd_version(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show the running bot version and build date."""
+    import platform
+    py_ver = platform.python_version()
+    built  = now_mmt().strftime("%Y-%m-%d %H:%M MMT")
+    await update.message.reply_text(
+        f"🤖 *PS Vibe Sales Bot*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📦 Version   : `{BOT_VERSION}`\n"
+        f"🐍 Python    : `{py_ver}`\n"
+        f"🕐 Server time: `{built}`\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"✅ *Latest features:*\n"
+        f"  • Admin CMD PIN (/payroll /kpi /setattend)\n"
+        f"  • Payroll target display in hrs (not mins)\n"
+        f"  • Session repeat reminder loop (5-min cycle)\n"
+        f"  • Inventory cache bust after stock update\n"
+        f"  • Staff breakdown + low-wallet API endpoints\n"
+        f"  • Payroll business-wide play\\_mins total\n"
+        f"  • Per-member exact effective rate\n"
+        f"  • P&L / Cash Flow / Liability reports",
+        parse_mode="Markdown",
+    )
+
+async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show all available commands."""
+    await update.message.reply_text(
+        "📖 *PS Vibe Bot — Commands*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🏠 *Navigation*\n"
+        "/start        — Main Menu ပြမည်\n"
+        "/menu         — Main Menu ပြမည်\n"
+        "/cancel       — လက်ရှိ action ဖျက်သိမ်း\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🎮 *Sales*\n"
+        "/sales        — 📝 New Sale _(shortcut)_\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "💳 *Members*\n"
+        "/member       — Member Management menu\n"
+        "/newmember    — 🆕 New Member Register\n"
+        "/topup        — 💰 Top Up _(shortcut)_\n"
+        "/check        — 🔍 Check Member Info\n"
+        "/ranks        — 📋 View Rank Tier Table\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📊 *Reports*\n"
+        "/report       — 📊 Today's Report\n"
+        "/kpi          — 📈 Staff KPI (ဒီနေ့)\n"
+        "/payroll      — 💰 Monthly Payroll\n"
+        "/setattend    — 📅 ခွင့်ယူ / နောက်ကျ မှတ်တမ်း\n"
+        "/admin        — 🔧 Admin Panel (Stock/Attend/Payroll/KPI)\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📦 *Stock*\n"
+        "/stock        — Stock Update menu\n"
+        "/stockin      — 📥 Stock In (Restock)\n"
+        "/stockout     — 📦 Stock Out\n"
+        "/inventory    — 🗂 Inventory Status\n"
+        "/stocktoday   — 🛒 Items sold today\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "/help         — ဤ command list",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Log all Telegram errors without crashing the bot."""
+    from telegram.error import NetworkError, TimedOut, Conflict
+    err = context.error
+    if isinstance(err, (NetworkError, TimedOut)):
+        logging.warning("Network issue (will auto-retry): %s", err)
+    elif isinstance(err, Conflict):
+        logging.warning("Conflict: another instance is running — will resolve automatically.")
+    else:
+        logging.error("Unhandled error: %s", err, exc_info=err)
+=== GINST.PY top imports ===
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import asyncio, logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+from bot import *
+async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    records = fetch_console_games()
+    count   = len(records)
+    kb = [
+        [BTN_GINST_VIEW],
+        [BTN_GINST_ADD, BTN_GINST_REMOVE],
+        [BTN_BACK],
+    ]
+    await update.message.reply_text(
+        f"🖥️ *Console Install* ({count} မှတ်တမ်း)\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📋 ကြည့် — ဘယ် console မှာ ဘာ ရှိသလဲ\n"
+        "➕ ထည့် — Game install မှတ်သား\n"
+        "❌ ဖျက် — Install မှတ်တမ်း ဖျက်",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return GINST_MENU
+=== COMMANDS.PY ===
+"""PS VIBE Bot — Command shortcut handlers (/cancel, /topup, /member, /check, /newmember, /ranks).
+"""
+# Using bot.* namespace instead of direct handler imports to avoid circular deps
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+
+async def cmd_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "❌ ဖျက်သိမ်းလိုက်ပါပြီ။", reply_markup=ReplyKeyboardRemove()
+    )
+    from bot.handlers.main_menu import show_main_menu
+    return await show_main_menu(update, context)
+
+async def cmd_topup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /topup — jump to Top Up member selection."""
+    context.user_data.clear()
+    from bot.handlers.members import prompt_tu_member
+    return await prompt_tu_member(update, context)
+
+async def cmd_member_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /member — Member Management menu."""
+    context.user_data.clear()
+    from bot.handlers.members import show_mm_menu
+    return await show_mm_menu(update, context)
+=== CONSOLE_MGMT.PY top ===
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+from bot import *
+
+
+
+
+async def show_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    cons  = get_consoles_from_setting()
+    count = len(cons)
+    kb    = [
+        [BTN_LIST_CONSOLE, BTN_ADD_CONSOLE],
+        [BTN_DEL_CONSOLE,  BTN_BACK],
+    ]
+    await update.message.reply_text(
+        f"⚙️ *Console စီမံ* ({count} console)\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Action ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return CON_MGMT_MENU
+
+async def step_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+=== NOTIFY.PY ===
+"""PS VIBE Bot - Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+from bot import *
+
+
+
+
+def _notify_customer(chat_id_or_phone: str, text: str):
+    """Send Telegram message via customer bot token to notify customer."""
+    if not CUSTOMER_BOT_TOKEN or not chat_id_or_phone:
+        return
+    try:
+        import urllib.request as _req
+        payload = json.dumps({
+            "chat_id": chat_id_or_phone,
+            "text": text,
+            "parse_mode": "HTML",
+        }).encode()
+        r = _req.Request(
+            f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )

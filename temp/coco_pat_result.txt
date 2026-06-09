@@ -1,0 +1,74 @@
+[INFO] === Starting GitHub PAT Fix for Three Brothers Construction Bot ===
+[INFO] SSH connection established successfully
+[INFO] Step 1: Checking current git remote...
+[INFO] Remote stdout:
+github	https://YOUR_TOKEN@github.com/flash00787/three_brothers_construction.git (fetch)
+github	https://YOUR_TOKEN@github.com/flash00787/three_brothers_construction.git (push)
+origin	https://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@github.com/flash00787/three_brothers_construction.git (fetch)
+origin	https://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@github.com/flash00787/three_brothers_construction.git (push)
+[INFO] Step 2: Updating remote URL with new PAT...
+[INFO] Remote URL updated successfully
+[INFO] Updated remote:
+github	https://YOUR_TOKEN@github.com/flash00787/three_brothers_construction.git (fetch)
+github	https://YOUR_TOKEN@github.com/flash00787/three_brothers_construction.git (push)
+origin	https://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@github.com/flash00787/three_brothers_construction.git (fetch)
+origin	https://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@github.com/flash00787/three_brothers_construction.git (push)
+[INFO] Step 3: Testing git fetch...
+[INFO] Fetch result:
+From https://github.com/flash00787/three_brothers_construction
+   c909db3..5b07136  main       -> origin/main
+[INFO] Step 4: Checking git status...
+[INFO] Status:
+On branch main
+Your branch is behind 'origin/main' by 86 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   bot.js
+	new file:   clear-data.js
+	modified:   docker-compose.yml
+	new file:   setup-sheets.js
+	modified:   update.sh
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .env.example
+	modified:   .gitignore
+	modified:   Dockerfile
+	modified:   bot.js
+	modified:   clear-data.js
+	modified:   docker-compose.yml
+	modified:   full-setup-sheet.js
+	modified:   package.json
+	modified:   setup-sheets.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.env
+	bot.js.bak2
+	package-lock.json
+	setup-sheet.js
+[INFO] Step 5: Testing git push (dry-run)...
+[INFO] Push result:
+To https://github.com/flash00787/three_brothers_construction.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/flash00787/three_brothers_construction.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[ERROR] PUSH DRY-RUN FAILED
+[INFO] 
+=== FINAL REPORT ===
+[INFO] Fetch success: YES
+[INFO] Push dry-run success: NO
+[INFO] Staged files (5):
+[INFO]   - modified:   bot.js
+[INFO]   - new file:   clear-data.js
+[INFO]   - modified:   docker-compose.yml
+[INFO]   - new file:   setup-sheets.js
+[INFO]   - modified:   update.sh
+
+=== RESULT: OK ===

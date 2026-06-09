@@ -1,0 +1,12 @@
+🔍 Running 8 integration checks...
+
+  ✅ api_health: PASS (1 attempt(s))
+  ✅ api_mysql_health: PASS (1 attempt(s))
+  ✅ sale_bot_active: PASS (1 attempt(s))
+  ✅ customer_bot_active: PASS (1 attempt(s))
+  ✅ api_server_active: PASS (1 attempt(s))
+  ✅ handlers_importable: PASS (1 attempt(s))
+  ✅ api_contracts: PASS (1 attempt(s))
+  ✅ no_journal_errors: PASS (1 attempt(s))
+
+📊 Summary: 8/8 passed

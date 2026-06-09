@@ -1,0 +1,46 @@
+=== FIX CUSTOMER BOT BOOKING + MY BOOKINGS + ADMIN REMINDER ===
+Date: 2026-06-02 05:26 UTC
+
+== Completed ==
+
+✓ Step 1: POST /api/bookings (app.py)
+  - Expanded api_bookings_create() to detect customer bot format (customerName key)
+  - Customer bot: inserts telegram_chat_id, duration_mins, phone, game_name
+  - Staff format: preserved unchanged
+  - Added _notify_booking_received() to notify admin via Telegram
+
+✓ Step 2: ALTER TABLE console_booking
+  - Added columns: telegram_chat_id (VARCHAR 50), duration_mins (INT), phone (VARCHAR 50), game_name (VARCHAR 200)
+
+✓ Step 3: GET /api/bookings/search (patch_routes.py)
+  - Added telegram_chat_id query parameter
+  - SQL SELECT now includes new columns (telegram_chat_id, duration_mins, phone, game_name)
+  - Status default changed from "Active" to "" (empty = all)
+
+✓ Step 4: cmd_mybookings (booking.py)
+  - Fixed: now checks `isinstance(data, dict) and "bookings" in data` and extracts list
+  - Instead of old: `not isinstance(data, list)` which always treated dict response as empty
+
+✓ Step 5: Duplicate booking check (booking_handlers.py)
+  - Fixed: `existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])`
+  - Both the reply keyboard path and callback path fixed
+
+✓ Step 6: Services restarted
+  - psvibe-api.service: active
+  - psvibe_customer_bot.service: active
+
+✓ Step 7: API verified
+  - GET /api/bookings/search?telegram_chat_id=xxx returns {"success":true,"data":{"bookings":[]}}
+
+✓ Step 8: Docs updated
+  - python3 /root/coordination/auto_doc_updater.py --summary "Fixed Customer Bot booking..."
+
+== Files Modified ==
+1. /root/psvibe_api_server/app.py (.bak created)
+2. /root/psvibe_api_server/patch_routes.py (.bak created)
+3. /root/psvibe-sales-bot/customer_bot/booking.py (.bak created)
+4. /root/psvibe-sales-bot/customer_bot/booking_handlers.py (.bak created)
+
+== Verification ==
+All 8 automated checks passed.
+API endpoint functional: returns proper JSON with bookings array.

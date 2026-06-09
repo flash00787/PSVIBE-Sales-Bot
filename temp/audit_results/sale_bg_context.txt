@@ -1,0 +1,131 @@
+                    api_add_stock_out({
+                        "date": today,
+                        "voucher_no": v_no,
+                        "item_name": item["name"],
+                        "qty": item["qty"],
+                        "unit_price": item.get("unit_price", 0),
+                        "subtotal": item.get("subtotal", 0),
+                        "cost_price": cp,
+                        "cost_total": cp * item["qty"],
+                    })
+                except Exception as e:
+                    logging.warning("Stock-out API write failed (GSheet fallback OK): %s", e)
+                stock_sh.append_row(
+                    [today, v_no, item["name"], item["qty"],
+                     item.get("unit_price", 0), item.get("subtotal", 0), cp, cp * item["qty"]],
+                    value_input_option="USER_ENTERED",
+                )
+            if food_sold:
+                update_inv_total_k1()
+                try: _replit_get("stock/current?nocache=1")
+                except Exception: pass
+            # ── Promotions_Log: record if a promotion was applied ────────────────────────
+            if _promo_id and (_disc or _bonus_mins):
+                _replit_post("sheets/promotions-log", {
+                    "date":         today,
+                    "voucher_no":   v_no,
+                    "promo_id":     _promo_id,
+                    "promo_title":  _promo_title,
+                    "member_id":    _m_id,
+                    "console_id":   c_id,
+                    "gross_total":  _d_gross,
+                    "discount_amt": _disc,
+                    "bonus_mins":   _bonus_mins,
+                    "net_total":    net_total,
+                    "staff":        staff_name,
+                })
+            # ── Wallet deduction: subtract wallet_deduct from Card_Wallet Column H ────────
+            if not is_guest and _w_deduct > 0 and _m_id not in ("-", "0 (Guest)"):
+                try:
+                    _wallet_rows = member_sh.get_all_values()
+                    for _wi, _wr in enumerate(_wallet_rows):
+                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
+                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
+                            _new_bal = max(0, _cur_bal - _w_deduct)
+                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+                            _current_j = int(str(_wr[9]).replace(',', '').strip() or 0)
+                            member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
+                            logging.info("wallet_deduct: %s -%d mins → %d", _m_id, _w_deduct, _new_bal)
+                            break
+                except Exception as _be:
+                    logging.error("wallet_deduct_update: %s", _be)
+            # ── Bonus minutes: add to member wallet ──────────────────────────────────────
+            if _bonus_mins and not is_guest and _m_id not in ("-", "0 (Guest)"):
+                try:
+                    _wallet_rows = member_sh.get_all_values()
+                    for _wi, _wr in enumerate(_wallet_rows):
+                        if _wr and len(_wr) > 1 and _wr[1].strip() == _m_id.strip():
+                            _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
+                            _new_bal = _cur_bal + _bonus_mins
+                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+                            _current_i = int(str(_wr[8]).replace(',', '').strip() or 0)
+                            member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
+                            logging.info("bonus_mins: %s +%d mins → %d", _m_id, _bonus_mins, _new_bal)
+                            break
+                except Exception as _be:
+                    logging.error("bonus_mins_wallet_update: %s", _be)
+        try:
+            await asyncio.to_thread(_do)
+        except Exception as _e:
+            logging.error("sale_bg_write: %s", _e)
+    asyncio.create_task(_sale_bg())
+    # ── Mark linked booking as completed ─────────────────────────────────────
+    _linked_bk_id = booking_id
+    if _linked_bk_id and not is_guest:
+        async def _mark_bk_completed():
+            try:
+                await asyncio.to_thread(
+                    _replit_patch,
+                    f"bookings/{_linked_bk_id}/status",
+                    {"status": "completed", "staffNote": f"Session completed — {v_no}"},
+                )
+                logging.info("Booking #%s marked completed via sale %s", _linked_bk_id, v_no)
+            except Exception as _e:
+                logging.warning("mark_bk_completed error: %s", _e)
+        asyncio.create_task(_mark_bk_completed())
+
+    # ── Waitlist notify (non-blocking) ───────────────────────────────────────
+    _wl_cid = c_id
+    if _wl_cid and _wl_cid not in ("-", ""):
+        async def _wl_notify():
+            try:
+                resp = await asyncio.to_thread(
+                    _replit_post, "waitlist/notify", {"console_id": _wl_cid}
+                )
+                if resp and resp.get("notified"):
+                    logging.info("Waitlist notified: %s for console %s",
+                                 resp.get("entry", {}).get("customer_name", "?"), _wl_cid)
+            except Exception as _e:
+                logging.warning("waitlist notify error: %s", _e)
+        asyncio.create_task(_wl_notify())
+
+    # ── Session-end customer notification (non-blocking) ─────────────────────
+    if not is_guest:
+        async def _session_end_notify():
+            try:
+                chat_id = await asyncio.to_thread(get_customer_chat_id, m_id)
+                if chat_id:
+                    await asyncio.to_thread(
+                        _replit_post,
+                        "session-end-notify",
+                        {
+                            "telegram_chat_id": chat_id,
+                            "member_id":        m_id,
+                            "console_id":       c_id,
+                            "duration_mins":    play_mins,
+                            "booking_id":       booking_id,
+                        },
+                    )
+                    logging.info("session_end_notify sent: member=%s", m_id)
+            except Exception as _e:
+                logging.warning("session_end_notify error: %s", _e)
+        asyncio.create_task(_session_end_notify())
+    # ── Low balance alert (non-blocking, member only) ────────────────────────
+    if not is_guest:
+        asyncio.create_task(_check_low_balance_alert(m_id, c_id))
+
+    return await show_main_menu(update, context)
+
+async def cmd_sales_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /sales — new sale entry."""
+    context.user_data.clear()

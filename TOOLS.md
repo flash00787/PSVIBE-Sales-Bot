@@ -1,74 +1,43 @@
-# TOOLS.md - Local Notes
+# TOOLS.md — Local Notes
 
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+## SSH
+- **bot-server-01:** `5.223.81.16` (root@) — Key: `.ssh/id_rsa`
+- **Connection:** Node.js `ssh2` package
 
-## What Goes Here
+## API Keys
+- **Grok (xAI):** `xai-...` — Researcher (Grok 4.3)
+- **OpenRouter:** `sk-or-...` — Claude Sonnet 4 (last resort fixer)
 
-Things like:
+## Bots & Services
+| Bot | Location | Service |
+|-----|----------|---------|
+| PS VIBE Sale Bot | `/root/psvibe-sales-bot/` | `psvibe-sale-bot` |
+| PS VIBE Customer Bot | `/root/psvibe-sales-bot/` | `psvibe_customer_bot` |
+| PS VIBE API | `/root/psvibe_api_server/` | `psvibe-api` |
+| Construction Bot | `/opt/construction-bot/` (Docker) | `@three_brothers_accounting_bot` |
+| YYO Wallet Bot | `/opt/yyo-personal-wallet/` | `yyo-personal-wallet` |
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+## Essential Commands
+```bash
+# Core dev
+python3 /root/coordination/quality_gate.py --quick
+python3 /root/coordination/tool_orchestrator.py 2>&1 | tail -20
 
-## Contacts
+# Workflow
+python3 /root/coordination/workflow_engine.py --run quality|full-audit|safe-fix|auto-deploy
 
-### Friends
-- **You Ko Htet (ယူကိုထက်):** rein020124@gmail.com
+# Fix Protocol (MANDATORY before ANY code fix)
+python3 /root/coordination/fix_protocol.py --start <file>
+python3 /root/coordination/fix_protocol.py --complete
 
-### Colleagues / Business
-- **Chan Su Su Hlaing:** chansusuhlaing@gmail.com
-- **Ye Yint Oo:** yeyintoo12345678@gmail.com — Telegram ID: `8336350778`
-- **Nova** — Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup)
-- **Ye Myat (ရဲမြတ်):** yemyat.7.14.1999@gmail.com
+# Documentation
+python3 /root/coordination/auto_doc_updater.py --summary "Fixed X: ..."
 
-## Examples
-
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### API Keys
-
-- **Grok (xAI):** `xai-yMs15u1BbMLE19zRPWQ4K4keAcqEaGVdFrVwjwL5dBCDKbM7VslrZxePhhR6evXayOdgzc1s5kFcIdKc`
-  - Subagent role: Researcher (Grok 4.3)
-  - New library/update research & code
-
-- **OpenRouter:** `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`
-  - Subagent role: Reviewer/Fixer (Claude Sonnet 4)
-  - Code error debug when DeepSeek can't solve
-  - **Model ID:** `anthropic/claude-sonnet-4` (NOT `anthropic/claude-sonnet-4-20250514` — date-specific ID expired)
-
-### SSH
-
-- **bot-server-01 (Main VPS):**
-  - Host/IP: `5.223.81.16`
-  - User: `root`
-  - Private Key: `/home/node/.openclaw/workspace/.ssh/id_rsa`
-  - Running Services: Caddy, n8n, agri-bot, Personal-Wallet-Tele-Bot, Sales-Tele-Bot
-  - Access Info: SSH password available for `root` user with read/write and sudo privileges.
-  - Connection Method: Node.js `ssh2` package (installed in workspace)
-  - SSH Secret Key: `S1_PSVIBE_2024`
-
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
+# Other
+python3 /root/coordination/check_alerts.py
+sudo /root/psvibe_api_server/run_sync.sh
+python3 /root/coordination/dashboard.py --port 9090
 ```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
-
-## Related
-
-- [Agent workspace](/concepts/agent-workspace)
+> **Full detail:** See `memory/tools-commands.md` for all commands + coordination tool tables
+> **Contacts:** See `memory/contacts.md`
+> **Infrastructure:** See `memory/infrastructure.md`

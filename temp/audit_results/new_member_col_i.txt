@@ -1,0 +1,2 @@
+1176:                        member_sh.update_cell(_ti + 1, 8, bal_mins)
+1178:                        member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)

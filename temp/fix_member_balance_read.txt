@@ -1,0 +1,60 @@
+=== MEMBER BALANCE STALE READ — INVESTIGATION & FIX REPORT ===
+Date: 2026-06-01 11:47-11:55 UTC
+Status: FIXED
+
+ROOT CAUSE:
+  GSheet → MySQL sync was completely broken since at least May 30.
+  run_sync.sh used system `python3` which doesn't have mysql.connector.
+  Every 5-min cron run failed with: ModuleNotFoundError: No module named 'mysql'
+
+  API read path: fetch_member_data() → API (localhost:8000) → MySQL → STALE
+  Fallback to GSheet only happened if MySQL returned None, but it returned
+  OLD data from May 30-31, so the fallback NEVER triggered.
+
+EVIDENCE (before fix):
+  Member    GSheet Col H    MySQL balance_mins    Stale?
+  PSV_A_003     1,185               600             YES (since May 31)
+  PSV_A_001       600               600             OK
+  PSV_A_002       600               600             OK
+  PSV_A_004       600               600             OK
+
+FILES CHANGED:
+  1. /root/psvibe_api_server/run_sync.sh
+     Changed: `python3 sync_service.py` → `./venv/bin/python3 sync_service.py`
+     Backup: /root/psvibe_api_server/run_sync.sh.bak
+
+  2. /root/psvibe_api_server/app.py (3 functions patched):
+     a) _fetch_wallet_mins_from_mysql():
+        - Also selects last_updated
+        - Rejects data if > 10 min stale → forces GSheet fallback
+
+     b) _fetch_balance_mins_from_mysql():
+        - Same staleness check (10 min)
+
+     c) _fetch_member_data_from_mysql():
+        - Rejects data if > 15 min stale → forces GSheet fallback
+        - Logs warning when data is rejected
+
+     Backup: /root/psvibe_api_server/app.py.bak
+
+MANUAL SYNC RUN:
+  All 11 tables synced successfully (111 total rows)
+  PSV_A_003: MySQL 600 → 1,185 mins (corrected)
+
+SERVICES RESTARTED:
+  ✅ psvibe-api — running on port 8000 (uvicorn)
+  ✅ psvibe-sale-bot — running, connected to Telegram
+
+CRON SYNC VERIFIED:
+  Fresh cron run with venv python: ALL PASSED (no errors)
+  Next auto-sync: within 5 minutes
+
+GIT COMMIT: 4dcb714 on psvibe_api_server master
+
+DEFENSE-IN-DEPTH:
+  Layer 1: Fixed sync (venv python) — MySQL stays current
+  Layer 2: Staleness checks — even if sync breaks again,
+           data > 10/15 min old is rejected, API falls back to GSheet
+  Layer 3: GSheet direct read is always the ultimate fallback
+
+=== RESULT: OK ===

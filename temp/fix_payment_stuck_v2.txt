@@ -1,0 +1,48 @@
+# Fix: Stale _extend_pending intercepting PAY_AMOUNT inputs
+
+## Date: 2026-05-31 21:36 UTC
+## Commit: 076459a
+
+## Root Cause
+A stale `_extend_pending_{presser_id}` entry in `context.bot_data` from a previous Custom Extend action causes `handle_custom_extend_reply` (group=-1 in booking_flow.py) to intercept numeric inputs even when the user is in the PAY_AMOUNT state.
+
+The previous fix (adding `expect_chat_id` and chat_id guard) was INCOMPLETE because the stale pending was for the SAME user in the SAME chat — chat IDs match, so the guard passed through and still intercepted.
+
+## Changes Made
+
+### 1. Added `import time` (line 18)
+After `import asyncio`, added `import time` to support `time.time()` for timestamp comparison.
+
+### 2. Added `created_at` timestamp to pending dict (line 615)
+In `cb_extend_timer`, when creating `_extend_pending_{presser_id}`:
+```python
+context.bot_data[f"_extend_pending_{presser_id}"] = {
+    "cid": cid, "member_id": member_id, "chat_id": chat_id,
+    "expect_chat_id": presser_id,
+++  "created_at": time.time(),
+}
+```
+
+### 3. Added 300s timeout guard (lines 726-731)
+In `handle_custom_extend_reply`, after finding pending but before processing:
+```python
+# Stale pending guard: if created > 300s ago, clear and pass through
+if pending.get("created_at") and time.time() - pending["created_at"] > 300:
+    context.bot_data.pop(f"_extend_pending_{presser_id}", None)
+    context.user_data.pop("_extend_pending", None)
+    return  # stale pending — let ConversationHandler handle it
+```
+
+## Verification
+- ✅ py_compile: COMPILE OK
+- ✅ Service restarted: psvibe-sale-bot active/running (PID 2090844)
+- ✅ Git committed: 076459a
+- ⚠️ sales.py step_pay_amount already has error handling (try/except exists)
+
+## How It Works
+1. When Custom Extend button is pressed, `created_at: time.time()` is stored
+2. When any numeric message arrives, `handle_custom_extend_reply` finds the pending entry
+3. If >300 seconds (5 min) have elapsed since creation:
+   - Clears the stale pending from both bot_data and user_data
+   - Returns None (allowing ConversationHandler to process normally)
+4. The PAY_AMOUNT state handler can now receive the "30000" input

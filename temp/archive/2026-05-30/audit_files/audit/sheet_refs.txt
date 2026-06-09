@@ -1,0 +1,90 @@
+131:__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'STAFF_SELECT', 'NM_STAFF', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'BotState']
+209:sales_sh    = wb.worksheet("Sales_Daily")
+210:setting_sh  = wb.worksheet("Setting")
+211:member_sh   = wb.worksheet("Card_Wallet")
+212:stock_sh    = wb.worksheet("Stock_Out")
+213:stock_in_sh = wb.worksheet("Stock_In")
+214:topup_sh    = wb.worksheet("TopUp_Log")
+215:inv_sh      = wb.worksheet("Inventory")
+232:        ws = RetryingWorksheet(wb.worksheet("Sales_Daily"))
+246:    def __init__(self, worksheet):
+247:        self._wrapped = worksheet
+251:        # Delegate to the underlying worksheet for everything not on the wrapper.
+281:# Also wrap Spreadsheet.add_worksheet
+282:if hasattr(gspread.Spreadsheet, 'add_worksheet'):
+283:    _orig_add = gspread.Spreadsheet.add_worksheet
+287:        gspread.Spreadsheet.add_worksheet = _wrapped_add
+293:    """Batch update multiple cells across worksheets in 1 API call.
+296:    Uses the spreadsheet from the given worksheet reference.
+307:    """Return (or create) the Attendance_Log worksheet."""
+309:        return wb.worksheet("Attendance_Log")
+311:        sh = wb.add_worksheet("Attendance_Log", rows=200, cols=6)
+316:def get_booking_sh():
+317:    """Return (or create) the Console_Booking worksheet.
+322:        return wb.worksheet("Console_Booking")
+324:        sh = wb.add_worksheet("Console_Booking", rows=1000, cols=9)
+348:        names  = setting_sh.col_values(8)[1:]   # H
+349:        types  = setting_sh.col_values(9)[1:]   # I (console type)
+350:        mults  = setting_sh.col_values(10)[1:]  # J (multiplier)
+367:            _BK_ROWS = get_booking_sh().get("A:I")  # OPT: range-restricted read (A=ID through I=notes)
+395:    sh     = get_booking_sh()
+409:        sh   = get_booking_sh()
+423:    """Return (or create) the Salary_Advance worksheet.
+427:        return wb.worksheet("Salary_Advance")
+429:        sh = wb.add_worksheet("Salary_Advance", rows=500, cols=5)
+435:    """Return the Game_Library worksheet (must already exist with correct layout).
+440:    return wb.worksheet("Game_Library")
+513:def get_console_games_sh():
+514:    """Return (or create) the Console_Games worksheet.
+518:        return wb.worksheet("Console_Games")
+520:        sh = wb.add_worksheet("Console_Games", rows=1000, cols=5)
+535:            _CGAME_ROWS = get_console_games_sh().get("A:E")  # OPT: range-restricted (A=console through E=notes)
+623:        sh   = get_booking_sh()
+702:        sh   = get_console_games_sh()
+716:        sh   = get_console_games_sh()
+741:        sh   = wb.worksheet("Game_Library")
+804:        sh   = get_booking_sh()
+818:        names    = setting_sh.col_values(8)      # includes header row
+820:        setting_sh.update(f"H{next_row}:J{next_row}",
+832:        names = setting_sh.col_values(8)
+836:                setting_sh.update(f"H{row}:J{row}", [["", "", ""]])
+846:        names = setting_sh.col_values(8)[1:]
+847:        types = setting_sh.col_values(9)[1:]
+848:        mults = setting_sh.col_values(10)[1:]
+1365:        sh   = get_console_games_sh()
+1452:    raw = member_sh.col_values(2)[1:]
+1506:        vals = setting_sh.col_values(19)[1:]  # col S = index 19 (1-based)
+1520:        staff   = setting_sh.col_values(19)[1:]   # S = staff names
+1521:        salaries = setting_sh.col_values(20)[1:]  # T = base salaries
+1541:        if not member_sh.cell(1, 11).value:
+1545:        if not setting_sh.cell(1, 19).value:
+1547:        if not setting_sh.cell(1, 20).value:
+1551:        existing = [v.strip() for v in setting_sh.col_values(19)[1:] if v.strip()]
+1553:            setting_sh.update("S2:T3", [["Staff A", "0"], ["Staff B", "0"]])
+1696:        _MBR_ROWS = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+1739:        raw = setting_sh.cell(30, 2).value  # B30 = "Allowed Staff IDs"
+1777:    return _int(setting_sh.cell(2, 2).value)
+1791:        price = _int(setting_sh.cell(20, 2).value)
+1792:        mins  = _int(setting_sh.cell(21, 2).value)
+1807:    names  = setting_sh.col_values(4)[1:]
+1808:    prices = setting_sh.col_values(5)[1:]
+1821:    names = setting_sh.col_values(4)[1:]
+1822:    costs = setting_sh.col_values(6)[1:]
+1837:        console_names = setting_sh.col_values(8)[1:]
+1838:        multipliers   = setting_sh.col_values(10)[1:]
+1858:        master   = _int(setting_sh.cell(3, 13).value)
+1859:        immortal = _int(setting_sh.cell(4, 13).value)
+1940:        rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+1951:        rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+1956:                    member_sh.update_cell(1, 17, "Referral_Code")
+1957:                member_sh.update_cell(i, 17, code.strip())
+1975:        rows = member_sh.get("A:H")  # OPT: range-restricted read (A=row_no through H=wallet_mins)
+2005:        rows = member_sh.get("A:L")  # OPT: range-restricted read (A=row_no through L=effective_rate)
+2008:                member_sh.update_cell(i, 12, round(new_rate, 4))
+2128:        rows = setting_sh.get("O2:R5")
+2172:        col_a = member_sh.col_values(1)[1:]   # skip header
+2184:def next_write_row(worksheet):
+2185:    """Return the next empty row number for a worksheet.
+2188:    return len(worksheet.col_values(2)) + 1
+2201:        ids = [v.strip() for v in member_sh.col_values(2)[1:] if v.strip()]
+2225:        rows = setting_sh.get("O1:R5")

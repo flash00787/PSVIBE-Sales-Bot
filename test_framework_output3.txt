@@ -1,0 +1,14 @@
+=== VERIFICATION ===
+total 48
+drwxr-xr-x  2 root root 4096 May 29 08:47 .
+drwxr-xr-x 11 root root 4096 May 29 08:45 ..
+-rw-r--r--  1 root root 3871 May 29 08:45 conftest.py
+-rw-r--r--  1 root root 3588 May 29 08:47 test_booking.py
+-rw-r--r--  1 root root 3847 May 29 08:47 test_finance.py
+-rw-r--r--  1 root root 5561 May 29 08:47 test_main_menu.py
+-rw-r--r--  1 root root 3361 May 29 08:47 test_members.py
+-rw-r--r--  1 root root 3405 May 29 08:47 test_reports.py
+-rw-r--r--  1 root root 5128 May 29 08:47 test_sales.py
+-rw-r--r--  1 root root 3069 May 29 08:47 test_stock.py
+-rw-r--r-- 1 root root 115 May 29 08:45 /root/psvibe-sales-bot/pytest.ini
+-rw-r--r-- 1 root root 1488 May 29 08:47 /root/coordination/test_runner.py

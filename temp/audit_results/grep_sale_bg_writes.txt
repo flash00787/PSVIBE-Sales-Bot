@@ -1,0 +1,14 @@
+9:    _replit_get, _replit_patch, _replit_post, calc_duration, cmd_cancel,
+25:    from bot.api_client import api_add_sales_record, api_add_stock_out
+27:    def api_add_sales_record(data): return None
+28:    def api_add_stock_out(data): return None
+1200:                api_add_sales_record({
+1218:            sales_sh.batch_update(
+1230:                    api_add_stock_out({
+1253:                _replit_post("sheets/promotions-log", {
+1274:                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+1276:                            member_sh.update_cell(_wi + 1, 10, _current_j + _w_deduct)
+1289:                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+1291:                            member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
+1322:                    _replit_post, "waitlist/notify", {"console_id": _wl_cid}
+1338:                        _replit_post,

@@ -1,0 +1,2 @@
+active
+root      340787  0.2  0.5 176628 85424 ?        Ssl  10:20   0:14 /root/psvibe_api_server/venv/bin/python3 /root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000

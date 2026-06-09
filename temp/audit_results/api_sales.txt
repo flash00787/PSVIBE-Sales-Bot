@@ -1,0 +1,40 @@
+188:            return mysql_query("SELECT * FROM member_wallets")
+198:            return mysql_query_one("SELECT * FROM member_wallets WHERE member_id = %s", (member_id,))
+234:def _fetch_wallet_mins_from_mysql(member_id):
+238:            row = mysql_query_one("SELECT balance_mins FROM member_wallets WHERE member_id = %s", (member_id,))
+247:    """Try MySQL first, return data or None (same as wallet_mins live read)."""
+250:            row = mysql_query_one("SELECT balance_mins FROM member_wallets WHERE member_id = %s", (member_id,))
+258:def _fetch_daily_sales_from_mysql(date_str=None):
+263:                return mysql_query("SELECT * FROM sales_daily WHERE date = %s", (date_str,))
+264:            return mysql_query("SELECT * FROM sales_daily")
+369:    """Return consolidated member data (name, phone, email, rank, wallet, spend) from Card_Wallet."""
+378:            "wallet_mins": data.get("balance_mins", data.get("wallet_mins")),
+387:                wallet_mins = int_safe(row[7]) if len(row) > 7 and row[7].strip() else None
+403:                    "rank_raw": rank_raw, "wallet_mins": wallet_mins,
+413:#  fetch_wallet_mins
+415:@app.get("/api/fetch_wallet_mins/{member_id}", tags=["Members"])
+416:async def api_fetch_wallet_mins(member_id: str, auth=Depends(verify_api_key)):
+417:    """Fetch wallet balance in mins for a member (col I, formula)."""
+418:    data = _fetch_wallet_mins_from_mysql(member_id)
+438:    """Fetch wallet balance in mins (live read, bypasses cache)."""
+851:                "deduct_per_late": int_safe(row[4]) if len(row) > 4 and row[4].strip() else 500,
+1110:        deduct_per_late = req.get("deduct_per_late", 500)
+1117:                sh.update(f"A{i}:E{i}", [[month_str, staff, leave_days, late_count, deduct_per_late]])
+1121:            sh.append_row([month_str, staff, leave_days, late_count, deduct_per_late])
+1170:        receipt_dir = "/root/psvibe-sales-bot/bot/receipts"
+1462:@app.get("/api/analytics/daily_sales", tags=["Analytics"])
+1463:async def api_analytics_daily_sales(
+1467:    """Return today's (or specified date's) sales KPIs from Sales_Daily."""
+1468:    data = _fetch_daily_sales_from_mysql(date)
+1472:        from analytics import get_daily_sales
+1473:        return ok(get_daily_sales(date))
+1494:    """Return member activity stats: total members, tier distribution, active today, wallet totals."""
+1527:    """Return weekly trends: sales, top-ups, and console usage aggregated by week."""
+1529:        from analytics import get_topup_trends, get_console_usage, get_daily_sales
+1556:        total = 0; active = 0; wallet = 0; revenue = 0
+1558:            row = mysql_query_one("SELECT COUNT(*) as c FROM member_wallets")
+1562:                row = mysql_query_one("SELECT COUNT(DISTINCT member_id) as c FROM sales_daily WHERE sale_date = %s", (today_mmt,))
+1566:                    row = mysql_query_one("SELECT COUNT(DISTINCT member_id) as c FROM sales_daily WHERE date = %s", (today_mmt,))
+1570:            row = mysql_query_one("SELECT SUM(balance_mins) as s FROM member_wallets")
+1571:            wallet = int(row["s"] or 0) if row else 0
+1573:                row = mysql_query_one("SELECT COALESCE(SUM(CAST(amount AS DECIMAL(12,0))),0) as s FROM sales_daily WHERE sale_date = %s", (today_mmt,))

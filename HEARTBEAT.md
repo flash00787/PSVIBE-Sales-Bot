@@ -1,36 +1,34 @@
 # HEARTBEAT.md — Periodic Tasks
 
-## 🤖 Automated Scripts (Run at every ~4h heartbeat)
-
+## 🩺 Unified Health Monitor (Hourly auto-check)
 ```bash
-# 1. Check stuck sub-agents
+python3 /home/node/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
+```
+
+## 🤖 Automated Scripts (Every ~4h heartbeat)
+```bash
+python3 /home/node/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
 python3 /home/node/.openclaw/workspace/memory/heartbeat_routine.py
-
-# 2. Consolidate daily logs to MEMORY.md
 python3 /home/node/.openclaw/workspace/memory/consolidator.py --all
+python3 /root/coordination/notifier.py list --unread
+python3 /root/coordination/task_bridge.py list pending
 ```
 
-## 🧠 Memory Maintenance (Every ~4 hours)
-1. ✅ Run `heartbeat_routine.py` — checks stuck/pending sub-agents
-2. ✅ Run `consolidator.py --all` — extracts daily log summaries
-3. Review recent daily files (`memory/YYYY-MM-DD.md`) — new significant events?
-4. Consolidate learnings into MEMORY.md (distill, don't duplicate)
-5. Prune outdated entries from MEMORY.md
-6. Update `memory/heartbeat-state.json` with results
-
-## ✅ Sub-agent Check
-- Any sub-agent still running past expected timeout? (>30 min = stuck)
-- Any partial/failed entries that need follow-up?
-  - Use: `python3 /home/node/.openclaw/workspace/memory/task_retry.py <task-id>`
-- Spawn a fix sub-agent if needed (Pro model only!)
-- Report stuck tasks to Boss if found
-
-## ✍️ Session Persistence
-- If session has significant activity → write to daily memory file
-- Update `memory/session-memory.md` with current state
-- Update `memory/session-tracker-last.md` with last run timestamp
-
-## ⚙️ Boot Protocol (Run at session start)
+## 🧹 Stale Lock Cleanup
 ```bash
-python3 /home/node/.openclaw/workspace/memory/boot_protocol.py
+bash /home/node/.openclaw/workspace/memory/cleanup_session_locks.sh
 ```
+
+## ✅ Heartbeat Checklist
+- [ ] Run health monitor (quick check)
+- [ ] Run heartbeat_routine (stuck agents)
+- [ ] Run consolidator (daily logs)
+- [ ] Check workflow notifications
+- [ ] Check pending tasks
+- [ ] Check health alerts: `python3 /root/coordination/check_alerts.py`
+- [ ] Check stale locks cleanup
+- [ ] Check queue manager: `python3 /root/coordination/queue_manager.py --dead-letter`
+- [ ] Check sub-agent fallback rate (>3 = report Boss)
+
+> **Full procedures:** See `memory/heartbeat-procedures.md`
+> **Post-task SOP:** See `POST_TASK_SOP.md`

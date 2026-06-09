@@ -1,0 +1,1630 @@
+==> admin_bookings.py <==
+
+    b = result
+    if action == "approve":
+        console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
+        game_line    = f"\n🕹️ Game: <b>{b.get('gameName') or '—'}</b>" if b.get("gameName") else ""
+        msg = (
+            f"✅ <b>Booking #{bk_id} Confirmed!</b>\n"
+            f"👤 {b['customerName']}  📞 {b['phone']}\n"
+            f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
+            f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins"
+            f"{game_line}{console_line}\n"
+            f"<i>Approved by {staff_name}</i>"
+            f"{install_warn}"
+        )
+    else:
+        msg = (
+            f"❌ <b>Booking #{bk_id} Rejected</b>\n"
+            f"👤 {b['customerName']}  📅 {b['date']}  🕐 {b['timeSlot']}\n"
+            f"<i>Rejected by {staff_name}</i>"
+        )
+    await reply_fn(msg, parse_mode="HTML")
+
+    # Notify customer via customer bot if we have their chat_id
+    tg_chat = b.get("telegramChatId") or ""
+    if tg_chat and CUSTOMER_BOT_TOKEN:
+        if action == "approve":
+            console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
+            cust_msg = (
+                f"🎉 <b>Booking Confirmed!</b>\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"🎫 Booking #{bk_id}\n"
+                f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
+                f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins{console_line}\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
+                f"<i>10 မိနစ်အလိုတွင် reminder ပို့ပါမည်</i>"
+            )
+        else:
+            cust_msg = (
+                f"😔 <b>Booking #{bk_id} Rejected</b>\n\n"
+                f"📅 {b['date']}  🕐 {b['timeSlot']}\n\n"
+                f"အဆင်မပြေသဖြင့် တောင်းပန်ပါသည်။ နောက်ထပ် booking ထပ်မံလုပ်နိုင်ပါသည်။\n"
+                f"📞 ဆက်သွယ်ရန် @psvibeofficial"
+            )
+        _notify_customer(tg_chat, cust_msg)
+
+    # Fire n8n reminder when customer booking approved
+    if action == "approve":
+        asyncio.create_task(_post_n8n_booking_reminder(
+            bk_id=bk_id,
+            customer_name=b.get("customerName", ""),
+            phone=b.get("phone", ""),
+            console_id=b.get("consoleId") or "",
+            console_type=b.get("consoleType", ""),
+            date_str=b.get("date", ""),
+            time_slot=b.get("timeSlot", ""),
+            duration_mins=int(b.get("durationMins") or 60),
+            tg_chat=tg_chat,
+        ))
+
+
+==> admin.py <==
+        pnl  = _replit_get("sheets/pnl")
+        if "error" in liab:
+            raise RuntimeError(liab["error"])
+
+        active_count    = liab["active_count"]
+        total_mins      = liab["total_mins"]
+        total_liability = liab["total_liability"]
+        alltime_rate    = liab["alltime_rate"]
+        stored_count    = liab["stored_rate_count"]
+        top_members     = liab["top_members"]   # [{id,name,mins,liability,rate}]
+
+        # This month movement from pnl cache
+        month_label = now_mmt().strftime("%B %Y")
+        if "error" not in pnl:
+            adv_received = pnl["topup_amount"]
+            adv_earned   = pnl["member_game_rev"]
+            adv_net      = adv_received - adv_earned
+            move_sec = (
+                f"📅 *This Month ({month_label})*\n"
+                f"  📨 Topups     : +{adv_received:,} Ks\n"
+                f"  ✅ Earned     : ({adv_earned:,} Ks)\n"
+                f"  {'⬆️' if adv_net>=0 else '⬇️'} Net Change : "
+                f"{'+'if adv_net>=0 else ''}{adv_net:,} Ks\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+            )
+        else:
+            move_sec = ""
+
+        top_lines = "\n".join(
+            f"  {i+1}. *{m['id']}* {m['name'][:9]} — {m['mins']:,} min × {m['rate']:.1f} = *{m['liability']:,} Ks*"
+            for i, m in enumerate(top_members)
+        )
+        top_sec = f"🔝 *Top 5 (Highest Liability)*\n{top_lines}\n━━━━━━━━━━━━━━━━━━\n" if top_lines else ""
+
+        rate_note = (
+            f"   _(Per-member rate — {stored_count} stored, "
+            f"{max(0, active_count - stored_count)} using avg fallback)_\n"
+        )
+
+        msg = (
+            f"💳 *Advance Payment Liability*\n"
+            f"_(Member Card Unearned Balances)_\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👥 Active Members   : *{active_count}*\n"
+            f"⏱️ Total Balance    : *{total_mins:,} mins*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💰 *Total Liability : {total_liability:,} Ks*\n"
+            f"{rate_note}"
+            f"   _(ကျွန်တော်တို့ Member များသို့ ရှင်ပေးရဦးမည့် ငွေ)_\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"{move_sec}"
+            f"{top_sec}"
+        )
+    except Exception as e:
+        logging.error("cmd_admin_liability: %s", e)
+        msg = f"❌ Error: {e}"
+
+    await update.message.reply_text(msg, parse_mode="Markdown")
+    return await show_admin_menu(update, context)
+
+
+==> attendance.py <==
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_deduct"] = 500
+    else:
+        try:
+            amt = int(text.replace(",", ""))
+            if amt < 0:
+                raise ValueError
+            context.user_data["_att_deduct"] = amt
+        except ValueError:
+            await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ -")
+            return ATTEND_DEDUCT
+    return await _attend_save_and_next(update, context)
+
+async def _attend_save_and_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Save current staff attendance then ask for next staff or finish."""
+    d              = context.user_data
+    staff          = d.get("attend_current", "")
+    leave_days     = d.pop("_att_leave", 0)
+    late_count     = d.pop("_att_late", 0)
+    deduct_per_late= d.pop("_att_deduct", 500)
+    month_str      = d.get("attend_month", now_mmt().strftime("%Y-%m"))
+
+    save_attendance(month_str, staff, leave_days, late_count, deduct_per_late)
+    d.setdefault("attend_records", {})[staff] = {
+        "leave": leave_days, "late": late_count, "deduct": deduct_per_late,
+    }
+
+    remaining = [s for s in d.get("attend_staff_list", []) if s not in d["attend_records"]]
+    if remaining:
+        kb = [[s] for s in remaining] + [[BTN_ATTEND_DONE], [BTN_CANCEL]]
+        await update.message.reply_text(
+            f"✅ *{staff}* — မှတ်တမ်းသိမ်းပြီး\n\n"
+            f"📅 ခွင့်: *{leave_days} ရက်*  ⏰ နောက်ကျ: *{late_count} ကြိမ်*\n\n"
+            f"နောက် Staff ရွေးပါ (သို့မဟုတ် ✅ ပြီးပါပြီ) -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ATTEND_STAFF
+    return await _attend_finish(update, context)
+
+async def _attend_finish(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show summary and exit."""
+    records    = context.user_data.get("attend_records", {})
+    month_str  = context.user_data.get("attend_month", "")
+    month_label= now_mmt().strftime("%B %Y")
+    if not records:
+        await update.message.reply_text("ℹ️ မှတ်တမ်း မထည့်ရသေး — OK ပါ။")
+        return await show_main_menu(update, context)
+    lines = [f"✅ *Attendance Saved — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for s, rec in records.items():
+        lines.append(
+            f"👤 *{s}*\n"
+            f"   📅 ခွင့်: {rec['leave']} ရက်  ⏰ နောက်ကျ: {rec['late']} ကြိမ် ({rec['deduct']:,}/ကြိမ်)"
+        )
+    lines.append("\n_/payroll နဲ့ စစ်ကြည့်နိုင်ပါပြီ_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+
+==> booking_flow.py <==
+        # Mark as no-show
+        patch_body = {"status": "no_show", "staffNote": f"No-Show — marked by {staff_name}"}
+        result = await asyncio.to_thread(_replit_patch, f"bookings/{bk_id}/status", patch_body)
+        if result:
+            await query.edit_message_text(
+                f"❌ <b>No-Show မှတ်တမ်းတင်ပြီ</b>\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"📋 Booking: <b>#{bk_id}</b>\n"
+                f"👤 Marked by: <b>{staff_name}</b>\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"Console ကို Free ဖြင့် ပြန်ထားနိုင်သည်",
+                parse_mode="HTML",
+            )
+        else:
+            await query.edit_message_text(f"⚠️ Update မအောင်မြင်ပါ — Booking #{bk_id}")
+
+async def handle_custom_extend_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Group -1 handler: captures the free-text reply for custom extend minutes.
+    Uses bot_data keyed by presser_id so it works from personal chat after
+    Custom button is pressed in group chat.
+    Raises ApplicationHandlerStop to prevent ConversationHandler from also firing."""
+    user = update.effective_user
+    if not user:
+        return
+    presser_id = user.id
+    # Look up pending extend by the message sender's user ID
+    pending = context.bot_data.get(f"_extend_pending_{presser_id}")
+    # Also check legacy user_data for backwards compat
+    if pending is None:
+        pending = context.user_data.get("_extend_pending")
+    if pending is None:
+        return  # not our message — let ConversationHandler handle it normally
+
+    text = update.message.text.strip()
+    try:
+        extra_mins = int(text)
+        if extra_mins <= 0:
+            raise ValueError
+    except ValueError:
+        # Silently ignore non-number messages (other staff chatting in group)
+        # Only reply with error if it looks like an intentional number attempt
+        if text.isdigit() or (text.startswith("-") and text[1:].isdigit()):
+            await update.message.reply_text(
+                "⚠️ မှန်ကန်သော ဂဏနး ရိုက်ထည့်ပါ (ဥပမာ: 45)",
+                reply_markup=ForceReply(selective=True, input_field_placeholder="မိနစ် (ဥပမာ 45)"),
+            )
+            raise ApplicationHandlerStop
+        # Non-numeric text — not our message, pass through
+        return
+
+    cid       = pending["cid"]
+    member_id = pending["member_id"]
+    chat_id   = pending["chat_id"]
+    # Clear from bot_data (keyed by presser_id)
+    context.bot_data.pop(f"_extend_pending_{presser_id}", None)
+    context.user_data.pop("_extend_pending", None)
+
+    await _do_extend(context.bot, None, cid, member_id, chat_id, extra_mins)
+    raise ApplicationHandlerStop  # done — don't let conv handler see this message
+
+
+==> booking.py <==
+            # Remove any previous Session entry for this console first
+            _delete_session_game(cid)
+            write_console_game(cid, game, "Session", f"BK:{bk_id}")
+        except Exception:
+            logging.exception("HANDLER_ERROR: write_console_game")
+
+    now      = now_mmt()
+    start_t  = now.strftime("%H:%M")
+    timer_line = ""
+    game_line  = f"\n🎮 Game    : <b>{game}</b>" if game else ""
+    if planned_mins > 5:
+        end_dt     = now + timedelta(minutes=planned_mins)
+        end_t      = end_dt.strftime("%H:%M")
+        delay_secs = (planned_mins - 5) * 60
+        chat_id    = update.effective_chat.id
+        # Use STAFF_NOTIFY_CHAT as canonical remind key so that
+        # cb_extend_timer (which embeds _target_chat in callback data) uses the same key.
+        _remind_chat_id = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else chat_id
+
+        # Bot loop fires at "5 min before end", with inline-keyboard Extend/Done buttons.
+        _cancel_remind(cid, _remind_chat_id)   # clear any stale task for this console
+        task = asyncio.create_task(
+            _remind_loop(context.bot, _remind_chat_id, cid, member_id,
+                         planned_mins, end_t, delay_secs)
+        )
+        _REMIND_TASKS[_remind_key(cid, _remind_chat_id)] = task
+        timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {end_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"
+
+    await update.message.reply_text(
+        f"✅ <b>Session စတင်ပြီ!</b>\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"🪪 ID      : <code>{bk_id}</code>\n"
+        f"🕹️ Console : <b>{cid}</b>\n"
+        f"👤 Member  : <b>{member_id}</b>"
+        f"{game_line}\n"
+        f"🕐 Start   : <b>{start_t}</b>"
+        f"{timer_line}\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"Session ဆုံးသောအခါ ⏹️ Session ဆုံး နှိပ်ပါ",
+        parse_mode="HTML",
+    )
+    return await show_console_menu(update, context)
+
+async def step_book_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle Proceed / Back after duplicate-session warning during booking."""
+    text = update.message.text.strip()
+    cid         = context.user_data.get("bk_console", "")
+    member_id   = context.user_data.pop("bk_pending_member", "Guest")
+    staff       = context.user_data.pop("bk_pending_staff", "")
+
+    if text == BTN_BOOK_PROCEED:
+        # Proceed with game selection step
+        context.user_data["bk_member"] = member_id
+        context.user_data["bk_staff"]  = staff
+        return await prompt_book_game(update, context)
+
+    # BTN_NO_RESELECT / BTN_CANCEL / anything else → back to member selection
+    context.user_data["bk_console"] = cid
+    return BOOK_MEMBER
+
+
+==> broadcast.py <==
+    date  = today_str()
+    kb    = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    if not sales:
+        await update.message.reply_text("❌ Sales data ရယူ၍ မရပါ။", reply_markup=kb)
+        return MAIN_MENU
+
+    cnt      = sales.get("today_count", 0)
+    net      = sales.get("today_net", 0)
+    kpay     = sales.get("today_kpay", 0)
+    cash_    = sales.get("today_cash", 0)
+    total_tx = sales.get("total_count", 0)
+    avg_rev  = round(net / cnt) if cnt > 0 else 0
+
+    food_qty        = sum(i["qty"] for i in stock.get("items", [])) if stock else 0
+    food_item_count = len(stock.get("items", [])) if stock else 0
+
+    # Per-staff breakdown — read Sales_Daily directly
+    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call)
+    staff_stats = sb.get("staff", {}) if sb else {}
+
+    # Performance rating
+    if cnt >= 10:
+        perf, star = "Excellent", "⭐⭐⭐"
+    elif cnt >= 5:
+        perf, star = "Good", "⭐⭐"
+    elif cnt >= 1:
+        perf, star = "Fair", "⭐"
+    else:
+        perf, star = "No Sessions Yet", "—"
+
+    lines = [
+        f"📈 *Staff KPI — {date}*\n━━━━━━━━━━━━━━━━━━",
+        f"🎮 Sessions : *{cnt}*    💰 Revenue : *{net:,} Ks*",
+        f"📊 Avg/Session : *{avg_rev:,} Ks*",
+        f"━━━━━━━━━━━━━━━━━━",
+        f"💳 KPay : *{kpay:,} Ks*   |   💵 Cash : *{cash_:,} Ks*",
+    ]
+
+    if staff_stats:
+        lines.append(f"━━━━━━━━━━━━━━━━━━")
+        lines.append(f"👥 *Per-Staff Breakdown:*")
+        for s, sd in staff_stats.items():
+            s_avg  = round(sd["revenue"] / sd["sessions"]) if sd["sessions"] > 0 else 0
+            s_hrs  = round(sd["mins"] / 60, 1)
+            lines.append(
+                f"\n  👤 *{s}*\n"
+                f"     Sessions : *{sd['sessions']}*  |  Play : *{s_hrs} hrs*\n"
+                f"     Revenue  : *{sd['revenue']:,} Ks*  (avg {s_avg:,} Ks)"
+            )
+
+    lines.extend([
+        f"\n━━━━━━━━━━━━━━━━━━",
+        f"🛒 Food Sold : *{food_qty} pcs* ({food_item_count} types)",
+        f"━━━━━━━━━━━━━━━━━━",
+        f"🏆 Performance : *{star} {perf}*",
+        f"📋 All-Time Records : *{total_tx}*",
+    ])
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown", reply_markup=kb)
+    return MAIN_MENU
+
+==> commands.py <==
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def cmd_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "❌ ဖျက်သိမ်းလိုက်ပါပြီ။", reply_markup=ReplyKeyboardRemove()
+    )
+    return await show_main_menu(update, context)
+
+async def cmd_topup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /topup — jump to Top Up member selection."""
+    context.user_data.clear()
+    return await prompt_tu_member(update, context)
+
+async def cmd_member_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /member — Member Management menu."""
+    context.user_data.clear()
+    return await show_mm_menu(update, context)
+
+async def cmd_check_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /check — jump straight to member lookup."""
+    context.user_data.clear()
+    return await prompt_mm_lookup(update, context)
+
+async def cmd_newmember(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /newmember — jump straight to new member registration."""
+    context.user_data.clear()
+    context.user_data["nm_staff"] = ""
+    return await prompt_nm_name(update, context)
+
+async def cmd_ranks(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /ranks — show rank tier info."""
+    context.user_data.clear()
+    return await show_rank_info(update, context)
+
+
+==> console_mgmt.py <==
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await show_con_mgmt_menu(update, context)
+    context.user_data["new_con"]["type"] = text
+    kb = [["1.0", "1.5", "2.0"], [BTN_CANCEL]]
+    await update.message.reply_text(
+        "⚖️ Rate Multiplier ရွေးပါ\n_(Base rate ပေါ် မည်မျှ မြှောက်သည်)_\n\n"
+        "1.0 = Normal · 1.5 = Premium · 2.0 = VR/Pro",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return CON_ADD_MULT
+
+async def step_con_add_mult(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await show_con_mgmt_menu(update, context)
+    try:
+        mult = float(text)
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်း ထည့်ပါ (ဥပမာ: 1.0)")
+        return CON_ADD_MULT
+    nc = context.user_data.get("new_con", {})
+    ok = add_console_to_setting(nc.get("id",""), nc.get("type","PS4"), mult)
+    if ok:
+        # Update runtime VALID_CONSOLES set
+        VALID_CONSOLES.add(nc.get("id",""))
+        await update.message.reply_text(
+            f"✅ <b>Console ထည့်ပြီ!</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🕹️ ID   : <b>{nc.get('id','')}</b>\n"
+            f"📱 Type : <b>{nc.get('type','')}</b>\n"
+            f"⚖️ Mult : <b>×{mult}</b>",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ Save မအောင်မြင်ပါ — GSheet စစ်ကြည့်ပါ")
+    return await show_con_mgmt_menu(update, context)
+
+async def step_con_del_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_BACK:
+        return await show_con_mgmt_menu(update, context)
+    cons = context.user_data.get("del_cons", [])
+    target = next((c for c in cons if c["id"] == text), None)
+    if not target:
+        await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
+        return CON_DEL_SELECT
+    ok = remove_console_from_setting(target["id"])
+    if ok:
+        VALID_CONSOLES.discard(target["id"])
+        await update.message.reply_text(
+            f"🗑️ <b>{target['id']}</b> ဖျက်ပြီ\n"
+            f"<i>(Setting sheet မှ ဖယ်ထားသည်)</i>",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text(f"❌ ဖျက်မရပါ — GSheet စစ်ကြည့်ပါ")
+    return await show_con_mgmt_menu(update, context)
+
+
+==> console.py <==
+
+    ok = end_booking(bk_id) if bk_id else False
+    if not ok:
+        await update.message.reply_text(f"❌ Booking ID ရှာမတွေ့ပါ ({bk_id})")
+        return await show_console_menu(update, context)
+
+    end_t = now_mmt().strftime("%H:%M")
+
+    # ── SSD Transfer Warning ────────────────────────────────────────────────
+    ssd_warn = ""
+    ssd_transfers = [
+        r for r in fetch_console_games()
+        if r["console_id"].upper() == cid.upper()
+        and "SSD Transfer" in r.get("install_type", "")
+    ]
+    if ssd_transfers:
+        game_names = [r["game_title"] for r in ssd_transfers]
+        ssd_warn = (
+            f"\n\n⚠️ <b>SSD ပြန်ရွေ့ပါ!</b>\n"
+            f"ဤ console မှ SSD ထဲ ပြန်ရွေ့ရမည့် ဂိမ်းများ:\n"
+            + "\n".join(f"  📀 {g}" for g in game_names)
+        )
+
+    # Show current session game if any
+    session_games = [
+        r["game_title"] for r in fetch_console_games()
+        if r["console_id"].upper() == cid.upper() and r["install_type"] == "Session"
+    ]
+    game_line = f"\n🎮 Game     : <b>{session_games[0]}</b>" if session_games else ""
+
+    await update.message.reply_text(
+        f"✅ <b>Session ဆုံးပြီ!</b>\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"🕹️ Console  : <b>{cid}</b>\n"
+        f"👤 Member   : <b>{mbr}</b>"
+        f"{game_line}\n"
+        f"🕐 Start    : <b>{start_t}</b>\n"
+        f"🕑 End      : <b>{end_t}</b>\n"
+        f"⏱ Duration : <b>{dur_fmt}</b> ({total_mins} mins)\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📝 Sales Voucher ဖွင့်နေသည်..."
+        f"{ssd_warn}",
+        parse_mode="HTML",
+    )
+    # Clean up Session game entry for this console
+    _delete_session_game(cid)
+    # Try to find linked booking_id from bookings store
+    _linked_bk_id = ""
+    try:
+        _bks = _replit_get(f"bookings?memberId={mbr}") or []
+        for _b in _bks:
+            if (_b.get("status") in ("confirmed", "arrived")
+                    and (_b.get("consoleId") or "").strip() == cid):
+                _linked_bk_id = str(_b.get("id", ""))
+                break
+    except Exception:
+        logging.exception("HANDLER_ERROR: lookup_linked_booking")
+    return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
+                                     booking_id=_linked_bk_id)
+
+
+==> discount.py <==
+        return DISCOUNT
+
+    try:
+        val = int(text.replace(",", "").strip())
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်သက်သက် ရိုက်ပေးပါ -")
+        return DISCOUNT
+
+    d     = context.user_data
+    gross = d.get("gross_total", d.get("net_total", 0))
+
+    # ── Bonus minutes entry path ──────────────────────────────────────────────
+    if d.pop("_bonus_mins_entry", False):
+        bonus_mins     = val
+        selected_promo = d.pop("_selected_promo", None)
+        if selected_promo:
+            d["promo_id"]    = selected_promo.get("id", "")
+            d["promo_title"] = selected_promo.get("title", "")
+        d["bonus_mins"] = bonus_mins
+        d["discount"]   = 0
+        await update.message.reply_text(
+            f"✅ Bonus *+{bonus_mins} mins* ထည့်သွင်းပြီးပါပြီ\n"
+            f"💰 Net Payable: *{gross:,} Ks* (Discount မရှိပါ)",
+            parse_mode="Markdown",
+        )
+        return await prompt_kpay(update, context)
+
+    # ── Normal discount entry ─────────────────────────────────────────────────
+    disc = val
+    # For wallet sessions, cash payable = food_total only (game is wallet-deducted)
+    _food_total_v = d.get("food_total", 0)
+    _is_wallet_s  = d.get("game_amt", 0) == 0 and d.get("m_id", "0 (Guest)").strip() not in ("0 (Guest)", "-", "")
+    _cash_payable = _food_total_v if _is_wallet_s else gross
+    _limit_check  = _cash_payable if _cash_payable > 0 else gross
+    if disc < 0 or disc >= _limit_check:
+        await update.message.reply_text(
+            f"⚠️ Discount (*{disc:,} Ks*) သည် Cash Payable (*{_limit_check:,} Ks*) ထက် မကျော်ရပါ -",
+            parse_mode="Markdown",
+        )
+        return DISCOUNT
+
+    # If a promo was selected earlier (free_item/bundle), keep promo_id
+    selected_promo = d.pop("_selected_promo", None)
+    if selected_promo and not d.get("promo_id"):
+        d["promo_id"]    = selected_promo.get("id", "")
+        d["promo_title"] = selected_promo.get("title", "")
+    d["discount"]  = disc
+    # Wallet session: net_total = food_total - disc (cash only, game is wallet)
+    # Cash/guest session: net_total = gross - disc
+    if _is_wallet_s:
+        d["net_total"] = max(0, _food_total_v - disc)
+    else:
+        d["net_total"] = gross - disc
+    await update.message.reply_text(
+        f"✅ Discount *{disc:,} Ks* ထည့်ပြီး\n"
+        f"💰 Net Payable: *{d['net_total']:,} Ks*",
+        parse_mode="Markdown",
+    )
+    return await prompt_kpay(update, context)
+
+
+==> finance.py <==
+        return await show_fin_report_menu(update, context)
+    ebit         = data.get("ebit", 0)
+    om_bonus     = data.get("om_bonus", 0)
+    distributable = data.get("distributable_profit", 0)
+    shareholders = data.get("shareholders", [])
+    month_label  = now.strftime("%B %Y")
+    lines = [
+        f"💸 *Profit Sharing — {month_label}*",
+        "━━━━━━━━━━━━━━━━━━",
+        f"💰 Net Profit   : *{ebit:,} Ks*",
+        f"🎯 OM Bonus     : *{om_bonus:,} Ks*",
+        f"📊 Distributable: *{distributable:,} Ks*",
+        "━━━━━━━━━━━━━━━━━━",
+    ]
+    for s in shareholders:
+        name      = s.get("name", "?")
+        pct       = s.get("ownership", 0)
+        dividend  = s.get("dividend", 0)
+        s_bonus   = s.get("om_bonus", 0)
+        total_inc = s.get("total_income", 0)
+        if s_bonus:
+            lines.append(f"👤 {name} ({pct}%) : {dividend:,} + {s_bonus:,} bonus = *{total_inc:,} Ks*")
+        else:
+            lines.append(f"👤 {name} ({pct}%) : {total_inc:,} Ks")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Create all Finance sheets via VPS API."""
+    await update.message.reply_text(
+        "⚙️ Finance Sheets ဆောက်နေသည်...\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Capital Setup | Assets Register | OPEX Log\n"
+        "Accounts | Account Transfers\n"
+        "Payables | Receivables | Advance Staff\n"
+        "Prepaid Expenses | Advance Payments",
+    )
+    result = await asyncio.to_thread(_replit_post, "finance/setup-sheets", {}, 90)
+    if result and result.get("ok"):
+        created = result.get("created", [])
+        skipped = result.get("skipped", [])
+        created_str = ", ".join(created) if created else "None"
+        skipped_str = ", ".join(skipped) if skipped else "None"
+        await update.message.reply_text(
+            f"✅ Finance Sheets ပြင်ဆင်ပြီး!\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"✅ Created : {len(created)} sheets\n"
+            f"⏩ Skipped : {len(skipped)} (ရှိပြီးသား)\n\n"
+            f"Created: {created_str}\n"
+            f"Skipped: {skipped_str}",
+        )
+    else:
+        err = result.get("error", "unknown") if result else "API ချိတ်မရ"
+        await update.message.reply_text(f"❌ Setup မအောင်မြင်ပါ: {err}")
+    return await show_finance_menu(update, context)
+
+async def cmd_finance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /finance — PIN then Finance menu."""
+    return await _pin_then("finance", "Finance", update, context)
+
+
+==> games.py <==
+    if field == "solo_multi":
+        new_sm  = text
+        new_gen = cur_gen
+    else:
+        new_sm  = cur_sm
+        new_gen = text
+    meta    = f"{new_sm}|{new_gen}"
+    row_num = target.get("row", 0)
+    title   = target.get("title", "?")
+    try:
+        sh = get_game_lib_sh()
+        sh.update_cell(row_num, 21, meta)   # col U = index 21
+        # Invalidate cache
+        import bot as _bot_mod
+        _bot_mod._GAME_ROWS = []
+        _bot_mod._GAME_TS = 0
+        field_label = "Solo/Multi" if field == "solo_multi" else "Genre"
+        await update.message.reply_text(
+            f"✅ <b>{title}</b>\n━━━━━━━━━━━━━━━━━━\n✏️ {field_label}: <b>{text}</b> မှတ်သားပြီ",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Save မအောင်မြင်ပါ: {e}")
+    return await show_game_menu(update, context)
+
+async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_BACK:
+        return await show_game_menu(update, context)
+    games = context.user_data.get("del_games", [])
+    target = None
+    for i, g in enumerate(games, 1):
+        if text.startswith(f"{i}."):
+            target = g
+            break
+    if not target:
+        await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
+        return GAME_DEL_SELECT
+    game_name = target.get("title", "")
+    try:
+        sh = get_game_lib_sh()
+        sh.delete_rows(target["row"])
+        await update.message.reply_text(
+            f"🗑️ <b>\"{game_name}\"</b> ဂိမ်း ဖျက်ပြီ",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        err_str = str(e)
+        if "protected" in err_str.lower() or "400" in err_str:
+            await update.message.reply_text(
+                f"⚠️ <b>Game Library sheet protected</b> ဖြစ်သောကြောင့်\n"
+                f"bot မှ row ဖျက်ခြင်း မပြုနိုင်ပါ\n\n"
+                f"📋 Google Sheet ကို directly ဝင်ပြီး\n"
+                f"<b>\"{game_name}\"</b> row ကို ဖျက်ပေးပါ",
+                parse_mode="HTML",
+            )
+        else:
+            await update.message.reply_text(f"❌ ဖျက်မရပါ: {err_str}")
+    return await show_game_menu(update, context)
+
+
+==> ginst.py <==
+            f"{gl_note}",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ Save မအောင်မြင်ပါ — ထပ်ကြိုးစားပါ")
+    return await show_ginst_menu(update, context)
+
+async def step_ginst_del_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text in (BTN_BACK, BTN_CANCEL):
+        return await show_ginst_menu(update, context)
+    console_id = text
+    records = [r for r in fetch_console_games()
+               if r["console_id"].upper() == console_id.upper()]
+    if not records:
+        await update.message.reply_text(
+            f"ℹ️ <b>{console_id}</b> မှာ Install မှတ်တမ်း မရှိသေးပါ",
+            parse_mode="HTML",
+        )
+        return await show_ginst_menu(update, context)
+    context.user_data["ginst_console_id"]  = console_id
+    context.user_data["ginst_del_records"] = records
+    kb = [[f"{i}. {r['game_title']}"] for i, r in enumerate(records, 1)]
+    kb.append([BTN_BACK])
+    await update.message.reply_text(
+        f"❌ <b>{console_id}</b> — ဖျက်မည့် ဂိမ်းရွေးပါ:",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return GINST_DEL_GAME
+
+async def step_ginst_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text in (BTN_BACK, BTN_CANCEL):
+        return await show_ginst_menu(update, context)
+    records = context.user_data.get("ginst_del_records", [])
+    cid     = context.user_data.get("ginst_console_id", "")
+    target  = None
+    for i, r in enumerate(records, 1):
+        if text.startswith(f"{i}."):
+            target = r
+            break
+    if not target:
+        await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
+        return GINST_DEL_GAME
+    # Remove from Console_Games + clear Game_Library checkbox
+    ok, gl_ok = await asyncio.gather(
+        asyncio.to_thread(remove_console_game, cid, target["game_title"]),
+        asyncio.to_thread(update_game_library_install, target["game_title"], cid, False),
+    )
+    if ok:
+        gl_note = "  📊 Game Library ✅" if gl_ok else "  📊 Game Library ⚠️ (manual update လို)"
+        await update.message.reply_text(
+            f"🗑️ <b>{cid}</b> မှ <b>\"{target['game_title']}\"</b> ဖျက်ပြီ\n{gl_note}",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ ဖျက်မရပါ — ထပ်ကြိုးစားပါ")
+    return await show_ginst_menu(update, context)
+
+
+==> help.py <==
+        f"  • Payroll target display in hrs (not mins)\n"
+        f"  • Session repeat reminder loop (5-min cycle)\n"
+        f"  • Inventory cache bust after stock update\n"
+        f"  • Staff breakdown + low-wallet API endpoints\n"
+        f"  • Payroll business-wide play\\_mins total\n"
+        f"  • Per-member exact effective rate\n"
+        f"  • P&L / Cash Flow / Liability reports",
+        parse_mode="Markdown",
+    )
+
+async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show all available commands."""
+    await update.message.reply_text(
+        "📖 *PS Vibe Bot — Commands*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🏠 *Navigation*\n"
+        "/start        — Main Menu ပြမည်\n"
+        "/menu         — Main Menu ပြမည်\n"
+        "/cancel       — လက်ရှိ action ဖျက်သိမ်း\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🎮 *Sales*\n"
+        "/sales        — 📝 New Sale _(shortcut)_\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "💳 *Members*\n"
+        "/member       — Member Management menu\n"
+        "/newmember    — 🆕 New Member Register\n"
+        "/topup        — 💰 Top Up _(shortcut)_\n"
+        "/check        — 🔍 Check Member Info\n"
+        "/ranks        — 📋 View Rank Tier Table\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📊 *Reports*\n"
+        "/report       — 📊 Today's Report\n"
+        "/kpi          — 📈 Staff KPI (ဒီနေ့)\n"
+        "/payroll      — 💰 Monthly Payroll\n"
+        "/setattend    — 📅 ခွင့်ယူ / နောက်ကျ မှတ်တမ်း\n"
+        "/admin        — 🔧 Admin Panel (Stock/Attend/Payroll/KPI)\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📦 *Stock*\n"
+        "/stock        — Stock Update menu\n"
+        "/stockin      — 📥 Stock In (Restock)\n"
+        "/stockout     — 📦 Stock Out\n"
+        "/inventory    — 🗂 Inventory Status\n"
+        "/stocktoday   — 🛒 Items sold today\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "/help         — ဤ command list",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Log all Telegram errors without crashing the bot."""
+    from telegram.error import NetworkError, TimedOut, Conflict
+    err = context.error
+    if isinstance(err, (NetworkError, TimedOut)):
+        logging.warning("Network issue (will auto-retry): %s", err)
+    elif isinstance(err, Conflict):
+        logging.warning("Conflict: another instance is running — will resolve automatically.")
+    else:
+        logging.error("Unhandled error: %s", err, exc_info=err)
+
+
+==> __init__.py <==
+"""PS VIBE Bot — Handlers package (Phase 6 refactor).
+Domain-split modules for maintainability.
+
+All handler functions are re-exported for backward compatibility.
+"""
+# ═══════ Domain handler modules ═══════
+
+from .admin import *  # noqa: F401,F403
+from .admin_bookings import *  # noqa: F401,F403
+from .attendance import *  # noqa: F401,F403
+from .booking import *  # noqa: F401,F403
+from .booking_flow import *  # noqa: F401,F403
+from .broadcast import *  # noqa: F401,F403
+from .commands import *  # noqa: F401,F403
+from .console import *  # noqa: F401,F403
+from .console_mgmt import *  # noqa: F401,F403
+from .discount import *  # noqa: F401,F403
+from .finance import *  # noqa: F401,F403
+from .games import *  # noqa: F401,F403
+from .ginst import *  # noqa: F401,F403
+from .help import *  # noqa: F401,F403
+from .main_menu import *  # noqa: F401,F403
+from .members import *  # noqa: F401,F403
+from .notify import *  # noqa: F401,F403
+from .payroll import *  # noqa: F401,F403
+from .referral import *  # noqa: F401,F403
+from .reports import *  # noqa: F401,F403
+from .salary_adv import *  # noqa: F401,F403
+from .sales import *  # noqa: F401,F403
+from .ssd_disc import *  # noqa: F401,F403
+from .stock import *  # noqa: F401,F403
+from .stock_in import *  # noqa: F401,F403
+from .waitlist import *  # noqa: F401,F403
+
+
+==> main_menu.py <==
+        f"🎮 *PS Vibe — Staff Bot*\n"
+        f"{greet} | _{date_str}_\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"Menu ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return MAIN_MENU
+
+async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text
+
+    if choice in (BTN_DAILY_SALES, BTN_NEW_SALE):
+        context.user_data["v_no"]  = next_voucher()
+        context.user_data["staff"] = ""
+        return await prompt_member(update, context)
+
+    if choice == BTN_MEMBER_MGMT:
+        return await show_mm_menu(update, context)
+
+    if choice == BTN_INVENTORY_VIEW:
+        return await cmd_inventory(update, context)
+
+    if choice == BTN_TODAY_REPORT:
+        return await cmd_today_report(update, context)
+
+    if choice == BTN_CONSOLES:
+        return await show_console_menu(update, context)
+
+    if choice == BTN_STAFF_BOOK:
+        return await cmd_staff_book_hub(update, context)
+
+    if choice == BTN_SBK_WAITLIST:
+        return await cmd_waitlist_mgmt(update, context)
+    if choice == BTN_SBK_NEW:
+        return await cmd_staff_booking(update, context)
+
+    if choice == BTN_SBK_CONFIRMED:
+        return await cmd_confirmed_bookings(update, context)
+
+    if choice == BTN_GAME_LIB_MENU:
+        return await show_game_menu(update, context)
+
+    if choice == BTN_FINANCIAL_REPORT:
+        return await cmd_financial_report(update, context)
+
+    if choice == BTN_ADMIN:
+        await update.message.reply_text(
+            "🔐 *Admin Panel — PIN လိုအပ်သည်*\n\nPIN နံပါတ် ထည့်ပါ:",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardRemove(),
+        )
+        return ADMIN_PIN
+
+    # Any back from sub-states that lands here
+    if choice == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+
+    return await show_main_menu(update, context)
+
+
+==> members.py <==
+        await update.message.reply_text("🖨️ Receipt ပုံနှိပ်ရန် -", reply_markup=receipt_kb)
+
+    # ── SHEET WRITES — background ─────────────────────────────────
+    async def _tu_bg():
+        def _do():
+            topup_sh.batch_update(
+                [{"range": f"A{tl_row}:C{tl_row}",
+                  "values": [[today, tu_id, current_tier]]},
+                 {"range": f"E{tl_row}:I{tl_row}",
+                  "values": [[tu_amt, tu_kpay, tu_cash, tu_mins, "Top Up"]]}],
+                value_input_option="USER_ENTERED",
+            )
+            if new_rate > 0:
+                update_member_effective_rate(tu_id, new_rate)
+        try:
+            await asyncio.to_thread(_do)
+        except Exception as _e:
+            logging.error("tu_bg_write: %s", _e)
+    asyncio.create_task(_tu_bg())
+
+    if after_topup == "console_sale" and session_snap:
+        # Restore session data and update wallet balance
+        context.user_data.update(session_snap)
+        new_wallet  = (session_snap.get("wallet_mins") or 0) + added_mins
+        context.user_data["wallet_mins"] = new_wallet
+        eff_cost    = session_snap.get("effective_cost_mins", session_snap.get("mins", 0))
+        total_mins  = session_snap.get("actual_play_mins", session_snap.get("mins", 0))
+        multiplier  = session_snap.get("multiplier", 1.0)
+        base_rate   = session_snap.get("base_rate", fetch_base_rate())
+
+        if new_wallet >= eff_cost:
+            # Now sufficient after top-up — normal wallet flow
+            context.user_data["mins"]      = total_mins
+            context.user_data["game_amt"]  = 0
+            context.user_data.pop("cash_down_ks", None)
+            context.user_data.pop("shortfall_mins", None)
+            context.user_data.pop("shortfall_ks", None)
+            await update.message.reply_text(
+                f"✅ Top Up ပြီးပြီ — balance ပြည့်သည်\n📝 Sales Voucher ဆက်ဖွင့်သည်...",
+                reply_markup=ReplyKeyboardRemove(),
+            )
+        else:
+            # Still insufficient — Cash Down for remaining shortfall
+            new_shortfall_mins = eff_cost - new_wallet
+            new_shortfall_ks   = round(new_shortfall_mins * base_rate / 60)
+            wallet_play_mins   = int(new_wallet / multiplier) if multiplier > 0 else new_wallet
+            context.user_data["shortfall_mins"] = new_shortfall_mins
+            context.user_data["shortfall_ks"]   = new_shortfall_ks
+            context.user_data["cash_down_ks"]   = new_shortfall_ks
+            context.user_data["game_amt"]        = new_shortfall_ks
+            context.user_data["mins"]            = wallet_play_mins
+            await update.message.reply_text(
+                f"⚠️ Balance ဆက်မလောက်သေးပါ ({new_shortfall_mins} mins ≈ {new_shortfall_ks:,} Ks)\n"
+                f"Cash Down အဖြစ် ဆက်သွားပါမည်...",
+                reply_markup=ReplyKeyboardRemove(),
+            )
+        return await prompt_food_menu(update, context)
+
+    return await show_main_menu(update, context)
+
+
+==> notify.py <==
+def _notify_customer(chat_id_or_phone: str, text: str):
+    """Send Telegram message via customer bot token to notify customer."""
+    if not CUSTOMER_BOT_TOKEN or not chat_id_or_phone:
+        return
+    try:
+        import urllib.request as _req
+        payload = json.dumps({
+            "chat_id": chat_id_or_phone,
+            "text": text,
+            "parse_mode": "HTML",
+        }).encode()
+        r = _req.Request(
+            f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        _req.urlopen(r, timeout=10)
+    except Exception as e:
+        logging.warning("customer notify failed: %s", e)
+
+def get_customer_chat_id(member_id: str) -> str | None:
+    """Look up most-recent Telegram chat_id for a member from bookings store."""
+    try:
+        bks = _replit_get(f"bookings?memberId={member_id}")
+        if bks:
+            for b in bks:
+                cid = (b.get("telegramChatId") or b.get("telegram_chat_id") or "").strip()
+                if cid:
+                    return cid
+    except Exception as e:
+        logging.warning("get_customer_chat_id %s: %s", member_id, e)
+    return None
+
+async def _check_low_balance_alert(member_id: str, console_id: str) -> None:
+    """Wait for Sheet formula to settle, then send low-balance alert to customer."""
+    try:
+        await asyncio.sleep(7)
+        balance = await asyncio.to_thread(fetch_balance_mins, member_id)
+        threshold = int(os.environ.get("LOW_BALANCE_THRESHOLD", "120"))
+        if balance >= threshold:
+            return
+        chat_id = await asyncio.to_thread(get_customer_chat_id, member_id)
+        if not chat_id:
+            return
+        msg = (
+            f"⚠️ <b>PS VIBE — Balance နည်းလာပြီ!</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💳 Member: <code>{member_id}</code>\n"
+            f"🎮 လက်ကျန် Balance: <b>{balance} မိနစ်</b>\n"
+            f"⏱️ PS5 ဆိုပါက {balance} မိနစ် ကစားနိုင်သေးသည်\n"
+            f"\n"
+            f"💰 ဆက်ကစားနိုင်ရန် Top-up လုပ်ပါ 👇\n"
+            f"/topup"
+        )
+        await asyncio.to_thread(_notify_customer, chat_id, msg)
+        logging.info("low_balance_alert sent: member=%s balance=%d", member_id, balance)
+    except Exception as e:
+        logging.warning("_check_low_balance_alert %s: %s", member_id, e)
+
+
+==> payroll.py <==
+            "⚠️ Staff ဒေတာ မရှိပါ\n\n"
+            "Google Sheet → *Setting* tab:\n"
+            "• S2:S3 — Staff Name ထည့်ပါ\n"
+            "• T2:T3 — Base Salary ထည့်ပါ",
+            parse_mode="Markdown",
+        )
+        return await show_main_menu(update, context)
+
+    lines = [f"💼 *Salary & Payroll — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for p in payroll:
+        if p["play_mins"] >= 120000:
+            bonus_note = "🏆 ≥2,000 hrs"
+        elif p["play_mins"] >= 90000:
+            bonus_note = "🎯 ≥1,500 hrs"
+        else:
+            hrs_left = round((90000 - p["play_mins"]) / 60, 1)
+            bonus_note = f"_{hrs_left:,} hrs လိုသေး_"
+        base_line = f"💵 Base Salary    : *{p['base_salary']:,} Ks*\n" if p["base_salary"] > 0 else ""
+
+        # Deduction lines
+        deduct_lines = ""
+        if p["leave_days"] > 0 or p["late_count"] > 0:
+            deduct_lines += f"─────────────────\n"
+        if p["leave_days"] > 0:
+            deduct_lines += f"📅 ခွင့်ယူ        : *{p['leave_days']} ရက်* → *-{p['leave_deduct']:,} Ks*\n"
+        if p["late_count"] > 0:
+            deduct_lines += f"⏰ နောက်ကျ       : *{p['late_count']} ကြိမ်* × {p['deduct_per_late']:,} → *-{p['late_deduct']:,} Ks*\n"
+        if p["total_deduct"] > 0:
+            deduct_lines += f"📉 ဖြတ်တောက်     : *-{p['total_deduct']:,} Ks*\n"
+
+        lines.append(
+            f"\n👤 *{p['staff']}*\n"
+            f"─────────────────\n"
+            f"{base_line}"
+            f"🎮 Game Play     : *{p['play_hrs']:,.1f} hrs*  {bonus_note}\n"
+            f"   Play Bonus   : *{p['game_bonus']:,} Ks*\n"
+            f"🆕 New Members   : *{p['nm_count']} cards* → *{p['nm_commission']:,} Ks*\n"
+            f"🍔 Food Comm     : *{p['food_days_qualified']} day(s)* → *{p['food_commission']:,} Ks*\n"
+            f"📊 Commission    : *{p['total_commission']:,} Ks*\n"
+            f"{deduct_lines}"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💰 *Gross Payable  : {p['grand_total']:,} Ks*"
+            + (
+                f"\n💸 Advance Paid    : *-{p['advance']:,} Ks*\n"
+                f"💵 *Remaining Pay  : {p['net_total']:,} Ks*"
+                if p.get("advance", 0) > 0 else ""
+            )
+        )
+    lines.append("\n\n_/setattend နဲ့ ခွင့်/နောက်ကျ ထည့်နိုင်သည်_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+async def cmd_payroll_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /payroll — PIN then payroll."""
+    return await _pin_then("payroll", "Payroll", update, context)
+
+async def cmd_kpi_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /kpi — PIN then staff KPI."""
+    return await _pin_then("kpi", "Staff KPI", update, context)
+
+
+==> referral.py <==
+        context.user_data.pop("ref_member_id", None)
+        return MM_MENU
+
+    # Validate code format: alphanumeric, hyphens, underscores, 4-20 chars
+    if not _re.match(r'^[A-Za-z0-9_\-]{4,20}$', text):
+        await update.message.reply_text(
+            "⚠️ Code format မမှန်ပါ\n"
+            "• 4–20 characters\n"
+            "• Letters, numbers, hyphens, underscores သာ ခွင့်ပြု\n"
+            "• ဥပမာ: REF-001, PSV-TIN-001\n\n"
+            "ထပ်ရိုက်ပါ -",
+            reply_markup=ReplyKeyboardMarkup(
+                [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
+                resize_keyboard=True,
+            ),
+        )
+        return REFERRAL_CODE
+
+    # Check uniqueness across all members
+    try:
+        all_rows = member_sh.get_all_values()
+        for row in all_rows[1:]:
+            if len(row) > 13 and row[13].strip().upper() == text.upper():
+                existing_owner = row[1].strip() if len(row) > 1 else "?"
+                if existing_owner != member_id:
+                    await update.message.reply_text(
+                        f"⚠️ Code *{text}* ကို *{existing_owner}* မှာ သုးနေပြီး\n"
+                        f"တခ်ခာ Code ရိုက်ပါ -",
+                        parse_mode="Markdown",
+                        reply_markup=ReplyKeyboardMarkup(
+                            [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
+                            resize_keyboard=True,
+                        ),
+                    )
+                    return REFERRAL_CODE
+    except Exception as e:
+        logging.warning("Referral uniqueness check failed: %s", e)
+
+    # Save the code
+    ok = await asyncio.get_event_loop().run_in_executor(
+        None, save_referral_code, member_id, text
+    )
+    context.user_data.pop("ref_member_id", None)
+    if ok:
+        await update.message.reply_text(
+            f"✅ *Referral Code သတ်မှတ်ပြီး*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🪖 Member: *{member_id}*\n"
+            f"🎁 Code: *{text}*\n\n"
+            f"_Customer Bot မှ Member ကို code ပြပေးမည်_",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+    else:
+        await update.message.reply_text(
+            "❌ Code သိမ်မှ မအောင်မြင်ပါ — ထပ်ကြိုးစာပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+    return MM_MENU
+
+
+==> reports.py <==
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_daily_report failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Report generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+
+async def cmd_weekly_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Generate and send this week's trend report."""
+    await update.message.reply_text("⏳ Weekly report generating...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        from bot.report_generator import get_report_generator
+        gen = get_report_generator()
+        report = gen.weekly_report()
+        text = gen.format_weekly_report(report)
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_weekly_report failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Weekly report generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+
+async def cmd_member_insights(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Generate and send member insights report."""
+    await update.message.reply_text("⏳ Member insights loading...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        from bot.report_generator import get_report_generator
+        gen = get_report_generator()
+        insights = gen.member_insights()
+        text = gen.format_member_insights(insights)
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_member_insights failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Member insights generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+==> salary_adv.py <==
+    staff     = context.user_data["sal_adv_staff"]
+    amt       = context.user_data["sal_adv_amt"]
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    kb = [["✅ အတည်ပြုမည်"], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        f"💸 *Salary Advance အတည်ပြုချက်*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"👔 Staff    : *{staff}*\n"
+        f"💰 Amount   : *{amt:,} Ks*\n"
+        f"{pay_icon} Payment  : *{payment}*\n"
+        f"📅 Date     : *{today_str}*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"မှန်ပါသလား?",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SAL_ADV_CONFIRM
+
+async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN or choice != "✅ အတည်ပြုမည်":
+        await update.message.reply_text("❌ ပယ်ဖျက်လိုက်သည်။")
+        return await show_admin_menu(update, context)
+
+    staff     = context.user_data.get("sal_adv_staff", "")
+    amt       = context.user_data.get("sal_adv_amt", 0)
+    payment   = context.user_data.get("sal_adv_pay", "Cash")
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    month_str = now_mmt().strftime("%Y-%m")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    try:
+        sh = get_salary_adv_sh()
+        sh.append_row([today_str, staff, amt, payment, ""])
+        advances  = fetch_salary_advances(month_str)
+        staff_adv = advances.get(staff, {"total": 0, "cash": 0, "kpay": 0})
+        cum       = staff_adv["total"]
+        await update.message.reply_text(
+            f"✅ *Salary Advance မှတ်တမ်းသွင်းပြီး*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👔 {staff}\n"
+            f"💰 Amount   : *{amt:,} Ks*\n"
+            f"{pay_icon} Payment  : *{payment}*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"📊 ဒီလ စုစုပေါင်း Advance: *{cum:,} Ks*\n"
+            f"  💵 Cash: {staff_adv['cash']:,} + 💙 KPay: {staff_adv['kpay']:,}\n"
+            f"_(လစာချိန်မှာ ဒီပမာဏ နုတ်မည်)_",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        logging.error("step_sal_adv_confirm: %s", e)
+        await update.message.reply_text(f"❌ Error: {e}")
+
+    context.user_data.pop("sal_adv_staff", None)
+    context.user_data.pop("sal_adv_amt", None)
+    context.user_data.pop("sal_adv_pay", None)
+    return await show_admin_menu(update, context)
+
+
+==> sales.py <==
+    return SESSION_SHORTFALL
+
+async def step_session_shortfall(update, context):
+    """Handle the Top Up / Cash Down / Skip choice after insufficient balance."""
+    text = update.message.text.strip()
+
+    if text == BTN_SKIP_SALES or text == BTN_CANCEL:
+        context.user_data.clear()
+        return await show_console_menu(update, context)
+
+    if text == BTN_CASH_DOWN:
+        d          = context.user_data
+        wallet_bal = d.get("wallet_mins", 0)
+        multiplier = d.get("multiplier", 1.0)
+        base_rate  = d.get("base_rate", fetch_base_rate())
+        shortfall_ks = d.get("shortfall_ks", 0)
+
+        # Record only the wallet-covered portion in Sales_Daily col E
+        wallet_play_mins = int(wallet_bal / multiplier) if multiplier > 0 else wallet_bal
+        d["mins"]          = wallet_play_mins   # col E — wallet fully depleted
+        d["game_amt"]      = shortfall_ks       # cash for extra time
+        d["cash_down_ks"]  = shortfall_ks
+        d["remaining_mins"] = 0
+        return await prompt_food_menu(update, context)
+
+    if text == BTN_TOPUP_SESSION:
+        d = context.user_data
+        # Snapshot session data so it survives user_data operations during TU flow
+        snap_keys = [
+            "m_id", "c_id", "mins", "actual_play_mins", "base_rate", "multiplier",
+            "v_no", "food_items", "food_prices", "food_stock_map", "staff",
+            "from_session", "wallet_mins", "effective_cost_mins",
+            "shortfall_mins", "shortfall_ks",
+        ]
+        d["_session_snap"] = {k: d[k] for k in snap_keys if k in d}
+        d["after_topup"]   = "console_sale"
+        # Pre-fill tu_id so Top Up member step is skipped
+        tu_id = d["m_id"]
+        d["tu_id"] = tu_id
+        # Load member data for Top Up flow
+        try:
+            tu_data = fetch_member_data(tu_id)
+            master_thresh, immortal_thresh = fetch_rank_thresholds()
+            bonus_table = fetch_bonus_table()
+            d["tu_rank"]            = tu_data["rank_raw"]
+            d["tu_total_spend"]     = tu_data["net_spend"]
+            d["tu_phone"]           = tu_data["phone"]
+            d["tu_name"]            = tu_data["name"]
+            d["tu_wallet_mins"]     = tu_data["wallet_mins"]
+            d["tu_master_thresh"]   = master_thresh
+            d["tu_immortal_thresh"] = immortal_thresh
+            d["tu_bonus_table"]     = bonus_table
+        except Exception as e:
+            await update.message.reply_text(f"❌ Member data ဖတ်မရပါ: {e}")
+            return await prompt_session_shortfall(update, context)
+        return await prompt_tu_amt(update, context)
+
+    # Unrecognised input — re-show screen
+    return await prompt_session_shortfall(update, context)
+
+
+==> ssd_disc.py <==
+        )
+        return await show_ssd_menu(update, context)
+
+    ok = write_console_game(cid, game, "SSD Transfer", f"From {src_lbl}")
+    if ok:
+        # ── Move: remove from SSD after writing to console ────────────────────
+        await asyncio.to_thread(remove_console_game, ssd_id, game)
+        await update.message.reply_text(
+            f"✅ <b>\"{game}\"</b>\n"
+            f"📀 {src_lbl} → 🕹️ <b>{cid}</b>\n"
+            f"(SSD မှ ဖယ်ရှားပြီ — session ဆုံးသည်နှင့် Return ဖြင့် ပြန်ထည့်ပါ)",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ Transfer မှတ်မရပါ — ထပ်ကြိုးစားပါ")
+    return await show_ssd_menu(update, context)
+
+async def step_ssd_ret_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """User chose console to return SSD games from."""
+    text = update.message.text.strip()
+    if text == BTN_BACK:
+        return await show_ssd_menu(update, context)
+    cid  = text
+    rows = [
+        r for r in fetch_console_games()
+        if r["console_id"].upper() == cid.upper()
+        and "SSD Transfer" in r.get("install_type", "")
+    ]
+    if not rows:
+        await update.message.reply_text(
+            f"🕹️ <b>{cid}</b> — SSD Transfer ဂိမ်း မရှိပါ",
+            parse_mode="HTML",
+        )
+        return await show_ssd_menu(update, context)
+    context.user_data["ssd_ret_cons"] = cid
+    titles = [r["game_title"] for r in rows]
+    kb_rows = [[t] for t in titles] + [[BTN_BACK]]
+    await update.message.reply_text(
+        f"↩️ <b>{cid}</b> မှ SSD ပြန်ရွေ့မည့် ဂိမ်း ရွေးပါ:",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb_rows, resize_keyboard=True),
+    )
+    return SSD_RET_GAME
+
+async def step_ssd_ret_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Remove 'SSD Transfer' entry from console (game returned to SSD)."""
+    text = update.message.text.strip()
+    cid  = context.user_data.get("ssd_ret_cons", "")
+    if text == BTN_BACK:
+        return await show_ssd_menu(update, context)
+    ok = delete_console_game(cid, text)
+    if ok:
+        await update.message.reply_text(
+            f"✅ <b>\"{text}\"</b> — 🕹️ <b>{cid}</b> မှ SSD ပြန်ရွေ့ပြီ ✔️",
+            parse_mode="HTML",
+        )
+    else:
+        await update.message.reply_text("❌ မရပါ — ထပ်ကြိုးစားပါ")
+    return await show_ssd_menu(update, context)
+
+
+==> stock_in.py <==
+    return await _show_si_review(update, context)
+
+async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_BACK_MAIN:
+        return await show_si_cart(update, context)
+    if text != BTN_CONFIRM_SAVE:
+        return SI_CONFIRM
+    d       = context.user_data
+    cart      = d.get("si_cart", [])
+    today     = now_mmt().strftime("%-m/%-d/%Y")
+    # Build payment string for sheet
+    if d.get("si_pay_cash") is not None:
+        cash_amt  = d["si_pay_cash"]
+        kpay_amt  = d["si_pay_kpay"]
+        payment   = f"Cash {cash_amt:,} / KPay {kpay_amt:,}"
+    else:
+        payment   = d.get("si_pay", "")
+    try:
+        for e in cart:
+            stock_in_sh.append_row(
+                [today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot"],
+                value_input_option="USER_ENTERED",
+            )
+            logging.info("Stock in saved: %s x%d cost=%d", e["item"], e["qty"], e["cost"])
+        grand_total = sum(e["total"] for e in cart)
+        inv_total   = _update_inv_total_k1()
+        total_note  = f"\n📊 Inv Value: *{inv_total:,} Ks*" if inv_total else ""
+        lines = [
+            f"• *{e['item']}*  ×{e['qty']}  = {e['total']:,} Ks"
+            for e in cart
+        ]
+        # Payment display in success message
+        if d.get("si_pay_cash") is not None:
+            pay_display = f"💵 Cash {d['si_pay_cash']:,} Ks + 💙 KPay {d['si_pay_kpay']:,} Ks"
+        else:
+            pay_display = payment
+        msg = (
+            f"✅ *Stock In မှတ်တမ်းတင်ပြီး ({len(cart)} items)*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"{chr(10).join(lines)}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💰 Grand Total : *{grand_total:,} Ks*\n"
+            f"💳 Payment     : {pay_display}\n"
+            f"📅 Date        : {today}"
+            f"{total_note}"
+        )
+    except Exception as e:
+        logging.error("Stock in failed: %s", e)
+        msg = f"❌ မှတ်တမ်းတင်မှု မအောင်မြင်ပါ။\n{e}"
+
+    for k in ("si_item", "si_qty", "si_cart", "si_pay", "si_pay_cash", "si_pay_kpay", "si_food_prices"):
+        context.user_data.pop(k, None)
+    await update.message.reply_text(
+        msg,
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+    )
+    return MAIN_MENU
+
+
+==> stock.py <==
+        return STOCK_QTY
+
+    qty  = int(text)
+    item = context.user_data.get("stock_item", "")
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    ref   = "STK-" + now_mmt().strftime("%Y%m%d-%H%M%S")
+
+    food_prices = context.user_data.get("stock_food_prices", {})
+    food_costs  = fetch_food_costs()
+    sell_price  = food_prices.get(item, 0)
+    cost_price  = food_costs.get(item, 0)
+    total_val   = sell_price * qty
+    total_cogs  = cost_price * qty
+
+    try:
+        stock_sh.append_row(
+            [today, ref, item, qty, sell_price, total_val, cost_price, total_cogs],
+            value_input_option="USER_ENTERED",
+        )
+        logging.info("Stock out saved: %s x%d ref=%s", item, qty, ref)
+        msg = (
+            f"✅ *Stock Out မှတ်တမ်းတင်ပြီး*\n\n"
+            f"📦 Item     : *{item}*\n"
+            f"🔢 Qty Out  : *{qty}*\n"
+            f"💰 Sell     : {sell_price:,} × {qty} = *{total_val:,} Ks*\n"
+            f"📋 Ref      : `{ref}`\n"
+            f"📅 Date     : {today}"
+        )
+        # Update K1 total inventory value
+        inv_total = _update_inv_total_k1()
+        if inv_total:
+            msg += f"\n\n📊 Total Inv Value: *{inv_total:,} Ks*"
+        # Low stock alert
+        inv_data = _replit_get("sheets/inventory")
+        if inv_data:
+            for inv_item in inv_data.get("items", []):
+                if inv_item["name"] == item:
+                    remaining = max(0, inv_item.get("current_stock", 0))
+                    if remaining <= 5:
+                        alert_emoji = "🔴" if remaining == 0 else "🟡"
+                        msg += (
+                            f"\n\n{alert_emoji} *Low Stock Alert!*\n"
+                            f"📦 *{item}* — လက်ကျန် *{remaining} pcs* သာကျန်တော့သည်!\n"
+                            f"{'❌ Stock ကုန်သွားပြီ — အမြန်ဖြည့်ပါ!' if remaining == 0 else '⚠️ Stock ဖြည့်ရန် အချိန်ကြောင်ပြီ!'}"
+                        )
+                    break
+    except Exception as e:
+        logging.error("Stock out failed: %s", e)
+        msg = f"❌ မှတ်တမ်းတင်မှု မအောင်မြင်ပါ။\n{e}"
+
+    context.user_data.pop("stock_item", None)
+    context.user_data.pop("stock_food_prices", None)
+
+    await update.message.reply_text(
+        msg,
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+    )
+    return MAIN_MENU
+
+
+==> waitlist.py <==
+                logging.exception("HANDLER_ERROR: edit_entry_not_found")
+            return
+        # ── Pre-check: verify console availability for this entry's pref ──
+        entry_pref = entry_data.get("console_pref", "Any")
+        avail = await _asyncio.to_thread(_wl_console_availability, entry_pref)
+        if not avail["free"]:
+            busy_list = ", ".join(avail["busy"][:4]) if avail["busy"] else "—"
+            try:
+                await query.edit_message_text(
+                    f"⛔ *Notify မလုပ်နိုင်ပါ*\n\n"
+                    f"🎮 {entry_data.get('customer_name','?')} ({entry_pref}) အတွက်\n"
+                    f"🔒 {entry_pref} console အားလုံး Busy ဖြစ်နေသည် ({busy_list})\n\n"
+                    f"Console တစ်ခု Free ဖြစ်မှသာ Notify လုပ်ပါ",
+                    parse_mode="Markdown",
+                )
+            except Exception:
+                logging.exception("HANDLER_ERROR: edit_no_console_free")
+            return
+        # Console free — proceed with notify
+        resp = await _asyncio.to_thread(
+            _replit_post, "waitlist/notify",
+            {"console_id": entry_data.get("console_pref", "")}
+        )
+        if resp and resp.get("notified"):
+            notified_entry = resp.get("entry", {})
+            name = notified_entry.get("customer_name", "?")
+            phone = notified_entry.get("phone") or "—"
+            pref = notified_entry.get("console_pref", "Any")
+            free_list = ", ".join(avail["free"][:3])
+            try:
+                await query.edit_message_text(
+                    f"🔔 *Notified!*\n"
+                    f"👤 {name}\n"
+                    f"📞 {phone}\n"
+                    f"🎮 {pref}\n"
+                    f"✅ Free consoles: {free_list}\n"
+                    f"⏳ 15 min Soft Reserve window စတင်ပြီ",
+                    parse_mode="Markdown",
+                )
+            except Exception:
+                logging.exception("HANDLER_ERROR: edit_soft_reserve_started")
+        else:
+            try:
+                await query.edit_message_text("❌ Notify မအောင်မြင်ပါ")
+            except Exception:
+                logging.exception("HANDLER_ERROR: edit_notify_failed")
+
+    elif action == "remove":
+        resp = await _asyncio.to_thread(_replit_delete, f"waitlist/{entry_id}")
+        if resp and resp.get("ok"):
+            try:
+                await query.edit_message_text(f"🗑️ Entry #{entry_id} ကို Waitlist မှ ဖယ်ရှားပြီ")
+            except Exception:
+                logging.exception("HANDLER_ERROR: edit_remove_success")
+        else:
+            try:
+                await query.edit_message_text("❌ Remove မအောင်မြင်ပါ")
+            except Exception:
+                logging.exception("HANDLER_ERROR: edit_remove_failed")
+

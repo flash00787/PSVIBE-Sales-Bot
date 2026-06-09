@@ -1,0 +1,31 @@
+@app.post("/api/sales/record", tags=["Sales"])
+async def api_sales_record(req: dict, auth=Depends(verify_api_key)):
+    """Record a daily sale into sales_daily table + update member wallet + trigger GSheet sync."""
+    try:
+        import json as _json
+        receipt_no = req.get("receipt_no", "")
+        voucher_no = req.get("voucher_no", receipt_no)
+        items = req.get("items", "")
+        amount = req.get("amount", 0)
+        gross = req.get("gross", amount)
+        discount = req.get("discount", 0)
+        net = req.get("net", amount)
+        payment_method = req.get("payment_method", "")
+        member_id = req.get("member_id", "")
+        staff_name = req.get("staff_name", "")
+        receipt_date = req.get("receipt_date", "") or now_mmt().strftime("%Y-%m-%d")
+        food_items = req.get("food_items", "")
+        food_cost = req.get("food_cost", 0)
+        mins_used = req.get("mins_used", 0)
+
+        notes = _json.dumps({
+            "receipt_no": receipt_no,
+            "items": items,
+            "food_items": food_items,
+            "food_cost": food_cost
+        })
+
+        logger.info("Recording sale: voucher=%s member=%s amount=%s mins_used=%s",
+                    voucher_no, member_id, net, mins_used)
+
+        mysql_execute(

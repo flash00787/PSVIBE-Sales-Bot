@@ -1,0 +1,4 @@
+Fix protocol failed to start: [FixProtocol] === PRE-FIX CHECK ===
+[FixProtocol] 📌 Baseline commit: 98312ead1321
+[FixProtocol] 🔴 LOCK FAILED for bot/handlers/members.py: CONFLICT: fix_7d39595d vs fix_ccf9d53d (shared: {'bot/handlers/members.py'})
+[FixProtocol] ABORT: Another fix in progress on overlapping files. Wait and retry.

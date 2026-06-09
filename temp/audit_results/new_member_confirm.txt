@@ -1,0 +1,101 @@
+        "is_gift": is_gift,
+        "referral_code": nm_referral_code,
+        "referral_bonus": _ref_bonus,
+    })
+    receipt_kb = get_receipt_kb(nm_vid)
+    context.user_data.clear()
+
+    # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
+    await update.message.reply_text(msg, parse_mode="Markdown",
+                                    reply_markup=ReplyKeyboardRemove())
+    if receipt_kb:
+        await update.message.reply_text("🖨️ Receipt ပုံနှိပ်ရန် -", reply_markup=receipt_kb)
+
+    # ── SHEET WRITES — background ─────────────────────────────────
+    async def _nm_bg():
+        def _do():
+            # 1. Card_Wallet (cols A–D + K + M)
+            # Col E = Lifetime Spend (formula in sheet — do NOT overwrite)
+            # Col M = Email
+            batch = [
+                {"range": f"A{cw_row}:H{cw_row}",
+                 "values": [[row_no, nm_id, nm_name, phone, "", "", "", bal_mins]]},
+                {"range": f"K{cw_row}", "values": [[nm_staff]]},
+            ]
+            if nm_email:
+                batch.append({"range": f"M{cw_row}", "values": [[nm_email]]})
+            # ── API write (best-effort) ──
+            try:
+                api_add_member({
+                    "member_id": nm_id,
+                    "name": nm_name,
+                    "phone": phone,
+                    "staff": nm_staff,
+                    "email": nm_email or "",
+                    "row_no": row_no,
+                })
+            except Exception as e:
+                logging.warning("Member API write failed (GSheet fallback OK): %s", e)
+            member_sh.batch_update(batch, value_input_option="USER_ENTERED")
+            # 2. TopUp_Log (cols A–C, E–I, J)
+            # If referral code used, add +30 bonus mins to new member's added_mins
+            _nm_added_mins = nm_mins + (30 if nm_referral_code and nm_referrer_id else 0)
+            # ── API write (best-effort) ──
+            try:
+                api_add_topup({
+                    "date": today,
+                    "member_id": nm_id,
+                    "type": "New Member",
+                    "amount": nm_amt,
+                    "kpay": nm_kpay,
+                    "cash": nm_cash,
+                    "minutes": _nm_added_mins,
+                    "staff": nm_staff,
+                })
+            except Exception as e:
+                logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
+            topup_sh.batch_update(
+                [{"range": f"A{tl_row}:C{tl_row}",
+                  "values": [[today, nm_id, "New Member"]]},
+                 {"range": f"E{tl_row}:I{tl_row}",
+                  "values": [[nm_amt, nm_kpay, nm_cash, _nm_added_mins, tl_type]]},
+                 {"range": f"J{tl_row}", "values": [[nm_staff]]}],
+                value_input_option="USER_ENTERED",
+            )
+            # 3. Effective rate (skipped for gift cards)
+            if initial_rate > 0:
+                update_member_effective_rate(nm_id, initial_rate)
+            # 4. Referral bonus: +30 mins to referrer via a new TopUp_Log row
+            if nm_referral_code and nm_referrer_id:
+                _ref_tl_row = next_write_row(topup_sh)
+                # ── API write (best-effort) ──
+                try:
+                    api_add_topup({
+                        "date": today,
+                        "member_id": nm_referrer_id,
+                        "type": "Referral Bonus",
+                        "amount": 0,
+                        "kpay": 0,
+                        "cash": 0,
+                        "minutes": 30,
+                        "staff": nm_staff,
+                    })
+                except Exception as e:
+                    logging.warning("Referral topup API write failed (GSheet fallback OK): %s", e)
+                topup_sh.batch_update(
+                    [{"range": f"A{_ref_tl_row}:C{_ref_tl_row}",
+                      "values": [[today, nm_referrer_id, "Referral Bonus"]]},
+                     {"range": f"E{_ref_tl_row}:I{_ref_tl_row}",
+                      "values": [[0, 0, 0, 30, "Referral Bonus"]]},
+                     {"range": f"J{_ref_tl_row}", "values": [[nm_staff]]}],
+                    value_input_option="USER_ENTERED",
+                )
+                logging.info("referral_bonus: referrer %s +30 mins via TopUp_Log", nm_referrer_id)
+        try:
+            await asyncio.to_thread(_do)
+        except Exception as _e:
+            logging.error("nm_bg_write: %s", _e)
+    asyncio.create_task(_nm_bg())
+
+    return await show_main_menu(update, context)
+

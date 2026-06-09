@@ -1,18 +1,77 @@
 const { Client } = require('ssh2');
 const fs = require('fs');
+const path = require('path');
 
-const conn = new Client();
-conn.on('ready', () => {
-  // Run deploy script - this will take some time
-  const cmds = `bash /root/staging/scripts/deploy.sh /root/staging/bot_src /root/Sales-Tele-Bot_refactored 2>&1`;
-  conn.exec(cmds, (err, stream) => {
-    let out = '';
-    stream.on('data', d => out += d.toString());
-    stream.stderr.on('data', d => out += d.toString());
-    stream.on('close', () => { console.log(out); conn.end(); process.exit(0); });
+const HOST = '5.223.81.16';
+const USER = 'root';
+const KEY_PATH = path.join(__dirname, '.ssh', 'id_rsa');
+
+async function sshExec(command, timeout = 60000) {
+  return new Promise((resolve, reject) => {
+    const conn = new Client();
+    let output = '';
+    let errOutput = '';
+    let timer = setTimeout(() => {
+      conn.end();
+      reject(new Error(`Timeout after ${timeout}ms: ${command.substring(0,100)}`));
+    }, timeout);
+
+    conn.on('ready', () => {
+      conn.exec(command, (err, stream) => {
+        if (err) {
+          clearTimeout(timer);
+          conn.end();
+          return reject(err);
+        }
+        stream.on('close', (code, signal) => {
+          clearTimeout(timer);
+          conn.end();
+          resolve({ code, stdout: output, stderr: errOutput });
+        }).on('data', (data) => { output += data.toString(); })
+          .stderr.on('data', (data) => { errOutput += data.toString(); });
+      });
+    });
+
+    conn.on('error', (err) => {
+      clearTimeout(timer);
+      reject(err);
+    });
+
+    conn.connect({
+      host: HOST,
+      port: 22,
+      username: USER,
+      privateKey: fs.readFileSync(KEY_PATH),
+      readyTimeout: 15000,
+    });
   });
-}).connect({
-  host: '167.71.196.120',
-  username: 'root',
-  privateKey: fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa')
-});
+}
+
+async function runDeploy() {
+  const cmds = [
+    {
+      label: 'Copy dist and restart',
+      cmd: 'cp -r /root/psvibe-dashboard/dist/* /root/psvibe_api_server/dashboard-dist/ && echo "DIST COPIED" && systemctl restart psvibe-api && echo "RESTARTED" && sleep 3 && systemctl status psvibe-api --no-pager | head -15',
+      timeout: 30000,
+    },
+    {
+      label: 'VERIFY API',
+      cmd: 'curl -s http://localhost:8000/api/dashboard/finance/balances 2>&1 | python3 -m json.tool 2>&1',
+      timeout: 15000,
+    },
+  ];
+
+  for (const { label, cmd, timeout } of cmds) {
+    console.log(`\n=== ${label} ===`);
+    try {
+      const r = await sshExec(cmd, timeout || 60000);
+      console.log(`Exit: ${r.code}`);
+      console.log(r.stdout);
+      if (r.stderr) console.log('STDERR:', r.stderr);
+    } catch (e) {
+      console.log(`ERROR: ${e.message}`);
+    }
+  }
+}
+
+runDeploy().catch(e => console.error('FATAL:', e));

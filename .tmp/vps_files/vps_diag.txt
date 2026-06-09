@@ -1,0 +1,17 @@
+=== Python Version ===
+Python 3.12.3
+
+=== Promotions Table ===
+
+=== Member Coupons Table ===
+
+=== member_coupons table schema ===
+
+=== API_BASE_URL env ===
+/etc/psvibe/secrets.env:API_BASE_URL=http://localhost:8000
+/etc/psvibe/secrets.env.bak:API_BASE_URL=http://localhost:8000
+/etc/psvibe/secrets.env:GEMINI_API_KEY=AIzaSyC8ute_MEcJd4LJI3qfwOaroHwRRh_CM2E
+/etc/psvibe/secrets.env:API_KEY=JWIErd82Apo3j-KKWW8HjOjfizo9s_tpJZhcSb7D-AQ
+/etc/psvibe/secrets.env:OPENROUTER_API_KEY=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
+/etc/psvibe/secrets.env.bak:GEMINI_API_KEY=AIzaSyB0F48vkY4JjlXDU_YbsNHfytnLzWVjWOg
+/etc/psvibe/secrets.env.bak:API_KEY=JWIErd82Apo3j-KKWW8HjOjfizo9s_tpJZhcSb7D-AQ

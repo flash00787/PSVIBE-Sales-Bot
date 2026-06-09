@@ -1,0 +1,60 @@
+10:    end_booking, fetch_base_rate, fetch_bonus_table,
+13:    fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, member_sh,
+16:    fetch_wallet_mins_async,
+82:    wallet_mins = context.user_data.get("wallet_mins")
+84:    if not is_guest and wallet_mins is not None:
+85:        balance_line = f"\n💰 *Wallet Balance: {wallet_mins:,} mins*"
+86:        if wallet_mins <= 0:
+108:    wallet_mins = context.user_data.get("wallet_mins")
+114:    if not is_guest and wallet_mins is not None:
+115:        wallet_line = f"\n💰 *Wallet Balance: {wallet_mins:,} mins*"
+116:        if wallet_mins <= 0:
+117:            wallet_line += "  ⚠️ _Wallet ပိုင်ဆိုင်မှုကုန်ဆုံးနေပြီ!_"
+119:        wallet_line = ""
+129:        f"👤 *{label}*  |  🕹️ *{c_id}*{wallet_line}\n\n"
+297:            wallet_bal = d.get("wallet_mins", 0)
+300:            wallet_block = (
+301:                f"⏳ Wallet: {wallet_bal} mins → 0 (fully used)\n"
+309:            wallet_mins       = d.get("wallet_mins")
+312:            if wallet_mins is not None:
+313:                remaining = wallet_mins - effective_cost
+316:                # Safety guard — if wallet still insufficient (e.g. stale balance from
+328:                        f"💳 Balance  : <b>{wallet_mins} mins</b>\n"
+338:                wallet_block = (
+339:                    f"⏳ Wallet Balance: {wallet_mins} mins\n"
+340:                    f"🎮 Play: {mins} mins{mult_tag} → Cost: {effective_cost} wallet mins\n"
+345:                wallet_block = f"🎮 Playing: {mins} mins\n"
+351:            f"{wallet_block}"
+423:            context.user_data["wallet_mins"] = await fetch_wallet_mins_async(text)
+425:            context.user_data["wallet_mins"] = None
+437:        context.user_data["wallet_mins"] = await fetch_wallet_mins_async(matches[0])
+567:        context.user_data.pop("wallet_mins", None)
+604:                f"🕹️ {ac['id']}{mult_tag}  ⏱ {dfmt} ({mins} mins → {eff_i} wallet mins)  🕐 {start_t}→{end_t}"
+612:            f"👤 {m_id}  |  ⏱ Play: <b>{total_mins} mins</b>  |  💳 Cost: <b>{total_effective_mins} wallet mins</b>\n"
+1060:    wallet_before = d.get("wallet_mins")   # balance before this session (None for guests)
+1071:    wallet_deduct  = round(play_mins * mult)
+1072:    # Extract bonus_mins early so balance_after can include it
+1073:    _early_bonus_mins = d.get("bonus_mins", 0)
+1074:    remaining_mins = (wallet_before - wallet_deduct + _early_bonus_mins) if not is_guest and wallet_before is not None else None
+1083:                 else f"🎮 Play: *{play_mins} mins*  |  Wallet: *-{wallet_deduct} mins*")
+1084:    wallet_bal_line = (f"\n💰 *Remaining Balance: {remaining_mins:,} mins*"
+1090:    promo_id    = d.get("promo_id", "")
+1091:    promo_title = d.get("promo_title", "")
+1092:    promo_note  = d.get("promo_disc_note", "")
+1093:    bonus_mins  = d.get("bonus_mins", 0)
+1112:        "promo_id":       promo_id,
+1113:        "promo_title":    promo_title,
+1114:        "promo_note":     promo_note,
+1117:        "bonus_mins":     bonus_mins,
+1118:        "bonus_mins_promo": bonus_mins,  # always save; receipt shows if promo-related
+1124:        "prev_balance":   wallet_before,
+1125:        "balance_change": -wallet_deduct if not is_guest else None,
+1126:        "balance_after":  remaining_mins,  # includes bonus_mins if any
+1127:        "wallet_game_value": d.get("wallet_game_value", 0),
+1135:    # ── Build discount/bonus lines for receipt ───────────────────────────────
+1141:        disc_label = f" ({_mds(promo_title)})" if promo_title else ""
+1144:        elif promo_note:
+1145:            disc_detail = f" — {_mds(promo_note)}"
+1154:    elif bonus_mins > 0:
+1155:        bonus_label = f" ({_mds(promo_title)})" if promo_title else ""
+1158:            f"⏱️ Bonus Mins{bonus_label}: *+{bonus_mins} mins*\n"

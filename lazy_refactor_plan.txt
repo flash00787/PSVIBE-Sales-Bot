@@ -1,0 +1,571 @@
+
+=== __ALL__ / EXPORTED NAMES from bot/__init__.py ===
+50:_gsheets_executor = concurrent.futures.ThreadPoolExecutor(
+54:_SHEETS_RETRY_CODES = (429, 500, 503)
+55:_SHEETS_MAX_RETRIES = 3
+135:MMT = timezone(timedelta(hours=6, minutes=30))
+145:_HEALTH_LOG = _logging.getLogger("health")
+146:_HEALTH_PORT = int(_os.environ.get("HEALTH_PORT", "8080"))
+147:_START_TS = _time.time()
+197:_log_formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
+198:_file_handler  = logging.FileHandler("bot_status.log", encoding="utf-8")
+200:_console_handler = logging.StreamHandler()
+211:scope = [
+216:creds       = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
+217:gc          = gspread.authorize(creds)
+218:wb          = gc.open_by_key(os.environ["SHEET_ID"])
+219:sales_sh    = wb.worksheet("Sales_Daily")
+220:setting_sh  = wb.worksheet("Setting")
+221:member_sh   = wb.worksheet("Card_Wallet")
+222:stock_sh    = wb.worksheet("Stock_Out")
+223:stock_in_sh = wb.worksheet("Stock_In")
+224:topup_sh    = wb.worksheet("TopUp_Log")
+225:inv_sh      = wb.worksheet("Inventory")
+277:_GSPREAD_METHODS_TO_WRAP = [
+1106:MAIN_MENU = BotState.MAIN_MENU
+1107:MEMBER = BotState.MEMBER
+1108:CONSOLE = BotState.CONSOLE
+1109:MINS = BotState.MINS
+1110:FOOD_MENU = BotState.FOOD_MENU
+1111:FOOD_QTY = BotState.FOOD_QTY
+1112:CONFIRM_SUMMARY = BotState.CONFIRM_SUMMARY
+1113:DISCOUNT = BotState.DISCOUNT
+1114:KPAY_AMT = BotState.KPAY_AMT
+1115:SALE_CONFIRM = BotState.SALE_CONFIRM
+1116:MM_MENU = BotState.MM_MENU
+1117:NM_NAME = BotState.NM_NAME
+1118:NM_PHONE = BotState.NM_PHONE
+1119:NM_EMAIL = BotState.NM_EMAIL
+1120:NM_ID = BotState.NM_ID
+1121:NM_AMT = BotState.NM_AMT
+1122:NM_KPAY = BotState.NM_KPAY
+1123:NM_REFERRAL = BotState.NM_REFERRAL
+1124:NM_CONFIRM = BotState.NM_CONFIRM
+1125:NM_GIFT_PIN = BotState.NM_GIFT_PIN
+1126:TU_MEMBER = BotState.TU_MEMBER
+1127:TU_AMT = BotState.TU_AMT
+1128:TU_KPAY = BotState.TU_KPAY
+1129:TU_CONFIRM = BotState.TU_CONFIRM
+1130:MM_LOOKUP = BotState.MM_LOOKUP
+1131:STOCK_PIN = BotState.STOCK_PIN
+1132:STOCK_MENU = BotState.STOCK_MENU
+1133:STOCK_ITEM = BotState.STOCK_ITEM
+1134:STOCK_QTY = BotState.STOCK_QTY
+1135:SI_ITEM = BotState.SI_ITEM
+1136:SI_QTY = BotState.SI_QTY
+1137:SI_COST = BotState.SI_COST
+1138:SI_CART = BotState.SI_CART
+1139:SI_PAY = BotState.SI_PAY
+1140:SI_CONFIRM = BotState.SI_CONFIRM
+1141:ATTEND_STAFF = BotState.ATTEND_STAFF
+1142:ATTEND_LEAVE = BotState.ATTEND_LEAVE
+1143:ATTEND_LATE = BotState.ATTEND_LATE
+
+=== CLASS/FUNC defs at module level in bot/__init__.py ===
+59:class SheetsPermissionError(Exception):
+65:def _get_sa_email(sa_file: str = "service_account.json") -> str:
+75:def _sheets_retry(func):
+136:def now_mmt() -> datetime:
+149:class _HealthHandler(_BaseHandler):
+174:def keep_alive():
+229:class RetryingWorksheet:
+302:def _batch_update(ws, cells):
+316:def get_att_sh():
+326:def get_booking_sh():
+340:def fetch_console_status() -> list[dict]:
+399:def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
+423:def end_booking(booking_id: str) -> bool:
+444:def get_salary_adv_sh():
+456:def get_game_lib_sh():
+465:def fetch_games() -> list[dict]:
+522:def set_game_disc_count(row_num: int, count: int) -> bool:
+542:def get_console_games_sh():
+554:def fetch_console_games() -> list[dict]:
+585:def get_games_on_console(console_id: str) -> list[str]:
+607:def get_consoles_with_game(game_title: str) -> list[str]:
+623:def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
+727:def add_console_game(console_id: str, game_title: str, install_type: str, notes: str = "") -> bool:
+747:def remove_console_game(console_id: str, game_title: str) -> bool:
+771:def _norm_cid(cid: str) -> str:
+776:def update_game_library_install(game_title: str, console_id: str, installed: bool) -> bool:
+829:def calc_duration(start_time_str: str) -> tuple[int, str]:
+847:def cancel_booking(booking_id: str) -> bool:
+866:def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
+885:def remove_console_from_setting(console_id: str) -> bool:
+904:def get_consoles_from_setting() -> list[dict]:
+925:class BotState(IntEnum):
+1322:def get_valid_consoles() -> set:
+1460:def _delete_session_game(console_id: str) -> None:
+1519:def _int(val):
+1528:def next_voucher():
+1544:def fetch_members():
+1554:def fetch_attendance(month_str: str) -> dict[str, dict]:
+1582:def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
+1601:def fetch_staff() -> list[str]:
+
+=== app.py lines detail ===
+    ApplicationHandlerStop,
+    ContextTypes,
+)
+import bot
+from bot import *
+from bot import _load_cfg, _load_members, _bg_cache_refresh, _get_cfg, _get_member_rows
+from bot.handlers import *  # noqa: F401,F403
+from bot.handlers import error_handler
+import bot as _bot_module
+
+async def _auth_middleware(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+
+=== _get_handler function ===
+
+
+# constants imported by bot package itself
+# helpers imported by bot package itself
+# Handlers imported lazily to break circular dependency
+_HANDLER_MODULES = {}
+def _get_handler(hname):
+    if hname not in _HANDLER_MODULES:
+        import importlib
+        _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
+    return _HANDLER_MODULES[hname]
+# main() is imported from bot.app directly by main.py — avoid circular import
+
+=== Existing lazy imports (import inside function body) ===
+bot/__init__.py:21:    from bot.api_client import (
+bot/utils/api_client.py:4:from bot.api_client import (  # noqa: F401
+bot/report_generator.py:8:    from bot.report_generator import ReportGenerator
+bot/report_generator.py:251:            from bot import sales_sh
+bot/report_generator.py:258:            from bot import topup_sh
+bot/report_generator.py:265:            from bot import member_sh
+bot/report_generator.py:272:            from bot import setting_sh
+bot/app.py:19:from bot import *
+bot/app.py:20:from bot import _load_cfg, _load_members, _bg_cache_refresh, _get_cfg, _get_member_rows
+bot/app.py:21:from bot.handlers import *  # noqa: F401,F403
+bot/app.py:22:from bot.handlers import error_handler
+bot/handlers/broadcast.py:10:from bot import *
+bot/handlers/finance.py:1:from bot import *
+bot/handlers/finance.py:3:    from bot.api_client import api_add_opex
+bot/handlers/finance.py:6:from bot import *
+bot/handlers/admin_bookings.py:8:from bot import *
+bot/handlers/admin_bookings.py:19:    from bot.handlers.admin import show_admin_menu
+bot/handlers/stock.py:1:from bot import *
+bot/handlers/stock.py:3:    from bot.api_client import api_add_stock_out
+bot/handlers/members.py:1:from bot import *
+bot/handlers/members.py:3:    from bot.api_client import api_add_member, api_add_topup
+bot/handlers/sales.py:1:from bot import *
+bot/handlers/sales.py:3:    from bot.api_client import api_add_sales_record, api_add_stock_out
+bot/handlers/sales.py:1459:    from bot.handlers.console import show_console_menu
+bot/handlers/salary_adv.py:1:from bot import *
+bot/handlers/salary_adv.py:3:    from bot.api_client import api_add_salary_advance
+bot/handlers/commands.py:17:    from bot.handlers.main_menu import show_main_menu
+bot/handlers/commands.py:23:    from bot.handlers.members import prompt_tu_member
+bot/handlers/commands.py:29:    from bot.handlers.members import show_mm_menu
+bot/handlers/commands.py:35:    from bot.handlers.members import prompt_mm_lookup
+
+=== Lines per handler file ===
+ 12360 total
+  2601 bot/handlers/finance.py
+  1514 bot/handlers/sales.py
+  1198 bot/handlers/members.py
+  1086 bot/handlers/booking.py
+   745 bot/handlers/booking_flow.py
+   540 bot/handlers/admin.py
+   457 bot/handlers/ssd_disc.py
+   436 bot/handlers/discount.py
+   410 bot/handlers/games.py
+   352 bot/handlers/console.py
+   349 bot/handlers/reports.py
+   308 bot/handlers/stock_in.py
+   284 bot/handlers/waitlist.py
+   260 bot/handlers/stock.py
+   240 bot/handlers/admin_bookings.py
+   235 bot/handlers/ginst.py
+   234 bot/handlers/payroll.py
+   172 bot/handlers/attendance.py
+   160 bot/handlers/console_mgmt.py
+   145 bot/handlers/broadcast.py
+   141 bot/handlers/salary_adv.py
+   136 bot/handlers/referral.py
+   117 bot/handlers/main_menu.py
+    86 bot/handlers/help.py
+    72 bot/handlers/notify.py
+    49 bot/handlers/commands.py
+    33 bot/handlers/__init__.py
+
+=== Lines per non-handler bot file ===
+  4713 total
+  2568 bot/__init__.py
+   758 bot/report_generator.py
+   531 bot/api_client.py
+   470 bot/app.py
+   196 bot/constants.py
+   104 bot/helpers.py
+    86 bot/keep_alive.py
+
+
+=== PUBLIC NAMES in bot/__init__.py (not underscore-prefixed, module-level) ===
+135:MMT = timezone(timedelta(hours=6, minutes=30))
+139:BOT_VERSION = "2026.05.05-r1"   # Console double-booking conflict check (409 guard)
+211:scope = [
+216:creds       = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
+217:gc          = gspread.authorize(creds)
+218:wb          = gc.open_by_key(os.environ["SHEET_ID"])
+219:sales_sh    = wb.worksheet("Sales_Daily")
+220:setting_sh  = wb.worksheet("Setting")
+221:member_sh   = wb.worksheet("Card_Wallet")
+222:stock_sh    = wb.worksheet("Stock_Out")
+223:stock_in_sh = wb.worksheet("Stock_In")
+224:topup_sh    = wb.worksheet("TopUp_Log")
+225:inv_sh      = wb.worksheet("Inventory")
+1106:MAIN_MENU = BotState.MAIN_MENU
+1107:MEMBER = BotState.MEMBER
+1108:CONSOLE = BotState.CONSOLE
+1109:MINS = BotState.MINS
+1110:FOOD_MENU = BotState.FOOD_MENU
+1111:FOOD_QTY = BotState.FOOD_QTY
+1112:CONFIRM_SUMMARY = BotState.CONFIRM_SUMMARY
+1113:DISCOUNT = BotState.DISCOUNT
+1114:KPAY_AMT = BotState.KPAY_AMT
+1115:SALE_CONFIRM = BotState.SALE_CONFIRM
+1116:MM_MENU = BotState.MM_MENU
+1117:NM_NAME = BotState.NM_NAME
+1118:NM_PHONE = BotState.NM_PHONE
+1119:NM_EMAIL = BotState.NM_EMAIL
+1120:NM_ID = BotState.NM_ID
+1121:NM_AMT = BotState.NM_AMT
+1122:NM_KPAY = BotState.NM_KPAY
+1123:NM_REFERRAL = BotState.NM_REFERRAL
+1124:NM_CONFIRM = BotState.NM_CONFIRM
+1125:NM_GIFT_PIN = BotState.NM_GIFT_PIN
+1126:TU_MEMBER = BotState.TU_MEMBER
+1127:TU_AMT = BotState.TU_AMT
+1128:TU_KPAY = BotState.TU_KPAY
+1129:TU_CONFIRM = BotState.TU_CONFIRM
+1130:MM_LOOKUP = BotState.MM_LOOKUP
+1131:STOCK_PIN = BotState.STOCK_PIN
+1132:STOCK_MENU = BotState.STOCK_MENU
+1133:STOCK_ITEM = BotState.STOCK_ITEM
+1134:STOCK_QTY = BotState.STOCK_QTY
+1135:SI_ITEM = BotState.SI_ITEM
+1136:SI_QTY = BotState.SI_QTY
+1137:SI_COST = BotState.SI_COST
+1138:SI_CART = BotState.SI_CART
+1139:SI_PAY = BotState.SI_PAY
+1140:SI_CONFIRM = BotState.SI_CONFIRM
+1141:ATTEND_STAFF = BotState.ATTEND_STAFF
+1142:ATTEND_LEAVE = BotState.ATTEND_LEAVE
+1143:ATTEND_LATE = BotState.ATTEND_LATE
+1144:ATTEND_DEDUCT = BotState.ATTEND_DEDUCT
+1145:ADMIN_PIN = BotState.ADMIN_PIN
+1146:ADMIN_MENU = BotState.ADMIN_MENU
+1147:SI_PAY_SPLIT = BotState.SI_PAY_SPLIT
+1148:SAL_ADV_STAFF = BotState.SAL_ADV_STAFF
+1149:SAL_ADV_AMT = BotState.SAL_ADV_AMT
+1150:SAL_ADV_PAY = BotState.SAL_ADV_PAY
+1151:SAL_ADV_CONFIRM = BotState.SAL_ADV_CONFIRM
+1152:BOOK_LINK = BotState.BOOK_LINK
+1153:BOOK_CONSOLE = BotState.BOOK_CONSOLE
+1154:BOOK_MEMBER = BotState.BOOK_MEMBER
+1155:CONSOLE_MENU = BotState.CONSOLE_MENU
+1156:END_SESSION_SELECT = BotState.END_SESSION_SELECT
+1157:GAME_MENU = BotState.GAME_MENU
+1158:GAME_ADD_TITLE = BotState.GAME_ADD_TITLE
+1159:GAME_ADD_PLATFORM = BotState.GAME_ADD_PLATFORM
+1160:GAME_ADD_GENRE = BotState.GAME_ADD_GENRE
+1161:GAME_ADD_STATUS = BotState.GAME_ADD_STATUS
+1162:GAME_DEL_SELECT = BotState.GAME_DEL_SELECT
+1163:CON_MGMT_MENU = BotState.CON_MGMT_MENU
+1164:CON_ADD_ID = BotState.CON_ADD_ID
+1165:CON_ADD_TYPE = BotState.CON_ADD_TYPE
+1166:CON_ADD_MULT = BotState.CON_ADD_MULT
+1167:CON_DEL_SELECT = BotState.CON_DEL_SELECT
+1168:SESSION_SHORTFALL = BotState.SESSION_SHORTFALL
+1169:DS_MEMBER_IN_SESSION = BotState.DS_MEMBER_IN_SESSION
+1170:DS_CONSOLE_IN_SESSION = BotState.DS_CONSOLE_IN_SESSION
+1171:BOOK_DUP_WARN = BotState.BOOK_DUP_WARN
+1172:BOOK_GAME = BotState.BOOK_GAME
+
+=== All module-level public defs/classes (not underscore-prefixed) ===
+59:class SheetsPermissionError(Exception):
+136:def now_mmt() -> datetime:
+174:def keep_alive():
+229:class RetryingWorksheet:
+316:def get_att_sh():
+326:def get_booking_sh():
+340:def fetch_console_status() -> list[dict]:
+399:def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
+423:def end_booking(booking_id: str) -> bool:
+444:def get_salary_adv_sh():
+456:def get_game_lib_sh():
+465:def fetch_games() -> list[dict]:
+522:def set_game_disc_count(row_num: int, count: int) -> bool:
+542:def get_console_games_sh():
+554:def fetch_console_games() -> list[dict]:
+585:def get_games_on_console(console_id: str) -> list[str]:
+607:def get_consoles_with_game(game_title: str) -> list[str]:
+623:def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
+727:def add_console_game(console_id: str, game_title: str, install_type: str, notes: str = "") -> bool:
+747:def remove_console_game(console_id: str, game_title: str) -> bool:
+776:def update_game_library_install(game_title: str, console_id: str, installed: bool) -> bool:
+829:def calc_duration(start_time_str: str) -> tuple[int, str]:
+847:def cancel_booking(booking_id: str) -> bool:
+866:def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
+885:def remove_console_from_setting(console_id: str) -> bool:
+904:def get_consoles_from_setting() -> list[dict]:
+925:class BotState(IntEnum):
+1322:def get_valid_consoles() -> set:
+1528:def next_voucher():
+1544:def fetch_members():
+1554:def fetch_attendance(month_str: str) -> dict[str, dict]:
+1582:def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
+1601:def fetch_staff() -> list[str]:
+1615:def fetch_base_salaries() -> dict[str, int]:
+1637:def ensure_sheet_headers():
+1663:class BotStateData:
+1705:def fetch_promotions_cached() -> list:
+1908:def fetch_allowed_staff_ids() -> set[int]:
+1940:def fetch_wallet_mins(member_id):
+1952:def fetch_base_rate():
+1964:def fetch_new_member_defaults():
+1982:def fetch_food_prices():
+1996:def fetch_food_costs():
+2010:def fetch_console_multiplier(console_id):
+2032:def fetch_rank_thresholds():
+2049:def fetch_member_total_spend(member_id):
+2065:def fetch_member_phone(member_id):
+2081:def fetch_member_data(member_id):
+2116:def fetch_referral_code(member_id: str) -> str:
+2132:def save_referral_code(member_id: str, code: str) -> bool:
+2151:def fetch_balance_mins(member_id: str) -> int:
+2168:def fetch_member_effective_rate(member_id: str) -> float:
+2186:def update_member_effective_rate(member_id: str, new_rate: float) -> None:
+2202:def build_member_rate_dict() -> dict[str, float]:
+2225:def fetch_member_rank_from_sheet(member_id):
+2246:def fetch_member_tier(member_id: str) -> str:
+2263:def get_member_rank(total_spend, master_thresh, immortal_thresh):
+2274:def display_rank(rank):
+2283:def rank_emoji(rank):
+2287:def build_rank_bonus_lines(rank, bonus_table):
+
+=== Usage of bot names in each handler file ===
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+--- $f ---
+
+=== __all__ in bot/__init__.py ===
+141:__all__ = ['wb', 'MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']
+
+=== _get_handler usage sites ===
+./bot/__init__.py:2563:def _get_handler(hname):
+
+=== Handlers __all__ (any defined) ===
+bot/handlers/console_mgmt.py:13:    if name in ('__getattr__', '_bot_lazy_loaded', '__all__', '__path__', '__spec__', '__loader__', '__package__'):
+
+
+=== EACH HANDLER: which bot names are used? ===
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+--- handlers/$name.py ---
+
+=== admin.py: module-level names used at def signatures, decorators, or class defs ===
+14:async def cmd_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+18:async def step_admin_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+45:async def show_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+64:async def step_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+103:def fetch_salary_advances(month_str: str) -> dict[str, dict]:
+132:async def cmd_admin_sal_adv(update: Update, context: ContextTypes.DEFAULT_TYPE):
+149:def _parse_date_mmt(val: str):
+157:def fetch_alltime_effective_rate() -> float:
+185:def calc_monthly_pnl(month_str: str) -> dict:
+322:async def cmd_admin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
+397:async def cmd_admin_cashflow(update: Update, context: ContextTypes.DEFAULT_TYPE):
+473:async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+=== Checking bot/__init__.py imports from handlers ===
+2566:        _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
+
+=== Help.py lines (small file - representative) ===
+"""PS VIBE Bot — Help, Version & Error Handler.
+"""
+# Using bot.* namespace instead of direct handler imports to avoid circular deps
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+from bot import *
+
+async def cmd_version(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show the running bot version and build date."""
+    import platform
+    py_ver = platform.python_version()
+    built  = now_mmt().strftime("%Y-%m-%d %H:%M MMT")
+    await update.message.reply_text(
+        f"🤖 *PS Vibe Sales Bot*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📦 Version   : `{BOT_VERSION}`\n"
+        f"🐍 Python    : `{py_ver}`\n"
+        f"🕐 Server time: `{built}`\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"✅ *Latest features:*\n"
+        f"  • Admin CMD PIN (/payroll /kpi /setattend)\n"
+        f"  • Payroll target display in hrs (not mins)\n"
+        f"  • Session repeat reminder loop (5-min cycle)\n"
+        f"  • Inventory cache bust after stock update\n"
+        f"  • Staff breakdown + low-wallet API endpoints\n"
+        f"  • Payroll business-wide play\\_mins total\n"
+        f"  • Per-member exact effective rate\n"
+        f"  • P&L / Cash Flow / Liability reports",
+        parse_mode="Markdown",
+    )
+
+async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show all available commands."""
+    await update.message.reply_text(
+        "📖 *PS Vibe Bot — Commands*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🏠 *Navigation*\n"
+        "/start        — Main Menu ပြမည်\n"
+        "/menu         — Main Menu ပြမည်\n"
+        "/cancel       — လက်ရှိ action ဖျက်သိမ်း\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🎮 *Sales*\n"
+        "/sales        — 📝 New Sale _(shortcut)_\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "💳 *Members*\n"
+        "/member       — Member Management menu\n"
+        "/newmember    — 🆕 New Member Register\n"
+        "/topup        — 💰 Top Up _(shortcut)_\n"
+        "/check        — 🔍 Check Member Info\n"
+        "/ranks        — 📋 View Rank Tier Table\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📊 *Reports*\n"
+        "/report       — 📊 Today's Report\n"
+        "/kpi          — 📈 Staff KPI (ဒီနေ့)\n"
+        "/payroll      — 💰 Monthly Payroll\n"
+        "/setattend    — 📅 ခွင့်ယူ / နောက်ကျ မှတ်တမ်း\n"
+        "/admin        — 🔧 Admin Panel (Stock/Attend/Payroll/KPI)\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "📦 *Stock*\n"
+        "/stock        — Stock Update menu\n"
+        "/stockin      — 📥 Stock In (Restock)\n"
+        "/stockout     — 📦 Stock Out\n"
+        "/inventory    — 🗂 Inventory Status\n"
+        "/stocktoday   — 🛒 Items sold today\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "/help         — ဤ command list",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Log all Telegram errors without crashing the bot."""
+    from telegram.error import NetworkError, TimedOut, Conflict
+    err = context.error
+    if isinstance(err, (NetworkError, TimedOut)):
+        logging.warning("Network issue (will auto-retry): %s", err)
+    elif isinstance(err, Conflict):
+        logging.warning("Conflict: another instance is running — will resolve automatically.")
+    else:
+        logging.error("Unhandled error: %s", err, exc_info=err)
+
+STDERR:
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+grep: $f: No such file or directory
+
+
+=== FULL __all__ LINE ===
+__all__ = ['wb', 'MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'SESSION_SHORTFALL', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_ADMIN', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']
+---END---
+
+=== RESULT: OK ||| ERROR: none ===

@@ -180,8 +180,7 @@ def send_email(access_token):
 
 
 if __name__ == "__main__":
-    print("Kora - Gmail API Email Sender")
+    print("gmail_send.py — Gmail API Email Sender Module")
     print("-" * 40)
-
-    access_token = get_tokens()
-    send_email(access_token)
+    print("⚠️  This script is a module — do NOT run directly.")
+    print("   No emails will be sent without explicit function call.")

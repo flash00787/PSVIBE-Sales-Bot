@@ -1,0 +1,4134 @@
+======== FINANCE HANDLERS (finance.py) ========
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+def get_opex_sh():
+    return wb.worksheet("OPEX_Log")
+
+def get_assets_sh():
+    return wb.worksheet("Assets_Register")
+
+def get_prepaid_fin_sh():
+    return wb.worksheet("Prepaid_Expenses")
+
+def get_acct_trf_sh():
+    return wb.worksheet("Account_Transfers")
+
+def get_payables_sh():
+    return wb.worksheet("Payables")
+
+def get_receivables_sh():
+    return wb.worksheet("Receivables")
+
+def get_advpay_sh():
+    return wb.worksheet("Advance_Payments")
+
+async def show_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Finance Management sub-menu."""
+    kb = [
+        # ── Capital & Equity ──
+        [BTN_FIN_CAPITAL, BTN_FIN_SHAREHOLDER, BTN_FIN_TRANSFER],
+        # ── Record Expenses / Assets ──
+        [BTN_FIN_OPEX,    BTN_FIN_ASSET,       BTN_FIN_ASSET_DISPOSE],
+        [BTN_FIN_PREPAID],
+        # ── Payables / Receivables / Advances ──
+        [BTN_FIN_PAYABLE, BTN_FIN_SETTLE_PAY],
+        [BTN_FIN_RECEIVABLE, BTN_FIN_SETTLE_REC],
+        [BTN_FIN_ADVPAY,  BTN_FIN_SETTLE_ADVPAY],
+        # ── Reports ──
+        [BTN_FIN_ACCTS,   BTN_FIN_REPORT],
+        # ── Admin ──
+        [BTN_FIN_SETUP,   BTN_BACK_MAIN],
+    ]
+    await update.message.reply_text(
+        "💼 *Finance Management*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Action ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return FINANCE_MENU
+
+async def step_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Route Finance menu choices."""
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+    if choice == BTN_FIN_CAPITAL:
+        return await prompt_cap_acct(update, context)
+    if choice == BTN_FIN_SHAREHOLDER:
+        return await show_shareholder_menu(update, context)
+    if choice == BTN_FIN_OPEX:
+        return await prompt_opex_cat(update, context)
+    if choice == BTN_FIN_ASSET:
+        return await prompt_asset_name(update, context)
+    if choice == BTN_FIN_ASSET_DISPOSE:
+        return await prompt_asset_dispose_sel(update, context)
+    if choice == BTN_FIN_PREPAID:
+        return await prompt_prepaid_desc(update, context)
+    if choice == BTN_FIN_TRANSFER:
+        return await prompt_acct_trf_from(update, context)
+    if choice == BTN_FIN_PAYABLE:
+        return await prompt_pay_vendor(update, context)
+    if choice == BTN_FIN_RECEIVABLE:
+        return await prompt_rec_cust(update, context)
+    if choice == BTN_FIN_SETTLE_PAY:
+        return await show_settle_list(update, context, "payable")
+    if choice == BTN_FIN_SETTLE_REC:
+        return await show_settle_list(update, context, "receivable")
+    if choice == BTN_FIN_ADVPAY:
+        return await prompt_advpay_party(update, context)
+    if choice == BTN_FIN_SETTLE_ADVPAY:
+        return await show_advpay_settle(update, context)
+    if choice == BTN_FIN_ACCTS:
+        return await cmd_fin_accts(update, context)
+    if choice == BTN_FIN_REPORT:
+        return await show_fin_report_menu(update, context)
+    if choice == BTN_FIN_SETUP:
+        return await cmd_finance_setup(update, context)
+    return await show_finance_menu(update, context)
+
+async def prompt_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "opex"
+    kb = [[c] for c in OPEX_CATEGORIES] + [NAV_ROW]
+    await update.message.reply_text(
+        "📝 *OPEX ထည့် — အမျိုးအစား*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "လည်ပတ်ကုန်ကျစရိတ် အမျိုးအစား ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return OPEX_CAT
+
+async def step_opex_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    if text not in OPEX_CATEGORIES:
+        await update.message.reply_text("⚠️ အောက်မှ ရွေးပါ")
+        return OPEX_CAT
+    context.user_data["fin"]["opex_cat"] = text
+    kb = [["⏩ Skip"], NAV_ROW]
+    await update.message.reply_text(
+        f"📝 *{text}* — အသေးစိတ်ဖော်ပြချက်\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ဖော်ပြချက် ရိုက်ပါ (သို့) Skip:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return OPEX_DESC
+
+async def step_opex_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_opex_cat(update, context)
+    context.user_data["fin"]["opex_desc"] = "" if text == "⏩ Skip" else text
+    await update.message.reply_text(
+        "💰 *ကုန်ကျစရိတ် ပမာဏ (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return OPEX_AMT
+
+async def step_opex_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_opex_cat(update, context)
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ မှန်ကန်သော ပမာဏ ရိုက်ပါ")
+        return OPEX_AMT
+    context.user_data["fin"]["opex_amt"] = amt
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        f"💰 *{amt:,} Ks* — ငွေ Account ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return OPEX_ACCT
+
+async def step_opex_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "ပမာဏ ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return OPEX_AMT
+    if text not in FINANCE_ACCOUNTS:
+        await update.message.reply_text("⚠️ Account ရွေးပါ")
+        return OPEX_ACCT
+    d = context.user_data["fin"]
+    d["opex_acct"] = text
+    # Auto-derive pay method from account
+    _pay_map = {"Cash Box": "Cash", "MMQR": "KPay", "KBZ Bank": "Bank Transfer", "AYA Bank": "Bank Transfer"}
+    d["opex_pay"] = _pay_map.get(text, "Cash")
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "📝 <b>OPEX မှတ်တမ်း — အတည်ပြုချက်</b>\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"📌 Category : <b>{d['opex_cat']}</b>\n"
+        f"📋 Note     : <b>{d.get('opex_desc','') or '—'}</b>\n"
+        f"💰 Amount   : <b>{d['opex_amt']:,} Ks</b>\n"
+        f"🏦 Account  : <b>{d['opex_acct']}</b>\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "မှန်ကန်ပါသလား? ✅ Confirm &amp; Save နှိပ်ပါ",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return OPEX_CONFIRM
+
+async def step_opex_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return OPEX_ACCT
+    if text not in PAY_METHODS:
+        await update.message.reply_text("⚠️ ငွေပေးပုံ ရွေးပါ")
+        return OPEX_PAY
+    d = context.user_data["fin"]
+    d["opex_pay"] = text
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "📝 *OPEX မှတ်တမ်း — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"📌 Category : *{d['opex_cat']}*\n"
+        f"📋 Note     : *{d.get('opex_desc','') or '—'}*\n"
+        f"💰 Amount   : *{d['opex_amt']:,} Ks*\n"
+        f"🏦 Account  : *{d['opex_acct']}*\n"
+        f"💳 Payment  : *{d['opex_pay']}*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "မှန်ကန်ပါသလား? ✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return OPEX_CONFIRM
+
+async def step_opex_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return OPEX_ACCT
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return OPEX_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_opex_sh()
+            sh.append_row(
+                [today_str(), d["opex_cat"], d.get("opex_desc", ""),
+                 d["opex_amt"], d["opex_acct"], d["opex_pay"]],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *OPEX မှတ်တမ်း သိမ်းဆည်းပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"📌 {d['opex_cat']}  |  💰 {d['opex_amt']:,} Ks\n"
+            f"🏦 {d['opex_acct']}  |  💳 {d['opex_pay']}",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def prompt_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "asset"
+    await update.message.reply_text(
+        "🏢 *Asset မှတ်တမ်း — Asset အမည်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Asset အမည် ရိုက်ပါ\n(ဥပမာ: PS5 Console #3):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return ASSET_NAME
+
+async def step_asset_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    if not text:
+        await update.message.reply_text("⚠️ Asset အမည် ထည့်ပါ")
+        return ASSET_NAME
+    context.user_data["fin"]["asset_name"] = text
+    kb = [[c] for c in ASSET_CATEGORIES] + [NAV_ROW]
+    await update.message.reply_text(
+        f"🏢 *{text}* — အမျိုးအစား ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_CAT
+
+async def step_asset_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_asset_name(update, context)
+    if text not in ASSET_CATEGORIES:
+        await update.message.reply_text("⚠️ Category ရွေးပါ")
+        return ASSET_CAT
+    context.user_data["fin"]["asset_cat"] = text
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    kb = [[today], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *ဝယ်ယူသည့် ရက်စွဲ (M/D/YYYY)*\n"
+        f"ဥပမာ: {today}",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_DATE
+
+async def step_asset_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[c] for c in ASSET_CATEGORIES] + [NAV_ROW]
+        await update.message.reply_text(
+            "Category ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_CAT
+    context.user_data["fin"]["asset_date"] = text
+    await update.message.reply_text(
+        "💰 *Asset ဝယ်ယူစျေး (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return ASSET_COST
+
+async def step_asset_cost(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text(
+            "ရက်စွဲ ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+        )
+        return ASSET_DATE
+    try:
+        cost = int(text.replace(",", ""))
+        if cost <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return ASSET_COST
+    context.user_data["fin"]["asset_unit_cost"] = cost
+    kb = [["1"], ["2"], ["3"], ["5"], ["10"], NAV_ROW]
+    await update.message.reply_text(
+        "🔢 *Qty (အရေအတွက်)*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"Unit Cost: *{cost:,} Ks*\n\n"
+        "မည်သည့် အရေအတွက် ဝယ်ယူသည်?\n(ဥပမာ — PS5 ၃ လုံး → 3):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_QTY
+
+async def step_asset_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Unit Cost ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return ASSET_COST
+    try:
+        qty = int(text.replace(",", ""))
+        if qty <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ အရေအတွက် (ကိန်းဂဏန်း) ရိုက်ပါ")
+        return ASSET_QTY
+    context.user_data["fin"]["asset_qty"] = qty
+    kb = [["3"], ["5"], ["10"], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *Useful Life (နှစ်)*\n"
+        "သုံးစွဲမည့် သက်တမ်း နှစ်အရေအတွက် ရိုက်ပါ\n(ဥပမာ: 3, 5, 10):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_LIFE
+
+async def step_asset_life(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        unit_cost = context.user_data["fin"].get("asset_unit_cost", 0)
+        kb = [["1"], ["2"], ["3"], ["5"], ["10"], NAV_ROW]
+        await update.message.reply_text(
+            f"Qty ပြန်ရိုက်ပါ (Unit Cost: {unit_cost:,} Ks):",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_QTY
+    try:
+        life = int(text)
+        if life <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ နှစ် (ကိန်းဂဏန်း) ရိုက်ပါ")
+        return ASSET_LIFE
+    context.user_data["fin"]["asset_life"] = life
+    cost = context.user_data["fin"].get("asset_unit_cost", 0)
+    salvage_hint = int(cost * 0.1)
+    kb = [[str(salvage_hint)], ["0"], NAV_ROW]
+    await update.message.reply_text(
+        "♻️ *Salvage Value (Ks)*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ပျက်စီးပြီးနောက် ရောင်းချနိုင်မည့် တန်ဖိုး\n"
+        f"မသိပါက *0* ရိုက်ပါ\n"
+        f"(အကြံ 10%: {salvage_hint:,} Ks)",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_SALVAGE
+
+async def step_asset_salvage(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [["3"], ["5"], ["10"], NAV_ROW]
+        await update.message.reply_text(
+            "Useful Life ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_LIFE
+    try:
+        salvage = int(text.replace(",", ""))
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်း ရိုက်ပါ")
+        return ASSET_SALVAGE
+    d = context.user_data["fin"]
+    d["asset_salvage"] = salvage
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        "🏦 ငွေပေးသော Account ရွေးပါ:",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_PAY
+
+async def step_asset_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        unit_cost = context.user_data["fin"].get("asset_unit_cost", 0)
+        salvage_hint = int(unit_cost * 0.1)
+        kb = [[str(salvage_hint)], ["0"], NAV_ROW]
+        await update.message.reply_text(
+            "Salvage Value/Unit ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_SALVAGE
+    if text not in FINANCE_ACCOUNTS:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "⚠️ Account ရွေးပါ",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_PAY
+    d = context.user_data["fin"]
+    d["asset_pay"] = text  # account name e.g. "KBZ Bank", "MMQR", "Cash Box"
+    life      = d["asset_life"]
+    unit_cost = d["asset_unit_cost"]
+    qty       = d.get("asset_qty", 1)
+    salvage   = d["asset_salvage"]
+    total_cost = unit_cost * qty
+    total_salvage = salvage * qty
+    annual_total = int((total_cost - total_salvage) / life) if life > 0 else 0
+    annual_per_unit = int((unit_cost - salvage) / life) if life > 0 else 0
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    qty_line = f"🔢 Qty           : <b>{qty} ခု</b>\n" if qty > 1 else ""
+    qty_note = f" ({annual_per_unit:,} × {qty})" if qty > 1 else ""
+    await update.message.reply_text(
+        "🏢 <b>Asset မှတ်တမ်း — အတည်ပြုချက်</b>\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"🏷️ Name         : <b>{d['asset_name']}</b>\n"
+        f"📁 Category     : <b>{d['asset_cat']}</b>\n"
+        f"📅 Purchase Date: <b>{d['asset_date']}</b>\n"
+        f"💰 Unit Cost    : <b>{unit_cost:,} Ks</b>\n"
+        f"{qty_line}"
+        f"💵 Total Cost   : <b>{total_cost:,} Ks</b>\n"
+        f"📅 Useful Life  : <b>{life} နှစ်</b>\n"
+        f"♻️ Salvage/Unit : <b>{salvage:,} Ks</b>\n"
+        f"📉 Annual Depr  : <b>{annual_total:,} Ks/year</b>{qty_note}\n"
+        f"🏦 Account      : <b>{d['asset_pay']}</b>\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "မှန်ကန်ပါသလား? ✅ Confirm &amp; Save နှိပ်ပါ",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_CONFIRM
+
+async def step_asset_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "🏦 ငွေပေးသော Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ASSET_PAY
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return ASSET_CONFIRM
+    d = context.user_data["fin"]
+    unit_cost = d["asset_unit_cost"]
+    qty       = d.get("asset_qty", 1)
+    pay       = d.get("asset_pay", "")
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_assets_sh()
+            sh.append_row(
+                [d["asset_name"], d["asset_cat"], d["asset_date"],
+                 unit_cost, qty, d["asset_life"], d["asset_salvage"],
+                 "Active", "", "", "", "", pay],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        total_cost = unit_cost * qty
+        await update.message.reply_text(
+            f"✅ <b>Asset မှတ်တမ်း သိမ်းပြီး!</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏷️ {d['asset_name']}  |  {d['asset_cat']}\n"
+            f"💰 {unit_cost:,} Ks × {qty} = {total_cost:,} Ks  |  {d['asset_life']} နှစ်\n"
+            f"🏦 {pay}",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+def _calc_nbv_per_unit(asset: dict, as_of: datetime) -> int:
+    """Net Book Value per unit at as_of date (straight-line from BUSINESS_START)."""
+    unit_cost = asset["unit_cost"]
+    salvage   = asset["salvage"]
+    life      = asset["life"]
+    date_str  = asset["date"]
+    if not life or life <= 0:
+        return unit_cost
+    try:
+        parts = date_str.split("/")
+        purchase = datetime(int(parts[2]), int(parts[0]), int(parts[1])) if len(parts) == 3 else datetime.fromisoformat(date_str)
+    except Exception:
+        return unit_cost
+    start = max(purchase, _BIZ_START)
+    elapsed = (as_of.year - start.year) * 12 + (as_of.month - start.month) + 1
+    total_months = int(life * 12)
+    months = max(0, min(elapsed, total_months))
+    acc_dep = round(((unit_cost - salvage) / total_months) * months) if total_months > 0 else 0
+    return max(salvage, unit_cost - acc_dep)
+
+async def prompt_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "asset_dispose"
+    await update.message.reply_text("⏳ Asset list ဖတ်နေသည်...")
+    try:
+        def _read():
+            sh = get_assets_sh()
+            rows = sh.get_all_values()
+            assets = []
+            for i, r in enumerate(rows[1:], start=2):
+                name = (r[0] if len(r) > 0 else "").strip()
+                if not name:
+                    continue
+                status = (r[7] if len(r) > 7 else "Active").strip()
+                if status == "Disposed":
+                    continue
+                try:
+                    qty = int((r[4] if len(r) > 4 else "1").replace(",", "") or "1")
+                except Exception:
+                    qty = 1
+                try:
+                    disp_qty = int((r[9] if len(r) > 9 else "0").replace(",", "") or "0")
+                except Exception:
+                    disp_qty = 0
+                remaining = qty - disp_qty
+                if remaining <= 0:
+                    continue
+                try:
+                    unit_cost = int((r[3] if len(r) > 3 else "0").replace(",", "") or "0")
+                except Exception:
+                    unit_cost = 0
+                try:
+                    life = float((r[5] if len(r) > 5 else "0").replace(",", "") or "0")
+                except Exception:
+                    life = 0
+                try:
+                    salvage = int((r[6] if len(r) > 6 else "0").replace(",", "") or "0")
+                except Exception:
+                    salvage = 0
+                assets.append({
+                    "row": i,
+                    "name": name,
+                    "cat": (r[1] if len(r) > 1 else "").strip(),
+                    "date": (r[2] if len(r) > 2 else "").strip(),
+                    "unit_cost": unit_cost,
+                    "qty": qty,
+                    "life": life,
+                    "salvage": salvage,
+                    "status": status,
+                    "disp_qty": disp_qty,
+                    "remaining": remaining,
+                })
+            return assets
+        assets = await asyncio.to_thread(_read)
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+        return await show_finance_menu(update, context)
+
+    if not assets:
+        await update.message.reply_text("⚠️ Active asset မရှိပါ")
+        return await show_finance_menu(update, context)
+
+    context.user_data["fin"]["dispose_assets"] = assets
+    kb = [[f"{a['name']} (x{a['remaining']})"] for a in assets] + [NAV_ROW]
+    await update.message.reply_text(
+        "🔄 *Asset ထုတ်ရောင်းမည်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ထုတ်ရောင်းမည့် Asset ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_DISPOSE_SEL
+
+async def step_asset_dispose_sel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+
+    assets = context.user_data.get("fin", {}).get("dispose_assets", [])
+    selected = next((a for a in assets if text == f"{a['name']} (x{a['remaining']})"), None)
+    if not selected:
+        await update.message.reply_text("⚠️ List မှ ရွေးပါ")
+        return ASSET_DISPOSE_SEL
+
+    context.user_data["fin"]["dispose_asset"] = selected
+    nbv_pu = _calc_nbv_per_unit(selected, now_mmt())
+    total_nbv = nbv_pu * selected["remaining"]
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    await update.message.reply_text(
+        f"🔄 *{selected['name']}* ထုတ်ရောင်းမည်\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📦 Qty ကျန်     : *{selected['remaining']}* ခု\n"
+        f"📉 NBV/unit     : *{nbv_pu:,} Ks*\n"
+        f"💰 Total NBV    : *{total_nbv:,} Ks*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        "📅 ထုတ်ရောင်းသည့် ရက်စွဲ (M/D/YYYY):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+    )
+    return ASSET_DISPOSE_DATE
+
+async def step_asset_dispose_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        assets = context.user_data.get("fin", {}).get("dispose_assets", [])
+        kb = [[f"{a['name']} (x{a['remaining']})"] for a in assets] + [NAV_ROW]
+        await update.message.reply_text("Asset ပြန်ရွေးပါ:",
+                                         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return ASSET_DISPOSE_SEL
+
+    context.user_data["fin"]["dispose_date"] = text
+    asset = context.user_data["fin"]["dispose_asset"]
+    remaining = asset["remaining"]
+    quick = [str(i) for i in range(1, min(remaining + 1, 7))]
+    kb = [quick] + [NAV_ROW] if remaining <= 6 else [[str(i)] for i in range(1, min(remaining + 1, 7))] + [NAV_ROW]
+    await update.message.reply_text(
+        f"📦 *ထုတ်ရောင်းမည့် Qty*\n\n"
+        f"ကျန်ရှိ: *{remaining}* ခု\n"
+        "ထုတ်ရောင်းမည့် အရေအတွက် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[str(i)] for i in range(1, min(remaining + 1, 7))] + [NAV_ROW],
+                                          resize_keyboard=True),
+    )
+    return ASSET_DISPOSE_QTY
+
+async def step_asset_dispose_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text("ရက်စွဲ ပြန်ရိုက်ပါ:",
+                                         reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True))
+        return ASSET_DISPOSE_DATE
+
+    asset = context.user_data["fin"]["dispose_asset"]
+    try:
+        qty = int(text.replace(",", ""))
+        if qty <= 0 or qty > asset["remaining"]:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text(f"⚠️ 1 မှ {asset['remaining']} ကြားဖြင့် ရိုက်ပါ")
+        return ASSET_DISPOSE_QTY
+
+    context.user_data["fin"]["dispose_qty"] = qty
+    await update.message.reply_text(
+        f"💰 *ရောင်းရငွေ (Ks)*\n\n"
+        f"Qty: {qty} ခု ထုတ်ရောင်း — ရောင်းရငွေ စုစုပေါင်း ရိုက်ပါ\n"
+        "(ရောင်းမဲ့မဟုတ်/ပစ်ပယ်ရင် 0 ရိုက်ပါ):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([["0"], NAV_ROW], resize_keyboard=True),
+    )
+    return ASSET_DISPOSE_PROCEEDS
+
+async def step_asset_dispose_proceeds(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        asset = context.user_data["fin"]["dispose_asset"]
+        remaining = asset["remaining"]
+        await update.message.reply_text("Qty ပြန်ရိုက်ပါ:",
+                                         reply_markup=ReplyKeyboardMarkup([[str(i)] for i in range(1, min(remaining + 1, 7))] + [NAV_ROW], resize_keyboard=True))
+        return ASSET_DISPOSE_QTY
+
+    try:
+        proceeds = int(text.replace(",", ""))
+        if proceeds < 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ ရိုက်ပါ (0 ရိုက်ပါ ရောင်းငွေ မရှိရင်)")
+        return ASSET_DISPOSE_PROCEEDS
+
+    d   = context.user_data["fin"]
+    asset = d["dispose_asset"]
+    qty   = d["dispose_qty"]
+    dispose_date_str = d["dispose_date"]
+
+    try:
+        parts = dispose_date_str.split("/")
+        as_of = datetime(int(parts[2]), int(parts[0]), int(parts[1])) if len(parts) == 3 else now_mmt()
+    except Exception:
+        as_of = now_mmt()
+
+    nbv_pu      = _calc_nbv_per_unit(asset, as_of)
+    nbv_disposed = nbv_pu * qty
+    gain_loss    = proceeds - nbv_disposed
+    gl_icon = "💚" if gain_loss >= 0 else "🔴"
+    gl_word = "Gain" if gain_loss >= 0 else "Loss"
+
+    d["dispose_proceeds"]  = proceeds
+    d["dispose_nbv"]       = nbv_disposed
+    d["dispose_gain_loss"] = gain_loss
+
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        f"🔄 *Dispose အတည်ပြုချက်*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"🏷️ Asset        : *{asset['name']}*\n"
+        f"📅 Dispose Date : *{dispose_date_str}*\n"
+        f"📦 Qty          : *{qty}* ခု (ကျန် {asset['remaining'] - qty})\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📉 NBV @ dispose : *{nbv_disposed:,} Ks*\n"
+        f"💵 ရောင်းရငွေ    : *{proceeds:,} Ks*\n"
+        f"{gl_icon} {gl_word}         : *{abs(gain_loss):,} Ks*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ASSET_DISPOSE_CONFIRM
+
+async def step_asset_dispose_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text("ရောင်းငွေ ပြန်ရိုက်ပါ:",
+                                         reply_markup=ReplyKeyboardMarkup([["0"], NAV_ROW], resize_keyboard=True))
+        return ASSET_DISPOSE_PROCEEDS
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return ASSET_DISPOSE_CONFIRM
+
+    d     = context.user_data["fin"]
+    asset = d["dispose_asset"]
+    qty   = d["dispose_qty"]
+    proceeds = d["dispose_proceeds"]
+    dispose_date = d["dispose_date"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+
+    try:
+        def _write():
+            sh = get_assets_sh()
+            row_idx = asset["row"]
+            prev_disp_qty = asset["disp_qty"]
+            new_disp_qty  = prev_disp_qty + qty
+            new_remaining = asset["qty"] - new_disp_qty
+            new_status    = "Disposed" if new_remaining <= 0 else "Partially Disposed"
+            try:
+                prev_proc = int(str(sh.cell(row_idx, 11).value or "0").replace(",", ""))
+            except Exception:
+                prev_proc = 0
+            sh.update_cell(row_idx, 8,  new_status)
+            sh.update_cell(row_idx, 9,  dispose_date)
+            sh.update_cell(row_idx, 10, new_disp_qty)
+            sh.update_cell(row_idx, 11, prev_proc + proceeds)
+        await asyncio.to_thread(_write)
+
+        gain_loss = d["dispose_gain_loss"]
+        gl_icon = "💚" if gain_loss >= 0 else "🔴"
+        gl_word = "Gain" if gain_loss >= 0 else "Loss"
+        await update.message.reply_text(
+            f"✅ *Dispose မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏷️ {asset['name']}  |  Qty: {qty} ခု\n"
+            f"{gl_icon} {gl_word}: {abs(gain_loss):,} Ks",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def prompt_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "prepaid"
+    await update.message.reply_text(
+        "📅 *Prepaid ထည့် — ဖော်ပြချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ကြိုပေးငွေ ဖော်ပြချက် ရိုက်ပါ\n"
+        "(ဥပမာ: မြေငှားရမ်းခ 6 လ):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return PREPAID_DESC
+
+async def step_prepaid_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    context.user_data["fin"]["prepaid_desc"] = text
+    kb = [[c] for c in PREPAID_CATEGORIES] + [NAV_ROW]
+    await update.message.reply_text(
+        "📁 *Prepaid Category ရွေးပါ:*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PREPAID_CAT
+
+async def step_prepaid_cat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_prepaid_desc(update, context)
+    if text not in PREPAID_CATEGORIES:
+        await update.message.reply_text("⚠️ Category ရွေးပါ")
+        return PREPAID_CAT
+    context.user_data["fin"]["prepaid_cat"] = text
+    await update.message.reply_text(
+        "💰 *ကြိုပေးငွေ စုစုပေါင်း (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return PREPAID_AMT
+
+async def step_prepaid_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[c] for c in PREPAID_CATEGORIES] + [NAV_ROW]
+        await update.message.reply_text(
+            "Category ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PREPAID_CAT
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return PREPAID_AMT
+    context.user_data["fin"]["prepaid_amt"] = amt
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        f"💰 *{amt:,} Ks* — ငွေ ထုတ်မည့် Account ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PREPAID_ACCT
+
+async def step_prepaid_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return PREPAID_AMT
+    if text not in FINANCE_ACCOUNTS:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "⚠️ Account ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PREPAID_ACCT
+    context.user_data["fin"]["prepaid_acct"] = text
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    kb = [[today], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *Start Date (M/D/YYYY)*\n\nစတင်ရက်စွဲ ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PREPAID_START
+
+def _prepaid_add_months(date_str: str, months: int) -> str:
+    """Parse M/D/YYYY or YYYY-MM-DD, add months, return M/D/YYYY."""
+    import calendar as _cal
+    from datetime import date as _date
+    s = date_str.strip()
+    try:
+        if "-" in s and len(s) == 10:
+            d = _date.fromisoformat(s)
+        else:
+            parts = s.split("/")
+            d = _date(int(parts[2]), int(parts[0]), int(parts[1]))
+    except Exception:
+        return s  # fallback
+    m = d.month - 1 + months
+    yr = d.year + m // 12
+    mo = m % 12 + 1
+    day = min(d.day, _cal.monthrange(yr, mo)[1])
+    return f"{mo}/{day}/{yr}"
+
+async def step_prepaid_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PREPAID_ACCT
+    context.user_data["fin"]["prepaid_start"] = text
+    kb = [["1"], ["3"], ["6"], ["12"], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *Period — လပေါင်း ဘယ်လောက်?*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ကြိုပေးငွေ သက်တမ်း (လပေါင်း) ရိုက်ပါ\n"
+        "(ဥပမာ — 6 လ Rent ဆိုရင် 6):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PREPAID_END
+
+async def step_prepaid_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle period months input; auto-calculate end date."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text(
+            "Start Date ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+        )
+        return PREPAID_START
+    try:
+        period = int(text)
+        if period <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ လပေါင်း ဂဏန်း ရိုက်ပါ (ဥပမာ: 6)")
+        return PREPAID_END
+    d = context.user_data["fin"]
+    d["prepaid_period"] = period
+    end_date = _prepaid_add_months(d["prepaid_start"], period)
+    d["prepaid_end"] = end_date
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    monthly = d["prepaid_amt"] // period if period else 0
+    await update.message.reply_text(
+        "📅 *Prepaid မှတ်တမ်း — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"📋 ဖော်ပြ     : *{d['prepaid_desc']}*\n"
+        f"📁 Category  : *{d['prepaid_cat']}*\n"
+        f"💰 Total Paid: *{d['prepaid_amt']:,} Ks*\n"
+        f"🏦 Account    : *{d.get('prepaid_acct','—')}*\n"
+        f"📅 Start     : *{d['prepaid_start']}*\n"
+        f"⏱ Period    : *{period} လ*\n"
+        f"📅 End       : *{end_date}* (auto)\n"
+        f"📊 Monthly   : *{monthly:,} Ks/လ*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PREPAID_CONFIRM
+
+async def step_prepaid_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [["1"], ["3"], ["6"], ["12"], NAV_ROW]
+        await update.message.reply_text(
+            "Period (လပေါင်း) ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PREPAID_END
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return PREPAID_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_prepaid_fin_sh()
+            sh.append_row(
+                [d["prepaid_desc"], d["prepaid_cat"], d["prepaid_amt"],
+                 d["prepaid_start"], d["prepaid_end"], d.get("prepaid_acct", "")],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Prepaid မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"📋 {d['prepaid_desc']}  |  {d['prepaid_cat']}\n"
+            f"💰 {d['prepaid_amt']:,} Ks  |  {d['prepaid_start']} → {d['prepaid_end']}",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def prompt_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "transfer"
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        "💸 *Account Transfer — ငွေလွှဲမည်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ငွေထုတ်မည့် Account (From) ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ACCT_TRF_FROM
+
+async def step_acct_trf_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    if text not in FINANCE_ACCOUNTS:
+        await update.message.reply_text("⚠️ Account ရွေးပါ")
+        return ACCT_TRF_FROM
+    context.user_data["fin"]["trf_from"] = text
+    to_accts = [a for a in FINANCE_ACCOUNTS if a != text]
+    kb = [[a] for a in to_accts] + [NAV_ROW]
+    await update.message.reply_text(
+        f"💸 *From: {text}*\nTo Account ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ACCT_TRF_TO
+
+async def step_acct_trf_to(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_acct_trf_from(update, context)
+    if text not in FINANCE_ACCOUNTS:
+        await update.message.reply_text("⚠️ Account ရွေးပါ")
+        return ACCT_TRF_TO
+    context.user_data["fin"]["trf_to"] = text
+    await update.message.reply_text(
+        "💰 *ငွေပမာဏ (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return ACCT_TRF_AMT
+
+async def step_acct_trf_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        to_accts = [a for a in FINANCE_ACCOUNTS if a != context.user_data["fin"].get("trf_from", "")]
+        kb = [[a] for a in to_accts] + [NAV_ROW]
+        await update.message.reply_text(
+            "To Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ACCT_TRF_TO
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return ACCT_TRF_AMT
+    context.user_data["fin"]["trf_amt"] = amt
+    kb = [["⏩ Skip"], NAV_ROW]
+    await update.message.reply_text(
+        "📝 *မှတ်ချက် (Notes)*\n\nမှတ်ချက် ရိုက်ပါ သို့ Skip:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ACCT_TRF_NOTE
+
+async def step_acct_trf_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return ACCT_TRF_AMT
+    d = context.user_data["fin"]
+    d["trf_note"] = "" if text == "⏩ Skip" else text
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "💸 *Account Transfer — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"🏦 From   : *{d['trf_from']}*\n"
+        f"🏦 To     : *{d['trf_to']}*\n"
+        f"💰 Amount : *{d['trf_amt']:,} Ks*\n"
+        f"📝 Note   : *{d.get('trf_note','') or '—'}*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ACCT_TRF_CONFIRM
+
+async def step_acct_trf_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [["⏩ Skip"], NAV_ROW]
+        await update.message.reply_text(
+            "မှတ်ချက် ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ACCT_TRF_NOTE
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return ACCT_TRF_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_acct_trf_sh()
+            sh.append_row(
+                [today_str(), d["trf_from"], d["trf_to"],
+                 d["trf_amt"], d.get("trf_note", "")],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Transfer မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"💸 {d['trf_from']} → {d['trf_to']}\n"
+            f"💰 {d['trf_amt']:,} Ks",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def prompt_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "payable"
+    await update.message.reply_text(
+        "📤 *Payable ထည့် — Vendor*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ပေးရမည့် ဆရာ/ကုမ္ပဏီ အမည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return PAY_VENDOR
+
+async def step_pay_vendor(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    context.user_data["fin"]["pay_vendor"] = text
+    await update.message.reply_text(
+        "📝 *ဖော်ပြချက်*\n\nဘာအတွက် ပေးရသည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return PAY_DESC
+
+async def step_pay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_pay_vendor(update, context)
+    context.user_data["fin"]["pay_desc"] = text
+    await update.message.reply_text(
+        "💰 *ပေးရမည့် ပမာဏ (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return PAY_AMT
+
+async def step_pay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "ဖော်ပြချက် ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return PAY_DESC
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return PAY_AMT
+    context.user_data["fin"]["pay_amt"] = amt
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    kb = [[today], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *Due Date (M/D/YYYY)*\n\nပေးဆပ်ရမည့် ရက်စွဲ ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PAY_DUE
+
+async def step_pay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return PAY_AMT
+    context.user_data["fin"]["pay_due"] = text
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+    await update.message.reply_text(
+        "🏦 *ပေးမည့် Account ရွေးပါ:*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PAY_ACCT
+
+async def step_pay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text(
+            "Due Date ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+        )
+        return PAY_DUE
+    d = context.user_data["fin"]
+    d["pay_acct"] = "" if text == "⏩ Skip" else text
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "📤 *Payable — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"🏪 Vendor  : *{d['pay_vendor']}*\n"
+        f"📝 Desc    : *{d['pay_desc']}*\n"
+        f"💰 Amount  : *{d['pay_amt']:,} Ks*\n"
+        f"📅 Due     : *{d['pay_due']}*\n"
+        f"🏦 Account : *{d.get('pay_acct','') or '—'}*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PAY_CONFIRM
+
+async def step_pay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PAY_ACCT
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return PAY_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_payables_sh()
+            sh.append_row(
+                [today_str(), d["pay_vendor"], d["pay_desc"],
+                 d["pay_amt"], d["pay_due"], "Pending", "", d.get("pay_acct", ""), ""],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Payable မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"📤 {d['pay_vendor']} — {d['pay_desc']}\n"
+            f"💰 {d['pay_amt']:,} Ks  |  Due: {d['pay_due']}",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def prompt_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "receivable"
+    await update.message.reply_text(
+        "📥 *Receivable ထည့် — Customer*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ရမည့် ဆရာ/ကုမ္ပဏီ အမည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return REC_CUST
+
+async def step_rec_cust(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    context.user_data["fin"]["rec_cust"] = text
+    await update.message.reply_text(
+        "📝 *ဖော်ပြချက်*\n\nဘာအတွက် ရမည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return REC_DESC
+
+async def step_rec_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_rec_cust(update, context)
+    context.user_data["fin"]["rec_desc"] = text
+    await update.message.reply_text(
+        "💰 *ရမည့် ပမာဏ (Ks)*\n\nAmount ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return REC_AMT
+
+async def step_rec_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "ဖော်ပြချက် ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return REC_DESC
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return REC_AMT
+    context.user_data["fin"]["rec_amt"] = amt
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    kb = [[today], NAV_ROW]
+    await update.message.reply_text(
+        "📅 *Expected Date (M/D/YYYY)*\n\nရမည့် ရက်စွဲ ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return REC_DUE
+
+async def step_rec_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return REC_AMT
+    context.user_data["fin"]["rec_due"] = text
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+    await update.message.reply_text(
+        "🏦 *ရမည့် Account ရွေးပါ:*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return REC_ACCT
+
+async def step_rec_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text(
+            "Expected Date ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+        )
+        return REC_DUE
+    d = context.user_data["fin"]
+    d["rec_acct"] = "" if text == "⏩ Skip" else text
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "📥 *Receivable — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👤 Customer : *{d['rec_cust']}*\n"
+        f"📝 Desc     : *{d['rec_desc']}*\n"
+        f"💰 Amount   : *{d['rec_amt']:,} Ks*\n"
+        f"📅 Expected : *{d['rec_due']}*\n"
+        f"🏦 Account  : *{d.get('rec_acct','') or '—'}*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return REC_CONFIRM
+
+async def step_rec_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [["⏩ Skip"], NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return REC_ACCT
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return REC_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_receivables_sh()
+            sh.append_row(
+                [today_str(), d["rec_cust"], d["rec_desc"],
+                 d["rec_amt"], d["rec_due"], "Pending", "", d.get("rec_acct", ""), ""],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Receivable မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"📥 {d['rec_cust']} — {d['rec_desc']}\n"
+            f"💰 {d['rec_amt']:,} Ks  |  Expected: {d['rec_due']}",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def show_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    """Show list of Pending payables or receivables for settling."""
+    is_pay = kind == "payable"
+    label  = "Payable" if is_pay else "Receivable"
+    icon   = "📤" if is_pay else "📥"
+    await update.message.reply_text(f"⏳ Pending {label} ဆွဲယူနေသည်...")
+    try:
+        def _read():
+            sh = get_payables_sh() if is_pay else get_receivables_sh()
+            return sh.get_all_values()
+        rows = await asyncio.to_thread(_read)
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+        return await show_finance_menu(update, context)
+
+    # Payables/Receivables cols: A=Date B=Vendor/Cust C=Desc D=Amt E=Due F=Status G=PaidDate H=Acct
+    pending = [(i + 2, r) for i, r in enumerate(rows[1:])
+               if r and (r[5] if len(r) > 5 else "").strip().lower() in ("pending", "")]
+    context.user_data.setdefault("fin", {})["settle_kind"]    = kind
+    context.user_data["fin"]["settle_pending"] = pending   # list of (sheet_row, row_data)
+
+    if not pending:
+        await update.message.reply_text(
+            f"✅ Pending {label} မရှိပါ — အားလုံး Settle ပြီးပြီ!"
+        )
+        return await show_finance_menu(update, context)
+
+    lines = [f"{icon} *Pending {label} စာရင်း*", "━━━━━━━━━━━━━━━━━━"]
+    for idx, (_, r) in enumerate(pending, 1):
+        party = (r[1] if len(r) > 1 else "?").strip()
+        desc  = (r[2] if len(r) > 2 else "").strip()
+        amt   = (r[3] if len(r) > 3 else "0").strip()
+        due   = (r[4] if len(r) > 4 else "").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').replace('.','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        lines.append(f"{idx}. *{party}*\n   {desc}\n   💰 {amt_fmt} Ks  |  📅 Due: {due}")
+    lines += ["━━━━━━━━━━━━━━━━━━", "ဘယ် ဂဏန်းကို Settle မည်? (ဥပမာ: 1)"]
+
+    num_kb = [[str(i)] for i in range(1, len(pending) + 1)]
+    num_kb.append([BTN_FIN_BACK, BTN_CANCEL])
+    await update.message.reply_text(
+        "\n".join(lines), parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(num_kb, resize_keyboard=True),
+    )
+    return PAY_SETTLE_LIST if is_pay else REC_SETTLE_LIST
+
+async def _handle_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_FIN_BACK:
+        return await show_finance_menu(update, context)
+    d = context.user_data.get("fin", {})
+    pending = d.get("settle_pending", [])
+    try:
+        idx = int(text) - 1
+        assert 0 <= idx < len(pending)
+    except (ValueError, AssertionError):
+        await update.message.reply_text("⚠️ မှန်ကန်သော ဂဏန်း ရိုက်ပါ")
+        return PAY_SETTLE_LIST if kind == "payable" else REC_SETTLE_LIST
+
+    sheet_row, r = pending[idx]
+    d["settle_row"]  = sheet_row
+    d["settle_data"] = r
+    acct = (r[7] if len(r) > 7 else "").strip()
+    # If account not set, ask user which account to pay from/into
+    if not acct:
+        is_pay = kind == "payable"
+        party  = (r[1] if len(r) > 1 else "?").strip()
+        amt    = (r[3] if len(r) > 3 else "0").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        verb = "ပေးမည့်" if is_pay else "လက်ခံမည့်"
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [[BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            f"🏦 *{party} — {amt_fmt} Ks*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"ငွေ {verb} Account ရွေးပါ:",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PAY_SETTLE_ACCT if is_pay else REC_SETTLE_ACCT
+    # Account already set — go straight to confirm
+    return await _show_settle_confirm(update, context, kind)
+
+async def _show_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    """Render the settle confirmation screen (account already in d['settle_acct'] or settle_data)."""
+    d = context.user_data.get("fin", {})
+    r      = d.get("settle_data", [])
+    is_pay = kind == "payable"
+    party  = (r[1] if len(r) > 1 else "?").strip()
+    desc   = (r[2] if len(r) > 2 else "").strip()
+    amt    = (r[3] if len(r) > 3 else "0").strip()
+    due    = (r[4] if len(r) > 4 else "").strip()
+    acct   = d.get("settle_acct") or (r[7] if len(r) > 7 else "").strip()
+    try:
+        amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+    except Exception:
+        amt_fmt = amt
+    status_new = "Paid" if is_pay else "Received"
+    label = "Payable" if is_pay else "Receivable"
+    icon  = "📤" if is_pay else "📥"
+    await update.message.reply_text(
+        f"{icon} *Settle {label} — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👤 {'Vendor' if is_pay else 'Customer'} : *{party}*\n"
+        f"📋 Description      : {desc}\n"
+        f"💰 Amount           : *{amt_fmt} Ks*\n"
+        f"📅 Due Date         : {due}\n"
+        f"🏦 Account          : *{acct or '—'}*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"✅ Confirm နှိပ်ရင် Status → *{status_new}*, Date → *{today_str()}*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_CONFIRM_SAVE], [BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+    )
+    return PAY_SETTLE_CONFIRM if is_pay else REC_SETTLE_CONFIRM
+
+async def _handle_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    """Handle account selection step during settle."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_settle_list(update, context, kind)
+    if text not in FINANCE_ACCOUNTS:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [[BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            "⚠️ Account ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return PAY_SETTLE_ACCT if kind == "payable" else REC_SETTLE_ACCT
+    context.user_data["fin"]["settle_acct"] = text
+    return await _show_settle_confirm(update, context, kind)
+
+async def prompt_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "advpay"
+    kb = [["⬅️ Finance Menu", BTN_CANCEL]]
+    await update.message.reply_text(
+        "💵 *Advance Payment ထည့်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Vendor/Party အမည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ADVPAY_PARTY
+
+async def step_advpay_party(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_FIN_BACK or text == "⬅️ Finance Menu":
+        return await show_finance_menu(update, context)
+    context.user_data["fin"]["advpay_party"] = text
+    await update.message.reply_text(
+        "📝 ဘာအတွက် ကြိုပေးသလဲ? (Description):",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return ADVPAY_DESC
+
+async def step_advpay_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Party/Vendor ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([["⬅️ Finance Menu", BTN_CANCEL]], resize_keyboard=True),
+        )
+        return ADVPAY_PARTY
+    context.user_data["fin"]["advpay_desc"] = text
+    await update.message.reply_text(
+        "💰 Amount (Ks) ရိုက်ပါ:",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return ADVPAY_AMT
+
+async def step_advpay_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Description ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return ADVPAY_DESC
+    try:
+        amt = int(text.replace(",", "").replace(".", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ ပမာဏ မှန်ကန်စွာ ရိုက်ပါ")
+        return ADVPAY_AMT
+    context.user_data["fin"]["advpay_amt"] = amt
+    kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        f"💰 *{amt:,} Ks* — ထုတ်မည့် Account ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ADVPAY_ACCT
+
+async def step_advpay_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return ADVPAY_AMT
+    if text not in FINANCE_ACCOUNTS:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text("⚠️ Account ရွေးပါ:", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return ADVPAY_ACCT
+    context.user_data["fin"]["advpay_acct"] = text
+    today = now_mmt().strftime("%-m/%-d/%Y")
+    kb = [[today], NAV_ROW]
+    await update.message.reply_text(
+        "📅 Expected Return/Settle Date (M/D/YYYY):",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ADVPAY_DUE
+
+async def step_advpay_due(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in FINANCE_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text("Account ပြန်ရွေးပါ:", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return ADVPAY_ACCT
+    context.user_data["fin"]["advpay_due"] = text
+    kb = [["⏩ Skip"], NAV_ROW]
+    await update.message.reply_text(
+        "📝 Notes (မလိုလျှင် Skip နှိပ်ပါ):",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ADVPAY_NOTE
+
+async def step_advpay_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        today = now_mmt().strftime("%-m/%-d/%Y")
+        await update.message.reply_text(
+            "Expected Date ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[today], NAV_ROW], resize_keyboard=True),
+        )
+        return ADVPAY_DUE
+    d = context.user_data["fin"]
+    d["advpay_note"] = "" if text == "⏩ Skip" else text
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "💵 *Advance Payment — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👤 Party      : *{d['advpay_party']}*\n"
+        f"📝 Desc       : *{d['advpay_desc']}*\n"
+        f"💰 Amount     : *{d['advpay_amt']:,} Ks*\n"
+        f"🏦 Account    : *{d['advpay_acct']}*\n"
+        f"📅 Expect Date: *{d['advpay_due']}*\n"
+        f"📋 Notes      : {d.get('advpay_note') or '—'}\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ADVPAY_CONFIRM
+
+async def step_advpay_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [["⏩ Skip"], NAV_ROW]
+        await update.message.reply_text("Notes ပြန်ရိုက်ပါ:", reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
+        return ADVPAY_NOTE
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return ADVPAY_CONFIRM
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_advpay_sh()
+            sh.append_row(
+                [today_str(), d["advpay_party"], d["advpay_desc"],
+                 d["advpay_amt"], d["advpay_acct"], d["advpay_due"],
+                 "Pending", d.get("advpay_note", "")],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Advance Payment မှတ်ပြီး!*\n"
+            f"👤 {d['advpay_party']}  |  💰 {d['advpay_amt']:,} Ks\n"
+            f"🏦 {d['advpay_acct']}  |  📅 {d['advpay_due']}",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def show_advpay_settle(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """List all Pending advance payments for settlement."""
+    context.user_data.setdefault("fin", {})
+    try:
+        def _fetch():
+            sh = get_advpay_sh()
+            return sh.get_all_values()
+        rows = await asyncio.to_thread(_fetch)
+    except Exception as e:
+        await update.message.reply_text(f"❌ Sheet error: {e}")
+        return await show_finance_menu(update, context)
+
+    pending = [(i + 2, r) for i, r in enumerate(rows[1:]) if len(r) >= 7 and (r[6] or "").strip().lower() == "pending"]
+    if not pending:
+        await update.message.reply_text("ℹ️ Pending Advance Payment မရှိပါ")
+        return await show_finance_menu(update, context)
+
+    context.user_data["fin"]["advpay_pending"] = pending
+    lines = ["💵 *Pending Advance Payments*\n━━━━━━━━━━━━━━━━━━"]
+    num_kb = []
+    for idx, (_, r) in enumerate(pending):
+        party = (r[1] if len(r) > 1 else "?").strip()
+        amt   = (r[3] if len(r) > 3 else "0").strip()
+        due   = (r[5] if len(r) > 5 else "").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        lines.append(f"{idx+1}. {party}  |  {amt_fmt} Ks  |  {due}")
+        num_kb.append([str(idx + 1)])
+    num_kb.append([BTN_FIN_BACK, BTN_CANCEL])
+    await update.message.reply_text(
+        "\n".join(lines) + "\n\nဂဏန်း ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(num_kb, resize_keyboard=True),
+    )
+    return ADVPAY_LIST
+
+async def step_advpay_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_FIN_BACK:
+        return await show_finance_menu(update, context)
+    d = context.user_data.get("fin", {})
+    pending = d.get("advpay_pending", [])
+    try:
+        idx = int(text) - 1
+        assert 0 <= idx < len(pending)
+    except (ValueError, AssertionError):
+        await update.message.reply_text("⚠️ မှန်ကန်သော ဂဏန်း ရိုက်ပါ")
+        return ADVPAY_LIST
+    sheet_row, r = pending[idx]
+    d["advpay_settle_row"]  = sheet_row
+    d["advpay_settle_data"] = r
+    party = (r[1] if len(r) > 1 else "?").strip()
+    desc  = (r[2] if len(r) > 2 else "").strip()
+    amt   = (r[3] if len(r) > 3 else "0").strip()
+    acct  = (r[4] if len(r) > 4 else "").strip()
+    due   = (r[5] if len(r) > 5 else "").strip()
+    try:
+        amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+    except Exception:
+        amt_fmt = amt
+    await update.message.reply_text(
+        "💵 *Advance Settle — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👤 Party     : *{party}*\n"
+        f"📝 Desc      : {desc}\n"
+        f"💰 Amount    : *{amt_fmt} Ks*\n"
+        f"🏦 Account   : *{acct}*\n"
+        f"📅 Due       : {due}\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"✅ Confirm → Status *Settled*, Date → *{today_str()}*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_CONFIRM_SAVE], [BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+    )
+    return ADVPAY_SETTLE_CONFIRM
+
+async def step_advpay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_advpay_settle(update, context)
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return ADVPAY_SETTLE_CONFIRM
+    d = context.user_data.get("fin", {})
+    sheet_row = d.get("advpay_settle_row")
+    r = d.get("advpay_settle_data", [])
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_advpay_sh()
+            sh.update_cell(sheet_row, 7, "Settled")       # col G = Status
+            sh.update_cell(sheet_row, 8, today_str())     # col H = Settle Date (overwrites Notes)
+        await asyncio.to_thread(_do)
+        party = (r[1] if len(r) > 1 else "?").strip()
+        amt   = (r[3] if len(r) > 3 else "0").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        await update.message.reply_text(
+            f"✅ *Advance Settled!*\n"
+            f"👤 {party}  |  💰 {amt_fmt} Ks\n"
+            f"📅 {today_str()}  |  Status: *Settled*",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def step_pay_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_list(update, context, "payable")
+
+async def step_rec_settle_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_list(update, context, "receivable")
+
+async def step_pay_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_acct(update, context, "payable")
+
+async def step_rec_settle_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_acct(update, context, "receivable")
+
+async def _handle_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_settle_list(update, context, kind)
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return PAY_SETTLE_CONFIRM if kind == "payable" else REC_SETTLE_CONFIRM
+    d = context.user_data.get("fin", {})
+    sheet_row = d.get("settle_row")
+    is_pay    = kind == "payable"
+    status_new = "Paid" if is_pay else "Received"
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    settle_acct = d.get("settle_acct", "")
+    try:
+        def _do():
+            sh = get_payables_sh() if is_pay else get_receivables_sh()
+            sh.update_cell(sheet_row, 6, status_new)   # col F = Status
+            sh.update_cell(sheet_row, 7, today_str())  # col G = Paid/Received Date
+            if settle_acct:
+                sh.update_cell(sheet_row, 8, settle_acct)  # col H = Account
+        await asyncio.to_thread(_do)
+        r     = d.get("settle_data", [])
+        party = (r[1] if len(r) > 1 else "?").strip()
+        amt   = (r[3] if len(r) > 3 else "0").strip()
+        acct_used = settle_acct or (r[7] if len(r) > 7 else "").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        label = "Payable" if is_pay else "Receivable"
+        await update.message.reply_text(
+            f"✅ *{label} Settled!*\n"
+            f"👤 {party}\n"
+            f"💰 {amt_fmt} Ks  |  🏦 {acct_used or '—'}\n"
+            f"📅 {today_str()}  |  Status: *{status_new}*",
+            parse_mode="Markdown",
+        )
+        d.pop("settle_acct", None)   # clear for next settle
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+
+async def step_pay_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_confirm(update, context, "payable")
+
+async def step_rec_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    return await _handle_settle_confirm(update, context, "receivable")
+
+def get_capital_sh():
+    return wb.worksheet("Capital_Setup")
+
+async def show_shareholder_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show shareholders list (A=Name, B=Role, C=Capital, D=Ownership%) + Add button."""
+    await update.message.reply_text("⏳ Shareholders ဆွဲယူနေသည်...")
+    try:
+        def _read():
+            return get_capital_sh().get_all_values()
+        rows = await asyncio.to_thread(_read)
+        # Capital_Setup: A=Shareholder, B=Role, C=Capital(Ks), D=Ownership%
+        shareholders = [r for r in rows[1:] if r and (r[0] if r else "").strip()]
+        lines = ["👥 *Shareholders & Capital*", "━━━━━━━━━━━━━━━━━━"]
+        total = 0
+        if shareholders:
+            for i, r in enumerate(shareholders, 1):
+                name  = (r[0] if len(r) > 0 else "?").strip()
+                role  = (r[1] if len(r) > 1 else "").strip() or "Partner"
+                try:
+                    cap = int(str(r[2] if len(r) > 2 else "0").replace(",", ""))
+                except ValueError:
+                    cap = 0
+                try:
+                    own = float(str(r[3] if len(r) > 3 else "0").replace(",", "").replace("%", ""))
+                except ValueError:
+                    own = 0.0
+                total += cap
+                role_icon = "🔑" if "operation" in role.lower() else "🤝"
+                lines.append(
+                    f"{i}. 👤 *{name}*\n"
+                    f"   {role_icon} {role}  |  📊 {own:.0f}%\n"
+                    f"   💰 {cap:,} Ks"
+                )
+            lines += ["━━━━━━━━━━━━━━━━━━", f"💼 *Total Capital : {total:,} Ks*"]
+        else:
+            lines.append("_(Shareholders မရှိသေးပါ)_")
+    except Exception as e:
+        lines = [f"❌ Error: {e}\n💡 ⚙️ Sheet Setup ဖြင့် Finance Sheets ဆောက်ပါ"]
+
+    kb = [["➕ Shareholder ထည့်"], [BTN_FIN_BACK], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SHARE_NAME
+
+async def step_shareholder_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+    if text == BTN_FIN_BACK:
+        return await show_finance_menu(update, context)
+    if text == "➕ Shareholder ထည့်":
+        return await prompt_share_name(update, context)
+    return await show_shareholder_menu(update, context)
+
+async def prompt_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "shareholder"
+    await update.message.reply_text(
+        "👤 *Shareholder အသစ် — (1/4) နာမည်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Shareholder နာမည် ရိုက်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+    )
+    return SHARE_NAME
+
+async def step_share_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+    if text == BTN_FIN_BACK:
+        return await show_finance_menu(update, context)
+    if text in (BTN_BACK, "➕ Shareholder ထည့်"):
+        return await show_shareholder_menu(update, context)
+    if not text:
+        await update.message.reply_text("⚠️ နာမည် ရိုက်ပါ")
+        return SHARE_NAME
+    context.user_data["fin"]["share_name"] = text
+    kb = [[r] for r in _SHARE_ROLES] + [[BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text(
+        f"👤 *{text}* — (2/4) Role ရွေးပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SHARE_ROLE
+
+async def step_share_role(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_share_name(update, context)
+    if text not in _SHARE_ROLES:
+        await update.message.reply_text("⚠️ Role ရွေးပါ")
+        return SHARE_ROLE
+    context.user_data["fin"]["share_role"] = text
+    await update.message.reply_text(
+        f"💼 *{text}* — (3/4) Capital ပမာဏ\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ထည့်ဝင်သော ငွေပမာဏ (Ks) ရိုက်ပါ\n(ဥပမာ: 150000000):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+    )
+    return SHARE_CAP
+
+async def step_share_cap(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[r] for r in _SHARE_ROLES] + [[BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            "Role ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return SHARE_ROLE
+    try:
+        cap = int(text.replace(",", ""))
+        if cap <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ မှန်ကန်သော ပမာဏ ရိုက်ပါ")
+        return SHARE_CAP
+    context.user_data["fin"]["share_cap"] = cap
+    kb = [["33"], ["34"], ["50"], ["100"], [BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text(
+        f"💰 *{cap:,} Ks* — (4/4) Ownership %\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ပိုင်ဆိုင်မှု ရာခိုင်နှုန်း ရိုက်ပါ (ဥပမာ: 33):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SHARE_OWN
+
+async def step_share_own(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Capital ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
+        )
+        return SHARE_CAP
+    try:
+        own = float(text.replace("%", ""))
+        if own < 0 or own > 100:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ 0–100 ကြား ဂဏန်း ရိုက်ပါ")
+        return SHARE_OWN
+    d = context.user_data["fin"]
+    d["share_own"] = own
+    kb = [[BTN_CONFIRM_SAVE], [BTN_BACK, BTN_CANCEL]]
+    await update.message.reply_text(
+        "👥 *Shareholder — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👤 နာမည်    : *{d['share_name']}*\n"
+        f"💼 Role     : *{d['share_role']}*\n"
+        f"💰 Capital  : *{d['share_cap']:,} Ks*\n"
+        f"📊 Ownership: *{own:.0f}%*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SHARE_CONFIRM
+
+async def step_share_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [["33"], ["34"], ["50"], ["100"], [BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            "Ownership % ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return SHARE_OWN
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return SHARE_CONFIRM
+    d = context.user_data["fin"]
+    name = d["share_name"]
+    role = d["share_role"]
+    cap  = d["share_cap"]
+    own  = d["share_own"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            # Capital_Setup: A=Shareholder, B=Role, C=Capital(Ks), D=Ownership%
+            sh = get_capital_sh()
+            sh.append_row([name, role, cap, own], value_input_option="USER_ENTERED")
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Shareholder မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👤 {name}  |  💼 {role}\n"
+            f"💰 {cap:,} Ks  |  📊 {own:.0f}%",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(
+            f"❌ Error: {e}\n💡 ⚙️ Sheet Setup ဖြင့် Capital_Setup sheet ဆောက်ပါ"
+        )
+    return await show_shareholder_menu(update, context)
+
+async def prompt_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.setdefault("fin", {})["flow"] = "capital"
+    kb = [[a] for a in CAPITAL_ACCOUNTS] + [NAV_ROW]
+    await update.message.reply_text(
+        "🏦 *Initial Capital — Account ရွေးပါ*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ငွေ ထည့်မည့် Account ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return CAP_ACCT
+
+async def step_cap_acct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_finance_menu(update, context)
+    if text not in CAPITAL_ACCOUNTS:
+        await update.message.reply_text("⚠️ Account ရွေးပါ")
+        return CAP_ACCT
+    context.user_data["fin"]["cap_acct"] = text
+    await update.message.reply_text(
+        f"🏦 *{text}* — Initial Capital ပမာဏ\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ငွေပမာဏ ရိုက်ပါ (ဥပမာ: 300000000):",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+    )
+    return CAP_AMT
+
+async def step_cap_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        kb = [[a] for a in CAPITAL_ACCOUNTS] + [NAV_ROW]
+        await update.message.reply_text(
+            "Account ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return CAP_ACCT
+    try:
+        amt = int(text.replace(",", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("⚠️ မှန်ကန်သော ပမာဏ ရိုက်ပါ")
+        return CAP_AMT
+    context.user_data["fin"]["cap_amt"] = amt
+    d = context.user_data["fin"]
+    kb = [[BTN_CONFIRM_SAVE], NAV_ROW]
+    await update.message.reply_text(
+        "🏦 *Initial Capital — အတည်ပြုချက်*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"🏦 Account  : *{d['cap_acct']}*\n"
+        f"💰 Amount   : *{amt:,} Ks*\n"
+        f"📅 Date     : *{today_str()}*\n"
+        f"📋 Type     : *Opening Balance*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "✅ Confirm & Save နှိပ်ပါ",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return CAP_CONFIRM
+
+async def step_cap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        await update.message.reply_text(
+            "Amount ပြန်ရိုက်ပါ:",
+            reply_markup=ReplyKeyboardMarkup([NAV_ROW], resize_keyboard=True),
+        )
+        return CAP_AMT
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return CAP_CONFIRM
+    d = context.user_data["fin"]
+    acct = d["cap_acct"]
+    amt  = d["cap_amt"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = wb.worksheet("Accounts")
+            # Check if account row already exists; update if so, append if not
+            rows = sh.get_all_values()
+            for i, row in enumerate(rows[1:], start=2):
+                if (row[0] if row else "").strip() == acct:
+                    # Update opening balance column C (index 2)
+                    sh.update_cell(i, 3, amt)
+                    return "updated"
+            # Append new row: Name, Type, Opening, Notes
+            acct_type = "Bank" if ("bank" in acct.lower() or "kbz" in acct.lower() or "aya" in acct.lower()) else ("Digital" if "mmqr" in acct.lower() else "Cash")
+            sh.append_row([acct, acct_type, amt, "Initial Capital"], value_input_option="USER_ENTERED")
+            return "added"
+        result = await asyncio.to_thread(_do)
+        action = "အပ်ဒိတ်" if result == "updated" else "ထည့်သွင်း"
+        await update.message.reply_text(
+            f"✅ *Initial Capital {action}ပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏦 {acct}\n"
+            f"💰 {amt:,} Ks\n\n"
+            f"💡 Account Balances တွင် ယခု ပြသမည်",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(
+            f"❌ Error: {e}\n\n"
+            f"💡 ⚙️ Sheet Setup ကို ဦးစွာ လုပ်ဆောင်ပြီး Accounts sheet ဆောက်ပါ"
+        )
+    return await show_finance_menu(update, context)
+
+async def show_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    kb = [
+        [BTN_FIN_PNL,          BTN_FIN_BS],
+        [BTN_FIN_DEPR,         BTN_FIN_PROFIT_SHARE],
+        [BTN_FIN_BACK],
+        [BTN_BACK_MAIN],
+    ]
+    await update.message.reply_text(
+        "📊 *Finance Reports*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "ကြည့်လိုသော Report ရွေးပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return FIN_REPORT_MENU
+
+async def step_fin_report_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_FIN_BACK:
+        return await show_finance_menu(update, context)
+    if choice == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+    if choice == BTN_FIN_PNL:
+        return await cmd_fin_pnl(update, context)
+    if choice == BTN_FIN_BS:
+        return await cmd_fin_bs(update, context)
+    if choice == BTN_FIN_DEPR:
+        return await cmd_fin_depr(update, context)
+    if choice == BTN_FIN_PROFIT_SHARE:
+        return await cmd_fin_profit_share(update, context)
+    return await show_fin_report_menu(update, context)
+
+async def cmd_fin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Fetch P&L from VPS API."""
+    await update.message.reply_text("⏳ P&L ဆွဲယူနေသည်...")
+    now = now_mmt()
+    m   = now.strftime("%Y-%m")
+    data = await asyncio.to_thread(_replit_get, f"finance/pnl?m={m}")
+    if not data:
+        await update.message.reply_text("❌ P&L API ချိတ်မရပါ — VPS စစ်ပါ")
+        return await show_fin_report_menu(update, context)
+    rev          = data.get("revenue", {})
+    topup        = data.get("topup", {})
+    opex_cats    = data.get("opex", {})
+    total_opex   = data.get("total_opex", 0)
+    depr         = data.get("depreciation", 0)
+    disp_gl      = data.get("disposal_gain_loss", 0)
+    ebit         = data.get("ebit", 0)
+    om_bonus     = data.get("om_bonus", 0)
+    net          = data.get("net_profit", 0)
+    payroll      = opex_cats.get("Payroll", 0)
+    other_opex   = total_opex - payroll
+    total_costs  = total_opex + depr
+    game_rev     = rev.get("game", 0)
+    food_rev     = rev.get("food", 0)
+    discounts    = rev.get("discounts", 0)
+    topup_rev    = topup.get("total", 0)
+    total_rev    = rev.get("total", 0)        # excludes topup — topup is liability, not revenue
+    month_label  = now.strftime("%B %Y")
+    lines = [
+        f"📊 *P&L Report — {month_label}*",
+        "━━━━━━━━━━━━━━━━━━",
+        "💰 *Revenue*",
+        f"  Game Play    : {game_rev:>12,} Ks",
+        f"  Food & Drink : {food_rev:>12,} Ks",
+    ]
+    if discounts:
+        lines.append(f"  Discount     :({discounts:>11,} Ks)")
+    lines += [
+        f"  ─────────────────────────",
+        f"  Total Revenue: {total_rev:>12,} Ks",
+        f"  TopUp (Liab) : {topup_rev:>12,} Ks",
+        "━━━━━━━━━━━━━━━━━━",
+        "📤 *Operating Costs*",
+        f"  Payroll      : {payroll:>12,} Ks",
+        f"  OPEX         : {other_opex:>12,} Ks",
+        f"  Depreciation : {depr:>12,} Ks",
+        f"  ─────────────────────────",
+        f"  Total Costs  : {total_costs:>12,} Ks",
+    ]
+    if disp_gl != 0:
+        label = "Disposal Gain" if disp_gl > 0 else "Disposal Loss"
+        sign  = "+" if disp_gl > 0 else ""
+        lines += [
+            "━━━━━━━━━━━━━━━━━━",
+            f"🔄 *Other Items*",
+            f"  {label:<13}: {sign}{disp_gl:>10,} Ks",
+        ]
+    lines += [
+        "━━━━━━━━━━━━━━━━━━",
+        f"  EBIT         : {ebit:>12,} Ks",
+    ]
+    if om_bonus:
+        lines.append(f"  OM Bonus(10%):({om_bonus:>11,} Ks)")
+    lines += [
+        f"{'✅' if net >= 0 else '🔴'} *Net Profit : {net:,} Ks*",
+    ]
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_fin_bs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Fetch Balance Sheet from VPS API."""
+    await update.message.reply_text("⏳ Balance Sheet ဆွဲယူနေသည်...")
+    data = await asyncio.to_thread(_replit_get, "finance/balance-sheet")
+    if not data:
+        await update.message.reply_text("❌ Balance Sheet API ချိတ်မရပါ")
+        return await show_fin_report_menu(update, context)
+    assets     = data.get("assets", {})
+    liab       = data.get("liabilities", {})
+    equity     = data.get("equity", {})
+    assets_tot = assets.get("total", 0)
+    liab_tot   = liab.get("total", 0)
+    equity_tot = equity.get("total", 0)
+    cash_net   = assets.get("current_total", 0)
+    fixed_tot  = assets.get("fixed_total", 0)
+    receivables = assets.get("receivables", 0)
+    advances_pending = assets.get("advances_pending", 0)
+    member_liab = liab.get("member_liability", 0)
+    payables    = liab.get("payables", 0)
+    lines = [
+        "🏦 *Balance Sheet*",
+        "━━━━━━━━━━━━━━━━━━",
+        "📦 *Assets*",
+        f"  Cash (Net)    : {cash_net:>12,} Ks",
+        f"  Fixed Assets  : {fixed_tot:>12,} Ks",
+        f"  Receivables   : {receivables:>12,} Ks",
+    ]
+    if advances_pending:
+        lines.append(f"  Adv. Pending  : {advances_pending:>12,} Ks")
+    lines += [
+        f"  ─────────────────────────",
+        f"  Total Assets  : {assets_tot:>12,} Ks",
+        "━━━━━━━━━━━━━━━━━━",
+        "📤 *Liabilities*",
+        f"  Member Liab   : {member_liab:>12,} Ks",
+        f"  Payables      : {payables:>12,} Ks",
+        f"  ─────────────────────────",
+        f"  Total Liab    : {liab_tot:>12,} Ks",
+        "━━━━━━━━━━━━━━━━━━",
+        f"💼 *Equity : {equity_tot:,} Ks*",
+    ]
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_fin_accts(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Fetch account balances from VPS API. Always returns to Finance main menu."""
+    await update.message.reply_text("⏳ Account Balances ဆွဲယူနေသည်...")
+    data = await asyncio.to_thread(_replit_get, "finance/accounts")
+    if not data:
+        await update.message.reply_text(
+            "❌ Accounts API ချိတ်မရပါ\n"
+            "💡 ⚙️ Sheet Setup ဖြင့် Finance Sheets ဆောက်ပါ"
+        )
+        return await show_finance_menu(update, context)
+    accounts  = data.get("accounts", [])
+    total_bal = data.get("total_balance", 0)
+    if not accounts:
+        await update.message.reply_text(
+            "⚠️ Account မှတ်တမ်း မရှိသေးပါ\n"
+            "💡 🏦 Initial Capital ဖြင့် Account ငွေ စတင်ထည့်ပါ"
+        )
+        return await show_finance_menu(update, context)
+    lines = ["💰 *Account Balances*", "━━━━━━━━━━━━━━━━━━"]
+    for a in accounts:
+        name = a.get("name", "?")
+        bal  = a.get("balance", a.get("opening", 0))
+        low  = name.lower()
+        icon = "🏦" if ("bank" in low or "kbz" in low or "aya" in low) else ("📱" if "mmqr" in low else "💵")
+        lines.append(f"{icon} {name:<16}: {int(bal):>10,} Ks")
+    lines += ["━━━━━━━━━━━━━━━━━━", f"  *Total : {int(total_bal):,} Ks*"]
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_finance_menu(update, context)
+
+async def cmd_fin_depr(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show depreciation summary from VPS API."""
+    await update.message.reply_text("⏳ Depreciation ဆွဲယူနေသည်...")
+    now_yr = now_mmt().year
+    data = await asyncio.to_thread(_replit_get, f"finance/depreciation?year={now_yr}")
+    if not data:
+        await update.message.reply_text("❌ Depreciation API ချိတ်မရပါ")
+        return await show_fin_report_menu(update, context)
+    schedule   = data.get("schedule", [])
+    year_total = data.get("year_total", 0)
+    if not schedule:
+        await update.message.reply_text("📉 Assets_Register တွင် မှတ်တမ်းမရှိပါ")
+        return await show_fin_report_menu(update, context)
+    lines = [f"📉 *Depreciation — {now_yr}*", "━━━━━━━━━━━━━━━━━━"]
+    for a in schedule[:10]:
+        name    = a.get("name", "?")[:20]
+        annual  = a.get("year_total", 0)
+        bv_end  = a.get("book_value_end", 0)
+        dep_mo  = round(annual / 12) if annual else 0
+        lines.append(f"🏷️ *{name}*\n   📉 {dep_mo:,}/mo  |  Annual: {annual:,} Ks\n   📘 Book Value (yr-end): {bv_end:,} Ks")
+    lines += ["━━━━━━━━━━━━━━━━━━", f"📊 *Total Dep {now_yr}: {year_total:,} Ks*"]
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_fin_profit_share(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show profit sharing distribution."""
+    await update.message.reply_text("⏳ Profit Sharing ဆွဲယူနေသည်...")
+    now  = now_mmt()
+    m    = now.strftime("%Y-%m")
+    data = await asyncio.to_thread(_replit_get, f"finance/profit-sharing?m={m}")
+    if not data:
+        await update.message.reply_text("❌ Profit Sharing API ချိတ်မရပါ")
+        return await show_fin_report_menu(update, context)
+    ebit         = data.get("ebit", 0)
+    om_bonus     = data.get("om_bonus", 0)
+    distributable = data.get("distributable_profit", 0)
+    shareholders = data.get("shareholders", [])
+    month_label  = now.strftime("%B %Y")
+    lines = [
+        f"💸 *Profit Sharing — {month_label}*",
+        "━━━━━━━━━━━━━━━━━━",
+        f"💰 Net Profit   : *{ebit:,} Ks*",
+        f"🎯 OM Bonus     : *{om_bonus:,} Ks*",
+        f"📊 Distributable: *{distributable:,} Ks*",
+        "━━━━━━━━━━━━━━━━━━",
+    ]
+    for s in shareholders:
+        name      = s.get("name", "?")
+        pct       = s.get("ownership", 0)
+        dividend  = s.get("dividend", 0)
+        s_bonus   = s.get("om_bonus", 0)
+        total_inc = s.get("total_income", 0)
+        if s_bonus:
+            lines.append(f"👤 {name} ({pct}%) : {dividend:,} + {s_bonus:,} bonus = *{total_inc:,} Ks*")
+        else:
+            lines.append(f"👤 {name} ({pct}%) : {total_inc:,} Ks")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_fin_report_menu(update, context)
+
+async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Create all Finance sheets via VPS API."""
+    await update.message.reply_text(
+        "⚙️ Finance Sheets ဆောက်နေသည်...\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Capital Setup | Assets Register | OPEX Log\n"
+        "Accounts | Account Transfers\n"
+        "Payables | Receivables | Advance Staff\n"
+        "Prepaid Expenses | Advance Payments",
+    )
+    result = await asyncio.to_thread(_replit_post, "finance/setup-sheets", {}, 90)
+    if result and result.get("ok"):
+        created = result.get("created", [])
+        skipped = result.get("skipped", [])
+        created_str = ", ".join(created) if created else "None"
+        skipped_str = ", ".join(skipped) if skipped else "None"
+        await update.message.reply_text(
+            f"✅ Finance Sheets ပြင်ဆင်ပြီး!\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"✅ Created : {len(created)} sheets\n"
+            f"⏩ Skipped : {len(skipped)} (ရှိပြီးသား)\n\n"
+            f"Created: {created_str}\n"
+            f"Skipped: {skipped_str}",
+        )
+    else:
+        err = result.get("error", "unknown") if result else "API ချိတ်မရ"
+        await update.message.reply_text(f"❌ Setup မအောင်မြင်ပါ: {err}")
+    return await show_finance_menu(update, context)
+
+async def cmd_finance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /finance — PIN then Finance menu."""
+    return await _pin_then("finance", "Finance", update, context)
+
+
+======== ATTENDANCE HANDLERS (attendance.py) ========
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def cmd_setattend_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /setattend — PIN then attendance."""
+    return await _pin_then("setattend", "Attendance", update, context)
+
+async def cmd_setattend(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Start attendance wizard — pick staff to record leave/late for."""
+    context.user_data.clear()
+    staff_list = fetch_staff()
+    context.user_data["attend_staff_list"] = staff_list
+    context.user_data["attend_idx"]        = 0
+    context.user_data["attend_records"]    = {}
+    month_str   = now_mmt().strftime("%Y-%m")
+    month_label = now_mmt().strftime("%B %Y")
+    context.user_data["attend_month"] = month_str
+    kb = [[s] for s in staff_list] + [[BTN_CANCEL]]
+    await update.message.reply_text(
+        f"📅 *Attendance — {month_label}*\n\n"
+        f"ခွင့်ယူ / နောက်ကျ မှတ်တမ်းကို Staff တစ်ယောက်ချင်း ထည့်ပေးပါ\n\n"
+        f"မှတ်မည့် Staff ကို ရွေးပါ -",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_STAFF
+
+async def step_attend_staff(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_DONE:
+        return await _attend_finish(update, context)
+    staff_list = context.user_data.get("attend_staff_list", [])
+    if text not in staff_list:
+        await update.message.reply_text("⚠️ Keyboard မှ Staff ရွေးပေးပါ -")
+        return ATTEND_STAFF
+    context.user_data["attend_current"] = text
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"👤 *{text}*\n\n"
+        f"📅 *ခွင့်ယူ ရက်* ဘယ်နှစ်ရက် ထည့်မည်နည်း?\n"
+        f"_(0 ဆိုရင် Skip နှိပ်ပါ)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_LEAVE
+
+async def step_attend_leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_leave"] = 0
+    else:
+        try:
+            days = int(text)
+            if days < 0:
+                raise ValueError
+            context.user_data["_att_leave"] = days
+        except ValueError:
+            await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ (0 ↑) -")
+            return ATTEND_LEAVE
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"⏰ *နောက်ကျ ကြိမ်* ဘယ်နှစ်ကြိမ်?\n"
+        f"_(0 ဆိုရင် Skip နှိပ်ပါ)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_LATE
+
+async def step_attend_late(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_late"] = 0
+        context.user_data["_att_deduct"] = 500
+        return await _attend_save_and_next(update, context)
+    try:
+        late = int(text)
+        if late < 0:
+            raise ValueError
+        context.user_data["_att_late"] = late
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ (0 ↑) -")
+        return ATTEND_LATE
+    if context.user_data["_att_late"] == 0:
+        context.user_data["_att_deduct"] = 500
+        return await _attend_save_and_next(update, context)
+    kb = [[BTN_ATTEND_SKIP], [BTN_CANCEL]]
+    await update.message.reply_text(
+        f"💸 *တစ်ကြိမ် နောက်ကျ ဖြတ်တောက်ကြေး*\n"
+        f"_(default 500 Ks — Skip နှိပ်ရင် 500 Ks သုံးမည်)_",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return ATTEND_DEDUCT
+
+async def step_attend_deduct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_ATTEND_SKIP:
+        context.user_data["_att_deduct"] = 500
+    else:
+        try:
+            amt = int(text.replace(",", ""))
+            if amt < 0:
+                raise ValueError
+            context.user_data["_att_deduct"] = amt
+        except ValueError:
+            await update.message.reply_text("⚠️ ဂဏန်းသက်သက် ရိုက်ပေးပါ -")
+            return ATTEND_DEDUCT
+    return await _attend_save_and_next(update, context)
+
+async def _attend_save_and_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Save current staff attendance then ask for next staff or finish."""
+    d              = context.user_data
+    staff          = d.get("attend_current", "")
+    leave_days     = d.pop("_att_leave", 0)
+    late_count     = d.pop("_att_late", 0)
+    deduct_per_late= d.pop("_att_deduct", 500)
+    month_str      = d.get("attend_month", now_mmt().strftime("%Y-%m"))
+
+    save_attendance(month_str, staff, leave_days, late_count, deduct_per_late)
+    d.setdefault("attend_records", {})[staff] = {
+        "leave": leave_days, "late": late_count, "deduct": deduct_per_late,
+    }
+
+    remaining = [s for s in d.get("attend_staff_list", []) if s not in d["attend_records"]]
+    if remaining:
+        kb = [[s] for s in remaining] + [[BTN_ATTEND_DONE], [BTN_CANCEL]]
+        await update.message.reply_text(
+            f"✅ *{staff}* — မှတ်တမ်းသိမ်းပြီး\n\n"
+            f"📅 ခွင့်: *{leave_days} ရက်*  ⏰ နောက်ကျ: *{late_count} ကြိမ်*\n\n"
+            f"နောက် Staff ရွေးပါ (သို့မဟုတ် ✅ ပြီးပါပြီ) -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+        return ATTEND_STAFF
+    return await _attend_finish(update, context)
+
+async def _attend_finish(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show summary and exit."""
+    records    = context.user_data.get("attend_records", {})
+    month_str  = context.user_data.get("attend_month", "")
+    month_label= now_mmt().strftime("%B %Y")
+    if not records:
+        await update.message.reply_text("ℹ️ မှတ်တမ်း မထည့်ရသေး — OK ပါ။")
+        return await show_main_menu(update, context)
+    lines = [f"✅ *Attendance Saved — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for s, rec in records.items():
+        lines.append(
+            f"👤 *{s}*\n"
+            f"   📅 ခွင့်: {rec['leave']} ရက်  ⏰ နောက်ကျ: {rec['late']} ကြိမ် ({rec['deduct']:,}/ကြိမ်)"
+        )
+    lines.append("\n_/payroll နဲ့ စစ်ကြည့်နိုင်ပါပြီ_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+
+======== PAYROLL HANDLERS (payroll.py) ========
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+def calc_monthly_payroll(month_str: str | None = None) -> list[dict]:
+    """
+    Calculate monthly payroll for all staff.
+    month_str format: 'YYYY-MM' (default = current month).
+    Rules:
+      - New Member card: 1,500 Ks per card registered
+      - Game play bonus (BUSINESS-WIDE total mins):
+          ≥ 90,000 mins (1,500 hrs) → 50,000 Ks each
+          ≥ 120,000 mins (2,000 hrs) → 100,000 Ks each
+      - Food & Drink: daily TOTAL ≥ 50,000 Ks
+          → 5% of amount EXCEEDING 50,000 each day
+    """
+    if month_str is None:
+        month_str = now_mmt().strftime("%Y-%m")
+    year_i, mon_i = int(month_str[:4]), int(month_str[5:7])
+
+    staff_list = fetch_staff()
+    if not staff_list:
+        return []
+
+    # daily_food_total: date_key → total F&D sales for that day (ALL staff combined)
+    daily_food_total: dict[str, int] = {}
+    total_play_mins = 0   # BUSINESS-WIDE sum — col O may be empty for older sessions
+
+    def _parse_date(val: str):
+        for fmt in ("%m/%d/%Y", "%m/%d/%Y"):
+            try:
+                return datetime.strptime(val.strip(), fmt)
+            except ValueError:
+                pass
+        # fallback: try splitting manually for M/D/YYYY
+        try:
+            parts = val.strip().split("/")
+            if len(parts) == 3:
+                return datetime(int(parts[2]), int(parts[0]), int(parts[1]))
+        except Exception:
+            logging.exception("HANDLER_ERROR: datetime_parse")
+        return None
+
+    # ── Sales_Daily: col E=PlayMins (idx4), G=FoodTotal (idx6) ──
+    try:
+        sales_rows = sales_sh.get_all_values()
+        for row in sales_rows[1:]:
+            if len(row) < 7:
+                continue
+            d = _parse_date(row[0])
+            if not d or d.year != year_i or d.month != mon_i:
+                continue
+            day_key = d.strftime("%Y-%m-%d")
+
+            # Sum ALL play_mins for the month (regardless of staff field)
+            total_play_mins += _int(row[4])
+
+            # Food — accumulate daily TOTAL regardless of staff
+            daily_food_total[day_key] = daily_food_total.get(day_key, 0) + _int(row[6])
+    except Exception as e:
+        logging.warning("calc_monthly_payroll sales read: %s", e)
+
+    # ── TopUp_Log: count total new member registrations for the month ──
+    total_nm_count = 0
+    try:
+        topup_rows = topup_sh.get_all_values()
+        for row in topup_rows[1:]:
+            if len(row) < 9:
+                continue
+            if row[8].strip() != "First Purchase":
+                continue
+            d = _parse_date(row[0].strip())
+            if not d or d.year != year_i or d.month != mon_i:
+                continue
+            total_nm_count += 1
+    except Exception as e:
+        logging.warning("calc_monthly_payroll topup read: %s", e)
+
+    # ── Shared commissions (same for ALL staff) ──
+    # New Member: total cards × 1,500 each
+    shared_nm_comm = total_nm_count * 1500
+
+    # Food & Drink: days where cafe total ≥ 50,000 → 5% on amount ABOVE 50,000
+    # e.g. 60,000 → (60,000-50,000)*5% = 500; 120,000 → 70,000*5% = 3,500
+    food_days_qualified = 0
+    shared_food_comm    = 0
+    for daily_total in daily_food_total.values():
+        if daily_total >= 50000:
+            shared_food_comm += int((daily_total - 50000) * 0.05)
+            food_days_qualified += 1
+
+    base_salaries = fetch_base_salaries()
+    attendance    = fetch_attendance(month_str)
+
+    # Business-wide play bonus (same for all staff — total mins not per-staff)
+    play_hrs_total = round(total_play_mins / 60, 1)
+    game_bonus_shared = (
+        100000 if total_play_mins >= 120000 else
+        (50000 if total_play_mins >= 90000 else 0)
+    )
+
+    payroll = []
+    for s in staff_list:
+        commission = game_bonus_shared + shared_nm_comm + shared_food_comm
+        base_sal   = base_salaries.get(s, 0)
+
+        att = attendance.get(s, {})
+        leave_days      = att.get("leave_days", 0)
+        late_count      = att.get("late_count", 0)
+        deduct_per_late = att.get("deduct_per_late", 500)
+        leave_deduct    = int((base_sal / 26) * leave_days) if base_sal > 0 and leave_days > 0 else 0
+        late_deduct     = late_count * deduct_per_late
+        total_deduct    = leave_deduct + late_deduct
+        net_total       = base_sal + commission - total_deduct
+
+        payroll.append({
+            "staff":               s,
+            "base_salary":         base_sal,
+            "play_hrs":            play_hrs_total,
+            "play_mins":           total_play_mins,
+            "game_bonus":          game_bonus_shared,
+            "nm_count":            total_nm_count,
+            "nm_commission":       shared_nm_comm,
+            "food_commission":     shared_food_comm,
+            "food_days_qualified": food_days_qualified,
+            "total_commission":    commission,
+            "leave_days":          leave_days,
+            "late_count":          late_count,
+            "deduct_per_late":     deduct_per_late,
+            "leave_deduct":        leave_deduct,
+            "late_deduct":         late_deduct,
+            "total_deduct":        total_deduct,
+            "grand_total":         net_total,
+            "advance":             0,          # filled below
+            "net_total":           net_total,  # remaining = grand_total - advance
+        })
+
+    # Attach salary advances for this month
+    try:
+        advances = fetch_salary_advances(month_str)
+        for p in payroll:
+            adv_data       = advances.get(p["staff"], {"total": 0, "cash": 0, "kpay": 0})
+            p["advance"]      = adv_data["total"]
+            p["advance_cash"] = adv_data["cash"]
+            p["advance_kpay"] = adv_data["kpay"]
+            p["net_total"]    = max(0, p["grand_total"] - adv_data["total"])
+    except Exception as e:
+        logging.warning("calc_monthly_payroll advances: %s", e)
+
+    return payroll
+
+async def cmd_payroll(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show monthly payroll breakdown for all staff."""
+    month_str   = now_mmt().strftime("%Y-%m")
+    month_label = now_mmt().strftime("%B %Y")
+    await update.message.reply_text("⏳ Payroll တွက်နေသည်...", reply_markup=ReplyKeyboardRemove())
+    try:
+        payroll = calc_monthly_payroll(month_str)
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+        return await show_main_menu(update, context)
+
+    if not payroll:
+        await update.message.reply_text(
+            "⚠️ Staff ဒေတာ မရှိပါ\n\n"
+            "Google Sheet → *Setting* tab:\n"
+            "• S2:S3 — Staff Name ထည့်ပါ\n"
+            "• T2:T3 — Base Salary ထည့်ပါ",
+            parse_mode="Markdown",
+        )
+        return await show_main_menu(update, context)
+
+    lines = [f"💼 *Salary & Payroll — {month_label}*\n━━━━━━━━━━━━━━━━━━"]
+    for p in payroll:
+        if p["play_mins"] >= 120000:
+            bonus_note = "🏆 ≥2,000 hrs"
+        elif p["play_mins"] >= 90000:
+            bonus_note = "🎯 ≥1,500 hrs"
+        else:
+            hrs_left = round((90000 - p["play_mins"]) / 60, 1)
+            bonus_note = f"_{hrs_left:,} hrs လိုသေး_"
+        base_line = f"💵 Base Salary    : *{p['base_salary']:,} Ks*\n" if p["base_salary"] > 0 else ""
+
+        # Deduction lines
+        deduct_lines = ""
+        if p["leave_days"] > 0 or p["late_count"] > 0:
+            deduct_lines += f"─────────────────\n"
+        if p["leave_days"] > 0:
+            deduct_lines += f"📅 ခွင့်ယူ        : *{p['leave_days']} ရက်* → *-{p['leave_deduct']:,} Ks*\n"
+        if p["late_count"] > 0:
+            deduct_lines += f"⏰ နောက်ကျ       : *{p['late_count']} ကြိမ်* × {p['deduct_per_late']:,} → *-{p['late_deduct']:,} Ks*\n"
+        if p["total_deduct"] > 0:
+            deduct_lines += f"📉 ဖြတ်တောက်     : *-{p['total_deduct']:,} Ks*\n"
+
+        lines.append(
+            f"\n👤 *{p['staff']}*\n"
+            f"─────────────────\n"
+            f"{base_line}"
+            f"🎮 Game Play     : *{p['play_hrs']:,.1f} hrs*  {bonus_note}\n"
+            f"   Play Bonus   : *{p['game_bonus']:,} Ks*\n"
+            f"🆕 New Members   : *{p['nm_count']} cards* → *{p['nm_commission']:,} Ks*\n"
+            f"🍔 Food Comm     : *{p['food_days_qualified']} day(s)* → *{p['food_commission']:,} Ks*\n"
+            f"📊 Commission    : *{p['total_commission']:,} Ks*\n"
+            f"{deduct_lines}"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💰 *Gross Payable  : {p['grand_total']:,} Ks*"
+            + (
+                f"\n💸 Advance Paid    : *-{p['advance']:,} Ks*\n"
+                f"💵 *Remaining Pay  : {p['net_total']:,} Ks*"
+                if p.get("advance", 0) > 0 else ""
+            )
+        )
+    lines.append("\n\n_/setattend နဲ့ ခွင့်/နောက်ကျ ထည့်နိုင်သည်_")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+    return await show_main_menu(update, context)
+
+async def cmd_payroll_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /payroll — PIN then payroll."""
+    return await _pin_then("payroll", "Payroll", update, context)
+
+async def cmd_kpi_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /kpi — PIN then staff KPI."""
+    return await _pin_then("kpi", "Staff KPI", update, context)
+
+
+======== SALARY ADVANCE HANDLERS (salary_adv.py) ========
+from bot import now_mmt
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def step_sal_adv_staff(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_admin_menu(update, context)
+
+    staff_list = fetch_staff()
+    if choice not in staff_list:
+        await update.message.reply_text("❌ Staff မတွေ့ပါ။ ထပ်မံ ရွေးပါ:")
+        return SAL_ADV_STAFF
+
+    context.user_data["sal_adv_staff"] = choice
+    await update.message.reply_text(
+        f"💸 *{choice}* — Salary Advance\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"ပေးမည့် ပမာဏ (Ks) ရိုက်ထည့်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return SAL_ADV_AMT
+
+async def step_sal_adv_amt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        amt = int(update.message.text.strip().replace(",", "").replace(".", ""))
+        if amt <= 0:
+            raise ValueError
+    except ValueError:
+        await update.message.reply_text("❌ ငွေပမာဏ မှန်ကန်စွာ ထည့်ပါ (ဂဏန်းများသာ):")
+        return SAL_ADV_AMT
+
+    context.user_data["sal_adv_amt"] = amt
+    kb = [["💵 Cash", "💙 KPay"], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        f"💸 ပေးချေနည်း ရွေးပါ:\n"
+        f"Amount: *{amt:,} Ks*",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SAL_ADV_PAY
+
+async def step_sal_adv_pay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_admin_menu(update, context)
+
+    if "kpay" in choice.lower() or "KPay" in choice:
+        payment = "KPay"
+    elif "cash" in choice.lower() or "Cash" in choice:
+        payment = "Cash"
+    else:
+        await update.message.reply_text("❌ Cash သို့မဟုတ် KPay ရွေးပါ:")
+        return SAL_ADV_PAY
+
+    context.user_data["sal_adv_pay"] = payment
+    staff     = context.user_data["sal_adv_staff"]
+    amt       = context.user_data["sal_adv_amt"]
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    kb = [["✅ အတည်ပြုမည်"], [BTN_BACK_MAIN]]
+    await update.message.reply_text(
+        f"💸 *Salary Advance အတည်ပြုချက်*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"👔 Staff    : *{staff}*\n"
+        f"💰 Amount   : *{amt:,} Ks*\n"
+        f"{pay_icon} Payment  : *{payment}*\n"
+        f"📅 Date     : *{today_str}*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"မှန်ပါသလား?",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return SAL_ADV_CONFIRM
+
+async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN or choice != "✅ အတည်ပြုမည်":
+        await update.message.reply_text("❌ ပယ်ဖျက်လိုက်သည်။")
+        return await show_admin_menu(update, context)
+
+    staff     = context.user_data.get("sal_adv_staff", "")
+    amt       = context.user_data.get("sal_adv_amt", 0)
+    payment   = context.user_data.get("sal_adv_pay", "Cash")
+    today_str = now_mmt().strftime("%m/%d/%Y")
+    month_str = now_mmt().strftime("%Y-%m")
+    pay_icon  = "💵" if payment == "Cash" else "💙"
+
+    try:
+        sh = get_salary_adv_sh()
+        sh.append_row([today_str, staff, amt, payment, ""])
+        advances  = fetch_salary_advances(month_str)
+        staff_adv = advances.get(staff, {"total": 0, "cash": 0, "kpay": 0})
+        cum       = staff_adv["total"]
+        await update.message.reply_text(
+            f"✅ *Salary Advance မှတ်တမ်းသွင်းပြီး*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👔 {staff}\n"
+            f"💰 Amount   : *{amt:,} Ks*\n"
+            f"{pay_icon} Payment  : *{payment}*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"📊 ဒီလ စုစုပေါင်း Advance: *{cum:,} Ks*\n"
+            f"  💵 Cash: {staff_adv['cash']:,} + 💙 KPay: {staff_adv['kpay']:,}\n"
+            f"_(လစာချိန်မှာ ဒီပမာဏ နုတ်မည်)_",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        logging.error("step_sal_adv_confirm: %s", e)
+        await update.message.reply_text(f"❌ Error: {e}")
+
+    context.user_data.pop("sal_adv_staff", None)
+    context.user_data.pop("sal_adv_amt", None)
+    context.user_data.pop("sal_adv_pay", None)
+    return await show_admin_menu(update, context)
+
+
+======== DISCOUNT HANDLERS (discount.py) ========
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show discount options: apply a promotion or manual discount."""
+    d     = context.user_data
+    # Compute gross for display purposes:
+    # For member wallet sessions: game_amt=0 (wallet deducted), so use
+    # effective_cost_mins * base_rate / 60 as the game value equivalent.
+    game_amt   = d.get("game_amt", 0)
+    food_total = d.get("food_total", 0)
+    net_total  = d.get("net_total", 0)
+
+    # For member wallet sessions: game_amt=0, compute wallet game equivalent value
+    # base_rate is always set at step_mins (line 1726), so d.get is safe
+    base_rate = d.get("base_rate") or fetch_base_rate()
+    mult      = d.get("multiplier", 1.0)
+    eff_mins  = d.get("effective_cost_mins") or d.get("mins", 0)
+
+    if game_amt == 0:
+        # Wallet session (with or without food) — compute wallet game value
+        wallet_val = round(eff_mins * base_rate * mult / 60)
+        gross = wallet_val + food_total
+        d["wallet_game_value"] = wallet_val
+    else:
+        gross = net_total if net_total > 0 else (game_amt + food_total)
+        d["wallet_game_value"] = 0
+
+    d["gross_total"] = gross
+    # For wallet sessions net_total stays as food_total (what customer actually pays cash)
+    if "net_total" not in d or d["net_total"] == 0:
+        d["net_total"] = food_total
+    d.setdefault("discount", 0)
+
+    # Fetch active promotions from API (cached — 2 min TTL for fast response)
+    # Run in thread to avoid blocking the async event loop
+    promos = await asyncio.to_thread(fetch_promotions_cached)
+
+    # For display: wallet sessions show wallet value as reference, not payable amount
+    is_wallet_session = d.get("wallet_game_value", 0) > 0
+    wallet_val = d.get("wallet_game_value", 0)
+    food_total_disp = d.get("food_total", 0)
+
+    if is_wallet_session:
+        gross_label = (
+            f"🎮 Wallet Game Value: *{wallet_val:,} Ks* (mins deduct)\n"
+            f"🍔 Food Total: *{food_total_disp:,} Ks*\n"
+            f"💰 Cash Payable: *{food_total_disp:,} Ks*"
+        )
+    else:
+        gross_label = f"💰 Gross Total: *{gross:,} Ks*"
+
+    if promos:
+        # Build keyboard with promotion buttons + manual + skip
+        kb = [[BTN_PROMO_APPLY], [BTN_MANUAL_DISC], [BTN_SKIP_DISC], NAV_ROW]
+        promo_lines = []
+        for i, p in enumerate(promos, 1):
+            emoji = p.get("emoji", "🎁")
+            # Escape Markdown special chars in title to prevent parse errors
+            title = p.get("title", "").replace("_", " ").replace("*", "").replace("`", "").replace("[", "").replace("]", "")
+            ptype = p.get("type", "general")
+            disc_pct = p.get("discount_percent", "")
+            tag = f" ({disc_pct}% OFF)" if disc_pct and ptype == "discount" else ""
+            promo_lines.append(f"  {emoji} {title}{tag}")
+        promo_list = "\n".join(promo_lines)
+        await update.message.reply_text(
+            f"💸 *Discount / Promotion*\n\n"
+            f"{gross_label}\n\n"
+            f"🎁 *Active Promotions:*\n{promo_list}\n\n"
+            f"📋 Promotion ရွေးချင်ရင် *Promotion ရွေးပါ* နှိပ်ပါ\n"
+            f"Manual ရိုက်ချင်ရင် *Manual Discount* နှိပ်ပါ -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+    else:
+        # No active promotions — show manual discount only
+        kb = [[BTN_SKIP_DISC], NAV_ROW]
+        await update.message.reply_text(
+            f"💸 *Discount ထည်မလား?*\n\n"
+            f"{gross_label}\n\n"
+            f"Discount ပမာဏ ရိုက်ပါ (ဥပမာ 500)\n"
+            f"သို့မဟုတ် *Skip* နှိပ်ပါ -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+        )
+    return DISCOUNT
+
+async def prompt_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show promotion selection list for staff to pick one."""
+    d = context.user_data
+    gross = d.get("gross_total", d.get("net_total", 0))
+
+    promos = await asyncio.to_thread(fetch_promotions_cached)
+
+    if not promos:
+        await update.message.reply_text("❌ Active promotions မရှိပါ")
+        return await prompt_discount(update, context)
+
+    # Store promos list for selection
+    d["_promos_list"] = promos
+
+    # Build keyboard: one button per promotion
+    kb = []
+    for i, p in enumerate(promos, 1):
+        emoji = p.get("emoji", "🎁")
+        title = p.get("title", "")
+        disc_pct = p.get("discount_percent", "")
+        ptype = p.get("type", "general")
+        tag = f" ({disc_pct}% OFF)" if disc_pct and ptype == "discount" else ""
+        kb.append([f"{emoji} {i}. {title}{tag}"])
+    kb.append([BTN_BACK, BTN_CANCEL])
+
+    await update.message.reply_text(
+        f"🎁 *Promotion ရွေးပါ*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"💰 Gross: *{gross:,} Ks*\n\n"
+        f"Promotion ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PROMO_SELECT
+
+async def step_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle promotion selection — calculate discount and record promo_id."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_discount(update, context)
+
+    d = context.user_data
+    promos = d.get("_promos_list", [])
+    gross = d.get("gross_total", d.get("net_total", 0))
+
+    # Match selected promotion by button text
+    selected = None
+    for i, p in enumerate(promos, 1):
+        emoji = p.get("emoji", "🎁")
+        title = p.get("title", "")
+        disc_pct = p.get("discount_percent", "")
+        ptype = p.get("type", "general")
+        tag = f" ({disc_pct}% OFF)" if disc_pct and ptype == "discount" else ""
+        btn_text = f"{emoji} {i}. {title}{tag}"
+        if text == btn_text:
+            selected = p
+            break
+
+    if not selected:
+        await update.message.reply_text("⚠️ Promotion မရှိပါ — ပြန်သော ရွေးပါ -")
+        return PROMO_SELECT
+
+    # Calculate discount based on type
+    ptype = selected.get("type", "general")
+    disc_pct = selected.get("discount_percent", 0)
+    promo_id = selected.get("id", "")
+    promo_title = selected.get("title", "")
+
+    if ptype == "bonus_mins":
+        # Bonus minutes promotion — ask how many bonus mins to add
+        d["_selected_promo"]   = selected
+        d["_bonus_mins_entry"] = True
+        bonus_val = selected.get("discount_percent", "")
+        hint = f" (ဥပမာ {bonus_val} mins)" if bonus_val else ""
+        bundle_items = selected.get("bundle_items", "") or selected.get("description", "")
+        desc_line = f"\n📝 {bundle_items}" if bundle_items else ""
+        await update.message.reply_text(
+            f"⏱️ *{promo_title}*{desc_line}\n"
+            f"Bonus Minutes ထည့်ပါ{hint} -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup([[BTN_SKIP_DISC], [BTN_CANCEL]], resize_keyboard=True),
+        )
+        return DISCOUNT
+
+    elif ptype in ("discount", "cashback") and disc_pct:
+        disc_target = selected.get("discount_target", "overall")
+        game_amt_val  = d.get("game_amt", 0)
+        food_total_val = d.get("food_total", 0)
+        is_member = d.get("m_id", "-").strip() not in ("-", "0 (Guest)")
+
+        # Wallet session = member card holder; game cost deducted from wallet mins (no cash)
+        is_wallet_session = is_member and game_amt_val == 0
+        eff_mins = d.get("effective_cost_mins") or d.get("mins", 0)
+
+        # Member wallet session: game/overall discount -> bonus mins
+        # Member card holders don't pay cash for game time.
+        # Any game-related discount must be returned as bonus minutes, not cash.
+        if is_wallet_session and disc_target in ("game_only", "overall"):
+            bonus_mins_calc = round(eff_mins * float(disc_pct) / 100)
+            if bonus_mins_calc <= 0:
+                bonus_mins_calc = round(60 * float(disc_pct) / 100)  # fallback: 1hr
+            d["promo_id"]    = promo_id
+            d["promo_title"] = promo_title
+            d["discount"]    = 0
+            d["bonus_mins"]  = bonus_mins_calc
+            net_pay = d.get("net_total", food_total_val)
+            await update.message.reply_text(
+                f"✅ *{promo_title}* ထည့်သွင်းပြီးပါပြီ\n"
+                f"⏱️ Member session — Game discount ကို Bonus Mins ပြောင်းပါပြီ\n"
+                f"🎁 Bonus: *+{bonus_mins_calc} mins* ({disc_pct}% of {eff_mins} mins)\n"
+                f"💰 Net Payable: *{net_pay:,} Ks* (ဆော့ဖိုး မပါပြီ)",
+                parse_mode="Markdown",
+            )
+            return await prompt_kpay(update, context)
+
+        # Normal cash discount (guest session, or food_only for member)
+        if disc_target == "game_only":
+            disc = round(game_amt_val * float(disc_pct) / 100)
+        elif disc_target == "food_only":
+            disc = round(food_total_val * float(disc_pct) / 100)
+        else:  # overall - cash session only reaches here
+            disc = round(gross * float(disc_pct) / 100)
+
+        if disc <= 0 or disc >= gross:
+            await update.message.reply_text(
+                f"⚠️ Discount (*{disc:,} Ks*) မမှန်ကန်ပါ — Manual ရိုက်ပါ -",
+                parse_mode="Markdown",
+            )
+            return DISCOUNT
+
+        d["discount"]    = disc
+        d["promo_id"]    = promo_id
+        d["promo_title"] = promo_title
+        d["disc_target"] = disc_target
+        # For wallet sessions: net_total = food_total - disc (cash only)
+        # For cash/guest: net_total = gross - disc
+        _food_tv = d.get("food_total", 0)
+        _is_wv = d.get("game_amt", 0) == 0 and d.get("m_id", "0 (Guest)").strip() not in ("0 (Guest)", "-", "")
+        if _is_wv:
+            d["net_total"] = max(0, _food_tv - disc)
+        else:
+            d["net_total"] = gross - disc
+
+        await update.message.reply_text(
+            f"✅ *{promo_title}* ထည့်သွင်းပြီးပါပြီ\n"
+            f"💸 Discount: *{disc:,} Ks* ({disc_pct}% OFF)\n"
+            f"💰 Net Payable: *{d['net_total']:,} Ks*",
+            parse_mode="Markdown",
+        )
+        return await prompt_kpay(update, context)
+    else:
+        # bundle / free_item / general — ask which item is FOC (if food items exist)
+        bundle_items = selected.get("bundle_items", "") or selected.get("description", "")
+        d["promo_id"]        = promo_id
+        d["promo_title"]     = promo_title
+        d["discount"]        = 0
+        d["promo_disc_note"] = bundle_items
+        d["_selected_promo"] = selected
+
+        food_items = d.get("food_items", [])
+        if food_items:
+            # Build keyboard from food items in cart
+            kb = []
+            for fi in food_items:
+                kb.append([f"🍺 {fi['name']} x{fi['qty']} ({fi['subtotal']:,} Ks)"])
+            kb.append(["❌ FOC မသတ်ပါ (Skip)"])
+            kb.append([BTN_CANCEL])
+            desc_line = f"\n📝 {bundle_items}" if bundle_items else ""
+            await update.message.reply_text(
+                f"🎁 *{promo_title}*{desc_line}\n\n"
+                f"❓ ဘယ် drink/item က FOC ပေးပါလဲ? \n"
+                f"(Cart ထဲး item ရွေးပါပြီ ရွေးပါ) ↓",
+                parse_mode="Markdown",
+                reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+            )
+            return BUNDLE_FOC
+        else:
+            # No food items — just note the promotion, no discount
+            desc_line = f"\n📝 {bundle_items}" if bundle_items else ""
+            await update.message.reply_text(
+                f"✅ *{promo_title}* မှတ်တမ်းတင်ပြီးပါပြီ{desc_line}\n"
+                f"💰 Net Payable: *{gross:,} Ks*\n\n"
+                f"ဆက်သွားမလား?",
+                parse_mode="Markdown",
+            )
+            return await prompt_kpay(update, context)
+
+async def step_bundle_foc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle FOC item selection for bundle/free_item promotions."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+
+    d = context.user_data
+    gross = d.get("gross_total", d.get("net_total", 0))
+    food_items = d.get("food_items", [])
+    promo_title = d.get("promo_title", "")
+
+    # Skip FOC
+    if text == "❌ FOC မသတ်ပါ (Skip)":
+        d["discount"] = 0
+        await update.message.reply_text(
+            f"✅ *{promo_title}* မှတ်တမ်းတင်ပြီးပါပြီ (FOC မသတ်ပါ)\n"
+            f"💰 Net Payable: *{gross:,} Ks*",
+            parse_mode="Markdown",
+        )
+        return await prompt_kpay(update, context)
+
+    # Match selected FOC item from button text: "🍺 {name} x{qty} ({subtotal:,} Ks)"
+    foc_item = None
+    for fi in food_items:
+        btn = f"🍺 {fi['name']} x{fi['qty']} ({fi['subtotal']:,} Ks)"
+        if text == btn:
+            foc_item = fi
+            break
+
+    if not foc_item:
+        await update.message.reply_text("⚠️ Item မရှိပါ — ပြန်ရွေးရွေး ရွေးပါ -")
+        return BUNDLE_FOC
+
+    # Set FOC discount = subtotal of the selected item
+    foc_price = foc_item["subtotal"]
+    foc_name  = foc_item["name"]
+    foc_qty   = foc_item["qty"]
+
+    # Safety: don't let discount exceed gross
+    disc = min(foc_price, gross)
+
+    d["discount"]        = disc
+    d["net_total"]       = gross - disc
+    d["foc_item_name"]   = foc_name
+    d["foc_item_qty"]    = foc_qty
+    d["foc_item_price"]  = foc_price
+    d["promo_disc_note"] = f"FOC: {foc_name} x{foc_qty}"
+
+    await update.message.reply_text(
+        f"✅ *{promo_title}*\n"
+        f"🎁 FOC Item: *{foc_name} x{foc_qty}* (-{foc_price:,} Ks)\n"
+        f"💰 Net Payable: *{d['net_total']:,} Ks*",
+        parse_mode="Markdown",
+    )
+    return await prompt_kpay(update, context)
+
+async def step_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_confirm(update, context)
+    if text == BTN_SKIP_DISC:
+        context.user_data["discount"] = 0
+        context.user_data.pop("promo_id", None)
+        context.user_data.pop("promo_title", None)
+        return await prompt_kpay(update, context)
+    if text == BTN_PROMO_APPLY:
+        return await prompt_promo_select(update, context)
+    if text == BTN_MANUAL_DISC:
+        # Show manual entry prompt
+        d = context.user_data
+        gross = d.get("gross_total", d.get("net_total", 0))
+        _food_disp = d.get("food_total", 0)
+        _is_w = d.get("game_amt", 0) == 0 and d.get("m_id", "0 (Guest)").strip() not in ("0 (Guest)", "-", "")
+        if _is_w:
+            gross_line = (
+                f"🎮 Wallet Game Value: *{d.get('wallet_game_value', 0):,} Ks* (mins)\n"
+                f"🍔 Food: *{_food_disp:,} Ks*\n"
+                f"💰 Cash Payable: *{_food_disp:,} Ks* (ဆော့ဖိုး မပါ)"
+            )
+        else:
+            gross_line = f"💰 Gross: *{gross:,} Ks*"
+        await update.message.reply_text(
+            f"✏️ *Manual Discount*\n"
+            f"{gross_line}\n\n"
+            f"Discount ပမာဏ ရိုက်ပါ (Ks) -",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup([[BTN_SKIP_DISC], NAV_ROW], resize_keyboard=True),
+        )
+        return DISCOUNT
+
+    try:
+        val = int(text.replace(",", "").strip())
+    except ValueError:
+        await update.message.reply_text("⚠️ ဂဏန်သက်သက် ရိုက်ပေးပါ -")
+        return DISCOUNT
+
+    d     = context.user_data
+    gross = d.get("gross_total", d.get("net_total", 0))
+
+    # ── Bonus minutes entry path ──────────────────────────────────────────────
+    if d.pop("_bonus_mins_entry", False):
+        bonus_mins     = val
+        selected_promo = d.pop("_selected_promo", None)
+        if selected_promo:
+            d["promo_id"]    = selected_promo.get("id", "")
+            d["promo_title"] = selected_promo.get("title", "")
+        d["bonus_mins"] = bonus_mins
+        d["discount"]   = 0
+        await update.message.reply_text(
+            f"✅ Bonus *+{bonus_mins} mins* ထည့်သွင်းပြီးပါပြီ\n"
+            f"💰 Net Payable: *{gross:,} Ks* (Discount မရှိပါ)",
+            parse_mode="Markdown",
+        )
+        return await prompt_kpay(update, context)
+
+    # ── Normal discount entry ─────────────────────────────────────────────────
+    disc = val
+    # For wallet sessions, cash payable = food_total only (game is wallet-deducted)
+    _food_total_v = d.get("food_total", 0)
+    _is_wallet_s  = d.get("game_amt", 0) == 0 and d.get("m_id", "0 (Guest)").strip() not in ("0 (Guest)", "-", "")
+    _cash_payable = _food_total_v if _is_wallet_s else gross
+    _limit_check  = _cash_payable if _cash_payable > 0 else gross
+    if disc < 0 or disc >= _limit_check:
+        await update.message.reply_text(
+            f"⚠️ Discount (*{disc:,} Ks*) သည် Cash Payable (*{_limit_check:,} Ks*) ထက် မကျော်ရပါ -",
+            parse_mode="Markdown",
+        )
+        return DISCOUNT
+
+    # If a promo was selected earlier (free_item/bundle), keep promo_id
+    selected_promo = d.pop("_selected_promo", None)
+    if selected_promo and not d.get("promo_id"):
+        d["promo_id"]    = selected_promo.get("id", "")
+        d["promo_title"] = selected_promo.get("title", "")
+    d["discount"]  = disc
+    # Wallet session: net_total = food_total - disc (cash only, game is wallet)
+    # Cash/guest session: net_total = gross - disc
+    if _is_wallet_s:
+        d["net_total"] = max(0, _food_total_v - disc)
+    else:
+        d["net_total"] = gross - disc
+    await update.message.reply_text(
+        f"✅ Discount *{disc:,} Ks* ထည့်ပြီး\n"
+        f"💰 Net Payable: *{d['net_total']:,} Ks*",
+        parse_mode="Markdown",
+    )
+    return await prompt_kpay(update, context)
+
+
+======== REPORTS HANDLERS (reports.py) ========
+"""PS VIBE Bot — Handler module.
+"""
+import asyncio
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+
+from bot import (
+    now_mmt,
+    _replit_get,
+    today_str,
+    BTN_BACK_MAIN,
+    MAIN_MENU,
+    ADMIN_MENU,
+)
+
+
+
+
+async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show current inventory levels from Replit API."""
+    await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
+    data = _replit_get("sheets/inventory")
+    if not data:
+        await update.message.reply_text(
+            "❌ Inventory data ရယူ၍ မရပါ။",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        return
+    items = data.get("items", [])
+    STATUS_EMOJI = {
+        "In Stock":     "🟢",
+        "Low Stock":    "🟡",
+        "Out of Stock": "🔴",
+        "No Stock":     "⚫",
+    }
+    lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
+    for item in items:
+        em    = STATUS_EMOJI.get(item["status"], "⚫")
+        stock = max(0, item.get("current_stock", 0))
+        val   = item.get("inv_value", 0)
+        val_str = f"  _{val:,} Ks_" if val > 0 else ""
+        lines.append(f"{em} *{item['name']}*: {stock} pcs{val_str}")
+    total_val = sum(i.get("inv_value", 0) for i in items)
+    if total_val:
+        lines.append(f"\n━━━━━━━━━━━━━━━━━━\n💰 Total Inv Value (FIFO): *{total_val:,} Ks*")
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+    )
+
+async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show today's items sold from Replit API."""
+    await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    data = _replit_get("sheets/stock-today")
+    if not data:
+        await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
+        return
+    items = data.get("items", [])
+    if not items:
+        await update.message.reply_text("ℹ️ ဒီနေ့ ပစ္စည်းများ မရောင်းရသေးပါ။")
+        return
+    total_val = sum(i["value"] for i in items)
+    total_qty = sum(i["qty"] for i in items)
+    lines = [f"🛒 *Items Sold Today — {data.get('date','')}*\n━━━━━━━━━━━━━━━━━━"]
+    for item in items:
+        lines.append(f"• *{item['name']}*: {item['qty']} pcs — {item['value']:,} Ks")
+    lines.append(f"━━━━━━━━━━━━━━━━━━\n📦 Total: *{total_qty} items*  💰 *{total_val:,} Ks*")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+
+async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show promotion analytics report for staff.
+    Fetches all promotions from Promotions sheet + sales data.
+    """
+    await update.message.reply_text("⏳ Promo Reports ယူနေတယ်...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        # Fetch all promotions (including inactive) via API
+        promo_data = _replit_get("sheets/promotions/all")
+        promos = promo_data.get("promotions", []) if promo_data else []
+
+        # Fetch Promotions_Log analytics
+        log_data   = _replit_get("sheets/promotions-log")
+        promo_logs = (log_data or {}).get("logs", [])
+        promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
+
+        # Fetch today's sales summary
+        rd = _replit_get("sheets/report-data")
+        sales = rd.get("summary") if rd else None
+
+        lines = [
+            "📊 *Promotion Reports*",
+            "━━━━━━━━━━━━━━━━━━",
+        ]
+
+        # Promotion summary
+        total = len(promos)
+        active_promos   = [p for p in promos if p.get("active")]
+        inactive_promos = [p for p in promos if not p.get("active")]
+
+        lines.append(f"🎁 *Promotions Overview*")
+        lines.append(f"   Total: {total}  |  Active: {len(active_promos)}  |  Inactive: {len(inactive_promos)}")
+
+        # Breakdown by type
+        if promos:
+            types_count = {}
+            for p in promos:
+                ptype = p.get("type", "general")
+                if ptype not in types_count:
+                    types_count[ptype] = {"total": 0, "active": 0}
+                types_count[ptype]["total"] += 1
+                if p.get("active"):
+                    types_count[ptype]["active"] += 1
+
+            lines.append("")
+            lines.append("📋 *By Type:*")
+            emoji_map = {
+                "discount": "💰",
+                "free_item": "🎁",
+                "bundle": "📦",
+                "cashback": "💳",
+                "general": "🎯"
+            }
+            for ptype, counts in sorted(types_count.items()):
+                emoji = emoji_map.get(ptype, "🎁")
+                lines.append(f"   {emoji} {ptype.title()}: {counts['total']} (✅ {counts['active']} active)")
+
+        # Active promotions detail
+        if active_promos:
+            lines.append("")
+            lines.append("✅ *Active Promotions:*")
+            for p in active_promos:
+                emoji = p.get("emoji", "🎁")
+                title = p.get("title", "")
+                ptype = p.get("type", "general")
+                disc  = p.get("discount_percent", "")
+                valid = p.get("valid_until", "")
+                bundle = p.get("bundle_items", "")
+                cond  = p.get("conditions", "")
+                pid   = p.get("id", "")
+
+                detail = f"   {emoji} *{title}*"
+                if disc:
+                    detail += f" — {disc}% OFF"
+                if bundle:
+                    detail += f" — {bundle}"
+                lines.append(detail)
+                if valid:
+                    lines.append(f"      📅 Valid until: {valid}")
+                if cond:
+                    lines.append(f"      ℹ️ {cond}")
+
+                # Show usage stats from Promotions_Log
+                usage = next((s for s in promo_summ if s.get("promo_id") == pid), None)
+                if usage:
+                    lines.append(f"      📈 Used: {usage['usage_count']}x  |  Total Discount: {int(usage['total_discount']):,} Ks")
+
+        # Inactive promotions
+        if inactive_promos:
+            lines.append("")
+            lines.append("⏸️ *Inactive Promotions:*")
+            for p in inactive_promos:
+                lines.append(f"   • {p.get('title', '')} ({p.get('id', '')})")
+
+        # ── Promotions_Log Analytics ─────────────────────────────────────────────
+        if promo_summ:
+            total_usage    = sum(s.get("usage_count", 0) for s in promo_summ)
+            total_discount = sum(s.get("total_discount", 0) for s in promo_summ)
+            total_net_rev  = sum(s.get("total_net", 0) for s in promo_summ)
+
+            lines.append("")
+            lines.append("━━━━━━━━━━━━━━━━━━")
+            lines.append("📈 *Promotion Usage Analytics (All Time):*")
+            lines.append(f"   🔢 Total Uses: {total_usage}")
+            lines.append(f"   💸 Total Discount Given: {int(total_discount):,} Ks")
+            lines.append(f"   💰 Net Revenue (promo sales): {int(total_net_rev):,} Ks")
+
+            # Top promotion by usage
+            if promo_summ:
+                top = max(promo_summ, key=lambda s: s.get("usage_count", 0))
+                lines.append(f"   🏆 Top Promo: *{top['promo_title']}* ({top['usage_count']}x used)")
+
+        # Today's sales context
+        if sales:
+            lines.append("")
+            lines.append("━━━━━━━━━━━━━━━━━━")
+            lines.append("💹 *Today's Sales Context:*")
+            net = sales.get("today_net", 0)
+            cnt = sales.get("today_count", 0)
+            lines.append(f"   🎮 Sessions: {cnt}")
+            lines.append(f"   💰 Revenue: {net:,} Ks")
+
+        lines.append("")
+        lines.append("━━━━━━━━━━━━━━━━━━")
+        lines.append("💡 Google Sheets \"Promotions\" tab ကို ပြင်ဆင်နိုင်ပါ")
+
+        await update.message.reply_text(
+            "\n".join(lines),
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.error("cmd_promo_reports failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Promo Reports ယူမရပါ — {str(e)[:60]}",
+            reply_markup=kb,
+        )
+    return ADMIN_MENU
+
+async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Today's combined sales + stock report with per-staff breakdown."""
+    await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    rd    = _replit_get("sheets/report-data")   # single batch call (was 3 calls)
+    sales = rd.get("summary")   if rd else None
+    stock = rd.get("stock_today") if rd else None
+    inv   = rd.get("inventory") if rd else None
+    date  = today_str()
+    kb    = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    if not sales and not stock:
+        await update.message.reply_text("❌ Data ရယူ၍ မရပါ။", reply_markup=kb)
+        return MAIN_MENU
+
+    lines = [f"📊 *Today's Report — {date}*\n━━━━━━━━━━━━━━━━━━"]
+
+    # Sales summary
+    if sales:
+        cnt      = sales.get("today_count", 0)
+        net      = sales.get("today_net", 0)
+        kpay     = sales.get("today_kpay", 0)
+        cash_    = sales.get("today_cash", 0)
+        kpay_pct = round(kpay / net * 100) if net > 0 else 0
+        cash_pct = 100 - kpay_pct if net > 0 else 0
+        avg_rev  = round(net / cnt) if cnt > 0 else 0
+        lines.append(f"🎮 *Sessions:* {cnt}    📊 Avg: *{avg_rev:,} Ks*")
+        lines.append(f"💰 *Revenue:* *{net:,} Ks*")
+        lines.append(f"  💳 KPay: {kpay:,} Ks  ({kpay_pct}%)")
+        lines.append(f"  💵 Cash:  {cash_:,} Ks  ({cash_pct}%)")
+    else:
+        lines.append("🎮 Sales data မရပါ")
+
+    # Per-staff breakdown from Sales_Daily
+    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call)
+    staff_stats = sb.get("staff", {}) if sb else {}
+
+    if staff_stats:
+        lines.append(f"━━━━━━━━━━━━━━━━━━")
+        lines.append(f"👥 *Per-Staff:*")
+        for s, sd in staff_stats.items():
+            lines.append(f"  👤 *{s}* — {sd['sessions']} sessions | *{sd['revenue']:,} Ks*")
+
+    # Food/Drinks sold today
+    if stock and stock.get("items"):
+        items        = stock["items"]
+        total_qty    = sum(i["qty"] for i in items)
+        total_rev    = sum(i["value"] for i in items)
+        total_cog    = sum(i.get("cogs", 0) for i in items)
+        gross_margin = round((total_rev - total_cog) / total_rev * 100) if total_rev > 0 else 0
+        lines.append(f"━━━━━━━━━━━━━━━━━━")
+        lines.append(f"🍔 *Food & Drinks:* {total_qty} pcs  |  *{total_rev:,} Ks*")
+        for item in items:
+            lines.append(f"  • {item['name']}: {item['qty']} pcs — {item['value']:,} Ks")
+        if total_cog > 0:
+            lines.append(f"  _{total_cog:,} Ks COGS_  |  GP: *{gross_margin}%*")
+
+    # Low stock alert
+    if inv:
+        low = [i for i in inv.get("items", []) if i["status"] in ("Low Stock", "Out of Stock")]
+        if low:
+            lines.append(f"━━━━━━━━━━━━━━━━━━")
+            lines.append("⚠️ *Low/Out Stock Alert:*")
+            for i in low:
+                em = "🔴" if i["status"] == "Out of Stock" else "🟡"
+                lines.append(f"  {em} *{i['name']}* — {i['current_stock']} pcs")
+
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown", reply_markup=kb)
+    return MAIN_MENU
+
+async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Quick Financial Report: this week's summary + current month P&L."""
+    await update.message.reply_text("⏳ Financial report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    # Fetch weekly report and monthly P&L in parallel
+    now   = now_mmt()
+    m_str = now.strftime("%Y-%m")
+    weekly, pnl = await asyncio.gather(
+        asyncio.to_thread(_replit_get, "sheets/weekly-report"),
+        asyncio.to_thread(_replit_get, f"sheets/pnl?m={m_str}"),
+    )
+
+    lines: list[str] = [f"💹 <b>Financial Report</b>"]
+
+    # ── Weekly summary ──
+    if weekly:
+        wm = weekly.get("telegram_message", "")
+        if wm:
+            lines.append(wm)
+        else:
+            def _fmt(n): return f"{round(n or 0):,}"
+            ws  = weekly.get("week_start", "?")
+            we  = weekly.get("week_end",   "?")
+            net = weekly.get("net_total",  0)
+            lines.append(
+                f"📅 <b>This Week</b>  {ws} – {we}\n"
+                f"🎮 Sessions : <b>{weekly.get('sessions', 0)}</b>\n"
+                f"💰 Net      : <b>{_fmt(net)} Ks</b>\n"
+                f"📲 KPay: {_fmt(weekly.get('kpay',0))} Ks  |  💵 Cash: {_fmt(weekly.get('cash',0))} Ks\n"
+                f"🏦 Top-Ups  : <b>{_fmt(weekly.get('topup_amt',0))} Ks</b>  ({weekly.get('topup_count',0)} txns)\n"
+                f"🆕 New Members: <b>{weekly.get('new_members',0)}</b>"
+            )
+    else:
+        lines.append("📊 Weekly data မရပါ")
+
+    # ── Monthly P&L ──
+    if pnl:
+        def _f(n): return f"{round(n or 0):,}"
+        lines.append("━━━━━━━━━━━━━━━━━━")
+        lines.append(f"📆 <b>{m_str} — Monthly P&amp;L</b>")
+        game_rev   = pnl.get("game_rev",      pnl.get("salesNet",      0))
+        food_rev   = pnl.get("food_rev",      pnl.get("foodRev",       0))
+        topup_amt  = pnl.get("topup_amount",  pnl.get("topupAmount",   0))
+        net_total  = pnl.get("net_total",     pnl.get("salesNet",      0))
+        kpay       = pnl.get("kpay",          pnl.get("salesKpay",     0))
+        cash       = pnl.get("cash",          pnl.get("salesCash",     0))
+        lines.append(
+            f"🎮 Game Rev  : <b>{_f(game_rev)} Ks</b>\n"
+            f"🍔 Food Rev  : <b>{_f(food_rev)} Ks</b>\n"
+            f"🏦 Top-Up    : <b>{_f(topup_amt)} Ks</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💵 Net Total : <b>{_f(net_total)} Ks</b>\n"
+            f"📲 KPay: {_f(kpay)} Ks  |  💵 Cash: {_f(cash)} Ks"
+        )
+    else:
+        lines.append("━━━━━━━━━━━━━━━━━━")
+        lines.append(f"📆 {m_str} monthly data မရပါ")
+
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="HTML",
+        reply_markup=kb,
+    )
+    return MAIN_MENU
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  Phase 3 — Advanced Report Commands
+# ═══════════════════════════════════════════════════════════════════
+
+async def cmd_daily_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Generate and send today's sales report (Phase 3 enhanced)."""
+    await update.message.reply_text("⏳ Daily report generating...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        from bot.report_generator import get_report_generator
+        gen = get_report_generator()
+        report = gen.daily_report()
+        text = gen.format_daily_report(report)
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_daily_report failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Report generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+
+async def cmd_weekly_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Generate and send this week's trend report."""
+    await update.message.reply_text("⏳ Weekly report generating...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        from bot.report_generator import get_report_generator
+        gen = get_report_generator()
+        report = gen.weekly_report()
+        text = gen.format_weekly_report(report)
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_weekly_report failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Weekly report generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+
+async def cmd_member_insights(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Generate and send member insights report."""
+    await update.message.reply_text("⏳ Member insights loading...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        from bot.report_generator import get_report_generator
+        gen = get_report_generator()
+        insights = gen.member_insights()
+        text = gen.format_member_insights(insights)
+        await update.message.reply_text(
+            text,
+            parse_mode="Markdown",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        logging.exception("cmd_member_insights failed: %s", e)
+        await update.message.reply_text(
+            f"❌ Member insights generation failed: {e}",
+            reply_markup=kb,
+        )
+    return MAIN_MENU
+
+======== REFERRAL HANDLERS (referral.py) ========
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def prompt_referral_code(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE,
+    member_id: str,
+) -> int:
+    """Ask staff to enter a referral code for the member (member card required)."""
+    context.user_data["ref_member_id"] = member_id
+    existing = fetch_referral_code(member_id)
+    existing_ln = f"\n_(လက်ရှိ Code: *{existing}*)_" if existing else ""
+    await update.message.reply_text(
+        f"🎁 *Referral Code သတ်မှတ်*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"🪖 Member: *{member_id}*{existing_ln}\n\n"
+        f"Referral Code ရိုက်ပါ -\n"
+        f"_(ဥပမာ: REF-001, PSV-TIN-001)_\n\n"
+        f"⚠️ Member Card ရှိသော Member များသာ Referral Code ရနိုင်သည်",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(
+            [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
+            resize_keyboard=True,
+        ),
+    )
+    return REFERRAL_CODE
+
+async def step_referral_code(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Handle referral code input from staff."""
+    import re as _re
+    text      = (update.message.text or "").strip()
+    member_id = context.user_data.get("ref_member_id", "")
+
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        if member_id:
+            return await prompt_mm_lookup(update, context)
+        return await show_mm_menu(update, context)
+
+    # Validate member still exists
+    members = fetch_members()
+    if member_id not in members:
+        await update.message.reply_text(
+            "⚠️ Member မတွေ့ပါ — ထပ်ကြိုးစာပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        context.user_data.pop("ref_member_id", None)
+        return MM_MENU
+
+    # Handle remove code
+    if text == "❌ ဖျက်မည် (Remove Code)":
+        ok = await asyncio.get_event_loop().run_in_executor(
+            None, save_referral_code, member_id, ""
+        )
+        if ok:
+            await update.message.reply_text(
+                f"✅ *{member_id}* — Referral Code ဖျက်ပြီး",
+                parse_mode="Markdown",
+                reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+            )
+        else:
+            await update.message.reply_text(
+                "❌ ဖျက်မှ မအောင်မြင်ပါ — ထပ်ကြိုးစာပါ",
+                reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+            )
+        context.user_data.pop("ref_member_id", None)
+        return MM_MENU
+
+    # Validate code format: alphanumeric, hyphens, underscores, 4-20 chars
+    if not _re.match(r'^[A-Za-z0-9_\-]{4,20}$', text):
+        await update.message.reply_text(
+            "⚠️ Code format မမှန်ပါ\n"
+            "• 4–20 characters\n"
+            "• Letters, numbers, hyphens, underscores သာ ခွင့်ပြု\n"
+            "• ဥပမာ: REF-001, PSV-TIN-001\n\n"
+            "ထပ်ရိုက်ပါ -",
+            reply_markup=ReplyKeyboardMarkup(
+                [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
+                resize_keyboard=True,
+            ),
+        )
+        return REFERRAL_CODE
+
+    # Check uniqueness across all members
+    try:
+        all_rows = member_sh.get_all_values()
+        for row in all_rows[1:]:
+            if len(row) > 13 and row[13].strip().upper() == text.upper():
+                existing_owner = row[1].strip() if len(row) > 1 else "?"
+                if existing_owner != member_id:
+                    await update.message.reply_text(
+                        f"⚠️ Code *{text}* ကို *{existing_owner}* မှာ သုးနေပြီး\n"
+                        f"တခ်ခာ Code ရိုက်ပါ -",
+                        parse_mode="Markdown",
+                        reply_markup=ReplyKeyboardMarkup(
+                            [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
+                            resize_keyboard=True,
+                        ),
+                    )
+                    return REFERRAL_CODE
+    except Exception as e:
+        logging.warning("Referral uniqueness check failed: %s", e)
+
+    # Save the code
+    ok = await asyncio.get_event_loop().run_in_executor(
+        None, save_referral_code, member_id, text
+    )
+    context.user_data.pop("ref_member_id", None)
+    if ok:
+        await update.message.reply_text(
+            f"✅ *Referral Code သတ်မှတ်ပြီး*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🪖 Member: *{member_id}*\n"
+            f"🎁 Code: *{text}*\n\n"
+            f"_Customer Bot မှ Member ကို code ပြပေးမည်_",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+    else:
+        await update.message.reply_text(
+            "❌ Code သိမ်မှ မအောင်မြင်ပါ — ထပ်ကြိုးစာပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+    return MM_MENU
+
+
+======== STATE DEFINITIONS from __init__.py ========
+
+======== SHEET REFERENCES from __init__.py ========
+208:wb          = gc.open_by_key(os.environ["SHEET_ID"])
+209:sales_sh    = wb.worksheet("Sales_Daily")
+210:setting_sh  = wb.worksheet("Setting")
+211:member_sh   = wb.worksheet("Card_Wallet")
+212:stock_sh    = wb.worksheet("Stock_Out")
+213:stock_in_sh = wb.worksheet("Stock_In")
+214:topup_sh    = wb.worksheet("TopUp_Log")
+215:inv_sh      = wb.worksheet("Inventory")
+232:        ws = RetryingWorksheet(wb.worksheet("Sales_Daily"))
+246:    def __init__(self, worksheet):
+247:        self._wrapped = worksheet
+251:        # Delegate to the underlying worksheet for everything not on the wrapper.
+281:# Also wrap Spreadsheet.add_worksheet
+282:if hasattr(gspread.Spreadsheet, 'add_worksheet'):
+283:    _orig_add = gspread.Spreadsheet.add_worksheet
+287:        gspread.Spreadsheet.add_worksheet = _wrapped_add
+293:    """Batch update multiple cells across worksheets in 1 API call.
+296:    Uses the spreadsheet from the given worksheet reference.
+307:    """Return (or create) the Attendance_Log worksheet."""
+309:        return wb.worksheet("Attendance_Log")
+311:        sh = wb.add_worksheet("Attendance_Log", rows=200, cols=6)
+317:    """Return (or create) the Console_Booking worksheet.
+322:        return wb.worksheet("Console_Booking")
+324:        sh = wb.add_worksheet("Console_Booking", rows=1000, cols=9)
+423:    """Return (or create) the Salary_Advance worksheet.
+427:        return wb.worksheet("Salary_Advance")
+429:        sh = wb.add_worksheet("Salary_Advance", rows=500, cols=5)
+435:    """Return the Game_Library worksheet (must already exist with correct layout).
+440:    return wb.worksheet("Game_Library")
+514:    """Return (or create) the Console_Games worksheet.
+518:        return wb.worksheet("Console_Games")
+520:        sh = wb.add_worksheet("Console_Games", rows=1000, cols=5)
+741:        sh   = wb.worksheet("Game_Library")
+2184:def next_write_row(worksheet):
+2185:    """Return the next empty row number for a worksheet.
+2188:    return len(worksheet.col_values(2)) + 1
+

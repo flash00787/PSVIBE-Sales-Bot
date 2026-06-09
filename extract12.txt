@@ -1,0 +1,65 @@
+=== Check root __init__.py for constants ===
+
+=== Check refactored __init__ for constants ===
+
+=== Check outer_minimal for constants ===
+
+=== Check main.py ===
+
+=== Check create_refactored_init.py ===
+
+=== Check handlers/ directory listing ===
+admin_bookings.py
+admin.py
+attendance.py
+booking_flow.py
+booking.py
+broadcast.py
+commands.py
+console_mgmt.py
+console.py
+discount.py
+finance.py
+games.py
+ginst.py
+help.py
+__init__.py
+main_menu.py
+members.py
+notify.py
+payroll.py
+referral.py
+reports.py
+salary_adv.py
+sales.py
+ssd_disc.py
+stock_in.py
+stock.py
+waitlist.py
+
+=== Check root handlers/__init__.py ===
+"""PS VIBE Bot — Handlers package (Phase 6 refactor).
+Domain-split modules for maintainability.
+
+All handler functions are re-exported for backward compatibility.
+"""
+# ═══════ Domain handler modules ═══════
+
+from .admin import *  # noqa: F401,F403
+from .admin_bookings import *  # noqa: F401,F403
+from .attendance import *  # noqa: F401,F403
+from .booking import *  # noqa: F401,F403
+from .booking_flow import *  # noqa: F401,F403
+from .broadcast import *  # noqa: F401,F403
+from .commands import *  # noqa: F401,F403
+from .console import *  # noqa: F401,F403
+from .console_mgmt import *  # noqa: F401,F403
+from .discount import *  # noqa: F401,F403
+from .finance import *  # noqa: F401,F403
+from .games import *  # noqa: F401,F403
+from .ginst import *  # noqa: F401,F403
+
+=== Grep recursively for the definition in handlers/ ===
+
+=== Grep for in api_client ===
+

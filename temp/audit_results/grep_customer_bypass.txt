@@ -1,0 +1,15 @@
+customer_bot/ai.py:405:_FAQ_PATTERNS = {
+customer_bot/ai.py:432:def _detect_ai_bypass(user_text):
+customer_bot/ai.py:434:    for pattern, intent in _FAQ_PATTERNS.items():
+customer_bot/handlers.py:22:from .ai import _ai_reply, _detect_ai_bypass, _build_faq_template
+customer_bot/handlers.py:787:    # C1 FAQ Bypass — instant reply for common queries (no AI call)
+customer_bot/handlers.py:788:    bypass, intent = _detect_ai_bypass(text)
+customer_bot/handlers.py:789:    if bypass:
+customer_bot/data/__init__.py:1:from .faq import FAQ_DATA
+customer_bot/data/__init__.py:9:    "FAQ_DATA", "GAME_LIBRARY", "GAME_STYLES", "TITLE_ALIASES",
+customer_bot/data/faq.py:2:PS Vibe FAQ Knowledge Base — Burmese Q&A pairs.
+customer_bot/data/faq.py:6:FAQ_DATA = """
+customer_bot/data/prompts.py:199:    from .faq import FAQ_DATA
+customer_bot/data/prompts.py:300:        "=== RULE 4 — FAQ (use these facts when relevant) ===\n"
+customer_bot/data/prompts.py:301:        f"{FAQ_DATA}\n\n"
+customer_bot/data/games.py:4:from .faq import FAQ_DATA

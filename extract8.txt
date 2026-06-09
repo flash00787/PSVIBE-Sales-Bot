@@ -1,0 +1,208 @@
+=== Full search for category definitions in __init__.py ===
+
+=== Read lines 1350-1450 of __init__.py ===
+BTN_FIN_SHAREHOLDER  = "👥 Partners"
+BTN_FIN_SETTLE_PAY   = "✅ Settle Pay"
+BTN_FIN_SETTLE_REC   = "✅ Settle Rec"
+BTN_FIN_ADVPAY       = "💵 Advance"
+BTN_FIN_SETTLE_ADVPAY= "✅ Settle Adv"
+BTN_FIN_BACK         = "⬅️ Finance Menu"
+
+fetch_game_library  = fetch_games            # alias used in SSD management
+write_console_game  = add_console_game       # alias used in SSD management
+delete_console_game = remove_console_game    # alias used in SSD management
+
+
+def _delete_session_game(console_id: str) -> None:
+    """Remove any 'Session' type entry for a console from Console_Games."""
+    try:
+        sh   = get_console_games_sh()
+        rows = sh.get("A:C")  # OPT: range-restricted read (A=console_id, C=install_type)
+        for i, row in enumerate(rows[1:], start=2):
+            if (len(row) >= 3
+                    and row[0].strip().upper() == console_id.strip().upper()
+                    and row[2].strip() == "Session"):
+                sh.delete_rows(i)
+                # Invalidate cache
+                global _CGAME_ROWS, _CGAME_TS
+                _CGAME_TS = 0
+                return
+    except Exception as e:
+        logging.exception("_delete_session_game: %s", e)
+
+SSD_NAMES: dict[str, str] = {
+    "SSD-T1":   "Samsung T1 Shield",
+    "SSD-Blue": "Sandisk Extreme (Blue)",
+    "SSD-Grey": "Sandisk Extreme (Grey)",
+}
+SSD_BTN_TO_ID: dict[str, str] = {v: k for k, v in SSD_NAMES.items()}
+
+STOCK_ACCESS_PIN    = os.environ["STOCK_PIN"]
+CUSTOMER_BOT_TOKEN  = os.environ.get("CUSTOMER_BOT_TOKEN", "")
+STAFF_NOTIFY_CHAT   = os.environ.get("STAFF_NOTIFY_CHAT", "")   # group chat ID for booking notifications
+# Comma-separated Telegram user IDs allowed to use /broadcast (e.g. "12345678,87654321")
+_BROADCAST_ADMIN_IDS: set[str] = {
+    s.strip() for s in os.environ.get("ADMIN_USER_IDS", "").split(",") if s.strip()
+}
+
+# n8n Phase 2 — Session reminder webhook (restart-proof timer)
+# Test URL  : https://psvibe.app.n8n.cloud/webhook-test/session-reminder
+# Production : https://psvibe.app.n8n.cloud/webhook/session-reminder
+N8N_SESSION_WEBHOOK  = os.environ.get("N8N_SESSION_WEBHOOK", "")
+N8N_BOOKING_WEBHOOK  = os.environ.get("N8N_BOOKING_WEBHOOK", "")
+
+# Member Management sub-menu
+BTN_FIRST_PURCHASE = "🆕 New Member"
+BTN_TOP_UP         = "💰 Top Up"
+BTN_CHECK_MEMBER   = "🔍 Check Member"
+BTN_VIEW_RANKS     = "📋 Rank Bonuses"
+BTN_ASSIGN_REFERRAL = "🎁 Referral Code သတ်မှတ်"
+BTN_CONFIRM_ID     = "✅ Confirm ID"
+BTN_NM_CUSTOM      = "✏️ Enter Different Amount"
+BTN_NM_GIFT        = "🎁 Gift / Free Card"
+BTN_SKIP_PHONE     = "⏩ Skip"
+BTN_SKIP_EMAIL     = "⏩ Email မထည့်"
+BTN_SKIP_REFERRAL  = "⏩ Referral Code မထည့်"
+BTN_CLEAR_CART     = "🗑️ Clear Cart"
+BTN_SI_ADD         = "➕ Item ထပ်ထည့်"
+BTN_SI_FINISH      = "💳 Payment & Save All"
+
+
+# ═════════════════════════════════════════
+#  SHEET HELPERS
+# ═════════════════════════════════════════
+
+def _int(val):
+    """Safe int from sheet value — strips commas, 'Ks', spaces, handles floats."""
+    try:
+        cleaned = str(val).replace(",", "").replace("Ks", "").strip()
+        return int(float(cleaned))
+    except (ValueError, TypeError):
+        return 0
+
+
+def next_voucher():
+    if _HAS_API:
+        result = api_next_voucher()
+        if result is not None:
+            return result
+        logging.warning("API api_next_voucher() failed, falling back to gspread")
+    col = sales_sh.col_values(2)
+    ids = [v for v in col[1:] if v.upper().startswith("V-")]
+    if ids:
+        try:
+            return f"V-{int(ids[-1].split('-')[1]) + 1:03d}"
+        except (IndexError, ValueError):
+            pass
+    return "V-001"
+
+
+def fetch_members():
+    if _HAS_API:
+        result = api_fetch_members()
+        if result is not None:
+            return result
+
+=== Read lines 1450-1550 of __init__.py ===
+            return result
+        logging.warning("API api_fetch_members() failed, falling back to gspread")
+    raw = member_sh.col_values(2)[1:]
+    return [m.strip() for m in raw if m.strip()]
+
+
+def fetch_attendance(month_str: str) -> dict[str, dict]:
+    """Read Attendance_Log for given month. Returns {staff: {leave, late, deduct_per_late}}."""
+    if _HAS_API:
+        result = api_fetch_attendance(month_str)
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_attendance(month_str) failed, falling back to gspread")
+    result: dict[str, dict] = {}
+    try:
+        rows = get_att_sh().get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
+        for row in rows[1:]:
+            if len(row) < 4:
+                continue
+            if row[0].strip() != month_str:
+                continue
+            staff = row[1].strip()
+            if not staff:
+                continue
+            result[staff] = {
+                "leave_days":     int(row[2].strip() or 0) if len(row) > 2 else 0,
+                "late_count":     int(row[3].strip() or 0) if len(row) > 3 else 0,
+                "deduct_per_late": int(row[4].strip() or 500) if len(row) > 4 and row[4].strip() else 500,
+            }
+    except Exception as e:
+        logging.warning("fetch_attendance: %s", e)
+    return result
+
+
+def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
+    """Insert or update row in Attendance_Log for given month+staff."""
+    try:
+        sh   = get_att_sh()
+        rows = sh.get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
+        for i, row in enumerate(rows[1:], start=2):
+            if row[0].strip() == month_str and row[1].strip() == staff:
+                sh.update(f"A{i}:E{i}", [[month_str, staff, leave_days, late_count, deduct_per_late]])
+                return
+        sh.append_row([month_str, staff, leave_days, late_count, deduct_per_late])
+    except Exception as e:
+        logging.warning("save_attendance: %s", e)
+
+
+def fetch_staff() -> list[str]:
+    """Read staff names from Setting!S2:S10 (col 19)."""
+    if _HAS_API:
+        result = api_fetch_staff()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_staff() failed, falling back to gspread")
+    try:
+        vals = setting_sh.col_values(19)[1:]  # col S = index 19 (1-based)
+        return [v.strip() for v in vals if v.strip()]
+    except Exception:
+        return ["Staff A", "Staff B"]
+
+
+def fetch_base_salaries() -> dict[str, int]:
+    """Read base salaries from Setting!T2:T10 (col 20). Returns {staff_name: salary}."""
+    if _HAS_API:
+        result = api_fetch_base_salaries()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_base_salaries() failed, falling back to gspread")
+    try:
+        staff   = setting_sh.col_values(19)[1:]   # S = staff names
+        salaries = setting_sh.col_values(20)[1:]  # T = base salaries
+        result: dict[str, int] = {}
+        for i, name in enumerate(staff):
+            name = name.strip()
+            if not name:
+                continue
+            sal_str = salaries[i].strip() if i < len(salaries) else "0"
+            result[name] = int(sal_str.replace(",", "")) if sal_str.replace(",", "").isdigit() else 0
+        return result
+    except Exception:
+        return {}
+
+
+def ensure_sheet_headers():
+    """Write column headers for new staff-tracking columns (idempotent).
+    Uses batch write to avoid quota burn from 5 individual update_cell calls."""
+    try:
+        cells_to_update = []
+        if not sales_sh.cell(1, 15).value:
+            cells_to_update.append({"range": "Sales_Daily!O1", "value": "Staff"})
+        if not member_sh.cell(1, 11).value:
+            cells_to_update.append({"range": "Card_Wallet!K1", "value": "Reg_Staff"})
+        if not topup_sh.cell(1, 10).value:
+            cells_to_update.append({"range": "TopUp_Log!J1", "value": "Staff"})
+        if not setting_sh.cell(1, 19).value:
+            cells_to_update.append({"range": "Setting!S1", "value": "Staff Names"})
+        if not setting_sh.cell(1, 20).value:
+            cells_to_update.append({"range": "Setting!T1", "value": "Base Salary"})
+        if cells_to_update:
+            _batch_update(sales_sh, cells_to_update)
+

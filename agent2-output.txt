@@ -1,0 +1,419 @@
+
+=== SYSTEMD_SERVICES (exit 0) ===
+=== SYSTEMD PSVIBE/BOT SERVICES ===
+  acm-personal-wallet.service                           loaded    active     running      ACM's Personal Wallet Bot
+  psvibe-api.service                                    loaded    active     running      PS VIBE API Server
+  psvibe-sale-bot.service                               loaded    active     running      PS VIBE Sales Bot
+  psvibe_customer_bot.service                           loaded    activating auto-restart PS VIBE Customer Bot (@psvibe_customer_service_bot)
+● psvibe_sales_bot.service                              not-found failed     failed       psvibe_sales_bot.service
+  yyo-personal-wallet.service                           loaded    active     running      YYO Personal Wallet Telegram Bot
+---
+-rw-rw-rw- 1 root root 305 May 28 15:05 /etc/systemd/system/acm-personal-wallet.service
+-rw-r--r-- 1 root root 776 May 28 16:03 /etc/systemd/system/psvibe-api.service
+-rw-r--r-- 1 root root 438 May 28 16:06 /etc/systemd/system/psvibe_customer_bot.service
+-rw-r--r-- 1 root root 438 May 28 16:06 /etc/systemd/system/psvibe_customer_bot.service
+-rw-r--r-- 1 root root 278 May 28 16:04 /etc/systemd/system/psvibe-sale-bot.service
+-rw-r--r-- 1 root root 278 May 28 16:04 /etc/systemd/system/psvibe-sale-bot.service
+-rw-r--r-- 1 root root 783 May 28 08:01 /etc/systemd/system/psvibe-wallet.service.bak
+-rw-r--r-- 1 root root 783 May 28 08:01 /etc/systemd/system/psvibe-wallet.service.bak
+-rw-r--r-- 1 root root 579 May 28 15:10 /etc/systemd/system/yyo-personal-wallet.service
+---DONE---
+
+
+
+=== SERVICE_FILES_CONTENTS (exit 0) ===
+=== /etc/systemd/system/psvibe-api.service ===
+[Unit]
+Description=PS VIBE API Server 
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/psvibe_api_server
+EnvironmentFile=/etc/psvibe/secrets.env
+Environment=PYTHONUNBUFFERED=1
+Environment=SHEET_ID=1VFNvhdcYVlVrr5TS49n2peIZa3U6y_AI-Mfo7q7gVsA
+Environment=SERVICE_ACCOUNT_FILE=/root/psvibe_api_server/service_account.json
+ExecStart=/root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+StandardOutput=append:/root/psvibe_api_server/server.log
+StandardError=append:/root/psvibe_api_server/server.log
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe_api_server /root/psvibe-sales-bot "/root/Aung Chan Myint"
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+
+=== /etc/systemd/system/psvibe-sale-bot.service ===
+[Unit]
+Description=PS VIBE Sales Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/psvibe-sales-bot
+ExecStart=/root/psvibe-sales-bot/main.py
+EnvironmentFile=/etc/psvibe/secrets.env
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+=== /etc/systemd/system/psvibe-wallet.service.bak ===
+[Unit]
+Description=PS Vibe Personal Wallet Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/Personal-Wallet-Tele-Bot/bot
+EnvironmentFile=/root/Personal-Wallet-Tele-Bot/bot/.env
+EnvironmentFile=/etc/psvibe/secrets.env
+ExecStart=/root/Personal-Wallet-Tele-Bot/bot/venv/bin/python3 /root/Personal-Wallet-Tele-Bot/bot/main.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+StandardError=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+TimeoutStopSec=15
+KillSignal=SIGTERM
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe_sales_bot "/root/Aung Chan Myint" /root/Personal-Wallet-Tele-Bot
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+
+=== /etc/systemd/system/acm-personal-wallet.service ===
+[Unit]
+Description=ACM's Personal Wallet Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ACM-Personal-Wallet/bot
+ExecStart=/root/ACM-Personal-Wallet/bot/venv/bin/python /root/ACM-Personal-Wallet/bot/main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+=== /etc/systemd/system/psvibe-wallet.service.bak ===
+[Unit]
+Description=PS Vibe Personal Wallet Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/Personal-Wallet-Tele-Bot/bot
+EnvironmentFile=/root/Personal-Wallet-Tele-Bot/bot/.env
+EnvironmentFile=/etc/psvibe/secrets.env
+ExecStart=/root/Personal-Wallet-Tele-Bot/bot/venv/bin/python3 /root/Personal-Wallet-Tele-Bot/bot/main.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+StandardError=append:/root/Personal-Wallet-Tele-Bot/bot/bot_status.log
+TimeoutStopSec=15
+KillSignal=SIGTERM
+ProtectSystem=strict
+ReadWritePaths=/root/psvibe_sales_bot "/root/Aung Chan Myint" /root/Personal-Wallet-Tele-Bot
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
+
+=== /etc/systemd/system/yyo-personal-wallet.service ===
+[Unit]
+Description=YYO Personal Wallet Telegram Bot
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/yyo-personal-wallet/bot
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/opt/yyo-personal-wallet/bot/venv/bin
+EnvironmentFile=-/opt/yyo-personal-wallet/bot/.env
+ExecStart=/opt/yyo-personal-wallet/bot/venv/bin/python3 /opt/yyo-personal-wallet/bot/main.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=yyo-personal-wallet
+
+[Install]
+WantedBy=multi-user.target
+
+=== /etc/systemd/system/acm-personal-wallet.service ===
+[Unit]
+Description=ACM's Personal Wallet Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ACM-Personal-Wallet/bot
+ExecStart=/root/ACM-Personal-Wallet/bot/venv/bin/python /root/ACM-Personal-Wallet/bot/main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+=== /etc/systemd/system/yyo-personal-wallet.service ===
+[Unit]
+Description=YYO Personal Wallet Telegram Bot
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/yyo-personal-wallet/bot
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/opt/yyo-personal-wallet/bot/venv/bin
+EnvironmentFile=-/opt/yyo-personal-wallet/bot/.env
+ExecStart=/opt/yyo-personal-wallet/bot/venv/bin/python3 /opt/yyo-personal-wallet/bot/main.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=yyo-personal-wallet
+
+[Install]
+WantedBy=multi-user.target
+
+---DONE---
+
+
+
+=== STAGING_SCRIPTS (exit 0) ===
+=== STAGING SCRIPTS ===
+/root/staging/scripts/:
+total 24
+drwxr-xr-x 2 root root 4096 May 28 16:03 .
+drwxr-xr-x 4 root root 4096 May 28 07:16 ..
+-rwxr-xr-x 1 root root 1676 May 28 16:03 deploy.sh
+-rwxr-xr-x 1 root root  438 May 28 16:03 rollback.sh
+-rwxr-xr-x 1 root root 4198 May 28 06:56 rollback_v1.sh
+---DONE---
+
+
+
+=== ROOT_SCRIPTS (exit 0) ===
+=== ROOT SCRIPTS ===
+total 20
+drwxr-xr-x  2 root root 4096 May 28 15:24 .
+drwxr-xr-x 32 root root 4096 May 28 16:03 ..
+-rwxr-xr-x  1 root root 1039 May 28 15:10 check-coco-telegram.sh
+-rwxr-xr-x  1 root root  922 May 28 15:10 clean-coco-processing.sh
+-rwxr-xr-x  1 root root 1926 May 28 15:30 construction-bot-manager.sh
+=== ROOT SCRIPT HEADS ===
+=== /root/scripts/check-coco-telegram.sh ===
+#!/bin/bash
+# Check if CoCo processing files are stuck and restart if needed
+
+LOGFILE="/var/log/coco-monitor.log"
+COCO_MOUNT="/opt/openclaw/coco"
+...
+=== /root/scripts/clean-coco-processing.sh ===
+#!/bin/bash
+# Auto-cleanup stuck .processing files for CoCo
+# Runs every 5 minutes via cron
+
+LOGFILE="/var/log/coco-cleanup.log"
+...
+=== /root/scripts/construction-bot-manager.sh ===
+#!/bin/bash
+# Construction Bot Manager for CoCo
+# Access: /opt/construction-bot (bind mount) + /var/run/docker.sock
+
+CB_DIR="/opt/construction-bot"
+...
+---DONE---
+
+
+
+=== CRONTAB (exit 0) ===
+=== CRONTAB ===
+# PS VIBE — Daily Sales Report at 10 PM MMT (3:30 PM UTC)
+30 15 * * * cd /root/psvibe-sale-bot && . /etc/psvibe/secrets.env 2>/dev/null; . .env 2>/dev/null; python3 send_daily_report.py >> /tmp/daily_report_cron.log 2>&1
+*/5 * * * * /root/scripts/clean-coco-processing.sh >/dev/null 2>&1
+*/5 * * * * /root/scripts/check-coco-telegram.sh >/dev/null 2>&1
+---
+-rw-r--r-- 1 root root 201 Apr  8  2024 /etc/cron.d/e2scrub_all
+-rw-r--r-- 1 root root 396 Aug  5  2025 /etc/cron.d/sysstat
+---DONE---
+
+
+
+=== N8N (exit 0) ===
+=== N8N DIR ===
+---
+---DONE---
+
+
+
+=== DOCKER_COMPOSE (exit 0) ===
+=== DOCKER-COMPOSE ===
+/root/openclaw/docker-compose.yml
+/root/.openclaw/workspace/docker-compose.yml
+/root/.openclaw/workspace/backups/nova-backup/docker-compose.yml.bak
+/root/Aung Chan Myint/docker-compose.yml.bak
+/root/Aung Chan Myint/docker-compose.yml
+/opt/openclaw/docker-compose.yml.bak.20260528_152655
+/opt/openclaw/docker-compose.yml
+/opt/construction-bot/docker-compose.yml
+---DONE---
+
+
+
+=== DEPLOY_SCRIPTS (exit 0) ===
+=== DEPLOY.SH ===
+#!/bin/bash
+# PS VIBE Sales Bot Deploy Script (Main VPS)
+# Usage: ./deploy.sh [source_dir] [target_dir]
+
+set -e
+SOURCE="${1:-/root/staging/bot_src}"
+TARGET="${2:-/root/psvibe-sales-bot}"
+BACKUP="/root/backups/predeploy_$(date +%Y%m%d_%H%M%S).tar.gz"
+LOG="/root/staging/scripts/deploy.log"
+
+echo "[$(date)] Starting deploy: $SOURCE → $TARGET" | tee -a "$LOG"
+
+# Backup current
+if [ -d "$TARGET" ]; then
+    echo "[$(date)] Backing up current to $BACKUP" | tee -a "$LOG"
+    mkdir -p /root/backups
+    tar czf "$BACKUP" -C "$(dirname $TARGET)" "$(basename $TARGET)" 2>/dev/null
+fi
+
+# Stop service
+echo "[$(date)] Stopping psvibe-sale-bot service..." | tee -a "$LOG"
+systemctl stop psvibe-sale-bot 2>/dev/null || true
+sleep 2
+
+# Copy new code
+if [ -d "$SOURCE" ]; then
+    echo "[$(date)] Copying new code..." | tee -a "$LOG"
+    rm -rf "$TARGET"
+    cp -a "$SOURCE" "$TARGET"
+else
+    echo "[$(date)] ERROR: Source $SOURCE not found!" | tee -a "$LOG"
+    exit 1
+fi
+
+# Install deps
+if [ -f "$TARGET/requirements.txt" ]; then
+    echo "[$(date)] Installing Python dependencies..." | tee -a "$LOG"
+    /root/venv/bin/pip install -r "$TARGET/requirements.txt" 2>&1 | tail -5 >> "$LOG"
+fi
+
+# Start service
+echo "[$(date)] Starting psvibe-sale-bot service..." | tee -a "$LOG"
+systemctl daemon-reload
+systemctl start psvibe-sale-bot
+sleep 3
+
+# Verify
+PID=$(systemctl show psvibe-sale-bot -p MainPID 2>/dev/null | cut -d= -f2)
+if [ "$PID" -gt 0 ] 2>/dev/null; then
+    echo "[$(date)] ✅ Deploy SUCCESSFUL! PID: $PID" | tee -a "$LOG"
+else
+    echo "[$(date)] ❌ Deploy FAILED! Rolling back..." | tee -a "$LOG"
+    /root/staging/scripts/rollback.sh "$BACKUP" "$TARGET"
+    exit 1
+fi
+=== ROLLBACK.SH ===
+#!/bin/bash
+# Rollback deploy
+BACKUP="$1"
+TARGET="${2:-/root/psvibe-sales-bot}"
+
+if [ -f "$BACKUP" ]; then
+    echo "[$(date)] Rolling back from $BACKUP"
+    systemctl stop psvibe-sale-bot 2>/dev/null || true
+    sleep 2
+    rm -rf "$TARGET"
+    tar xzf "$BACKUP" -C "$(dirname $TARGET)"
+    systemctl daemon-reload
+    systemctl start psvibe-sale-bot
+    echo "Rollback complete"
+else
+    echo "No backup found at $BACKUP"
+    exit 1
+fi
+---DONE---
+
+
+
+=== ALL_SERVICES (exit 0) ===
+=== ALL SYSTEMD UNITS ===
+-rw-rw-rw- 1 root root 305 May 28 15:05 /etc/systemd/system/acm-personal-wallet.service
+lrwxrwxrwx 1 root root  48 Aug  5  2025 /etc/systemd/system/dbus-org.freedesktop.resolve1.service -> /usr/lib/systemd/system/systemd-resolved.service
+lrwxrwxrwx 1 root root  49 Aug  5  2025 /etc/systemd/system/dbus-org.freedesktop.timesync1.service -> /usr/lib/systemd/system/systemd-timesyncd.service
+lrwxrwxrwx 1 root root  42 Aug  5  2025 /etc/systemd/system/iscsi.service -> /usr/lib/systemd/system/open-iscsi.service
+-rw-r--r-- 1 root root 776 May 28 16:03 /etc/systemd/system/psvibe-api.service
+-rw-r--r-- 1 root root 438 May 28 16:06 /etc/systemd/system/psvibe_customer_bot.service
+-rw-r--r-- 1 root root 278 May 28 16:04 /etc/systemd/system/psvibe-sale-bot.service
+lrwxrwxrwx 1 root root  39 Aug  5  2025 /etc/systemd/system/syslog.service -> /usr/lib/systemd/system/rsyslog.service
+lrwxrwxrwx 1 root root  45 Aug  5  2025 /etc/systemd/system/vmtoolsd.service -> /usr/lib/systemd/system/open-vm-tools.service
+-rw-r--r-- 1 root root 579 May 28 15:10 /etc/systemd/system/yyo-personal-wallet.service
+---
+total 12
+drwxr-xr-x  2 root root 4096 May 28 16:05 .
+drwxr-xr-x 26 root root 4096 May 28 16:05 ..
+lrwxrwxrwx  1 root root   47 May 28 15:04 acm-personal-wallet.service -> /etc/systemd/system/acm-personal-wallet.service
+lrwxrwxrwx  1 root root   38 Aug  5  2025 apport.service -> /usr/lib/systemd/system/apport.service
+lrwxrwxrwx  1 root root   35 May 18 08:42 atd.service -> /usr/lib/systemd/system/atd.service
+lrwxrwxrwx  1 root root   45 Aug  5  2025 console-setup.service -> /usr/lib/systemd/system/console-setup.service
+lrwxrwxrwx  1 root root   42 May 27 11:36 containerd.service -> /usr/lib/systemd/system/containerd.service
+lrwxrwxrwx  1 root root   36 Aug  5  2025 cron.service -> /usr/lib/systemd/system/cron.service
+lrwxrwxrwx  1 root root   37 Aug  5  2025 dmesg.service -> /usr/lib/systemd/system/dmesg.service
+lrwxrwxrwx  1 root root   38 May 27 11:36 docker.service -> /usr/lib/systemd/system/docker.service
+lrwxrwxrwx  1 root root   40 Aug  5  2025 e2scrub_reap.service -> /lib/systemd/system/e2scrub_reap.service
+lrwxrwxrwx  1 root root   43 May 18 08:33 grub-common.service -> /usr/lib/systemd/system/grub-common.service
+lrwxrwxrwx  1 root root   52 May 18 08:33 grub-initrd-fallback.service -> /usr/lib/systemd/system/grub-initrd-fallback.service
+lrwxrwxrwx  1 root root   44 Aug  5  2025 lxd-installer.socket -> /usr/lib/systemd/system/lxd-installer.socket
+lrwxrwxrwx  1 root root   39 May 28 10:15 mariadb.service -> /usr/lib/systemd/system/mariadb.service
+lrwxrwxrwx  1 root root   51 Aug  5  2025 networkd-dispatcher.service -> /usr/lib/systemd/system/networkd-dispatcher.service
+lrwxrwxrwx  1 root root   45 Aug  5  2025 open-vm-tools.service -> /usr/lib/systemd/system/open-vm-tools.service
+lrwxrwxrwx  1 root root   41 Aug  5  2025 pollinate.service -> /usr/lib/systemd/system/pollinate.service
+lrwxrwxrwx  1 root root   38 May 27 19:44 psvibe-api.service -> /etc/systemd/system/psvibe-api.service
+lrwxrwxrwx  1 root root   47 May 28 16:05 psvibe_customer_bot.service -> /etc/systemd/system/psvibe_customer_bot.service
+lrwxrwxrwx  1 root root   43 May 28 07:30 psvibe-sale-bot.service -> /etc/systemd/system/psvibe-sale-bot.service
+lrwxrwxrwx  1 root root   40 Aug  5  2025 remote-fs.target -> /usr/lib/systemd/system/remote-fs.target
+lrwxrwxrwx  1 root root   39 Aug  5  2025 rsyslog.service -> /usr/lib/systemd/system/rsyslog.service
+lrwxrwxrwx  1 root root   45 Aug  5  2025 secureboot-db.service -> /usr/lib/systemd/system/secureboot-db.service
+lrwxrwxrwx  1 root root   46 May 18 08:42 snapd.apparmor.service -> /usr/lib/systemd/system/snapd.apparmor.service
+lrwxrwxrwx  1 root root   48 May 18 08:42 snapd.autoimport.service -> /usr/lib/systemd/system/snapd.autoimport.service
+lrwxrwxrwx  1 root root   48 May 18 08:42 snapd.core-fixup.service -> /usr/lib/systemd/system/snapd.core-fixup.service
+lrwxrwxrwx  1 root root   62 May 18 08:42 snapd.recovery-chooser-trigger.service -> /usr/lib/systemd/system/snapd.recovery-chooser-trigger.service
+lrwxrwxrwx  1 root root   44 May 18 08:42 snapd.seeded.service -> /usr/lib/systemd/system/snapd.seeded.service
+lrwxrwxrwx  1 root root   37 May 18 08:42 snapd.service -> /usr/lib/systemd/system/snapd.service
+lrwxrwxrwx  1 root root   39 Aug  5  2025 sysstat.service -> /usr/lib/systemd/system/sysstat.service
+lrwxrwxrwx  1 root root   44 Jul 31  2025 systemd-networkd.service -> /lib/systemd/system/systemd-networkd.service
+lrwxrwxrwx  1 root root   46 Aug  5  2025 ua-reboot-cmds.service -> /usr/lib/systemd/system/ua-reboot-cmds.service
+lrwxrwxrwx  1 root root   48 Aug  5  2025 ubuntu-advantage.service -> /usr/lib/systemd/system/ubuntu-advantage.service
+lrwxrwxrwx  1 root root   35 Aug  5  2025 ufw.service -> /usr/lib/systemd/system/ufw.service
+lrwxrwxrwx  1 root root   51 Aug  5  2025 unattended-upgrades.service -> /usr/lib/systemd/system/unattended-upgrades.service
+lrwxrwxrwx  1 root root   47 May 28 15:01 yyo-personal-wallet.service -> /etc/systemd/system/yyo-personal-wallet.service
+---DONE---
+
+
+
+=== N8N_CONFIG (exit 0) ===
+=== N8N ENV/CONFIG ===
+---
+---
+---DONE---
+
+

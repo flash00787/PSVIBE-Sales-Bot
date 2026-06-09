@@ -1,0 +1,135 @@
+=== ARCHITECTURE MIGRATION ANALYSIS ===
+Generated: 2026-05-29
+
+───────────────────────────────────────────────────────────────
+│ OVERVIEW: PS VIBE Architecture Assessment                   │
+│ Current: TeleBot → API Client + Direct GSheets + API Server │
+│ Proposed: TeleBot → API Client (only) → API Server → MySQL  │
+│           MySQL ⇢ Sync Service ⇢ GSheets (1-directional)    │
+───────────────────────────────────────────────────────────────
+
+=== 1. ARCHITECTURE DISCOVERY ===
+
+api_client.py location: /root/psvibe-sales-bot/bot/api_client.py
+  - 460 lines, 48 functions total
+  - Uses only stdlib (urllib, json) — no external HTTP deps
+  - Single internal _api_call() with 1 try/except block
+  - Timeout: 15s (configurable), NO retry logic, NO backoff
+  - All 48 endpoints from FastAPI server wrapped as functions
+  - Authentication: query param api_key
+
+API Server: /root/psvibe_api_server/app.py
+  - 65 routes (GET, POST, PUT, DELETE, PATCH)
+  - Data source: MySQL (primary) + GSheets (fallback)
+  - Health endpoint: {"success":true,"sheets_ok":true,"data_source":"mysql"}
+  - MySQL health: {"success":true,"mysql_connected":true,"data_source":"mysql"}
+  - API latency: /api/health → 200 0.35s (includes MySQL + GSheets checks)
+  - Services: psvibe-api.service, psvibe-mysql (Docker)
+
+Sync Service: /root/psvibe_api_server/sync_service.py
+  - 789 lines, comprehensive SyncService class
+  - Syncs GSheets → MySQL: member_wallets, games_library, console_status, staff
+  - Background thread with configurable interval
+  - Tracks sync_status with timestamps
+  - Already PRODUCTION-READY
+
+Bot __init__.py (bot/__init__.py):
+  - Comment: "Data Flow: Bot → API Client → API Server → MySQL (primary) → GSheets (fallback)"
+  - Still imports gspread directly for sheet operations
+  - Has RetryingWorksheet wrapper class for auto-retry on 429/500
+  - ThreadPoolExecutor with 64 workers for gspread calls
+  - API client imported for READ operations only in current exports
+
+=== 2. DIRECT GSheets WRITES REMAINING ===
+
+Handlers still writing directly to GSheets (bypassing API):
+
+  a) finance.py — 9 sh.append_row() calls
+  b) stock.py / stock_in.py / sales.py — ~0 append_row() calls
+  c) salary_adv.py — 1 sh.append_row() calls
+
+Total remaining direct GSheets write calls: ~10
+
+API write calls already in use from handlers: 0
+
+Bot __init__.py write functions:
+  401:def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
+  425:def end_booking(booking_id: str) -> bool:
+  524:def set_game_disc_count(row_num: int, count: int) -> bool:
+  729:def add_console_game(console_id: str, game_title: str, install_type: str, notes: str = "") -> bool:
+  749:def remove_console_game(console_id: str, game_title: str) -> bool:
+  778:def update_game_library_install(game_title: str, console_id: str, installed: bool) -> bool:
+  849:def cancel_booking(booking_id: str) -> bool:
+  868:def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
+  887:def remove_console_from_setting(console_id: str) -> bool:
+  1584:def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
+  2134:def save_referral_code(member_id: str, code: str) -> bool:
+  2485:def save_receipt_json(voucher_id: str, data: dict) -> None:
+
+=== 3. API CLIENT READINESS ASSESSMENT ===
+
+  ✅ Already exists: api_client.py with 48 functions
+  ✅ Already imported in bot/__init__.py
+  ✅ 65 API routes available on FastAPI server
+  ✅ MySQL health confirmed (mysql_connected: true)
+  ✅ SyncService exists and runs in background
+  ⚠️  api_client.py has NO retry logic (single try/except)
+  ⚠️  api_client.py has NO timeout handling
+  ⚠️  api_client.py returns None on all errors (no error differentiation)
+  ⚠️  Write endpoints exist but may not be complete (missing: stock operations, salary advance, opex)
+
+=== 4. STRUCTURED ANALYSIS ===
+
+### CURRENT STATE
+- Hybrid architecture: READ via API → MySQL, WRITE still mostly direct GSheets
+- READ operations: Already migrated to API Client → API Server → MySQL
+- WRITE operations: Mixture of API calls + direct GSheets append_row()
+- Direct sheets writes: ~10 calls across ~5 handler files
+- Direct GSheets READ access: Also still possible via gspread in __init__.py
+
+### PROS of Full Migration
+1. Data Integrity — MySQL ACID transactions eliminate sheet race conditions
+2. Latency — Localhost API (~0.001-0.01s) vs GSheets internet (~0.5-2s)
+3. Rate Limits — MySQL has no quota; GSheets 60 req/min/user, 300 req/min/project
+4. Offline Resilience — MySQL local; no internet needed for core ops
+5. Audit Trail — MySQL binlog + structured logging
+6. Sync Simplification — 1-directional MySQL → GSheets only
+7. Concurrency — MySQL handles 64+ concurrent writes (vs GSheets sequential)
+8. Consistency — Single source of truth (MySQL), sheets are just mirrors
+
+### CONS of Migration
+1. Write Endpoint Gap — API server lacks write endpoints for finance/stock/salary
+2. API Client Brittleness — No retry, no timeout handling, no error differentiation
+3. Effort — ~45 handler files to audit, ~5 with direct writes to convert
+4. Sync Critical Path — MySQL → GSheets sync must be reliable
+5. Dual-Write Risk — Transition period complexity
+6. Monitor Overhead — Need to monitor sync health + API health
+
+### VERDICT
+
+🟡 PARTIALLY MIGRATED — CONDITIONAL FULL MIGRATION
+
+READ path is already migrated. WRITE path needs work:
+
+What to finish:
+  1. Add write endpoints to API Server for:
+     - Stock operations (stock_out, stock_in)
+     - Salary advance
+     - Finance/OPEX operations
+  2. Add retry/backoff to api_client.py _api_call()
+  3. Add timeout configuration per call
+  4. Add error context logging (distinguish 401/404/500)
+  5. Convert remaining direct GSheets writes to API calls
+  6. Remove gspread dependency from bot __init__.py entirely
+
+### RISK ASSESSMENT
+
+- Migration Complexity: LOW-MEDIUM (~10 write calls to convert)
+- API Client Maturity: MODERATE (48 functions, but weak error handling)
+- API Route Coverage: ADEQUATE for READ, INCOMPLETE for WRITE
+- Error Handling: WEAK — 1 try/1 except, all errors return None
+- GSheets Rate Limiting: Present in __init__.py (RetryingWorksheet), NOT in api_client.py
+- Data Consistency: HIGH when fully migrated (MySQL single source of truth)
+- Sync Reliability: EXISTING (SyncService with background thread + sync_status tracking)
+
+--- END REPORT ---

@@ -1,54 +1,119 @@
 const { Client } = require('ssh2');
 const fs = require('fs');
+const path = require('path');
 
-const conn = new Client();
+const HOST = '5.223.81.16';
+const USER = 'root';
+const KEY_PATH = path.join(__dirname, '.ssh', 'id_rsa');
 
-conn.on('ready', () => {
-  console.log('SSH connected');
-  
-  // Run all commands
-  const commands = [
-    'journalctl --since "24 hours ago" --no-pager | grep -i -E "openai|fallback" | head -n 100',
-    'journalctl -u psvibe-customer --since "24 hours ago" --no-pager | grep -i -E "error|fail" | head -n 100',
-  ];
-
-  let idx = 0;
-  
-  function runNext() {
-    if (idx >= commands.length) {
+async function sshExec(command, timeout = 60000) {
+  return new Promise((resolve, reject) => {
+    const conn = new Client();
+    let output = '';
+    let errOutput = '';
+    let timer = setTimeout(() => {
       conn.end();
-      return;
-    }
-    const cmd = commands[idx++];
-    console.log(`\n===== COMMAND: ${cmd} =====`);
-    conn.exec(cmd, { pty: false }, (err, stream) => {
-      if (err) {
-        console.log('EXEC ERROR:', err);
-        runNext();
-        return;
-      }
-      let output = '';
-      stream.on('data', (data) => { output += data.toString(); });
-      stream.stderr.on('data', (data) => { output += data.toString(); });
-      stream.on('close', (code) => {
-        console.log(output || '(no output)');
-        console.log(`Exit code: ${code}`);
-        runNext();
+      reject(new Error(`Timeout after ${timeout}ms: ${command.substring(0,100)}`));
+    }, timeout);
+
+    conn.on('ready', () => {
+      conn.exec(command, (err, stream) => {
+        if (err) {
+          clearTimeout(timer);
+          conn.end();
+          return reject(err);
+        }
+        stream.on('close', (code, signal) => {
+          clearTimeout(timer);
+          conn.end();
+          resolve({ code, stdout: output, stderr: errOutput });
+        }).on('data', (data) => { output += data.toString(); })
+          .stderr.on('data', (data) => { errOutput += data.toString(); });
       });
     });
+
+    conn.on('error', (err) => {
+      clearTimeout(timer);
+      reject(err);
+    });
+
+    conn.connect({
+      host: HOST,
+      port: 22,
+      username: USER,
+      privateKey: fs.readFileSync(KEY_PATH),
+      readyTimeout: 15000,
+    });
+  });
+}
+
+async function runAll() {
+  const commands = [
+    {
+      label: 'MySQL status',
+      cmd: 'systemctl status mysql --no-pager 2>&1; systemctl status mariadb --no-pager 2>&1; ps aux | grep -i mysql 2>&1',
+    },
+    {
+      label: 'MySQL socket',
+      cmd: 'ls -la /run/mysqld/ 2>&1; ls -la /var/run/mysqld/ 2>&1; find / -name "mysqld.sock" 2>/dev/null; find / -name "*.sock" -path "*mysql*" 2>/dev/null',
+    },
+    {
+      label: 'MySQL via TCP',
+      cmd: 'mysql -u root -h 127.0.0.1 -e "SHOW DATABASES;" 2>&1',
+    },
+    {
+      label: 'SHOW TABLES psvibe',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe -e "SHOW TABLES;" 2>&1',
+    },
+    {
+      label: 'DESCRIBE sales_daily',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe -e "DESCRIBE sales_daily;" 2>&1',
+    },
+    {
+      label: 'SELECT sales_daily LIMIT 3',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe -e "SELECT * FROM sales_daily LIMIT 3;" 2>&1',
+    },
+    {
+      label: 'SHOW TABLES psvibe_dashboard',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "SHOW TABLES;" 2>&1',
+    },
+    {
+      label: 'DESCRIBE opex',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "DESCRIBE opex;" 2>&1',
+    },
+    {
+      label: 'SELECT opex LIMIT 5',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "SELECT * FROM opex LIMIT 5;" 2>&1',
+    },
+    {
+      label: 'DESCRIBE cash_movements',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "DESCRIBE cash_movements;" 2>&1',
+    },
+    {
+      label: 'SELECT cash_movements',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "SELECT * FROM cash_movements;" 2>&1',
+    },
+    {
+      label: 'DESCRIBE income_by_acct',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "DESCRIBE income_by_acct;" 2>&1',
+    },
+    {
+      label: 'SELECT income_by_acct',
+      cmd: 'mysql -u root -h 127.0.0.1 --database=psvibe_dashboard -e "SELECT * FROM income_by_acct;" 2>&1',
+    },
+  ];
+
+  for (const { label, cmd } of commands) {
+    console.log(`\n=== ${label} ===`);
+    try {
+      const r = await sshExec(cmd, 30000);
+      console.log(`Exit: ${r.code}`);
+      console.log(r.stdout);
+      if (r.stderr) console.log('STDERR:', r.stderr);
+    } catch (e) {
+      console.log(`ERROR: ${e.message}`);
+    }
   }
+}
 
-  runNext();
-});
-
-conn.on('error', (err) => {
-  console.error('SSH ERROR:', err);
-  process.exit(1);
-});
-
-conn.connect({
-  host: '167.71.196.120',
-  port: 22,
-  username: 'root',
-  privateKey: fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa')
-});
+runAll().catch(e => console.error('FATAL:', e));

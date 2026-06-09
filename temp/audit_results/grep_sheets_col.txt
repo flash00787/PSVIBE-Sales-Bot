@@ -1,0 +1,5 @@
+bot/handlers/sales.py:1274:                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+bot/handlers/sales.py:1289:                            member_sh.update_cell(_wi + 1, 8, _new_bal)
+bot/handlers/sales.py:1291:                            member_sh.update_cell(_wi + 1, 9, _current_i + _bonus_mins)
+bot/handlers/members.py:1176:                        member_sh.update_cell(_ti + 1, 8, bal_mins)
+bot/handlers/members.py:1178:                        member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)

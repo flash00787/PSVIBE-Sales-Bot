@@ -1,27 +1,24 @@
-#!/usr/bin/env node
 const { Client } = require('/home/node/.openclaw/workspace/node_modules/ssh2');
 const fs = require('fs');
 
 const HOST = '5.223.81.16';
 const USER = 'root';
-const KEY_PATH = '/home/node/.openclaw/workspace/.ssh/id_rsa';
+const KEY = fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa');
 
-const command = process.argv.slice(2).join(' ');
-if (!command) {
-  console.error('Usage: node vps-exec.js <command>');
-  process.exit(1);
-}
+const cmd = process.argv[2];
+if (!cmd) { console.error('Usage: node vps-exec.js <command>'); process.exit(1); }
 
 const conn = new Client();
+let output = '';
+let stderr = '';
 
 conn.on('ready', () => {
-  conn.exec(command, { pty: true }, (err, stream) => {
+  conn.exec(cmd, (err, stream) => {
     if (err) throw err;
-    let stdout = '', stderr = '';
-    stream.on('data', (data) => { stdout += data.toString(); });
+    stream.on('data', (data) => { output += data.toString(); });
     stream.stderr.on('data', (data) => { stderr += data.toString(); });
     stream.on('close', (code) => {
-      process.stdout.write(stdout);
+      process.stdout.write(output);
       if (stderr) process.stderr.write(stderr);
       conn.end();
       process.exit(code);
@@ -30,14 +27,8 @@ conn.on('ready', () => {
 });
 
 conn.on('error', (err) => {
-  console.error('SSH Error:', err.message);
+  process.stderr.write('SSH ERROR: ' + err.message + '\n');
   process.exit(1);
 });
 
-conn.connect({
-  host: HOST,
-  port: 22,
-  username: USER,
-  privateKey: fs.readFileSync(KEY_PATH),
-  readyTimeout: 15000,
-});
+conn.connect({ host: HOST, port: 22, username: USER, privateKey: KEY });

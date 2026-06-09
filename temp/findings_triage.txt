@@ -1,0 +1,142 @@
+╔══════════════════════════════════════════════════════════════╗
+║           FINDINGS TRIAGE REPORT                              ║
+║           Generated: 2026-06-01 07:15 UTC                     ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────┐
+│ 1. DISPATCH MANAGER STATUS                                   │
+└─────────────────────────────────────────────────────────────┘
+
+📋 Pending findings (temp files): 1
+   → Matches find: `/root/coordination/findings/cron_health.json`
+
+📋 Pending findings (SHARED_FINDINGS.md): 0
+   → Last updated: 2026-05-29 12:22 UTC | 1 entry (✅ Fixed)
+
+
+╔══════════════════════════════════════════════════════════════╗
+║ 2. FINDINGS DIRECTORY INVENTORY                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+Path: /root/coordination/findings/
+Total items: 43 (excluding . and ..)
+
+┌─────────────────────────────────────────────────────────────┐
+│ A. cron_health.json  (350 bytes, dated Jun 1 07:00)          │
+│                                                               │
+│   TYPE:   JSON — Cron health check result                     │
+│   STATUS: ⚠️  FALSE POSITIVE PENDING                          │
+│                                                               │
+│   Content:                                                    │
+│     {                                                         │
+│       "timestamp": "2026-06-01T07:00:01",                     │
+│       "type": "cron_health",                                  │
+│       "results": {                                            │
+│         "auto_git_sync": {"cron_exists":true,"log_healthy":true},
+│         "healthcheck": {"cron_exists":true,"log_healthy":true}
+│       },                                                      │
+│       "issues": 0                                             │
+│     }                                                         │
+│                                                               │
+│   ⚡ ROOT CAUSE: This file has no "status" field in the JSON  │
+│      → `load_pending()` checks `not data.get("status")`      │
+│      → Since "status" key is absent, it's treated as PENDING │
+│      → Real state: ZERO issues, both cron tasks healthy       │
+│                                                               │
+│   VERDICT: ❌ Not a real issue. Stale artifact counting bug.  │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ B. import_scan_*.txt  (32 files, 148-750 bytes each)         │
+│                                                               │
+│   TYPE:   Plain text — Import scan results                    │
+│   STATUS: ⚠️  Stale / Historical                              │
+│                                                               │
+│   Range: May 30 20:16  —  Jun  1 05:14 (most on May 31)      │
+│                                                               │
+│   Each file lists MISSING IMPORTS (unresolved symbols) for    │
+│   a specific handler module. Authentic findings at the time   │
+│   of scan, but many have been resolved iteratively.           │
+│                                                               │
+│   Examples:                                                   │
+│   - import_scan_admin.txt  → 14 missing (from May 31 21:47)   │
+│   - import_scan_sales.txt  → 11 missing (from May 31 21:47)   │
+│   - import_scan_members.txt → 19 missing (from Jun  1 05:14)  │
+│                                                               │
+│   Archive copies exist (dated May 29-30) showing older scans, │
+│   meaning findings/ has the CURRENT/latest scans.             │
+│                                                               │
+│   VERDICT: ⚠️  PARTIALLY STALE — Some may be resolved since   │
+│            scan date. Need re-scan to confirm.                │
+│            (Not counted as "findings" since .txt not .json)   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ C. Architecture artifacts (3 files)                          │
+│    arch_report.txt   — 160K architecture analysis report      │
+│    arch_graph.dot    —  54K dependency graph (DOT)            │
+│    arch_diagram.md   —  25K architecture diagram (Mermaid)    │
+│                                                               │
+│   VERDICT: ✅ Not findings. Documentation artifacts.         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ D. SHARED_FINDINGS.md                                        │
+│    Last updated: 2026-05-29 12:22 UTC (3 days stale)         │
+│    Total entries: 1                                           │
+│    Status: ✅ Fixed                                           │
+│    Details: ?? / ? / 🔴 — metadata lost (?? placeholders)    │
+│                                                               │
+│   VERDICT: ⚠️  Stale metadata. Fixed item but description    │
+│            info lost (shows ?? for agent, severity, file).   │
+│            Needs Findings Manager to clean up.               │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ E. /root/coordination/temp/  (empty)                         │
+│    No temp dispatch files, lock files, or .tmp files exist.  │
+│    No orphaned files anywhere in /root/coordination/         │
+│                                                               │
+│   VERDICT: ✅ Clean slate.                                    │
+└─────────────────────────────────────────────────────────────┘
+
+
+╔══════════════════════════════════════════════════════════════╗
+║ 3. REAL vs STALE BREAKDOWN                                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────┐
+│ 🔴 REAL CRITICAL FINDINGS:    0                              │
+│ 🟡 REAL HIGH FINDINGS:        0                              │
+│ ⚪ STALE / FALSE POSITIVES:    1  (cron_health.json)         │
+│ 📋 IMPORT SCAN FILES:        32  (need re-scan to verify)   │
+│ 📄 DOCUMENTATION:             3  (architecture artifacts)   │
+│ 📋 SHARED_FINDINGS:           1  (✅ resolved, needs cleanup)│
+│                                                               │
+│ TOTAL:   38 files in findings directory                       │
+│ ACTUAL:  0 pending critical issues                            │
+└─────────────────────────────────────────────────────────────┘
+
+
+╔══════════════════════════════════════════════════════════════╗
+║ 4. RECOMMENDATIONS                                           ║
+╚══════════════════════════════════════════════════════════════╝
+
+  1⃣ Run Findings Manager to sync and clean:
+     `python3 /root/coordination/findings_manager.py`
+     This will add `status: "FIXED"` to cron_health.json and
+     remove the false 1-pending count.
+
+  2⃣ Archive stale import_scan .txt files:
+     The findings/ dir has 32 import_scan files cluttering the
+     view. Move to archive/ or delete. These are one-shot scan
+     results, not actionable findings.
+
+  3⃣ Re-run re-scan on import_scan files with recent dates
+     (admin, members, sales, console_mgmt) to verify if those
+     missing imports are still outstanding.
+
+  4⃣ Clean up SHARED_FINDINGS.md — entry has lost metadata
+     (agent=?, file=?). Run merge_findings.py to regenerate.
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "/usr/local/lib/python3.12/dist-packages/dotenv/main.py", line 419, in load_dotenv
+    dotenv_path = find_dotenv()
+                  ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/dotenv/main.py", line 367, in find_dotenv
+    assert frame.f_back is not None
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

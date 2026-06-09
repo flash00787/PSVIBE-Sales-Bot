@@ -1,0 +1,224 @@
+================================================================================
+  KORA SYSTEM AUDIT — Comprehensive Scan
+  Date: 2026-06-01 07:08 UTC (13:38 MMT)
+  Auditor: Subagent (comprehensive-scan)
+================================================================================
+
+### 1. Memory System
+
+**MEMORY.md:**
+- 250+ lines, well-structured, last modified 2026-06-01 06:22 UTC
+- Covers: Golden Rules, Critical Lessons, Contacts, Infrastructure, Bug Patterns, Cron System
+- ✅ Recently updated with May 31 bug fix lessons
+- ✅ Model routing cost control lesson captured (June 1)
+- ✅ Spawn protocol lessons captured (June 1)
+- ✅ Auto-Pilot Cron System table documented (June 1)
+
+**Daily Logs (`memory/`):**
+- 6 daily files: 2026-05-26 → 2026-05-31 (May 26–31 complete)
+- ⚠️ No 2026-06-01 daily log yet (today just started)
+- Total: 27 .md files including SOPs, protocols, templates, specs
+- Archive directory present (1 entry)
+- Digest directory present
+- agent-status.md exists (updated 07:07 UTC today)
+
+**Key Lessons Captured: ✅**
+- Sync service must run (not just exist as code)
+- Schema GSheet→MySQL gaps
+- Tier calculation must be dynamic
+- ConversationHandler fallbacks critical
+- Auto-doc after every fix
+- Model routing strict cost control
+- Spawn protocol file-level conflict detection
+- Sub-agent timeout by task size
+- Session file bloat root cause & fix
+
+**Verdict: 🟢 HEALTHY** — Well-maintained, recently updated, lessons documented.
+
+---
+
+### 2. Cron & Auto-Pilot
+
+**Total Cron Jobs: 11** (9 enabled, 2 disabled)
+
+| # | Status | Job | Schedule | Notes |
+|---|--------|-----|----------|-------|
+| 1 | ✅ EN | Gmail Check - Morning | 8:00 MMT daily | |
+| 2 | ✅ EN | Gmail Check - Evening | 20:00 MMT daily | |
+| 3 | ✅ EN | VPS Monitor Alert Checker | 8:30, 20:30 MMT daily | |
+| 4 | ✅ EN | Kora Heartbeat Memory Maintenance | Every 4 hours | |
+| 5 | ✅ EN | VPS Code Quality Weekly Scan | Sun 8:00 MMT | |
+| 6 | ✅ EN | Daily Memory Consolidation | 22:00 MMT daily | |
+| 7 | ✅ EN | ps5-news-research | Every 6 hours | 5 min stagger |
+| 8 | ✅ EN | lock-monitor-cleanup | Every 30s | **Note: 30s not 60s as MEMORY states** |
+| 9 | ✅ EN | session-cleanup | Every 1 hour | Keep last 10 per session, delete >2d |
+| 10 | ❌ DIS | session-lock-cleanup | Every 60s | Disabled (replaced by lock-monitor-cleanup) |
+| 11 | ❌ DIS | lock-monitor-60s | Every 60s | Disabled (replaced by lock-monitor-cleanup) |
+
+**Duplicate Check: ✅ NO DUPLICATES** — All job names unique
+
+**Lock Monitor Self-Cleanup: ✅ WORKING**
+- Last run output: `OK: 2 active lock(s), 0 cleaned | Self-cleanup: removed 1 old session(s)`
+- Log shows active cleaning of stale locks (May 31 activity confirmed)
+- Cleans dead PID locks + expired topic locks
+
+**Discrepancy Note:**
+- MEMORY.md says lock-monitor-cleanup interval = "1 min"
+- Actual cron config: `everyMs: 30000` (30 seconds)
+- Description text says "every 5 minutes" (also outdated)
+- RECOMMENDATION: Update MEMORY.md and job description to match actual 30s interval, OR change interval to 60s
+
+**Cron Runs Directory:** 12 run log files (~1.2MB total), clean
+
+**Verdict: 🟢 HEALTHY** — Well-organized, no duplicates, self-cleanup working.
+
+---
+
+### 3. Session Health
+
+**Workspace Sessions Directory:**
+- File count: 0
+- Size: 0 (empty)
+- ✅ Session bloat issue RESOLVED (was 6,565 files / 2.0 GB on May 31)
+
+**Gateway Completions:**
+- File count: 0 jsonl files
+- Size: 876K (metadata only, near-empty)
+- ✅ No bloat
+
+**OpenClaw System Directory:**
+- Total size: 870 MB (mainly config backups, agents, logs)
+- 24 config backups present (`openclaw.json.backup*`)
+- ✅ Reasonable size for system directory
+
+**Lock Status:**
+- 2 active locks (from lock_monitor_last.txt)
+- 0 stale locks (cleaned by lock monitor)
+- ✅ Lock monitor actively maintaining
+
+**Session Cleanup Cron:**
+- session-cleanup: every 1 hour, delete >2d, keep last 10 per prefix
+- ✅ Properly configured and enabled
+
+**Verdict: 🟢 HEALTHY** — Session bloat resolved, cleanup working, 0 session files.
+
+---
+
+### 4. Infrastructure Status
+
+**Critical Files:**
+| File | Location | Status |
+|------|----------|--------|
+| js_analyzer.py | workspace root | ✅ 15KB, present (Jun 1) |
+| lock_monitor.py | memory/ + temp/ copies | ✅ Present (2 copies) |
+| smart_session_cleanup.sh | memory/ | ✅ Present |
+
+**MEMORY.md Updates:**
+- Last modified: 2026-06-01 06:22 UTC (1 hour ago)
+- ✅ Recently updated with latest lessons
+
+**Workspace Stats:**
+- Total size: 244 MB
+- Temp directory: 95 files, 8.5 MB
+- Disk: 150 GB total, 21 GB used (15%), 124 GB free
+- ✅ Ample disk space
+
+**Git Status:**
+- Workspace has staged deletions (D) of old analysis files (A1–A5, etc.)
+- Modified: .gitignore, AGENTS.md
+- All appear to be intentional cleanup of old scan artifacts
+- ✅ No unexpected changes
+
+**OpenClaw Config:**
+- Gateway mode: local, auth: token
+- Agent defaults: DeepSeek Flash (primary), fallbacks configured
+- Subagent defaults: DeepSeek Pro (primary), 25 max concurrent
+- Timeout: 14400s (4h) system max
+- ✅ Reasonable configuration
+
+**Verdict: 🟢 HEALTHY** — Critical files present, disk healthy, config stable.
+
+---
+
+### 5. Project Knowledge Summary
+
+**PS VIBE Sales Bot:**
+- Location: VPS `/root/psvibe-sales-bot/` (109 .py files)
+- 3 services: psvibe-sale-bot, psvibe_customer_bot, psvibe-api
+- API Server: Separate repo at `/root/psvibe_api_server/`
+- MySQL: Docker `psvibe-mysql`, 127.0.0.1:3306, DB: `psvibe_api`
+- Tests: 104/104 passed ✅
+- Services: All 3 active ✅
+- 45 pending findings (from quick status check)
+- Recent fixes: Top Up Payment, Deadlock Prevention, State ID Collision
+- CloudFlare tunnel: ps-vibe.com → localhost:8000
+- Status: 🟢 STABLE — Active, tested, tunnel operational
+
+**Three Brothers Construction Bot:**
+- Location: VPS Docker container `construction_bot`
+- Bot.js: 362KB, 6,107 lines (monolithic Node.js + Telegraf v4)
+- Google Sheets based, Git: `flash00787/three_brothers_construction`
+- PAT Expired (per MEMORY reference)
+- Kora Access: READ-ONLY (CoCo mode)
+- Last full audit: 2026-05-26 (comprehensive report exists)
+- Status: 🟡 MAINTENANCE — PAT expired, READ-ONLY, needs PAT renewal for updates
+
+**Nova (Ye Yint Oo's AI Assistant):**
+- Active, networked with Kora
+- Mount: `/opt/openclaw/nova/` (host) → Kora workspace
+- Host API: `127.0.0.1:7890` (readable from container)
+- Access Rules: Self-upgrade FULL, YYO Wallet READ-ONLY, Construction Bot NO ACCESS
+- Status: 🟢 ACTIVE — Operational, properly gated
+
+**YYO Personal Wallet Bot:**
+- Location: VPS `/root/YYO-Personal-Wallet/bot/`
+- Service: `yyo-personal-wallet.service`
+- Nova Access: READ-ONLY via Host API only (no SSH key)
+- Backup: `/root/backups/yyo_wallet_bot_20260529.tar.gz` (May 29)
+- Status: 🟡 STABLE — Running, backed up, limited access
+
+---
+
+### 6. Recommendations
+
+**Top 3 Things Working Well: 🟢**
+
+1. **Memory System** — MEMORY.md actively maintained (updated within last hour), 6 consecutive daily logs, critical lessons documented with dates and root causes. Excellent institutional knowledge.
+
+2. **Cron Auto-Pilot** — 9 enabled jobs covering email, VPS monitoring, memory maintenance, code quality, lock cleanup, and session cleanup. No duplicates. Self-cleanup working. Session bloat (May 31: 6,565 files/2GB) fully resolved.
+
+3. **Infrastructure Stability** — All 3 PS VIBE services active, 104 tests passing, disk at 15% usage, CloudFlare tunnel operational, coordination tools (25 total) well-organized at `/root/coordination/`.
+
+**Top 3 Things Needing Attention: 🟡**
+
+1. **Cron Interval Discrepancy** — lock-monitor-cleanup MEMORY.md says "1 min" but actual cron runs at 30s. Job description says "5 minutes". Consolidate to one correct value (recommend 60s to reduce overhead).
+
+2. **45 Pending Findings** — Quick status shows 45 pending findings accumulated. Needs triage: close resolved, prioritize remaining, clear dead items. Accumulating pending findings reduces signal-to-noise.
+
+3. **Three Brothers PAT Expired** — Construction bot has expired GitHub PAT, staged changes pending. Needs PAT renewal to resume sync/updates. Currently READ-ONLY mode.
+
+**Minor Items:**
+- No 2026-06-01 daily log yet (expected, day just started)
+- OpenClaw has 24 config backups — consider archiving old ones
+- Temp directory: 95 files (8.5 MB) — routine cleanup recommended
+
+---
+
+### Summary Scorecard
+
+| System | Status | Score |
+|--------|--------|-------|
+| Memory System | 🟢 Healthy | 9/10 |
+| Cron & Auto-Pilot | 🟢 Healthy | 8/10 |
+| Session Health | 🟢 Healthy | 10/10 |
+| Infrastructure | 🟢 Healthy | 9/10 |
+| PS VIBE Sales Bot | 🟢 Stable | 8/10 |
+| Three Brothers Bot | 🟡 Maintenance | 5/10 |
+| Nova | 🟢 Active | 8/10 |
+| YYO Wallet | 🟡 Stable | 7/10 |
+
+**Overall: 🟢 HEALTHY — 8.0/10**
+
+================================================================================
+=== RESULT: OK ||| Kora system is healthy with minor issues noted ===
+================================================================================

@@ -22,6 +22,10 @@ ACTIVE_TASKS_PATH = os.path.join(MEMORY_DIR, "active_tasks.json")
 
 STALE_THRESHOLD_MINUTES = 30
 
+WS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # workspace root
+PROJECT_STATE_DIR = os.path.join(WS, "project-state")
+SESSION_TRACKER = os.path.join(PROJECT_STATE_DIR, "session-tracker-last.md")
+
 
 def load_json(path, default=None):
     """Load a JSON file safely. Returns default on missing/corrupt file."""
@@ -151,10 +155,78 @@ def build_json_output(running, partial, orphans, stale):
     return result
 
 
+def check_project_state():
+    """Check project state for session handoff context."""
+    projects = []
+    if os.path.isdir(PROJECT_STATE_DIR):
+        for f in sorted(os.listdir(PROJECT_STATE_DIR)):
+            if f.endswith(".md") and f != "session-tracker-last.md":
+                projects.append(f.replace(".md", ""))
+
+    last_session = None
+    active_project = None
+    try:
+        with open(SESSION_TRACKER, "r") as f:
+            for line in f:
+                l = line.strip()
+                if "Last Updated:" in l:
+                    last_session = l.split("Last Updated:")[-1].strip()
+                if "Active Project:" in l:
+                    active_project = l.split("Active Project:")[-1].strip()
+    except (FileNotFoundError, IOError):
+        pass
+
+    return projects, last_session, active_project
+
+
 def main():
     # Parse flags
     json_output = "--json" in sys.argv
     no_fail = "--no-fail" in sys.argv
+
+    # Phase 2: Clean stale session lock files (prevents deadlock)
+    cleanup_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cleanup_session_locks.sh")
+    if os.path.exists(cleanup_script):
+        import subprocess
+        try:
+            result = subprocess.run(
+                ["bash", cleanup_script],
+                capture_output=True, text=True, timeout=15
+            )
+            for line in result.stdout.strip().split("\n"):
+                if line.strip():
+                    print(f"  {line}")
+            if result.returncode != 0:
+                print(f"  ⚠ Lock cleanup stderr: {result.stderr.strip()}")
+        except Exception as e:
+            print(f"  ⚠ Lock cleanup failed: {e}")
+    print()
+
+    # Phase 3: Check project state / session handoff
+    projects, last_session, active_project = check_project_state()
+    
+    # 🚨 HELPER-FIRST REFLEX REMINDER
+    print("🔔 HELPER REFLEX: Task arrives → check: \"Is there a helper for this?\"")
+    print("   HEARTBEAT.md → helpers | OPS_REFERENCE.md → triggers | SOUL.md → decision tree")
+    print("   NEVER SSH / read code / grep manually. Always spawn agents.")
+    print()
+    
+    if projects:
+        print(f"📊 Projects: {', '.join(projects)}")
+    if active_project:
+        print(f"📌 Active: {active_project}")
+    if last_session:
+        print(f"🕐 Last session: {last_session}")
+
+        # Check if session is stale
+        try:
+            last_dt = datetime.fromisoformat(last_session.replace(" UTC", "+00:00"))
+            hours_since = (datetime.now(timezone.utc) - last_dt).total_seconds() / 3600
+            if hours_since > 4:
+                print(f"⏰ {hours_since:.1f}h since last session — please check project state")
+        except ValueError:
+            pass
+    print()
 
     journal = load_json(JOURNAL_PATH, {"entries": []})
     entries = journal.get("entries", [])

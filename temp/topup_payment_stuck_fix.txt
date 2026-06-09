@@ -1,0 +1,265 @@
+# Top Up Payment Confirm Stuck — Debug Report
+## Investigation Date: 2026-06-01 08:47 UTC
+## Bot: psvibe-sale-bot (VPS: 5.223.81.16)
+
+==========================================================================
+## 🔴 ROOT CAUSE: Blocking Sync gspread Calls on Async Event Loop
+==========================================================================
+
+The `step_tu_confirm()` function in `/root/psvibe-sales-bot/bot/handlers/members.py` (line 1265)
+makes THREE synchronous, blocking Google Sheets API calls sequentially BEFORE sending any
+response to the user:
+
+```python
+# Line 1281-1283 of members.py:
+current_tier = fetch_member_tier(d["tu_id"])     # Reads ENTIRE Card_Wallet sheet
+prev_bal     = fetch_balance_mins(d["tu_id"])     # Reads columns A-H of Card_Wallet
+tl_row       = next_write_row(topup_sh)            # Reads column 2 of Top_Up sheet
+```
+
+ALL THREE are synchronous `gspread` calls executed directly on the asyncio event loop.
+When Google Sheets is slow (network latency + large sheet), these calls block the ENTIRE
+bot — for ALL users simultaneously. The user sees:
+
+- No typing indicator
+- No response at all
+- Bot appears completely frozen
+- Lasts anywhere from 5 to 30+ seconds depending on sheet size/latency
+
+### Evidence from production:
+- Only 1 "duration:" log entry in the last 6 hours — heavily suggesting handlers are
+  getting stuck and not completing
+- Zero "duration:members:step_tu_confirm" log entries — no successful top-up confirms
+  in the last 6 hours
+- psvibe-api "Connection refused" errors in logs, causing fallback to even slower
+  gspread calls
+
+### Each blocking call breakdown:
+
+1. `fetch_member_tier()` → calls `_get_member_rows()` → reads ALL rows of Card_Wallet
+   sheet. With many members, this is slow.
+
+2. `fetch_balance_mins()` → calls `member_sh.get("A:H")` → reads 8 columns for all rows.
+   Again, ALL rows. Could be redundant if #1 already read data.
+
+3. `next_write_row(topup_sh)` → calls `worksheet.col_values(2)` → reads ENTIRE column 2
+   of the Top_Up sheet. Slow with many transactions.
+
+==========================================================================
+## 🟡 SECONDARY ISSUE #1: Silent No-Op on Unmatched Input
+==========================================================================
+
+File: `/root/psvibe-sales-bot/bot/handlers/members.py`, line 1272-1273:
+
+```python
+if text != BTN_CONFIRM_SAVE:
+    return TU_CONFIRM
+```
+
+Any text that isn't exactly "✅ Confirm & Save" returns to TU_CONFIRM state with NO
+message to the user. The bot shows no response at all. If a user types something
+at the confirm screen (even "yes" or "ok"), they appear stuck with zero feedback.
+
+The keyboard shows: [✅ Confirm & Save] [◀ Back] [Cancel]
+If user presses Back or Cancel, those ARE handled. But any random text = stuck.
+
+==========================================================================
+## 🟡 SECONDARY ISSUE #2: Background Task Reference Leak
+==========================================================================
+
+File: `/root/psvibe-sales-bot/bot/handlers/members.py`, line ~1389:
+
+```python
+asyncio.create_task(_tu_bg())
+```
+
+The task reference is NOT stored anywhere. Python's garbage collector can destroy
+pending tasks. Confirmed by this log entry:
+
+```
+Jun 01 07:58:22 [ERROR] Unhandled task exception: Task was destroyed but it is pending!
+```
+
+This means the background sheet writes (topup_sh.batch_update, member_sh updates)
+may fail silently — the top-up could show as confirmed to the user but never
+actually be written to Google Sheets.
+
+==========================================================================
+## 🟡 SECONDARY ISSUE #3: No User-Facing Error Feedback
+==========================================================================
+
+File: `/root/psvibe-sales-bot/bot/handlers/help.py`, line 80:
+
+```python
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    err = context.error
+    if isinstance(err, (NetworkError, TimedOut)):
+        logging.warning("Network issue (will auto-retry): %s", err)
+    elif isinstance(err, Conflict):
+        logging.warning("Conflict...")
+    else:
+        logging.error("Unhandled error: %s", err, exc_info=err)
+```
+
+The error_handler ONLY writes to logs. It NEVER sends a message to the user.
+When an exception crashes the handler, the user sees nothing and assumes the
+bot is broken/frozen.
+
+==========================================================================
+## 🟡 SECONDARY ISSUE #4: psvibe-api Intermittent Failures
+==========================================================================
+
+```
+Jun 01 08:19:35 [WARNING] API GET /sheets/config failed: <urlopen error [Errno 111] Connection refused>
+```
+
+The psvibe-api service IS active (`systemctl is-active psvibe-api` = active), but
+it intermittently refuses connections. This forces fallback to gspread (Google Sheets)
+which is much slower than the MySQL-backed API.
+
+When `_HAS_API = True` but the API is unreliable:
+- First attempt: API call (fails after 5s timeout + retries)
+- Fallback: gspread call (additional 2-10s)
+- Total: 10-30s extra delay for EACH blocking call
+
+==========================================================================
+## 🟡 SECONDARY ISSUE #5: BTN_BACK Loop at Confirmation
+==========================================================================
+
+File: `/root/psvibe-sales-bot/bot/handlers/members.py`, line 1270-1271:
+
+```python
+if text == BTN_BACK:
+    return await prompt_tu_kpay(update, context)
+```
+
+In `prompt_tu_kpay`, when `remaining <= 0` (payments already set), it auto-routes
+back to `step_tu_confirm`. This creates a loop: pressing "Back" at confirm → 
+payment screen → auto-confirm → same confirm screen. User can't go back.
+
+==========================================================================
+## 🟢 SECONDARY ISSUE #6: No Markdown Sanitization
+==========================================================================
+
+File: `members.py`, line ~1318:
+```python
+await update.message.reply_text(msg, parse_mode="Markdown", ...)
+```
+
+If `tu_name` contains special characters like `_`, `*`, `[`, `]`, `(`, `)`, or
+backticks, the Markdown parser may fail with `telegram.error.BadRequest`. This
+would crash the handler AFTER `context.user_data.clear()` but before the message
+is sent, leaving the user_data empty with an incomplete transaction.
+
+==========================================================================
+## 🔵 Customer Bot Status
+==========================================================================
+
+The customer bot (`/root/psvibe-sales-bot/customer_bot/`) has NO top-up flow with
+ConversationHandler. It only has `suggest_topup` in AI responses (ai.py line 232).
+Not a factor in this issue.
+
+==========================================================================
+## ✅ Service Status
+==========================================================================
+
+- psvibe-sale-bot:    active, running, NRestarts=0
+- psvibe-customer-bot: (no issues)
+- psvibe-api:         active, running (intermittent ConnectionRefused errors)
+
+==========================================================================
+## 🛠 RECOMMENDED FIXES (Priority Order)
+==========================================================================
+
+### PRIORITY 1 — Fix Blocking Sync Calls (ROOT CAUSE)
+
+Option A: Run sync calls in thread pool:
+```python
+import asyncio
+
+# Before the blocking calls:
+current_tier = await asyncio.to_thread(fetch_member_tier, d["tu_id"])
+prev_bal     = await asyncio.to_thread(fetch_balance_mins, d["tu_id"])
+tl_row       = await asyncio.to_thread(next_write_row, topup_sh)
+```
+
+Option B: Use async API equivalents (preferred, faster):
+The API already has async equivalents. Use `api_fetch_member_tier` if available,
+or create an async wrapper for the API calls. This would bypass gspread entirely
+and be 5-10x faster.
+
+### PRIORITY 2 — Store Background Task Reference
+
+```python
+# Instead of:
+asyncio.create_task(_tu_bg())
+
+# Use:
+if "bg_tasks" not in context.user_data:
+    context.user_data["bg_tasks"] = []
+context.user_data["bg_tasks"].append(asyncio.create_task(_tu_bg()))
+```
+
+### PRIORITY 3 — Add User Feedback on Confirm Input
+
+```python
+if text != BTN_CONFIRM_SAVE:
+    await update.message.reply_text(
+        "⚠️ \"✅ Confirm & Save\" ကိုသာ နှိပ်ပါ —",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return TU_CONFIRM
+```
+
+### PRIORITY 4 — Improve Error Handler
+
+```python
+async def error_handler(update, context):
+    err = context.error
+    logging.error("Unhandled error: %s", err, exc_info=err)
+    if update and hasattr(update, 'effective_message'):
+        try:
+            await update.effective_message.reply_text(
+                "⚠️ Error occurred. Please try again or use /start."
+            )
+        except Exception:
+            pass
+```
+
+### PRIORITY 5 — Sanitize Markdown in Messages
+
+Use `escape_markdown()` on dynamic text like `tu_name` before embedding in
+Markdown messages, or use `MarkdownV2` with proper escaping.
+
+### PRIORITY 6 — Fix BTN_BACK Loop at Confirm
+
+In `step_tu_confirm`, when BTN_BACK is pressed, clear `tu_kpay`/`tu_cash`/`tu_payments`
+before calling `prompt_tu_kpay` to let the user truly go back to payment method selection:
+
+```python
+if text == BTN_BACK:
+    d.pop("tu_kpay", None)
+    d.pop("tu_cash", None)
+    d.pop("tu_payments", None)
+    return await prompt_tu_kpay(update, context)
+```
+
+==========================================================================
+## 📊 Summary
+==========================================================================
+
+The primary bug is that `step_tu_confirm()` makes 3 synchronous Google Sheets API
+calls on the asyncio event loop, blocking the entire bot for 5-30+ seconds when
+the user presses "✅ Confirm & Save". Combined with:
+
+- Silent failure on bad input
+- Background task being garbage collected
+- No user-facing error messages
+- Intermittent API failures forcing slow gspread fallback
+- Markdown parsing crash risk
+
+...the result is a bot that frequently "freezes" at the final top-up confirmation
+step with no feedback to the user.
+
+The fix with highest impact is converting the 3 gspread calls to async (thread-pool
+or API-based), which would reduce the confirm step from 15-30s to under 1 second.

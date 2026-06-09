@@ -1,0 +1,20 @@
+      - SSD_BTN_TO_ID
+      - SSD_NAMES
+      - asyncio
+      - delete_console_game
+      - fetch_game_library
+      - prompt_book_game
+      - prompt_game_change_cons
+      - write_console_game
+📄 /root/psvibe-sales-bot/bot/handlers/stock.py
+   Star import: ❌
+   Import sources: ['bot', 'bot.api_client', 'telegram', 'telegram.ext', 'telegram.constants', 'logging', 're', 'json', 'datetime', 'bot.handlers.stock_in']
+   ✅ No missing imports
+📄 /root/psvibe-sales-bot/bot/handlers/stock_in.py
+   Star import: ❌
+   Import sources: ['bot', 'bot.api_client', 'telegram', 'telegram.ext', 'telegram.constants', 'logging', 're', 'json', 'datetime', 'bot.handlers.stock']
+   ✅ No missing imports
+📄 /root/psvibe-sales-bot/bot/handlers/waitlist.py
+   Star import: ❌
+   Import sources: ['telegram', 'telegram.ext', 'telegram.constants', 'logging', 're', 'json', 'datetime', 'bot', 'asyncio', 'bot.handlers.main_menu']
+   ✅ No missing imports

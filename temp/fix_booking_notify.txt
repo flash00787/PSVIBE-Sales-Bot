@@ -1,0 +1,37 @@
+=== FIX: Booking Confirm → Notify Customer ===
+COMPLETED: 2026-06-02 11:50 UTC
+FILE: /root/psvibe-sales-bot/bot/handlers/admin_bookings.py (253 → 271 lines)
+
+=== CHANGES MADE ===
+
+1. ADDED MISSING IMPORTS (fixed NameError at runtime):
+   from bot.handlers.notify import _notify_customer, get_customer_chat_id
+   from bot.handlers.booking_flow import _post_n8n_booking_reminder
+
+2. ADDED chat_id FALLBACK:
+   When telegramChatId not in booking data → look up from member data
+   via get_customer_chat_id(member_id)
+   Wrapped in try/except for graceful failure (no crash if not found)
+
+3. FIXED BURMESE CONFIRMATION MESSAGE:
+   OLD (English): "🎉 Booking Confirmed!" with "10 မိနစ်အလိုတွင် reminder"
+   NEW (Burmese): "မင်္ဂလာပါ 🙏 ... သင်၏ Booking ကို အတည်ပြုပြီးပါပြီ။ ... ကျေးဇူးတင်ပါတယ်"
+
+=== HOW IT WORKS NOW ===
+_when admin clicks ✅ Approve on a booking:_
+1. DB updated (status=confirmed, console assigned)
+2. Staff sees confirmation card (unchanged)
+3. tg_chat retrieved from booking.telegramChatId OR memberId lookup
+4. If tg_chat found AND CUSTOMER_BOT_TOKEN set:
+   → Telegram message sent to customer in Burmese
+5. If tg_chat not found → gracefully skipped (no error)
+6. n8n reminder fired for 10-min-before notification
+
+=== COMMITS ===
+3c094b5 (auto) — admin_bookings.py: imports, fallback, Burmese message
+6e3c556 (fix)  — customer_bot/booking.py: defensive None checks (other agent)
+
+=== VERIFIED ===
+- Python syntax: PASS
+- Fix protocol: --start → edits → --complete → auto-commit
+- git push: SUCCESS (ec453a8..6e3c556)

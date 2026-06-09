@@ -1,0 +1,26 @@
+TU_KPAY DEAD CODE FIX — RESULT
+
+File: /root/psvibe-sales-bot/bot/handlers/members.py
+Function: step_tu_kpay()
+
+BUG: Amount parsing code (lines 1249-1272) was AFTER return TU_CONFIRM (line 1247),
+making it unreachable dead code. User entering "5000" silently fell through to review
+with no payment recorded → stuck at TU_CONFIRM with nothing to confirm.
+
+FIX: Moved the amount-parsing block to BEFORE the BTN_PAY_DONE check.
+New order within step_tu_kpay():
+  1. cancel/back handlers (unchanged)
+  2. method name check → prompt amount (unchanged)
+  3. ★ AMOUNT PARSING (moved here from dead zone)
+  4. BTN_PAY_DONE check
+  5. Review section → return TU_CONFIRM
+
+VERIFICATION:
+  - python3 ast.parse(): SYNTAX OK
+  - Order verified: amount < BTN < review < return TU_CONFIRM
+  - No dead code after return TU_CONFIRM
+  - Full amount parsing block (1033 chars) properly placed
+
+Now when user enters "5000":
+  → caught by amount parsing → recorded in tu_payments → returns TU_KPAY
+  → user sees updated remaining balance → can add more methods or click Payment Done

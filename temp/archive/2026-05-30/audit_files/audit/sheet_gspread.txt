@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/tmp/gspread_check.py", line 21, in <module>
+    sid = match.group(1).strip("'\"")
+          ^^^^^^^^^^^^^^
+IndexError: no such group
+Cred paths found: []
+ERROR: no such group

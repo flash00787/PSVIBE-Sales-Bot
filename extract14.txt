@@ -1,0 +1,8 @@
+=== Search for 'Rent' as a string in __init__.py ===
+
+=== Search for '"Utility"'  ===
+
+=== Search for list of strings pattern containing these keywords ===
+
+=== Check bot/handlers/finance.py for any variable definition after functions ===
+

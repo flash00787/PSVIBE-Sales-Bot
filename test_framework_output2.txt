@@ -1,0 +1,640 @@
+# Local imports to avoid circular dependency with handlers/__init__.py
+# (functions from bot.handlers.* are available via bot.*)
+
+# ========== Main Menu Handler ==========
+
+# Import canonical button labels from bot (defined before circular import triggers)
+from typing import Set
+
+from bot.handlers.console import show_console_menu
+from bot.handlers.booking import cmd_staff_book_hub, cmd_staff_booking, cmd_confirmed_bookings
+from bot.handlers.games import show_game_menu
+from bot.handlers.sales import next_voucher, prompt_member
+
+from bot import (
+    BTN_DAILY_SALES, BTN_MEMBER_MGMT, BTN_CONSOLES,
+    BTN_TODAY_REPORT, BTN_STAFF_BOOK, BTN_INVENTORY_VIEW,
+    BTN_FINANCIAL_REPORT, BTN_ADMIN,
+    BTN_BACK_MAIN, BTN_SBK_WAITLIST, BTN_SBK_NEW, BTN_SBK_CONFIRMED,
+    BTN_GAME_LIB_MENU,
+    MAIN_MENU, ADMIN_PIN,
+    now_mmt, fetch_allowed_staff_ids,
+)
+
+# BTN constants unique to main_menu (not in bot.__init__.py)
+BTN_GAMES = "🎮 Games"
+BTN_STOCK_MGMT = "📊 Stock Management"
+BTN_DISC_MGMT = "🏷️ Discount Management"
+BTN_SSD_DISC = "🔄 SSD Discount"
+BTN_FOOD_SETUP = "🍽️ Food Setup"
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # Authorization check — only whitelisted users can access staff bot
+    user = update.effective_user
+    if not user or user.id not in fetch_allowed_staff_ids():
+        await update.message.reply_text(
+            "🚫 *Access Denied*\n"
+            "ဒီ bot ကို authorized staff တွေသာ သုံးနိုင်ပါတယ်။",
+            parse_mode="Markdown",
+        )
+        return ConversationHandler.END
+    context.user_data.clear()
+    now      = now_mmt()
+    date_str = now.strftime("%-d %b %Y")
+    hour     = now.hour
+    if hour < 12:
+        greet = "🌅 မင်္ဂလာနံနက်ခင်း"
+    elif hour < 18:
+        greet = "☀️ မင်္ဂလာနေ့လည်"
+    else:
+        greet = "🌙 မင်္ဂလာညနေ"
+    kb = [
+        [BTN_DAILY_SALES,      BTN_MEMBER_MGMT],
+        [BTN_CONSOLES,         BTN_TODAY_REPORT],
+        [BTN_STAFF_BOOK,       BTN_INVENTORY_VIEW],
+        [BTN_FINANCIAL_REPORT, BTN_ADMIN],
+    ]
+    await update.message.reply_text(
+        f"🎮 *PS Vibe — Staff Bot*\n"
+        f"{greet} | _{date_str}_\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"Menu ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return MAIN_MENU
+
+async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from bot.handlers.members import show_mm_menu
+    from bot.handlers.reports import cmd_inventory, cmd_today_report, cmd_financial_report
+    from bot.handlers.waitlist import cmd_waitlist_mgmt
+    choice = update.message.text
+
+    if choice in (BTN_DAILY_SALES,):
+from bot import *
+"""PS VIBE Bot — Handler module.
+
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+# Explicit import for helper from stock module
+from bot.handlers.stock import update_inv_total_k1
+
+def next_voucher() -> str:
+    """Generate next sequential voucher number (YYYYMMDD-NNN)."""
+    from datetime import datetime
+    import random
+    now = datetime.now()
+    return f"{now.strftime('%Y%m%d')}-{random.randint(100, 999)}"
+
+
+
+
+
+async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
+                        search_results: list | None = None, query: str = ""):
+    v_no    = context.user_data["v_no"]
+    members = fetch_members()
+
+    if search_results is not None:
+        # Filtered view after a search query
+        display  = search_results
+        hint     = f"🔍 *\"{query}\"* — {len(display)} ရလဒ် တွေ့သည်\n"
+    else:
+        display  = members
+        hint     = "🔍 _ID ရိုက်ပြီး ရှာနိုင်သည်_ (e.g. `PSV_A`)\n" if len(members) > 5 else ""
+
+    # Guest always pinned at top; members below
+    kb = [["0 (Guest)"]] + [[m] for m in display] + [[BTN_BACK_MAIN, BTN_CANCEL]]
+    await update.message.reply_text(
+        step_hdr(1, 6, "Select Member") +
+        f"📋 Voucher: *{v_no}*\n\n"
+        f"{hint}"
+        f"👤 Member ID ရွေးပါ -",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return MEMBER
+
+async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    m_id        = context.user_data.get("m_id", "")
+    is_guest    = m_id.strip() == "0 (Guest)"
+    label       = "Guest" if is_guest else m_id
+    wallet_mins = context.user_data.get("wallet_mins")
+
+    if not is_guest and wallet_mins is not None:
+        balance_line = f"\n💰 *Wallet Balance: {wallet_mins:,} mins*"
+        if wallet_mins <= 0:
+            balance_line += "  ⚠️ _Wallet ကုန်ဆုံးနေပြီ!_"
+    else:
+        balance_line = ""
+
+    try:
+        _cons = [c["id"] for c in fetch_console_status()]
+    except Exception as e:
+        logging.warning("Failed to fetch console status for booking keyboard: %s", e)
+        _cons = sorted(VALID_CONSOLES)
+    kb  = [_cons[i:i+3] for i in range(0, len(_cons), 3)]
+    kb += [NAV_ROW]
+    await update.message.reply_text(
+        step_hdr(2, 6, "Select Console") +
+        f"👤 *{label}*{balance_line}\n\n"
+        "🕹️ Console ID ရွေးပါ -",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return CONSOLE
+
+async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
+from bot import *
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def prompt_staff_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    staff_list = fetch_staff()
+    kb = [[s] for s in staff_list] + [NAV_ROW]
+    await update.message.reply_text(
+        step_hdr(1, 7, "Staff Selection") +
+        "👤 ဘယ် Staff လဲ ရွေးပါ -",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return STAFF_SELECT
+
+async def step_staff_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_main_menu(update, context)
+
+    staff_list = fetch_staff()
+    if text not in staff_list:
+        await update.message.reply_text("⚠️ ပြသောစာရင်းမှ ရွေးပေးပါ -")
+        return STAFF_SELECT
+
+    context.user_data["staff"] = text
+    return await prompt_member(update, context)
+
+async def show_mm_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    kb = [
+        [BTN_FIRST_PURCHASE, BTN_TOP_UP],
+        [BTN_CHECK_MEMBER,   BTN_VIEW_RANKS],
+        [BTN_BACK_MAIN],
+    ]
+    await update.message.reply_text(
+        "💳 *Member Management*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Option ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return MM_MENU
+
+async def show_rank_info(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Fetch and display the full Rank Bonus table from Setting!O1:R5."""
+    table = fetch_rank_table_display()
+    master_thresh, immortal_thresh = fetch_rank_thresholds()
+    lines = [
+        "\U0001f3c6 *Member Rank Bonus*",
+        "",
+        "Bonus minutes you earn when topping up, based on your rank:",
+        "",
+        table,
+        "",
+        "\U0001f4a1 *How to rank up:*",
+        f"  \u2694\ufe0f Warrior \u2192 Default rank for all new members",
+        f"  \U0001f3c5 Master \u2192 Reach {master_thresh:,} Ks total spend",
+        f"  \U0001f48e Immortal \u2192 Reach {immortal_thresh:,} Ks total spend",
+    ]
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
+    )
+    return MM_MENU
+
+async def step_mm_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    choice = update.message.text
+
+from bot import *
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+import asyncio
+
+
+
+def _sbk_console_kb() -> list:
+    """Return keyboard of all consoles with live+reserved status via API."""
+    try:
+        data = _replit_get("sheets/consoles") or {}
+        consoles = data.get("consoles", []) if isinstance(data, dict) else []
+    except Exception as e:
+        logging.warning("Failed to fetch consoles via API for staff booking keyboard: %s", e)
+        consoles = []
+    if not consoles:
+        # fallback to local fetch
+        try:
+            consoles = [{"id": c["id"], "type": c.get("type",""), "liveStatus": c.get("status","Free")}
+                        for c in fetch_console_status()]
+        except Exception as e:
+            logging.warning("Failed to fetch console status (staff booking fallback): %s", e)
+            return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
+    rows = []
+    row  = []
+    for c in sorted(consoles, key=lambda x: x["id"]):
+        live = c.get("liveStatus", "Free")
+        if live == "Free":
+            icon = "✅"
+        elif live == "Reserved":
+            icon = "🟡"
+        else:
+            icon = "🔴"
+        label = f"{c['id']} ({c.get('type','?')}) {icon}"
+        row.append(label)
+        if len(row) == 2:
+            rows.append(row)
+            row = []
+    if row:
+        rows.append(row)
+    rows.append([BTN_BACK, BTN_CANCEL])
+    return rows
+
+def _sbk_parse_console_label(text: str) -> tuple[str, str]:
+    """Extract (console_id, console_type) from keyboard label like 'C - 01 (PS5 Pro) ✅'."""
+    # Format: "C - 01 (PS5 Pro) ✅" or "C - 01 (PS5) 🔴"
+    import re
+    m = re.match(r"^(C\s*-\s*\d+)\s*\(([^)]+)\)", text)
+    if m:
+        return m.group(1).strip(), m.group(2).strip()
+    cid = text.split("(")[0].strip().split("✅")[0].strip().split("🔴")[0].strip().split("🟡")[0].strip()
+    return cid, "PS Console"
+
+async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Booking hub: show pending bookings + navigation to confirmed bookings."""
+    context.user_data["sbk_from_hub"] = True
+
+    # Fetch counts for both statuses in parallel (sync thread)
+    pending_bks   = _replit_get("bookings?status=pending") or []
+    confirmed_bks = _replit_get("bookings?status=confirmed") or []
+
+    n_pending   = len(pending_bks)   if isinstance(pending_bks,   list) else 0
+    n_confirmed = len(confirmed_bks) if isinstance(confirmed_bks, list) else 0
+
+    await update.message.reply_text(
+        f"📅 *Customer Booking*\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"📋 Pending: *{n_pending}* ခု  |  ✅ Confirmed: *{n_confirmed}* ခု",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(
+            [[BTN_SBK_NEW], [BTN_SBK_CONFIRMED], [BTN_SBK_WAITLIST], [BTN_BACK_MAIN]],
+            resize_keyboard=True,
+        ),
+    )
+from bot import *
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show current inventory levels from Replit API."""
+    await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
+    data = _replit_get("sheets/inventory")
+    if not data:
+        await update.message.reply_text(
+            "❌ Inventory data ရယူ၍ မရပါ။",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+        )
+        return
+    items = data.get("items", [])
+    STATUS_EMOJI = {
+        "In Stock":     "🟢",
+        "Low Stock":    "🟡",
+        "Out of Stock": "🔴",
+        "No Stock":     "⚫",
+    }
+    lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
+    for item in items:
+        em    = STATUS_EMOJI.get(item.get("status", "No Stock"), "⚫")
+        stock = max(0, item.get("current_stock", 0))
+        val   = item.get("inv_value", 0)
+        name  = item.get("name", "?")
+        val_str = f"  _{val:,} Ks_" if val > 0 else ""
+        lines.append(f"{em} *{name}*: {stock} pcs{val_str}")
+    total_val = sum(i.get("inv_value", 0) for i in items)
+    if total_val:
+        lines.append(f"\n━━━━━━━━━━━━━━━━━━\n💰 Total Inv Value (FIFO): *{total_val:,} Ks*")
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
+    )
+
+async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show today's items sold from Replit API."""
+    await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    data = _replit_get("sheets/stock-today")
+    if not data:
+        await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
+        return
+    items = data.get("items", [])
+    if not items:
+        await update.message.reply_text("ℹ️ ဒီနေ့ ပစ္စည်းများ မရောင်းရသေးပါ။")
+        return
+    total_val = sum(i.get("value", 0) for i in items)
+    total_qty = sum(i.get("qty", 0) for i in items)
+    lines = [f"🛒 *Items Sold Today — {data.get('date','')}*\n━━━━━━━━━━━━━━━━━━"]
+    for item in items:
+        for item in items:
+            name = item.get("name", "?")
+            qty  = item.get("qty", 0)
+            val  = item.get("value", 0)
+            lines.append(f"• *{name}*: {qty} pcs — {val:,} Ks")
+    lines.append(f"━━━━━━━━━━━━━━━━━━\n📦 Total: *{total_qty} items*  💰 *{total_val:,} Ks*")
+    await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
+
+async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show promotion analytics report for staff.
+    Fetches all promotions from Promotions sheet + sales data.
+    """
+    await update.message.reply_text("⏳ Promo Reports ယူနေတယ်...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    try:
+        # Fetch all promotions (including inactive) via API
+        promo_data = _replit_get("sheets/promotions/all")
+from bot import *
+from bot import wb
+import asyncio
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+
+
+
+# TODO: Migrate to MySQL via API -- direct gspread is fallback only
+# These helper functions return gspread worksheet objects directly.
+def get_opex_sh():
+    return wb.worksheet("OPEX_Log")
+
+def get_assets_sh():
+    return wb.worksheet("Assets_Register")
+
+def get_prepaid_fin_sh():
+    return wb.worksheet("Prepaid_Expenses")
+
+def get_acct_trf_sh():
+    return wb.worksheet("Account_Transfers")
+
+def get_payables_sh():
+    return wb.worksheet("Payables")
+
+def get_receivables_sh():
+    return wb.worksheet("Receivables")
+
+def get_advpay_sh():
+    return wb.worksheet("Advance_Payments")
+
+async def show_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Finance Management sub-menu."""
+    kb = [
+        # ── Capital & Equity ──
+        [BTN_FIN_CAPITAL, BTN_FIN_SHAREHOLDER, BTN_FIN_TRANSFER],
+        # ── Record Expenses / Assets ──
+        [BTN_FIN_OPEX,    BTN_FIN_ASSET,       BTN_FIN_ASSET_DISPOSE],
+        [BTN_FIN_PREPAID],
+        # ── Payables / Receivables / Advances ──
+        [BTN_FIN_PAYABLE, BTN_FIN_SETTLE_PAY],
+        [BTN_FIN_RECEIVABLE, BTN_FIN_SETTLE_REC],
+        [BTN_FIN_ADVPAY,  BTN_FIN_SETTLE_ADVPAY],
+        # ── Reports ──
+        [BTN_FIN_ACCTS,   BTN_FIN_REPORT],
+        # ── Admin ──
+        [BTN_FIN_SETUP,   BTN_BACK_MAIN],
+    ]
+    await update.message.reply_text(
+        "💼 *Finance Management*\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Action ရွေးပါ ↓",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return FINANCE_MENU
+
+async def step_finance_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Route Finance menu choices."""
+    choice = update.message.text.strip()
+    if choice == BTN_BACK_MAIN:
+        return await show_main_menu(update, context)
+    if choice == BTN_FIN_CAPITAL:
+        return await prompt_cap_acct(update, context)
+    if choice == BTN_FIN_SHAREHOLDER:
+        return await show_shareholder_menu(update, context)
+    if choice == BTN_FIN_OPEX:
+        return await prompt_opex_cat(update, context)
+    if choice == BTN_FIN_ASSET:
+        return await prompt_asset_name(update, context)
+    if choice == BTN_FIN_ASSET_DISPOSE:
+        return await prompt_asset_dispose_sel(update, context)
+    if choice == BTN_FIN_PREPAID:
+from bot import *
+"""PS VIBE Bot — Handler module.
+"""
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+def update_inv_total_k1() -> int:
+    """Calculate total inventory value from Inventory!G col and write to K1. Returns total.
+    DEPRECATED: direct gspread write — should use API endpoint when available."""
+    try:
+    # TODO: Migrate to MySQL via API -- direct gspread is fallback only
+        vals = inv_sh.col_values(7)[1:]          # col G = Inventory Value, skip header
+        total = 0
+        for v in vals:
+            try:
+                s = str(v).replace(",", "").strip()
+                if s:
+                    total += int(float(s))
+            except (ValueError, TypeError):
+                pass
+        updated_at = now_mmt().strftime("%-m/%-d/%Y %H:%M")
+        inv_sh.update("K1", [[total]], value_input_option="USER_ENTERED")
+        inv_sh.update("L1", [[updated_at]], value_input_option="USER_ENTERED")
+        logging.info("Inv K1 updated: %d at %s", total, updated_at)
+        return total
+    except Exception as e:
+        logging.warning("K1 update failed: %s", e)
+        return 0
+
+
+
+
+
+async def cmd_stockin_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /stockin — PIN verify then Stock In."""
+    context.user_data.clear()
+    context.user_data["stock_dest"] = "stockin"
+    await update.message.reply_text(
+        "🔐 *Stock In — PIN လိုအပ်သည်*\n\nPIN နံပါတ် ထည့်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return STOCK_PIN
+
+async def cmd_stockout_direct(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /stockout — PIN verify then Stock Out."""
+    context.user_data.clear()
+    context.user_data["stock_dest"] = "stockout"
+    await update.message.reply_text(
+        "🔐 *Stock Out — PIN လိုအပ်သည်*\n\nPIN နံပါတ် ထည့်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return STOCK_PIN
+
+async def cmd_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Shortcut: /stock — PIN verify then Stock menu."""
+    context.user_data.clear()
+    context.user_data["stock_dest"] = "menu"
+    await update.message.reply_text(
+        "🔐 *Stock Update — PIN လိုအပ်သည်*\n\nPIN နံပါတ် ထည့်ပါ:",
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return STOCK_PIN
+
+async def step_stock_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Verify PIN — delete the PIN message then route to dest."""
+    entered = update.message.text.strip()
+    try:
+        await update.message.delete()
+    except Exception as e:
+        logger.error("step_stock_pin: %s", e, exc_info=True)
+        pass
+    if entered == STOCK_ACCESS_PIN:
+        dest = context.user_data.pop("stock_dest", "menu")
+"""PS VIBE Bot — Handler module.
+"""
+from bot import *
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import asyncio, logging, re, json
+logger = logging.getLogger(__name__)
+from datetime import datetime, timezone, timedelta
+
+
+
+
+async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show discount options: apply a promotion or manual discount."""
+    d     = context.user_data
+    # Compute gross for display purposes:
+    # For member wallet sessions: game_amt=0 (wallet deducted), so use
+    # effective_cost_mins * base_rate / 60 as the game value equivalent.
+    game_amt   = d.get("game_amt", 0)
+    food_total = d.get("food_total", 0)
+    net_total  = d.get("net_total", 0)
+
+    # For member wallet sessions: game_amt=0, compute wallet game equivalent value
+    # base_rate is always set at step_mins (line 1726), so d.get is safe
+    base_rate = d.get("base_rate") or fetch_base_rate()
+    mult      = d.get("multiplier", 1.0)
+    eff_mins  = d.get("effective_cost_mins") or d.get("mins", 0)
+
+    if game_amt == 0:
+        # Wallet session (with or without food) — compute wallet game value
+        wallet_val = round(eff_mins * base_rate * mult / 60)
+        gross = wallet_val + food_total
+        d["wallet_game_value"] = wallet_val
+    else:
+        gross = net_total if net_total > 0 else (game_amt + food_total)
+        d["wallet_game_value"] = 0
+
+    d["gross_total"] = gross
+    # For wallet sessions net_total stays as food_total (what customer actually pays cash)
+    if "net_total" not in d or d["net_total"] == 0:
+        d["net_total"] = food_total
+    d.setdefault("discount", 0)
+
+    # Fetch active promotions from API (cached — 2 min TTL for fast response)
+    # Run in thread to avoid blocking the async event loop
+    promos = await asyncio.to_thread(fetch_promotions_cached)
+
+    # For display: wallet sessions show wallet value as reference, not payable amount
+    is_wallet_session = d.get("wallet_game_value", 0) > 0
+    wallet_val = d.get("wallet_game_value", 0)
+    food_total_disp = d.get("food_total", 0)
+
+    if is_wallet_session:
+        gross_label = (
+            f"🎮 Wallet Game Value: *{wallet_val:,} Ks* (mins deduct)\n"
+            f"🍔 Food Total: *{food_total_disp:,} Ks*\n"
+            f"💰 Cash Payable: *{food_total_disp:,} Ks*"
+        )
+    else:
+        gross_label = f"💰 Gross Total: *{gross:,} Ks*"
+
+    if promos:
+        # Build keyboard with promotion buttons + manual + skip
+        kb = [[BTN_PROMO_APPLY], [BTN_MANUAL_DISC], [BTN_SKIP_DISC], NAV_ROW]
+        promo_lines = []
+        for i, p in enumerate(promos, 1):
+            emoji = p.get("emoji", "🎁")
+            # Escape Markdown special chars in title to prevent parse errors
+            title = p.get("title", "").replace("_", " ").replace("*", "").replace("`", "").replace("[", "").replace("]", "")
+            ptype = p.get("type", "general")
+            disc_pct = p.get("discount_percent", "")
+            tag = f" ({disc_pct}% OFF)" if disc_pct and ptype == "discount" else ""
+            promo_lines.append(f"  {emoji} {title}{tag}")
+        promo_list = "\n".join(promo_lines)
+        await update.message.reply_text(
+            f"💸 *Discount / Promotion*\n\n"
+            f"{gross_label}\n\n"
+            f"🎁 *Active Promotions:*\n{promo_list}\n\n"
+            f"📋 Promotion ရွေးချင်ရင် *Promotion ရွေးပါ* နှိပ်ပါ\n"

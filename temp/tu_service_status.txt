@@ -1,0 +1,20 @@
+● psvibe-sale-bot.service - PS VIBE Sales Bot
+     Loaded: loaded (/etc/systemd/system/psvibe-sale-bot.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2026-05-31 16:40:09 UTC; 7min ago
+   Main PID: 2025887 (python3)
+      Tasks: 3 (limit: 18684)
+     Memory: 58.7M (peak: 59.5M)
+        CPU: 1.173s
+     CGroup: /system.slice/psvibe-sale-bot.service
+             └─2025887 python3 /root/psvibe-sales-bot/main.py
+
+May 31 16:43:51 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:43:51,007 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/sendMessage "HTTP/1.1 200 OK"
+May 31 16:44:18 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:44:18,059 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:44:48 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:44:48,255 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:45:18 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:45:18,447 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:45:48 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:45:48,640 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:46:18 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:46:18,550 [INFO] Background cache refresh done
+May 31 16:46:18 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:46:18,835 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:46:49 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:46:49,033 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:47:19 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:47:19,228 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"
+May 31 16:47:49 openClawAgent psvibe-pidlock.sh[2025887]: 2026-05-31 16:47:49,424 [INFO] HTTP Request: POST https://api.telegram.org/bot8545665013:AAFgEuw4V_715Q9yzGOYloinIdbdYXYb8zU/getUpdates "HTTP/1.1 200 OK"

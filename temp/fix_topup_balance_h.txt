@@ -1,0 +1,75 @@
+=== PS VIBE Top Up Card_Wallet Column H Fix Report ===
+Date: 2026-06-01 11:25 UTC
+File: bot/handlers/members.py (step_tu_confirm)
+
+=== ROOT CAUSE ===
+The Top Up confirmation handler (step_tu_confirm) had TWO bugs:
+
+BUG 1 — Silent Exception Swallow (CRITICAL):
+  The gspread write to Card_Wallet Column H was wrapped in an
+  inner try/except: pass that silently swallowed ALL exceptions.
+  If member_sh.get_all_values() or member_sh.update_cell() failed
+  (rate limit, auth, network, etc.), no error was logged and the
+  log deceptively showed "via API" (success).
+
+  OLD CODE:
+    try:
+      tu_data = fetch_member_data(tu_id)
+      _current_i = tu_data.get("wallet_mins", 0)
+      try:
+        _tu_rows_chk = member_sh.get_all_values()
+        ...
+        member_sh.update_cell(_ti + 1, 8, bal_mins)
+        member_sh.update_cell(_ti + 1, 9, _current_i + tu_mins)
+        break
+      except Exception:
+        pass   # <--- SILENTLY SWALLOWS ERRORS!
+      logging.info("topup: %s %d → %d mins via API", ...)
+    except Exception as _te:
+      logging.error("topup_wallet_update: %s", _te)
+
+BUG 2 — Wrong Data Source for Column I (cumulative bought mins):
+  Used fetch_member_data(tu_id).get("wallet_mins") as the base for
+  cumulative bought mins (Column I). wallet_mins = current balance,
+  NOT the cumulative total. Should read from sheet row _tr[8].
+
+=== FIX APPLIED ===
+1. Removed inner try/except: pass — exceptions now propagate
+   to the outer handler which logs with exc_info=True
+2. Added _found flag with proper success/warning logging:
+   - "topup: X Y → Z mins (sheet updated)" on success
+   - "topup_wallet_update: member X not found" on missing row
+3. Column I now reads from sheet row (_tr[8]) instead of API
+4. Added exc_info=True to get full tracebacks on errors
+
+=== FIX CODE ===
+try:
+    _tu_rows_chk = member_sh.get_all_values()
+    _found = False
+    for _ti, _tr in enumerate(_tu_rows_chk):
+        if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
+            member_sh.update_cell(_ti + 1, 8, bal_mins)
+            _cur_i = int(str(_tr[8]).replace(',', '').strip() or 0) if len(_tr) > 8 else 0
+            member_sh.update_cell(_ti + 1, 9, _cur_i + tu_mins)
+            _found = True
+            break
+    if _found:
+        logging.info("topup: %s %d → %d mins (sheet updated)", tu_id, prev_bal, bal_mins)
+    else:
+        logging.warning("topup_wallet_update: member %s not found in Card_Wallet", tu_id)
+except Exception as _te:
+    logging.error("topup_wallet_update: %s", _te, exc_info=True)
+
+=== COMPARISON WITH SALE FLOW ===
+Sale flow (sales.py line 1307) uses same pattern WITHOUT inner try/except:
+  _cur_bal = int(str(_wr[7]).replace(",", "").strip() or 0)
+  _new_bal = max(0, _cur_bal - _w_deduct)
+  member_sh.update_cell(_wi + 1, 8, _new_bal)
+This works correctly. Top Up now matches this pattern.
+
+=== SERVICE STATUS ===
+- Git commit: 680f00d
+- Service restarted: 2026-06-01 11:24:57 UTC
+- Bot started cleanly: "Application started" at 11:25:06
+
+=== RESULT: OK ===

@@ -1,0 +1,100 @@
+=== SYNTAX ===
+OK
+=== PYTEST ===
+============================= test session starts ==============================
+collecting ... collected 33 items
+
+tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub FAILED  [  3%]
+tests/test_booking.py::TestStaffBooking::test_sbk_console_kb PASSED      [  6%]
+tests/test_booking.py::TestStaffBooking::test_sbk_parse_console_label PASSED [  9%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu FAILED    [ 12%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu_keyboard PASSED [ 15%]
+tests/test_finance.py::TestFinanceMenu::test_step_finance_back PASSED    [ 18%]
+tests/test_finance.py::TestFinanceMenu::test_get_opex_sh PASSED          [ 21%]
+tests/test_finance.py::TestFinanceMenu::test_get_assets_sh PASSED        [ 24%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_authorized PASSED [ 27%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized FAILED [ 30%]
+tests/test_main_menu.py::TestMainMenuHandler::test_step_main_menu_routing PASSED [ 33%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_clears_user_data PASSED [ 36%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_keyboard_layout PASSED [ 39%]
+tests/test_members.py::TestMembersMenu::test_show_mm_menu PASSED         [ 42%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title FAILED [ 45%]
+tests/test_members.py::TestMembersMenu::test_show_rank_info PASSED       [ 48%]
+tests/test_members.py::TestMembersMenu::test_step_mm_menu_back SKIPPED   [ 51%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_none_message FAILED [ 54%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items FAILED [ 57%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data FAILED [ 60%]
+tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday FAILED  [ 63%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value FAILED [ 66%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_shows_keyboard PASSED [ 69%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest FAILED [ 72%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text FAILED [ 75%]
+tests/test_sales.py::TestSalesFlow::test_next_voucher_generation PASSED  [ 78%]
+tests/test_sales.py::TestSalesFlow::test_prompt_console PASSED           [ 81%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_search FAILED     [ 84%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt FAILED [ 87%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_sets_dest PASSED [ 90%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockout_direct PASSED [ 93%]
+tests/test_stock.py::TestStockManagement::test_cmd_stock_menu PASSED     [ 96%]
+tests/test_stock.py::TestStockManagement::test_update_inv_total_k1 PASSED [100%]
+
+=================================== FAILURES ===================================
+E   NameError: name '_replit_get' is not defined
+/root/psvibe-sales-bot/bot/handlers/booking.py:65: NameError: name '_replit_get' is not defined
+E   AssertionError: assert 'Finance' in ''
+/root/psvibe-sales-bot/tests/test_finance.py:15: AssertionError: assert 'Finance' in ''
+E   AssertionError: assert 'Access Denied' in ''
+/root/psvibe-sales-bot/tests/test_main_menu.py:35: AssertionError: assert 'Access Denied' in ''
+E   AssertionError: assert 'Member Management' in ''
+/root/psvibe-sales-bot/tests/test_members.py:22: AssertionError: assert 'Member Management' in ''
+E   NameError: name 'BTN_ASSIGN_REFERRAL' is not defined
+/root/psvibe-sales-bot/bot/handlers/members.py:94: NameError: name 'BTN_ASSIGN_REFERRAL' is not defined
+E   NameError: name '_replit_get' is not defined
+/root/psvibe-sales-bot/bot/handlers/reports.py:17: NameError: name '_replit_get' is not defined
+E   NameError: name '_replit_get' is not defined
+/root/psvibe-sales-bot/bot/handlers/reports.py:17: NameError: name '_replit_get' is not defined
+E   NameError: name '_replit_get' is not defined
+/root/psvibe-sales-bot/bot/handlers/reports.py:51: NameError: name '_replit_get' is not defined
+E   NameError: name '_replit_get' is not defined
+/root/psvibe-sales-bot/bot/handlers/reports.py:17: NameError: name '_replit_get' is not defined
+E   AssertionError: assert ('Guest' in '' or '0' in '')
+/root/psvibe-sales-bot/tests/test_sales.py:25: AssertionError: assert ('Guest' in '' or '0' in '')
+E   AssertionError: assert '20260529-001' in ''
+/root/psvibe-sales-bot/tests/test_sales.py:34: AssertionError: assert '20260529-001' in ''
+E   AssertionError: assert 'PSV_A001' in ''
+/root/psvibe-sales-bot/tests/test_sales.py:61: AssertionError: assert 'PSV_A001' in ''
+E   AssertionError: assert 'PIN' in ''
+/root/psvibe-sales-bot/tests/test_stock.py:15: AssertionError: assert 'PIN' in ''
+=========================== short test summary info ============================
+FAILED tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub - Nam...
+FAILED tests/test_finance.py::TestFinanceMenu::test_show_finance_menu - Asser...
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title - ...
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_none_message - Na...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday - Nam...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_search - Assert...
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt
+=================== 13 failed, 19 passed, 1 skipped in 0.30s ===================
+EXIT=1
+=== FINAL COUNTS ===
+F..F.....F....F.sFFFFF.FF..FF....                                        [100%]
+=========================== short test summary info ============================
+FAILED tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub - Nam...
+FAILED tests/test_finance.py::TestFinanceMenu::test_show_finance_menu - Asser...
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title - ...
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_none_message - Na...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday - Nam...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_search - Assert...
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt
+13 failed, 19 passed, 1 skipped in 0.28s

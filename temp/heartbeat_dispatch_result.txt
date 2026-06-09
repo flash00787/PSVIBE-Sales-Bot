@@ -1,0 +1,7 @@
+=== dispatch_manager.py --status (via SSH) ===
+  📋 Pending findings (temp files): 2
+    ? ?                                        ?
+    ? ?                                        ?
+
+  📋 Pending findings (SHARED_FINDINGS.md): 0
+=== END ===

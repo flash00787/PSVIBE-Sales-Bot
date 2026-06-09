@@ -1,0 +1,6 @@
+=== heartbeat_dispatch.txt ===
+Task: Run dispatch_manager.py --status
+Timestamp: 2026-06-02 02:38 UTC
+Status: FAILED
+Error: Cannot execute command on VPS from subagent sandbox. /root/coordination/ is inaccessible (Permission denied). SSH binary not available in container. Host API (127.0.0.1:7890) unreachable. No host-exec.sh found.
+=== RESULT: ERROR ===

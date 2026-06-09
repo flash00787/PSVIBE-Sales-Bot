@@ -1,0 +1,188 @@
+=== _HAS_API setup and imports ===
+L1: import os
+L2: import re
+L3: import sys
+L4: from dataclasses import dataclass, field
+L5: import json
+L6: import time
+L7: import fcntl
+L8: import signal
+L9: import asyncio
+L10: import logging
+L11: from pathlib import Path
+L12: import gspread
+L13: from gspread.exceptions import APIError
+L14: import functools
+L15: import concurrent.futures
+L18:     from bot.api_client import (
+L32:     _HAS_API = True
+L34:     _HAS_API = False
+
+=== Lines around _HAS_API ===
+   api_fetch_promotions_cached, api_fetch_allowed_staff_ids, api_next_voucher,
+        api_next_member_id, api_next_member_row_no, api_fetch_referral_code,
+        api_fetch_console_status,
+    )
+    _HAS_API = True
+except ImportError:
+    _HAS_API = False
+
+
+# ─────────────────────────────────────────
+#  GOOGLE SHEETS RETRY WRAPPER (Phase 2 - Data Safety)
+#  Retries on 429/500/503 with exponential backoff
+#  403 = permission denied → critical log, no retry
+# ─────────────────────────────────────────
+_gsheets_executor = concurrent.futures.ThreadPoolExecutor(
+    max_workers=64, thread_name_prefix="gsheets"
+)
+
+_SHEETS_RETRY_CODES = (429, 500, 503)
+_SHEETS_MAX_RETRIES = 3
+_SHEETS_BASE_DELAY  = 
+
+=== save_attendance function ===
+def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
+    """Insert or update row in Attendance_Log for given month+staff."""
+    try:
+        sh   = get_att_sh()
+        rows = sh.get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
+        for i, row in enumerate(rows[1:], start=2):
+            if row[0].strip() == month_str and row[1].strip() == staff:
+                sh.update(f"A{i}:E{i}", [[month_str, staff, leave_days, late_count, deduct_per_late]])
+                return
+        sh.append_row([month_str, staff, leave_days, late_count, deduct_per_late])
+    except Exception as e:
+        logging.warning("save_attendance: %s", e)
+
+
+def fetch_staff() -> list[str]:
+    """Read staff names from Setting!S2:S10 (col 19)."""
+    if _HAS_API:
+        result = api_fetch_staff()
+        if result is not None:
+            return result
+        logging.warning("API api_fetch_staff() failed, falling back to gspread")
+    try:
+        vals = setting_sh.col_values(19)[1:]  # col S = index 19 (1-based)
+        return [v.strip() for v in vals if v.strip()]
+    except Exception:
+        return ["Staff A", "Staff B"]
+
+
+def fetch
+
+=== Functions that DON'T use API at all ===
+  create_booking: has_api_check=False, has_HAS_API_check=False
+    def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
+    planned_end: optional planned end time (HH:MM) stored in col F so the
+    customer bot can detect disc-game conflicts accurately. Overwritten with
+    actual end time when the session ends.
+    sh     = get_booking_sh()
+    now    = now_mmt()
+    date   = now.strftime("%-m/%-d/%Y")
+    time_s = now.strftime("%H:%M")
+
+  end_booking: has_api_check=False, has_HAS_API_check=False
+    def end_booking(booking_id: str) -> bool:
+    try:
+    sh   = get_booking_sh()
+    rows = sh.get("A:G")  # OPT: range-restricted (A=ID through G=status)
+    for i, row in enumerate(rows[1:], start=2):
+    if row and row[0].strip() == booking_id:
+    now = now_mmt()
+    sh.update(f"F{i}", [[now.strftime("%H:%M")]])
+
+  cancel_booking: has_api_check=False, has_HAS_API_check=False
+    def cancel_booking(booking_id: str) -> bool:
+    try:
+    sh   = get_booking_sh()
+    rows = sh.get("A:G")  # OPT: range-restricted read (A=ID through G=status)
+    for i, row in enumerate(rows[1:], start=2):
+    if row and row[0].strip() == booking_id:
+    sh.update(f"G{i}", [["Cancelled"]])
+    return True
+
+  add_console_game: has_api_check=False, has_HAS_API_check=False
+    def add_console_game(console_id: str, game_title: str, install_type: str, notes: str = "") -> bool:
+    global _CGAME_ROWS
+    try:
+    sh   = get_console_games_sh()
+    date = now_mmt().strftime("%-m/%-d/%Y")
+    sh.append_row([console_id, game_title, install_type, date, notes],
+    value_input_option="USER_ENTERED")
+    _CGAME_ROWS = None   # invalidate cache so next fetch reads fresh data
+
+  remove_console_game: has_api_check=False, has_HAS_API_check=False
+    def remove_console_game(console_id: str, game_title: str) -> bool:
+    global _CGAME_ROWS
+    try:
+    sh   = get_console_games_sh()
+    rows = sh.get("A:B")  # OPT: range-restricted (A=console_id, B=game_title)
+    for i, row in enumerate(rows[1:], start=2):
+    if (len(row) >= 2
+    and row[0].strip().upper() == console_id.upper()
+
+  update_game_library_install: has_api_check=False, has_HAS_API_check=False
+    def update_game_library_install(game_title: str, console_id: str, installed: bool) -> bool:
+    Column B = Game Name; columns G:S = console headers (C-01 … SD2).
+    Returns True on success.
+    try:
+    sh   = wb.worksheet("Game_Library")
+    rows = sh.get("A:U")  # OPT: range-restricted read (A=No through U=metadata)
+    if not rows:
+    return False
+
+  add_console_to_setting: has_api_check=False, has_HAS_API_check=False
+    def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
+    try:
+    names    = setting_sh.col_values(8)      # includes header row
+    next_row = len(names) + 1
+    setting_sh.update(f"H{next_row}:J{next_row}",
+    [[console_id, ctype, str(multiplier)]],
+    value_input_option="USER_ENTERED")
+    return True
+
+  remove_console_from_setting: has_api_check=False, has_HAS_API_check=False
+    def remove_console_from_setting(console_id: str) -> bool:
+    try:
+    names = setting_sh.col_values(8)
+    for i, name in enumerate(names):
+    if name.strip() == console_id.strip():
+    row = i + 1
+    setting_sh.update(f"H{row}:J{row}", [["", "", ""]])
+    return True
+
+  check_disc_session_conflict: has_api_check=False, has_HAS_API_check=False
+    def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
+    Returns a warning string if all disc copies are busy at bk_time,
+    or empty string if no conflict.
+    game_lower = game_name.strip().lower()
+    games = fetch_games()
+    game_obj = next((g for g in games if g["title"].strip().lower() == game_lower), None)
+    if not game_obj:
+    return ""
+
+=== set_game_disc_count function ===
+def set_game_disc_count(row_num: int, count: int) -> bool:
+    """Update column D (Available Discs) for a game row in Game_Library. Returns True on success."""
+    global _GAME_ROWS, _GAME_TS
+    try:
+        sh = get_game_lib_sh()
+        sh.update_cell(row_num, 4, count)   # col D = index 4
+        _GAME_ROWS = None                   # invalidate cache
+        _GAME_TS   = 0
+        return True
+    except Exception:
+        return False
+
+
+def get_console_games_sh():
+    """Return (or create) the Console_Games worksheet.
+    Columns: A=Console_ID, B=Game_Title, C=Install_Type, D=Date, E=Notes
+    """
+    try:
+        return wb.worksheet("Console_Games")
+    except Exception:
+        sh = wb.add_worksheet("Console_Games", rows=1000, cols=5)
+        sh.update("A1:E1", [["Console_ID", "Game_

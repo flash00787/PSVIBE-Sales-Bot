@@ -1,0 +1,44 @@
+{
+  "broadcast.py": {
+    "error": "(SSH) Channel open failure: open failed"
+  },
+  "notify.py": {
+    "error": "(SSH) Channel open failure: open failed"
+  },
+  "games.py": {
+    "error": "(SSH) Channel open failure: open failed"
+  },
+  "ssd_disc.py": {
+    "error": "(SSH) Channel open failure: open failed"
+  },
+  "api_client.py": {
+    "error": "cat: /root/agri/bot/api_client.py: No such file or directory\n"
+  },
+  "app.py": {
+    "error": "cat: /root/agri/bot/app.py: No such file or directory\n"
+  },
+  "booking.py": {
+    "error": "cat: /root/agri/bot/handlers/booking.py: No such file or directory\n"
+  },
+  "booking_flow.py": {
+    "error": "cat: /root/agri/bot/handlers/booking_flow.py: No such file or directory\n"
+  },
+  "stock.py": {
+    "error": "cat: /root/agri/bot/handlers/stock.py: No such file or directory\n"
+  },
+  "stock_in.py": {
+    "error": "cat: /root/agri/bot/handlers/stock_in.py: No such file or directory\n"
+  },
+  "referral.py": {
+    "error": "cat: /root/agri/bot/handlers/referral.py: No such file or directory\n"
+  },
+  "discount.py": {
+    "error": "cat: /root/agri/bot/handlers/discount.py: No such file or directory\n"
+  },
+  "waitlist.py": {
+    "error": "cat: /root/agri/bot/handlers/waitlist.py: No such file or directory\n"
+  },
+  "attendance.py": {
+    "error": "cat: /root/agri/bot/handlers/attendance.py: No such file or directory\n"
+  }
+}

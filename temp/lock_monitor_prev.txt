@@ -1,0 +1,42 @@
+[LOCK_MONITOR] Run at 2026-06-01 14:32:37 UTC
+
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
+[LOCK_MONITOR] WARNING: 12 session file(s) too large:
+  a073a72a-a3ef-469e-9805-b62c5376adfa-topic-110470.trajectory.jsonl: 838KB (> 500KB threshold)
+  a7792f64-f1c5-48f0-ac97-ea542aa421db-topic-110113.trajectory.jsonl: 1603KB (> 500KB threshold)
+  e84902fb-c552-4ea1-94ca-e5bd13e85ba9-topic-110470.jsonl: 946KB (> 500KB threshold)
+  7a0ba37b-e51d-4c77-b139-7139e25d5b63-topic-110113.trajectory.jsonl: 820KB (> 500KB threshold)
+  0f255c76-0c69-4eaf-b948-38a325d2467a-topic-110470.trajectory.jsonl: 8329KB (> 500KB threshold)
+  852b19c2-fd37-4076-b03e-7a53ce51de7e-topic-110113.trajectory.jsonl: 10136KB (> 500KB threshold)
+  0d9463ac-c2c3-4fdd-b40a-8bc3bba3aff0-topic-110470.checkpoint.ebf59359-342c-4496-a002-74543bd5cf60.jsonl: 865KB (> 500KB threshold)
+  bbb98046-f237-4737-9486-429ac1b1c6ae-topic-110470.trajectory.jsonl: 5702KB (> 500KB threshold)
+  1d6931be-d779-4d45-afec-198252a9d7b4-topic-110470.trajectory.jsonl: 10240KB (> 500KB threshold)
+  da78c33d-5351-4888-868b-e7f8394e3fd2-topic-110470.trajectory.jsonl: 2391KB (> 500KB threshold)
+  dcdc18e6-031c-4316-8854-e9f146ed9e9c-topic-110470.trajectory.jsonl: 641KB (> 500KB threshold)
+  81b9b0df-408a-4ad2-b3ff-a11b9665458d-topic-110470.jsonl: 979KB (> 500KB threshold)
+[LOCK_MONITOR] WARNING: 10 trajectory file(s) oversized:
+  fa82dc61-aa56-4063-beba-4a6d642b3c6e-topic-108845.trajectory.jsonl: 7947KB (> 5000KB threshold)
+  1785155c-2e0c-49df-abcc-020469fdd1e7-topic-108546.trajectory.jsonl: 10240KB (> 5000KB threshold)
+  0f255c76-0c69-4eaf-b948-38a325d2467a-topic-110470.trajectory.jsonl: 8329KB (> 5000KB threshold)
+  852b19c2-fd37-4076-b03e-7a53ce51de7e-topic-110113.trajectory.jsonl: 10136KB (> 5000KB threshold)
+  bbb98046-f237-4737-9486-429ac1b1c6ae-topic-110470.trajectory.jsonl: 5702KB (> 5000KB threshold)
+  1d6931be-d779-4d45-afec-198252a9d7b4-topic-110470.trajectory.jsonl: 10240KB (> 5000KB threshold)
+  0d9463ac-c2c3-4fdd-b40a-8bc3bba3aff0-topic-110470.trajectory.jsonl: 10240KB (> 5000KB threshold)
+  67dcad5d-72ae-42cc-98c4-4ca33b28537d-topic-108845.trajectory.jsonl: 10240KB (> 5000KB threshold)
+  81b9b0df-408a-4ad2-b3ff-a11b9665458d-topic-110470.trajectory.jsonl: 10240KB (> 5000KB threshold)
+  50146609-bd54-4129-9c2c-c5029b22240f-topic-108845.trajectory.jsonl: 10240KB (> 5000KB threshold)
+[LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
+
+========== Session Disk Usage ==========
+  Main .jsonl files:          336 files,      38418 KB
+  .trajectory.jsonl files:   1653 files,     254617 KB
+  .checkpoint.*.jsonl files:    1 files,        865 KB
+  .lock files:                  1 files
+  ------------------------------------------
+  TOTAL:                                   293900 KB
+==========================================
+
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 92 KB freed, 32 warnings
+==================================================

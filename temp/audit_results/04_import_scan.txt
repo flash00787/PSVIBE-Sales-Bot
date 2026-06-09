@@ -1,0 +1,3 @@
+usage: import_scanner.py scan [-h] (--file FILE | --all-handlers | --modified)
+                              [--verbose] [--ci] [--pattern]
+import_scanner.py scan: error: one of the arguments --file --all-handlers --modified is required

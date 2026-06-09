@@ -1,0 +1,27 @@
+=== __init__.py: Search for OPEX string ===
+967:    OPEX_CAT = 101
+968:    OPEX_DESC = 102
+969:    OPEX_AMT = 103
+970:    OPEX_ACCT = 104
+971:    OPEX_PAY = 105
+972:    OPEX_CONFIRM = 106
+
+=== Search for list assignments with these names ===
+
+=== finance.py - check what's imported ===
+from bot import now_mmt
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, ConversationHandler
+from telegram.constants import ParseMode
+import logging, re, json
+from datetime import datetime, timezone, timedelta
+
+=== all .py files in bot/ ===
+/root/psvibe-sale-bot/bot/api_client.py
+/root/psvibe-sale-bot/bot/app.py
+/root/psvibe-sale-bot/bot/__init__.py
+/root/psvibe-sale-bot/bot/keep_alive.py
+/root/psvibe-sale-bot/bot/report_generator.py
+
+=== api_client.py - check for constants ===
+

@@ -1,0 +1,309 @@
+=== SYNTAX CHECK ===
+conftest.py: OK
+=== RUNNING ALL TESTS ===
+============================= test session starts ==============================
+collecting ... collected 33 items
+
+tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub FAILED  [  3%]
+tests/test_booking.py::TestStaffBooking::test_sbk_console_kb PASSED      [  6%]
+tests/test_booking.py::TestStaffBooking::test_sbk_parse_console_label PASSED [  9%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu FAILED    [ 12%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu_keyboard PASSED [ 15%]
+tests/test_finance.py::TestFinanceMenu::test_step_finance_back PASSED    [ 18%]
+tests/test_finance.py::TestFinanceMenu::test_get_opex_sh PASSED          [ 21%]
+tests/test_finance.py::TestFinanceMenu::test_get_assets_sh PASSED        [ 24%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_authorized FAILED [ 27%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized FAILED [ 30%]
+tests/test_main_menu.py::TestMainMenuHandler::test_step_main_menu_routing FAILED [ 33%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_clears_user_data FAILED [ 36%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_keyboard_layout FAILED [ 39%]
+tests/test_members.py::TestMembersMenu::test_show_mm_menu FAILED         [ 42%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title FAILED [ 45%]
+tests/test_members.py::TestMembersMenu::test_show_rank_info FAILED       [ 48%]
+tests/test_members.py::TestMembersMenu::test_step_mm_menu_back FAILED    [ 51%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_none_message FAILED [ 54%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items FAILED [ 57%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data FAILED [ 60%]
+tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday FAILED  [ 63%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value FAILED [ 66%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_shows_keyboard FAILED [ 69%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest FAILED [ 72%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text FAILED [ 75%]
+tests/test_sales.py::TestSalesFlow::test_next_voucher_generation FAILED  [ 78%]
+tests/test_sales.py::TestSalesFlow::test_prompt_console FAILED           [ 81%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_search FAILED     [ 84%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt FAILED [ 87%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_sets_dest FAILED [ 90%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockout_direct FAILED [ 93%]
+tests/test_stock.py::TestStockManagement::test_cmd_stock_menu FAILED     [ 96%]
+tests/test_stock.py::TestStockManagement::test_update_inv_total_k1 FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ TestStaffBooking.test_cmd_staff_book_hub ___________________
+tests/test_booking.py:12: in test_cmd_staff_book_hub
+    from bot.handlers.booking import cmd_staff_book_hub
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+____________________ TestFinanceMenu.test_show_finance_menu ____________________
+tests/test_finance.py:15: in test_show_finance_menu
+    assert 'Finance' in text
+E   AssertionError: assert 'Finance' in ''
+______________ TestMainMenuHandler.test_show_main_menu_authorized ______________
+tests/test_main_menu.py:15: in test_show_main_menu_authorized
+    from bot.handlers.main_menu import show_main_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_____________ TestMainMenuHandler.test_show_main_menu_unauthorized _____________
+tests/test_main_menu.py:30: in test_show_main_menu_unauthorized
+    from bot.handlers.main_menu import show_main_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_______________ TestMainMenuHandler.test_step_main_menu_routing ________________
+tests/test_main_menu.py:41: in test_step_main_menu_routing
+    from bot.handlers.main_menu import step_main_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_____________ TestMainMenuHandler.test_main_menu_clears_user_data ______________
+tests/test_main_menu.py:56: in test_main_menu_clears_user_data
+    from bot.handlers.main_menu import show_main_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+______________ TestMainMenuHandler.test_main_menu_keyboard_layout ______________
+tests/test_main_menu.py:68: in test_main_menu_keyboard_layout
+    from bot.handlers.main_menu import show_main_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+______________________ TestMembersMenu.test_show_mm_menu _______________________
+tests/test_members.py:11: in test_show_mm_menu
+    from bot.handlers.members import show_mm_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_________________ TestMembersMenu.test_mm_menu_contains_title __________________
+tests/test_members.py:19: in test_mm_menu_contains_title
+    from bot.handlers.members import show_mm_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_____________________ TestMembersMenu.test_show_rank_info ______________________
+tests/test_members.py:27: in test_show_rank_info
+    from bot.handlers.members import show_rank_info
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+____________________ TestMembersMenu.test_step_mm_menu_back ____________________
+tests/test_members.py:35: in test_step_mm_menu_back
+    from bot.handlers.members import step_mm_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+__________________ TestMembersMenu.test_mm_menu_none_message ___________________
+tests/test_members.py:46: in test_mm_menu_none_message
+    from bot.handlers.members import step_mm_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_____________ TestInventoryReports.test_cmd_inventory_shows_items ______________
+tests/test_reports.py:14: in test_cmd_inventory_shows_items
+    from bot.handlers.reports import cmd_inventory
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_______________ TestInventoryReports.test_cmd_inventory_no_data ________________
+tests/test_reports.py:22: in test_cmd_inventory_no_data
+    from bot.handlers.reports import cmd_inventory
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+___________________ TestInventoryReports.test_cmd_stocktoday ___________________
+tests/test_reports.py:34: in test_cmd_stocktoday
+    from bot.handlers.reports import cmd_stocktoday
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_____________ TestInventoryReports.test_cmd_inventory_total_value ______________
+tests/test_reports.py:47: in test_cmd_inventory_total_value
+    from bot.handlers.reports import cmd_inventory
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_______________ TestSalesFlow.test_prompt_member_shows_keyboard ________________
+tests/test_sales.py:11: in test_prompt_member_shows_keyboard
+    from bot.handlers.sales import prompt_member
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_______________ TestSalesFlow.test_prompt_member_includes_guest ________________
+tests/test_sales.py:21: in test_prompt_member_includes_guest
+    from bot.handlers.sales import prompt_member
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_______________ TestSalesFlow.test_prompt_member_voucher_in_text _______________
+tests/test_sales.py:30: in test_prompt_member_voucher_in_text
+    from bot.handlers.sales import prompt_member
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+__________________ TestSalesFlow.test_next_voucher_generation __________________
+tests/test_sales.py:39: in test_next_voucher_generation
+    from bot.handlers.sales import next_voucher
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+______________________ TestSalesFlow.test_prompt_console _______________________
+tests/test_sales.py:49: in test_prompt_console
+    from bot.handlers.sales import prompt_console
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+___________________ TestSalesFlow.test_prompt_member_search ____________________
+tests/test_sales.py:57: in test_prompt_member_search
+    from bot.handlers.sales import prompt_member
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+____________ TestStockManagement.test_cmd_stockin_direct_pin_prompt ____________
+tests/test_stock.py:11: in test_cmd_stockin_direct_pin_prompt
+    from bot.handlers.stock import cmd_stockin_direct
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+________________ TestStockManagement.test_cmd_stockin_sets_dest ________________
+tests/test_stock.py:20: in test_cmd_stockin_sets_dest
+    from bot.handlers.stock import cmd_stockin_direct
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_________________ TestStockManagement.test_cmd_stockout_direct _________________
+tests/test_stock.py:27: in test_cmd_stockout_direct
+    from bot.handlers.stock import cmd_stockout_direct
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+___________________ TestStockManagement.test_cmd_stock_menu ____________________
+tests/test_stock.py:35: in test_cmd_stock_menu
+    from bot.handlers.stock import cmd_stock_menu
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+_________________ TestStockManagement.test_update_inv_total_k1 _________________
+tests/test_stock.py:42: in test_update_inv_total_k1
+    from bot.handlers.stock import update_inv_total_k1
+bot/handlers/__init__.py:21: in <module>
+    from .help import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^
+bot/handlers/help.py:12: in <module>
+    from bot import BOT_VERSION, now_mmt
+E   ImportError: cannot import name 'BOT_VERSION' from 'bot' (/root/psvibe-sales-bot/bot/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub - Imp...
+FAILED tests/test_finance.py::TestFinanceMenu::test_show_finance_menu - Asser...
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_authorized
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_step_main_menu_routing
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_clears_user_data
+FAILED tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_keyboard_layout
+FAILED tests/test_members.py::TestMembersMenu::test_show_mm_menu - ImportErro...
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title - ...
+FAILED tests/test_members.py::TestMembersMenu::test_show_rank_info - ImportEr...
+FAILED tests/test_members.py::TestMembersMenu::test_step_mm_menu_back - Impor...
+FAILED tests/test_members.py::TestMembersMenu::test_mm_menu_none_message - Im...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday - Imp...
+FAILED tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_shows_keyboard
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text
+FAILED tests/test_sales.py::TestSalesFlow::test_next_voucher_generation - Imp...
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_console - ImportError:...
+FAILED tests/test_sales.py::TestSalesFlow::test_prompt_member_search - Import...
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stockin_sets_dest
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stockout_direct - I...
+FAILED tests/test_stock.py::TestStockManagement::test_cmd_stock_menu - Import...
+FAILED tests/test_stock.py::TestStockManagement::test_update_inv_total_k1 - I...
+========================= 27 failed, 6 passed in 0.48s =========================
+EXIT=1

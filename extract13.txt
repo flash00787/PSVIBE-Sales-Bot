@@ -1,0 +1,70 @@
+=== grep in split_handlers_v3.py ===
+
+=== Read first 100 lines of bot/__init__.py for any list definition ===
+
+=== Lines 100-130 (before __all__) ===
+                        str(e)[:100]
+                    )
+                    time.sleep(delay)
+                    last_exc = e
+                else:
+                    raise
+            except (ConnectionError, TimeoutError, OSError) as e:
+                if attempt < _SHEETS_MAX_RETRIES:
+                    delay = _SHEETS_BASE_DELAY * (2 ** attempt)
+                    logging.warning(
+                        "Sheets network error (attempt %d/%d), retrying in %ds: %s",
+                        attempt + 1, _SHEETS_MAX_RETRIES, delay,
+                        str(e)[:100]
+                    )
+                    time.sleep(delay)
+                    last_exc = e
+                else:
+                    raise
+        raise last_exc
+    return wrapper
+from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime, timezone, timedelta
+from enum import IntEnum
+
+# Myanmar Time — GMT+6:30
+MMT = timezone(timedelta(hours=6, minutes=30))
+def now_mmt() -> datetime:
+    return datetime.now(MMT)
+
+BOT_VERSION = "2026.05.05-r1"   # Console double-booking conflict check (409 guard)
+
+
+=== Lines 1200-1230 (around button definitions) ===
+PAY_SETTLE_ACCT = BotState.PAY_SETTLE_ACCT
+PAY_SETTLE_CONFIRM = BotState.PAY_SETTLE_CONFIRM
+REC_SETTLE_LIST = BotState.REC_SETTLE_LIST
+REC_SETTLE_ACCT = BotState.REC_SETTLE_ACCT
+REC_SETTLE_CONFIRM = BotState.REC_SETTLE_CONFIRM
+ADVPAY_PARTY = BotState.ADVPAY_PARTY
+ADVPAY_DESC = BotState.ADVPAY_DESC
+ADVPAY_AMT = BotState.ADVPAY_AMT
+ADVPAY_ACCT = BotState.ADVPAY_ACCT
+ADVPAY_DUE = BotState.ADVPAY_DUE
+ADVPAY_NOTE = BotState.ADVPAY_NOTE
+ADVPAY_CONFIRM = BotState.ADVPAY_CONFIRM
+ADVPAY_LIST = BotState.ADVPAY_LIST
+ADVPAY_SETTLE_CONFIRM = BotState.ADVPAY_SETTLE_CONFIRM
+PROMO_SELECT = BotState.PROMO_SELECT
+BUNDLE_FOC = BotState.BUNDLE_FOC
+REFERRAL_CODE = BotState.REFERRAL_CODE
+GAME_EDIT_SELECT = BotState.GAME_EDIT_SELECT
+GAME_EDIT_FIELD = BotState.GAME_EDIT_FIELD
+GAME_EDIT_VALUE = BotState.GAME_EDIT_VALUE
+ADJUST_TIME = BotState.ADJUST_TIME
+WL_MENU = BotState.WL_MENU
+
+
+# ─────────────────────────────────────────
+#  BUTTON LABELS
+# ─────────────────────────────────────────
+BTN_BACK         = "⬅️ ပြန်သွား"
+BTN_BACK_MAIN    = "⬅️ Main Menu သို့ပြန်"
+BTN_DONE         = "Done ✅"
+BTN_YES          = "Yes ✅"
+

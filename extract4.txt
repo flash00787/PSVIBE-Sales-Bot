@@ -1,0 +1,346 @@
+=== CONSTANTS FROM FINANCE.PY ===
+
+=== OPEX_CATEGORIES definition ===
+
+=== ASSET_CATEGORIES definition ===
+
+=== FINANCE_ACCOUNTS definition ===
+
+=== PAY_METHODS definition ===
+
+=== PREPAID_CATEGORIES definition ===
+
+=== Advance Payment append_row details ===
+            sh = get_payables_sh()
+            sh.append_row(
+                [today_str(), d["pay_vendor"], d["pay_desc"],
+                 d["pay_amt"], d["pay_due"], "Pending", "", d.get("pay_acct", ""), ""],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Payable မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"📤 {d['pay_vendor']} — {d['pay_desc']}\n"
+            f"💰 {d['pay_amt']:,} Ks  |  Due: {d['pay_due']}",
+            parse_mode="Markdown",
+--
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_receivables_sh()
+            sh.append_row(
+                [today_str(), d["rec_cust"], d["rec_desc"],
+                 d["rec_amt"], d["rec_due"], "Pending", "", d.get("rec_acct", ""), ""],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Receivable မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"📥 {d['rec_cust']} — {d['rec_desc']}\n"
+            f"💰 {d['rec_amt']:,} Ks  |  Expected: {d['rec_due']}",
+            parse_mode="Markdown",
+--
+    d = context.user_data["fin"]
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            sh = get_advpay_sh()
+            sh.append_row(
+                [today_str(), d["advpay_party"], d["advpay_desc"],
+                 d["advpay_amt"], d["advpay_acct"], d["advpay_due"],
+                 "Pending", d.get("advpay_note", "")],
+                value_input_option="USER_ENTERED",
+            )
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Advance Payment မှတ်ပြီး!*\n"
+            f"👤 {d['advpay_party']}  |  💰 {d['advpay_amt']:,} Ks\n"
+            f"🏦 {d['advpay_acct']}  |  📅 {d['advpay_due']}",
+--
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    try:
+        def _do():
+            # Capital_Setup: A=Shareholder, B=Role, C=Capital(Ks), D=Ownership%
+            sh = get_capital_sh()
+            sh.append_row([name, role, cap, own], value_input_option="USER_ENTERED")
+        await asyncio.to_thread(_do)
+        await update.message.reply_text(
+            f"✅ *Shareholder မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👤 {name}  |  💼 {role}\n"
+            f"💰 {cap:,} Ks  |  📊 {own:.0f}%",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(
+--
+                    # Update opening balance column C (index 2)
+                    sh.update_cell(i, 3, amt)
+                    return "updated"
+            # Append new row: Name, Type, Opening, Notes
+            acct_type = "Bank" if ("bank" in acct.lower() or "kbz" in acct.lower() or "aya" in acct.lower()) else ("Digital" if "mmqr" in acct.lower() else "Cash")
+            sh.append_row([acct, acct_type, amt, "Initial Capital"], value_input_option="USER_ENTERED")
+            return "added"
+        result = await asyncio.to_thread(_do)
+        action = "အပ်ဒိတ်" if result == "updated" else "ထည့်သွင်း"
+        await update.message.reply_text(
+            f"✅ *Initial Capital {action}ပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏦 {acct}\n"
+            f"💰 {amt:,} Ks\n\n"
+            f"💡 Account Balances တွင် ယခု ပြသမည်",
+            parse_mode="Markdown",
+
+=== Payable settle append_row details ===
+            except Exception:
+                prev_proc = 0
+            sh.update_cell(row_idx, 8,  new_status)
+            sh.update_cell(row_idx, 9,  dispose_date)
+            sh.update_cell(row_idx, 10, new_disp_qty)
+            sh.update_cell(row_idx, 11, prev_proc + proceeds)
+        await asyncio.to_thread(_write)
+
+        gain_loss = d["dispose_gain_loss"]
+        gl_icon = "💚" if gain_loss >= 0 else "🔴"
+        gl_word = "Gain" if gain_loss >= 0 else "Loss"
+        await update.message.reply_text(
+            f"✅ *Dispose မှတ်တမ်း သိမ်းပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏷️ {asset['name']}  |  Qty: {qty} ခု\n"
+            f"{gl_icon} {gl_word}: {abs(gain_loss):,} Ks",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+    return await show_finance_menu(update, context)
+--
+        def _do():
+            sh = get_advpay_sh()
+            sh.update_cell(sheet_row, 7, "Settled")       # col G = Status
+            sh.update_cell(sheet_row, 8, today_str())     # col H = Settle Date (overwrites Notes)
+        await asyncio.to_thread(_do)
+        party = (r[1] if len(r) > 1 else "?").strip()
+        amt   = (r[3] if len(r) > 3 else "0").strip()
+        try:
+            amt_fmt = f"{int(str(amt).replace(',','').split('.')[0]):,}"
+        except Exception:
+            amt_fmt = amt
+        await update.message.reply_text(
+            f"✅ *Advance Settled!*\n"
+            f"👤 {party}  |  💰 {amt_fmt} Ks\n"
+            f"📅 {today_str()}  |  Status: *Settled*",
+            parse_mode="Markdown",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+--
+    return await _handle_settle_acct(update, context, "receivable")
+
+async def _handle_settle_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE, kind: str):
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await show_settle_list(update, context, kind)
+    if text != BTN_CONFIRM_SAVE:
+        await update.message.reply_text("✅ Confirm & Save နှိပ်ပါ")
+        return PAY_SETTLE_CONFIRM if kind == "payable" else REC_SETTLE_CONFIRM
+    d = context.user_data.get("fin", {})
+    sheet_row = d.get("settle_row")
+    is_pay    = kind == "payable"
+    status_new = "Paid" if is_pay else "Received"
+    await update.message.reply_text("⏳ သိမ်းဆည်းနေသည်...")
+    settle_acct = d.get("settle_acct", "")
+    try:
+
+=== Capital account append_row ===
+                    # Update opening balance column C (index 2)
+                    sh.update_cell(i, 3, amt)
+                    return "updated"
+            # Append new row: Name, Type, Opening, Notes
+            acct_type = "Bank" if ("bank" in acct.lower() or "kbz" in acct.lower() or "aya" in acct.lower()) else ("Digital" if "mmqr" in acct.lower() else "Cash")
+            sh.append_row([acct, acct_type, amt, "Initial Capital"], value_input_option="USER_ENTERED")
+            return "added"
+        result = await asyncio.to_thread(_do)
+        action = "အပ်ဒိတ်" if result == "updated" else "ထည့်သွင်း"
+        await update.message.reply_text(
+            f"✅ *Initial Capital {action}ပြီး!*\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🏦 {acct}\n"
+            f"💰 {amt:,} Ks\n\n"
+            f"💡 Account Balances တွင် ယခု ပြသမည်",
+            parse_mode="Markdown",
+
+=== Discount.py: full append logic ===
+        f"💰 Net Payable: *{d['net_total']:,} Ks*",
+        parse_mode="Markdown",
+    )
+    return await prompt_kpay(update, context)
+
+async def step_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_confirm(update, context)
+    if text == BTN_SKIP_DISC:
+        context.user_data["discount"] = 0
+        context.user_data.pop("promo_id", None)
+        context.user_data.pop("promo_title", None)
+        return await prompt_kpay(update, context)
+
+=== Discount.py: promo apply ===
+        parse_mode="Markdown",
+        reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+    )
+    return PROMO_SELECT
+
+async def step_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle promotion selection — calculate discount and record promo_id."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text == BTN_BACK:
+        return await prompt_discount(update, context)
+
+    d = context.user_data
+    promos = d.get("_promos_list", [])
+    gross = d.get("gross_total", d.get("net_total", 0))
+
+=== cmd_financial_report (reports.py) ===
+async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Quick Financial Report: this week's summary + current month P&L."""
+    await update.message.reply_text("⏳ Financial report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    # Fetch weekly report and monthly P&L in parallel
+    now   = now_mmt()
+    m_str = now.strftime("%Y-%m")
+    weekly, pnl = await asyncio.gather(
+        asyncio.to_thread(_replit_get, "sheets/weekly-report"),
+        asyncio.to_thread(_replit_get, f"sheets/pnl?m={m_str}"),
+    )
+
+    lines: list[str] = [f"💹 <b>Financial Report</b>"]
+
+    # ── Weekly summary ──
+    if weekly:
+        wm = weekly.get("telegram_message", "")
+        if wm:
+            lines.append(wm)
+        else:
+            def _fmt(n): return f"{round(n or 0):,}"
+            ws  = weekly.get("week_start", "?")
+            we  = weekly.get("week_end",   "?")
+            net = weekly.get("net_total",  0)
+            lines.append(
+                f"📅 <b>This Week</b>  {ws} – {we}\n"
+                f"🎮 Sessions : <b>{weekly.get('sessions', 0)}</b>\n"
+                f"💰 Net      : <b>{_fmt(net)} Ks</b>\n"
+                f"📲 KPay: {_fmt(weekly.get('kpay',0))} Ks  |  💵 Cash: {_fmt(weekly.get('cash',0))} Ks\n"
+                f"🏦 Top-Ups  : <b>{_fmt(weekly.get('topup_amt',0))} Ks</b>  ({weekly.get('topup_count',0)} txns)\n"
+                f"🆕 New Members: <b>{weekly.get('new_members',0)}</b>"
+            )
+    else:
+        lines.append("📊 Weekly data မရပါ")
+
+    # ── Monthly P&L ──
+    if pnl:
+        def _f(n): return f"{round(n or 0):,}"
+        lines.append("━━━━━━━━━━━━━━━━━━")
+        lines.append(f"📆 <b>{m_str} — Monthly P&amp;L</b>")
+        game_rev   = pnl.get("game_rev",      pnl.get("salesNet",      0))
+        food_rev   = pnl.get("food_rev",      pnl.get("foodRev",       0))
+        topup_amt  = pnl.get("topup_amount",  pnl.get("topupAmount",   0))
+        net_total  = pnl.get("net_total",     pnl.get("salesNet",      0))
+        kpay       = pnl.get("kpay",          pnl.get("salesKpay",     0))
+        cash       = pnl.get("cash",          pnl.get("salesCash",     0))
+        lines.append(
+            f"🎮 Game Rev  : <b>{_f(game_rev)} Ks</b>\n"
+            f"🍔 Food Rev  : <b>{_f(food_rev)} Ks</b>\n"
+            f"🏦 Top-Up    : <b>{_f(topup_amt)} Ks</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"💵 Net Total : <b>{_f(net_total)} Ks</b>\n"
+            f"📲 KPay: {_f(kpay)} Ks  |  💵 Cash: {_f(cash)} Ks"
+        )
+    else:
+        lines.append("━━━━━━━━━━━━━━━━━━")
+        lines.append(f"📆 {m_str} monthly data မရပါ")
+
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="HTML",
+        reply_markup=kb,
+    )
+    return MAIN_MENU
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  Phase 3 — Advanced Report Commands
+# ═══════════════════════════════════════════════════════════════════
+
+
+=== cmd_today_report (reports.py) ===
+async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Today's combined sales + stock report with per-staff breakdown."""
+    await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
+    rd    = _replit_get("sheets/report-data")   # single batch call (was 3 calls)
+    sales = rd.get("summary")   if rd else None
+    stock = rd.get("stock_today") if rd else None
+    inv   = rd.get("inventory") if rd else None
+    date  = today_str()
+    kb    = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
+
+    if not sales and not stock:
+        await update.message.reply_text("❌ Data ရယူ၍ မရပါ။", reply_markup=kb)
+        return MAIN_MENU
+
+    lines = [f"📊 *Today's Report — {date}*\n━━━━━━━━━━━━━━━━━━"]
+
+    # Sales summary
+    if sales:
+        cnt      = sales.get("today_count", 0)
+        net      = sales.get("today_net", 0)
+        kpay     = sales.get("today_kpay", 0)
+        cash_    = sales.get("today_cash", 0)
+        kpay_pct = round(kpay / net * 100) if net > 0 else 0
+        cash_pct = 100 - kpay_pct if net > 0 else 0
+        avg_rev  = round(net / cnt) if cnt > 0 else 0
+        lines.append(f"🎮 *Sessions:* {cnt}    📊 Avg: *{avg_rev:,} Ks*")
+        lines.append(f"💰 *Revenue:* *{net:,} Ks*")
+        lines.append(f"  💳 KPay: {kpay:,} Ks  ({kpay_pct}%)")
+        lines.append(f"  💵 Cash:  {cash_:,} Ks  ({cash_pct}%)")
+    else:
+        lines.append("🎮 Sales data မရပါ")
+
+    # Per-staff breakdown from Sales_Daily
+    sb = _replit_get("sheets/staff-breakdown")   # API cache (was direct gspread call)
+    staff_stats = sb.get("staff", {}) if sb else {}
+
+    if staff_stats:
+        lines.append(f"━━━━━━━━━━━━━━━━━━")
+        lines.append(f"👥 *Per-Staff:*")
+        for s, sd in staff_stats.items():
+            lines.append(f"  👤 *{s}* — {sd['sessions']} sessions | *{sd['revenue']:,} Ks*")
+
+    # Food/Drinks sold today
+    if stock and stock.get("items"):
+        items        = stock["items"]
+        total_qty    = sum(i["qty"] for i in items)
+        total_rev    = sum(i["value"] for i in items)
+        total_cog    = sum(i.get("cogs", 0) for i in items)
+        gross_margin = round((total_rev - total_cog) / total_rev * 100) if total_rev > 0 else 0
+        lines.append(f"━━━━━━━━━━━━━━━━━━")
+        lines.append(f"🍔 *Food & Drinks:* {total_qty} pcs  |  *{total_rev:,} Ks*")
+        for item in items:
+            lines.append(f"  • {item['name']}: {item['qty']} pcs — {item['value']:,} Ks")
+        if total_cog > 0:
+            lines.append(f"  _{total_cog:,} Ks COGS_  |  GP: *{gross_margin}%*")
+
+    # Low stock alert
+    if inv:
+        low = [i for i in inv.get("items", []) if i["status"] in ("Low Stock", "Out of Stock")]
+        if low:
+            lines.append(f"━━━━━━━━━━━━━━━━━━")
+

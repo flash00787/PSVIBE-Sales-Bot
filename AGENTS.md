@@ -47,7 +47,15 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - "Mental notes" don't survive session restarts. Files do.
 - Before writing memory files, read them first; write only concrete updates, never empty placeholders.
 - When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
+- **Auto-flush session memory every 50 messages.** Critical data persisted proactively before compaction.
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
+
+### ⚠️ Fallback Chain Quality-Aware
+- Fallback if primary model empty/error: wait for Gateway retry.
+  Subagents: Pro → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash
+  Main: Flash → Gemini 2.5 Flash → Gemini 3.5 Flash
+- Log all fallback events
+- Track fallback rate in weekly memory review
 
 ## 🛑 Security Rules
 
@@ -57,6 +65,33 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - ✅ When Nova/other agents need VPS access: tell them the secret key name, NOT the actual password
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
+
+## 🚨 Golden Reflex Rule
+
+See GOLDEN_RULES.md
+
+## 🔀 Hybrid Spawning Rules
+
+See `memory/SPAWN_PROTOCOL.md` for full spawn protocol.
+
+**Critical rules (summary):**
+- MAX 2 agents per spawn message, then `sessions_yield()` IMMEDIATELY
+- NO extra text after spawn (no "ခဏစောင့်ပါ") — spamming causes crash!
+- Never spawn 2+ agents targeting the SAME file simultaneously
+- Process ONE completion event per turn
+- Always include SAFETY NET in spawn task
+
+## ⚡ Sub-Agent Speed & Timeout Defaults
+
+- **Default sub-agent timeout:** 300s
+- **Parallel spawn default:** yes
+- **Tool timeouts:** read=30s, exec=120s
+- **Session memory flush:** every 50 messages
+- **Max messages before auto-flush:** 200
+
+## 📝 Post-Task Documentation
+
+See POST_TASK_SOP.md
 
 ## Red Lines
 
@@ -73,6 +108,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - Read files, explore, organize, learn
 - Search the web, check calendars
 - Work within this workspace
+- **Spawn sub-agents / helpers** (this is your JOB, not manual work)
 
 **Ask first:**
 
@@ -122,106 +158,21 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 - You want to acknowledge without interrupting the flow
 - It's a simple yes/no or approval situation (✅, 👀)
 
-**Why it matters:**
-Reactions are lightweight social signals. Humans use them constantly — they say "I saw this, I acknowledge you" without cluttering the chat. You should too.
-
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
 
-**🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
+**📚 Tool Batch Read Guidelines:**
+- When a file is large (text truncated with `[... N more characters truncated]`), re-read only what you need using smaller chunks (`read` with offset/limit) or targeted `head`/`tail`/`rg` commands — never `cat` full large files.
+- Batch independent reads into parallel calls for speed.
+- For multi-file inspections, read all files in one turn when possible.
 
-**📝 Platform Formatting:**
+## 💓 Heartbeats
 
-- **Discord/WhatsApp:** No markdown tables! Use bullet lists instead
-- **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
-- **WhatsApp:** No headers — use **bold** or CAPS for emphasis
+Heartbeats are configured in `HEARTBEAT.md`. Use them to batch periodic checks (inbox, calendar, notifications). For precise schedules, use cron instead.
 
-## 💓 Heartbeats - Be Proactive!
+**When to reach out:** important email, upcoming event (&lt;2h), something interesting, or &gt;8h since last contact.
 
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
-
-You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
-
-### Heartbeat vs Cron: When to Use Each
-
-**Use heartbeat when:**
-
-- Multiple checks can batch together (inbox + calendar + notifications in one turn)
-- You need conversational context from recent messages
-- Timing can drift slightly (every ~30 min is fine, not exact)
-- You want to reduce API calls by combining periodic checks
-
-**Use cron when:**
-
-- Exact timing matters ("9:00 AM sharp every Monday")
-- Task needs isolation from main session history
-- You want a different model or thinking level for the task
-- One-shot reminders ("remind me in 20 minutes")
-- Output should deliver directly to a channel without main session involvement
-
-**Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
-
-**Things to check (rotate through these, 2-4 times per day):**
-
-- **Emails** - Any urgent unread messages?
-- **Calendar** - Upcoming events in next 24-48h?
-- **Mentions** - Twitter/social notifications?
-- **Weather** - Relevant if your human might go out?
-
-**Track your checks** in `memory/heartbeat-state.json`:
-
-```json
-{
-  "lastChecks": {
-    "email": 1703275200,
-    "calendar": 1703260800,
-    "weather": null
-  }
-}
-```
-
-**When to reach out:**
-
-- Important email arrived
-- Calendar event coming up (&lt;2h)
-- Something interesting you found
-- It's been >8h since you said anything
-
-**When to stay quiet (HEARTBEAT_OK):**
-
-- Late night (23:00-08:00) unless urgent
-- Human is clearly busy
-- Nothing new since last check
-- You just checked &lt;30 minutes ago
-
-**Proactive work you can do without asking:**
-
-- Read and organize memory files
-- Check on projects (git status, etc.)
-- Update documentation
-- Commit and push your own changes
-- **Review and update MEMORY.md** (see below)
-
-### 🔄 Memory Maintenance (During Heartbeats)
-
-Periodically (every few days), use a heartbeat to:
-
-1. Read through recent `memory/YYYY-MM-DD.md` files
-2. Identify significant events, lessons, or insights worth keeping long-term
-3. Update `MEMORY.md` with distilled learnings
-4. Remove outdated info from MEMORY.md that's no longer relevant
-
-Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
-
-The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
-
-## Make It Yours
-
-This is a starting point. Add your own conventions, style, and rules as you figure out what works.
-
-## Related
-
-- [Default AGENTS.md](/reference/AGENTS.default)
+**When to stay quiet:** late night (23:00-08:00), human is busy, nothing new, or you just checked &lt;30 min ago.

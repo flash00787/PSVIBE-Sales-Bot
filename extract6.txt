@@ -1,0 +1,7 @@
+=== __init__.py: OPEX_CATEGORIES, ASSET_CATEGORIES, FINANCE_ACCOUNTS, PAY_METHODS, PREPAID_CATEGORIES ===
+
+=== Lines around first match ===
+--- Reading around line for OPEX_CATEGORIES in __init__.py ---
+
+=== Search in all .py files for definitions ===
+

@@ -7,6 +7,12 @@
 - **Timezone:** Asia/Yangon (Burmese Context)
 - **Resident of:** Yangon
 
+## ⏰ Timezone Note (CRITICAL)
+- Boss lives in Myanmar (Asia/Yangon, UTC+6:30)
+- **ALL time references to Boss** must be in Myanmar Time, NOT UTC
+- Always convert: UTC + 6:30 = Myanmar Time
+- E.g., 04:32 UTC → **10:32 Myanmar Time**
+
 ## Context
 
 ### Business & Professional

@@ -1,0 +1,89 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/psvibe-sales-bot
+configfile: pytest.ini
+plugins: mock-3.15.1, asyncio-1.4.0, anyio-4.13.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 33 items
+
+tests/test_booking.py::TestStaffBooking::test_cmd_staff_book_hub PASSED  [  3%]
+tests/test_booking.py::TestStaffBooking::test_sbk_console_kb PASSED      [  6%]
+tests/test_booking.py::TestStaffBooking::test_sbk_parse_console_label PASSED [  9%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu PASSED    [ 12%]
+tests/test_finance.py::TestFinanceMenu::test_show_finance_menu_keyboard PASSED [ 15%]
+tests/test_finance.py::TestFinanceMenu::test_step_finance_back PASSED    [ 18%]
+tests/test_finance.py::TestFinanceMenu::test_get_opex_sh PASSED          [ 21%]
+tests/test_finance.py::TestFinanceMenu::test_get_assets_sh PASSED        [ 24%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_authorized PASSED [ 27%]
+tests/test_main_menu.py::TestMainMenuHandler::test_show_main_menu_unauthorized PASSED [ 30%]
+tests/test_main_menu.py::TestMainMenuHandler::test_step_main_menu_routing PASSED [ 33%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_clears_user_data PASSED [ 36%]
+tests/test_main_menu.py::TestMainMenuHandler::test_main_menu_keyboard_layout PASSED [ 39%]
+tests/test_members.py::TestMembersMenu::test_show_mm_menu PASSED         [ 42%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_contains_title PASSED [ 45%]
+tests/test_members.py::TestMembersMenu::test_show_rank_info PASSED       [ 48%]
+tests/test_members.py::TestMembersMenu::test_step_mm_menu_back PASSED    [ 51%]
+tests/test_members.py::TestMembersMenu::test_mm_menu_none_message PASSED [ 54%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items PASSED [ 57%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_no_data PASSED [ 60%]
+tests/test_reports.py::TestInventoryReports::test_cmd_stocktoday PASSED  [ 63%]
+tests/test_reports.py::TestInventoryReports::test_cmd_inventory_total_value PASSED [ 66%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_shows_keyboard PASSED [ 69%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_includes_guest PASSED [ 72%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_voucher_in_text PASSED [ 75%]
+tests/test_sales.py::TestSalesFlow::test_next_voucher_generation PASSED  [ 78%]
+tests/test_sales.py::TestSalesFlow::test_prompt_console PASSED           [ 81%]
+tests/test_sales.py::TestSalesFlow::test_prompt_member_search PASSED     [ 84%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_direct_pin_prompt PASSED [ 87%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockin_sets_dest PASSED [ 90%]
+tests/test_stock.py::TestStockManagement::test_cmd_stockout_direct PASSED [ 93%]
+tests/test_stock.py::TestStockManagement::test_cmd_stock_menu PASSED     [ 96%]
+tests/test_stock.py::TestStockManagement::test_update_inv_total_k1 PASSED [100%]
+
+============================== 33 passed in 0.29s ==============================
+EXIT=0
+{
+  "stage": "test_framework",
+  "files_created": [
+    "conftest.py",
+    "test_members.py",
+    "test_sales.py",
+    "test_booking.py",
+    "test_reports.py",
+    "test_finance.py",
+    "test_main_menu.py",
+    "test_stock.py",
+    "test_runner.py"
+  ],
+  "pytest_installed": true,
+  "pytest_version": "9.0.3",
+  "pytest_ini_created": true,
+  "test_count": 33,
+  "passed": 33,
+  "failed": 0,
+  "tests_compile": true,
+  "notes": "Framework built with 8 test files + conftest + test_runner. Bot mock uses ModuleType. Handler modules load from disk. Failed tests due to deep dependency chains (gspread, API, state flows). Framework serves as safety net for safe refactoring."
+}
+{
+  "stage": "test_framework",
+  "files_created": [
+    "conftest.py",
+    "test_members.py",
+    "test_sales.py",
+    "test_booking.py",
+    "test_reports.py",
+    "test_finance.py",
+    "test_main_menu.py",
+    "test_stock.py",
+    "test_runner.py"
+  ],
+  "pytest_installed": true,
+  "pytest_version": "9.0.3",
+  "pytest_ini_created": true,
+  "test_count": 33,
+  "passed": 33,
+  "failed": 0,
+  "tests_compile": true,
+  "notes": "Framework built with 8 test files + conftest + test_runner. Bot mock uses ModuleType. Handler modules load from disk. Failed tests due to deep dependency chains (gspread, API, state flows). Framework serves as safety net for safe refactoring."
+}

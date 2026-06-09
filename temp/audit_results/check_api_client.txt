@@ -1,0 +1,21 @@
+235:def api_fetch_wallet_mins(member_id: str) -> dict | None:
+236:    """Fetch wallet minutes for a member."""
+237:    return _api_call("GET", f"fetch_wallet_mins/{member_id}")
+398:async def api_fetch_wallet_mins_async(member_id: str) -> dict | None:
+399:    """Async: Fetch wallet minutes for a member."""
+400:    return await _api_call_async("GET", f"fetch_wallet_mins/{member_id}")
+649:def api_add_sales_record(data: dict) -> dict | None:
+693:def api_add_member(data: dict) -> dict | None:
+698:def api_add_topup(data: dict) -> dict | None:
+708:async def api_add_sales_record_async(data: dict) -> dict | None:
+709:    """Async: Record a sale + update member wallet via API."""
+730:    """Async: Top-up member wallet (log + update balance)."""
+734:async def api_wallet_deduct_async(data: dict) -> dict | None:
+735:    """Async: Deduct wallet minutes."""
+736:    return await _api_call_async("POST", "wallet/deduct", json_data=data)
+739:async def api_wallet_bonus_async(data: dict) -> dict | None:
+740:    """Async: Add bonus minutes to wallet."""
+741:    return await _api_call_async("POST", "wallet/bonus", json_data=data)
+745:    """Async: Create a new member with wallet."""
+749:async def api_add_topup_async(data: dict) -> dict | None:
+750:    """Async: Log a top-up transaction + update wallet."""

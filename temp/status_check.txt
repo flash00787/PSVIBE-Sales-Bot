@@ -1,0 +1,27 @@
+=== PSVIBE SERVICES ===
+psvibe-sale-bot: active
+psvibe_customer_bot: active
+psvibe-api: active
+psvibe-watchdog: active
+=== CADDY ===
+inactive
+EXIT:4
+=== N8N ===
+inactive
+EXIT:4
+=== RECENT ERRORS ===
+=== DOCKER ===
+NAMES                         STATUS
+chrome-puppeteer              Up 3 days
+construction_bot              Up 3 days
+oc-coco                       Up 2 days (healthy)
+openclaw-openclaw-cli-1       Up 3 hours (unhealthy)
+openclaw-openclaw-gateway-1   Up 2 hours (healthy)
+psvibe-mysql                  Up 3 days
+aungchanmyint-caddy-1         Up 30 hours
+aungchanmyint-n8n-1           Up 4 days
+oc-nova                       Up 21 hours (healthy)
+=== DISK ===
+/dev/sda1       150G   21G  124G  15% /
+=== MEMORY ===
+Mem:            15Gi       5.9Gi       2.1Gi        18Mi       7.7Gi       9.3Gi

@@ -1,0 +1,16 @@
+async def api_wallet_deduct(req: dict, auth=Depends(verify_api_key)):
+    """Deduct wallet minutes (used during sale or gameplay)."""
+    try:
+        member_id = req.get("member_id", "")
+        mins = req.get("mins", 0)
+        reason = req.get("reason", "sale")
+
+        if not member_id or mins <= 0:
+            return {"status": "error", "detail": "member_id and mins>0 required"}
+
+        logger.info("Wallet deduct: member=%s mins=%s reason=%s", member_id, mins, reason)
+
+        current = mysql_query_one(
+            "SELECT balance_mins FROM member_wallets WHERE member_id = %s",
+            (member_id,)
+        )
