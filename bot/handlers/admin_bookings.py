@@ -252,25 +252,16 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         await reply_fn(f"❌ Booking #{bk_id} ကို update မရပါ")
         return
 
-    # Unwrap {"data": {"booking": {...}}} envelope
-    if isinstance(result, dict):
-        data_outer = result.get("data") or {}
-        if isinstance(data_outer, dict) and "booking" in data_outer:
-            b = data_outer["booking"]
-        elif isinstance(data_outer, dict) and "bookings" in data_outer:
-            b = data_outer["bookings"][0] if data_outer["bookings"] else result
-        else:
-            b = result
-    else:
-        b = result
+    # Use bk_info (from GET /api/bookings/{id}) for all customer fields.
+    # PATCH result only returns {booking_id, status} — no customer data.
     if action == "approve":
         console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
-        game_line    = f"\n🕹️ Game: <b>{b.get('gameName') or '—'}</b>" if b.get("gameName") else ""
+        game_line    = f"\n🕹️ Game: <b>{bk_info.get('gameName') or '—'}</b>" if bk_info.get("gameName") else ""
         msg = (
             f"✅ <b>Booking #{bk_id} Confirmed!</b>\n"
-            f"👤 {b.get('customerName', 'Unknown')}  📞 {b.get('phone', '-')}\n"
-            f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
-            f"🎮 {b.get('consoleType', '-')}  ⏱️ {b.get('durationMins', '?')} mins"
+            f"👤 {bk_info.get('customerName', 'Unknown')}  📞 {bk_info.get('phone', '-')}\n"
+            f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
+            f"🎮 {bk_info.get('consoleType', '-')}  ⏱️ {bk_info.get('durationMins', '?')} mins"
             f"{game_line}{console_line}\n"
             f"<i>Approved by {staff_name}</i>"
             f"{install_warn}"
@@ -278,16 +269,18 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     else:
         msg = (
             f"❌ <b>Booking #{bk_id} Rejected</b>\n"
-            f"👤 {b.get('customerName', 'Unknown')}  📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
+            f"👤 {bk_info.get('customerName', 'Unknown')}  📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
             f"<i>Rejected by {staff_name}</i>"
         )
     await reply_fn(msg, parse_mode="HTML")
 
     # Notify customer via customer bot if we have their chat_id
-    tg_chat = b.get("telegramChatId") or ""
+    # IMPORTANT: Use bk_info (from the GET /api/bookings/{id} call earlier), NOT the
+    # PATCH result (which only returns {booking_id, status})
+    tg_chat = bk_info.get("telegramChatId") or ""
     # Fallback: look up chat_id from member data if not in booking data
     if not tg_chat:
-        member_id = b.get("memberId") or ""
+        member_id = bk_info.get("memberId") or ""
         if member_id:
             try:
                 tg_chat = get_customer_chat_id(member_id) or ""
@@ -300,8 +293,8 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 "မင်္ဂလာပါ 🙏\n\n"
                 f"သင်၏ Booking (#{bk_id}) ကို အတည်ပြုပြီးပါပြီ။\n"
                 f"━━━━━━━━━━━━━━━━━━━\n"
-                f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n"
-                f"🎮 {b.get('consoleType', '')}  ⏱️ {b.get('durationMins', '?')} mins{console_line}\n"
+                f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
+                f"🎮 {bk_info.get('consoleType', '')}  ⏱️ {bk_info.get('durationMins', '?')} mins{console_line}\n"
                 f"━━━━━━━━━━━━━━━━━━━\n"
                 f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
                 f"ကျေးဇူးတင်ပါတယ်"
@@ -309,40 +302,33 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         else:
             cust_msg = (
                 f"😔 <b>Booking #{bk_id} Rejected</b>\n\n"
-                f"📅 {b.get('date', '?')}  🕐 {b.get('timeSlot', '?')}\n\n"
+                f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n\n"
                 f"အဆင်မပြေသဖြင့် တောင်းပန်ပါသည်။ နောက်ထပ် booking ထပ်မံလုပ်နိုင်ပါသည်။\n"
                 f"📞 ဆက်သွယ်ရန် @psvibeofficial"
             )
         await asyncio.to_thread(_notify_customer, tg_chat, cust_msg)
 
-    # Write Scheduled row to Console_Booking so console appears busy in status board
+    # Mark console as Scheduled via API so status board reflects it
     if assigned_console:
         try:
-            _sched_sh = get_booking_sh()
-            _sched_now = now_mmt()
-            _date_str = _sched_now.strftime("%-m/%-d/%Y")
-            _sched_id = f"BK-{_sched_now.strftime('%Y%m%d')}-{assigned_console.replace(' ','').replace('-','')}-S{_sched_now.strftime('%H%M')}"
-            _sched_sh.append_row([
-                _sched_id, _date_str, assigned_console,
-                b.get("customerName", "") or b.get("memberId", ""),
-                b.get("timeSlot", ""), "", "Scheduled",
-                staff_name, f"API_BK#{bk_id}"
-            ], value_input_option="USER_ENTERED")
-            logger.info("Console %s marked as Scheduled (API BK#%d)", assigned_console, bk_id)
+            # The approve PATCH already updated the booking status.
+            # The console status board shows Active/Free based on console_status table.
+            # No need for a separate gspread append — the booking data is in MySQL.
+            logger.info("Booking #%d approved, console=%s", bk_id, assigned_console)
         except Exception as e:
-            logger.warning("Console_Booking Scheduled write failed: %s", e, exc_info=True)
+            logger.warning("Console_Booking post-approval update: %s", e)
 
     # Fire n8n reminder when customer booking approved
     if action == "approve":
         asyncio.create_task(_post_n8n_booking_reminder(
             bk_id=bk_id,
-            customer_name=b.get("customerName", ""),
-            phone=b.get("phone", ""),
-            console_id=b.get("consoleId") or "",
-            console_type=b.get("consoleType", ""),
-            date_str=b.get("date", ""),
-            time_slot=b.get("timeSlot", ""),
-            duration_mins=int(b.get("durationMins") or 60),
+            customer_name=bk_info.get("customerName", ""),
+            phone=bk_info.get("phone", ""),
+            console_id=bk_info.get("consoleId") or bk_info.get("console_id", ""),
+            console_type=bk_info.get("consoleType", ""),
+            date_str=bk_info.get("date", ""),
+            time_slot=bk_info.get("timeSlot", ""),
+            duration_mins=int(bk_info.get("durationMins") or 60),
             tg_chat=tg_chat,
         ))
 
