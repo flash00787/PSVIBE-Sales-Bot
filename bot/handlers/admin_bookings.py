@@ -190,13 +190,16 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     if action == "approve":
         bk_data      = await _replit_get_async(f"bookings/{bk_id}")
         bk_info      = bk_data or {}
-        # Unwrap {"data": {"booking": {...}}} envelope
-        if isinstance(bk_info, dict) and bk_info.get("data") and isinstance(bk_info["data"], dict):
-            inner = bk_info["data"]
-            if "booking" in inner:
-                bk_info = inner["booking"]
-            else:
-                bk_info = inner
+        # Unwrap {"booking": {...}} or {"data": {"booking": {...}}} envelope
+        if isinstance(bk_info, dict):
+            if "booking" in bk_info:
+                bk_info = bk_info["booking"]
+            elif bk_info.get("data") and isinstance(bk_info["data"], dict):
+                inner = bk_info["data"]
+                if "booking" in inner:
+                    bk_info = inner["booking"]
+                else:
+                    bk_info = inner
         console_type = bk_info.get("consoleType", "")
         game_name    = (bk_info.get("gameName") or "").strip()
 
