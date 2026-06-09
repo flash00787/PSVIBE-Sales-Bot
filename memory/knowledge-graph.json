@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-09T06:39:10Z",
+  "updated": "2026-06-09T11:40:43Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -330,6 +330,12 @@
     },
     {
       "source": "boss",
+      "target": "telegram",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "ye-yint-oo",
       "relation": "related_to",
       "weight": 5
@@ -420,6 +426,18 @@
     },
     {
       "source": "daily-digest",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "daily-digest",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "daily-digest",
       "target": "session-summary",
       "relation": "related_to",
       "weight": 5
@@ -457,6 +475,12 @@
     {
       "source": "git-backup",
       "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "git-backup",
+      "target": "phase-3",
       "relation": "related_to",
       "weight": 5
     },
@@ -564,6 +588,12 @@
     },
     {
       "source": "kora",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
       "target": "github",
       "relation": "uses",
       "weight": 5
@@ -596,6 +626,12 @@
       "source": "kora",
       "target": "ps-vibe",
       "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "session-summary",
+      "relation": "implements",
       "weight": 5
     },
     {
@@ -1980,12 +2016,6 @@
     },
     {
       "source": "boss",
-      "target": "telegram",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "vps",
       "relation": "uses",
       "weight": 3
@@ -3132,18 +3162,6 @@
     },
     {
       "source": "daily-digest",
-      "target": "knowledge-graph-concept",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "daily-digest",
-      "target": "memory-index",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "daily-digest",
       "target": "memory-upgrade",
       "relation": "related_to",
       "weight": 3
@@ -4117,12 +4135,6 @@
     {
       "source": "git-backup",
       "target": "phase-2",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "git-backup",
-      "target": "phase-3",
       "relation": "related_to",
       "weight": 3
     },
@@ -5160,12 +5172,6 @@
     },
     {
       "source": "kora",
-      "target": "git-backup",
-      "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "kora",
       "target": "gmail-api",
       "relation": "uses",
       "weight": 3
@@ -5264,12 +5270,6 @@
       "source": "kora",
       "target": "sales-tele-bot",
       "relation": "owns",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "session-summary",
-      "relation": "implements",
       "weight": 3
     },
     {
