@@ -53,6 +53,18 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 _st = _dt.fromisoformat(_st).strftime("%I:%M %p")
             except Exception:
                 pass
+        elif ":" in _st and not _st.endswith("M"):
+            # Convert HH:MM API format to H:MM AM/PM
+            try:
+                parts = _st.strip().split(":")
+                h, m = int(parts[0]), int(parts[1][:2])
+                ampm = "AM" if h < 12 else "PM"
+                h12 = h % 12
+                if h12 == 0:
+                    h12 = 12
+                _st = f"{h12}:{m:02d} {ampm}"
+            except Exception:
+                pass
         _normalized.append({
             "id": _c.get("console_id") or _c.get("id", "?"),
             "type": _c.get("console_type") or _c.get("type", ""),
