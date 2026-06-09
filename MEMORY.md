@@ -655,3 +655,84 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 - **`.pyc` cache stale** after edit → always `find ... -name '__pycache__' -exec rm -rf {} +` then restart
 - **String `replace()`** fails silently on whitespace mismatch → verify with `repr()`
 - **`cash_movements`** stores labels (
+
+---
+
+## 📌 Summary (2026-06-09) — Continued (12:25-15:30 UTC)
+
+### 🔔 Notification Fixes — Cancel + 10-min Reminder (12:25-12:40)
+- **Cancel notification:** `_do_cancel_booking()` used PATCH result (only `{booking_id,status}`) — no `telegramChatId`. Fixed by fetching full booking via GET first.
+- **10-min reminder:** API `search-bookings` response was missing `telegram_chat_id`/`telegramChatId`; `send_booking_reminders()` only sent to staff group. Fixed both.
+- Files: `booking_flow.py`, `auto_cancel_no_shows.py`, `app.py`
+- Git: Sales Bot `65a8549`, API `fa46cab`
+
+### 📊 PSV_A_004 Revenue Liability + P&L Double-Count Fix (12:47-13:03)
+- Boss asked: "004 ရဲ့ game revenue Liability တွက်တာကော မှန်ရဲ့လား"
+- **Liability:** 562 mins × 150 Ks = 84,300 Ks ✅ (FIFO correct)
+- **DISCOVERED P&L double-count:** `game_rev` included 90K from sales_daily, `topup_rev` ALSO counted 90K → total 180K instead of 5,700 Ks
+- **Fix:** Removed `topup_rev` from `total_revenue`; excluded `type='topup'` from `game_rev`
+- Git: API `ebe0974`
+- **Lesson:** Topup = deferred liability, not revenue — only wallet_consumed is recognized
+
+### 🐛 Dashboard Bugs — C-01 Stale + Web Finance + BS Breakdown (12:54-13:03)
+- **C-01 stale Active:** Stale `console_booking` #247 → cleaned + dashboard query now filters `c.status='Active'`
+- **Web Finance blank:** JWT token expired from multiple restarts → re-login needed
+- **BS member_details:** Added per-member liability breakdown array
+
+### 🐛 KPay Balance + Web Finance Fixes (13:10-13:35)
+- **KPay 212K→138K:** 3-layer root cause — topup backfill in sales_daily, GROUP BY collapse, PyMySQL `%` conflict
+- **Coupons `m.member_name`:** members table has `name`, not `member_name`
+- **Members `m.name`:** member_wallets has `member_name`, not `name`
+- **Sales_daily syntax:** sed destroyed quotes around `''`
+- Final: KPay=138,933 Ks ✅, BS balanced ✅
+
+### 💰 KPay Triple-Count → Bot=Web Match + BS Balanced (13:42-15:00)
+- **Triple-count:** Topup 90K appeared in `topup_log` + `cash_movements` inject + `sales_daily` → Bot=228K, Web=138K, BS diff=179K
+- **Option A (Boss):** Exclude inject entries with Topup/New member notes
+- **4-step fix:** Web Finances → Balance Sheet → Bot → Retained Earnings
+- **Final:** Bot=48,933 ✅ | Web=48,933 ✅ | BS diff=-67 (rounding) ✅
+
+### 💳 Voucher Amount Rounding (14:00-14:10)
+- All receipt amounts now round to nearest 50 (--50/--00 format)
+- `round(x / 50) * 50` applied to game_amt, food, gross, discount, net, kpay, cash
+- File: `sales.py` — step_sale_confirm() + _build_payment_receipt_lines()
+
+### 🏛️ Shareholders Setup (14:50-15:05)
+- 3 shareholders: Aung Chan Myint (34%/102M), Ye Myat (33%/99M), Wai Yan Htet (33%/99M) — Total 300M
+- MySQL `shareholders` table, API CRUD, BS reads from DB, Vue frontend + sidebar
+
+### 🧠 New Critical Lessons (June 9)
+1. **PyMySQL `%` in LIKE:** `LIKE 'Topup%'` → format string error. Use `CONCAT('Topup', CHAR(37))` or filter in Python
+2. **sed + Python strings = disaster:** Never use sed for complex SQL in Python — use `src.replace()`
+3. **Inject exclusion must flow to retained:** When excluding injects from assets, add `+_excl_inj` to retained formula or BS breaks
+4. **nearest-50 rounding:** `round(x/50)*50` — apply before message construction
+5. **GROUP BY + pipe-delimited = wrong:** Each row must be parsed individually for multi-payment fields
+6. **3 simultaneous records = triple-count:** topup creates topup_log + cash_movements inject + sales_daily — must filter 2/3
+7. **No Timer sessions don't clean up bookings:** end_session needs booking_id tracking
+8. **JWT expires on restart:** Users must re-login
+9. **Python `.pyc` cache stale after edit:** Always `find -name '__pycache__' -exec rm -rf {} +` then restart
+
+### 🏛️ Cash Flow — Finalized (17:30-19:30 UTC)
+- Opening = **300M** (all KBZ transfer_in, not per-date-filtered)
+- **Closing = 28,758,453 Ks = Web Finance** ✅ (uses exact same per-account income calculation)
+- No Financing section (3.69M KBZ inject = advance recovery 3.6M + member topup 90K, not capital)
+- Stock cost = ejections (733,940), not stock_in total_cost (747,273)
+- **Capital Withdrawals removed** (they were stock payments)
+- **ACM's Acc = business account** (just separate cash box), not owner transfer
+- cash_movements raw balance (304M) ≠ actual financial position — only tracks internal transfers
+
+### 🏛️ Prepaid Rent Amortization (19:00-19:30 UTC)
+- Created `prepaid_amortization` table
+- 22.425M rental fee → 9 months × 2,491,667 Ks/month
+- June: OPEX Rent entry + amortization record inserted
+- Balance Sheet: prepaid shows remaining (19.9M not 22.4M)
+- Auto-amortization script: `/root/scripts/auto_amortize.py`
+- Cron: 1st of each month 9AM Myanmar Time
+
+### 🧠 New Critical Lessons (June 9, evening)
+10. **Cash Flow closing must match Web Finance** — use identical income allocation per account
+11. **Prepaid amortization**: P&L expense + BS asset reduction. Cash Flow already shows full outflow (investing)
+12. **systemctl/systemd not available** on VPS — uvicorn via nohup; restart with `pkill -HUP -f 'uvicorn'`
+
+### Services (19:30 UTC final)
+psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅ | shareholders ✅ | BS balanced ✅ | CF matches Web ✅ | Rent amortized ✅
