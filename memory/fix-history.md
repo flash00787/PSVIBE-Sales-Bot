@@ -2,6 +2,29 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-09 — Pending Bookings Fix + Kora Upgrade Integration
+
+### Bug Fix: Pending Bookings Display
+- **SHA:** `d606bed`
+- **Files:** `customer_bot/booking.py`
+- **Fixes:**
+  - `_format_booking_line`: robust `.get()` fallback chain for console type
+  - `_parse_booking_datetime_mmt`: handle MySQL datetime/date objects (not just strings)
+  - `cmd_cancel_booking`: added `parse_mode=Markdown`, better error result unwrapping
+- **API fix:** `app.py` `api_search_bookings`: derive consoleType from console_id instead of hardcoding PS5
+- **Verification:** py_compile PASS, API health PASS, all 3 services active
+
+### Kora Upgrade Phase 3 — Fully Integrated
+- **Memory Git Backup:** 1,470 files committed (bitbckt to GitHub)
+- **Memory Pruner:** 3 exact dupes + 26 similar merged (1.1 KB saved)
+- **Memory Index:** Rebuilt (1,146 topics, 47 files)
+- **Daily Digest:** Auto-generated for June 9
+- **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges)
+- **HEARTBEAT.md:** All Phase 3 tools added to ~4h routine
+- **MEMORY.md:** Index updated with Phase 3 references
+
+---
+
 ## 2026-06-03 — MEGA FIX DAY (15+ bugs)
 
 ### Session 1: Core Sales Bot + Customer Bot

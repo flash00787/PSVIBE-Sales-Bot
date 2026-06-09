@@ -1,71 +1,29 @@
 const { Client } = require('ssh2');
 const fs = require('fs');
-
 const conn = new Client();
-const LOG = '/tmp/fix_console_mgmt.txt';
 
-function log(msg) {
-  const line = `[${new Date().toISOString()}] ${msg}`;
-  console.log(line);
-  fs.appendFileSync(LOG, line + '\n');
-}
-
-function execCmd(cmd) {
-  return new Promise((resolve, reject) => {
-    let stdout = '', stderr = '';
-    conn.exec(cmd, (err, stream) => {
-      if (err) return reject(err);
-      stream.on('data', d => stdout += d.toString());
-      stream.stderr.on('data', d => stderr += d.toString());
-      stream.on('close', code => resolve({ code, stdout, stderr }));
+conn.on('ready', () => {
+  const cmds = [
+    // Fix protocol completion
+    'cd /root && python3 coordination/fix_protocol.py --complete 2>&1 || echo "fix_protocol not found, skipping"',
+    // Restart API server
+    'systemctl restart psvibe-api 2>&1 && echo "API restarted" || echo "API restart FAILED"',
+    // Restart customer bot  
+    'systemctl restart psvibe_customer_bot 2>&1 && echo "Customer bot restarted" || echo "Customer bot restart FAILED"',
+    // Wait and check status
+    'sleep 3 && systemctl status psvibe-api --no-pager 2>&1 | head -8',
+    'systemctl status psvibe_customer_bot --no-pager 2>&1 | head -8',
+    // Test the API still works
+    'sleep 2 && curl -s "http://localhost:8000/api/bookings/search?telegram_chat_id=6296803251" -H "X-API-Key: JWIErd82Apo3j-KKWW8HjOjfizo9s_tpJZhcSb7D-AQ" | python3 -c "import sys,json; d=json.load(sys.stdin); bks=d.get(\"data\",{}).get(\"bookings\",[]); print(f\"API OK: {len(bks)} bookings\"); [print(f\\\"  #{b[\\\"id\\\"]} status={b[\\\"status\\\"]} consoleType={b.get(\\\"consoleType\\\",\\\"N/A\\\")} console_id={b.get(\\\"console_id\\\",\\\"N/A\\\")}\\\") for b in bks[:3]]" 2>&1',
+  ];
+  let pending = cmds.length, results = {};
+  cmds.forEach((c,i) => {
+    conn.exec(c, (err, s) => {
+      if (err) { results[i]=err.message; if(--pending===0) done(); return; }  
+      let d=''; s.on('data',c=>d+=c); s.stderr.on('data',c=>d+=c);
+      s.on('close',()=>{results[i]=d; if(--pending===0) done();});
     });
   });
-}
-
-conn.on('ready', async () => {
-  log('SSH connected');
-  try {
-    // Restart service
-    log('=== Restarting service ===');
-    let r = await execCmd('systemctl restart psvibe-sale-bot.service 2>&1');
-    log('STDOUT:' + r.stdout);
-    log('STDERR:' + r.stderr);
-
-    // Wait 5 seconds
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
-    // Check status
-    log('=== Service status ===');
-    r = await execCmd('systemctl is-active psvibe-sale-bot.service 2>&1');
-    log('STATUS:' + r.stdout);
-
-    // Check logs
-    log('=== Bot logs ===');
-    r = await execCmd('journalctl -u psvibe-sale-bot.service --no-pager -n 15 --since "30 sec ago" 2>&1');
-    log('LOGS:' + r.stdout);
-
-    // Commit
-    log('=== Git commit ===');
-    r = await execCmd('cd /root/psvibe-sales-bot && git add -A && git commit -m "Fix: circular import in console_mgmt.py (lazy bot globals via __getattr__)" --no-verify 2>&1');
-    log('COMMIT:' + r.stdout);
-    if (r.stderr) log('COMMIT STDERR:' + r.stderr);
-
-    // Push
-    log('=== Git push ===');
-    r = await execCmd('cd /root/psvibe-sales-bot && git push 2>&1');
-    log('PUSH:' + r.stdout);
-    if (r.stderr) log('PUSH STDERR:' + r.stderr);
-
-  } catch(e) {
-    log('ERROR: ' + e.message);
-  }
-  conn.end();
+  function done() { cmds.forEach((c,i)=>{ console.log('=== CMD '+i+': '+c+' ===\n'+results[i]); }); conn.end(); }
 });
-
-conn.on('error', e => log('SSH error: ' + e.message));
-conn.connect({
-  host: '5.223.81.16',
-  port: 22,
-  username: 'root',
-  privateKey: fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa')
-});
+conn.connect({host:'5.223.81.16',port:22,username:'root',privateKey:fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa'),readyTimeout:15000});

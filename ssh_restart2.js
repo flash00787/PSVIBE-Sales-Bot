@@ -1,85 +1,29 @@
 const { Client } = require('ssh2');
 const fs = require('fs');
-
 const conn = new Client();
-const LOG = '/tmp/fix_console_mgmt.txt';
 
-function log(msg) {
-  const line = `[${new Date().toISOString()}] ${msg}`;
-  console.log(line);
-  fs.appendFileSync(LOG, line + '\n');
-}
-
-function execCmd(cmd) {
-  return new Promise((resolve, reject) => {
-    let stdout = '', stderr = '';
-    conn.exec(cmd, (err, stream) => {
-      if (err) return reject(err);
-      stream.on('data', d => stdout += d.toString());
-      stream.stderr.on('data', d => stderr += d.toString());
-      stream.on('close', code => resolve({ code, stdout, stderr }));
+conn.on('ready', () => {
+  // Restart with timeout
+  conn.exec('timeout 15 systemctl restart psvibe-api && echo "API_OK" || echo "API_TIMEOUT"; timeout 10 systemctl restart psvibe_customer_bot && echo "BOT_OK" || echo "BOT_TIMEOUT"', (err, s) => {
+    let d=''; s.on('data',c=>d+=c); s.stderr.on('data',c=>d+=c);
+    s.on('close',()=>{
+      console.log('RESTART:\n'+d);
+      // Check status
+      conn.exec('systemctl is-active psvibe-api psvibe_customer_bot', (e2, s2) => {
+        let d2=''; s2.on('data',c=>d2+=c);
+        s2.on('close',()=>{
+          console.log('STATUS:\n'+d2);
+          // Test API
+          conn.exec('curl -s --max-time 5 "http://localhost:8000/api/health"', (e3, s3) => {
+            let d3=''; s3.on('data',c=>d3+=c);
+            s3.on('close',()=>{
+              console.log('HEALTH:\n'+d3);
+              conn.end();
+            });
+          });
+        });
+      });
     });
   });
-}
-
-conn.on('ready', async () => {
-  log('SSH connected');
-  try {
-    // Restart service
-    log('=== Restarting service ===');
-    let r = await execCmd('systemctl restart psvibe-sale-bot.service 2>&1');
-    log(r.stdout);
-    if (r.stderr) log(r.stderr);
-
-    // Wait 8 seconds
-    await new Promise(resolve => setTimeout(resolve, 8000));
-
-    // Check status
-    log('=== Service status ===');
-    r = await execCmd('systemctl is-active psvibe-sale-bot.service 2>&1');
-    log('STATUS:' + r.stdout);
-
-    // Check logs
-    log('=== Bot logs ===');
-    r = await execCmd('journalctl -u psvibe-sale-bot.service --no-pager -n 20 --since "30 sec ago" 2>&1');
-    log('LOGS:' + r.stdout);
-
-    // Wait and check again
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    log('=== Service status (after 5s) ===');
-    r = await execCmd('systemctl is-active psvibe-sale-bot.service 2>&1');
-    log('STATUS:' + r.stdout);
-
-    // More logs
-    r = await execCmd('journalctl -u psvibe-sale-bot.service --no-pager -n 10 --since "10 sec ago" 2>&1');
-    log('RECENT:' + r.stdout);
-
-    // Run tests
-    log('=== Pytest ===');
-    r = await execCmd('cd /root/psvibe-sales-bot && set -a && source /etc/psvibe/secrets.env && python3 -m pytest tests/ -q 2>&1 | tail -5');
-    log('TEST:' + r.stdout);
-
-    // Git amend commit
-    log('=== Git amend ===');
-    r = await execCmd('cd /root/psvibe-sales-bot && git add -A && git commit --amend -m "Fix: circular import in console_mgmt.py (lazy __getattr__ without __all__ leak)" --no-verify 2>&1');
-    log('COMMIT:' + r.stdout);
-    if (r.stderr) log('COMMIT STDERR:' + r.stderr);
-
-    // Force push (amend)
-    r = await execCmd('cd /root/psvibe-sales-bot && git push --force-with-lease 2>&1');
-    log('PUSH:' + r.stdout);
-    if (r.stderr) log('PUSH STDERR:' + r.stderr);
-
-  } catch(e) {
-    log('ERROR: ' + e.message);
-  }
-  conn.end();
 });
-
-conn.on('error', e => log('SSH error: ' + e.message));
-conn.connect({
-  host: '5.223.81.16',
-  port: 22,
-  username: 'root',
-  privateKey: fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa')
-});
+conn.connect({host:'5.223.81.16',port:22,username:'root',privateKey:fs.readFileSync('/home/node/.openclaw/workspace/.ssh/id_rsa'),readyTimeout:15000});
