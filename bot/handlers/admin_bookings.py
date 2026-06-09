@@ -216,7 +216,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             if free and game_name:
                 # Prefer a free console that already has the game installed
                 consoles_with_game = await get_consoles_with_game_async(game_name)
-                cw_upper  = {c.upper() for c in consoles_with_game}
+                cw_upper  = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
                 game_free = [c for c in free if c["id"].upper() in cw_upper]
 
                 if game_free:
