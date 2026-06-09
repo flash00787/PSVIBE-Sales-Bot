@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-09T13:43:45Z",
+  "updated": "2026-06-09T20:08:29Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -326,6 +326,12 @@
       "source": "boss",
       "target": "synergy-hub",
       "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "ye-myat",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -2018,12 +2024,6 @@
       "source": "boss",
       "target": "vps",
       "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "ye-myat",
-      "relation": "related_to",
       "weight": 3
     },
     {
