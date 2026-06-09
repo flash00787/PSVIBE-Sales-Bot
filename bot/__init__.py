@@ -61,10 +61,30 @@ try:
     cancel_booking_async = api_cancel_booking_async
     fetch_console_status_async = api_fetch_console_status_async
     fetch_games_async = api_fetch_games_async
+
     fetch_console_games_async = api_fetch_console_games_async
 
 except ImportError:
     _HAS_API = False
+
+
+
+async def fetch_games_async() -> list[dict]:
+    """Async version of fetch_games() - maps API data to GSheet-era format."""
+    result = await api_fetch_games_async()
+    if result is None:
+        return []
+    mapped = []
+    for i, g in enumerate(result.get("games", [])):
+        mapped.append({
+            "row":        i + 2,
+            "title":      g.get("game_title", ""),
+            "status":     g.get("final_status", ""),
+            "discs":      str(g.get("disc_count", "")),
+            "solo_multi": g.get("solo_multi", ""),
+            "genre":      g.get("genre", ""),
+        })
+    return mapped
 
 # ═══════════════════════════════════════════════
 # MySQL Migration Compatibility Stubs (Phase 1)
