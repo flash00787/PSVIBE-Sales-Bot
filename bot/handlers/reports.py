@@ -86,7 +86,7 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
         promo_logs = (log_data or {}).get("logs", [])
         promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
         # Fetch today's sales summary
-        rd = await _replit_get_async("sheets/report-data")
+        rd = await _replit_get_async("finance/account-balances")
         sales = rd.get("summary") if rd else None
         lines = [
             "📊 *Promotion Reports*",
@@ -195,33 +195,28 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Today's combined sales + stock report with per-staff breakdown."""
     await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    rd    = await _replit_get_async("sheets/report-data")   # single batch call (was 3 calls)
+    rd    = await _replit_get_async("finance/account-balances")   # single batch call (was 3 calls)
     sales = rd.get("summary")   if rd else None
-    stock = rd.get("stock_today") if rd else None
-    inv   = rd.get("inventory") if rd else None
+    stock = None
+    inv = None
     date  = today_str()
     kb    = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
     if not sales and not stock:
         await update.message.reply_text("❌ Data ရယူ၍ မရပါ။", reply_markup=kb)
         return MAIN_MENU
     lines = [f"📊 *Today's Report — {date}*\n━━━━━━━━━━━━━━━━━━"]
-    # Sales summary
-    if sales:
-        cnt      = sales.get("today_count", 0)
-        net      = sales.get("today_net", 0)
-        kpay     = sales.get("today_kpay", 0)
-        cash_    = sales.get("today_cash", 0)
-        kpay_pct = round(kpay / net * 100) if net > 0 else 0
-        cash_pct = 100 - kpay_pct if net > 0 else 0
-        avg_rev  = round(net / cnt) if cnt > 0 else 0
-        lines.append(f"🎮 *Sessions:* {cnt}    📊 Avg: *{avg_rev:,} Ks*")
-        lines.append(f"💰 *Revenue:* *{net:,} Ks*")
-        lines.append(f"  💳 KPay: {kpay:,} Ks  ({kpay_pct}%)")
-        lines.append(f"  💵 Cash:  {cash_:,} Ks  ({cash_pct}%)")
+    # Sales summary from account balances
+    if sales and isinstance(sales, list):
+        total_rev = sum(a.get("balance", 0) for a in sales if a.get("type") in ("Cash","Digital"))
+        lines.append(f"💰 *Total Balance:* *{total_rev:,} Ks*")
+        for a in sales:
+            name = a.get("name","?")
+            bal = a.get("balance", 0)
+            lines.append(f"  • {name}: {bal:,} Ks")
     else:
-        lines.append("🎮 Sales data မရပါ")
+        lines.append("🎮 Data မရပါ")
     # Per-staff breakdown from Sales_Daily
-    sb = await _replit_get_async("sheets/staff-breakdown")   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
+    sb = None   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
     staff_stats = sb.get("staff", {}) if sb else {}
     if staff_stats:
         lines.append(f"━━━━━━━━━━━━━━━━━━")
