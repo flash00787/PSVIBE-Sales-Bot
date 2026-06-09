@@ -1,6 +1,65 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-09 05:30 UTC
+> Last updated: 2026-06-09 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 9, 2026 - 11:30 UTC) — New Finds: Captain Tsubasa 2, Bellwright, Fall Calendar Refinements
+
+### 🔴 DAYS OF PLAY — ENDS TOMORROW (June 10)! Final Call!
+- **PS Plus Premium 33% off** — LAST CHANCE to renew lounge subscriptions at best rate!
+- **PS5 game deals up to 60% off** — including Death Stranding 2, Astro Bot, Ghost of Yōtei ($49.99), Helldivers 2 ($29.99), Last of Us Part II Remastered ($29.99)
+- **PSVR2 $100 off**, DualSense controllers up to $20-30 off
+- **Marathon FREE Week ends TODAY (June 9)** — ABSOLUTE LAST DAY!
+
+### ⚽ Captain Tsubasa 2: World Fighters — August 28, 2026 🔥 (NEW FIND!)
+- Football anime game sequel — confirmed for PS5!
+- **💡💡 Lounge Note for Myanmar:** Captain Tsubasa (ကပ္ပတိန် ဆုဘာဆာ) is MASSIVELY popular across Asia, including Myanmar! This anime football game series has a cult following — kids who grew up watching the anime will flock to play this. Anime + sports crossover = perfect lounge title for the Myanmar market!
+
+### 🏰 Bellwright — Launched TODAY (June 9) on PS5! 🆕
+- Medieval survival crafting game, now available on PS5 and Xbox Series X|S
+- Console versions include all content from PC Early Access
+- **💡 Lounge Note:** Survival-crafting games are popular in lounge settings for extended sessions. Add to the library if customers request it.
+
+### 📅 Fall 2026 Calendar — New Date Confirmations & Refinements:
+
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| **Star Wars Zero Company** 🚀 | **Aug 27, 2026** 🔒 | ⭐⭐⭐⭐⭐ — Date LOCKED (was just "August")! |
+| **Beast of Reincarnation** 🐺 | **Aug 4, 2026** 🆕 | ⭐⭐⭐ — New action title |
+| **Wild Blue Skies** ✈️ | **Aug 13, 2026** 🆕 | ⭐⭐⭐ — New flying/sim title |
+| **Trails in the Sky 2nd Chapter** ⚔️ | **Sep 17, 2026** 🆕 | ⭐⭐⭐⭐ — Legendary JRPG series! Asia fanbase! |
+| **Planet Zoo 2** 🦁 | **Oct 13, 2026** 🆕 | ⭐⭐⭐⭐ — Family-friendly sim, perfect casual lounge title |
+| **Castlevania: Belmont's Curse** 🦇 | **Oct 15, 2026** 🔒 | ⭐⭐⭐⭐ — Date LOCKED (was TBA)! Classic franchise! |
+| **Gothic 2 Complete Classic** ⚔️ | **Sep 29, 2026** 🆕 | ⭐⭐⭐ — RPG classic remaster |
+| **End of Abyss** 🌑 | **Oct 1, 2026** 🆕 | ⭐⭐⭐ — New RPG |
+| **Rayman Origins: Enhanced Edition** 🦎 | **Oct 1, 2026** 🆕 | ⭐⭐⭐ — Pair with Rayman Legends Retold (same day!) |
+| **Valor Mortis** 💀 | **Sep 24, 2026** 🆕 | ⭐⭐⭐ — New horror on a stacked day |
+
+### 🆕 Minor June Additions:
+- **Tales of Seikyu** — June 11 (anime-inspired adventure)
+- **Holdfast: American Revolution** — June (historical multiplayer)
+- **R-Type Tactics I & II Cosmos** — June (classic shmup strategy)
+- **Until Then: Afterimages** — June (narrative indie)
+- **Samson: A Tyndalston Story** — September 2026 (narrative adventure)
+- **Attack on Titan 3** 🆕 — TBD (was just "Attack on Titan game"; now confirmed as third main entry by Omega Force)
+- **Sonic Pico Park** 🆕 — TBD (new Sonic party game!)
+
+### ⏰ TOMORROW (June 10): PS Plus Extra June Full Lineup Reveal Expected!
+- Sony expected to announce the full PS Plus Extra & Premium June 2026 lineup on June 10
+- Games would become available around June 16
+- **💡 Lounge Action:** Check the reveal tomorrow — new additions may include lounge-worthy titles!
+
+### ⚠️ Final Deadline Check:
+| Deadline | What | Action |
+|----------|------|--------|
+| **TODAY (Jun 9)** | Marathon FREE Week | Last day! Let customers play free! |
+| **TOMORROW (Jun 10)** | Days of Play PS Plus 33% off | Renew lounge subs NOW! |
+| **TOMORROW (Jun 10)** | Days of Play game sales | Last day for Spider-Man 2 $29.99, God of War Ragnarök $29.99, etc. |
+| **TOMORROW (Jun 10)** | PS Plus Extra lineup reveal | Watch for new games! |
+| **Jun 11** | Days of Play avatars | Claim by June 10/11 |
+| **Jun 11** | Resident Evil Requiem 20% off | Last day! |
+| **Jun 16** | EA Sports FC 26 free for PS Plus | Last day to claim! |
 
 ---
 
@@ -700,6 +759,10 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jun TBD | **S.T.A.L.K.E.R. 2: Cost of Hope** | FPS/Horror |
 | Jun 18 | **Dave the Diver: In the Jungle** | Adventure/Sim |
 | Jun TBD | **Autonomica** | Indie |
+| Jun TBD | **Tales of Seikyu** 🆕 | Anime Adventure |
+| Jun TBD | **Holdfast: American Revolution** 🆕 | Historical Multiplayer |
+| Jun TBD | **R-Type Tactics I & II Cosmos** 🆕 | Shmup Strategy |
+| Jun TBD | **Until Then: Afterimages** 🆕 | Narrative Indie |
 | TBD JUN | **Marathon Nightfall Update** | FPS |
 
 ---
@@ -716,26 +779,37 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jul 28 | 🔥 **Halo: Campaign Evolved** 🟢🆕 | ⭐⭐⭐⭐⭐ (HALO ON PS5! Historic!) |
 | Jul TBD | **Palworld 1.0** | ⭐⭐⭐⭐ (Full release!) |
 | Jul TBD | **Where Winds Meet — Hidden Mountain** 🆕 | ⭐⭐⭐ (Expansion) |
+| Aug 4 | **Beast of Reincarnation** 🐺🆕 | ⭐⭐⭐ (New action title!) |
 | Aug 6 | Marvel Tōkon: Fighting Souls (Magneto, Green Goblin, Carnage + Doom) | ⭐⭐⭐⭐ |
-| Aug TBD | **Star Wars Zero Company** 🆕 | ⭐⭐⭐⭐⭐ (Confirmed Aug!) |
+| Aug 13 | **Wild Blue Skies** ✈️🆕 | ⭐⭐⭐ (New flying/sim!) |
 | Aug 14 | Grave Seasons | ⭐⭐⭐ |
+| Aug 27 | **Star Wars Zero Company** 🚀 | ⭐⭐⭐⭐⭐ (DATE LOCKED! Aug 27!) |
 | Aug 27 | **Resonance: A Plague Tale Legacy** 🐀🆕 | ⭐⭐⭐⭐ (New Plague Tale universe!) |
 | Aug 27 | Metal Gear Solid: Master Collection Vol. 2 | ⭐⭐⭐⭐ |
+| Aug 28 | ⚽ **Captain Tsubasa 2: World Fighters** 🆕🔥 | ⭐⭐⭐⭐⭐ (Football anime! HUGE in Asia!) |
 | Sep 3 | The Blood of the Dawnwalker | ⭐⭐⭐ |
 | Sep 8 | Halloween: The Game | ⭐⭐⭐ |
 | Sep 15 | **Marvel's Wolverine** 🔥 | ⭐⭐⭐⭐⭐ |
-| Sep 29 | **Minecraft Dungeons II** ⛏️🆕 | ⭐⭐⭐⭐ (PS5 + Switch 2!) |
 | Sep 15 | **Runescape: Dragonwilds** 🐉 | ⭐⭐⭐ (Day 1 PS Plus Extra/Premium!) |
+| Sep 17 | **Trails in the Sky 2nd Chapter** ⚔️🆕 | ⭐⭐⭐⭐ (Legendary JRPG! Asia fanbase!) |
 | Sep 22 | **Dune Awakening** | ⭐⭐⭐⭐ |
 | Sep 24 | **Control Resonant** | ⭐⭐⭐⭐ |
 | Sep 24 | **Silent Hill: Townfall** | ⭐⭐⭐⭐ |
 | Sep 24 | **Hot Wheels Infinite Rush** 🏎️ | ⭐⭐⭐ |
+| Sep 24 | **Valor Mortis** 💀🆕 | ⭐⭐⭐ (New horror!) |
 | Sep 25 | **Onimusha: Way of the Sword** | ⭐⭐⭐⭐⭐ |
+| Sep 29 | **Minecraft Dungeons II** ⛏️🆕 | ⭐⭐⭐⭐ (PS5 + Switch 2!) |
+| Sep 29 | **Gothic 2 Complete Classic** ⚔️🆕 | ⭐⭐⭐ (RPG classic remaster!) |
+| Sep TBD | **Samson: A Tyndalston Story** 📖🆕 | ⭐⭐⭐ (Narrative adventure!) |
 | Fall 2026 | **Lords of the Fallen 2** ⚔️🆕 | ⭐⭐⭐⭐ (Katana weapon class! Co-op!) |
 | Oct 1 | **Rayman Legends Retold** | ⭐⭐⭐ |
+| Oct 1 | **Rayman Origins: Enhanced Edition** 🦎🆕 | ⭐⭐⭐ (Double Rayman day!) |
 | Oct 1 | **Dynasty Warriors 3 Complete Edition Remastered** | ⭐⭐⭐ |
+| Oct 1 | **End of Abyss** 🌑🆕 | ⭐⭐⭐ (New RPG!) |
 | Oct 2 | **Ace Combat 8: Wings of Theve** | ⭐⭐⭐⭐ |
 | Oct 6 | **Star Wars: Galactic Racer** 🏎️ | ⭐⭐⭐ |
+| Oct 13 | 🦁 **Planet Zoo 2** 🆕 | ⭐⭐⭐⭐ (Family-friendly sim!) |
+| Oct 15 | 🦇 **Castlevania: Belmont's Curse** 🔒 | ⭐⭐⭐⭐ (DATE LOCKED! Classic franchise!) |
 | Oct TBD | **No Rest for the Wicked** | ⭐⭐⭐ |
 | Oct 23 | 🔥🔥 **Call of Duty: Modern Warfare 4** 🆕 | ⭐⭐⭐⭐⭐ (DATE LOCKED! Korean Peninsula!) |
 | Oct 29 | **Phantom Blade 0** 🔴 | ⭐⭐⭐⭐⭐ (DELAYED from Sep 9) |
@@ -754,7 +828,12 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🧟 **State of Decay 3** 🆕 — Now OFFICIALLY confirmed for PS5!
 - ⛏️ **Minecraft Dungeons II** 🆕 — Dungeon crawler sequel, **Sep 29, 2026**!
 - 🎯 **Marathon** — from Halo/Destiny creators
-- 🦇 **Castlevania: Belmont's Curse**
+- ⚽ **Captain Tsubasa 2: World Fighters** 🆕🔥 — Football anime game! **Aug 28, 2026**! MASSIVE in Asia + Myanmar!
+- 🦇 **Castlevania: Belmont's Curse** — **Oct 15, 2026** 🔒 DATE LOCKED!
+- 🦁 **Planet Zoo 2** 🆕 — **Oct 13, 2026**! Family-friendly sim builder!
+- ⚔️ **Trails in the Sky 2nd Chapter** 🆕 — **Sep 17, 2026**! Legendary JRPG series!
+- 🎮 **Sonic Pico Park** 🆕 — New Sonic party game! TBD
+- 🎌 **Attack on Titan 3** 🆕 — Omega Force full adaptation, TBD
 - 🏈 **Madden NFL 26**
 - 🐉 **Monster Hunter Wilds: Ascendance** 🆕 — massive Capcom expansion
 - 🤖 **Stellar Blade 2: Blood Rain** 🆕 — sequel revealed at SGF
@@ -782,6 +861,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 
 ## 📋 Lounge Recommendations for PS VIBE
 - 🥋🔥 **Avatar Legends: The Fighting Game (July 23, $29.99)** — NEW FIND! Avatar TLA/Korra 2D fighter with crossplay and rollback netcode. Budget price + MASSIVE IP = perfect lounge title! Closed beta July 2-5 for pre-orders!
+- ⚽🔥 **Captain Tsubasa 2: World Fighters (Aug 28)** — Football anime game! Captain Tsubasa is MASSIVELY popular in Myanmar and across Asia. Anime + sports crossover = perfect lounge crowd-pleaser. Start building hype NOW!
 - 🔥🔥 **PERSONA 6 OFFICIALLY ANNOUNCED for PS5!** Atlus revealed P6 at Xbox Showcase — no date yet but this is THE JRPG announcement of the year. Alongside P4 Revival, Persona is becoming a massive lounge draw. Start building hype!
 - 🔥🔥 **GTA 6 CONFIRMED: November 19, 2026!** Start planning launch events, pre-order bundles, and marketing NOW. This is the biggest game of the decade.
 - 🟢🔥 **HALO ON PS5 (July 28, 2026)!** First mainline Halo day-one on PlayStation — this is gaming history. Promote NOW — pre-orders are already open on PS Store!
