@@ -16,7 +16,7 @@ from bot import (
     GINST_MENU, GINST_VIEW_CONS, add_console_game_async, fetch_console_games_async,
     fetch_games, fetch_games_async, get_consoles_from_setting,
     get_consoles_with_game_async, get_games_on_console, get_games_on_console_async,
-    remove_console_game_async, show_game_menu, update_game_library_install_async,
+    remove_console_game_async, show_game_menu, show_console_menu, update_game_library_install_async,
 )
 
 async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -39,10 +39,9 @@ async def show_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return GINST_MENU
 
 async def step_ginst_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    from bot.handlers.games import show_game_menu
     text = update.message.text.strip()
     if text in (BTN_BACK, BTN_CANCEL):
-        return await show_game_menu(update, context)
+        return await show_console_menu(update, context)
     if text == BTN_GINST_VIEW:
         return await _ginst_pick_console(update, context, next_state=GINST_VIEW_CONS, prompt="👁 ကြည့်မည့် Console ရွေးပါ:")
     if text == BTN_GINST_ADD:
