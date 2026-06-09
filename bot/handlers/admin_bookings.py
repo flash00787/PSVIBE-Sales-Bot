@@ -7,6 +7,7 @@ import logging, re, json
 
 from bot import (
     CUSTOMER_BOT_TOKEN,     
+    _replit_get_async, _replit_patch_async,
     check_disc_session_conflict,  get_consoles_with_game, get_consoles_with_game_async,
     now_mmt, show_admin_menu,
 )

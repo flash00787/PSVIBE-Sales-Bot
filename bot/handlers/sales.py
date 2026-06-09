@@ -842,6 +842,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
+        from bot.api_client import _replit_get_async
         inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
@@ -1610,6 +1611,7 @@ async def launch_session_sale(
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
+        from bot.api_client import _replit_get_async
         inv_data = await _replit_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))

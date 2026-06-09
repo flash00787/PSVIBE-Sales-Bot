@@ -7,6 +7,7 @@ from bot import (
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
     SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+    _replit_get_async, _replit_patch_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
     fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_games, fetch_games_async,
@@ -32,7 +33,7 @@ from bot.handlers.notify import _notify_customer
 async def _sbk_console_kb() -> list:
     """Return keyboard of all consoles with live+reserved status via API."""
     try:
-        data = await _replit_get_async("sheets/consoles") or {}
+        data = {"consoles": [{"id": c["id"], "type": c.get("type",""), "liveStatus": c.get("status","Free")} for c in fetch_console_status()]}
         consoles = data.get("consoles", []) if isinstance(data, dict) else []
     except Exception as e:
         logging.warning("Failed to fetch consoles via API for staff booking keyboard: %s", e)
