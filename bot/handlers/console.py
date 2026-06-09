@@ -50,7 +50,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if "T" in _st:
             try:
                 from datetime import datetime as _dt
-                _st = _dt.fromisoformat(_st).strftime("%H:%M")
+                _st = _dt.fromisoformat(_st).strftime("%I:%M %p")
             except Exception:
                 pass
         _normalized.append({
@@ -71,7 +71,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     busy_list  = [c for c in api_consoles if c.get("liveStatus", "Free") in ("Active", "Scheduled")]
     rsv_list   = [c for c in api_consoles if c.get("liveStatus", "Free") == "Reserved"]
 
-    now_str = now_mmt().strftime("%H:%M")
+    now_str = now_mmt().strftime("%I:%M %p")
     lines = [
         f"🕹️ *Console Status Board*  |  {now_str} MMT",
         "━━━━━━━━━━━━━━━━━━",
