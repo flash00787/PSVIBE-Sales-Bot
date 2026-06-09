@@ -396,10 +396,11 @@ def fetch_games() -> list[dict]:
                 })
             return mapped
         logging.warning("API call failed")
+    return []
     try:
         global _GAME_ROWS, _GAME_TS
         if not _GAME_ROWS or (time.time() - _GAME_TS) > _GAME_TTL:
-            _GAME_ROWS = get_game_lib_sh().get("A:U")  # OPT: range-restricted read (A=No through U=metadata)
+            _GAME_ROWS = []  # OPT: range-restricted read (A=No through U=metadata)
             _GAME_TS   = time.time()
         rows = _GAME_ROWS
         if len(rows) < 2:
@@ -490,10 +491,11 @@ def fetch_console_games() -> list[dict]:
                 })
             return mapped
         logging.warning("API call failed")
+    return []
     try:
         global _CGAME_ROWS, _CGAME_TS
         if not _CGAME_ROWS or (time.time() - _CGAME_TS) > _CGAME_TTL:
-            _CGAME_ROWS = get_console_games_sh().get("A:E")  # OPT: range-restricted (A=console through E=notes)
+            _CGAME_ROWS = []  # OPT: range-restricted (A=console through E=notes)
             _CGAME_TS   = time.time()
         rows = _CGAME_ROWS
         if len(rows) < 2:
