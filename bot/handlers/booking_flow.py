@@ -586,11 +586,16 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     # Update stored end time immediately so next extend uses correct base
     _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
     if has_remind:
-        ext_delay = (extra_mins - 5) * 60   # seconds until 5-min-before-end
+        # BUG FIX: ext_delay must be based on TOTAL remaining time, not extra_mins
+        # Old: ext_delay = (extra_mins - 5) * 60 → wrong if passed time between start and extend
+        total_rem_secs = max(0, (new_end_dt - now).total_seconds())
+        ext_delay = max(0, total_rem_secs - 5 * 60)  # seconds until 5-min-before-end
+        # planned_mins = remaining minutes for display (at least 1)
+        rem_mins = max(1, int(total_rem_secs / 60))
         # Bot loop: fire at "5 min before end", then every 5 min
         task = asyncio.create_task(
             _remind_loop(bot, chat_id, cid, member_id,
-                         extra_mins, new_end_t, ext_delay)
+                         rem_mins, new_end_t, ext_delay)
         )
         _REMIND_TASKS[_remind_key(cid, chat_id)] = task
 

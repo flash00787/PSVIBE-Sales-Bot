@@ -95,7 +95,8 @@ async def input_logger_batcher():
                     e["msg_type"], e["input_text"],
                     e["state"], e["voucher"], e["proc_ms"], e["flags"]
                 ] for e in buffer]
-                sh.append_rows(rows, value_input_option="USER_ENTERED")
+                if sh is not None:
+                    sh.append_rows(rows, value_input_option="USER_ENTERED")
                 logger.debug("Flushed %d input log entries to sheet", len(buffer))
             except Exception as e:
                 logger.error("Input log batch write failed: %s", e)
