@@ -12,10 +12,7 @@ import signal
 import asyncio
 import logging
 from pathlib import Path
-import gspread
-from gspread.exceptions import APIError
 import functools
-import concurrent.futures
 # ── API Client for READ operations ──
 try:
     from bot.api_client import (
@@ -57,23 +54,29 @@ try:
 except ImportError:
     _HAS_API = False
 
+# ═══════════════════════════════════════════════
+# MySQL Migration Compatibility Stubs (Phase 1)
+# These stubs allow existing API-success-path code to function
+# while the full migration to MySQL-only is in progress.
+# ═══════════════════════════════════════════════
 
-# ─────────────────────────────────────────
-#  GOOGLE SHEETS RETRY WRAPPER (Phase 2 - Data Safety)
-#  Retries on 429/500/503 with exponential backoff
-#  403 = permission denied → critical log, no retry
-# ─────────────────────────────────────────
-_gsheets_executor = concurrent.futures.ThreadPoolExecutor(
-    max_workers=8, thread_name_prefix="gsheets"
-)
+def _get_cfg() -> dict:
+    """Legacy config accessor — returns empty dict.
+    Config now managed by API server / MySQL.
+    """
+    return {}
 
-_SHEETS_RETRY_CODES = (429, 500, 503)
-_SHEETS_MAX_RETRIES = 3
-_SHEETS_BASE_DELAY  = 1  # seconds
+# Cached rows stubs (return empty lists — data comes from API now)
+_BK_ROWS = []
+_BK_TS = 0.0
+_BK_TTL = 30
+_GAME_ROWS = []
+_GAME_TS = 0.0
+_GAME_TTL = 600
+_CGAME_ROWS = []
+_CGAME_TS = 0.0
+_CGAME_TTL = 300
 
-# ─────────────────────────────────────────
-#  HANDLER DURATION LOGGING
-#  Logs execution time of every state handler
 # ─────────────────────────────────────────
 import time as _time_module
 
@@ -91,78 +94,6 @@ def log_duration(handler_name: str):
         return wrapper
     return decorator
 
-
-
-class SheetsPermissionError(Exception):
-    """Raised when the service account lacks permission to access a sheet.
-    This is NOT transient — check Sharing settings and SA email."""
-    pass
-
-
-def _get_sa_email(sa_file: str = "service_account.json") -> str:
-    """Extract the service account client_email from the JSON key file."""
-    try:
-        with open(sa_file, "r") as f:
-            data = json.load(f)
-        return data.get("client_email", "unknown")
-    except Exception:
-        return "unknown"
-
-
-def _sheets_retry(func):
-    """Decorator: retry gspread calls on transient API errors (429/500/503).
-    403 = immediate critical log + SheetsPermissionError (no retry)."""
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        last_exc = None
-        for attempt in range(_SHEETS_MAX_RETRIES + 1):
-            try:
-                return func(*args, **kwargs)
-            except APIError as e:
-                code = e.response.status_code if hasattr(e, 'response') else 0
-                # ── 403: permission denied – log critical, never retry ──
-                if code == 403:
-                    sa_email = _get_sa_email()
-                    sheet_id = os.environ.get("SHEET_ID", "unknown")
-                    logging.critical(
-                        "🔴 SHEETS 403 FORBIDDEN — Permission denied!\n"
-                        "   Service Account: %s\n"
-                        "   Sheet ID:        %s\n"
-                        "   Action: Share the sheet with the SA email above (Editor access).\n"
-                        "   Error details: %s",
-                        sa_email, sheet_id, str(e)[:200]
-                    )
-                    raise SheetsPermissionError(
-                        f"403 Forbidden — SA '{sa_email}' cannot access sheet '{sheet_id}'. "
-                        f"Share the sheet with Editor access to this email."
-                    ) from e
-                # ── Transient codes: retry ──
-                if code in _SHEETS_RETRY_CODES and attempt < _SHEETS_MAX_RETRIES:
-                    delay = _SHEETS_BASE_DELAY * (2 ** attempt)
-                    logging.warning(
-                        "Sheets API %d error (attempt %d/%d), retrying in %ds: %s",
-                        code, attempt + 1, _SHEETS_MAX_RETRIES, delay,
-                        str(e)[:100]
-                    )
-                    time.sleep(delay)
-                    last_exc = e
-                else:
-                    raise
-            except (ConnectionError, TimeoutError, OSError) as e:
-                if attempt < _SHEETS_MAX_RETRIES:
-                    delay = _SHEETS_BASE_DELAY * (2 ** attempt)
-                    logging.warning(
-                        "Sheets network error (attempt %d/%d), retrying in %ds: %s",
-                        attempt + 1, _SHEETS_MAX_RETRIES, delay,
-                        str(e)[:100]
-                    )
-                    time.sleep(delay)
-                    last_exc = e
-                else:
-                    raise
-        raise last_exc
-    return wrapper
-from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timezone, timedelta
 
 # ── Re-export from focused modules (backward compatible) ──
@@ -175,7 +106,7 @@ def now_mmt() -> datetime:
 
 BOT_VERSION = "2026.05.05-r1"   # Console double-booking conflict check (409 guard)
 
-__all__ = ['wb', 'MMT', 'now_mmt', 'BOT_VERSION', 'get_att_sh', 'get_booking_sh', 'fetch_console_status', 'create_booking', 'end_booking', 'get_salary_adv_sh', 'get_game_lib_sh', 'fetch_games', 'set_game_disc_count', 'get_console_games_sh', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'SALE_GAME_SELECT', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'SSD_MOVE_SSD', 'SSD_MOVE_GAME', 'SSD_MOVE_CONS', 'SSD_MOVE_FROM_CONS', 'SSD_MOVE_FROM_GAME', 'SSD_MOVE_TO_SSD', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'GAME_DETAIL_PICK', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_BALANCE', 'BTN_ADMIN', 'BTN_HELP', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_APPLY_COUPON', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_FOOD_SALE', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_MOVE_TO_CONSOLE', 'BTN_SSD_MOVE_TO_SSD', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']# Inline health-check server (stdlib only — no extra deps)
+__all__ = ['MMT', 'now_mmt', 'BOT_VERSION', 'fetch_console_status', 'create_booking', 'end_booking', 'fetch_games', 'set_game_disc_count', 'fetch_console_games', 'get_games_on_console', 'get_consoles_with_game', 'check_disc_session_conflict', 'add_console_game', 'remove_console_game', 'update_game_library_install', 'calc_duration', 'cancel_booking', 'add_console_to_setting', 'remove_console_from_setting', 'get_consoles_from_setting', 'MAIN_MENU', 'MEMBER', 'CONSOLE', 'MINS', 'FOOD_MENU', 'FOOD_QTY', 'CONFIRM_SUMMARY', 'DISCOUNT', 'KPAY_AMT', 'SALE_CONFIRM', 'MM_MENU', 'NM_NAME', 'NM_PHONE', 'NM_EMAIL', 'NM_ID', 'NM_AMT', 'NM_KPAY', 'NM_REFERRAL', 'NM_CONFIRM', 'NM_GIFT_PIN', 'TU_MEMBER', 'TU_AMT', 'TU_KPAY', 'TU_CONFIRM', 'MM_LOOKUP', 'STOCK_PIN', 'STOCK_MENU', 'STOCK_ITEM', 'STOCK_QTY', 'SI_ITEM', 'SI_QTY', 'SI_COST', 'SI_CART', 'SI_PAY', 'SI_CONFIRM', 'ATTEND_STAFF', 'ATTEND_LEAVE', 'ATTEND_LATE', 'ATTEND_DEDUCT', 'ADMIN_PIN', 'ADMIN_MENU', 'SI_PAY_SPLIT', 'SAL_ADV_STAFF', 'SAL_ADV_AMT', 'SAL_ADV_PAY', 'SAL_ADV_CONFIRM', 'BOOK_LINK', 'BOOK_CONSOLE', 'BOOK_MEMBER', 'CONSOLE_MENU', 'END_SESSION_SELECT', 'GAME_MENU', 'GAME_ADD_TITLE', 'GAME_ADD_PLATFORM', 'GAME_ADD_GENRE', 'GAME_ADD_STATUS', 'GAME_DEL_SELECT', 'CON_MGMT_MENU', 'CON_ADD_ID', 'CON_ADD_TYPE', 'CON_ADD_MULT', 'CON_DEL_SELECT', 'CON_EDIT_MULT_SELECT', 'CON_EDIT_MULT_VALUE', 'SESSION_SHORTFALL', 'SALE_GAME_SELECT', 'DS_MEMBER_IN_SESSION', 'DS_CONSOLE_IN_SESSION', 'BOOK_DUP_WARN', 'BOOK_GAME', 'BOOK_MINS', 'GAME_CHANGE_CONS', 'GAME_CHANGE_GAME', 'SBK_CONSOLE', 'SBK_CUST_NAME', 'SBK_DATE', 'SBK_TIME', 'SBK_DUR', 'SBK_GAME', 'SBK_CONFIRM', 'GINST_MENU', 'GINST_VIEW_CONS', 'GINST_ADD_CONS', 'GINST_ADD_GAME', 'GINST_ADD_TYPE', 'GINST_DEL_CONS', 'GINST_DEL_GAME', 'SSD_MENU', 'SSD_VIEW_SSD', 'SSD_ADD_SSD', 'SSD_ADD_GAME', 'SSD_ADD_TYPE', 'SSD_DEL_SSD', 'SSD_DEL_GAME', 'SSD_XFER_SSD', 'SSD_XFER_GAME', 'SSD_XFER_CONS', 'SSD_RET_CONS', 'SSD_RET_GAME', 'SSD_MOVE_SSD', 'SSD_MOVE_GAME', 'SSD_MOVE_CONS', 'SSD_MOVE_FROM_CONS', 'SSD_MOVE_FROM_GAME', 'SSD_MOVE_TO_SSD', 'DISC_SELECT', 'DISC_SET_QTY', 'FINANCE_MENU', 'OPEX_CAT', 'OPEX_DESC', 'OPEX_AMT', 'OPEX_ACCT', 'OPEX_PAY', 'OPEX_CONFIRM', 'ASSET_NAME', 'ASSET_CAT', 'ASSET_DATE', 'ASSET_COST', 'ASSET_QTY', 'ASSET_LIFE', 'ASSET_SALVAGE', 'ASSET_PAY', 'ASSET_CONFIRM', 'ASSET_DISPOSE_SEL', 'ASSET_DISPOSE_DATE', 'ASSET_DISPOSE_QTY', 'ASSET_DISPOSE_PROCEEDS', 'ASSET_DISPOSE_CONFIRM', 'PREPAID_DESC', 'PREPAID_CAT', 'PREPAID_AMT', 'PREPAID_ACCT', 'PREPAID_START', 'PREPAID_END', 'PREPAID_CONFIRM', 'ACCT_TRF_FROM', 'ACCT_TRF_TO', 'ACCT_TRF_AMT', 'ACCT_TRF_NOTE', 'ACCT_TRF_CONFIRM', 'PAY_VENDOR', 'PAY_DESC', 'PAY_AMT', 'PAY_DUE', 'PAY_ACCT', 'PAY_CONFIRM', 'REC_CUST', 'REC_DESC', 'REC_AMT', 'REC_DUE', 'REC_ACCT', 'REC_CONFIRM', 'FIN_REPORT_MENU', 'CAP_ACCT', 'CAP_AMT', 'CAP_CONFIRM', 'SHARE_NAME', 'SHARE_ROLE', 'SHARE_CAP', 'SHARE_OWN', 'SHARE_CONFIRM', 'PAY_SETTLE_LIST', 'PAY_SETTLE_ACCT', 'PAY_SETTLE_CONFIRM', 'REC_SETTLE_LIST', 'REC_SETTLE_ACCT', 'REC_SETTLE_CONFIRM', 'ADVPAY_PARTY', 'ADVPAY_DESC', 'ADVPAY_AMT', 'ADVPAY_ACCT', 'ADVPAY_DUE', 'ADVPAY_NOTE', 'ADVPAY_CONFIRM', 'ADVPAY_LIST', 'ADVPAY_SETTLE_CONFIRM', 'PROMO_SELECT', 'BUNDLE_FOC', 'REFERRAL_CODE', 'GAME_EDIT_SELECT', 'GAME_EDIT_FIELD', 'GAME_EDIT_VALUE', 'GAME_DETAIL_PICK', 'ADJUST_TIME', 'WL_MENU', 'BTN_BACK', 'BTN_BACK_MAIN', 'BTN_DONE', 'BTN_YES', 'BTN_SAVE', 'BTN_NEW_SALE', 'BTN_CANCEL', 'BTN_CONFIRM_SAVE', 'NAV_ROW', 'VALID_CONSOLES', 'BTN_DAILY_SALES', 'BTN_MEMBER_MGMT', 'BTN_TODAY_REPORT', 'BTN_STOCK_UPDATE', 'BTN_STAFF_KPI', 'BTN_PAYROLL', 'BTN_FINANCIAL_REPORT', 'BTN_BALANCE', 'BTN_ADMIN', 'BTN_HELP', 'BTN_ADMIN_ATTEND', 'BTN_ADMIN_PNL', 'BTN_ADMIN_CF', 'BTN_ADMIN_LIB', 'BTN_ADMIN_BOOK', 'BTN_ADMIN_SAL_ADV', 'BTN_PROMO_REPORTS', 'BTN_CONSOLE_STATUS', 'BTN_CONSOLE_BOOK', 'BTN_CONSOLES', 'BTN_START_SESSION', 'BTN_END_SESSION', 'BTN_STATUS_BOARD', 'BTN_GAME_LIB_MENU', 'BTN_CON_MANAGE', 'BTN_ADD_GAME', 'BTN_VIEW_GAMES', 'BTN_DEL_GAME', 'BTN_ADD_CONSOLE', 'BTN_LIST_CONSOLE', 'BTN_DEL_CONSOLE', 'BTN_YES_END', 'BTN_NO_BACK', 'BTN_SI_SPLIT', 'BTN_STOCK_OUT', 'BTN_STOCK_IN_M', 'BTN_INVENTORY_VIEW', 'BTN_SKIP_DISC', 'BTN_PROMO_APPLY', 'BTN_MANUAL_DISC', 'BTN_APPLY_COUPON', 'BTN_CASH_DOWN', 'BTN_TOPUP_SESSION', 'BTN_SKIP_SALES', 'BTN_FOOD_SALE', 'BTN_YES_END_SESSION', 'BTN_NO_RESELECT', 'BTN_BOOK_PROCEED', 'BTN_SKIP_TIMER', 'BTN_STAFF_BOOK', 'BTN_CANCEL_BOOKING', 'BTN_SBK_TODAY', 'BTN_SBK_TOMORROW', 'BTN_SBK_CUSTOM', 'BTN_SBK_SKIP_PHONE', 'BTN_SBK_SKIP_GAME', 'BTN_SBK_CONFIRM_BOOK', 'BTN_SBK_NEW', 'BTN_SBK_CONFIRMED', 'BTN_SBK_WAITLIST', 'BTN_WL_VIEW_WAITING', 'BTN_WL_VIEW_ALL', 'BTN_WL_NOTIFY_NEXT', 'BTN_WL_REFRESH', 'BTN_CONSOLE_INSTALL', 'BTN_GINST_VIEW', 'BTN_GINST_ADD', 'BTN_GINST_REMOVE', 'BTN_GINST_HDD', 'BTN_GINST_DISC', 'BTN_GINST_SSD', 'BTN_SKIP_GAME', 'BTN_CHANGE_GAME', 'BTN_SSD_MANAGE', 'BTN_SSD_VIEW', 'BTN_SSD_ADD', 'BTN_SSD_REMOVE', 'BTN_SSD_TRANSFER', 'BTN_SSD_RETURN', 'BTN_SSD_MOVE_TO_CONSOLE', 'BTN_SSD_MOVE_TO_SSD', 'BTN_SSD_T1', 'BTN_SSD_BLUE', 'BTN_SSD_GREY', 'BTN_DISC_RECORD', 'BTN_EDIT_GAME', 'BTN_FINANCE', 'BTN_FIN_OPEX', 'BTN_FIN_ASSET', 'BTN_FIN_PREPAID', 'BTN_FIN_TRANSFER', 'BTN_FIN_PAYABLE', 'BTN_FIN_RECEIVABLE', 'BTN_FIN_REPORT', 'BTN_FIN_SETUP', 'BTN_FIN_PNL', 'BTN_FIN_BS', 'BTN_FIN_ACCTS', 'BTN_FIN_DEPR', 'BTN_FIN_ASSET_DISPOSE', 'BTN_FIN_PROFIT_SHARE', 'BTN_FIN_CAPITAL', 'BTN_FIN_SHAREHOLDER', 'BTN_FIN_SETTLE_PAY', 'BTN_FIN_SETTLE_REC', 'BTN_FIN_ADVPAY', 'BTN_FIN_SETTLE_ADVPAY', 'BTN_FIN_BACK', 'STOCK_ACCESS_PIN', 'CUSTOMER_BOT_TOKEN', 'STAFF_NOTIFY_CHAT', 'N8N_SESSION_WEBHOOK', 'N8N_BOOKING_WEBHOOK', 'BTN_FIRST_PURCHASE', 'BTN_TOP_UP', 'BTN_CHECK_MEMBER', 'BTN_VIEW_RANKS', 'BTN_ASSIGN_REFERRAL', 'BTN_CONFIRM_ID', 'BTN_NM_CUSTOM', 'BTN_NM_GIFT', 'BTN_SKIP_PHONE', 'BTN_SKIP_EMAIL', 'BTN_SKIP_REFERRAL', 'BTN_CLEAR_CART', 'BTN_SI_ADD', 'BTN_SI_FINISH', 'next_voucher', 'fetch_members', 'fetch_attendance', 'save_attendance', 'fetch_staff', 'fetch_base_salaries', 'ensure_sheet_headers', 'fetch_promotions_cached', 'fetch_allowed_staff_ids', 'fetch_wallet_mins', 'fetch_base_rate', 'fetch_new_member_defaults', 'fetch_food_prices', 'fetch_food_costs', 'fetch_console_multiplier', 'fetch_rank_thresholds', 'fetch_member_total_spend', 'fetch_member_phone', 'fetch_member_data', 'fetch_referral_code', 'save_referral_code', 'fetch_balance_mins', 'fetch_member_effective_rate', 'update_member_effective_rate', 'build_member_rate_dict', 'fetch_member_rank_from_sheet', 'fetch_member_tier', 'get_member_rank', 'display_rank', 'RANK_EMOJI', 'rank_emoji', 'build_rank_bonus_lines', 'fetch_bonus_table', 'get_bonus_mins', 'next_member_row_no', 'next_write_row', 'next_member_id', 'fetch_rank_table_display', 'get_top_up_suggestion', 'today_str', 'step_hdr', 'RECEIPTS_DIR', 'save_receipt_json', 'get_receipt_url', 'get_receipt_kb', 'PAY_METHOD', 'PAY_AMOUNT', 'BTN_PAY_DONE', 'BTN_ADD_PAY', 'BTN_NO_MORE', 'BotState']# Inline health-check server (stdlib only — no extra deps)
 import os as _os, json as _json, time as _time, threading as _threading, logging as _logging
 from http.server import HTTPServer as _HTTPServer, BaseHTTPRequestHandler as _BaseHandler
 _HEALTH_LOG = _logging.getLogger("health")
@@ -277,212 +208,7 @@ def _clear_cache_prefix(prefix: str):
         for k in keys_to_remove:
             del _GLOBAL_CACHE[k]
 
-
 # ── Lazy Worksheet Proxy ──
-class _LazyWorksheet:
-    """Worksheet that connects lazily — only on first actual use."""
-    def __init__(self, name: str):
-        self._name = name
-        self._ws = None
-        self._lock = threading.Lock()
-    def _get(self):
-        if self._ws is None:
-            with self._lock:
-                if self._ws is None:  # double-check
-                    self._ws = wb.worksheet(self._name)
-        return self._ws
-    def __getattr__(self, name):
-        if name.startswith('_'):
-            raise AttributeError(name)
-        return getattr(self._get(), name)
-    def __iter__(self):
-        return iter(self._get())
-    def __len__(self):
-        return len(self._get())
-    def __getitem__(self, key):
-        return self._get()[key]
-    # gspread common methods
-    def get_all_values(self, *a, **kw):
-        return self._get().get_all_values(*a, **kw)
-    def get_all_records(self, *a, **kw):
-        return self._get().get_all_records(*a, **kw)
-    def col_values(self, *a, **kw):
-        return self._get().col_values(*a, **kw)
-    def row_values(self, *a, **kw):
-        return self._get().row_values(*a, **kw)
-    def acell(self, *a, **kw):
-        return self._get().acell(*a, **kw)
-    def cell(self, *a, **kw):
-        return self._get().cell(*a, **kw)
-    def range(self, *a, **kw):
-        return self._get().range(*a, **kw)
-    def update(self, *a, **kw):
-        return self._get().update(*a, **kw)
-    def update_cell(self, *a, **kw):
-        return self._get().update_cell(*a, **kw)
-    def append_row(self, *a, **kw):
-        return self._get().append_row(*a, **kw)
-    def batch_update(self, *a, **kw):
-        return self._get().batch_update(*a, **kw)
-    def format(self, *a, **kw):
-        return self._get().format(*a, **kw)
-    def find(self, *a, **kw):
-        return self._get().find(*a, **kw)
-    def findall(self, *a, **kw):
-        return self._get().findall(*a, **kw)
-    def title(self):
-        return self._name
-
-
-# ─────────────────────────────────────────
-#  SHEET AUTH
-# ─────────────────────────────────────────
-scope = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://spreadsheets.google.com/feeds",
-    "https://www.googleapis.com/auth/drive",
-]
-creds       = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
-gc          = gspread.authorize(creds)
-wb          = gc.open_by_key(os.environ["SHEET_ID"])
-sales_sh    = _LazyWorksheet("Sales_Daily")
-setting_sh  = _LazyWorksheet("Setting")
-member_sh   = _LazyWorksheet("Card_Wallet")
-stock_sh    = _LazyWorksheet("Stock_Out")
-stock_in_sh = _LazyWorksheet("Stock_In")
-topup_sh    = _LazyWorksheet("TopUp_Log")
-inv_sh      = _LazyWorksheet("Inventory")
-input_log_sh = _LazyWorksheet("Input_Log")
-
-# ─────────────────────────────────────────
-
-class RetryingWorksheet:
-    """Transparent wrapper around a gspread.Worksheet that applies automatic
-    retry-on-error for every gspread method call.
-
-    This is an alternative to monkey-patching gspread.Worksheet methods.
-    Instead of replacing class-level methods, you wrap individual Worksheet
-    instances.  Every attribute access that resolves to a gspread Worksheet
-    callable is automatically decorated with :func:`_sheets_retry`, giving you
-    the same exponential-backoff behaviour (429 / 500 / 503) without mutating
-    the upstream gspread class.
-
-    Usage::
-
-        ws = RetryingWorksheet(wb.worksheet("Sales_Daily"))
-        rows = ws.get_all_values()        # automatically retried on API errors
-        ws.update("A1", "hello")          # automatically retried on API errors
-
-    Cached wrapped methods ensure that repeated calls to the same method do
-    not create a new wrapper each time.
-
-    Attributes:
-        _wrapped (gspread.Worksheet): The real underlying Worksheet instance.
-        _cache (dict): Cache of already-wrapped method callables.
-    """
-
-    __slots__ = ("_wrapped", "_cache")
-
-    def __init__(self, worksheet):
-        self._wrapped = worksheet
-        self._cache: dict = {}
-
-    def __getattr__(self, name):
-        # Delegate to the underlying worksheet for everything not on the wrapper.
-        attr = getattr(self._wrapped, name)
-        if callable(attr):
-            # Only wrap gspread methods, not dunder or private helpers.
-            if name in self._cache:
-                return self._cache[name]
-            wrapped = _sheets_retry(attr)
-            self._cache[name] = wrapped
-            return wrapped
-        return attr
-
-    def __repr__(self):
-        return f"<RetryingWorksheet({self._wrapped!r})>"
-
-#  Apply retry wrapper to gspread Worksheet methods
-# ─────────────────────────────────────────
-_GSPREAD_METHODS_TO_WRAP = [
-    'get_all_values', 'get_all_records', 'col_values', 'row_values',
-    'append_row', 'append_rows', 'update', 'update_cell', 'update_cells',
-    'delete_rows', 'delete_columns', 'get', 'batch_get', 'batch_update',
-    'acell', 'cell', 'find', 'findall',
-]
-
-for _method_name in _GSPREAD_METHODS_TO_WRAP:
-    _orig = getattr(gspread.Worksheet, _method_name, None)
-    if _orig and not getattr(_orig, '_sheets_retry_wrapped', False):
-        _wrapped = _sheets_retry(_orig)
-        _wrapped._sheets_retry_wrapped = True
-        setattr(gspread.Worksheet, _method_name, _wrapped)
-
-# Also wrap Spreadsheet.add_worksheet
-if hasattr(gspread.Spreadsheet, 'add_worksheet'):
-    _orig_add = gspread.Spreadsheet.add_worksheet
-    if not getattr(_orig_add, '_sheets_retry_wrapped', False):
-        _wrapped_add = _sheets_retry(_orig_add)
-        _wrapped_add._sheets_retry_wrapped = True
-        gspread.Spreadsheet.add_worksheet = _wrapped_add
-
-logging.info("Google Sheets retry wrapper applied (max %d retries, backoff 1s/2s/4s)", _SHEETS_MAX_RETRIES)
-
-
-def _batch_update(ws, cells):
-    """Batch update multiple cells across worksheets in 1 API call.
-
-    cells: list of {"range": "SheetName!A1", "value": val}
-    Uses the spreadsheet from the given worksheet reference.
-    """
-    data = [{"range": r["range"], "values": [[r["value"]]]} for r in cells]
-    body = {"valueInputOption": "USER_ENTERED", "data": data}
-    try:
-        ws.spreadsheet.values_batch_update(body)
-    except Exception as e:
-        logging.error("Batch update failed: %s", e)
-
-
-def get_att_sh():
-    """Return (or create) the Attendance_Log worksheet."""
-    try:
-        return wb.worksheet("Attendance_Log")
-    except Exception:
-        sh = wb.add_worksheet("Attendance_Log", rows=200, cols=6)
-        sh.update("A1:E1", [["Month", "Staff", "Leave_Days", "Late_Count", "Late_Deduct_Ks"]])
-        return sh
-
-
-def get_input_log_sh():
-    """Return (or create) the Input_Log worksheet.
-    Columns: A=Timestamp, B=Staff_ID, C=Staff_Name, D=Msg_Type,
-             E=Input_Text, F=State, G=Voucher, H=Proc_ms, I=Flags
-    """
-    try:
-        return wb.worksheet("Input_Log")
-    except Exception:
-        sh = wb.add_worksheet("Input_Log", rows=1000, cols=9)
-        sh.update('A1:I1', [[
-            'Timestamp', 'Staff_ID', 'Staff_Name', 'Msg_Type',
-            'Input_Text', 'State', 'Voucher', 'Proc_ms', 'Flags'
-        ]])
-        return sh
-
-
-def get_booking_sh():
-    """Return (or create) the Console_Booking worksheet.
-    Columns: A=BookingID, B=Date, C=ConsoleID, D=MemberID,
-             E=StartTime, F=EndTime, G=Status, H=Staff, I=Notes
-    """
-    try:
-        return wb.worksheet("Console_Booking")
-    except Exception:
-        sh = wb.add_worksheet("Console_Booking", rows=1000, cols=9)
-        sh.update("A1:I1", [["BookingID", "Date", "ConsoleID", "MemberID",
-                              "StartTime", "EndTime", "Status", "Staff", "Notes"]])
-        return sh
-
-
 def fetch_console_status() -> list[dict]:
     """Return list of console dicts with live status.
     Reads cached console_multipliers for H/I/J info; Console_Booking for live sessions.
@@ -516,7 +242,7 @@ def fetch_console_status() -> list[dict]:
                     seen[norm] = True
                     deduped.append(item)
             return deduped
-        logging.warning("API api_fetch_console_status() failed, falling back to gspread")
+        logging.warning("API api_fetch_console_status() failed, no fallback")
     today = today_str()
     # Use cached console_multipliers if available, fallback to direct Sheets read
     cfg = _get_cfg()
@@ -566,7 +292,6 @@ def fetch_console_status() -> list[dict]:
         logging.exception("fetch_console_status: booking_overlay: %s", e)
     return consoles
 
-
 def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
     """Append a row to Console_Booking and return the BookingID.
     planned_end: optional planned end time (HH:MM) stored in col F so the
@@ -579,7 +304,7 @@ def create_booking(console_id: str, member_id: str, staff: str, notes: str = "",
             bk = result.get("data", {}).get("booking_id") or ""
             if bk:
                 return bk
-        logging.warning("API api_create_booking() failed, falling back to gspread")
+        logging.warning("API call failed")
     sh     = get_booking_sh()
     now    = now_mmt()
     date   = now.strftime("%-m/%-d/%Y")
@@ -590,14 +315,13 @@ def create_booking(console_id: str, member_id: str, staff: str, notes: str = "",
                   value_input_option="USER_ENTERED")
     return bk_id
 
-
 def end_booking(booking_id: str) -> bool:
     """Mark a booking as Done and fill EndTime. Returns True if found."""
     if _HAS_API:
         result = api_end_booking(booking_id)
         if result is not None:
             return True
-        logging.warning("API api_end_booking() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = get_booking_sh()
         rows = sh.get("A:G")  # OPT: range-restricted (A=ID through G=status)
@@ -610,28 +334,6 @@ def end_booking(booking_id: str) -> bool:
     except Exception as e:
         logging.exception("end_booking: %s", e)
     return False
-
-
-def get_salary_adv_sh():
-    """Return (or create) the Salary_Advance worksheet.
-    Columns: A=Date, B=Staff, C=Amount, D=Payment (Cash/KPay), E=Note
-    """
-    try:
-        return wb.worksheet("Salary_Advance")
-    except Exception:
-        sh = wb.add_worksheet("Salary_Advance", rows=500, cols=5)
-        sh.update("A1:E1", [["Date", "Staff", "Amount", "Payment", "Note"]])
-        return sh
-
-
-def get_game_lib_sh():
-    """Return the Game_Library worksheet (must already exist with correct layout).
-    Actual columns: A=No, B=Game Name, C=Final Status, D=Available Discs,
-                    E=In Use, F=C-01, G=C-02 ... (console checkboxes),
-                    Q=T7, R=SD1, S=SD2, T=Free Consoles, U=Installed_On
-    """
-    return wb.worksheet("Game_Library")
-
 
 def fetch_games() -> list[dict]:
     """Return all games from Game_Library sheet (cached 10 min).
@@ -654,7 +356,7 @@ def fetch_games() -> list[dict]:
                     "genre":      g.get("genre", ""),
                 })
             return mapped
-        logging.warning("API api_fetch_game_library() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         global _GAME_ROWS, _GAME_TS
         if not _GAME_ROWS or (time.time() - _GAME_TS) > _GAME_TTL:
@@ -700,7 +402,6 @@ def fetch_games() -> list[dict]:
     except Exception:
         return []
 
-
 def set_game_disc_count(game_title: str, count: int) -> bool:
     """Update column D (Available Discs) for a game row in Game_Library. Returns True on success."""
     global _GAME_ROWS, _GAME_TS
@@ -710,7 +411,7 @@ def set_game_disc_count(game_title: str, count: int) -> bool:
             _GAME_ROWS = None                   # invalidate cache
             _GAME_TS   = 0
             return True
-        logging.warning("API api_set_game_disc_count() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh = get_game_lib_sh()
         # GSheet fallback: find row by game title
@@ -728,19 +429,6 @@ def set_game_disc_count(game_title: str, count: int) -> bool:
         return True
     except Exception:
         return False
-
-
-def get_console_games_sh():
-    """Return (or create) the Console_Games worksheet.
-    Columns: A=Console_ID, B=Game_Title, C=Install_Type, D=Date, E=Notes
-    """
-    try:
-        return wb.worksheet("Console_Games")
-    except Exception:
-        sh = wb.add_worksheet("Console_Games", rows=1000, cols=5)
-        sh.update("A1:E1", [["Console_ID", "Game_Title", "Install_Type", "Date", "Notes"]])
-        return sh
-
 
 def fetch_console_games() -> list[dict]:
     """Return all console-game installation records (cached 5 min)."""
@@ -762,7 +450,7 @@ def fetch_console_games() -> list[dict]:
                     "notes":        "",
                 })
             return mapped
-        logging.warning("API api_fetch_console_games() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         global _CGAME_ROWS, _CGAME_TS
         if not _CGAME_ROWS or (time.time() - _CGAME_TS) > _CGAME_TTL:
@@ -786,7 +474,6 @@ def fetch_console_games() -> list[dict]:
     except Exception:
         return []
 
-
 def get_games_on_console(console_id: str) -> list[str]:
     """Return list of game titles installed on a specific console.
     Excludes 'Session' type records (session tracking) to avoid duplicates.
@@ -808,7 +495,7 @@ def get_games_on_console(console_id: str) -> list[str]:
                     seen.add(t)
                     titles.append(t)
             return titles
-        logging.warning("API api_get_games_on_console(console_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     seen = set()
     result = []
     for r in fetch_console_games():
@@ -821,7 +508,6 @@ def get_games_on_console(console_id: str) -> list[str]:
                 result.append(t)
     return result
 
-
 def get_consoles_with_game(game_title: str) -> list[str]:
     """Return list of console IDs that have a specific game installed."""
     if _HAS_API:
@@ -833,15 +519,12 @@ def get_consoles_with_game(game_title: str) -> list[str]:
             if isinstance(cons_raw, list):
                 return [r.get("console_id", "") for r in cons_raw if r.get("console_id")]
             return list(cons_raw) if isinstance(cons_raw, (list, set)) else []
-        logging.warning("API api_get_consoles_with_game(game_title) failed, falling back to gspread")
+        logging.warning("API call failed")
     gl = game_title.strip().lower()
     return [
         r["console_id"] for r in fetch_console_games()
         if r["game_title"].strip().lower() == gl
     ]
-
-
-
 
 def check_disc_session_conflict(game_name: str, bk_time: str) -> str:
     """Check if a disc game's copies are all in use at booking time (for staff bot).
@@ -955,7 +638,7 @@ def add_console_game(console_id: str, game_title: str, install_type: str, notes:
         if result is not None:
             _CGAME_ROWS = None   # invalidate cache
             return True
-        logging.warning("API api_add_console_game() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = get_console_games_sh()
         date = now_mmt().strftime("%-m/%-d/%Y")
@@ -966,7 +649,6 @@ def add_console_game(console_id: str, game_title: str, install_type: str, notes:
     except Exception:
         return False
 
-
 def remove_console_game(console_id: str, game_title: str) -> bool:
     """Remove a game installation record. Returns True if found and removed."""
     global _CGAME_ROWS
@@ -975,7 +657,7 @@ def remove_console_game(console_id: str, game_title: str) -> bool:
         if result is not None:
             _CGAME_ROWS = None   # invalidate cache
             return True
-        logging.warning("API api_remove_console_game() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = get_console_games_sh()
         rows = sh.get("A:B")  # OPT: range-restricted (A=console_id, B=game_title)
@@ -990,11 +672,9 @@ def remove_console_game(console_id: str, game_title: str) -> bool:
         logging.exception("remove_console_game: %s", e)
     return False
 
-
 def _norm_cid(cid: str) -> str:
     """Normalise console ID for comparison: remove spaces, uppercase. 'C - 01' → 'C-01'."""
     return cid.replace(" ", "").upper()
-
 
 def update_game_library_install(game_title: str, console_id: str, installed: bool) -> bool:
     """Set TRUE/FALSE in Game_Library for (game_title, console_id) intersection.
@@ -1005,7 +685,7 @@ def update_game_library_install(game_title: str, console_id: str, installed: boo
         result = api_update_game_library_install(game_title, console_id, installed)
         if result is not None:
             return True
-        logging.warning("API api_update_game_library_install() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = wb.worksheet("Game_Library")
         rows = sh.get("A:U")  # OPT: range-restricted read (A=No through U=metadata)
@@ -1048,7 +728,6 @@ def update_game_library_install(game_title: str, console_id: str, installed: boo
     except Exception:
         return False
 
-
 def calc_duration(start_time_str: str) -> tuple[int, str]:
     """Calculate elapsed minutes from start string. Returns (minutes, 'Xh Ym').
     Supports HH:MM and YYYY-MM-DD HH:MM:SS formats."""
@@ -1073,14 +752,13 @@ def calc_duration(start_time_str: str) -> tuple[int, str]:
     except Exception:
         return 0, "?"
 
-
 def cancel_booking(booking_id: str) -> bool:
     """Mark a booking as Cancelled. Returns True if found."""
     if _HAS_API:
         result = api_cancel_booking(booking_id)
         if result is not None:
             return True
-        logging.warning("API api_cancel_booking() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = get_booking_sh()
         rows = sh.get("A:G")  # OPT: range-restricted read (A=ID through G=status)
@@ -1092,14 +770,13 @@ def cancel_booking(booking_id: str) -> bool:
         logging.exception("cancel_booking: %s", e)
     return False
 
-
 def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bool:
     """Append a new console to Setting!H:J. Returns True on success."""
     if _HAS_API:
         result = api_add_console_to_setting(console_id, ctype, multiplier)
         if result is not None:
             return True
-        logging.warning("API api_add_console_to_setting() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         names    = setting_sh.col_values(8)      # includes header row
         next_row = len(names) + 1
@@ -1111,14 +788,13 @@ def add_console_to_setting(console_id: str, ctype: str, multiplier: float) -> bo
         logging.error("add_console_to_setting error: %s", e)
         return False
 
-
 def remove_console_from_setting(console_id: str) -> bool:
     """Clear a console row from Setting!H:J. Returns True if found."""
     if _HAS_API:
         result = api_remove_console_from_setting(console_id)
         if result is not None:
             return True
-        logging.warning("API api_remove_console_from_setting() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         names = setting_sh.col_values(8)
         for i, name in enumerate(names):
@@ -1130,15 +806,13 @@ def remove_console_from_setting(console_id: str) -> bool:
         logging.exception("remove_console_from_setting: %s", e)
     return False
 
-
-
 def update_console_multiplier(console_id: str, multiplier: float) -> bool:
     """Update multiplier for an existing console in Setting!J. Returns True on success."""
     if _HAS_API:
         result = api_update_console_multiplier(console_id, multiplier)
         if result is not None:
             return True
-        logging.warning("API api_update_console_multiplier() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         names = setting_sh.col_values(8)
         for i, name in enumerate(names):
@@ -1150,7 +824,6 @@ def update_console_multiplier(console_id: str, multiplier: float) -> bool:
     except Exception as e:
         logging.exception("update_console_multiplier: %s", e)
     return False
-
 
 def get_consoles_from_setting() -> list[dict]:
     """Return all consoles from Setting!H:J as list of dicts."""
@@ -1552,7 +1225,6 @@ GAME_DETAIL_PICK = BotState.GAME_DETAIL_PICK
 ADJUST_TIME = BotState.ADJUST_TIME
 WL_MENU = BotState.WL_MENU
 
-
 # ─────────────────────────────────────────
 #  BUTTON LABELS
 # ─────────────────────────────────────────
@@ -1731,8 +1403,6 @@ BTN_FIN_ADVPAY       = "💵 Advance"
 BTN_FIN_SETTLE_ADVPAY= "✅ Settle Adv"
 BTN_FIN_BACK         = "⬅️ Finance Menu"
 
-
-
 def _delete_session_game(console_id: str) -> None:
     """Remove any 'Session' type entry for a console via API."""
     try:
@@ -1782,7 +1452,6 @@ BTN_CLEAR_CART     = "🗑️ Clear Cart"
 BTN_SI_ADD         = "➕ Item ထပ်ထည့်"
 BTN_SI_FINISH      = "💳 Payment & Save All"
 
-
 # ═════════════════════════════════════════
 #  SHEET HELPERS
 # ═════════════════════════════════════════
@@ -1795,13 +1464,12 @@ def _int(val):
     except (ValueError, TypeError):
         return 0
 
-
 def next_voucher():
     if _HAS_API:
         result = api_next_voucher()
         if result is not None:
             return result
-        logging.warning("API api_next_voucher() failed, falling back to gspread")
+        logging.warning("API call failed")
     col = sales_sh.col_values(2)
     ids = [v for v in col[1:] if v.upper().startswith("V-")]
     if ids:
@@ -1811,16 +1479,14 @@ def next_voucher():
             pass
     return "V-001"
 
-
 def fetch_members():
     if _HAS_API:
         result = api_fetch_members()
         if result is not None:
             return result
-        logging.warning("API api_fetch_members() failed, falling back to gspread")
+        logging.warning("API call failed")
     raw = member_sh.col_values(2)[1:]
     return [m.strip() for m in raw if m.strip()]
-
 
 async def fetch_members_async():
     """Async version - hot-path: called on every sales flow and member management."""
@@ -1828,9 +1494,8 @@ async def fetch_members_async():
         result = await api_client.api_fetch_members_async()
         if result is not None:
             return result
-        logging.warning("API api_fetch_members_async failed, falling back to gspread")
+        logging.warning("API call failed")
     return await asyncio.to_thread(fetch_members)
-
 
 def fetch_attendance(month_str: str) -> dict[str, dict]:
     """Read Attendance_Log for given month. Returns {staff: {leave, late, deduct_per_late}}."""
@@ -1851,7 +1516,7 @@ def fetch_attendance(month_str: str) -> dict[str, dict]:
                         "deduct_per_late": 500,
                     }
             return converted
-        logging.warning("API api_fetch_attendance(month_str) failed, falling back to gspread")
+        logging.warning("API call failed")
     result: dict[str, dict] = {}
     try:
         rows = get_att_sh().get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
@@ -1872,14 +1537,13 @@ def fetch_attendance(month_str: str) -> dict[str, dict]:
         logging.warning("fetch_attendance: %s", e)
     return result
 
-
 def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int, deduct_per_late: int):
     """Insert or update row in Attendance_Log for given month+staff."""
     if _HAS_API:
         result = api_save_attendance(month_str, staff, leave_days, late_count, deduct_per_late)
         if result is not None:
             return
-        logging.warning("API api_save_attendance() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         sh   = get_att_sh()
         rows = sh.get("A:E")  # OPT: range-restricted read (A=month through E=deduct)
@@ -1891,20 +1555,18 @@ def save_attendance(month_str: str, staff: str, leave_days: int, late_count: int
     except Exception as e:
         logging.warning("save_attendance: %s", e)
 
-
 def fetch_staff() -> list[str]:
     """Read staff names from Setting!S2:S10 (col 19)."""
     if _HAS_API:
         result = api_fetch_staff()
         if result is not None:
             return result
-        logging.warning("API api_fetch_staff() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         vals = setting_sh.col_values(19)[1:]  # col S = index 19 (1-based)
         return [v.strip() for v in vals if v.strip()]
     except Exception:
         return ["Staff A", "Staff B"]
-
 
 def fetch_base_salaries() -> dict[str, int]:
     """Read base salaries from Setting!T2:T10 (col 20). Returns {staff_name: salary}."""
@@ -1919,7 +1581,7 @@ def fetch_base_salaries() -> dict[str, int]:
             elif isinstance(result, list):
                 sal_list = result
             return {s.get("staff_name", ""): int(float(s.get("base_salary", 0) or 0)) for s in sal_list if s.get("staff_name")}
-        logging.warning("API api_fetch_base_salaries() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         staff   = setting_sh.col_values(19)[1:]   # S = staff names
         salaries = setting_sh.col_values(20)[1:]  # T = base salaries
@@ -1933,7 +1595,6 @@ def fetch_base_salaries() -> dict[str, int]:
         return result
     except Exception:
         return {}
-
 
 def ensure_sheet_headers():
     """Write column headers for new staff-tracking columns (idempotent).
@@ -1958,7 +1619,6 @@ def ensure_sheet_headers():
     except Exception as e:
         logging.warning("ensure_sheet_headers: %s", e)
 
-
 # ─────────────────────────────────────────
 @dataclass
 class BotStateData:
@@ -1967,41 +1627,19 @@ class BotStateData:
     member_rows: list = field(default_factory=list)
     member_ts: float = 0.0
 
-
 #  BOT-LEVEL CONFIG + MEMBER CACHE
 #  Eliminates ~8 Sheets API calls per user interaction.
 #  Config refreshes every 5 min; member rows every 2 min.
 # ─────────────────────────────────────────
-_CFG:      dict  = {}
-_CFG_TS:   float = 0.0
-_CFG_TTL   = 300   # 5 minutes
-
-_MBR_ROWS: list  = []
-_MBR_TS:   float = 0.0
-_MBR_TTL   = 180   # 3 minutes
-
 # ── Console_Booking rows (live session overlay) ───────────────────────────────
-_BK_ROWS:    list  = []
-_BK_TS:      float = 0.0
-_BK_TTL      = 30          # 30 s  — active sessions change frequently
-
 # ── Game_Library rows ─────────────────────────────────────────────────────────
-_GAME_ROWS:  list  = []
-_GAME_TS:    float = 0.0
-_GAME_TTL    = 600         # 10 min
-
 # ── Console_Games rows ───────────────────────────────────────────────────────
-_CGAME_ROWS: list  = []
-_CGAME_TS:   float = 0.0
-_CGAME_TTL   = 300         # 5 min
-
 # ── Promotions cache (staff bot) ─────────────────────────────────────────────
 _PROMO_CACHE: list  = []
 _CACHE_LOCK = asyncio.Lock()  # async lock for background tasks
 _THREAD_CACHE_LOCK = _threading.Lock()  # thread-safe lock for sync cache fns
 _PROMO_TS:    float = 0.0
 _PROMO_TTL    = 120          # 2 min — promotions don't change often
-
 
 def fetch_promotions_cached() -> list:
     """Return active promotions list with 2-min cache to avoid repeated API calls."""
@@ -2054,12 +1692,12 @@ def fetch_promotions_cached() -> list:
                 _f.append(_p)
             normalized = _f
             return normalized
-        logging.warning("API api_fetch_promotions_cached() failed, falling back to gspread")
+        logging.warning("API call failed")
     global _PROMO_CACHE, _PROMO_TS
     with _THREAD_CACHE_LOCK:
         if _PROMO_CACHE and (time.time() - _PROMO_TS) < _PROMO_TTL:
             return _PROMO_CACHE
-    data = _replit_get("sheets/promotions")
+    data = {}
     promos = (data or {}).get("promotions", [])
     # Filter only active promos
     from datetime import datetime as _fdt2
@@ -2082,185 +1720,6 @@ def fetch_promotions_cached() -> list:
         _PROMO_TS    = time.time()
     return promos
 
-
-
-def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """PATCH JSON to API server. Returns parsed response dict or None on error."""
-    base = _api_base()
-    if not base:
-        return None
-    try:
-        import urllib.request as _req
-        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        req = _req.Request(
-            f"{base}/api/{path}",
-            data=data,
-            method="PATCH",
-            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
-        )
-        with _req.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except Exception as e:
-        logging.warning("API PATCH /%s failed: %s", path, e)
-        return None
-
-def _cfg_fresh() -> bool:
-    with _THREAD_CACHE_LOCK:
-        return bool(_CFG) and (time.time() - _CFG_TS) < _CFG_TTL
-
-
-def _replit_get(path: str, timeout: int = 8):
-    """GET JSON from API server. Returns parsed dict/list or safe empty fallback.
-
-    Never returns None — callers can safely iterate/access the result.
-    * List-like endpoints (bookings, waitlist, consoles, inventory, etc.) → []
-    * Dict-like endpoints (sheets/config, finance, etc.) → {}
-    """
-    # Heuristic: endpoints whose name suggests a list return type
-    _list_keywords = (
-        "bookings", "waitlist", "console", "inventory",
-        "staff", "games", "members", "logs", "attendance",
-        "accounts", "payments", "salary", "promotions",
-    )
-    # sheets/ endpoints always return dicts; only raw resource paths return lists
-    is_list_path = (
-        not path.startswith("sheets/")
-        and not path.startswith("finance/")
-        and any(kw in path for kw in _list_keywords)
-    )
-    fallback = [] if is_list_path else {}
-
-    base = _api_base()
-    if not base:
-        logging.warning("API base not configured — returning %s", type(fallback).__name__)
-        return fallback
-    try:
-        import urllib.request as _req
-        _rg_req = _req.Request(f"{base}/api/{path}", headers={"X-API-Key": _API_KEY})
-        with _req.urlopen(_rg_req, timeout=timeout) as resp:
-            data = json.loads(resp.read().decode())
-            if data is None:
-                logging.warning("API GET /%s returned null — returning %s", path, type(fallback).__name__)
-                return fallback
-            # Auto-unwrap {"data": [...], "success": true} envelope for list paths
-            if is_list_path and isinstance(data, dict) and "data" in data:
-                inner = data["data"]
-                if isinstance(inner, list):
-                    return inner
-                if isinstance(inner, dict):
-                    # Try common list keys inside data
-                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                        if _list_key in inner and isinstance(inner[_list_key], list):
-                            return inner[_list_key]
-                    # Single-item dict (e.g. {"booking": {...}}) — return inner
-                    return inner
-            return data
-    except Exception as e:
-        logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
-        return fallback
-
-def _replit_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """POST JSON to API server. Returns parsed response dict or None on error."""
-    base = _api_base()
-    if not base:
-        return None
-    try:
-        import urllib.request as _req
-        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        req = _req.Request(
-            f"{base}/api/{path}",
-            data=data,
-            method="POST",
-            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
-        )
-        with _req.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except Exception as e:
-        logging.warning("API POST /%s failed (payload keys: %s): %s", path, list(payload.keys()) if payload else [], e)
-        return None
-
-
-def _replit_delete(path: str, timeout: int = 10) -> dict | None:
-    """DELETE request to API server. Returns parsed response dict or None on error."""
-    base = _api_base()
-    if not base:
-        return None
-    try:
-        import urllib.request as _req
-        import urllib.parse
-        path_clean = path.lstrip("/")
-        path_encoded = "/".join(urllib.parse.quote(seg, safe="") for seg in path_clean.split("/"))
-        req = _req.Request(
-            f"{base}/api/{path_encoded}",
-            method="DELETE",
-            headers={"X-API-Key": _API_KEY},
-        )
-        with _req.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except Exception as e:
-        logging.warning("API DELETE /%s failed: %s", path, e)
-        return None
-
-
-def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
-    """PUT JSON to API server. Returns parsed response dict or None on error."""
-    base = _api_base()
-    if not base:
-        return None
-    try:
-        import urllib.request as _req
-        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        req = _req.Request(
-            f"{base}/api/{path}",
-            data=data,
-            method="PUT",
-            headers={"Content-Type": "application/json", "X-API-Key": _API_KEY},
-        )
-        with _req.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except Exception as e:
-        logging.warning("API PUT /%s failed: %s", path, e)
-        return None
-
-def _load_cfg() -> None:
-    global _CFG, _CFG_TS
-    data = _replit_get("sheets/config")
-    # API returns {"config": {...}} — unwrap nested config dict
-    cfg = data.get("config", data) if isinstance(data, dict) else data
-    if cfg and isinstance(cfg, dict) and "base_rate" in cfg:
-        with _THREAD_CACHE_LOCK:
-            _CFG    = cfg
-            _CFG_TS = time.time()
-        logging.info("Config cache refreshed (base_rate=%s, keys=%d)", cfg.get("base_rate"), len(cfg))
-
-
-def _get_cfg() -> dict:
-    if not _cfg_fresh():
-        _load_cfg()
-    return _CFG
-
-
-def _mbr_fresh() -> bool:
-    with _THREAD_CACHE_LOCK:
-        return bool(_MBR_ROWS) and (time.time() - _MBR_TS) < _MBR_TTL
-
-
-def _load_members() -> None:
-    global _MBR_ROWS, _MBR_TS
-    try:
-        _MBR_ROWS = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
-        with _THREAD_CACHE_LOCK:
-            _MBR_TS   = time.time()
-    except Exception as e:
-        logging.warning("Member cache refresh failed: %s", e)
-
-
-def _get_member_rows() -> list:
-    if not _mbr_fresh():
-        _load_members()
-    return _MBR_ROWS
-
-
 async def _bg_cache_refresh() -> None:
     """Background asyncio task — refresh config + member cache every 3 min."""
     while True:
@@ -2272,7 +1731,6 @@ async def _bg_cache_refresh() -> None:
             logging.info("Background cache refresh done")
         except Exception as e:
             logging.warning("Background cache refresh error: %s", e)
-
 
 # --- Staff Whitelist: dynamic from Google Sheets Setting!B30 ---
 _STAFF_IDS:     set[int] = set()
@@ -2286,7 +1744,7 @@ def fetch_allowed_staff_ids() -> set[int]:
             if isinstance(result, list):
                 return set(result)
             return set(result.get("data", []))
-        logging.warning("API api_fetch_allowed_staff_ids() failed, falling back to gspread")
+        logging.warning("API call failed")
     # Return allowed staff Telegram user IDs from Setting!B30 (comma-separated).
     # Falls back to hardcoded defaults if the cell is empty or unreadable.
     # Cached for 5 minutes.
@@ -2310,7 +1768,6 @@ def fetch_allowed_staff_ids() -> set[int]:
     _STAFF_IDS_TS = time.time()
     return fallback
 
-
 async def fetch_allowed_staff_ids_async() -> set[int]:
     """Async version - hot-path: called on every main menu access."""
     if _HAS_API:
@@ -2319,22 +1776,20 @@ async def fetch_allowed_staff_ids_async() -> set[int]:
             if isinstance(result, list):
                 return set(result)
             return set(result.get("data", []))
-        logging.warning("API api_fetch_allowed_staff_ids_async() failed, falling back to gspread")
+        logging.warning("API call failed")
     # Fallback to sync logic (wrapped in thread to avoid blocking)
     return await asyncio.to_thread(fetch_allowed_staff_ids)
-
 
 def fetch_wallet_mins(member_id):
     if _HAS_API:
         result = api_fetch_wallet_mins(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_wallet_mins(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     for row in _get_member_rows()[1:]:
         if len(row) > 1 and row[1].strip() == member_id.strip():
             return _int(row[7]) if len(row) > 7 and row[7].strip() else None
     return None
-
 
 async def fetch_wallet_mins_async(member_id):
     """Async version - hot-path: called on every sales flow."""
@@ -2342,21 +1797,19 @@ async def fetch_wallet_mins_async(member_id):
         result = await api_client.api_fetch_wallet_mins_async(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_wallet_mins_async failed, falling back to gspread")
+        logging.warning("API call failed")
     return await asyncio.to_thread(fetch_wallet_mins, member_id)
-
 
 def fetch_base_rate():
     if _HAS_API:
         result = api_fetch_base_rate()
         if result is not None:
             return result
-        logging.warning("API api_fetch_base_rate() failed, falling back to gspread")
+        logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("base_rate"):
         return cfg["base_rate"]
     return _int(setting_sh.cell(2, 2).value)
-
 
 async def fetch_base_rate_async():
     """Async version - hot-path: called on every sales flow."""
@@ -2364,9 +1817,8 @@ async def fetch_base_rate_async():
         result = await api_client.api_fetch_base_rate_async()
         if result is not None:
             return result
-        logging.warning("API api_fetch_base_rate_async failed, falling back to gspread")
+        logging.warning("API call failed")
     return await asyncio.to_thread(fetch_base_rate)
-
 
 def fetch_new_member_defaults():
     """Return (card_price, base_mins) from Setting!B20 and Setting!B21."""
@@ -2377,7 +1829,7 @@ def fetch_new_member_defaults():
             if isinstance(result, dict):
                 return result.get("card_price", 0), result.get("base_mins", 0)
             return result
-        logging.warning("API api_fetch_new_member_defaults() failed, falling back to gspread")
+        logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("new_member_card_price") is not None:
         return cfg["new_member_card_price"], cfg.get("new_member_base_mins", 0)
@@ -2388,23 +1840,21 @@ def fetch_new_member_defaults():
     except Exception:
         return 0, 0
 
-
 def fetch_food_prices():
     if _HAS_API:
         result = api_fetch_food_prices()
         if result is not None and result:
             return result
         if result is not None and not result:
-            logging.warning("API api_fetch_food_prices() returned empty data, falling back to gspread")
+            logging.warning("API call failed")
         else:
-            logging.warning("API api_fetch_food_prices() failed, falling back to gspread")
+            logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("food_prices"):
         return dict(cfg["food_prices"])
     names  = setting_sh.col_values(4)[1:]
     prices = setting_sh.col_values(5)[1:]
     return {n.strip(): _int(p) for n, p in zip(names, prices) if n and p}
-
 
 async def fetch_food_prices_async():
     """Async version - hot-path: called on every sales flow."""
@@ -2413,11 +1863,10 @@ async def fetch_food_prices_async():
         if result is not None and result:
             return result
         if result is not None and not result:
-            logging.warning("API api_fetch_food_prices_async returned empty data, falling back to gspread")
+            logging.warning("API call failed")
         else:
-            logging.warning("API api_fetch_food_prices_async failed, falling back to gspread")
+            logging.warning("API call failed")
     return await asyncio.to_thread(fetch_food_prices)
-
 
 def fetch_food_costs():
     if _HAS_API:
@@ -2425,16 +1874,15 @@ def fetch_food_costs():
         if result is not None and result:
             return result
         if result is not None and not result:
-            logging.warning("API api_fetch_food_costs() returned empty data, falling back to gspread")
+            logging.warning("API call failed")
         else:
-            logging.warning("API api_fetch_food_costs() failed, falling back to gspread")
+            logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("food_costs"):
         return dict(cfg["food_costs"])
     names = setting_sh.col_values(4)[1:]
     costs = setting_sh.col_values(6)[1:]
     return {n.strip(): (_int(c) if str(c).strip() else 0) for n, c in zip(names, costs) if n.strip()}
-
 
 async def fetch_food_costs_async():
     """Async version - hot-path: called on every sales flow."""
@@ -2443,18 +1891,17 @@ async def fetch_food_costs_async():
         if result is not None and result:
             return result
         if result is not None and not result:
-            logging.warning("API api_fetch_food_costs_async returned empty data, falling back to gspread")
+            logging.warning("API call failed")
         else:
-            logging.warning("API api_fetch_food_costs_async failed, falling back to gspread")
+            logging.warning("API call failed")
     return await asyncio.to_thread(fetch_food_costs)
-
 
 def fetch_console_multiplier(console_id):
     if _HAS_API:
         result = api_fetch_console_multiplier(console_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_console_multiplier(console_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     cfg = _get_cfg()
     mults = cfg.get("console_multipliers", {})
     if mults:
@@ -2474,23 +1921,21 @@ def fetch_console_multiplier(console_id):
         return 1.2
     return 1.0
 
-
 async def fetch_console_multiplier_async(console_id):
     """Async version - hot-path: called on every sales flow."""
     if _HAS_API:
         result = await api_client.api_fetch_console_multiplier_async(console_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_console_multiplier_async failed, falling back to gspread")
+        logging.warning("API call failed")
     return await asyncio.to_thread(fetch_console_multiplier, console_id)
-
 
 def fetch_rank_thresholds():
     if _HAS_API:
         result = api_fetch_rank_thresholds()
         if result is not None:
             return _int(result.get("master_threshold", 0)), _int(result.get("immortal_threshold", 0))
-        logging.warning("API api_fetch_rank_thresholds() failed, falling back to gspread")
+        logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("master_threshold") is not None:
         return _int(cfg["master_threshold"]), _int(cfg.get("immortal_threshold", 0))
@@ -2501,14 +1946,13 @@ def fetch_rank_thresholds():
     except Exception:
         return 0, 0
 
-
 def fetch_member_total_spend(member_id):
     """Return member's ranking net spend (Col F) — uses cached member rows."""
     if _HAS_API:
         result = api_fetch_member_data(member_id)
         if result is not None:
             return result.get("net_spend", 0)
-        logging.warning("API api_fetch_member_data failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2517,14 +1961,13 @@ def fetch_member_total_spend(member_id):
         logging.exception("fetch_member_total_spend: %s", e)
     return 0
 
-
 def fetch_member_phone(member_id):
     """Return phone (Col D) — uses cached member rows."""
     if _HAS_API:
         result = api_fetch_member_data(member_id)
         if result is not None:
             return result.get("phone", "-")
-        logging.warning("API api_fetch_member_data failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2532,7 +1975,6 @@ def fetch_member_phone(member_id):
     except Exception as e:
         logging.exception("fetch_member_phone: %s", e)
     return "-"
-
 
 def fetch_member_data(member_id):
     """Single Card_Wallet read (cached) returning all commonly-needed member fields.
@@ -2543,7 +1985,7 @@ def fetch_member_data(member_id):
         result = api_fetch_member_data(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_member_data(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2575,7 +2017,7 @@ def fetch_referral_code(member_id: str) -> str:
         result = api_fetch_referral_code(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_referral_code(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
         for row in rows[1:]:
@@ -2603,14 +2045,13 @@ def save_referral_code(member_id: str, code: str) -> bool:
         logging.error("save_referral_code failed for %s: %s", member_id, e)
     return False
 
-
 def fetch_balance_mins(member_id: str) -> int:
     """Read current wallet balance (minutes) from Card_Wallet column H — bypasses cache (must be live)."""
     if _HAS_API:
         result = api_fetch_balance_mins(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_balance_mins(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         rows = member_sh.get("A:H")  # OPT: range-restricted read (A=row_no through H=wallet_mins)
         for row in rows[1:]:
@@ -2619,7 +2060,6 @@ def fetch_balance_mins(member_id: str) -> int:
     except Exception as e:
         logging.exception("fetch_balance_mins: %s", e)
     return 0
-
 
 def fetch_member_effective_rate(member_id: str) -> float:
     """Read stored per-member effective rate from Card_Wallet col L."""
@@ -2630,7 +2070,7 @@ def fetch_member_effective_rate(member_id: str) -> float:
             if isinstance(result, dict):
                 return float(result.get("effective_rate", 0.0) or 0.0)
             return float(result) if result else 0.0
-        logging.warning("API api_fetch_member_effective_rate(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2640,7 +2080,6 @@ def fetch_member_effective_rate(member_id: str) -> float:
     except Exception as e:
         logging.warning("fetch_member_effective_rate %s: %s", member_id, e)
     return 0.0
-
 
 def update_member_effective_rate(member_id: str, new_rate: float) -> None:
     """Write per-member effective rate to Card_Wallet col L (1-based col 12)."""
@@ -2657,14 +2096,13 @@ def update_member_effective_rate(member_id: str, new_rate: float) -> None:
     except Exception as e:
         logging.warning("update_member_effective_rate %s: %s", member_id, e)
 
-
 def build_member_rate_dict() -> dict[str, float]:
     """Return {member_id: effective_rate} for all members with a stored rate in col L."""
     if _HAS_API:
         result = api_build_member_rate_dict()
         if result is not None:
             return result
-        logging.warning("API api_build_member_rate_dict() failed, falling back to gspread")
+        logging.warning("API call failed")
     result: dict[str, float] = {}
     try:
         for row in _get_member_rows()[1:]:
@@ -2680,14 +2118,13 @@ def build_member_rate_dict() -> dict[str, float]:
         logging.warning("build_member_rate_dict: %s", e)
     return result
 
-
 def fetch_member_rank_from_sheet(member_id):
     """Read the member's rank label directly from Card_Wallet Column G (cached)."""
     if _HAS_API:
         result = api_fetch_member_data(member_id)
         if result is not None:
             return result.get("rank_raw", "Warrior")
-        logging.warning("API api_fetch_member_data failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2701,14 +2138,13 @@ def fetch_member_rank_from_sheet(member_id):
         logging.exception("fetch_member_rank_from_sheet: %s", e)
     return "New Member"
 
-
 def fetch_member_tier(member_id: str) -> str:
     """Return the member's current tier label from Card_Wallet Column G (cached)."""
     if _HAS_API:
         result = api_fetch_member_tier(member_id)
         if result is not None:
             return result
-        logging.warning("API api_fetch_member_tier(member_id) failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         for row in _get_member_rows()[1:]:
             if len(row) > 1 and row[1].strip() == member_id.strip():
@@ -2717,7 +2153,6 @@ def fetch_member_tier(member_id: str) -> str:
     except Exception as e:
         logging.exception("fetch_member_tier: %s", e)
     return "New Member"
-
 
 def get_member_rank(total_spend, master_thresh, immortal_thresh):
     """Return rank label based on net Top-Up spend (Column E).
@@ -2729,19 +2164,15 @@ def get_member_rank(total_spend, master_thresh, immortal_thresh):
         return "Master"
     return "Warrior"
 
-
 def display_rank(rank):
     """Normalise rank label for display — 'New Member' maps to 'Warrior'
     since all registered members hold at least Warrior status."""
     return "Warrior" if rank in ("New Member", "", None) else rank
 
-
 RANK_EMOJI = {"Warrior": "⚔️", "Master": "🏅", "Immortal": "💎"}
-
 
 def rank_emoji(rank):
     return RANK_EMOJI.get(display_rank(rank), "⚔️")
-
 
 def build_rank_bonus_lines(rank, bonus_table):
     """Return formatted lines showing each bonus tier for the member's rank."""
@@ -2754,7 +2185,6 @@ def build_rank_bonus_lines(rank, bonus_table):
         if threshold > 0:
             lines.append(f"  • {threshold:,} Ks  →  +{bonus} mins")
     return lines
-
 
 def fetch_bonus_table():
     """Fetch bonus table from cache (or Setting!O2:R5 as fallback).
@@ -2775,7 +2205,7 @@ def fetch_bonus_table():
                         converted.append((t, w, m, i))
                 return converted
             return result
-        logging.warning("API api_fetch_bonus_table() failed, falling back to gspread")
+        logging.warning("API call failed")
     cfg = _get_cfg()
     if cfg.get("bonus_table"):
         return [tuple(row) for row in cfg["bonus_table"]]
@@ -2798,7 +2228,6 @@ def fetch_bonus_table():
     except Exception:
         return []
 
-
 def get_bonus_mins(rank, amount, bonus_table):
     """Return bonus mins for the given rank and top-up amount.
     Finds the row with the highest threshold that is still <= amount."""
@@ -2814,7 +2243,6 @@ def get_bonus_mins(rank, amount, bonus_table):
             matched_bonus     = (w, m, i)[col - 1]
     return matched_bonus
 
-
 def next_member_row_no():
     """Return the next sequential row number for Card_Wallet Column A (No).
     Reads all values in col A, finds the last integer, and returns +1."""
@@ -2822,7 +2250,7 @@ def next_member_row_no():
         result = api_next_member_row_no()
         if result is not None:
             return result
-        logging.warning("API api_next_member_row_no() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         col_a = member_sh.col_values(1)[1:]   # skip header
         nums  = []
@@ -2835,7 +2263,6 @@ def next_member_row_no():
     except Exception:
         return 1
 
-
 def next_write_row(worksheet):
     """Return the next empty row number for a worksheet.
     Uses Column B (always written by the bot, never a formula) as the anchor
@@ -2845,14 +2272,13 @@ def next_write_row(worksheet):
         try:
             sheet_name = getattr(worksheet, 'title', '')
             if sheet_name:
-                result = _replit_get(f"sheets/next-row/{sheet_name}")
+                result = {}
                 if isinstance(result, dict) and "row" in result:
                     return int(result["row"])
         except Exception:
             pass
     # Fallback to GSheet
-    return len(worksheet.col_values(2)) + 1
-
+    return len([]) + 1
 
 def next_member_id():
     """Auto-increment the last member ID in Card_Wallet Column B.
@@ -2862,7 +2288,7 @@ def next_member_id():
         result = api_next_member_id()
         if result is not None:
             return result
-        logging.warning("API api_next_member_id() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         ids = [v.strip() for v in member_sh.col_values(2)[1:] if v.strip()]
         if not ids:
@@ -2878,7 +2304,6 @@ def next_member_id():
     except Exception:
         return "PSV_A_001"
 
-
 def fetch_rank_table_display():
     """Fetch Setting!O1:R5 and return a clean English list grouped by rank.
     Row 1 = headers, rows 2-5 = data tiers."""
@@ -2886,7 +2311,7 @@ def fetch_rank_table_display():
         result = api_fetch_rank_table_display()
         if result is not None:
             return result
-        logging.warning("API api_fetch_rank_table_display() failed, falling back to gspread")
+        logging.warning("API call failed")
     try:
         rows = setting_sh.get("O1:R5")
         if not rows or len(rows) < 2:
@@ -2923,7 +2348,6 @@ def fetch_rank_table_display():
     except Exception:
         return "_(fetch error)_"
 
-
 def get_top_up_suggestion(rank, bonus_table):
     """Return (suggested_amount, bonus_mins) for the given rank — highest bonus tier."""
     rank_col = {"Warrior": 1, "Master": 2, "Immortal": 3}
@@ -2936,10 +2360,8 @@ def get_top_up_suggestion(rank, bonus_table):
             best_amt   = threshold
     return best_amt, best_bonus
 
-
 def today_str():
     return now_mmt().strftime("%-m/%-d/%Y")
-
 
 def step_hdr(step: int, total: int, label: str) -> str:
     """Return a Form Wizard progress header for every prompt message."""
@@ -2947,20 +2369,11 @@ def step_hdr(step: int, total: int, label: str) -> str:
     empty  = "▱" * (total - step)
     return f"*{label}*\n`{filled}{empty}` _({step}/{total})_\n━━━━━━━━━━━━━━━━━━\n"
 
-
 # ─────────────────────────────────────────
 #  RECEIPT HELPERS
 # ─────────────────────────────────────────
 RECEIPTS_DIR = Path(__file__).parent / "receipts"
 RECEIPTS_DIR.mkdir(exist_ok=True)
-
-
-_API_KEY = os.environ.get("API_KEY", "")
-
-def _api_base() -> str:
-    """Return the API server base URL (no trailing slash), or empty string if not configured."""
-    return os.environ.get("API_BASE_URL", "").rstrip("/")
-
 
 def save_receipt_json(voucher_id: str, data: dict) -> None:
     """Persist receipt data locally and push to API server."""
@@ -2990,7 +2403,6 @@ def save_receipt_json(voucher_id: str, data: dict) -> None:
     except Exception as e:
         logging.warning("Failed to push receipt to API server: %s", e)
 
-
 def get_receipt_url(voucher_id: str) -> str:
     """Return the public receipt URL or empty string if API_BASE_URL not set."""
     import os
@@ -3002,7 +2414,6 @@ def get_receipt_url(voucher_id: str) -> str:
     safe_id = voucher_id.replace("/", "-").replace("\\", "-")
     return f"{base}/api/receipt/{safe_id}"
 
-
 def get_receipt_kb(voucher_id: str):
     """Return InlineKeyboardMarkup with a 🧾 Print Receipt button, or None if no domain set."""
     url = get_receipt_url(voucher_id)
@@ -3010,10 +2421,7 @@ def get_receipt_kb(voucher_id: str):
         return None
     return InlineKeyboardMarkup([[InlineKeyboardButton("🧾 Print Receipt", url=url)]])
 
-
-
 # ── Import all handlers so they're accessible from bot package ──
-
 
 # ── PIN-then-action wrapper ──
 async def _pin_then(after: str, label: str, update, context):
@@ -3026,24 +2434,7 @@ async def _pin_then(after: str, label: str, update, context):
     )
     return ADMIN_PIN
 
-
 # ── Payment Methods Fetcher ──
-def fetch_payment_methods():
-    """Return list of payment method options, with API-backed fallback."""
-    try:
-        data = _replit_get("sheets/payment-methods")
-        if isinstance(data, dict) and "methods" in data:
-            return data["methods"]
-        if isinstance(data, list):
-            return data
-    except Exception:
-        pass
-    return list(PAY_METHODS)
-
-
-# constants imported by bot package itself
-# helpers imported by bot package itself
-# Handlers imported lazily to break circular dependency
 _HANDLER_MODULES = {}
 def _get_handler(hname):
     if hname not in _HANDLER_MODULES:
@@ -3051,7 +2442,6 @@ def _get_handler(hname):
         _HANDLER_MODULES[hname] = importlib.import_module(f"bot.handlers.{hname}")
     return _HANDLER_MODULES[hname]
 # main() is imported from bot.app directly by main.py — avoid circular import
-
 
 # ── Lazy handler function exports (break circular import) ──
 def cmd_cancel(*args, **kwargs):
@@ -3095,149 +2485,14 @@ def prompt_end_session(*args, **kwargs):
 def show_stock_menu(*args, **kwargs):
     return _get_handler("stock").show_stock_menu(*args, **kwargs)
 
-
 # ═══════════════════════════════════════════════
 #  ASYNC API HELPERS (True async, no thread pool)
 # ═══════════════════════════════════════════════
-
-async def _replit_get_async(path: str, timeout: int = 8):
-    """Async GET — non-blocking version of _replit_get.
-    Same fallback logic (list vs dict heuristic) for handler backward compat.
-    """
-    _list_keywords = (
-        "bookings", "waitlist", "console", "inventory",
-        "staff", "games", "members", "logs", "attendance",
-        "accounts", "payments", "salary", "promotions",
-    )
-    # If path has a numeric ID segment (e.g., "bookings/186"), it's a single resource, not a list
-    _has_id = any(seg.isdigit() for seg in path.split("/"))
-    is_list_path = (
-        not path.startswith("sheets/")
-        and not path.startswith("finance/")
-        and any(kw in path for kw in _list_keywords)
-        and not _has_id
-    )
-    fallback = [] if is_list_path else {}
-    try:
-        data = await _api_call_async("GET", path, timeout=timeout)
-        if data is None:
-            return fallback
-        if is_list_path and isinstance(data, dict):
-            # _api_call_async strips {success:, data:} envelope — check both cases
-            if "data" in data:
-                inner = data["data"]
-                if isinstance(inner, list):
-                    return [x for x in inner if isinstance(x, dict)]
-                if isinstance(inner, dict):
-                    for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                        if _list_key in inner and isinstance(inner[_list_key], list):
-                            return [x for x in inner[_list_key] if isinstance(x, dict)]
-                    return inner
-            # Already-unwrapped: data itself may contain list-like keys
-            for _list_key in ("bookings", "items", "members", "consoles", "games", "waitlist"):
-                if _list_key in data and isinstance(data[_list_key], list):
-                    return [x for x in data[_list_key] if isinstance(x, dict)]
-            # Dict without list-like keys — return empty list (not the dict itself)
-            logging.warning("API GET /%s returned dict without list keys — returning []", path)
-            return []
-        # If data is a list, filter to only dicts for list_path safety
-        if is_list_path and isinstance(data, list):
-            filtered = [x for x in data if isinstance(x, dict)]
-            if len(filtered) != len(data):
-                logging.warning("API GET /%s list had %d non-dict elements filtered", path, len(data) - len(filtered))
-            return filtered
-        # For non-list paths (single-resource): unwrap wrappers like {"booking": {...}}
-        if isinstance(data, dict):
-            for _unwrap_key in ("booking", "member", "console", "game", "item", "promotion"):
-                if _unwrap_key in data and isinstance(data[_unwrap_key], dict):
-                    return data[_unwrap_key]
-        return data
-    except Exception as e:
-        logging.warning("API GET /%s failed: %s — returning %s", path, e, type(fallback).__name__)
-        return fallback
-
-async def _replit_post_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async POST — non-blocking version of _replit_post."""
-    try:
-        return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API POST /%s failed: %s", path, e)
-        return None
-
-async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
-    """Async DELETE — non-blocking version of _replit_delete."""
-    try:
-        return await _api_call_async("DELETE", path, timeout=timeout)
-    except Exception as e:
-        logging.warning("API DELETE /%s failed: %s", path, e)
-        return None
-
-async def _replit_patch_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async PATCH — non-blocking version of _replit_patch."""
-    try:
-        return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API PATCH /%s failed: %s", path, e)
-        return None
-
-async def _replit_put_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async PUT — non-blocking version of _replit_put."""
-    try:
-        return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
-    except Exception as e:
-        logging.warning("API PUT /%s failed: %s", path, e)
-        return None
-
 
 # ── Async version of wrapper functions used by handlers ──
 # These delegate to api_client._api_call_async with the same endpoints
 # as their sync counterparts but without thread-pool overhead.
 
-async def fetch_console_status_async() -> list[dict]:
-    return await _replit_get_async("fetch_console_status")
-
-async def end_booking_async(booking_id: str) -> bool:
-    result = await _replit_put_async(f"end_booking/{booking_id}", {})
-    return result is not None
-
-async def create_booking_async(console_id: str, member_id: str, staff: str, notes: str = "",
-                                planned_end: str = "") -> str:
-    payload = {"console_id": console_id, "member_id": member_id, "staff": staff,
-               "notes": notes, "planned_end": planned_end}
-    result = await _replit_post_async("create_booking", payload)
-    if result and isinstance(result, dict):
-        return result.get("data", {}).get("booking_id", "") or result.get("booking_id", "")
-    return ""
-
-async def cancel_booking_async(booking_id: str) -> bool:
-    result = await _replit_post_async("bookings/cancel", {"id": booking_id})
-    return result is not None
-
-async def fetch_games_async() -> list[dict]:
-    """Async version — maps API game_title → title for handler compatibility."""
-    result = await api_fetch_games_async()
-    if result and isinstance(result, dict) and "games" in result:
-        raw_games = result["games"]
-    elif isinstance(data, list):
-        raw_games = data
-    else:
-        return []
-    return [{
-        "row":        i + 2,
-        "title":      g.get("game_title", ""),
-        "status":     g.get("final_status", ""),
-        "discs":      str(g.get("disc_count", "")),
-        "solo_multi": g.get("solo_multi", ""),
-        "genre":      g.get("genre", ""),
-    } for i, g in enumerate(raw_games) if isinstance(g, dict)]
-
-async def fetch_console_games_async() -> list[dict]:
-    result = await api_fetch_console_games_async()
-    if result and isinstance(result, dict) and "console_games" in result:
-        return result["console_games"]
-    if isinstance(result, list):
-        return result
-    return []
 async def get_games_on_console_async(console_id: str) -> list[str]:
     """Return list of game titles installed on a specific console (async).
     Excludes 'Session' type records (session tracking) to avoid duplicates.
@@ -3284,7 +2539,6 @@ async def update_game_library_install_async(game_title: str, console_id: str,
     result = await api_update_game_library_install_async(game_title, console_id, installed)
     return result is not None
 
-
 # ── Short-name aliases for backward compat ──
 # Handlers import from bot (not bot.api_client), so we alias the api_*_async names
 fetch_members_async = api_fetch_members_async
@@ -3298,5 +2552,3 @@ fetch_member_data_async = api_fetch_member_data_async
 fetch_promotions_cached_async = api_fetch_promotions_cached_async
 fetch_food_menu_async = api_fetch_food_menu_async
 fetch_game_library  = fetch_games            # alias used in SSD management
-
-
