@@ -201,8 +201,9 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         game_name    = (bk_info.get("gameName") or "").strip()
 
         if console_type:
-            consoles_data = await _replit_get_async("sheets/consoles")
-            consoles      = (consoles_data or {}).get("consoles", []) if consoles_data else []
+            from bot import fetch_console_status
+            consoles_tmp = fetch_console_status()
+            consoles = [{"id":c["id"],"type":c.get("type",""),"liveStatus":c.get("status","Free")} for c in consoles_tmp]
             free = [c for c in consoles
                     if c.get("type", "").strip() == console_type
                     and c.get("liveStatus", "").lower() == "free"]
