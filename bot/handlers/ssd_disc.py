@@ -425,7 +425,7 @@ async def step_ssd_xfer_cons(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # ── Duplicate check: game already on target console? ──────────────────────
     existing = await fetch_console_games_async()
     already  = any(
-        r["console_id"].strip().upper() == cid.upper()
+        r["console_id"].replace(" ", "").upper() == cid.replace(" ", "").upper()
         and r["game_title"].strip().lower() == game.strip().lower()
         for r in existing
     )
@@ -459,7 +459,7 @@ async def step_ssd_ret_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cid  = text
     rows = [
         r for r in await fetch_console_games_async()
-        if r["console_id"].upper() == cid.upper()
+        if r["console_id"].replace(" ", "").upper() == cid.replace(" ", "").upper()
         and "SSD Transfer" in r.get("install_type", "")
     ]
     if not rows:
@@ -562,7 +562,7 @@ async def step_ssd_move_from_cons(update: Update, context: ContextTypes.DEFAULT_
         return await show_ssd_menu(update, context)
     cid = text
     rows = [r for r in await fetch_console_games_async()
-            if r["console_id"].upper() == cid.upper()
+            if r["console_id"].replace(" ", "").upper() == cid.replace(" ", "").upper()
             and r.get("status", "") == "Installed"]
     if not rows:
         await update.message.reply_text(
