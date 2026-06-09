@@ -1333,7 +1333,7 @@ old_confirm = """async def bk_confirm(update: Update, context: ContextTypes.DEFA
         time_str = context.user_data.get("bk_time", "")
         try:
             existing = await _api._api_get(
-                f"bookings/search?telegram_chat_id={uid}&date={date_str}&status=confirmed"
+                f"search-bookings?telegram_chat_id={uid}&date={date_str}&status=confirmed"
             )
             existing = existing if isinstance(existing, list) else []
             dupes = [b for b in existing if b.get("timeSlot") == time_str]
@@ -1421,7 +1421,7 @@ new_confirm = """async def bk_confirm(update: Update, context: ContextTypes.DEFA
         time_str = context.user_data.get("bk_time", "")
         try:
             existing = await _api._api_get(
-                f"bookings/search?telegram_chat_id={uid}&date={date_str}&status=confirmed"
+                f"search-bookings?telegram_chat_id={uid}&date={date_str}&status=confirmed"
             )
             existing = existing if isinstance(existing, list) else []
             dupes = [b for b in existing if b.get("timeSlot") == time_str]

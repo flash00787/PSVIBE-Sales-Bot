@@ -159,7 +159,7 @@ async def _get_user_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def _get_available_slots(date_str: str) -> list[str]:
     """Get available time slots for a given date."""
     try:
-        bks = await _api._api_get(f"bookings/search?date={date_str}")
+        bks = await _api._api_get(f"search-bookings?date={date_str}")
     except Exception:
         bks = []
     bks = bks if isinstance(bks, list) else []
@@ -211,7 +211,7 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     """Fetch available consoles for a given date/time, filtering out busy ones."""
     try:
         consoles_raw = await _api._fetch_consoles()
-        bks = await _api._api_get(f"bookings/search?date={date_str}")
+        bks = await _api._api_get(f"search-bookings?date={date_str}")
     except Exception:
         return []
     if not consoles_raw:
@@ -1521,7 +1521,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Check for duplicate booking
             try:
                 existing = await _api._api_get(
-                    f"bookings/search?telegram_chat_id={uid}&date={date_str}"
+                    f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
@@ -1567,7 +1567,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             try:
                 existing = await _api._api_get(
-                    f"bookings/search?telegram_chat_id={uid}&date={date_str}"
+                    f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]

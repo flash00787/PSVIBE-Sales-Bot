@@ -186,7 +186,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uid  = str(update.effective_user.id)
 
     # Check for today active bookings (exclude cancelled/rejected)
-    today_bks_raw = await _api._api_get(f"bookings/search?telegram_chat_id={uid}")
+    today_bks_raw = await _api._api_get(f"search-bookings?telegram_chat_id={uid}")
     today_bks = []
     if isinstance(today_bks_raw, dict) and "bookings" in today_bks_raw:
         today_bks = [b for b in today_bks_raw["bookings"] if str(b.get("status", "")).lower() in ("pending", "confirmed", "active")]
@@ -371,7 +371,7 @@ async def cmd_today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     consoles, bks = await asyncio.gather(
         _api._fetch_consoles(),
-        _api._api_get(f"bookings/search?date={today}"),
+        _api._api_get(f"search-bookings?date={today}"),
     )
     consoles = consoles or []
     bks = bks if isinstance(bks, list) else []
@@ -606,7 +606,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     consoles, today_bks = await asyncio.gather(
         _api._fetch_consoles(),
-        _api._api_get(f"bookings/search?date={today_mmt()}"),
+        _api._api_get(f"search-bookings?date={today_mmt()}"),
     )
 
     if not consoles:

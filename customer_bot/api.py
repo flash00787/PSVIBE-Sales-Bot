@@ -355,7 +355,7 @@ async def _is_tracked_customer(chat_id: int) -> bool:
 async def _get_linked_phone(chat_id: int) -> str | None:
     """Return phone from most recent non-cancelled booking for this chat_id."""
     try:
-        data = await _api_get(f"bookings/search?telegram_chat_id={chat_id}")
+        data = await _api_get(f"search-bookings?telegram_chat_id={chat_id}")
     except ValueError as e:
         logging.warning("get_linked_phone: %s", e)
         return None

@@ -77,7 +77,7 @@ def auto_cancel():
     for status_filter in ("confirmed", "pending", "scheduled"):
         try:
             resp = requests.get(
-                f"{API_URL}/api/bookings/search",
+                f"{API_URL}/api/search-bookings",
                 params={"status": status_filter, "api_key": API_KEY},
                 headers=headers,
                 timeout=15,
@@ -238,7 +238,7 @@ def send_booking_reminders():
     
     try:
         resp = requests.get(
-            f"{API_URL}/api/bookings/search",
+            f"{API_URL}/api/search-bookings",
             params={"api_key": API_KEY},
             headers=headers,
             timeout=15,

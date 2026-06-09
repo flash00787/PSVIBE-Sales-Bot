@@ -80,7 +80,7 @@ async def cmd_mybookings(update, context):
     )
 
     try:
-        raw_data = await _api._api_get(f"bookings/search?telegram_chat_id={uid}", timeout=10)
+        raw_data = await _api._api_get(f"search-bookings?telegram_chat_id={uid}", timeout=10)
         if isinstance(raw_data, dict) and "bookings" in raw_data:
             data = raw_data["bookings"]
         elif isinstance(raw_data, list):
