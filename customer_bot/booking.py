@@ -24,13 +24,17 @@ def _parse_booking_datetime_mmt(booking: dict):
     Returns None if parsing fails."""
     bk_date = booking.get("date") or booking.get("booking_date") or ""
     time_slot = booking.get("timeSlot") or booking.get("startTime") or ""
-    
+
     if not bk_date or not time_slot:
         return None
-    
-    # Clean date (remove time part if present)
-    bk_date_clean = str(bk_date).split(" ")[0]
-    
+
+    # Clean date: handle datetime/date objects as well as strings
+    if hasattr(bk_date, "strftime"):
+        bk_date_clean = bk_date.strftime("%Y-%m-%d")
+    else:
+        bk_date_str = str(bk_date)
+        bk_date_clean = bk_date_str.split(" ")[0]
+
     # Clean time (extract HH:MM)
     time_str = str(time_slot)
     if "T" in time_str:
@@ -38,7 +42,7 @@ def _parse_booking_datetime_mmt(booking: dict):
     if " " in time_str:
         parts = time_str.split(" ")
         time_str = parts[1][:5] if len(parts) > 1 and ":" in parts[1] else parts[0][:5]
-    
+
     try:
         h, m = map(int, time_str.split(":"))
         naive = datetime.strptime(bk_date_clean, "%Y-%m-%d").replace(hour=h, minute=m)
@@ -52,7 +56,7 @@ def _is_booking_expired(booking: dict) -> bool:
     bk_dt = _parse_booking_datetime_mmt(booking)
     if bk_dt is None:
         return False  # Can't determine — assume not expired
-    
+
     now_mmt = datetime.now(MMT)
     grace_cutoff = bk_dt + timedelta(minutes=NO_SHOW_GRACE_MINUTES)
     return now_mmt > grace_cutoff
@@ -139,14 +143,20 @@ def _format_booking_line(b: dict, is_expired: bool = False) -> str:
     """Format a single booking into a display line."""
     bk_id = b.get("id", "?")
     status = str(b.get("status", "")).lower()
-    date = b.get("booking_date", b.get("date", "?"))
-    time_str = b.get("booking_time", b.get("timeSlot", b.get("startTime", "?")))
+    date = b.get("booking_date") or b.get("date") or "?"
+    time_str = b.get("booking_time") or b.get("timeSlot") or b.get("startTime") or "?"
     if "T" in str(time_str):
         time_str = str(time_str).split("T")[1][:5]
-    console_type = b.get("console_id", b.get("consoleType", "?"))
-    duration = b.get("duration_mins", b.get("durationMins", ""))
-    game = b.get("game_name", b.get("gameName", ""))
-    phone = b.get("phone", "")
+    # For pending bookings, console_id stores the type (e.g. "PS5", "PS5 Pro")
+    # For confirmed bookings, console_id is the specific console (e.g. "C - 01")
+    # Use console_id first; if empty, fall back to "PS5"
+    raw_console = b.get("console_id") or b.get("consoleType") or ""
+    if not str(raw_console).strip():
+        raw_console = "PS5"
+    console_type = str(raw_console)
+    duration = b.get("duration_mins") or b.get("durationMins") or ""
+    game = b.get("game_name") or b.get("gameName") or ""
+    phone = b.get("phone") or ""
 
     if is_expired:
         emoji = "❌"
@@ -192,12 +202,13 @@ async def cmd_cancel_booking(update, context):
             "status": "cancelled",
             "staff_note": "Cancelled by customer",
         })
-        if result and isinstance(result, dict) and result.get("success"):
+        if result and isinstance(result, dict) and (result.get("success") or result.get("status") == "cancelled"):
             await update.message.reply_text(
-                f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*"
+                f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*",
+                parse_mode="Markdown",
             )
         else:
-            err = result.get("error", "") if isinstance(result, dict) else ""
+            err = (result or {}).get("error", "") if isinstance(result, dict) else ""
             await update.message.reply_text(
                 f"❌ Booking #{bk_id} ကို ပယ်ဖျက်မရပါ။ {err}",
             )
