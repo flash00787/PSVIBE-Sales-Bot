@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-09T11:40:40.171640+00:00",
+  "updated": "2026-06-09T13:43:38.314714+00:00",
   "entries": [
     {
       "topic": "+50K",
@@ -29,46 +29,6 @@
           "path": "MEMORY.md",
           "line": 368,
           "context": "| PS5 Pro Console | 9.1M | 500K | **-8.6M** | | Game Discs | 8.44M | 8.0M | **-446K** |"
-        }
-      ]
-    },
-    {
-      "topic": "0.05s",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 205,
-          "context": "| `members` | **0.05s** | | `add_console_game` | **~0.1s** ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "0.06s",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 204,
-          "context": "| `console_games` | **0.06s** | | `members` | **0.05s** |"
-        }
-      ]
-    },
-    {
-      "topic": "0.08s",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 203,
-          "context": "| `game_library` | **0.08s** | | `console_games` | **0.06s** |"
-        }
-      ]
-    },
-    {
-      "topic": "0.11s",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 202,
-          "context": "| `console_status` | **0.11s** | | `game_library` | **0.08s** |"
         }
       ]
     },
@@ -168,6 +128,16 @@
       ]
     },
     {
+      "topic": "138,933 Ks",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 115,
+          "context": "| Account Balances (Finance) | ✅ | **138,933 Ks** | | Balance Sheet | ✅ | Assets = L+E ✅ |"
+        }
+      ]
+    },
+    {
       "topic": "14:15-16:42 UTC — GSheet→MySQL Migration: Phase 2, Bug Fixes & Bot Patches",
       "files": [
         {
@@ -214,16 +184,6 @@
           "path": "memory/2026-05-31.md",
           "line": 246,
           "context": "## 17:34 UTC — Claude Sonnet 4 Deep Code Analysis"
-        }
-      ]
-    },
-    {
-      "topic": "180,000 Ks",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 280,
-          "context": "But actual total was **180,000 Ks** (2 records × 90,000)."
         }
       ]
     },
@@ -558,16 +518,6 @@
       ]
     },
     {
-      "topic": "382,333 Ks",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 295,
-          "context": "- `curl /api/finance/account-balances` → KPay now **382,333 Ks** (was 292,333) ✅ - Cash: 69,600 ✅ | Wave: 32,000 ✅ | ACM's Acc: 350,733 ✅ | Total: 483,933 ✅"
-        }
-      ]
-    },
-    {
       "topic": "4 project files updated",
       "files": [
         {
@@ -644,6 +594,16 @@
           "path": "memory/2026-05-28.md",
           "line": 18,
           "context": "### 401 Google Sheets API Fix (21:22-21:29 UTC) - **Root cause #1:** Main bot `_replit_get()` sent API key as **header** (`X-API-Key`), but API server `verify_api_key()` only checked **query params** "
+        }
+      ]
+    },
+    {
+      "topic": "5,700 Ks",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 41,
+          "context": "- **Total revenue = 180,000 Ks** ❌ (should be just `wallet_consumed`: 38 × 150 = **5,700 Ks**) - Correct accounting: topup = deferred liability → only recognized as revenue when minutes are consumed"
         }
       ]
     },
@@ -788,6 +748,16 @@
       ]
     },
     {
+      "topic": "84,300 Ks",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 37,
+          "context": "- **Liablity calculation:** 90,000 Ks → 600 mins → 562 mins remaining → **84,300 Ks** (FIFO: 562 × 150 Ks/min) ✅ Correct - **DISCOVERED P&L double-count bug:**"
+        }
+      ]
+    },
+    {
       "topic": "9 Features Delivered in 15 min via 5 Parallel Agents (75% Faster Than Sequential)",
       "files": [
         {
@@ -804,16 +774,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 669,
           "context": "## 9. Testing Checklist"
-        }
-      ]
-    },
-    {
-      "topic": "90,000 Ks",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 279,
-          "context": "Code then parsed `pm = 'KPay:90000/Cash:0'` and extracted only **90,000 Ks** per group. But actual total was **180,000 Ks** (2 records × 90,000)."
         }
       ]
     },
@@ -889,16 +849,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 201,
           "context": "1. **Add** `_fetch_console_status()` is already implemented — returns console list with `id`, `type`, `status`"
-        }
-      ]
-    },
-    {
-      "topic": "Add Asset modal",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 85,
-          "context": "- **Add Asset modal**: payment_method dropdown (Cash/KPay/WavePay/AYA Pay/KBZ Bank/ACM's Acc) - **Dispose modal**: \"Return to Account\" dropdown — proceeds go to selected account"
         }
       ]
     },
@@ -1298,13 +1248,8 @@
       ]
     },
     {
-      "topic": "API endpoint",
+      "topic": "API Endpoint",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 250,
-          "context": "- **API endpoint** (`app.py`): Changed to `REPLACE(console_id, ' ', '')` in the WHERE clause, matching the pattern used by `move_console_game` and `remove_console_game` endpoints - **DB cleaned**: Del"
-        },
         {
           "path": "MEMORY.md",
           "line": 526,
@@ -1353,16 +1298,6 @@
       ]
     },
     {
-      "topic": "API endpoints fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 256,
-          "context": "2. **API endpoints fixed**: `move_console_game`, `remove_console_game`, `delete_session_game` all use `REPLACE(console_id, ' ', '')` 3. **Display fix**: Session entries moved to separate \"⏱️ Session က"
-        }
-      ]
-    },
-    {
       "topic": "API field naming must be consistent",
       "files": [
         {
@@ -1389,26 +1324,6 @@
           "path": "memory/bug-patterns.md",
           "line": 68,
           "context": "## API Key Mismatch After MySQL Migration (FIXED 2026-06-02) - CallNames (36/36) & endpoint paths: 100% match"
-        }
-      ]
-    },
-    {
-      "topic": "API key separate from gspread",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 225,
-          "context": "- **API key separate from gspread** — deleting gspread code ≠ deleting env vars; `_API_KEY` needs explicit preservation - **SQL GROUP BY collapses pipe-delimited data** — iterate individual rows inste"
-        }
-      ]
-    },
-    {
-      "topic": "API re-exports",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 171,
-          "context": "5. **API re-exports**: `create_booking_async` etc. from API versions 6. **Import cleanups**: 8 handler files (games.py, stock.py, etc.) cleaned of gspread imports"
         }
       ]
     },
@@ -1469,6 +1384,21 @@
           "path": "memory/2026-05-28.md",
           "line": 24,
           "context": "- **API server restarted** (port 8000)"
+        }
+      ]
+    },
+    {
+      "topic": "API Server:",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 25,
+          "context": "- **API Server:** `fa46cab`"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 52,
+          "context": "- **API Server:** `ebe0974` — `fix: P&L remove topup_rev double-count; exclude topup sales_daily` - Services restarted: psvibe-api ✅"
         }
       ]
     },
@@ -1569,56 +1499,6 @@
           "path": "MEMORY.md",
           "line": 643,
           "context": "- **Asset Register:** Salvage Value, Useful Life, Monthly Dep, Dispose modal with return_account - **Straight-line formula:** `monthly_dep = max(0, (amount - salvage) / (useful_life * 12))`"
-        }
-      ]
-    },
-    {
-      "topic": "Asset total",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 92,
-          "context": "- **Asset total**: `WHERE status='active'` filter — disposed assets excluded - **Balance Sheet**: Gross→Dep→NBV structure; Depreciation Reserve in Equity; Balanced A=L+E"
-        }
-      ]
-    },
-    {
-      "topic": "Attempt 1",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 17,
-          "context": "**Attempt 1**: Simple `cash_movements`-only query → **BROKEN** (Assets = -5.6M, Liab+Equity = 293M, gap 298M)"
-        }
-      ]
-    },
-    {
-      "topic": "Attempt 2",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 19,
-          "context": "**Attempt 2**: Rewrite using same income-parsing logic as `finance/balances` endpoint → **BROKEN** (KBZ Bank showed -260M). Root cause: `transfer_out` amounts stored as negative in DB but formula used"
-        }
-      ]
-    },
-    {
-      "topic": "Attempt 3",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 21,
-          "context": "**Attempt 3**: Fixed formula (`- t_out` → `+ t_out`) → Cash correct (34,600 ✅) but: - KPay: 192,333 (expected 282,333, off by 90K)"
-        }
-      ]
-    },
-    {
-      "topic": "Attempt 4 (Final fix)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 27,
-          "context": "**Attempt 4 (Final fix)**: - Added `db_acct` mapping dict: `{\"cash\":\"Cash\",\"wave\":\"WavePay\",\"kpay\":\"KPay\",\"aya_pay\":\"AYA Pay\",\"kbz_bank\":\"KBZ Bank\",\"acm_acc\":\"ACM's Acc\"}`"
         }
       ]
     },
@@ -1803,57 +1683,12 @@
       ]
     },
     {
-      "topic": "Backfill",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 119,
-          "context": "### Backfill - All 29 active assets' `monthly_dep`, `months_elapsed`, `acc_depreciation`, `book_value` updated"
-        }
-      ]
-    },
-    {
-      "topic": "Balance mismatch",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 115,
-          "context": "2. **Balance mismatch**: Retained Earnings didn't subtract `total_dep` → added `- total_dep` 3. **Test Chair zombie**: Was re-disposed after undo → deleted entirely (test data)"
-        }
-      ]
-    },
-    {
       "topic": "Balance Sheet",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 93,
-          "context": "- **Balance Sheet**: Gross→Dep→NBV structure; Depreciation Reserve in Equity; Balanced A=L+E - **P&L**: Depreciation expense (non-cash) separated; Operating Profit before Dep added"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 110,
-          "context": "| **Balance Sheet** | Gross Fixed Assets, Accumulated Depreciation, NBV, Depreciation Reserve in Equity | | **Cash Flow** | Net Cash before/after Dep Add-back, Net Cash Flow before Financing |"
-        },
         {
           "path": "MEMORY.md",
           "line": 569,
           "context": "- **Balance Sheet**: Gross→Acc Dep→NBV structure; Depreciation Reserve in Equity ✅ A=L+E - **Cash Flow**: Depreciation add-back highlighted; Net Cash before/after + Net before Financing"
-        }
-      ]
-    },
-    {
-      "topic": "Balance sheet equation",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 140,
-          "context": "4. **Balance sheet equation**: `Assets = Current + Fixed(NBV) + Other` must equal `Liabilities + Capital + Retained + DepReserve` ### Services (05:35 UTC)"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 148,
-          "context": "4. **Balance sheet equation**: `Assets = Current + Fixed(NBV) + Other` must equal `Liabilities + Capital + Retained + DepReserve`"
         }
       ]
     },
@@ -2153,16 +1988,6 @@
       ]
     },
     {
-      "topic": "Boss to revoke Telegram Bot token",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 214,
-          "context": "4. **Boss to revoke Telegram Bot token** via @BotFather (night) 5. Remove hardcoded token fallback from `app.py` (lines 1125, 1182)"
-        }
-      ]
-    },
-    {
       "topic": "Boss — Ko Aung Chan Myint (ကိုအောင်ချန်မြင့်)",
       "files": [
         {
@@ -2318,21 +2143,6 @@
       ]
     },
     {
-      "topic": "BROKEN",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 17,
-          "context": "**Attempt 1**: Simple `cash_movements`-only query → **BROKEN** (Assets = -5.6M, Liab+Equity = 293M, gap 298M)"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 19,
-          "context": "**Attempt 2**: Rewrite using same income-parsing logic as `finance/balances` endpoint → **BROKEN** (KBZ Bank showed -260M). Root cause: `transfer_out` amounts stored as negative in DB but formula used"
-        }
-      ]
-    },
-    {
       "topic": "BS rewritten 4 iterations:",
       "files": [
         {
@@ -2366,11 +2176,6 @@
       "topic": "Bug 1",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 230,
-          "context": "- **Bug 1**: `fetch_games_async()` returned raw API dict `{\"games\":[...]}` → handler tried `games[0:8]` → `KeyError` crash - Root cause: `fetch_games_async = api_fetch_games_async` (alias, no data map"
-        },
-        {
           "path": "MEMORY.md",
           "line": 571,
           "context": "- **Bug 1**: Python cache — bytecode didn't refresh → cleared `__pycache__` - **Bug 2**: Retained Earnings missing `- total_dep` → matched L+E with Assets"
@@ -2401,11 +2206,6 @@
       "topic": "Bug 2",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 233,
-          "context": "- **Bug 2**: Same issue with `fetch_console_games_async` and `fetch_console_status_async` - Fix: Created async wrappers for both that properly extract data from API response dicts"
-        },
-        {
           "path": "MEMORY.md",
           "line": 572,
           "context": "- **Bug 2**: Retained Earnings missing `- total_dep` → matched L+E with Assets - **Bug 3**: Test Chair (test data) kept re-appearing → permanently deleted from DB"
@@ -2435,11 +2235,6 @@
     {
       "topic": "Bug 3",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 235,
-          "context": "- **Bug 3**: Game Library Back button → Main Menu instead of Consoles menu - Fix: Changed `show_main_menu` → `show_console_menu` in games.py line 206"
-        },
         {
           "path": "MEMORY.md",
           "line": 573,
@@ -2504,11 +2299,6 @@
           "path": "memory/2026-05-30.md",
           "line": 43,
           "context": "### Bug Fixes - sync_service.py: mysql.connector → pymysql"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 113,
-          "context": "### Bug Fixes 1. **Python cache bug**: New var `monthly_dep_total` + `_dep_amt` not recognized → cleared `__pycache__`"
         }
       ]
     },
@@ -2825,16 +2615,6 @@
     {
       "topic": "Cash Flow",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 95,
-          "context": "- **Cash Flow**: Depreciation add-back; Net Cash Flow before Financing added"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 111,
-          "context": "| **Cash Flow** | Net Cash before/after Dep Add-back, Net Cash Flow before Financing |"
-        },
         {
           "path": "MEMORY.md",
           "line": 570,
@@ -3636,6 +3416,11 @@
       "topic": "Credentials:",
       "files": [
         {
+          "path": "memory/2026-06-09.md",
+          "line": 70,
+          "context": "- **Credentials:** admin / admin123 (hardcoded in auth.py)"
+        },
+        {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 91,
           "context": "4. **Credentials:** root/PsVibe@MySQL2024!, psvibe_user/PsVibe@User2024!"
@@ -3958,6 +3743,16 @@
       ]
     },
     {
+      "topic": "Dashboard LEFT JOIN",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 80,
+          "context": "- **Dashboard LEFT JOIN** picks up stale bookings unless filtered by console_status - **P&L double-count was a silent bug** — existed from the moment topup entries were added to sales_daily without ad"
+        }
+      ]
+    },
+    {
       "topic": "Dashboard Routes (dashboard_routes.py) — 33 Endpoints",
       "files": [
         {
@@ -4064,36 +3859,6 @@
           "path": "memory/2026-05-29.md",
           "line": 79,
           "context": "### Day Summary (~13 hours, 08:00-20:45 UTC) **Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
-        }
-      ]
-    },
-    {
-      "topic": "DB account naming mismatch",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 51,
-          "context": "1. **DB account naming mismatch**: `cash_movements` table stores account as \"KBZ Bank\", \"ACM's Acc\" (human labels) but code uses keys (\"kbz_bank\", \"acm_acc\"). Always maintain a mapping dict. 2. **`tra"
-        }
-      ]
-    },
-    {
-      "topic": "DB cleaned",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 251,
-          "context": "- **DB cleaned**: Deleted 2 duplicate Session entries (Fifa 2026 on C-04 ×2, C-10 ×2)"
-        }
-      ]
-    },
-    {
-      "topic": "DB normalized",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 255,
-          "context": "1. **DB normalized**: All console_id values → \"C-01\" (no spaces) format 2. **API endpoints fixed**: `move_console_game`, `remove_console_game`, `delete_session_game` all use `REPLACE(console_id, ' ', "
         }
       ]
     },
@@ -4298,22 +4063,22 @@
       ]
     },
     {
+      "topic": "DISCOVERED P&L double-count bug:",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 38,
+          "context": "- **DISCOVERED P&L double-count bug:** - `game_rev` included 90,000 Ks from sales_daily (assistant previously inserted topup entry into sales_daily)"
+        }
+      ]
+    },
+    {
       "topic": "Dispatch Manager:",
       "files": [
         {
           "path": "memory/2026-05-28.md",
           "line": 13,
           "context": "- **Dispatch Manager:** Analyzed 0 pending findings - **Task Planner:** Reviewed 2 topup plans (unstarted)"
-        }
-      ]
-    },
-    {
-      "topic": "Display fix",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 257,
-          "context": "3. **Display fix**: Session entries moved to separate \"⏱️ Session ကစားဖူးသည်\" line in Game Detail view (was mixed into SSD list causing perceived duplicates) 4. **Verified**: Tested API directly — \"Fi"
         }
       ]
     },
@@ -4334,26 +4099,6 @@
           "path": "MEMORY.md",
           "line": 364,
           "context": "### Disposal Test Results | Asset | Book Value | Sale Amount | Profit/Loss |"
-        }
-      ]
-    },
-    {
-      "topic": "Dispose modal",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 86,
-          "context": "- **Dispose modal**: \"Return to Account\" dropdown — proceeds go to selected account - **New columns in table**: Use Life, Monthly Dep (Ks/m), Acc. Dep (Ks)"
-        }
-      ]
-    },
-    {
-      "topic": "Docstring syntax error",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 168,
-          "context": "2. **Docstring syntax error**: Unterminated `\"\"\"` fixed 3. **Stubs added**: `_sh` stubs (sales_sh, topup_sh, etc.) as `None`, `wb = None`"
         }
       ]
     },
@@ -4936,6 +4681,11 @@
           "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
         },
         {
+          "path": "memory/2026-06-09.md",
+          "line": 8,
+          "context": "- **File:** `bot/handlers/booking_flow.py` — `_do_cancel_booking()`"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/home/node/.openclaw/openclaw.json`"
@@ -5044,11 +4794,6 @@
           "path": "memory/2026-06-05.md",
           "line": 43,
           "context": "### Files Modified - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 291,
-          "context": "### Files Modified - **`/root/psvibe_api_server/patch_routes.py`** — Line 886-889: removed GROUP BY and SUM(amount) from topup_log query"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -5178,16 +4923,6 @@
       ]
     },
     {
-      "topic": "Final result — BALANCE SHEET BALANCES ✅",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 32,
-          "context": "**Final result — BALANCE SHEET BALANCES ✅** ```"
-        }
-      ]
-    },
-    {
       "topic": "Final Session — Sale Bot D (True Async) + Bug Fixes (19:30-20:30 MMT)",
       "files": [
         {
@@ -5214,16 +4949,6 @@
           "path": "memory/2026-06-01.md",
           "line": 133,
           "context": "### Final Verification - `POST /api/sheets/log` → 200 ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Final Verification (05:35 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 124,
-          "context": "### Final Verification (05:35 UTC) ```"
         }
       ]
     },
@@ -5662,13 +5387,38 @@
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 12,
-          "context": "- **Fix**: Replaced the broken route block — added missing `},` after finance route - **Result**: `npx vite build` succeeded, all 3 view chunks generated (170.06 KB → 170.63 KB)"
+          "line": 7,
+          "context": "- **Fix:** Added `_bk_full = await _replit_get_async(f\"bookings/{bk_id}\")` to fetch full booking data before sending notification - **File:** `bot/handlers/booking_flow.py` — `_do_cancel_booking()`"
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 284,
-          "context": "### Fix Removed GROUP BY + SUM(amount), query individual rows instead:"
+          "line": 14,
+          "context": "- **Fix:** API response now includes both `telegram_chat_id` and `telegramChatId`; bot sends customer notification after staff notification"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 65,
+          "context": "- **Fix:** Cleaned booking #247 (→ Done). Also fixed dashboard query to filter `AND c.status = 'Active'` so Free consoles don't show stale bookings."
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 74,
+          "context": "- **Fix:** Added `member_details` array with per-member breakdown: - Each entry: member_id, balance_mins, paid, mins_bought, rate_per_min, liability"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 100,
+          "context": "- **Fix:** `m.member_name` → `m.name`"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 104,
+          "context": "- **Fix:** `m.member_name as name` alias"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 108,
+          "context": "- **Fix:** Rewritten manually with correct `AND payment_method != ''` syntax - **Lesson:** Never use sed for complex SQL string replacements in Python files. Always use Python string replacement withi"
         },
         {
           "path": "memory/bug-patterns.md",
@@ -5884,6 +5634,11 @@
           "path": "memory/2026-06-01.md",
           "line": 195,
           "context": "### Fixes Applied"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 92,
+          "context": "**Fixes Applied:** - Topup entries filtered at Python level (`notes.startswith(\"Topup\")` → excluded from sales_daily income)"
         }
       ]
     },
@@ -6163,23 +5918,8 @@
       ]
     },
     {
-      "topic": "Git",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 300,
-          "context": "### Git - Repository: PS VIBE API Server"
-        }
-      ]
-    },
-    {
       "topic": "Git Commits",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 260,
-          "context": "### Git Commits - `352167b` — SSD console_id normalization (bot)"
-        },
         {
           "path": "memory/coupon-system-implemented.md",
           "line": 31,
@@ -6468,6 +6208,16 @@
       ]
     },
     {
+      "topic": "GROUP BY + pipe-delimited fields = wrong aggregation",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 126,
+          "context": "- **GROUP BY + pipe-delimited fields = wrong aggregation** — When topup records store multi-payment info as `KPay:90000/Cash:0`, `GROUP BY payment_method` collapses all records sharing the same `payme"
+        }
+      ]
+    },
+    {
       "topic": "GROUP BY bug",
       "files": [
         {
@@ -6479,6 +6229,16 @@
           "path": "MEMORY.md",
           "line": 128,
           "context": "- **GROUP BY bug**: Real-time SQL used `GROUP BY payment_method` collapsing duplicate payment strings → Cash off by -60,000 Ks - **Fix**: Removed GROUP BY, iterate all individual rows"
+        }
+      ]
+    },
+    {
+      "topic": "GROUP BY collapse",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 89,
+          "context": "2. **GROUP BY collapse** — `GROUP BY payment_method` collapsed the topup entries; per-segment `/` `:` parsing extracted wrong amounts 3. **PyMySQL `%` conflict** — `LIKE 'Topup%'` in SQL crashed PyMyS"
         }
       ]
     },
@@ -6499,16 +6259,6 @@
           "path": "memory/bug-patterns.md",
           "line": 85,
           "context": "## GSheet _LazyWorksheet .title Returns Bound Method (FIXED — 2026-06-05) - `getattr(worksheet, 'title', '')` on `_LazyWorksheet` proxy returns a bound method, not a string"
-        }
-      ]
-    },
-    {
-      "topic": "GSheet stubs must return safe defaults",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 224,
-          "context": "- **GSheet stubs must return safe defaults** (`[]`, `False`, `{}`) — not crash on fallback - **API key separate from gspread** — deleting gspread code ≠ deleting env vars; `_API_KEY` needs explicit pr"
         }
       ]
     },
@@ -6658,32 +6408,12 @@
       ]
     },
     {
-      "topic": "Heartbeat Poll — 03:41 UTC",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 74,
-          "context": "## Heartbeat Poll — 03:41 UTC Services healthy. No stale processes. HEARTBEAT_OK"
-        }
-      ]
-    },
-    {
       "topic": "Heartbeat Polls (06:00–06:18 MMT)",
       "files": [
         {
           "path": "memory/2026-06-02.md",
           "line": 5,
           "context": "### Heartbeat Polls (06:00–06:18 MMT) - Multiple heartbeat polls throughout early morning — all services active, 0 errors, 0 stale locks, 0 stuck agents"
-        }
-      ]
-    },
-    {
-      "topic": "Heartbeat — 2026-06-09 03:41 UTC",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 58,
-          "context": "## Heartbeat — 2026-06-09 03:41 UTC"
         }
       ]
     },
@@ -6814,16 +6544,6 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 4,
           "context": "## Implemented by: Subagent"
-        }
-      ]
-    },
-    {
-      "topic": "Import cleanups",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 172,
-          "context": "6. **Import cleanups**: 8 handler files (games.py, stock.py, etc.) cleaned of gspread imports"
         }
       ]
     },
@@ -7101,14 +6821,19 @@
       "topic": "June 1, 2026",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 104,
-          "context": "Base date: **June 1, 2026** (static, not datetime.now())"
-        },
-        {
           "path": "MEMORY.md",
           "line": 566,
           "context": "- Static base date: **June 1, 2026** (not datetime.now()) - Payment method dropdown in Add Asset + \"Return to Account\" dropdown in Dispose"
+        }
+      ]
+    },
+    {
+      "topic": "JWT token expires on server restart",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 82,
+          "context": "- **JWT token expires on server restart** — user must re-login to Web Dashboard"
         }
       ]
     },
@@ -7179,26 +6904,6 @@
           "path": "memory/2026-06-01.md",
           "line": 175,
           "context": "### Key Insight Migration from GSheet→MySQL requires disconnecting the 5-minute cron sync for tables that are now MySQL-first (member_wallets, topup_log). Until `sync_service.py` is stopped or made bi"
-        }
-      ]
-    },
-    {
-      "topic": "Key Lessons",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 50,
-          "context": "### Key Lessons 1. **DB account naming mismatch**: `cash_movements` table stores account as \"KBZ Bank\", \"ACM's Acc\" (human labels) but code uses keys (\"kbz_bank\", \"acm_acc\"). Always maintain a mapping"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 136,
-          "context": "### Key Lessons 1. **Python cache**: After patching `.py`, always `find ... -name '*.pyc' -delete` + `systemctl restart`"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 144,
-          "context": "### Key Lessons 1. **Python cache**: After patching `.py`, always `find ... -name '*.pyc' -delete` + `systemctl restart`"
         }
       ]
     },
@@ -7547,8 +7252,8 @@
       "files": [
         {
           "path": "memory/2026-06-09.md",
-          "line": 282,
-          "context": "**Lesson:** GROUP BY collapses duplicate payment_method strings, but the per-segment amount is extracted from the single string value (90,000), not the SUM total (180,000)."
+          "line": 109,
+          "context": "- **Lesson:** Never use sed for complex SQL string replacements in Python files. Always use Python string replacement within a Python script."
         },
         {
           "path": "memory/bug-patterns.md",
@@ -7644,6 +7349,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 87,
           "context": "### Lessons: 1. **MySQL container running ≠ MySQL in use** — always check app.py for actual imports"
+        }
+      ]
+    },
+    {
+      "topic": "Liablity calculation:",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 37,
+          "context": "- **Liablity calculation:** 90,000 Ks → 600 mins → 562 mins remaining → **84,300 Ks** (FIFO: 562 × 150 Ks/min) ✅ Correct - **DISCOVERED P&L double-count bug:**"
         }
       ]
     },
@@ -8023,26 +7738,6 @@
       ]
     },
     {
-      "topic": "Missing imports restored",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 167,
-          "context": "1. **Missing imports restored**: `_get_member_rows`, `_load_cfg`, `_load_members`, `_cfg_fresh`, `_mbr_fresh`, `_api_base` from backup 2. **Docstring syntax error**: Unterminated `\"\"\"` fixed"
-        }
-      ]
-    },
-    {
-      "topic": "Mission",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 153,
-          "context": "- **Mission**: Remove ALL gspread code from `bot/__init__.py` (3,302→~2,800 lines) - **Scope**: 8 gspread classes, 7 `_replit_*` functions, 50+ fallback `logging.warning()` lines, auth block, `__all__"
-        }
-      ]
-    },
-    {
       "topic": "Modify",
       "files": [
         {
@@ -8333,26 +8028,6 @@
       ]
     },
     {
-      "topic": "New columns in table",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 87,
-          "context": "- **New columns in table**: Use Life, Monthly Dep (Ks/m), Acc. Dep (Ks)"
-        }
-      ]
-    },
-    {
-      "topic": "New fields",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 84,
-          "context": "- **New fields**: Salvage Value (Ks), Useful Life (years), Monthly Dep (auto-calc) - **Add Asset modal**: payment_method dropdown (Cash/KPay/WavePay/AYA Pay/KBZ Bank/ACM's Acc)"
-        }
-      ]
-    },
-    {
       "topic": "New Flow:",
       "files": [
         {
@@ -8489,6 +8164,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 697,
           "context": "2. **No MySQL schema changes needed.** Both `console_booking.console_id` (VARCHAR(20)) and `console_booking` already exist. The console_id field is already in the table schema. Customer bot just curre"
+        }
+      ]
+    },
+    {
+      "topic": "No Timer sessions don't get proper end_booking cleanup",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 79,
+          "context": "- **No Timer sessions don't get proper end_booking cleanup** — Booking status stays \"Active\" even after session ends. The end_session flow needs `booking_id` tracking for No Timer sessions. - **Dashbo"
         }
       ]
     },
@@ -8726,19 +8411,19 @@
       "topic": "P&L",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 94,
-          "context": "- **P&L**: Depreciation expense (non-cash) separated; Operating Profit before Dep added - **Cash Flow**: Depreciation add-back; Net Cash Flow before Financing added"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 109,
-          "context": "| **P&L** | Operating Profit (before Dep), Depreciation (non-cash), Net Profit (after Dep) | | **Balance Sheet** | Gross Fixed Assets, Accumulated Depreciation, NBV, Depreciation Reserve in Equity |"
-        },
-        {
           "path": "MEMORY.md",
           "line": 568,
           "context": "- **P&L**: Operating Profit (before Dep) + Depreciation (non-cash) + Net Profit (after Dep) - **Balance Sheet**: Gross→Acc Dep→NBV structure; Depreciation Reserve in Equity ✅ A=L+E"
+        }
+      ]
+    },
+    {
+      "topic": "P&L double-count was a silent bug",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 81,
+          "context": "- **P&L double-count was a silent bug** — existed from the moment topup entries were added to sales_daily without adjusting revenue formula - **JWT token expires on server restart** — user must re-log"
         }
       ]
     },
@@ -8809,16 +8494,6 @@
           "path": "memory/bug-patterns.md",
           "line": 37,
           "context": "## Parallel Agent Collision — Same Function Overwrite (FIXED) - Multiple fix agents modified the same function (`_fetch_games_from_mysql()`) in parallel"
-        }
-      ]
-    },
-    {
-      "topic": "Patch whitespace",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 117,
-          "context": "4. **Patch whitespace**: `replace()` failed due to extra newline; direct Python file patch used"
         }
       ]
     },
@@ -9133,16 +8808,6 @@
       ]
     },
     {
-      "topic": "POST /assets/create",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 90,
-          "context": "- **POST /assets/create**: Auto-calcs monthly_dep, months_elapsed, acc_depreciation, book_value - **PUT /assets/{id}/dispose**: Accepts `return_account` param (default \"Cash\"), injects proceeds"
-        }
-      ]
-    },
-    {
       "topic": "Post-Fix Status (13:43 UTC)",
       "files": [
         {
@@ -9368,16 +9033,6 @@
       ]
     },
     {
-      "topic": "PUT /assets/{id}/dispose",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 91,
-          "context": "- **PUT /assets/{id}/dispose**: Accepts `return_account` param (default \"Cash\"), injects proceeds - **Asset total**: `WHERE status='active'` filter — disposed assets excluded"
-        }
-      ]
-    },
-    {
       "topic": "PyMySQL",
       "files": [
         {
@@ -9394,31 +9049,6 @@
           "path": "memory/bug-patterns.md",
           "line": 103,
           "context": "## Python .pyc Cache Stale (FIXED — 2026-06-09) - Edit .py file → restart service → `NameError: name 'X' is not defined` even though X is clearly in file"
-        }
-      ]
-    },
-    {
-      "topic": "Python cache",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 137,
-          "context": "1. **Python cache**: After patching `.py`, always `find ... -name '*.pyc' -delete` + `systemctl restart` 2. **String replace whitespace**: Double-check newline count when replacing multi-line python c"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 145,
-          "context": "1. **Python cache**: After patching `.py`, always `find ... -name '*.pyc' -delete` + `systemctl restart` 2. **String replace whitespace**: Double-check newline count when replacing multi-line python c"
-        }
-      ]
-    },
-    {
-      "topic": "Python cache bug",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 114,
-          "context": "1. **Python cache bug**: New var `monthly_dep_total` + `_dep_amt` not recognized → cleared `__pycache__` 2. **Balance mismatch**: Retained Earnings didn't subtract `total_dep` → added `- total_dep`"
         }
       ]
     },
@@ -9499,16 +9129,6 @@
           "path": "memory/integration-plan.md",
           "line": 121,
           "context": "**Rationale:** - `session_summary` is session-tied — the user triggers it after a conversation."
-        }
-      ]
-    },
-    {
-      "topic": "Readable Balance Sheet",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 53,
-          "context": "3. **Readable Balance Sheet**: Final endpoint reuses exact same income-parsing logic as `finance/balances` to guarantee consistency. 4. **Router/index.ts fragility**: When adding multiple routes, ensu"
         }
       ]
     },
@@ -9756,11 +9376,6 @@
           "context": "- **Result:** `rows` gets a coroutine object instead of the keyboard layout → `InjectedKeyboard` silently fails - **Fix:** Changed to `rows = await _sbk_console_kb()`"
         },
         {
-          "path": "memory/2026-06-09.md",
-          "line": 13,
-          "context": "- **Result**: `npx vite build` succeeded, all 3 view chunks generated (170.06 KB → 170.63 KB)"
-        },
-        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -9818,8 +9433,13 @@
       ]
     },
     {
-      "topic": "Root cause 1:",
+      "topic": "Root Cause 1:",
       "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 12,
+          "context": "- **Root Cause 1:** `/api/search-bookings` response didn't include `telegram_chat_id`/`telegramChatId` field → reminder script had no access to customer's chat ID - **Root Cause 2:** `send_booking_rem"
+        },
         {
           "path": "MEMORY.md",
           "line": 114,
@@ -9828,8 +9448,13 @@
       ]
     },
     {
-      "topic": "Root cause 2:",
+      "topic": "Root Cause 2:",
       "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 13,
+          "context": "- **Root Cause 2:** `send_booking_reminders()` in `auto_cancel_no_shows.py` only sent to `STAFF_NOTIFY_CHAT` - **Fix:** API response now includes both `telegram_chat_id` and `telegramChatId`; bot send"
+        },
         {
           "path": "MEMORY.md",
           "line": 115,
@@ -10052,18 +9677,33 @@
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 11,
-          "context": "- **Root cause**: When adding 3 new routes (`/pnl`, `/balance-sheet`, `/cashflow`) to `router/index.ts`, the closing `},` for the finance route was accidentally removed - **Fix**: Replaced the broken "
+          "line": 6,
+          "context": "- **Root Cause:** `_do_cancel_booking()` used `result.get(\"telegramChatId\")` but `PATCH /api/bookings/{id}/status` only returns `{booking_id, status}` — no `telegramChatId` - **Fix:** Added `_bk_full "
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 25,
-          "context": "- **Root cause**: `cash_movements` queries used account KEY (\"kbz_bank\", \"acm_acc\") but DB stores LABELS (\"KBZ Bank\", \"ACM's Acc\") → queries returned 0 for all transfers"
+          "line": 64,
+          "context": "- **Root Cause:** Stale `console_booking` entry #247 (C-01) remained \"Active\" after session ended — but `console_status` correctly showed \"Free\". Dashboard's LEFT JOIN query found the stale booking an"
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 273,
-          "context": "### Root Cause `patch_routes.py` topup_log query used `GROUP BY payment_method`:"
+          "line": 69,
+          "context": "- **Root Cause:** JWT token expired due to multiple server restarts in this session; user needs to re-login - **Credentials:** admin / admin123 (hardcoded in auth.py)"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 99,
+          "context": "- **Root cause:** `members` table has column `name`, not `member_name`. Previous global sed changed `m.member_name` → `m.name` but coupons JOINs the `members` table (not `member_wallets`). - **Fix:** "
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 103,
+          "context": "- **Root cause:** `member_wallets` table has `member_name`, not `name`. Previous global sed changed across all queries. - **Fix:** `m.member_name as name` alias"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 107,
+          "context": "- **Root cause:** sed replacement `\\\"` stripped single quotes around `''` (empty string check in SQL) - **Fix:** Rewritten manually with correct `AND payment_method != ''` syntax"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -10158,8 +9798,13 @@
       ]
     },
     {
-      "topic": "Root Causes (3 layers)",
+      "topic": "Root Causes (3 layers):",
       "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 87,
+          "context": "**Root Causes (3 layers):** 1. **Sales daily topup backfill** — Entry #53 (notes=\"Topup 600 mins\", KPay=90,000) counted in sales_daily income AND in topup_log → double count"
+        },
         {
           "path": "MEMORY.md",
           "line": 193,
@@ -10209,16 +9854,6 @@
           "path": "memory/fix-history.md",
           "line": 108,
           "context": "### Root Causes 1. **`_bk_intercept_menu` missing BTN_FOOD** — booking conversation silently ate the button"
-        }
-      ]
-    },
-    {
-      "topic": "Router/index.ts fragility",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 54,
-          "context": "4. **Router/index.ts fragility**: When adding multiple routes, ensure all closing braces/commas are preserved. One missing `},` breaks entire Vite build."
         }
       ]
     },
@@ -10328,6 +9963,16 @@
       ]
     },
     {
+      "topic": "Sales Bot:",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 24,
+          "context": "- **Sales Bot:** `65a8549` - **API Server:** `fa46cab`"
+        }
+      ]
+    },
+    {
       "topic": "Sales Daily Recording — Verified Working",
       "files": [
         {
@@ -10344,6 +9989,16 @@
           "path": "memory/project-state.md",
           "line": 12,
           "context": "| 1 | **Sales Daily stuck** — `await` fix + double-unwrap fix + dict guard | ✅ | | 2 | **Food Menu empty** — `food_costs` MySQL update (16 items) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Sales daily topup backfill",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 88,
+          "context": "1. **Sales daily topup backfill** — Entry #53 (notes=\"Topup 600 mins\", KPay=90,000) counted in sales_daily income AND in topup_log → double count 2. **GROUP BY collapse** — `GROUP BY payment_method` c"
         }
       ]
     },
@@ -10389,16 +10044,6 @@
           "path": "memory/lessons.md",
           "line": 16,
           "context": "## Schema Gaps: GSheet→MySQL Migration (2026-05-30) - MySQL `member_wallets` missing 5 GSheet columns"
-        }
-      ]
-    },
-    {
-      "topic": "Scope",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 154,
-          "context": "- **Scope**: 8 gspread classes, 7 `_replit_*` functions, 50+ fallback `logging.warning()` lines, auth block, `__all__` cleanup"
         }
       ]
     },
@@ -10523,6 +10168,16 @@
       ]
     },
     {
+      "topic": "sed + Python strings = disaster",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 124,
+          "context": "- **sed + Python strings = disaster** — sed can't properly handle nested quotes in Python strings. Use Python string replacement with `src.replace()` for safe modification. - **JavaScript `\\x52\\x65\\x7"
+        }
+      ]
+    },
+    {
       "topic": "Sender Address:",
       "files": [
         {
@@ -10606,11 +10261,6 @@
           "context": "### Services - `psvibe-api` — ✅ active (restarted multiple times)"
         },
         {
-          "path": "memory/2026-06-09.md",
-          "line": 60,
-          "context": "### Services - psvibe-api: ✅ active"
-        },
-        {
           "path": "memory/infrastructure.md",
           "line": 6,
           "context": "- **Services:** - 🟢 `psvibe-sale-bot` — Main sale bot"
@@ -10619,21 +10269,6 @@
           "path": "memory/session-memory.md",
           "line": 7,
           "context": "- **Services:** All 3 🟢 active (psvibe-sale-bot, psvibe_customer_bot, psvibe-api) - **Coordination Tools:** 25 at `/root/coordination/` — Hybrid Batch v2 active"
-        }
-      ]
-    },
-    {
-      "topic": "Services (05:35 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 133,
-          "context": "### Services (05:35 UTC) psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 141,
-          "context": "### Services (05:35 UTC) psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅"
         }
       ]
     },
@@ -10724,16 +10359,6 @@
           "path": "MEMORY.md",
           "line": 213,
           "context": "### Services Status (01:57 UTC) | api_post auth | `bot/api_client.py` | `?api_key=` → `X-API-Key` header |"
-        }
-      ]
-    },
-    {
-      "topic": "Services Status (02:47 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 56,
-          "context": "### Services Status (02:47 UTC) psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | All 3 financial statement pages live"
         }
       ]
     },
@@ -11338,16 +10963,6 @@
       ]
     },
     {
-      "topic": "SQL GROUP BY collapses pipe-delimited data",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 226,
-          "context": "- **SQL GROUP BY collapses pipe-delimited data** — iterate individual rows instead - **`systemctl restart` may silently fail** — verify PID, fallback `kill -9` + restart"
-        }
-      ]
-    },
-    {
       "topic": "SQLite removed",
       "files": [
         {
@@ -11636,11 +11251,6 @@
           "context": "- **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
         },
         {
-          "path": "memory/2026-06-09.md",
-          "line": 66,
-          "context": "### Status - All 3 financial statements (PNL, BS, CF) completed and verified"
-        },
-        {
           "path": "memory/IMPLEMENTATION_LOG.md",
           "line": 4,
           "context": "**Status:** Completed"
@@ -11763,47 +11373,12 @@
       ]
     },
     {
-      "topic": "String replace whitespace",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 138,
-          "context": "2. **String replace whitespace**: Double-check newline count when replacing multi-line python code 3. **Test data discipline**: Don't keep test entries in production assets — delete, don't dispose+und"
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 146,
-          "context": "2. **String replace whitespace**: Double-check newline count when replacing multi-line python code 3. **Test data discipline**: Don't keep test entries in production assets — delete, don't dispose+und"
-        }
-      ]
-    },
-    {
       "topic": "String replace() Whitespace Mismatch (FIXED — 2026-06-09)",
       "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 109,
           "context": "## String replace() Whitespace Mismatch (FIXED — 2026-06-09) - Python patch script with `txt.replace(old, new)` silently does nothing — no error, no change"
-        }
-      ]
-    },
-    {
-      "topic": "Stub functions",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 170,
-          "context": "4. **Stub functions**: `get_att_sh()`, `get_booking_sh()` etc. as `None`-returning 5. **API re-exports**: `create_booking_async` etc. from API versions"
-        }
-      ]
-    },
-    {
-      "topic": "Stubs added",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 169,
-          "context": "3. **Stubs added**: `_sh` stubs (sales_sh, topup_sh, etc.) as `None`, `wb = None` 4. **Stub functions**: `get_att_sh()`, `get_booking_sh()` etc. as `None`-returning"
         }
       ]
     },
@@ -11874,16 +11449,6 @@
           "path": "memory/lessons.md",
           "line": 59,
           "context": "## Sub-Agent Timeout by Task Size (2026-06-01) | Task Type | Timeout |"
-        }
-      ]
-    },
-    {
-      "topic": "Sub-agents blocked",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 223,
-          "context": "- **Sub-agents blocked** from VPS filesystem (no SSH, no sudo) — use `vps_exec.js` for direct SSH access - **GSheet stubs must return safe defaults** (`[]`, `False`, `{}`) — not crash on fallback"
         }
       ]
     },
@@ -11972,8 +11537,28 @@
         },
         {
           "path": "memory/2026-06-09.md",
-          "line": 268,
-          "context": "### Symptom Boss sent screenshot showing wrong balances (via Telegram image):"
+          "line": 5,
+          "context": "- **Symptom:** Staff cancels booking → API updates status to \"cancelled\" → customer gets NO Telegram notification - **Root Cause:** `_do_cancel_booking()` used `result.get(\"telegramChatId\")` but `PATC"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 11,
+          "context": "- **Symptom:** 10 minutes before confirmed booking, only admin group gets reminder — customer gets nothing - **Root Cause 1:** `/api/search-bookings` response didn't include `telegram_chat_id`/`telegr"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 63,
+          "context": "- **Symptom:** Dashboard shows C-01 as \"Occupied\" even though session has ended - **Root Cause:** Stale `console_booking` entry #247 (C-01) remained \"Active\" after session ended — but `console_status`"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 68,
+          "context": "- **Symptom:** Financial pages (P&L, BS, CashFlow) show blank/loading - **Root Cause:** JWT token expired due to multiple server restarts in this session; user needs to re-login"
+        },
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 73,
+          "context": "- **Symptom:** BS shows only `member_liability: 84,300` — no per-member detail - **Fix:** Added `member_details` array with per-member breakdown:"
         },
         {
           "path": "memory/test-report.md",
@@ -12234,31 +11819,6 @@
           "path": "memory/test-report.md",
           "line": 73,
           "context": "### Test 4: Section integrity ```"
-        }
-      ]
-    },
-    {
-      "topic": "Test Chair zombie",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 116,
-          "context": "3. **Test Chair zombie**: Was re-disposed after undo → deleted entirely (test data) 4. **Patch whitespace**: `replace()` failed due to extra newline; direct Python file patch used"
-        }
-      ]
-    },
-    {
-      "topic": "Test data discipline",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 139,
-          "context": "3. **Test data discipline**: Don't keep test entries in production assets — delete, don't dispose+undo 4. **Balance sheet equation**: `Assets = Current + Fixed(NBV) + Other` must equal `Liabilities + "
-        },
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 147,
-          "context": "3. **Test data discipline**: Don't keep test entries in production assets — delete, don't dispose+undo 4. **Balance sheet equation**: `Assets = Current + Fixed(NBV) + Other` must equal `Liabilities + "
         }
       ]
     },
@@ -12583,6 +12143,16 @@
       ]
     },
     {
+      "topic": "Total revenue = 180,000 Ks",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 41,
+          "context": "- **Total revenue = 180,000 Ks** ❌ (should be just `wallet_consumed`: 38 × 150 = **5,700 Ks**) - Correct accounting: topup = deferred liability → only recognized as revenue when minutes are consumed"
+        }
+      ]
+    },
+    {
       "topic": "Total: 12 bugs fixed, all services verified active ✅",
       "files": [
         {
@@ -12761,11 +12331,6 @@
       "topic": "Verification",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 294,
-          "context": "### Verification - `curl /api/finance/account-balances` → KPay now **382,333 Ks** (was 292,333) ✅"
-        },
-        {
           "path": "memory/IMPLEMENTATION_LOG.md",
           "line": 13,
           "context": "## Verification - Ran `python3 memory/session_summary.py --dry-run` to verify the output format."
@@ -12805,11 +12370,6 @@
     {
       "topic": "Verified",
       "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 258,
-          "context": "4. **Verified**: Tested API directly — \"Fifa 2026\" moved C-01→C-02→C-01, source always cleaned"
-        },
         {
           "path": "MEMORY.md",
           "line": 554,
@@ -13046,11 +12606,6 @@
       "topic": "What Was Built",
       "files": [
         {
-          "path": "memory/2026-06-09.md",
-          "line": 81,
-          "context": "### What Was Built"
-        },
-        {
           "path": "MEMORY.md",
           "line": 279,
           "context": "### What Was Built | Component | Details |"
@@ -13223,16 +12778,6 @@
       ]
     },
     {
-      "topic": "~0.1s",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 206,
-          "context": "| `add_console_game` | **~0.1s** ✅ |"
-        }
-      ]
-    },
-    {
       "topic": "ညေနက",
       "files": [
         {
@@ -13393,12 +12938,12 @@
       ]
     },
     {
-      "topic": "✅ Console/SSD Transfer — Move Fix Summary (08:56-09:08 UTC)",
+      "topic": "✅ Final Verification (13:35 UTC)",
       "files": [
         {
           "path": "memory/2026-06-09.md",
-          "line": 253,
-          "context": "### ✅ Console/SSD Transfer — Move Fix Summary (08:56-09:08 UTC) Boss confirmed \"SSD to Console and Console to SSD game duplicate + source not deleted\" before the fix. After:"
+          "line": 111,
+          "context": "### ✅ Final Verification (13:35 UTC)"
         }
       ]
     },
@@ -13498,16 +13043,6 @@
       ]
     },
     {
-      "topic": "🎮 Game Library Fix Round 2 — Async Mapping + Back Button (08:32-08:42 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 229,
-          "context": "### 🎮 Game Library Fix Round 2 — Async Mapping + Back Button (08:32-08:42 UTC) - **Bug 1**: `fetch_games_async()` returned raw API dict `{\"games\":[...]}` → handler tried `games[0:8]` → `KeyError` cras"
-        }
-      ]
-    },
-    {
       "topic": "🎮 Game Library Fixes (09:00-09:45 UTC)",
       "files": [
         {
@@ -13539,16 +13074,6 @@
           "path": "memory/delegation-rules.md",
           "line": 8,
           "context": "## 🎯 Delegation Protocol — USE HELPERS FIRST"
-        }
-      ]
-    },
-    {
-      "topic": "🎯 GSheet→MySQL Migration — Full Removal (08:00-08:30 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 152,
-          "context": "### 🎯 GSheet→MySQL Migration — Full Removal (08:00-08:30 UTC) - **Mission**: Remove ALL gspread code from `bot/__init__.py` (3,302→~2,800 lines)"
         }
       ]
     },
@@ -13623,32 +13148,12 @@
       ]
     },
     {
-      "topic": "🏛️ Depreciation Engine — Full Implementation (04:37-05:32 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 79,
-          "context": "## 🏛️ Depreciation Engine — Full Implementation (04:37-05:32 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🏛️ Financial Statements — 3 Pages Live (00:00-02:47 UTC)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 636,
           "context": "### 🏛️ Financial Statements — 3 Pages Live (00:00-02:47 UTC) - **Issue:** PNL, Balance Sheet, CashFlow pages not showing + BS not balancing"
-        }
-      ]
-    },
-    {
-      "topic": "🏛️ Financial Statements — 3 Pages Live + Balance Sheet Fixed (00:00-02:47 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 3,
-          "context": "### 🏛️ Financial Statements — 3 Pages Live + Balance Sheet Fixed (00:00-02:47 UTC)"
         }
       ]
     },
@@ -13719,16 +13224,6 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 66,
           "context": "## 🐘 MySQL Migration — Detailed History (2026-05-30, 18:40-18:57 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "🐛 Account Balances Fix — GROUP BY Topup Bug (11:22-11:27 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 266,
-          "context": "## 🐛 Account Balances Fix — GROUP BY Topup Bug (11:22-11:27 UTC)"
         }
       ]
     },
@@ -13813,6 +13308,16 @@
       ]
     },
     {
+      "topic": "🐛 Dashboard Issues — C-01 Stale + Web Finance Data + BS Breakdowwn (12:54-13:03 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 60,
+          "context": "### 🐛 Dashboard Issues — C-01 Stale + Web Finance Data + BS Breakdowwn (12:54-13:03 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "🐛 F-string & Payment Logic Fixes (15:20-15:45 UTC)",
       "files": [
         {
@@ -13833,16 +13338,6 @@
       ]
     },
     {
-      "topic": "🐛 Game Library / Console Install / SSD Install Logic Fix (08:08-08:18 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 176,
-          "context": "### 🐛 Game Library / Console Install / SSD Install Logic Fix (08:08-08:18 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🐛 Known Issues",
       "files": [
         {
@@ -13853,12 +13348,12 @@
       ]
     },
     {
-      "topic": "🐛 Session End / Delete Session Duplicate Fix (08:58-09:08 UTC)",
+      "topic": "🐛 KPay Balance + Web Finance Fixes (13:10-13:35 UTC)",
       "files": [
         {
           "path": "memory/2026-06-09.md",
-          "line": 241,
-          "context": "### 🐛 Session End / Delete Session Duplicate Fix (08:58-09:08 UTC)"
+          "line": 84,
+          "context": "### 🐛 KPay Balance + Web Finance Fixes (13:10-13:35 UTC)"
         }
       ]
     },
@@ -13963,6 +13458,16 @@
       ]
     },
     {
+      "topic": "📊 PSV_A_004 Revenue Liability Analysis + P&L Double-Count Fix (12:47-13:03 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 31,
+          "context": "### 📊 PSV_A_004 Revenue Liability Analysis + P&L Double-Count Fix (12:47-13:03 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "📊 Revenue Breakdown (final verified)",
       "files": [
         {
@@ -14029,6 +13534,16 @@
           "path": "MEMORY.md",
           "line": 84,
           "context": "## 📌 Today's Summary (2026-06-06) — 🎮🔥 GRAND OPENING DAY! 🔥🎮"
+        }
+      ]
+    },
+    {
+      "topic": "📝 New Lessons",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 122,
+          "context": "### 📝 New Lessons - **PyMySQL `%` is dangerous in SQL strings** — `LIKE 'Topup%'` causes `ValueError: not enough arguments for format string` because PyMySQL's C-based cursor sees `%` and expects a fo"
         }
       ]
     },
@@ -14133,22 +13648,22 @@
       ]
     },
     {
-      "topic": "🔐 Security Note",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 218,
-          "context": "### 🔐 Security Note - Bot token `8545665013:AAH...Yb8zU` leaked in source code — Boss must `/revoke` at @BotFather"
-        }
-      ]
-    },
-    {
       "topic": "🔒 Lock Monitor — Auto Cleanup (05:16 UTC)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 308,
           "context": "### 🔒 Lock Monitor — Auto Cleanup (05:16 UTC) - 2 active locks, 0 stale locks cleaned ✅"
+        }
+      ]
+    },
+    {
+      "topic": "🔔 Notification Fixes — Cancel + 10-min Reminder (12:25-12:40 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 2,
+          "context": "### 🔔 Notification Fixes — Cancel + 10-min Reminder (12:25-12:40 UTC)"
         }
       ]
     },
@@ -14343,16 +13858,6 @@
       ]
     },
     {
-      "topic": "🚧 Remaining (Post-Session)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 210,
-          "context": "### 🚧 Remaining (Post-Session) 1. Fix `report_generator.py` lazy-load of gspread stubs"
-        }
-      ]
-    },
-    {
       "topic": "🚫 Spawn Protocol (2026-06-01)",
       "files": [
         {
@@ -14534,16 +14039,6 @@
           "path": "MEMORY.md",
           "line": 100,
           "context": "### 🧠 Lesson Learned - **API auto-unwrap:** `_api_get()` already unwraps `{success,data}` — DON'T check `success`/`data` again or it'll always fail"
-        }
-      ]
-    },
-    {
-      "topic": "🧠 Lessons (June 9)",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 222,
-          "context": "### 🧠 Lessons (June 9) - **Sub-agents blocked** from VPS filesystem (no SSH, no sudo) — use `vps_exec.js` for direct SSH access"
         }
       ]
     },

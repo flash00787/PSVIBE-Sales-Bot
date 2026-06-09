@@ -1,7 +1,7 @@
-=== Session Cleanup 12:07 ===
+=== Session Cleanup 13:43 ===
   >1d deleted: 1
   Sessions with >10 files:
-  Remaining: 1308 files, 407M
+  Remaining: 1312 files, 425M
   Old large sessions:
     (none)
-=== RESULT: OK ||| 1 old file deleted, 1308 files/407M remaining, no bloat found ===
+=== RESULT: OK ===
