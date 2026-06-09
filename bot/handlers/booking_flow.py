@@ -43,6 +43,17 @@ def _extend_timer_kb(cid: str, member_id: str, chat_id: int) -> InlineKeyboardMa
 def _remind_key(cid: str, chat_id: int) -> str:
     return f"{cid}|{chat_id}"
 
+def add_no_timer_console(cid: str) -> None:
+    """Mark a console as No Timer - reminders will never be scheduled for it."""
+    _NO_TIMER_CONSOLES.add(cid)
+    logger.info("No Timer: %s added", cid)
+
+def remove_no_timer_console(cid: str) -> None:
+    """Remove No Timer tracking (e.g., session ended)."""
+    _NO_TIMER_CONSOLES.discard(cid)
+    logger.info("No Timer: %s removed", cid)
+
+
 def _cancel_remind(cid: str, chat_id: int) -> None:
     key  = _remind_key(cid, chat_id)
     task = _REMIND_TASKS.pop(key, None)
@@ -86,11 +97,18 @@ async def _remind_loop(
     key = _remind_key(cid, chat_id)
     _REMIND_TASKS[key] = asyncio.current_task()   # type: ignore[assignment]
     _SESSION_END_TIMES[key] = end_t               # track current planned end time
+    # Guard: if this console is No Timer, don't run reminders
+    if cid in _NO_TIMER_CONSOLES:
+        logger.info("_remind_loop: %s is No Timer — exiting immediately", cid)
+        return
     try:
         await asyncio.sleep(initial_delay)
         fire_count = 0
         while True:
             # Always check if session is still active before firing any reminder
+            if cid in _NO_TIMER_CONSOLES:
+                logger.info("_remind_loop: %s is No Timer — breaking", cid)
+                break
             still_active = await _is_session_active(cid)
             if not still_active:
                 break
@@ -585,6 +603,10 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     _cancel_remind(cid, chat_id)   # stop old loop before starting new one
     # Update stored end time immediately so next extend uses correct base
     _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
+    # Skip timer if original session was No Timer
+    if cid in _NO_TIMER_CONSOLES:
+        has_remind = False
+        text += "\n\n⏸️ No Timer session — reminder မပေးပါ"
     if has_remind:
         # BUG FIX: ext_delay must be based on TOTAL remaining time, not extra_mins
         # Old: ext_delay = (extra_mins - 5) * 60 → wrong if passed time between start and extend

@@ -26,7 +26,7 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 import asyncio
-from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key
+from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, add_no_timer_console, remove_no_timer_console
 from bot.handlers.notify import _notify_customer
 
 
@@ -1172,6 +1172,11 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
     start_t  = now.strftime("%H:%M")
     timer_line = ""
     game_line  = f"\n🎮 Game    : <b>{game}</b>" if game else ""
+    # Track No Timer sessions
+    if planned_mins <= 5:
+        add_no_timer_console(cid)
+    else:
+        remove_no_timer_console(cid)
     if planned_mins > 5:
         end_dt     = now + timedelta(minutes=planned_mins)
         end_t      = end_dt.strftime("%H:%M")

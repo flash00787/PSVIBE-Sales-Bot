@@ -39,7 +39,7 @@ from datetime import datetime, timezone, timedelta
 
 # Lazy imports to avoid circular deps
 from bot.handlers.notify import _check_low_balance_alert, get_customer_chat_id
-from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key
+from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, remove_no_timer_console
 
 def _lazy_update_inv_total_k1():
     from bot.handlers.stock import update_inv_total_k1 as _f
@@ -633,6 +633,8 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
     # Also cancel using STAFF_NOTIFY_CHAT key (canonical key used since session start fix)
     if STAFF_NOTIFY_CHAT:
         _cancel_remind(session_cid, int(STAFF_NOTIFY_CHAT))
+    # Remove No Timer tracking if this was a No Timer session
+    remove_no_timer_console(session_cid)
 
     ok = await end_booking_async(bk_id) if bk_id else False
     if ok:
