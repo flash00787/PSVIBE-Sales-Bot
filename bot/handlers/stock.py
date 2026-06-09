@@ -147,7 +147,7 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             em  = STATUS_EMOJI.get(item.get("status", "No Stock"), "⚫")
             name = item.get("name", "?")
             stock_qty = max(0, item.get("current_stock", 0))
-            val_str = f"  _{item.get("inv_value", 0):,} Ks_" if item.get("inv_value", 0) > 0 else ""
+            val_str = f" (Val: {item.get("inv_value", 0):,} Ks)" if item.get("inv_value", 0) > 0 else ""
             lines.append(f"{em} *{name}*: {stock_qty} pcs{val_str}")
         total_val = sum(i.get("inv_value", 0) for i in items)
         if total_val:
