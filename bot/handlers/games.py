@@ -109,6 +109,7 @@ async def _show_game_detail(update, game: dict) -> None:
     cgames = fetch_console_games()
     cons_list = []
     ssd_list = []
+    session_list = []
     for r in cgames:
         if r.get("game_title", "").strip().lower() == game_name.lower():
             cid = r.get("console_id", "").strip()
@@ -127,7 +128,7 @@ async def _show_game_detail(update, game: dict) -> None:
                 elif status in ("SSD Copy", "Moved"):
                     ssd_list.append(f"{SSD_NAMES.get(cid, cid)} ({status})")
                 elif status == "Session":
-                    ssd_list.append(f"{SSD_NAMES.get(cid, cid)} (Session)")
+                    session_list.append(f"{cid}")
                 # Skip entries with status "Not Installed"
 
     sm_icon = "🧑" if solo_multi == "Solo" else ("👥" if solo_multi == "Multiplayer" else ("🧑👥" if solo_multi else ""))
@@ -154,6 +155,10 @@ async def _show_game_detail(update, game: dict) -> None:
         info_lines.append(f"💾 <b>SSD တွင်ရှိသည်:</b> {', '.join(unique_ssd)}")
     else:
         info_lines.append("💾 <b>SSD:</b> <i>မရှိပါ</i>")
+
+    if session_list:
+        unique_sessions = sorted(set(session_list))
+        info_lines.append(f"⏱️ <b>Session ကစားဖူးသည်:</b> {', '.join(unique_sessions)}")
 
     await update.message.reply_text(
         "\n".join(info_lines),
