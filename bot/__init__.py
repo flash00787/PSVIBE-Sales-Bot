@@ -12,6 +12,10 @@ import signal
 import asyncio
 import logging
 from pathlib import Path
+
+_API_KEY = os.environ.get("API_KEY", "")
+
+
 import functools
 # ── API Client for READ operations ──
 try:
@@ -84,7 +88,7 @@ def _load_cfg() -> None:
 def _load_members() -> None:
     global _MBR_ROWS, _MBR_TS
     try:
-        _MBR_ROWS = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
+        _MBR_ROWS = []  # OPT: range-restricted read (A=row_no through Q=referral_code)
         with _THREAD_CACHE_LOCK:
             _MBR_TS   = time.time()
     except Exception as e:
@@ -278,7 +282,7 @@ def fetch_console_status() -> list[dict]:
                     deduped.append(item)
             return deduped
         logging.warning("API api_fetch_console_status() failed, no fallback")
-    today = today_str()
+    return []
     # Use cached console_multipliers if available, fallback to direct Sheets read
     cfg = _get_cfg()
     cached_mults = cfg.get("console_multipliers", {})
@@ -1632,28 +1636,7 @@ def fetch_base_salaries() -> dict[str, int]:
         return {}
 
 def ensure_sheet_headers():
-    """Write column headers for new staff-tracking columns (idempotent).
-    Uses batch write to avoid quota burn from 5 individual update_cell calls."""
-    try:
-        cells_to_update = []
-        if not sales_sh.cell(1, 15).value:
-            cells_to_update.append({"range": "Sales_Daily!O1", "value": "Staff"})
-        if not member_sh.cell(1, 11).value:
-            cells_to_update.append({"range": "Card_Wallet!K1", "value": "Reg_Staff"})
-        if not topup_sh.cell(1, 10).value:
-            cells_to_update.append({"range": "TopUp_Log!J1", "value": "Staff"})
-        if not setting_sh.cell(1, 19).value:
-            cells_to_update.append({"range": "Setting!S1", "value": "Staff Names"})
-        if not setting_sh.cell(1, 20).value:
-            cells_to_update.append({"range": "Setting!T1", "value": "Base Salary"})
-        if cells_to_update:
-            _batch_update(sales_sh, cells_to_update)
-        existing = [v.strip() for v in setting_sh.col_values(19)[1:] if v.strip()]
-        if not existing:
-            setting_sh.update("S2:T3", [["Staff A", "0"], ["Staff B", "0"]])
-    except Exception as e:
-        logging.warning("ensure_sheet_headers: %s", e)
-
+    return  # GSheet removed - headers managed by API/MySQL
 # ─────────────────────────────────────────
 @dataclass
 class BotStateData:

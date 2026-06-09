@@ -22,8 +22,8 @@ from bot import (
     PREPAID_START, REC_ACCT, REC_AMT, REC_CONFIRM, REC_CUST, REC_DESC,
     REC_DUE, REC_SETTLE_ACCT, REC_SETTLE_CONFIRM, REC_SETTLE_LIST,
     SHARE_CAP, SHARE_CONFIRM, SHARE_NAME, SHARE_OWN, SHARE_ROLE,
-    _pin_then, _replit_get, _replit_get_async, _replit_post, _replit_post_async, cmd_cancel, now_mmt,
-    show_main_menu, today_str, wb,
+    _pin_then,     cmd_cancel, now_mmt,
+    show_main_menu, today_str, 
 )
 
 try:

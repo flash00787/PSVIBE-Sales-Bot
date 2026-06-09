@@ -1,8 +1,8 @@
 from bot import (
     BTN_BACK_MAIN, BTN_INVENTORY_VIEW, BTN_STOCK_IN_M, BTN_STOCK_OUT,
     MAIN_MENU, STOCK_ACCESS_PIN, STOCK_ITEM, STOCK_MENU, STOCK_PIN,
-    STOCK_QTY, _replit_get, _replit_get_async, fetch_food_costs, fetch_food_prices, inv_sh,
-    now_mmt, show_main_menu, stock_sh,
+    STOCK_QTY,   fetch_food_costs, fetch_food_prices, 
+    now_mmt, show_main_menu, 
     fetch_food_prices_async,
     fetch_food_costs_async,
 )

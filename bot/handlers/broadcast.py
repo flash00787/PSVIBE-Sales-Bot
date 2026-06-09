@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
 from bot import (
-    BTN_BACK_MAIN, MAIN_MENU, _replit_get, _replit_get_async, cmd_staff_kpi, today_str,
+    BTN_BACK_MAIN, MAIN_MENU,   cmd_staff_kpi, today_str,
 )
 
 import asyncio

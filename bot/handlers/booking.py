@@ -7,7 +7,7 @@ from bot import (
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
     SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
-    add_console_game, add_console_game_async, _delete_session_game, _replit_get, _replit_get_async, _replit_post, _replit_post_async, calc_duration,
+    add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
     fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_games, fetch_games_async,
     fetch_members, fetch_staff, get_consoles_with_game, get_consoles_with_game_async,

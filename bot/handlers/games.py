@@ -11,8 +11,8 @@ from bot import (
     BTN_VIEW_GAMES, GAME_ADD_GENRE,
     GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT, GAME_DETAIL_PICK,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
-    _replit_delete, _replit_post, _replit_put,
-    fetch_console_games, fetch_console_games_async, fetch_games, fetch_games_async, get_game_lib_sh, show_game_menu,
+      
+    fetch_console_games, fetch_console_games_async, fetch_games, fetch_games_async,  show_game_menu,
     show_main_menu, SSD_NAMES,
 )
 
