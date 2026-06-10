@@ -1519,7 +1519,7 @@ SSD_NAMES: dict[str, str] = {
 }
 SSD_BTN_TO_ID: dict[str, str] = {v: k for k, v in SSD_NAMES.items()}
 
-STOCK_ACCESS_PIN    = os.environ["STOCK_PIN"]
+STOCK_ACCESS_PIN    = os.environ.get("STOCK_PIN", "")
 CUSTOMER_BOT_TOKEN  = os.environ.get("CUSTOMER_BOT_TOKEN", "")
 STAFF_NOTIFY_CHAT   = os.environ.get("STAFF_NOTIFY_CHAT", "")   # group chat ID for booking notifications
 # Comma-separated Telegram user IDs allowed to use /broadcast (e.g. "12345678,87654321")

@@ -200,7 +200,22 @@ def _build_bot_mock():
             "cmd_cancel", "show_main_menu", "show_admin_menu",
             "show_console_menu", "show_game_menu", "show_ginst_menu",
             "cmd_payroll", "cmd_staff_kpi", "cmd_setattend", "cmd_setattend_cmd",
-        ]
+                    "create_booking_async", "end_booking_async", "cancel_booking_async",
+            "fetch_console_status_async", "fetch_games_async",
+            "fetch_console_games_async", "get_consoles_with_game_async",
+            "get_games_on_console_async", "add_console_game_async",
+            "remove_console_game_async", "fetch_promotions_cached_async",
+            "fetch_game_library_async",
+                    "fetch_members_async",
+                        "fetch_base_rate_async",
+                        "fetch_console_multiplier_async",
+                        "fetch_allowed_staff_ids_async",
+                        "fetch_wallet_mins_async",
+                        "fetch_balance_mins_async",
+                        "fetch_member_tier_async",
+                        "fetch_member_data_async",
+                        "fetch_food_menu_async",
+            ]
         for _name in _handler_reexports:
             if not hasattr(bot, _name):
                 if _name.startswith(("cmd_", "show_")):
@@ -210,7 +225,30 @@ def _build_bot_mock():
 
 
 
-    # ── Ensure async mocks survive auto-population ──
+    
+    # ── Async re-export alias mocks ──
+    bot.create_booking_async = AsyncMock()
+    bot.end_booking_async = AsyncMock()
+    bot.cancel_booking_async = AsyncMock()
+    bot.fetch_console_status_async = AsyncMock()
+    bot.fetch_games_async = AsyncMock()
+    bot.fetch_members_async = AsyncMock()
+    bot.fetch_base_rate_async = AsyncMock()
+    bot.fetch_console_multiplier_async = AsyncMock()
+    bot.fetch_allowed_staff_ids_async = AsyncMock()
+    bot.fetch_wallet_mins_async = AsyncMock()
+    bot.fetch_balance_mins_async = AsyncMock()
+    bot.fetch_member_tier_async = AsyncMock()
+    bot.fetch_member_data_async = AsyncMock()
+    bot.fetch_promotions_cached_async = AsyncMock()
+    bot.fetch_food_menu_async = AsyncMock()
+    bot.fetch_console_games_async = AsyncMock()
+    bot.get_consoles_with_game_async = AsyncMock()
+    bot.get_games_on_console_async = AsyncMock()
+    bot.add_console_game_async = AsyncMock()
+    bot.remove_console_game_async = AsyncMock()
+    bot.fetch_game_library_async = AsyncMock()
+# ── Ensure async mocks survive auto-population ──
     bot.fetch_members_async = AsyncMock(return_value=['PSV_A001', 'PSV_A002', 'PSV_A003'])
     bot.fetch_wallet_mins_async = AsyncMock(return_value=100)
     bot.fetch_base_rate_async = AsyncMock(return_value=5000)
@@ -243,6 +281,20 @@ def _build_bot_mock():
         return dec
     bot.log_duration = _identity_log_duration
 
+    # Auto-create missing attributes so tests don't break on new imports
+    def _mock_getattr(name):
+        if name.startswith('_') and not name.startswith('_replit'):
+            raise AttributeError(name)
+        if name.endswith('_async') or name.startswith('_replit'):
+            mock = AsyncMock()
+        elif name.startswith(('cmd_', 'show_', 'prompt_', 'step_')):
+            mock = AsyncMock()
+        else:
+            mock = MagicMock()
+        setattr(bot, name, mock)
+        return mock
+    bot.__getattr__ = _mock_getattr
+    
     return bot
 
 _bot = _build_bot_mock()
@@ -253,6 +305,7 @@ _handlers.__package__ = 'bot.handlers'
 _handlers.__path__ = [os.path.join(_BOT_DIR, 'handlers')]
 _handlers.__file__ = os.path.join(_BOT_DIR, 'handlers', '__init__.py')
 sys.modules['bot.handlers'] = _handlers
+
 
 _utils = types.ModuleType('bot.utils')
 _utils.__package__ = 'bot.utils'
