@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 18:38 ===
-Before: 318M
-  >6h trajectory: 1 files, ~0MB deleted
-After: 318M
-=== RESULT: OK ||| ERROR: Cleanup completed ===
+=== Bulk Session Cleanup 19:08 ===
+Before: 310M
+  >6h trajectory: 2 files, ~0MB deleted
+After: 310M
