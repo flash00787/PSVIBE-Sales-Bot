@@ -19,3 +19,8 @@
 *Archived: 2026-06-10 04:37 UTC*
 
 (dedup) 9. **Python `.pyc` cache stale after edit:** Always `find -name '__pycache__' -exec rm -rf {} +` then restart
+
+# Archived Memory Entries
+*Archived: 2026-06-10 16:38 UTC*
+
+(dedup) - psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅

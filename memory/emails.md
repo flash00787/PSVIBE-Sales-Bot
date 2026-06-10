@@ -17,7 +17,8 @@
 - **Service Account Key:** `kora_drive_sa.json`
 - **PS VIBE Drive Root:** `1V6ctTJpXaoRIDnrfxwhVO72I7jfD5GsS`
 
-## OAuth Token Status (Updated 2026-06-03)
-- **Scopes**: gmail.readonly + gmail.send ✅
+## OAuth Token Status (Updated 2026-06-10)
+- **Scopes**: gmail.readonly + gmail.send + drive.file ✅
 - **Refresh Token**: Active — auto-refreshes access_token on expiry
-- **Last Refreshed**: 2026-06-03 ~05:14 UTC
+- **Last Refreshed**: 2026-06-10 ~16:42 UTC
+- **Drive Write**: ✅ Working (PS VIBE folder — direct upload via OAuth token)

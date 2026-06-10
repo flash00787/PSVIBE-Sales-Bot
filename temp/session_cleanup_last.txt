@@ -1,6 +1,5 @@
-=== Bulk Session Cleanup 16:38 ===
-Before: 330M
+=== Bulk Session Cleanup 18:38 ===
+Before: 318M
   >6h trajectory: 1 files, ~0MB deleted
-After: 330M
-
-=== RESULT: ERROR: Bad substitution in script (exit code 2). Cleanup partially completed — 1 trajectory file deleted, but script exited early. ===
+After: 318M
+=== RESULT: OK ||| ERROR: Cleanup completed ===

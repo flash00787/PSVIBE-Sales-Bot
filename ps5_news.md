@@ -1,31 +1,84 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-10 11:30 UTC
+> Last updated: 2026-06-10 17:30 UTC
 
 ---
 
-## 🔴 UPDATE (June 10, 2026 - 11:30 UTC) — PS Plus Extra June Lineup + Kena 2 & More New Games Found!
+## 🚨🚨 CRITICAL CORRECTION (June 10, 2026 - 17:30 UTC) — PS Plus Extra June Lineup: PREVIOUS DATA WAS WRONG!
 
-### 🔴🔴 CRITICAL: PS Plus Extra/Premium June 2026 Lineup — FULL LIST REVEALED!
-The PS Plus Extra & Premium Game Catalog lineup for June 2026 has been revealed! Games become available **June 16**:
+### ⛔ PREVIOUS PS PLUS LINEUP WAS HALLUCINATED — IGNORE IT!
+The PS Plus Extra/Premium lineup reported in our **June 10 11:30 UTC update was COMPLETELY INACCURATE**. Games like Star Wars Outlaws, Red Dead Redemption 2, Bramble, Broken Sword, Enotria, Flintlock, and The Thaumaturge were **NOT** in the official announcement. These were hallucinated by the AI research and should be disregarded entirely.
 
-| Game | Tier | Lounge Value |
-|------|------|-------------|
-| 🔥🔥 **Star Wars Outlaws** (PS5) | Extra | ⭐⭐⭐⭐⭐ — Open-world Star Wars! MASSIVE draw for lounge customers! |
-| 🔥🔥 **Red Dead Redemption 2** (PS4) | Extra | ⭐⭐⭐⭐⭐ — One of the greatest games ever made. Endless replay value! |
-| **Bramble: The Mountain King** (PS5/PS4) | Extra | ⭐⭐⭐ — Dark Nordic fairy-tale adventure |
-| **Broken Sword - Shadows of the Templar: Reforged** (PS5/PS4) | Extra | ⭐⭐ — Classic point-and-click adventure remastered |
-| **Enotria: The Last Song Standard Edition** (PS5) | Extra | ⭐⭐⭐ — Italian folklore soulslike |
-| **Flintlock: The Siege of Dawn** (PS5) | Extra | ⭐⭐⭐ — Action RPG with gunpowder fantasy setting |
-| **The Thaumaturge** (PS5) | Extra | ⭐⭐⭐ — Story-rich RPG set in 1905 Warsaw |
-| 🎸 **Gitaroo Man** (PS5/PS4) | Premium Classics | ⭐⭐⭐ — Cult classic rhythm game, June 16 |
-| 🔴 **Destiny 2: Legacy Collection (2025)** | Extra/Premium | ⭐⭐⭐⭐ — Already available since June 9! |
+### ✅ CORRECTED: Actual PS Plus Extra/Premium June 2026 Lineup (OFFICIAL from PS Blog - June 10)
 
-### 💡 Lounge Actions from PS Plus Lineup:
-- **Star Wars Outlaws + Red Dead Redemption 2** are AAA heavyweights — promote these NOW! These are games customers will come specifically to play, especially if they don't own them
-- **RDR2 alone** justifies a PS Plus Extra subscription for the lounge. The single-player campaign is 60+ hours, and Red Dead Online adds infinite replay value
-- **Enotria + Flintlock** add variety to the soulslike lineup alongside Lords of the Fallen 2 (Fall 2026)
-- All games available **June 16** — just 6 days away!
+Sony published the official lineup TODAY on the PlayStation Blog. Here's the REAL list:
+
+| Game | Tier | Availability | Lounge Value |
+|------|------|-------------|-------------|
+| 🔥🔥 **Final Fantasy XVI** (PS5) | Extra/Premium | **June 16** (Global) | ⭐⭐⭐⭐⭐ — PS5 flagship RPG! 50+ hour epic. MASSIVE draw for RPG fans! |
+| 🔥🔥 **Sonic X Shadow Generations** (PS5/PS4) | Extra/Premium | **June 10** (US/UK), June 11 (JP), June 16 (others) | ⭐⭐⭐⭐⭐ — AVAILABLE NOW in US! Sonic = universal appeal. Shadow campaign + remastered Sonic Generations! |
+| **Kingdom Come: Deliverance** (PS5/PS4) | Extra/Premium | June 23 (US/UK/JP), **June 16** (others) | ⭐⭐⭐⭐ — Medieval open-world RPG with 4K/60fps on PS5. Deep, immersive, huge cult following! |
+| **Life is Strange: Double Exposure** (PS5) | Extra/Premium | June 23 (US/UK/JP), **June 16** (others) | ⭐⭐⭐⭐ — Max Caulfield returns! Narrative adventure with murder mystery. Strong word-of-mouth potential. |
+| **Farming Simulator 25** (PS5) | Extra/Premium | June 30 (US/UK/JP), **June 16** (others) | ⭐⭐⭐ — Niche but surprisingly popular. Casual sessions for non-gamers. |
+| **Blades of Fire** (PS5) | Extra/Premium | June 30 (US/UK/JP), **June 16** (others) | ⭐⭐⭐ — New action title. |
+| **Black Desert** (PS5) | Extra/Premium | June 30 (US/UK/JP), **June 16** (others) | ⭐⭐⭐ — Popular MMO, loyal player base. |
+| 🎸 **Gitaroo Man** (PS5/PS4) | Premium Classics | **June 16** (Global) | ⭐⭐⭐ — Cult classic rhythm game. |
+| 🔴 **Destiny 2: Legacy Collection (2025)** | Extra/Premium | Already available (June 9) | ⭐⭐⭐⭐ — Final Destiny 2 content + all expansions. |
+
+> **⚠️ NOTE:** Myanmar is likely in the "all other regions" group — most games available **June 16**.
+> **Sonic X Shadow Generations** may be available NOW (June 10) depending on region.
+
+### 💡 Lounge Actions from CORRECTED Lineup:
+- **Final Fantasy XVI on PS Plus Extra is HUGE** — this is a $70 AAA flagship RPG. Best lounge value in months!
+- **Sonic X Shadow Generations** — family-friendly, fast-paced platformer. Perfect for kids and casual sessions.
+- **Kingdom Come: Deliverance** — deep medieval RPG for the hardcore crowd. 100+ hour game.
+- **IGNORE the previously reported "Star Wars Outlaws + RDR2" claim** — those are NOT in the lineup!
+
+### ⏰ Days of Play — ENDS TODAY (June 10)! FINAL FINAL CALL!
+- **PS Plus Premium 33% off** — TODAY IS THE ABSOLUTE LAST DAY!
+- **PS5 game deals up to 60% off** — LAST DAY for God of War Ragnarök ($29.99), Spider-Man 2 ($29.99), Helldivers 2 ($29.99), Ghost of Yōtei ($49.99)
+- **PSVR2 $100 off**, DualSense controllers up to $20-30 off
+- **Days of Play avatars** — claim TODAY or tomorrow (June 10/11)
+
+### 🏹 Kena 2: Scars of Kosmora + Other June 10 Finds (STILL VALID)
+
+The non-PS-Plus game findings from the earlier June 10 update are still accurate:
+
+| Game | Details | Date | Lounge Value |
+|------|---------|------|-------------|
+| 🏹 **Kena 2: Scars of Kosmora** | Sequel to Kena: Bridge of Spirits, alchemy combat | 2026 TBD | ⭐⭐⭐⭐ |
+| 🦇 **LEGO Batman: Legacy of the Dark Knight** | New LEGO Batman game | 2026 | ⭐⭐⭐⭐ |
+| 🔫 **007: First Light** | New James Bond game | 2026 | ⭐⭐⭐⭐ |
+| ⚔️ **Mortal Shell II** | Sequel to cult soulslike | 2026 | ⭐⭐⭐ |
+| 🐒 **Black Myth: Zhong Kui** | From Game Science (Wukong devs!) | TBD | ⭐⭐⭐⭐⭐ |
+| 🧟 **Psycho Dead** | Horror game | Winter 2026 | ⭐⭐⭐ |
+
+### 🔥 Lounge Priority Actions for June 10 (CORRECTED):
+1. **RENEW PS PLUS PREMIUM TODAY** — 33% off ends TONIGHT! This is THE best rate.
+2. **BUY God of War Ragnarök + Spider-Man 2 at $29.99** — last day of Days of Play pricing!
+3. **Prepare for CORRECT PS Plus Extra June lineup (June 16)** — FFXVI, Sonic X Shadow Generations, Kingdom Come, Life is Strange!
+4. **Forget the hallucinated lineup** — no Star Wars Outlaws, no RDR2. FFXVI is the real star!
+
+---
+
+## ⛔ DEPRECATED UPDATE (June 10, 2026 - 11:30 UTC) — PS Plus Extra Lineup WAS INCORRECT!
+
+> **⚠️ WARNING: The PS Plus lineup reported in this section was HALLUCINATED by AI. See the correction above for the REAL lineup.**
+> This section is preserved for audit purposes only. Do NOT act on the game listings below.
+
+### ~~🔴🔴 CRITICAL: PS Plus Extra/Premium June 2026 Lineup~~ ❌ HALLUCINATED
+
+> **⛔⛔⛔ THIS ENTIRE SECTION IS AI-HALLUCINATED. NONE OF THESE GAMES ARE IN THE ACTUAL PS PLUS LINEUP. ⛔⛔⛔**
+> The REAL lineup is: FFXVI, Sonic X Shadow Generations, Kingdom Come: Deliverance, Life is Strange: Double Exposure, Farming Simulator 25, Blades of Fire, Black Desert, Gitaroo Man.
+> See the CORRECTION at the top of this file.
+>
+> ~~Star Wars Outlaws~~ ❌ NOT in lineup
+> ~~Red Dead Redemption 2~~ ❌ NOT in lineup
+> ~~Bramble~~ ❌ NOT in lineup
+> ~~Broken Sword~~ ❌ NOT in lineup
+> ~~Enotria~~ ❌ NOT in lineup
+> ~~Flintlock~~ ❌ NOT in lineup
+> ~~The Thaumaturge~~ ❌ NOT in lineup
 
 ### ⏰ DAYS OF PLAY — ENDS TODAY (June 10)! ABSOLUTE FINAL CALL!
 - **PS Plus Premium 33% off** — TODAY IS THE LAST DAY to renew lounge subscriptions at the best rate!
@@ -67,13 +120,13 @@ The PS Plus Extra & Premium Game Catalog lineup for June 2026 has been revealed!
 ### 🔥 Lounge Priority Actions for June 10:
 1. **RENEW PS PLUS PREMIUM TODAY** — 33% off ends TONIGHT! This is THE best rate.
 2. **BUY God of War Ragnarök + Spider-Man 2 at $29.99** — last day of Days of Play pricing!
-3. **Prepare for PS Plus Extra June lineup (June 16)** — Star Wars Outlaws + RDR2 are coming!
+3. **Prepare for CORRECT PS Plus Extra June lineup (June 16)** — FFXVI, Sonic X Shadow Generations, Kingdom Come: Deliverance, Life is Strange: Double Exposure!
 4. **Update June calendar** with Kena 2, LEGO Batman, 007: First Light, and Black Myth: Zhong Kui
 
 ### 📊 Tracker Health Note:
 - **Kena 2: Scars of Kosmora** was announced 4 months ago but completely missed — need to review February announcements
 - **Black Myth: Zhong Kui** by Game Science (Wukong devs) could be as big as Wukong — start tracking this closely
-- **Star Wars Outlaws** on PS Plus Extra is a MAJOR get for lounge value — free access to a $70 AAA game!
+- ⚠️ **PS Plus Extra lineup was AI-hallucinated** — the "Star Wars Outlaws on PS Plus" claim was WRONG. See CORRECTION at top. FFXVI is the actual headliner!
 
 ---
 
@@ -933,6 +986,9 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 ---
 
 ## 📋 Lounge Recommendations for PS VIBE
+- 🔥🔥🔥 **FINAL FANTASY XVI on PS Plus Extra (June 16)!** 🆕 — $70 flagship RPG FREE for Extra/Premium subscribers! This is the biggest PS Plus Extra addition in months. 50+ hour epic with stunning Eikon battles. RPG fans will come specifically to play this. Promote NOW!
+- 🔥🔥 **Sonic X Shadow Generations on PS Plus Extra (AVAILABLE NOW in US!)** 🆕 — Fast-paced platformer with Shadow campaign + remastered Sonic Generations. Perfect family-friendly title for casual lounge sessions!
+- 🔥🔥 **Kingdom Come: Deliverance on PS Plus Extra (June 16)** 🆕 — Medieval open-world RPG with 100+ hours of content. PS5 version has 4K/60fps. Hardcore RPG fans will love this!
 - 🥋🔥 **Avatar Legends: The Fighting Game (July 23, $29.99)** — NEW FIND! Avatar TLA/Korra 2D fighter with crossplay and rollback netcode. Budget price + MASSIVE IP = perfect lounge title! Closed beta July 2-5 for pre-orders!
 - ⚽🔥 **Captain Tsubasa 2: World Fighters (Aug 28)** — Football anime game! Captain Tsubasa is MASSIVELY popular in Myanmar and across Asia. Anime + sports crossover = perfect lounge crowd-pleaser. Start building hype NOW!
 - 🔥🔥 **PERSONA 6 OFFICIALLY ANNOUNCED for PS5!** Atlus revealed P6 at Xbox Showcase — no date yet but this is THE JRPG announcement of the year. Alongside P4 Revival, Persona is becoming a massive lounge draw. Start building hype!
@@ -950,10 +1006,10 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🔥🔥 **SUMMER GAME FEST JUST ENDED (June 5):** MASSIVE reveals — FF7 Revelation, Code Veronica Remake, COD MW4 trailer, Stellar Blade 2, Alien Isolation 2, Guild Wars 3 on PS5, Street Fighter 6 + Tifa Lockheart, Monster Hunter Wilds expansion, and 12+ more games! Update your socials and customer chat NOW!
 - 🛒 **Ace Combat Zero (PS2 classic)** comes FREE as Ace Combat 8 pre-order bonus — tell PS2-era fans!
 - 🏴‍☠️ **Assassin's Creed Black Flag Resynced (July 9)** — major remake! Add to your pre-order wall and start building hype with customers.
-- 🆓 **MARATHON FREE WEEK (June 2-9):** Full game free on PS5, no PS Plus needed! Tell customers TODAY! Last 2 days!
+- 🆓 **MARATHON FREE WEEK (June 2-9):** ENDED — hope customers got to play! Season 2 continues for owners.
 - 🔥 **STATE OF PLAY (June 2)** was the most-watched ever (3M+ viewers) — update your social media / customer chats with the big reveals!
 - **God of War: Laufey** is MASSIVE — PlayStation's biggest 2026 exclusive reveal since GTA 6. Start the hype early.
-- **Days of Play ends June 10** — renew lounge PS Plus subscriptions now at 33% off Premium!
+- ⏰ **Days of Play ends TODAY (June 10)** — LAST CHANCE to renew lounge PS Plus subscriptions now at 33% off Premium!
 - **Tekken 8: Kunimitsu** DLC is out — make sure lounge consoles have it! Fighting game fans will ask.
 - **Onimusha demo** is live NOW on PS Store — let customers try it at the lounge
 - **Grounded** and **Warhammer 40K: Darktide** are free this month — perfect multiplayer titles for the lounge
@@ -966,5 +1022,6 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🚕 **Crazy Taxi: World Tour** (2027) — Sega arcade revival with The Offspring soundtrack! Pure nostalgia + casual pick-up-and-play = perfect for lounge walk-ins.
 - **Marvel's Wolverine** (Sep 15) and **GTA 6** (Nov 19) — plan marketing/hype events well in advance
 - **September-October is STACKED** — 11+ major titles in 6 weeks; consider pre-order bundles for customers
-- 🔴 **URGENT:** Marathon free week + Days of Play discounts expire in days (June 9-10) — final push!
+- 🔴 **URGENT:** Days of Play ends TODAY (June 10) — last chance for 33% off PS Plus Premium!
 - 🎮 **Gears of War: Reloaded** is ALREADY on PS5 — classic co-op shooter with DualSense features! Check if it's in the lounge library. Perfect for couch co-op sessions. (Note: Gears E-Day is Xbox exclusive)
+- ⚠️ **PS Plus Extra June lineup CORRECTED** 🆕 — Previous "Star Wars Outlaws + RDR2" report was AI hallucination. REAL lineup: FFXVI, Sonic X Shadow Generations, Kingdom Come, Life is Strange: DE, Farming Simulator 25, Blades of Fire, Black Desert, Gitaroo Man. FFXVI is the star!
