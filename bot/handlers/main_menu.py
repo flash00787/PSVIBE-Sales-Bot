@@ -12,7 +12,7 @@ from typing import Set
 from bot.handlers.sales import next_voucher, prompt_member
 
 from bot import (
-    ADMIN_PIN, BTN_ADMIN, BTN_HELP, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
+    BTN_HELP, BTN_BACK_MAIN, BTN_CONSOLES, BTN_DAILY_SALES,
     BTN_FINANCIAL_REPORT, BTN_BALANCE, BTN_GAME_LIB_MENU, BTN_INVENTORY_VIEW,
     BTN_MEMBER_MGMT, BTN_SBK_CONFIRMED, BTN_SBK_NEW, BTN_SBK_WAITLIST,
     BTN_FOOD_SALE, BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
@@ -176,7 +176,6 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [BTN_FOOD_SALE,        BTN_BALANCE],
         [BTN_CONSOLES,         BTN_INVENTORY_VIEW],
         [BTN_TODAY_REPORT,     BTN_STAFF_BOOK],
-        [BTN_ADMIN],
     ]
     await update.message.reply_text(
         f"🎮 *PS Vibe — Staff Bot*\n"
@@ -243,12 +242,6 @@ async def step_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_BALANCE:
         return await cmd_balance(update, context)
 
-    if choice == BTN_ADMIN:
-        await update.message.reply_text(
-            "🔐 *Admin Panel — PIN လိုအပ်သည်*\n\nPIN နံပါတ် ထည့်ပါ:",
-            parse_mode="Markdown",
-            reply_markup=ReplyKeyboardRemove(),
-        )
         return ADMIN_PIN
 
     if choice == BTN_HELP:

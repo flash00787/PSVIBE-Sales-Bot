@@ -131,7 +131,6 @@ def main():
             CommandHandler("kpi",        cmd_kpi_cmd),
             CommandHandler("payroll",    cmd_payroll_cmd),
             CommandHandler("setattend",  cmd_setattend_cmd),
-            CommandHandler("admin",      cmd_admin),
             # Booking management
             CommandHandler("bookings",   cmd_admin_bookings),
             CommandHandler("waitlist",   cmd_waitlist_mgmt),
@@ -225,7 +224,6 @@ def main():
 
             # ── Admin Panel ──
             ADMIN_PIN:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_admin_pin)],
-            ADMIN_MENU: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_admin_menu)],
 
             # ── Waitlist Management ──
             WL_MENU:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_wl_menu)],
@@ -347,7 +345,6 @@ def main():
             CommandHandler("kpi",        cmd_kpi_cmd),
             CommandHandler("payroll",    cmd_payroll_cmd),
             CommandHandler("setattend",  cmd_setattend_cmd),
-            CommandHandler("admin",      cmd_admin),
             CommandHandler("broadcast",  cmd_broadcast),
             # Booking management
             CommandHandler("bookings",   cmd_admin_bookings),
@@ -406,7 +403,6 @@ def main():
         ("kpi",        cmd_staff_kpi),
         ("payroll",    cmd_payroll),
         ("setattend",  cmd_setattend),
-        ("admin",      cmd_admin),
         ("stock",      cmd_stock_menu),
         ("stockin",    cmd_stockin_direct),
         ("stockout",   cmd_stockout_direct),

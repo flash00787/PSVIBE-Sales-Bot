@@ -5,7 +5,6 @@ All handler functions are re-exported for backward compatibility.
 """
 # ═══════ Domain handler modules ═══════
 
-from .admin import *  # noqa: F401,F403
 from .admin_bookings import *  # noqa: F401,F403
 from .attendance import *  # noqa: F401,F403
 from .booking import *  # noqa: F401,F403
