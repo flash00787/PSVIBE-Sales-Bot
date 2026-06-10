@@ -741,3 +741,33 @@ psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboar
 14. **Session file lock cron jobs < 60s cause main session conflicts** — lock-monitor every 30s created `EmbeddedAttemptSessionTakeoverError`. Minimum safe interval: 5 min
 15. **Rule 11 (GOLDEN_RULES.md)**: Always Respond to Boss — NO Quiet Hours for Incoming Messages
 16. **Session file bloat at 446MB/500MB** — 1,305 session files. Cleanup every 10 min may not keep up with active usage
+
+## 📌 Summary (2026-06-10) — Sales Daily Lazy-Load Fix
+
+### 🎯 Dashboard Sales Daily Page Not Loading (07:02-07:08 UTC)
+
+### Symptom
+- Boss clicked "Sales Daily" in dashboard → nothing happened (button unresponsive)
+
+### Root Cause
+- Dashboard Vue SPA with **lazy-loaded components**. Main JS was renamed to `.v2.js` (cache busting), but ALL 22 lazy chunks still imported from `"./index-DDJXoolO.js"` (original path).
+- Cloudflare had this old path cached with **n8n JS content** (from when middleware was intercepting `/assets/*`).
+- When clicking "Sales Daily":
+  1. Browser lazy-loads `SaleDaily-DXRSp17u.js` ✅
+  2. SaleDaily tries to import from `./index-DDJXoolO.js` ❌
+  3. Cloudflare serves CACHED n8n JS → JavaScript fails → button dead
+
+### Fix
+- Updated ALL 22 lazy-loaded chunk imports from `./index-DDJXoolO.js` → `./index-DDJXoolO.v2.js`
+- Also overwrote original `index-DDJXoolO.js` with correct content (safety net)
+
+### Resolution
+- Boss needs to **hard-refresh (Ctrl+F5 or Incognito)** to clear Cloudflare/browser cache
+
+### 🧠 Lesson Learned
+- **Vite lazy chunk imports must match hashed filename** — renaming main JS alone is not enough when cache busting
+- **Cloudflare caches individual asset paths** — each chunk gets its own cache entry; must update all inter-chunk import references
+- **Always check ALL import statements** in lazy-loaded chunks after any build cache-busting
+
+### Services Status (June 10, 07:08 UTC)
+- psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅
