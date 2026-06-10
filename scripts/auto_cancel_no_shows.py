@@ -20,6 +20,8 @@ from datetime import datetime, timedelta, timezone
 SECRETS_FILE = "/etc/psvibe/secrets.env"
 ENV_FILE = "/root/psvibe-sales-bot/.env"
 
+TRACK_FILE = "/root/psvibe-sales-bot/data/booking_reminders.json"
+
 def _load_env_file(filepath):
     """Load key=value pairs from an env file (simple parser, handles exports)."""
     if not os.path.isfile(filepath):
@@ -77,8 +79,8 @@ def auto_cancel():
     for status_filter in ("confirmed", "pending", "scheduled"):
         try:
             resp = requests.get(
-                f"{API_URL}/api/search-bookings",
-                params={"status": status_filter, "api_key": API_KEY},
+                f"{API_URL}/api/bookings",
+                params={"status": status_filter},
                 headers=headers,
                 timeout=15,
             )
@@ -164,7 +166,6 @@ def auto_cancel():
         try:
             cancel_resp = requests.post(
                 f"{API_URL}/api/bookings/cancel",
-                params={"api_key": API_KEY},
                 json={"id": bk_id},
                 headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
                 timeout=10,
@@ -174,10 +175,7 @@ def auto_cancel():
             print(f"  ✗ Failed to cancel booking {bk_id}: {e}")
             continue
         
-        is_cancelled = (
-            cancel_data.get("success") or
-            (isinstance(cancel_data.get("data"), dict) and cancel_data["data"].get("message"))
-        )
+        is_cancelled = cancel_data.get("success", False)
         
         if not is_cancelled:
             print(f"  ✗ Cancel API failed for #{bk_id}: {cancel_data}")
@@ -238,8 +236,8 @@ def send_booking_reminders():
     
     try:
         resp = requests.get(
-            f"{API_URL}/api/search-bookings",
-            params={"api_key": API_KEY},
+            f"{API_URL}/api/bookings",
+            params={},
             headers=headers,
             timeout=15,
         )
@@ -333,7 +331,7 @@ def send_booking_reminders():
                 if _cust_chat and CUSTOMER_BOT_TOKEN:
                     _cust_remind = f"\U0001F514 <b>PS VIBE Booking Reminder</b>\nBooking #{bk_id}\n\U0001F4C5 {bk_date_clean}  \U0001F550 {time_str}\n\U0001F3AE {console}  \u23F1 {duration} mins"
                     if game:
-                        _cust_remind += f"\n\U0001F579 {game}"
+                        cust_remind += f"\n\U0001F579 {game}"
                     _cust_remind += "\n\n\u23F0 \u1014\u102d\u1029\u101b\u1031\u101b\u1000\u1039\u101b\u102e\u1019\u1031\u101c\u102c\u1031\u101b\u1019\u1039\u1019"
                     tg_send(_cust_chat, _cust_remind, token=CUSTOMER_BOT_TOKEN, parse_mode="HTML")
                     print(f"  \u2713 Reminded customer #{bk_id}")
