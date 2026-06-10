@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-10T14:08:23.238257+00:00",
+  "updated": "2026-06-10T20:37:40.313234+00:00",
   "entries": [
     {
       "topic": "\"Stay quiet\" rules NEVER apply to Boss messages",
@@ -453,6 +453,41 @@
       ]
     },
     {
+      "topic": "33 games",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 49,
+          "context": "- **33 games**: ✅ Poster (Steam Library 1200x1800 box art) + Gameplay (Steam screenshots) - **4 games**: ✅ Poster only (Assassin's Creed Shadows, Astro Bot, INVINCIBLE VS, Spider-Man 2)"
+        }
+      ]
+    },
+    {
+      "topic": "37/41 games have BOTH Poster + Gameplay",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 72,
+          "context": "**37/41 games have BOTH Poster + Gameplay** 🔥 **4/41 empty** (all unreleased: Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3)"
+        }
+      ]
+    },
+    {
+      "topic": "4 games",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 50,
+          "context": "- **4 games**: ✅ Poster only (Assassin's Creed Shadows, Astro Bot, INVINCIBLE VS, Spider-Man 2) - **4 games**: ❌ Empty (unreleased: Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3)"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 51,
+          "context": "- **4 games**: ❌ Empty (unreleased: Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3)"
+        }
+      ]
+    },
+    {
       "topic": "4-step fix:",
       "files": [
         {
@@ -519,6 +554,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 333,
           "context": "### 4.3 Edge Cases Covered"
+        }
+      ]
+    },
+    {
+      "topic": "4/41 empty",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 73,
+          "context": "**4/41 empty** (all unreleased: Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3) **74 total files** uploaded to Google Drive"
         }
       ]
     },
@@ -619,6 +664,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 144,
           "context": "## 7. Knowledge Graph (`memory/knowledge_graph.py` + `memory/knowledge-graph.json`) **Goal:** Topic/People/Project တွေကြားက relationship ကို track မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "74 total files",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 74,
+          "context": "**74 total files** uploaded to Google Drive"
         }
       ]
     },
@@ -958,6 +1013,16 @@
       ]
     },
     {
+      "topic": "Alphacoders.com",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 56,
+          "context": "3. **Alphacoders.com** — Used for PS5 exclusives (Gran Turismo 7, Astro Bot, etc.) with wallpaper-style gameplay 4. **IGN OG Images** — Fallback for some games (smaller 1200x630 pixel images)"
+        }
+      ]
+    },
+    {
       "topic": "already real-time",
       "files": [
         {
@@ -974,6 +1039,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 299,
           "context": "**Also need to import:** ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Always check ALL import statements",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 770,
+          "context": "- **Always check ALL import statements** in lazy-loaded chunks after any build cache-busting"
         }
       ]
     },
@@ -2223,6 +2298,16 @@
       ]
     },
     {
+      "topic": "Cloudflare caches individual asset paths",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 769,
+          "context": "- **Cloudflare caches individual asset paths** — each chunk gets its own cache entry; must update all inter-chunk import references - **Always check ALL import statements** in lazy-loaded chunks after"
+        }
+      ]
+    },
+    {
       "topic": "Cloudflare Tunnel:",
       "files": [
         {
@@ -3228,6 +3313,16 @@
       ]
     },
     {
+      "topic": "Drive Write",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 24,
+          "context": "- **Drive Write**: ✅ Working (PS VIBE folder — direct upload via OAuth token)"
+        }
+      ]
+    },
+    {
       "topic": "Duplicate C-01 console",
       "files": [
         {
@@ -3299,6 +3394,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 3,
           "context": "## Emergency Context - PS VIBE Grand Opening: June 6, 2026 (TOMORROW)"
+        }
+      ]
+    },
+    {
+      "topic": "Empty (unreleased)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 95,
+          "context": "### Empty (unreleased) Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3"
         }
       ]
     },
@@ -3425,6 +3530,11 @@
     {
       "topic": "Fallback:",
       "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 79,
+          "context": "- **Fallback:** Alphacoders.com for PS5 exclusives - **IGN:** OG images for some games"
+        },
         {
           "path": "memory/booking-features-implemented.md",
           "line": 25,
@@ -3923,6 +4033,16 @@
       ]
     },
     {
+      "topic": "Final Result (37/41 games populated)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 48,
+          "context": "### Final Result (37/41 games populated) - **33 games**: ✅ Poster (Steam Library 1200x1800 box art) + Gameplay (Steam screenshots)"
+        }
+      ]
+    },
+    {
       "topic": "Final system verification test",
       "files": [
         {
@@ -4379,6 +4499,11 @@
           "path": "MEMORY.md",
           "line": 673,
           "context": "- **Fix:** Removed `topup_rev` from `total_revenue`; excluded `type='topup'` from `game_rev` - Git: API `ebe0974`"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 760,
+          "context": "### Fix - Updated ALL 22 lazy-loaded chunk imports from `./index-DDJXoolO.js` → `./index-DDJXoolO.v2.js`"
         }
       ]
     },
@@ -4578,12 +4703,42 @@
       ]
     },
     {
+      "topic": "Gameplay:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 78,
+          "context": "- **Gameplay:** Steam API `store.steampowered.com/api/appdetails?appids={appid}` → `screenshots[0].path_full` — 1920x1080 gameplay screenshots - **Fallback:** Alphacoders.com for PS5 exclusives"
+        }
+      ]
+    },
+    {
       "topic": "Games",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 266,
           "context": "- **Games**: AI fetches live via `_fetch_games_full()` → `_build_live_game_library_text()` every time user asks — **already real-time** ✅ - **Food Menu**: AI fetches via `_fetch_config()` → `food_pric"
+        }
+      ]
+    },
+    {
+      "topic": "Games with Poster only",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 92,
+          "context": "### Games with Poster only None (all 37 got gameplay in final pass)"
+        }
+      ]
+    },
+    {
+      "topic": "Games with Poster+Gameplay",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 82,
+          "context": "### Games with Poster+Gameplay GTA 5, Tekken 8, Devil May Cry 5, Mortal Kombat, Elden Ring, Horizon Forbidden West,"
         }
       ]
     },
@@ -4893,6 +5048,16 @@
       ]
     },
     {
+      "topic": "hard-refresh (Ctrl+F5 or Incognito)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 765,
+          "context": "- Boss needs to **hard-refresh (Ctrl+F5 or Incognito)** to clear Cloudflare/browser cache"
+        }
+      ]
+    },
+    {
       "topic": "hardcoded",
       "files": [
         {
@@ -4994,6 +5159,26 @@
           "path": "memory/2026-06-09.md",
           "line": 34,
           "context": "- Web Finance and Cash Flow must use **identical income allocation** to match - Prepaid amortization: P&L expense + BS asset reduction. Cash Flow already shows full outflow (investing)."
+        }
+      ]
+    },
+    {
+      "topic": "IGN OG Images",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 57,
+          "context": "4. **IGN OG Images** — Fallback for some games (smaller 1200x630 pixel images)"
+        }
+      ]
+    },
+    {
+      "topic": "IGN:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 80,
+          "context": "- **IGN:** OG images for some games"
         }
       ]
     },
@@ -5413,6 +5598,16 @@
       ]
     },
     {
+      "topic": "Key Lessons",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 59,
+          "context": "### Key Lessons - **Steam Library images** are portrait/poster style (600x900 → 1200x1800 @2x) — exactly what Boss wanted"
+        }
+      ]
+    },
+    {
       "topic": "Key Lessons (June 9)",
       "files": [
         {
@@ -5588,7 +5783,7 @@
         {
           "path": "memory/emails.md",
           "line": 23,
-          "context": "- **Last Refreshed**: 2026-06-03 ~05:14 UTC"
+          "context": "- **Last Refreshed**: 2026-06-10 ~16:42 UTC - **Drive Write**: ✅ Working (PS VIBE folder — direct upload via OAuth token)"
         }
       ]
     },
@@ -5644,6 +5839,11 @@
           "path": "memory/2026-06-10.md",
           "line": 27,
           "context": "Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path). Cloudflare"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 753,
+          "context": "- Dashboard Vue SPA with **lazy-loaded components**. Main JS was renamed to `.v2.js` (cache busting), but ALL 22 lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path). - Cloudflare h"
         }
       ]
     },
@@ -6123,6 +6323,16 @@
       ]
     },
     {
+      "topic": "n8n JS content",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 754,
+          "context": "- Cloudflare had this old path cached with **n8n JS content** (from when middleware was intercepting `/assets/*`). - When clicking \"Sales Daily\":"
+        }
+      ]
+    },
+    {
       "topic": "Naming conflict",
       "files": [
         {
@@ -6468,12 +6678,12 @@
       ]
     },
     {
-      "topic": "OAuth Token Status (Updated 2026-06-03)",
+      "topic": "OAuth Token Status (Updated 2026-06-10)",
       "files": [
         {
           "path": "memory/emails.md",
           "line": 20,
-          "context": "## OAuth Token Status (Updated 2026-06-03) - **Scopes**: gmail.readonly + gmail.send ✅"
+          "context": "## OAuth Token Status (Updated 2026-06-10) - **Scopes**: gmail.readonly + gmail.send + drive.file ✅"
         }
       ]
     },
@@ -6933,6 +7143,16 @@
       ]
     },
     {
+      "topic": "Posters:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 77,
+          "context": "- **Posters:** Steam CDN `cdn.akamai.steamstatic.com/steam/apps/{appid}/library_600x900_2x.jpg` — 1200x1800 portrait/box-art style - **Gameplay:** Steam API `store.steampowered.com/api/appdetails?appi"
+        }
+      ]
+    },
+    {
       "topic": "Prepaid amortization",
       "files": [
         {
@@ -7243,7 +7463,7 @@
         {
           "path": "memory/emails.md",
           "line": 22,
-          "context": "- **Refresh Token**: Active — auto-refreshes access_token on expiry - **Last Refreshed**: 2026-06-03 ~05:14 UTC"
+          "context": "- **Refresh Token**: Active — auto-refreshes access_token on expiry - **Last Refreshed**: 2026-06-10 ~16:42 UTC"
         }
       ]
     },
@@ -7329,6 +7549,16 @@
           "path": "memory/UPGRADE_SPEC.md",
           "line": 40,
           "context": "**Requirements:** - Uses only stdlib"
+        }
+      ]
+    },
+    {
+      "topic": "Resolution",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 764,
+          "context": "### Resolution - Boss needs to **hard-refresh (Ctrl+F5 or Incognito)** to clear Cloudflare/browser cache"
         }
       ]
     },
@@ -7654,6 +7884,11 @@
           "path": "MEMORY.md",
           "line": 594,
           "context": "- **Root cause**: PyMySQL `execute()` does `query % args` — `LIKE '%/%'` in SQL was interpreted as Python format specifier → \"not enough arguments for format string\" - **Fix**: Replaced `LIKE '%/%'` w"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 752,
+          "context": "### Root Cause - Dashboard Vue SPA with **lazy-loaded components**. Main JS was renamed to `.v2.js` (cache busting), but ALL 22 lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path)."
         }
       ]
     },
@@ -7848,7 +8083,7 @@
         {
           "path": "memory/emails.md",
           "line": 21,
-          "context": "- **Scopes**: gmail.readonly + gmail.send ✅ - **Refresh Token**: Active — auto-refreshes access_token on expiry"
+          "context": "- **Scopes**: gmail.readonly + gmail.send + drive.file ✅ - **Refresh Token**: Active — auto-refreshes access_token on expiry"
         }
       ]
     },
@@ -8193,6 +8428,16 @@
       ]
     },
     {
+      "topic": "Services Status (June 10, 07:08 UTC)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 772,
+          "context": "### Services Status (June 10, 07:08 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "Session 1: Core Sales Bot + Customer Bot",
       "files": [
         {
@@ -8469,6 +8714,26 @@
           "path": "memory/test-report.md",
           "line": 82,
           "context": "## Source Files Tested"
+        }
+      ]
+    },
+    {
+      "topic": "Sources",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 76,
+          "context": "### Sources - **Posters:** Steam CDN `cdn.akamai.steamstatic.com/steam/apps/{appid}/library_600x900_2x.jpg` — 1200x1800 portrait/box-art style"
+        }
+      ]
+    },
+    {
+      "topic": "Sources Used",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 53,
+          "context": "### Sources Used 1. **Steam Library Art (1200x1800 portrait)** — Best for poster-style box art. Direct CDN: `https://cdn.akamai.steamstatic.com/steam/apps/{appid}/library_600x900_2x.jpg`"
         }
       ]
     },
@@ -8778,6 +9043,46 @@
       ]
     },
     {
+      "topic": "Steam Library Art (1200x1800 portrait)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 54,
+          "context": "1. **Steam Library Art (1200x1800 portrait)** — Best for poster-style box art. Direct CDN: `https://cdn.akamai.steamstatic.com/steam/apps/{appid}/library_600x900_2x.jpg` 2. **Steam Screenshots API** —"
+        }
+      ]
+    },
+    {
+      "topic": "Steam Library images",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 60,
+          "context": "- **Steam Library images** are portrait/poster style (600x900 → 1200x1800 @2x) — exactly what Boss wanted - **Steam screenshots** are actual gameplay highlights at 1920x1080 — perfect for \"gameplay hi"
+        }
+      ]
+    },
+    {
+      "topic": "Steam screenshots",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 61,
+          "context": "- **Steam screenshots** are actual gameplay highlights at 1920x1080 — perfect for \"gameplay highlights\" - PS5 exclusive games (Astro Bot, GT7, Spider-Man 2) have NO Steam pages → need alternative sour"
+        }
+      ]
+    },
+    {
+      "topic": "Steam Screenshots API",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 55,
+          "context": "2. **Steam Screenshots API** — Best for gameplay highlights. `https://store.steampowered.com/api/appdetails?appids={appid}` → `screenshots[0].path_full` 3. **Alphacoders.com** — Used for PS5 exclusive"
+        }
+      ]
+    },
+    {
       "topic": "Still broken because:",
       "files": [
         {
@@ -8994,6 +9299,11 @@
           "path": "MEMORY.md",
           "line": 227,
           "context": "### Symptom - Boss enters valid coupon codes (CBJ22EO4 → letter O, CBMWF2HP) but bot always shows \"❌ Invalid\" even though:"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 749,
+          "context": "### Symptom - Boss clicked \"Sales Daily\" in dashboard → nothing happened (button unresponsive)"
         }
       ]
     },
@@ -9359,6 +9669,16 @@
           "path": "memory/project-state.md",
           "line": 54,
           "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!** - **Opening Hours:** 9 AM - 9 PM (daily)"
+        }
+      ]
+    },
+    {
+      "topic": "TODO for Morning",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 66,
+          "context": "### TODO for Morning - Find gameplay for 4 poster-only games (try different alphacoders slugs)"
         }
       ]
     },
@@ -9744,6 +10064,16 @@
           "path": "memory/subagent-journal.json",
           "line": 10,
           "context": "status: completed | summary: subagent apparently completed"
+        }
+      ]
+    },
+    {
+      "topic": "Vite lazy chunk imports must match hashed filename",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 768,
+          "context": "- **Vite lazy chunk imports must match hashed filename** — renaming main JS alone is not enough when cache busting - **Cloudflare caches individual asset paths** — each chunk gets its own cache entry;"
         }
       ]
     },
@@ -10248,6 +10578,26 @@
       ]
     },
     {
+      "topic": "🎯 Dashboard Sales Daily Page Not Loading (07:02-07:08 UTC)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 747,
+          "context": "### 🎯 Dashboard Sales Daily Page Not Loading (07:02-07:08 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "🎯 Data For Game Menu — FINAL RESULT (19:30 UTC+)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 70,
+          "context": "## 🎯 Data For Game Menu — FINAL RESULT (19:30 UTC+)"
+        }
+      ]
+    },
+    {
       "topic": "🎯 Delegation Protocol — USE HELPERS FIRST",
       "files": [
         {
@@ -10743,6 +11093,16 @@
       ]
     },
     {
+      "topic": "📌 Summary (2026-06-10) — Sales Daily Lazy-Load Fix",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 745,
+          "context": "## 📌 Summary (2026-06-10) — Sales Daily Lazy-Load Fix"
+        }
+      ]
+    },
+    {
       "topic": "📌 Today's Summary (2026-06-06) — 🎮🔥 GRAND OPENING DAY! 🔥🎮",
       "files": [
         {
@@ -10939,6 +11299,16 @@
           "path": "memory/2026-06-09.md",
           "line": 3,
           "context": "## 🕐 Time UTC 17:30-19:30 | Myanmar 00:00-02:00 (June 10)"
+        }
+      ]
+    },
+    {
+      "topic": "🖼️ Data For Game Menu — Poster + Gameplay Project (18:00-19:30 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 46,
+          "context": "## 🖼️ Data For Game Menu — Poster + Gameplay Project (18:00-19:30 UTC)"
         }
       ]
     },
@@ -11204,6 +11574,11 @@
           "path": "MEMORY.md",
           "line": 100,
           "context": "### 🧠 Lesson Learned - **API auto-unwrap:** `_api_get()` already unwraps `{success,data}` — DON'T check `success`/`data` again or it'll always fail"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 767,
+          "context": "### 🧠 Lesson Learned - **Vite lazy chunk imports must match hashed filename** — renaming main JS alone is not enough when cache busting"
         }
       ]
     },
