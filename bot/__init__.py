@@ -380,54 +380,6 @@ def fetch_console_status() -> list[dict]:
             return deduped
         logging.warning("API api_fetch_console_status() failed, no fallback")
     return []
-    # Use cached console_multipliers if available, fallback to direct Sheets read
-    cfg = _get_cfg()
-    cached_mults = cfg.get("console_multipliers", {})
-    if cached_mults:
-        names = list(cached_mults.keys())
-        types = [""] * len(names)
-        mults = [cached_mults[n] for n in names]
-    else:
-        names  = setting_sh.col_values(8)[1:]   # H
-        types  = setting_sh.col_values(9)[1:]   # I (console type)
-        mults  = setting_sh.col_values(10)[1:]  # J (multiplier)
-    consoles = []
-    for i, name in enumerate(names):
-        if not name.strip():
-            continue
-        try:
-            mult = float(str(mults[i] if i < len(mults) else "1").replace(",", "").strip()) or 1.0
-        except (ValueError, IndexError):
-            mult = 1.0
-        ctype = (types[i] if i < len(types) else "").strip()
-        consoles.append({"id": name.strip(), "type": ctype, "mult": mult,
-                         "status": "Free", "member": None, "start": None, "staff": None, "booking_id": None})
-
-    # Overlay active bookings - cached 30 s
-    try:
-        global _BK_ROWS, _BK_TS
-        if not _BK_ROWS or (time.time() - _BK_TS) > _BK_TTL:
-            _BK_ROWS = get_booking_sh().get("A:I")  # OPT: range-restricted read (A=ID through I=notes)
-            _BK_TS   = time.time()
-        for row in _BK_ROWS[1:]:
-            if len(row) < 7:
-                continue
-            bk_date   = row[1].strip()
-            bk_cid    = row[2].strip()
-            bk_status = row[6].strip()
-            if bk_date == today and bk_status in ("Active", "Scheduled"):
-                for c in consoles:
-                    if c["id"] == bk_cid:
-                        c["status"]     = bk_status
-                        c["member"]     = row[3].strip() or "Guest"
-                        c["start"]      = row[4].strip()
-                        c["staff"]      = row[7].strip() if len(row) > 7 else ""
-                        c["booking_id"] = row[0].strip()
-                        break
-    except Exception as e:
-        logging.exception("fetch_console_status: booking_overlay: %s", e)
-    return consoles
-
 def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
     """Append a row to Console_Booking and return the BookingID.
     planned_end: optional planned end time (HH:MM) stored in col F so the
@@ -494,51 +446,6 @@ def fetch_games() -> list[dict]:
             return mapped
         logging.warning("API call failed")
     return []
-    try:
-        global _GAME_ROWS, _GAME_TS
-        if not _GAME_ROWS or (time.time() - _GAME_TS) > _GAME_TTL:
-            _GAME_ROWS = []  # OPT: range-restricted read (A=No through U=metadata)
-            _GAME_TS   = time.time()
-        rows = _GAME_ROWS
-        if len(rows) < 2:
-            return []
-        games = []
-        for i, row in enumerate(rows[1:], start=2):
-            if not row:
-                continue
-            title  = row[1].strip() if len(row) > 1 else ""
-            status = row[2].strip() if len(row) > 2 else ""
-            if not title:
-                continue
-            # Skip metadata/section header rows (No must be numeric or empty-but-has-title)
-            row_no = row[0].strip() if row else ""
-            if row_no and not row_no.isdigit():
-                continue  # skip section headers like "Game Data Transfer Record"
-            # Skip rows that look like column headers (col B = "From ( SSD )" etc.)
-            if title.lower() in ("from ( ssd )", "to ( console )", "game name",
-                                 "samsung t - 7", "sandisk - 1", "sandisk - 2",
-                                 "game data transfer record"):
-                continue
-            # col U (index 20) = Installed_On - we repurpose as "solo_multi|genre" metadata
-            meta      = row[20].strip() if len(row) > 20 else ""
-            solo_multi = ""
-            genre      = ""
-            if "|" in meta:
-                parts = meta.split("|", 1)
-                solo_multi = parts[0].strip()
-                genre      = parts[1].strip()
-            games.append({
-                "row":       i,
-                "title":     title,
-                "status":    status,
-                "discs":     row[3].strip() if len(row) > 3 else "",
-                "solo_multi": solo_multi,
-                "genre":     genre,
-            })
-        return games
-    except Exception:
-        return []
-
 def set_game_disc_count(game_title: str, count: int) -> bool:
     """Update column D (Available Discs) for a game row in Game_Library. Returns True on success."""
     global _GAME_ROWS, _GAME_TS
@@ -550,23 +457,6 @@ def set_game_disc_count(game_title: str, count: int) -> bool:
             return True
         logging.warning("API call failed")
     return False
-    try:
-        sh = []
-        rows_b = sh
-        found = False
-        for ri, rv in enumerate(rows_b[1:], start=2):
-            if rv and rv[0].strip().lower() == game_title.strip().lower():
-                sh.update_cell(ri, 4, count)
-                found = True
-                break
-        if not found:
-            return False
-        _GAME_ROWS = None                   # invalidate cache
-        _GAME_TS   = 0
-        return True
-    except Exception:
-        return False
-
 def fetch_console_games() -> list[dict]:
     """Return all console-game installation records (cached 5 min)."""
     if _HAS_API:
@@ -589,29 +479,6 @@ def fetch_console_games() -> list[dict]:
             return mapped
         logging.warning("API call failed")
     return []
-    try:
-        global _CGAME_ROWS, _CGAME_TS
-        if not _CGAME_ROWS or (time.time() - _CGAME_TS) > _CGAME_TTL:
-            _CGAME_ROWS = []  # OPT: range-restricted (A=console through E=notes)
-            _CGAME_TS   = time.time()
-        rows = _CGAME_ROWS
-        if len(rows) < 2:
-            return []
-        return [
-            {
-                "row":          i,
-                "console_id":   row[0].strip() if len(row) > 0 else "",
-                "game_title":   row[1].strip() if len(row) > 1 else "",
-                "install_type": row[2].strip() if len(row) > 2 else "",
-                "date":         row[3].strip() if len(row) > 3 else "",
-                "notes":        row[4].strip() if len(row) > 4 else "",
-            }
-            for i, row in enumerate(rows[1:], start=2)
-            if row and row[0].strip()
-        ]
-    except Exception:
-        return []
-
 def get_games_on_console(console_id: str) -> list[str]:
     """Return list of game titles installed on a specific console.
     Excludes 'Session' type records (session tracking) to avoid duplicates.
