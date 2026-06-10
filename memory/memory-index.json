@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "updated": "2026-06-09T20:08:25.993868+00:00",
+  "updated": "2026-06-10T05:37:55.740735+00:00",
   "entries": [
+    {
+      "topic": "\"Stay quiet\" rules NEVER apply to Boss messages",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 740,
+          "context": "13. **\"Stay quiet\" rules NEVER apply to Boss messages** — only heartbeat/outreach. Document explicitly: \"Boss messages = ALWAYS respond\" 14. **Session file lock cron jobs < 60s cause main session conf"
+        }
+      ]
+    },
     {
       "topic": "+50K",
       "files": [
@@ -53,16 +63,6 @@
       ]
     },
     {
-      "topic": "07:43-07:55 UTC — Session Start & Comprehensive Scan",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 3,
-          "context": "## 07:43-07:55 UTC — Session Start & Comprehensive Scan"
-        }
-      ]
-    },
-    {
       "topic": "1. `memory/active_tasks.json` — Real-time Task Registry",
       "files": [
         {
@@ -99,6 +99,26 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 8,
           "context": "## 1. Session Auto-Summary (`memory/session_summary.py`) **Goal:** Session ပြီးတိုင်း auto-summary generate လုပ်ပြီး daily log + MEMORY.md ကို update လုပ်မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "1. 🗑️ Admin Panel (admin.py) — Complete Removal",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 87,
+          "context": "### 1. 🗑️ Admin Panel (admin.py) — Complete Removal"
+        }
+      ]
+    },
+    {
+      "topic": "10 min",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 23,
+          "context": "- `session-cleanup`: 5 min → **10 min** (600s) — reduce contention"
         }
       ]
     },
@@ -144,96 +164,6 @@
           "path": "memory/config.md",
           "line": 22,
           "context": "| `TRAJECTORY_FORCE_CLEAN_KB` | — | **10000** (new) |"
-        }
-      ]
-    },
-    {
-      "topic": "13 MySQL tables",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 89,
-          "context": "- **13 MySQL tables** in psvibe_api (6 created by agents, 7 more by another) - **n8n syncs** continue every 5 min (clean now — UNIQUE constraint added)"
-        }
-      ]
-    },
-    {
-      "topic": "14:15-16:42 UTC — GSheet→MySQL Migration: Phase 2, Bug Fixes & Bot Patches",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 41,
-          "context": "## 14:15-16:42 UTC — GSheet→MySQL Migration: Phase 2, Bug Fixes & Bot Patches"
-        }
-      ]
-    },
-    {
-      "topic": "16:42-16:57 UTC — Broken Endpoints Restoration & Route Order Fix",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 112,
-          "context": "## 16:42-16:57 UTC — Broken Endpoints Restoration & Route Order Fix"
-        }
-      ]
-    },
-    {
-      "topic": "16:55 UTC — Sub-agent Spawn Deadlock Investigation",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 197,
-          "context": "## 16:55 UTC — Sub-agent Spawn Deadlock Investigation"
-        }
-      ]
-    },
-    {
-      "topic": "17:24 UTC — Lock Monitor System",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 221,
-          "context": "## 17:24 UTC — Lock Monitor System"
-        }
-      ]
-    },
-    {
-      "topic": "17:34 UTC — Claude Sonnet 4 Deep Code Analysis",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 246,
-          "context": "## 17:34 UTC — Claude Sonnet 4 Deep Code Analysis"
-        }
-      ]
-    },
-    {
-      "topic": "18:01-18:15 UTC — Top-Up & Rank Bug Fixes (Kora Direct)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 153,
-          "context": "## 18:01-18:15 UTC — Top-Up & Rank Bug Fixes (Kora Direct)"
-        }
-      ]
-    },
-    {
-      "topic": "18:15-19:20 UTC — New Member Flow Fixes (Kora Direct)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 186,
-          "context": "## 18:15-19:20 UTC — New Member Flow Fixes (Kora Direct)"
-        }
-      ]
-    },
-    {
-      "topic": "18:37 UTC — Heartbeat",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 273,
-          "context": "## 18:37 UTC — Heartbeat"
         }
       ]
     },
@@ -318,22 +248,22 @@
       ]
     },
     {
+      "topic": "2. 🧹 Phase 1: GSheets Dead Code Removal",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 111,
+          "context": "### 2. 🧹 Phase 1: GSheets Dead Code Removal"
+        }
+      ]
+    },
+    {
       "topic": "200 OK",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 460,
           "context": "- Verified dashboard API endpoints `/api/dashboard/stats`, `/api/dashboard/opex`, `/api/dashboard/finance/balances` all return **200 OK** with valid JWT - No auth issues found — all endpoints authenti"
-        }
-      ]
-    },
-    {
-      "topic": "2026-05-28 — Massive Bot Fix & MySQL Integration Session",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 65,
-          "context": "## 2026-05-28 — Massive Bot Fix & MySQL Integration Session"
         }
       ]
     },
@@ -398,26 +328,6 @@
       ]
     },
     {
-      "topic": "3 Bug Report Images from Boss — All Resolved ✅",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 164,
-          "context": "### 3 Bug Report Images from Boss — All Resolved ✅ | Image # | Captured | Issue | Fix |"
-        }
-      ]
-    },
-    {
-      "topic": "3 critical bugs",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 209,
-          "context": "| 🔍 audit_customer_bot | ✅ 46 functions audited, **3 critical bugs** (booking dead, feedback broken, mybookings wrong param) | 5m27s | | 🔍 audit_sales_bot | ✅ 28 handler files (13,203 lines), 46/46 AP"
-        }
-      ]
-    },
-    {
       "topic": "3 distinct root causes",
       "files": [
         {
@@ -448,22 +358,22 @@
       ]
     },
     {
-      "topic": "3 stubs → Live implementations",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 97,
-          "context": "- ✅ **3 stubs → Live implementations** — `booking.py` rewritten: - `cmd_mybookings()`: Fetches from `/api/bookings/search?telegram_id=` → formatted list with status emojis"
-        }
-      ]
-    },
-    {
       "topic": "3-layer bugs are common",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 121,
           "context": "- **3-layer bugs are common** — 1 symptom had 3 distinct root causes (intercept menu missing, auto-unwrap API, Unicode corruption). Fix protocol: enumerate ALL possible causes before editing."
+        }
+      ]
+    },
+    {
+      "topic": "3-layer bugs pattern confirmed",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 203,
+          "context": "19. **3-layer bugs pattern confirmed** in auto_cancel: 4+ independent broken things (endpoints, vars, parsing, duplicates) 20. **Simple NoOp workflow acitvation succeeds** — proves the issue is creden"
         }
       ]
     },
@@ -504,6 +414,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 70,
           "context": "## 3. Priority Memory System (`memory/priority_engine.py`) **Goal:** Important vs routine — priority ခွဲမယ်။ MEMORY.md ကို auto-manage လုပ်မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "3. 📊 Code Stats After Cleanup",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 121,
+          "context": "### 3. 📊 Code Stats After Cleanup - Sales bot: **~28,979 lines** (29,112 - 133 dead code)"
         }
       ]
     },
@@ -567,7 +487,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 716,
+          "line": 715,
           "context": "- Opening = **300M** (all KBZ transfer_in, not per-date-filtered) - **Closing = 28,758,453 Ks = Web Finance** ✅ (uses exact same per-account income calculation)"
         }
       ]
@@ -583,22 +503,12 @@
       ]
     },
     {
-      "topic": "35+ git commits",
+      "topic": "354MB",
       "files": [
         {
-          "path": "memory/2026-05-29.md",
-          "line": 80,
-          "context": "**Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
-        }
-      ]
-    },
-    {
-      "topic": "4 project files updated",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 80,
-          "context": "**Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
+          "path": "memory/2026-06-10.md",
+          "line": 72,
+          "context": "- **Result**: 446MB → **354MB** (-92MB, 1,305→~750 files) - Updated cron job to use new script (every 10 min)"
         }
       ]
     },
@@ -643,6 +553,16 @@
       ]
     },
     {
+      "topic": "4. 🐛 auto_cancel_no_shows.py — Fixed + Crontab",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 126,
+          "context": "### 4. 🐛 auto_cancel_no_shows.py — Fixed + Crontab"
+        }
+      ]
+    },
+    {
       "topic": "4.1 What Changes",
       "files": [
         {
@@ -673,12 +593,12 @@
       ]
     },
     {
-      "topic": "401 Google Sheets API Fix (21:22-21:29 UTC)",
+      "topic": "5 min",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 18,
-          "context": "### 401 Google Sheets API Fix (21:22-21:29 UTC) - **Root cause #1:** Main bot `_replit_get()` sent API key as **header** (`X-API-Key`), but API server `verify_api_key()` only checked **query params** "
+          "path": "memory/2026-06-10.md",
+          "line": 22,
+          "context": "- `lock-monitor-cleanup`: 30s → **5 min** (300s) — was running every 30s, causing `EmbeddedAttemptSessionTakeoverError` - `session-cleanup`: 5 min → **10 min** (600s) — reduce contention"
         }
       ]
     },
@@ -713,6 +633,16 @@
       ]
     },
     {
+      "topic": "5. 🔍 Reminder System Audit (5 files inspected)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 149,
+          "context": "### 5. 🔍 Reminder System Audit (5 files inspected)"
+        }
+      ]
+    },
+    {
       "topic": "6. `memory/consolidator.py` — Enhanced to Auto-Write",
       "files": [
         {
@@ -739,6 +669,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 369,
           "context": "## 6. Implementation Order"
+        }
+      ]
+    },
+    {
+      "topic": "6. 🤖 n8n Webhook Workflows Setup (Attempted)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 159,
+          "context": "### 6. 🤖 n8n Webhook Workflows Setup (Attempted)"
         }
       ]
     },
@@ -779,6 +719,26 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 144,
           "context": "## 7. Knowledge Graph (`memory/knowledge_graph.py` + `memory/knowledge-graph.json`) **Goal:** Topic/People/Project တွေကြားက relationship ကို track မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "7. 💓 Heartbeat (05:34 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 191,
+          "context": "### 7. 💓 Heartbeat (05:34 UTC) - kora_health_monitor: 92/100 ✅"
+        }
+      ]
+    },
+    {
+      "topic": "775 functions",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 123,
+          "context": "- **775 functions** (was 812) - 0 dead-code issues in `__init__.py` ✅"
         }
       ]
     },
@@ -853,21 +813,11 @@
       ]
     },
     {
-      "topic": "_ALLOWED_USER_IDS",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 24,
-          "context": "3. **_ALLOWED_USER_IDS** — Replaced with `fetch_allowed_staff_ids()` from Sheets ✅ 4. **help.py error_handler** — `from telegram.error import NetworkError, TimedOut, Conflict` already fixed ✅"
-        }
-      ]
-    },
-    {
       "topic": "ACM's Acc = business account",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 721,
+          "line": 720,
           "context": "- **ACM's Acc = business account** (just separate cash box), not owner transfer - cash_movements raw balance (304M) ≠ actual financial position — only tracks internal transfers"
         }
       ]
@@ -879,16 +829,6 @@
           "path": "memory/2026-06-09.md",
           "line": 19,
           "context": "2. **ACM's Acc is a business account** — just separate cash box, not owner transfer 3. **Opening = all KBZ transfer_in** (300M) regardless of date"
-        }
-      ]
-    },
-    {
-      "topic": "Action Items",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 20,
-          "context": "### Action Items 1. 🔄 Deploy phase5_migrate.py to VPS and run it"
         }
       ]
     },
@@ -1018,32 +958,12 @@
       ]
     },
     {
-      "topic": "Address:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 120,
-          "context": "- **Address:** No. 17, Mau Pin Street, Sanchaung, Yangon - **Pre-opening bookings = testing only** — serious bookings start June 6"
-        }
-      ]
-    },
-    {
       "topic": "Advances/Prepaid Integration",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 411,
           "context": "### Advances/Prepaid Integration - `advances_total`: Sum of all advances (104.8M Ks)"
-        }
-      ]
-    },
-    {
-      "topic": "Affected Files on VPS",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 102,
-          "context": "### Affected Files on VPS - `/root/psvibe_api_server/app.py` — 11 function replacements + MySQL helpers"
         }
       ]
     },
@@ -1058,32 +978,12 @@
       ]
     },
     {
-      "topic": "After EVERY task → Summarize → Update docs → THEN delete temp files.",
+      "topic": "After memory flush: YTD + Revenue Trend work (20:10 UTC)",
       "files": [
         {
-          "path": "memory/2026-05-29.md",
-          "line": 167,
-          "context": "Boss ordered: **After EVERY task → Summarize → Update docs → THEN delete temp files.** Never leave temp files behind. - Added to HEARTBEAT.md automated scripts (item #5: queue_processor.py)"
-        }
-      ]
-    },
-    {
-      "topic": "Agent Check Results (20:51 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 1,
-          "context": "### Agent Check Results (20:51 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "Agent slot full → QUEUE the task.",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 153,
-          "context": "| 6 | (was \"Self-upgrade\") | **Agent slot full → QUEUE the task.** Kora NEVER does manual. |"
+          "path": "memory/2026-06-09.md",
+          "line": 43,
+          "context": "## After memory flush: YTD + Revenue Trend work (20:10 UTC) - Moving on to build YTD Reports and Revenue Trend Graph features"
         }
       ]
     },
@@ -1098,52 +998,12 @@
       ]
     },
     {
-      "topic": "AI intercepting everything",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 85,
-          "context": "1. **AI intercepting everything**: Added skip list in `handle_menu_buttons()` — emoji-prefixed buttons, short words (ok/yes/no), known commands, `/` prefixes → AI bypass → shows helper message instead"
-        }
-      ]
-    },
-    {
       "topic": "All 11 Fix Items — Status",
       "files": [
         {
           "path": "memory/full-audit-2026-06-03.md",
           "line": 65,
           "context": "## All 11 Fix Items — Status"
-        }
-      ]
-    },
-    {
-      "topic": "All 3 services restarted",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 129,
-          "context": "- **All 3 services restarted** after commit `941d0a5` - **Auto-doc updated:** `auto_doc_updater.py` run with today's fix summary"
-        }
-      ]
-    },
-    {
-      "topic": "All 4 services active",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 91,
-          "context": "- **All 4 services active** (sale-bot, customer-bot, api, tunnel) - **Both repos committed** with proper .gitignore"
-        }
-      ]
-    },
-    {
-      "topic": "All 5 Bug Groups Fixed:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 171,
-          "context": "### All 5 Bug Groups Fixed: 1. **Gift FREE button everywhere** — removed from 7 wrong keyboards, kept only at custom amount prompt"
         }
       ]
     },
@@ -1203,42 +1063,12 @@
       ]
     },
     {
-      "topic": "Allowed Staff IDs Fix (Migration Side Effect)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 78,
-          "context": "### Allowed Staff IDs Fix (Migration Side Effect) - **Problem**: `fetch_allowed_staff_ids` returned empty `[]` after MySQL migration"
-        }
-      ]
-    },
-    {
-      "topic": "ALREADY FIXED",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 28,
-          "context": "All 5 Sonnet 4 bugs confirmed as **ALREADY FIXED** from previous session: 1. Handler return states (sales.py) ✅ — AST verified, all functions have returns"
-        }
-      ]
-    },
-    {
       "topic": "already real-time",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 266,
           "context": "- **Games**: AI fetches live via `_fetch_games_full()` → `_build_live_game_library_text()` every time user asks — **already real-time** ✅ - **Food Menu**: AI fetches via `_fetch_config()` → `food_pric"
-        }
-      ]
-    },
-    {
-      "topic": "Also flagged",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 100,
-          "context": "**Also flagged**: `PSV_A_004` has `effective_rate=150` (should be ~1.0)."
         }
       ]
     },
@@ -1269,16 +1099,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 3,
           "context": "> **Generated:** 2026-06-02 | **Analyst:** Subagent | **Method:** SSH into VPS + source reading"
-        }
-      ]
-    },
-    {
-      "topic": "Answer: NO",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 52,
-          "context": "- **Answer: NO** — Task Planner doesn't auto-read any workspace files - **Fix:** Updated SOUL.md → added **Context Sharing** section under Post-Task Documentation Protocol"
         }
       ]
     },
@@ -1339,16 +1159,6 @@
           "path": "MEMORY.md",
           "line": 526,
           "context": "- **API Endpoint** `POST /api/stock/in` (app.py): - Accepts: `{item_name, quantity, unit_cost, payment_method, paid_by, staff_name, cash_amount?, kpay_amount?}`"
-        }
-      ]
-    },
-    {
-      "topic": "API endpoint agents",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 94,
-          "context": "- **API endpoint agents** (core, members, sales, stock, finance) still running"
         }
       ]
     },
@@ -1443,32 +1253,12 @@
       ]
     },
     {
-      "topic": "API Server Git Repo",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 30,
-          "context": "### API Server Git Repo - `/root/psvibe_api_server/` → remote: `flash00787/PSVIBE-API-Server` ✅"
-        }
-      ]
-    },
-    {
       "topic": "API Server is SEPARATE from Bot (FIXED)",
       "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 32,
           "context": "## API Server is SEPARATE from Bot (FIXED) - Two repos! Sub-agents almost always miss the API server"
-        }
-      ]
-    },
-    {
-      "topic": "API server restarted",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 24,
-          "context": "- **API server restarted** (port 8000)"
         }
       ]
     },
@@ -1483,21 +1273,6 @@
       ]
     },
     {
-      "topic": "app.py",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 22,
-          "context": "1. **app.py** — Add `from telegram import Update, BotCommand` + `from telegram.ext import (Application, CommandHandler, MessageHandler, CallbackQueryHandler, ConversationHandler, ApplicationHandlerSto"
-        },
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 71,
-          "context": "- **app.py** — Patched with auth import, route registration, SPA fallback for `/admin/*`"
-        }
-      ]
-    },
-    {
       "topic": "Architect's Note: What This System Actually Does",
       "files": [
         {
@@ -1508,13 +1283,8 @@
       ]
     },
     {
-      "topic": "Architecture:",
+      "topic": "Architecture",
       "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 219,
-          "context": "- **Architecture:** GSheet is PRIMARY store, API is **fire-and-forget secondary** (not fallback) - 20/28 handlers use ZERO API calls (rely on GSheet via `__init__.py` helpers)"
-        },
         {
           "path": "memory/full-audit-2026-06-03.md",
           "line": 3,
@@ -1529,6 +1299,16 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 66,
           "context": "## Architecture ```"
+        }
+      ]
+    },
+    {
+      "topic": "archive/ps5_news.md deleted",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 40,
+          "context": "2. **archive/ps5_news.md deleted** — outdated 48K duplicate (root version is 60K, kept) 3. **HEARTBEAT.md & MEMORY.md** — already had correct paths ✅"
         }
       ]
     },
@@ -1583,26 +1363,6 @@
       ]
     },
     {
-      "topic": "audit_customer_bot",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 181,
-          "context": "4. 🔍 **audit_customer_bot** — Deep full audit every button, API, GSheet mapping (running, 10min timeout) 5. 📊 **gsheet_migration_audit** — Data flow sequence + find direct GSheet calls (running, 10min"
-        }
-      ]
-    },
-    {
-      "topic": "audit_sales_bot",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 180,
-          "context": "3. 🔍 **audit_sales_bot** — Deep full audit every function, API, GSheet mapping (running, 10min timeout) 4. 🔍 **audit_customer_bot** — Deep full audit every button, API, GSheet mapping (running, 10min "
-        }
-      ]
-    },
-    {
       "topic": "Auditor:",
       "files": [
         {
@@ -1633,36 +1393,6 @@
       ]
     },
     {
-      "topic": "Auto-doc on VPS",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 103,
-          "context": "- ✅ **Auto-doc on VPS** — Called (incident #21)"
-        }
-      ]
-    },
-    {
-      "topic": "Auto-doc updated:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 130,
-          "context": "- **Auto-doc updated:** `auto_doc_updater.py` run with today's fix summary"
-        }
-      ]
-    },
-    {
-      "topic": "Auto-pass on full payment",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 175,
-          "context": "4. **Auto-pass on full payment** — remaining≤0 check before showing method buttons 5. **Wrong remaining text + chr() encoded keys** — proper dict access, emoji tier text"
-        }
-      ]
-    },
-    {
       "topic": "Auto-Pilot Cron System (2026-06-01)",
       "files": [
         {
@@ -1689,46 +1419,6 @@
           "path": "memory/2026-06-06.md",
           "line": 72,
           "context": "2. `_api._api_get()` **auto-unwraps** response → `{\"success\":true,\"data\":{items}}` becomes `{items}` directly - Bot code checked `resp.get(\"success\")` → key doesn't exist in unwrapped data → always fa"
-        }
-      ]
-    },
-    {
-      "topic": "Axios interceptor",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 84,
-          "context": "- **Axios interceptor** — Auto JWT attach + refresh token rotation on 401 - **Vue Router guards** — Auth/redirect protection"
-        }
-      ]
-    },
-    {
-      "topic": "B3 (fix_lock)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 4,
-          "context": "- **B3 (fix_lock)**: ✅ Integrated into workflow_engine.py pipeline - **B5 (step retry)**: ✅ `MAX_STEP_RETRIES=2`, auto-retry on failure"
-        }
-      ]
-    },
-    {
-      "topic": "B5 (step retry)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 5,
-          "context": "- **B5 (step retry)**: ✅ `MAX_STEP_RETRIES=2`, auto-retry on failure - **B6 (rich reports)**: ✅ Box-drawn emoji report with timing"
-        }
-      ]
-    },
-    {
-      "topic": "B6 (rich reports)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 6,
-          "context": "- **B6 (rich reports)**: ✅ Box-drawn emoji report with timing - **C7 (lite model first)**: ✅ gemini-3.1-flash-lite #1 in MODEL_CHAIN"
         }
       ]
     },
@@ -1893,22 +1583,22 @@
       ]
     },
     {
-      "topic": "Booking flow dead",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 214,
-          "context": "1. **Booking flow dead** — `cmd_book` sends text only, no `bk_mem:yes`/`bk_mem:no` buttons → BK_MEMBER_CHECK has only CallbackQueryHandler → dead end 2. **Feedback all broken** — Pattern mismatch: `fb"
-        }
-      ]
-    },
-    {
       "topic": "Booking flow: Date/Time first → then check availability",
       "files": [
         {
           "path": "memory/2026-06-05.md",
           "line": 389,
           "context": "9. **Booking flow: Date/Time first → then check availability** — UX improvement, prevents console selection before knowing if it's free"
+        }
+      ]
+    },
+    {
+      "topic": "Booking Reminder",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 166,
+          "context": "- **Booking Reminder** — webhook → 3 parallel waits → 3 Telegram nodes - Created Telegram credential (`telegramApi` type)"
         }
       ]
     },
@@ -1923,13 +1613,8 @@
       ]
     },
     {
-      "topic": "Booking ↔ Console Status Link:",
+      "topic": "Booking ↔ Console Status Link",
       "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 127,
-          "context": "- **Booking ↔ Console Status Link:** Confirm→\"Scheduled\", Cancel/No-show→\"Done\" via Console_Booking sheet ✅ - **MEMORY.md restructured:** 306 lines → 49 lines (84%), split into 7 module files in `memo"
-        },
         {
           "path": "memory/fix-history.md",
           "line": 122,
@@ -1938,108 +1623,8 @@
       ]
     },
     {
-      "topic": "Boss asked: \"Work flow stable ဖြစ်စေဖို့ ဘာတွေလုပ်ဖို့လိုမလဲ\"",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 107,
-          "context": "### Boss asked: \"Work flow stable ဖြစ်စေဖို့ ဘာတွေလုပ်ဖို့လိုမလဲ\" - Problem: code conflicts, wrong logic, good code overwritten by buggy code"
-        }
-      ]
-    },
-    {
-      "topic": "Boss caught Kora doing manual work AGAIN (#3)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 115,
-          "context": "### Boss caught Kora doing manual work AGAIN (#3) - Lesson learned: Permission ≠ correctness. Even when Boss says \"manual OK\", still use fix_protocol.py"
-        }
-      ]
-    },
-    {
-      "topic": "Boss Instruction",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 43,
-          "context": "### Boss Instruction - \"တခုချင်းသွားမယ်\" — one endpoint at a time"
-        }
-      ]
-    },
-    {
-      "topic": "Boss Issues Reported",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 155,
-          "context": "### Boss Issues Reported 1. **Top-up doesn't update member balance/spend** in \"Check Member\""
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 188,
-          "context": "### Boss Issues Reported 1. New Member Gift button showing at Step 1 instead of Step 5 (different amount)"
-        }
-      ]
-    },
-    {
-      "topic": "Boss noted: Timeouts too short (10 min)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 184,
-          "context": "### Boss noted: Timeouts too short (10 min) - Instructions: Set timeout minimum 15 min (900s)"
-        }
-      ]
-    },
-    {
-      "topic": "Boss ordered 5 system improvements:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 157,
-          "context": "### Boss ordered 5 system improvements: | # | Item | What was done | Status |"
-        }
-      ]
-    },
-    {
-      "topic": "Boss ordered overnight tasks before sleeping:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 177,
-          "context": "### Boss ordered overnight tasks before sleeping: 1. ✅ Background health checks (Quality Gate 90/100, Services all OK, No errors)"
-        }
-      ]
-    },
-    {
-      "topic": "Boss overturns \"Door Open\" exception (21:10 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 143,
-          "context": "### Boss overturns \"Door Open\" exception (21:10 UTC) - 19:42 UTC: \"Manual work လည်းလုပ်ခွင့်ပေးမယ်။ Door ဖွင့်ပေးတယ်။\" → **REVOKED**"
-        }
-      ]
-    },
-    {
-      "topic": "Boss Report: Sales Bot \"No Members\" & \"Connection Broken\"",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 114,
-          "context": "### Boss Report: Sales Bot \"No Members\" & \"Connection Broken\" - Customer bot logs showed 404 errors on 3 API endpoints"
-        }
-      ]
-    },
-    {
       "topic": "Boss Request",
       "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 5,
-          "context": "### Boss Request - Comprehensive scan လုပ်ဖို့ကျန်တဲ့အကြောင်း remind"
-        },
         {
           "path": "MEMORY.md",
           "line": 522,
@@ -2068,32 +1653,12 @@
       ]
     },
     {
-      "topic": "Boss's request",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 261,
-          "context": "### Boss's request - Line-by-line code analysis"
-        }
-      ]
-    },
-    {
       "topic": "Bot Balance",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 541,
           "context": "- **Bot Balance** (`patch_routes.py`): - Same stock_in subtraction added for consistency"
-        }
-      ]
-    },
-    {
-      "topic": "Bot code unchanged",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 93,
-          "context": "- **Bot code unchanged** — uses api_client.py → API server (now MySQL-backed) - **API endpoint agents** (core, members, sales, stock, finance) still running"
         }
       ]
     },
@@ -2193,26 +1758,6 @@
       ]
     },
     {
-      "topic": "BOTH",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 150,
-          "context": "- Bug appeared in **BOTH** TU (`step_tu_kpay`) and NM (`step_nm_kpay`) amount prompts (2 occurrences each = 4 total fixes)"
-        }
-      ]
-    },
-    {
-      "topic": "Both repos committed",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 92,
-          "context": "- **Both repos committed** with proper .gitignore"
-        }
-      ]
-    },
-    {
       "topic": "BS member_details:",
       "files": [
         {
@@ -2235,16 +1780,6 @@
     {
       "topic": "Bug",
       "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 215,
-          "context": "- **Bug**: CONFIRM → BACK → NM_KPAY → auto-confirm (remaining=0) → BACK → loop → spam - **Fix**: `step_nm_confirm` BACK handler now clears payments + goes to NM_AMT (Card Amount) instead of NM_KPAY"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 220,
-          "context": "- **Bug**: User taps \"Cash\" payment method button → step_nm_kpay sends \"💳 Cash ပမာဏ ရိုက်ပါ\" message. If user taps again (or Telegram queues duplicate), same message sent again → ~28 duplicates - **Fi"
-        },
         {
           "path": "MEMORY.md",
           "line": 355,
@@ -2273,16 +1808,6 @@
       ]
     },
     {
-      "topic": "Bug 1: Sales Bot Slow + KeyError: 0 Crashes",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 5,
-          "context": "### Bug 1: Sales Bot Slow + KeyError: 0 Crashes - **Root cause:** Unhandled `KeyError: 0` crashes bot → systemd `Restart=always` (RestartSec=10) restarts it → 703 total restarts in lifetime"
-        }
-      ]
-    },
-    {
       "topic": "Bug 2",
       "files": [
         {
@@ -2299,16 +1824,6 @@
           "path": "memory/test-report.md",
           "line": 23,
           "context": "### Bug 2: Duplicate Sections Within Same File **Severity:** MEDIUM — duplicate content in output"
-        }
-      ]
-    },
-    {
-      "topic": "Bug 2: Member Card Shows 3 Cards (Should be 2)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 11,
-          "context": "### Bug 2: Member Card Shows 3 Cards (Should be 2) - **Root cause:** `members.py` line 403 had 3 separate button rows: `[[default_btn], [BTN_NM_CUSTOM], [BTN_NM_GIFT], NAV_ROW]`"
         }
       ]
     },
@@ -2333,152 +1848,12 @@
       ]
     },
     {
-      "topic": "Bug 3: Top Up Not Working",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 15,
-          "context": "### Bug 3: Top Up Not Working - **Root cause:** Field name mismatch — bot sent `\"kpay\"`, `\"cash\"`, `\"staff\"`, `\"tier\"` but API expected `\"payment_method\"`, `\"staff_name\"`"
-        }
-      ]
-    },
-    {
-      "topic": "Bug A: KeyError in step_nm_kpay (chr() encoding)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 65,
-          "context": "### Bug A: KeyError in step_nm_kpay (chr() encoding) - **Root cause:** My fix_remaining.py script replaced `d[\"nm_name\"]` with `d[chr(39)+chr(110)+...]` which evaluates to `d[\"'nm_name'\"]` (with quote"
-        }
-      ]
-    },
-    {
-      "topic": "Bug B: Stale member M-1780203313 in MySQL",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 70,
-          "context": "### Bug B: Stale member M-1780203313 in MySQL - **Root cause:** Member was deleted from GSheet but MySQL still had it"
-        }
-      ]
-    },
-    {
       "topic": "Bug Fix: Pending Bookings Display",
       "files": [
         {
           "path": "memory/fix-history.md",
           "line": 7,
           "context": "### Bug Fix: Pending Bookings Display - **SHA:** `d606bed`"
-        }
-      ]
-    },
-    {
-      "topic": "Bug Fixes",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 43,
-          "context": "### Bug Fixes - sync_service.py: mysql.connector → pymysql"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Auto-pass not working when full payment made",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 124,
-          "context": "### Bug: Auto-pass not working when full payment made - TU/NM payment screens still showed method buttons even when `remaining = 0`"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Bot crashed (syntax error from bad fix)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 98,
-          "context": "**Bug: Bot crashed (syntax error from bad fix)** - Restored from .bak (clean base), re-applied all fixes cleanly"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: BTN_PAY_DONE routing to confirm without review",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 94,
-          "context": "**Bug: BTN_PAY_DONE routing to confirm without review** - TU: BTN_PAY_DONE now shows review screen with Confirm & Save button → TU_CONFIRM"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: chr() encoded dict keys",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 89,
-          "context": "**Bug: chr() encoded dict keys** - `d.get(chr(39)+chr(116)+chr(117)+... )` → key contains quote chars"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Gift FREE button in 7 wrong keyboards",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 116,
-          "context": "### Bug: Gift FREE button in 7 wrong keyboards - **Root cause:** `sed` command replaced ALL `ReplyKeyboardMarkup([NAV_ROW], ...)` with Gift version"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Remaining text displayed wrong Burmese (broken unicode escapes)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 120,
-          "context": "### Bug: Remaining text displayed wrong Burmese (broken unicode escapes) - Celebratory text (\"ဤသွင်းမှုပြီးပါက...\") was constructed with `\\u` escapes that produced wrong characters"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Top Up freeze at \"Select Member\" — KeyError: 0",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 109,
-          "context": "### Bug: Top Up freeze at \"Select Member\" — KeyError: 0 - **Root cause:** `fetch_bonus_table()` returned API data as `[{\"threshold\": 30000, \"warrior_bonus\": 15, ...}]` (list of dicts), but code expect"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: Wrong Burmese text in TU/NM payment amount prompts (Image 3 from Boss)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 145,
-          "context": "### Bug: Wrong Burmese text in TU/NM payment amount prompts (Image 3 from Boss) - **Root cause:** My `fix_confirm_flow.py` used wrong `\\u` unicode escape sequences in `members.py`:"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: {rem:,} literal in TU amount prompt",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 86,
-          "context": "**Bug: {rem:,} literal in TU amount prompt** - `f\"(0 - {{rem:,}})...\"` had double braces → `f\"(0 - {rem:,})...\"`"
-        }
-      ]
-    },
-    {
-      "topic": "Bug: {text} template literal in TU payment",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 83,
-          "context": "**Bug: {text} template literal in TU payment** - `step_tu_kpay` method selection message missing `f` prefix: `\"\\U0001f4b3 *{text}*...\"` → `f\"\\U0001f4b3 *{text}*...\"`"
         }
       ]
     },
@@ -2499,16 +1874,6 @@
           "path": "MEMORY.md",
           "line": 55,
           "context": "### Bugs & Fixes - **`memory/bug-patterns.md`** — 🐛 All known bug patterns (fixed & known)"
-        }
-      ]
-    },
-    {
-      "topic": "Bugs fixed:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 133,
-          "context": "- **Bugs fixed:** 15 import bugs (#1-15) - **New tools created:** fix_protocol.py, auto_doc_updater.py, fix_lock.py, input_logger.py"
         }
       ]
     },
@@ -2623,62 +1988,12 @@
       ]
     },
     {
-      "topic": "C1 (FAQ bypass)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 8,
-          "context": "- **C1 (FAQ bypass)**: ✅ Re-deployed via direct SSH (sub-agent timed out). `_FAQ_PATTERNS`, `_detect_ai_bypass()`, `_build_faq_template()` added to ai.py - **C6 (streaming)**: ❌ Skipped (needs C5 asyn"
-        }
-      ]
-    },
-    {
-      "topic": "C6 (streaming)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 9,
-          "context": "- **C6 (streaming)**: ❌ Skipped (needs C5 async HTTP refactor)"
-        }
-      ]
-    },
-    {
-      "topic": "C7 (lite model first)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 7,
-          "context": "- **C7 (lite model first)**: ✅ gemini-3.1-flash-lite #1 in MODEL_CHAIN - **C1 (FAQ bypass)**: ✅ Re-deployed via direct SSH (sub-agent timed out). `_FAQ_PATTERNS`, `_detect_ai_bypass()`, `_build_faq_te"
-        }
-      ]
-    },
-    {
       "topic": "Cache consideration:",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 701,
           "context": "4. **Cache consideration:** `_fetch_consoles()` has a 300s cache. For real-time console selection, we may want to invalidate or use a shorter TTL. However, since the booking creates a \"pending\" status"
-        }
-      ]
-    },
-    {
-      "topic": "Caddy",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 89,
-          "context": "- **Caddy** — Updated config: `/admin/*` → reverse proxy to FastAPI :8000 - **FastAPI** — Serves SPA static files + catch-all fallback for client-side routing"
-        }
-      ]
-    },
-    {
-      "topic": "calc_duration() fix",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 31,
-          "context": "- **calc_duration() fix** — now handles both HH:MM (GSheet) and DATETIME (MySQL) formats ✅ - **Sale Bot D (True Async) Conversion** — Paper audit (78 sites: CAT A:5, B:14, C:~40, D:19) → all converted"
         }
       ]
     },
@@ -2702,7 +2017,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 720,
+          "line": 719,
           "context": "- **Capital Withdrawals removed** (they were stock payments) - **ACM's Acc = business account** (just separate cash box), not owner transfer"
         }
       ]
@@ -2742,7 +2057,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 733,
+          "line": 732,
           "context": "10. **Cash Flow closing must match Web Finance** — use identical income allocation per account 11. **Prepaid amortization**: P&L expense + BS asset reduction. Cash Flow already shows full outflow (inv"
         }
       ]
@@ -2788,26 +2103,6 @@
       ]
     },
     {
-      "topic": "Cashback blocking fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 38,
-          "context": "- **Cashback blocking fixed** — sync `api_get`/`api_post` → `await _replit_get_async`/`_replit_post_async` ✅ - **Console Install bug** — `asyncio.gather()` missing `await` in ginst.py (3 blocks) → asy"
-        }
-      ]
-    },
-    {
-      "topic": "Cashback coupon dates",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 30,
-          "context": "- **Cashback coupon dates** — env vars + MySQL updated: start June 3, end June 7, coupon expiry June 30; hardcoded check in console.py line 364 updated ✅ - **calc_duration() fix** — now handles both H"
-        }
-      ]
-    },
-    {
       "topic": "Chan Su Su Hlaing",
       "files": [
         {
@@ -2823,13 +2118,8 @@
       ]
     },
     {
-      "topic": "Changes Made:",
+      "topic": "Changes made:",
       "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 42,
-          "context": "### Changes Made: - Added `BTN_PAY_DONE`, `fetch_payment_methods` to members.py imports"
-        },
         {
           "path": "memory/2026-06-05.md",
           "line": 365,
@@ -2839,6 +2129,11 @@
           "path": "memory/2026-06-05.md",
           "line": 374,
           "context": "- **Changes made:** - Added reminder logic that checks for confirmed bookings starting within ~10 minutes"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 4,
+          "context": "### Changes Made"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -3052,7 +2347,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 717,
+          "line": 716,
           "context": "- **Closing = 28,758,453 Ks = Web Finance** ✅ (uses exact same per-account income calculation) - No Financing section (3.69M KBZ inject = advance recovery 3.6M + member topup 90K, not capital)"
         }
       ]
@@ -3074,26 +2369,6 @@
           "path": "memory/project-state.md",
           "line": 74,
           "context": "- **Cloudflare:** `ps-vibe.com` → Cloudflare tunnel → localhost:8000"
-        }
-      ]
-    },
-    {
-      "topic": "CoCo",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 12,
-          "context": "- New `docker-compose.yml` created with 3 agents: **Nova** (3002), **CoCo** (3003), **GayZoeLay** (3004) - Nova's deployable config at `configs/nova/openclaw.json`"
-        }
-      ]
-    },
-    {
-      "topic": "CoCo & GayZoeLay",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 22,
-          "context": "## CoCo & GayZoeLay - Placeholder configs created at `configs/coco/openclaw.json` and `configs/gayzoelay/openclaw.json`"
         }
       ]
     },
@@ -3208,16 +2483,6 @@
       ]
     },
     {
-      "topic": "Comprehensive Scan Results",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 9,
-          "context": "### Comprehensive Scan Results"
-        }
-      ]
-    },
-    {
       "topic": "Conclusion",
       "files": [
         {
@@ -3238,42 +2503,12 @@
       ]
     },
     {
-      "topic": "Config Limits Finalized (21:04 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 3,
-          "context": "### Config Limits Finalized (21:04 UTC) - **maxConcurrent:** 20 ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Confirmed Facts",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 117,
-          "context": "### Confirmed Facts - **Opening hours:** 9 AM - 9 PM (daily)"
-        }
-      ]
-    },
-    {
       "topic": "Console ID URL Encoding (⏳ KNOWN)",
       "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 19,
           "context": "## Console ID URL Encoding (⏳ KNOWN) - Console IDs = \"C - 01\" (with spaces), `_api_call()` doesn't URL-encode"
-        }
-      ]
-    },
-    {
-      "topic": "Console Install bug",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 39,
-          "context": "- **Console Install bug** — `asyncio.gather()` missing `await` in ginst.py (3 blocks) → async version used ✅ - **Game Library Disc error** — sync `fetch_games()` in async handlers → `await fetch_games"
         }
       ]
     },
@@ -3374,16 +2609,6 @@
           "path": "MEMORY.md",
           "line": 262,
           "context": "### Context - Boss wants Customer Bot's AI (Ko Vibe) to automatically know when Game List or Food Menu changes."
-        }
-      ]
-    },
-    {
-      "topic": "Context Sharing",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 53,
-          "context": "- **Fix:** Updated SOUL.md → added **Context Sharing** section under Post-Task Documentation Protocol - Rule: When spawning Task Planner / Fix Agent / Verify Agent, ALWAYS include project-state.md + E"
         }
       ]
     },
@@ -3568,62 +2793,12 @@
       ]
     },
     {
-      "topic": "Created fix_protocol.py → `/root/coordination/fix_protocol.py` (120+ lines)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 110,
-          "context": "### Created fix_protocol.py → `/root/coordination/fix_protocol.py` (120+ lines) - **Pre-fix (`--start`)**: git status check → fix_lock acquire → fix_safety snapshot"
-        }
-      ]
-    },
-    {
       "topic": "Credentials:",
       "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 91,
           "context": "4. **Credentials:** root/PsVibe@MySQL2024!, psvibe_user/PsVibe@User2024!"
-        }
-      ]
-    },
-    {
-      "topic": "Critical",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 98,
-          "context": "**Critical**: `sales_daily` empty means all reports (report-data, weekly-report, P&L) return zero revenue. Sales bot writes to GSheet directly — sync needed."
-        },
-        {
-          "path": "memory/infrastructure.md",
-          "line": 15,
-          "context": "- **CRITICAL:** Always check BOTH repos when investigating bugs!"
-        },
-        {
-          "path": "memory/psvibe-code-structure.md",
-          "line": 3,
-          "context": "> **CRITICAL:** TWO repos! Sub-agents MUST check BOTH."
-        }
-      ]
-    },
-    {
-      "topic": "Critical Bug Fixes",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 11,
-          "context": "### Critical Bug Fixes 1. **🔗 Receipt URL — `localhost` → Public Domain** ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Critical Customer Bot Bugs Found (audit_customer_bot)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 213,
-          "context": "### Critical Customer Bot Bugs Found (audit_customer_bot) 1. **Booking flow dead** — `cmd_book` sends text only, no `bk_mem:yes`/`bk_mem:no` buttons → BK_MEMBER_CHECK has only CallbackQueryHandler → d"
         }
       ]
     },
@@ -3638,22 +2813,37 @@
       ]
     },
     {
+      "topic": "CRITICAL:",
+      "files": [
+        {
+          "path": "memory/infrastructure.md",
+          "line": 15,
+          "context": "- **CRITICAL:** Always check BOTH repos when investigating bugs!"
+        },
+        {
+          "path": "memory/psvibe-code-structure.md",
+          "line": 3,
+          "context": "> **CRITICAL:** TWO repos! Sub-agents MUST check BOTH."
+        }
+      ]
+    },
+    {
+      "topic": "CRITICAL: Response Rules",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 7,
+          "context": "- Added **CRITICAL: Response Rules** section at bottom - Explicit: \"Boss Messages — ALWAYS Respond Immediately\""
+        }
+      ]
+    },
+    {
       "topic": "Cross-Bot Batching",
       "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 45,
           "context": "| 5 | **Cross-Bot Batching** | `batch_coordinator.py` | Different bots = always parallel. Cross-bot file edit + read-only = parallel. | | 6 | **Priority Scheduling** | `batch_coordinator.py` + `queue_"
-        }
-      ]
-    },
-    {
-      "topic": "Cross-Check: Monolithic vs Refactored (Analysis Complete)",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 2,
-          "context": "### Cross-Check: Monolithic vs Refactored (Analysis Complete)"
         }
       ]
     },
@@ -3668,27 +2858,12 @@
       ]
     },
     {
-      "topic": "Current State",
+      "topic": "Current Score Check",
       "files": [
         {
-          "path": "memory/2026-05-26.md",
-          "line": 28,
-          "context": "### Current State - **Monolithic version RUNNING**: psvibe-bot.service (PID 243060)"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 267,
-          "context": "### Current state - Top Up Payment fix: ✅"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 178,
-          "context": "### Current State - `topup/log` endpoint: ✅ Active"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 224,
-          "context": "### Current State - All fixes deployed and bot restarted"
+          "path": "memory/2026-06-10.md",
+          "line": 78,
+          "context": "### Current Score Check | Before | After |"
         }
       ]
     },
@@ -3713,23 +2888,8 @@
       ]
     },
     {
-      "topic": "Customer bot",
+      "topic": "Customer Bot",
       "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 31,
-          "context": "- **Customer bot**: using /root/Sales-Tele-Bot/customer_bot.py (monolithic, Manus sandbox version, 5,725 lines) - **Service difference**: monolithic has no auth middleware (auth inside show_main_menu)"
-        },
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 27,
-          "context": "- **Customer Bot** — Console number selection step removed → system auto-assigns free console ✅ - **Staff booking fix** — `consoleId` vs `console_id` mismatch in booking payload ✅"
-        },
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 125,
-          "context": "- **Customer Bot** \"My Booking\" friendly Burmese msg on empty bookings ✅ - **Sale Bot** Booking confirm → notify customer via Telegram ✅"
-        },
         {
           "path": "memory/booking-features-plan.md",
           "line": 13,
@@ -3754,26 +2914,6 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 44,
           "context": "### Customer Bot (`customer_bot/`) | File | Purpose |"
-        }
-      ]
-    },
-    {
-      "topic": "Customer Bot Button Audit ✅",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 30,
-          "context": "### Customer Bot Button Audit ✅ All 13 buttons verified:"
-        }
-      ]
-    },
-    {
-      "topic": "Customer Bot Fixes (2 Issues)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 84,
-          "context": "### Customer Bot Fixes (2 Issues) 1. **AI intercepting everything**: Added skip list in `handle_menu_buttons()` — emoji-prefixed buttons, short words (ok/yes/no), known commands, `/` prefixes → AI byp"
         }
       ]
     },
@@ -3804,21 +2944,6 @@
           "path": "memory/project-state.md",
           "line": 14,
           "context": "| 3 | **Customer Bot My Booking** — cancelled booking filter + welcome banner | ✅ | | 4 | **Dashboard sidebar** — AppLayout wrapper all 6 views | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "Customer bot restarted",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 23,
-          "context": "- **Customer bot restarted** (PID 597042 → 662505) - **API server restarted** (port 8000)"
-        },
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 101,
-          "context": "- ✅ **Customer Bot restarted** — `active` (force kill, was stuck deactivating) - ✅ **Documentation updated** — project-state (stub section → live), daily memory"
         }
       ]
     },
@@ -3893,16 +3018,6 @@
       ]
     },
     {
-      "topic": "Dashboard Index",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 76,
-          "context": "- **Dashboard Index** — Full layout with: - Fixed sidebar with PS VIBE branding + nav + user profile/logout"
-        }
-      ]
-    },
-    {
       "topic": "Dashboard Routes (dashboard_routes.py) — 33 Endpoints",
       "files": [
         {
@@ -3929,16 +3044,6 @@
           "path": "memory/project-state.md",
           "line": 70,
           "context": "- **Dashboard:** Vue 3 + TypeScript at `/root/psvibe-dashboard/` → builds to `/root/psvibe_api_server/dashboard-dist/` - **URL:** `psvibemm.com`"
-        }
-      ]
-    },
-    {
-      "topic": "Data flow",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 92,
-          "context": "- **Data flow**: Bot → API Server (:8000) → MySQL (primary), gspread (fallback) - **Bot code unchanged** — uses api_client.py → API server (now MySQL-backed)"
         }
       ]
     },
@@ -4003,16 +3108,6 @@
       ]
     },
     {
-      "topic": "Day Summary (~13 hours, 08:00-20:45 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 79,
-          "context": "### Day Summary (~13 hours, 08:00-20:45 UTC) **Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
-        }
-      ]
-    },
-    {
       "topic": "DB Schema Changes",
       "files": [
         {
@@ -4059,16 +3154,6 @@
           "path": "MEMORY.md",
           "line": 249,
           "context": "### Debug Method - Added `_lg.warning()` logging to `_api_post_coupon()` to dump raw API response"
-        }
-      ]
-    },
-    {
-      "topic": "Decisions Made",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 102,
-          "context": "### Decisions Made - Boss prefers MySQL over SQLite as primary data source"
         }
       ]
     },
@@ -4223,16 +3308,6 @@
       ]
     },
     {
-      "topic": "Dispatch Manager:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 13,
-          "context": "- **Dispatch Manager:** Analyzed 0 pending findings - **Task Planner:** Reviewed 2 topup plans (unstarted)"
-        }
-      ]
-    },
-    {
       "topic": "Disposal record reversed",
       "files": [
         {
@@ -4253,33 +3328,8 @@
       ]
     },
     {
-      "topic": "Documentation Updated",
+      "topic": "Documentation",
       "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 42,
-          "context": "### Documentation Updated - [x] `project-state/psvibe-sales-bot.md` — Rewritten with Wave 1+2 + latest fixes"
-        },
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 72,
-          "context": "### Documentation Updated - [x] `SOUL.md` — Context Sharing SOP added under Post-Task Documentation Protocol"
-        },
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 102,
-          "context": "- ✅ **Documentation updated** — project-state (stub section → live), daily memory - ✅ **Auto-doc on VPS** — Called (incident #21)"
-        }
-      ]
-    },
-    {
-      "topic": "Documentation:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 137,
-          "context": "- **Documentation:** 8 files updated - **SOP improvements:** Context Sharing, AUTO-DOC, Stable Workflow Protocol"
-        },
         {
           "path": "memory/tools-commands.md",
           "line": 24,
@@ -4403,16 +3453,6 @@
       ]
     },
     {
-      "topic": "Endpoint Recovery Pattern",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 143,
-          "context": "### Endpoint Recovery Pattern For future reference: when an endpoint is missing after migration:"
-        }
-      ]
-    },
-    {
       "topic": "enforce",
       "files": [
         {
@@ -4493,16 +3533,6 @@
       ]
     },
     {
-      "topic": "every 60 seconds",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 239,
-          "context": "- Cron job updated: every 10 min → **every 60 seconds** (using lock_monitor.py --once) - boot_protocol.py also calls it"
-        }
-      ]
-    },
-    {
       "topic": "Every Session (Daily Log)",
       "files": [
         {
@@ -4523,6 +3553,16 @@
       ]
     },
     {
+      "topic": "Exec approach: checking PNL endpoint",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 51,
+          "context": "## Exec approach: checking PNL endpoint"
+        }
+      ]
+    },
+    {
       "topic": "Execution Order Summary",
       "files": [
         {
@@ -4539,16 +3579,6 @@
           "path": "memory/booking-features-implemented.md",
           "line": 25,
           "context": "### Fallback: - If no specific consoles available → falls back to type selection (PS5 / PS5 Pro / Any)"
-        }
-      ]
-    },
-    {
-      "topic": "FastAPI",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 90,
-          "context": "- **FastAPI** — Serves SPA static files + catch-all fallback for client-side routing - **All 4 services active** (sale-bot, customer-bot, api, tunnel)"
         }
       ]
     },
@@ -4579,16 +3609,6 @@
           "path": "memory/2026-06-05.md",
           "line": 381,
           "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
-        }
-      ]
-    },
-    {
-      "topic": "FastAPI route matching is order-dependent",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 129,
-          "context": "- **FastAPI route matching is order-dependent**: `@app.get(\"/api/bookings/{booking_id}\")` was registered BEFORE `@app.get(\"/api/bookings/search\")` causing \"search\" to be captured as a `{booking_id}` p"
         }
       ]
     },
@@ -4653,16 +3673,6 @@
       ]
     },
     {
-      "topic": "Feedback all broken",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 215,
-          "context": "2. **Feedback all broken** — Pattern mismatch: `fb:rate:` pattern vs `fb:1:` data, `fb:comment_prompt:` vs `fbc:`, `fb:skip$` vs `fbskip` 3. **My Bookings always empty** — Uses `telegram_id` param but"
-        }
-      ]
-    },
-    {
       "topic": "FIFO Logic:",
       "files": [
         {
@@ -4673,23 +3683,28 @@
       ]
     },
     {
-      "topic": "File",
+      "topic": "File Inventory (New)",
       "files": [
         {
-          "path": "memory/2026-06-01.md",
-          "line": 207,
-          "context": "- **File**: `/root/psvibe_api_server/receipt_template.html` - Original hardcoded for gaming sessions only"
-        },
+          "path": "memory/PHASE3_SPEC.md",
+          "line": 173,
+          "context": "## File Inventory (New)"
+        }
+      ]
+    },
+    {
+      "topic": "File Locations",
+      "files": [
         {
-          "path": "memory/2026-06-01.md",
-          "line": 217,
-          "context": "- **File**: `/root/psvibe-sales-bot/bot/handlers/members.py`"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 222,
-          "context": "- **File**: `/root/psvibe-sales-bot/bot/handlers/members.py`"
-        },
+          "path": "memory/UPGRADE_SPEC.md",
+          "line": 121,
+          "context": "## File Locations All files under: `/root/.openclaw/workspace/memory/`"
+        }
+      ]
+    },
+    {
+      "topic": "File:",
+      "files": [
         {
           "path": "memory/2026-06-05.md",
           "line": 16,
@@ -4863,26 +3878,6 @@
       ]
     },
     {
-      "topic": "File Inventory (New)",
-      "files": [
-        {
-          "path": "memory/PHASE3_SPEC.md",
-          "line": 173,
-          "context": "## File Inventory (New)"
-        }
-      ]
-    },
-    {
-      "topic": "File Locations",
-      "files": [
-        {
-          "path": "memory/UPGRADE_SPEC.md",
-          "line": 121,
-          "context": "## File Locations All files under: `/root/.openclaw/workspace/memory/`"
-        }
-      ]
-    },
-    {
       "topic": "File: `/root/psvibe-sales-bot/bot/handlers/sales.py`",
       "files": [
         {
@@ -4903,48 +3898,8 @@
       ]
     },
     {
-      "topic": "Files Modified (Final Inventory)",
+      "topic": "Files Modified",
       "files": [
-        {
-          "path": "memory/2026-06-05.md",
-          "line": 229,
-          "context": "### Files Modified (Final Inventory) - `/root/psvibe_api_server/app.py` — `deduct_mins` + `GenericResponse` import + date format parsing + auto-confirm staff bookings + slot conflict check"
-        }
-      ]
-    },
-    {
-      "topic": "Files Modified (Final Session Inventory)",
-      "files": [
-        {
-          "path": "memory/2026-06-05.md",
-          "line": 118,
-          "context": "### Files Modified (Final Session Inventory) - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
-        }
-      ]
-    },
-    {
-      "topic": "Files Modified in This Session:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 178,
-          "context": "### Files Modified in This Session: - `/root/psvibe-sales-bot/bot/app.py` — asyncio exception handler"
-        }
-      ]
-    },
-    {
-      "topic": "Files Modified:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 21,
-          "context": "### Files Modified: - `/root/psvibe-sales-bot/bot/app.py` — Added asyncio exception handler"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 128,
-          "context": "### Files Modified: - `/root/psvibe-sales-bot/bot/__init__.py` — fetch_bonus_table() dict→tuple conversion"
-        },
         {
           "path": "memory/2026-06-05.md",
           "line": 43,
@@ -4974,6 +3929,26 @@
           "path": "MEMORY.md",
           "line": 618,
           "context": "### Files Modified | File | Change |"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified (Final Inventory)",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 229,
+          "context": "### Files Modified (Final Inventory) - `/root/psvibe_api_server/app.py` — `deduct_mins` + `GenericResponse` import + date format parsing + auto-confirm staff bookings + slot conflict check"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified (Final Session Inventory)",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 118,
+          "context": "### Files Modified (Final Session Inventory) - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
         }
       ]
     },
@@ -5058,6 +4033,26 @@
       ]
     },
     {
+      "topic": "FINAL",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 98,
+          "context": "| **FINAL** | `1dd1be1` | ✅ ALL fixed |"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 640,
+          "context": "- **Final:** Assets = L+E = **293,071,405 Ks → Diff=0 ✅**"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 693,
+          "context": "- **Final:** Bot=48,933 ✅ | Web=48,933 ✅ | BS diff=-67 (rounding) ✅"
+        }
+      ]
+    },
+    {
       "topic": "Final audit",
       "files": [
         {
@@ -5078,57 +4073,12 @@
       ]
     },
     {
-      "topic": "Final Session — Sale Bot D (True Async) + Bug Fixes (19:30-20:30 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 24,
-          "context": "### Final Session — Sale Bot D (True Async) + Bug Fixes (19:30-20:30 MMT)"
-        }
-      ]
-    },
-    {
       "topic": "Final system verification test",
       "files": [
         {
           "path": "memory/subagent-journal.json",
           "line": 12,
           "context": "status: completed | summary: Final verification passed"
-        }
-      ]
-    },
-    {
-      "topic": "Final Verification",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 133,
-          "context": "### Final Verification - `POST /api/sheets/log` → 200 ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Final:",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 62,
-          "context": "**Final:** `sheets_client.py` is dead code — zero active GSheet calls in API. **Result:** 22/22 endpoints tested, all pass ✅ — API, Sales Bot, Customer Bot active."
-        },
-        {
-          "path": "memory/fix-history.md",
-          "line": 98,
-          "context": "| **FINAL** | `1dd1be1` | ✅ ALL fixed |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 640,
-          "context": "- **Final:** Assets = L+E = **293,071,405 Ks → Diff=0 ✅**"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 693,
-          "context": "- **Final:** Bot=48,933 ✅ | Web=48,933 ✅ | BS diff=-67 (rounding) ✅"
         }
       ]
     },
@@ -5143,26 +4093,6 @@
       ]
     },
     {
-      "topic": "Findings Manager:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 11,
-          "context": "- **Findings Manager:** Merged 20 findings → all ✅ Fixed - **Status Reporter:** 3/3 services healthy, found 401 error on config refresh"
-        }
-      ]
-    },
-    {
-      "topic": "fire-and-forget secondary",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 219,
-          "context": "- **Architecture:** GSheet is PRIMARY store, API is **fire-and-forget secondary** (not fallback) - 20/28 handlers use ZERO API calls (rely on GSheet via `__init__.py` helpers)"
-        }
-      ]
-    },
-    {
       "topic": "Fix (3 rounds):",
       "files": [
         {
@@ -5173,53 +4103,8 @@
       ]
     },
     {
-      "topic": "Fix (API):",
+      "topic": "Fix Applied",
       "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 19,
-          "context": "- **Fix (API):** Already had backward compatibility on API side (`app.py` lines 2259-2260)"
-        }
-      ]
-    },
-    {
-      "topic": "Fix (Bot):",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 17,
-          "context": "- **Fix (Bot):** `members.py` — Changed `api_add_topup()` calls (new member + regular topup) to send `\"payment_method\": f\"Kpay:.../Cash:...\"` and `\"staff_name\": ...` - **Fix (Bot):** Added `tu_staff ="
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 18,
-          "context": "- **Fix (Bot):** Added `tu_staff = d.get(\"staff\", \"\")` snapshot in `step_tu_confirm` before `context.user_data.clear()` - **Fix (API):** Already had backward compatibility on API side (`app.py` lines "
-        }
-      ]
-    },
-    {
-      "topic": "Fix applied:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 21,
-          "context": "- **Fix applied:** Updated `app.py` verify_api_key() to check both header AND query params - **Fix applied:** Updated `customer_bot/api.py` — `_API_KEY = os.environ.get(\"API_KEY\", \"\")"
-        },
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 22,
-          "context": "- **Fix applied:** Updated `customer_bot/api.py` — `_API_KEY = os.environ.get(\"API_KEY\", \"\") - **Customer bot restarted** (PID 597042 → 662505)"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 152,
-          "context": "### Fix Applied: - `/tmp/fix_unicode_v3.py` — Replaced wrong unicode escape sequences with correct ones"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 211,
-          "context": "### Fix Applied 1. ✅ Removed 2 stale lock files for topic 110113"
-        },
         {
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 26,
@@ -5268,6 +4153,16 @@
       ]
     },
     {
+      "topic": "Fix requires manual setup",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 176,
+          "context": "- **Fix requires manual setup** via n8n UI: login to https://ps-vibe.com, assign \"PS VIBE Bot\" credential to both workflows"
+        }
+      ]
+    },
+    {
       "topic": "Fix → Verify Loop",
       "files": [
         {
@@ -5280,86 +4175,6 @@
     {
       "topic": "Fix:",
       "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 53,
-          "context": "- **Fix:** Updated SOUL.md → added **Context Sharing** section under Post-Task Documentation Protocol - Rule: When spawning Task Planner / Fix Agent / Verify Agent, ALWAYS include project-state.md + E"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 8,
-          "context": "- **Fix:** Added asyncio `set_exception_handler` in `bot/app.py` to catch task-level exceptions and log them instead of crashing - 12 restarts in 2 minutes (12:59-13:01 UTC) before fix; current instan"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 13,
-          "context": "- **Fix:** Merged BTN_NM_CUSTOM and BTN_NM_GIFT into same row: `[[default_btn], [BTN_NM_CUSTOM, BTN_NM_GIFT], NAV_ROW]`"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 67,
-          "context": "- **Fix:** Replaced chr() encoded keys with proper `d[\"nm_name\"]`, `d[\"nm_id\"]`, `d[\"nm_amt\"]` - **Side note:** This was the \"error\" in Image 2 that Boss showed"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 72,
-          "context": "- **Fix:** Deleted M-1780203313 from MySQL `member_wallets` table - **Result:** API now returns correct members (PSV_A_001, PSV_A_002, PSV_A_003)"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 114,
-          "context": "- **Fix:** Added dict→tuple conversion in `fetch_bonus_table()` at `bot/__init__.py`"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 118,
-          "context": "- **Fix:** Replaced 7 incorrect `[[BTN_NM_GIFT], NAV_ROW]` keyboards, kept only 1 correct instance (NM_NAME custom amount prompt)"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 122,
-          "context": "- **Fix:** Replaced with simple emoji: `🎉 *New Tier Unlocked!* 🏅`"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 126,
-          "context": "- **Fix:** Added `if remaining <= 0: d[\"tu_kpay\"] = ... ; return await step_tu_confirm(...)` before showing method buttons in both prompt_tu_kpay and prompt_nm_kpay"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 81,
-          "context": "- **Fix**: Read B30 from GSheet via sales bot's own gspread access → inserted into MySQL settings_config → fixed endpoint to parse comma-separated string into list of ints - **Result**: `[6296803251, "
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 130,
-          "context": "- **Fix**: Swapped route registration order in `patch_routes.py` — search now comes before `{booking_id}` - **Test**: `GET /api/bookings/search?date=2026-06-01` → 200 OK (1 booking returned)"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 163,
-          "context": "**Fix:** Restored endpoint from backup, adapted to `_mysql_exec()`/`_mysql_query_one()` helpers. Endpoint now: - INSERTs into `topup_log` table"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 169,
-          "context": "**Fix:** Changed to read `bonus_table` from MySQL, format as ASCII table string matching GSheet-era format."
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 173,
-          "context": "**Fix:** Synced MySQL spend values back to GSheet (col F = Ranking Progress, col H = Balance Mins) so bidirectional sync stays consistent."
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 216,
-          "context": "- **Fix**: `step_nm_confirm` BACK handler now clears payments + goes to NM_AMT (Card Amount) instead of NM_KPAY - **File**: `/root/psvibe-sales-bot/bot/handlers/members.py`"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 221,
-          "context": "- **Fix**: Added dedup check in `step_nm_kpay` — if same payment method already selected AND payments exist, silently return NM_KPAY (no duplicate message) - **File**: `/root/psvibe-sales-bot/bot/hand"
-        },
         {
           "path": "memory/2026-06-05.md",
           "line": 9,
@@ -5546,6 +4361,11 @@
           "context": "**Fix:** Replaced all Unicode escapes with simple English (`\"🍕 Loading food menu...\"`)"
         },
         {
+          "path": "memory/2026-06-10.md",
+          "line": 59,
+          "context": "- **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅ - **Verified**: Port 8000 listening, dashboard returns 200"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -5728,16 +4548,6 @@
       ]
     },
     {
-      "topic": "fix_stock_in",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 179,
-          "context": "2. 🔧 **fix_stock_in** — Stock-in function fix via fix_protocol.py (running, 10min timeout) 3. 🔍 **audit_sales_bot** — Deep full audit every function, API, GSheet mapping (running, 10min timeout)"
-        }
-      ]
-    },
-    {
       "topic": "Fixed",
       "files": [
         {
@@ -5754,16 +4564,6 @@
           "path": "MEMORY.md",
           "line": 354,
           "context": "### Fixed: Book Value Calculation - **Bug**: `Decimal - float` type error in `dashboard_routes.py` response mapping"
-        }
-      ]
-    },
-    {
-      "topic": "Fixes Applied",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 195,
-          "context": "### Fixes Applied"
         }
       ]
     },
@@ -5863,16 +4663,6 @@
       ]
     },
     {
-      "topic": "Fresh restart from .bak at 15:45 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 102,
-          "context": "### Fresh restart from .bak at 15:45 UTC - Fixes re-applied: Gift card, TU dynamic payment, NM dynamic payment, imports"
-        }
-      ]
-    },
-    {
       "topic": "Friend & Colleague Notes",
       "files": [
         {
@@ -5913,16 +4703,6 @@
       ]
     },
     {
-      "topic": "Full Fix Pipeline Executed (21:12-21:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 10,
-          "context": "### Full Fix Pipeline Executed (21:12-21:34 UTC) - **Findings Manager:** Merged 20 findings → all ✅ Fixed"
-        }
-      ]
-    },
-    {
       "topic": "Game Library cleaned",
       "files": [
         {
@@ -5939,16 +4719,6 @@
           "path": "memory/project-state.md",
           "line": 37,
           "context": "| 26 | **Game Library consoles** — filtered by `inst_type='installed'` | ✅ | | 27 | **Duplicate C-01 console** — SQL subquery + Python dedup + ended stale booking | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "Game Library Disc error",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 40,
-          "context": "- **Game Library Disc error** — sync `fetch_games()` in async handlers → `await fetch_games_async()` ✅"
         }
       ]
     },
@@ -5973,36 +4743,6 @@
       ]
     },
     {
-      "topic": "Garbled Burmese prompts",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 174,
-          "context": "3. **Garbled Burmese prompts** — `\\u1019\\u1019\\u102d\\u1014\\u103a` → correct `\\u1015\\u1019\\u102b\\u100f` etc. 4. **Auto-pass on full payment** — remaining≤0 check before showing method buttons"
-        }
-      ]
-    },
-    {
-      "topic": "Gateway Crash (21:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 34,
-          "context": "### Gateway Crash (21:34 UTC) - OpenClaw gateway Docker container restarted (now up 2 min at 21:37 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "GayZoeLay",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 12,
-          "context": "- New `docker-compose.yml` created with 3 agents: **Nova** (3002), **CoCo** (3003), **GayZoeLay** (3004) - Nova's deployable config at `configs/nova/openclaw.json`"
-        }
-      ]
-    },
-    {
       "topic": "Generated:",
       "files": [
         {
@@ -6023,52 +4763,12 @@
       ]
     },
     {
-      "topic": "Gift Card Fix (continued)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 76,
-          "context": "### Gift Card Fix (continued) - BTN_NM_GIFT removed from main card options keyboard"
-        }
-      ]
-    },
-    {
-      "topic": "Gift FREE button everywhere",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 172,
-          "context": "1. **Gift FREE button everywhere** — removed from 7 wrong keyboards, kept only at custom amount prompt 2. **Top Up member freeze (KeyError: 0)** — dict→tuple in fetch_bonus_table() at `bot/__init__.py"
-        }
-      ]
-    },
-    {
       "topic": "Git Commits",
       "files": [
         {
           "path": "memory/coupon-system-implemented.md",
           "line": 31,
           "context": "### Git Commits | Repo | SHA | Message |"
-        }
-      ]
-    },
-    {
-      "topic": "Git push",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 94,
-          "context": "- ✅ **Git push** — 35+ commits to `flash00787/PSVIBE-Sales-Bot` master (`fe4af66`) - ✅ **Receipt endpoint verified** — HTTPS at `ps-vibe.com/api/receipt/{voucher_id}` returns 404 for invalid (expected"
-        }
-      ]
-    },
-    {
-      "topic": "Git Push #2 (21:29 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 26,
-          "context": "### Git Push #2 (21:29 UTC) - Commit `58d206d` — \"fix: resolve 401 Google Sheets API auth\""
         }
       ]
     },
@@ -6083,33 +4783,8 @@
       ]
     },
     {
-      "topic": "Git repo",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 86,
-          "context": "- **Git repo** at `/root/psvibe-dashboard/`"
-        }
-      ]
-    },
-    {
-      "topic": "Git Sync #1:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 16,
-          "context": "- **Git Sync #1:** Commit `bdc8302` — 20 audit findings fix pushed to GitHub"
-        }
-      ]
-    },
-    {
       "topic": "GitHub:",
       "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 136,
-          "context": "- **GitHub:** 35+ commits pushed to master - **Documentation:** 8 files updated"
-        },
         {
           "path": "memory/infrastructure.md",
           "line": 5,
@@ -6218,16 +4893,6 @@
       ]
     },
     {
-      "topic": "Golden Rule confirmed at 21:10 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 188,
-          "context": "### Golden Rule confirmed at 21:10 UTC - **Kora NEVER does ANY work manually. Zero exceptions.**"
-        }
-      ]
-    },
-    {
       "topic": "Google Drive",
       "files": [
         {
@@ -6244,6 +4909,36 @@
           "path": "memory/booking-features-plan.md",
           "line": 363,
           "context": "| **Grace period rounding**: showing a slot that just passed | LOW (UX only) | 30 min buffer is generous. If someone picks 10:00 at 10:02, they get blocked — that's intentional. | | **Staff booking in"
+        }
+      ]
+    },
+    {
+      "topic": "Grand Opening",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 54,
+          "context": "### Grand Opening - **Tomorrow:** June 6, 2026 (Saturday) 🎮🔥"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 128,
+          "context": "### Grand Opening - **TOMORROW:** June 6, 2026 (Saturday) 🎮🔥🎉"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 241,
+          "context": "### Grand Opening - **TOMORROW:** June 6, 2026 (Saturday) 🎮🔥🎉"
+        },
+        {
+          "path": "memory/coupon-system-implemented.md",
+          "line": 3,
+          "context": "> **Date:** 2026-06-02 | **Grand Opening:** June 6-7, 2026"
+        },
+        {
+          "path": "memory/project-state.md",
+          "line": 54,
+          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!** - **Opening Hours:** 9 AM - 9 PM (daily)"
         }
       ]
     },
@@ -6274,51 +4969,6 @@
           "path": "memory/2026-06-05.md",
           "line": 396,
           "context": "## Grand Opening — TOMORROW June 6, 2026 (Saturday) 🎮🔥🎉 - **All critical path bugs fixed and data reset complete:**"
-        }
-      ]
-    },
-    {
-      "topic": "Grand opening:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 119,
-          "context": "- **Grand opening:** 06 June 2026 (Saturday) - **Address:** No. 17, Mau Pin Street, Sanchaung, Yangon"
-        },
-        {
-          "path": "memory/2026-06-05.md",
-          "line": 54,
-          "context": "### Grand Opening - **Tomorrow:** June 6, 2026 (Saturday) 🎮🔥"
-        },
-        {
-          "path": "memory/2026-06-05.md",
-          "line": 128,
-          "context": "### Grand Opening - **TOMORROW:** June 6, 2026 (Saturday) 🎮🔥🎉"
-        },
-        {
-          "path": "memory/2026-06-05.md",
-          "line": 241,
-          "context": "### Grand Opening - **TOMORROW:** June 6, 2026 (Saturday) 🎮🔥🎉"
-        },
-        {
-          "path": "memory/coupon-system-implemented.md",
-          "line": 3,
-          "context": "> **Date:** 2026-06-02 | **Grand Opening:** June 6-7, 2026"
-        },
-        {
-          "path": "memory/project-state.md",
-          "line": 54,
-          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!** - **Opening Hours:** 9 AM - 9 PM (daily)"
-        }
-      ]
-    },
-    {
-      "topic": "Grand Total (End of Day)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 131,
-          "context": "### Grand Total (End of Day) - **Hours:** ~13 hours (08:00-21:06 UTC)"
         }
       ]
     },
@@ -6378,16 +5028,6 @@
       ]
     },
     {
-      "topic": "gsheet_migration_audit",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 182,
-          "context": "5. 📊 **gsheet_migration_audit** — Data flow sequence + find direct GSheet calls (running, 10min timeout)"
-        }
-      ]
-    },
-    {
       "topic": "GSheets as source of truth is OK",
       "files": [
         {
@@ -6408,26 +5048,6 @@
       ]
     },
     {
-      "topic": "GSheet→MySQL Migration: All 10 Remaining Calls Eliminated ✅",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 48,
-          "context": "### GSheet→MySQL Migration: All 10 Remaining Calls Eliminated ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Handler modules (13 files)",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 23,
-          "context": "2. **Handler modules (13 files)** — `from bot import now_mmt` already added ✅ 3. **_ALLOWED_USER_IDS** — Replaced with `fetch_allowed_staff_ids()` from Sheets ✅"
-        }
-      ]
-    },
-    {
       "topic": "hardcoded",
       "files": [
         {
@@ -6441,24 +5061,9 @@
       "topic": "header",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 19,
-          "context": "- **Root cause #1:** Main bot `_replit_get()` sent API key as **header** (`X-API-Key`), but API server `verify_api_key()` only checked **query params** (`?api_key=`) - **Root cause #2:** Customer bot "
-        },
-        {
           "path": "MEMORY.md",
           "line": 221,
           "context": "- `api_client.py` has TWO separate auth mechanisms: `_http_request` uses **header**, but `api_post`/`api_get` use **query param** only - Always check WHICH function is being called — the helper wrappe"
-        }
-      ]
-    },
-    {
-      "topic": "Health Check Results (21:34 UTC):",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 193,
-          "context": "### Health Check Results (21:34 UTC): | Check | Status |"
         }
       ]
     },
@@ -6469,16 +5074,6 @@
           "path": "memory/2026-06-04.md",
           "line": 3,
           "context": "**Health Monitor:** 94.5/100 ✅ - All 4 services active ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Heartbeat (14:39 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 51,
-          "context": "## Heartbeat (14:39 UTC) - 4 unread notifications cleared (including 🚨 old service alert — resolved)"
         }
       ]
     },
@@ -6513,22 +5108,12 @@
       ]
     },
     {
-      "topic": "Heartbeat Poll (19:20 UTC)",
+      "topic": "HEARTBEAT.md & MEMORY.md",
       "files": [
         {
-          "path": "memory/2026-06-01.md",
-          "line": 229,
-          "context": "### Heartbeat Poll (19:20 UTC) - Routine poll — all systems healthy"
-        }
-      ]
-    },
-    {
-      "topic": "Heartbeat Polls (06:00–06:18 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 5,
-          "context": "### Heartbeat Polls (06:00–06:18 MMT) - Multiple heartbeat polls throughout early morning — all services active, 0 errors, 0 stale locks, 0 stuck agents"
+          "path": "memory/2026-06-10.md",
+          "line": 41,
+          "context": "3. **HEARTBEAT.md & MEMORY.md** — already had correct paths ✅"
         }
       ]
     },
@@ -6548,22 +5133,12 @@
       ]
     },
     {
-      "topic": "help.py error_handler",
+      "topic": "Heartbeats Only",
       "files": [
         {
-          "path": "memory/2026-05-26.md",
-          "line": 25,
-          "context": "4. **help.py error_handler** — `from telegram.error import NetworkError, TimedOut, Conflict` already fixed ✅ 5. **main.py** — `from dotenv import load_dotenv` removed (service uses EnvironmentFile) ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Hours:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 132,
-          "context": "- **Hours:** ~13 hours (08:00-21:06 UTC) - **Bugs fixed:** 15 import bugs (#1-15)"
+          "path": "memory/2026-06-10.md",
+          "line": 9,
+          "context": "- \"Stay Quiet\" rule now clearly marked as **Heartbeats Only** - Quiet window (23:00-08:00) → only applies to proactive outreach, NOT incoming messages"
         }
       ]
     },
@@ -6638,16 +5213,6 @@
       ]
     },
     {
-      "topic": "Implementation",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 238,
-          "context": "### Implementation - Cron job updated: every 10 min → **every 60 seconds** (using lock_monitor.py --once)"
-        }
-      ]
-    },
-    {
       "topic": "Implementation Details",
       "files": [
         {
@@ -6689,6 +5254,16 @@
           "path": "MEMORY.md",
           "line": 270,
           "context": "### Improvement Needed - Food menu display could use grouped format (categories with emojis: Drinks 🥤, Instant Noodles 🍜, Other 🍟) instead of flat name+price list"
+        }
+      ]
+    },
+    {
+      "topic": "incoming message responses",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 26,
+          "context": "- HEARTBEAT.md/AGENTS.md \"stay quiet\" rule was misinterpreted to apply to **incoming message responses**, not just heartbeat outreach - lock-monitor every 30s created session file write conflicts with"
         }
       ]
     },
@@ -6763,16 +5338,6 @@
       ]
     },
     {
-      "topic": "Inventory API verified",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 96,
-          "context": "- ✅ **Inventory API verified** — Requires API key, returns real data (Coca-Cola=3, others=0) - ✅ **3 stubs → Live implementations** — `booking.py` rewritten:"
-        }
-      ]
-    },
-    {
       "topic": "Investigation",
       "files": [
         {
@@ -6824,16 +5389,6 @@
           "path": "memory/2026-06-03.md",
           "line": 8,
           "context": "- **Issue 1**: Promotions filtered — inactive/expired promos removed from Sale Daily display - **Issue 9**: Coupon stuck at confirm step in Sale Daily — fixed broken Markdown string in discount.py"
-        }
-      ]
-    },
-    {
-      "topic": "Issue 1 — Missing Endpoints (2 removed during cleanup)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 120,
-          "context": "**Issue 1 — Missing Endpoints (2 removed during cleanup)** | Endpoint | Original Purpose | Status |"
         }
       ]
     },
@@ -6928,6 +5483,16 @@
       ]
     },
     {
+      "topic": "Issues Fixed",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 38,
+          "context": "### Issues Fixed 1. **POST_TASK_SOP.md paths corrected** — AGENTS.md, GOLDEN_RULES.md, SOUL.md all updated from `POST_TASK_SOP.md` → `memory/sop/POST_TASK_SOP.md`"
+        }
+      ]
+    },
+    {
       "topic": "Issues Found & Fixed",
       "files": [
         {
@@ -6968,7 +5533,7 @@
         {
           "path": "MEMORY.md",
           "line": 712,
-          "context": "8. **JWT expires on restart:** Users must re-login 9. **Python `.pyc` cache stale after edit:** Always `find -name '__pycache__' -exec rm -rf {} +` then restart"
+          "context": "8. **JWT expires on restart:** Users must re-login"
         }
       ]
     },
@@ -7043,42 +5608,12 @@
       ]
     },
     {
-      "topic": "Key Insight",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 175,
-          "context": "### Key Insight Migration from GSheet→MySQL requires disconnecting the 5-minute cron sync for tables that are now MySQL-first (member_wallets, topup_log). Until `sync_service.py` is stopped or made bi"
-        }
-      ]
-    },
-    {
       "topic": "Key Lessons (June 9)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 576,
           "context": "### Key Lessons (June 9) 1. Python `.pyc` cache must be cleared after any `.py` edit — `systemctl restart` alone isn't enough"
-        }
-      ]
-    },
-    {
-      "topic": "Key Lessons Documented (MEMORY.md updates needed):",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 190,
-          "context": "### Key Lessons Documented (MEMORY.md updates needed): 1. API returns dicts for bonus table, gspread returns tuples — always convert"
-        }
-      ]
-    },
-    {
-      "topic": "Key Takeaway",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 35,
-          "context": "### Key Takeaway Sonnet 4 analysis from May 31 (17:34 UTC) was stale — bugs already fixed in same-session fixes. Comprehensive scan confirms 100/100 quality score with zero issues."
         }
       ]
     },
@@ -7153,16 +5688,6 @@
       ]
     },
     {
-      "topic": "Known Pending",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 285,
-          "context": "### Known Pending - Claude Sonnet 4 fix_daily_sales_flow agent result — didn't produce output file"
-        }
-      ]
-    },
-    {
       "topic": "Known Remaining Issues (Non-Blocking)",
       "files": [
         {
@@ -7193,57 +5718,12 @@
       ]
     },
     {
-      "topic": "Ko VIBE optimized:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 135,
-          "context": "- **Ko VIBE optimized:** 5s → ~1s (C4 single-turn + C7 lite model + C1 FAQ bypass) - **GitHub:** 35+ commits pushed to master"
-        }
-      ]
-    },
-    {
-      "topic": "Ko VIBE System Prompt Update (14:00-14:45 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 103,
-          "context": "### Ko VIBE System Prompt Update (14:00-14:45 MMT) - Boss provided new system prompt for Ko VIBE (PS VIBE AI Bot)"
-        }
-      ]
-    },
-    {
       "topic": "Ko Vibe tone",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 268,
           "context": "- **Ko Vibe tone**: Untouched, in `data/prompts.py` `_build_ai_system_prompt()`"
-        }
-      ]
-    },
-    {
-      "topic": "Kora Files Updated (self-maintenance check)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 119,
-          "context": "### Kora Files Updated (self-maintenance check) | File | Status |"
-        }
-      ]
-    },
-    {
-      "topic": "Kora NEVER does ANY work manually. Zero exceptions.",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 145,
-          "context": "- New absolute rule: **Kora NEVER does ANY work manually. Zero exceptions.** - If agent slots busy → write to `task_queue.json`. Never do it yourself."
-        },
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 189,
-          "context": "- **Kora NEVER does ANY work manually. Zero exceptions.** - If agents busy → queue to `temp/task_queue.json`"
         }
       ]
     },
@@ -7348,18 +5828,8 @@
       ]
     },
     {
-      "topic": "Lesson learned:",
+      "topic": "Lesson Learned",
       "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 38,
-          "context": "- **Lesson learned:** Every sub-agent spawn MUST include SAFETY NET instructions"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 74,
-          "context": "- **Lesson Learned:** MySQL-GSheet sync doesn't handle deletions"
-        },
         {
           "path": "MEMORY.md",
           "line": 220,
@@ -7369,36 +5839,6 @@
           "path": "MEMORY.md",
           "line": 254,
           "context": "### Lesson Learned - **`\"error\" in resp` ≠ `resp.get(\"error\")`** — when API always includes `error` key (even with null), `in` operator is always True. Must use truthy check on the value, not key exis"
-        }
-      ]
-    },
-    {
-      "topic": "Lesson Learned: \\u escapes in fix scripts are fragile",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 157,
-          "context": "### Lesson Learned: \\u escapes in fix scripts are fragile - `\\u100f` = ဏ (nya), NOT `\\u1013` = ဓ (da) — subtle but critical difference"
-        }
-      ]
-    },
-    {
-      "topic": "Lesson Learned: API return format mismatch",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 132,
-          "context": "### Lesson Learned: API return format mismatch - Gspread returns gspread Row objects (tuples), API returns JSON (dicts)"
-        }
-      ]
-    },
-    {
-      "topic": "Lesson Learned: Task Planner MUST receive project context",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 50,
-          "context": "### Lesson Learned: Task Planner MUST receive project context - Boss asked: \"Task Planner က report တွေကို သုံးတာလား?\""
         }
       ]
     },
@@ -7478,32 +5918,17 @@
       ]
     },
     {
-      "topic": "Lesson: FastAPI Route Order Matters",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 140,
-          "context": "### Lesson: FastAPI Route Order Matters When paths overlap semantically (`/api/bookings/search` vs `/api/bookings/{booking_id}`), the **specific path MUST be registered BEFORE the parameterized path**"
-        }
-      ]
-    },
-    {
       "topic": "Lessons Learned",
       "files": [
         {
           "path": "memory/2026-06-09.md",
           "line": 32,
           "context": "### Lessons Learned - cash_movements raw balance (304M) ≠ actual financial position — it only tracks internal transfers"
-        }
-      ]
-    },
-    {
-      "topic": "Lessons learned (Kora):",
-      "files": [
+        },
         {
-          "path": "memory/2026-05-29.md",
-          "line": 139,
-          "context": "- **Lessons learned (Kora):** 3 violations — Absolute zero-tolerance reinstated"
+          "path": "memory/2026-06-10.md",
+          "line": 31,
+          "context": "### Lessons Learned 1. NEVER let \"stay quiet\" rules affect message responses — only heartbeat/outreach"
         }
       ]
     },
@@ -7528,16 +5953,6 @@
       ]
     },
     {
-      "topic": "Lock lifetime reduced",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 243,
-          "context": "### Lock lifetime reduced Before: 17 min (maxHoldMs) — now: **max 60s stale lock**"
-        }
-      ]
-    },
-    {
       "topic": "Lock Monitor Updates (2026-06-02)",
       "files": [
         {
@@ -7554,26 +5969,6 @@
           "path": "memory/booking-features-implemented.md",
           "line": 37,
           "context": "### Logic: - Future dates: show ALL slots (9:00-21:00)"
-        }
-      ]
-    },
-    {
-      "topic": "Login page",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 75,
-          "context": "- **Login page** — Clean minimal design with gradient branding, error handling, loading state - **Dashboard Index** — Full layout with:"
-        }
-      ]
-    },
-    {
-      "topic": "Login:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 96,
-          "context": "- **Login:** admin / admin123 (staff / staff123) - All by VPS (no local environment needed)"
         }
       ]
     },
@@ -7604,16 +5999,6 @@
           "path": "memory/full-audit-2026-06-03.md",
           "line": 25,
           "context": "### Main API (app.py) — 72 Endpoints - System (3): health, mysql/health, mysql/status"
-        }
-      ]
-    },
-    {
-      "topic": "main.py",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 26,
-          "context": "5. **main.py** — `from dotenv import load_dotenv` removed (service uses EnvironmentFile) ✅"
         }
       ]
     },
@@ -7683,16 +6068,6 @@
       ]
     },
     {
-      "topic": "max 60s stale lock",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 244,
-          "context": "Before: 17 min (maxHoldMs) — now: **max 60s stale lock**"
-        }
-      ]
-    },
-    {
       "topic": "Max parallel per round:",
       "files": [
         {
@@ -7713,42 +6088,12 @@
       ]
     },
     {
-      "topic": "maxChildrenPerAgent:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 6,
-          "context": "- **maxChildrenPerAgent:** 30 ✅ (changed from 20 by Boss request) - Docs updated: MEMORY.md, HEARTBEAT.md, COORDINATION_FRAMEWORK.md all ✅"
-        }
-      ]
-    },
-    {
-      "topic": "maxConcurrent:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 4,
-          "context": "- **maxConcurrent:** 20 ✅ - **subagents.maxConcurrent:** 30 ✅"
-        }
-      ]
-    },
-    {
       "topic": "Member Console Multiplier (FIXED)",
       "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 16,
           "context": "## Member Console Multiplier (FIXED) - Members always got 1.0x. Added `fetch_console_multiplier()` for non-guest members."
-        }
-      ]
-    },
-    {
-      "topic": "Memorable Moments",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 10,
-          "context": "### Memorable Moments - Boss worked late (past midnight MMT) on June 1st debugging — payment spam, game library corruption, console data"
         }
       ]
     },
@@ -7813,16 +6158,6 @@
       ]
     },
     {
-      "topic": "MEMORY.md restructured:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 128,
-          "context": "- **MEMORY.md restructured:** 306 lines → 49 lines (84%), split into 7 module files in `memory/` - **All 3 services restarted** after commit `941d0a5`"
-        }
-      ]
-    },
-    {
       "topic": "MEMORY.md:",
       "files": [
         {
@@ -7873,16 +6208,6 @@
       ]
     },
     {
-      "topic": "Migration Fixes (Mid-flight Breakage)",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 65,
-          "context": "### Migration Fixes (Mid-flight Breakage) - **MySQL helpers lost**: Batch 5 duplicate removal accidentally deleted `_mysql_query/_mysql_exec/_mysql_get_setting` definitions → had to re-inject"
-        }
-      ]
-    },
-    {
       "topic": "Mirrors",
       "files": [
         {
@@ -7928,62 +6253,12 @@
       ]
     },
     {
-      "topic": "Monolithic backup saved:",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 4,
-          "context": "**Monolithic backup saved:** `/root/backups/psvibe-monolithic-restored-20260527_000345.tar.gz` (11MB)"
-        }
-      ]
-    },
-    {
-      "topic": "Monolithic version RUNNING",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 29,
-          "context": "- **Monolithic version RUNNING**: psvibe-bot.service (PID 243060) - **Refactored project STOPPED**: psvibe-bot-refactored.service"
-        }
-      ]
-    },
-    {
-      "topic": "My Bookings always empty",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 216,
-          "context": "3. **My Bookings always empty** — Uses `telegram_id` param but API expects `telegram_chat_id`"
-        }
-      ]
-    },
-    {
       "topic": "MySQL container running ≠ MySQL in use",
       "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 88,
           "context": "1. **MySQL container running ≠ MySQL in use** — always check app.py for actual imports 2. **Bot had migration pattern ready** (`_HAS_API`) — API-first design was already in place"
-        }
-      ]
-    },
-    {
-      "topic": "MySQL Data Audit — Gaps Discovered",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 88,
-          "context": "### MySQL Data Audit — Gaps Discovered | Table | Rows | Issue |"
-        }
-      ]
-    },
-    {
-      "topic": "MySQL helpers lost",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 66,
-          "context": "- **MySQL helpers lost**: Batch 5 duplicate removal accidentally deleted `_mysql_query/_mysql_exec/_mysql_get_setting` definitions → had to re-inject - **patch_routes import lost**: `import patch_rout"
         }
       ]
     },
@@ -8023,16 +6298,6 @@
       ]
     },
     {
-      "topic": "mysql_db.py",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 88,
-          "context": "- **mysql_db.py** created — connection module with query/query_one/execute - **13 MySQL tables** in psvibe_api (6 created by agents, 7 more by another)"
-        }
-      ]
-    },
-    {
       "topic": "mysql_integration_api",
       "files": [
         {
@@ -8043,12 +6308,32 @@
       ]
     },
     {
-      "topic": "n8n syncs",
+      "topic": "n8n CE can't share Telegram credentials via API",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 90,
-          "context": "- **n8n syncs** continue every 5 min (clean now — UNIQUE constraint added) - **staff_records**: 1,406 dupes → 2 rows 🧹"
+          "path": "memory/2026-06-10.md",
+          "line": 200,
+          "context": "16. **n8n CE can't share Telegram credentials via API** — must be done manually in the UI 17. **SQLite WAL files MUST be preserved** — deleting them loses uncommitted data"
+        }
+      ]
+    },
+    {
+      "topic": "n8n CE credential sharing",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 179,
+          "context": "1. **n8n CE credential sharing** is API-restricted — must be done via UI 2. **SQLite WAL mode** — deleting `.sqlite-shm` and `.sqlite-wal` deletes uncommitted data"
+        }
+      ]
+    },
+    {
+      "topic": "n8n Community Edition",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 172,
+          "context": "- Root cause: **n8n Community Edition** lacks license for credential sharing - `PATCH /rest/credentials/{id}` with `isGlobal: true` → 400 (no license)"
         }
       ]
     },
@@ -8253,62 +6538,12 @@
       ]
     },
     {
-      "topic": "New Member Payment → Dynamic Method Selection",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 38,
-          "context": "### New Member Payment → Dynamic Method Selection - Same change for `prompt_nm_kpay`/`step_nm_kpay`"
-        }
-      ]
-    },
-    {
-      "topic": "New SOP: Post-Task Cleanup",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 166,
-          "context": "### New SOP: Post-Task Cleanup Boss ordered: **After EVERY task → Summarize → Update docs → THEN delete temp files.** Never leave temp files behind."
-        }
-      ]
-    },
-    {
-      "topic": "New tone:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 105,
-          "context": "- **New tone:** Chill, friendly, gamer-oriented, humor/banter OK, strict anti-hallucination - Updated `/root/psvibe-sales-bot/customer_bot/data/prompts.py` → `_build_ai_system_prompt()`"
-        }
-      ]
-    },
-    {
-      "topic": "New tools created:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 134,
-          "context": "- **New tools created:** fix_protocol.py, auto_doc_updater.py, fix_lock.py, input_logger.py - **Ko VIBE optimized:** 5s → ~1s (C4 single-turn + C7 lite model + C1 FAQ bypass)"
-        }
-      ]
-    },
-    {
       "topic": "New:",
       "files": [
         {
           "path": "memory/project-state.md",
           "line": 67,
           "context": "**New:** Web Dashboard now handles Game CRUD + Disc/SSD management (removed from bot)"
-        }
-      ]
-    },
-    {
-      "topic": "Next: Telegram Mini App",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 49,
-          "context": "### Next: Telegram Mini App"
         }
       ]
     },
@@ -8386,6 +6621,11 @@
           "context": "- **Note:** API-level check protects both dashboard and bot paths - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint"
         },
         {
+          "path": "memory/2026-06-10.md",
+          "line": 65,
+          "context": "- **Note**: Requires gateway restart to take effect (reloadKind: none)"
+        },
+        {
           "path": "memory/booking-features-plan.md",
           "line": 305,
           "context": "**Note:** `now_mmt` is already available in `prompts.py` (confirmed from reading the file)."
@@ -8423,37 +6663,12 @@
       ]
     },
     {
-      "topic": "Nova",
+      "topic": "Nova:",
       "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 12,
-          "context": "- New `docker-compose.yml` created with 3 agents: **Nova** (3002), **CoCo** (3003), **GayZoeLay** (3004) - Nova's deployable config at `configs/nova/openclaw.json`"
-        },
         {
           "path": "memory/contacts.md",
           "line": 24,
           "context": "- **Nova:** Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup) - **Chan Su Su Hlaing:** Colleague / Business"
-        }
-      ]
-    },
-    {
-      "topic": "Nova Backup & Docker Compose Setup",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 7,
-          "context": "## Nova Backup & Docker Compose Setup - Nova's backup files organized in `backups/nova-backup/`"
-        }
-      ]
-    },
-    {
-      "topic": "Nova Info (from Ye Yint Oo's Gmail)",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 16,
-          "context": "## Nova Info (from Ye Yint Oo's Gmail) - **Owner:** Ye Yint Oo (Malboro) — Telegram: 8336350778"
         }
       ]
     },
@@ -8478,16 +6693,6 @@
       ]
     },
     {
-      "topic": "OpenClaw Gateway Restart",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 3,
-          "context": "## OpenClaw Gateway Restart - Gateway restart completed successfully (port 18789, LAN bind)"
-        }
-      ]
-    },
-    {
       "topic": "Opening = all KBZ transfer_in",
       "files": [
         {
@@ -8498,28 +6703,8 @@
       ]
     },
     {
-      "topic": "Opening date:",
+      "topic": "Opening Hours:",
       "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 15,
-          "context": "- **Opening date:** 06 June 2026 (Saturday) — shop hasn't opened yet"
-        }
-      ]
-    },
-    {
-      "topic": "Opening hours:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 14,
-          "context": "- **Opening hours:** 9 AM to 9 PM (not 10-10 as FAQ says — system OPEN_HOUR=9, CLOSE_HOUR=21 is correct) - **Opening date:** 06 June 2026 (Saturday) — shop hasn't opened yet"
-        },
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 118,
-          "context": "- **Opening hours:** 9 AM - 9 PM (daily) - **Grand opening:** 06 June 2026 (Saturday)"
-        },
         {
           "path": "memory/project-state.md",
           "line": 55,
@@ -8603,16 +6788,6 @@
       ]
     },
     {
-      "topic": "Owner:",
-      "files": [
-        {
-          "path": "memory/2026-05-27.md",
-          "line": 17,
-          "context": "- **Owner:** Ye Yint Oo (Malboro) — Telegram: 8336350778 - Nova is Ye Yint Oo's personal AI assistant, runs on OpenClaw (local PC setup)"
-        }
-      ]
-    },
-    {
       "topic": "P&L",
       "files": [
         {
@@ -8629,26 +6804,6 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 74,
           "context": "- **P0 (Critical)** — Boss's rules, business decisions, security → Never delete, always in MEMORY.md - **P1 (Important)** — Project updates, significant events → 30 days in MEMORY.md, then archive"
-        }
-      ]
-    },
-    {
-      "topic": "P0 Blitz (16 agents parallel, 10 min):",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 55,
-          "context": "- **P0 Blitz (16 agents parallel, 10 min):** - 8 handler modules + `from bot import *` (console, console_mgmt, ginst, ssd_disc, waitlist, admin_bookings, broadcast, notify)"
-        }
-      ]
-    },
-    {
-      "topic": "P0 Fix Blitz - 16 Parallel Agents (22:45-23:05 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 47,
-          "context": "### P0 Fix Blitz - 16 Parallel Agents (22:45-23:05 UTC) - **Trigger:** Boss asked for button flow audit + GSheet API check + API endpoint crosscheck"
         }
       ]
     },
@@ -8693,12 +6848,12 @@
       ]
     },
     {
-      "topic": "patch_routes import lost",
+      "topic": "Path Reference Map (current)",
       "files": [
         {
-          "path": "memory/2026-06-01.md",
-          "line": 67,
-          "context": "- **patch_routes import lost**: `import patch_routes` line removed during cleanup → re-added - **`sheets/config` 404**: META config header changed in migration batch → re-added to patch_routes.py"
+          "path": "memory/2026-06-10.md",
+          "line": 43,
+          "context": "### Path Reference Map (current) | Referencing File | Old Path | New/Correct Path |"
         }
       ]
     },
@@ -8773,16 +6928,6 @@
       ]
     },
     {
-      "topic": "Pending Bookings Bug (Still Open)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 112,
-          "context": "### Pending Bookings Bug (Still Open) - Boss reported Sale Bot shows \"Pending 9\" but details not displaying"
-        }
-      ]
-    },
-    {
       "topic": "Performance",
       "files": [
         {
@@ -8834,6 +6979,16 @@
           "path": "MEMORY.md",
           "line": 168,
           "context": "- **Phase 2 pending**: Session Start pre-order + Session End auto-bill"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 2 Sub-agent Running",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 75,
+          "context": "### Phase 2 Sub-agent Running - Quality Gate audit, remaining upgrades delegated to sub-agent"
         }
       ]
     },
@@ -8923,16 +7078,6 @@
       ]
     },
     {
-      "topic": "Phase 5 — 100% MySQL Migration COMPLETE ✅ (21:15 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 26,
-          "context": "## Phase 5 — 100% MySQL Migration COMPLETE ✅ (21:15 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "Phase 5 — Grand Opening Data Reset (18:31 UTC)",
       "files": [
         {
@@ -8993,12 +7138,22 @@
       ]
     },
     {
-      "topic": "Phases completed:",
+      "topic": "POST /rest/workflows/{id}/activate",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 49,
-          "context": "- **Phases completed:** - 🔧 Daily Sale flow fixes (4 bugs) ✅ Verified PASS"
+          "path": "memory/2026-06-10.md",
+          "line": 181,
+          "context": "3. **POST /rest/workflows/{id}/activate** with `{\"versionId\": \"...\"}` works (not PATCH)"
+        }
+      ]
+    },
+    {
+      "topic": "Post activate with versionId works",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 202,
+          "context": "18. **Post activate with versionId works** — PATCH `active: true` does NOT work for activation 19. **3-layer bugs pattern confirmed** in auto_cancel: 4+ independent broken things (endpoints, vars, par"
         }
       ]
     },
@@ -9023,12 +7178,12 @@
       ]
     },
     {
-      "topic": "Pre-opening bookings = testing only",
+      "topic": "POST_TASK_SOP.md paths corrected",
       "files": [
         {
-          "path": "memory/2026-06-02.md",
-          "line": 121,
-          "context": "- **Pre-opening bookings = testing only** — serious bookings start June 6"
+          "path": "memory/2026-06-10.md",
+          "line": 39,
+          "context": "1. **POST_TASK_SOP.md paths corrected** — AGENTS.md, GOLDEN_RULES.md, SOUL.md all updated from `POST_TASK_SOP.md` → `memory/sop/POST_TASK_SOP.md` 2. **archive/ps5_news.md deleted** — outdated 48K dupl"
         }
       ]
     },
@@ -9037,7 +7192,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 734,
+          "line": 733,
           "context": "11. **Prepaid amortization**: P&L expense + BS asset reduction. Cash Flow already shows full outflow (investing) 12. **systemctl/systemd not available** on VPS — uvicorn via nohup; restart with `pkill"
         }
       ]
@@ -9049,16 +7204,6 @@
           "path": "memory/2026-06-09.md",
           "line": 23,
           "context": "### Prepaid Rent Amortization (✅ Done) - Created `prepaid_amortization` table"
-        }
-      ]
-    },
-    {
-      "topic": "Prevention System Implemented (21:41 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 40,
-          "context": "### Prevention System Implemented (21:41 UTC) - `memory/subagent_safety.py` — validates task safety, checks stuck sub-agents"
         }
       ]
     },
@@ -9089,31 +7234,6 @@
           "path": "memory/delegation-rules.md",
           "line": 54,
           "context": "| 🤖 Fix Agent (code) | **Pro only!** | 300-900s | | 🔍 Verify Agent | Flash | 300s |"
-        }
-      ]
-    },
-    {
-      "topic": "Problem",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 199,
-          "context": "### Problem Sub-agent spawn errors when changing Telegram topics:"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 79,
-          "context": "- **Problem**: `fetch_allowed_staff_ids` returned empty `[]` after MySQL migration - **Root cause**: GSheet→MySQL migration removed GSheet fallback code; `_fetch_allowed_staff_ids_from_mysql()` return"
-        }
-      ]
-    },
-    {
-      "topic": "Problem (from Boss)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 223,
-          "context": "### Problem (from Boss) Lock files ကို real-time monitor လုပ်ပြီး agent ထွက်သွားတာနဲ့ auto-kill ပေးနိုင်တဲ့ system"
         }
       ]
     },
@@ -9198,16 +7318,6 @@
       ]
     },
     {
-      "topic": "PS VIBE Shop Info (Confirmed by Boss)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 13,
-          "context": "### PS VIBE Shop Info (Confirmed by Boss) - **Opening hours:** 9 AM to 9 PM (not 10-10 as FAQ says — system OPEN_HOUR=9, CLOSE_HOUR=21 is correct)"
-        }
-      ]
-    },
-    {
       "topic": "Purpose:",
       "files": [
         {
@@ -9278,16 +7388,6 @@
       ]
     },
     {
-      "topic": "query params",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 19,
-          "context": "- **Root cause #1:** Main bot `_replit_get()` sent API key as **header** (`X-API-Key`), but API server `verify_api_key()` only checked **query params** (`?api_key=`) - **Root cause #2:** Customer bot "
-        }
-      ]
-    },
-    {
       "topic": "Queue Manager",
       "files": [
         {
@@ -9309,16 +7409,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 353,
           "context": "| **Race condition**: two customers see same console available and both book it | LOW | The booking creates a \"pending\" entry. Staff approval resolves conflicts. Also, checking `console_booking` for t"
-        }
-      ]
-    },
-    {
-      "topic": "Rank Bonus view doesn't work",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 157,
-          "context": "2. **Rank Bonus view doesn't work**"
         }
       ]
     },
@@ -9354,16 +7444,6 @@
           "path": "memory/test-report.md",
           "line": 94,
           "context": "1. **Ready for production use** via heartbeat routine or manual invocation 2. Consider adding a `--since N` flag to only consolidate last N days"
-        }
-      ]
-    },
-    {
-      "topic": "Receipt endpoint verified",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 95,
-          "context": "- ✅ **Receipt endpoint verified** — HTTPS at `ps-vibe.com/api/receipt/{voucher_id}` returns 404 for invalid (expected), 200 for valid. Auth working via X-API-Key header. - ✅ **Inventory API verified**"
         }
       ]
     },
@@ -9404,36 +7484,6 @@
           "path": "MEMORY.md",
           "line": 381,
           "context": "### Recovery Strategy - Found backup files: `dashboard_routes.py.bak` (60364 bytes, June 3) and `dashboard_routes.py.bak.v3.1` (62252 bytes, June 4)"
-        }
-      ]
-    },
-    {
-      "topic": "Refactored project STOPPED",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 30,
-          "context": "- **Refactored project STOPPED**: psvibe-bot-refactored.service - **Customer bot**: using /root/Sales-Tele-Bot/customer_bot.py (monolithic, Manus sandbox version, 5,725 lines)"
-        }
-      ]
-    },
-    {
-      "topic": "Refactored Version — Fixes Needed (Patch List)",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 20,
-          "context": "### Refactored Version — Fixes Needed (Patch List)"
-        }
-      ]
-    },
-    {
-      "topic": "Refresh command",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 86,
-          "context": "2. **Refresh command**: Added `/refresh` (and 15 other bot commands) via `app.post_init → setMyCommands` — visible when tapping \"/\" in chat bar"
         }
       ]
     },
@@ -9541,21 +7591,6 @@
       "topic": "Result:",
       "files": [
         {
-          "path": "memory/2026-05-31.md",
-          "line": 73,
-          "context": "- **Result:** API now returns correct members (PSV_A_001, PSV_A_002, PSV_A_003) - **Lesson Learned:** MySQL-GSheet sync doesn't handle deletions"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 63,
-          "context": "**Result:** 22/22 endpoints tested, all pass ✅ — API, Sales Bot, Customer Bot active."
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 82,
-          "context": "- **Result**: `[6296803251, 8539344655, 8336350778]`"
-        },
-        {
           "path": "memory/2026-06-05.md",
           "line": 21,
           "context": "- **Result:** Bot always saw `{\"success\":false,\"message\":null,\"data\":null}` with `error=unknown` - **Fix:** Added `error: Optional[str] = None` to `GenericResponse` in `models.py`"
@@ -9591,6 +7626,11 @@
           "context": "- **Result:** `rows` gets a coroutine object instead of the keyboard layout → `InjectedKeyboard` silently fails - **Fix:** Changed to `rows = await _sbk_console_kb()`"
         },
         {
+          "path": "memory/2026-06-10.md",
+          "line": 72,
+          "context": "- **Result**: 446MB → **354MB** (-92MB, 1,305→~750 files) - Updated cron job to use new script (every 10 min)"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -9599,16 +7639,6 @@
           "path": "MEMORY.md",
           "line": 110,
           "context": "- **Result:** User tap misinterpreted → re-showed console type selection loop - **Fix:** Re-examined + fixed 6 corrupted Unicode escapes via SFTP upload (not inline replace)"
-        }
-      ]
-    },
-    {
-      "topic": "REVOKED",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 144,
-          "context": "- 19:42 UTC: \"Manual work လည်းလုပ်ခွင့်ပေးမယ်။ Door ဖွင့်ပေးတယ်။\" → **REVOKED** - New absolute rule: **Kora NEVER does ANY work manually. Zero exceptions.**"
         }
       ]
     },
@@ -9624,26 +7654,6 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 54,
           "context": "- **Rollback:** Per-batch if one fails (don't rollback passing batches) - **Dependency rule:** File A imports File B → same agent (sequential). No shared imports → parallel."
-        }
-      ]
-    },
-    {
-      "topic": "Root cause #1:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 19,
-          "context": "- **Root cause #1:** Main bot `_replit_get()` sent API key as **header** (`X-API-Key`), but API server `verify_api_key()` only checked **query params** (`?api_key=`) - **Root cause #2:** Customer bot "
-        }
-      ]
-    },
-    {
-      "topic": "Root cause #2:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 20,
-          "context": "- **Root cause #2:** Customer bot `_API_KEY` hardcoded as `\"\"` — never loaded from `os.environ` - **Fix applied:** Updated `app.py` verify_api_key() to check both header AND query params"
         }
       ]
     },
@@ -9668,73 +7678,18 @@
       ]
     },
     {
-      "topic": "Root cause:",
+      "topic": "Root Cause Summary",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 37,
-          "context": "- **Root cause:** `incomplete turn detected` — sub-agent finished with `payloads=0` (no text output), gateway surfaced \"Something went wrong\" to user - **Lesson learned:** Every sub-agent spawn MUST i"
-        },
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 9,
-          "context": "- **Root cause:** Agent timed out or failed before completing the SSH upload"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 6,
-          "context": "- **Root cause:** Unhandled `KeyError: 0` crashes bot → systemd `Restart=always` (RestartSec=10) restarts it → 703 total restarts in lifetime - No OOM, no memory leak — just unhandled exception"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 12,
-          "context": "- **Root cause:** `members.py` line 403 had 3 separate button rows: `[[default_btn], [BTN_NM_CUSTOM], [BTN_NM_GIFT], NAV_ROW]` - **Fix:** Merged BTN_NM_CUSTOM and BTN_NM_GIFT into same row: `[[default"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 16,
-          "context": "- **Root cause:** Field name mismatch — bot sent `\"kpay\"`, `\"cash\"`, `\"staff\"`, `\"tier\"` but API expected `\"payment_method\"`, `\"staff_name\"` - **Fix (Bot):** `members.py` — Changed `api_add_topup()` c"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 66,
-          "context": "- **Root cause:** My fix_remaining.py script replaced `d[\"nm_name\"]` with `d[chr(39)+chr(110)+...]` which evaluates to `d[\"'nm_name'\"]` (with quotes as part of key) - **Fix:** Replaced chr() encoded k"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 71,
-          "context": "- **Root cause:** Member was deleted from GSheet but MySQL still had it - **Fix:** Deleted M-1780203313 from MySQL `member_wallets` table"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 110,
-          "context": "- **Root cause:** `fetch_bonus_table()` returned API data as `[{\"threshold\": 30000, \"warrior_bonus\": 15, ...}]` (list of dicts), but code expected `[(30000, 15, 20, 25), ...]` (list of tuples) - `buil"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 117,
-          "context": "- **Root cause:** `sed` command replaced ALL `ReplyKeyboardMarkup([NAV_ROW], ...)` with Gift version - **Fix:** Replaced 7 incorrect `[[BTN_NM_GIFT], NAV_ROW]` keyboards, kept only 1 correct instance "
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 146,
-          "context": "- **Root cause:** My `fix_confirm_flow.py` used wrong `\\u` unicode escape sequences in `members.py`: - `\\u1019\\u1019\\u102d\\u1014\\u103a` = **မမိန္** (wrong) → should be `\\u1015\\u1019\\u102b\\u100f` = **ပ"
-        },
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 205,
-          "context": "### Root Cause - Gateway (PID 8) creates session JSONL lock files for write protection"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 80,
-          "context": "- **Root cause**: GSheet→MySQL migration removed GSheet fallback code; `_fetch_allowed_staff_ids_from_mysql()` returned `None`; no data in `settings_config` - **Fix**: Read B30 from GSheet via sales b"
-        },
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 172,
-          "context": "**Root cause:** Cron runs `run_sync.sh` every 5 minutes → `sync_service.py` syncs GSheet Card_Wallet → MySQL `member_wallets`. GSheet had spend=0 → sync kept overwriting MySQL back to 0. **Fix:** Sync"
-        },
+          "path": "memory/2026-06-10.md",
+          "line": 25,
+          "context": "### Root Cause Summary - HEARTBEAT.md/AGENTS.md \"stay quiet\" rule was misinterpreted to apply to **incoming message responses**, not just heartbeat outreach"
+        }
+      ]
+    },
+    {
+      "topic": "Root cause:",
+      "files": [
         {
           "path": "memory/2026-06-05.md",
           "line": 8,
@@ -9881,6 +7836,11 @@
           "context": "- **Root cause:** Unicode escape sequences in the previous fix were corrupted. `ရွေးပါ` was rendered as garbled text (`ရြေအအ038ပါ`), so the user's tap on the visible keyboard was interpreted wrong, ca"
         },
         {
+          "path": "memory/2026-06-10.md",
+          "line": 58,
+          "context": "- **Root cause**: Old uvicorn PID 937300 holding port 8000, systemd wrapper script out of sync - **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅"
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 63,
           "context": "- **Root cause:** Parallel sub-agents (6) editing `bot/__init__.py` simultaneously without locks → chain-reaction corruption. See Framework v2.0 for prevention. - **Fix approach:** Sequential fixes wi"
@@ -9963,16 +7923,6 @@
       ]
     },
     {
-      "topic": "Root Cause: Migration Cleanup Accidents",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 118,
-          "context": "### Root Cause: Migration Cleanup Accidents"
-        }
-      ]
-    },
-    {
       "topic": "Root Causes (3 layers)",
       "files": [
         {
@@ -9989,16 +7939,6 @@
           "path": "MEMORY.md",
           "line": 477,
           "context": "### Root Causes (6 problems found) | # | Problem | Fix |"
-        }
-      ]
-    },
-    {
-      "topic": "Root Causes Found & Fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 159,
-          "context": "### Root Causes Found & Fixed"
         }
       ]
     },
@@ -10028,6 +7968,26 @@
       ]
     },
     {
+      "topic": "Rule 11 (GOLDEN_RULES.md)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 742,
+          "context": "15. **Rule 11 (GOLDEN_RULES.md)**: Always Respond to Boss — NO Quiet Hours for Incoming Messages 16. **Session file bloat at 446MB/500MB** — 1,305 session files. Cleanup every 10 min may not keep up w"
+        }
+      ]
+    },
+    {
+      "topic": "Rule 11: Always Respond to Boss — NO Quiet Hours for Incoming Messages",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 13,
+          "context": "- **Rule 11: Always Respond to Boss — NO Quiet Hours for Incoming Messages** - Explicit: respond immediately regardless of time"
+        }
+      ]
+    },
+    {
       "topic": "Rules:",
       "files": [
         {
@@ -10039,16 +7999,6 @@
           "path": "memory/contacts.md",
           "line": 8,
           "context": "- **Rules:** Card_wallet → Column H only. Receipt templates: NO Burmese footer text. - **Timezone:** Asia/Yangon (UTC+6:30) — ALWAYS convert UTC to Myanmar Time"
-        }
-      ]
-    },
-    {
-      "topic": "Sale Bot",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 126,
-          "context": "- **Sale Bot** Booking confirm → notify customer via Telegram ✅ - **Booking ↔ Console Status Link:** Confirm→\"Scheduled\", Cancel/No-show→\"Done\" via Console_Booking sheet ✅"
         }
       ]
     },
@@ -10069,16 +8019,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 44,
           "context": "### Sale Bot (Staff) Booking Flow (booking.py)"
-        }
-      ]
-    },
-    {
-      "topic": "Sale Bot D (True Async) Conversion",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 32,
-          "context": "- **Sale Bot D (True Async) Conversion** — Paper audit (78 sites: CAT A:5, B:14, C:~40, D:19) → all converted - `api_client.py`: 70+ async wrappers"
         }
       ]
     },
@@ -10109,36 +8049,6 @@
           "path": "memory/project-state.md",
           "line": 35,
           "context": "| 24 | **Sale Daily + Promotion confirm stuck** — `coupon_line` extracted before `user_data.clear()` | ✅ | | 25 | **New Member payment flow** — all payment methods available (no auto-KPay) | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "Sales Bot Audit Summary",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 218,
-          "context": "### Sales Bot Audit Summary - **Architecture:** GSheet is PRIMARY store, API is **fire-and-forget secondary** (not fallback)"
-        }
-      ]
-    },
-    {
-      "topic": "Sales Bot GSheet Permission Fix",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 71,
-          "context": "### Sales Bot GSheet Permission Fix - SA Email: `user-408@ps-vibe-sales-tele-bot.iam.gserviceaccount.com`"
-        }
-      ]
-    },
-    {
-      "topic": "Sales Daily Recording — Verified Working",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 25,
-          "context": "3. **Sales Daily Recording — Verified Working** ✅ - `step_sale_confirm()` at line 1017 → `_sale_bg()` async task writes to Sales_Daily A:K + N + O columns"
         }
       ]
     },
@@ -10318,16 +8228,6 @@
       ]
     },
     {
-      "topic": "Second Heartbeat (15:00 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 59,
-          "context": "## Second Heartbeat (15:00 UTC) - Payment format changes applied and deployed"
-        }
-      ]
-    },
-    {
       "topic": "sed + Python strings = disaster:",
       "files": [
         {
@@ -10368,32 +8268,12 @@
       ]
     },
     {
-      "topic": "Service difference",
-      "files": [
-        {
-          "path": "memory/2026-05-26.md",
-          "line": 32,
-          "context": "- **Service difference**: monolithic has no auth middleware (auth inside show_main_menu) — refactored had better architecture"
-        }
-      ]
-    },
-    {
       "topic": "Service Status (14:05 UTC)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 513,
           "context": "### Service Status (14:05 UTC) - psvibe-api ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Service Status (20:35 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 37,
-          "context": "### Service Status (20:35 UTC) - `psvibe-sale-bot`: ✅ active (PID 1116953), zero errors"
         }
       ]
     },
@@ -10447,7 +8327,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 737,
+          "line": 736,
           "context": "### Services (19:30 UTC final) psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅ | shareholders ✅ | BS balanced ✅ | CF matches Web ✅ | Rent amortized ✅"
         }
       ]
@@ -10483,23 +8363,8 @@
       ]
     },
     {
-      "topic": "Services Currently Running:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 185,
-          "context": "### Services Currently Running: - `psvibe-sale-bot` ✅ active (stable since ~16:30 UTC after final unicode fix)"
-        }
-      ]
-    },
-    {
       "topic": "Services Restarted:",
       "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 26,
-          "context": "### Services Restarted: - `psvibe-sale-bot.service` — ✅ active"
-        },
         {
           "path": "memory/2026-06-06.md",
           "line": 88,
@@ -10603,102 +8468,12 @@
       ]
     },
     {
-      "topic": "Services Verified:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 137,
-          "context": "### Services Verified: - `psvibe-sale-bot` ✅ active (no new KeyError errors in journal)"
-        }
-      ]
-    },
-    {
-      "topic": "Session 19 — Wave 2 Results + Sales Daily Fix + Documentation Update (~20:17-20:40 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 1,
-          "context": "## Session 19 — Wave 2 Results + Sales Daily Fix + Documentation Update (~20:17-20:40 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "Session 1: Core Sales Bot + Customer Bot",
       "files": [
         {
           "path": "memory/fix-history.md",
           "line": 30,
           "context": "### Session 1: Core Sales Bot + Customer Bot | Bug | SHA/File | Root Cause |"
-        }
-      ]
-    },
-    {
-      "topic": "Session 2 — Fixes & Memory Restructure (17:30-19:00 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 123,
-          "context": "### Session 2 — Fixes & Memory Restructure (17:30-19:00 MMT) - **Session lock timeout fixed:** `openclaw.json` acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
-        }
-      ]
-    },
-    {
-      "topic": "Session 20 — Task Planner Context Sharing SOP (~20:40-20:45 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 48,
-          "context": "## Session 20 — Task Planner Context Sharing SOP (~20:40-20:45 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "Session 21 — Cleanup Round ~20:48-20:55 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 91,
-          "context": "## Session 21 — Cleanup Round ~20:48-20:55 UTC"
-        }
-      ]
-    },
-    {
-      "topic": "Session 22 — Stable Workflow Protocol ~20:56-21:05 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 105,
-          "context": "## Session 22 — Stable Workflow Protocol ~20:56-21:05 UTC"
-        }
-      ]
-    },
-    {
-      "topic": "Session 23 — FINAL Golden Rule ~21:08-21:10 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 141,
-          "context": "## Session 23 — FINAL Golden Rule ~21:08-21:10 UTC"
-        }
-      ]
-    },
-    {
-      "topic": "Session 24 — Kora System Cleanup ~21:15-21:22 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 155,
-          "context": "## Session 24 — Kora System Cleanup ~21:15-21:22 UTC"
-        }
-      ]
-    },
-    {
-      "topic": "Session 25 — Night Tasks Spawned ~21:33-21:36 UTC",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 175,
-          "context": "## Session 25 — Night Tasks Spawned ~21:33-21:36 UTC"
         }
       ]
     },
@@ -10773,56 +8548,6 @@
       ]
     },
     {
-      "topic": "Session Activity",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 3,
-          "context": "## Session Activity"
-        }
-      ]
-    },
-    {
-      "topic": "Session Activity (After Compaction)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 101,
-          "context": "## Session Activity (After Compaction)"
-        }
-      ]
-    },
-    {
-      "topic": "Session Activity (Late Night — Web Dashboard)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 52,
-          "context": "## Session Activity (Late Night — Web Dashboard)"
-        }
-      ]
-    },
-    {
-      "topic": "Session duplicate bug",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 29,
-          "context": "- **Session duplicate bug** — `console_status` sync added in 5 API endpoints (create, end, staff booking, cancel, status changes) ✅ - **Cashback coupon dates** — env vars + MySQL updated: start June 3"
-        }
-      ]
-    },
-    {
-      "topic": "Session end crash fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 37,
-          "context": "- **Session end crash fixed** — `launch_session_sale` not imported in `console.py` → circular import fixed via lazy import ✅ - **Cashback blocking fixed** — sync `api_get`/`api_post` → `await _replit_"
-        }
-      ]
-    },
-    {
       "topic": "Session End → Auto-Generate",
       "files": [
         {
@@ -10833,22 +8558,32 @@
       ]
     },
     {
+      "topic": "Session file bloat at 446MB/500MB",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 743,
+          "context": "16. **Session file bloat at 446MB/500MB** — 1,305 session files. Cleanup every 10 min may not keep up with active usage"
+        }
+      ]
+    },
+    {
+      "topic": "Session file lock cron jobs < 60s cause main session conflicts",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 741,
+          "context": "14. **Session file lock cron jobs < 60s cause main session conflicts** — lock-monitor every 30s created `EmbeddedAttemptSessionTakeoverError`. Minimum safe interval: 5 min 15. **Rule 11 (GOLDEN_RULES."
+        }
+      ]
+    },
+    {
       "topic": "Session Lock Timeout Fix (2026-06-02)",
       "files": [
         {
           "path": "memory/config.md",
           "line": 3,
           "context": "## Session Lock Timeout Fix (2026-06-02) **File:** `/home/node/.openclaw/openclaw.json`"
-        }
-      ]
-    },
-    {
-      "topic": "Session lock timeout fixed:",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 124,
-          "context": "- **Session lock timeout fixed:** `openclaw.json` acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap - **Customer Bot** \"My Booking\" friendly Burmese msg on empty bookings ✅"
         }
       ]
     },
@@ -10869,6 +8604,16 @@
           "path": "memory/2026-06-05.md",
           "line": 356,
           "context": "- **Session records cleared:** `console_games` WHERE `install_type = 'Session'` → 0 left - **Active sessions cleared:** C-04 (Guest), C-09 (VIP001) → both Free"
+        }
+      ]
+    },
+    {
+      "topic": "Session Reminder",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 165,
+          "context": "- **Session Reminder** — webhook → wait until time → Telegram - **Booking Reminder** — webhook → 3 parallel waits → 3 Telegram nodes"
         }
       ]
     },
@@ -10973,22 +8718,12 @@
       ]
     },
     {
-      "topic": "Side note:",
+      "topic": "Simple NoOp workflow acitvation succeeds",
       "files": [
         {
-          "path": "memory/2026-05-31.md",
-          "line": 68,
-          "context": "- **Side note:** This was the \"error\" in Image 2 that Boss showed"
-        }
-      ]
-    },
-    {
-      "topic": "Silent crash:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 112,
-          "context": "- **Silent crash:** asyncio exception handler caught error, bot didn't respond, state stuck at TU_MEMBER - User typed PSV_A_003 7 times with zero response (matching 7 `KeyError: 0` journal entries at "
+          "path": "memory/2026-06-10.md",
+          "line": 204,
+          "context": "20. **Simple NoOp workflow acitvation succeeds** — proves the issue is credential-specific, not workflow"
         }
       ]
     },
@@ -11003,72 +8738,12 @@
       ]
     },
     {
-      "topic": "Solution",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 226,
-          "context": "### Solution Created `memory/lock_monitor.py` — 370+ lines Python script"
-        }
-      ]
-    },
-    {
-      "topic": "sonnet4_analysis_customerbot",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 255,
-          "context": "2. **sonnet4_analysis_customerbot** (09e56b50) - Claude Sonnet 4 via OpenRouter"
-        }
-      ]
-    },
-    {
-      "topic": "sonnet4_analysis_salebot",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 249,
-          "context": "1. **sonnet4_analysis_salebot** (666d04a1) - Claude Sonnet 4 via OpenRouter"
-        }
-      ]
-    },
-    {
-      "topic": "SOP improvements:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 138,
-          "context": "- **SOP improvements:** Context Sharing, AUTO-DOC, Stable Workflow Protocol - **Lessons learned (Kora):** 3 violations — Absolute zero-tolerance reinstated"
-        }
-      ]
-    },
-    {
-      "topic": "SOP improvements: 3",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 80,
-          "context": "**Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
-        }
-      ]
-    },
-    {
       "topic": "SOPs & Frameworks (`memory/sop/`)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 27,
           "context": "### SOPs & Frameworks (`memory/sop/`) - **`memory/sop/SPAWN_PROTOCOL.md`** — 🔀 Sub-agent spawn rules & hybrid spawning"
-        }
-      ]
-    },
-    {
-      "topic": "SOUL.md Golden Rules updated:",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 149,
-          "context": "### SOUL.md Golden Rules updated: | # | Old | New |"
         }
       ]
     },
@@ -11103,16 +8778,6 @@
       ]
     },
     {
-      "topic": "Spawned 2 parallel agents for overnight analysis:",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 248,
-          "context": "### Spawned 2 parallel agents for overnight analysis: 1. **sonnet4_analysis_salebot** (666d04a1)"
-        }
-      ]
-    },
-    {
       "topic": "specific console unit",
       "files": [
         {
@@ -11123,32 +8788,22 @@
       ]
     },
     {
-      "topic": "specific path MUST be registered BEFORE the parameterized path",
+      "topic": "SQLite WAL files MUST be preserved",
       "files": [
         {
-          "path": "memory/2026-06-01.md",
-          "line": 141,
-          "context": "When paths overlap semantically (`/api/bookings/search` vs `/api/bookings/{booking_id}`), the **specific path MUST be registered BEFORE the parameterized path**. FastAPI matches routes in registration"
+          "path": "memory/2026-06-10.md",
+          "line": 201,
+          "context": "17. **SQLite WAL files MUST be preserved** — deleting them loses uncommitted data 18. **Post activate with versionId works** — PATCH `active: true` does NOT work for activation"
         }
       ]
     },
     {
-      "topic": "SQLite removed",
+      "topic": "SQLite WAL mode",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 87,
-          "context": "- **SQLite removed** — DB deleted, cron removed, scripts archived - **mysql_db.py** created — connection module with query/query_one/execute"
-        }
-      ]
-    },
-    {
-      "topic": "Staff booking fix",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 28,
-          "context": "- **Staff booking fix** — `consoleId` vs `console_id` mismatch in booking payload ✅ - **Session duplicate bug** — `console_status` sync added in 5 API endpoints (create, end, staff booking, cancel, st"
+          "path": "memory/2026-06-10.md",
+          "line": 180,
+          "context": "2. **SQLite WAL mode** — deleting `.sqlite-shm` and `.sqlite-wal` deletes uncommitted data 3. **POST /rest/workflows/{id}/activate** with `{\"versionId\": \"...\"}` works (not PATCH)"
         }
       ]
     },
@@ -11169,16 +8824,6 @@
           "path": "memory/project-state.md",
           "line": 56,
           "context": "- **Staff Training:** 04 June 2026 ✅ Completed"
-        }
-      ]
-    },
-    {
-      "topic": "staff_records",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 91,
-          "context": "- **staff_records**: 1,406 dupes → 2 rows 🧹 - **Data flow**: Bot → API Server (:8000) → MySQL (primary), gspread (fallback)"
         }
       ]
     },
@@ -11213,16 +8858,6 @@
       ]
     },
     {
-      "topic": "State at Session Close",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 17,
-          "context": "## State at Session Close - All services healthy"
-        }
-      ]
-    },
-    {
       "topic": "State Before:",
       "files": [
         {
@@ -11239,26 +8874,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 356,
           "context": "| **State machine complexity**: adding state 16 means updating all back-button navigation | MEDIUM | Each handler's back-button logic peeks/pops state stack. Need to ensure `_pop_state` and `_push_sta"
-        }
-      ]
-    },
-    {
-      "topic": "Status Reporter:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 12,
-          "context": "- **Status Reporter:** 3/3 services healthy, found 401 error on config refresh - **Dispatch Manager:** Analyzed 0 pending findings"
-        }
-      ]
-    },
-    {
-      "topic": "Status Summary",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 275,
-          "context": "### Status Summary - All 4 services: ✅ active"
         }
       ]
     },
@@ -11503,16 +9118,6 @@
       ]
     },
     {
-      "topic": "Still not working as of last test",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 115,
-          "context": "- **Still not working as of last test** — needs further investigation in next session"
-        }
-      ]
-    },
-    {
       "topic": "Stock In double-counting",
       "files": [
         {
@@ -11549,6 +9154,16 @@
           "path": "memory/bug-patterns.md",
           "line": 109,
           "context": "## String replace() Whitespace Mismatch (FIXED — 2026-06-09) - Python patch script with `txt.replace(old, new)` silently does nothing — no error, no change"
+        }
+      ]
+    },
+    {
+      "topic": "Sub-agent",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 57,
+          "context": "- **Sub-agent** deployed to fix psvibe-api (was stuck in \"activating\" state) - **Root cause**: Old uvicorn PID 937300 holding port 8000, systemd wrapper script out of sync"
         }
       ]
     },
@@ -11603,16 +9218,6 @@
       ]
     },
     {
-      "topic": "Sub-agent Results (21:34-21:43 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 204,
-          "context": "### Sub-agent Results (21:34-21:43 UTC) | Agent | Result | Time |"
-        }
-      ]
-    },
-    {
       "topic": "Sub-Agent Timeout by Task Size (2026-06-01)",
       "files": [
         {
@@ -11623,23 +9228,8 @@
       ]
     },
     {
-      "topic": "subagents.maxConcurrent:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 5,
-          "context": "- **subagents.maxConcurrent:** 30 ✅ - **maxChildrenPerAgent:** 30 ✅ (changed from 20 by Boss request)"
-        }
-      ]
-    },
-    {
       "topic": "Summary",
       "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 28,
-          "context": "### Summary 23 MySQL tables → All populated with GSheet data via sync"
-        },
         {
           "path": "memory/test-report.md",
           "line": 7,
@@ -11842,7 +9432,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 735,
+          "line": 734,
           "context": "12. **systemctl/systemd not available** on VPS — uvicorn via nohup; restart with `pkill -HUP -f 'uvicorn'`"
         }
       ]
@@ -11878,26 +9468,6 @@
       ]
     },
     {
-      "topic": "Task Planner Context (how it works now)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 58,
-          "context": "### Task Planner Context (how it works now) ```"
-        }
-      ]
-    },
-    {
-      "topic": "Task Planner:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 14,
-          "context": "- **Task Planner:** Reviewed 2 topup plans (unstarted) - **Verify Agent:** All 7 files syntax-check passed"
-        }
-      ]
-    },
-    {
       "topic": "Telegram Batch Notify",
       "files": [
         {
@@ -11914,26 +9484,6 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 6,
           "context": "- **Telegram receipt showed NO coupon code line** - Grand Opening 100% CashBack promotion active (June 3-7, 2026)"
-        }
-      ]
-    },
-    {
-      "topic": "Temp State After Cleanup",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 171,
-          "context": "### Temp State After Cleanup - `temp/`: 4 files (task_queue.json, queue_processor.py, fix_protocol.py, restart_cb.sh) + archive/"
-        }
-      ]
-    },
-    {
-      "topic": "Test",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 131,
-          "context": "- **Test**: `GET /api/bookings/search?date=2026-06-01` → 200 OK (1 booking returned)"
         }
       ]
     },
@@ -12088,26 +9638,6 @@
       ]
     },
     {
-      "topic": "Timed out",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 211,
-          "context": "| 🔧 fix_stock_in | ❌ **Timed out** (600s) — only wrote STARTING header. Queue for re-spawn with 900s | — |"
-        }
-      ]
-    },
-    {
-      "topic": "Timeline",
-      "files": [
-        {
-          "path": "memory/2026-05-30.md",
-          "line": 34,
-          "context": "### Timeline - 20:34: Created console_games + referral_log tables"
-        }
-      ]
-    },
-    {
       "topic": "Timeout Auto-Split",
       "files": [
         {
@@ -12178,36 +9708,6 @@
       ]
     },
     {
-      "topic": "Top Up member freeze (KeyError: 0)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 173,
-          "context": "2. **Top Up member freeze (KeyError: 0)** — dict→tuple in fetch_bonus_table() at `bot/__init__.py` 3. **Garbled Burmese prompts** — `\\u1019\\u1019\\u102d\\u1014\\u103a` → correct `\\u1015\\u1019\\u102b\\u100f"
-        }
-      ]
-    },
-    {
-      "topic": "Top Up Payment → Dynamic Method Selection (Sale Daily style)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 32,
-          "context": "### Top Up Payment → Dynamic Method Selection (Sale Daily style) - Replaced `prompt_tu_kpay`/`step_tu_kpay` with dynamic payment method selection"
-        }
-      ]
-    },
-    {
-      "topic": "Top-up doesn't update member balance/spend",
-      "files": [
-        {
-          "path": "memory/2026-06-01.md",
-          "line": 156,
-          "context": "1. **Top-up doesn't update member balance/spend** in \"Check Member\" 2. **Rank Bonus view doesn't work**"
-        }
-      ]
-    },
-    {
       "topic": "TopUp Logs Dashboard page",
       "files": [
         {
@@ -12273,16 +9773,6 @@
       ]
     },
     {
-      "topic": "Total fixes: 15 bugs",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 80,
-          "context": "**Total fixes: 15 bugs** | **35+ git commits** | **4 project files updated** | **SOP improvements: 3**"
-        }
-      ]
-    },
-    {
       "topic": "Total Monthly Dep:",
       "files": [
         {
@@ -12294,26 +9784,6 @@
           "path": "MEMORY.md",
           "line": 574,
           "context": "- **Total Monthly Dep**: 4,029,826 Ks/m | **Total Acc. Dep**: 3,262,283 Ks"
-        }
-      ]
-    },
-    {
-      "topic": "Total: 12 bugs fixed, all services verified active ✅",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 64,
-          "context": "- **Total: 12 bugs fixed, all services verified active ✅** ## 2026-05-28 — Massive Bot Fix & MySQL Integration Session"
-        }
-      ]
-    },
-    {
-      "topic": "Trigger:",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 48,
-          "context": "- **Trigger:** Boss asked for button flow audit + GSheet API check + API endpoint crosscheck - **Phases completed:**"
         }
       ]
     },
@@ -12431,11 +9901,6 @@
       "topic": "URL:",
       "files": [
         {
-          "path": "memory/2026-06-02.md",
-          "line": 95,
-          "context": "- **URL:** `https://ps-vibe.com/admin/` - **Login:** admin / admin123 (staff / staff123)"
-        },
-        {
           "path": "memory/project-state.md",
           "line": 71,
           "context": "- **URL:** `psvibemm.com` - **3 Services:** `psvibe-sale-bot` | `psvibe_customer_bot` | `psvibe-api`"
@@ -12526,6 +9991,11 @@
       "topic": "Verified",
       "files": [
         {
+          "path": "memory/2026-06-10.md",
+          "line": 60,
+          "context": "- **Verified**: Port 8000 listening, dashboard returns 200"
+        },
+        {
           "path": "MEMORY.md",
           "line": 554,
           "context": "### Verified - ✅ Single Cash payment → stock_in record + cash_movements eject (2,000 Ks deducted)"
@@ -12558,13 +10028,8 @@
       ]
     },
     {
-      "topic": "Verify Agent:",
+      "topic": "Verify Agent",
       "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 15,
-          "context": "- **Verify Agent:** All 7 files syntax-check passed - **Git Sync #1:** Commit `bdc8302` — 20 audit findings fix pushed to GitHub"
-        },
         {
           "path": "memory/tools-commands.md",
           "line": 66,
@@ -12613,12 +10078,12 @@
       ]
     },
     {
-      "topic": "Vite 6 + Vue 3.5 + TypeScript 5.7 + Tailwind 3.4 + Pinia + Vue Router",
+      "topic": "visible in n8n UI",
       "files": [
         {
-          "path": "memory/2026-06-02.md",
-          "line": 74,
-          "context": "- **Vite 6 + Vue 3.5 + TypeScript 5.7 + Tailwind 3.4 + Pinia + Vue Router** - **Login page** — Clean minimal design with gradient branding, error handling, loading state"
+          "path": "memory/2026-06-10.md",
+          "line": 175,
+          "context": "- Telegram credential is **visible in n8n UI** but workflows can't reference it via API - **Fix requires manual setup** via n8n UI: login to https://ps-vibe.com, assign \"PS VIBE Bot\" credential to bot"
         }
       ]
     },
@@ -12653,16 +10118,6 @@
       ]
     },
     {
-      "topic": "Vue Router guards",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 85,
-          "context": "- **Vue Router guards** — Auth/redirect protection - **Git repo** at `/root/psvibe-dashboard/`"
-        }
-      ]
-    },
-    {
       "topic": "Wallet Balance Column H (FIXED — 3 bugs)",
       "files": [
         {
@@ -12693,16 +10148,6 @@
       ]
     },
     {
-      "topic": "Wave 2 (B3+B5+B6 ✅, C1+C6+C7 Partial + C1 re-deployed)",
-      "files": [
-        {
-          "path": "memory/2026-05-29.md",
-          "line": 3,
-          "context": "### Wave 2 (B3+B5+B6 ✅, C1+C6+C7 Partial + C1 re-deployed) - **B3 (fix_lock)**: ✅ Integrated into workflow_engine.py pipeline"
-        }
-      ]
-    },
-    {
       "topic": "Wave/AYA Pay not saving",
       "files": [
         {
@@ -12724,26 +10169,6 @@
           "path": "MEMORY.md",
           "line": 131,
           "context": "- **WavePay historical fix**: 2 vouchers from June 6 had missing WavePay amounts (32,000 Ks total fixed) - **Elif bug**: Single format parser only checked `== \"wave\"` not `== \"wavepay\"`"
-        }
-      ]
-    },
-    {
-      "topic": "Web Dashboard",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 47,
-          "context": "- ~~**Web Dashboard** — Username/password login + Index page rewrite~~ ✅ COMPLETED"
-        }
-      ]
-    },
-    {
-      "topic": "Web Dashboard — Full Stack Build (02:30-03:30 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-02.md",
-          "line": 54,
-          "context": "### Web Dashboard — Full Stack Build (02:30-03:30 MMT)"
         }
       ]
     },
@@ -12788,12 +10213,12 @@
       ]
     },
     {
-      "topic": "What was done:",
+      "topic": "What Was Done",
       "files": [
         {
-          "path": "memory/2026-05-29.md",
-          "line": 93,
-          "context": "### What was done: - ✅ **Git push** — 35+ commits to `flash00787/PSVIBE-Sales-Bot` master (`fe4af66`)"
+          "path": "memory/2026-06-10.md",
+          "line": 54,
+          "context": "### What Was Done"
         }
       ]
     },
@@ -12883,16 +10308,6 @@
       ]
     },
     {
-      "topic": "Wrong remaining text + chr() encoded keys",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 176,
-          "context": "5. **Wrong remaining text + chr() encoded keys** — proper dict access, emoji tier text"
-        }
-      ]
-    },
-    {
       "topic": "Ye Myat",
       "files": [
         {
@@ -12933,52 +10348,12 @@
       ]
     },
     {
-      "topic": "Zero exceptions",
+      "topic": "~28,979 lines",
       "files": [
         {
-          "path": "memory/2026-05-29.md",
-          "line": 152,
-          "context": "| 4 | NEVER do manual work — EVER | NEVER do manual work — **Zero exceptions** | | 6 | (was \"Self-upgrade\") | **Agent slot full → QUEUE the task.** Kora NEVER does manual. |"
-        }
-      ]
-    },
-    {
-      "topic": "ညေနက",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 148,
-          "context": "- `\\u100a\\u1037\\u1014\\u1031\\u1000\\u103a` = **ညေနက** (wrong) → should be `\\u1011\\u100a\\u1039\\u1037\\u1015\\u102b\\u1038` = **ထည့်ပါ** (hter-par = \"enter/put in\") - Also fixed: `\\u101b\\u102d\\u102f\\u1000\\u1"
-        }
-      ]
-    },
-    {
-      "topic": "ထည့်ပါ",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 148,
-          "context": "- `\\u100a\\u1037\\u1014\\u1031\\u1000\\u103a` = **ညေနက** (wrong) → should be `\\u1011\\u100a\\u1039\\u1037\\u1015\\u102b\\u1038` = **ထည့်ပါ** (hter-par = \"enter/put in\") - Also fixed: `\\u101b\\u102d\\u102f\\u1000\\u1"
-        }
-      ]
-    },
-    {
-      "topic": "ပမာဏ",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 147,
-          "context": "- `\\u1019\\u1019\\u102d\\u1014\\u103a` = **မမိန္** (wrong) → should be `\\u1015\\u1019\\u102b\\u100f` = **ပမာဏ** (pa-ma-nya = \"amount\") - `\\u100a\\u1037\\u1014\\u1031\\u1000\\u103a` = **ညေနက** (wrong) → should be "
-        }
-      ]
-    },
-    {
-      "topic": "မမိန္",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 147,
-          "context": "- `\\u1019\\u1019\\u102d\\u1014\\u103a` = **မမိန္** (wrong) → should be `\\u1015\\u1019\\u102b\\u100f` = **ပမာဏ** (pa-ma-nya = \"amount\") - `\\u100a\\u1037\\u1014\\u1031\\u1000\\u103a` = **ညေနက** (wrong) → should be "
+          "path": "memory/2026-06-10.md",
+          "line": 122,
+          "context": "- Sales bot: **~28,979 lines** (29,112 - 133 dead code) - **775 functions** (was 812)"
         }
       ]
     },
@@ -13133,22 +10508,22 @@
       ]
     },
     {
-      "topic": "✅ Verified Working",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 96,
-          "context": "### ✅ Verified Working - Re-audit: 9/9 critical issues FIXED, 0 regressions"
-        }
-      ]
-    },
-    {
       "topic": "✅ What Kora Always Does",
       "files": [
         {
           "path": "memory/delegation-rules.md",
           "line": 72,
           "context": "## ✅ What Kora Always Does - ✅ **Use helpers first** — before doing anything, check if helper exists"
+        }
+      ]
+    },
+    {
+      "topic": "✅ YTD + Revenue Trend features completed (20:15 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 53,
+          "context": "## ✅ YTD + Revenue Trend features completed (20:15 UTC) - YTD: Added `ytd=true` param to PNL endpoint → returns Jan-to-month data"
         }
       ]
     },
@@ -13243,42 +10618,22 @@
       ]
     },
     {
-      "topic": "🎯 Payment Format Change (14:44-15:00 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 30,
-          "context": "## 🎯 Payment Format Change (14:44-15:00 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "🎯 Services Restarted (23:17 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 80,
-          "context": "### 🎯 Services Restarted (23:17 UTC) - psvibe-sale-bot.service ✅ active"
-        }
-      ]
-    },
-    {
-      "topic": "🏁 Session Summary (13:00-16:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 162,
-          "context": "## 🏁 Session Summary (13:00-16:34 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🏗️ Architecture (Updated)",
       "files": [
         {
           "path": "memory/project-state.md",
           "line": 58,
           "context": "## 🏗️ Architecture (Updated) ```"
+        }
+      ]
+    },
+    {
+      "topic": "🏗️ Financial Dashboard Deployed (19:44 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 37,
+          "context": "## 🏗️ Financial Dashboard Deployed (19:44 UTC) - Created FinanceDashboardView.vue with unified P&L + BS + CF view"
         }
       ]
     },
@@ -13307,7 +10662,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 715,
+          "line": 714,
           "context": "### 🏛️ Cash Flow — Finalized (17:30-19:30 UTC) - Opening = **300M** (all KBZ transfer_in, not per-date-filtered)"
         }
       ]
@@ -13337,7 +10692,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 724,
+          "line": 723,
           "context": "### 🏛️ Prepaid Rent Amortization (19:00-19:30 UTC) - Created `prepaid_amortization` table"
         }
       ]
@@ -13433,16 +10788,6 @@
       ]
     },
     {
-      "topic": "🐛 Bug Fixes — PS VIBE Sales Bot (14:00-14:40 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 3,
-          "context": "## 🐛 Bug Fixes — PS VIBE Sales Bot (14:00-14:40 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🐛 Bug Round 02:06-02:40 UTC (08:36-09:10 Myanmar Time)",
       "files": [
         {
@@ -13509,16 +10854,6 @@
           "path": "MEMORY.md",
           "line": 677,
           "context": "### 🐛 Dashboard Bugs — C-01 Stale + Web Finance + BS Breakdown (12:54-13:03) - **C-01 stale Active:** Stale `console_booking` #247 → cleaned + dashboard query now filters `c.status='Active'`"
-        }
-      ]
-    },
-    {
-      "topic": "🐛 F-string & Payment Logic Fixes (15:20-15:45 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 81,
-          "context": "### 🐛 F-string & Payment Logic Fixes (15:20-15:45 UTC)"
         }
       ]
     },
@@ -13763,6 +11098,16 @@
       ]
     },
     {
+      "topic": "📐 .md Files Structure Fix (02:22-02:24 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 36,
+          "context": "## 📐 .md Files Structure Fix (02:22-02:24 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "📝 Notes",
       "files": [
         {
@@ -13903,36 +11248,6 @@
       ]
     },
     {
-      "topic": "🔴 Bug Fix Round 3.5 — Garbled Burmese Unicode Escapes (16:20-16:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 143,
-          "context": "## 🔴 Bug Fix Round 3.5 — Garbled Burmese Unicode Escapes (16:20-16:34 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "🔴 Bug Fixes Round 2 (15:05-15:15 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 63,
-          "context": "## 🔴 Bug Fixes Round 2 (15:05-15:15 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "🔴 Bug Fixes Round 3 — KeyError: 0 in Top Up Member Selection (15:46-16:15 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-31.md",
-          "line": 107,
-          "context": "## 🔴 Bug Fixes Round 3 — KeyError: 0 in Top Up Member Selection (15:46-16:15 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🔴 Core Docs (workspace root)",
       "files": [
         {
@@ -13983,22 +11298,22 @@
       ]
     },
     {
-      "topic": "🗃️ MySQL Full Integration (23:24-23:45+ UTC)",
-      "files": [
-        {
-          "path": "memory/2026-05-28.md",
-          "line": 86,
-          "context": "### 🗃️ MySQL Full Integration (23:24-23:45+ UTC) - **SQLite removed** — DB deleted, cron removed, scripts archived"
-        }
-      ]
-    },
-    {
       "topic": "🗄️ Database / MySQL",
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
           "line": 32,
           "context": "## 🗄️ Database / MySQL"
+        }
+      ]
+    },
+    {
+      "topic": "🗑️ Admin Panel Deletion + n8n Webhooks Setup (05:00-05:34 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 85,
+          "context": "## 🗑️ Admin Panel Deletion + n8n Webhooks Setup (05:00-05:34 UTC)"
         }
       ]
     },
@@ -14063,12 +11378,12 @@
       ]
     },
     {
-      "topic": "🚀 P0 Blitz (23:02-23:10 UTC)",
+      "topic": "🚀 Phase 1 Upgrades Complete (02:24-02:37 UTC)",
       "files": [
         {
-          "path": "memory/2026-05-28.md",
-          "line": 67,
-          "context": "### 🚀 P0 Blitz (23:02-23:10 UTC) - Boss asked for 15 agents for P0 fixes"
+          "path": "memory/2026-06-10.md",
+          "line": 52,
+          "context": "## 🚀 Phase 1 Upgrades Complete (02:24-02:37 UTC)"
         }
       ]
     },
@@ -14099,6 +11414,16 @@
           "path": "memory/delegation-rules.md",
           "line": 63,
           "context": "## 🚫 What Kora NEVER Does - ❌ **NEVER write/edit code directly** — use Fix Agent (Pro)"
+        }
+      ]
+    },
+    {
+      "topic": "🛠️ Kora Upgrade — Fix Protocol + Rules Cleanup (02:15-02:20 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 2,
+          "context": "## 🛠️ Kora Upgrade — Fix Protocol + Rules Cleanup (02:15-02:20 UTC)"
         }
       ]
     },
@@ -14203,6 +11528,16 @@
       ]
     },
     {
+      "topic": "🧠 Critical Lessons (June 10 continuation)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 199,
+          "context": "### 🧠 Critical Lessons (June 10 continuation) 16. **n8n CE can't share Telegram credentials via API** — must be done manually in the UI"
+        }
+      ]
+    },
+    {
       "topic": "🧠 Critical Lessons Learned",
       "files": [
         {
@@ -14278,6 +11613,16 @@
       ]
     },
     {
+      "topic": "🧠 New Critical Lessons (June 10 — Kora Self-Upgrade)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 739,
+          "context": "### 🧠 New Critical Lessons (June 10 — Kora Self-Upgrade) 13. **\"Stay quiet\" rules NEVER apply to Boss messages** — only heartbeat/outreach. Document explicitly: \"Boss messages = ALWAYS respond\""
+        }
+      ]
+    },
+    {
       "topic": "🧠 New Critical Lessons (June 9)",
       "files": [
         {
@@ -14292,7 +11637,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 732,
+          "line": 731,
           "context": "### 🧠 New Critical Lessons (June 9, evening) 10. **Cash Flow closing must match Web Finance** — use identical income allocation per account"
         }
       ]
