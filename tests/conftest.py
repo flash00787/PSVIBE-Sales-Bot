@@ -133,15 +133,15 @@ def _build_bot_mock():
     bot.wb = mock_wb
     bot.inv_sh = mock_ws
 
-    # _replit_get — underscore prefixed, needs __all__ for star import
-    _replit_get = MagicMock(return_value=[])
-    _replit_post = MagicMock(return_value={'ok': True})
-    _replit_put = MagicMock(return_value={'ok': True})
-    _replit_delete = MagicMock(return_value={'ok': True})
-    bot._replit_get = _replit_get
-    bot._replit_post = _replit_post
-    bot._replit_put = _replit_put
-    bot._replit_delete = _replit_delete
+    # _psvibe_get — underscore prefixed, needs __all__ for star import
+    _psvibe_get = MagicMock(return_value=[])
+    _psvibe_post = MagicMock(return_value={'ok': True})
+    _psvibe_put = MagicMock(return_value={'ok': True})
+    _psvibe_delete = MagicMock(return_value={'ok': True})
+    bot._psvibe_get = _psvibe_get
+    bot._psvibe_post = _psvibe_post
+    bot._psvibe_put = _psvibe_put
+    bot._psvibe_delete = _psvibe_delete
 
     # __all__ ensures these export via "from bot import *"
     bot.__all__ = [k for k in dir(bot) if not k.startswith('_') or k.startswith('_replit')]
@@ -225,7 +225,7 @@ def _build_bot_mock():
 
 
 
-    
+
     # ── Async re-export alias mocks ──
     bot.create_booking_async = AsyncMock()
     bot.end_booking_async = AsyncMock()
@@ -294,7 +294,7 @@ def _build_bot_mock():
         setattr(bot, name, mock)
         return mock
     bot.__getattr__ = _mock_getattr
-    
+
     return bot
 
 _bot = _build_bot_mock()
@@ -381,4 +381,4 @@ def _reset():
     yield
     _bot.fetch_allowed_staff_ids.return_value = [12345]
     _bot.fetch_members.return_value = ['PSV_A001', 'PSV_A002']
-    _bot._replit_get.return_value = []
+    _bot._psvibe_get.return_value = []

@@ -8,7 +8,7 @@ import asyncio
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 from bot import (
-    CUSTOMER_BOT_TOKEN, _replit_get, fetch_balance_mins, fetch_balance_mins_async,
+    CUSTOMER_BOT_TOKEN, _psvibe_get, fetch_balance_mins, fetch_balance_mins_async,
 )
 
 
@@ -39,7 +39,7 @@ def _notify_customer(chat_id_or_phone: str, text: str):
 def get_customer_chat_id(member_id: str) -> str | None:
     """Look up most-recent Telegram chat_id for a member from bookings store."""
     try:
-        bks = _replit_get(f"bookings?memberId={member_id}")
+        bks = _psvibe_get(f"bookings?memberId={member_id}")
         if bks:
             for b in bks:
                 cid = (b.get("telegramChatId") or b.get("telegram_chat_id") or "").strip()

@@ -20,7 +20,7 @@ from bot import (
     fetch_food_prices_async, fetch_food_menu_async,
     fetch_food_costs_async,
     fetch_console_multiplier_async,
-    _replit_post_async,
+    _psvibe_post_async,
 )
 
 try:
@@ -68,8 +68,8 @@ async def cmd_food_sale(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["member_id"] = None
     # Load stock map
     try:
-        from bot.api_client import _replit_get_async
-        inv_data = await _replit_get_async("stock/current")
+        from bot.api_client import _psvibe_get_async
+        inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_list = inv_data.get("data", inv_data.get("items", inv_data.get("stock", [])))
             context.user_data["food_stock_map"] = {
@@ -240,7 +240,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     stock_map = context.user_data.get("food_stock_map")
     if not stock_map:
         try:
-            inv_data = await _replit_get_async("stock/current")
+            inv_data = await _psvibe_get_async("stock/current")
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
                              for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}
@@ -845,8 +845,8 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        from bot.api_client import _replit_get_async
-        inv_data = await _replit_get_async("stock/current")
+        from bot.api_client import _psvibe_get_async
+        inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
                          for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}
@@ -1487,11 +1487,11 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     )
             if food_sold:
                 _lazy_update_inv_total_k1()
-                try: _replit_get("stock/current?nocache=1")
+                try: _psvibe_get("stock/current?nocache=1")
                 except Exception: pass
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
             if _promo_id and (_disc or _bonus_mins):
-                _replit_post("sheets/promotions-log", {
+                _psvibe_post("sheets/promotions-log", {
                     "date":         today,
                     "voucher_no":   v_no,
                     "promo_id":     _promo_id,
@@ -1510,7 +1510,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if _wallet_needs_update:
                     _wallet_api_ok = False
                     try:
-                        _result = _replit_post("member/wallet/update", {
+                        _result = _psvibe_post("member/wallet/update", {
                             "member_id": _m_id,
                             "deduct_mins": _w_deduct,
                             "bonus_mins": _bonus_mins,
@@ -1532,7 +1532,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if _linked_bk_id and not is_guest:
         async def _mark_bk_completed():
             try:
-                await _replit_patch_async(
+                await _psvibe_patch_async(
                     f"bookings/{_linked_bk_id}/status",
                     {"status": "completed", "staffNote": f"Session completed — {v_no}"},
                 )
@@ -1546,7 +1546,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if _wl_cid and _wl_cid not in ("-", ""):
         async def _wl_notify():
             try:
-                resp = await _replit_post_async("waitlist/notify", {"console_id": _wl_cid}
+                resp = await _psvibe_post_async("waitlist/notify", {"console_id": _wl_cid}
                 )
                 if resp and resp.get("notified"):
                     logging.info("Waitlist notified: %s for console %s",
@@ -1561,7 +1561,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             try:
                 chat_id = await asyncio.to_thread(get_customer_chat_id, m_id)
                 if chat_id:
-                    await _replit_post_async(
+                    await _psvibe_post_async(
                         "session-end-notify",
                         {
                             "telegram_chat_id": chat_id,
@@ -1627,8 +1627,8 @@ async def launch_session_sale(
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        from bot.api_client import _replit_get_async
-        inv_data = await _replit_get_async("stock/current")
+        from bot.api_client import _psvibe_get_async
+        inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
                          for i in inv_data.get("stock", []) if isinstance(i, dict) and i.get("item_name")}

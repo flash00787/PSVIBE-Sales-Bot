@@ -6,7 +6,7 @@ from bot import (
     BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
     BTN_SSD_MANAGE, BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT,
     _delete_session_game,
-    _replit_get, _replit_get_async, add_console_game, _replit_post_async,
+    _psvibe_get, _psvibe_get_async, add_console_game, _psvibe_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
     fetch_console_status, get_games_on_console, get_games_on_console_async, now_mmt,
     show_console_menu, show_game_menu, show_main_menu,
@@ -305,7 +305,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Try to find linked booking_id from bookings store
     _linked_bk_id = ""
     try:
-        _bks = await _replit_get_async(f"bookings?memberId={mbr}") or []
+        _bks = await _psvibe_get_async(f"bookings?memberId={mbr}") or []
         if not isinstance(_bks, list):
             _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
         for _b in _bks:

@@ -18,7 +18,7 @@ from bot import (
     BTN_FOOD_SALE, BTN_STAFF_BOOK, BTN_TODAY_REPORT, MAIN_MENU, fetch_allowed_staff_ids,
     next_voucher, now_mmt, show_console_menu, show_game_menu,
     show_main_menu,
-    fetch_allowed_staff_ids_async, _replit_get_async,
+    fetch_allowed_staff_ids_async, _psvibe_get_async,
 )
 
 import asyncio
@@ -37,7 +37,7 @@ async def cmd_balance(update, context):
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardRemove(),
     )
-    data = await _replit_get_async("finance/account-balances")
+    data = await _psvibe_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
             "❌ Account Balances API ချိတ်၍မရပါ",

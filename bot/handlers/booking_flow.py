@@ -17,11 +17,13 @@ from typing import Dict, Optional
 import asyncio
 import time
 from bot.handlers.notify import _notify_customer
+from bot.session_reminder_store import persist_reminder, remove_persisted_reminder
 
 # Module-level state
 _pending_cancel_note: Dict[int, dict] = {}
 _REMIND_TASKS: dict[str, "asyncio.Task[None]"] = {}
 _SESSION_END_TIMES: dict[str, str] = {}
+_NO_TIMER_CONSOLES: set[str] = set()  # consoles that should never fire reminders
 
 
 
@@ -59,6 +61,8 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
     task = _REMIND_TASKS.pop(key, None)
     if task and not task.done():
         task.cancel()
+    # Also purge from persistent store so restarts don't revive it
+    remove_persisted_reminder(cid, chat_id)
 
 async def _is_session_active(cid: str) -> bool:
     """Quick sync check: is this console Active today? (via MySQL API)."""
@@ -97,6 +101,9 @@ async def _remind_loop(
     key = _remind_key(cid, chat_id)
     _REMIND_TASKS[key] = asyncio.current_task()   # type: ignore[assignment]
     _SESSION_END_TIMES[key] = end_t               # track current planned end time
+    # Persist to disk so it survives bot restart
+    _end_dt_iso = (now_mmt() + timedelta(minutes=planned_mins)).isoformat()
+    persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso)
     # Guard: if this console is No Timer, don't run reminders
     if cid in _NO_TIMER_CONSOLES:
         logger.info("_remind_loop: %s is No Timer — exiting immediately", cid)
@@ -184,6 +191,7 @@ async def _remind_loop(
         if _REMIND_TASKS.get(key) is asyncio.current_task():
             _REMIND_TASKS.pop(key, None)
             _SESSION_END_TIMES.pop(key, None)
+            remove_persisted_reminder(cid, chat_id)
 
 async def _send_session_reminder(
     bot, chat_id: int, cid: str, member_id: str,
@@ -604,17 +612,19 @@ async def _do_extend(bot, query, cid: str, member_id: str,
                 logger.error("_do_extend: %s", e, exc_info=True)
                 pass
 
+    # Compute total remaining seconds for timer delay correction
+    total_rem_secs = max(0, (new_end_dt - now).total_seconds())
     _cancel_remind(cid, chat_id)   # stop old loop before starting new one
     # Update stored end time immediately so next extend uses correct base
     _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
+    # Persist updated end time to disk (rem_mins ≈ remaining minutes)
+    _persist_rem_mins = max(1, int(total_rem_secs / 60))
+    persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t, new_end_dt.isoformat())
     # Skip timer if original session was No Timer
     if cid in _NO_TIMER_CONSOLES:
         has_remind = False
         text += "\n\n⏸️ No Timer session — reminder မပေးပါ"
     if has_remind:
-        # BUG FIX: ext_delay must be based on TOTAL remaining time, not extra_mins
-        # Old: ext_delay = (extra_mins - 5) * 60 → wrong if passed time between start and extend
-        total_rem_secs = max(0, (new_end_dt - now).total_seconds())
         ext_delay = max(0, total_rem_secs - 5 * 60)  # seconds until 5-min-before-end
         # planned_mins = remaining minutes for display (at least 1)
         rem_mins = max(1, int(total_rem_secs / 60))
@@ -678,7 +688,7 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Edit group chat message to show we're waiting
         await query.edit_message_text(
             f"✏️ <b>Custom Extend</b>\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
+            f"━��━━━━━━━━━━━━━━━━\n"
             f"🕹️ Console : <b>{cid}</b>  👤 <b>{member_id}</b>\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"ဆက်ကစားမည့် မိနစ် ရိုက်ထည့်ပြီး Send လုပ်ပါ\n"

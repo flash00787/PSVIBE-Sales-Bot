@@ -1,8 +1,8 @@
 from bot import (
     BTN_BACK_MAIN, BTN_INVENTORY_VIEW, BTN_STOCK_IN_M, BTN_STOCK_OUT,
     MAIN_MENU, STOCK_ACCESS_PIN, STOCK_ITEM, STOCK_MENU, STOCK_PIN,
-    STOCK_QTY,   fetch_food_costs, fetch_food_prices, 
-    now_mmt, show_main_menu, 
+    STOCK_QTY,   fetch_food_costs, fetch_food_prices,
+    now_mmt, show_main_menu,
     fetch_food_prices_async,
     fetch_food_costs_async,
 )
@@ -136,7 +136,7 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_si_items(update, context)
     if choice == BTN_INVENTORY_VIEW:
         await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-        data = await _replit_get_async("sheets/inventory")
+        data = await _psvibe_get_async("sheets/inventory")
         if not data:
             await update.message.reply_text("❌ Inventory data ရယူ၍ မရပါ။")
             return await show_stock_menu(update, context)
@@ -240,7 +240,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if inv_total:
             msg += f"\n\n📊 Total Inv Value: *{inv_total:,} Ks*"
         # Low stock alert
-        inv_data = await _replit_get_async("sheets/inventory")
+        inv_data = await _psvibe_get_async("sheets/inventory")
         if inv_data:
             for inv_item in inv_data.get("items", []):
                 if inv_item.get("name") == item:

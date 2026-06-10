@@ -7,7 +7,7 @@ from bot import (
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
     SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
-    _replit_get_async, _replit_patch_async, _replit_post_async,
+    _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
     fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_games, fetch_games_async,
@@ -93,8 +93,8 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
     context.user_data["sbk_from_hub"] = True
 
     # Fetch counts for both statuses in parallel (sync thread)
-    pending_bks   = await _replit_get_async("bookings?status=pending") or []
-    confirmed_bks = await _replit_get_async("bookings?status=confirmed") or []
+    pending_bks   = await _psvibe_get_async("bookings?status=pending") or []
+    confirmed_bks = await _psvibe_get_async("bookings?status=confirmed") or []
 
     n_pending   = len(pending_bks)   if isinstance(pending_bks,   list) else 0
     n_confirmed = len(confirmed_bks) if isinstance(confirmed_bks, list) else 0
@@ -142,7 +142,7 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show upcoming confirmed bookings with Cancel button each."""
     await update.message.reply_text("⏳ Confirmed bookings စစ်နေသည်...")
-    bookings = await _replit_get_async("bookings?status=confirmed") or []
+    bookings = await _psvibe_get_async("bookings?status=confirmed") or []
     if not isinstance(bookings, list):
         bookings = []
 
@@ -552,7 +552,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "staffNote":    f"Console: {cid} | Booked by {staff}",
         }
 
-        result = await _replit_post_async("bookings", payload)
+        result = await _psvibe_post_async("bookings", payload)
         if not result or "id" not in result:
             await update.message.reply_text(
                 "❌ Booking create မအောင်မြင်ပါ\nAPI စစ်ပြီး ထပ်ကြိုးစားပါ",
@@ -714,7 +714,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
     """Ask staff whether to link this session to a confirmed booking (optional)."""
     try:
         today = today_str()
-        bks_raw = await _replit_get_async("bookings") or []
+        bks_raw = await _psvibe_get_async("bookings") or []
         # Include confirmed + arrived; filter to today only
         # Also apply a 30-min past window so check-in'd bookings are still linkable
         from datetime import datetime as _dt
@@ -1157,7 +1157,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             "game_name": game,
             "duration_mins": planned_mins if planned_mins > 0 else 60,
         }
-        result = await _replit_post_async("consoles/start-session", payload)
+        result = await _psvibe_post_async("consoles/start-session", payload)
         if not result or not result.get("success"):
             err_msg = (result or {}).get("error") or "API returned empty response"
             await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {err_msg}")

@@ -11,7 +11,7 @@ from bot import (
     BTN_VIEW_GAMES, GAME_ADD_GENRE,
     GAME_ADD_PLATFORM, GAME_ADD_STATUS, GAME_ADD_TITLE, GAME_DEL_SELECT, GAME_DETAIL_PICK,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_MENU,
-      
+
     fetch_console_games, fetch_console_games_async, fetch_games, fetch_games_async,  show_game_menu,
     show_main_menu, show_console_menu, SSD_NAMES,
 )
@@ -617,7 +617,7 @@ async def step_game_add_status(update: Update, context: ContextTypes.DEFAULT_TYP
     meta = f"{solo_multi}|{genre}"
     try:
         payload = {"title": title, "solo_multi": solo_multi, "genre": genre, "copies": copies}
-        result = _replit_post("add_game", payload)
+        result = _psvibe_post("add_game", payload)
         if result is None or not result.get("success"):
             raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         import bot as _bot_mod
@@ -732,7 +732,7 @@ async def step_game_edit_value(update: Update, context: ContextTypes.DEFAULT_TYP
     try:
         sh = get_game_lib_sh()
         payload = {"title": title, "field": field, "value": text}
-        result = _replit_put("edit_game", payload)
+        result = _psvibe_put("edit_game", payload)
         if result is None or not result.get("success"):
             raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         import bot as _bot_mod
@@ -764,7 +764,7 @@ async def step_game_del_select(update: Update, context: ContextTypes.DEFAULT_TYP
         return GAME_DEL_SELECT
     game_name = target.get("title", "")
     try:
-        result = _replit_delete(f"delete_game/{game_name}")
+        result = _psvibe_delete(f"delete_game/{game_name}")
         if result is None or not result.get("success"):
             raise Exception(result.get("error", "API call failed") if result else "API unavailable")
         await update.message.reply_text(

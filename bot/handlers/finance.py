@@ -24,7 +24,7 @@ from bot import (
     SHARE_CAP, SHARE_CONFIRM, SHARE_NAME, SHARE_OWN, SHARE_ROLE,
     _pin_then,     cmd_cancel, now_mmt,
     show_main_menu, today_str,
-    _replit_get_async, _replit_post_async,
+    _psvibe_get_async, _psvibe_post_async,
 )
 
 try:
@@ -2583,7 +2583,7 @@ async def cmd_fin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ P&L ဆွဲယူနေသည်...")
     now = now_mmt()
     m   = now.strftime("%Y-%m")
-    data = await _replit_get_async(f"finance/pnl?m={m}")
+    data = await _psvibe_get_async(f"finance/pnl?m={m}")
     if not data:
         await update.message.reply_text("❌ P&L API ချိတ်မရပါ — VPS စစ်ပါ")
         return await show_fin_report_menu(update, context)
@@ -2649,7 +2649,7 @@ async def cmd_fin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_fin_bs(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fetch Balance Sheet from VPS API."""
     await update.message.reply_text("⏳ Balance Sheet ဆွဲယူနေသည်...")
-    data = await _replit_get_async("finance/balance-sheet")
+    data = await _psvibe_get_async("finance/balance-sheet")
     if not data:
         await update.message.reply_text("❌ Balance Sheet API ချိတ်မရပါ")
         return await show_fin_report_menu(update, context)
@@ -2693,7 +2693,7 @@ async def cmd_fin_bs(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_fin_accts(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fetch account balances from VPS API. Always returns to Finance main menu."""
     await update.message.reply_text("⏳ Account Balances ဆွဲယူနေသည်...")
-    data = await _replit_get_async("finance/account-balances")
+    data = await _psvibe_get_async("finance/account-balances")
     if not data:
         await update.message.reply_text(
             "❌ Account Balances API ချိတ်မရပါ\n"
@@ -2736,7 +2736,7 @@ async def cmd_fin_depr(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show depreciation summary from VPS API."""
     await update.message.reply_text("⏳ Depreciation ဆွဲယူနေသည်...")
     now_yr = now_mmt().year
-    data = await _replit_get_async(f"finance/depreciation?year={now_yr}")
+    data = await _psvibe_get_async(f"finance/depreciation?year={now_yr}")
     if not data:
         await update.message.reply_text("❌ Depreciation API ချိတ်မရပါ")
         return await show_fin_report_menu(update, context)
@@ -2761,7 +2761,7 @@ async def cmd_fin_profit_share(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text("⏳ Profit Sharing ဆွဲယူနေသည်...")
     now  = now_mmt()
     m    = now.strftime("%Y-%m")
-    data = await _replit_get_async(f"finance/profit-sharing?m={m}")
+    data = await _psvibe_get_async(f"finance/profit-sharing?m={m}")
     if not data:
         await update.message.reply_text("❌ Profit Sharing API ချိတ်မရပါ")
         return await show_fin_report_menu(update, context)
@@ -2801,7 +2801,7 @@ async def cmd_finance_setup(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Payables | Receivables | Advance Staff\n"
         "Prepaid Expenses | Advance Payments",
     )
-    result = await _replit_post_async("finance/setup-sheets", {})
+    result = await _psvibe_post_async("finance/setup-sheets", {})
     if result and result.get("ok"):
         created = result.get("created", [])
         skipped = result.get("skipped", [])

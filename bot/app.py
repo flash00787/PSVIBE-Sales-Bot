@@ -523,7 +523,12 @@ def main():
             BotCommand("finance",    "💼 Finance Management"),
         ])
 
-    app.post_init = _set_commands
+    # Chain post_init: set commands, then restore session reminders from disk
+    from bot.session_reminder_store import restore_reminders_async
+    async def _combined_post_init(app):
+        await _set_commands(app)
+        await restore_reminders_async(app)
+    app.post_init = _combined_post_init
 
     # Pre-warm config + member cache so first user interaction is instant
     logging.info("Pre-warming config and member cache...")
@@ -535,7 +540,7 @@ def main():
         """Log and suppress unhandled task exceptions to prevent bot crash."""
         msg = context.get("exception", context.get("message", "Unknown task error"))
         logging.error("Unhandled task exception: %s", msg, exc_info=context.get("exception"))
-    
+
     loop = asyncio.get_event_loop()
     loop.set_exception_handler(_handle_task_exception)
     loop.create_task(_bg_cache_refresh())
@@ -547,5 +552,3 @@ def main():
         timeout=30,
         drop_pending_updates=True,
     )
-
-

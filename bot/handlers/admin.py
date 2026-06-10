@@ -6,9 +6,9 @@ from bot import (
     BTN_PROMO_REPORTS, BTN_SBK_CONFIRMED, BTN_STAFF_BOOK, BTN_STAFF_KPI,
     BTN_STOCK_UPDATE, SAL_ADV_STAFF, STOCK_ACCESS_PIN, _pin_then,
       build_member_rate_dict, cmd_payroll, cmd_setattend,
-    cmd_staff_kpi, fetch_base_rate, fetch_staff, 
+    cmd_staff_kpi, fetch_base_rate, fetch_staff,
     now_mmt,  show_admin_menu, show_console_menu,
-    show_main_menu,   
+    show_main_menu,
     show_stock_menu,    show_stock_menu,
         fetch_base_rate_async,
 )
@@ -304,7 +304,7 @@ async def cmd_admin_pnl(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        r = await _replit_get_async("sheets/pnl")
+        r = await _psvibe_get_async("sheets/pnl")
         if "error" in r:
             raise RuntimeError(r["error"])
     except Exception as e:
@@ -379,7 +379,7 @@ async def cmd_admin_cashflow(update: Update, context: ContextTypes.DEFAULT_TYPE)
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        r = await _replit_get_async("sheets/pnl")
+        r = await _psvibe_get_async("sheets/pnl")
         if "error" in r:
             raise RuntimeError(r["error"])
     except Exception as e:
@@ -453,8 +453,8 @@ async def cmd_admin_liability(update: Update, context: ContextTypes.DEFAULT_TYPE
         reply_markup=ReplyKeyboardRemove(),
     )
     try:
-        liab = await _replit_get_async("sheets/liability")
-        pnl  = await _replit_get_async("sheets/pnl")
+        liab = await _psvibe_get_async("sheets/liability")
+        pnl  = await _psvibe_get_async("sheets/pnl")
         if "error" in liab:
             raise RuntimeError(liab["error"])
 

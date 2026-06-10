@@ -1,5 +1,5 @@
 from bot import (
-    ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _replit_get, _replit_get_async, now_mmt,
+    ADMIN_MENU, BTN_BACK_MAIN, MAIN_MENU, _psvibe_get, _psvibe_get_async, now_mmt,
     today_str,
 )
 """PS VIBE Bot — Handler module.
@@ -14,7 +14,7 @@ from datetime import datetime, timezone, timedelta
 async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current inventory levels from Replit API."""
     await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = await _replit_get_async("sheets/inventory")
+    data = await _psvibe_get_async("sheets/inventory")
     if not data:
         await update.message.reply_text(
             "❌ Inventory data ရယူ၍ မရပါ။",
@@ -52,7 +52,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show today's items sold from Replit API."""
     await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = await _replit_get_async("sheets/stock-today")
+    data = await _psvibe_get_async("sheets/stock-today")
     if not data:
         await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
         return
@@ -79,14 +79,14 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
     try:
         # Fetch all promotions (including inactive) via API
-        promo_data = await _replit_get_async("sheets/promotions/all")
+        promo_data = await _psvibe_get_async("sheets/promotions/all")
         promos = promo_data.get("promotions", []) if promo_data else []
         # Fetch Promotions_Log analytics
-        log_data   = await _replit_get_async("sheets/promotions-log")
+        log_data   = await _psvibe_get_async("sheets/promotions-log")
         promo_logs = (log_data or {}).get("logs", [])
         promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
         # Fetch today's sales summary
-        rd = await _replit_get_async("finance/account-balances")
+        rd = await _psvibe_get_async("finance/account-balances")
         sales = rd.get("summary") if rd else None
         lines = [
             "📊 *Promotion Reports*",
@@ -195,7 +195,7 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Today's combined sales + stock report with per-staff breakdown."""
     await update.message.reply_text("⏳ Today's report ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    rd    = await _replit_get_async("finance/account-balances")   # single batch call (was 3 calls)
+    rd    = await _psvibe_get_async("finance/account-balances")   # single batch call (was 3 calls)
     sales = rd.get("summary")   if rd else None
     stock = None
     inv = None
@@ -264,8 +264,8 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
     now   = now_mmt()
     m_str = now.strftime("%Y-%m")
     weekly, pnl = await asyncio.gather(
-        _replit_get_async("sheets/weekly-report"),
-        _replit_get_async(f"sheets/pnl?m={m_str}"),
+        _psvibe_get_async("sheets/weekly-report"),
+        _psvibe_get_async(f"sheets/pnl?m={m_str}"),
     )
     lines: list[str] = [f"💹 <b>Financial Report</b>"]
     # ── Weekly summary ──

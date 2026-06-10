@@ -82,7 +82,7 @@ new_funcs = [
     'def fetch_payment_methods():',
     '    Return list of payment method options, with API-backed fallback.',
     '    try:',
-    '        data = _replit_get(sheets/payment-methods)',
+    '        data = _psvibe_get(sheets/payment-methods)',
     '        if isinstance(data, dict) and methods in data:',
     '            return data[methods]',
     '        if isinstance(data, list):',

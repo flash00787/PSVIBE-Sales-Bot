@@ -7,7 +7,7 @@ import logging, re, json
 
 from bot import (
     CUSTOMER_BOT_TOKEN,
-    _replit_get_async, _replit_patch_async, _replit_post_async,
+    _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     check_disc_session_conflict,  get_consoles_with_game, get_consoles_with_game_async,
     now_mmt, show_admin_menu,
 )
@@ -26,7 +26,7 @@ import asyncio
 async def cmd_admin_bookings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from bot.handlers.admin import show_admin_menu
     await update.message.reply_text("⏳ Pending bookings စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-    bookings = await _replit_get_async("bookings?status=pending")
+    bookings = await _psvibe_get_async("bookings?status=pending")
     if not bookings:
         await update.message.reply_text(
             "✅ *Pending bookings မရှိပါ*",
@@ -149,7 +149,7 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     # Call API to check in
     try:
-        result = await _replit_post_async("bookings/checkin", {"id": bk_id})
+        result = await _psvibe_post_async("bookings/checkin", {"id": bk_id})
     except Exception as e:
         await query.edit_message_text(f"\u274c *Check-in failed:* {e}", parse_mode="Markdown")
         return
@@ -189,7 +189,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     assigned_console = ""
     install_warn     = ""
     if action == "approve":
-        bk_data      = await _replit_get_async(f"bookings/{bk_id}")
+        bk_data      = await _psvibe_get_async(f"bookings/{bk_id}")
         bk_info      = bk_data or {}
         # Unwrap {"booking": {...}} or {"data": {"booking": {...}}} envelope
         if isinstance(bk_info, dict):
@@ -244,7 +244,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 assigned_console        = chosen["id"]
                 import bot as _b; _b._BK_TS = 0.0  # invalidate booking cache so status reflects new reservation
 
-    result = await _replit_patch_async(
+    result = await _psvibe_patch_async(
         f"bookings/{bk_id}/status",
         patch_body,
     )

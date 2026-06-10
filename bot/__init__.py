@@ -136,7 +136,7 @@ async def fetch_games_async() -> list[dict]:
 
 def _load_cfg() -> None:
     global _CFG, _CFG_TS
-    data = _replit_get("sheets/config")
+    data = _psvibe_get("sheets/config")
     # API returns {"config": {...}} - unwrap nested config dict
     cfg = data.get("config", data) if isinstance(data, dict) else data
     if cfg and isinstance(cfg, dict) and "base_rate" in cfg:
@@ -1505,7 +1505,7 @@ def _delete_session_game(console_id: str) -> None:
     try:
         import urllib.parse
         _cid_enc = urllib.parse.quote(console_id, safe="")
-        result = _replit_delete(f"delete_session_game/{_cid_enc}")
+        result = _psvibe_delete(f"delete_session_game/{_cid_enc}")
         if result and result.get("success"):
             global _CGAME_ROWS, _CGAME_TS
             _CGAME_TS = 0
@@ -2647,7 +2647,7 @@ fetch_promotions_cached_async = api_fetch_promotions_cached_async
 fetch_food_menu_async = api_fetch_food_menu_async
 fetch_game_library  = fetch_games            # alias used in SSD management
 
-def _replit_delete(path: str, timeout: int = 10) -> dict | None:
+def _psvibe_delete(path: str, timeout: int = 10) -> dict | None:
     """DELETE request to API server. Returns parsed response dict or None on error."""
     base = _api_base()
     if not base:
@@ -2668,19 +2668,19 @@ def _replit_delete(path: str, timeout: int = 10) -> dict | None:
         logging.warning("API DELETE /%s failed: %s", path, e)
         return None
 
-async def _replit_delete_async(path: str, timeout: int = 10) -> dict | None:
-    """Async DELETE - non-blocking version of _replit_delete."""
+async def _psvibe_delete_async(path: str, timeout: int = 10) -> dict | None:
+    """Async DELETE - non-blocking version of _psvibe_delete."""
     try:
         return await _api_call_async("DELETE", path, timeout=timeout)
     except Exception as e:
         logging.warning("API DELETE /%s failed: %s", path, e)
         return None
 
-def _replit_get(path: str, timeout: int = 8):
+def _psvibe_get(path: str, timeout: int = 8):
     """GET JSON from API server. Returns parsed dict/list or safe empty fallback."""
 
-async def _replit_get_async(path: str, timeout: int = 8):
-    """Async GET - non-blocking version of _replit_get.
+async def _psvibe_get_async(path: str, timeout: int = 8):
+    """Async GET - non-blocking version of _psvibe_get.
     Same fallback logic (list vs dict heuristic) for handler backward compat.
     """
     _list_keywords = (
@@ -2735,7 +2735,7 @@ async def _replit_get_async(path: str, timeout: int = 8):
         logging.warning("API GET /%s failed: %s - returning %s", path, e, type(fallback).__name__)
         return fallback
 
-def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
+def _psvibe_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
     """PATCH JSON to API server. Returns parsed response dict or None on error."""
     base = _api_base()
     if not base:
@@ -2755,15 +2755,15 @@ def _replit_patch(path: str, payload: dict, timeout: int = 10) -> dict | None:
         logging.warning("API PATCH /%s failed: %s", path, e)
         return None
 
-async def _replit_patch_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async PATCH - non-blocking version of _replit_patch."""
+async def _psvibe_patch_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PATCH - non-blocking version of _psvibe_patch."""
     try:
         return await _api_call_async("PATCH", path, json_data=payload, timeout=timeout)
     except Exception as e:
         logging.warning("API PATCH /%s failed: %s", path, e)
         return None
 
-def _replit_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
+def _psvibe_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
     """POST JSON to API server. Returns parsed response dict or None on error."""
     base = _api_base()
     if not base:
@@ -2783,15 +2783,15 @@ def _replit_post(path: str, payload: dict, timeout: int = 10) -> dict | None:
         logging.warning("API POST /%s failed (payload keys: %s): %s", path, list(payload.keys()) if payload else [], e)
         return None
 
-async def _replit_post_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async POST - non-blocking version of _replit_post."""
+async def _psvibe_post_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async POST - non-blocking version of _psvibe_post."""
     try:
         return await _api_call_async("POST", path, json_data=payload, timeout=timeout)
     except Exception as e:
         logging.warning("API POST /%s failed: %s", path, e)
         return None
 
-def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
+def _psvibe_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
     """PUT JSON to API server. Returns parsed response dict or None on error."""
     base = _api_base()
     if not base:
@@ -2812,8 +2812,8 @@ def _replit_put(path: str, payload: dict, timeout: int = 10) -> dict | None:
 
         return None
 
-async def _replit_put_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
-    """Async PUT - non-blocking version of _replit_put."""
+async def _psvibe_put_async(path: str, payload: dict = None, timeout: int = 10) -> dict | None:
+    """Async PUT - non-blocking version of _psvibe_put."""
     try:
         return await _api_call_async("PUT", path, json_data=payload, timeout=timeout)
     except Exception as e:
