@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 10:58 ===
-Before: 350M
-  >6h trajectory: 1 files, ~0MB deleted
-After: 350M
-=== RESULT: OK ||| No significant cleanup needed (0MB freed, 350M remaining) ===
+=== Bulk Session Cleanup 14:08 ===
+Before: 347M
+  >6h trajectory: 2 files, ~0MB deleted
+After: 346M

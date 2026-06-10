@@ -1,6 +1,79 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-09 11:30 UTC
+> Last updated: 2026-06-10 11:30 UTC
+
+---
+
+## 🔴 UPDATE (June 10, 2026 - 11:30 UTC) — PS Plus Extra June Lineup + Kena 2 & More New Games Found!
+
+### 🔴🔴 CRITICAL: PS Plus Extra/Premium June 2026 Lineup — FULL LIST REVEALED!
+The PS Plus Extra & Premium Game Catalog lineup for June 2026 has been revealed! Games become available **June 16**:
+
+| Game | Tier | Lounge Value |
+|------|------|-------------|
+| 🔥🔥 **Star Wars Outlaws** (PS5) | Extra | ⭐⭐⭐⭐⭐ — Open-world Star Wars! MASSIVE draw for lounge customers! |
+| 🔥🔥 **Red Dead Redemption 2** (PS4) | Extra | ⭐⭐⭐⭐⭐ — One of the greatest games ever made. Endless replay value! |
+| **Bramble: The Mountain King** (PS5/PS4) | Extra | ⭐⭐⭐ — Dark Nordic fairy-tale adventure |
+| **Broken Sword - Shadows of the Templar: Reforged** (PS5/PS4) | Extra | ⭐⭐ — Classic point-and-click adventure remastered |
+| **Enotria: The Last Song Standard Edition** (PS5) | Extra | ⭐⭐⭐ — Italian folklore soulslike |
+| **Flintlock: The Siege of Dawn** (PS5) | Extra | ⭐⭐⭐ — Action RPG with gunpowder fantasy setting |
+| **The Thaumaturge** (PS5) | Extra | ⭐⭐⭐ — Story-rich RPG set in 1905 Warsaw |
+| 🎸 **Gitaroo Man** (PS5/PS4) | Premium Classics | ⭐⭐⭐ — Cult classic rhythm game, June 16 |
+| 🔴 **Destiny 2: Legacy Collection (2025)** | Extra/Premium | ⭐⭐⭐⭐ — Already available since June 9! |
+
+### 💡 Lounge Actions from PS Plus Lineup:
+- **Star Wars Outlaws + Red Dead Redemption 2** are AAA heavyweights — promote these NOW! These are games customers will come specifically to play, especially if they don't own them
+- **RDR2 alone** justifies a PS Plus Extra subscription for the lounge. The single-player campaign is 60+ hours, and Red Dead Online adds infinite replay value
+- **Enotria + Flintlock** add variety to the soulslike lineup alongside Lords of the Fallen 2 (Fall 2026)
+- All games available **June 16** — just 6 days away!
+
+### ⏰ DAYS OF PLAY — ENDS TODAY (June 10)! ABSOLUTE FINAL CALL!
+- **PS Plus Premium 33% off** — TODAY IS THE LAST DAY to renew lounge subscriptions at the best rate!
+- **PS5 game deals up to 60% off** — LAST DAY for God of War Ragnarök ($29.99), Spider-Man 2 ($29.99), Helldivers 2 ($29.99), Ghost of Yōtei ($49.99)
+- **PSVR2 $100 off**, DualSense controllers up to $20-30 off
+- **Days of Play avatars** — claim TODAY or tomorrow (June 10/11)
+
+### 🏹 Kena 2: Scars of Kosmora — NEW FIND! (2026, TBD Date)
+- Sequel to the beloved **Kena: Bridge of Spirits** by Ember Lab
+- Announced during **February 2026 State of Play** — completely missing from our tracker!
+- Older, more experienced Kena travels to mysterious island of Kosmora
+- New alchemy-based combat system (staff fractured → elemental spirit guiding)
+- Enhanced visuals, expanded combat, new elemental spirit companions
+- Platforms: PS5 + PC
+- **💡 Lounge Note:** Kena: Bridge of Spirits was a cult hit with stunning Pixar-quality visuals. The sequel with alchemy combat and elemental spirits will be a crowd-pleaser for action-adventure fans!
+
+### 🆕 Additional Games Missing from Tracker (Found June 10):
+
+| Game | Details | Date | Lounge Value |
+|------|---------|------|-------------|
+| 🦇 **LEGO Batman: Legacy of the Dark Knight** | New LEGO Batman game! | 2026 | ⭐⭐⭐⭐ — LEGO + Batman = family gold! Perfect for parent-kid lounge sessions! |
+| 🔫 **007: First Light** | New James Bond game | 2026 | ⭐⭐⭐⭐ — Bond IP is timeless. Stealth/action crossover appeal. |
+| ⚔️ **Mortal Shell II** | Sequel to the cult soulslike | 2026 | ⭐⭐⭐ — Niche but loyal fanbase |
+| 🐒 **Black Myth: Zhong Kui** | New game from Game Science (Black Myth: Wukong devs!) | TBD | ⭐⭐⭐⭐⭐ — Wukong follow-up! After Wukong's massive success, this is HUGE! |
+| 🧟 **Psycho Dead** | Horror game | Winter 2026 | ⭐⭐⭐ — Seasonal horror for lounge Halloween events |
+| 🧠 **The Talos Principle 3** | Philosophical puzzle sequel | TBD | ⭐⭐⭐ — Niche puzzle fans |
+| 🎵 **Anima: Song from the Abyss** | New action-adventure | TBD | ⭐⭐⭐ |
+| 🌬️ **Project Windless** | New title | TBD | ⭐⭐ |
+| 🧪 **TankRat** | New indie | TBD | ⭐⭐ |
+| ⚔️ **SlashZero** | New action game | TBD | ⭐⭐ |
+| 🌊 **Sea of Remnants** | New title | TBD | ⭐⭐ |
+| 🚀 **Project TAL** | New title | TBD | ⭐⭐ |
+| 👶 **Genigods Nezha** | New game | 2028 | ⭐⭐ — Far out |
+| 🎬 **Physint** | Rumored Kojima project | ~2030 | ⭐⭐⭐ — Kojima pedigree |
+| 🌌 **Intergalactic: The Heretic Prophet** | Rumored new IP | TBD | ⭐⭐⭐ |
+| 🏚️ **Cordura** | New title | TBD | ⭐⭐ |
+| 🔇 **Silent Hill Remake** (rumored) | Beyond SH2 Remake | TBD | ⭐⭐⭐⭐ — If true, massive for horror fans |
+
+### 🔥 Lounge Priority Actions for June 10:
+1. **RENEW PS PLUS PREMIUM TODAY** — 33% off ends TONIGHT! This is THE best rate.
+2. **BUY God of War Ragnarök + Spider-Man 2 at $29.99** — last day of Days of Play pricing!
+3. **Prepare for PS Plus Extra June lineup (June 16)** — Star Wars Outlaws + RDR2 are coming!
+4. **Update June calendar** with Kena 2, LEGO Batman, 007: First Light, and Black Myth: Zhong Kui
+
+### 📊 Tracker Health Note:
+- **Kena 2: Scars of Kosmora** was announced 4 months ago but completely missed — need to review February announcements
+- **Black Myth: Zhong Kui** by Game Science (Wukong devs) could be as big as Wukong — start tracking this closely
+- **Star Wars Outlaws** on PS Plus Extra is a MAJOR get for lounge value — free access to a $70 AAA game!
 
 ---
 
