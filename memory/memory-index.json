@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-10T05:37:55.740735+00:00",
+  "updated": "2026-06-10T06:43:44.702865+00:00",
   "entries": [
     {
       "topic": "\"Stay quiet\" rules NEVER apply to Boss messages",
@@ -753,6 +753,16 @@
       ]
     },
     {
+      "topic": "8. 🌐 n8n Subpath Setup — ps-vibe.com/n8n (05:46-05:55 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 206,
+          "context": "### 8. 🌐 n8n Subpath Setup — ps-vibe.com/n8n (05:46-05:55 UTC) - Added `N8N_PATH_PREFIX=/n8n` to n8n env in docker-compose.yml → n8n restarted"
+        }
+      ]
+    },
+    {
       "topic": "8.1 booking_handlers.py — Feature 1",
       "files": [
         {
@@ -799,6 +809,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 669,
           "context": "## 9. Testing Checklist"
+        }
+      ]
+    },
+    {
+      "topic": "9. 🐛 Cloudflare Tunnel Fix — API Server Middleware (05:52-05:55 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 211,
+          "context": "### 9. 🐛 Cloudflare Tunnel Fix — API Server Middleware (05:52-05:55 UTC) - **Problem:** Caddy's `handle /n8n/*` worked via direct VPS IP (`http://5.223.81.16/n8n/` ✅) but NOT via Cloudflare tunnel (`h"
         }
       ]
     },
@@ -1798,6 +1818,16 @@
       ]
     },
     {
+      "topic": "Bug 1: Indentation Error → Server Crash",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 667,
+          "context": "### Bug 1: Indentation Error → Server Crash - Middleware `if` block had `import httpx` at same indentation → `IndentationError`"
+        }
+      ]
+    },
+    {
       "topic": "Bug 1: Orphaned `###` Headers Silently Dropped",
       "files": [
         {
@@ -1828,12 +1858,32 @@
       ]
     },
     {
+      "topic": "Bug 2: Missing `@app.middleware()` Decorator",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 672,
+          "context": "### Bug 2: Missing `@app.middleware()` Decorator - `n8n_assets_middleware` function existed but had NO decorator → never registered"
+        }
+      ]
+    },
+    {
       "topic": "Bug 3",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 573,
           "context": "- **Bug 3**: Test Chair (test data) kept re-appearing → permanently deleted from DB - **Total Monthly Dep**: 4,029,826 Ks/m | **Total Acc. Dep**: 3,262,283 Ks"
+        }
+      ]
+    },
+    {
+      "topic": "Bug 3: BASE_PATH Not Overridden",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 678,
+          "context": "### Bug 3: BASE_PATH Not Overridden - n8n HTML rewrite works (all assets prefixed with `/n8n/`)"
         }
       ]
     },
@@ -4073,6 +4123,26 @@
       ]
     },
     {
+      "topic": "Final Result:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 227,
+          "context": "- **Final Result:** - `https://ps-vibe.com/` → Dashboard ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Final State (12:34 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 685,
+          "context": "### Final State (12:34 UTC) | Route | Status |"
+        }
+      ]
+    },
+    {
       "topic": "Final system verification test",
       "files": [
         {
@@ -4103,6 +4173,36 @@
       ]
     },
     {
+      "topic": "Fix 1:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 218,
+          "context": "- **Fix 1:** Updated middleware to also proxy `/assets/*`, `/static/*`, `/favicon.ico` to n8n. - **Root cause 2:** n8n frontend uses `window.BASE_PATH` (default `'/'`) for API calls. Since n8n's actua"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 220,
+          "context": "- **Fix 2:** Middleware intercepts `/static/base-path.js` and returns `window.BASE_PATH = '/n8n/'` instead of forwarding to n8n's default `'/'`. - **Fix 3:** Added `n8n_assets_middleware` to handle re"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 221,
+          "context": "- **Fix 3:** Added `n8n_assets_middleware` to handle rewritten `/n8n/assets/*`, `/n8n/static/*`, `/n8n/favicon.ico` paths by stripping `/n8n` prefix and proxying to n8n. - **Fix bugs along the way**:"
+        }
+      ]
+    },
+    {
       "topic": "Fix Applied",
       "files": [
         {
@@ -4119,6 +4219,16 @@
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 64,
           "context": "- **Fix approach:** Sequential fixes with coordination framework after deploying lock_manager, preflight, validate, rollback."
+        }
+      ]
+    },
+    {
+      "topic": "Fix bugs along the way",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 222,
+          "context": "- **Fix bugs along the way**: - Missing `@app.middleware(\"http\")` decorator on `n8n_assets_middleware`"
         }
       ]
     },
@@ -4364,6 +4474,26 @@
           "path": "memory/2026-06-10.md",
           "line": 59,
           "context": "- **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅ - **Verified**: Port 8000 listening, dashboard returns 200"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 214,
+          "context": "- **Fix:** Added `@app.middleware(\"http\")` in app.py that intercepts `/n8n/*` requests and proxies them via `httpx.AsyncClient` to `http://localhost:5678` (n8n container) - Installed `httpx` (0.28.1) "
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 670,
+          "context": "- **Fix**: Rewrote entire n8n middleware section from scratch with correct 4-space indentation"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 676,
+          "context": "- **Fix**: Added `@app.middleware(\"http\")` before function def"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 682,
+          "context": "- **Fix**: Added intercept in `n8n_assets_middleware`: when path is `/n8n/static/base-path.js`, return overridden `window.BASE_PATH = '/n8n/'` - Verified: `curl http://localhost:8000/n8n/static/base-p"
         },
         {
           "path": "memory/bug-patterns.md",
@@ -4659,6 +4789,16 @@
           "path": "memory/UPGRADE_SPEC.md",
           "line": 49,
           "context": "**Format:** ```markdown"
+        }
+      ]
+    },
+    {
+      "topic": "fpdf2 approach",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 239,
+          "context": "- **fpdf2 approach**: LiberationSans + NotoSansMyanmar fallback → wrong fonts/buggy multi_cell - **ReportLab approach**: Better structured but still no OpenType shaping for Myanmar complex script"
         }
       ]
     },
@@ -5058,6 +5198,16 @@
       ]
     },
     {
+      "topic": "HarfBuzz + FreeType approach",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 241,
+          "context": "- **HarfBuzz + FreeType approach**: ✅ Renders proper Myanmar text using uharfbuzz + freetype-py - HarfBuzz: proper glyph shaping with GSUB/GPOS for rakar, waswai, asat, etc."
+        }
+      ]
+    },
+    {
       "topic": "header",
       "files": [
         {
@@ -5149,6 +5299,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 19,
           "context": "### How we confirmed 1. **API endpoint `/api/coupons/generate` exists and works** — tested successfully, generated coupons #12-14"
+        }
+      ]
+    },
+    {
+      "topic": "HTTPS traffic bypasses local Caddy",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 235,
+          "context": "23. **HTTPS traffic bypasses local Caddy** when tunnel routes directly to API server. Middleware proxy in the API server is needed for non-API paths."
         }
       ]
     },
@@ -5383,6 +5543,16 @@
       ]
     },
     {
+      "topic": "Issue #2:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 216,
+          "context": "- **Issue #2:** n8n HTML at `/n8n/` loaded but blank. - **Root cause 1:** n8n's static asset paths are NOT prefixed with `/n8n/` (e.g., `/assets/index-xxx.js`, `/static/...`, `/favicon.ico`)."
+        }
+      ]
+    },
+    {
       "topic": "Issue 1",
       "files": [
         {
@@ -5608,6 +5778,16 @@
       ]
     },
     {
+      "topic": "Key lesson",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 246,
+          "context": "- **Key lesson**: Only HarfBuzz-based rendering produces correct Myanmar script in PDF without system Pango - Boss asked to use Gemini model for the fix"
+        }
+      ]
+    },
+    {
       "topic": "Key Lessons (June 9)",
       "files": [
         {
@@ -5828,23 +6008,13 @@
       ]
     },
     {
-      "topic": "Lesson Learned",
+      "topic": "LESSON",
       "files": [
         {
-          "path": "MEMORY.md",
-          "line": 220,
-          "context": "### Lesson Learned - `api_client.py` has TWO separate auth mechanisms: `_http_request` uses **header**, but `api_post`/`api_get` use **query param** only"
+          "path": "memory/2026-06-10.md",
+          "line": 226,
+          "context": "- **LESSON**: Never do complex multi-file edits via string replacement. Syntax errors pile up. - **Final Result:**"
         },
-        {
-          "path": "MEMORY.md",
-          "line": 254,
-          "context": "### Lesson Learned - **`\"error\" in resp` ≠ `resp.get(\"error\")`** — when API always includes `error` key (even with null), `in` operator is always True. Must use truthy check on the value, not key exis"
-        }
-      ]
-    },
-    {
-      "topic": "Lesson:",
-      "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 26,
@@ -5914,6 +6084,21 @@
           "path": "MEMORY.md",
           "line": 675,
           "context": "- **Lesson:** Topup = deferred liability, not revenue — only wallet_consumed is recognized"
+        }
+      ]
+    },
+    {
+      "topic": "Lesson Learned",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 220,
+          "context": "### Lesson Learned - `api_client.py` has TWO separate auth mechanisms: `_http_request` uses **header**, but `api_post`/`api_get` use **query param** only"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 254,
+          "context": "### Lesson Learned - **`\"error\" in resp` ≠ `resp.get(\"error\")`** — when API always includes `error` key (even with null), `in` operator is always True. Must use truthy check on the value, not key exis"
         }
       ]
     },
@@ -6928,6 +7113,16 @@
       ]
     },
     {
+      "topic": "Pending",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 248,
+          "context": "- **Pending**: Send HarfBuzz-generated PDF to boss; if still wrong, spawn Gemini sub-agent for fresh approach #!/usr/bin/env python3"
+        }
+      ]
+    },
+    {
       "topic": "Performance",
       "files": [
         {
@@ -7238,6 +7433,16 @@
       ]
     },
     {
+      "topic": "Problem:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 212,
+          "context": "- **Problem:** Caddy's `handle /n8n/*` worked via direct VPS IP (`http://5.223.81.16/n8n/` ✅) but NOT via Cloudflare tunnel (`https://ps-vibe.com/n8n/` ❌ 404) - **Root cause:** Cloudflare tunnel runs "
+        }
+      ]
+    },
+    {
       "topic": "Profit",
       "files": [
         {
@@ -7533,6 +7738,16 @@
       ]
     },
     {
+      "topic": "ReportLab approach",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 240,
+          "context": "- **ReportLab approach**: Better structured but still no OpenType shaping for Myanmar complex script - **HarfBuzz + FreeType approach**: ✅ Renders proper Myanmar text using uharfbuzz + freetype-py"
+        }
+      ]
+    },
+    {
       "topic": "Repository 1: Sales Bot (`/root/psvibe-sales-bot/`)",
       "files": [
         {
@@ -7661,6 +7876,11 @@
       "topic": "Root cause 1:",
       "files": [
         {
+          "path": "memory/2026-06-10.md",
+          "line": 217,
+          "context": "- **Root cause 1:** n8n's static asset paths are NOT prefixed with `/n8n/` (e.g., `/assets/index-xxx.js`, `/static/...`, `/favicon.ico`). - **Fix 1:** Updated middleware to also proxy `/assets/*`, `/s"
+        },
+        {
           "path": "MEMORY.md",
           "line": 114,
           "context": "- **Root cause 1:** API `_map_booking_row` mapped `console_id` → `consoleType` field only — no `consoleId` - **Root cause 2:** Bot checked `b.get(\"console_id\")` / `b.get(\"consoleId\")` — neither existe"
@@ -7670,6 +7890,11 @@
     {
       "topic": "Root cause 2:",
       "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 219,
+          "context": "- **Root cause 2:** n8n frontend uses `window.BASE_PATH` (default `'/'`) for API calls. Since n8n's actual API is at `/n8n/rest/...`, the frontend made requests to `/rest/...` which 404'd. - **Fix 2:*"
+        },
         {
           "path": "MEMORY.md",
           "line": 115,
@@ -7839,6 +8064,11 @@
           "path": "memory/2026-06-10.md",
           "line": 58,
           "context": "- **Root cause**: Old uvicorn PID 937300 holding port 8000, systemd wrapper script out of sync - **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 213,
+          "context": "- **Root cause:** Cloudflare tunnel runs with `--token` (remote-managed), circumventing local Caddy. Tunnel routes directly to API server (port 8000), bypassing Caddy entirely. - **Fix:** Added `@app."
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -10413,6 +10643,16 @@
       ]
     },
     {
+      "topic": "⏳ Pending: Boss must login to n8n (`admin@psvibe.com` / `KoraAuto2025!`) and manually assign Telegram credential to activate workflows",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 692,
+          "context": "### ⏳ Pending: Boss must login to n8n (`admin@psvibe.com` / `KoraAuto2025!`) and manually assign Telegram credential to activate workflows"
+        }
+      ]
+    },
+    {
       "topic": "⏳ Pending: Finance Dashboard Fix (18:30 UTC)",
       "files": [
         {
@@ -10484,6 +10724,26 @@
           "path": "memory/2026-06-09.md",
           "line": 6,
           "context": "## ✅ Done"
+        }
+      ]
+    },
+    {
+      "topic": "✅ PDF Generated with HarfBuzz + FreeType",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 660,
+          "context": "## ✅ PDF Generated with HarfBuzz + FreeType - Successfully created PDF with proper Myanmar text shaping"
+        }
+      ]
+    },
+    {
+      "topic": "✅ PDF Ready for Boss Review",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 712,
+          "context": "## ✅ PDF Ready for Boss Review - HarfBuzz + FreeType PDF: 505KB, 2 pages, 200dpi"
         }
       ]
     },
@@ -10618,6 +10878,16 @@
       ]
     },
     {
+      "topic": "🎯 n8n Subpath — 3-Bug Fix (11:34-12:34 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 665,
+          "context": "## 🎯 n8n Subpath — 3-Bug Fix (11:34-12:34 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "🏗️ Architecture (Updated)",
       "files": [
         {
@@ -10654,6 +10924,16 @@
           "path": "MEMORY.md",
           "line": 376,
           "context": "### 🏗️ Financial Dashboard — Full Recovery & Depreciation Auto-Calc + Advances/Prepaid Integration (10:09 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "🏗️ PDF Generation Saga (06:00-06:24 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 237,
+          "context": "## 🏗️ PDF Generation Saga (06:00-06:24 UTC) - Boss wants a Burmese PDF manual for Sales Bot staff"
         }
       ]
     },
@@ -10988,6 +11268,16 @@
       ]
     },
     {
+      "topic": "📄 PDF Manual Update",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 531,
+          "context": "## 📄 PDF Manual Update - HarfBuzz + FreeType approach works for Myanamr text rendering in PDF"
+        }
+      ]
+    },
+    {
       "topic": "📉 Depreciation Engine (04:37-05:32 UTC)",
       "files": [
         {
@@ -11064,6 +11354,16 @@
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 6,
           "context": "## 📋 Report: [Report Name] **Date:** YYYY-MM-DD HH:MM UTC | **Auditor:** [agent-name] | **Files scanned:** N"
+        }
+      ]
+    },
+    {
+      "topic": "📋 Session State (06:24 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 694,
+          "context": "## 📋 Session State (06:24 UTC) - In progress: MT PDF manual generation"
         }
       ]
     },
@@ -11534,6 +11834,11 @@
           "path": "memory/2026-06-10.md",
           "line": 199,
           "context": "### 🧠 Critical Lessons (June 10 continuation) 16. **n8n CE can't share Telegram credentials via API** — must be done manually in the UI"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 232,
+          "context": "### 🧠 Critical Lessons (June 10 continuation) 21. **`docker compose up --no-deps`** doesn't recreate when only Caddyfile changed (mounted file). Use `--force-recreate` or `docker compose restart` for "
         }
       ]
     },
@@ -11649,6 +11954,16 @@
           "path": "MEMORY.md",
           "line": 118,
           "context": "### 🧠 New Lessons - **Unicode escape sequences are fragile** — always verify with `python3 -c \"print(...)\"` before deploying fix scripts; prefer SFTP upload + remote Python execution for exact byte-le"
+        }
+      ]
+    },
+    {
+      "topic": "🧹 Memory Cleanup",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 538,
+          "context": "## 🧹 Memory Cleanup - Memory file grew to 532+ lines due to accidental build script during restricted write"
         }
       ]
     }
