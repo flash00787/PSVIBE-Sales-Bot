@@ -15,7 +15,6 @@ from .commands import *  # noqa: F401,F403
 from .console import *  # noqa: F401,F403
 from .console_mgmt import *  # noqa: F401,F403
 from .discount import *  # noqa: F401,F403
-from .finance import *  # noqa: F401,F403
 from .games import *  # noqa: F401,F403
 from .ginst import *  # noqa: F401,F403
 from .help import *  # noqa: F401,F403
