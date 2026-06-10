@@ -80,7 +80,7 @@ async def send_cashback_coupon_notification(context, chat_id: int, coupon_code: 
     """Send CashBack coupon notification to customer via Telegram."""
     from bot import CUSTOMER_BOT_TOKEN
     import urllib.request, json
-    
+
     nl = chr(10)
     msg = (
         f"🎉 *Grand Opening 100% CashBack Coupon!* 🎉{nl}{nl}"
@@ -91,7 +91,7 @@ async def send_cashback_coupon_notification(context, chat_id: int, coupon_code: 
         f"📅 Expiry: July 7, 2026{nl}{nl}"
         f"Show this code to staff to redeem!"
     )
-    
+
     url = f"https://api.telegram.org/bot{CUSTOMER_BOT_TOKEN}/sendMessage"
     payload = json.dumps({"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"}).encode()
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
@@ -99,5 +99,5 @@ async def send_cashback_coupon_notification(context, chat_id: int, coupon_code: 
         resp = urllib.request.urlopen(req, timeout=10)
         return json.loads(resp.read().decode())
     except Exception as e:
-        print(f"Failed to send coupon notification: {e}")
+        logging.error(f"Failed to send coupon notification: {e}")
         return None

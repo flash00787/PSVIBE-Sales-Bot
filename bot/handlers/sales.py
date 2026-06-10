@@ -20,6 +20,7 @@ from bot import (
     fetch_food_prices_async, fetch_food_menu_async,
     fetch_food_costs_async,
     fetch_console_multiplier_async,
+    _replit_post_async,
 )
 
 try:

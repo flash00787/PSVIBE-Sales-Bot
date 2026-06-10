@@ -1,3 +1,5 @@
+import logging
+logging.basicConfig(level=logging.DEBUG)
 # fix_unicode.py - Fix broken \u escapes in booking_handlers.py
 import re
 
@@ -37,5 +39,5 @@ old = b'\\u101b\\u103d\\u1031\\u102'
 # We need to find and replace this exact byte pattern in the source file
 old_byte = '\\u101b\\u103d\\u1031\\u102'.encode() + '\u0e38\u1038\u1015\u102b'.encode()
 
-print("Script loaded")
-print(f"Old bytes: {old}")
+logging.info("Script loaded")
+logging.info(f"Old bytes: {old}")

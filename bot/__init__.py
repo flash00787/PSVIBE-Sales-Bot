@@ -1755,7 +1755,7 @@ def fetch_promotions_cached() -> list:
                     try:
                         _em = _fre.match(r"(\d{4})-(\d{2})-(\d{2})", str(_ed).strip())
                         if _em and _fdt(int(_em.group(1)),int(_em.group(2)),int(_em.group(3))) < _fdt.now(): continue
-                    except: pass
+                    except (ValueError, AttributeError): pass
                 # Filter out null/empty titles (fix 2026-06-04)
                 if not _p.get("title", "").strip():
                     continue
@@ -1788,7 +1788,7 @@ def fetch_promotions_cached() -> list:
             try:
                 _em = _fre2.match(r"(\d{4})-(\d{2})-(\d{2})", str(_ed).strip())
                 if _em and _fdt2(int(_em.group(1)),int(_em.group(2)),int(_em.group(3))) < _fdt2.now(): continue
-            except: pass
+            except (ValueError, AttributeError): pass
         _f.append(_p)
     promos = _f
     with _THREAD_CACHE_LOCK:

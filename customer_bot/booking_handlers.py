@@ -242,7 +242,7 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
             b_end = b_start + b_dur
             if b_start < target_end and b_end > target_start:
                 conflicting.add(b_console)
-        except:
+        except (ValueError, AttributeError):
             pass
     available = []
     for console in consoles_raw:
@@ -297,14 +297,14 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     """Submit booking to API. Returns (message, success_or_not)."""
     user = update.effective_user
     uid = str(user.id) if user else ""
-    
+
     # AUTO-ASSIGN: Pick first free console matching selected type
     console_id = context.user_data.get("bk_specific_console_id", "")
     console_type = context.user_data.get("bk_console") or context.user_data.get("bk_console_pref", "PS5")
     date_str = context.user_data.get("bk_date", "")
     time_str = context.user_data.get("bk_time", "")
     duration_mins = context.user_data.get("bk_duration_mins", 60)
-    
+
     if not console_id and date_str and time_str:
         try:
             available = await _get_available_consoles(date_str, time_str, duration_mins)
@@ -318,11 +318,11 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 context.user_data["bk_specific_console_id"] = console_id
         except Exception:
             pass
-    
+
     assigned_console_label = ""
     if console_id:
         assigned_console_label = f" ({console_id})"
-    
+
     payload = {
         "customerName": context.user_data.get("bk_name", ""),
         "phone": context.user_data.get("bk_phone", ""),
@@ -1440,7 +1440,7 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     return BK_CONSOLE_PREF
             except Exception:
                 pass
-        
+
         # No specific consoles to show - go to duration
         _push_state(context, BK_CONSOLE_PREF)
         dur = context.user_data.get("bk_duration_mins", 60)
@@ -1827,4 +1827,3 @@ async def bk_end_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=MAIN_MENU_KB,
     )
     return ConversationHandler.END
-

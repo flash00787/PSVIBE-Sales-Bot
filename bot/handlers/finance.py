@@ -23,7 +23,8 @@ from bot import (
     REC_DUE, REC_SETTLE_ACCT, REC_SETTLE_CONFIRM, REC_SETTLE_LIST,
     SHARE_CAP, SHARE_CONFIRM, SHARE_NAME, SHARE_OWN, SHARE_ROLE,
     _pin_then,     cmd_cancel, now_mmt,
-    show_main_menu, today_str, 
+    show_main_menu, today_str,
+    _replit_get_async, _replit_post_async,
 )
 
 try:

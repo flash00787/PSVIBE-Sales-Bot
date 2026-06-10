@@ -101,9 +101,9 @@ async def _cmd_cash_movement(update, context, mtype):
             allowed = [str(x).strip() for x in ALLOWED_USER_IDS]
         elif ALLOWED_USER_IDS:
             allowed = [str(ALLOWED_USER_IDS).strip()]
-    except:
+    except (ImportError, AttributeError):
         pass
-    
+
     if user_id not in allowed:
         await update.message.reply_text("\u274c Boss only command.")
         return
@@ -118,7 +118,7 @@ async def _cmd_cash_movement(update, context, mtype):
 
     try:
         amount = int(context.args[0].replace(",", ""))
-    except:
+    except (ValueError, TypeError):
         await update.message.reply_text("\u274c Invalid amount")
         return
 

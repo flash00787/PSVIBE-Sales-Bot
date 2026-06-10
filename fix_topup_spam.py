@@ -2,6 +2,9 @@
 
 import sys
 import subprocess
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Read the original file
 with open('/root/psvibe-sales-bot/bot/handlers/members.py', 'r') as f:
@@ -190,10 +193,10 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Invalid input - show current state
     return await prompt_tu_kpay(update, context)'''
 
-print("Replacing step_tu_kpay function...")
+logger.info("Replacing step_tu_kpay function...")
 
 if old_step_tu_kpay not in content:
-    print("ERROR: Could not find exact step_tu_kpay function to replace")
+    logger.info("ERROR: Could not find exact step_tu_kpay function to replace")
     sys.exit(1)
 
 content = content.replace(old_step_tu_kpay, new_step_tu_kpay)
@@ -315,10 +318,10 @@ new_prompt_tu_kpay = '''async def prompt_tu_kpay(update: Update, context: Contex
     )
     return TU_KPAY'''
 
-print("Replacing prompt_tu_kpay function...")
+logger.info("Replacing prompt_tu_kpay function...")
 
 if old_prompt_tu_kpay not in content:
-    print("ERROR: Could not find exact prompt_tu_kpay function to replace")
+    logger.info("ERROR: Could not find exact prompt_tu_kpay function to replace")
     sys.exit(1)
 
 content = content.replace(old_prompt_tu_kpay, new_prompt_tu_kpay)
@@ -327,21 +330,21 @@ content = content.replace(old_prompt_tu_kpay, new_prompt_tu_kpay)
 with open('/root/psvibe-sales-bot/bot/handlers/members.py', 'w') as f:
     f.write(content)
 
-print("✅ Successfully updated Top Up payment flow")
-print("📋 Changes made:")
-print("   1. Removed duplicate message sending in step_tu_kpay")
-print("   2. Added amount input state handling to prevent spam")
-print("   3. Consolidated all message display through prompt_tu_kpay")
+logger.info("✅ Successfully updated Top Up payment flow")
+logger.info("📋 Changes made:")
+logger.info("   1. Removed duplicate message sending in step_tu_kpay")
+logger.info("   2. Added amount input state handling to prevent spam")
+logger.info("   3. Consolidated all message display through prompt_tu_kpay")
 
 # Test compilation
 try:
-    result = subprocess.run(['python3', '-m', 'py_compile', '/root/psvibe-sales-bot/bot/handlers/members.py'], 
+    result = subprocess.run(['python3', '-m', 'py_compile', '/root/psvibe-sales-bot/bot/handlers/members.py'],
                           capture_output=True, text=True, cwd='/root/psvibe-sales-bot')
     if result.returncode == 0:
-        print("✅ Python compilation successful")
+        logger.info("✅ Python compilation successful")
     else:
-        print(f"❌ Compilation error: {result.stderr}")
+        logger.info(f"❌ Compilation error: {result.stderr}")
         sys.exit(1)
 except Exception as e:
-    print(f"❌ Compilation test failed: {e}")
+    logger.info(f"❌ Compilation test failed: {e}")
     sys.exit(1)

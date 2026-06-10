@@ -6,8 +6,8 @@ from telegram.constants import ParseMode
 import logging, re, json
 
 from bot import (
-    CUSTOMER_BOT_TOKEN,     
-    _replit_get_async, _replit_patch_async,
+    CUSTOMER_BOT_TOKEN,
+    _replit_get_async, _replit_patch_async, _replit_post_async,
     check_disc_session_conflict,  get_consoles_with_game, get_consoles_with_game_async,
     now_mmt, show_admin_menu,
 )
@@ -144,26 +144,26 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
     except Exception as e:
         logger.error("cb_checkin_booking: %s", e, exc_info=True)
         return
-    
+
     staff_name = query.from_user.full_name or "Staff"
-    
+
     # Call API to check in
     try:
         result = await _replit_post_async("bookings/checkin", {"id": bk_id})
     except Exception as e:
         await query.edit_message_text(f"\u274c *Check-in failed:* {e}", parse_mode="Markdown")
         return
-    
+
     if result and isinstance(result, dict) and result.get("success"):
         tg_chat = result.get("data", {}).get("telegram_chat_id", "")
-        
+
         await query.edit_message_text(
             f"\u2705 *Customer Checked In!*\n"
             f"Booking #{bk_id}\n"
             f"Done by: {staff_name}",
             parse_mode="Markdown",
         )
-        
+
         # Notify customer
         if tg_chat:
             asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))
@@ -331,4 +331,3 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             duration_mins=int(bk_info.get("durationMins") or 60),
             tg_chat=tg_chat,
         ))
-

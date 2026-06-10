@@ -283,7 +283,7 @@ def import_from_sheets(db_path: str) -> bool:
 
             def _int_safe(s):
                 try: return int(str(s).strip())
-                except: return 0
+                except (ValueError, TypeError): return 0
 
             gl_data.append((
                 title,
@@ -312,7 +312,7 @@ def import_from_sheets(db_path: str) -> bool:
             sal = staff_salaries[idx].strip() if idx < len(staff_salaries) else "0"
             try:
                 sal_num = int(sal.replace(",", "")) if sal.replace(",", "").isdigit() else 0
-            except:
+            except (ValueError, TypeError):
                 sal_num = 0
             staff_data.append((name.strip(), sal_num))
         n = db.import_staff(staff_data)
@@ -332,7 +332,7 @@ def import_from_sheets(db_path: str) -> bool:
             def _num(val):
                 try:
                     return float(str(val).replace(",","").replace("Ks","").strip())
-                except: return 0.0
+                except (ValueError, TypeError): return 0.0
             topup_data.append((
                 row[0].strip() if len(row) > 0 else "",   # date (col A)
                 row[1].strip() if len(row) > 1 else "",   # member_id (col B)
@@ -483,4 +483,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
