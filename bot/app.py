@@ -222,8 +222,6 @@ def main():
             ATTEND_LATE:   [MessageHandler(filters.TEXT & ~filters.COMMAND, step_attend_late)],
             ATTEND_DEDUCT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_attend_deduct)],
 
-            # ── Admin Panel ──
-            ADMIN_PIN:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_admin_pin)],
 
             # ── Waitlist Management ──
             WL_MENU:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_wl_menu)],
