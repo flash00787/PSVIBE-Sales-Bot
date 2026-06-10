@@ -208,5 +208,77 @@ def _parse_end_iso(end_dt_iso: str, end_t: str, now) -> Optional[datetime]:
     return None
 
 
+# ── Periodic background cleanup ────────────────────────────────────────────
+
+async def cleanup_stale_reminders_async(app) -> None:
+    """Background task: every 15 minutes, scan the reminder store and purge
+    any entries whose sessions are no longer active.
+    Also cancels orphaned in-memory `_REMIND_TASKS` that no longer have
+    a corresponding active session.
+
+    Runs until the bot shuts down.
+    """
+    from bot import STAFF_NOTIFY_CHAT, now_mmt
+    from bot.handlers.booking_flow import (
+        _REMIND_TASKS, _remind_key, _NO_TIMER_CONSOLES, _is_session_active,
+    )
+
+    while True:
+        try:
+            await asyncio.sleep(15 * 60)  # every 15 min
+
+            store = _read_store()
+            if not store:
+                continue  # nothing to clean
+
+            target_chat = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else 0
+            now = now_mmt()
+            purged = 0
+
+            for key, entry in list(store.items()):
+                cid = entry.get("cid", "")
+                chat_id = entry.get("chat_id", target_chat)
+
+                # ── Skip conditions (fast-path) ─────
+                if not cid or cid in _NO_TIMER_CONSOLES:
+                    store.pop(key, None)
+                    purged += 1
+                    # Cancel in-memory task if any
+                    task = _REMIND_TASKS.pop(_remind_key(cid, chat_id), None)
+                    if task and not task.done():
+                        task.cancel()
+                    continue
+
+                # ── Check if session is still active ──
+                try:
+                    still_active = await _is_session_active(cid)
+                except Exception as e:
+                    logger.warning(
+                        "cleanup_stale: active check %s failed: %s", cid, e
+                    )
+                    continue  # can't verify — keep
+
+                if not still_active:
+                    store.pop(key, None)
+                    purged += 1
+                    # Cancel in-memory task
+                    task = _REMIND_TASKS.pop(_remind_key(cid, chat_id), None)
+                    if task and not task.done():
+                        task.cancel()
+                    logger.info(
+                        "cleanup_stale: purged %s (session inactive)", key
+                    )
+
+            if purged > 0:
+                _write_store(store)
+                logger.info(
+                    "cleanup_stale: %d stale entries purged", purged
+                )
+        except asyncio.CancelledError:
+            break
+        except Exception as e:
+            logger.error("cleanup_stale: %s", e, exc_info=True)
+
+
 # Import asyncio at module level for the restore function
 import asyncio

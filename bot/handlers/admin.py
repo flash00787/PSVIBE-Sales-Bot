@@ -2,7 +2,7 @@ from bot import (
     log_duration,
     ADMIN_MENU, BTN_ADMIN_ATTEND, BTN_ADMIN_BOOK, BTN_ADMIN_CF,
     BTN_ADMIN_LIB, BTN_ADMIN_PNL, BTN_ADMIN_SAL_ADV, BTN_BACK_MAIN,
-    BTN_CONSOLES, BTN_CON_MANAGE, BTN_FINANCE, BTN_PAYROLL,
+    BTN_CONSOLES, BTN_CON_MANAGE, BTN_PAYROLL,
     BTN_PROMO_REPORTS, BTN_SBK_CONFIRMED, BTN_STAFF_BOOK, BTN_STAFF_KPI,
     BTN_STOCK_UPDATE, SAL_ADV_STAFF, STOCK_ACCESS_PIN, _pin_then,
       build_member_rate_dict, cmd_payroll, cmd_setattend,
@@ -53,9 +53,6 @@ async def step_admin_pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await cmd_staff_kpi(update, context)
     if after == "setattend":
         return await cmd_setattend(update, context)
-    if after == "finance":
-        from bot.handlers.finance import show_finance_menu
-        return await show_finance_menu(update, context)
     return await show_admin_menu(update, context)
 
 async def show_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -65,7 +62,7 @@ async def show_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [BTN_ADMIN_SAL_ADV,  BTN_PAYROLL],
         [BTN_STAFF_KPI,      BTN_ADMIN_LIB],
         [BTN_ADMIN_PNL,      BTN_ADMIN_CF],
-        [BTN_PROMO_REPORTS,  BTN_FINANCE],
+        [BTN_PROMO_REPORTS],
         [BTN_CON_MANAGE,     BTN_BACK_MAIN],
     ]
     await update.message.reply_text(
@@ -112,10 +109,6 @@ async def step_admin_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_con_mgmt_menu(update, context)
     if choice == BTN_PROMO_REPORTS:
         return await cmd_promo_reports(update, context)
-    if choice == BTN_FINANCE:
-        from bot.handlers.finance import show_finance_menu
-        return await show_finance_menu(update, context)
-
     return await show_admin_menu(update, context)
 
 def fetch_salary_advances(month_str: str) -> dict[str, dict]:

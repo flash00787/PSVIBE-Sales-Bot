@@ -540,11 +540,14 @@ def main():
         """Log and suppress unhandled task exceptions to prevent bot crash."""
         msg = context.get("exception", context.get("message", "Unknown task error"))
         logging.error("Unhandled task exception: %s", msg, exc_info=context.get("exception"))
-
+    
     loop = asyncio.get_event_loop()
     loop.set_exception_handler(_handle_task_exception)
     loop.create_task(_bg_cache_refresh())
     loop.create_task(input_logger_batcher())
+    # Start periodic stale-reminder cleanup (every 15 min)
+    from bot.session_reminder_store import cleanup_stale_reminders_async
+    loop.create_task(cleanup_stale_reminders_async(app))
 
     logging.info("PS Vibe Bot is running...")
     app.run_polling(
@@ -552,3 +555,5 @@ def main():
         timeout=30,
         drop_pending_updates=True,
     )
+
+

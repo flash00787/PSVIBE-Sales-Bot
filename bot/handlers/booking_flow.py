@@ -1,7 +1,7 @@
 from bot import (
     BTN_BACK_MAIN, CONSOLE_MENU, CUSTOMER_BOT_TOKEN, MAIN_MENU, MMT,
     N8N_BOOKING_WEBHOOK, N8N_SESSION_WEBHOOK, STAFF_NOTIFY_CHAT,
-    _api_base, _replit_get, _replit_get_async, _replit_patch, _replit_patch_async, get_booking_sh, now_mmt,
+    _api_base, _psvibe_get, _psvibe_get_async, _psvibe_patch, _psvibe_patch_async, get_booking_sh, now_mmt,
     today_str,
 )
 
@@ -67,8 +67,8 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
 async def _is_session_active(cid: str) -> bool:
     """Quick sync check: is this console Active today? (via MySQL API)."""
     try:
-        # Use fetch_console_status endpoint - _replit_get_async returns list of dicts
-        bk_data = await _replit_get_async("fetch_console_status")
+        # Use fetch_console_status endpoint - _psvibe_get_async returns list of dicts
+        bk_data = await _psvibe_get_async("fetch_console_status")
         if isinstance(bk_data, list):
             for row in bk_data:
                 if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
@@ -326,7 +326,7 @@ async def _post_n8n_booking_reminder(
 async def cmd_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show list of upcoming confirmed bookings — staff can cancel any of them."""
     await update.message.reply_text("⏳ Booking list ရယူနေသည်...")
-    data = await _replit_get_async("bookings?status=confirmed")
+    data = await _psvibe_get_async("bookings?status=confirmed")
     bks  = data if isinstance(data, list) else []
     if not bks:
         await update.message.reply_text(
@@ -370,7 +370,7 @@ async def cb_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     # Fetch current booking info for confirmation display
-    bk_info = await _replit_get_async(f"bookings/{bk_id}")
+    bk_info = await _psvibe_get_async(f"bookings/{bk_id}")
     if not bk_info or not isinstance(bk_info, dict):
         await query.message.reply_text("❌ Booking ဒ\ါ\တ\ာ \မ\ရ\ိ\ပ\ါ\း (Server \န\ှ\င\့\် \ဆ\က\်\သ\ွ\ယ\်\မ\ှ\ု \မ\ရ\ှ\ိ)")
         return CONSOLE_MENU
@@ -470,7 +470,7 @@ async def cb_cancel_with_reason(update: Update, context: ContextTypes.DEFAULT_TY
 async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: str):
     """Execute the cancel PATCH and notify customer. Works for both callback query and message."""
     staff_note = f"Cancelled by {staff_name}: {reason}"
-    result = await _replit_patch_async(
+    result = await _psvibe_patch_async(
         f"bookings/{bk_id}/status",
         {"status": "cancelled", "staffNote": staff_note},
     )
@@ -526,7 +526,7 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
 
     # Notify customer if they have Telegram
     # Fetch full booking data via GET (PATCH result has no customer fields)
-    _bk_full = await _replit_get_async(f"bookings/{bk_id}")
+    _bk_full = await _psvibe_get_async(f"bookings/{bk_id}")
     if isinstance(_bk_full, dict) and "booking" in _bk_full:
         _bk_full = _bk_full["booking"]
     tg_chat = _bk_full.get("telegramChatId") or ""
@@ -748,7 +748,7 @@ async def cb_booking_arrive(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if action == "bkarr":
         # Mark as arrived
         patch_body = {"status": "arrived", "staffNote": f"Arrived — confirmed by {staff_name}"}
-        result = await _replit_patch_async(f"bookings/{bk_id}/status", patch_body)
+        result = await _psvibe_patch_async(f"bookings/{bk_id}/status", patch_body)
         if result:
             await query.edit_message_text(
                 f"✅ <b>Customer ရောက်ပြီ!</b>\n"
@@ -764,11 +764,11 @@ async def cb_booking_arrive(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif action == "bkns":
         # Mark as no-show
         patch_body = {"status": "no_show", "staffNote": f"No-Show — marked by {staff_name}"}
-        result = await _replit_patch_async(f"bookings/{bk_id}/status", patch_body)
+        result = await _psvibe_patch_async(f"bookings/{bk_id}/status", patch_body)
         if result:
             # Clean up Scheduled Console_Booking row for no-show
             try:
-                _ns_bk_data = await _replit_get_async(f"bookings/{bk_id}")
+                _ns_bk_data = await _psvibe_get_async(f"bookings/{bk_id}")
                 _ns_console = ""
                 if isinstance(_ns_bk_data, dict):
                     _ns_console = (_ns_bk_data.get("consoleId") or "").strip()
