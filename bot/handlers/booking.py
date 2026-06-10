@@ -480,11 +480,11 @@ async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name
             logger.warning("_sbk_advance_reminder: bad time_format=%s", time_str)
             return
         hr, mi = int(parts[0]), int(parts[1])
-        
+
         booking_dt = datetime(yr, mo, da, hr, mi, 0, tzinfo=timezone(timedelta(hours=6, minutes=30)))
         remind_dt = booking_dt - timedelta(minutes=10)
         now_utc = datetime.now(timezone.utc)
-        
+
         # If remind time already passed but booking is still in the future, skip
         if remind_dt <= now_utc:
             if booking_dt > now_utc:
@@ -492,10 +492,10 @@ async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name
                 pass
             else:
                 return  # Booking already started
-        
+
         seconds_until_remind = max(1, int((remind_dt - now_utc).total_seconds()))
         await asyncio.sleep(seconds_until_remind)
-        
+
         notify_text = (
             f"\u23f0 <b>Booking #{booking_id} Reminder!</b>\n"
             f"\u23f1\ufe0f <b>10 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102e\u1019\u1000\u103a\n"
@@ -1150,13 +1150,32 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
     if _linked_cust_bk:
         _notes = f"{game} [BK#{_linked_cust_bk}]" if game else f"[BK#{_linked_cust_bk}]"
     try:
-        bk_id = await create_booking_async(cid, member_id, staff, notes=_notes, planned_end=_planned_end)
+        # Use unified start-session endpoint (auto-checkin confirmed booking + guard)
+        payload = {
+            "console_id": cid,
+            "member_id": member_id,
+            "game_name": game,
+            "duration_mins": planned_mins if planned_mins > 0 else 60,
+        }
+        result = await _replit_post_async("consoles/start-session", payload)
+        if not result or not result.get("success"):
+            err_msg = (result or {}).get("error") or "API returned empty response"
+            await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {err_msg}")
+            logger.error("_do_create_booking: start-session failed: %s", result)
+            return await show_console_menu(update, context)
+        bk_id = result.get("data", {}).get("booking_id")
+        if not bk_id:
+            await update.message.reply_text("❌ booking_id not returned from API")
+            return await show_console_menu(update, context)
+        linked = result.get("data", {}).get("linked_booking", False)
+        logger.info("start-session success: booking_id=%s linked=%s", bk_id, linked)
     except Exception as e:
-        await update.message.reply_text(f"❌ Session save မအောင်မြင်ပါ: {e}")
+        await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {e}")
+        logger.exception("_do_create_booking: %s", e)
         return await show_console_menu(update, context)
     # Store linked booking ID for session-end tracking
-    if _linked_cust_bk:
-        context.user_data["_bk_linked_id"] = _linked_cust_bk
+    if _linked_cust_bk or linked:
+        context.user_data["_bk_linked_id"] = _linked_cust_bk or bk_id
 
     # Track current session game in Console_Games (type = "Session")
     if game:
@@ -1228,4 +1247,3 @@ async def step_book_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # BTN_NO_RESELECT / BTN_CANCEL / anything else → back to member selection
     context.user_data["bk_console"] = cid
     return BOOK_MEMBER
-

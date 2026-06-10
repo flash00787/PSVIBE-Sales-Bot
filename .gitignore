@@ -25,3 +25,6 @@ V2_STATE.md
 # VPS state
 bot_status.log
 logs/
+bot_status.log.*
+customer_bot/ai_memory.json
+bot/receipts/*.json

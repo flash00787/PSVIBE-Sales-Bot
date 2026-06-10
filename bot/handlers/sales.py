@@ -11,7 +11,7 @@ from bot import (
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
     fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
-    fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb, 
+    fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb,
     next_voucher,  now_mmt,  save_receipt_json,
     show_console_menu, show_main_menu, step_hdr,  prompt_book_console, prompt_discount, today_str,
     fetch_wallet_mins_async,
@@ -1167,6 +1167,9 @@ async def _show_payment_review(update: Update, context: ContextTypes.DEFAULT_TYP
     return SALE_CONFIRM
 
 
+def _round_50(amt): return round(amt / 50) * 50
+
+
 def _build_payment_receipt_lines(kpay: int, cash: int, payments: dict) -> str:
     """Build dynamic payment display lines for receipt (supports all methods)."""
     if not payments:
@@ -1178,7 +1181,7 @@ def _build_payment_receipt_lines(kpay: int, cash: int, payments: dict) -> str:
     for method, amt in payments.items():
         if int(amt) > 0:
             ico = icon_digital if method.lower() in ("kpay", "wavepay", "wave", "aya pay") else icon_cash
-            lines.append(f"  {ico} {method}: *{int(amt):,} Ks*")
+            lines.append(f"  {ico} {method}: *{_round_50(int(amt)):,} Ks*")
     if not lines:
         lines.append(f"  {icon_cash} Cash: *{cash:,} Ks*")
     return "\n".join(lines)
@@ -1324,6 +1327,16 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     coupon_code = d.get("_cashback_coupon", "")
     coupon_mins = d.get("_cashback_coupon_mins", 0)
     context.user_data.clear()
+
+    # Round all display amounts to nearest 50 (voucher format --50/--00)
+    def _r50(x): return round(x / 50) * 50 if x else 0
+    game_amt = _r50(d.get("game_amt", game_amt))
+    food_total = _r50(d.get("food_total", food_total))
+    d_gross = _r50(d.get("gross_total", d_gross))
+    discount = _r50(d.get("discount", discount))
+    net_total = _r50(d.get("net_total", net_total))
+    kpay = _r50(d.get("kpay", kpay))
+    cash = _r50(d.get("cash", cash))
 
     # ── Build discount/bonus lines for receipt ───────────────────────────────
     # Sanitize strings for Markdown (prevent parse errors from _ * ` chars)
@@ -1808,5 +1821,3 @@ async def step_session_shortfall(update, context):
 
     # Unrecognised input — re-show screen
     return await prompt_session_shortfall(update, context)
-
-
