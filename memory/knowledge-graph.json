@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-09T20:08:29Z",
+  "updated": "2026-06-10T02:56:53Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -558,18 +558,6 @@
     },
     {
       "source": "google-sheets",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "google-sheets",
-      "target": "oauth2",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "google-sheets",
       "target": "python",
       "relation": "depends_on",
       "weight": 5
@@ -749,15 +737,21 @@
       "weight": 5
     },
     {
-      "source": "nova-bot",
-      "target": "openclaw",
-      "relation": "uses",
+      "source": "openclaw",
+      "target": "consolidator",
+      "relation": "related_to",
       "weight": 5
     },
     {
       "source": "openclaw",
-      "target": "consolidator",
-      "relation": "related_to",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
+      "target": "vps",
+      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -817,6 +811,12 @@
     {
       "source": "ps-vibe",
       "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "openclaw",
       "relation": "uses",
       "weight": 5
     },
@@ -4740,6 +4740,18 @@
     },
     {
       "source": "google-sheets",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "google-sheets",
       "target": "openclaw",
       "relation": "depends_on",
       "weight": 3
@@ -6084,6 +6096,12 @@
     },
     {
       "source": "nova-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "nova-bot",
       "target": "openrouter",
       "relation": "uses",
       "weight": 3
@@ -6438,12 +6456,6 @@
     },
     {
       "source": "openclaw",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "openclaw",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -6451,12 +6463,6 @@
     {
       "source": "openclaw",
       "target": "telegram",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "openclaw",
-      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -7027,12 +7033,6 @@
     {
       "source": "ps-vibe",
       "target": "oauth2",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "ps-vibe",
-      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },

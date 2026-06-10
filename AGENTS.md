@@ -91,7 +91,7 @@ See `memory/SPAWN_PROTOCOL.md` for full spawn protocol.
 
 ## 📝 Post-Task Documentation
 
-See POST_TASK_SOP.md
+See `memory/sop/POST_TASK_SOP.md`
 
 ## Red Lines
 
@@ -175,4 +175,7 @@ Heartbeats are configured in `HEARTBEAT.md`. Use them to batch periodic checks (
 
 **When to reach out:** important email, upcoming event (&lt;2h), something interesting, or &gt;8h since last contact.
 
-**When to stay quiet:** late night (23:00-08:00), human is busy, nothing new, or you just checked &lt;30 min ago.
+**When to stay quiet (heartbeats ONLY — NOT message responses):** late night (23:00-08:00), human is busy, nothing new, or you just checked &lt;30 min ago.
+
+> ⚠️ **CRITICAL:** This "stay quiet" rule applies ONLY to Kora-initiated proactive outreach (heartbeats).
+> **Boss messages ALWAYS get an immediate response — regardless of time.**

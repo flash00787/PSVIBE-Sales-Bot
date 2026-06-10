@@ -710,7 +710,6 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 6. **3 simultaneous records = triple-count:** topup creates topup_log + cash_movements inject + sales_daily — must filter 2/3
 7. **No Timer sessions don't clean up bookings:** end_session needs booking_id tracking
 8. **JWT expires on restart:** Users must re-login
-9. **Python `.pyc` cache stale after edit:** Always `find -name '__pycache__' -exec rm -rf {} +` then restart
 
 ### 🏛️ Cash Flow — Finalized (17:30-19:30 UTC)
 - Opening = **300M** (all KBZ transfer_in, not per-date-filtered)
@@ -736,3 +735,9 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 
 ### Services (19:30 UTC final)
 psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅ | shareholders ✅ | BS balanced ✅ | CF matches Web ✅ | Rent amortized ✅
+
+### 🧠 New Critical Lessons (June 10 — Kora Self-Upgrade)
+13. **"Stay quiet" rules NEVER apply to Boss messages** — only heartbeat/outreach. Document explicitly: "Boss messages = ALWAYS respond"
+14. **Session file lock cron jobs < 60s cause main session conflicts** — lock-monitor every 30s created `EmbeddedAttemptSessionTakeoverError`. Minimum safe interval: 5 min
+15. **Rule 11 (GOLDEN_RULES.md)**: Always Respond to Boss — NO Quiet Hours for Incoming Messages
+16. **Session file bloat at 446MB/500MB** — 1,305 session files. Cleanup every 10 min may not keep up with active usage

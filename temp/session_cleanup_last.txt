@@ -1,7 +1,4 @@
-=== Session Cleanup 20:57 ===
-  >1d deleted: 1
-  Sessions with >10 files:
-  Remaining: 1307 files, 450M
-  Old large sessions:
-    (none)
-=== RESULT: OK ===
+=== Bulk Session Cleanup 04:28 ===
+Before: 336M
+  >6h trajectory: 2 files, ~0MB deleted
+After: 336M

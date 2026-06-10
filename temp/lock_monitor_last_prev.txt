@@ -1,25 +1,31 @@
-[LOCK_MONITOR] Run at 2026-06-06 07:26:39 UTC
+[LOCK_MONITOR] Run at 2026-06-10 00:17:14 UTC
 
 [LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
-[LOCK_MONITOR] WARNING: 1 session file(s) too large:
-  8d90093a-f73d-4e4d-8c08-b09b3fad623e-topic-115774.trajectory.jsonl: 5030KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 3 trajectory file(s) oversized:
-  93ea2739-f1f0-46c5-8983-96ffa4d6612e-topic-115774.trajectory.jsonl: 7181KB (> 3000KB threshold)
-  8d90093a-f73d-4e4d-8c08-b09b3fad623e-topic-115774.trajectory.jsonl: 5030KB (> 3000KB threshold)
-  991b9cc3-a150-4bec-8701-469e6088038d-topic-115774.trajectory.jsonl: 8812KB (> 3000KB threshold)
+[LOCK_MONITOR] WARNING: 6 session file(s) too large:
+  94986c46-994d-4aa4-97d1-ea389a7dccfa-topic-121564.trajectory.jsonl: 7102KB (> 500KB threshold)
+  deb8082b-af50-4879-9eed-197991e1925a-topic-121564.trajectory.jsonl: 869KB (> 500KB threshold)
+  44fdf989-99fc-4369-aeee-029e3e8b8157-topic-121564.trajectory.jsonl: 3601KB (> 500KB threshold)
+  53c64d97-5ac1-4f6d-8ab3-e665f372db35-topic-121564.trajectory.jsonl: 911KB (> 500KB threshold)
+  3ff6e0bb-9264-47b2-8bc8-5d19838138d7-topic-121564.trajectory.jsonl: 1006KB (> 500KB threshold)
+  5f0ccad3-d656-4201-9b6d-5c14e7167f57-topic-121564.trajectory.jsonl: 7725KB (> 500KB threshold)
+[LOCK_MONITOR] WARNING: 4 trajectory file(s) oversized:
+  44fdf989-99fc-4369-aeee-029e3e8b8157-topic-121564.trajectory.jsonl: 3601KB (> 3000KB threshold)
+  94986c46-994d-4aa4-97d1-ea389a7dccfa-topic-121564.trajectory.jsonl: 7102KB (> 3000KB threshold)
+  d6b0e61f-c78c-430e-8213-fa48cb8dfe13-topic-115774.trajectory.jsonl: 4943KB (> 3000KB threshold)
+  5f0ccad3-d656-4201-9b6d-5c14e7167f57-topic-121564.trajectory.jsonl: 7725KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          640 files,      18497 KB
-  .trajectory.jsonl files:    645 files,      98028 KB
-  .checkpoint.*.jsonl files:   18 files,      76179 KB
+  Main .jsonl files:          641 files,      38916 KB
+  .trajectory.jsonl files:    644 files,     106695 KB
+  .checkpoint.*.jsonl files:   20 files,     201671 KB
   .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                   192703 KB
+  TOTAL:                                   347282 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 128 KB freed, 7 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 128 KB freed, 14 warnings
 ==================================================
-=== RESULT: OK (warnings: 7) ===
+=== RESULT: OK (warnings: 14) ===

@@ -1,0 +1,166 @@
+=== SALE BOT SESSION START INVESTIGATION ===
+Date: 2026-06-10T03:56:28 UTC
+Target: root@5.223.81.16
+
+================================================================================
+🔴 ROOT CAUSE: _replit_post_async NOT IMPORTED in booking.py
+================================================================================
+
+THE PROBLEM:
+  Commit a4af842 changed _do_create_booking() to call _replit_post_async()
+  but DID NOT add _replit_post_async to the import list at the top of
+  bot/handlers/booking.py.
+
+  Result: NameError at runtime when staff starts a console session.
+
+================================================================================
+📋 TIMELINE OF EVENTS
+================================================================================
+
+  1. Jun 09 15:53:57 UTC — Bot service started (old code, working fine)
+  2. Jun 10 02:46:56 UTC — Commit a4af842: booking.py modified
+     Changed _do_create_booking() from create_booking_async() to
+     _replit_post_async("consoles/start-session", ...) 
+     BUT forgot to add _replit_post_async to imports!
+  3. Jun 10 03:07:00 UTC — Commit 199d4e2 (HEAD): test infra + STOCK_PIN
+     (only changed bot/__init__.py and tests/conftest.py)
+  4. Jun 10 03:53:33 UTC — Staff tries to start a console session
+     Bot crashes: NameError: name '_replit_post_async' is not defined
+
+================================================================================
+📄 CODE EVIDENCE
+================================================================================
+
+COMMITTED HEAD version of bot/handlers/booking.py imports:
+(from: git show HEAD:bot/handlers/booking.py | head -20)
+
+  from bot import (
+      BOOK_CONSOLE, BOOK_DUP_WARN, ...,
+      _replit_get_async, _replit_patch_async,    ← ONLY THESE TWO
+      add_console_game, add_console_game_async,
+      create_booking, create_booking_async,       ← OLD function still imported
+      ...
+  )
+  ❌ _replit_post_async is MISSING from imports!
+
+The code that crashes (from: git diff a4af842~1..a4af842):
+  
+  - bk_id = await create_booking_async(cid, member_id, staff, ...)  ← OLD
+  + result = await _replit_post_async("consoles/start-session", payload)  ← NEW
+
+THE FUNCTION EXISTS (defined at bot/__init__.py:2786):
+  async def _replit_post_async(path: str, payload: dict = None, ...)
+
+But booking.py never imports it!
+
+================================================================================
+🔬 CONFIRMATION FROM SERVICE LOGS
+================================================================================
+
+  Jun 10 03:53:33 [ERROR] _do_create_booking: name '_replit_post_async' is not defined
+    File "/root/psvibe-sales-bot/bot/handlers/booking.py", line 1160
+      result = await _replit_post_async("consoles/start-session", payload)
+    NameError: name '_replit_post_async' is not defined.
+    Did you mean: '_replit_get_async'?
+
+================================================================================
+📊 WHAT THE PHASE 3 UPGRADES ACTUALLY CHANGED
+================================================================================
+
+A) Head commit 199d4e2 ("test infrastructure + STOCK_PIN env fallback"):
+   Files: bot/__init__.py (2 lines), tests/conftest.py (57 lines)
+   - STOCK_ACCESS_PIN = os.environ["STOCK_PIN"] → os.environ.get("STOCK_PIN", "")
+   - Test mock additions
+   Impact: LOW — unrelated to session start
+
+B) Previous commit a4af842 ("booking/sales handler updates"):
+   Files: bot/handlers/booking.py (36 lines changed), sales.py (19 lines)
+   - Replaced create_booking_async() with _replit_post_async("consoles/start-session")
+   - ⚠️ This is THE BREAKING CHANGE — missing _replit_post_async import
+   Impact: CRITICAL — breaks all console session starts
+
+C) Uncommitted quality_gate changes (NOT yet committed):
+   Files: 7 files, ALL cosmetic lint fixes
+   - bare except: → except (SpecificException):
+   - print() → logging.error()/logger.info()
+   Impact: NONE — these are safe, just don't break anything
+
+D) API Server (commit 8182389):
+   Files: app.py, dashboard_routes.py, patch_routes.py, receipt_template.html
+   - Added /api/consoles/start-session endpoint ← this is the API the bot needs to call
+   - Dashboard route rewrite
+   Impact: SUPPORTING — the API exists but bot can't call it
+
+================================================================================
+📊 SERVICE STATUS
+================================================================================
+
+  psvibe-sale-bot: ACTIVE (systemd)
+  Last started:    Tue 2026-06-09 15:53:57 UTC  (12+ hours ago, OLD code)
+  PID:             854259
+  Python cache:    booking.cpython-312.pyc rebuilt at Jun 10 03:07
+  
+  Note: Python likely auto-reloaded the module when it detected the .py file
+  change, picking up the new code (with the _replit_post_async call) but the
+  import was never added, causing the NameError.
+
+================================================================================
+✅ FIX REQUIRED
+================================================================================
+
+In /root/psvibe-sales-bot/bot/handlers/booking.py:
+
+  1. Add '_replit_post_async' to the import list:
+     
+     Current:
+       _replit_get_async, _replit_patch_async,
+     
+     Should be:
+       _replit_get_async, _replit_patch_async, _replit_post_async,
+
+  2. Restart the bot:
+     systemctl restart psvibe-sale-bot
+
+  (Other files like console.py and waitlist.py already import 
+   _replit_post_async correctly — only booking.py is missing it.)
+
+================================================================================
+
+===============================================================================
+RAW GIT DATA
+===============================================================================
+
+=== COMMITS (last 15) ===
+199d4e2 fix: test infrastructure + STOCK_PIN env fallback 2026-06-10
+a4af842 fix: booking/sales handler updates, remove stale receipt files, update gitignore
+1c529df fix: topup creates sales_daily record; today report uses account-balances
+65a8549 fix: booking cancel notification - use GET bk_info not PATCH result
+bd8dfbc fix: approve flow - consoles_with_game returns dicts not strings
+007b110 fix: No Timer session reminder tracking + extend timer fix
+4e3c0a4 fix: update all booking/search refs to search-bookings
+dc5e44a fix: Custom Time validation accepts any HH:MM (0-59 min)
+5fec881 feat: 10-min booking reminder for confirmed bookings
+a6615ec fix: booking approve notification - use bk_info (GET)
+46f1979 fix: booking_flow _do_extend delay calc + input_logger None crash
+44d99be fix: missing _replit_get_async/_replit_patch_async imports
+ee48cf6 fix: booking detail unwrap
+ab68353 fix: replace sheets/consoles with fetch_console_status
+a28278c fix: _is_session_active handles list response
+
+=== API SERVER COMMITS ===
+8182389 fix: dashboard routes + receipt updates, add server.log.* to gitignore
+ebe0974 fix: P&L remove topup_rev double-count
+d667574 fix: api_topup_log + register_member create sales_daily records
+fa46cab fix: search-bookings add telegram_chat_id fields
+3f7be05 fix: route conflict rename /api/bookings/search to /api/search-bookings
+
+=== UNCOMMITTED (quality_gate auto-fix) ===
+ M bot/__init__.py
+ M bot/handlers/main_menu.py
+ M bot/handlers/notify.py
+ M customer_bot/booking_handlers.py
+ M customer_bot/fix_unicode.py
+ M fix_topup_spam.py
+ M sqlite/setup.py
+
+=== RESULT: OK ===

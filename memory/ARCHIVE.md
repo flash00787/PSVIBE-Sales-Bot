@@ -14,3 +14,8 @@
   (dedup) - ✅ Services: psvibe-api ✅, psvibe_customer_bot ✅, psvibe-sale-bot ✅
   (dedup) - psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅
   (dedup) - **Total Monthly Dep:** 4,029,826 Ks | **Total Acc. Dep:** 3,262,283 Ks
+
+# Archived Memory Entries
+*Archived: 2026-06-10 04:37 UTC*
+
+(dedup) 9. **Python `.pyc` cache stale after edit:** Always `find -name '__pycache__' -exec rm -rf {} +` then restart

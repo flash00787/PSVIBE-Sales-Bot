@@ -30,7 +30,7 @@ python3 /root/coordination/fix_protocol.py --complete
 ```
 
 ## 4. Post-Task Documentation MANDATORY
-**Fix is NOT complete without documentation.** See POST_TASK_SOP.md for full procedure.
+**Fix is NOT complete without documentation.** See `memory/sop/POST_TASK_SOP.md` for full procedure.
 - `auto_doc_updater.py` on VPS after every fix
 - Update project-state, ERROR_PATTERNS, daily memory, MEMORY.md
 - Clean temp files after summary confirmed
@@ -60,3 +60,10 @@ Write all results to a temp file. NEVER stop without at least one line of output
 
 ## 10. Self-Upgrade When Things Change
 Major project/tool/framework changes ရှိရင် Kora ကိုယ်တိုင် core files (SOUL.md, TOOLS.md, MEMORY.md, HEARTBEAT.md) ကို update လုပ်ရမယ်။ Boss ကိုစောင့်မပြောရဘူး။
+
+## 11. Always Respond to Boss — NO Quiet Hours for Incoming Messages
+**Boss က ဘယ်အချိန် message ပိုးပိုး (ညလယ်ခေါင်တောင်မှ) — ချက်ချင်း response လုပ်ရမယ်။**
+- HEARTBEAT.md ထဲက "stay quiet: late night (23:00-08:00)" rule က **heartbeats/outreach အတွက်ပဲ**
+- ဒီ rule က **incoming message responses တွေနဲ့ လုံးဝမဆိုင်**
+- Boss က ပထမဆုံးစာတစ်စောင်ပို့ရင် ချက်ချင်း ဖြေရမယ် — follow-up ကိုမစောင့်ရ
+- **ခြွင်းချက်မရှိ** — ဘယ်အချိန်မဆို Boss message ကို ဦးစားပေးဖြေရမယ်

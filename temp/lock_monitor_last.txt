@@ -1,32 +1,33 @@
-[LOCK_MONITOR] Run at 2026-06-09 21:01:52 UTC
+[LOCK_MONITOR] Run at 2026-06-10 04:34:22 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
-[LOCK_MONITOR] WARNING: 6 session file(s) too large:
-  94986c46-994d-4aa4-97d1-ea389a7dccfa-topic-121564.trajectory.jsonl: 7102KB (> 500KB threshold)
-  deb8082b-af50-4879-9eed-197991e1925a-topic-121564.trajectory.jsonl: 869KB (> 500KB threshold)
-  44fdf989-99fc-4369-aeee-029e3e8b8157-topic-121564.jsonl: 15909KB (> 500KB threshold)
-  53c64d97-5ac1-4f6d-8ab3-e665f372db35-topic-121564.trajectory.jsonl: 911KB (> 500KB threshold)
-  3ff6e0bb-9264-47b2-8bc8-5d19838138d7-topic-121564.trajectory.jsonl: 1006KB (> 500KB threshold)
-  5f0ccad3-d656-4201-9b6d-5c14e7167f57-topic-121564.trajectory.jsonl: 7725KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 4 trajectory file(s) oversized:
-  44fdf989-99fc-4369-aeee-029e3e8b8157-topic-121564.trajectory.jsonl: 3440KB (> 3000KB threshold)
-  94986c46-994d-4aa4-97d1-ea389a7dccfa-topic-121564.trajectory.jsonl: 7102KB (> 3000KB threshold)
-  d6b0e61f-c78c-430e-8213-fa48cb8dfe13-topic-115774.trajectory.jsonl: 4943KB (> 3000KB threshold)
-  5f0ccad3-d656-4201-9b6d-5c14e7167f57-topic-121564.trajectory.jsonl: 7725KB (> 3000KB threshold)
-[LOCK_MONITOR] Trajectory cleanup: removed 1 file(s), freed 95KB
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
+[LOCK_MONITOR] WARNING: 9 session file(s) too large:
+  f4cec601-09f3-45af-b15d-33aea6ccd2d3-topic-124588.trajectory.jsonl: 1431KB (> 500KB threshold)
+  44fdf989-99fc-4369-aeee-029e3e8b8157-topic-121564.checkpoint.51939bd7-bb7c-4396-ac42-28fb2472281c.jsonl: 15082KB (> 500KB threshold)
+  214e6c69-979f-4ec7-bc67-f6f040b6ea16-topic-124588.trajectory.jsonl: 997KB (> 500KB threshold)
+  9db08f74-7f7f-4424-8bce-e4c5261e1234-topic-124588.jsonl: 890KB (> 500KB threshold)
+  a7d79a90-80f2-4190-95e5-336cc6248e92-topic-124588.trajectory.jsonl: 871KB (> 500KB threshold)
+  25ad7e69-1ca7-4cd7-b60b-00b1a2777776-topic-124588.trajectory.jsonl: 5273KB (> 500KB threshold)
+  4dfdc44f-7053-4655-af5e-2f69e366e35b-topic-124588.trajectory.jsonl: 729KB (> 500KB threshold)
+  5f0ccad3-d656-4201-9b6d-5c14e7167f57-topic-121564.checkpoint.ec157f8c-8cd5-47d6-be83-1a82cdb57ac5.jsonl: 1105KB (> 500KB threshold)
+  2360204f-4bc1-4af8-8431-5c490cb06641-topic-121564.jsonl: 813KB (> 500KB threshold)
+[LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
+  25ad7e69-1ca7-4cd7-b60b-00b1a2777776-topic-124588.trajectory.jsonl: 5273KB (> 3000KB threshold)
+  9db08f74-7f7f-4424-8bce-e4c5261e1234-topic-124588.trajectory.jsonl: 5138KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          643 files,      38971 KB
-  .trajectory.jsonl files:    644 files,     106562 KB
-  .checkpoint.*.jsonl files:   20 files,     201671 KB
-  .lock files:                  2 files
+  Main .jsonl files:          659 files,      15582 KB
+  .trajectory.jsonl files:     87 files,      26592 KB
+  .checkpoint.*.jsonl files:   18 files,     171881 KB
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                   347204 KB
+  TOTAL:                                   214055 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 3 files removed, 228 KB freed, 14 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 134 KB freed, 13 warnings
 ==================================================
-=== RESULT: OK (warnings: 14) ===
+=== RESULT: OK (warnings: 13) ===
+=== RESULT: OK (0 locks cleaned, 13 warnings) ===

@@ -1,0 +1,179 @@
+=== psvibe-api FIX SCRIPT ===
+Time: 2026-06-10T02:34:49.034Z
+Target: root@5.223.81.16
+✅ SSH connected
+
+== STEP 1: Check service status ==
+
+--- CMD: systemctl is-active psvibe-api 2>&1; systemctl status psvibe-api --no-pager -l 2>&1 | head -30 ---
+activating
+● psvibe-api.service - PS VIBE API Server
+     Loaded: loaded (/etc/systemd/system/psvibe-api.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Wed 2026-06-10 02:34:47 UTC; 1s ago
+    Process: 1000714 ExecStart=/usr/local/bin/psvibe-pidlock.sh api /root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000 (code=exited, status=1/FAILURE)
+   Main PID: 1000714 (code=exited, status=1/FAILURE)
+        CPU: 719ms
+
+== STEP 2: Check uvicorn processes ==
+
+--- CMD: ps aux | grep -i "[u]vicorn" ---
+root      937300  0.2  0.5 181524 86580 ?        Sl   Jun09   0:43 venv/bin/python3 venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000
+
+== STEP 3: Check port 8000 ==
+
+--- CMD: ss -tlnp | grep 8000 || netstat -tlnp 2>/dev/null | grep 8000 ---
+LISTEN 0      2048         0.0.0.0:8000       0.0.0.0:*    users:(("python3",pid=937300,fd=6))
+
+== STEP 4: Check API directory ==
+
+--- CMD: ls -la /root/psvibe_api_server/ ---
+total 4752
+drwxr-xr-x 10 root root   4096 Jun 10 00:00 .
+drwxr-xr-x 36 root root   4096 Jun  8 20:39 ..
+-rw-rw-rw-  1 root root   3377 May 28 10:21 AGENT_STATUS.md
+-rw-r--r--  1 root root  22368 May 28 17:25 analytics.py
+-rw-r--r--  1 root root   6623 Jun  3 06:47 analytics_sync.py
+-rw-r--r--  1 root root 139774 Jun  9 17:37 app.py
+-rw-r--r--  1 root root  92439 May 30 05:06 app.py.backup
+-rw-r--r--  1 root root  71865 Jun  2 19:00 app.py.bak
+-rw-r--r--  1 root root  74956 Jun  3 07:15 app.py.bak.1780470917
+-rw-r--r--  1 root root  75088 Jun  3 07:41 app.py.bak.1780472502
+-rw-r--r--  1 root root  74333 Jun  3 06:13 app.py.bak.2
+-rw-r--r--  1 root root  83047 Jun  3 15:29 app.py.bak.20260603_152906
+-rw-r--r--  1 root root  83047 Jun  3 15:30 app.py.bak.20260603_153036
+-rw-r--r--  1 root root  83230 Jun  3 18:19 app.py.bak.20260603_181916_foodfix
+-rw-r--r--  1 root root  88474 Jun  3 21:30 app.py.bak.20260603_213028
+-rw-r--r--  1 root root 101143 Jun  5 05:28 app.py.bak.20260605052807
+-rw-r--r--  1 root root 101143 Jun  5 05:30 app.py.bak.20260605053045
+-rw-r--r--  1 root root 102016 Jun  5 05:59 app.py.bak.20260605055912
+-rw-r--r--  1 root root  74619 Jun  3 06:15 app.py.bak.3
+-rw-r--r--  1 root root  72762 Jun  2 19:08 app.py.bak3
+-rw-r--r--  1 root root  74956 Jun  3 07:21 app.py.bak.80471286
+-rw-r--r--  1 root root 101143 Jun  5 05:23 app.py.bak-coupon-fix-20260605-052314
+-rw-r--r--  1 root root  75114 Jun  3 07:45 app.py.bak.deploy
+-rw-r--r--  1 root root 101138 Jun  5 08:25 app.py.bak.installtype
+-rw-r--r--  1 root root 101143 Jun  5 07:42 app.py.bak.spendfix
+-rw-r--r--  1 root root 101234 Jun  5 09:34 app.py.bak.walletfix
+-rw-r--r--  1 root root 178679 May 29 00:05 app.py.BROKEN_MULTI_AGENT
+-rw-r--r--  1 root root 185163 May 29 00:00 app.py.mysql.backup
+-rw-r--r--  1 root root  82855 May 29 00:10 app.py.MYSQL_INTEGRATED
+-rw-r--r--  1 root root 184931 May 31 06:01 app.py.phase5_backup
+-rw-r--r--  1 root root   6006 Jun  8 10:23 auth.py
+drwxr-xr-x  2 root root   4096 Jun  2 14:33 backups
+drwxr-xr-x  2 root root   4096 May 31 06:01 cache
+-rw-r--r--  1 root root   1848 May 31 05:09 config.py
+-rw-r--r--  1 root root  14678 May 28 10:18 dashboard_bot.py
+drwxr-xr-x  3 root root   4096 Jun  9 16:47 dashboard-dist
+-rw-r--r--  1 root root 130931 Jun  9 20:37 dashboard_routes.py
+-rw-r--r--  1 root root  60364 Jun  3 21:54 dashboard_routes.py.bak
+-rw-r--r--  1 root root  79054 Jun  8 15:17 dashboard_routes.py.bak2
+-rw-r--r--  1 root root  44714 Jun  3 20:33 dashboard_routes.py.bak.20260603_203328
+-rw-r--r--  1 root root  62252 Jun  4 03:46 dashboard_routes.py.bak.v3.1
+-rw-r--r--  1 root root  15533 May 31 06:01 db_client.py
+-rw-r--r--  1 root root   4539 May 27 21:24 DEPLOYMENT.md
+-rw-r--r--  1 root root    546 May 28 08:36 Dockerfile
+-rw-r--r--  1 root root   1656 Jun  8 17:44 fifo_wallet.py
+-rw-rw-rw-  1 root root  24251 May 28 23:48 fix_mysql_stock.py
+-rw-r--r--  1 root root   8179 May 29 05:46 fix_sheets_config.py
+drwxr-xr-x  8 root root   4096 Jun 10 02:08 .git
+drwxr-xr-x  3 root root   4096 May 31 08:11 .github
+-rw-r--r--  1 root root    160 Jun  2 20:30 .gitignore
+-rwxr-xr-x  1 root root   4567 May 31 06:01 gsheet_to_mysql.py
+-rw-r--r--  1 root root   2868 May 29 05:46 insert_config_helper.py
+-rw-r--r--  1 root root   6737 Jun  8 14:39 inventory_fifo.py
+-rw-r--r--  1 root root   2386 May 31 06:01 kora_drive_sa.json
+-rw-r--r--  1 root root  12746 May 31 06:01 logo_from_drive.jpg
+-rw-r--r--  1 root root   1529 Jun  5 15:22 models.py
+-rw-r--r--  1 root root   1642 Jun  3 22:04 mysql_db.py
+-rw-rw-rw-  1 root root   8771 Jun  3 07:45 new_game_endpoints.py
+-rw-r--r--  1 root root  14209 May 28 17:31 patch-app.py
+-rw-rw-rw-  1 root root  49074 May 28 23:53 patch_app.py
+-rw-r--r--  1 root root  58909 Jun  9 13:52 patch_routes.py
+-rw-r--r--  1 root root  40145 May 30 05:01 patch_routes.py.backup
+-rw-r--r--  1 root root  70031 May 31 06:01 phase5_migrate.py
+-rw-r--r--  1 root root   3164 May 31 06:01 phase5_patch.py
+drwxr-xr-x  2 root root   4096 Jun  9 20:40 __pycache__
+-rw-r--r--  1 root root  19602 Jun  9 14:19 receipt_template.html
+-rw-r--r--  1 root root  18178 Jun  5 04:44 receipt_template.html.bak-coupon-fix-20260605
+-rw-r--r--  1 root root    105 May 28 08:35 requirements.txt
+-rwxr-xr-x  1 root root    287 Jun  1 11:53 run_sync.sh.DISABLED
+-rw-r--r--  1 root root 964108 Jun 10 02:34 server.log
+-rw-r--r--  1 root root  95558 Jun 10 00:00 server.log.1.gz
+-rw-r--r--  1 root root  46146 Jun  8 23:59 server.log.2.gz
+-rw-r--r--  1 root root  38455 Jun  8 00:00 server.log.3.gz
+-rw-r--r--  1 root root  36170 Jun  7 00:00 server.log.4.gz
+-rw-r--r--  1 root root  43119 Jun  6 00:00 server.log.5.gz
+-rw-r--r--  1 root root  33084 Jun  4 23:58 server.log.6.gz
+-rw-r--r--  1 root root  38916 Jun  4 00:00 server.log.7.gz
+-rw-r--r--  1 root root  12774 Jun  2 23:59 server.log.8.gz
+-rw-------  1 root root   2376 May 31 06:04 service_account.json
+-rw-r--r--  1 root root  15295 Jun  6 15:02 session_timer.py
+-rw-r--r--  1 root root   9230 May 31 05:09 sheets_client.py
+drwxr-xr-x  2 root root   4096 Jun  7 13:31 static
+-rw-r--r--  1 root root   3517 Jun  9 03:12 stock_fifo.py
+-rw-r--r--  1 root root   1739 Jun  1 20:07 sync_console_mults.py
+-rw-r--r--  1 root root    770 Jun  8 18:17 sync_service.py
+-rw-r--r--  1 root root   3826 May 29 05:47 sync_settings_to_mysql.py
+drwxr-xr-x  4 root root   4096 May 31 06:00 venv
+-rw-rw-rw-  1 root root    308 May 28 23:50 verify_patch.py
+
+== STEP 5: Check run_sync.sh for start commands ==
+
+--- CMD: cat /root/psvibe_api_server/run_sync.sh ---
+[STDERR] cat: /root/psvibe_api_server/run_sync.sh: No such file or directory
+
+== STEP 6: Restart service ==
+
+--- CMD: sudo systemctl restart psvibe-api 2>&1 ---
+
+
+== STEP 7: Wait 5s and verify ==
+
+--- CMD: systemctl is-active psvibe-api 2>&1 ---
+activating
+
+--- CMD: systemctl status psvibe-api --no-pager -l 2>&1 | head -20 ---
+● psvibe-api.service - PS VIBE API Server
+     Loaded: loaded (/etc/systemd/system/psvibe-api.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Wed 2026-06-10 02:34:50 UTC; 4s ago
+    Process: 1000819 ExecStart=/usr/local/bin/psvibe-pidlock.sh api /root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000 (code=exited, status=1/FAILURE)
+   Main PID: 1000819 (code=exited, status=1/FAILURE)
+        CPU: 653ms
+
+--- CMD: ss -tlnp | grep 8000 || echo "Port 8000 NOT listening" ---
+LISTEN 0      2048         0.0.0.0:8000       0.0.0.0:*    users:(("python3",pid=937300,fd=6))
+
+== STEP 8: Test API endpoints ==
+
+--- CMD: curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/health 2>&1 || echo "health endpoint failed" ---
+404
+
+--- CMD: curl -s --max-time 5 http://localhost:8000/health 2>&1 || echo "FAILED" ---
+{"success":false,"error":"Not Found","code":404}
+
+--- CMD: curl -s --max-time 5 http://localhost:8000/ 2>&1 || echo "FAILED" ---
+<!DOCTYPE html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PS VIBE - Dashboard</title>
+    <script type="module" crossorigin src="/assets/index-DDJXoolO.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bv4axgMc.css">
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div id="app"></div>
+  </body>
+</html>
+
+== FINAL STATUS ==
+
+--- CMD: systemctl is-active psvibe-api 2>&1 ---
+active
+
+--- CMD: ss -tlnp | grep ":8000" ---
+LISTEN 0      2048         0.0.0.0:8000       0.0.0.0:*    users:(("python3",pid=937300,fd=6))
+
+=== RESULT: OK ===
+psvibe-api is ACTIVE and LISTENING on port 8000

@@ -37,3 +37,18 @@ bash /home/node/.openclaw/workspace/memory/cleanup_session_locks.sh
 
 > **Full procedures:** See `memory/heartbeat-procedures.md`
 > **Post-task SOP:** See `POST_TASK_SOP.md`
+
+---
+
+## 🚨 CRITICAL: Response Rules (DO NOT IGNORE)
+
+### ✅ Boss Messages — ALWAYS Respond Immediately
+- Boss က message ပို့တိုင်း — ည၊ မနက်၊ ဘယ်အချိန်မဆို — **ချက်ချင်း response လုပ်ရမယ်**
+- အောက်က "stay quiet" rule က **Boss messages တွေနဲ့ မဆိုင်ဘူး**
+- ည ၁၂ နာရီထိုးပြီး Boss message ပိုးလာရင်တောင် ချက်ချင်းဖြေရမယ်
+
+### ⏰ "Stay Quiet" Rule — Heartbeats Only
+- **Applies ONLY to:** Kora-initiated proactive outreach (heartbeat checks, status reports)
+- **Does NOT apply to:** Responding to incoming messages (Telegram, email, etc.)
+- **Quiet window:** 23:00-08:00 Myanmar Time — don't proactively check in / send updates during these hours
+- **Exception:** If something CRITICAL/URGENT happens → still notify

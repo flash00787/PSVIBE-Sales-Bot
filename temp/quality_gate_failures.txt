@@ -1,0 +1,316 @@
+============================================================
+QUALITY GATE — 24 FAILURE ANALYSIS
+Date: 2026-06-10 03:49 UTC
+============================================================
+
+=== SCORE ===
+Current score: 50/100 (53% → 50% — slight regression from Phase 3)
+   - Tests: 24 failed / 80 passed / 2 skipped (76.9% pass rate)
+   - Services: All 3 running ✅
+   - Git: 7 uncommitted changes ⚠️
+   - Alerts: 1 active ⚠️
+   - Grade: 🟠 PROBLEMATIC
+
+=== TEST FAILURES ===
+
+════════════════════════════════════════════════════════════
+CATEGORY A: CASCADING IMPORT FAILURE — bot package treated as module
+  9 failures — all share ONE root cause
+════════════════════════════════════════════════════════════
+
+ROOT CAUSE:
+  conftest.py (or individual tests) set sys.modules['bot'] = MagicMock().
+  When a test triggers a handler that does `from bot.handlers.console import ...`,
+  Python finds 'bot' in sys.modules as a plain MagicMock (module-like, not
+  package-like — no __path__ attribute). This causes:
+    ModuleNotFoundError: No module named 'bot.handlers.console'
+  Additionally, console.py:16 does `from bot.api_client import ...` which
+  ALSO fails because MagicMock lacks __path__. Even though bot/api_client.py
+  physically exists on disk, the mocked sys.modules['bot'] blocks all
+  subpackage imports.
+
+A1. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_back
+    File: tests/test_console_mgmt.py:102
+    Root cause: patch('bot.handlers.console.show_console_menu') → 
+      pkgutil.resolve_name('bot.handlers.console') fails because
+      sys.modules['bot'] is MagicMock. Also, when it tries to fall through
+      and import the real module, console.py:16's `from bot.api_client import`
+      also fails.
+    Fix effort: Medium (requires fixing the ROOT cause)
+
+A2. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_list_empty
+    File: tests/test_console_mgmt.py:112
+    Root cause: console_mgmt.py:44 → from bot.handlers.console import ...
+      → console.py:16 → from bot.api_client import → ModuleNotFoundError
+    Fix effort: Medium (blocked on ROOT cause)
+
+A3. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_list_with_data
+    File: tests/test_console_mgmt.py:123
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A4. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_add_console
+    File: tests/test_console_mgmt.py:135
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A5. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_del_console_empty
+    File: tests/test_console_mgmt.py:143
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A6. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_del_console_with_data
+    File: tests/test_console_mgmt.py:153
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A7. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_edit_mult
+    File: tests/test_console_mgmt.py:163
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A8. test_console_mgmt.py::TestStepConMgmtMenu::test_step_con_mgmt_menu_unknown
+    File: tests/test_console_mgmt.py:171
+    Root cause: Same cascading import failure as A2
+    Fix effort: Medium
+
+A9. test_main_menu.py::TestMainMenuHandler::test_step_main_menu_routing
+    File: tests/test_main_menu.py:31
+    Root cause: main_menu.py:198 → from bot.handlers.console import ...
+      → console.py:16 → ModuleNotFoundError
+    Fix effort: Medium (blocked on ROOT cause)
+
+════════════════════════════════════════════════════════════
+CATEGORY B: ASYNC MOCK — MagicMock where AsyncMock needed
+  7 failures
+════════════════════════════════════════════════════════════
+
+ROOT CAUSE:
+  Tests set sys.modules['bot']._replit_get = MagicMock(return_value=...)
+  But handler code calls: await _replit_get_async("sheets/...")
+  TWO bugs in one: (a) wrong name: _replit_get vs _replit_get_async,
+  (b) MagicMock is not awaitable — needs AsyncMock.
+
+B1. test_booking.py::TestStaffBooking::test_cmd_staff_book_hub
+    File: bot/handlers/booking.py:96
+    Error: TypeError: object MagicMock can't be used in 'await' expression
+    Code: pending_bks = await _replit_get_async("bookings?status=pending")
+    Test mock: sys.modules['bot']._replit_get = MagicMock(return_value=[])
+    Fix: Mock _replit_get_async with AsyncMock instead
+    Fix effort: Low (<5 min)
+
+B2. test_booking.py::TestStaffBooking::test_cmd_staff_book_hub_with_waitlist_count
+    File: bot/handlers/booking.py:96
+    Error: Same as B1 — same handler function, different test data
+    Fix: Same as B1
+    Fix effort: Low
+
+B3. test_booking.py::TestStaffBooking::test_cmd_confirmed_bookings_does_not_crash
+    File: bot/handlers/booking.py:145
+    Error: TypeError: object MagicMock can't be used in 'await' expression
+    Code: bookings = await _replit_get_async("bookings?status=confirmed")
+    Test mock: sys.modules['bot']._replit_get = MagicMock(...)
+    Fix: Mock _replit_get_async with AsyncMock instead
+    Fix effort: Low
+
+B4. test_reports.py::TestInventoryReports::test_cmd_inventory_shows_items
+    File: bot/handlers/reports.py:17
+    Error: TypeError: object MagicMock can't be used in 'await' expression
+    Code: data = await _replit_get_async("sheets/inventory")
+    Test mock: sys.modules['bot']._replit_get = MagicMock(...)
+    Fix: Mock _replit_get_async with AsyncMock instead
+    Fix effort: Low
+
+B5. test_reports.py::TestInventoryReports::test_cmd_inventory_no_data
+    File: bot/handlers/reports.py:17
+    Error: Same as B4 — same handler, different data
+    Fix: Same as B4
+    Fix effort: Low
+
+B6. test_reports.py::TestInventoryReports::test_cmd_stocktoday
+    File: bot/handlers/reports.py:55
+    Error: TypeError: object MagicMock can't be used in 'await' expression
+    Code: data = await _replit_get_async("sheets/stock-today")
+    Test mock: sys.modules['bot']._replit_get = MagicMock(...)
+    Fix: Mock _replit_get_async with AsyncMock instead
+    Fix effort: Low
+
+B7. test_reports.py::TestInventoryReports::test_cmd_inventory_total_value
+    File: bot/handlers/reports.py:17
+    Error: Same as B4 — same handler, different data
+    Fix: Same as B4
+    Fix effort: Low
+
+════════════════════════════════════════════════════════════
+CATEGORY C: UNAWAITED COROUTINE — _sbk_console_kb is now async
+  4 failures
+════════════════════════════════════════════════════════════
+
+ROOT CAUSE:
+  _sbk_console_kb() was refactored from a sync function to `async def`.
+  The function called _replit_get_async internally, so it became async.
+  All 4 tests call it as: kb = _sbk_console_kb()  ← NO await
+  This returns a <coroutine object> instead of a list.
+  assert isinstance(kb, list) → False (it's a coroutine)
+
+C1. test_booking.py::TestStaffBooking::test_sbk_console_kb
+    File: tests/test_booking.py:24
+    Error: assert isinstance(<coroutine _sbk_console_kb>, list) → False
+    Fix: Change `kb = _sbk_console_kb()` → `kb = await _sbk_console_kb()`
+    Fix effort: Low (<2 min)
+
+C2. test_booking.py::TestStaffBooking::test_sbk_console_kb_empty
+    File: tests/test_booking.py:48
+    Error: Same unawaited coroutine
+    Fix: Same as C1
+    Fix effort: Low
+
+C3. test_booking.py::TestStaffBooking::test_sbk_console_kb_busy_consoles
+    File: tests/test_booking.py:58
+    Error: Same unawaited coroutine
+    Fix: Same as C1
+    Fix effort: Low
+
+C4. test_booking.py::TestStaffBooking::test_sbk_console_kb_free_and_busy
+    File: tests/test_booking.py:140
+    Error: Same unawaited coroutine
+    Fix: Same as C1
+    Fix effort: Low
+
+Note: A RuntimeWarning also fires: "coroutine '_sbk_console_kb' was never awaited"
+      — confirms the function is async but tests don't await it.
+
+════════════════════════════════════════════════════════════
+CATEGORY D: MISSING MOCK — 'wb' not defined in finance fallback
+  2 failures
+════════════════════════════════════════════════════════════
+
+ROOT CAUSE:
+  finance.py has a two-tier pattern:
+    1. Try: result = api_fetch_finance_opex()  (calls API)
+    2. Fallback: return wb.worksheet("OPEX_Log")  (direct gspread)
+  In tests, the API call fails (not mocked), so the fallback path runs.
+  'wb' is a gspread workbook object that only exists in production.
+  In test environment, NameError: name 'wb' is not defined.
+
+D1. test_finance.py::TestFinanceMenu::test_get_opex_sh
+    File: bot/handlers/finance.py:55
+    Error: NameError: name 'wb' is not defined
+    Code: return wb.worksheet("OPEX_Log")
+    Fix: Either mock api_fetch_finance_opex to succeed, 
+      or add sys.modules['bot'].wb = MagicMock(...)
+    Fix effort: Low (<5 min)
+
+D2. test_finance.py::TestFinanceMenu::test_get_assets_sh
+    File: bot/handlers/finance.py:63
+    Error: NameError: name 'wb' is not defined
+    Code: return wb.worksheet("Assets_Register")
+    Fix: Same as D1
+    Fix effort: Low
+
+════════════════════════════════════════════════════════════
+CATEGORY E: TEST DATA / MONKEY-PATCHING STRATEGY ISSUES
+  2 failures
+════════════════════════════════════════════════════════════
+
+E1. test_games.py::TestShowGameMenu::test_show_game_menu_shows_game_count
+    File: tests/test_games.py:36
+    Error: assert '2' in '🎮 <b>Game Library</b> (0 ဂိမ်း)...'
+           Game count shows 0 even though 2 games were mocked.
+
+    Root cause: The test patches `games.fetch_games` but `show_game_menu` 
+    imports fetch_games from bot at module level:
+      from bot import (..., fetch_games, fetch_games_async, ...)
+    So `games.fetch_games` is a local reference bound at import time.
+    Patching the module-level attribute AFTER it's been imported into the
+    local namespace doesn't affect the already-bound variable.
+    The real `bot.fetch_games` (still unmocked) returns [] → count is 0.
+    
+    Fix: Instead of `games.fetch_games = MagicMock(...)`, do:
+      `sys.modules['bot'].fetch_games = MagicMock(return_value=[...])`
+      THEN import games (or use patch context manager)
+    Fix effort: Medium (5-10 min — needs import order fix)
+
+E2. test_games.py::TestStepGameMenu::test_step_game_menu_add_game_title
+    File: tests/test_games.py:103
+    Error: assert 'new_game' in mock_context.user_data → False
+           user_data = {'game_list': <AsyncMock>, 'game_page': 0, 'game_query': ''}
+
+    Root cause: The test expects step_game_menu to set context.user_data['new_game']
+    when choice is '➕ Add Game'. But user_data only has game_list/game_page/game_query.
+    Either (a) the handler returns GAME_ADD_TITLE (401) without setting 'new_game',
+    or (b) the BTN_ADD_GAME constant value ('➕ Add Game') doesn't match the
+    handler's comparison, or (c) the flow was restructured to set 'new_game'
+    in a different state handler.
+    
+    Fix: Inspect step_game_menu code for the actual Add Game flow.
+    If handler returns GAME_ADD_TITLE without setting 'new_game', update
+    assertion to check result == 401 instead. Or fix the handler.
+    Fix effort: Medium (5-10 min — needs code inspection)
+
+
+=== CATEGORY BREAKDOWN ===
+
+┌─────────────────────────────────────────┬──────────┬──────────────────────────┐
+│ Category                                │ Count    │ Root Cause Nature        │
+├─────────────────────────────────────────┼──────────┼──────────────────────────┤
+│ A: Cascading Import (bot not package)   │ 9 (37.5%)│ Infrastructure/Conftest  │
+│ B: Async Mock (MagicMock not AsyncMock) │ 7 (29.2%)│ Test mocking skill gap   │
+│ C: Unawaited Coroutine                  │ 4 (16.7%)│ Test not updated for refactor│
+│ D: Missing Mock (wb fallback)           │ 2  (8.3%)│ Test data gap            │
+│ E: Monkey-patching Strategy             │ 2  (8.3%)│ Import-order test gap    │
+├─────────────────────────────────────────┼──────────┼──────────────────────────┤
+│ TOTAL                                   │ 24       │                          │
+└─────────────────────────────────────────┴──────────┴──────────────────────────┘
+
+=== EFFORT ESTIMATE ===
+
+┌─────────────────────────────────────┬────────┬───────────────────────────┐
+│ Type                                │ Count  │ Notes                     │
+├─────────────────────────────────────┼────────┼───────────────────────────┤
+│ Quick fix (<5 min each)             │ 13     │ B1-B7 + C1-C4 + D1-D2     │
+│ Medium fix (5-15 min each)          │ 11     │ A1-A9 + E1-E2             │
+│ Complex fix (>15 min each)          │ 0      │ —                         │
+├─────────────────────────────────────┼────────┼───────────────────────────┤
+│ Total estimated fix time            │ ~2 hrs │ Conservative estimate     │
+└─────────────────────────────────────┴────────┴───────────────────────────┘
+
+Quick fixes (13 tests, ~30 min total):
+  - 7 AsyncMock: grep-and-replace _replit_get → _replit_get_async + MagicMock → AsyncMock
+  - 4 Unawaited: insert `await` before _sbk_console_kb() calls
+  - 2 Missing mock: add mock for api_fetch_finance_* or mock wb
+
+Medium fixes (11 tests, ~90 min total):
+  - 9 Cascading import: THE BIG ONE. Must fix conftest.py to make
+    sys.modules['bot'] behave as a proper package. Options:
+    (a) Create a real fake module with __path__, __init__.py-like attributes
+    (b) Stop using sys.modules['bot'] as a mock hub; use proper @patch instead
+    (c) Add a conftest fixture that creates a "package-capable" bot mock
+  - 2 Games tests: Fix import-order mock strategy
+
+=== RECOMMENDATION ===
+
+SHOULD WE FIX NOW? → YES, with phased approach.
+
+Phase 4a (Quick Wins — ~30 min): Fix categories B, C, D
+  These are low-risk, mechanical changes. 13 tests fixed in one sweep.
+  Projected score after: ~73/100 (+23 points)
+
+Phase 4b (Import Architecture — ~60-90 min): Fix category A
+  This is the big blocker. Requires redesigning how bot is mocked in tests.
+  Worth doing because it unblocks 9 tests AND enables future test writing
+  without hitting the same wall.
+
+Phase 4c (Games — ~30 min): Fix category E
+  Requires understanding the actual game handler flow changes.
+  Lower priority — can be done alongside or after Phase 4b.
+
+If we do Phase 4a only: score jumps from 50 → 73 (Orange → Yellow)
+  If we do Phase 4a + 4b: score jumps from 50 → ~92 (Green territory)
+
+RISKS:
+  - Category A fix might break passing tests if the mock redesign is wrong
+  - Must run full test suite after each phase to catch regressions
+  - Git has 7 uncommitted changes — need to commit before starting
+
+=== RESULT: OK ===

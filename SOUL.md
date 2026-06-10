@@ -28,7 +28,7 @@
 
 See GOLDEN_RULES.md
 
-Post-task documentation: See POST_TASK_SOP.md
+Post-task documentation: See `memory/sop/POST_TASK_SOP.md`
 
 ---
 
