@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-10T06:43:45Z",
+  "updated": "2026-06-10T07:08:01Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -282,12 +282,6 @@
     },
     {
       "source": "boss",
-      "target": "gemini-api",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "boss",
       "target": "knowledge-graph-concept",
       "relation": "implements",
       "weight": 5
@@ -301,12 +295,6 @@
     {
       "source": "boss",
       "target": "mysql",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "boss",
-      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -350,24 +338,6 @@
       "source": "boss",
       "target": "ye-yint-oo",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "docker",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "vps",
-      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -463,18 +433,6 @@
     {
       "source": "docker",
       "target": "mysql",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "docker",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "gemini-api",
-      "target": "python",
       "relation": "depends_on",
       "weight": 5
     },
@@ -606,12 +564,6 @@
     },
     {
       "source": "kora",
-      "target": "n8n",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "kora",
       "target": "phase-3",
       "relation": "implements",
       "weight": 5
@@ -661,12 +613,6 @@
     {
       "source": "mysql",
       "target": "python",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "n8n",
-      "target": "vps",
       "relation": "depends_on",
       "weight": 5
     },
@@ -798,12 +744,6 @@
     },
     {
       "source": "ps-vibe",
-      "target": "n8n",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "ps-vibe",
       "target": "openclaw",
       "relation": "uses",
       "weight": 5
@@ -836,12 +776,6 @@
       "source": "ps-vibe",
       "target": "synergy-hub",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "ps-vibe",
-      "target": "telegram",
-      "relation": "uses",
       "weight": 5
     },
     {
@@ -1866,6 +1800,12 @@
     },
     {
       "source": "boss",
+      "target": "gemini-api",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
       "target": "git-backup",
       "relation": "implements",
       "weight": 3
@@ -1916,6 +1856,12 @@
       "source": "boss",
       "target": "memory-upgrade",
       "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "n8n",
+      "relation": "uses",
       "weight": 3
     },
     {
@@ -2070,6 +2016,12 @@
     },
     {
       "source": "caddy",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
       "target": "gemini-api",
       "relation": "depends_on",
       "weight": 3
@@ -2142,6 +2094,12 @@
     },
     {
       "source": "caddy",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -2156,12 +2114,6 @@
       "source": "caddy",
       "target": "openrouter",
       "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "caddy",
-      "target": "phase-2",
-      "relation": "related_to",
       "weight": 3
     },
     {
@@ -2215,6 +2167,12 @@
     {
       "source": "caddy",
       "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -3558,6 +3516,12 @@
     },
     {
       "source": "docker",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -4032,12 +3996,6 @@
     },
     {
       "source": "gemini-api",
-      "target": "phase-2",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "gemini-api",
       "target": "phase-3",
       "relation": "related_to",
       "weight": 3
@@ -4046,6 +4004,12 @@
       "source": "gemini-api",
       "target": "priority-memory",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "python",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -5202,6 +5166,12 @@
     },
     {
       "source": "kora",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
       "target": "nova",
       "relation": "related_to",
       "weight": 3
@@ -5628,12 +5598,6 @@
     },
     {
       "source": "n8n",
-      "target": "phase-2",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "n8n",
       "target": "phase-3",
       "relation": "related_to",
       "weight": 3
@@ -5683,6 +5647,12 @@
     {
       "source": "n8n",
       "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -7020,6 +6990,12 @@
     },
     {
       "source": "ps-vibe",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
       "target": "oauth2",
       "relation": "uses",
       "weight": 3
@@ -7064,6 +7040,12 @@
       "source": "ps-vibe",
       "target": "subagent-tracking",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "telegram",
+      "relation": "uses",
       "weight": 3
     },
     {

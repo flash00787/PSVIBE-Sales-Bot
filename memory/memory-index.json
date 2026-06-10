@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-10T06:43:44.702865+00:00",
+  "updated": "2026-06-10T08:38:01.789139+00:00",
   "entries": [
     {
       "topic": "\"Stay quiet\" rules NEVER apply to Boss messages",
@@ -99,26 +99,6 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 8,
           "context": "## 1. Session Auto-Summary (`memory/session_summary.py`) **Goal:** Session ပြီးတိုင်း auto-summary generate လုပ်ပြီး daily log + MEMORY.md ကို update လုပ်မယ်"
-        }
-      ]
-    },
-    {
-      "topic": "1. 🗑️ Admin Panel (admin.py) — Complete Removal",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 87,
-          "context": "### 1. 🗑️ Admin Panel (admin.py) — Complete Removal"
-        }
-      ]
-    },
-    {
-      "topic": "10 min",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 23,
-          "context": "- `session-cleanup`: 5 min → **10 min** (600s) — reduce contention"
         }
       ]
     },
@@ -248,16 +228,6 @@
       ]
     },
     {
-      "topic": "2. 🧹 Phase 1: GSheets Dead Code Removal",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 111,
-          "context": "### 2. 🧹 Phase 1: GSheets Dead Code Removal"
-        }
-      ]
-    },
-    {
       "topic": "200 OK",
       "files": [
         {
@@ -368,16 +338,6 @@
       ]
     },
     {
-      "topic": "3-layer bugs pattern confirmed",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 203,
-          "context": "19. **3-layer bugs pattern confirmed** in auto_cancel: 4+ independent broken things (endpoints, vars, parsing, duplicates) 20. **Simple NoOp workflow acitvation succeeds** — proves the issue is creden"
-        }
-      ]
-    },
-    {
       "topic": "3. `memory/agent-status.md` — Live Dashboard",
       "files": [
         {
@@ -414,16 +374,6 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 70,
           "context": "## 3. Priority Memory System (`memory/priority_engine.py`) **Goal:** Important vs routine — priority ခွဲမယ်။ MEMORY.md ကို auto-manage လုပ်မယ်"
-        }
-      ]
-    },
-    {
-      "topic": "3. 📊 Code Stats After Cleanup",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 121,
-          "context": "### 3. 📊 Code Stats After Cleanup - Sales bot: **~28,979 lines** (29,112 - 133 dead code)"
         }
       ]
     },
@@ -503,16 +453,6 @@
       ]
     },
     {
-      "topic": "354MB",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 72,
-          "context": "- **Result**: 446MB → **354MB** (-92MB, 1,305→~750 files) - Updated cron job to use new script (every 10 min)"
-        }
-      ]
-    },
-    {
       "topic": "4-step fix:",
       "files": [
         {
@@ -553,16 +493,6 @@
       ]
     },
     {
-      "topic": "4. 🐛 auto_cancel_no_shows.py — Fixed + Crontab",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 126,
-          "context": "### 4. 🐛 auto_cancel_no_shows.py — Fixed + Crontab"
-        }
-      ]
-    },
-    {
       "topic": "4.1 What Changes",
       "files": [
         {
@@ -589,16 +519,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 333,
           "context": "### 4.3 Edge Cases Covered"
-        }
-      ]
-    },
-    {
-      "topic": "5 min",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 22,
-          "context": "- `lock-monitor-cleanup`: 30s → **5 min** (300s) — was running every 30s, causing `EmbeddedAttemptSessionTakeoverError` - `session-cleanup`: 5 min → **10 min** (600s) — reduce contention"
         }
       ]
     },
@@ -633,16 +553,6 @@
       ]
     },
     {
-      "topic": "5. 🔍 Reminder System Audit (5 files inspected)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 149,
-          "context": "### 5. 🔍 Reminder System Audit (5 files inspected)"
-        }
-      ]
-    },
-    {
       "topic": "6. `memory/consolidator.py` — Enhanced to Auto-Write",
       "files": [
         {
@@ -669,16 +579,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 369,
           "context": "## 6. Implementation Order"
-        }
-      ]
-    },
-    {
-      "topic": "6. 🤖 n8n Webhook Workflows Setup (Attempted)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 159,
-          "context": "### 6. 🤖 n8n Webhook Workflows Setup (Attempted)"
         }
       ]
     },
@@ -723,42 +623,12 @@
       ]
     },
     {
-      "topic": "7. 💓 Heartbeat (05:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 191,
-          "context": "### 7. 💓 Heartbeat (05:34 UTC) - kora_health_monitor: 92/100 ✅"
-        }
-      ]
-    },
-    {
-      "topic": "775 functions",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 123,
-          "context": "- **775 functions** (was 812) - 0 dead-code issues in `__init__.py` ✅"
-        }
-      ]
-    },
-    {
       "topic": "8. File-by-File Changes (Detailed)",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 410,
           "context": "## 8. File-by-File Changes (Detailed)"
-        }
-      ]
-    },
-    {
-      "topic": "8. 🌐 n8n Subpath Setup — ps-vibe.com/n8n (05:46-05:55 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 206,
-          "context": "### 8. 🌐 n8n Subpath Setup — ps-vibe.com/n8n (05:46-05:55 UTC) - Added `N8N_PATH_PREFIX=/n8n` to n8n env in docker-compose.yml → n8n restarted"
         }
       ]
     },
@@ -809,16 +679,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 669,
           "context": "## 9. Testing Checklist"
-        }
-      ]
-    },
-    {
-      "topic": "9. 🐛 Cloudflare Tunnel Fix — API Server Middleware (05:52-05:55 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 211,
-          "context": "### 9. 🐛 Cloudflare Tunnel Fix — API Server Middleware (05:52-05:55 UTC) - **Problem:** Caddy's `handle /n8n/*` worked via direct VPS IP (`http://5.223.81.16/n8n/` ✅) but NOT via Cloudflare tunnel (`h"
         }
       ]
     },
@@ -1073,6 +933,21 @@
       ]
     },
     {
+      "topic": "All Related Files",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 17,
+          "context": "### All Related Files - Main JS: `index-DDJXoolO.v2.js` (HTML ref)"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 39,
+          "context": "### All Related Files - Main JS: `index-DDJXoolO.v2.js` (HTML ref)"
+        }
+      ]
+    },
+    {
       "topic": "ALL TESTS PASSED",
       "files": [
         {
@@ -1319,16 +1194,6 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 66,
           "context": "## Architecture ```"
-        }
-      ]
-    },
-    {
-      "topic": "archive/ps5_news.md deleted",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 40,
-          "context": "2. **archive/ps5_news.md deleted** — outdated 48K duplicate (root version is 60K, kept) 3. **HEARTBEAT.md & MEMORY.md** — already had correct paths ✅"
         }
       ]
     },
@@ -1613,16 +1478,6 @@
       ]
     },
     {
-      "topic": "Booking Reminder",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 166,
-          "context": "- **Booking Reminder** — webhook → 3 parallel waits → 3 Telegram nodes - Created Telegram credential (`telegramApi` type)"
-        }
-      ]
-    },
-    {
       "topic": "Booking timeout",
       "files": [
         {
@@ -1818,16 +1673,6 @@
       ]
     },
     {
-      "topic": "Bug 1: Indentation Error → Server Crash",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 667,
-          "context": "### Bug 1: Indentation Error → Server Crash - Middleware `if` block had `import httpx` at same indentation → `IndentationError`"
-        }
-      ]
-    },
-    {
       "topic": "Bug 1: Orphaned `###` Headers Silently Dropped",
       "files": [
         {
@@ -1858,32 +1703,12 @@
       ]
     },
     {
-      "topic": "Bug 2: Missing `@app.middleware()` Decorator",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 672,
-          "context": "### Bug 2: Missing `@app.middleware()` Decorator - `n8n_assets_middleware` function existed but had NO decorator → never registered"
-        }
-      ]
-    },
-    {
       "topic": "Bug 3",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 573,
           "context": "- **Bug 3**: Test Chair (test data) kept re-appearing → permanently deleted from DB - **Total Monthly Dep**: 4,029,826 Ks/m | **Total Acc. Dep**: 3,262,283 Ks"
-        }
-      ]
-    },
-    {
-      "topic": "Bug 3: BASE_PATH Not Overridden",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 678,
-          "context": "### Bug 3: BASE_PATH Not Overridden - n8n HTML rewrite works (all assets prefixed with `/n8n/`)"
         }
       ]
     },
@@ -2179,11 +2004,6 @@
           "path": "memory/2026-06-05.md",
           "line": 374,
           "context": "- **Changes made:** - Added reminder logic that checks for confirmed bookings starting within ~10 minutes"
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 4,
-          "context": "### Changes Made"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -2878,16 +2698,6 @@
       ]
     },
     {
-      "topic": "CRITICAL: Response Rules",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 7,
-          "context": "- Added **CRITICAL: Response Rules** section at bottom - Explicit: \"Boss Messages — ALWAYS Respond Immediately\""
-        }
-      ]
-    },
-    {
       "topic": "Cross-Bot Batching",
       "files": [
         {
@@ -2904,16 +2714,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 239,
           "context": "**Current code:** ```python"
-        }
-      ]
-    },
-    {
-      "topic": "Current Score Check",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 78,
-          "context": "### Current Score Check | Before | After |"
         }
       ]
     },
@@ -4123,26 +3923,6 @@
       ]
     },
     {
-      "topic": "Final Result:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 227,
-          "context": "- **Final Result:** - `https://ps-vibe.com/` → Dashboard ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Final State (12:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 685,
-          "context": "### Final State (12:34 UTC) | Route | Status |"
-        }
-      ]
-    },
-    {
       "topic": "Final system verification test",
       "files": [
         {
@@ -4173,36 +3953,6 @@
       ]
     },
     {
-      "topic": "Fix 1:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 218,
-          "context": "- **Fix 1:** Updated middleware to also proxy `/assets/*`, `/static/*`, `/favicon.ico` to n8n. - **Root cause 2:** n8n frontend uses `window.BASE_PATH` (default `'/'`) for API calls. Since n8n's actua"
-        }
-      ]
-    },
-    {
-      "topic": "Fix 2:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 220,
-          "context": "- **Fix 2:** Middleware intercepts `/static/base-path.js` and returns `window.BASE_PATH = '/n8n/'` instead of forwarding to n8n's default `'/'`. - **Fix 3:** Added `n8n_assets_middleware` to handle re"
-        }
-      ]
-    },
-    {
-      "topic": "Fix 3:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 221,
-          "context": "- **Fix 3:** Added `n8n_assets_middleware` to handle rewritten `/n8n/assets/*`, `/n8n/static/*`, `/n8n/favicon.ico` paths by stripping `/n8n` prefix and proxying to n8n. - **Fix bugs along the way**:"
-        }
-      ]
-    },
-    {
       "topic": "Fix Applied",
       "files": [
         {
@@ -4219,16 +3969,6 @@
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 64,
           "context": "- **Fix approach:** Sequential fixes with coordination framework after deploying lock_manager, preflight, validate, rollback."
-        }
-      ]
-    },
-    {
-      "topic": "Fix bugs along the way",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 222,
-          "context": "- **Fix bugs along the way**: - Missing `@app.middleware(\"http\")` decorator on `n8n_assets_middleware`"
         }
       ]
     },
@@ -4259,16 +3999,6 @@
           "path": "memory/tools-commands.md",
           "line": 42,
           "context": "## Fix Protocol (MANDATORY) ```bash"
-        }
-      ]
-    },
-    {
-      "topic": "Fix requires manual setup",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 176,
-          "context": "- **Fix requires manual setup** via n8n UI: login to https://ps-vibe.com, assign \"PS VIBE Bot\" credential to both workflows"
         }
       ]
     },
@@ -4472,28 +4202,13 @@
         },
         {
           "path": "memory/2026-06-10.md",
-          "line": 59,
-          "context": "- **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅ - **Verified**: Port 8000 listening, dashboard returns 200"
+          "line": 13,
+          "context": "### Fix - Updated ALL 22 lazy-loaded chunks to import from `./index-DDJXoolO.v2.js` instead"
         },
         {
           "path": "memory/2026-06-10.md",
-          "line": 214,
-          "context": "- **Fix:** Added `@app.middleware(\"http\")` in app.py that intercepts `/n8n/*` requests and proxies them via `httpx.AsyncClient` to `http://localhost:5678` (n8n container) - Installed `httpx` (0.28.1) "
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 670,
-          "context": "- **Fix**: Rewrote entire n8n middleware section from scratch with correct 4-space indentation"
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 676,
-          "context": "- **Fix**: Added `@app.middleware(\"http\")` before function def"
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 682,
-          "context": "- **Fix**: Added intercept in `n8n_assets_middleware`: when path is `/n8n/static/base-path.js`, return overridden `window.BASE_PATH = '/n8n/'` - Verified: `curl http://localhost:8000/n8n/static/base-p"
+          "line": 35,
+          "context": "### Fix - Updated ALL 22 lazy-loaded chunks to import from `./index-DDJXoolO.v2.js` instead"
         },
         {
           "path": "memory/bug-patterns.md",
@@ -4789,16 +4504,6 @@
           "path": "memory/UPGRADE_SPEC.md",
           "line": 49,
           "context": "**Format:** ```markdown"
-        }
-      ]
-    },
-    {
-      "topic": "fpdf2 approach",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 239,
-          "context": "- **fpdf2 approach**: LiberationSans + NotoSansMyanmar fallback → wrong fonts/buggy multi_cell - **ReportLab approach**: Better structured but still no OpenType shaping for Myanmar complex script"
         }
       ]
     },
@@ -5198,16 +4903,6 @@
       ]
     },
     {
-      "topic": "HarfBuzz + FreeType approach",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 241,
-          "context": "- **HarfBuzz + FreeType approach**: ✅ Renders proper Myanmar text using uharfbuzz + freetype-py - HarfBuzz: proper glyph shaping with GSUB/GPOS for rakar, waswai, asat, etc."
-        }
-      ]
-    },
-    {
       "topic": "header",
       "files": [
         {
@@ -5258,16 +4953,6 @@
       ]
     },
     {
-      "topic": "HEARTBEAT.md & MEMORY.md",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 41,
-          "context": "3. **HEARTBEAT.md & MEMORY.md** — already had correct paths ✅"
-        }
-      ]
-    },
-    {
       "topic": "HEARTBEAT.md:",
       "files": [
         {
@@ -5283,32 +4968,12 @@
       ]
     },
     {
-      "topic": "Heartbeats Only",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 9,
-          "context": "- \"Stay Quiet\" rule now clearly marked as **Heartbeats Only** - Quiet window (23:00-08:00) → only applies to proactive outreach, NOT incoming messages"
-        }
-      ]
-    },
-    {
       "topic": "How we confirmed",
       "files": [
         {
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 19,
           "context": "### How we confirmed 1. **API endpoint `/api/coupons/generate` exists and works** — tested successfully, generated coupons #12-14"
-        }
-      ]
-    },
-    {
-      "topic": "HTTPS traffic bypasses local Caddy",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 235,
-          "context": "23. **HTTPS traffic bypasses local Caddy** when tunnel routes directly to API server. Middleware proxy in the API server is needed for non-API paths."
         }
       ]
     },
@@ -5414,16 +5079,6 @@
           "path": "MEMORY.md",
           "line": 270,
           "context": "### Improvement Needed - Food menu display could use grouped format (categories with emojis: Drinks 🥤, Instant Noodles 🍜, Other 🍟) instead of flat name+price list"
-        }
-      ]
-    },
-    {
-      "topic": "incoming message responses",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 26,
-          "context": "- HEARTBEAT.md/AGENTS.md \"stay quiet\" rule was misinterpreted to apply to **incoming message responses**, not just heartbeat outreach - lock-monitor every 30s created session file write conflicts with"
         }
       ]
     },
@@ -5543,16 +5198,6 @@
       ]
     },
     {
-      "topic": "Issue #2:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 216,
-          "context": "- **Issue #2:** n8n HTML at `/n8n/` loaded but blank. - **Root cause 1:** n8n's static asset paths are NOT prefixed with `/n8n/` (e.g., `/assets/index-xxx.js`, `/static/...`, `/favicon.ico`)."
-        }
-      ]
-    },
-    {
       "topic": "Issue 1",
       "files": [
         {
@@ -5649,16 +5294,6 @@
           "path": "memory/2026-06-03.md",
           "line": 9,
           "context": "- **Issue 9**: Coupon stuck at confirm step in Sale Daily — fixed broken Markdown string in discount.py - **Issue 10**: C-09/C-10 multiplier ×1.2 — hardcoded fallback in fetch_console_multiplier()"
-        }
-      ]
-    },
-    {
-      "topic": "Issues Fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 38,
-          "context": "### Issues Fixed 1. **POST_TASK_SOP.md paths corrected** — AGENTS.md, GOLDEN_RULES.md, SOUL.md all updated from `POST_TASK_SOP.md` → `memory/sop/POST_TASK_SOP.md`"
         }
       ]
     },
@@ -5774,16 +5409,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 59,
           "context": "### Key Functions"
-        }
-      ]
-    },
-    {
-      "topic": "Key lesson",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 246,
-          "context": "- **Key lesson**: Only HarfBuzz-based rendering produces correct Myanmar script in PDF without system Pango - Boss asked to use Gemini model for the fix"
         }
       ]
     },
@@ -6008,13 +5633,38 @@
       ]
     },
     {
-      "topic": "LESSON",
+      "topic": "lazy-loaded components",
       "files": [
         {
           "path": "memory/2026-06-10.md",
-          "line": 226,
-          "context": "- **LESSON**: Never do complex multi-file edits via string replacement. Syntax errors pile up. - **Final Result:**"
+          "line": 5,
+          "context": "Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path). Cloudflare"
         },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 27,
+          "context": "Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path). Cloudflare"
+        }
+      ]
+    },
+    {
+      "topic": "Lesson Learned",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 220,
+          "context": "### Lesson Learned - `api_client.py` has TWO separate auth mechanisms: `_http_request` uses **header**, but `api_post`/`api_get` use **query param** only"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 254,
+          "context": "### Lesson Learned - **`\"error\" in resp` ≠ `resp.get(\"error\")`** — when API always includes `error` key (even with null), `in` operator is always True. Must use truthy check on the value, not key exis"
+        }
+      ]
+    },
+    {
+      "topic": "Lesson:",
+      "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 26,
@@ -6088,32 +5738,12 @@
       ]
     },
     {
-      "topic": "Lesson Learned",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 220,
-          "context": "### Lesson Learned - `api_client.py` has TWO separate auth mechanisms: `_http_request` uses **header**, but `api_post`/`api_get` use **query param** only"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 254,
-          "context": "### Lesson Learned - **`\"error\" in resp` ≠ `resp.get(\"error\")`** — when API always includes `error` key (even with null), `in` operator is always True. Must use truthy check on the value, not key exis"
-        }
-      ]
-    },
-    {
       "topic": "Lessons Learned",
       "files": [
         {
           "path": "memory/2026-06-09.md",
           "line": 32,
           "context": "### Lessons Learned - cash_movements raw balance (304M) ≠ actual financial position — it only tracks internal transfers"
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 31,
-          "context": "### Lessons Learned 1. NEVER let \"stay quiet\" rules affect message responses — only heartbeat/outreach"
         }
       ]
     },
@@ -6493,36 +6123,6 @@
       ]
     },
     {
-      "topic": "n8n CE can't share Telegram credentials via API",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 200,
-          "context": "16. **n8n CE can't share Telegram credentials via API** — must be done manually in the UI 17. **SQLite WAL files MUST be preserved** — deleting them loses uncommitted data"
-        }
-      ]
-    },
-    {
-      "topic": "n8n CE credential sharing",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 179,
-          "context": "1. **n8n CE credential sharing** is API-restricted — must be done via UI 2. **SQLite WAL mode** — deleting `.sqlite-shm` and `.sqlite-wal` deletes uncommitted data"
-        }
-      ]
-    },
-    {
-      "topic": "n8n Community Edition",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 172,
-          "context": "- Root cause: **n8n Community Edition** lacks license for credential sharing - `PATCH /rest/credentials/{id}` with `isGlobal: true` → 400 (no license)"
-        }
-      ]
-    },
-    {
       "topic": "Naming conflict",
       "files": [
         {
@@ -6806,11 +6406,6 @@
           "context": "- **Note:** API-level check protects both dashboard and bot paths - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint"
         },
         {
-          "path": "memory/2026-06-10.md",
-          "line": 65,
-          "context": "- **Note**: Requires gateway restart to take effect (reloadKind: none)"
-        },
-        {
           "path": "memory/booking-features-plan.md",
           "line": 305,
           "context": "**Note:** `now_mmt` is already available in `prompts.py` (confirmed from reading the file)."
@@ -6854,6 +6449,21 @@
           "path": "memory/contacts.md",
           "line": 24,
           "context": "- **Nova:** Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup) - **Chan Su Su Hlaing:** Colleague / Business"
+        }
+      ]
+    },
+    {
+      "topic": "Now Boss only needs to hard-refresh (Ctrl+F5 or Incognito)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 22,
+          "context": "### Now Boss only needs to hard-refresh (Ctrl+F5 or Incognito)"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 44,
+          "context": "### Now Boss only needs to hard-refresh (Ctrl+F5 or Incognito)"
         }
       ]
     },
@@ -7033,16 +6643,6 @@
       ]
     },
     {
-      "topic": "Path Reference Map (current)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 43,
-          "context": "### Path Reference Map (current) | Referencing File | Old Path | New/Correct Path |"
-        }
-      ]
-    },
-    {
       "topic": "Path:",
       "files": [
         {
@@ -7113,16 +6713,6 @@
       ]
     },
     {
-      "topic": "Pending",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 248,
-          "context": "- **Pending**: Send HarfBuzz-generated PDF to boss; if still wrong, spawn Gemini sub-agent for fresh approach #!/usr/bin/env python3"
-        }
-      ]
-    },
-    {
       "topic": "Performance",
       "files": [
         {
@@ -7174,16 +6764,6 @@
           "path": "MEMORY.md",
           "line": 168,
           "context": "- **Phase 2 pending**: Session Start pre-order + Session End auto-bill"
-        }
-      ]
-    },
-    {
-      "topic": "Phase 2 Sub-agent Running",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 75,
-          "context": "### Phase 2 Sub-agent Running - Quality Gate audit, remaining upgrades delegated to sub-agent"
         }
       ]
     },
@@ -7333,26 +6913,6 @@
       ]
     },
     {
-      "topic": "POST /rest/workflows/{id}/activate",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 181,
-          "context": "3. **POST /rest/workflows/{id}/activate** with `{\"versionId\": \"...\"}` works (not PATCH)"
-        }
-      ]
-    },
-    {
-      "topic": "Post activate with versionId works",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 202,
-          "context": "18. **Post activate with versionId works** — PATCH `active: true` does NOT work for activation 19. **3-layer bugs pattern confirmed** in auto_cancel: 4+ independent broken things (endpoints, vars, par"
-        }
-      ]
-    },
-    {
       "topic": "Post-Fix Status (13:43 UTC)",
       "files": [
         {
@@ -7369,16 +6929,6 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 67,
           "context": "## Post-Fix Testing The Boss should test again:"
-        }
-      ]
-    },
-    {
-      "topic": "POST_TASK_SOP.md paths corrected",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 39,
-          "context": "1. **POST_TASK_SOP.md paths corrected** — AGENTS.md, GOLDEN_RULES.md, SOUL.md all updated from `POST_TASK_SOP.md` → `memory/sop/POST_TASK_SOP.md` 2. **archive/ps5_news.md deleted** — outdated 48K dupl"
         }
       ]
     },
@@ -7429,16 +6979,6 @@
           "path": "memory/delegation-rules.md",
           "line": 54,
           "context": "| 🤖 Fix Agent (code) | **Pro only!** | 300-900s | | 🔍 Verify Agent | Flash | 300s |"
-        }
-      ]
-    },
-    {
-      "topic": "Problem:",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 212,
-          "context": "- **Problem:** Caddy's `handle /n8n/*` worked via direct VPS IP (`http://5.223.81.16/n8n/` ✅) but NOT via Cloudflare tunnel (`https://ps-vibe.com/n8n/` ❌ 404) - **Root cause:** Cloudflare tunnel runs "
         }
       ]
     },
@@ -7738,16 +7278,6 @@
       ]
     },
     {
-      "topic": "ReportLab approach",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 240,
-          "context": "- **ReportLab approach**: Better structured but still no OpenType shaping for Myanmar complex script - **HarfBuzz + FreeType approach**: ✅ Renders proper Myanmar text using uharfbuzz + freetype-py"
-        }
-      ]
-    },
-    {
       "topic": "Repository 1: Sales Bot (`/root/psvibe-sales-bot/`)",
       "files": [
         {
@@ -7841,11 +7371,6 @@
           "context": "- **Result:** `rows` gets a coroutine object instead of the keyboard layout → `InjectedKeyboard` silently fails - **Fix:** Changed to `rows = await _sbk_console_kb()`"
         },
         {
-          "path": "memory/2026-06-10.md",
-          "line": 72,
-          "context": "- **Result**: 446MB → **354MB** (-92MB, 1,305→~750 files) - Updated cron job to use new script (every 10 min)"
-        },
-        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -7876,11 +7401,6 @@
       "topic": "Root cause 1:",
       "files": [
         {
-          "path": "memory/2026-06-10.md",
-          "line": 217,
-          "context": "- **Root cause 1:** n8n's static asset paths are NOT prefixed with `/n8n/` (e.g., `/assets/index-xxx.js`, `/static/...`, `/favicon.ico`). - **Fix 1:** Updated middleware to also proxy `/assets/*`, `/s"
-        },
-        {
           "path": "MEMORY.md",
           "line": 114,
           "context": "- **Root cause 1:** API `_map_booking_row` mapped `console_id` → `consoleType` field only — no `consoleId` - **Root cause 2:** Bot checked `b.get(\"console_id\")` / `b.get(\"consoleId\")` — neither existe"
@@ -7891,24 +7411,9 @@
       "topic": "Root cause 2:",
       "files": [
         {
-          "path": "memory/2026-06-10.md",
-          "line": 219,
-          "context": "- **Root cause 2:** n8n frontend uses `window.BASE_PATH` (default `'/'`) for API calls. Since n8n's actual API is at `/n8n/rest/...`, the frontend made requests to `/rest/...` which 404'd. - **Fix 2:*"
-        },
-        {
           "path": "MEMORY.md",
           "line": 115,
           "context": "- **Root cause 2:** Bot checked `b.get(\"console_id\")` / `b.get(\"consoleId\")` — neither existed - **Fix:** API added `consoleId` field; Bot added `consoleType` fallback check"
-        }
-      ]
-    },
-    {
-      "topic": "Root Cause Summary",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 25,
-          "context": "### Root Cause Summary - HEARTBEAT.md/AGENTS.md \"stay quiet\" rule was misinterpreted to apply to **incoming message responses**, not just heartbeat outreach"
         }
       ]
     },
@@ -8062,13 +7567,13 @@
         },
         {
           "path": "memory/2026-06-10.md",
-          "line": 58,
-          "context": "- **Root cause**: Old uvicorn PID 937300 holding port 8000, systemd wrapper script out of sync - **Fix**: `sudo systemctl restart psvibe-api` — service now `active` ✅"
+          "line": 4,
+          "context": "### Root Cause Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original pa"
         },
         {
           "path": "memory/2026-06-10.md",
-          "line": 213,
-          "context": "- **Root cause:** Cloudflare tunnel runs with `--token` (remote-managed), circumventing local Caddy. Tunnel routes directly to API server (port 8000), bypassing Caddy entirely. - **Fix:** Added `@app."
+          "line": 26,
+          "context": "### Root Cause Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original pa"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -8204,16 +7709,6 @@
           "path": "MEMORY.md",
           "line": 742,
           "context": "15. **Rule 11 (GOLDEN_RULES.md)**: Always Respond to Boss — NO Quiet Hours for Incoming Messages 16. **Session file bloat at 446MB/500MB** — 1,305 session files. Cleanup every 10 min may not keep up w"
-        }
-      ]
-    },
-    {
-      "topic": "Rule 11: Always Respond to Boss — NO Quiet Hours for Incoming Messages",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 13,
-          "context": "- **Rule 11: Always Respond to Boss — NO Quiet Hours for Incoming Messages** - Explicit: respond immediately regardless of time"
         }
       ]
     },
@@ -8838,16 +8333,6 @@
       ]
     },
     {
-      "topic": "Session Reminder",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 165,
-          "context": "- **Session Reminder** — webhook → wait until time → Telegram - **Booking Reminder** — webhook → 3 parallel waits → 3 Telegram nodes"
-        }
-      ]
-    },
-    {
       "topic": "Session Start/End",
       "files": [
         {
@@ -8948,16 +8433,6 @@
       ]
     },
     {
-      "topic": "Simple NoOp workflow acitvation succeeds",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 204,
-          "context": "20. **Simple NoOp workflow acitvation succeeds** — proves the issue is credential-specific, not workflow"
-        }
-      ]
-    },
-    {
       "topic": "Smart Auto-Retry",
       "files": [
         {
@@ -9014,26 +8489,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 14,
           "context": "| **Sale Bot (Staff)** | `psvibe-sale-bot` | 9-state `ConversationHandler` (SBK_CONSOLE → ... → SBK_CONFIRM) | Staff picks a **specific console unit** (C-01 through C-10) from a live-status keyboard |"
-        }
-      ]
-    },
-    {
-      "topic": "SQLite WAL files MUST be preserved",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 201,
-          "context": "17. **SQLite WAL files MUST be preserved** — deleting them loses uncommitted data 18. **Post activate with versionId works** — PATCH `active: true` does NOT work for activation"
-        }
-      ]
-    },
-    {
-      "topic": "SQLite WAL mode",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 180,
-          "context": "2. **SQLite WAL mode** — deleting `.sqlite-shm` and `.sqlite-wal` deletes uncommitted data 3. **POST /rest/workflows/{id}/activate** with `{\"versionId\": \"...\"}` works (not PATCH)"
         }
       ]
     },
@@ -9384,16 +8839,6 @@
           "path": "memory/bug-patterns.md",
           "line": 109,
           "context": "## String replace() Whitespace Mismatch (FIXED — 2026-06-09) - Python patch script with `txt.replace(old, new)` silently does nothing — no error, no change"
-        }
-      ]
-    },
-    {
-      "topic": "Sub-agent",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 57,
-          "context": "- **Sub-agent** deployed to fix psvibe-api (was stuck in \"activating\" state) - **Root cause**: Old uvicorn PID 937300 holding port 8000, systemd wrapper script out of sync"
         }
       ]
     },
@@ -10221,11 +9666,6 @@
       "topic": "Verified",
       "files": [
         {
-          "path": "memory/2026-06-10.md",
-          "line": 60,
-          "context": "- **Verified**: Port 8000 listening, dashboard returns 200"
-        },
-        {
           "path": "MEMORY.md",
           "line": 554,
           "context": "### Verified - ✅ Single Cash payment → stock_in record + cash_movements eject (2,000 Ks deducted)"
@@ -10304,16 +9744,6 @@
           "path": "memory/subagent-journal.json",
           "line": 10,
           "context": "status: completed | summary: subagent apparently completed"
-        }
-      ]
-    },
-    {
-      "topic": "visible in n8n UI",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 175,
-          "context": "- Telegram credential is **visible in n8n UI** but workflows can't reference it via API - **Fix requires manual setup** via n8n UI: login to https://ps-vibe.com, assign \"PS VIBE Bot\" credential to bot"
         }
       ]
     },
@@ -10443,16 +9873,6 @@
       ]
     },
     {
-      "topic": "What Was Done",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 54,
-          "context": "### What Was Done"
-        }
-      ]
-    },
-    {
       "topic": "What Was Fixed:",
       "files": [
         {
@@ -10578,16 +9998,6 @@
       ]
     },
     {
-      "topic": "~28,979 lines",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 122,
-          "context": "- Sales bot: **~28,979 lines** (29,112 - 133 dead code) - **775 functions** (was 812)"
-        }
-      ]
-    },
-    {
       "topic": "သတိထားရန်:",
       "files": [
         {
@@ -10639,16 +10049,6 @@
           "path": "MEMORY.md",
           "line": 149,
           "context": "### ⏰ Session Timer Reminder Fix (12:15-12:30 UTC) - `_is_session_active()` was calling non-existent `/api/console_booking` → reminder never fired"
-        }
-      ]
-    },
-    {
-      "topic": "⏳ Pending: Boss must login to n8n (`admin@psvibe.com` / `KoraAuto2025!`) and manually assign Telegram credential to activate workflows",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 692,
-          "context": "### ⏳ Pending: Boss must login to n8n (`admin@psvibe.com` / `KoraAuto2025!`) and manually assign Telegram credential to activate workflows"
         }
       ]
     },
@@ -10724,26 +10124,6 @@
           "path": "memory/2026-06-09.md",
           "line": 6,
           "context": "## ✅ Done"
-        }
-      ]
-    },
-    {
-      "topic": "✅ PDF Generated with HarfBuzz + FreeType",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 660,
-          "context": "## ✅ PDF Generated with HarfBuzz + FreeType - Successfully created PDF with proper Myanmar text shaping"
-        }
-      ]
-    },
-    {
-      "topic": "✅ PDF Ready for Boss Review",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 712,
-          "context": "## ✅ PDF Ready for Boss Review - HarfBuzz + FreeType PDF: 505KB, 2 pages, 200dpi"
         }
       ]
     },
@@ -10878,12 +10258,17 @@
       ]
     },
     {
-      "topic": "🎯 n8n Subpath — 3-Bug Fix (11:34-12:34 UTC)",
+      "topic": "🎯 Sales Daily Lazy-Load Fix (07:02-07:08 UTC)",
       "files": [
         {
           "path": "memory/2026-06-10.md",
-          "line": 665,
-          "context": "## 🎯 n8n Subpath — 3-Bug Fix (11:34-12:34 UTC)"
+          "line": 2,
+          "context": "## 🎯 Sales Daily Lazy-Load Fix (07:02-07:08 UTC)"
+        },
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 24,
+          "context": "## 🎯 Sales Daily Lazy-Load Fix (07:02-07:08 UTC)"
         }
       ]
     },
@@ -10924,16 +10309,6 @@
           "path": "MEMORY.md",
           "line": 376,
           "context": "### 🏗️ Financial Dashboard — Full Recovery & Depreciation Auto-Calc + Advances/Prepaid Integration (10:09 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "🏗️ PDF Generation Saga (06:00-06:24 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 237,
-          "context": "## 🏗️ PDF Generation Saga (06:00-06:24 UTC) - Boss wants a Burmese PDF manual for Sales Bot staff"
         }
       ]
     },
@@ -11268,16 +10643,6 @@
       ]
     },
     {
-      "topic": "📄 PDF Manual Update",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 531,
-          "context": "## 📄 PDF Manual Update - HarfBuzz + FreeType approach works for Myanamr text rendering in PDF"
-        }
-      ]
-    },
-    {
       "topic": "📉 Depreciation Engine (04:37-05:32 UTC)",
       "files": [
         {
@@ -11358,16 +10723,6 @@
       ]
     },
     {
-      "topic": "📋 Session State (06:24 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 694,
-          "context": "## 📋 Session State (06:24 UTC) - In progress: MT PDF manual generation"
-        }
-      ]
-    },
-    {
       "topic": "📌 Summary (2026-06-09) — Continued (12:25-15:30 UTC)",
       "files": [
         {
@@ -11394,16 +10749,6 @@
           "path": "MEMORY.md",
           "line": 84,
           "context": "## 📌 Today's Summary (2026-06-06) — 🎮🔥 GRAND OPENING DAY! 🔥🎮"
-        }
-      ]
-    },
-    {
-      "topic": "📐 .md Files Structure Fix (02:22-02:24 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 36,
-          "context": "## 📐 .md Files Structure Fix (02:22-02:24 UTC)"
         }
       ]
     },
@@ -11608,16 +10953,6 @@
       ]
     },
     {
-      "topic": "🗑️ Admin Panel Deletion + n8n Webhooks Setup (05:00-05:34 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 85,
-          "context": "## 🗑️ Admin Panel Deletion + n8n Webhooks Setup (05:00-05:34 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🗑️ Google Sheet Sync Removed",
       "files": [
         {
@@ -11678,16 +11013,6 @@
       ]
     },
     {
-      "topic": "🚀 Phase 1 Upgrades Complete (02:24-02:37 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 52,
-          "context": "## 🚀 Phase 1 Upgrades Complete (02:24-02:37 UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🚀 Sub-agent / Spawn Errors",
       "files": [
         {
@@ -11714,16 +11039,6 @@
           "path": "memory/delegation-rules.md",
           "line": 63,
           "context": "## 🚫 What Kora NEVER Does - ❌ **NEVER write/edit code directly** — use Fix Agent (Pro)"
-        }
-      ]
-    },
-    {
-      "topic": "🛠️ Kora Upgrade — Fix Protocol + Rules Cleanup (02:15-02:20 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 2,
-          "context": "## 🛠️ Kora Upgrade — Fix Protocol + Rules Cleanup (02:15-02:20 UTC)"
         }
       ]
     },
@@ -11824,21 +11139,6 @@
           "path": "memory/ERROR_PATTERNS.md",
           "line": 15,
           "context": "## 🤖 Telegram Bot Errors"
-        }
-      ]
-    },
-    {
-      "topic": "🧠 Critical Lessons (June 10 continuation)",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 199,
-          "context": "### 🧠 Critical Lessons (June 10 continuation) 16. **n8n CE can't share Telegram credentials via API** — must be done manually in the UI"
-        },
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 232,
-          "context": "### 🧠 Critical Lessons (June 10 continuation) 21. **`docker compose up --no-deps`** doesn't recreate when only Caddyfile changed (mounted file). Use `--force-recreate` or `docker compose restart` for "
         }
       ]
     },
@@ -11954,16 +11254,6 @@
           "path": "MEMORY.md",
           "line": 118,
           "context": "### 🧠 New Lessons - **Unicode escape sequences are fragile** — always verify with `python3 -c \"print(...)\"` before deploying fix scripts; prefer SFTP upload + remote Python execution for exact byte-le"
-        }
-      ]
-    },
-    {
-      "topic": "🧹 Memory Cleanup",
-      "files": [
-        {
-          "path": "memory/2026-06-10.md",
-          "line": 538,
-          "context": "## 🧹 Memory Cleanup - Memory file grew to 532+ lines due to accidental build script during restricted write"
         }
       ]
     }
