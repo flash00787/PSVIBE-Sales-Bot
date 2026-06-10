@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-10T14:08:23Z",
+  "updated": "2026-06-10T20:37:40Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -739,6 +739,12 @@
     {
       "source": "ps-vibe",
       "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "oauth2",
       "relation": "uses",
       "weight": 5
     },
@@ -5598,6 +5604,12 @@
     },
     {
       "source": "n8n",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
       "target": "phase-3",
       "relation": "related_to",
       "weight": 3
@@ -6991,12 +7003,6 @@
     {
       "source": "ps-vibe",
       "target": "n8n",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "ps-vibe",
-      "target": "oauth2",
       "relation": "uses",
       "weight": 3
     },
