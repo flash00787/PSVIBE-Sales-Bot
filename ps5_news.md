@@ -1,6 +1,40 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-10 17:30 UTC
+> Last updated: 2026-06-10 23:30 UTC
+
+---
+
+## 🔥 UPDATE (June 10, 2026 - 23:30 UTC) — Square Enix Drops Two NEW PS5 RPGs + October Calendar Fills Out!
+
+### 🔥🔥 MAJOR: Final Fantasy Resonance — October 22, 2026! (HD-2D Final Fantasy!)
+- Square Enix announced the **FIRST EVER HD-2D Final Fantasy game** during the June 2026 Nintendo Direct
+- **Confirmed for PS5** alongside PC, Switch, Switch 2, and Xbox Series X|S
+- **Release date: October 22, 2026**
+- **$49.99 Standard Edition** / $59.99 Digital Deluxe Edition
+- Description: "Return to the pixel-art world of Final Fantasy, evolved from its classic roots. Travel with companions bound by fate and call on Visions to aid you in battle."
+- **💡💡 Lounge Impact:** An HD-2D Final Fantasy (like Octopath Traveler but branded FF!) at $49.99 is going to be MASSIVE for RPG fans. This is the kind of game that will draw nostalgic FF veterans AND new players. October is now absurdly stacked — COD MW4 (Oct 23) launches the VERY NEXT DAY!
+
+### 🐉🔥 MAJOR: Dragon Quest Monsters: The Withered World — December 3, 2026!
+- **First Dragon Quest Monsters game on PlayStation in decades!**
+- PS5, Xbox Series X|S, Switch, Switch 2, PC — **December 3, 2026**
+- **$59.99 Standard** / $94.99 Digital Deluxe Edition
+- **💡💡 Lounge Impact:** Dragon Quest is one of Japan's most beloved RPG franchises and has a strong following across Asia. A monster-collecting DQ game on PS5 for the first time in decades is a notable event. December 3 release = perfect for holiday lounge sessions!
+
+### 📝 Notable October Additions (newly discovered):
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🔥 **Tales of Eternia Remastered** | Oct 16, 2026 | ⭐⭐⭐⭐ — Classic JRPG, beloved by Asia RPG fans |
+| 🔥 **Dragon's Dogma 2: Dark Arisen** | Oct 9, 2026 | ⭐⭐⭐⭐ — Expansion/new edition of Capcom's action RPG |
+| **Forever Ago** | Oct 8, 2026 | ⭐⭐⭐ — New narrative adventure |
+| 🎠 **Toy Story: Retro Roundup! / Toy Story 3: Complete Edition** | Oct 15, 2026 | ⭐⭐⭐ — Family-friendly, Pixar IP = parent-kid sessions! |
+| **ANOMALITH** | Oct 29, 2026 | ⭐⭐⭐ — New title |
+| **Silver Pines** | Oct 8, 2026 | ⭐⭐ — New title |
+| 🐱 **The Cat in the Hat: Rainy Day Mayhem** | Oct 30, 2026 | ⭐⭐ — Kids/family title |
+
+### 💡 Lounge Priority Actions from This Update:
+- **Final Fantasy Resonance (Oct 22)** — brand-new HD-2D FF is a must-have for RPG fans. Budget-friendly $49.99. Add to wishlist!
+- **Dragon Quest Monsters: The Withered World (Dec 3)** — historic PlayStation debut for the series. DQ fans will come for this.
+- **October is becoming the most stacked month of 2026** — Oct 1 (Rayman x2 + Dynasty Warriors 3), Oct 2 (Ace Combat 8), Oct 6 (Star Wars Galactic Racer), Oct 9 (Dragon's Dogma 2 DA), Oct 13 (Planet Zoo 2), Oct 15 (Castlevania + Toy Story), Oct 16 (Tales of Eternia), Oct 22 (FF Resonance!), Oct 23 (COD MW4!), Oct 29 (Phantom Blade 0 + ANOMALITH). That's 18+ major titles in ONE month!
 
 ---
 
@@ -934,15 +968,24 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Oct 1 | **End of Abyss** 🌑🆕 | ⭐⭐⭐ (New RPG!) |
 | Oct 2 | **Ace Combat 8: Wings of Theve** | ⭐⭐⭐⭐ |
 | Oct 6 | **Star Wars: Galactic Racer** 🏎️ | ⭐⭐⭐ |
+| Oct 8 | **Forever Ago** 🆕 | ⭐⭐⭐ (Narrative adventure!) |
+| Oct 9 | 🔥 **Dragon's Dogma 2: Dark Arisen** 🐉🆕 | ⭐⭐⭐⭐ (Capcom action RPG expansion!) |
 | Oct 13 | 🦁 **Planet Zoo 2** 🆕 | ⭐⭐⭐⭐ (Family-friendly sim!) |
 | Oct 15 | 🦇 **Castlevania: Belmont's Curse** 🔒 | ⭐⭐⭐⭐ (DATE LOCKED! Classic franchise!) |
-| Oct TBD | **No Rest for the Wicked** | ⭐⭐⭐ |
+| Oct 15 | 🎠 **Toy Story: Retro Roundup!** 🆕 | ⭐⭐⭐ (Family-friendly! Pixar IP!) |
+| Oct 16 | 🔥 **Tales of Eternia Remastered** ⚔️🆕 | ⭐⭐⭐⭐ (Classic JRPG! Asia fanbase!) |
+| Oct 22 | 🔥🔥 **Final Fantasy Resonance** 🆕 | ⭐⭐⭐⭐⭐ (HD-2D FF! $49.99!) |
 | Oct 23 | 🔥🔥 **Call of Duty: Modern Warfare 4** 🆕 | ⭐⭐⭐⭐⭐ (DATE LOCKED! Korean Peninsula!) |
 | Oct 29 | **Phantom Blade 0** 🔴 | ⭐⭐⭐⭐⭐ (DELAYED from Sep 9) |
+| Oct 29 | **ANOMALITH** 🆕 | ⭐⭐⭐ (New title!) |
+| Oct 30 | 🐱 **The Cat in the Hat: Rainy Day Mayhem** 🆕 | ⭐⭐ (Kids/family!) |
 | Nov 3 | **Godzilla: Destroy All Monsters Melee Remastered** 🦖 | ⭐⭐⭐⭐ (UE5 remake, $29.99!) |
 | Nov 19 | 🔥🔥🔥 **GTA 6** | ⭐⭐⭐⭐⭐ (CONFIRMED!) |
+| Dec 3 | 🔥🔥 **Dragon Quest Monsters: The Withered World** 🐉🆕 | ⭐⭐⭐⭐⭐ (First DQM on PS in decades! $59.99!) |
 
 ### Highly Anticipated (2026-2027, Dates TBD or Confirmed):
+- 🔥🔥 **Final Fantasy Resonance** 🆕 — FIRST HD-2D Final Fantasy game! **Oct 22, 2026**! $49.99! RPG fans will flock to this!
+- 🐉🔥 **Dragon Quest Monsters: The Withered World** 🆕 — First DQM on PlayStation in decades! **Dec 3, 2026**! DQ is MASSIVE in Asia!
 - 🥋🔥 **Avatar Legends: The Fighting Game** 🆕 — Avatar TLA/Korra 2D fighter, **July 23, 2026**! $29.99, crossplay, 12-fighter roster, rollback netcode!
 - 🔥🔥 **God of War: Laufey** — Sony first-party, instantly the biggest PS5 exclusive of the year
 - 🔥🔥 **Call of Duty: Modern Warfare 4** — **October 23, 2026**! Korean Peninsula campaign, DMZ mode returns, pre-orders LIVE on PS Store!
@@ -986,6 +1029,10 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 ---
 
 ## 📋 Lounge Recommendations for PS VIBE
+- 🔥🔥🔥 **FINAL FANTASY RESONANCE (Oct 22, $49.99)** 🆕 — FIRST EVER HD-2D Final Fantasy game by Square Enix! Pixel-art FF evolved for modern consoles. Budget price ($49.99) = easy impulse buy for RPG fans. Launches the day before COD MW4 — October is INSANE!
+- 🐉🔥🔥 **DRAGON QUEST MONSTERS: THE WITHERED WORLD (Dec 3, $59.99)** 🆕 — First Dragon Quest Monsters on PlayStation in decades! DQ is beloved across Asia. Holiday-season release = perfect lounge draw for December!
+- 🔥🔥 **Tales of Eternia Remastered (Oct 16)** 🆕 — Classic JRPG remastered! Tales series has a dedicated Asia fanbase.
+- 🐉 **Dragon's Dogma 2: Dark Arisen (Oct 9)** 🆕 — Capcom action RPG expansion. Like the original Dark Arisen, this will add substantial content.
 - 🔥🔥🔥 **FINAL FANTASY XVI on PS Plus Extra (June 16)!** 🆕 — $70 flagship RPG FREE for Extra/Premium subscribers! This is the biggest PS Plus Extra addition in months. 50+ hour epic with stunning Eikon battles. RPG fans will come specifically to play this. Promote NOW!
 - 🔥🔥 **Sonic X Shadow Generations on PS Plus Extra (AVAILABLE NOW in US!)** 🆕 — Fast-paced platformer with Shadow campaign + remastered Sonic Generations. Perfect family-friendly title for casual lounge sessions!
 - 🔥🔥 **Kingdom Come: Deliverance on PS Plus Extra (June 16)** 🆕 — Medieval open-world RPG with 100+ hours of content. PS5 version has 4K/60fps. Hardcore RPG fans will love this!
