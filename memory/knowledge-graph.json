@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-11T15:07:29Z",
+  "updated": "2026-06-11T21:37:30Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -276,14 +276,14 @@
   "edges": [
     {
       "source": "boss",
-      "target": "boot-protocol",
+      "target": "daily-digest",
       "relation": "implements",
       "weight": 5
     },
     {
       "source": "boss",
-      "target": "daily-digest",
-      "relation": "implements",
+      "target": "gmail-api",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -300,13 +300,13 @@
     },
     {
       "source": "boss",
-      "target": "memory-upgrade",
-      "relation": "implements",
+      "target": "mysql",
+      "relation": "uses",
       "weight": 5
     },
     {
       "source": "boss",
-      "target": "mysql",
+      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -336,50 +336,20 @@
     },
     {
       "source": "boss",
+      "target": "ssh",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "synergy-hub",
       "relation": "owns",
       "weight": 5
     },
     {
       "source": "boss",
-      "target": "vps",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "boss",
       "target": "ye-yint-oo",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "docker",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "github",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "mysql",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "caddy",
-      "target": "vps",
-      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -426,12 +396,6 @@
     },
     {
       "source": "coco-bot",
-      "target": "caddy",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "coco-bot",
       "target": "docker",
       "relation": "uses",
       "weight": 5
@@ -439,12 +403,6 @@
     {
       "source": "coco-bot",
       "target": "mysql",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "coco-bot",
-      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -492,20 +450,8 @@
     },
     {
       "source": "docker",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "docker",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "docker",
-      "target": "vps",
-      "relation": "depends_on",
+      "target": "smart-pruning",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -517,12 +463,6 @@
     {
       "source": "git-backup",
       "target": "phase-3",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "github",
-      "target": "consolidator",
       "relation": "related_to",
       "weight": 5
     },
@@ -542,6 +482,12 @@
       "source": "github",
       "target": "knowledge-graph-concept",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "n8n",
+      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -599,6 +545,12 @@
       "weight": 5
     },
     {
+      "source": "knowledge-graph-concept",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
       "source": "kora",
       "target": "git-backup",
       "relation": "implements",
@@ -630,18 +582,6 @@
     },
     {
       "source": "kora",
-      "target": "mysql",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "kora",
-      "target": "openclaw",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "kora",
       "target": "phase-3",
       "relation": "implements",
       "weight": 5
@@ -656,6 +596,12 @@
       "source": "kora",
       "target": "spawn-protocol",
       "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "ssh",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -684,32 +630,8 @@
     },
     {
       "source": "mysql",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "mysql",
       "target": "python",
       "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "mysql",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "mysql",
-      "target": "vps",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "nova",
-      "target": "caddy",
-      "relation": "uses",
       "weight": 5
     },
     {
@@ -727,12 +649,6 @@
     {
       "source": "nova",
       "target": "mysql",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "nova",
-      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -847,6 +763,12 @@
     {
       "source": "ps-vibe",
       "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -974,12 +896,6 @@
       "source": "synergy-hub",
       "target": "mysql",
       "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "vps",
-      "target": "git-backup",
-      "relation": "related_to",
       "weight": 5
     },
     {
@@ -1848,6 +1764,12 @@
     },
     {
       "source": "boss",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "boss",
       "target": "caddy",
       "relation": "uses",
       "weight": 3
@@ -1926,12 +1848,6 @@
     },
     {
       "source": "boss",
-      "target": "gmail-api",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "google-drive-api",
       "relation": "uses",
       "weight": 3
@@ -1962,8 +1878,8 @@
     },
     {
       "source": "boss",
-      "target": "n8n",
-      "relation": "uses",
+      "target": "memory-upgrade",
+      "relation": "implements",
       "weight": 3
     },
     {
@@ -2034,12 +1950,6 @@
     },
     {
       "source": "boss",
-      "target": "ssh",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "subagent-tracking",
       "relation": "implements",
       "weight": 3
@@ -2047,6 +1957,12 @@
     {
       "source": "boss",
       "target": "telegram",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
+      "target": "vps",
       "relation": "uses",
       "weight": 3
     },
@@ -2118,6 +2034,12 @@
     },
     {
       "source": "caddy",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
       "target": "gemini-api",
       "relation": "depends_on",
       "weight": 3
@@ -2126,6 +2048,12 @@
       "source": "caddy",
       "target": "git-backup",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "github",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -2174,6 +2102,18 @@
       "source": "caddy",
       "target": "memory-upgrade",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "n8n",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -2245,6 +2185,12 @@
     {
       "source": "caddy",
       "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -2760,6 +2706,12 @@
     },
     {
       "source": "coco-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
       "target": "claude-sonnet",
       "relation": "uses",
       "weight": 3
@@ -2864,6 +2816,12 @@
       "source": "coco-bot",
       "target": "memory-upgrade",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "coco-bot",
+      "target": "n8n",
+      "relation": "uses",
       "weight": 3
     },
     {
@@ -3576,6 +3534,12 @@
     },
     {
       "source": "docker",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -3624,14 +3588,14 @@
     },
     {
       "source": "docker",
-      "target": "smart-pruning",
+      "target": "spawn-protocol",
       "relation": "related_to",
       "weight": 3
     },
     {
       "source": "docker",
-      "target": "spawn-protocol",
-      "relation": "related_to",
+      "target": "ssh",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -3643,6 +3607,12 @@
     {
       "source": "docker",
       "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -4176,6 +4146,12 @@
     },
     {
       "source": "github",
+      "target": "consolidator",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
       "target": "daily-digest",
       "relation": "related_to",
       "weight": 3
@@ -4230,12 +4206,6 @@
     },
     {
       "source": "github",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "github",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -5059,12 +5029,6 @@
     {
       "source": "knowledge-graph-concept",
       "target": "session-summary",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "knowledge-graph-concept",
-      "target": "smart-pruning",
       "relation": "related_to",
       "weight": 3
     },
@@ -5208,6 +5172,12 @@
     },
     {
       "source": "kora",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
       "target": "n8n",
       "relation": "uses",
       "weight": 3
@@ -5227,6 +5197,12 @@
     {
       "source": "kora",
       "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },
@@ -5276,12 +5252,6 @@
       "source": "kora",
       "target": "smart-pruning",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "ssh",
-      "relation": "uses",
       "weight": 3
     },
     {
@@ -5466,6 +5436,12 @@
     },
     {
       "source": "mysql",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -5520,6 +5496,12 @@
     },
     {
       "source": "mysql",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -5527,6 +5509,12 @@
     {
       "source": "mysql",
       "target": "telegram",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "mysql",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -5622,6 +5610,12 @@
     },
     {
       "source": "n8n",
+      "target": "phase-2",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "n8n",
       "target": "phase-3",
       "relation": "related_to",
       "weight": 3
@@ -5708,6 +5702,12 @@
       "source": "nova",
       "target": "boot-protocol",
       "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "caddy",
+      "relation": "uses",
       "weight": 3
     },
     {
@@ -5816,6 +5816,12 @@
       "source": "nova",
       "target": "memory-upgrade",
       "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "nova",
+      "target": "n8n",
+      "relation": "uses",
       "weight": 3
     },
     {
@@ -6992,12 +6998,6 @@
       "source": "ps-vibe",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "ps-vibe",
-      "target": "n8n",
-      "relation": "uses",
       "weight": 3
     },
     {
@@ -7897,6 +7897,12 @@
     {
       "source": "vps",
       "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "vps",
+      "target": "git-backup",
       "relation": "related_to",
       "weight": 3
     },
