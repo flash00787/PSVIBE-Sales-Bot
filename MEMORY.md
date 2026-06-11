@@ -95,45 +95,9 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 
 ## 🧪 Critical Lessons Archive
 
-### API & Code Patterns
-- **API auto-unwrap:** `_api_get()` unwraps `{success,data}` → DON'T check `resp.get("success")` or `resp.get("data")` again
-- **`"error" in resp` ≠ `resp.get("error")`:** When API returns `error:null` key, `in` operator is always True. Use truthy check.
-- **API response_model strips undeclared fields** (confirmed multiple times)
-- **`x if x else default` breaks on `0`** — use `x if x is not None else default`
-- **Two auth mechanisms in api_client.py:** `_http_request` uses X-API-Key header; `api_post`/`api_get` were using query param only (fixed June 8)
-- **Python `.pyc` cache stale after edit:** Must clear `__pycache__` then restart
-- **String replace() fails silently on whitespace mismatch:** Verify with `repr()`
-- **sed + Python strings = disaster:** Use `str.replace()` instead
-- **Elif chains must cover all variants:** `"wave"` ≠ `"wavepay"`
-- **PyMySQL `%` in LIKE:** `LIKE 'Topup%'` → format string error. Use `CONCAT('Topup', CHAR(37))`
-- **3 simultaneous records = triple-count:** topup creates topup_log + cash_movements inject + sales_daily
-- **nearest-50 rounding:** `round(x/50)*50`
-
-### Booking System
-- **3-layer bugs are common:** 1 symptom often has 3+ root causes (intercept menu missing, auto-unwrap API, Unicode corruption)
-- **Unicode escape sequences are fragile:** Always verify with `python3 -c "print(...)"` before deploying
-- **Burmese Unicode verification:** `U+101B U+101B` (ရရ) ≠ `U+101B U+103E` (ရှ)
-
-### Infrastructure
-- **systemctl/systemd unavailable on VPS:** Uvicorn via nohup; restart with `pkill -HUP -f 'uvicorn'`
-- **systemctl restart can silently fail:** Verify PID change, fallback `kill -9`
-- **JWT expires on API restart:** Users must re-login
+- **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md lean — use module files for details
 - **Session cron jobs <60s cause takeover errors:** Minimum 5-min interval for lock operations
 - **Session file bloat (446MB/500MB):** 1,305 session files; Gateway auto-prune handles this
-- **Vite lazy chunk import mismatch:** Renaming main JS alone isn't enough — all 22+ lazy imports must be updated
-
-### Financial
-- **BS equation:** Assets = L+E always. Depreciation Reserve goes in Equity
-- **Cash Flow closing = Web Finance:** Must use identical income allocation per account
-- **Inject exclusion = retained formula adjustment:** When excluding injects from assets, add to retained or BS breaks
-- **Topup = deferred liability, not revenue:** Only wallet_consumed is recognized revenue
-- **test entries → delete, don't dispose:** Prevents zombie records
-- **cash_movements stores labels, code uses keys:** Maintain mapping dict (`"kbz_bank"` → `"KBZ Bank"`)
-
-### Memory System
-- **"Stay quiet" rules NEVER apply to Boss messages:** Only heartbeat/outreach
-- **Boss messages = ALWAYS respond:** No quiet hours for incoming messages
-- **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md lean — use module files for details
 
 ---
 
@@ -145,28 +109,6 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 | June 11 | Login refresh bug (API_BASE: absolute→relative) | `kora_dashboard/index.html` |
 | June 11 | Web Commands → VPS execution | `kora_dashboard/*`, `vps_bridge.sh` |
 | June 10 | Sales Daily lazy-load fix (Cloudflare n8n cache) | `dashboard-dist/*.js` (22 chunks) |
-| June 10 | Prepaid Rent Amortization + auto-cron | `/root/scripts/auto_amortize.py` |
-| June 10 | Cash Flow finalized | `dashboard_routes.py` |
-| June 10 | Shareholders setup (3 ppl, 300M) | `dashboard_routes.py`, `StockIn.vue` |
-| June 10 | KPay triple-count fix → Bot=Web=BS match | `dashboard_routes.py`, `patch_routes.py` |
-| June 9 | KPay triple-count → Bot=Web match | `dashboard_routes.py`, `patch_routes.py` |
-| June 9 | Depreciation Engine + P&L/BS/CF + Rent | `dashboard_routes.py` |
-| June 9 | Stock In Edit + Payment fix + KBZ backdate | `dashboard_routes.py`, `StockIn.vue` |
-| June 9 | Notification Fixes (Cancel + 10-min reminder) | `booking_flow.py`, `auto_cancel_no_shows.py` |
-| June 9 | Financial Statements — 3 pages + BS balanced | `dashboard_routes.py` |
-| June 8 | Coupon Invalid bug (`"error" in resp` fix) | `bot/handlers/discount.py` |
-| June 8 | OPEX System built (9 categories) | `app.py`, `opex.py` |
-| June 8 | Financial Dashboard recovery (git disaster) | `dashboard_routes.py` (restored from `.bak.v3.1`) |
-| June 8 | Food Sale flow fix (KeyError mins/m_id) | `bot/handlers/sales.py` |
-| June 8 | Stock In → Payment integration | `app.py`, `stock_in.py`, `dashboard_routes.py` |
-| June 7 | Account Balance discrepancy (Cash 6-layer fix) | `dashboard_routes.py`, `patch_routes.py` |
-| June 7 | Food Menu Category Grouping | `app.py`, `api.py`, bot handlers |
-| June 7 | Inject/Eject Feature + Web Admin | `app.py`, `patch_routes.py`, bot handlers |
-| June 7 | Game Library fixes (SSD prefix, dupes) | `app.py`, DB cleanup |
-| June 7 | Session Timer Reminder fix | `booking_handlers.py`, `scheduler.py` |
-| June 7 | Food Sale Feature | `sales.py`, `food.py` |
-| June 6 | Food Menu Fix (3-layer: intercept + auto-unwrap + Unicode) | `customer_bot/handlers.py`, `main.py` |
-| June 6 | Duration Loop + Reserved Cross-Check | `booking_handlers.py`, `api_client.py` |
 
 ---
 

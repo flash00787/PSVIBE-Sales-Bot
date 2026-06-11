@@ -1,0 +1,20 @@
+{
+  "total_spawns": 4,
+  "success": 4,
+  "failure": 0,
+  "fallback_count": 0,
+  "model_stats": {
+    "deepseek/deepseek-v4-pro": {
+      "spawns": 3,
+      "success": 3,
+      "failures": 0
+    },
+    "deepseek/deepseek-v4-flash": {
+      "spawns": 1,
+      "success": 1,
+      "failures": 0
+    }
+  },
+  "recent_failures": [],
+  "last_updated": "2026-06-11T15:42:12.680634+00:00"
+}

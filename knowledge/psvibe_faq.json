@@ -49,7 +49,7 @@
       "items": [
         {
           "id": "location",
-          "keywords": ["နေရာ", "location", "address", "လိပ်စာ", "ဘယ်မှာလဲ", "ဘယ်နားလဲ", "ရောက်", "လား"],
+          "keywords": ["နေရာ", "location", "located", "address", "လိပ်စာ", "ဘယ်မှာလဲ", "ဘယ်နားလဲ", "ရောက်", "လား", "where", "လမ်း", "street"],
           "patterns": [
             "ဘယ်မှာလဲ",
             "ဘယ်နားလဲ",
@@ -97,7 +97,7 @@
       "items": [
         {
           "id": "games_list",
-          "keywords": ["game", "ဂိမ်း", "ဆော့", "ဆော့ဖ်", "game list", "game library", "game menu", "menu"],
+          "keywords": ["game", "games", "ဂိမ်း", "ဆော့", "ဆော့ဖ်", "play", "game list", "game library", "game menu", "menu", "fifa", "fortnite", "call of duty", "gta", "ea fc"],
           "patterns": [
             "ဘယ်ဂိမ်းတွေရှိလဲ",
             "ဂိမ်းစာရင်း",
@@ -131,7 +131,7 @@
       "items": [
         {
           "id": "food_menu",
-          "keywords": ["food", "drink", "စား", "သောက်", "အစားအသောက်", "menu", "အချိုရည်", "ခေါက်ဆွဲ", "မုန့်"],
+          "keywords": ["food", "drink", "drinks", "စား", "သောက်", "အစားအသောက်", "eat", "menu", "အချိုရည်", "ခေါက်ဆွဲ", "မုန့်", "snack", "snacks", "beverage", "beverages", "noodle", "noodles", "coffee", "tea"],
           "patterns": [
             "ဘာစားစရာတွေရှိလဲ",
             "ဘာသောက်စရာတွေရှိလဲ",

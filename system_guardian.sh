@@ -113,7 +113,19 @@ else
     check "Daily logs (all current)" "OK"
 fi
 
-# 8️⃣ Git auto-backup (stale check)
+# 8️⃣ Sub-agent Health Check
+agent_health=$(python3 $WORKSPACE/memory/agent_monitor.py health 2>/dev/null)
+agent_report=$(python3 $WORKSPACE/memory/agent_monitor.py report 2>/dev/null)
+if [ "$agent_health" = "CRITICAL" ]; then
+    check "Agent health: CRITICAL" "FAIL"
+    echo "$agent_report" > /tmp/agent_alert.txt
+elif [ "$agent_health" = "WARN" ]; then
+    check "Agent health: WARN" "WARN"
+else
+    check "Sub-agent health: OK" "OK"
+fi
+
+# 9️⃣ Git auto-backup (stale check)
 git_stale=$(cd "$WORKSPACE" && git status -s 2>/dev/null | wc -l)
 if [ "$git_stale" -gt 20 ]; then
     cd "$WORKSPACE" && git add -A && git commit -m "[GUARDIAN] Auto-sync on $(date -u '+%Y-%m-%d %H:%M UTC')" --no-verify 2>/dev/null && git push 2>/dev/null
