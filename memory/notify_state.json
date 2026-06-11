@@ -1,0 +1,10 @@
+{
+  "lastSalesTotal": 0,
+  "lastServiceFailures": 0,
+  "lastCheck": null,
+  "todaySent": false,
+  "milestones": {
+    "last5M": false,
+    "last10M": false
+  }
+}

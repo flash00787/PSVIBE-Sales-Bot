@@ -17,6 +17,32 @@
 | Construction Bot | `/opt/construction-bot/` (Docker) | `@three_brothers_accounting_bot` |
 | YYO Wallet Bot | `/opt/yyo-personal-wallet/` | `yyo-personal-wallet` |
 
+## Research Agent
+```bash
+# Deep research on any topic (saves to memory/research/)
+node /home/node/.openclaw/workspace/research_agent.js "your research query" [--timeout 120]
+
+# Example
+node /home/node/.openclaw/workspace/research_agent.js "Latest PS5 game releases June 2026"
+```
+
+## Google Drive Integration
+```bash
+# Upload file to Drive
+python3 /home/node/.openclaw/workspace/drive_tool.py upload <local_path> [--folder-id <id>]
+
+# List files
+python3 /home/node/.openclaw/workspace/drive_tool.py list [--folder-id <id>]
+
+# Create folder
+python3 /home/node/.openclaw/workspace/drive_tool.py mkdir <name> [--parent-id <id>]
+
+# Share / delete / search
+python3 /home/node/.openclaw/workspace/drive_tool.py share <file_id>
+python3 /home/node/.openclaw/workspace/drive_tool.py delete <file_id>
+python3 /home/node/.openclaw/workspace/drive_tool.py search <query>
+```
+
 ## Essential Commands
 ```bash
 # Core dev

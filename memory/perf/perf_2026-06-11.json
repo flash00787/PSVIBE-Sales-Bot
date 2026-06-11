@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-06-11T09:59:56.584Z",
+  "score": 113,
+  "grade": "🟢 Excellent",
+  "checks": [
+    {
+      "name": "CPU",
+      "status": "8 cores — AMD EPYC-Genoa Processor",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "CPU Load",
+      "status": "✅ Low (1.51)",
+      "detail": "1.51 / 1.37 / 1.31 (0.19/core)",
+      "severity": "low",
+      "score": 20
+    },
+    {
+      "name": "Top CPU Consumers",
+      "status": "See detail",
+      "detail": "root      673271 99.9  0.0  18300 11120 ?        R    Jun09 3010:02 python3 | 1000     1364804 22.5  7.2 20066480 1162020 ?    Sl   07:34  32:54 node dist/index.js gateway --bind lan --port 18789 | 1000     1403981 11.7  0.4 9873680 67672 ?       Sl   09:59   0:00 node perf_optimizer.js full | root     1404099  8.3  0.0  15496 11728 ?        Ss   09:59   0:00 sshd: root@notty | root     1121225  1.4  0.5 331536 90420 ?        Ssl  Jun10  22:43 /root/psvibe_api_server/venv/bin/python3 /root/psvibe_api_server/venv/bin/uvicorn app:app --host 0.0.0.0 --port 8000",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "Uptime",
+      "status": "2 weeks, 19 hours, 49 minutes",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "RAM Usage",
+      "status": "✅ Good (32%)",
+      "detail": "5021MB / 15608MB",
+      "severity": "low",
+      "score": 20
+    },
+    {
+      "name": "Top Memory Consumers",
+      "status": "See detail",
+      "detail": "1000      932490  0.8  8.0 20190164 1291716 ?    Sl   May29 155:07 openclaw | 1000     1364804 22.5  7.2 20066480 1162020 ?    Sl   07:34  32:54 node dist/index.js gateway --bind lan --port 18789 | 1000     3011364  0.6  3.6 19496164 590712 ?     Sl   Jun03  77:45 openclaw | 999       731830  0.8  3.5 3093852 573136 ?      Ssl  May28 172:02 mysqld | 1000     1081877  0.1  1.8 27018500 290004 ?     Sl   Jun10   2:13 node /usr/local/bin/n8n",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "Disk (/)",
+      "status": "✅ Good (18%)",
+      "detail": "25G / 150G",
+      "severity": "low",
+      "score": 15
+    },
+    {
+      "name": "Disk (/)",
+      "status": "✅ Good (18%)",
+      "detail": "25G / 150G",
+      "severity": "low",
+      "score": 15
+    },
+    {
+      "name": "Slow Queries",
+      "status": "⚠️ 9 total",
+      "severity": "low",
+      "score": 5
+    },
+    {
+      "name": "Query Cache",
+      "status": "✅ No cache needed",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "DB Connections",
+      "status": "✅ Good",
+      "detail": "2/151 (1%)",
+      "severity": "low",
+      "score": 10
+    },
+    {
+      "name": "Largest Tables",
+      "status": "See detail",
+      "detail": "console_games_backup: 0.08MB | member_coupons: 0.08MB | staff_records_bak: 0.08MB | console_games: 0.06MB | settings_config: 0.06MB",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "Network Connections",
+      "status": "Active",
+      "severity": "info",
+      "score": 0
+    },
+    {
+      "name": "Container Network",
+      "status": "6 active containers",
+      "severity": "info",
+      "score": 0
+    }
+  ],
+  "recommendations": [
+    "  🐢 Slow queries detected — consider adding indexes for frequent queries"
+  ]
+}

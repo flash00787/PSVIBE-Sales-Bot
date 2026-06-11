@@ -1,0 +1,302 @@
+{
+  "ps5": {
+    "en": "PS5",
+    "mm": "PS5"
+  },
+  "ps4": {
+    "en": "PS4",
+    "mm": "PS4"
+  },
+  "pricing": {
+    "en": "Pricing",
+    "mm": "စျေးနှုန်းများ"
+  },
+  "price_per_hour": {
+    "en": "Price per hour",
+    "mm": "တစ်နာရီစျေးနှုန်း"
+  },
+  "total_amount": {
+    "en": "Total amount",
+    "mm": "စုစုပေါင်းငွေပမာဏ"
+  },
+  "discount": {
+    "en": "Discount",
+    "mm": "လျှော့စျေး"
+  },
+  "balance": {
+    "en": "Balance",
+    "mm": "လက်ကျန်ငွေ"
+  },
+  "deposit": {
+    "en": "Deposit",
+    "mm": "ငွေသွင်း"
+  },
+  "payment": {
+    "en": "Payment",
+    "mm": "ငွေပေးချေမှု"
+  },
+  "cash": {
+    "en": "Cash",
+    "mm": "ငွေသား"
+  },
+  "wavepay": {
+    "en": "WavePay",
+    "mm": "WavePay"
+  },
+  "ayapay": {
+    "en": "AYA Pay",
+    "mm": "AYA Pay"
+  },
+  "cbpay": {
+    "en": "CB Pay",
+    "mm": "CB Pay"
+  },
+  "kpay": {
+    "en": "KPay",
+    "mm": "KPay"
+  },
+  "booking": {
+    "en": "Booking",
+    "mm": "ကြိုတင်မှာယူမှု"
+  },
+  "console": {
+    "en": "Console",
+    "mm": "ကွန်ဆိုး"
+  },
+  "available": {
+    "en": "Available",
+    "mm": "ရနိုင်သည်"
+  },
+  "occupied": {
+    "en": "Occupied",
+    "mm": "သုံးစွဲနေသည်"
+  },
+  "reserved": {
+    "en": "Reserved",
+    "mm": "ကြိုမှာထားသည်"
+  },
+  "start_time": {
+    "en": "Start time",
+    "mm": "စတင်ချိန်"
+  },
+  "end_time": {
+    "en": "End time",
+    "mm": "ပြီးဆုံးချိန်"
+  },
+  "duration": {
+    "en": "Duration",
+    "mm": "ကြာချိန်"
+  },
+  "extend": {
+    "en": "Extend",
+    "mm": "အချိန်တိုး"
+  },
+  "member": {
+    "en": "Member",
+    "mm": "အဖွဲ့ဝင်"
+  },
+  "member_id": {
+    "en": "Member ID",
+    "mm": "အဖွဲ့ဝင်နံပါတ်"
+  },
+  "member_name": {
+    "en": "Member name",
+    "mm": "အဖွဲ့ဝင်အမည်"
+  },
+  "renew": {
+    "en": "Renew",
+    "mm": "သက်တမ်းတိုး"
+  },
+  "topup": {
+    "en": "Top Up",
+    "mm": "ငွေဖြည့်"
+  },
+  "new_member": {
+    "en": "New Member",
+    "mm": "အဖွဲ့ဝင်အသစ်"
+  },
+  "register": {
+    "en": "Register",
+    "mm": "မှတ်ပုံတင်"
+  },
+  "food_menu": {
+    "en": "Food Menu",
+    "mm": "အစားအသောက်မီနူး"
+  },
+  "drinks": {
+    "en": "Drinks",
+    "mm": "အဖျော်ယမကာများ"
+  },
+  "food": {
+    "en": "Food",
+    "mm": "အစားအစာ"
+  },
+  "order": {
+    "en": "Order",
+    "mm": "မှာယူရန်"
+  },
+  "add_to_order": {
+    "en": "Add to order",
+    "mm": "ထည့်မယ်"
+  },
+  "confirm_order": {
+    "en": "Confirm order",
+    "mm": "အတည်ပြုမယ်"
+  },
+  "game_library": {
+    "en": "Game Library",
+    "mm": "ဂိမ်းစာရင်း"
+  },
+  "search_game": {
+    "en": "Search game",
+    "mm": "ဂိမ်းရှာရန်"
+  },
+  "popular_games": {
+    "en": "Popular Games",
+    "mm": "လူကြိုက်များသောဂိမ်းများ"
+  },
+  "all_games": {
+    "en": "All Games",
+    "mm": "ဂိမ်းအားလုံး"
+  },
+  "play": {
+    "en": "Play",
+    "mm": "ကစားမယ်"
+  },
+  "select_game": {
+    "en": "Select game",
+    "mm": "ဂိမ်းရွေးပါ"
+  },
+  "today": {
+    "en": "Today",
+    "mm": "ယနေ့"
+  },
+  "yesterday": {
+    "en": "Yesterday",
+    "mm": "မနေ့က"
+  },
+  "this_week": {
+    "en": "This Week",
+    "mm": "ဒီတစ်ပတ်"
+  },
+  "this_month": {
+    "en": "This Month",
+    "mm": "ဒီလ"
+  },
+  "minutes": {
+    "en": "minutes",
+    "mm": "မိနစ်"
+  },
+  "hours": {
+    "en": "hours",
+    "mm": "နာရီ"
+  },
+  "welcome": {
+    "en": "Welcome to PS VIBE! Play The Game. Share The VIBE!",
+    "mm": "PS VIBE မှ ကြိုဆိုပါတယ်! Play The Game. Share The VIBE!"
+  },
+  "thank_you": {
+    "en": "Thank you!",
+    "mm": "ကျေးဇူးတင်ပါတယ်!"
+  },
+  "please_wait": {
+    "en": "Please wait...",
+    "mm": "ခဏစောင့်ပါ..."
+  },
+  "confirmed": {
+    "en": "Confirmed ✅",
+    "mm": "အတည်ပြုပြီး ✅"
+  },
+  "cancelled": {
+    "en": "Cancelled ❌",
+    "mm": "ပယ်ဖျက်ပြီး ❌"
+  },
+  "success": {
+    "en": "Success! 🎉",
+    "mm": "အောင်မြင်ပါတယ်! 🎉"
+  },
+  "error": {
+    "en": "Error! ❌",
+    "mm": "အမှားရှိပါတယ်! ❌"
+  },
+  "back": {
+    "en": "← Back",
+    "mm": "← နောက်သို့"
+  },
+  "main_menu": {
+    "en": "Main Menu 🏠",
+    "mm": "ပင်မမီနူး 🏠"
+  },
+  "yes": {
+    "en": "Yes",
+    "mm": "ဟုတ်"
+  },
+  "no": {
+    "en": "No",
+    "mm": "မဟုတ်"
+  },
+  "confirm": {
+    "en": "Confirm ✅",
+    "mm": "အတည်ပြုမယ် ✅"
+  },
+  "cancel": {
+    "en": "Cancel ❌",
+    "mm": "ပယ်ဖျက်မယ် ❌"
+  },
+  "close": {
+    "en": "Close",
+    "mm": "ပိတ်မယ်"
+  },
+  "info": {
+    "en": "ℹ️ Info",
+    "mm": "ℹ️ အချက်အလက်"
+  },
+  "help": {
+    "en": "Help 🆘",
+    "mm": "အကူအညီ 🆘"
+  },
+  "session_active": {
+    "en": "Session Active 🎮",
+    "mm": "ဂိမ်းကစားနေသည် 🎮"
+  },
+  "session_ended": {
+    "en": "Session Ended",
+    "mm": "ဂိမ်းပြီးဆုံးသည်"
+  },
+  "time_remaining": {
+    "en": "Time Remaining",
+    "mm": "လက်ကျန်အချိန်"
+  },
+  "session_warning": {
+    "en": "⚠️ Your session ends in 5 minutes!",
+    "mm": "⚠️ သင့်အချိန် ၅ မိနစ်အလိုတွင်ကုန်ပါမည်!"
+  },
+  "extend_session": {
+    "en": "Extend Session ⏱️",
+    "mm": "အချိန်တိုးမယ် ⏱️"
+  },
+  "daily_report": {
+    "en": "Daily Report",
+    "mm": "နေ့စဉ်အစီရင်ခံစာ"
+  },
+  "total_sales": {
+    "en": "Total Sales",
+    "mm": "စုစုပေါင်းရောင်းအား"
+  },
+  "console_sales": {
+    "en": "Console Sales",
+    "mm": "ကွန်ဆိုးရောင်းအား"
+  },
+  "food_sales": {
+    "en": "Food Sales",
+    "mm": "အစားအသောက်ရောင်းအား"
+  },
+  "top_games": {
+    "en": "Top Games",
+    "mm": "ထိပ်တန်းဂိမ်းများ"
+  },
+  "active_sessions": {
+    "en": "Active Sessions",
+    "mm": "လက်ရှိကစားနေသော"
+  }
+}

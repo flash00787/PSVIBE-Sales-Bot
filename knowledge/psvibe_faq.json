@@ -1,0 +1,156 @@
+{
+  "name": "PS VIBE - PS5 Gaming Lounge FAQ",
+  "tagline": "Play The Game. Share The VIBE!",
+  "last_updated": "2026-06-11",
+  "version": 1,
+  "categories": {
+    "pricing": {
+      "label": "💰 Pricing",
+      "items": [
+        {
+          "id": "rate_normal",
+          "keywords": ["ဘယ်လောက်လဲ", "price", "how much", "rate", "fee", "charge", "ဈေး", "နှုန်းထား", "ကျသင့်"],
+          "patterns": [
+            "ဘယ်လောက်ကျလဲ",
+            "ဘယ်လောက်လဲ",
+            "ဘယ်လောက်လဲဗျ",
+            "ဘယ်နှလုံးလား",
+            "ဘယ်လောက်လဲဗျာ"
+          ],
+          "answer": "🚀 PS5 Gaming Lounge ရဲ့ ကစားခနှုန်းထားတွေကတော့ ကြာချိန်နဲ့ console အမျိုးအစားပေါ်မူတည်ပါတယ်။ အသေးစိတ်ကို Customer Bot မှာ /start လုပ်ပြီး '💰 စျေးနှုန်းများ' ကိုနှိပ်လို့ရပါတယ်။"
+        },
+        {
+          "id": "rate_ps5",
+          "keywords": ["ps5", "pro", "console", "စက်", "ဆော့ဖ်"],
+          "patterns": ["PS5 ဘယ်လောက်လဲ", "PS5 Pro ဘယ်လောက်လဲ"],
+          "answer": "🎮 PS5 Gaming Lounge မှာ PS5, PS5 Pro, PS4 တွေရှိပါတယ်။ စျေးနှုန်းအသေးစိတ်ကို Customer Bot မှာ '💰 စျေးနှုန်းများ' ကနေကြည့်လို့ရပါတယ်။"
+        }
+      ]
+    },
+    "hours": {
+      "label": "⏰ Operating Hours",
+      "items": [
+        {
+          "id": "hours",
+          "keywords": ["ဖွင့်", "ပိတ်", "open", "close", "hours", "time", "နာရီ", "အချိန်", "မနက်", "ညနေ"],
+          "patterns": [
+            "ဘယ်အချိန်ဖွင့်လဲ",
+            "ဘယ်အချိန်ပိတ်လဲ",
+            "ဘယ်နာရီအထိလဲ",
+            "ဖွင့်ချိန်",
+            "ပိတ်ချိန်"
+          ],
+          "answer": "⏰ PS VIBE - PS5 Gaming Lounge ဖွင့်ချိန်:\n\n📅 တနင်္လာ — တနင်္ဂနွေ\n⏰ **မနက် ၉:၀၀ မှ ည ၁၀:၀၀ အထိ**\n\nအသေးစိတ်သိချင်ရင် Customer Bot မှာ /start နှိပ်ပါ။"
+        }
+      ]
+    },
+    "location": {
+      "label": "📍 Location",
+      "items": [
+        {
+          "id": "location",
+          "keywords": ["နေရာ", "location", "address", "လိပ်စာ", "ဘယ်မှာလဲ", "ဘယ်နားလဲ", "ရောက်", "လား"],
+          "patterns": [
+            "ဘယ်မှာလဲ",
+            "ဘယ်နားလဲ",
+            "လိပ်စာ",
+            "ဘယ်မှာရှိလဲ"
+          ],
+          "answer": "📍 PS VIBE - PS5 Gaming Lounge ရဲ့တည်နေရာအသေးစိတ်ကို Customer Bot မှာ /start လုပ်ပြီး '📍 လိပ်စာ' ကနေကြည့်လို့ရပါတယ်။"
+        }
+      ]
+    },
+    "booking": {
+      "label": "📅 Booking",
+      "items": [
+        {
+          "id": "booking",
+          "keywords": ["booking", "book", "ကြိုတင်", "မှာထား", "ယူထား", "slot", "reserve", "reservation"],
+          "patterns": [
+            "ကြိုတင်မှာလို့ရလား",
+            "booking လုပ်လို့ရလား",
+            "ဘယ်လိုမှာရမလဲ",
+            "slot ယူချင်တယ်"
+          ],
+          "answer": "📅 PS VIBE - PS5 Gaming Lounge မှာ console ကြိုတင်မှာယူနိုင်ပါတယ်။ Customer Bot မှာ /start လုပ်ပြီး '📅 Booking' ကနေ ကြိုတင်စာရင်းသွင်းလို့ရပါတယ်။\n\nဒါမှမဟုတ် တိုက်ရိုက်ဆက်သွယ်မေးမြန်းလိုပါက Customer Bot မှာပဲ စာရိုက်မေးမြန်းနိုင်ပါတယ်။"
+        }
+      ]
+    },
+    "contact": {
+      "label": "📞 Contact",
+      "items": [
+        {
+          "id": "contact",
+          "keywords": ["ဆက်သွယ်", "phone", "contact", "ဖုန်း", "telephone", "number", "နံပါတ်", "page", "facebook"],
+          "patterns": [
+            "ဖုန်းနံပါတ်",
+            "ဆက်သွယ်ရန်",
+            "ဘယ်လိုဆက်သွယ်ရမလဲ",
+            "Facebook page"
+          ],
+          "answer": "📞 PS VIBE - PS5 Gaming Lounge ကို ဆက်သွယ်ရန်:\n• Customer Bot မှာ စာရိုက်မေးမြန်းနိုင်\n• Facebook Page: PS VIBE - PS5 Gaming Lounge\n• Location: Customer Bot မှာ '📍 လိပ်စာ' ကနေကြည့်ရှုနိုင်"
+        }
+      ]
+    },
+    "games": {
+      "label": "🎮 Games",
+      "items": [
+        {
+          "id": "games_list",
+          "keywords": ["game", "ဂိမ်း", "ဆော့", "ဆော့ဖ်", "game list", "game library", "game menu", "menu"],
+          "patterns": [
+            "ဘယ်ဂိမ်းတွေရှိလဲ",
+            "ဂိမ်းစာရင်း",
+            "ဂိမ်းအသစ်",
+            "ဂိမ်းတွေ",
+            "ဘာဂိမ်းတွေရှိလဲ"
+          ],
+          "answer": "🎮 PS VIBE - PS5 Gaming Lounge မှာ ဂိမ်းပေါင်း ၁၀၀+ ရှိပါတယ်။ \n\nဂိမ်းစာရင်းအပြည့်အစုံကို Customer Bot မှာ '🎮 Game Library' ကနေကြည့်ရှုနိုင်ပါတယ်။"
+        }
+      ]
+    },
+    "membership": {
+      "label": "👥 Membership",
+      "items": [
+        {
+          "id": "membership",
+          "keywords": ["member", "အဖွဲ့ဝင်", "card", "ကတ်", "wallet", "top up", "ငွေဖြည့်", "balance", "လက်ကျန်"],
+          "patterns": [
+            "အဖွဲ့ဝင်ဘယ်လိုလုပ်ရမလဲ",
+            "member လုပ်ချင်တယ်",
+            "ကတ်ဘယ်လိုလုပ်ရမလဲ",
+            "ငွေဘယ်လိုဖြည့်ရမလဲ",
+            "လက်ကျန်ဘယ်လောက်လဲ"
+          ],
+          "answer": "👥 PS VIBE - PS5 Gaming Lounge မှာ Member ဖြစ်ဖို့ဆိုရင် Customer Bot ကို /start လုပ်ပြီး သွားရောက်စုံစမ်းနိုင်ပါတယ်။\n\nMember တွေအတွက်:\n• 💰 ငွေဖြည့်တဲ့အခါ Bonus များ\n• 🎮 သီးသန့် Discount များ\n• 🏆 Rank အလိုက် မြှင့်တင်ပေးမှုများ"
+        }
+      ]
+    },
+    "food": {
+      "label": "🍔 Food & Drinks",
+      "items": [
+        {
+          "id": "food_menu",
+          "keywords": ["food", "drink", "စား", "သောက်", "အစားအသောက်", "menu", "အချိုရည်", "ခေါက်ဆွဲ", "မုန့်"],
+          "patterns": [
+            "ဘာစားစရာတွေရှိလဲ",
+            "ဘာသောက်စရာတွေရှိလဲ",
+            "food menu",
+            "စားစရာ",
+            "အစားအသောက်"
+          ],
+          "answer": "🍔 PS VIBE - PS5 Gaming Lounge မှာ အစားအသောက်နဲ့ အချိုရည်တွေ ရရှိနိုင်ပါတယ်။\n\nအသေးစိတ် Food Menu ကို Customer Bot မှာ '🍔 Food Menu' ကနေကြည့်ရှုနိုင်ပါတယ်။"
+        }
+      ]
+    }
+  },
+  "fallback_answers": [
+    "ကျေးဇူးပြုပြီး PS VIBE - PS5 Gaming Lounge ရဲ့ Customer Bot (@psvibe_customer_bot) ကို /start လုပ်ပြီး အသေးစိတ်မေးမြန်းနိုင်ပါတယ်။",
+    "အဆင်ပြေပါစေ။ နောက်ထပ်အကူအညီလိုရင် ပြောလိုက်ပါနော်။",
+    "ပိုပြီးအသေးစိတ်သိချင်ရင် Customer Bot မှာ /start လုပ်ပြီး မေးမြန်းလို့ရပါတယ်။"
+  ],
+  "greeting_keywords": {
+    "keywords": ["hi", "hello", "မင်္ဂလာပါ", "ဟိုင်း", "ဟယ်လို", "မဂ်လာပါ", "start"],
+    "response": "မင်္ဂလာပါ။ PS VIBE - PS5 Gaming Lounge ကနေ ကြိုဆိုပါတယ်။ 🎮\n\nဘယ်လိုကူညီပေးရမလဲ?\n\n💡 စျေးနှုန်းများ၊ ဂိမ်းများ၊ Booking နဲ့ Food Menu အကြောင်းသိချင်ရင် Customer Bot (@psvibe_customer_bot) ကို /start လုပ်ပေးပါ။"
+  }
+}

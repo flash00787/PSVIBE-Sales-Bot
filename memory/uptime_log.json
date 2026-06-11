@@ -1,0 +1,38 @@
+{
+  "history": [
+    {
+      "timestamp": "2026-06-11T09:19:00.523Z",
+      "total": 16,
+      "failed": 3,
+      "uptimePct": 81,
+      "duration": "8.0s"
+    },
+    {
+      "timestamp": "2026-06-11T09:19:34.172Z",
+      "total": 16,
+      "failed": 2,
+      "uptimePct": 88,
+      "duration": "8.3s"
+    },
+    {
+      "timestamp": "2026-06-11T09:20:02.408Z",
+      "total": 16,
+      "failed": 0,
+      "uptimePct": 100,
+      "duration": "8.0s"
+    },
+    {
+      "timestamp": "2026-06-11T09:31:27.510Z",
+      "total": 16,
+      "failed": 0,
+      "uptimePct": 100,
+      "duration": "8.3s"
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "failures": 2,
+    "avgUptime": 92,
+    "lastCheck": "2026-06-11T09:31:27.510Z"
+  }
+}

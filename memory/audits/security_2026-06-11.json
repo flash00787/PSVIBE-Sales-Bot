@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-06-11T09:54:12.146Z",
+  "score": 50,
+  "grade": "🟠 Fair",
+  "checks": [
+    {
+      "name": "Root Login",
+      "status": "⚠️ Enabled",
+      "severity": "high"
+    },
+    {
+      "name": "Password Auth",
+      "status": "✅ Keys only",
+      "severity": "low"
+    },
+    {
+      "name": "SSH Port",
+      "status": "22 (default)",
+      "severity": "info"
+    },
+    {
+      "name": "Auth Failures",
+      "status": "🚨 20 failed SSH attempts",
+      "severity": "critical"
+    },
+    {
+      "name": "Exposed Ports",
+      "status": "⚠️ 15 non-standard: 18789, 18790, 3003, 3002, 5678, 9090, 53, 53, 8080, 8000, 7890, 5001, 20242, 20241, 5679",
+      "severity": "medium"
+    },
+    {
+      "name": "MySQL Remote Access",
+      "status": "⚠️ 1 remote user(s)",
+      "severity": "high"
+    },
+    {
+      "name": "Service Permissions",
+      "status": "✅ All correct",
+      "severity": "low"
+    },
+    {
+      "name": "SSH Intrusion Attempts (24h)",
+      "status": "✅ None",
+      "severity": "low"
+    },
+    {
+      "name": "Disk Usage",
+      "status": "✅ Good",
+      "severity": "low",
+      "detail": "18% used"
+    },
+    {
+      "name": "Root Processes",
+      "status": "⚠️ 216 processes",
+      "severity": "low"
+    },
+    {
+      "name": "Privileged Containers",
+      "status": "✅ None",
+      "severity": "low"
+    }
+  ]
+}
