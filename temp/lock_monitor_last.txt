@@ -1,27 +1,26 @@
-[LOCK_MONITOR] Run at 2026-06-11 14:06:52 UTC
+[LOCK_MONITOR] Run at 2026-06-11 15:06:48 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
   c9c60ae1-c3fe-4bdd-8491-798c726c58bf-topic-125192.checkpoint.28c0aa70-bdd1-419b-86f5-9f3571941eff.jsonl: 1238KB (> 500KB threshold)
   cb42429d-16ca-484d-a852-b4fc6da7d1e7-topic-125192.trajectory.jsonl: 4538KB (> 500KB threshold)
   8d84d071-e795-46b7-953a-c1a90277d391-topic-125454.trajectory.jsonl: 982KB (> 500KB threshold)
-  35513b17-e0ce-40a1-8cdf-e9614e896293-topic-125454.trajectory.jsonl: 9521KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
+  35513b17-e0ce-40a1-8cdf-e9614e896293-topic-125454.trajectory.jsonl: 1087KB (> 500KB threshold)
+[LOCK_MONITOR] WARNING: 1 trajectory file(s) oversized:
   cb42429d-16ca-484d-a852-b4fc6da7d1e7-topic-125192.trajectory.jsonl: 4538KB (> 3000KB threshold)
-  35513b17-e0ce-40a1-8cdf-e9614e896293-topic-125454.trajectory.jsonl: 9521KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          792 files,      19754 KB
-  .trajectory.jsonl files:     91 files,      25698 KB
+  Main .jsonl files:          794 files,      19766 KB
+  .trajectory.jsonl files:     99 files,      17980 KB
   .checkpoint.*.jsonl files:    8 files,      10179 KB
-  .lock files:                  2 files
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    55631 KB
+  TOTAL:                                    47925 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 136 KB freed, 8 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 128 KB freed, 6 warnings
 ==================================================
-=== RESULT: OK (warnings: 8) ===
+=== RESULT: OK (warnings: 6) ===
