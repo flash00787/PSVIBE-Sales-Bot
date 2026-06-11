@@ -27,12 +27,33 @@
       "failed": 0,
       "uptimePct": 100,
       "duration": "8.3s"
+    },
+    {
+      "timestamp": "2026-06-11T10:31:16.118Z",
+      "total": 16,
+      "failed": 0,
+      "uptimePct": 100,
+      "duration": "8.3s"
+    },
+    {
+      "timestamp": "2026-06-11T11:35:03.779Z",
+      "total": 16,
+      "failed": 0,
+      "uptimePct": 100,
+      "duration": "7.9s"
+    },
+    {
+      "timestamp": "2026-06-11T12:31:14.751Z",
+      "total": 16,
+      "failed": 0,
+      "uptimePct": 100,
+      "duration": "8.0s"
     }
   ],
   "summary": {
-    "total": 4,
+    "total": 7,
     "failures": 2,
-    "avgUptime": 92,
-    "lastCheck": "2026-06-11T09:31:27.510Z"
+    "avgUptime": 96,
+    "lastCheck": "2026-06-11T12:31:14.751Z"
   }
 }

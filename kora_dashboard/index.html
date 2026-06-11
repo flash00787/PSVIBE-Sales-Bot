@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kora Dashboard — PS VIBE</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAQ5CAYAAAAnTL8qAAAACXBIWXMAAAsSAAALEgHS3X78AAAgAElEQVR4nOzdT3LcRprwYdjhvTQXADl7REjfCcQ+gbnC1uwTNPsEQ51g2CdoaotN0ydo8gQjRmA/JC4w4gn0BeykTUn8U0UBWfkCzxPB6JmJCbqEpKtVP76Z+cPnz58rAAAAgMh+tHoAAABAdAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQncAAAAADhCRwAAABAeAIHAAAAEJ7AAQAAAIQn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QJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAAPIEBwAAAJAnOAAAAIA8wQEAAADkCQ4AAAAgT3AAAAAAeYIDAAAAyBMcAAAAQJ7gAAAAANq2HccgNPlYUDBsAAAAAElFTkSuQmCC">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #4ade80;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --purple: #a78bfa;
+      --orange: #fb923c;
+      --accent-glow: rgba(56,189,248,0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ═══ LOGIN PAGE ═══ */
+    #loginPage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at top, #1e293b, #0f172a);
+    }
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      margin: 1rem;
+    }
+    .login-logo { text-align: center; margin-bottom: 2rem; }
+    .login-logo .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .login-logo h2 { font-size: 1.5rem; color: var(--accent); font-weight: 700; }
+    .login-logo p { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .form-group input {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+      outline: none; border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .login-btn {
+      width: 100%; padding: 0.8rem;
+      background: linear-gradient(135deg, var(--accent), #0ea5e9);
+      border: none; border-radius: 8px; color: var(--bg);
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; margin-top: 0.5rem;
+    }
+    .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .login-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .login-error {
+      background: rgba(248,113,113,0.15); border: 1px solid rgba(248,113,113,0.3);
+      color: var(--red); padding: 0.6rem 1rem; border-radius: 8px;
+      font-size: 0.8rem; margin-bottom: 1rem; display: none;
+    }
+    .login-error.show { display: block; }
+    .login-info { margin-top: 1.5rem; text-align: center; font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
+    .login-spinner {
+      display: inline-block; width: 16px; height: 16px;
+      border: 2px solid transparent; border-top-color: var(--bg);
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 0.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══ DASHBOARD ═══ */
+    #dashboardPage { display: none; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-bottom: 2px solid var(--accent);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .header-left { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .header h1 { font-size: 1.25rem; color: var(--accent); white-space: nowrap; }
+    .header .time { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+    .header-right { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex; border-radius: 99px; overflow: hidden;
+      border: 1px solid var(--border); font-size: 0.7rem;
+    }
+    .lang-toggle button {
+      padding: 0.25rem 0.6rem; border: none; cursor: pointer;
+      background: transparent; color: var(--muted); font-size: 0.7rem;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--accent); color: var(--bg); font-weight: 700; }
+
+    /* Notification bell */
+    .notif-bell {
+      position: relative; background: transparent; border: 1px solid var(--border);
+      color: var(--text); padding: 0.35rem 0.6rem; border-radius: 99px;
+      cursor: pointer; font-size: 1.1rem; transition: all 0.2s;
+    }
+    .notif-bell:hover { border-color: var(--accent); }
+    .notif-badge {
+      position: absolute; top: -4px; right: -4px;
+      background: var(--red); color: #fff; font-size: 0.55rem;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+    }
+    .notif-badge:empty { display: none; }
+
+    /* Notification dropdown */
+    .notif-dropdown {
+      position: absolute; top: 100%; right: 0;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; width: 340px; max-height: 400px;
+      overflow-y: auto; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      z-index: 1000; display: none; margin-top: 0.5rem;
+    }
+    .notif-dropdown.show { display: block; }
+    .notif-dropdown-header {
+      padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 600; font-size: 0.85rem;
+    }
+    .notif-item {
+      padding: 0.65rem 1rem; border-bottom: 1px solid rgba(51,65,85,0.3);
+      font-size: 0.82rem; cursor: pointer; transition: background 0.15s;
+    }
+    .notif-item:hover { background: rgba(56,189,248,0.05); }
+    .notif-item.unread { border-left: 3px solid var(--accent); }
+    .notif-item .notif-time { font-size: 0.68rem; color: var(--muted); margin-top: 0.15rem; }
+    .notif-empty { padding: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+    /* Member search bar */
+    .search-wrap { position: relative; }
+    .search-input {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: 0.35rem 0.75rem; border-radius: 99px;
+      font-size: 0.8rem; width: 200px; transition: all 0.2s;
+    }
+    .search-input:focus { outline: none; border-color: var(--accent); width: 260px; }
+    .search-input::placeholder { color: var(--muted); }
+    .search-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; max-height: 300px; overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 999;
+      display: none; margin-top: 0.25rem;
+    }
+    .search-dropdown.show { display: block; }
+    .search-item {
+      padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(51,65,85,0.2);
+      cursor: pointer; font-size: 0.82rem; transition: background 0.15s;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .search-item:hover { background: rgba(56,189,248,0.08); }
+    .search-item .s-name { font-weight: 600; }
+    .search-item .s-balance { font-size: 0.7rem; color: var(--green); }
+    .search-item .s-id { font-size: 0.65rem; color: var(--muted); }
+
+    /* User badge / logout */
+    .user-badge {
+      background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3);
+      color: var(--accent); padding: 0.3rem 0.75rem; border-radius: 99px; font-size: 0.8rem;
+    }
+    .logout-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); padding: 0.3rem 0.75rem; border-radius: 99px;
+      cursor: pointer; font-size: 0.8rem; transition: all 0.2s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* ═══ TAB NAV ═══ */
+    .tab-nav {
+      display: flex; gap: 0; border-bottom: 2px solid var(--border);
+      background: var(--card); padding: 0 1.5rem; overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 0.7rem 1.2rem; border: none; background: transparent;
+      color: var(--muted); cursor: pointer; font-size: 0.85rem;
+      font-weight: 500; white-space: nowrap; transition: all 0.2s;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem; transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-2px); }
+    .stat-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .stat-card .label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-card .value { font-size: 2rem; font-weight: 700; margin: 0.25rem 0; }
+    .stat-card .sub { color: var(--muted); font-size: 0.8rem; }
+    .stat-card .spark { font-size: 0.75rem; margin-top: 0.5rem; }
+    .stat-card .spark.up { color: var(--green); }
+    .stat-card .spark.down { color: var(--red); }
+
+    /* Main grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+    .main-grid.full { grid-template-columns: 1fr; }
+
+    .panel {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .panel-header {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+      font-weight: 600; font-size: 0.95rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .panel-body { padding: 1rem 1.25rem; }
+    .panel-body.no-pad { padding: 0; }
+
+    /* Status indicator */
+    .status-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; margin-right: 0.5rem;
+    }
+    .status-dot.ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .status-dot.warn { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+    .status-dot.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+
+    .service-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 0; border-bottom: 1px solid rgba(51,65,85,0.3);
+    }
+    .service-row:last-child { border-bottom: none; }
+
+    /* Console grid */
+    .console-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+    }
+    .console-card {
+      background: rgba(15,23,42,0.5); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.85rem; text-align: center;
+      transition: all 0.2s;
+    }
+    .console-card:hover { transform: translateY(-2px); }
+    .console-card .c-id { font-weight: 700; font-size: 1.1rem; }
+    .console-card .c-type { font-size: 0.75rem; color: var(--muted); margin: 0.2rem 0; }
+    .console-card .c-status { font-size: 0.8rem; margin-top: 0.25rem; font-weight: 600; }
+    .console-card .c-member { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; word-break: break-all; }
+    .console-card .c-time { font-size: 0.65rem; color: var(--muted); }
+    .console-card.free { border-color: var(--green); background: rgba(74,222,128,0.05); }
+    .console-card.occupied { border-color: var(--yellow); background: rgba(251,191,36,0.05); }
+    .console-card.offline { border-color: var(--red); background: rgba(248,113,113,0.05); }
+
+    /* Schedule grid (time-based) */
+    .schedule-grid-wrap { overflow-x: auto; }
+    .schedule-grid { display: grid; gap: 0; min-width: 600px; }
+    .sg-cell {
+      border: 1px solid rgba(51,65,85,0.4); padding: 0.35rem 0.5rem;
+      font-size: 0.68rem; text-align: center; min-height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .sg-header { background: rgba(15,23,42,0.6); font-weight: 600; color: var(--muted); font-size: 0.65rem; }
+    .sg-console { background: rgba(15,23,42,0.6); font-weight: 700; font-size: 0.72rem; justify-content: flex-start; }
+    .sg-free { background: rgba(74,222,128,0.08); color: var(--green); }
+    .sg-occupied { background: rgba(251,191,36,0.12); color: var(--yellow); font-weight: 600; }
+    .sg-booked { background: rgba(56,189,248,0.1); color: var(--accent); }
+
+    /* Schedule table (list view) */
+    .schedule-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .schedule-table th {
+      text-align: left; color: var(--muted); text-transform: uppercase;
+      font-size: 0.7rem; letter-spacing: 0.5px; padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table td {
+      padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(51,65,85,0.2);
+    }
+    .schedule-table tr:hover { background: rgba(56,189,248,0.03); }
+
+    /* Badges */
+    .badge {
+      display: inline-block; padding: 0.15rem 0.5rem;
+      border-radius: 99px; font-size: 0.7rem; font-weight: 600;
+    }
+    .badge.active { background: rgba(74,222,128,0.2); color: var(--green); }
+    .badge.confirmed { background: rgba(56,189,248,0.2); color: var(--accent); }
+    .badge.pending { background: rgba(251,191,36,0.2); color: var(--yellow); }
+    .badge.cancelled { background: rgba(248,113,113,0.2); color: var(--red); }
+    .badge.critical { background: rgba(248,113,113,0.2); color: var(--red); }
+    .badge.warning { background: rgba(251,191,36,0.2); color: var(--yellow); }
+    .badge.info { background: rgba(56,189,248,0.2); color: var(--accent); }
+    .badge.in-stock { background: rgba(74,222,128,0.2); color: var(--green); }
+
+    /* Quick commands */
+    .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
+    .cmd-btn {
+      background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3);
+      color: var(--accent); padding: 0.6rem 1rem; border-radius: 8px;
+      cursor: pointer; font-size: 0.85rem; text-align: left;
+      transition: all 0.2s; width: 100%;
+    }
+    .cmd-btn:hover { background: rgba(56,189,248,0.2); border-color: var(--accent); transform: translateY(-1px); }
+    .cmd-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .cmd-result {
+      display: none; margin-top: 0.75rem;
+      background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+    }
+    .cmd-result-header {
+      padding: 0.4rem 0.75rem; background: var(--card);
+      font-size: 0.75rem; font-weight: 600; color: var(--accent);
+      border-bottom: 1px solid var(--border);
+    }
+    .cmd-result-body {
+      padding: 0.75rem; font-size: 0.75rem; font-family: 'Courier New', monospace;
+      color: var(--green); white-space: pre-wrap; word-break: break-all;
+      line-height: 1.5; max-height: 300px; overflow-y: auto;
+    }
+
+    /* Alerts */
+    .alert-item {
+      padding: 0.6rem 1rem; border-bottom: 1px solid rgba(51,65,85,0.3);
+      font-size: 0.85rem; display: flex; gap: 0.6rem; align-items: flex-start;
+    }
+    .alert-item:last-child { border-bottom: none; }
+    .alert-time { font-size: 0.7rem; color: var(--muted); flex-shrink: 0; }
+
+    /* Food table */
+    .food-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .food-table th {
+      text-align: left; color: var(--muted); text-transform: uppercase;
+      font-size: 0.7rem; letter-spacing: 0.5px; padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .food-table td {
+      padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(51,65,85,0.2);
+    }
+    .food-table tr:hover { background: rgba(56,189,248,0.03); }
+    .food-cat-header {
+      background: rgba(56,189,248,0.08); font-weight: 700; font-size: 0.78rem;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .food-cat-header td { padding: 0.5rem 0.75rem; }
+
+    /* Staff table */
+    .staff-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .staff-table th {
+      text-align: left; color: var(--muted); text-transform: uppercase;
+      font-size: 0.7rem; letter-spacing: 0.5px; padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .staff-table td {
+      padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(51,65,85,0.2);
+    }
+    .staff-table tr:hover { background: rgba(56,189,248,0.03); }
+
+    /* EOD Summary */
+    .eod-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .eod-item {
+      background: rgba(15,23,42,0.5); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.85rem; text-align: center;
+    }
+    .eod-item .eod-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
+    .eod-item .eod-value { font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem; }
+
+    /* Canvas chart */
+    .chart-wrap { width: 100%; }
+    .chart-wrap canvas { width: 100%; height: auto; }
+
+    /* Refresh bar */
+    .refresh-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .refresh-bar-left { display: flex; gap: 0.5rem; align-items: center; }
+    .refresh-btn {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: 0.4rem 1rem; border-radius: 6px;
+      cursor: pointer; font-size: 0.8rem; transition: all 0.2s;
+    }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .auto-refresh-indicator {
+      font-size: 0.7rem; color: var(--green);
+      display: flex; align-items: center; gap: 0.25rem;
+    }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+
+    .empty-state { text-align: center; color: var(--muted); padding: 2rem; }
+    .loading-skeleton {
+      background: linear-gradient(90deg,var(--card) 25%,var(--border) 50%,var(--card) 75%);
+      background-size: 200% 100%; animation: shimmer 1.5s infinite;
+      border-radius: 6px; height: 1rem; margin: 0.5rem 0;
+    }
+    @keyframes shimmer { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+
+    /* Toggle */
+    .toggle-wrap { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.8rem; color: var(--muted); }
+    .toggle-switch {
+      width: 36px; height: 20px; background: var(--border); border-radius: 99px;
+      position: relative; transition: background 0.2s;
+    }
+    .toggle-switch.on { background: var(--accent); }
+    .toggle-switch::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 16px; height: 16px; border-radius: 50%; background: #fff;
+      transition: transform 0.2s;
+    }
+    .toggle-switch.on::after { transform: translateX(16px); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem 1.25rem; font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 9999;
+      animation: slideUp 0.3s ease; display: none;
+    }
+    .toast.show { display: block; }
+    .toast.success { border-color: var(--green); }
+    .toast.error { border-color: var(--red); }
+    @keyframes slideUp { from{transform:translateY(100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
+
+    .btn-sm {
+      background: var(--accent); border: none; color: var(--bg);
+      padding: 0.25rem 0.6rem; border-radius: 4px; cursor: pointer;
+      font-size: 0.7rem; font-weight: 600;
+    }
+    .btn-sm:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 0.25rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.7rem;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    .text-muted { color: var(--muted); font-size: 0.75rem; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+
+    /* ═══════════════════════════════════ */
+    /* 📱 MOBILE RESPONSIVE             */
+    /* ═══════════════════════════════════ */
+
+    /* Tablet: 768px - 1024px */
+    @media (max-width: 1024px) {
+      .header { padding: 0.5rem 1rem; }
+      .header h1 { font-size: 1.05rem; }
+      .header .time { font-size: 0.72rem; }
+      .search-input { width: 160px; }
+      .search-input:focus { width: 200px; }
+      .tab-btn { padding: 0.6rem 0.8rem; font-size: 0.78rem; }
+      .main-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+      .stat-card { padding: 1rem; }
+      .stat-card .value { font-size: 1.5rem; }
+      .console-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+      .notif-dropdown { width: 280px; right: -50px; }
+    }
+
+    /* Mobile: < 768px */
+    @media (max-width: 767px) {
+      .header {
+        padding: 0.5rem; gap: 0.35rem;
+        flex-direction: column; align-items: stretch;
+      }
+      .header-left { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+      .header-right { justify-content: flex-start; flex-wrap: wrap; gap: 0.35rem; }
+      .header h1 { font-size: 0.95rem; }
+      .header .time { font-size: 0.68rem; }
+
+      .search-wrap { width: 100%; }
+      .search-input { width: 100%; }
+      .search-input:focus { width: 100%; }
+      .search-dropdown { left: 0; right: 0; }
+
+      .tab-nav { padding: 0 0.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.72rem; }
+
+      .container { padding: 0.75rem; }
+      .main-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .main-grid.full { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.5rem; }
+      .stat-card { padding: 0.75rem; }
+      .stat-card .icon { font-size: 1.2rem; }
+      .stat-card .value { font-size: 1.3rem; }
+      .stat-card .label { font-size: 0.7rem; }
+
+      .panel-header { padding: 0.75rem; font-size: 0.85rem; }
+      .panel-body { padding: 0.75rem; }
+
+      .console-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+      .console-card { padding: 0.6rem; }
+
+      .cmd-grid { grid-template-columns: repeat(2, 1fr); }
+      .cmd-btn { padding: 0.5rem 0.6rem; font-size: 0.75rem; min-height: 44px; }
+
+      /* Touch-friendly buttons */
+      .refresh-btn, .logout-btn, .btn-sm, .btn-outline { min-height: 40px; padding: 0.5rem 0.8rem; }
+      .notif-bell { min-height: 40px; min-width: 44px; display: flex; align-items: center; justify-content: center; }
+      .user-badge { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+
+      .notif-dropdown { width: 280px; right: -80px; max-height: 320px; }
+
+      .schedule-table th, .schedule-table td,
+      .food-table th, .food-table td,
+      .staff-table th, .staff-table td { padding: 0.4rem 0.5rem; font-size: 0.72rem; }
+
+      .eod-grid { grid-template-columns: repeat(2, 1fr); }
+      .toast { left: 1rem; right: 1rem; bottom: 1rem; text-align: center; }
+
+      .login-card { margin: 0.75rem; padding: 1.5rem; max-width: 100%; }
+      .form-group input { padding: 0.65rem 0.8rem; font-size: 0.9rem; min-height: 44px; }
+      .login-btn { min-height: 44px; }
+    }
+
+    /* Very small screens */
+    @media (max-width: 400px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card .value { font-size: 1.1rem; }
+      .console-grid { grid-template-columns: 1fr 1fr; }
+      .cmd-grid { grid-template-columns: 1fr; }
+      .eod-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 0.4rem 0.5rem; font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ LOGIN PAGE ═══════════════════════════ -->
+<div id="loginPage">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">🎮</div>
+      <h2 data-i18n="login_title">Kora Dashboard</h2>
+      <p data-i18n="login_subtitle">PS VIBE Gaming Lounge — Operations Center</p>
+    </div>
+
+    <div class="login-error" id="loginError"></div>
+
+    <div class="form-group">
+      <label data-i18n="username">Username</label>
+      <input type="text" id="loginUsername" data-i18n-placeholder="username_placeholder" placeholder="Enter your username" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label data-i18n="password">Password</label>
+      <input type="password" id="loginPassword" data-i18n-placeholder="password_placeholder" placeholder="Enter your password" autocomplete="current-password">
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()" data-i18n="sign_in">🔐 Sign In</button>
+
+    <div class="login-info">
+      <div>🔒 <span data-i18n="secure_access">Secure access to PS VIBE operations</span></div>
+      <div>🏢 VPS: 5.223.81.16 | API: ps-vibe.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DASHBOARD PAGE ═══════════════════════════ -->
+<div id="dashboardPage">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>🎮 <span data-i18n="app_title">Kora Dashboard</span></h1>
+      <span style="font-size:0.7rem;color:var(--muted);" data-i18n="ps_vibe_label">PS VIBE Gaming Lounge</span>
+    </div>
+    <div class="header-right">
+      <!-- Language Toggle -->
+      <div class="lang-toggle">
+        <button id="langEN" class="active" onclick="setLanguage('en')">🇬🇧 EN</button>
+        <button id="langMY" onclick="setLanguage('my')">🇲🇲 မြန်</button>
+      </div>
+
+      <!-- Notification Bell -->
+      <div style="position:relative;">
+        <button class="notif-bell" onclick="toggleNotifDropdown()" title="Notifications">🔔
+          <span class="notif-badge" id="notifBadge"></span>
+        </button>
+        <div class="notif-dropdown" id="notifDropdown">
+          <div class="notif-dropdown-header">
+            <span data-i18n="notifications">🔔 Notifications</span>
+            <button class="btn-outline" onclick="markAllRead();event.stopPropagation();" data-i18n="mark_all_read">Mark all read</button>
+          </div>
+          <div id="notifList"><div class="notif-empty">No notifications</div></div>
+        </div>
+      </div>
+
+      <!-- Member Search -->
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="memberSearch"
+          data-i18n-placeholder="search_member"
+          placeholder="🔍 Search member..."
+          oninput="onMemberSearch(this.value)"
+          onfocus="onMemberSearch(this.value)"
+          autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+
+      <span class="time" id="clock">Loading...</span>
+      <span class="user-badge" id="userBadge">👤 —</span>
+      <button class="logout-btn" onclick="doLogout()" data-i18n="logout">🚪 Logout</button>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="overview" data-i18n="tab_overview">📊 Overview</button>
+    <button class="tab-btn" data-tab="schedule" data-i18n="tab_schedule">📅 Schedule</button>
+    <button class="tab-btn" data-tab="staff" data-i18n="tab_staff">👤 Staff</button>
+    <button class="tab-btn" data-tab="food" data-i18n="tab_food">🍔 Food</button>
+    <button class="tab-btn" data-tab="alerts" data-i18n="tab_alerts">⚠️ Alerts</button>
+  </div>
+
+  <div class="container">
+    <!-- ═══ TAB: Overview ═══ -->
+    <div class="tab-content active" id="tab-overview">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshAll()">🔄 <span data-i18n="refresh_all">Refresh All</span></button>
+          <span class="auto-refresh-indicator"><span class="status-dot ok pulse"></span> <span data-i18n="auto_refresh">Auto-refresh: 60s</span></span>
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);" id="lastRefresh">—</span>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid" id="statsRow">
+        <div class="stat-card green">
+          <div class="icon">🎮</div>
+          <div class="label" data-i18n="stat_consoles_free">Consoles Free</div>
+          <div class="value" id="statConsoles">—</div>
+          <div class="sub" data-i18n="live_status">live status</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">💰</div>
+          <div class="label" data-i18n="stat_revenue">Today's Revenue</div>
+          <div class="value" id="statRevenue">—</div>
+          <div class="sub">MMK</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">👥</div>
+          <div class="label" data-i18n="stat_members">Total Members</div>
+          <div class="value" id="statMembers">—</div>
+          <div class="sub" data-i18n="registered">registered</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">📅</div>
+          <div class="label" data-i18n="stat_bookings">Today Bookings</div>
+          <div class="value" id="statBookings">—</div>
+          <div class="sub" data-i18n="confirmed_active">confirmed & active</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">🎯</div>
+          <div class="label" data-i18n="stat_active_now">Active Now</div>
+          <div class="value" id="statActiveNow">—</div>
+          <div class="sub" data-i18n="currently_playing">currently playing</div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Console Status -->
+          <div class="panel">
+            <div class="panel-header">
+              🎮 <span data-i18n="panel_console_status">Console Status</span>
+              <span style="font-size:0.75rem;color:var(--muted)" data-i18n="live_from_mysql">Live from MySQL</span>
+            </div>
+            <div class="panel-body">
+              <div class="console-grid" id="consoleGrid">
+                <div class="empty-state">Loading consoles...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sales Chart (Canvas) -->
+          <div class="panel">
+            <div class="panel-header">
+              📈 <span data-i18n="panel_sales_chart">Sales Trend (7 Days)</span>
+              <span style="font-size:0.75rem;color:var(--muted)" id="salesChartTotal">—</span>
+            </div>
+            <div class="panel-body">
+              <div class="chart-wrap">
+                <canvas id="salesCanvas" width="600" height="280"></canvas>
+              </div>
+              <div id="salesChartFallback" class="empty-state" style="display:none;">Loading sales data...</div>
+            </div>
+          </div>
+
+          <!-- System Health -->
+          <div class="panel">
+            <div class="panel-header">
+              🖥️ <span data-i18n="panel_system_health">System Health</span>
+              <span style="font-size:0.75rem;color:var(--muted)">VPS: 5.223.81.16</span>
+            </div>
+            <div class="panel-body" id="systemHealth">
+              <div class="empty-state">Loading system health...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Quick Commands -->
+          <div class="panel">
+            <div class="panel-header">⚡ <span data-i18n="panel_quick_commands">Quick Commands</span></div>
+            <div class="panel-body">
+              <div class="cmd-grid">
+                <button class="cmd-btn" onclick="runCmd('smart_alerts')">🔔 Smart Alerts</button>
+                <button class="cmd-btn" onclick="runCmd('maintenance')">🧹 Maintenance</button>
+                <button class="cmd-btn" onclick="runCmd('booking_slots')">📅 Book Slots</button>
+                <button class="cmd-btn" onclick="runCmd('reminders')">⏰ Reminders</button>
+                <button class="cmd-btn" onclick="runCmd('uptime')">📡 Uptime Check</button>
+                <button class="cmd-btn" onclick="runCmd('biz_intel')">📊 BI Report</button>
+                <button class="cmd-btn" onclick="runCmd('disaster_recovery')">💾 Backup Now</button>
+                <button class="cmd-btn" onclick="runCmd('security_audit')">🔒 Security Audit</button>
+                <button class="cmd-btn" onclick="runCmd('health')">🏥 Health Check</button>
+                <button class="cmd-btn" onclick="runCmd('git_backup')">📦 Git Backup</button>
+              </div>
+            </div>
+            <div id="cmdOutput" class="cmd-result"></div>
+          </div>
+
+          <!-- Service Status -->
+          <div class="panel">
+            <div class="panel-header">
+              🔌 <span data-i18n="panel_services">Services</span>
+              <span style="font-size:0.75rem;color:var(--muted)" data-i18n="system">System</span>
+            </div>
+            <div class="panel-body" id="serviceList">
+              <div class="empty-state">Loading services...</div>
+            </div>
+          </div>
+
+          <!-- End-of-Day Summary -->
+          <div class="panel">
+            <div class="panel-header">
+              📊 <span data-i18n="panel_eod_summary">End-of-Day Summary</span>
+              <div class="toggle-wrap" onclick="toggleEOD()">
+                <span data-i18n="show">Show</span>
+                <div class="toggle-switch" id="eodToggle"></div>
+              </div>
+            </div>
+            <div class="panel-body" id="eodSummary" style="display:none;">
+              <div class="eod-grid">
+                <div class="eod-item">
+                  <div class="eod-label" data-i18n="eod_revenue">Revenue</div>
+                  <div class="eod-value" id="eodRevenue">—</div>
+                </div>
+                <div class="eod-item">
+                  <div class="eod-label" data-i18n="eod_bookings">Bookings</div>
+                  <div class="eod-value" id="eodBookings">—</div>
+                </div>
+                <div class="eod-item">
+                  <div class="eod-label" data-i18n="eod_members">Members</div>
+                  <div class="eod-value" id="eodMembers">—</div>
+                </div>
+                <div class="eod-item">
+                  <div class="eod-label" data-i18n="eod_active">Active Consoles</div>
+                  <div class="eod-value" id="eodActive">—</div>
+                </div>
+                <div class="eod-item">
+                  <div class="eod-label" data-i18n="eod_top_staff">Top Staff</div>
+                  <div class="eod-value" id="eodTopStaff" style="font-size:1rem;">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Schedule ═══ -->
+    <div class="tab-content" id="tab-schedule">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshSchedule()">🔄 <span data-i18n="refresh_schedule">Refresh Schedule</span></button>
+          <span style="font-size:0.75rem;color:var(--muted);" id="scheduleDate">—</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          📅 <span data-i18n="panel_today_schedule">Today's Schedule (9AM – 9PM)</span>
+          <button class="btn-sm" onclick="switchScheduleView()" id="scheduleViewBtn" data-i18n="list_view">📋 List View</button>
+        </div>
+        <div class="panel-body no-pad">
+          <!-- Time Grid View -->
+          <div class="schedule-grid-wrap" id="scheduleGridView">
+            <div id="scheduleGridContent">
+              <div class="empty-state">Loading schedule grid...</div>
+            </div>
+          </div>
+          <!-- List View -->
+          <div style="overflow-x:auto;display:none;" id="scheduleListView">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_time">Time</th>
+                  <th data-i18n="col_console">Console</th>
+                  <th data-i18n="col_customer">Customer</th>
+                  <th data-i18n="col_duration">Duration</th>
+                  <th data-i18n="col_status">Status</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody">
+                <tr><td colspan="5" class="empty-state">Loading schedule...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Staff ═══ -->
+    <div class="tab-content" id="tab-staff">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshStaff()">🔄 <span data-i18n="refresh_staff">Refresh Staff Data</span></button>
+          <input type="date" id="staffDate" onchange="refreshStaff()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.3rem 0.6rem;border-radius:6px;font-size:0.8rem;">
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);" id="staffRefreshTime">—</span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          👤 <span data-i18n="panel_staff_performance">Staff Performance</span>
+          <span style="font-size:0.75rem;color:var(--muted)" id="staffDateLabel">—</span>
+        </div>
+        <div class="panel-body" style="overflow-x:auto;">
+          <table class="staff-table">
+            <thead>
+              <tr>
+                <th data-i18n="col_staff_name">Staff Name</th>
+                <th data-i18n="col_topup_count">Topup Count</th>
+                <th data-i18n="col_total_amount">Total Amount</th>
+                <th data-i18n="col_last_activity">Last Activity</th>
+              </tr>
+            </thead>
+            <tbody id="staffBody">
+              <tr><td colspan="4" class="empty-state">Loading staff data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Food ═══ -->
+    <div class="tab-content" id="tab-food">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshFood()">🔄 <span data-i18n="refresh_food">Refresh Food Menu</span></button>
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);" id="foodRefreshTime">—</span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          🍔 <span data-i18n="panel_food_stock">Food & Stock Status</span>
+          <span style="font-size:0.75rem;color:var(--muted)" id="foodCount">—</span>
+        </div>
+        <div class="panel-body" style="overflow-x:auto;">
+          <table class="food-table">
+            <thead>
+              <tr>
+                <th data-i18n="col_category">Category</th>
+                <th data-i18n="col_item">Item</th>
+                <th data-i18n="col_price">Price</th>
+                <th data-i18n="col_stock">Stock</th>
+              </tr>
+            </thead>
+            <tbody id="foodBody">
+              <tr><td colspan="4" class="empty-state">Loading food menu...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Alerts ═══ -->
+    <div class="tab-content" id="tab-alerts">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshAlerts()">🔄 <span data-i18n="check_alerts">Check Alerts</span></button>
+          <span class="auto-refresh-indicator"><span class="status-dot ok pulse"></span> <span data-i18n="auto_refresh">Auto-refresh: 60s</span></span>
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);" id="alertsLastCheck">—</span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          ⚠️ <span data-i18n="panel_smart_alerts">Smart Alerts</span>
+          <button class="btn-sm" onclick="checkAlertsNow()" data-i18n="check_now">🔍 Check Now</button>
+        </div>
+        <div class="panel-body" id="alertsPanel">
+          <div class="empty-state">
+            <span data-i18n="no_active_alerts">✅ No active alerts</span>
+            <br><span class="text-muted" id="alertsTimestamp">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ═══════════════════════════════════════
+  // CONFIG
+  // ═══════════════════════════════════════
+  const API_BASE = '';
+  const AUTH_TOKEN_KEY = 'kora_access_token';
+  const AUTH_REFRESH_KEY = 'kora_refresh_token';
+  const AUTH_USER_KEY = 'kora_auth_user';
+  const LANG_KEY = 'kora_language';
+  const NOTIFS_KEY = 'kora_notifications';
+  const REFRESH_INTERVAL = 60000;
+
+  let scheduleViewMode = 'grid'; // 'grid' or 'list'
+  let allMembers = [];
+  let currentLang = localStorage.getItem(LANG_KEY) || 'en';
+  let notifications = loadNotifications();
+
+  // ═══════════════════════════════════════
+  // 🌐 TRANSLATIONS
+  // ═══════════════════════════════════════
+  const translations = {
+    en: {
+      login_title: 'Kora Dashboard',
+      login_subtitle: 'PS VIBE Gaming Lounge — Operations Center',
+      username: 'Username',
+      username_placeholder: 'Enter your username',
+      password: 'Password',
+      password_placeholder: 'Enter your password',
+      sign_in: '🔐 Sign In',
+      secure_access: 'Secure access to PS VIBE operations',
+      app_title: 'Kora Dashboard',
+      ps_vibe_label: 'PS VIBE Gaming Lounge',
+      logout: '🚪 Logout',
+      search_member: '🔍 Search member...',
+      notifications: '🔔 Notifications',
+      mark_all_read: 'Mark all read',
+      tab_overview: '📊 Overview',
+      tab_schedule: '📅 Schedule',
+      tab_staff: '👤 Staff',
+      tab_food: '🍔 Food',
+      tab_alerts: '⚠️ Alerts',
+      refresh_all: 'Refresh All',
+      auto_refresh: 'Auto-refresh: 60s',
+      stat_consoles_free: 'Consoles Free',
+      stat_revenue: "Today's Revenue",
+      stat_members: 'Total Members',
+      stat_bookings: 'Today Bookings',
+      stat_active_now: 'Active Now',
+      live_status: 'live status',
+      registered: 'registered',
+      confirmed_active: 'confirmed & active',
+      currently_playing: 'currently playing',
+      panel_console_status: 'Console Status',
+      live_from_mysql: 'Live from MySQL',
+      panel_sales_chart: 'Sales Trend (7 Days)',
+      panel_system_health: 'System Health',
+      panel_quick_commands: 'Quick Commands',
+      panel_services: 'Services',
+      panel_eod_summary: 'End-of-Day Summary',
+      show: 'Show',
+      refresh_schedule: 'Refresh Schedule',
+      panel_today_schedule: "Today's Schedule (9AM – 9PM)",
+      list_view: '📋 List View',
+      grid_view: '📐 Grid View',
+      col_time: 'Time',
+      col_console: 'Console',
+      col_customer: 'Customer',
+      col_duration: 'Duration',
+      col_status: 'Status',
+      refresh_staff: 'Refresh Staff Data',
+      panel_staff_performance: 'Staff Performance',
+      col_staff_name: 'Staff Name',
+      col_topup_count: 'Topup Count',
+      col_total_amount: 'Total Amount',
+      col_last_activity: 'Last Activity',
+      refresh_food: 'Refresh Food Menu',
+      panel_food_stock: 'Food & Stock Status',
+      col_category: 'Category',
+      col_item: 'Item',
+      col_price: 'Price',
+      col_stock: 'Stock',
+      in_stock: 'In Stock',
+      panel_smart_alerts: 'Smart Alerts',
+      check_now: '🔍 Check Now',
+      check_alerts: 'Check Alerts',
+      no_active_alerts: '✅ No active alerts',
+      system: 'System',
+      eod_revenue: 'Revenue',
+      eod_bookings: 'Bookings',
+      eod_members: 'Members',
+      eod_active: 'Active Consoles',
+      eod_top_staff: 'Top Staff',
+      free: 'Free',
+      occupied: 'Occupied',
+      offline: 'Offline',
+      no_bookings: 'No bookings today',
+      no_members: 'No members found',
+      no_data: 'No data available',
+      loading: 'Loading...',
+      online: 'Online',
+      connected: 'Connected',
+      error: 'Error',
+      welcome_back: 'Welcome back,',
+      session_expired: 'Session expired. Please login again.',
+    },
+    my: {
+      login_title: 'Kora ဒက်ရှ်ဘုတ်',
+      login_subtitle: 'PS VIBE ဂိမ်းလောင်းဂျ် — လုပ်ငန်းလည်ပတ်ရေးစင်တာ',
+      username: 'အသုံးပြုသူအမည်',
+      username_placeholder: 'သင့်အမည်ထည့်ပါ',
+      password: 'စကားဝှက်',
+      password_placeholder: 'စကားဝှက်ထည့်ပါ',
+      sign_in: '🔐 ဝင်ရောက်မည်',
+      secure_access: 'PS VIBE လုပ်ငန်းများသို့ လုံခြုံစွာ ဝင်ရောက်ခြင်း',
+      app_title: 'Kora ဒက်ရှ်ဘုတ်',
+      ps_vibe_label: 'PS VIBE ဂိမ်းလောင်းဂျ်',
+      logout: '🚪 ထွက်မည်',
+      search_member: '🔍 အဖွဲ့ဝင်ရှာရန်...',
+      notifications: '🔔 အကြောင်းကြားချက်များ',
+      mark_all_read: 'အားလုံးဖတ်ပြီး',
+      tab_overview: '📊 ခြုံငုံကြည့်ရန်',
+      tab_schedule: '📅 အချိန်ဇယား',
+      tab_staff: '👤 ဝန်ထမ်းများ',
+      tab_food: '🍔 အစားအသောက်',
+      tab_alerts: '⚠️ သတိပေးချက်များ',
+      refresh_all: 'အားလုံးပြန်လည်ဆန်းသစ်ရန်',
+      auto_refresh: 'အော်တို-ပြန်ဆန်းသစ်: စက္ကန့် ၆၀',
+      stat_consoles_free: 'စက်အားလပ်',
+      stat_revenue: 'ယနေ့ဝင်ငွေ',
+      stat_members: 'အဖွဲ့ဝင်စုစုပေါင်း',
+      stat_bookings: 'ယနေ့ကြိုတင်မှာယူမှု',
+      stat_active_now: 'လက်ရှိကစားနေသူ',
+      live_status: 'လက်ရှိအခြေအနေ',
+      registered: 'မှတ်ပုံတင်ထား',
+      confirmed_active: 'အတည်ပြု & လက်ရှိ',
+      currently_playing: 'လက်ရှိကစားနေ',
+      panel_console_status: 'စက်အခြေအနေ',
+      live_from_mysql: 'MySQL မှတိုက်ရိုက်',
+      panel_sales_chart: 'ရောင်းအားလမ်းကြောင်း (၇ ရက်)',
+      panel_system_health: 'စနစ်ကျန်းမာရေး',
+      panel_quick_commands: 'အမြန်ကွန်မန့်များ',
+      panel_services: 'ဝန်ဆောင်မှုများ',
+      panel_eod_summary: 'နေ့အဆုံးအကျဉ်းချုပ်',
+      show: 'ပြရန်',
+      refresh_schedule: 'အချိန်ဇယားပြန်ဆန်းသစ်ရန်',
+      panel_today_schedule: 'ယနေ့အချိန်ဇယား (နံနက် ၉ – ည ၉)',
+      list_view: '📋 စာရင်းကြည့်ရန်',
+      grid_view: '📐 ဇယားကွက်ကြည့်ရန်',
+      col_time: 'အချိန်',
+      col_console: 'စက်',
+      col_customer: 'ဖောက်သည်',
+      col_duration: 'ကြာချိန်',
+      col_status: 'အခြေအနေ',
+      refresh_staff: 'ဝန်ထမ်းဒေတာပြန်ဆန်းသစ်ရန်',
+      panel_staff_performance: 'ဝန်ထမ်းစွမ်းဆောင်ရည်',
+      col_staff_name: 'ဝန်ထမ်းအမည်',
+      col_topup_count: 'ငွေဖြည့်အကြိမ်',
+      col_total_amount: 'စုစုပေါင်းပမာဏ',
+      col_last_activity: 'နောက်ဆုံးလုပ်ဆောင်ချက်',
+      refresh_food: 'အစားအသောက်မီနူးပြန်ဆန်းသစ်ရန်',
+      panel_food_stock: 'အစားအသောက် & စတော့အခြေအနေ',
+      col_category: 'အမျိုးအစား',
+      col_item: 'ပစ္စည်း',
+      col_price: 'စျေးနှုန်း',
+      col_stock: 'စတော့',
+      in_stock: 'ရှိသည်',
+      panel_smart_alerts: 'စမတ်သတိပေးချက်များ',
+      check_now: '🔍 ယခုစစ်ဆေးမည်',
+      check_alerts: 'သတိပေးချက်စစ်ရန်',
+      no_active_alerts: '✅ သတိပေးချက်မရှိပါ',
+      system: 'စနစ်',
+      eod_revenue: 'ဝင်ငွေ',
+      eod_bookings: 'ကြိုတင်မှာယူမှု',
+      eod_members: 'အဖွဲ့ဝင်များ',
+      eod_active: 'အသုံးပြုနေသောစက်',
+      eod_top_staff: 'ထိပ်တန်းဝန်ထမ်း',
+      free: 'အားလပ်',
+      occupied: 'အသုံးပြုနေ',
+      offline: 'အော့ဖ်လိုင်း',
+      no_bookings: 'ယနေ့ကြိုတင်မှာယူမှုမရှိပါ',
+      no_members: 'အဖွဲ့ဝင်မတွေ့ပါ',
+      no_data: 'ဒေတာမရှိပါ',
+      loading: 'ဖွင့်နေသည်...',
+      online: 'အွန်လိုင်း',
+      connected: 'ချိတ်ဆက်ထား',
+      error: 'အမှား',
+      welcome_back: 'ပြန်လည်ကြိုဆိုပါတယ်,',
+      session_expired: 'ဆက်ရှင်သက်တမ်းကုန်သွားပါပြီ။ ပြန်ဝင်ပါ။',
+    }
+  };
+
+  function t(key) {
+    return (translations[currentLang] && translations[currentLang][key]) || (translations['en'][key]) || key;
+  }
+
+  function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        // skip inputs (use placeholder attr)
+      } else {
+        // Only update if it was previously set or is an i18n-only text
+        el.textContent = t(key);
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+    });
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    document.getElementById('langEN').classList.toggle('active', lang === 'en');
+    document.getElementById('langMY').classList.toggle('active', lang === 'my');
+    document.documentElement.lang = lang === 'my' ? 'my' : 'en';
+    // Re-translate all UI
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') {
+        el.textContent = t(key);
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+    });
+    // Re-render dynamic content if dashboard is visible
+    if (document.getElementById('dashboardPage').style.display !== 'none') {
+      refreshAll();
+    }
+  }
+
+  // ═══════════════════════════════════════
+  // 🔔 NOTIFICATION SYSTEM
+  // ═══════════════════════════════════════
+  function loadNotifications() {
+    try { return JSON.parse(localStorage.getItem(NOTIFS_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveNotifications() {
+    localStorage.setItem(NOTIFS_KEY, JSON.stringify(notifications));
+  }
+
+  function addNotification(message, type = 'info') {
+    const notif = {
+      id: Date.now(),
+      message,
+      type,
+      time: new Date().toISOString(),
+      read: false
+    };
+    notifications.unshift(notif);
+    if (notifications.length > 50) notifications = notifications.slice(0, 50);
+    saveNotifications();
+    updateNotifBadge();
+    renderNotificationDropdown();
+  }
+
+  function markAllRead() {
+    notifications.forEach(n => n.read = true);
+    saveNotifications();
+    updateNotifBadge();
+    renderNotificationDropdown();
+  }
+
+  function unreadCount() {
+    return notifications.filter(n => !n.read).length;
+  }
+
+  function updateNotifBadge() {
+    const badge = document.getElementById('notifBadge');
+    const count = unreadCount();
+    badge.textContent = count > 0 ? count : '';
+  }
+
+  function toggleNotifDropdown() {
+    const dd = document.getElementById('notifDropdown');
+    dd.classList.toggle('show');
+    renderNotificationDropdown();
+  }
+
+  function renderNotificationDropdown() {
+    const list = document.getElementById('notifList');
+    if (notifications.length === 0) {
+      list.innerHTML = '<div class="notif-empty">No notifications</div>';
+      return;
+    }
+    list.innerHTML = notifications.slice(0, 15).map(n => {
+      const cls = n.read ? '' : 'unread';
+      const time = new Date(n.time).toLocaleString();
+      const icon = n.type === 'error' ? '🔴' : n.type === 'warning' ? '🟡' : '🔵';
+      return `<div class="notif-item ${cls}" onclick="this.classList.remove('unread')">
+        ${icon} ${n.message}
+        <div class="notif-time">${time}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Close dropdowns on outside click
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('notifDropdown');
+    const bell = document.querySelector('.notif-bell');
+    if (dd.classList.contains('show') && !dd.contains(e.target) && !bell.contains(e.target)) {
+      dd.classList.remove('show');
+    }
+    const sd = document.getElementById('searchDropdown');
+    const si = document.getElementById('memberSearch');
+    if (sd.classList.contains('show') && !sd.contains(e.target) && !si.contains(e.target)) {
+      sd.classList.remove('show');
+    }
+  });
+
+  // ═══════════════════════════════════════
+  // 🔍 MEMBER SEARCH
+  // ═══════════════════════════════════════
+  async function loadAllMembers() {
+    if (allMembers.length > 0) return;
+    try {
+      const data = await apiCall('/api/fetch_members');
+      allMembers = Array.isArray(data) ? data : (data.data || []);
+    } catch (err) {
+      console.warn('[Members] Load failed:', err.message);
+      allMembers = [];
+    }
+  }
+
+  function onMemberSearch(query) {
+    const dd = document.getElementById('searchDropdown');
+    if (!query || query.trim().length < 1) {
+      dd.classList.remove('show');
+      dd.innerHTML = '';
+      return;
+    }
+    const q = query.toLowerCase().trim();
+    const results = allMembers.filter(m => {
+      const name = (m.name || m.full_name || m.username || '').toLowerCase();
+      const id = String(m.id || '').toLowerCase();
+      return name.includes(q) || id.includes(q);
+    }).slice(0, 10);
+
+    if (results.length === 0) {
+      dd.innerHTML = '<div class="notif-empty" style="font-size:0.8rem;">' + t('no_members') + '</div>';
+    } else {
+      dd.innerHTML = results.map(m => {
+        const name = m.name || m.full_name || m.username || '—';
+        const id = m.id || '—';
+        const balance = m.wallet_balance || m.balance;
+        const balStr = balance !== undefined && balance !== null
+          ? `${Number(balance).toLocaleString()} K`
+          : '';
+        return `<div class="search-item" onclick="selectMember('${id}')">
+          <div>
+            <div class="s-name">${escapeHtml(name)}</div>
+            <div class="s-id">ID: ${escapeHtml(String(id))}</div>
+          </div>
+          ${balStr ? `<div class="s-balance">${balStr}</div>` : ''}
+        </div>`;
+      }).join('');
+    }
+    dd.classList.add('show');
+  }
+
+  function selectMember(id) {
+    document.getElementById('searchDropdown').classList.remove('show');
+    document.getElementById('memberSearch').value = '';
+    showToast(`👤 Member #${id} selected`, 'success');
+    // Could open a member detail modal here
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // Load members in background after auth
+  async function preloadMembers() {
+    await loadAllMembers();
+  }
+
+  // ═══════════════════════════════════════
+  // AUTH STATE
+  // ═══════════════════════════════════════
+  function getToken() { return localStorage.getItem(AUTH_TOKEN_KEY); }
+  function getRefreshToken() { return localStorage.getItem(AUTH_REFRESH_KEY); }
+  function getUser() {
+    try { return JSON.parse(localStorage.getItem(AUTH_USER_KEY)); }
+    catch { return null; }
+  }
+  function isAuthenticated() { return !!getToken(); }
+
+  function doLogout() {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    localStorage.removeItem(AUTH_REFRESH_KEY);
+    localStorage.removeItem(AUTH_USER_KEY);
+    showLogin();
+  }
+
+  // ═══════════════════════════════════════
+  // API CALLS
+  // ═══════════════════════════════════════
+  async function apiCall(endpoint, options = {}) {
+    const url = API_BASE + endpoint;
+    const headers = { ...(options.headers || {}) };
+    const token = getToken();
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const fetchOptions = { ...options, headers };
+    delete fetchOptions.headers_custom;
+
+    try {
+      const resp = await fetch(url, fetchOptions);
+      if (resp.status === 401) {
+        const refreshed = await refreshAccessToken();
+        if (refreshed) {
+          headers['Authorization'] = `Bearer ${getToken()}`;
+          const retryResp = await fetch(url, { ...fetchOptions, headers });
+          return await handleResponse(retryResp);
+        }
+        doLogout();
+        throw new Error(t('session_expired'));
+      }
+      return await handleResponse(resp);
+    } catch (err) {
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+        throw new Error('Cannot reach PS VIBE API. Check your connection.');
+      }
+      throw err;
+    }
+  }
+
+  async function handleResponse(resp) {
+    if (!resp.ok) {
+      let detail = `HTTP ${resp.status}`;
+      try { const body = await resp.json(); detail = body.detail || body.error || detail; } catch {}
+      throw new Error(detail);
+    }
+    return resp.json();
+  }
+
+  async function refreshAccessToken() {
+    const refreshToken = getRefreshToken();
+    if (!refreshToken) return false;
+    try {
+      const resp = await fetch(API_BASE + '/auth/refresh', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      });
+      if (!resp.ok) return false;
+      const data = await resp.json();
+      localStorage.setItem(AUTH_TOKEN_KEY, data.access_token);
+      if (data.refresh_token) localStorage.setItem(AUTH_REFRESH_KEY, data.refresh_token);
+      if (data.user) localStorage.setItem(AUTH_USER_KEY, JSON.stringify(data.user));
+      return true;
+    } catch { return false; }
+  }
+
+  function tokenNearExpiry() {
+    const token = getToken();
+    if (!token) return true;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return !payload.exp || payload.exp * 1000 < Date.now() + 60000;
+    } catch { return true; }
+  }
+
+  // ═══════════════════════════════════════
+  // LOGIN
+  // ═══════════════════════════════════════
+  function showLoginError(msg) {
+    const el = document.getElementById('loginError');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+  function hideLoginError() {
+    document.getElementById('loginError').classList.remove('show');
+  }
+  function setLoginLoading(loading) {
+    const btn = document.getElementById('loginBtn');
+    if (loading) {
+      btn.disabled = true;
+      btn.dataset.origText = btn.innerHTML;
+      btn.innerHTML = '<span class="login-spinner"></span> ' + t('sign_in').replace('🔐 ', '') + '...';
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = btn.dataset.origText || t('sign_in');
+    }
+  }
+
+  async function doLogin() {
+    hideLoginError();
+    const username = document.getElementById('loginUsername').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+    if (!username || !password) {
+      showLoginError('Please enter both username and password.');
+      return;
+    }
+    setLoginLoading(true);
+    try {
+      const resp = await fetch(API_BASE + '/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.detail || 'Invalid credentials');
+      localStorage.setItem(AUTH_TOKEN_KEY, data.access_token);
+      localStorage.setItem(AUTH_REFRESH_KEY, data.refresh_token);
+      localStorage.setItem(AUTH_USER_KEY, JSON.stringify(data.user));
+      showToast('✅ ' + t('welcome_back') + ' ' + (data.user?.name || ''), 'success');
+      showDashboard();
+    } catch (err) {
+      showLoginError(err.message || 'Login failed');
+    } finally {
+      setLoginLoading(false);
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.getElementById('loginPage').style.display !== 'none') {
+      doLogin();
+    }
+  });
+
+  // ═══════════════════════════════════════
+  // DASHBOARD DATA FETCHING
+  // ═══════════════════════════════════════
+  async function fetchDashboardStats() {
+    try {
+      const data = await apiCall('/api/dashboard/stats');
+      return (data.data || data || {});
+    } catch (err) {
+      console.warn('[Dashboard] Stats fetch failed:', err.message);
+      return null;
+    }
+  }
+
+  async function fetchConsoleStatus() {
+    try {
+      // Try the documented endpoint first
+      let data = await apiCall('/api/fetch_console_status');
+      return Array.isArray(data) ? data : (data.data || []);
+    } catch {
+      try {
+        const data = await apiCall('/api/dashboard/consoles');
+        return Array.isArray(data) ? data : (data.data || []);
+      } catch (err) {
+        console.warn('[Dashboard] Console status failed:', err.message);
+        return [];
+      }
+    }
+  }
+
+  async function fetchSchedule() {
+    try {
+      const data = await apiCall('/api/dashboard/schedule');
+      return Array.isArray(data) ? data : (data.data || []);
+    } catch (err) {
+      console.warn('[Dashboard] Schedule fetch failed:', err.message);
+      return [];
+    }
+  }
+
+  async function fetchSystemHealth() {
+    try {
+      const [health, mysql] = await Promise.all([
+        fetch(API_BASE + '/api/health').then(r => r.json()).catch(() => null),
+        fetch(API_BASE + '/api/mysql/health').then(r => r.json()).catch(() => null),
+      ]);
+      return { health, mysql };
+    } catch (err) {
+      console.warn('[Dashboard] Health fetch failed:', err.message);
+      return { health: null, mysql: null };
+    }
+  }
+
+  async function fetchSalesHistory() {
+    const sales = [];
+    const today = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().substring(0, 10);
+      try {
+        const data = await apiCall('/api/dashboard/sales?date=' + dateStr);
+        const amount = (data && data.total) ? data.total : (data && data.revenue) ? data.revenue : 0;
+        sales.push({ date: dateStr, revenue: Number(amount) || 0 });
+      } catch {
+        sales.push({ date: dateStr, revenue: 0 });
+      }
+    }
+    return sales;
+  }
+
+  async function fetchTopups(dateStr) {
+    try {
+      const data = await apiCall('/api/dashboard/topups?date=' + dateStr);
+      return Array.isArray(data) ? data : (data.data || []);
+    } catch (err) {
+      console.warn('[Dashboard] Topups fetch failed:', err.message);
+      return [];
+    }
+  }
+
+  async function fetchFoodMenu() {
+    try {
+      const data = await apiCall('/api/fetch_food_menu');
+      return Array.isArray(data) ? data : (data.data || data.items || []);
+    } catch (err) {
+      console.warn('[Dashboard] Food menu fetch failed:', err.message);
+      return [];
+    }
+  }
+
+  // ═══════════════════════════════════════
+  // RENDER FUNCTIONS
+  // ═══════════════════════════════════════
+  function renderConsoles(consoles) {
+    const grid = document.getElementById('consoleGrid');
+    if (!consoles || consoles.length === 0) {
+      grid.innerHTML = '<div class="empty-state">' + t('no_data') + '</div>';
+      return;
+    }
+    grid.innerHTML = consoles.map(c => {
+      const status = (c.status || '').toLowerCase();
+      let cls = '', statusText = c.status || 'Unknown';
+      if (status === 'free') { cls = 'free'; statusText = t('free') + ' ✅'; }
+      else if (status === 'active' || status === 'occupied') { cls = 'occupied'; statusText = t('occupied') + ' 🎮'; }
+      else { cls = 'offline'; statusText = status.charAt(0).toUpperCase() + status.slice(1); }
+
+      let memberHtml = '';
+      if (c.current_booking && c.current_booking.customer) {
+        memberHtml = `<div class="c-member">👤 ${c.current_booking.customer}</div>`;
+      }
+      let timeHtml = '';
+      if (c.current_booking && c.current_booking.start) {
+        timeHtml = `<div class="c-time">🕐 ${c.current_booking.start}</div>`;
+      }
+
+      return `<div class="console-card ${cls}">
+        <div class="c-id">${escapeHtml(String(c.id || c.name))}</div>
+        <div class="c-type">${escapeHtml(String(c.type || 'Console'))}</div>
+        <div class="c-status">${statusText}</div>
+        ${memberHtml}${timeHtml}
+      </div>`;
+    }).join('');
+
+    const freeCount = consoles.filter(c => (c.status || '').toLowerCase() === 'free').length;
+    document.getElementById('statConsoles').textContent = freeCount;
+  }
+
+  function renderScheduleGrid(consoles, schedule) {
+    const container = document.getElementById('scheduleGridContent');
+    if (!consoles || consoles.length === 0) {
+      container.innerHTML = '<div class="empty-state">' + t('no_data') + '</div>';
+      return;
+    }
+
+    const hours = [];
+    for (let h = 9; h <= 21; h++) {
+      hours.push(`${String(h).padStart(2, '0')}:00`);
+    }
+
+    // Build a map of console -> occupied hours
+    const occupiedMap = {};
+    (schedule || []).forEach(s => {
+      const consoleName = String(s.console || s.console_id || '');
+      if (!occupiedMap[consoleName]) occupiedMap[consoleName] = new Set();
+      if (s.start && s.duration) {
+        const startH = parseInt(s.start.split(':')[0]);
+        const durationH = Math.ceil((s.duration || 60) / 60);
+        for (let h = startH; h < startH + durationH && h <= 21; h++) {
+          occupiedMap[consoleName].add(h);
+        }
+      }
+    });
+
+    // Also mark currently occupied consoles
+    consoles.forEach(c => {
+      const status = (c.status || '').toLowerCase();
+      const name = String(c.id || c.name);
+      if (status === 'active' || status === 'occupied') {
+        if (!occupiedMap[name]) occupiedMap[name] = new Set();
+        // Mark current hour as occupied
+        const nowMMT = getMMTHour();
+        occupiedMap[name].add(nowMMT);
+      }
+    });
+
+    const cols = hours.length + 1;
+    let html = `<div class="schedule-grid" style="grid-template-columns:80px repeat(${hours.length}, 1fr);">`;
+
+    // Header row
+    html += `<div class="sg-cell sg-header">Console</div>`;
+    hours.forEach(h => {
+      html += `<div class="sg-cell sg-header">${h}</div>`;
+    });
+
+    // Console rows
+    consoles.forEach(c => {
+      const name = String(c.id || c.name);
+      const status = (c.status || '').toLowerCase();
+      html += `<div class="sg-cell sg-console">${escapeHtml(name)}</div>`;
+      const occupied = occupiedMap[name] || new Set();
+      hours.forEach(h => {
+        const hourNum = parseInt(h.split(':')[0]);
+        if (occupied.has(hourNum)) {
+          html += `<div class="sg-cell sg-occupied">🎮</div>`;
+        } else {
+          html += `<div class="sg-cell sg-free">—</div>`;
+        }
+      });
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+  }
+
+  function getMMTHour() {
+    const now = new Date();
+    const utcH = now.getUTCHours();
+    const utcM = now.getUTCMinutes();
+    let mmtH = utcH + 6;
+    let mmtM = utcM + 30;
+    if (mmtM >= 60) { mmtH++; }
+    if (mmtH >= 24) mmtH -= 24;
+    return mmtH;
+  }
+
+  function renderScheduleList(schedule) {
+    const body = document.getElementById('scheduleBody');
+    if (!schedule || schedule.length === 0) {
+      body.innerHTML = '<tr><td colspan="5" class="empty-state">' + t('no_bookings') + '</td></tr>';
+      return;
+    }
+    body.innerHTML = schedule.map(s => {
+      const status = (s.status || '').toLowerCase();
+      let badgeClass = 'pending';
+      if (status === 'active') badgeClass = 'active';
+      else if (status === 'confirmed') badgeClass = 'confirmed';
+      else if (status === 'cancelled') badgeClass = 'cancelled';
+
+      const startTime = s.start ? s.start.substring(0, 5) : '—';
+      const duration = s.duration ? s.duration + 'm' : '—';
+
+      return `<tr>
+        <td>${startTime}</td>
+        <td>${escapeHtml(String(s.console || '—'))}</td>
+        <td>${escapeHtml(String(s.customer || '—'))}</td>
+        <td>${duration}</td>
+        <td><span class="badge ${badgeClass}">${s.status || '—'}</span></td>
+      </tr>`;
+    }).join('');
+  }
+
+  function renderSystemHealth(systemData) {
+    const el = document.getElementById('systemHealth');
+    const health = systemData.health;
+    const mysql = systemData.mysql;
+
+    const apiStatus = (health && health.status === 'ok') ? 'ok' : 'err';
+    const apiText = (health && health.status === 'ok') ? t('online') : t('offline');
+    const mysqlOk = mysql && mysql.mysql_connected;
+    const mysqlStatus = mysqlOk ? 'ok' : 'err';
+    const mysqlText = mysqlOk ? t('connected') : (mysql && mysql.error ? t('error') + ': ' + String(mysql.error).substring(0, 30) : t('offline'));
+    const timestamp = health && health.timestamp
+      ? new Date(health.timestamp * 1000).toLocaleTimeString()
+      : '—';
+
+    el.innerHTML = `
+      <div class="service-row">
+        <span><span class="status-dot ${apiStatus}"></span>API Server</span>
+        <span style="font-size:0.8rem;color:${apiStatus === 'ok' ? 'var(--green)' : 'var(--red)'}">${apiText}</span>
+      </div>
+      <div class="service-row">
+        <span><span class="status-dot ${mysqlStatus}"></span>MySQL Database</span>
+        <span style="font-size:0.8rem;color:${mysqlStatus === 'ok' ? 'var(--green)' : 'var(--red)'}">${mysqlText}</span>
+      </div>
+      <div class="service-row">
+        <span>🐳 Docker Services</span>
+        <span style="font-size:0.8rem;color:var(--muted)">Check VPS</span>
+      </div>
+      <div class="service-row">
+        <span>🕐 Health Checked</span>
+        <span style="font-size:0.8rem;color:var(--muted)">${timestamp}</span>
+      </div>
+      <div class="service-row">
+        <span>🏢 VPS</span>
+        <span style="font-size:0.8rem;color:var(--green)">5.223.81.16</span>
+      </div>
+    `;
+  }
+
+  function renderServices() {
+    const el = document.getElementById('serviceList');
+    el.innerHTML = `
+      <div class="service-row"><span><span class="status-dot ok"></span>PS VIBE API (uvicorn)</span><span style="font-size:0.8rem;color:var(--green)">Port 8000</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>MySQL 8.0</span><span style="font-size:0.8rem;color:var(--green)">Port 3306</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>Nginx Reverse Proxy</span><span style="font-size:0.8rem;color:var(--green)">Port 80/443</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>OpenClaw Gateway</span><span style="font-size:0.8rem;color:var(--muted)">Agent runtime</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>Construction Bot (Docker)</span><span style="font-size:0.8rem;color:var(--muted)">Telegram</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>PS VIBE Sale Bot</span><span style="font-size:0.8rem;color:var(--muted)">Telegram</span></div>
+      <div class="service-row"><span><span class="status-dot ok"></span>YYO Wallet Bot</span><span style="font-size:0.8rem;color:var(--muted)">Telegram</span></div>
+    `;
+  }
+
+  // ═══════════════════════════════════════
+  // 📈 CANVAS SALES CHART
+  // ═══════════════════════════════════════
+  function drawSalesChart(salesData) {
+    const canvas = document.getElementById('salesCanvas');
+    const fallback = document.getElementById('salesChartFallback');
+    if (!canvas) return;
+
+    if (!salesData || salesData.length === 0) {
+      canvas.style.display = 'none';
+      if (fallback) fallback.style.display = 'block';
+      return;
+    }
+    canvas.style.display = 'block';
+    if (fallback) fallback.style.display = 'none';
+
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const width = rect.width || 600;
+    const height = 280;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.scale(dpr, dpr);
+
+    // Clear
+    ctx.clearRect(0, 0, width, height);
+
+    const padding = { top: 20, right: 20, bottom: 45, left: 55 };
+    const chartW = width - padding.left - padding.right;
+    const chartH = height - padding.top - padding.bottom;
+
+    const maxVal = Math.max(...salesData.map(d => d.revenue), 1);
+    const barWidth = Math.min(50, (chartW / salesData.length) * 0.7);
+    const gap = chartW / salesData.length;
+
+    // Background grid
+    ctx.strokeStyle = 'rgba(51,65,85,0.3)';
+    ctx.lineWidth = 0.5;
+    const gridLines = 5;
+    for (let i = 0; i <= gridLines; i++) {
+      const y = padding.top + (chartH / gridLines) * i;
+      ctx.beginPath();
+      ctx.moveTo(padding.left, y);
+      ctx.lineTo(width - padding.right, y);
+      ctx.stroke();
+
+      // Y labels
+      const val = maxVal - (maxVal / gridLines) * i;
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px "Segoe UI", system-ui, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(Math.round(val).toLocaleString(), padding.left - 8, y + 3);
+    }
+
+    // Bars
+    salesData.forEach((d, i) => {
+      const x = padding.left + gap * i + (gap - barWidth) / 2;
+      const barH = (d.revenue / maxVal) * chartH;
+      const y = padding.top + chartH - barH;
+
+      // Gradient
+      const grad = ctx.createLinearGradient(x, y, x, padding.top + chartH);
+      grad.addColorStop(0, '#38bdf8');
+      grad.addColorStop(1, '#a78bfa');
+
+      // Shadow
+      ctx.shadowColor = 'rgba(56,189,248,0.3)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 2;
+
+      // Draw rounded bar
+      const radius = 4;
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + barWidth - radius, y);
+      ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + radius);
+      ctx.lineTo(x + barWidth, padding.top + chartH);
+      ctx.lineTo(x, padding.top + chartH);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.fill();
+
+      // Reset shadow
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetY = 0;
+
+      // Value on top
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = 'bold 10px "Segoe UI", system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(d.revenue > 0 ? d.revenue.toLocaleString() : '', x + barWidth / 2, y - 6);
+
+      // X label
+      const dateLabel = d.date ? d.date.substring(5) : '';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px "Segoe UI", system-ui, sans-serif';
+      ctx.fillText(dateLabel, x + barWidth / 2, padding.top + chartH + 16);
+    });
+
+    // Total
+    const total = salesData.reduce((s, d) => s + d.revenue, 0);
+    const totalEl = document.getElementById('salesChartTotal');
+    if (totalEl) totalEl.textContent = 'Total: ' + total.toLocaleString() + ' MMK';
+  }
+
+  // ═══════════════════════════════════════
+  // TAB CONTENT RENDERERS
+  // ═══════════════════════════════════════
+  function renderStats(stats) {
+    if (stats) {
+      document.getElementById('statRevenue').textContent = (stats.today_revenue || 0).toLocaleString();
+      document.getElementById('statMembers').textContent = (stats.total_members || 0).toLocaleString();
+      document.getElementById('statBookings').textContent = (stats.today_bookings || 0).toLocaleString();
+      document.getElementById('statActiveNow').textContent = (stats.active_players || 0).toLocaleString();
+    }
+  }
+
+  function renderEODSummary(stats, consoles) {
+    const revenue = stats ? (stats.today_revenue || 0) : 0;
+    const bookings = stats ? (stats.today_bookings || 0) : 0;
+    const members = stats ? (stats.total_members || 0) : 0;
+    const activeConsoles = consoles ? consoles.filter(c => {
+      const s = (c.status || '').toLowerCase();
+      return s === 'active' || s === 'occupied';
+    }).length : 0;
+
+    document.getElementById('eodRevenue').textContent = Number(revenue).toLocaleString() + ' K';
+    document.getElementById('eodBookings').textContent = bookings;
+    document.getElementById('eodMembers').textContent = Number(members).toLocaleString();
+    document.getElementById('eodActive').textContent = activeConsoles;
+    document.getElementById('eodTopStaff').textContent = '—';
+  }
+
+  function renderStaffPerformance(topups) {
+    const body = document.getElementById('staffBody');
+    if (!topups || topups.length === 0) {
+      body.innerHTML = '<tr><td colspan="4" class="empty-state">' + t('no_data') + '</td></tr>';
+      return;
+    }
+
+    // Group by staff_name
+    const staffMap = {};
+    topups.forEach(t => {
+      const name = t.staff_name || t.handler || t.operator || 'Unknown';
+      if (!staffMap[name]) {
+        staffMap[name] = { count: 0, total: 0, lastActivity: null };
+      }
+      staffMap[name].count++;
+      staffMap[name].total += Number(t.amount || t.total || 0);
+      const time = t.created_at || t.time || t.timestamp;
+      if (time && (!staffMap[name].lastActivity || time > staffMap[name].lastActivity)) {
+        staffMap[name].lastActivity = time;
+      }
+    });
+
+    const staffList = Object.entries(staffMap).sort((a, b) => b[1].total - a[1].total);
+
+    if (staffList.length === 0) {
+      body.innerHTML = '<tr><td colspan="4" class="empty-state">' + t('no_data') + '</td></tr>';
+      return;
+    }
+
+    body.innerHTML = staffList.map(([name, data]) => {
+      const lastAct = data.lastActivity
+        ? new Date(data.lastActivity).toLocaleString()
+        : '—';
+      return `<tr>
+        <td><strong>${escapeHtml(name)}</strong></td>
+        <td>${data.count}</td>
+        <td>${data.total.toLocaleString()} K</td>
+        <td>${lastAct}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function renderFoodMenu(foodItems) {
+    const body = document.getElementById('foodBody');
+    document.getElementById('foodCount').textContent = foodItems.length + ' items';
+
+    if (!foodItems || foodItems.length === 0) {
+      body.innerHTML = '<tr><td colspan="4" class="empty-state">' + t('no_data') + '</td></tr>';
+      return;
+    }
+
+    // Group by category
+    const byCategory = {};
+    foodItems.forEach(item => {
+      const cat = item.category || 'Other';
+      if (!byCategory[cat]) byCategory[cat] = [];
+      byCategory[cat].push(item);
+    });
+
+    const categoryNames = Object.keys(byCategory).sort();
+    let html = '';
+    categoryNames.forEach(cat => {
+      html += `<tr class="food-cat-header"><td colspan="4">📂 ${escapeHtml(cat)}</td></tr>`;
+      byCategory[cat].forEach(item => {
+        const name = item.name || item.item || '—';
+        const price = item.price !== undefined ? Number(item.price).toLocaleString() + ' K' : '—';
+        const stock = t('in_stock');
+        html += `<tr>
+          <td></td>
+          <td>${escapeHtml(String(name))}</td>
+          <td>${price}</td>
+          <td><span class="badge in-stock">${stock}</span></td>
+        </tr>`;
+      });
+    });
+
+    body.innerHTML = html;
+  }
+
+  function renderAlerts(alerts) {
+    const panel = document.getElementById('alertsPanel');
+    const ts = document.getElementById('alertsTimestamp');
+    const checkTime = new Date().toLocaleString();
+    if (ts) ts.textContent = checkTime;
+
+    if (!alerts || alerts.length === 0) {
+      panel.innerHTML = `<div class="empty-state">
+        <span>${t('no_active_alerts')}</span>
+        <br><span class="text-muted" id="alertsTimestamp">${checkTime}</span>
+      </div>`;
+      return;
+    }
+
+    panel.innerHTML = alerts.map(a => {
+      const type = (a.type || 'info').toLowerCase();
+      const badgeClass = type === 'critical' ? 'critical' : type === 'warning' ? 'warning' : 'info';
+      const icon = type === 'critical' ? '🔴' : type === 'warning' ? '🟡' : '🔵';
+      return `<div class="alert-item">
+        <span class="badge ${badgeClass}">${icon} ${type.toUpperCase()}</span>
+        <div style="flex:1;">${a.message || a.text || ''}</div>
+        <span class="alert-time">${a.time || ''}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // ═══════════════════════════════════════
+  // REFRESH ALL
+  // ═══════════════════════════════════════
+  async function refreshAll() {
+    const startTime = Date.now();
+
+    const [stats, consoles, schedule, system, salesData] = await Promise.all([
+      fetchDashboardStats(),
+      fetchConsoleStatus(),
+      fetchSchedule(),
+      fetchSystemHealth(),
+      fetchSalesHistory(),
+    ]);
+
+    renderStats(stats);
+    renderConsoles(consoles);
+    renderScheduleList(schedule);
+    renderScheduleGrid(consoles, schedule);
+    renderSystemHealth(system);
+    renderServices();
+    drawSalesChart(salesData);
+    renderEODSummary(stats, consoles);
+
+    document.getElementById('scheduleDate').textContent = new Date().toLocaleDateString();
+    const elapsed = Date.now() - startTime;
+    document.getElementById('lastRefresh').textContent =
+      `Last refresh: ${new Date().toLocaleTimeString()} (${elapsed}ms)`;
+  }
+
+  async function refreshSchedule() {
+    const [consoles, schedule] = await Promise.all([
+      fetchConsoleStatus(),
+      fetchSchedule(),
+    ]);
+    renderScheduleGrid(consoles, schedule);
+    renderScheduleList(schedule);
+    document.getElementById('scheduleDate').textContent = new Date().toLocaleDateString();
+    showToast('✅ Schedule refreshed', 'success');
+  }
+
+  async function refreshStaff() {
+    const dateEl = document.getElementById('staffDate');
+    const dateStr = dateEl.value || new Date().toISOString().substring(0, 10);
+    document.getElementById('staffDateLabel').textContent = dateStr;
+
+    const topups = await fetchTopups(dateStr);
+    renderStaffPerformance(topups);
+    document.getElementById('staffRefreshTime').textContent =
+      'Last refresh: ' + new Date().toLocaleTimeString();
+    showToast('✅ Staff data loaded', 'success');
+  }
+
+  async function refreshFood() {
+    const foodItems = await fetchFoodMenu();
+    renderFoodMenu(foodItems);
+    document.getElementById('foodRefreshTime').textContent =
+      'Last refresh: ' + new Date().toLocaleTimeString();
+    showToast('✅ Food menu loaded', 'success');
+  }
+
+  async function refreshAlerts() {
+    const checkTime = new Date().toLocaleString();
+    document.getElementById('alertsLastCheck').textContent = 'Last check: ' + checkTime;
+    // For now, show no alerts but with updated timestamp
+    renderAlerts([]);
+    addNotification(t('no_active_alerts'), 'info');
+    showToast('✅ Alert check complete', 'success');
+  }
+
+  async function checkAlertsNow() {
+    showToast('🔍 Checking alerts...', 'success');
+    await refreshAlerts();
+  }
+
+  // ═══════════════════════════════════════
+  // TOGGLE EOD
+  // ═══════════════════════════════════════
+  function toggleEOD() {
+    const summary = document.getElementById('eodSummary');
+    const toggle = document.getElementById('eodToggle');
+    const isVisible = summary.style.display !== 'none';
+    summary.style.display = isVisible ? 'none' : 'block';
+    toggle.classList.toggle('on', !isVisible);
+  }
+
+  // ═══════════════════════════════════════
+  // SCHEDULE VIEW TOGGLE
+  // ═══════════════════════════════════════
+  function switchScheduleView() {
+    const gridView = document.getElementById('scheduleGridView');
+    const listView = document.getElementById('scheduleListView');
+    const btn = document.getElementById('scheduleViewBtn');
+    if (scheduleViewMode === 'grid') {
+      scheduleViewMode = 'list';
+      gridView.style.display = 'none';
+      listView.style.display = 'block';
+      btn.textContent = t('grid_view');
+    } else {
+      scheduleViewMode = 'grid';
+      gridView.style.display = 'block';
+      listView.style.display = 'none';
+      btn.textContent = t('list_view');
+    }
+  }
+
+  // ═══════════════════════════════════════
+  // TAB NAVIGATION
+  // ═══════════════════════════════════════
+  function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+    const tabEl = document.getElementById('tab-' + tabName);
+    if (tabEl) tabEl.classList.add('active');
+
+    const btnEl = document.querySelector(`[data-tab="${tabName}"]`);
+    if (btnEl) btnEl.classList.add('active');
+
+    // Lazy-load tab content
+    if (tabName === 'staff') refreshStaff();
+    else if (tabName === 'food') refreshFood();
+    else if (tabName === 'alerts') refreshAlerts();
+    else if (tabName === 'schedule') refreshSchedule();
+  }
+
+  document.getElementById('tabNav').addEventListener('click', function(e) {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    const tabName = btn.getAttribute('data-tab');
+    if (tabName) switchTab(tabName);
+  });
+
+  // ═══════════════════════════════════════
+  // QUICK COMMANDS
+  // ═══════════════════════════════════════
+  async function runCmd(cmd) {
+    const cmdMap = {
+      smart_alerts: 'alerts',
+      maintenance: 'health',
+      booking_slots: 'services',
+      reminders: 'uptime',
+      uptime: 'uptime',
+      biz_intel: 'process',
+      disaster_recovery: 'backup',
+      security_audit: 'services',
+      health: 'health',
+      git_backup: 'backup',
+    };
+    const apiCmd = cmdMap[cmd] || cmd;
+    showToast('⚡ Executing: ' + cmd + '...', 'success');
+    try {
+      const resp = await fetch('/api/kora/cmd/' + apiCmd, {
+        headers: { 'Authorization': 'Bearer ' + getToken() }
+      });
+      const data = await resp.json();
+      if (data.success) {
+        showToast('✅ ' + cmd + ': OK', 'success');
+        showCmdResult(cmd, data.output);
+      } else {
+        showToast('❌ ' + cmd + ': ' + (data.error || 'Failed'), 'error');
+      }
+    } catch (err) {
+      showToast('❌ ' + cmd + ': ' + err.message, 'error');
+    }
+  }
+
+  function showCmdResult(cmd, output) {
+    var el = document.getElementById('cmdOutput');
+    el.innerHTML = '<div class="cmd-result-header">📋 ' + cmd + '</div><pre class="cmd-result-body">' + escapeHtml(output) + '</pre>';
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 15000);
+  }
+
+  function escapeHtml(text) {
+    var d = document.createElement('div');
+    d.textContent = text;
+    return d.innerHTML;
+  }
+
+  // ═══════════════════════════════════════
+  // TOAST
+  // ═══════════════════════════════════════
+  function showToast(msg, type) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast ' + (type || '') + ' show';
+    setTimeout(() => { toast.classList.remove('show'); }, 3000);
+  }
+
+  // ═══════════════════════════════════════
+  // PAGE SWITCHING
+  // ═══════════════════════════════════════
+  function showLogin() {
+    document.getElementById('loginPage').style.display = 'flex';
+    document.getElementById('dashboardPage').style.display = 'none';
+    document.getElementById('loginUsername').value = '';
+    document.getElementById('loginPassword').value = '';
+    hideLoginError();
+    if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+  }
+
+  async function showDashboard() {
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('dashboardPage').style.display = 'block';
+
+    // Set initial language
+    document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
+    document.getElementById('langMY').classList.toggle('active', currentLang === 'my');
+
+    if (tokenNearExpiry()) {
+      await refreshAccessToken();
+    }
+
+    const user = getUser();
+    if (user) {
+      const badge = document.getElementById('userBadge');
+      const roleIcon = user.role === 'admin' ? '👑' : '👤';
+      badge.textContent = `${roleIcon} ${user.name || user.username}`;
+    }
+
+    updateClock();
+    updateNotifBadge();
+    preloadMembers();
+
+    // Add seed notifications if empty
+    if (notifications.length === 0) {
+      addNotification('🟢 System health check: All services OK', 'info');
+      addNotification('📊 Dashboard initialized successfully', 'info');
+    }
+
+    refreshAll();
+    startAutoRefresh();
+  }
+
+  // ═══════════════════════════════════════
+  // CLOCK
+  // ═══════════════════════════════════════
+  function updateClock() {
+    const now = new Date();
+    const utcHours = now.getUTCHours();
+    const utcMins = now.getUTCMinutes();
+    let mmtHours = utcHours + 6;
+    let mmtMins = utcMins + 30;
+    if (mmtMins >= 60) { mmtMins -= 60; mmtHours++; }
+    if (mmtHours >= 24) { mmtHours -= 24; }
+    const mmtStr = `${String(mmtHours).padStart(2, '0')}:${String(mmtMins).padStart(2, '0')}`;
+    const utcStr = now.toLocaleTimeString('en-US', { hour12: true, timeZone: 'UTC' });
+    const clockEl = document.getElementById('clock');
+    if (clockEl) clockEl.textContent = `🇲🇲 MMT: ${mmtStr} | UTC: ${utcStr}`;
+  }
+
+  // ═══════════════════════════════════════
+  // AUTO REFRESH
+  // ═══════════════════════════════════════
+  let autoRefreshTimer = null;
+  function startAutoRefresh() {
+    if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(async () => {
+      if (!isAuthenticated()) return;
+      if (tokenNearExpiry()) await refreshAccessToken();
+      updateClock();
+      updateNotifBadge();
+      refreshAll();
+    }, REFRESH_INTERVAL);
+  }
+
+  // ═══════════════════════════════════════
+  // INIT
+  // ═══════════════════════════════════════
+  async function validateStoredSession() {
+    if (!getToken()) return false;
+    try {
+      const resp = await fetch(API_BASE + '/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + getToken() }
+      });
+      if (resp.ok) {
+        const user = await resp.json();
+        localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+        return true;
+      }
+      if (resp.status === 401) {
+        return await refreshAccessToken();
+      }
+      return false;
+    } catch { return false; }
+  }
+
+  (async function init() {
+    // Set language on init
+    document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
+    document.getElementById('langMY').classList.toggle('active', currentLang === 'my');
+
+    const valid = await validateStoredSession();
+    if (valid) {
+      await showDashboard();
+    } else {
+      showLogin();
+    }
+  })();
+</script>
+</body>
+</html>

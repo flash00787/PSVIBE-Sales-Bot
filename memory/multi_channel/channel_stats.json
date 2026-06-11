@@ -1,0 +1,20 @@
+{
+  "telegram": {
+    "messages": 4,
+    "replies": 4,
+    "errors": 0,
+    "lastActivity": "2026-06-11T10:31:04.411Z"
+  },
+  "webchat": {
+    "messages": 1,
+    "replies": 0,
+    "errors": 0,
+    "lastActivity": "2026-06-11T10:31:04.410Z"
+  },
+  "discord": {
+    "messages": 1,
+    "replies": 0,
+    "errors": 0,
+    "lastActivity": "2026-06-11T10:31:04.410Z"
+  }
+}

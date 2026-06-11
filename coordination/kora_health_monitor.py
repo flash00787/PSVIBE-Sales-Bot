@@ -235,13 +235,17 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser(description='Kora Unified Health Monitor')
     ap.add_argument('--json', action='store_true', help='JSON output')
     ap.add_argument('--local-only', action='store_true', help='Skip VPS checks')
+    ap.add_argument('--quiet', action='store_true', help='Suppress non-JSON output (for clean JSON mode)')
     args = ap.parse_args()
 
     vps = False
+    show_connecting = not args.local_only and not args.quiet and not args.json
     if not args.local_only:
-        print(f"{DIM}Connecting to VPS...{RESET}", end=' ', flush=True)
+        if show_connecting:
+            print(f"{DIM}Connecting to VPS...{RESET}", end=' ', flush=True)
         vps = vps_ok()
-        print(f"{GREEN}OK{RESET}" if vps else f"{RED}UNREACHABLE{RESET}")
+        if show_connecting:
+            print(f"{GREEN}OK{RESET}" if vps else f"{RED}UNREACHABLE{RESET}")
 
     pillars = [
         ('1. Memory System', check_memory()),

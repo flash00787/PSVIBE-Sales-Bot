@@ -1,0 +1,52 @@
+{
+  "date": "2026-06-11",
+  "type": "test",
+  "timestamp": "2026-06-11T10:52:48.370Z",
+  "results": [
+    {
+      "check": "💾 Disk Space",
+      "status": "✅",
+      "detail": "/dev/sda1       150G   25G  120G  18% /"
+    },
+    {
+      "check": "🐳 Docker",
+      "status": "✅",
+      "detail": "7 containers, 0 unhealthy"
+    },
+    {
+      "check": "  📡 psvibe-sale-bot",
+      "status": "✅",
+      "detail": "active"
+    },
+    {
+      "check": "  📡 psvibe-api",
+      "status": "✅",
+      "detail": "active"
+    },
+    {
+      "check": "  📡 psvibe_customer_bot",
+      "status": "✅",
+      "detail": "active"
+    },
+    {
+      "check": "  📡 cloudflared-tunnel",
+      "status": "✅",
+      "detail": "active"
+    },
+    {
+      "check": "📊 Today Sales",
+      "status": "✅",
+      "detail": "total MMK, txns txns"
+    },
+    {
+      "check": "🎮 Consoles",
+      "status": "✅",
+      "detail": "9 free, 1 occupied"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "warned": 0,
+    "failed": 0
+  }
+}

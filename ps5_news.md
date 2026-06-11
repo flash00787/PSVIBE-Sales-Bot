@@ -1,6 +1,53 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-10 23:30 UTC
+> Last updated: 2026-06-11 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 11, 2026 - 11:30 UTC) — Days of Play is OVER: What's Next + New Finds
+
+### ⏰ Days of Play 2026 — OFFICIALLY ENDED (June 10)
+- PS Plus Premium 33% off, game deals up to 60%, PSVR2 $100 off — ALL EXPIRED
+- **💡 Lounge Note:** Hope you renewed those lounge subscriptions! If you missed it, next big PS sale is likely Black Friday/Cyber Monday (November).
+
+### 🛒 NEW: PS Store Mid-Year Deals Sale — LIVE NOW until July 1!
+- **Thousands of PS5 & PS4 titles discounted** — currently active on PS Store
+- Replaces Days of Play as the active promotion
+- Runs through **July 1, 2026**
+- **💡 Lounge Action:** Check PS Store for lounge-worthy deals. Look for co-op games, fighting games, and family-friendly titles at deep discounts.
+
+### 🎮 Gran Turismo 7 — Free Update 1.70 (Le Mans Hypercar)
+- New free update lets players choose their **Le Mans Hypercar**
+- **💡 Lounge Note:** GT7 remains a lounge staple for racing fans. Make sure all lounge consoles have this update installed.
+
+### 🆕 New Game Discoveries (Not in Previous Tracker):
+
+| Game | Details | Date | Lounge Value |
+|------|---------|------|-------------|
+| ⚔️ **Muramasa: Revenant Blades** | Vanillaware cult classic remade for PS5! | Early 2027 | ⭐⭐⭐⭐ — Vanillaware's gorgeous 2D art on PS5! Odin Sphere/Dragon's Crown fans will love this |
+| 🐉 **Granblue Fantasy Relink: Endless Ragnarok** | New Granblue Fantasy Relink expansion | **Jul 9, 2026** | ⭐⭐⭐⭐ — Granblue is HUGE in Asia! Expansion alongside AC Black Flag = stacked day |
+| 🗡️ **Echoes of Aincrad** | New Sword Art Online-related title | **Jul 10, 2026** | ⭐⭐⭐ — SAO anime IP has dedicated fanbase in Asia |
+| 👾 **Disgaea Mayhem** | New Disgaea tactical RPG entry | Jul 2026 | ⭐⭐⭐⭐ — Disgaea is a beloved SRPG series; niche but loyal fans |
+| 🎵 **Blue Reflection Quartet** | New Blue Reflection RPG | Jul 2026 | ⭐⭐⭐ — Niche JRPG with magical girl theme |
+| 🏙️ **D-topia** | New title | **Jul 14, 2026** | ⭐⭐ |
+| 🐙 **The Mound: Omen of Cthulhu** | Lovecraftian horror | **Jul 16, 2026** | ⭐⭐⭐ — Horror always draws customers |
+| 🔧 **Junkster** | New indie | **Jun 16** | ⭐⭐ |
+
+### 🔊 New Hardware: Pulse Elevate Wireless Speakers
+- Sony announced **Pulse Elevate** wireless speakers alongside the FlexStrike fight stick (Aug 6) and 27" Gaming Monitor (Aug 27)
+- Part of Sony's expanding PlayStation accessories lineup
+- **💡 Lounge Note:** Could be useful for lounge audio setups if they support multi-room/group pairing.
+
+### 📅 July Calendar Refinements:
+- **Palworld 1.0** — now confirmed **July 10, 2026** (was just "July TBD")
+- **Granblue Fantasy Relink: Endless Ragnarok** — July 9 alongside AC Black Flag Resynced = STACKED day!
+- July is shaping up: Halo (Jul 28), AC Black Flag (Jul 9), Palworld 1.0 (Jul 10), Avatar Legends (Jul 23), DOOM Revelations (Jul 7)
+
+### 💡 Lounge Priority Actions for June 11:
+1. **Check the Mid-Year Deals sale** — new promotional period until July 1. Stock up on discounted digital games!
+2. **Update GT7 on all consoles** — Le Mans Hypercar update (v1.70) is free
+3. **July calendar is filling out** — Palworld 1.0 date locked (Jul 10), Granblue Relink expansion (Jul 9)
+4. **Add Muramasa: Revenant Blades** to long-term wishlist — Vanillaware's art style on PS5 will be stunning
 
 ---
 
@@ -935,9 +982,15 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jul 7 | **DOOM: The Dark Ages \| Revelations** 🔥🆕 | ⭐⭐⭐⭐⭐ (Expansion, 1 month away!) |
 | Jul 8 | **ESO: Return of the Thieves Guild** 🆕 | ⭐⭐⭐ (MMO chapter) |
 | Jul 9 | **Assassin's Creed Black Flag Resynced** 🏴‍☠️ | ⭐⭐⭐⭐⭐ |
+| Jul 9 | 🐉 **Granblue Fantasy Relink: Endless Ragnarok** 🆕 | ⭐⭐⭐⭐ (Granblue expansion! HUGE in Asia!) |
+| Jul 10 | 🔥 **Palworld 1.0** 🆕 | ⭐⭐⭐⭐ (DATE LOCKED! Full release!) |
+| Jul 10 | 🗡️ **Echoes of Aincrad** 🆕 | ⭐⭐⭐ (SAO anime IP!) |
+| Jul 14 | 🏙️ **D-topia** 🆕 | ⭐⭐ |
+| Jul 16 | 🐙 **The Mound: Omen of Cthulhu** 🆕 | ⭐⭐⭐ (Lovecraftian horror!) |
 | Jul 23 | **Avatar Legends: The Fighting Game** 🥋🆕 | ⭐⭐⭐⭐⭐ (Avatar IP! $29.99! Crossplay!) |
 | Jul 28 | 🔥 **Halo: Campaign Evolved** 🟢🆕 | ⭐⭐⭐⭐⭐ (HALO ON PS5! Historic!) |
-| Jul TBD | **Palworld 1.0** | ⭐⭐⭐⭐ (Full release!) |
+| Jul TBD | 👾 **Disgaea Mayhem** 🆕 | ⭐⭐⭐⭐ (Beloved SRPG series!) |
+| Jul TBD | 🎵 **Blue Reflection Quartet** 🆕 | ⭐⭐⭐ (Magical girl RPG!) |
 | Jul TBD | **Where Winds Meet — Hidden Mountain** 🆕 | ⭐⭐⭐ (Expansion) |
 | Aug 4 | **Beast of Reincarnation** 🐺🆕 | ⭐⭐⭐ (New action title!) |
 | Aug 6 | Marvel Tōkon: Fighting Souls (Magneto, Green Goblin, Carnage + Doom) | ⭐⭐⭐⭐ |
@@ -993,6 +1046,9 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🔥🔥 **Persona 6** 🆕 — OFFICIALLY ANNOUNCED at Xbox Showcase! PS5 confirmed! TBA release date
 - 🔥🔥 **Persona 4 Revival** — Atlus remake, **Feb 18, 2027**, PS5 CONFIRMED!
 - 🔥🔥 **Fable** — Playground Games reboot, **Feb 23, 2027**, PS5 CONFIRMED!
+- ⚔️ **Muramasa: Revenant Blades** 🆕 — Vanillaware's cult classic remade for PS5! **Early 2027**! Gorgeous 2D art + action RPG!
+- 🐉🐉 **Granblue Fantasy Relink: Endless Ragnarok** 🆕 — Granblue expansion! **July 9, 2026**! HUGE in Asia alongside AC Black Flag!
+- 👾 **Disgaea Mayhem** 🆕 — New Disgaea tactical RPG! July 2026. Beloved SRPG series with loyal fanbase!
 - 🐉 **Spyro: A Realm Beyond** 🆕 — First new Spyro in 18 years! **Spring 2027**, PS5 confirmed!
 - 🧟 **State of Decay 3** 🆕 — Now OFFICIALLY confirmed for PS5!
 - ⛏️ **Minecraft Dungeons II** 🆕 — Dungeon crawler sequel, **Sep 29, 2026**!
@@ -1029,6 +1085,9 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 ---
 
 ## 📋 Lounge Recommendations for PS VIBE
+- 🛒🆕 **PS STORE MID-YEAR DEALS (until July 1)** — Thousands of PS5/PS4 games discounted! Replaces Days of Play. Check for lounge-worthy co-op, fighting, and family games NOW!
+- 🐉🆕 **GRANBLUE FANTASY RELINK: ENDLESS RAGNAROK (July 9)** — Granblue expansion alongside AC Black Flag = stacked day! Granblue is MASSIVE in Asia. Promote both!
+- ⚔️🆕 **MURAMASA: REVENANT BLADES (Early 2027)** — Vanillaware's gorgeous 2D cult classic remade for PS5. Odin Sphere/Dragon's Crown pedigree = guaranteed art style showcase for the lounge!
 - 🔥🔥🔥 **FINAL FANTASY RESONANCE (Oct 22, $49.99)** 🆕 — FIRST EVER HD-2D Final Fantasy game by Square Enix! Pixel-art FF evolved for modern consoles. Budget price ($49.99) = easy impulse buy for RPG fans. Launches the day before COD MW4 — October is INSANE!
 - 🐉🔥🔥 **DRAGON QUEST MONSTERS: THE WITHERED WORLD (Dec 3, $59.99)** 🆕 — First Dragon Quest Monsters on PlayStation in decades! DQ is beloved across Asia. Holiday-season release = perfect lounge draw for December!
 - 🔥🔥 **Tales of Eternia Remastered (Oct 16)** 🆕 — Classic JRPG remastered! Tales series has a dedicated Asia fanbase.

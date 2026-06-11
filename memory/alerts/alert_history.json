@@ -1,0 +1,540 @@
+[
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 30.3h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T12:30:28.173Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 22.3h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T12:30:28.171Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 51.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T12:30:28.171Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 22.3h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T12:30:28.170Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 44.6h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T12:30:28.169Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 25.8h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T12:30:28.169Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 22.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T12:30:28.168Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 29.8h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T12:00:24.496Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 21.8h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T12:00:24.495Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 51.0h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T12:00:24.495Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 21.8h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T12:00:24.494Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 44.1h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T12:00:24.494Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 25.3h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T12:00:24.493Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 21.8h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T12:00:24.493Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 29.3h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T11:30:36.267Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 21.3h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T11:30:36.266Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 50.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T11:30:36.266Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 21.3h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T11:30:36.265Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 43.6h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T11:30:36.265Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 24.8h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T11:30:36.264Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 21.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T11:30:36.264Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 29.3h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T11:30:24.629Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 21.3h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T11:30:24.628Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 50.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T11:30:24.628Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 21.3h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T11:30:24.627Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 43.6h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T11:30:24.627Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 24.8h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T11:30:24.626Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 21.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T11:30:24.626Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 50.0h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T11:00:17.047Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.8h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T11:00:17.047Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.8h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T11:00:17.046Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 50.0h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T11:00:17.046Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.8h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T11:00:17.045Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 43.1h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T11:00:17.045Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 24.3h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T11:00:17.044Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.8h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T11:00:17.044Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 49.8h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T10:46:24.527Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.6h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T10:46:24.527Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.6h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T10:46:24.526Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 49.8h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T10:46:24.526Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.6h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T10:46:24.526Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 42.9h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T10:46:24.525Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 24.1h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T10:46:24.525Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.6h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T10:46:24.524Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 49.7h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T10:44:09.291Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.5h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T10:44:09.291Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.5h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T10:44:09.290Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 49.7h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T10:44:09.290Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.5h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T10:44:09.290Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 42.8h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T10:44:09.289Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 24.1h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T10:44:09.289Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.5h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T10:44:09.289Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 49.6h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T10:34:42.533Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.4h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T10:34:42.532Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.4h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T10:34:42.532Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 49.6h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T10:34:42.531Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.4h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T10:34:42.531Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 42.7h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T10:34:42.531Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 23.9h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T10:34:42.530Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.4h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T10:34:42.530Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 49.5h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T10:31:04.354Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.3h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T10:31:04.353Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.3h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T10:31:04.353Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 49.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T10:31:04.352Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.3h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T10:31:04.352Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 42.6h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T10:31:04.352Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 23.8h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T10:31:04.351Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T10:31:04.351Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "System check failed: Cannot read properties of undefined (reading 'split')",
+    "timestamp": "2026-06-11T10:30:16.982Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 49.5h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-11T10:30:16.982Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 28.3h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-11T10:30:16.982Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 20.3h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-11T10:30:16.981Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 49.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-11T10:30:16.981Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 20.3h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-11T10:30:16.981Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 42.6h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-11T10:30:16.980Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 23.8h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-11T10:30:16.980Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 20.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-11T10:30:16.979Z"
+  }
+]

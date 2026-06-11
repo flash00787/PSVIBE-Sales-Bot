@@ -1,0 +1,70 @@
+[
+  {
+    "id": "msg_1781173864408_ucqznr",
+    "channel": "telegram",
+    "userId": "U001",
+    "userName": "Aung",
+    "text": "Hi, how much is PS5?",
+    "priority": 1,
+    "timestamp": "2026-06-11T10:31:04.408Z",
+    "status": "replied",
+    "replyTo": null,
+    "metadata": {},
+    "tags": [
+      "pricing"
+    ],
+    "reply": "🎮 PS VIBE Gaming Lounge — Pricing:\n• PS5 Console: 5,000 Ks / hour\n• Multiplayer: +2,000 Ks for 2nd controller\n• Member Discount: 10% off with member card\n• Packages available — ask staff for details!",
+    "repliedAt": "2026-06-11T10:31:04.408Z"
+  },
+  {
+    "id": "msg_1781173864409_1oz10y",
+    "channel": "telegram",
+    "userId": "U001",
+    "userName": "Aung",
+    "text": "I want to book for tomorrow 3pm",
+    "priority": 1,
+    "timestamp": "2026-06-11T10:31:04.409Z",
+    "status": "replied",
+    "replyTo": null,
+    "metadata": {},
+    "tags": [
+      "booking"
+    ],
+    "reply": "📅 To book a console:\n1. Tell us: console type (PS5), date, time, duration\n2. We'll confirm availability\n3. Your slot is reserved!\n\nCall: [shop number] or message us here!",
+    "repliedAt": "2026-06-11T10:31:04.409Z"
+  },
+  {
+    "id": "msg_1781173864409_y08bq5",
+    "channel": "telegram",
+    "userId": "U002",
+    "userName": "Mya",
+    "text": "မင်္ဂလာပါ PS5 ဘယ်လောက်လဲ",
+    "priority": 1,
+    "timestamp": "2026-06-11T10:31:04.409Z",
+    "status": "replied",
+    "replyTo": null,
+    "metadata": {},
+    "tags": [
+      "pricing"
+    ],
+    "reply": "🎮 PS VIBE — ဈေးနှုန်းများ:\n• PS5 Console: ၅၀၀၀ ကျပ် / တစ်နာရီ\n• Multiplayer: ဒုတိယ controller အတွက် ၂၀၀၀ ကျပ် ထပ်တိုး\n• Member များ ၁၀% discount ရပါတယ်\n• Package များလည်းရှိပါတယ် — ဝန်ထမ်းများကိုမေးမြန်းပါ",
+    "repliedAt": "2026-06-11T10:31:04.410Z"
+  },
+  {
+    "id": "msg_1781173864411_l5warr",
+    "channel": "telegram",
+    "userId": "U003",
+    "userName": "Hla",
+    "text": "The controller is broken",
+    "priority": 1,
+    "timestamp": "2026-06-11T10:31:04.411Z",
+    "status": "replied",
+    "replyTo": null,
+    "metadata": {},
+    "tags": [
+      "fallback"
+    ],
+    "reply": "🤔 I'm not sure I understand. Could you rephrase?\nOur staff is available to help! You can:\n• Ask about pricing, booking, or hours\n• We'll get back to you shortly",
+    "repliedAt": "2026-06-11T10:31:04.411Z"
+  }
+]

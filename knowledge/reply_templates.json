@@ -1,0 +1,26 @@
+{
+  "pricing_info": {
+    "en": "🎮 PS VIBE Gaming Lounge — Pricing:\n• PS5 Console: 5,000 Ks / hour\n• Multiplayer: +2,000 Ks for 2nd controller\n• Member Discount: 10% off with member card\n• Packages available — ask staff for details!",
+    "mm": "🎮 PS VIBE — ဈေးနှုန်းများ:\n• PS5 Console: ၅၀၀၀ ကျပ် / တစ်နာရီ\n• Multiplayer: ဒုတိယ controller အတွက် ၂၀၀၀ ကျပ် ထပ်တိုး\n• Member များ ၁၀% discount ရပါတယ်\n• Package များလည်းရှိပါတယ် — ဝန်ထမ်းများကိုမေးမြန်းပါ"
+  },
+  "booking_help": {
+    "en": "📅 To book a console:\n1. Tell us: console type (PS5), date, time, duration\n2. We'll confirm availability\n3. Your slot is reserved!\n\nCall: [shop number] or message us here!",
+    "mm": "📅 Console ကြိုရင်ဘွတ်ကင်လုပ်ရန်:\n၁။ PS5 လား၊ ရက်စွဲ၊ အချိန်၊ ကြာချိန် ပြောပြပေးပါ\n၂။ ရနိုင်မရနိုင် ပြန်အတည်ပြုပေးပါမယ်\n၃။ သင့်အချိန်ကို သေချာရယူထားပါမယ်\n\nဆက်သွယ်ရန်: [ဆိုင်ဖုန်း]"
+  },
+  "hours_info": {
+    "en": "🕐 PS VIBE Operating Hours:\n• Open daily: 10:00 AM — 10:00 PM\n• Last session starts: 9:00 PM\n• Closed on: [special holidays]\n\n📍 Location: [address]",
+    "mm": "🕐 PS VIBE ဖွင့်ချိန်:\n• နေ့တိုင်း: မနက် ၁၀:၀၀ — ည ၁၀:၀၀\n• နောက်ဆုံး session: ည ၉:၀၀\n• ပိတ်ရက်: [အထူးရုံးပိတ်ရက်များ]\n\n📍 နေရာ: [လိပ်စာ]"
+  },
+  "location_info": {
+    "en": "📍 PS VIBE Gaming Lounge\n[Full Address]\nMap: [Google Maps link]\n\nLandmarks: [nearby landmarks]",
+    "mm": "📍 PS VIBE Gaming Lounge\n[လိပ်စာအပြည့်အစုံ]\nမြေပုံ: [Google Maps link]"
+  },
+  "greeting": {
+    "en": "👋 Hello! Welcome to PS VIBE Gaming Lounge! 🎮\nHow can I help you today?\n• 🎮 Book a console\n• 💰 Check balance / Top up\n• 📋 See our games\n• ❓ Ask a question",
+    "mm": "👋 မင်္ဂလာပါ! PS VIBE Gaming Lounge မှကြိုဆိုပါတယ်! 🎮\nဘာကူညီပေးရမလဲ?\n• 🎮 Console ဘွတ်ကင်လုပ်မလား\n• 💰 Balance စစ်မလား / Top up လုပ်မလား\n• 📋 ဂိမ်းတွေကြည့်မလား\n• ❓ မေးချင်တာရှိလား"
+  },
+  "fallback": {
+    "en": "🤔 I'm not sure I understand. Could you rephrase?\nOur staff is available to help! You can:\n• Ask about pricing, booking, or hours\n• We'll get back to you shortly",
+    "mm": "🤔 နားမလည်ပါဘူး။ ပြန်မေးပေးပါလား?\nကျွန်တော်တို့ဝန်ထမ်းတွေ ကူညီဖို့အဆင်သင့်ပါ:\n• ဈေးနှုန်း၊ ဘွတ်ကင်၊ ဖွင့်ချိန်တွေ မေးနိုင်ပါတယ်"
+  }
+}

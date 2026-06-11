@@ -21,16 +21,36 @@ if (!DEEPSEEK_KEY) {
 
 const args = process.argv.slice(2);
 let query = '';
-let timeout = 120;
+let timeout = 30;
+let isQuick = false;
 
 for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--timeout') { timeout = parseInt(args[i+1]) || 120; i++; }
+  if (args[i] === '--help' || args[i] === '-h') {
+    showHelp();
+    process.exit(0);
+  }
+  else if (args[i] === '--timeout') { timeout = parseInt(args[i+1]) || 30; i++; }
+  else if (args[i] === '--quick') { isQuick = true; timeout = 10; }
   else { query = args[i]; }
 }
 
+function showHelp() {
+  console.log("Usage: node research_agent.js 'query' [options]");
+  console.log("");
+  console.log("Options:");
+  console.log("  --timeout N    Set timeout in seconds (default: 30)");
+  console.log("  --quick        Fast mode, 10s timeout");
+  console.log("  --help, -h     Show this help");
+  console.log("");
+  console.log("Examples:");
+  console.log("  node research_agent.js 'Latest PS5 games 2026'");
+  console.log("  node research_agent.js 'Bitcoin price' --quick");
+  console.log("  node research_agent.js 'AI trends' --timeout 120");
+}
+
 if (!query) {
-  console.log("Usage: node research_agent.js 'query' [--timeout 120]");
-  console.log("Example: node research_agent.js 'Latest PS5 game releases 2026'");
+  console.log("Usage: node research_agent.js 'query' [options]");
+  console.log("Try --help for more details.");
   process.exit(1);
 }
 
@@ -124,8 +144,17 @@ function callDeepSeek(systemPrompt, userQuery, timeoutSec) {
       });
     });
 
-    req.on("error", reject);
-    req.on("timeout", () => { req.destroy(); reject(new Error("Timeout")); });
+    req.on("error", (err) => {
+      if (err.code === 'ECONNRESET' && err.message.includes('Timeout')) {
+        reject(new Error(`Request timed out after ${timeoutSec}s — try a longer timeout with --timeout or simplify your query`));
+      } else {
+        reject(err);
+      }
+    });
+    req.on("timeout", () => {
+      req.destroy();
+      reject(new Error(`Request timed out after ${timeoutSec}s — try a longer timeout with --timeout (e.g. --timeout 120) or use a simpler query`));
+    });
     req.write(body);
     req.end();
   });
