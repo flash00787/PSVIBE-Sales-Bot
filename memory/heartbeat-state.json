@@ -1,8 +1,5 @@
 {
-  "lastHeartbeat": "2026-06-11T13:33:21Z",
-  "heartbeatRoutine": "12 tasks OK, 0 pending, 0 stuck",
-  "consolidator": "completed successfully",
-  "subagentJournal": "all entries terminal (13 total, no stuck)",
+  "lastHeartbeat": "2026-06-11T14:09:12Z",
   "stuckTasks": [],
   "pendingTasks": []
 }
