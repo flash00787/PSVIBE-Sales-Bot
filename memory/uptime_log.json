@@ -55,12 +55,19 @@
       "failed": 0,
       "uptimePct": 100,
       "duration": "7.9s"
+    },
+    {
+      "timestamp": "2026-06-11T15:35:00.777Z",
+      "total": 16,
+      "failed": 1,
+      "uptimePct": 94,
+      "duration": "8.0s"
     }
   ],
   "summary": {
-    "total": 8,
-    "failures": 2,
+    "total": 9,
+    "failures": 3,
     "avgUptime": 96,
-    "lastCheck": "2026-06-11T13:33:27.555Z"
+    "lastCheck": "2026-06-11T15:35:00.777Z"
   }
 }
