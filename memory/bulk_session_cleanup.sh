@@ -16,14 +16,30 @@ if [ "$old_traj" -gt 0 ]; then
     echo "  >6h trajectory: $old_traj files, ~${traj_size_mb}MB deleted"
 fi
 
-# Step 2: Delete session files > 2 days old
+# Step 2: Delete old checkpoint/reset files > 1 day old (backups no longer needed once documented)
+old_ckpt=$(find "$SESSIONS_DIR" -maxdepth 1 \( -name "*.checkpoint.*.jsonl" -o -name "*.jsonl.reset.*" \) -mtime +1 2>/dev/null | wc -l)
+if [ "$old_ckpt" -gt 0 ]; then
+    ckpt_size=$(find "$SESSIONS_DIR" -maxdepth 1 \( -name "*.checkpoint.*.jsonl" -o -name "*.jsonl.reset.*" \) -mtime +1 -printf '%s\n' 2>/dev/null | awk '{s+=$1} END {print s}')
+    ckpt_size_mb=$((ckpt_size / 1048576))
+    [ "$DRY" = false ] && find "$SESSIONS_DIR" -maxdepth 1 \( -name "*.checkpoint.*.jsonl" -o -name "*.jsonl.reset.*" \) -mtime +1 -delete 2>/dev/null
+    echo "  >1d checkpoint/reset: $old_ckpt files, ~${ckpt_size_mb}MB deleted"
+fi
+
+# Step 3: Delete session files > 2 days old
 old_sess=$(find "$SESSIONS_DIR" -maxdepth 1 -name "*.jsonl" -mtime +2 2>/dev/null | wc -l)
 if [ "$old_sess" -gt 0 ]; then
     [ "$DRY" = false ] && find "$SESSIONS_DIR" -maxdepth 1 -name "*.jsonl" -mtime +2 -delete 2>/dev/null
     echo "  >2d session: $old_sess files deleted"
 fi
 
-# Step 3: For remaining sessions, keep last 5 per prefix (aggressive)
+# Step 4: Delete old trajectory-path.json files > 7 days old
+old_path=$(find "$SESSIONS_DIR" -maxdepth 1 -name "*.trajectory-path.json" -mtime +7 2>/dev/null | wc -l)
+if [ "$old_path" -gt 0 ]; then
+    [ "$DRY" = false ] && find "$SESSIONS_DIR" -maxdepth 1 -name "*.trajectory-path.json" -mtime +7 -delete 2>/dev/null
+    echo "  >7d trajectory-path: $old_path files deleted"
+fi
+
+# Step 5: For remaining sessions, keep last 5 per prefix (aggressive)
 ls -t "$SESSIONS_DIR"/*.jsonl 2>/dev/null | \
   awk -F/ '{print $NF}' | \
   sed 's/\.jsonl$//' | \
