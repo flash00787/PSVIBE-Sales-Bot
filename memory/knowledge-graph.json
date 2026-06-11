@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-11T14:09:28Z",
+  "updated": "2026-06-11T15:07:29Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -276,6 +276,12 @@
   "edges": [
     {
       "source": "boss",
+      "target": "boot-protocol",
+      "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "daily-digest",
       "relation": "implements",
       "weight": 5
@@ -290,6 +296,12 @@
       "source": "boss",
       "target": "kora",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "memory-upgrade",
+      "relation": "implements",
       "weight": 5
     },
     {
@@ -330,8 +342,8 @@
     },
     {
       "source": "boss",
-      "target": "ye-myat",
-      "relation": "related_to",
+      "target": "vps",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -546,18 +558,6 @@
     },
     {
       "source": "github",
-      "target": "python",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "github",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "github",
       "target": "vps",
       "relation": "depends_on",
       "weight": 5
@@ -650,12 +650,6 @@
       "source": "kora",
       "target": "ps-vibe",
       "relation": "owns",
-      "weight": 5
-    },
-    {
-      "source": "kora",
-      "target": "session-summary",
-      "relation": "implements",
       "weight": 5
     },
     {
@@ -920,12 +914,6 @@
       "source": "python",
       "target": "smart-pruning",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "python",
-      "target": "ssh",
-      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -1860,12 +1848,6 @@
     },
     {
       "source": "boss",
-      "target": "boot-protocol",
-      "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "caddy",
       "relation": "uses",
       "weight": 3
@@ -1980,12 +1962,6 @@
     },
     {
       "source": "boss",
-      "target": "memory-upgrade",
-      "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "n8n",
       "relation": "uses",
       "weight": 3
@@ -2076,8 +2052,8 @@
     },
     {
       "source": "boss",
-      "target": "vps",
-      "relation": "uses",
+      "target": "ye-myat",
+      "relation": "related_to",
       "weight": 3
     },
     {
@@ -4284,6 +4260,12 @@
     },
     {
       "source": "github",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "github",
       "target": "session-summary",
       "relation": "related_to",
       "weight": 3
@@ -4298,6 +4280,12 @@
       "source": "github",
       "target": "spawn-protocol",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "ssh",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -5280,6 +5268,12 @@
     },
     {
       "source": "kora",
+      "target": "session-summary",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
       "target": "smart-pruning",
       "relation": "implements",
       "weight": 3
@@ -5624,12 +5618,6 @@
       "source": "n8n",
       "target": "openrouter",
       "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "n8n",
-      "target": "phase-2",
-      "relation": "related_to",
       "weight": 3
     },
     {
@@ -7148,6 +7136,12 @@
       "source": "python",
       "target": "spawn-protocol",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "python",
+      "target": "ssh",
+      "relation": "depends_on",
       "weight": 3
     },
     {

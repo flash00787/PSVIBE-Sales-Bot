@@ -24,3 +24,18 @@
 *Archived: 2026-06-10 16:38 UTC*
 
 (dedup) - psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅
+
+# Archived Memory Entries
+*Archived: 2026-06-11 15:31 UTC*
+
+(dedup) - Knowledge graph: ✅ 54 nodes, 1418 edges
+  (dedup) - Knowledge graph: ✅ 54 nodes, 1418 edges
+  (dedup) - Stale lock cleanup: ✅ 0 cleaned
+  (dedup) - 1. 📅 Real Booking Schedule (9AM-9PM timeline, color-coded)
+  (dedup) - 2. 💰 Real Sales Chart (7-day Canvas bar chart)
+  (dedup) - 3. 🔍 Member Quick Lookup (search + wallet balance)
+  (dedup) - 4. ⚠️ Smart Alerts Panel (health alerts)
+  (dedup) - 5. 📦 Food Stock Status (menu + stock levels)
+  (dedup) - 6. 📊 End-of-Day Summary (today's panel)
+  (dedup) - 9. ⚡ Quick Commands (Health, Docker, Uptime, Backups)
+  (dedup) - **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md ≤20KB — use module files for details
