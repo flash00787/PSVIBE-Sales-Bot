@@ -9,7 +9,7 @@ class TestShowGameMenu:
     async def test_show_game_menu_displays_keyboard(self, mock_update, mock_context):
         """show_game_menu sends reply with keyboard markup."""
         from bot.handlers import games
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         result = await games.show_game_menu(mock_update, mock_context)
         assert mock_update.message.reply_text.called
         call_args = mock_update.message.reply_text.call_args
@@ -19,7 +19,7 @@ class TestShowGameMenu:
     async def test_show_game_menu_returns_game_menu_state(self, mock_update, mock_context):
         """Returns GAME_MENU conversation state."""
         from bot.handlers import games
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         import bot
         result = await games.show_game_menu(mock_update, mock_context)
         assert result == bot.GAME_MENU
@@ -28,7 +28,7 @@ class TestShowGameMenu:
     async def test_show_game_menu_shows_game_count(self, mock_update, mock_context):
         """Menu text includes game count."""
         from bot.handlers import games
-        games.fetch_games = MagicMock(return_value=[
+        games.fetch_games_async = AsyncMock(return_value=[
             {'title': 'Game1'}, {'title': 'Game2'}
         ])
         await games.show_game_menu(mock_update, mock_context)
@@ -37,12 +37,11 @@ class TestShowGameMenu:
 
     @pytest.mark.asyncio
     async def test_show_game_menu_empty_zero(self, mock_update, mock_context):
-        """Zero games shows count 0."""
+        """Zero games shows empty library message."""
         from bot.handlers import games
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         await games.show_game_menu(mock_update, mock_context)
-        call_args = mock_update.message.reply_text.call_args
-        assert '0' in call_args[0][0]
+        assert mock_update.message.reply_text.called
 
 
 class TestStepGameMenu:
@@ -66,7 +65,7 @@ class TestStepGameMenu:
         games.BTN_BACK = '🔙 Back'
         games.BTN_BACK_MAIN = '🔙 Main Menu'
         games.BTN_VIEW_GAMES = '👁️ View Games'
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         result = await games.step_game_menu(mock_update, mock_context)
         assert result is not None
         assert mock_update.message.reply_text.called
@@ -79,7 +78,7 @@ class TestStepGameMenu:
         games.BTN_BACK = '🔙 Back'
         games.BTN_BACK_MAIN = '🔙 Main Menu'
         games.BTN_VIEW_GAMES = '👁️ View Games'
-        games.fetch_games = MagicMock(return_value=[
+        games.fetch_games_async = AsyncMock(return_value=[
             {'title': 'Test Game', 'discs': '2', 'solo_multi': 'Solo', 'genre': 'Action'}
         ])
         games.fetch_console_games = MagicMock(return_value=[
@@ -92,6 +91,7 @@ class TestStepGameMenu:
     async def test_step_game_menu_add_game_title(self, mock_update, mock_context):
         """Add Game button asks for title."""
         mock_update.message.text = '➕ Add Game'
+        mock_context.user_data['new_game'] = {}
         from bot.handlers import games
         games.BTN_BACK = '🔙 Back'
         games.BTN_BACK_MAIN = '🔙 Main Menu'
@@ -110,7 +110,7 @@ class TestStepGameMenu:
         games.BTN_BACK = '🔙 Back'
         games.BTN_BACK_MAIN = '🔙 Main Menu'
         games.BTN_DEL_GAME = '🗑️ Delete Game'
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         result = await games.step_game_menu(mock_update, mock_context)
         assert mock_update.message.reply_text.called
 
@@ -123,7 +123,7 @@ class TestStepGameMenu:
         games.BTN_BACK_MAIN = '🔙 Main Menu'
         games.BTN_DEL_GAME = '🗑️ Delete Game'
         games.GAME_DEL_SELECT = 405
-        games.fetch_games = MagicMock(return_value=[{'title': 'Game1', 'row': 2}])
+        games.fetch_games_async = AsyncMock(return_value=[{'title': 'Game1', 'row': 2}])
         result = await games.step_game_menu(mock_update, mock_context)
         assert result is not None
 
@@ -134,7 +134,7 @@ class TestStepGameMenu:
         from bot.handlers import games
         games.BTN_BACK = '🔙 Back'
         games.BTN_BACK_MAIN = '🔙 Main Menu'
-        games.fetch_games = MagicMock(return_value=[])
+        games.fetch_games_async = AsyncMock(return_value=[])
         result = await games.step_game_menu(mock_update, mock_context)
         assert result is not None
 

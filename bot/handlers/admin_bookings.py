@@ -154,8 +154,8 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await query.edit_message_text(f"\u274c *Check-in failed:* {e}", parse_mode="Markdown")
         return
 
-    if result and isinstance(result, dict) and result.get("success"):
-        tg_chat = result.get("data", {}).get("telegram_chat_id", "")
+    if result and isinstance(result, dict):
+        tg_chat = result.get("telegram_chat_id", "")
 
         await query.edit_message_text(
             f"\u2705 *Customer Checked In!*\n"
@@ -168,7 +168,7 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if tg_chat:
             asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))
     else:
-        err_msg = (result or {}).get("error") or (result or {}).get("data", {}).get("message", "Unknown error")
+        err_msg = (result or {}).get("error") or "Unknown error"
         await query.edit_message_text(
             f"\u274c *Check-in failed:* {err_msg}",
             parse_mode="Markdown",

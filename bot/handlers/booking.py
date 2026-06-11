@@ -10,7 +10,7 @@ from bot import (
     _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
-    fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_games, fetch_games_async,
+    fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_console_status_async, fetch_games, fetch_games_async,
     fetch_members, fetch_staff, get_consoles_with_game, get_consoles_with_game_async,
     get_games_on_console, get_games_on_console_async, now_mmt, show_admin_menu, show_console_menu,
     show_main_menu, today_str,
@@ -695,7 +695,7 @@ async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE
     logging.warning("DBG: prompt_book_console start, origin=%s", origin)
     context.user_data["bk_origin"] = origin
     try:
-        consoles = fetch_console_status()
+        consoles = await fetch_console_status_async()
     except Exception as e:
         await update.message.reply_text(f"❌ Error: {e}")
         return CONSOLE_MENU
@@ -714,7 +714,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
     """Ask staff whether to link this session to a confirmed booking (optional)."""
     try:
         today = today_str()
-        bks_raw = await _psvibe_get_async("bookings") or []
+        bks_raw = await _psvibe_get_async("bookings?status=confirmed&date=" + today) or []
         # Include confirmed + arrived; filter to today only
         # Also apply a 30-min past window so check-in'd bookings are still linkable
         from datetime import datetime as _dt
@@ -779,7 +779,7 @@ async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYP
     logging.warning("DBG: _show_console_select called, free_consoles=%s", free_consoles)
     if free_consoles is None:
         try:
-            consoles = fetch_console_status()
+            consoles = await fetch_console_status_async()
             free_consoles = [c for c in consoles if c["status"] == "Free"]
         except Exception as e:
             await update.message.reply_text(f"❌ Error: {e}")
@@ -1158,16 +1158,16 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             "duration_mins": planned_mins if planned_mins > 0 else 60,
         }
         result = await _psvibe_post_async("consoles/start-session", payload)
-        if not result or not result.get("success"):
-            err_msg = (result or {}).get("error") or "API returned empty response"
+        if not result or not result.get("booking_id"):
+            err_msg = (result or {}).get("error", "") or str(result) or "API returned empty response"
             await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {err_msg}")
             logger.error("_do_create_booking: start-session failed: %s", result)
             return await show_console_menu(update, context)
-        bk_id = result.get("data", {}).get("booking_id")
+        bk_id = result.get("booking_id")
         if not bk_id:
             await update.message.reply_text("❌ booking_id not returned from API")
             return await show_console_menu(update, context)
-        linked = result.get("data", {}).get("linked_booking", False)
+        linked = result.get("linked_booking", False)
         logger.info("start-session success: booking_id=%s linked=%s", bk_id, linked)
     except Exception as e:
         await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {e}")

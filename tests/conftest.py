@@ -283,11 +283,11 @@ def _build_bot_mock():
 
     # Auto-create missing attributes so tests don't break on new imports
     def _mock_getattr(name):
-        if name.startswith('_') and not name.startswith('_replit'):
+        if name.startswith('_') and not name.endswith('_async') and not name.startswith('_replit'):
             raise AttributeError(name)
         if name.endswith('_async') or name.startswith('_replit'):
             mock = AsyncMock()
-        elif name.startswith(('cmd_', 'show_', 'prompt_', 'step_')):
+        elif name.startswith(('cmd_', 'show_', 'prompt_', 'step_', '_')):
             mock = AsyncMock()
         else:
             mock = MagicMock()
@@ -298,6 +298,38 @@ def _build_bot_mock():
     return bot
 
 _bot = _build_bot_mock()
+
+# ── bot.api_client submodule mock ──
+_api_client = types.ModuleType('bot.api_client')
+_api_client.__package__ = 'bot.api_client'
+_api_client.api_fetch_console_status_async = AsyncMock(return_value={})
+_api_client.api_fetch_console_status = MagicMock(return_value={})
+_api_client.api_fetch_games = MagicMock(return_value={})
+_api_client.api_fetch_game_library = MagicMock(return_value={})
+_api_client.api_fetch_console_games = MagicMock(return_value={})
+_api_client.api_get_games_on_console = MagicMock(return_value={})
+_api_client.api_get_consoles_with_game = MagicMock(return_value={})
+_api_client.api_fetch_members = MagicMock(return_value=[])
+_api_client.api_fetch_member_data = MagicMock(return_value={})
+_api_client.api_fetch_wallet_mins = MagicMock(return_value=0)
+_api_client.api_fetch_balance_mins = MagicMock(return_value=0)
+_api_client.api_health = MagicMock(return_value='ok')
+_api_client.api_fetch_staff = MagicMock(return_value=[])
+_api_client.api_fetch_food_prices = MagicMock(return_value={})
+_api_client.api_fetch_food_costs = MagicMock(return_value={})
+_api_client.api_fetch_base_rate = MagicMock(return_value=5000)
+sys.modules['bot.api_client'] = _api_client
+
+# ── bot.session_reminder_store submodule mock ──
+_reminder_store = types.ModuleType('bot.session_reminder_store')
+_reminder_store.__package__ = 'bot.session_reminder_store'
+_reminder_store.persist_reminder = MagicMock()
+_reminder_store.remove_persisted_reminder = MagicMock()
+_reminder_store.restore_reminders_async = AsyncMock()
+_reminder_store.cleanup_stale_reminders_async = AsyncMock()
+_reminder_store.remind_key = MagicMock(return_value='reminder:test')
+sys.modules['bot.session_reminder_store'] = _reminder_store
+
 sys.modules['bot'] = _bot
 
 _handlers = types.ModuleType('bot.handlers')
