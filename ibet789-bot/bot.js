@@ -73,6 +73,7 @@ async function getBrowser() {
       '--disable-gpu',
       '--disable-web-security',
       '--disable-features=IsolateOrigins,site-per-process',
+      ...(config.PROXY_SERVER ? ['--proxy-server=' + config.PROXY_SERVER] : []),
     ],
     defaultViewport: { width: 1366, height: 768 },
   });
@@ -106,7 +107,7 @@ async function closeBrowser() {
  * Returns the page object on success.
  */
 async function ensureLogin() {
-  const browser = await getBrowser();
+  browser = await getBrowser();
 
   // Check if we need to re-login
   if (page && !page.isClosed() && loginTime) {

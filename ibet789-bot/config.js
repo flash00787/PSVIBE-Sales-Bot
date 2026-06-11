@@ -19,6 +19,9 @@ module.exports = {
   // Puppeteer options
   PUPPETEER_HEADLESS: process.env.PUPPETEER_HEADLESS !== 'false',
 
+  // Proxy server for geo-restricted access (e.g., Myanmar proxy)
+  PROXY_SERVER: process.env.PROXY_SERVER || '',
+
   // Session timeout in minutes (auto re-login after this)
   SESSION_TIMEOUT_MIN: parseInt(process.env.SESSION_TIMEOUT_MIN || '15', 10),
 

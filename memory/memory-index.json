@@ -1,17 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-06-11T15:31:45.441299+00:00",
+  "updated": "2026-06-11T18:38:17.792472+00:00",
   "entries": [
-    {
-      "topic": "\"Stay quiet\" rules NEVER apply to Boss messages:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 134,
-          "context": "- **\"Stay quiet\" rules NEVER apply to Boss messages:** Only heartbeat/outreach - **Boss messages = ALWAYS respond:** No quiet hours for incoming messages"
-        }
-      ]
-    },
     {
       "topic": "-264.3M",
       "files": [
@@ -29,6 +19,36 @@
           "path": "memory/2026-06-09.md",
           "line": 10,
           "context": "- Operating: sales 889K + topup income - opex 7.05M - stock 733K = **-6.9M** - Investing: PS5 140.7M + advances 104.8M + prepaid 22.4M - recovery 3.6M = **-264.3M**"
+        }
+      ]
+    },
+    {
+      "topic": "0 downtime",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1085,
+          "context": "- 🐛 **0 errors**, **0 downtime**, **0 rollbacks**"
+        }
+      ]
+    },
+    {
+      "topic": "0 errors",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1085,
+          "context": "- 🐛 **0 errors**, **0 downtime**, **0 rollbacks**"
+        }
+      ]
+    },
+    {
+      "topic": "0 rollbacks",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1085,
+          "context": "- 🐛 **0 errors**, **0 downtime**, **0 rollbacks**"
         }
       ]
     },
@@ -84,21 +104,6 @@
           "path": "memory/2026-06-11.md",
           "line": 901,
           "context": "### 10 Features Built & Deployed 1. 📅 Real Booking Schedule (9AM-9PM timeline, color-coded)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 500,
-          "context": "### 10 Features Built & Deployed - 7. 🌐 Language Toggle (MY/EN)"
-        }
-      ]
-    },
-    {
-      "topic": "10 Features:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 176,
-          "context": "**10 Features:** 1. 📅 Real Booking Schedule (9AM-9PM timeline, color-coded)"
         }
       ]
     },
@@ -123,11 +128,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 946,
-          "context": "- Result: session startup now loads MEMORY.md **100%** — no truncation"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 537,
           "context": "- Result: session startup now loads MEMORY.md **100%** — no truncation"
         }
       ]
@@ -164,11 +164,6 @@
           "path": "memory/2026-06-11.md",
           "line": 939,
           "context": "- **Trimmed MEMORY.md** from 40KB → **10KB / 189 lines** (75% reduction) - Kept only: index table, quick refs, condensed critical lessons, fix history summary"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 530,
-          "context": "- **Trimmed MEMORY.md** from 40KB → **10KB / 189 lines** (75% reduction) - Kept only: index table, quick refs, condensed critical lessons, fix history summary"
         }
       ]
     },
@@ -179,11 +174,16 @@
           "path": "memory/2026-06-11.md",
           "line": 976,
           "context": "- **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB** - Topic 124588 (June 10) — 4 checkpoint files at ~13 MB"
-        },
+        }
+      ]
+    },
+    {
+      "topic": "12 sub-agents",
+      "files": [
         {
-          "path": "MEMORY.md",
-          "line": 564,
-          "context": "- **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB** - Topic 124588 (June 10) — 4 checkpoint files at ~13 MB"
+          "path": "memory/2026-06-11.md",
+          "line": 1081,
+          "context": "- 🤖 **12 sub-agents** spawned (all completed) - 🗄️ **30+ DB tables** created or modified"
         }
       ]
     },
@@ -198,16 +198,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1002,
-          "context": "- Currently: **129 MB** (well below 500MB limit) ✅ - Cleanup cron: runs every 10 minutes"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 587,
-          "context": "| Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 590,
           "context": "- Currently: **129 MB** (well below 500MB limit) ✅ - Cleanup cron: runs every 10 minutes"
         }
       ]
@@ -229,11 +219,6 @@
           "path": "memory/2026-06-11.md",
           "line": 748,
           "context": "## 15:38 MMT — Upgrade #5: Multi-Session AI Research Agent ✅ - Created `research_agent.js` — DeepSeek V4 Pro based research tool"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 349,
-          "context": "### 15:38 MMT — Upgrade #5: Multi-Session AI Research Agent ✅ - Created `research_agent.js` — DeepSeek V4 Pro based research tool"
         }
       ]
     },
@@ -254,11 +239,6 @@
           "path": "memory/2026-06-11.md",
           "line": 754,
           "context": "## 15:42 MMT — Upgrade #6: Smart Auto-Reply & Learning System ✅ - Created `knowledge/psvibe_faq.json` — 8 categories, 9 FAQ items (pricing, hours, location, booking, contact, games, membership, food)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 355,
-          "context": "### 15:42 MMT — Upgrade #6: Smart Auto-Reply & Learning System ✅ - Created `knowledge/psvibe_faq.json` — 8 categories, 9 FAQ items (pricing, hours, location, booking, contact, games, membership, food)"
         }
       ]
     },
@@ -279,11 +259,6 @@
           "path": "memory/2026-06-11.md",
           "line": 759,
           "context": "## 15:43 MMT — Upgrade #7: GitHub/Git Auto-Backup ✅ - Created `git_backup.js` — dual workspace + VPS git management"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 360,
-          "context": "### 15:43 MMT — Upgrade #7: GitHub/Git Auto-Backup ✅ - Created `git_backup.js` — dual workspace + VPS git management"
         }
       ]
     },
@@ -304,11 +279,6 @@
           "path": "memory/2026-06-11.md",
           "line": 766,
           "context": "## 15:45 MMT — Upgrade #8: Memory Consolidation Automation ✅ - Created `memory/memory_manager.sh` — orchestrator for all memory tools"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 367,
-          "context": "### 15:45 MMT — Upgrade #8: Memory Consolidation Automation ✅ - Created `memory/memory_manager.sh` — orchestrator for all memory tools"
         }
       ]
     },
@@ -329,11 +299,6 @@
           "path": "memory/2026-06-11.md",
           "line": 772,
           "context": "## 15:49 MMT — Upgrade #9: Uptime Monitoring System ✅ - Created `uptime_monitor.js` — comprehensive 16-service health checker"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 373,
-          "context": "### 15:49 MMT — Upgrade #9: Uptime Monitoring System ✅ - Created `uptime_monitor.js` — comprehensive 16-service health checker"
         }
       ]
     },
@@ -354,11 +319,6 @@
           "path": "memory/2026-06-11.md",
           "line": 779,
           "context": "## 15:52 MMT — Upgrade #10: PS VIBE Sale Bot AI Upgrade ✅ - Created `ai_bot_enhancer.js` — AI Enhancement Module for Sale Bot"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 380,
-          "context": "### 15:52 MMT — Upgrade #10: PS VIBE Sale Bot AI Upgrade ✅ - Created `ai_bot_enhancer.js` — AI Enhancement Module for Sale Bot"
         }
       ]
     },
@@ -379,11 +339,6 @@
           "path": "memory/2026-06-11.md",
           "line": 790,
           "context": "## 15:55 MMT — Upgrade #11: PS VIBE Business Intelligence Dashboard ✅ - Created `biz_intel.js` — daily/weekly/full BI reports from MySQL"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 391,
-          "context": "### 15:55 MMT — Upgrade #11: PS VIBE Business Intelligence Dashboard ✅ - Created `biz_intel.js` — daily/weekly/full BI reports from MySQL"
         }
       ]
     },
@@ -404,11 +359,6 @@
           "path": "memory/2026-06-11.md",
           "line": 796,
           "context": "## 15:57 MMT — Upgrade #14: Smart Notification Center ✅ - Created `notify_center.js` — smart alert aggregation system"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 397,
-          "context": "### 15:57 MMT — Upgrade #14: Smart Notification Center ✅ - Created `notify_center.js` — smart alert aggregation system"
         }
       ]
     },
@@ -419,11 +369,6 @@
           "path": "memory/2026-06-11.md",
           "line": 999,
           "context": "| Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 587,
-          "context": "| Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
         }
       ]
     },
@@ -433,16 +378,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 998,
-          "context": "| OpenClaw Total | 855 MB | **687 MB** | **168 MB** 🔥 | | Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 215,
-          "context": "- Freed **168 MB** from agent sessions (855 MB → 687 MB) - Added 5 auto-protection layers to `bulk_session_cleanup.sh`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 586,
           "context": "| OpenClaw Total | 855 MB | **687 MB** | **168 MB** 🔥 | | Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
         }
       ]
@@ -464,11 +399,6 @@
           "path": "memory/2026-06-11.md",
           "line": 803,
           "context": "## 16:10 MMT — Upgrade #17: Disaster Recovery Automation ✅ - Created `disaster_recovery.js` — full backup + verify + restore system"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 404,
-          "context": "### 16:10 MMT — Upgrade #17: Disaster Recovery Automation ✅ - Created `disaster_recovery.js` — full backup + verify + restore system"
         }
       ]
     },
@@ -489,11 +419,6 @@
           "path": "memory/2026-06-11.md",
           "line": 811,
           "context": "## 16:15 MMT — Upgrade #20: Knowledge Base Wiki ✅ - Created `knowledge/docs/` — structured wiki with INDEX.md"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 412,
-          "context": "### 16:15 MMT — Upgrade #20: Knowledge Base Wiki ✅ - Created `knowledge/docs/` — structured wiki with INDEX.md"
         }
       ]
     },
@@ -514,11 +439,6 @@
           "path": "memory/2026-06-11.md",
           "line": 818,
           "context": "## 16:25 MMT — Upgrade #16: Security & Audit System ✅ - Created `security_audit.js` — full VPS security auditor"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 419,
-          "context": "### 16:25 MMT — Upgrade #16: Security & Audit System ✅ - Created `security_audit.js` — full VPS security auditor"
         }
       ]
     },
@@ -539,11 +459,6 @@
           "path": "memory/2026-06-11.md",
           "line": 826,
           "context": "## 16:30 MMT — Upgrade #13: Multi-Language Support ✅ - Created `knowledge/i18n.js` — full bilingual translation system (🇲🇲 + 🇬🇧)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 427,
-          "context": "### 16:30 MMT — Upgrade #13: Multi-Language Support ✅ - Created `knowledge/i18n.js` — full bilingual translation system (🇲🇲 + 🇬🇧)"
         }
       ]
     },
@@ -698,26 +613,6 @@
       ]
     },
     {
-      "topic": "3 simultaneous records = triple-count:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 109,
-          "context": "- **3 simultaneous records = triple-count:** topup creates topup_log + cash_movements inject + sales_daily - **nearest-50 rounding:** `round(x/50)*50`"
-        }
-      ]
-    },
-    {
-      "topic": "3-layer bugs are common:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 113,
-          "context": "- **3-layer bugs are common:** 1 symptom often has 3+ root causes (intercept menu missing, auto-unwrap API, Unicode corruption) - **Unicode escape sequences are fragile:** Always verify with `python3 "
-        }
-      ]
-    },
-    {
       "topic": "3. `memory/agent-status.md` — Live Dashboard",
       "files": [
         {
@@ -784,6 +679,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 209,
           "context": "### 3.3 Flow After Feature 1"
+        }
+      ]
+    },
+    {
+      "topic": "30+ DB tables",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1082,
+          "context": "- 🗄️ **30+ DB tables** created or modified - 🔌 **~50 API endpoints** added to `dashboard_routes.py`"
         }
       ]
     },
@@ -944,11 +849,6 @@
           "path": "memory/2026-06-11.md",
           "line": 935,
           "context": "- MEMORY.md was **40KB / 772 lines** — session startup only loaded ~11KB (70% truncated) - Boss asked why md files need char limit and if truncation was still happening"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 526,
-          "context": "- MEMORY.md was **40KB / 772 lines** — session startup only loaded ~11KB (70% truncated) - Boss asked why md files need char limit and if truncation was still happening"
         }
       ]
     },
@@ -989,11 +889,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1004,
           "context": "- **500MB limit applies only to session files, not total workspace** - Other folders: workspace/ (342MB), memory/ (165MB) — normal usage"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 592,
-          "context": "- **500MB limit applies only to session files, not total workspace** - Other folders: workspace/ (342MB), memory/ (165MB) — normal usage"
         }
       ]
     },
@@ -1013,11 +908,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 835,
-          "context": "### 6 New Tools Built ✅ | # | Tool | File | Cron |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 437,
           "context": "### 6 New Tools Built ✅ | # | Tool | File | Cron |"
         }
       ]
@@ -1058,11 +948,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 998,
-          "context": "| OpenClaw Total | 855 MB | **687 MB** | **168 MB** 🔥 | | Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 586,
           "context": "| OpenClaw Total | 855 MB | **687 MB** | **168 MB** 🔥 | | Session Files | 296 MB / 25,431 | **129 MB** / 17,775 | **167 MB** |"
         }
       ]
@@ -1223,11 +1108,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 743,
-          "context": "- **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema) - **Consolidator:** `--apply` and `--dry-run` both functional"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 344,
           "context": "- **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema) - **Consolidator:** `--apply` and `--dry-run` both functional"
         }
       ]
@@ -1434,26 +1314,6 @@
           "path": "memory/2026-06-11.md",
           "line": 888,
           "context": "- **After:** - `--json` automatically suppresses VPS connection messages"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 464,
-          "context": "- **After:** Ran `disaster_recovery.js backup` → ✅ 6/6 items backed up (6.7 MB) - Backups at: `/home/node/.openclaw/workspace/backups/2026-06-11/`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 469,
-          "context": "- **After:** Started `kora_dashboard/server.js` on :9091 (PID 3370) - Verified: serving index.html, listening on *:9091"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 474,
-          "context": "- **After:** Added test mode that runs read-only health check: - Checks disk space, Docker containers, services (4x), sales, consoles"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 481,
-          "context": "- **After:** - Default timeout: 30s (was 120s, then updated to 30s)"
         }
       ]
     },
@@ -1464,6 +1324,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 30,
           "context": "- **AGENTS.md:** Hybrid spawning rules added"
+        }
+      ]
+    },
+    {
+      "topic": "AI Voice Assistant",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1076,
+          "context": "| 🎙️ | **AI Voice Assistant** | ✅ | Port 3110 systemd service. 11 voice commands: sales, balance, console status, top player, daily report, member lookup, games count, bookings, busy/free count, profi"
         }
       ]
     },
@@ -1588,16 +1458,6 @@
       ]
     },
     {
-      "topic": "API & Code Patterns",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 98,
-          "context": "### API & Code Patterns - **API auto-unwrap:** `_api_get()` unwraps `{success,data}` → DON'T check `resp.get(\"success\")` or `resp.get(\"data\")` again"
-        }
-      ]
-    },
-    {
       "topic": "API auto-unwrap mismatch",
       "files": [
         {
@@ -1614,16 +1474,6 @@
           "path": "memory/lessons.md",
           "line": 91,
           "context": "## API Auto-Unwrap Pattern — Check ALL `_api_get()` Callers (2026-06-06) - Customer Bot's `_api._api_get()` auto-unwraps `{success,data}` → raw data"
-        }
-      ]
-    },
-    {
-      "topic": "API auto-unwrap:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 99,
-          "context": "- **API auto-unwrap:** `_api_get()` unwraps `{success,data}` → DON'T check `resp.get(\"success\")` or `resp.get(\"data\")` again - **`\"error\" in resp` ≠ `resp.get(\"error\")`:** When API returns `error:null"
         }
       ]
     },
@@ -1688,16 +1538,6 @@
       ]
     },
     {
-      "topic": "API response_model strips undeclared fields",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 101,
-          "context": "- **API response_model strips undeclared fields** (confirmed multiple times) - **`x if x else default` breaks on `0`** — use `x if x is not None else default`"
-        }
-      ]
-    },
-    {
       "topic": "API restarted",
       "files": [
         {
@@ -1734,6 +1574,16 @@
           "path": "memory/2026-06-06.md",
           "line": 20,
           "context": "- **API:** Added `consoleId` field to `_map_booking_row` response (line ~264 in patch_routes.py) - **Bot:** Added `consoleType` fallback check alongside `console_id` and `consoleId`"
+        }
+      ]
+    },
+    {
+      "topic": "app.py 0-byte wipe",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1088,
+          "context": "- **app.py 0-byte wipe** (Staff Attendance): Restored from git. Lesson: deploy fix scripts directly, never manipulate files via sed across SSH - **Puppeteer Chromium missing**: Need `apt-get install -"
         }
       ]
     },
@@ -1799,11 +1649,6 @@
           "path": "memory/2026-06-11.md",
           "line": 914,
           "context": "- **Attempt 1:** Used \"PV\" SVG logo from PS VIBE brand assets → not the real logo - **Boss sent image:** Blue cross (+) logo — real PS VIBE logo"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 506,
-          "context": "- **Attempt 1:** Used \"PV\" SVG logo from PS VIBE brand assets → not the real logo - **Boss sent image:** Blue cross (+) logo — real PS VIBE logo"
         }
       ]
     },
@@ -1818,11 +1663,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 916,
-          "context": "- **Attempt 2:** Downloaded `logo-icon.png` from VPS (`/root/psvibe_api_server/dashboard-dist/`) via SFTP - **Embedded as base64 PNG** data URI into `<link rel=\"icon\">` in dashboard HTML"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 508,
           "context": "- **Attempt 2:** Downloaded `logo-icon.png` from VPS (`/root/psvibe_api_server/dashboard-dist/`) via SFTP - **Embedded as base64 PNG** data URI into `<link rel=\"icon\">` in dashboard HTML"
         }
       ]
@@ -1899,11 +1739,6 @@
           "path": "memory/2026-06-11.md",
           "line": 944,
           "context": "- **auto-trim-memory cron** created — runs every 4h, if MEMORY.md >20KB → auto prune + git backup - Memory Manager (`memory_manager.sh`) runs daily at 22:00 MMT: consolidate → prune → index → digest →"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 535,
-          "context": "- **auto-trim-memory cron** created — runs every 4h, if MEMORY.md >20KB → auto prune + git backup - Memory Manager (`memory_manager.sh`) runs daily at 22:00 MMT: consolidate → prune → index → digest →"
         }
       ]
     },
@@ -1924,6 +1759,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 695,
           "context": "1. **Back-button stack is fragile.** The `_bk_state_stack` in `booking_handlers.py` tracks navigation history. Adding BK_SPECIFIC_CONSOLE means every handler's `BTN_BACK` logic that previously targete"
+        }
+      ]
+    },
+    {
+      "topic": "Backend:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1068,
+          "context": "| 4️⃣ | **Web Admin Panel 2.0 🖥️** | ✅✅✅ | **Backend:** `dashboard_routes.py` 2,729→3,828 lines (60→80 endpoints). 18 new endpoints: Staff CRUD (12), Console CRUD (3), TopUp POST (1), Member Wallet (1"
         }
       ]
     },
@@ -1964,11 +1809,6 @@
           "path": "memory/2026-06-11.md",
           "line": 834,
           "context": "## Batch 2 — Remaining Upgrades (10:19-10:34 UTC) ### 6 New Tools Built ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 435,
-          "context": "### Batch 2 — Remaining Upgrades (10:19-10:34 UTC)"
         }
       ]
     },
@@ -2074,36 +1914,6 @@
           "path": "memory/2026-06-11.md",
           "line": 975,
           "context": "- **Before:** 25,430 files / 294 MB in agent sessions directory - **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB**"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 463,
-          "context": "- **Before:** Last backup was 7d+ ago (score 50/100) - **After:** Ran `disaster_recovery.js backup` → ✅ 6/6 items backed up (6.7 MB)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 468,
-          "context": "- **Before:** Port 9091 unused, dashboard not started - **After:** Started `kora_dashboard/server.js` on :9091 (PID 3370)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 473,
-          "context": "- **Before:** `node auto_maintenance.js test` → \"Unknown mode\" - **After:** Added test mode that runs read-only health check:"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 480,
-          "context": "- **Before:** Default timeout 120s, no quick mode, cryptic timeout errors - **After:**"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 488,
-          "context": "- **Before:** `--json` output mixed with \"Connecting to VPS...\" text - `--json` automatically suppresses VPS connection messages"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 563,
-          "context": "- **Before:** 25,430 files / 294 MB in agent sessions directory - **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB**"
         }
       ]
     },
@@ -2208,16 +2018,6 @@
       ]
     },
     {
-      "topic": "Booking System",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 112,
-          "context": "### Booking System - **3-layer bugs are common:** 1 symptom often has 3+ root causes (intercept menu missing, auto-unwrap API, Unicode corruption)"
-        }
-      ]
-    },
-    {
       "topic": "Booking timeout",
       "files": [
         {
@@ -2238,16 +2038,6 @@
       ]
     },
     {
-      "topic": "Boss messages = ALWAYS respond:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 135,
-          "context": "- **Boss messages = ALWAYS respond:** No quiet hours for incoming messages - **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md lean — use module files for details"
-        }
-      ]
-    },
-    {
       "topic": "Boss sent image:",
       "files": [
         {
@@ -2259,11 +2049,6 @@
           "path": "memory/2026-06-11.md",
           "line": 915,
           "context": "- **Boss sent image:** Blue cross (+) logo — real PS VIBE logo - **Attempt 2:** Downloaded `logo-icon.png` from VPS (`/root/psvibe_api_server/dashboard-dist/`) via SFTP"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 507,
-          "context": "- **Boss sent image:** Blue cross (+) logo — real PS VIBE logo - **Attempt 2:** Downloaded `logo-icon.png` from VPS (`/root/psvibe_api_server/dashboard-dist/`) via SFTP"
         }
       ]
     },
@@ -2274,6 +2059,16 @@
           "path": "memory/contacts.md",
           "line": 3,
           "context": "## Boss — Ko Aung Chan Myint (ကိုအောင်ချန်မြင့်) - **Business:** Founder & Manager — PS VIBE - PS5 Gaming Lounge"
+        }
+      ]
+    },
+    {
+      "topic": "Bot Built: `/opt/ibet789-bot/`",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1100,
+          "context": "### Bot Built: `/opt/ibet789-bot/` - **Technology:** Node.js + Puppeteer (web automation) + node-telegram-bot-api"
         }
       ]
     },
@@ -2344,16 +2139,6 @@
           "path": "memory/2026-06-06.md",
           "line": 21,
           "context": "- **Bot:** Added `consoleType` fallback check alongside `console_id` and `consoleId` - Both fixes applied via SSH SFTP upload + remote execution to ensure exact byte-level correctness"
-        }
-      ]
-    },
-    {
-      "topic": "BS equation:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 126,
-          "context": "- **BS equation:** Assets = L+E always. Depreciation Reserve goes in Equity - **Cash Flow closing = Web Finance:** Must use identical income allocation per account"
         }
       ]
     },
@@ -2468,16 +2253,6 @@
       ]
     },
     {
-      "topic": "Burmese Unicode verification:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 115,
-          "context": "- **Burmese Unicode verification:** `U+101B U+101B` (ရရ) ≠ `U+101B U+103E` (ရှ)"
-        }
-      ]
-    },
-    {
       "topic": "Business:",
       "files": [
         {
@@ -2538,16 +2313,6 @@
       ]
     },
     {
-      "topic": "Cash Flow closing = Web Finance:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 127,
-          "context": "- **Cash Flow closing = Web Finance:** Must use identical income allocation per account - **Inject exclusion = retained formula adjustment:** When excluding injects from assets, add to retained or BS "
-        }
-      ]
-    },
-    {
       "topic": "Cash Flow Statement (✅ Complete)",
       "files": [
         {
@@ -2564,16 +2329,6 @@
           "path": "memory/2026-06-09.md",
           "line": 21,
           "context": "4. **Cash Flow uses same per-account income calc as Web Finance** → closing matches exactly (28,758,453 Ks)"
-        }
-      ]
-    },
-    {
-      "topic": "cash_movements stores labels, code uses keys:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 131,
-          "context": "- **cash_movements stores labels, code uses keys:** Maintain mapping dict (`\"kbz_bank\"` → `\"KBZ Bank\"`)"
         }
       ]
     },
@@ -2719,11 +2474,6 @@
           "path": "memory/2026-06-11.md",
           "line": 980,
           "context": "### Cleanup Actions 1. Deleted Topic 121564 checkpoints → **freed 117 MB** ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 568,
-          "context": "### Cleanup Actions - 1. Deleted Topic 121564 checkpoints → **freed 117 MB** ✅"
         }
       ]
     },
@@ -2743,11 +2493,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 986,
-          "context": "### Cleanup Script Enhanced: **Auto-Protection Layers** | Layer | What It Does | Context Loss? |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 574,
           "context": "### Cleanup Script Enhanced: **Auto-Protection Layers** | Layer | What It Does | Context Loss? |"
         }
       ]
@@ -2819,6 +2564,16 @@
           "path": "memory/integration-plan.md",
           "line": 88,
           "context": "- **CLI:** `--init`, `--commit \"msg\"`, `--auto`, `--status`, `--log [N]` - **Status:** **needs integration** — Should run `--auto` at the end of every heartbeat cycle to commit any changes from index/"
+        }
+      ]
+    },
+    {
+      "topic": "Client:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1096,
+          "context": "- **Client:** External — has iBet789 agent account - **Requirement:** Telegram bot for unit deposit/withdraw via agent dashboard"
         }
       ]
     },
@@ -2900,6 +2655,11 @@
     {
       "topic": "Commands:",
       "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1102,
+          "context": "- **Commands:** `/start`, `/login`, `/balance`, `/deposit`, `/withdraw`, `/check`, `/status`, `/help`, `/restartbrowser`, `/setup` - **Features:**"
+        },
         {
           "path": "memory/UPGRADE_SPEC.md",
           "line": 32,
@@ -2988,11 +2748,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 849,
-          "context": "### Config Fix - `openclaw.json.error` cleaned (old backup from May 22)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 451,
           "context": "### Config Fix - `openclaw.json.error` cleaned (old backup from May 22)"
         }
       ]
@@ -3093,11 +2848,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 744,
-          "context": "- **Consolidator:** `--apply` and `--dry-run` both functional - **Heartbeat routine:** Enhanced with active_tasks/stale detection"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 345,
           "context": "- **Consolidator:** `--apply` and `--dry-run` both functional - **Heartbeat routine:** Enhanced with active_tasks/stale detection"
         }
       ]
@@ -3344,11 +3094,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1038,
           "context": "5. **Cron session takeover error** — VPS Monitor cron timing adjustment (intermittent, auto-recover)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 624,
-          "context": "- 5. **Cron session takeover error** — VPS Monitor cron timing adjustment (intermittent, auto-recover) - ---"
         }
       ]
     },
@@ -3449,6 +3194,16 @@
           "path": "memory/bug-patterns.md",
           "line": 23,
           "context": "## Customer Bot — Menu Eaten by ConversationHandler (FIXED) - All reply keyboard menu buttons consumed by booking text handlers"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Loyalty System",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1075,
+          "context": "| 🎁 | **Customer Loyalty System** | ✅✅ | 5 tables: `loyalty_settings`, `member_loyalty`, `loyalty_transactions`, `loyalty_rewards`, `loyalty_redemptions`. 14 API endpoints. 5 Vue pages: LoyaltyDashboa"
         }
       ]
     },
@@ -3683,6 +3438,16 @@
       ]
     },
     {
+      "topic": "Deployment:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1112,
+          "context": "- **Deployment:** VPS `/opt/ibet789-bot/`, Chromium downloaded ✅, systemd service installed (inactive — needs .env config)"
+        }
+      ]
+    },
+    {
       "topic": "Diagnosis:",
       "files": [
         {
@@ -3813,26 +3578,11 @@
       ]
     },
     {
-      "topic": "Elif chains must cover all variants:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 107,
-          "context": "- **Elif chains must cover all variants:** `\"wave\"` ≠ `\"wavepay\"` - **PyMySQL `%` in LIKE:** `LIKE 'Topup%'` → format string error. Use `CONCAT('Topup', CHAR(37))`"
-        }
-      ]
-    },
-    {
       "topic": "Email #1 (10:05 AM EDT / 8:35 PM MMT)",
       "files": [
         {
           "path": "memory/2026-06-11.md",
           "line": 1011,
-          "context": "### Email #1 (10:05 AM EDT / 8:35 PM MMT) - From: Cloudflare Sanctions Compliance"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 598,
           "context": "### Email #1 (10:05 AM EDT / 8:35 PM MMT) - From: Cloudflare Sanctions Compliance"
         }
       ]
@@ -3843,11 +3593,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1017,
-          "context": "### Email #2 (11:08 AM EDT / 9:38 PM MMT) - **RESOLVED:** \"Thank you for completing our verification process... confirmed NO violation... all suspensions and bans have been lifted\""
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 604,
           "context": "### Email #2 (11:08 AM EDT / 9:38 PM MMT) - **RESOLVED:** \"Thank you for completing our verification process... confirmed NO violation... all suspensions and bans have been lifted\""
         }
       ]
@@ -3873,11 +3618,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 917,
-          "context": "- **Embedded as base64 PNG** data URI into `<link rel=\"icon\">` in dashboard HTML - Boss confirmed: \"Favicon တွေအကုန်လုံးကို အဲ့တာပဲ့ ပြောင်းပေးပါ\""
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 509,
           "context": "- **Embedded as base64 PNG** data URI into `<link rel=\"icon\">` in dashboard HTML - Boss confirmed: \"Favicon တွေအကုန်လုံးကို အဲ့တာပဲ့ ပြောင်းပေးပါ\""
         }
       ]
@@ -4079,21 +3819,16 @@
           "path": "memory/2026-06-11.md",
           "line": 913,
           "context": "### Favicon Saga (12:10-12:40 UTC) - **Attempt 1:** Used \"PV\" SVG logo from PS VIBE brand assets → not the real logo"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 505,
-          "context": "### Favicon Saga (12:10-12:40 UTC) - **Attempt 1:** Used \"PV\" SVG logo from PS VIBE brand assets → not the real logo"
         }
       ]
     },
     {
-      "topic": "Favicon:",
+      "topic": "FB/IG Auto-Reply 📱",
       "files": [
         {
-          "path": "MEMORY.md",
-          "line": 188,
-          "context": "**Favicon:** Blue Cross logo (from `logo-icon.png`), served via `/favicon.svg`"
+          "path": "memory/2026-06-11.md",
+          "line": 1067,
+          "context": "| 3️⃣ | **FB/IG Auto-Reply 📱** | ✅ | Webhook server on :3100 (systemd `psvibe-social-reply`). GET verify + POST messages. FAQ keyword matching (8 categories, EN+MM). Logging to `/opt/social_auto_reply"
         }
       ]
     },
@@ -4154,6 +3889,16 @@
           "path": "memory/booking-features-implemented.md",
           "line": 29,
           "context": "## Feature 2: Time-Slot Restriction ✅ **Commit:** `4582b6c` on Sales Bot only"
+        }
+      ]
+    },
+    {
+      "topic": "Features:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1103,
+          "context": "- **Features:** - Multi-selector fallback chain (configurable CSS selectors via env vars)"
         }
       ]
     },
@@ -4481,6 +4226,11 @@
           "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
         },
         {
+          "path": "memory/2026-06-11.md",
+          "line": 1111,
+          "context": "- **Files:** `bot.js` (~31KB), `config.js`, `.env.example`, `package.json`, `ibet789-bot.service`, `deploy.sh`, `README.md` - **Deployment:** VPS `/opt/ibet789-bot/`, Chromium downloaded ✅, systemd se"
+        },
+        {
           "path": "memory/fix-history.md",
           "line": 9,
           "context": "- **Files:** `customer_bot/booking.py` - **Fixes:**"
@@ -4554,16 +4304,6 @@
           "path": "memory/subagent-journal.json",
           "line": 12,
           "context": "status: completed | summary: Final verification passed"
-        }
-      ]
-    },
-    {
-      "topic": "Financial",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 125,
-          "context": "### Financial - **BS equation:** Assets = L+E always. Depreciation Reserve goes in Equity"
         }
       ]
     },
@@ -4959,16 +4699,6 @@
           "path": "memory/test-report.md",
           "line": 41,
           "context": "**Fix:** Added `re.sub(r'\\n{3,}', '\\n\\n', …).rstrip('\\n') + '\\n'` to normalize section spacing **Code:** `consolidator.py:apply_to_memory_md()` — normalization step before write"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 516,
-          "context": "- **Fix:** Changed to `''` (relative path) — dashboard + API are same server (port 8000)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 529,
-          "context": "### Fix - **Trimmed MEMORY.md** from 40KB → **10KB / 189 lines** (75% reduction)"
         }
       ]
     },
@@ -5079,11 +4809,6 @@
           "path": "memory/2026-06-11.md",
           "line": 981,
           "context": "1. Deleted Topic 121564 checkpoints → **freed 117 MB** ✅ 2. Deleted Topic 124588 checkpoints → **freed 13 MB** ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 569,
-          "context": "- 1. Deleted Topic 121564 checkpoints → **freed 117 MB** ✅ - 2. Deleted Topic 124588 checkpoints → **freed 13 MB** ✅"
         }
       ]
     },
@@ -5094,11 +4819,6 @@
           "path": "memory/2026-06-11.md",
           "line": 982,
           "context": "2. Deleted Topic 124588 checkpoints → **freed 13 MB** ✅ 3. Deleted 7,641 old trajectory-path.json files (>7 days) → **freed ~6 MB** ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 570,
-          "context": "- 2. Deleted Topic 124588 checkpoints → **freed 13 MB** ✅ - 3. Deleted 7,641 old trajectory-path.json files (>7 days) → **freed ~6 MB** ✅"
         }
       ]
     },
@@ -5109,11 +4829,6 @@
           "path": "memory/2026-06-11.md",
           "line": 983,
           "context": "3. Deleted 7,641 old trajectory-path.json files (>7 days) → **freed ~6 MB** ✅ 4. Updated `bulk_session_cleanup.sh` — added rule for checkpoint/reset files >1d"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 571,
-          "context": "- 3. Deleted 7,641 old trajectory-path.json files (>7 days) → **freed ~6 MB** ✅ - 4. Updated `bulk_session_cleanup.sh` — added rule for checkpoint/reset files >1d"
         }
       ]
     },
@@ -5124,6 +4839,16 @@
           "path": "memory/contacts.md",
           "line": 20,
           "context": "## Friend & Colleague Notes - **You Ko Htet:** Friend"
+        }
+      ]
+    },
+    {
+      "topic": "Frontend:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1068,
+          "context": "| 4️⃣ | **Web Admin Panel 2.0 🖥️** | ✅✅✅ | **Backend:** `dashboard_routes.py` 2,729→3,828 lines (60→80 endpoints). 18 new endpoints: Staff CRUD (12), Console CRUD (3), TopUp POST (1), Member Wallet (1"
         }
       ]
     },
@@ -5244,11 +4969,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1033,
           "context": "2. **GitHub Deploy Failed** — PSVIBE-API-Server master branch deploy workflow fail"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 619,
-          "context": "- 2. **GitHub Deploy Failed** — PSVIBE-API-Server master branch deploy workflow fail"
         }
       ]
     },
@@ -5257,7 +4977,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 226,
+          "line": 127,
           "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
         }
       ]
@@ -5569,11 +5289,6 @@
           "path": "memory/2026-06-11.md",
           "line": 745,
           "context": "- **Heartbeat routine:** Enhanced with active_tasks/stale detection - **Status:** ✅ Phase 2 fully deployed and healthy"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 346,
-          "context": "- **Heartbeat routine:** Enhanced with active_tasks/stale detection - **Status:** ✅ Phase 2 fully deployed and healthy"
         }
       ]
     },
@@ -5744,21 +5459,6 @@
           "path": "MEMORY.md",
           "line": 21,
           "context": "### Infrastructure - **`memory/infrastructure.md`** — 🏗️ Bot paths, services, MySQL, coordination tools"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 117,
-          "context": "### Infrastructure - **systemctl/systemd unavailable on VPS:** Uvicorn via nohup; restart with `pkill -HUP -f 'uvicorn'`"
-        }
-      ]
-    },
-    {
-      "topic": "Inject exclusion = retained formula adjustment:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 128,
-          "context": "- **Inject exclusion = retained formula adjustment:** When excluding injects from assets, add to retained or BS breaks - **Topup = deferred liability, not revenue:** Only wallet_consumed is recognized"
         }
       ]
     },
@@ -5934,21 +5634,6 @@
           "path": "memory/2026-06-11.md",
           "line": 743,
           "context": "- **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema) - **Consolidator:** `--apply` and `--dry-run` both functional"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 344,
-          "context": "- **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema) - **Consolidator:** `--apply` and `--dry-run` both functional"
-        }
-      ]
-    },
-    {
-      "topic": "JWT expires on API restart:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 120,
-          "context": "- **JWT expires on API restart:** Users must re-login - **Session cron jobs <60s cause takeover errors:** Minimum 5-min interval for lock operations"
         }
       ]
     },
@@ -5999,6 +5684,26 @@
           "path": "memory/booking-features-plan.md",
           "line": 59,
           "context": "### Key Functions"
+        }
+      ]
+    },
+    {
+      "topic": "Key Issues Resolved",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1087,
+          "context": "### Key Issues Resolved - **app.py 0-byte wipe** (Staff Attendance): Restored from git. Lesson: deploy fix scripts directly, never manipulate files via sed across SSH"
+        }
+      ]
+    },
+    {
+      "topic": "Key Lesson",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1118,
+          "context": "### Key Lesson - iBet789 has **no public API** — must use Puppeteer web automation"
         }
       ]
     },
@@ -6239,11 +5944,6 @@
           "path": "memory/lessons.md",
           "line": 106,
           "context": "- **Lesson:** For Burmese text in Telegram bots, use direct Unicode string literals (Python handles UTF-8 natively) or simple English text. Never use `\\u` escape sequences if you can avoid them."
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 557,
-          "context": "- **Lesson:** All cron jobs should have minimum 5-min interval to avoid session takeover errors - ---"
         }
       ]
     },
@@ -6299,11 +5999,6 @@
           "path": "memory/2026-06-11.md",
           "line": 922,
           "context": "### Login Refresh Bug Fix - **Root cause:** API_BASE was `'https://ps-vibe.com'` (absolute URL) → timeout/CORS on refresh"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 514,
-          "context": "### Login Refresh Bug Fix - **Root cause:** API_BASE was `'https://ps-vibe.com'` (absolute URL) → timeout/CORS on refresh"
         }
       ]
     },
@@ -6314,6 +6009,16 @@
           "path": "memory/2026-06-06.md",
           "line": 29,
           "context": "### Logs - VPS Monitor Alert Check at 02:01 UTC → NO ALERTS (all services active, health OK)"
+        }
+      ]
+    },
+    {
+      "topic": "Long-term Vision — 2/3 Complete",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1071,
+          "context": "### Long-term Vision — 2/3 Complete"
         }
       ]
     },
@@ -6333,11 +6038,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 976,
-          "context": "- **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB** - Topic 124588 (June 10) — 4 checkpoint files at ~13 MB"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 564,
           "context": "- **Main culprit:** Topic 121564 (group chat) — 9 checkpoint files totaling **117 MB** - Topic 124588 (June 10) — 4 checkpoint files at ~13 MB"
         }
       ]
@@ -6428,22 +6128,22 @@
       ]
     },
     {
+      "topic": "Mega Session Stats",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1079,
+          "context": "### Mega Session Stats - ⏱️ **~1 hr 40 min** continuous work (18:06 UTC start → overlap)"
+        }
+      ]
+    },
+    {
       "topic": "Member Console Multiplier (FIXED)",
       "files": [
         {
           "path": "memory/bug-patterns.md",
           "line": 16,
           "context": "## Member Console Multiplier (FIXED) - Members always got 1.0x. Added `fetch_console_multiplier()` for non-guest members."
-        }
-      ]
-    },
-    {
-      "topic": "Memory (2026-06-11)",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 228,
-          "context": "## Memory (2026-06-11)"
         }
       ]
     },
@@ -6488,16 +6188,6 @@
       ]
     },
     {
-      "topic": "Memory System",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 133,
-          "context": "### Memory System - **\"Stay quiet\" rules NEVER apply to Boss messages:** Only heartbeat/outreach"
-        }
-      ]
-    },
-    {
       "topic": "MEMORY.md Itself",
       "files": [
         {
@@ -6527,8 +6217,8 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 136,
-          "context": "- **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md lean — use module files for details"
+          "line": 98,
+          "context": "- **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md lean — use module files for details - **Session cron jobs <60s cause takeover errors:** Minimum 5-min interval for"
         }
       ]
     },
@@ -6618,6 +6308,16 @@
       ]
     },
     {
+      "topic": "Multi-Branch Support 🏢",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1069,
+          "context": "| 5️⃣ | **Multi-Branch Support 🏢** | ✅ Phase 0-2 | **Phase 0:** `branches` table created (ID: 1 \"PS VIBE Main\"). 20/20 tables got `branch_id` (default=1). Performance indexes (8). Zero data loss. **Ph"
+        }
+      ]
+    },
+    {
       "topic": "MySQL container running ≠ MySQL in use",
       "files": [
         {
@@ -6672,23 +6372,18 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 225,
+          "line": 126,
           "context": "1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 618,
-          "context": "- 1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire without update - 2. **GitHub Deploy Failed** — PSVIBE-API-Server master branch deploy workflow fail"
         }
       ]
     },
     {
-      "topic": "nearest-50 rounding:",
+      "topic": "Needs Facebook Page token",
       "files": [
         {
-          "path": "MEMORY.md",
-          "line": 110,
-          "context": "- **nearest-50 rounding:** `round(x/50)*50`"
+          "path": "memory/2026-06-11.md",
+          "line": 1067,
+          "context": "| 3️⃣ | **FB/IG Auto-Reply 📱** | ✅ | Webhook server on :3100 (systemd `psvibe-social-reply`). GET verify + POST messages. FAQ keyword matching (8 categories, EN+MM). Logging to `/opt/social_auto_reply"
         }
       ]
     },
@@ -6923,6 +6618,16 @@
       ]
     },
     {
+      "topic": "no public API",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1119,
+          "context": "- iBet789 has **no public API** — must use Puppeteer web automation - Multi-selector fallback is critical (site HTML structure may change)"
+        }
+      ]
+    },
+    {
       "topic": "NONE",
       "files": [
         {
@@ -6959,11 +6664,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 305,
           "context": "**Note:** `now_mmt` is already available in `prompts.py` (confirmed from reading the file)."
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 512,
-          "context": "- **Note:** Google Search results take days to update cached favicon"
         }
       ]
     },
@@ -7248,6 +6948,26 @@
       ]
     },
     {
+      "topic": "Phase 0:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1069,
+          "context": "| 5️⃣ | **Multi-Branch Support 🏢** | ✅ Phase 0-2 | **Phase 0:** `branches` table created (ID: 1 \"PS VIBE Main\"). 20/20 tables got `branch_id` (default=1). Performance indexes (8). Zero data loss. **Ph"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 1:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1069,
+          "context": "| 5️⃣ | **Multi-Branch Support 🏢** | ✅ Phase 0-2 | **Phase 0:** `branches` table created (ID: 1 \"PS VIBE Main\"). 20/20 tables got `branch_id` (default=1). Performance indexes (8). Zero data loss. **Ph"
+        }
+      ]
+    },
+    {
       "topic": "Phase 1: Feature 2 (Foundation — easier, lower risk)",
       "files": [
         {
@@ -7274,6 +6994,16 @@
           "path": "memory/tools-commands.md",
           "line": 103,
           "context": "### Phase 2 Tools | Tool | Purpose |"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 2:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1069,
+          "context": "| 5️⃣ | **Multi-Branch Support 🏢** | ✅ Phase 0-2 | **Phase 0:** `branches` table created (ID: 1 \"PS VIBE Main\"). 20/20 tables got `branch_id` (default=1). Performance indexes (8). Zero data loss. **Ph"
         }
       ]
     },
@@ -7323,6 +7053,16 @@
       ]
     },
     {
+      "topic": "Phase 4 — Already Done (June 5)",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1057,
+          "context": "### Phase 4 — Already Done (June 5) - ✅ Auto Receipt Generator (on topup → staff chat)"
+        }
+      ]
+    },
+    {
       "topic": "Phase 4 — Booking Flow Reorder (17:00-18:30 UTC)",
       "files": [
         {
@@ -7349,6 +7089,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 62,
           "context": "- **Phase 4 — Hybrid Batch (4):** batch_coordinator, queue_manager, timeout_auto_split, dashboard"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 5 — All 5 Items Complete ✅✅✅✅✅",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1061,
+          "context": "### Phase 5 — All 5 Items Complete ✅✅✅✅✅"
         }
       ]
     },
@@ -7443,6 +7193,16 @@
       ]
     },
     {
+      "topic": "Predictive Analytics",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1077,
+          "context": "| 📈 | **Predictive Analytics** | ✅ | Port 3120 systemd service. 30-day sales trend, 7-day forecast, popular games, peak hours, member growth. Dashboard page: PredictiveAnalytics-*.js. Health connected"
+        }
+      ]
+    },
+    {
       "topic": "Prepaid Rent Amortization (✅ Done)",
       "files": [
         {
@@ -7463,11 +7223,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 943,
-          "context": "### Prevention - **auto-trim-memory cron** created — runs every 4h, if MEMORY.md >20KB → auto prune + git backup"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 534,
           "context": "### Prevention - **auto-trim-memory cron** created — runs every 4h, if MEMORY.md >20KB → auto prune + git backup"
         }
       ]
@@ -7514,11 +7269,6 @@
           "path": "memory/2026-06-11.md",
           "line": 934,
           "context": "### Problem - MEMORY.md was **40KB / 772 lines** — session startup only loaded ~11KB (70% truncated)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 525,
-          "context": "### Problem - MEMORY.md was **40KB / 772 lines** — session startup only loaded ~11KB (70% truncated)"
         }
       ]
     },
@@ -7529,6 +7279,16 @@
           "path": "memory/delegation-rules.md",
           "line": 75,
           "context": "- ✅ **Progress updates + Results summary** — ပုံမှန် update - ✅ **Fix → Verify Loop** — code fix ပြီးတိုင်း Verify Agent; FAIL → Dispatch → Fix Again"
+        }
+      ]
+    },
+    {
+      "topic": "Project Info",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1095,
+          "context": "### Project Info - **Client:** External — has iBet789 agent account"
         }
       ]
     },
@@ -7569,6 +7329,16 @@
           "path": "memory/infrastructure.md",
           "line": 3,
           "context": "## PS VIBE Sales Bot (V2 Modular) - **Path:** `/root/psvibe-sales-bot/` (109 .py files)"
+        }
+      ]
+    },
+    {
+      "topic": "Puppeteer Chromium missing",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1089,
+          "context": "- **Puppeteer Chromium missing**: Need `apt-get install -y ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 ...` on VPS — workspace sandbox had `PUPPETEER_SKIP_DOWNLOAD=true`"
         }
       ]
     },
@@ -7803,6 +7573,16 @@
       ]
     },
     {
+      "topic": "Requirement:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1097,
+          "context": "- **Requirement:** Telegram bot for unit deposit/withdraw via agent dashboard - **Type:** Freelance project (Boss will say limited details)"
+        }
+      ]
+    },
+    {
       "topic": "Requirements:",
       "files": [
         {
@@ -7818,11 +7598,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1018,
-          "context": "- **RESOLVED:** \"Thank you for completing our verification process... confirmed NO violation... all suspensions and bans have been lifted\" - Boss had already completed the verification process ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 605,
           "context": "- **RESOLVED:** \"Thank you for completing our verification process... confirmed NO violation... all suspensions and bans have been lifted\" - Boss had already completed the verification process ✅"
         }
       ]
@@ -7878,11 +7653,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 995,
-          "context": "### Results | Metric | Before | After | Freed |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 583,
           "context": "### Results | Metric | Before | After | Freed |"
         }
       ]
@@ -8124,11 +7894,6 @@
           "path": "memory/test-report.md",
           "line": 34,
           "context": "**Root cause:** `dedup_content()` compared new output against the FULL file (including previously consolidated sections), removing content that matched itself **Fix:** When replacing an existing date "
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 515,
-          "context": "- **Root cause:** API_BASE was `'https://ps-vibe.com'` (absolute URL) → timeout/CORS on refresh - **Fix:** Changed to `''` (relative path) — dashboard + API are same server (port 8000)"
         }
       ]
     },
@@ -8178,11 +7943,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1020,
-          "context": "- Account is **safe** — no action needed"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 607,
           "context": "- Account is **safe** — no action needed"
         }
       ]
@@ -8403,16 +8163,6 @@
       ]
     },
     {
-      "topic": "sed + Python strings = disaster:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 106,
-          "context": "- **sed + Python strings = disaster:** Use `str.replace()` instead - **Elif chains must cover all variants:** `\"wave\"` ≠ `\"wavepay\"`"
-        }
-      ]
-    },
-    {
       "topic": "Sender Address:",
       "files": [
         {
@@ -8549,11 +8299,6 @@
           "path": "memory/2026-06-11.md",
           "line": 854,
           "context": "### Services Status (10:34 UTC) psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 456,
-          "context": "### Services Status (10:34 UTC) - psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅ | psvibe-dashboard ✅"
         }
       ]
     },
@@ -8652,7 +8397,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 121,
+          "line": 99,
           "context": "- **Session cron jobs <60s cause takeover errors:** Minimum 5-min interval for lock operations - **Session file bloat (446MB/500MB):** 1,305 session files; Gateway auto-prune handles this"
         }
       ]
@@ -8674,11 +8419,6 @@
           "path": "memory/2026-06-11.md",
           "line": 974,
           "context": "### Session File Analysis - **Before:** 25,430 files / 294 MB in agent sessions directory"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 562,
-          "context": "### Session File Analysis - **Before:** 25,430 files / 294 MB in agent sessions directory"
         }
       ]
     },
@@ -8687,8 +8427,8 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 122,
-          "context": "- **Session file bloat (446MB/500MB):** 1,305 session files; Gateway auto-prune handles this - **Vite lazy chunk import mismatch:** Renaming main JS alone isn't enough — all 22+ lazy imports must be u"
+          "line": 100,
+          "context": "- **Session file bloat (446MB/500MB):** 1,305 session files; Gateway auto-prune handles this"
         }
       ]
     },
@@ -8698,11 +8438,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1001,
-          "context": "### Session Files Status - Currently: **129 MB** (well below 500MB limit) ✅"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 589,
           "context": "### Session Files Status - Currently: **129 MB** (well below 500MB limit) ✅"
         }
       ]
@@ -8844,11 +8579,6 @@
           "path": "memory/2026-06-11.md",
           "line": 845,
           "context": "### Shared Infrastructure - `lib/ssh_vps.js` — SSH helper for all tools"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 447,
-          "context": "### Shared Infrastructure - `lib/ssh_vps.js` — SSH helper for all tools"
         }
       ]
     },
@@ -8869,6 +8599,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 44,
           "context": "| 4 | **Smart Auto-Retry** | `batch_coordinator.py` (UPGRADED) | `--retry` command: analyzes failure type → suggests fix → re-spawns (max 2 retries) | | 5 | **Cross-Bot Batching** | `batch_coordinator"
+        }
+      ]
+    },
+    {
+      "topic": "Smart Inventory Alerts 📦",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1065,
+          "context": "| 1️⃣ | **Smart Inventory Alerts 📦** | ✅ | `/opt/inventory_alerts/inventory_alerts.js` — 34 items, 5 low-stock found (Water, Coconut Water, UFC Iced Coffee, Macadamia, Mala), cron 30min + 9AM daily su"
         }
       ]
     },
@@ -8939,6 +8679,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 14,
           "context": "| **Sale Bot (Staff)** | `psvibe-sale-bot` | 9-state `ConversationHandler` (SBK_CONSOLE → ... → SBK_CONFIRM) | Staff picks a **specific console unit** (C-01 through C-10) from a live-status keyboard |"
+        }
+      ]
+    },
+    {
+      "topic": "Staff Attendance 👥",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1066,
+          "context": "| 2️⃣ | **Staff Attendance 👥** | ✅ | `staff_attendance.js` on :3099 + systemd `psvibe-attendance` + Telegram handler. Tables: `attendance_log` (recreated), `staff_records` (+hourly_rate). Commands: `/"
         }
       ]
     },
@@ -9244,16 +8994,6 @@
           "path": "memory/integration-plan.md",
           "line": 89,
           "context": "- **Status:** **needs integration** — Should run `--auto` at the end of every heartbeat cycle to commit any changes from index/rebuild steps. Should run `--init` once during setup."
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 347,
-          "context": "- **Status:** ✅ Phase 2 fully deployed and healthy"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 494,
-          "context": "- **Status:** Config is correct — `enabled: true`, `defaultSpawnContext: \"fork\"`, `idleHours: 24`, `spawnSessions: true` - No fix needed; the \"failed\" message from ACM may be transient/race condition"
         }
       ]
     },
@@ -9349,16 +9089,6 @@
           "path": "memory/project-state.md",
           "line": 19,
           "context": "| 8 | **Stock In payment** — payment_method, paid_by, staff_name fields | ✅ | | 9 | **Gift balance 1200→600** — removed redundant api_add_topup | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "String replace() fails silently on whitespace mismatch:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 105,
-          "context": "- **String replace() fails silently on whitespace mismatch:** Verify with `repr()` - **sed + Python strings = disaster:** Use `str.replace()` instead"
         }
       ]
     },
@@ -9598,26 +9328,6 @@
       ]
     },
     {
-      "topic": "systemctl restart can silently fail:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 119,
-          "context": "- **systemctl restart can silently fail:** Verify PID change, fallback `kill -9` - **JWT expires on API restart:** Users must re-login"
-        }
-      ]
-    },
-    {
-      "topic": "systemctl/systemd unavailable on VPS:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 118,
-          "context": "- **systemctl/systemd unavailable on VPS:** Uvicorn via nohup; restart with `pkill -HUP -f 'uvicorn'` - **systemctl restart can silently fail:** Verify PID change, fallback `kill -9`"
-        }
-      ]
-    },
-    {
       "topic": "Systems & Accounts",
       "files": [
         {
@@ -9648,6 +9358,16 @@
       ]
     },
     {
+      "topic": "Technology:",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1101,
+          "context": "- **Technology:** Node.js + Puppeteer (web automation) + node-telegram-bot-api - **Commands:** `/start`, `/login`, `/balance`, `/deposit`, `/withdraw`, `/check`, `/status`, `/help`, `/restartbrowser`,"
+        }
+      ]
+    },
+    {
       "topic": "Telegram Batch Notify",
       "files": [
         {
@@ -9674,11 +9394,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1037,
           "context": "4. **Temp files cleanup** — ~17MB in temp/ directory 5. **Cron session takeover error** — VPS Monitor cron timing adjustment (intermittent, auto-recover)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 623,
-          "context": "- 4. **Temp files cleanup** — ~17MB in temp/ directory - 5. **Cron session takeover error** — VPS Monitor cron timing adjustment (intermittent, auto-recover)"
         }
       ]
     },
@@ -9719,16 +9434,6 @@
           "path": "memory/test-report.md",
           "line": 73,
           "context": "### Test 4: Section integrity ```"
-        }
-      ]
-    },
-    {
-      "topic": "test entries → delete, don't dispose:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 130,
-          "context": "- **test entries → delete, don't dispose:** Prevents zombie records - **cash_movements stores labels, code uses keys:** Maintain mapping dict (`\"kbz_bank\"` → `\"KBZ Bank\"`)"
         }
       ]
     },
@@ -9828,11 +9533,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 741,
-          "context": "- **ThreadBindings config:** ✅ Confirmed `enabled: true` in openclaw.json - **Upgrade #2 components:** All verified operational"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 342,
           "context": "- **ThreadBindings config:** ✅ Confirmed `enabled: true` in openclaw.json - **Upgrade #2 components:** All verified operational"
         }
       ]
@@ -9938,16 +9638,6 @@
       ]
     },
     {
-      "topic": "Topup = deferred liability, not revenue:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 129,
-          "context": "- **Topup = deferred liability, not revenue:** Only wallet_consumed is recognized revenue - **test entries → delete, don't dispose:** Prevents zombie records"
-        }
-      ]
-    },
-    {
       "topic": "TopUp Logs Dashboard page",
       "files": [
         {
@@ -10019,11 +9709,6 @@
           "path": "memory/2026-06-11.md",
           "line": 939,
           "context": "- **Trimmed MEMORY.md** from 40KB → **10KB / 189 lines** (75% reduction) - Kept only: index table, quick refs, condensed critical lessons, fix history summary"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 530,
-          "context": "- **Trimmed MEMORY.md** from 40KB → **10KB / 189 lines** (75% reduction) - Kept only: index table, quick refs, condensed critical lessons, fix history summary"
         }
       ]
     },
@@ -10038,16 +9723,6 @@
       ]
     },
     {
-      "topic": "Two auth mechanisms in api_client.py:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 103,
-          "context": "- **Two auth mechanisms in api_client.py:** `_http_request` uses X-API-Key header; `api_post`/`api_get` were using query param only (fixed June 8) - **Python `.pyc` cache stale after edit:** Must clea"
-        }
-      ]
-    },
-    {
       "topic": "TWO booking flows",
       "files": [
         {
@@ -10058,8 +9733,13 @@
       ]
     },
     {
-      "topic": "type",
+      "topic": "Type:",
       "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1098,
+          "context": "- **Type:** Freelance project (Boss will say limited details)"
+        },
         {
           "path": "memory/booking-features-plan.md",
           "line": 13,
@@ -10084,16 +9764,6 @@
           "path": "memory/bug-patterns.md",
           "line": 97,
           "context": "## Unicode Escape Corruption in Auto-Fix Pipeline (FIXED — 2026-06-06) - Burmese Unicode escapes (`\\u1012\\u103d\\u102c...`) can be corrupted by auto-fix/auto-commit scripts"
-        }
-      ]
-    },
-    {
-      "topic": "Unicode escape sequences are fragile:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 114,
-          "context": "- **Unicode escape sequences are fragile:** Always verify with `python3 -c \"print(...)\"` before deploying - **Burmese Unicode verification:** `U+101B U+101B` (ရရ) ≠ `U+101B U+103E` (ရှ)"
         }
       ]
     },
@@ -10153,11 +9823,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 742,
-          "context": "- **Upgrade #2 components:** All verified operational - **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 343,
           "context": "- **Upgrade #2 components:** All verified operational - **Active tasks:** 0 | **Journal entries:** 13 (all v2 schema)"
         }
       ]
@@ -10293,16 +9958,6 @@
       ]
     },
     {
-      "topic": "Vite lazy chunk import mismatch:",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 123,
-          "context": "- **Vite lazy chunk import mismatch:** Renaming main JS alone isn't enough — all 22+ lazy imports must be updated"
-        }
-      ]
-    },
-    {
       "topic": "VPS Checks:",
       "files": [
         {
@@ -10329,11 +9984,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1036,
           "context": "3. **VPS Git — Log files cleanup** — add bot_status logs to .gitignore 4. **Temp files cleanup** — ~17MB in temp/ directory"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 622,
-          "context": "- 3. **VPS Git — Log files cleanup** — add bot_status logs to .gitignore - 4. **Temp files cleanup** — ~17MB in temp/ directory"
         }
       ]
     },
@@ -10388,6 +10038,16 @@
       ]
     },
     {
+      "topic": "Web Admin Panel 2.0 🖥️",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1068,
+          "context": "| 4️⃣ | **Web Admin Panel 2.0 🖥️** | ✅✅✅ | **Backend:** `dashboard_routes.py` 2,729→3,828 lines (60→80 endpoints). 18 new endpoints: Staff CRUD (12), Console CRUD (3), TopUp POST (1), Member Wallet (1"
+        }
+      ]
+    },
+    {
       "topic": "Web Commands → VPS Execution",
       "files": [
         {
@@ -10398,11 +10058,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 926,
-          "context": "### Web Commands → VPS Execution - Quick Commands (Health, Docker, Uptime, Backups) execute real commands on VPS via `vps_bridge.sh`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 518,
           "context": "### Web Commands → VPS Execution - Quick Commands (Health, Docker, Uptime, Backups) execute real commands on VPS via `vps_bridge.sh`"
         }
       ]
@@ -10423,11 +10078,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 1022,
-          "context": "### What This Means for PS VIBE - Cloudflare tunnel, DNS, proxy all unaffected"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 609,
           "context": "### What This Means for PS VIBE - Cloudflare tunnel, DNS, proxy all unaffected"
         }
       ]
@@ -10558,6 +10208,36 @@
       ]
     },
     {
+      "topic": "~1 hr 40 min",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1080,
+          "context": "- ⏱️ **~1 hr 40 min** continuous work (18:06 UTC start → overlap) - 🤖 **12 sub-agents** spawned (all completed)"
+        }
+      ]
+    },
+    {
+      "topic": "~15 new Vue pages",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1084,
+          "context": "- 🖥️ **~15 new Vue pages** built - 🐛 **0 errors**, **0 downtime**, **0 rollbacks**"
+        }
+      ]
+    },
+    {
+      "topic": "~50 API endpoints",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1083,
+          "context": "- 🔌 **~50 API endpoints** added to `dashboard_routes.py` - 🖥️ **~15 new Vue pages** built"
+        }
+      ]
+    },
+    {
       "topic": "သတိထားရန်:",
       "files": [
         {
@@ -10639,21 +10319,26 @@
           "path": "memory/2026-06-11.md",
           "line": 1009,
           "context": "## ☁️ Cloudflare Identity Verification (14:30-15:13 UTC)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 596,
-          "context": "### ☁️ Cloudflare Identity Verification (14:30-15:13 UTC)"
         }
       ]
     },
     {
-      "topic": "☁️ Cloudflare Verification — Resolved (June 11)",
+      "topic": "☁️ Cloudflare — Resolved (June 11)",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 220,
-          "context": "## ☁️ Cloudflare Verification — Resolved (June 11) - Cloudflare Sanctions flagged account for ID verification → Boss completed verification"
+          "line": 122,
+          "context": "## ☁️ Cloudflare — Resolved (June 11) - Account flagged for ID verification → Boss completed it, all sanctions lifted"
+        }
+      ]
+    },
+    {
+      "topic": "⚠️ app.py had 0-byte wipe bug",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1066,
+          "context": "| 2️⃣ | **Staff Attendance 👥** | ✅ | `staff_attendance.js` on :3099 + systemd `psvibe-attendance` + Telegram handler. Tables: `attendance_log` (recreated), `staff_records` (+hourly_rate). Commands: `/"
         }
       ]
     },
@@ -10669,11 +10354,16 @@
           "path": "memory/2026-06-11.md",
           "line": 965,
           "context": "## ⚠️ Cron Job Failure (13:06 UTC) - `kora-smart-alert-system` failed: `EmbeddedAttemptSessionTakeoverError` — session lock released mid-execution"
-        },
+        }
+      ]
+    },
+    {
+      "topic": "⚠️ To Go Live (Boss needs to)",
+      "files": [
         {
-          "path": "MEMORY.md",
-          "line": 554,
-          "context": "### ⚠️ Cron Job Failure (13:06 UTC) - `kora-smart-alert-system` failed: `EmbeddedAttemptSessionTakeoverError` — session lock released mid-execution"
+          "path": "memory/2026-06-11.md",
+          "line": 1114,
+          "context": "### ⚠️ To Go Live (Boss needs to) 1. `/opt/ibet789-bot/.env` → set: `BOT_TOKEN`, `AGENT_USERNAME`, `AGENT_PASSWORD`, `ALLOWED_USERS`"
         }
       ]
     },
@@ -10714,11 +10404,6 @@
           "path": "memory/2026-06-11.md",
           "line": 861,
           "context": "### ✅ Bug 1: Disaster Recovery Backup - **Before:** Last backup was 7d+ ago (score 50/100)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 462,
-          "context": "### ✅ Bug 1: Disaster Recovery Backup - **Before:** Last backup was 7d+ ago (score 50/100)"
         }
       ]
     },
@@ -10738,11 +10423,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 866,
-          "context": "### ✅ Bug 2: Kora Dashboard Not Running - **Before:** Port 9091 unused, dashboard not started"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 467,
           "context": "### ✅ Bug 2: Kora Dashboard Not Running - **Before:** Port 9091 unused, dashboard not started"
         }
       ]
@@ -10764,11 +10444,6 @@
           "path": "memory/2026-06-11.md",
           "line": 871,
           "context": "### ✅ Bug 3: Auto Maintenance — \"test\" Mode - **Before:** `node auto_maintenance.js test` → \"Unknown mode\""
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 472,
-          "context": "### ✅ Bug 3: Auto Maintenance — \"test\" Mode - **Before:** `node auto_maintenance.js test` → \"Unknown mode\""
         }
       ]
     },
@@ -10788,11 +10463,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 878,
-          "context": "### ✅ Bug 4: Research Agent — Timeout / Quick Mode - **Before:** Default timeout 120s, no quick mode, cryptic timeout errors"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 479,
           "context": "### ✅ Bug 4: Research Agent — Timeout / Quick Mode - **Before:** Default timeout 120s, no quick mode, cryptic timeout errors"
         }
       ]
@@ -10814,11 +10484,6 @@
           "path": "memory/2026-06-11.md",
           "line": 886,
           "context": "### ✅ Bug 5: Health Monitor — Clean JSON Output - **Before:** `--json` output mixed with \"Connecting to VPS...\" text"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 487,
-          "context": "### ✅ Bug 5: Health Monitor — Clean JSON Output - **Before:** `--json` output mixed with \"Connecting to VPS...\" text"
         }
       ]
     },
@@ -10838,11 +10503,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 893,
-          "context": "### ✅ Bug 6: ThreadBindings Config - **Status:** Config is correct — `enabled: true`, `defaultSpawnContext: \"fork\"`, `idleHours: 24`, `spawnSessions: true`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 493,
           "context": "### ✅ Bug 6: ThreadBindings Config - **Status:** Config is correct — `enabled: true`, `defaultSpawnContext: \"fork\"`, `idleHours: 24`, `spawnSessions: true`"
         }
       ]
@@ -10914,11 +10574,6 @@
           "path": "memory/2026-06-11.md",
           "line": 638,
           "context": "### ✅ Upgrade: Auto Maintenance Mode (`auto_maintenance.js`) - Nightly cleanup (00:00 MMT): MySQL optimize + analyze, Docker prune, log rotation, disk check"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 244,
-          "context": "### ✅ Upgrade: Auto Maintenance Mode (`auto_maintenance.js`) - Nightly cleanup (00:00 MMT): MySQL optimize + analyze, Docker prune, log rotation, disk check"
         }
       ]
     },
@@ -10938,11 +10593,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 654,
-          "context": "### ✅ Upgrade: Console Booking Auto-System (`console_booking.js`) - Auto-suggest available time slots from console_status + console_booking (conflict detection)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 260,
           "context": "### ✅ Upgrade: Console Booking Auto-System (`console_booking.js`) - Auto-suggest available time slots from console_status + console_booking (conflict detection)"
         }
       ]
@@ -10964,11 +10614,6 @@
           "path": "memory/2026-06-11.md",
           "line": 672,
           "context": "### ✅ Upgrade: Kora Web Dashboard (`kora_dashboard/`) - Static HTML + vanilla JS admin dashboard"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 278,
-          "context": "### ✅ Upgrade: Kora Web Dashboard (`kora_dashboard/`) - Static HTML + vanilla JS admin dashboard"
         }
       ]
     },
@@ -10988,11 +10633,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 645,
-          "context": "### ✅ Upgrade: Multi-Channel Support Framework (`multi_channel.js`) - Unified inbox with 4 channels: Telegram (enabled), Facebook Messenger, Discord, Website Chat (ready)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 251,
           "context": "### ✅ Upgrade: Multi-Channel Support Framework (`multi_channel.js`) - Unified inbox with 4 channels: Telegram (enabled), Facebook Messenger, Discord, Website Chat (ready)"
         }
       ]
@@ -11014,11 +10654,6 @@
           "path": "memory/2026-06-11.md",
           "line": 627,
           "context": "### ✅ Upgrade: Smart Alert System (`smart_alerts.js`) - Anomaly detection for PS VIBE across 4 dimensions:"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 233,
-          "context": "### ✅ Upgrade: Smart Alert System (`smart_alerts.js`) - Anomaly detection for PS VIBE across 4 dimensions:"
         }
       ]
     },
@@ -11038,11 +10673,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 662,
-          "context": "### ✅ Upgrade: Smart Reminder System (`smart_reminder.js`) - Session end timers (overtime detection for occupied consoles)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 268,
           "context": "### ✅ Upgrade: Smart Reminder System (`smart_reminder.js`) - Session end timers (overtime detection for occupied consoles)"
         }
       ]
@@ -11078,6 +10708,16 @@
       ]
     },
     {
+      "topic": "🆕 New Project: iBet789 Freelance Telegram Bot (18:24-18:36 UTC | 00:54-01:06 MMT June 12)",
+      "files": [
+        {
+          "path": "memory/2026-06-11.md",
+          "line": 1093,
+          "context": "## 🆕 New Project: iBet789 Freelance Telegram Bot (18:24-18:36 UTC | 00:54-01:06 MMT June 12)"
+        }
+      ]
+    },
+    {
       "topic": "🆙 Upgrade #2 — Memory Phase 2 (08:52 UTC | 14:52 Myanmar Time)",
       "files": [
         {
@@ -11093,11 +10733,6 @@
         {
           "path": "memory/2026-06-11.md",
           "line": 740,
-          "context": "### 🆙 Upgrade #2 — Memory Phase 2 (08:52 UTC | 14:52 Myanmar Time) - **ThreadBindings config:** ✅ Confirmed `enabled: true` in openclaw.json"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 341,
           "context": "### 🆙 Upgrade #2 — Memory Phase 2 (08:52 UTC | 14:52 Myanmar Time) - **ThreadBindings config:** ✅ Confirmed `enabled: true` in openclaw.json"
         }
       ]
@@ -11344,11 +10979,6 @@
           "path": "memory/2026-06-11.md",
           "line": 681,
           "context": "### 📁 New Files Created | File | Purpose |"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 287,
-          "context": "### 📁 New Files Created |------|--------|"
         }
       ]
     },
@@ -11369,11 +10999,6 @@
           "path": "memory/2026-06-11.md",
           "line": 697,
           "context": "### 📊 Cron Jobs to Create 1. Smart Alerts: every 30 min — `node smart_alerts.js --once`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 302,
-          "context": "### 📊 Cron Jobs to Create - 1. Smart Alerts: every 30 min — `node smart_alerts.js --once`"
         }
       ]
     },
@@ -11412,7 +11037,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 224,
+          "line": 125,
           "context": "## 📋 Pending — Boss Action Needed 1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire"
         }
       ]
@@ -11422,7 +11047,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 140,
+          "line": 104,
           "context": "## 📋 Recent Fix History (June 6-11) | Date | Fix | File(s) |"
         }
       ]
@@ -11434,11 +11059,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1029,
           "context": "## 📋 Remaining Pending Items (as of 15:18 UTC | 21:48 MMT)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 615,
-          "context": "### 📋 Remaining Pending Items (as of 15:18 UTC | 21:48 MMT)"
         }
       ]
     },
@@ -11453,12 +11073,12 @@
       ]
     },
     {
-      "topic": "📌 Current Services (June 11, 13:30 UTC)",
+      "topic": "📌 Current Services (June 11, 18:00 UTC)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 80,
-          "context": "## 📌 Current Services (June 11, 13:30 UTC) | Service | Status |"
+          "context": "## 📌 Current Services (June 11, 18:00 UTC) | Service | Status |"
         }
       ]
     },
@@ -11589,11 +11209,6 @@
           "path": "memory/2026-06-11.md",
           "line": 693,
           "context": "### 🔧 ThreadBindings - Already correct: `enabled: true`, `defaultSpawnContext: \"fork\"`, `idleHours: 24`, `spawnSessions: true`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 298,
-          "context": "### 🔧 ThreadBindings - Already correct: `enabled: true`, `defaultSpawnContext: \"fork\"`, `idleHours: 24`, `spawnSessions: true`"
         }
       ]
     },
@@ -11659,11 +11274,6 @@
           "path": "memory/2026-06-11.md",
           "line": 899,
           "context": "## 🖥️ Kora Dashboard v2 (10:50-12:30 UTC)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 498,
-          "context": "### 🖥️ Kora Dashboard v2 (10:50-12:30 UTC)"
         }
       ]
     },
@@ -11754,11 +11364,16 @@
           "path": "memory/2026-06-11.md",
           "line": 624,
           "context": "## 🚀 Kora Upgrades — Batch 2 (10:30 UTC | 17:00 MMT) All 6 remaining upgrade tools built, tested, and deployed:"
-        },
+        }
+      ]
+    },
+    {
+      "topic": "🚀 Phase 4 + Phase 5 + Long-term Vision Mega Session (18:06-18:36 UTC | 00:36-01:06 MMT June 12)",
+      "files": [
         {
-          "path": "MEMORY.md",
-          "line": 230,
-          "context": "### 🚀 Kora Upgrades — Batch 2 (10:30 UTC | 17:00 MMT) - All 6 remaining upgrade tools built, tested, and deployed:"
+          "path": "memory/2026-06-11.md",
+          "line": 1055,
+          "context": "## 🚀 Phase 4 + Phase 5 + Long-term Vision Mega Session (18:06-18:36 UTC | 00:36-01:06 MMT June 12)"
         }
       ]
     },
@@ -11809,11 +11424,6 @@
           "path": "memory/2026-06-11.md",
           "line": 859,
           "context": "## 🛠️ Bug Fixes — 10:52 UTC (Kora Upgrades Session)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 460,
-          "context": "### 🛠️ Bug Fixes — 10:52 UTC (Kora Upgrades Session)"
         }
       ]
     },
@@ -11854,11 +11464,6 @@
           "path": "memory/2026-06-11.md",
           "line": 1035,
           "context": "### 🟡 Kora Can Handle 3. **VPS Git — Log files cleanup** — add bot_status logs to .gitignore"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 621,
-          "context": "### 🟡 Kora Can Handle - 3. **VPS Git — Log files cleanup** — add bot_status logs to .gitignore"
         }
       ]
     },
@@ -11903,22 +11508,12 @@
       ]
     },
     {
-      "topic": "🤖 Kora Automation Tools (June 11)",
+      "topic": "🤖 Kora Automation — Active Tools (June 11)",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 192,
-          "context": "## 🤖 Kora Automation Tools (June 11) | Tool | File | Purpose |"
-        }
-      ]
-    },
-    {
-      "topic": "🤖 Kora Dashboard (June 11)",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 173,
-          "context": "## 🤖 Kora Dashboard (June 11) Built at `/root/.openclaw/workspace/kora_dashboard/` — served via API: `https://ps-vibe.com/kora/`"
+          "line": 115,
+          "context": "## 🤖 Kora Automation — Active Tools (June 11) 19 automation tools deployed: Smart Alerts, Auto Maintenance, Multi-Channel, Console Booking, Smart Reminder, Kora Dashboard (10 features, :9091), Researc"
         }
       ]
     },
@@ -11964,11 +11559,6 @@
           "path": "memory/2026-06-11.md",
           "line": 948,
           "context": "### 🧠 Critical Lesson Added - **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md ≤20KB — use module files for details"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 539,
-          "context": "### 🧠 Critical Lesson Added - ---"
         }
       ]
     },
@@ -12019,11 +11609,6 @@
           "path": "memory/2026-06-11.md",
           "line": 932,
           "context": "## 🧠 Memory System: MEMORY.md Trim (13:17-13:27 UTC)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 523,
-          "context": "### 🧠 Memory System: MEMORY.md Trim (13:17-13:27 UTC)"
         }
       ]
     },
@@ -12054,21 +11639,16 @@
           "path": "memory/2026-06-11.md",
           "line": 972,
           "context": "## 🧹 Session Cleanup & Optimizations (13:30-14:00 UTC)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 560,
-          "context": "### 🧹 Session Cleanup & Optimizations (13:30-14:00 UTC)"
         }
       ]
     },
     {
-      "topic": "🧹 Session Cleanup Achievement (June 11)",
+      "topic": "🧹 Session Cleanup (June 11)",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 214,
-          "context": "## 🧹 Session Cleanup Achievement (June 11) - Freed **168 MB** from agent sessions (855 MB → 687 MB)"
+          "line": 118,
+          "context": "## 🧹 Session Cleanup (June 11) - Freed 168 MB (855→687 MB), now 129 MB in session files (well below 500MB limit)"
         }
       ]
     },
@@ -12089,11 +11669,6 @@
           "path": "memory/2026-06-11.md",
           "line": 705,
           "context": "## 🩺 Heartbeat (07:37 UTC | 14:07 Myanmar Time) - Health Monitor: ✅ Overall 90.7"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 309,
-          "context": "### 🩺 Heartbeat (07:37 UTC | 14:07 Myanmar Time) - Health Monitor: ✅ Overall 90.7"
         }
       ]
     },
@@ -12114,11 +11689,6 @@
           "path": "memory/2026-06-11.md",
           "line": 718,
           "context": "## 🩺 Heartbeat (08:07 UTC | 14:37 Myanmar Time) - Health Monitor: ✅ Overall 92.3 (improved)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 322,
-          "context": "### 🩺 Heartbeat (08:07 UTC | 14:37 Myanmar Time) - Health Monitor: ✅ Overall 92.3 (improved)"
         }
       ]
     },
@@ -12139,11 +11709,6 @@
           "path": "memory/2026-06-11.md",
           "line": 728,
           "context": "## 🩺 Heartbeat (08:37 UTC | 15:07 Myanmar Time) - Health Monitor: ✅ Overall 92.3 (up from 90.7)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 331,
-          "context": "### 🩺 Heartbeat (08:37 UTC | 15:07 Myanmar Time) - Health Monitor: ✅ Overall 92.3 (up from 90.7)"
         }
       ]
     },
@@ -12159,11 +11724,6 @@
           "path": "memory/2026-06-11.md",
           "line": 953,
           "context": "## 🩺 Heartbeat (13:24 UTC | 19:54 Myanmar Time) - Health Monitor: ✅ Overall 93.3/100"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 542,
-          "context": "### 🩺 Heartbeat (13:24 UTC | 19:54 Myanmar Time) - Health Monitor: ✅ Overall 93.3/100"
         }
       ]
     },
@@ -12174,11 +11734,16 @@
           "path": "memory/2026-06-11.md",
           "line": 1042,
           "context": "## 🩺 Heartbeat (15:18 UTC | 21:48 Myanmar Time) - All 12 checks passed ✅"
-        },
+        }
+      ]
+    },
+    {
+      "topic": "🩺 Latest Heartbeat (June 11, 15:18 UTC)",
+      "files": [
         {
           "path": "MEMORY.md",
-          "line": 627,
-          "context": "### 🩺 Heartbeat (15:18 UTC | 21:48 Myanmar Time) - All 12 checks passed ✅"
+          "line": 129,
+          "context": "## 🩺 Latest Heartbeat (June 11, 15:18 UTC) - Health Monitor: 93.3/100 | Docker: 7/7 | Disk: 18% | RAM: 11Gi | Uptime: 14d+"
         }
       ]
     }
