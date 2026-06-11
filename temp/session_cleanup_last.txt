@@ -1,4 +1,5 @@
-=== Bulk Session Cleanup 00:58 ===
-Before: 310M
-After: 310M
-=== RESULT: OK ===
+=== Bulk Session Cleanup 02:28 ===
+Before: 312M
+  >6h trajectory: 1 files, ~0MB deleted
+After: 312M
+=== RESULT: OK ||| Cleanup completed. 1 trajectory file >6h deleted (0MB). Session dir stable at 312M. No >2d sessions or prefix-heavy sessions to trim. ===
