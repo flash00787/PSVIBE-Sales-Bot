@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-11T08:38:08Z",
+  "updated": "2026-06-11T13:07:06Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -437,6 +437,18 @@
       "weight": 5
     },
     {
+      "source": "docker",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "vps",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "git-backup",
       "target": "knowledge-graph-concept",
       "relation": "related_to",
@@ -445,6 +457,12 @@
     {
       "source": "git-backup",
       "target": "phase-3",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "consolidator",
       "relation": "related_to",
       "weight": 5
     },
@@ -564,6 +582,12 @@
     },
     {
       "source": "kora",
+      "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
       "target": "phase-3",
       "relation": "implements",
       "weight": 5
@@ -613,6 +637,18 @@
     {
       "source": "mysql",
       "target": "python",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 5
     },
@@ -674,6 +710,12 @@
       "source": "openclaw",
       "target": "consolidator",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
+      "target": "python",
+      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -872,6 +914,12 @@
       "source": "synergy-hub",
       "target": "mysql",
       "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "vps",
+      "target": "git-backup",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -3588,12 +3636,6 @@
     },
     {
       "source": "docker",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "docker",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -3601,12 +3643,6 @@
     {
       "source": "docker",
       "target": "telegram",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "docker",
-      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -4135,12 +4171,6 @@
     {
       "source": "github",
       "target": "coding-rules",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "github",
-      "target": "consolidator",
       "relation": "related_to",
       "weight": 3
     },
@@ -5166,12 +5196,6 @@
     },
     {
       "source": "kora",
-      "target": "mysql",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
       "target": "n8n",
       "relation": "uses",
       "weight": 3
@@ -5490,12 +5514,6 @@
     },
     {
       "source": "mysql",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -5503,12 +5521,6 @@
     {
       "source": "mysql",
       "target": "telegram",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
-      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
@@ -6404,12 +6416,6 @@
       "source": "openclaw",
       "target": "priority-memory",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "openclaw",
-      "target": "python",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -7897,12 +7903,6 @@
     {
       "source": "vps",
       "target": "deploy-process",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "vps",
-      "target": "git-backup",
       "relation": "related_to",
       "weight": 3
     },
