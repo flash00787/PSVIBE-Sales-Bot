@@ -1,0 +1,35 @@
+{
+  "output_dir": "/home/node/.openclaw/workspace/game_images",
+  "results": {
+    "Naruto x Boruto": {
+      "poster": true,
+      "gameplay": 5
+    },
+    "LEGO:StarWars": {
+      "poster": true,
+      "gameplay": 5
+    },
+    "Rise of Ronnin": {
+      "poster": false,
+      "gameplay": 5
+    },
+    "WWE 2025": {
+      "poster": false,
+      "gameplay": 5
+    },
+    "Resident Evil 9": {
+      "poster": false,
+      "gameplay": 0
+    },
+    "UFC 5": {
+      "poster": false,
+      "gameplay": 0
+    },
+    "Astro Bot": {
+      "poster": false,
+      "gameplay": 0
+    }
+  },
+  "total_posters": 2,
+  "total_gameplay": 20
+}
