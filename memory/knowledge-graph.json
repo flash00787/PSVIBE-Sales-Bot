@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-12T20:07:46Z",
+  "updated": "2026-06-12T21:37:41Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -278,6 +278,12 @@
       "source": "boss",
       "target": "daily-digest",
       "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "github",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -1856,12 +1862,6 @@
       "source": "boss",
       "target": "git-backup",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "github",
-      "relation": "uses",
       "weight": 3
     },
     {
