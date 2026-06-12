@@ -1,6 +1,39 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-11 11:30 UTC
+> Last updated: 2026-06-12 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 12, 2026 - 05:30 UTC) — Minor Finds: Saros Photo Mode + Mid-Year Deals Detail
+
+### 📸 Saros (PS5 Exclusive) — Free Photo Mode Update (June 11) + MISSED FROM TRACKER!
+- **Saros** is Housemarque's (Returnal devs) PS5 exclusive action game — **released April 30, 2026** — and was completely absent from our tracker!
+- Dark sci-fi bullet hell / third-person shooter roguelite; single-player
+- Rahul Kohli stars as Arjun Devraj, a Soltari enforcer investigating lost colony on shape-shifting planet Carcosa
+- Permanent progression system (unlike Returnal) — upgrade loadout after each death
+- PS5 features: 4K, adaptive triggers, haptic feedback, 3D audio, PS5 Pro PSSR enhanced
+- **Free update June 11:** Photo Mode + 9 new trophies
+- **💡 Lounge Note:** From the creators of Returnal — this is a PlayStation Studios pedigree title. Fast-paced action with stunning visuals makes for great lounge spectator sessions. Check if it's in the lounge library!
+
+### 🛒 Mid-Year Deals Sale — Updated Detail
+- Now confirmed: **3,600+ items** discounted (previously just "thousands")
+- Runs through **July 1, 2026**
+- PS Plus subscribers may get additional stacked discounts
+- Notable deals spotted: REANIMAL, Uncharted: Nathan Drake Collection, System Shock, Tomb Raider Remastered I-VI, Dave the Diver
+
+### 📋 PS Plus Extra June Rollout Status:
+- **Sonic X Shadow Generations** — NOW LIVE in US (Jun 10), UK (Jun 10), and Japan (Jun 11)
+- **Final Fantasy XVI** — drops June 16 globally (5 days!)
+- **Myanmar/other regions** — most games available June 16 (4 days!)
+
+### 🆕 Minor June Calendar Additions (Previously Missed):
+| Game | Details | Date | Lounge Value |
+|------|---------|------|-------------|
+| 📸 **Saros** | Housemarque PS5 exclusive action roguelite | **Apr 30, 2026** (already out!) | ⭐⭐⭐⭐ — Returnal pedigree, PS5 showcase title |
+| 🎲 **Terrinoth: Heroes of Descent** | Fantasy board game adaptation | Jun 7 | ⭐⭐ |
+| ❄️ **Frostpunk 2: Breach of Trust** | Frostpunk 2 DLC/expansion | Jun TBD | ⭐⭐⭐ — Strategy fans |
+| 🌫️ **Vapor World: Over the Mind** | New indie | Jun TBD | ⭐⭐ |
+| 🔫 **Metal Shoot** | New indie shooter | Jun 1 | ⭐⭐ |
 
 ---
 
