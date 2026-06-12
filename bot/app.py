@@ -412,6 +412,12 @@ def main():
         ("console",     cmd_console_status),
         ("newbooking",     cmd_staff_booking),
         ("cancelbooking",  cmd_cancel_booking),
+        ("checkin",      cmd_checkin),
+        ("checkout",     cmd_checkout),
+        ("attendance",   cmd_attendance),
+        ("salary",       cmd_salary),
+        ("staff_status", cmd_staff_status),
+        ("staff_list",   cmd_staff_list),
     ]:
         app.add_handler(CommandHandler(cmd, fn))
 
@@ -442,6 +448,12 @@ def main():
             BotCommand("help",       "📖 Command list"),
             BotCommand("version",    "📦 Bot version info"),
             BotCommand("console",    "🕹️ Console live status"),
+            BotCommand("checkin",     "\u2705 Staff Check-in"),
+            BotCommand("checkout",    "\u274c Staff Check-out"),
+            BotCommand("attendance",  "\U0001f4cb Daily Attendance"),
+            BotCommand("salary",      "\U0001f4b0 Staff Salary"),
+            BotCommand("staff_status","\U0001f465 Staff Status"),
+            BotCommand("staff_list",  "\U0001f4dd Staff List"),
         ])
 
     # Chain post_init: set commands, then restore session reminders from disk
@@ -461,7 +473,7 @@ def main():
         """Log and suppress unhandled task exceptions to prevent bot crash."""
         msg = context.get("exception", context.get("message", "Unknown task error"))
         logging.error("Unhandled task exception: %s", msg, exc_info=context.get("exception"))
-    
+
     loop = asyncio.get_event_loop()
     loop.set_exception_handler(_handle_task_exception)
     loop.create_task(_bg_cache_refresh())
@@ -476,5 +488,3 @@ def main():
         timeout=30,
         drop_pending_updates=True,
     )
-
-

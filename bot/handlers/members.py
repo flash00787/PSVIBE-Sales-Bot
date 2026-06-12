@@ -12,7 +12,7 @@ from bot import (
     fetch_members, fetch_new_member_defaults, fetch_rank_table_display,
     fetch_rank_thresholds, fetch_staff, fetch_payment_methods, get_bonus_mins, get_receipt_kb,
     member_sh, next_member_id, next_member_row_no, next_write_row,
-    now_mmt, rank_emoji, save_receipt_json, show_main_menu, step_hdr,
+    now_mmt, rank_emoji, save_receipt_json, show_main_menu, STAFF_NOTIFY_CHAT, step_hdr,
     today_str, topup_sh, update_member_effective_rate,
     fetch_members_async,
     fetch_base_rate_async,
@@ -1387,6 +1387,18 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "balance_change": tu_mins, "balance_after": bal_mins,
     })
     receipt_kb = get_receipt_kb(tu_vid)
+
+    # Auto-send receipt to staff Telegram chat
+    receipt_data = {
+        "type": "topup", "voucher_id": tu_vid, "date": today,
+        "member_id": tu_id, "rank": r_saved, "amount": tu_amt,
+        "base_mins": tu_base, "bonus_mins": tu_bonus, "total_mins": tu_mins,
+        "kpay": tu_kpay, "cash": tu_cash, "phone": tu_phone,
+        "balance_mins": bal_mins, "prev_balance": prev_bal,
+        "balance_change": tu_mins, "balance_after": bal_mins,
+    }
+    asyncio.create_task(auto_generate_receipt(update, context, tu_vid, receipt_data))
+
     context.user_data.clear()
 
     # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
@@ -1489,6 +1501,60 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await show_main_menu(update, context)
 
 
+
+async def auto_generate_receipt(update: Update, context: ContextTypes.DEFAULT_TYPE, tu_vid: str, receipt_data: dict):
+    """Auto-send formatted receipt to staff Telegram chat after topup completion."""
+    try:
+        staff_chat_id = STAFF_NOTIFY_CHAT
+        if not staff_chat_id:
+            logging.warning("auto_receipt: STAFF_NOTIFY_CHAT not configured, skipping")
+            return
+
+        try:
+            chat_id = int(staff_chat_id)
+        except ValueError:
+            chat_id = staff_chat_id
+
+        shop_name = "PS VIBE Gaming Center"
+
+        rd = receipt_data
+        kpay = rd.get("kpay", 0) or 0
+        cash = rd.get("cash", 0) or 0
+        total_paid = kpay + cash
+
+        lines = [
+            f"\U0001f9fe *{shop_name}*",
+            f"\U0001f4c4 *Top-Up Receipt*",
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+            f"\U0001f4aa *Voucher:* `{tu_vid}`",
+            f"\U0001f464 *Member:* `{rd.get('member_id', 'N/A')}`",
+            f"\U0001f3d6 *Rank:* {rd.get('rank', 'N/A')}",
+            f"\U0001f4c5 *Date:* {rd.get('date', 'N/A')}",
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+            f"\U0001f4b0 *Amount:* {rd.get('amount', 0):,} Ks",
+            f"\u23f3 *Base Mins:* {rd.get('base_mins', 0):,}",
+            f"\U0001f381 *Bonus Mins:* +{rd.get('bonus_mins', 0):,}",
+            f"\U0001f525 *Total Mins:* {rd.get('total_mins', 0):,}",
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+            f"\U0001f4b3 *KPay:* {kpay:,} Ks",
+            f"\U0001f4b5 *Cash:* {cash:,} Ks",
+            f"\U0001f4b2 *Total Paid:* {total_paid:,} Ks",
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+            f"\U0001f4ca *Balance Before:* {rd.get('prev_balance', 0):,} mins",
+            f"\U0001f4c8 *Balance After:* {rd.get('balance_after', 0):,} mins",
+            f"\U0001f4de *Phone:* {rd.get('phone', '-')}",
+        ]
+
+        msg = "\n".join(lines)
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text=msg,
+            parse_mode="Markdown",
+        )
+        logging.info("auto_receipt: sent receipt %s to staff chat %s", tu_vid, staff_chat_id)
+    except Exception as e:
+        logging.error("auto_receipt: failed to send receipt %s: %s", tu_vid, e, exc_info=True)
+
 def _fmt_other_payments(payments):
     """Format payment methods beyond KPay/Cash into display string."""
     extras = []
@@ -1499,4 +1565,3 @@ def _fmt_other_payments(payments):
     if extras:
         return "\n" + "\n".join(extras)
     return ""
-

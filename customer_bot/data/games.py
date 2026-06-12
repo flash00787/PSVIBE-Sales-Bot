@@ -196,7 +196,7 @@ def _build_live_game_library_text(fetch_games_fn) -> str:
             genre   = info.get("genre", "")
             players = info.get("players", "")
             style   = info.get("style", "")
-            line = f"  • {title}"
+            line = f"  • {canonical}"
             if genre or players:
                 line += f" [{', '.join(x for x in (genre, players) if x)}]"
             if style:
@@ -205,4 +205,3 @@ def _build_live_game_library_text(fetch_games_fn) -> str:
         return "\n".join(lines)
     except Exception:
         return GAME_LIBRARY
-

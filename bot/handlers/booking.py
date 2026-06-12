@@ -439,7 +439,7 @@ async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Build game keyboard
     try:
         games = await fetch_games_async()
-        game_names = [g["title"] for g in games if g.get("title")][:30]
+        game_names = [g["title"] for g in games if g.get("title")]
     except Exception as e:
         logging.warning("Failed to fetch games for staff booking: %s", e)
         game_names = []
@@ -607,7 +607,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.pop("sbk_game", None)
         try:
             games = await fetch_games_async()
-            game_names = [g["title"] for g in games if g.get("title")][:30]
+            game_names = [g["title"] for g in games if g.get("title")]
         except Exception as e:
             logger.error("step_sbk_confirm: %s", e, exc_info=True)
             game_names = []
@@ -1211,7 +1211,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         _cancel_remind(cid, _remind_chat_id)   # clear any stale task for this console
         task = asyncio.create_task(
             _remind_loop(context.bot, _remind_chat_id, cid, member_id,
-                         planned_mins, end_t, delay_secs)
+                         planned_mins, end_t, delay_secs, getattr(update.effective_message, 'message_thread_id', 0))
         )
         _REMIND_TASKS[_remind_key(cid, _remind_chat_id)] = task
         timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {remind_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"

@@ -20,6 +20,7 @@ from .data.prompts import (
 )
 from . import api as _api
 from .ai import _ai_reply, _detect_ai_bypass, _build_faq_template
+from .faq_auto_reply import match_faq as _match_faq
 
 # ── Conversation States ───────────────────────────────────────────────────────
 (
@@ -524,7 +525,7 @@ async def cmd_balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    from .data.games import _is_real_game
+    from .data.games import _is_real_game, TITLE_ALIASES, TITLE_ALIASES, TITLE_ALIASES
     await update.message.reply_text("⏳ Game list ကြည့်နေတယ်...")
     await _api._cache_pop("games_full")
     games = await _api._fetch_games_full()
@@ -536,8 +537,10 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     def _is_shown_game(g: dict) -> bool:
         title  = (g.get("title")  or "").strip()
         st     = (g.get("status") or "").strip()
-        has_st = True  # MySQL: status="0" for all; accept all real games
-        return has_st and _is_real_game(title)
+        if not _is_real_game(title):
+            return False
+        # Skip "Not Installed" games
+        return True
 
     real_games = sorted(
         [g for g in games if _is_shown_game(g)],
@@ -555,7 +558,8 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     has_platform = bool(ps5_games or ps4_games)
 
     def _game_line(g: dict, indent: str = "  ") -> str:
-        title   = g.get("title", "-")
+        raw     = g.get("title", "-")
+        title   = TITLE_ALIASES.get(raw.lower(), raw)
         genre   = (g.get("genre")   or "").strip()
         players = (g.get("players") or "").strip()
         mp_icon = " 👥" if ("2" in players or "multi" in players.lower()) else ""
@@ -849,6 +853,12 @@ async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE
     if m:
         return await _text_cancel_booking(update, context, int(m.group(1)))
 
+# FAQ Auto-Reply -- DISABLED
+# faq_answer = _match_faq(text)
+# if faq_answer:
+#     await update.message.reply_text(faq_answer, parse_mode='HTML')
+#     return
+
     # Unknown free-text -> sentiment check -> Gemini AI
     # Skip AI for button texts, commands, and short non-question texts
     _skip_ai_patterns = [
@@ -984,7 +994,7 @@ async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="Markdown",
         )
         return
-    
+
     try:
         data = await _api._api_get(f"coupons/list?member_id={member_id}")
         coupons = []
@@ -997,7 +1007,7 @@ async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text("Failed to fetch coupons: " + str(e)[:100])
         return
-    
+
     if not coupons:
         await update.message.reply_text(
             "No CashBack Coupons yet.\n"
@@ -1005,14 +1015,14 @@ async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="Markdown",
         )
         return
-    
+
     lines = ["🎟️ *Your CashBack Coupons*"]
     for c in coupons:
         code = c.get("code") or c.get("coupon_code") or "?"
         balance = c.get("balance_minutes") or c.get("original_minutes") or 0
         expiry = c.get("expiry_date") or ""
         status = c.get("status") or "active"
-        
+
         if status == "active":
             icon = "✅ Active"
         elif status == "used":
@@ -1021,18 +1031,18 @@ async def cmd_my_coupons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             icon = "❌ Expired"
         else:
             icon = "❌ " + status
-        
+
         expiry_fmt = expiry[:10] if expiry else "N/A"
-        
+
         lines.append("")
         lines.append(f"🎫 *{code}*")
         lines.append(f"   {balance} mins remaining")
         lines.append(f"   Exp: {expiry_fmt}")
         lines.append(f"   Status: {icon}")
-    
+
     lines.append("")
     lines.append("💡 Show this code to staff to redeem!")
-    
+
     await update.message.reply_text(
         chr(10).join(lines),
         parse_mode="Markdown",

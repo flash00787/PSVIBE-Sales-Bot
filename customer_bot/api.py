@@ -283,6 +283,8 @@ async def _fetch_games_full() -> List[Any]:
                     "title":  g.get("game_title", ""),
                     "status": g.get("final_status", ""),
                     "genre":  g.get("genre", ""),
+                    "players": g.get("solo_multi", ""),
+                    "platform": "PS5",
                     "discs":  g.get("disc_count", ""),
                 })
     except ValueError as e:

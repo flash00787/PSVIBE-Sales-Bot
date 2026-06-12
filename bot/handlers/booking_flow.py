@@ -90,8 +90,7 @@ async def _is_session_active(cid: str) -> bool:
 
 async def _remind_loop(
     bot, chat_id: int, cid: str, member_id: str,
-    planned_mins: int, end_t: str, initial_delay: int,
-):
+    planned_mins: int, end_t: str, initial_delay: int, message_thread_id: int = 0,):
     """Fires reminder at initial_delay, then every 5 mins while session is still Active.
 
     IMPORTANT: The FIRST fire always sends (no active-check) so that edge cases
@@ -103,7 +102,7 @@ async def _remind_loop(
     _SESSION_END_TIMES[key] = end_t               # track current planned end time
     # Persist to disk so it survives bot restart
     _end_dt_iso = (now_mmt() + timedelta(minutes=planned_mins)).isoformat()
-    persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso)
+    persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id)
     # Guard: if this console is No Timer, don't run reminders
     if cid in _NO_TIMER_CONSOLES:
         logger.info("_remind_loop: %s is No Timer — exiting immediately", cid)
@@ -151,6 +150,7 @@ async def _remind_loop(
                 _remind_kb = _extend_timer_kb(cid, member_id, _target_chat)
                 await bot.send_message(
                     chat_id=_target_chat,
+                        message_thread_id=message_thread_id or None,
                     text=_remind_text,
                     parse_mode="HTML",
                     reply_markup=_remind_kb,
@@ -619,7 +619,7 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
     # Persist updated end time to disk (rem_mins ≈ remaining minutes)
     _persist_rem_mins = max(1, int(total_rem_secs / 60))
-    persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t, new_end_dt.isoformat())
+    persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t, new_end_dt.isoformat(), message_thread_id)
     # Skip timer if original session was No Timer
     if cid in _NO_TIMER_CONSOLES:
         has_remind = False
@@ -631,7 +631,7 @@ async def _do_extend(bot, query, cid: str, member_id: str,
         # Bot loop: fire at "5 min before end", then every 5 min
         task = asyncio.create_task(
             _remind_loop(bot, chat_id, cid, member_id,
-                         rem_mins, new_end_t, ext_delay)
+                         rem_mins, new_end_t, ext_delay, getattr(getattr(getattr(update, 'callback_query', None), 'message', None), 'message_thread_id', 0))
         )
         _REMIND_TASKS[_remind_key(cid, chat_id)] = task
 

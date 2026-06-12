@@ -30,3 +30,4 @@ from .stock import *  # noqa: F401,F403
 from .stock_in import *  # noqa: F401,F403
 from .waitlist import *  # noqa: F401,F403
 from .input_logger import *  # noqa: F401,F403
+from .staff_attendance_handler import *  # noqa: F401,F403

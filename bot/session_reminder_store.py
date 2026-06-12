@@ -70,18 +70,20 @@ def remind_key(cid: str, chat_id: int) -> str:
 def persist_reminder(
     cid: str, chat_id: int, member_id: str,
     planned_mins: int, end_t: str, end_dt_iso: str,
+    message_thread_id: int = 0,
 ) -> None:
     """Save / update a single reminder entry to the JSON store."""
     key = remind_key(cid, chat_id)
     store = _read_store()
     store[key] = {
-        "cid":          cid,
-        "chat_id":      chat_id,
-        "member_id":    member_id,
-        "planned_mins": planned_mins,
-        "end_t":        end_t,
-        "end_dt_iso":   end_dt_iso,
-        "updated_at":   datetime.now(timezone.utc).isoformat(),
+        "cid":               cid,
+        "chat_id":           chat_id,
+        "member_id":         member_id,
+        "planned_mins":      planned_mins,
+        "end_t":             end_t,
+        "end_dt_iso":        end_dt_iso,
+        "message_thread_id": message_thread_id,
+        "updated_at":        datetime.now(timezone.utc).isoformat(),
     }
     _write_store(store)
 
@@ -176,8 +178,9 @@ async def restore_reminders_async(app) -> None:
             "reminder_store restoring: %s | %s | end=%s | delay=%ds",
             cid, member_id, end_t, delay,
         )
+        _mtid = entry.get("message_thread_id", 0)
         task = asyncio.get_event_loop().create_task(
-            _remind_loop(bot, chat_id, cid, member_id, planned, end_t, delay)
+            _remind_loop(bot, chat_id, cid, member_id, planned, end_t, delay, _mtid)
         )
         _REMIND_TASKS[_remind_key(cid, chat_id)] = task
         restored += 1

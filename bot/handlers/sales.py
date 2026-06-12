@@ -1674,6 +1674,15 @@ async def launch_session_sale(
             return await prompt_adjust_time(update, context)
         return await prompt_food_menu(update, context)
 
+    # Booking customer - skip wallet check
+    if booking_id:
+        context.user_data["game_amt"] = 0
+        if (context.user_data.get("from_session")
+                and context.user_data.get("c_id")
+                and context.user_data.get("mins", 0) > 0):
+            return await prompt_adjust_time(update, context)
+        return await prompt_food_menu(update, context)
+
     # Member — check wallet balance
     try:
         wallet_balance = await fetch_wallet_mins_async(member_id) or 0
