@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-11T21:37:30Z",
+  "updated": "2026-06-12T09:38:11Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -282,6 +282,12 @@
     },
     {
       "source": "boss",
+      "target": "github",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "gmail-api",
       "relation": "uses",
       "weight": 5
@@ -318,6 +324,12 @@
     },
     {
       "source": "boss",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "priority-memory",
       "relation": "implements",
       "weight": 5
@@ -344,6 +356,12 @@
       "source": "boss",
       "target": "synergy-hub",
       "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "vps",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -578,6 +596,12 @@
       "source": "kora",
       "target": "memory-upgrade",
       "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "openclaw",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -1842,12 +1866,6 @@
     },
     {
       "source": "boss",
-      "target": "github",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "google-drive-api",
       "relation": "uses",
       "weight": 3
@@ -1891,12 +1909,6 @@
     {
       "source": "boss",
       "target": "oauth2",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },
@@ -1957,12 +1969,6 @@
     {
       "source": "boss",
       "target": "telegram",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "vps",
       "relation": "uses",
       "weight": 3
     },
@@ -5197,12 +5203,6 @@
     {
       "source": "kora",
       "target": "oauth2",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },

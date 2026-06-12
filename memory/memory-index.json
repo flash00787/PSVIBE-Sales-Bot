@@ -1,7 +1,32 @@
 {
   "version": 1,
-  "updated": "2026-06-11T21:37:30.306951+00:00",
+  "updated": "2026-06-12T09:38:03.759508+00:00",
   "entries": [
+    {
+      "topic": "\"Not Installed\" filter removed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 28,
+          "context": "- **\"Not Installed\" filter removed:** `_is_shown_game()` cleaned — all 41 games now show - **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 78,
+          "context": "- **\"Not Installed\" filter removed:** `_is_shown_game()` cleaned — all 41 games now show - **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 160,
+          "context": "- **\"Not Installed\" filter removed:** `_is_shown_game()` cleaned — all 41 games now show - **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 316,
+          "context": "- **\"Not Installed\" filter removed:** `_is_shown_game()` cleaned — all 41 games now show - **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES`"
+        }
+      ]
+    },
     {
       "topic": "-264.3M",
       "files": [
@@ -79,6 +104,26 @@
           "path": "memory/2026-06-08.md",
           "line": 96,
           "context": "- GSheet cron (`*/5 * * * * run_sync.sh`) disabled — system is **100% MySQL-only** - Added `GET /api/dashboard/topups` endpoint (previously missing — page was empty)"
+        }
+      ]
+    },
+    {
+      "topic": "100+ games",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 445,
+          "context": "5. **100+ games** — Clarify if games were lost during import or original count included non-game items 6. **n8n payment (€25.68)** — 2nd notice received, payment pending"
+        }
+      ]
+    },
+    {
+      "topic": "100+ Games Discrepancy",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 417,
+          "context": "## 100+ Games Discrepancy - `games_library` has only 41 games"
         }
       ]
     },
@@ -803,6 +848,31 @@
       ]
     },
     {
+      "topic": "AI prompt game names fixed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 29,
+          "context": "- **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES` - **`text` variable bug fixed:** `handlers.py` FAQ check before text assignment fixed"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 79,
+          "context": "- **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES` - **`text` variable bug fixed:** `handlers.py` FAQ check before text assignment fixed"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 161,
+          "context": "- **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES` - **`text` variable bug fixed:** `handlers.py` FAQ check before text assignment fixed"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 317,
+          "context": "- **AI prompt game names fixed:** `_build_live_game_library_text()` uses canonical name from `TITLE_ALIASES` - **`text` variable bug fixed:** `handlers.py` FAQ check before text assignment fixed"
+        }
+      ]
+    },
+    {
       "topic": "All 11 Fix Items — Status",
       "files": [
         {
@@ -1003,12 +1073,32 @@
       ]
     },
     {
+      "topic": "API proxy",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 394,
+          "context": "- **API proxy** added at `/root/psvibe_api_server/app.py` lines 3021+ — `/shell/` route proxies to ws://localhost:8888 - **Verified:** `localhost:8000/shell` → 200, `https://ps-vibe.com/shell/` → 200"
+        }
+      ]
+    },
+    {
       "topic": "API restarted",
       "files": [
         {
           "path": "memory/2026-06-08.md",
           "line": 11,
           "context": "- **API restarted** ✅"
+        }
+      ]
+    },
+    {
+      "topic": "API Server",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 493,
+          "context": "- **API Server** — `Feat: web shell proxy, dashboard routes, utility modules` (7 files) - Both repos: 0 uncommitted files"
         }
       ]
     },
@@ -1283,12 +1373,57 @@
       ]
     },
     {
+      "topic": "Booking Check-in — \"Member Format\" Fix",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 32,
+          "context": "## Booking Check-in — \"Member Format\" Fix - **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" (Top Up/Cash Down/Skip) screen"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 97,
+          "context": "## Booking Check-in — \"Member Format\" Fix - **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" (Top Up/Cash Down/Skip) screen"
+        }
+      ]
+    },
+    {
+      "topic": "Booking Check-in — Wallet Skip",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 173,
+          "context": "## Booking Check-in — Wallet Skip - **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" screen"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 329,
+          "context": "## Booking Check-in — Wallet Skip - **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" screen"
+        }
+      ]
+    },
+    {
       "topic": "Booking Confirm → Notify Customer",
       "files": [
         {
           "path": "memory/fix-history.md",
           "line": 128,
           "context": "### Booking Confirm → Notify Customer - **SHA:** `6e3c556`"
+        }
+      ]
+    },
+    {
+      "topic": "Booking customers should skip wallet check",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 285,
+          "context": "4. **Booking customers should skip wallet check** — they pay at booking time, not at session-end 5. **disc_count values are intentional** — don't \"fix\" them without explicit Boss confirmation"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 477,
+          "context": "4. **Booking customers should skip wallet check** — they pay at booking time, not at session-end 5. **disc_count values are intentional** — don't \"fix\" them without explicit Boss confirmation"
         }
       ]
     },
@@ -1313,6 +1448,21 @@
       ]
     },
     {
+      "topic": "Booking Game Selection — Missing Games (`[:30]` Limit)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 222,
+          "context": "## Booking Game Selection — Missing Games (`[:30]` Limit) - **Issue:** Osmo reported game selection screen missing some games during session start"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 378,
+          "context": "## Booking Game Selection — Missing Games (`[:30]` Limit) - **Issue:** Osmo reported game selection screen missing some games during session start"
+        }
+      ]
+    },
+    {
       "topic": "Booking timeout",
       "files": [
         {
@@ -1329,6 +1479,81 @@
           "path": "memory/fix-history.md",
           "line": 122,
           "context": "### Booking ↔ Console Status Link - **SHA:** `941d0a5`"
+        }
+      ]
+    },
+    {
+      "topic": "Boss explicitly said:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 180,
+          "context": "- **Boss explicitly said:** Do NOT modify disc counts. FC 26 disc_count=10 is correct. - Reverted back to 10."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 336,
+          "context": "- **Boss explicitly said:** Do NOT modify disc counts. FC 26 disc_count=10 is correct. - Reverted back to 10."
+        }
+      ]
+    },
+    {
+      "topic": "Boss prefers CMD solution over Web SSH",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 409,
+          "context": "- **Boss prefers CMD solution over Web SSH**"
+        }
+      ]
+    },
+    {
+      "topic": "Boss provided:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 13,
+          "context": "- **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP - **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 63,
+          "context": "- **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP - **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 145,
+          "context": "- **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP - **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 301,
+          "context": "- **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP - **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        }
+      ]
+    },
+    {
+      "topic": "Boss reports:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 215,
+          "context": "- **Boss reports:** Reminders not arriving in staff group - **Investigation:** Staff group may have Forum/topics mode enabled"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 371,
+          "context": "- **Boss reports:** Reminders not arriving in staff group - **Investigation:** Staff group may have Forum/topics mode enabled"
+        }
+      ]
+    },
+    {
+      "topic": "Boss tested and got through",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 396,
+          "context": "- **Boss tested and got through** — Web SSH works via browser - **Limitation:** Boss wants CMD SSH, not web-based"
         }
       ]
     },
@@ -1559,6 +1784,21 @@
           "path": "memory/booking-features-plan.md",
           "line": 701,
           "context": "4. **Cache consideration:** `_fetch_consoles()` has a 300s cache. For real-time console selection, we may want to invalidate or use a shorter TTL. However, since the booking creates a \"pending\" status"
+        }
+      ]
+    },
+    {
+      "topic": "Can't modify disc_count",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 265,
+          "context": "- **Can't modify disc_count** — Boss explicitly prohibited; FC 26 disc_count=10 is intentional"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 455,
+          "context": "- **Can't modify disc_count** — Boss explicitly prohibited; FC 26 disc_count=10 is intentional - **IP unreachable not just port blocked** — ping also fails, so it's routing/filtering, not DPI"
         }
       ]
     },
@@ -1828,6 +2068,26 @@
       ]
     },
     {
+      "topic": "Cloudflare API Token",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 132,
+          "context": "- **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matching token IP restriction # 2026-06-12 Daily Log"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 263,
+          "context": "- **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matching token IP restriction - **Timezone reminder:** ALL timestamps UTC unless noted. Boss is UTC+6:30 (Myanmar)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 453,
+          "context": "- **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matching token IP restriction - **Timezone reminder:** ALL timestamps UTC unless noted. Boss is UTC+6:30 (Myanmar)"
+        }
+      ]
+    },
+    {
       "topic": "Cloudflare Tunnel:",
       "files": [
         {
@@ -1844,6 +2104,41 @@
           "path": "memory/project-state.md",
           "line": 74,
           "context": "- **Cloudflare:** `ps-vibe.com` → Cloudflare tunnel → localhost:8000"
+        }
+      ]
+    },
+    {
+      "topic": "cloudflared access tcp",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 398,
+          "context": "- **cloudflared access tcp** suggested as workaround for CMD-based SSH"
+        }
+      ]
+    },
+    {
+      "topic": "CMD SSH",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 50,
+          "context": "2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass # 2026-06-12 Daily Log"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 126,
+          "context": "2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass 3. **God of War Ragnarök encoding** — Only handled via LIKE; if library column encoding is fixed, console_games may need s"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 253,
+          "context": "2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass 3. **God of War Ragnarök encoding** — Only handled via LIKE; clean fix needed if encoding corrected"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 441,
+          "context": "1. **CMD SSH** — IP 5.223.81.16 completely unreachable from Boss's Myanmar ISP. Solutions: cloudflared access tcp, VPN, or direct IP fix 2. **God of War Ragnarök encoding** — Only handled via LIKE; cl"
         }
       ]
     },
@@ -1958,6 +2253,31 @@
       ]
     },
     {
+      "topic": "Conclusion:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 6,
+          "context": "- **Conclusion:** ISP doing Deep Packet Inspection (DPI) blocking SSH protocol regardless of port - **Solutions tried:**"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 56,
+          "context": "- **Conclusion:** ISP doing Deep Packet Inspection (DPI) blocking SSH protocol regardless of port - **Solutions tried:**"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 138,
+          "context": "- **Conclusion:** ISP doing Deep Packet Inspection (DPI) blocking SSH protocol regardless of port - **Solutions tried:**"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 294,
+          "context": "- **Conclusion:** ISP doing Deep Packet Inspection (DPI) blocking SSH protocol regardless of port - **Solutions tried:**"
+        }
+      ]
+    },
+    {
       "topic": "Config",
       "files": [
         {
@@ -2034,6 +2354,31 @@
           "path": "memory/booking-features-plan.md",
           "line": 73,
           "context": "### console_booking table ```sql"
+        }
+      ]
+    },
+    {
+      "topic": "console_games Table — 68 rows updated",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 21,
+          "context": "### console_games Table — 68 rows updated - After fixing `games_library`, Boss reported console data \"not reading\""
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 71,
+          "context": "### console_games Table — 68 rows updated - After fixing `games_library`, Boss reported console data \"not reading\""
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 153,
+          "context": "### console_games Table — 68 rows updated - After fixing `games_library`, Boss reported console data \"not reading\""
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 309,
+          "context": "### console_games Table — 68 rows updated - After fixing `games_library`, Boss reported console data \"not reading\""
         }
       ]
     },
@@ -2283,6 +2628,21 @@
       ]
     },
     {
+      "topic": "Cron interval changes need patience",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 287,
+          "context": "6. **Cron interval changes need patience** — check after 1 cycle to confirm before marking done 7. **Staff group Forum mode** — if group has topics, messages without message_thread_id go to General to"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 479,
+          "context": "6. **Cron interval changes need patience** — check after 1 cycle to confirm before marking done 7. **Staff group Forum mode** — if group has topics, messages without message_thread_id go to General to"
+        }
+      ]
+    },
+    {
       "topic": "Cross-Bot Batching",
       "files": [
         {
@@ -2339,6 +2699,31 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 44,
           "context": "### Customer Bot (`customer_bot/`) | File | Purpose |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot Code Fixes",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 26,
+          "context": "### Customer Bot Code Fixes - **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 76,
+          "context": "### Customer Bot Code Fixes - **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 158,
+          "context": "### Customer Bot Code Fixes - **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 314,
+          "context": "### Customer Bot Code Fixes - **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2)"
         }
       ]
     },
@@ -2413,6 +2798,31 @@
       ]
     },
     {
+      "topic": "Dashboard API Structure",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 227,
+          "context": "## Dashboard API Structure - Dashboard frontend: SPA at `dashboard-dist/` (Vue/React bundle)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 383,
+          "context": "## Dashboard API Structure - Dashboard frontend: SPA at `dashboard-dist/` (Vue/React bundle)"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard API Structure (Discovered)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 104,
+          "context": "## Dashboard API Structure (Discovered) - Dashboard frontend: SPA at `dashboard-dist/` (Vue/React bundle)"
+        }
+      ]
+    },
+    {
       "topic": "Dashboard data",
       "files": [
         {
@@ -2429,6 +2839,76 @@
           "path": "memory/project-state.md",
           "line": 17,
           "context": "| 6 | **Dashboard Food Stock Split** — 4 pages (Menu Reg, Stock In/Out, Inventory) | ✅ | | 7 | **Menu Register save** — `rowcount`→`lastrowid`, hardcoded filter | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard format confirmed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 95,
+          "context": "- **Dashboard format confirmed:** JS code at `/dashboard-dist/assets/GamesLibrary-CVkz9uC8.js` shows only 4 valid statuses: Available, Damaged, Lost, In Use"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard Games Library Fix",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 164,
+          "context": "## Dashboard Games Library Fix - **Issue:** Dashboard's Games section showed wrong install status + install location"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 320,
+          "context": "## Dashboard Games Library Fix - **Issue:** Dashboard's Games section showed wrong install status + install location"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard Games Library Fix (+ Added)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 82,
+          "context": "## Dashboard Games Library Fix (+ Added) - **Issue:** Dashboard's Games section showed wrong install status + install location"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard JS only supports 4 statuses",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 282,
+          "context": "1. **Dashboard JS only supports 4 statuses** — future frontend changes must stay within Available/Damaged/Lost/In Use 2. **SSH over non-standard port still detected by ISP DPI** — SSH protocol handsha"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 474,
+          "context": "1. **Dashboard JS only supports 4 statuses** — future frontend changes must stay within Available/Damaged/Lost/In Use 2. **SSH over non-standard port still detected by ISP DPI** — SSH protocol handsha"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard only supports 4 statuses",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 130,
+          "context": "- **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use - **games_library vs console_games** — Two independent tables; names must match between both for que"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 261,
+          "context": "- **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use - **games_library vs console_games** — Two independent tables; names must match between both for que"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 451,
+          "context": "- **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use - **games_library vs console_games** — Two independent tables; names must match between both for que"
         }
       ]
     },
@@ -2633,6 +3113,21 @@
       ]
     },
     {
+      "topic": "disc_count values are intentional",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 286,
+          "context": "5. **disc_count values are intentional** — don't \"fix\" them without explicit Boss confirmation 6. **Cron interval changes need patience** — check after 1 cycle to confirm before marking done"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 478,
+          "context": "5. **disc_count values are intentional** — don't \"fix\" them without explicit Boss confirmation 6. **Cron interval changes need patience** — check after 1 cycle to confirm before marking done"
+        }
+      ]
+    },
+    {
       "topic": "Discount → Apply Coupon",
       "files": [
         {
@@ -2649,6 +3144,31 @@
           "path": "memory/2026-06-08.md",
           "line": 108,
           "context": "- **Disposal record reversed** — `Game Discs` (id=3) disposed_qty=3 → 0; `asset_disposals` table now empty (was test data from disposal feature dev)"
+        }
+      ]
+    },
+    {
+      "topic": "DNS needed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 12,
+          "context": "- **DNS needed:** `shell.ps-vibe.com` CNAME → tunnel still needs Public Hostname config in Zero Trust dashboard - **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 62,
+          "context": "- **DNS needed:** `shell.ps-vibe.com` CNAME → tunnel still needs Public Hostname config in Zero Trust dashboard - **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 144,
+          "context": "- **DNS needed:** `shell.ps-vibe.com` CNAME → tunnel still needs Public Hostname config in Zero Trust dashboard - **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 300,
+          "context": "- **DNS needed:** `shell.ps-vibe.com` CNAME → tunnel still needs Public Hostname config in Zero Trust dashboard - **Boss provided:** Cloudflare API Token (`cfut_2su...`) but server IP masked by WARP"
         }
       ]
     },
@@ -2783,6 +3303,26 @@
       ]
     },
     {
+      "topic": "Entire IP can be unreachable (not just port)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 481,
+          "context": "8. **Entire IP can be unreachable (not just port)** — when ping also fails, it's routing/ISP-level blocking, not DPI 9. **Web SSH works even when direct SSH doesn't** — cloudflare tunnel + HTTPS bypas"
+        }
+      ]
+    },
+    {
+      "topic": "ERROR_PATTERNS.md Restored",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 496,
+          "context": "### ERROR_PATTERNS.md Restored - Created at `memory/ERROR_PATTERNS.md` + `/root/coordination/ERROR_PATTERNS.md`"
+        }
+      ]
+    },
+    {
       "topic": "Estimate Accuracy Tracker",
       "files": [
         {
@@ -2908,6 +3448,41 @@
       ]
     },
     {
+      "topic": "FAQ Auto-Reply — Disabled",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 411,
+          "context": "## FAQ Auto-Reply — Disabled - Boss requested FAQ temporarily disabled due to wrong game info (100+ games claim vs 41 actual)"
+        }
+      ]
+    },
+    {
+      "topic": "FAQ intercept fix:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 27,
+          "context": "- **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2) - **\"Not Installed\" filter removed:** `_is_sh"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 77,
+          "context": "- **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2) - **\"Not Installed\" filter removed:** `_is_sh"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 159,
+          "context": "- **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2) - **\"Not Installed\" filter removed:** `_is_sh"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 315,
+          "context": "- **FAQ intercept fix:** Moved `_match_faq()` check AFTER button routing in `handle_menu_buttons()` (was intercepting \"Game Library\" button with score ≥2) - **\"Not Installed\" filter removed:** `_is_sh"
+        }
+      ]
+    },
+    {
       "topic": "FastAPI response_model Silently Strips Fields (2026-06-05)",
       "files": [
         {
@@ -2934,6 +3509,21 @@
           "path": "memory/2026-06-05.md",
           "line": 381,
           "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
+        }
+      ]
+    },
+    {
+      "topic": "FC 26 disc_count — Reverted to 10",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 178,
+          "context": "## FC 26 disc_count — Reverted to 10 - Earlier fix changed FC 26 disc_count=10 → 1 (assumed typo)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 334,
+          "context": "## FC 26 disc_count — Reverted to 10 - Earlier fix changed FC 26 disc_count=10 → 1 (assumed typo)"
         }
       ]
     },
@@ -3181,6 +3771,16 @@
           "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
         },
         {
+          "path": "memory/2026-06-12.md",
+          "line": 36,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` — inserted at line 1677 - **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 101,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` — inserted at line 1684 - **Sales Bot** restarted successfully"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/home/node/.openclaw/openclaw.json`"
@@ -3264,6 +3864,21 @@
           "path": "memory/2026-06-05.md",
           "line": 118,
           "context": "### Files Modified (Final Session Inventory) - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified (June 12 session)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 267,
+          "context": "## Files Modified (June 12 session) - `/root/psvibe-sales-bot/customer_bot/handlers.py` — FAQ intercept fix, text var fix"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 458,
+          "context": "## Files Modified (June 12 session) - `/root/psvibe-sales-bot/customer_bot/handlers.py` — FAQ intercept fix, text var fix, FAQ disable"
         }
       ]
     },
@@ -3408,12 +4023,37 @@
       ]
     },
     {
+      "topic": "Fix (sync_game_status.py → fix_games_library_status.py):",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 88,
+          "context": "- **Fix (sync_game_status.py → fix_games_library_status.py):** 1. Queried console_games for all actually-installed games"
+        }
+      ]
+    },
+    {
       "topic": "Fix Applied",
       "files": [
         {
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 26,
           "context": "## Fix Applied"
+        }
+      ]
+    },
+    {
+      "topic": "Fix applied to 3 files:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 198,
+          "context": "**Fix applied to 3 files:** 1. `booking_flow.py` — `_remind_loop` accepts `message_thread_id` param, passes to `send_message`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 354,
+          "context": "**Fix applied to 3 files:** 1. `booking_flow.py` — `_remind_loop` accepts `message_thread_id` param, passes to `send_message`"
         }
       ]
     },
@@ -3671,6 +4311,46 @@
           "context": "- **Fix**: Need to delete that drop-in file via Hetzner Web Console - Resolution: Postponed to morning (Boss said \"မနက်ကျမှ လုပ်တော့မယ်\")"
         },
         {
+          "path": "memory/2026-06-12.md",
+          "line": 35,
+          "context": "- **Fix:** Added `if booking_id:` check before wallet check — booking sessions skip wallet check and go directly to sales voucher - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` — inserted "
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 100,
+          "context": "- **Fix:** Added `if booking_id:` check before wallet check — booking sessions skip wallet check and go directly to sales voucher - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` — inserted "
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 168,
+          "context": "- **Fix:** `fix_games_library_status.py` updated 41 rows to Dashboard-compatible values: - Games on any console → `In Use`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 175,
+          "context": "- **Fix:** Added `if booking_id:` guard in `launch_session_sale()` (sales.py line 1677) to skip wallet check for booking customers - **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 192,
+          "context": "- **Fix:** Changed thread ID to `\"125192\"` (current active thread). Added `bestEffort: true`."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 324,
+          "context": "- **Fix:** `fix_games_library_status.py` updated 41 rows to Dashboard-compatible values: - Games on any console → `In Use`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 331,
+          "context": "- **Fix:** Added `if booking_id:` guard in `launch_session_sale()` (sales.py line 1677) to skip wallet check for booking customers - **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 348,
+          "context": "- **Fix:** Changed thread ID to `\"125192\"` (current active thread). Added `bestEffort: true`."
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -3918,6 +4598,31 @@
       ]
     },
     {
+      "topic": "Game Library Fix (Customer Bot)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 16,
+          "context": "## Game Library Fix (Customer Bot) ### MySQL Game Titles — 23 corrected in `games_library`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 66,
+          "context": "## Game Library Fix (Customer Bot) ### MySQL Game Titles — 23 corrected in `games_library`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 148,
+          "context": "## Game Library Fix (Customer Bot) ### MySQL Game Titles — 23 corrected in `games_library`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 304,
+          "context": "## Game Library Fix (Customer Bot) ### MySQL Game Titles — 23 corrected in `games_library`"
+        }
+      ]
+    },
+    {
       "topic": "Game Library v2",
       "files": [
         {
@@ -3954,6 +4659,26 @@
           "path": "memory/2026-06-10.md",
           "line": 82,
           "context": "### Games with Poster+Gameplay GTA 5, Tekken 8, Devil May Cry 5, Mortal Kombat, Elden Ring, Horizon Forbidden West,"
+        }
+      ]
+    },
+    {
+      "topic": "games_library vs console_games",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 131,
+          "context": "- **games_library vs console_games** — Two independent tables; names must match between both for queries to work - **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matc"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 262,
+          "context": "- **games_library vs console_games** — Two independent tables; names must match between both for queries to work - **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matc"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 452,
+          "context": "- **games_library vs console_games** — Two independent tables; names must match between both for queries to work - **Cloudflare API Token** — Token valid but server's WARP IP (104.28.163.33), not matc"
         }
       ]
     },
@@ -4008,8 +4733,18 @@
       ]
     },
     {
-      "topic": "GitHub Deploy Failing",
+      "topic": "GitHub Deploy failing",
       "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 258,
+          "context": "7. **GitHub Deploy failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 447,
+          "context": "7. **GitHub Deploy failing** — PSVIBE-API-Server master branch deploy workflow failing 8. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels"
+        },
         {
           "path": "MEMORY.md",
           "line": 127,
@@ -4124,6 +4859,26 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 54,
           "context": "**Goal:** Auto-cancel bookings if customer doesn't check in within 15 minutes of booking time."
+        }
+      ]
+    },
+    {
+      "topic": "God of War Ragnarök encoding",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 127,
+          "context": "3. **God of War Ragnarök encoding** — Only handled via LIKE; if library column encoding is fixed, console_games may need separate update"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 254,
+          "context": "3. **God of War Ragnarök encoding** — Only handled via LIKE; clean fix needed if encoding corrected 4. **Booking game selection `[:30]` limit** — Remove/increase limit so all 41 games show"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 442,
+          "context": "2. **God of War Ragnarök encoding** — Only handled via LIKE; clean fix needed if encoding corrected 3. **Booking game selection `[:30]` limit** — Remove/increase limit so all 41 games show"
         }
       ]
     },
@@ -4518,6 +5273,31 @@
       ]
     },
     {
+      "topic": "Investigation:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 216,
+          "context": "- **Investigation:** Staff group may have Forum/topics mode enabled - Kora sent test message to group and it arrived ✅ (group not dead)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 372,
+          "context": "- **Investigation:** Staff group may have Forum/topics mode enabled - Kora sent test message to group and it arrived ✅ (group not dead)"
+        }
+      ]
+    },
+    {
+      "topic": "IP unreachable not just port blocked",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 456,
+          "context": "- **IP unreachable not just port blocked** — ping also fails, so it's routing/filtering, not DPI"
+        }
+      ]
+    },
+    {
       "topic": "Issue 1",
       "files": [
         {
@@ -4618,6 +5398,66 @@
       ]
     },
     {
+      "topic": "Issue:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 33,
+          "context": "- **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" (Top Up/Cash Down/Skip) screen - **Root cause:** `launch_session_sale()` in `sales.py` checks `wal"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 83,
+          "context": "- **Issue:** Dashboard's Games section showed wrong install status + install location - **Root cause analysis:** `final_status` column in `games_library` had wrong/obsolete values:"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 98,
+          "context": "- **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" (Top Up/Cash Down/Skip) screen - **Root cause:** `launch_session_sale()` in `sales.py` checks `wal"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 165,
+          "context": "- **Issue:** Dashboard's Games section showed wrong install status + install location - **Root cause:** `final_status` column in `games_library` had wrong/obsolete values (console IDs like \"C-01, C-04"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 174,
+          "context": "- **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" screen - **Fix:** Added `if booking_id:` guard in `launch_session_sale()` (sales.py line 1677) to "
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 190,
+          "context": "- **Issue:** Reminders going to wrong topic/thread in staff group - **Root cause:** `threadId: \"125454\"` (wrong thread for current conversation)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 223,
+          "context": "- **Issue:** Osmo reported game selection screen missing some games during session start - **Root cause:** `booking.py` has `games_list[:30]` limit — last 11 games (Tekken 8, The Witcher 3, Split Fict"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 321,
+          "context": "- **Issue:** Dashboard's Games section showed wrong install status + install location - **Root cause:** `final_status` column in `games_library` had wrong/obsolete values (console IDs like \"C-01, C-04"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 330,
+          "context": "- **Issue:** Booking customer session-end triggers wallet balance check → shows \"Wallet insufficient\" screen - **Fix:** Added `if booking_id:` guard in `launch_session_sale()` (sales.py line 1677) to "
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 346,
+          "context": "- **Issue:** Reminders going to wrong topic/thread in staff group - **Root cause:** `threadId: \"125454\"` (wrong thread for current conversation)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 379,
+          "context": "- **Issue:** Osmo reported game selection screen missing some games during session start - **Root cause:** `booking.py` has `games_list[:30]` limit — last 11 games (Tekken 8, The Witcher 3, Split Fict"
+        }
+      ]
+    },
+    {
       "topic": "Issues Found & Fixed",
       "files": [
         {
@@ -4703,6 +5543,26 @@
       ]
     },
     {
+      "topic": "Key Technical Notes",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 129,
+          "context": "## Key Technical Notes - **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 260,
+          "context": "## Key Technical Notes - **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 450,
+          "context": "## Key Technical Notes - **Dashboard only supports 4 statuses** — `final_status` must be: Available, Damaged, Lost, In Use"
+        }
+      ]
+    },
+    {
       "topic": "Knowledge Graph:",
       "files": [
         {
@@ -4768,6 +5628,21 @@
       ]
     },
     {
+      "topic": "Kora Smart-Reminder — Thread Fixed",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 189,
+          "context": "## Kora Smart-Reminder — Thread Fixed - **Issue:** Reminders going to wrong topic/thread in staff group"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 345,
+          "context": "## Kora Smart-Reminder — Thread Fixed - **Issue:** Reminders going to wrong topic/thread in staff group"
+        }
+      ]
+    },
+    {
       "topic": "Kora Tools Upgraded:",
       "files": [
         {
@@ -4814,6 +5689,16 @@
           "path": "memory/session-memory.md",
           "line": 3,
           "context": "**Last Updated:** 2026-05-30 15:48 UTC"
+        }
+      ]
+    },
+    {
+      "topic": "Late Session (09:27-09:35 UTC) — Priority Tasks",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 484,
+          "context": "## Late Session (09:27-09:35 UTC) — Priority Tasks"
         }
       ]
     },
@@ -4943,6 +5828,16 @@
       ]
     },
     {
+      "topic": "Limitation:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 397,
+          "context": "- **Limitation:** Boss wants CMD SSH, not web-based - **cloudflared access tcp** suggested as workaround for CMD-based SSH"
+        }
+      ]
+    },
+    {
       "topic": "Lock Monitor Updates (2026-06-02)",
       "files": [
         {
@@ -4969,6 +5864,21 @@
           "path": "memory/2026-06-06.md",
           "line": 29,
           "context": "### Logs - VPS Monitor Alert Check at 02:01 UTC → NO ALERTS (all services active, health OK)"
+        }
+      ]
+    },
+    {
+      "topic": "Low Stock Alert — Frequency Reduced",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 183,
+          "context": "## Low Stock Alert — Frequency Reduced - Previous: `*/30 * * * *` (every 30 min → spam in staff group)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 339,
+          "context": "## Low Stock Alert — Frequency Reduced - Previous: `*/30 * * * *` (every 30 min → spam in staff group)"
         }
       ]
     },
@@ -5074,6 +5984,21 @@
           "path": "memory/bug-patterns.md",
           "line": 16,
           "context": "## Member Console Multiplier (FIXED) - Members always got 1.0x. Added `fetch_console_multiplier()` for non-guest members."
+        }
+      ]
+    },
+    {
+      "topic": "Memo for future fix:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 225,
+          "context": "- **Memo for future fix:** Remove or increase the `[:30]` slice in booking.py game selection handler"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 381,
+          "context": "- **Memo for future fix:** Remove or increase the `[:30]` slice in booking.py game selection handler"
         }
       ]
     },
@@ -5238,6 +6163,31 @@
       ]
     },
     {
+      "topic": "MySQL Game Titles — 23 corrected in `games_library`",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 17,
+          "context": "### MySQL Game Titles — 23 corrected in `games_library` - Fixed misspelled titles at source (e.g., \"Elder Ring\" → \"Elden Ring\", \"Sprit Fiction\" → \"Split Fiction\")"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 67,
+          "context": "### MySQL Game Titles — 23 corrected in `games_library` - Fixed misspelled titles at source (e.g., \"Elder Ring\" → \"Elden Ring\", \"Sprit Fiction\" → \"Split Fiction\")"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 149,
+          "context": "### MySQL Game Titles — 23 corrected in `games_library` - Fixed misspelled titles at source (e.g., \"Elder Ring\" → \"Elden Ring\", \"Sprit Fiction\" → \"Split Fiction\")"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 305,
+          "context": "### MySQL Game Titles — 23 corrected in `games_library` - Fixed misspelled titles at source (e.g., \"Elder Ring\" → \"Elden Ring\", \"Sprit Fiction\" → \"Split Fiction\")"
+        }
+      ]
+    },
+    {
       "topic": "MySQL-GSheet Sync Deletion Gap (KNOWN)",
       "files": [
         {
@@ -5273,8 +6223,18 @@
       ]
     },
     {
-      "topic": "n8n Payment (€25.68)",
+      "topic": "n8n payment (€25.68)",
       "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 257,
+          "context": "6. **n8n payment (€25.68)** — 2nd notice received, payment pending 7. **GitHub Deploy failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 446,
+          "context": "6. **n8n payment (€25.68)** — 2nd notice received, payment pending 7. **GitHub Deploy failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
         {
           "path": "MEMORY.md",
           "line": 126,
@@ -5413,6 +6373,16 @@
       ]
     },
     {
+      "topic": "New finding:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 401,
+          "context": "- **New finding:** `ping 5.223.81.16` → all packets lost (100% packet loss, Request timed out) - **Not just port blocking** — entire IP unreachable from Boss's connection"
+        }
+      ]
+    },
+    {
       "topic": "New Flow:",
       "files": [
         {
@@ -5473,6 +6443,21 @@
       ]
     },
     {
+      "topic": "Next check:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 220,
+          "context": "- **Next check:** Monitor ~07:28 UTC timer fire. If no arrival, check if `message_thread_id` needed in `_remind_loop`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 376,
+          "context": "- **Next check:** Monitor ~07:28 UTC timer fire. If no arrival, check if `message_thread_id` needed in `_remind_loop`"
+        }
+      ]
+    },
+    {
       "topic": "No available consoles",
       "files": [
         {
@@ -5519,6 +6504,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 404,
           "context": "| MySQL schema | 0 | 0 | **NONE** (existing tables suffice) |"
+        }
+      ]
+    },
+    {
+      "topic": "Not just port blocking",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 402,
+          "context": "- **Not just port blocking** — entire IP unreachable from Boss's connection - Kora can still reach the VPS from OpenClaw container (different network path)"
         }
       ]
     },
@@ -5814,6 +6809,41 @@
           "path": "memory/2026-06-11.md",
           "line": 32,
           "context": "## Pending for Tomorrow (June 12) 1. **⛔ SSH Fix**: Boss needs to use Hetzner Console → open Web Console → login → run:"
+        }
+      ]
+    },
+    {
+      "topic": "Pending Items",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 48,
+          "context": "## Pending Items 1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 124,
+          "context": "## Pending Items 1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 251,
+          "context": "## Pending Items 1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 440,
+          "context": "## Pending Items 1. **CMD SSH** — IP 5.223.81.16 completely unreachable from Boss's Myanmar ISP. Solutions: cloudflared access tcp, VPN, or direct IP fix"
+        }
+      ]
+    },
+    {
+      "topic": "Pending:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 423,
+          "context": "- **Pending:** Boss needs to clarify if games were truly lost or original count was inflated by accessories"
         }
       ]
     },
@@ -6428,6 +7458,16 @@
       ]
     },
     {
+      "topic": "Root cause analysis:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 84,
+          "context": "- **Root cause analysis:** `final_status` column in `games_library` had wrong/obsolete values: - Many games showing \"Not Installed\" but actually installed on consoles (console_games)"
+        }
+      ]
+    },
+    {
       "topic": "Root cause:",
       "files": [
         {
@@ -6586,6 +7626,61 @@
           "context": "### Root Cause Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original pa"
         },
         {
+          "path": "memory/2026-06-12.md",
+          "line": 34,
+          "context": "- **Root cause:** `launch_session_sale()` in `sales.py` checks `wallet_balance` for ALL non-guest members, even booking customers (who have 0 wallet balance) - **Fix:** Added `if booking_id:` check be"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 99,
+          "context": "- **Root cause:** `launch_session_sale()` in `sales.py` checks `wallet_balance` for ALL non-guest members, even booking customers (who have 0 wallet balance) - **Fix:** Added `if booking_id:` check be"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 166,
+          "context": "- **Root cause:** `final_status` column in `games_library` had wrong/obsolete values (console IDs like \"C-01, C-04\", \"Installed\", \"Not Installed\") — Dashboard JS only supports: `Available`, `Damaged`,"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 191,
+          "context": "- **Root cause:** `threadId: \"125454\"` (wrong thread for current conversation) - **Fix:** Changed thread ID to `\"125192\"` (current active thread). Added `bestEffort: true`."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 196,
+          "context": "**Root cause:** `_remind_loop` called `bot.send_message()` without `message_thread_id`. If staff group has Forum/topics mode, messages without thread ID go to General topic where staff may miss them."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 224,
+          "context": "- **Root cause:** `booking.py` has `games_list[:30]` limit — last 11 games (Tekken 8, The Witcher 3, Split Fiction, etc.) are cut off - **Memo for future fix:** Remove or increase the `[:30]` slice in"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 322,
+          "context": "- **Root cause:** `final_status` column in `games_library` had wrong/obsolete values (console IDs like \"C-01, C-04\", \"Installed\", \"Not Installed\") — Dashboard JS only supports: `Available`, `Damaged`,"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 347,
+          "context": "- **Root cause:** `threadId: \"125454\"` (wrong thread for current conversation) - **Fix:** Changed thread ID to `\"125192\"` (current active thread). Added `bestEffort: true`."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 352,
+          "context": "**Root cause:** `_remind_loop` called `bot.send_message()` without `message_thread_id`. If staff group has Forum/topics mode, messages without thread ID go to General topic where staff may miss them."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 380,
+          "context": "- **Root cause:** `booking.py` has `games_list[:30]` limit — last 11 games (Tekken 8, The Witcher 3, Split Fiction, etc.) are cut off - **Memo for future fix:** Remove or increase the `[:30]` slice in"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 404,
+          "context": "- **Root cause:** Myanmar ISP / routing issue to Hetzner Germany (not DPI alone) - **Workaround options offered:**"
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 63,
           "context": "- **Root cause:** Parallel sub-agents (6) editing `bot/__init__.py` simultaneously without locks → chain-reaction corruption. See Framework v2.0 for prevention. - **Fix approach:** Sequential fixes wi"
@@ -6729,6 +7824,36 @@
           "path": "memory/project-state.md",
           "line": 35,
           "context": "| 24 | **Sale Daily + Promotion confirm stuck** — `coupon_line` extracted before `user_data.clear()` | ✅ | | 25 | **New Member payment flow** — all payment methods available (no auto-KPay) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Sales Bot",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 37,
+          "context": "- **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 102,
+          "context": "- **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 176,
+          "context": "- **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 332,
+          "context": "- **Sales Bot** restarted successfully"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 492,
+          "context": "- **Sales Bot** — `Fix: game selection limit, session timer thread, booking wallet skip, FAQ disable` (16 files) - **API Server** — `Feat: web shell proxy, dashboard routes, utility modules` (7 files)"
         }
       ]
     },
@@ -7028,6 +8153,31 @@
       ]
     },
     {
+      "topic": "Services Status (End of Session)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 39,
+          "context": "## Services Status (End of Session) | Service | Status |"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 113,
+          "context": "## Services Status (End of Session) | Service | Status |"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 236,
+          "context": "## Services Status (End of Session) | Service | Status |"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 425,
+          "context": "## Services Status (End of Session) | Service | Status |"
+        }
+      ]
+    },
+    {
       "topic": "Session 1: Core Sales Bot + Customer Bot",
       "files": [
         {
@@ -7114,6 +8264,66 @@
           "path": "MEMORY.md",
           "line": 99,
           "context": "- **Session cron jobs <60s cause takeover errors:** Minimum 5-min interval for lock operations - **Session file bloat (446MB/500MB):** 1,305 session files; Gateway auto-prune handles this"
+        }
+      ]
+    },
+    {
+      "topic": "Session end timer reminder thread",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 256,
+          "context": "5. **Session end timer reminder thread** — Verify after ~07:28 UTC fire; may need message_thread_id for Forum topics 6. **n8n payment (€25.68)** — 2nd notice received, payment pending"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 444,
+          "context": "4. **Session end timer reminder thread** — Verify message_thread_id fix works in next session 5. **100+ games** — Clarify if games were lost during import or original count included non-game items"
+        }
+      ]
+    },
+    {
+      "topic": "Session End Timer System",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 206,
+          "context": "## Session End Timer System - **System:** `_remind_loop` in `booking_flow.py` (sales bot)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 362,
+          "context": "## Session End Timer System - **System:** `_remind_loop` in `booking_flow.py` (sales bot)"
+        }
+      ]
+    },
+    {
+      "topic": "Session End Timer — Fixed (message_thread_id)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 194,
+          "context": "## Session End Timer — Fixed (message_thread_id)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 350,
+          "context": "## Session End Timer — Fixed (message_thread_id)"
+        }
+      ]
+    },
+    {
+      "topic": "Session End Timer — Reminder Delivery Issue",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 214,
+          "context": "### Session End Timer — Reminder Delivery Issue - **Boss reports:** Reminders not arriving in staff group"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 370,
+          "context": "### Session End Timer — Reminder Delivery Issue - **Boss reports:** Reminders not arriving in staff group"
         }
       ]
     },
@@ -7258,6 +8468,31 @@
       ]
     },
     {
+      "topic": "Shell.ps-vibe.com",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 49,
+          "context": "1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels 2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 125,
+          "context": "1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels 2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 252,
+          "context": "1. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels 2. **CMD SSH** — Blocked by ISP DPI; only Cloudflare Tunnel or VPN can bypass"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 448,
+          "context": "8. **Shell.ps-vibe.com** — Boss needs to add Public Hostname in Cloudflare Zero Trust → Tunnels"
+        }
+      ]
+    },
+    {
       "topic": "Shop Info",
       "files": [
         {
@@ -7274,6 +8509,31 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 44,
           "context": "| 4 | **Smart Auto-Retry** | `batch_coordinator.py` (UPGRADED) | `--retry` command: analyzes failure type → suggests fix → re-spawns (max 2 retries) | | 5 | **Cross-Bot Batching** | `batch_coordinator"
+        }
+      ]
+    },
+    {
+      "topic": "Solutions tried:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 7,
+          "context": "- **Solutions tried:** - Added SSH on port 80 (failed — DPI detects SSH protocol)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 57,
+          "context": "- **Solutions tried:** - Added SSH on port 80 (failed — DPI detects SSH protocol)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 139,
+          "context": "- **Solutions tried:** - Added SSH on port 80 (failed — DPI detects SSH protocol)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 295,
+          "context": "- **Solutions tried:** - Added SSH on port 80 (failed — DPI detects SSH protocol)"
         }
       ]
     },
@@ -7348,12 +8608,92 @@
       ]
     },
     {
+      "topic": "SQL game titles must match exactly across tables",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 284,
+          "context": "3. **SQL game titles must match exactly across tables** — games_library and console_games need identical names 4. **Booking customers should skip wallet check** — they pay at booking time, not at sess"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 476,
+          "context": "3. **SQL game titles must match exactly across tables** — games_library and console_games need identical names 4. **Booking customers should skip wallet check** — they pay at booking time, not at sess"
+        }
+      ]
+    },
+    {
+      "topic": "SSH Access — ISP DPI Blocking",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 3,
+          "context": "## SSH Access — ISP DPI Blocking - All direct SSH ports (22, 80, 443, 22222) from Boss's Windows timeout"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 53,
+          "context": "## SSH Access — ISP DPI Blocking - All direct SSH ports (22, 80, 443, 22222) from Boss's Windows timeout"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 135,
+          "context": "## SSH Access — ISP DPI Blocking - All direct SSH ports (22, 80, 443, 22222) from Boss's Windows timeout"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 291,
+          "context": "## SSH Access — ISP DPI Blocking - All direct SSH ports (22, 80, 443, 22222) from Boss's Windows timeout"
+        }
+      ]
+    },
+    {
+      "topic": "SSH over non-standard port still detected by ISP DPI",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 283,
+          "context": "2. **SSH over non-standard port still detected by ISP DPI** — SSH protocol handshake is identifiable regardless of port 3. **SQL game titles must match exactly across tables** — games_library and cons"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 475,
+          "context": "2. **SSH over non-standard port still detected by ISP DPI** — SSH protocol handshake is identifiable regardless of port 3. **SQL game titles must match exactly across tables** — games_library and cons"
+        }
+      ]
+    },
+    {
+      "topic": "SSH: IP Completely Unreachable from Boss's Internet",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 400,
+          "context": "## SSH: IP Completely Unreachable from Boss's Internet - **New finding:** `ping 5.223.81.16` → all packets lost (100% packet loss, Request timed out)"
+        }
+      ]
+    },
+    {
       "topic": "Staff booking inconsistency",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 364,
           "context": "| **Staff booking inconsistency**: staff see different results than customer | MEDIUM (intentional) | Doc says: staff booking uses hardcoded slots intentionally. Staff may need to book for future date"
+        }
+      ]
+    },
+    {
+      "topic": "Staff group Forum mode",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 288,
+          "context": "7. **Staff group Forum mode** — if group has topics, messages without message_thread_id go to General topic where staff may miss them # 2026-06-12 Daily Log"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 480,
+          "context": "7. **Staff group Forum mode** — if group has topics, messages without message_thread_id go to General topic where staff may miss them 8. **Entire IP can be unreachable (not just port)** — when ping al"
         }
       ]
     },
@@ -7574,6 +8914,36 @@
           "path": "memory/2026-06-05.md",
           "line": 378,
           "context": "- **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 14,
+          "context": "- **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 64,
+          "context": "- **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 146,
+          "context": "- **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 212,
+          "context": "- **Status:** Restored C-01 timer at 06:38 UTC with 2972s delay → first fire ~07:28 UTC"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 302,
+          "context": "- **Status:** On hold — Boss to configure Cloudflare Zero Trust → Tunnels → Public Hostnames when ready"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 368,
+          "context": "- **Status:** Restored C-01 timer at 06:38 UTC with 2972s delay → first fire ~07:28 UTC"
         },
         {
           "path": "memory/IMPLEMENTATION_LOG.md",
@@ -7913,6 +9283,21 @@
       ]
     },
     {
+      "topic": "Syntax verified:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 204,
+          "context": "**Syntax verified:** All 3 files pass `py_compile`. Bot restarted at 07:44 UTC."
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 360,
+          "context": "**Syntax verified:** All 3 files pass `py_compile`. Bot restarted at 07:44 UTC."
+        }
+      ]
+    },
+    {
       "topic": "Syntax:",
       "files": [
         {
@@ -7949,6 +9334,21 @@
           "path": "memory/integration-plan.md",
           "line": 86,
           "context": "- **Syntax:** ✅ OK - **Dependency:** Requires `git` CLI installed on the system."
+        }
+      ]
+    },
+    {
+      "topic": "System:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 207,
+          "context": "- **System:** `_remind_loop` in `booking_flow.py` (sales bot) - Persisted to: `/root/psvibe-sales-bot/data/session_reminders.json`"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 363,
+          "context": "- **System:** `_remind_loop` in `booking_flow.py` (sales bot) - Persisted to: `/root/psvibe-sales-bot/data/session_reminders.json`"
         }
       ]
     },
@@ -8179,6 +9579,21 @@
           "path": "memory/session-tracker-last.md",
           "line": 3,
           "context": "**Timestamp:** 2026-05-28T21:37:00Z"
+        }
+      ]
+    },
+    {
+      "topic": "Timezone reminder:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 264,
+          "context": "- **Timezone reminder:** ALL timestamps UTC unless noted. Boss is UTC+6:30 (Myanmar) - **Can't modify disc_count** — Boss explicitly prohibited; FC 26 disc_count=10 is intentional"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 454,
+          "context": "- **Timezone reminder:** ALL timestamps UTC unless noted. Boss is UTC+6:30 (Myanmar) - **Can't modify disc_count** — Boss explicitly prohibited; FC 26 disc_count=10 is intentional"
         }
       ]
     },
@@ -8463,6 +9878,16 @@
       ]
     },
     {
+      "topic": "Verified:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 395,
+          "context": "- **Verified:** `localhost:8000/shell` → 200, `https://ps-vibe.com/shell/` → 200 - **Boss tested and got through** — Web SSH works via browser"
+        }
+      ]
+    },
+    {
       "topic": "Verify Agent",
       "files": [
         {
@@ -8583,12 +10008,57 @@
       ]
     },
     {
+      "topic": "Web SSH works even when direct SSH doesn't",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 482,
+          "context": "9. **Web SSH works even when direct SSH doesn't** — cloudflare tunnel + HTTPS bypasses ISP routing filters"
+        }
+      ]
+    },
+    {
+      "topic": "Web SSH — `ps-vibe.com/shell/` (Confirmed Working)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 392,
+          "context": "## Web SSH — `ps-vibe.com/shell/` (Confirmed Working) - **WebSSH (wssh)** installed on port 8888, systemd service active"
+        }
+      ]
+    },
+    {
       "topic": "Web vs Bot identical",
       "files": [
         {
           "path": "memory/2026-06-08.md",
           "line": 66,
           "context": "- **Web vs Bot identical** endpoints - **Stock In double-counting** removed"
+        }
+      ]
+    },
+    {
+      "topic": "WebSSH (wssh)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 393,
+          "context": "- **WebSSH (wssh)** installed on port 8888, systemd service active - **API proxy** added at `/root/psvibe_api_server/app.py` lines 3021+ — `/shell/` route proxies to ws://localhost:8888"
+        }
+      ]
+    },
+    {
+      "topic": "What Kora Learned",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 281,
+          "context": "## What Kora Learned 1. **Dashboard JS only supports 4 statuses** — future frontend changes must stay within Available/Damaged/Lost/In Use"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 473,
+          "context": "## What Kora Learned 1. **Dashboard JS only supports 4 statuses** — future frontend changes must stay within Available/Damaged/Lost/In Use"
         }
       ]
     },
@@ -8654,6 +10124,16 @@
           "path": "memory/contacts.md",
           "line": 22,
           "context": "- **Wi Wi:** Friend - **Ye Yint Oo:** Colleague / Business"
+        }
+      ]
+    },
+    {
+      "topic": "Workaround options offered:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 405,
+          "context": "- **Workaround options offered:** 1. `cloudflared access tcp --hostname ps-vibe.com --url tcp://localhost:2222` then `ssh root@localhost -p 2222`"
         }
       ]
     },
@@ -8803,12 +10283,32 @@
       ]
     },
     {
+      "topic": "☁️ SSH / Network / WARP",
+      "files": [
+        {
+          "path": "memory/ERROR_PATTERNS.md",
+          "line": 5,
+          "context": "## ☁️ SSH / Network / WARP"
+        }
+      ]
+    },
+    {
       "topic": "⚠️ Kora broke SSH",
       "files": [
         {
           "path": "memory/2026-06-11.md",
           "line": 22,
           "context": "- **⚠️ Kora broke SSH**: While trying to add port 22222, systemd socket drop-in replaced port 22 with 22222 → SSH down - Created `/etc/systemd/system/ssh.socket.d/extra-ports.conf` with only port 2222"
+        }
+      ]
+    },
+    {
+      "topic": "⚠️ Lessons (Don't Repeat)",
+      "files": [
+        {
+          "path": "memory/ERROR_PATTERNS.md",
+          "line": 74,
+          "context": "## ⚠️ Lessons (Don't Repeat)"
         }
       ]
     },
@@ -8843,6 +10343,16 @@
       ]
     },
     {
+      "topic": "✅ Booking Game Selection Limit Fixed",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 486,
+          "context": "### ✅ Booking Game Selection Limit Fixed - `booking.py` lines 442 & 610: removed `[:30]` slice limit"
+        }
+      ]
+    },
+    {
       "topic": "✅ CLEAN (Verified — No issues)",
       "files": [
         {
@@ -8869,6 +10379,16 @@
           "path": "memory/2026-06-09.md",
           "line": 6,
           "context": "## ✅ Done"
+        }
+      ]
+    },
+    {
+      "topic": "✅ Git Committed",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 491,
+          "context": "### ✅ Git Committed - **Sales Bot** — `Fix: game selection limit, session timer thread, booking wallet skip, FAQ disable` (16 files)"
         }
       ]
     },
@@ -9042,7 +10562,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 5,
+          "line": 29,
           "context": "## 🐍 Python Runtime Errors"
         }
       ]
@@ -9172,7 +10692,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 49,
+          "line": 67,
           "context": "## 📋 Git / Deployment"
         }
       ]
@@ -9332,7 +10852,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 24,
+          "line": 39,
           "context": "## 🔧 API / Backend Errors"
         }
       ]
@@ -9412,7 +10932,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 32,
+          "line": 48,
           "context": "## 🗄️ Database / MySQL"
         }
       ]
@@ -9472,7 +10992,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 40,
+          "line": 58,
           "context": "## 🚀 Sub-agent / Spawn Errors"
         }
       ]
@@ -9602,7 +11122,7 @@
       "files": [
         {
           "path": "memory/ERROR_PATTERNS.md",
-          "line": 15,
+          "line": 14,
           "context": "## 🤖 Telegram Bot Errors"
         }
       ]

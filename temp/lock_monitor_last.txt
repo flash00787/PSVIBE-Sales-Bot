@@ -1,28 +1,26 @@
-[LOCK_MONITOR] Run at 2026-06-12 09:35:29 UTC
+[LOCK_MONITOR] Run at 2026-06-12 09:55:29 UTC
 
 [LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
-[LOCK_MONITOR] WARNING: 5 session file(s) too large:
+[LOCK_MONITOR] WARNING: 4 session file(s) too large:
   e4d693d7-f80e-4e53-b7bc-695abaa25520-topic-125192.trajectory.jsonl: 6049KB (> 500KB threshold)
-  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.jsonl: 4891KB (> 500KB threshold)
-  cb42429d-16ca-484d-a852-b4fc6da7d1e7-topic-125192.checkpoint.4bd7c80e-a650-40b7-9f3a-2e530a2e1cb0.jsonl: 1590KB (> 500KB threshold)
+  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.jsonl: 5251KB (> 500KB threshold)
   35513b17-e0ce-40a1-8cdf-e9614e896293-topic-125454.checkpoint.0e9cba09-0f19-40a6-a574-9585615e8444.jsonl: 2436KB (> 500KB threshold)
   d763bc61-fda7-4ca7-901c-fc1deae9701f-topic-125192.checkpoint.3562d9e1-02ce-42fe-bf63-c3aad6cc638b.jsonl: 1836KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
+[LOCK_MONITOR] WARNING: 1 trajectory file(s) oversized:
   e4d693d7-f80e-4e53-b7bc-695abaa25520-topic-125192.trajectory.jsonl: 6049KB (> 3000KB threshold)
-  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.trajectory.jsonl: 10195KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          826 files,      23924 KB
-  .trajectory.jsonl files:     88 files,      26066 KB
+  Main .jsonl files:          824 files,      24235 KB
+  .trajectory.jsonl files:     88 files,      16365 KB
   .checkpoint.*.jsonl files:   14 files,      29223 KB
   .lock files:                  2 files
   ------------------------------------------
-  TOTAL:                                    79213 KB
+  TOTAL:                                    69823 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 133 KB freed, 9 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 133 KB freed, 6 warnings
 ==================================================
-=== RESULT: OK (warnings: 9) ===
+=== RESULT: OK (warnings: 6) ===
