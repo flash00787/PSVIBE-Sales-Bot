@@ -427,8 +427,8 @@ async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     grouped = resp or {}
     if isinstance(grouped, dict) and grouped:
         lines = ["🍕 **PS VIBE Food Menu**"]
-        cat_emoji = {"Drinks": "\U0001f964", "Instant Noodles": "\U0001f35c", "Snacks": "\U0001f95f", "Other": "\U0001f95a", "Food": "\U0001f354"}
-        cat_order = ["Drinks", "Instant Noodles", "Snacks", "Candy", "Other", "Food"]
+        cat_emoji = {"Soft Drinks": "\U0001f964", "Coffee": "\u2615", "Instant Noodles": "\U0001f35c", "Snacks": "\U0001f95f", "Other": "\U0001f95a", "Food": "\U0001f354"}
+        cat_order = ["Soft Drinks","Coffee", "Instant Noodles", "Snacks", "Candy", "Other", "Food"]
         for cat in cat_order:
             items = grouped.get(cat, {})
             if items:
