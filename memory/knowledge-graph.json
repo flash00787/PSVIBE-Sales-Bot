@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-12T14:13:14Z",
+  "updated": "2026-06-12T20:07:46Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -282,12 +282,6 @@
     },
     {
       "source": "boss",
-      "target": "github",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "boss",
       "target": "gmail-api",
       "relation": "uses",
       "weight": 5
@@ -324,12 +318,6 @@
     },
     {
       "source": "boss",
-      "target": "openclaw",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "boss",
       "target": "priority-memory",
       "relation": "implements",
       "weight": 5
@@ -344,6 +332,12 @@
       "source": "boss",
       "target": "python",
       "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "smart-pruning",
+      "relation": "implements",
       "weight": 5
     },
     {
@@ -522,6 +516,12 @@
     },
     {
       "source": "github",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
       "target": "vps",
       "relation": "depends_on",
       "weight": 5
@@ -596,12 +596,6 @@
       "source": "kora",
       "target": "memory-upgrade",
       "relation": "implements",
-      "weight": 5
-    },
-    {
-      "source": "kora",
-      "target": "openclaw",
-      "relation": "uses",
       "weight": 5
     },
     {
@@ -1866,6 +1860,12 @@
     },
     {
       "source": "boss",
+      "target": "github",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
       "target": "google-drive-api",
       "relation": "uses",
       "weight": 3
@@ -1914,6 +1914,12 @@
     },
     {
       "source": "boss",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "boss",
       "target": "openrouter",
       "relation": "uses",
       "weight": 3
@@ -1945,12 +1951,6 @@
     {
       "source": "boss",
       "target": "session-summary",
-      "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "smart-pruning",
       "relation": "implements",
       "weight": 3
     },
@@ -4248,12 +4248,6 @@
     },
     {
       "source": "github",
-      "target": "smart-pruning",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "github",
       "target": "spawn-protocol",
       "relation": "related_to",
       "weight": 3
@@ -5203,6 +5197,12 @@
     {
       "source": "kora",
       "target": "oauth2",
+      "relation": "uses",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },
