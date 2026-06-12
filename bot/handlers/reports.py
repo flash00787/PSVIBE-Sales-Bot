@@ -12,43 +12,68 @@ import asyncio
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show current inventory levels from Replit API."""
-    await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = await _psvibe_get_async("sheets/inventory")
-    if not data:
+    """Show current inventory levels - grouped by category."""
+    await update.message.reply_text("\u23f3 Inventory \u1005\u1005\u1039\u1001\u1031\u100b\u1000\u1039...", reply_markup=ReplyKeyboardRemove())
+    inv_data, cat_data = await asyncio.gather(
+        _psvibe_get_async("sheets/inventory"),
+        _psvibe_get_async("fetch_food_menu"),
+        return_exceptions=True,
+    )
+    if not inv_data:
         await update.message.reply_text(
-            "❌ Inventory data ရယူ၍ မရပါ။",
+            "\u274c Inventory data \u101b\u102e\u101a\u1039\u1021\u101b\u102d\u1019\u101b\u103e\u102d\u1015\u101b\u1032\u1037",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
         return
-    items = data.get("items", [])
-    STATUS_EMOJI = {
-        "In Stock":     "🟢",
-        "Low Stock":    "🟡",
-        "Out of Stock": "🔴",
-        "No Stock":     "⚫",
-    }
-    lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
+    items = inv_data.get("items", [])
+    SE = {"In Stock": "\U0001f7e2", "Low Stock": "\U0001f7e1", "Out of Stock": "\U0001f534", "No Stock": "\u26ab"}
+    inv_map = {}
     for item in items:
+        name = item.get("name", "").strip()
         qty_val = item.get("qty", 0)
         if qty_val > 5:
-            derived_status = "In Stock"
+            ds = "In Stock"
         elif qty_val > 0:
-            derived_status = "Low Stock"
+            ds = "Low Stock"
         elif qty_val == 0:
-            derived_status = "Out of Stock"
+            ds = "Out of Stock"
         else:
-            derived_status = "No Stock"
-        em    = STATUS_EMOJI.get(derived_status, "⚫")
-        stock = max(0, item.get("qty", 0))
-        val   = item.get("total", 0)
-        name  = item.get("name", "?")
-        lines.append(f"{em} *{name}*: {stock} pcs")
+            ds = "No Stock"
+        inv_map[name] = {"qty": max(0, qty_val), "status": ds}
+    CE = {"Soft Drinks": "\U0001f964", "Coffee": "\u2615", "Instant Noodles": "\U0001f35c", "Snacks": "\U0001f95f", "Candy": "\U0001f36c", "Other": "\U0001f95a", "Food": "\U0001f354"}
+    CO = ["Soft Drinks", "Coffee", "Instant Noodles", "Snacks", "Candy", "Other", "Food"]
+    ci = {}
+    if isinstance(cat_data, dict) and not isinstance(cat_data, Exception):
+        for cn, cd in cat_data.items():
+            if isinstance(cd, dict):
+                for itn in cd:
+                    sn = itn.strip()
+                    if sn in inv_map:
+                        ci.setdefault(cn, []).append(sn)
+    lines_out = ["\U0001f4e6 *Inventory Status*"]
+    lines_out.append("\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501")
+    shown = set()
+    for cat in CO:
+        if cat not in ci or not ci[cat]:
+            continue
+        emoji = CE.get(cat, "\U0001f4e6")
+        lines_out.append(f"\n{emoji} *{cat}*")
+        for name in sorted(ci[cat]):
+            info = inv_map[name]
+            lines_out.append(f"  {SE[info['status']]} {name}: {info['qty']} pcs")
+            shown.add(name)
+    rest = sorted(n for n in inv_map if n not in shown)
+    if rest:
+        lines_out.append("\n\U0001f4cb *Other*")
+        for name in rest:
+            info = inv_map[name]
+            lines_out.append(f"  {SE[info['status']]} {name}: {info['qty']} pcs")
     await update.message.reply_text(
-        "\n".join(lines),
+        "\n".join(lines_out),
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
     )
+
 async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show today's items sold from Replit API."""
     await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
