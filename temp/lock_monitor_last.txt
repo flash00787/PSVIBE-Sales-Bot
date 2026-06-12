@@ -1,24 +1,23 @@
-[LOCK_MONITOR] Run at 2026-06-12 12:36:46 UTC
+[LOCK_MONITOR] Run at 2026-06-12 13:01:45 UTC
 
 [LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 3 session file(s) too large:
-  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.jsonl: 6357KB (> 500KB threshold)
+  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.jsonl: 6372KB (> 500KB threshold)
   35513b17-e0ce-40a1-8cdf-e9614e896293-topic-125454.checkpoint.0e9cba09-0f19-40a6-a574-9585615e8444.jsonl: 2436KB (> 500KB threshold)
   d763bc61-fda7-4ca7-901c-fc1deae9701f-topic-125192.checkpoint.3562d9e1-02ce-42fe-bf63-c3aad6cc638b.jsonl: 1836KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 1 trajectory file(s) oversized:
-  02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.trajectory.jsonl: 9715KB (> 3000KB threshold)
+[LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          824 files,      25795 KB
-  .trajectory.jsonl files:     89 files,      20022 KB
+  Main .jsonl files:          823 files,      25816 KB
+  .trajectory.jsonl files:     88 files,      10289 KB
   .checkpoint.*.jsonl files:   16 files,      40248 KB
   .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    86065 KB
+  TOTAL:                                    76353 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 5 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 128 KB freed, 3 warnings
 ==================================================
-=== RESULT: OK (warnings: 5) ===
+=== RESULT: OK (warnings: 3) ===
