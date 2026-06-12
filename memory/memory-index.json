@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-12T20:07:43.131947+00:00",
+  "updated": "2026-06-12T21:37:40.713276+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -4068,17 +4068,17 @@
       ]
     },
     {
-      "topic": "GitHub Deploy Failing",
+      "topic": "GitHub Deploy failing",
       "files": [
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 46,
+          "context": "(dedup) 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch (dedup) 10. disc_count values are intentional — never \"fix\" without Boss confirmation"
+        },
         {
           "path": "MEMORY.md",
           "line": 127,
           "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 175,
-          "context": "5. **GitHub Deploy failing** — PSVIBE-API-Server master branch"
         }
       ]
     },
@@ -5393,7 +5393,7 @@
         {
           "path": "MEMORY.md",
           "line": 174,
-          "context": "4. **n8n payment (€25.68)** — 2nd notice received 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch"
+          "context": "4. **n8n payment (€25.68)** — 2nd notice received"
         }
       ]
     },
@@ -9817,7 +9817,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 192,
+          "line": 191,
           "context": "### 🧠 Critical Lessons (Running Archive) 1. FastAPI response_model silently strips undeclared fields"
         }
       ]
@@ -9902,7 +9902,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 177,
+          "line": 176,
           "context": "### 🩺 Services (June 12, 15:30 UTC) | Service | Status |"
         }
       ]
