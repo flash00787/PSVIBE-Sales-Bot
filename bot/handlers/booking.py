@@ -1211,7 +1211,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         _cancel_remind(cid, _remind_chat_id)   # clear any stale task for this console
         task = asyncio.create_task(
             _remind_loop(context.bot, _remind_chat_id, cid, member_id,
-                         planned_mins, end_t, delay_secs, getattr(update.effective_message, 'message_thread_id', 0))
+                         planned_mins, end_t, delay_secs, getattr(update.effective_message, 'message_thread_id', 0) or 125192)
         )
         _REMIND_TASKS[_remind_key(cid, _remind_chat_id)] = task
         timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {remind_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"

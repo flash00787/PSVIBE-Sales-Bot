@@ -150,7 +150,7 @@ async def _remind_loop(
                 _remind_kb = _extend_timer_kb(cid, member_id, _target_chat)
                 await bot.send_message(
                     chat_id=_target_chat,
-                        message_thread_id=message_thread_id or None,
+                        message_thread_id=message_thread_id or 125192,
                     text=_remind_text,
                     parse_mode="HTML",
                     reply_markup=_remind_kb,
@@ -203,6 +203,7 @@ async def _send_session_reminder(
     try:
         await bot.send_message(
             chat_id=chat_id,
+            message_thread_id=125192,
             text=(
                 f"⏰ <b>Session Reminder!</b>\n"
                 f"━━━━━━━━━━━━━━━━━━\n"
