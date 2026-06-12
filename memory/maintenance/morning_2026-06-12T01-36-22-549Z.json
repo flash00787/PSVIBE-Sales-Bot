@@ -1,0 +1,19 @@
+{
+  "date": "2026-06-12",
+  "type": "morning",
+  "timestamp": "2026-06-12T01:36:22.539Z",
+  "yesterdaySales": {
+    "error": "connect ECONNREFUSED 5.223.81.16:22"
+  },
+  "yesterdayTopups": {
+    "error": "connect ECONNREFUSED 5.223.81.16:22"
+  },
+  "activeMembers": "error",
+  "consoleStatus": "error",
+  "systemHealth": {
+    "docker": "ERROR: connect ECONNREFUSED 5.223.81.16:22"
+  },
+  "dockerContainers": "error",
+  "todayBookings": "error",
+  "overallStatus": "healthy"
+}
