@@ -131,3 +131,72 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 - MEMORY.md: auto-trim cron active | Git backup: committed | Index: 1146 topics
 - 0 stuck/pending agents | No critical alerts
 - *Heavy optimization day — session files cleaned, MEMORY.md trimmed, Cloudflare resolved, 20+ Kora upgrades deployed.*
+
+---
+
+## 📋 June 12 — Summary
+
+### 🔴 SSH Crisis: ISP-Level IP Blocking
+- **IP 5.223.81.16 completely unreachable** from Boss's Myanmar ISP (ping fails, not just SSH ports)
+- DPI detects SSH protocol on ANY port (22, 80, 443, 22222 all blocked)
+- **Workaround:** Web SSH via `https://ps-vibe.com/shell/` (wssh + Cloudflare Tunnel) — working ✅
+- **Pending:** Cloudflare Zero Trust → Tunnels → Public Hostnames config for `shell.ps-vibe.com`
+- **Lesson:** ISP can block entire IP routing, not just ports; Cloudflare Tunnel + HTTPS bypasses it
+
+### ✅ Fixes Deployed
+| Fix | Files |
+|-----|-------|
+| Game Library: 23 titles corrected in MySQL | `games_library` (41 rows), `console_games` (68 rows) |
+| Dashboard Games: final_status → In Use/Available | `fix_games_library_status.py` |
+| FAQ intercept disabled (wrong game count) | `customer_bot/handlers.py` (commented out) |
+| Booking wallet skip (booking_id guard) | `sales.py` line 1677 |
+| Session timer message_thread_id | `booking_flow.py`, `session_reminder_store.py`, `booking.py` |
+| Booking game selection [:30] limit removed | `booking.py` lines 442 & 610 |
+| Food Menu: Soft Drinks + Coffee categories | 5 files (Dashboard, Customer Bot, Sale Bot, API) |
+| Account balances verified correct | All operating accounts match |
+| Low stock alert: 30min → 4hr | `/var/spool/cron/crontabs/root` |
+| Kora Smart-Reminder: thread ID → 125192 | `smart_reminder.js` |
+| Git: Both repos committed, 0 uncommitted | Sales Bot (16 files), API Server (7 files) |
+
+### 📌 New Lessons (June 12)
+- **Dashboard JS only supports 4 final_status values:** Available, Damaged, Lost, In Use
+- **games_library vs console_games** are independent tables — titles must match exactly
+- **Booking customers skip wallet check** — they pay at booking time, not session-end
+- **disc_count values are intentional** — never modify without Boss confirmation
+- **Staff group Forum mode:** messages without `message_thread_id` go to General topic
+- **IP unreachable ≠ port blocked:** when ping fails, it's routing/ISP filtering
+- **Web SSH works when direct SSH doesn't:** Cloudflare Tunnel + HTTPS bypasses ISP filters
+
+### 🔴 Pending (Boss Action Needed)
+1. **CMD SSH** — Cloudflare Zero Trust → Tunnels → Public Hostnames for `shell.ps-vibe.com`
+2. **100+ games discrepancy** — 41 in DB vs claimed 100+. Clarify if GSheet had non-game rows
+3. **God of War Ragnarök encoding** — "Ã¶" vs "ö", only LIKE-matched, needs clean fix
+4. **n8n payment (€25.68)** — 2nd notice received
+5. **GitHub Deploy failing** — PSVIBE-API-Server master branch
+
+### 🩺 Services (June 12, 15:30 UTC)
+| Service | Status |
+|---------|--------|
+| psvibe-api | ✅ |
+| psvibe-sale-bot | ✅ |
+| psvibe_customer_bot | ✅ |
+| psvibe-dashboard | ✅ (:9090) |
+| kora-dashboard | ✅ (:9091) |
+| cloudflared-tunnel | ✅ |
+| wssh (web SSH) | ✅ (:8888) |
+| Caddy | ✅ |
+| n8n | ✅ |
+| MySQL | ✅ |
+| Health Monitor | 93.3/100 ✅ |
+
+### 🧠 Critical Lessons (Running Archive)
+1. FastAPI response_model silently strips undeclared fields
+2. `bool(0) == False` → use `x if x is not None else default`
+3. `async def` + missing `await` → coroutine passes type checks silently
+4. Double fail masking: both API + GSheet broken simultaneously
+5. Date format: always normalize to YYYY-MM-DD at API boundary
+6. Slot conflict: API-level booking check prevents double-booking
+7. Dashboard only supports 4 statuses: Available/Damaged/Lost/In Use
+8. ISP can block entire IP routing; Cloudflare Tunnel + HTTPS bypasses it
+9. Staff group Forum mode: always include message_thread_id
+10. disc_count values are intentional — never "fix" without Boss confirmation

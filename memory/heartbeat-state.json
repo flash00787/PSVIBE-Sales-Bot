@@ -1,5 +1,26 @@
 {
-  "lastHeartbeat": "2026-06-12T14:13:01Z",
-  "stuckTasks": [],
-  "pendingTasks": []
+  "last_consolidation": "2026-06-12T15:30:00Z",
+  "last_heartbeat": "2026-06-12T15:30:00Z",
+  "status": "ok",
+  "services": {
+    "psvibe-api": "active",
+    "psvibe-sale-bot": "active",
+    "psvibe_customer_bot": "active",
+    "psvibe-dashboard": "active",
+    "kora-dashboard": "active",
+    "cloudflared-tunnel": "active",
+    "wssh": "active",
+    "caddy": "active",
+    "n8n": "active",
+    "mysql": "active"
+  },
+  "health_monitor_score": 93.3,
+  "pending_items": [
+    "CMD SSH — Cloudflare Zero Trust Public Hostnames config",
+    "100+ games discrepancy — clarify GSheet vs DB count",
+    "God of War Ragnarök encoding — clean fix needed",
+    "n8n payment (€25.68) — 2nd notice",
+    "GitHub Deploy failing — PSVIBE-API-Server"
+  ],
+  "notes": "Daily consolidation complete. 11 fixes deployed June 12. SSH crisis: ISP-level IP blocking, Web SSH working as workaround."
 }
