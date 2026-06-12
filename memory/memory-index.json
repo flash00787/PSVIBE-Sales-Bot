@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-12T12:37:42.707649+00:00",
+  "updated": "2026-06-12T14:13:13.723256+00:00",
   "entries": [
     {
       "topic": "\"Not Installed\" filter removed:",
@@ -679,6 +679,16 @@
           "path": "memory/project-state.md",
           "line": 21,
           "context": "| 10 | **90k purchase spam** — MAX_SESSION_MINS=1440 limit | ✅ | | 11 | **Booking timeout** — auto-cancel + Telegram notify + expired display | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Account Balance Verification (June 12, late UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 501,
+          "context": "## Account Balance Verification (June 12, late UTC) - Boss asked: Check if account balances on `https://ps-vibe.com/admin/transfer` are correct"
         }
       ]
     },
@@ -1638,6 +1648,16 @@
       ]
     },
     {
+      "topic": "Bots restarted",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 524,
+          "context": "- **Bots restarted** after changes"
+        }
+      ]
+    },
+    {
       "topic": "Bug 1: Orphaned `###` Headers Silently Dropped",
       "files": [
         {
@@ -1758,6 +1778,16 @@
       ]
     },
     {
+      "topic": "BUT",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 529,
+          "context": "- **BUT** stored reminders had `message_thread_id: null/0` because timer creation didn't persist thread ID correctly - **New fix (this session):**"
+        }
+      ]
+    },
+    {
       "topic": "c) Cron job added (every 5 minutes):",
       "files": [
         {
@@ -1839,6 +1869,16 @@
           "path": "memory/2026-06-09.md",
           "line": 21,
           "context": "4. **Cash Flow uses same per-account income calc as Web Finance** → closing matches exactly (28,758,453 Ks)"
+        }
+      ]
+    },
+    {
+      "topic": "Categories added:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 515,
+          "context": "- **Categories added:** \"Soft Drinks\" (🥤) + \"Coffee\" (☕) - **DB items renamed:** All \"Drinks\" → \"Soft Drinks\" in inventory table"
         }
       ]
     },
@@ -2149,6 +2189,16 @@
           "path": "memory/lessons.md",
           "line": 11,
           "context": "## Code Exists ≠ Code Runs (2026-05-30) - `sync_service.py` (860+ lines) existed but NEVER executed — no cron, no systemd"
+        }
+      ]
+    },
+    {
+      "topic": "Code updates applied to:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 517,
+          "context": "- **Code updates applied to:** - Dashboard (FoodMenuRegister.js) — hardcoded categories"
         }
       ]
     },
@@ -2999,6 +3049,16 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 3,
           "context": "## Date: 2026-06-02 ## Implemented by: Subagent"
+        }
+      ]
+    },
+    {
+      "topic": "DB items renamed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 516,
+          "context": "- **DB items renamed:** All \"Drinks\" → \"Soft Drinks\" in inventory table - **Code updates applied to:**"
         }
       ]
     },
@@ -4518,6 +4578,16 @@
       ]
     },
     {
+      "topic": "Food Menu — Category Overhaul (verified working)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 514,
+          "context": "## Food Menu — Category Overhaul (verified working) - **Categories added:** \"Soft Drinks\" (🥤) + \"Coffee\" (☕)"
+        }
+      ]
+    },
+    {
       "topic": "For session log:",
       "files": [
         {
@@ -4719,6 +4789,16 @@
           "path": "memory/coupon-system-implemented.md",
           "line": 31,
           "context": "### Git Commits | Repo | SHA | Message |"
+        }
+      ]
+    },
+    {
+      "topic": "Git commits pushed:",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 523,
+          "context": "- **Git commits pushed:** API-Server (a8e754a) + Sales-Bot (181af58) - **Bots restarted** after changes"
         }
       ]
     },
@@ -5454,6 +5534,11 @@
           "path": "memory/2026-06-12.md",
           "line": 379,
           "context": "- **Issue:** Osmo reported game selection screen missing some games during session start - **Root cause:** `booking.py` has `games_list[:30]` limit — last 11 games (Tekken 8, The Witcher 3, Split Fict"
+        },
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 527,
+          "context": "- **Issue:** Reminders went to General topic in staff group (no message_thread_id) - **Previous fix** (code-level): _remind_loop, booking.py, session_reminder_store.py all pass message_thread_id"
         }
       ]
     },
@@ -6383,6 +6468,16 @@
       ]
     },
     {
+      "topic": "New fix (this session):",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 530,
+          "context": "- **New fix (this session):** - `_remind_loop` send_message: fallback to `125192` (correct staff topic thread ID)"
+        }
+      ]
+    },
+    {
       "topic": "New Flow:",
       "files": [
         {
@@ -6474,6 +6569,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 23,
           "context": "4. **No coupon-related WARNING logs** in journalctl — the code path was never reached for guests 5. **API tested with `\"member_id\": \"0 (Guest)\"`, `\"session_minutes\": 60`** → Successfully generated cou"
+        }
+      ]
+    },
+    {
+      "topic": "No discrepancies found",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 512,
+          "context": "- **No discrepancies found** in operating account balances"
         }
       ]
     },
@@ -7074,6 +7179,16 @@
           "path": "memory/2026-06-09.md",
           "line": 23,
           "context": "### Prepaid Rent Amortization (✅ Done) - Created `prepaid_amortization` table"
+        }
+      ]
+    },
+    {
+      "topic": "Previous fix",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 528,
+          "context": "- **Previous fix** (code-level): _remind_loop, booking.py, session_reminder_store.py all pass message_thread_id - **BUT** stored reminders had `message_thread_id: null/0` because timer creation didn't"
         }
       ]
     },
@@ -8408,6 +8523,16 @@
       ]
     },
     {
+      "topic": "Session Timer Thread Fix (message_thread_id)",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 526,
+          "context": "## Session Timer Thread Fix (message_thread_id) - **Issue:** Reminders went to General topic in staff group (no message_thread_id)"
+        }
+      ]
+    },
+    {
       "topic": "SessionWriteLockTimeout Prevention (2026-06-01→02)",
       "files": [
         {
@@ -8946,6 +9071,11 @@
           "context": "- **Status:** Restored C-01 timer at 06:38 UTC with 2972s delay → first fire ~07:28 UTC"
         },
         {
+          "path": "memory/2026-06-12.md",
+          "line": 535,
+          "context": "- **Status:** Bot restarted, ready for next session"
+        },
+        {
           "path": "memory/IMPLEMENTATION_LOG.md",
           "line": 4,
           "context": "**Status:** Completed"
@@ -9084,6 +9214,16 @@
           "path": "memory/project-state.md",
           "line": 19,
           "context": "| 8 | **Stock In payment** — payment_method, paid_by, staff_name fields | ✅ | | 9 | **Gift balance 1200→600** — removed redundant api_add_topup | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Store Total",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 510,
+          "context": "- **Store Total** (239,583 Ks) = Cash + KPay + Wave + AYA → ✅ Match - Balance calculation comes from: cash_movements + sales_daily + opex + stock_in tables"
         }
       ]
     },
@@ -9874,6 +10014,16 @@
           "path": "memory/fix-history.md",
           "line": 15,
           "context": "- **Verification:** py_compile PASS, API health PASS, all 3 services active"
+        }
+      ]
+    },
+    {
+      "topic": "Verified from API",
+      "files": [
+        {
+          "path": "memory/2026-06-12.md",
+          "line": 503,
+          "context": "- **Verified from API** (`/api/finance/account-balances`) — balances match: - Cash: 42,900 Ks"
         }
       ]
     },
