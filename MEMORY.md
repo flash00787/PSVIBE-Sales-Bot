@@ -172,7 +172,6 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 2. **100+ games discrepancy** — 41 in DB vs claimed 100+. Clarify if GSheet had non-game rows
 3. **God of War Ragnarök encoding** — "Ã¶" vs "ö", only LIKE-matched, needs clean fix
 4. **n8n payment (€25.68)** — 2nd notice received
-5. **GitHub Deploy failing** — PSVIBE-API-Server master branch
 
 ### 🩺 Services (June 12, 15:30 UTC)
 | Service | Status |
@@ -199,4 +198,3 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 7. Dashboard only supports 4 statuses: Available/Damaged/Lost/In Use
 8. ISP can block entire IP routing; Cloudflare Tunnel + HTTPS bypasses it
 9. Staff group Forum mode: always include message_thread_id
-10. disc_count values are intentional — never "fix" without Boss confirmation

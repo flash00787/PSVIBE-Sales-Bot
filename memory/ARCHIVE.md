@@ -39,3 +39,9 @@
   (dedup) - 6. 📊 End-of-Day Summary (today's panel)
   (dedup) - 9. ⚡ Quick Commands (Health, Docker, Uptime, Backups)
   (dedup) - **MEMORY.md truncation:** Session context loads ~11KB of ~40KB file. Keep MEMORY.md ≤20KB — use module files for details
+
+# Archived Memory Entries
+*Archived: 2026-06-12 20:07 UTC*
+
+(dedup) 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch
+  (dedup) 10. disc_count values are intentional — never "fix" without Boss confirmation
