@@ -283,7 +283,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     grouped = context.user_data.get("food_menu_grouped", {})
     if grouped:
         price_parts = []
-        cat_emoji = {"Drinks": "🥤", "Instant Noodles": "🍜", "Snacks": "🥟", "Candy": "🍬", "Other": "🥚", "Food": "🍔"}
+        cat_emoji = {"Soft Drinks": "🥤", "Coffee": "☕", "Instant Noodles": "🍜", "Snacks": "🥟", "Candy": "🍬", "Other": "🥚", "Food": "🍔"}
         for cat in ["Soft Drinks", "Coffee", "Instant Noodles", "Snacks", "Candy", "Other", "Food"]:
             items = grouped.get(cat, {})
             if items:
