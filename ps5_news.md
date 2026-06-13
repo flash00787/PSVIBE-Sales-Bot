@@ -1,6 +1,50 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-12 05:30 UTC
+> Last updated: 2026-06-12 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 12, 2026 - 23:30 UTC) — Online Multiplayer Weekend + Trine 6 Revealed!
+
+### 🆓🔥 FREE Online Multiplayer Weekend — June 28-29, 2026!
+- Sony is hosting a **FREE Online Multiplayer Weekend** on June 28-29, 2026
+- **ALL PS5/PS4 players** can play online multiplayer **without a PS Plus subscription**
+- This is separate from the regular PS Plus monthly games
+- **💡💡 Lounge Action:** This is a HUGE opportunity for PS VIBE! Promote it to casual customers who don't have PS Plus — they can come play online multiplayer games for FREE at the lounge that weekend! Great for attracting new customers. Games like Warhammer 40K: Darktide, Grounded, EA Sports FC 26 (free until June 16), Helldivers 2, Tekken 8, and COD will all be playable online without subscription.
+
+### 🧩 Trine 6: Together in Time — September 17, 2026 (NEW FIND!)
+- Frozenbyte announced **Trine 6: Together in Time** — coming to PS5, Xbox Series X|S, Switch, Switch 2, and PC
+- **Release date: September 17, 2026**
+- Co-op puzzle platformer for **1-4 players** with **cross-play** across all platforms
+- Two NEW heroes join the roster: **Moira** and **Adrius** (alongside Amadeus, Zoya, Pontius)
+- New "**Time Slow**" ability for enhanced puzzle-solving control
+- Improved combat system + new puzzle types
+- **💡 Lounge Note:** Trine is one of the best co-op couch series on PlayStation — beautiful fantasy visuals, accessible gameplay, and family-friendly. 4-player co-op with cross-play makes this PERFECT for lounge group sessions. Add to September wishlist!
+
+### 🛒 Mid-Year Deals — Updated: Up to 80% Off!
+- Now confirmed: up to **80% off** (previously just "thousands of items discounted")
+- **3,600+ items** discounted through **July 1, 2026**
+- PS Plus subscribers get additional stacked discounts
+- New lounge-worthy deals spotted: **Returnal**, **Tekken 8 Advanced Edition**, **Resident Evil 4 Gold Edition**, **Dragon Quest 7 Reimagined**, **Yakuza Kiwami 3 & Dark Ties**, **Guilty Gear Strive**, **Mortal Kombat Legacy Kollection**, **Granblue Fantasy Versus: Rising**, **Evil West**, **ARK: Survival Ascended**, **Hunt: Showdown 1896**
+- **💡 Lounge Action:** Returnal at a discount = Housemarque's PS5 showcase title for the lounge! Tekken 8 + Guilty Gear Strive + MK Legacy Kollection on sale = build out the fighting game library cheap!
+
+### 🦌 Deer & Boy — June 23 (New Find)
+- Cute adventure game about a runaway child who befriends a fawn
+- **💡 Lounge Note:** Minor indie — family-friendly filler for younger customers
+
+### 🎬 Sony Pictures Core — 15% Off for PS Plus Premium
+- PS Plus Premium members get **15% off up to 2,000 movies** on Sony Pictures Core
+- Valid until **August 12, 2026**
+- **💡 Lounge Note:** Minor perk — could be used for lounge movie nights if PS VIBE ever runs them
+
+### ⏰ Reminder: Destiny 2 Legacy Collection — Expires June 16!
+- The Destiny 2: Legacy Collection (2025) on PS Plus Extra/Premium is **time-limited** — claim by **June 16, 2026**
+- Already available since June 9 — only 4 days left to claim!
+
+### 📋 Updated September Calendar:
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🧩 **Trine 6: Together in Time** 🆕 | **Sep 17, 2026** | ⭐⭐⭐⭐ — 4-player co-op with cross-play! Lounge gold! |
 
 ---
 
@@ -1038,6 +1082,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Sep 15 | **Marvel's Wolverine** 🔥 | ⭐⭐⭐⭐⭐ |
 | Sep 15 | **Runescape: Dragonwilds** 🐉 | ⭐⭐⭐ (Day 1 PS Plus Extra/Premium!) |
 | Sep 17 | **Trails in the Sky 2nd Chapter** ⚔️🆕 | ⭐⭐⭐⭐ (Legendary JRPG! Asia fanbase!) |
+| Sep 17 | 🧩 **Trine 6: Together in Time** 🆕 | ⭐⭐⭐⭐ (4-player co-op! Cross-play! Perfect lounge game!) |
 | Sep 22 | **Dune Awakening** | ⭐⭐⭐⭐ |
 | Sep 24 | **Control Resonant** | ⭐⭐⭐⭐ |
 | Sep 24 | **Silent Hill: Townfall** | ⭐⭐⭐⭐ |
@@ -1090,6 +1135,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🦇 **Castlevania: Belmont's Curse** — **Oct 15, 2026** 🔒 DATE LOCKED!
 - 🦁 **Planet Zoo 2** 🆕 — **Oct 13, 2026**! Family-friendly sim builder!
 - ⚔️ **Trails in the Sky 2nd Chapter** 🆕 — **Sep 17, 2026**! Legendary JRPG series!
+- 🧩 **Trine 6: Together in Time** 🆕 — 4-player co-op puzzle platformer! **Sep 17, 2026**! Cross-play! Perfect lounge group game!
 - 🎮 **Sonic Pico Park** 🆕 — New Sonic party game! TBD
 - 🎌 **Attack on Titan 3** 🆕 — Omega Force full adaptation, TBD
 - 🏈 **Madden NFL 26**
@@ -1118,7 +1164,9 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 ---
 
 ## 📋 Lounge Recommendations for PS VIBE
-- 🛒🆕 **PS STORE MID-YEAR DEALS (until July 1)** — Thousands of PS5/PS4 games discounted! Replaces Days of Play. Check for lounge-worthy co-op, fighting, and family games NOW!
+- 🆓🔥🆕 **FREE ONLINE MULTIPLAYER WEEKEND (June 28-29)** — ALL PS5/PS4 players can play online multiplayer WITHOUT PS Plus! Promote to casual customers — great way to attract new foot traffic to the lounge!
+- 🧩🆕 **TRINE 6: TOGETHER IN TIME (Sep 17)** — 4-player co-op puzzle platformer with cross-play! Perfect lounge group game — add to wishlist!
+- 🛒🆕 **PS STORE MID-YEAR DEALS (until July 1)** — Up to 80% off on 3,600+ PS5/PS4 games! Replaces Days of Play. Lounge-worthy deals: Returnal, Tekken 8, RE4 Gold, Dragon Quest 7, Yakuza Kiwami 3, Guilty Gear Strive, MK Legacy Kollection! Stock up NOW!
 - 🐉🆕 **GRANBLUE FANTASY RELINK: ENDLESS RAGNAROK (July 9)** — Granblue expansion alongside AC Black Flag = stacked day! Granblue is MASSIVE in Asia. Promote both!
 - ⚔️🆕 **MURAMASA: REVENANT BLADES (Early 2027)** — Vanillaware's gorgeous 2D cult classic remade for PS5. Odin Sphere/Dragon's Crown pedigree = guaranteed art style showcase for the lounge!
 - 🔥🔥🔥 **FINAL FANTASY RESONANCE (Oct 22, $49.99)** 🆕 — FIRST EVER HD-2D Final Fantasy game by Square Enix! Pixel-art FF evolved for modern consoles. Budget price ($49.99) = easy impulse buy for RPG fans. Launches the day before COD MW4 — October is INSANE!
