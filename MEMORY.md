@@ -207,8 +207,6 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 13. **Cloudflare Tunnel path routing limitation** — `/kora/` path routes to localhost:8000 (API server) cannot also route to :9091 (Kora Dashboard). Solution: DNS CNAME record (`kora.ps-vibe.com`) for separate services behind same tunnel.
 
 ## 📌 Pending Issues (June 13, 15:30 UTC)
-1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire
-2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing
 3. **Kora Dashboard URL**: `kora.ps-vibe.com` needs DNS CNAME record at Cloudflare
 4. **Wallet rate**: `effective_rate` = 1.00 for all members (might need Boss to confirm intended pricing)
 

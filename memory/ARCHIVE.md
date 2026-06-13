@@ -45,3 +45,9 @@
 
 (dedup) 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch
   (dedup) 10. disc_count values are intentional — never "fix" without Boss confirmation
+
+# Archived Memory Entries
+*Archived: 2026-06-13 17:07 UTC*
+
+(dedup) 1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire
+  (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing
