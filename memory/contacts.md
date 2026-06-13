@@ -1,5 +1,11 @@
 # 👥 Contacts & Boss Info
 
+## PS VIBE Social Links
+- **TikTok:** https://www.tiktok.com/@ps.vibe.game.cent
+- **Facebook:** https://www.facebook.com/ps5gamecenter
+- **Telegram Admin:** https://t.me/psvibeofficial
+- **Phone:** 09 773355 915
+
 ## Boss — Ko Aung Chan Myint (ကိုအောင်ချန်မြင့်)
 - **Business:** Founder & Manager — PS VIBE - PS5 Gaming Lounge
 - **Tagline:** "Play The Game. Share The VIBE!"
