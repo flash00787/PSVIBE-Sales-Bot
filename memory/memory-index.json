@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T06:07:42.068883+00:00",
+  "updated": "2026-06-13T07:08:01.461463+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -1183,6 +1183,16 @@
       ]
     },
     {
+      "topic": "Backup script installed at /root/auto_backup.sh",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 89,
+          "context": "### Backup script installed at /root/auto_backup.sh ### Cron:"
+        }
+      ]
+    },
+    {
       "topic": "Balance Sheet: Retained Earnings Missing Depreciation (FIXED — 2026-06-09)",
       "files": [
         {
@@ -1673,6 +1683,16 @@
       ]
     },
     {
+      "topic": "Changes Needed:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 15,
+          "context": "### Changes Needed: - PermitRootLogin: yes → prohibit-password"
+        }
+      ]
+    },
+    {
       "topic": "Changes:",
       "files": [
         {
@@ -2098,6 +2118,26 @@
       ]
     },
     {
+      "topic": "Container Statuses (restart policy check):",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 213,
+          "context": "### Container Statuses (restart policy check): ```"
+        }
+      ]
+    },
+    {
+      "topic": "Container User Audits:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 188,
+          "context": "### Container User Audits: ```"
+        }
+      ]
+    },
+    {
       "topic": "ConversationHandler Fallbacks = CRITICAL (2026-05-30)",
       "files": [
         {
@@ -2313,6 +2353,16 @@
       ]
     },
     {
+      "topic": "Cron:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 90,
+          "context": "### Cron: ```"
+        }
+      ]
+    },
+    {
       "topic": "Cross-Bot Batching",
       "files": [
         {
@@ -2323,12 +2373,42 @@
       ]
     },
     {
+      "topic": "Current backups directory:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 55,
+          "context": "### Current backups directory: ```"
+        }
+      ]
+    },
+    {
       "topic": "Current code:",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 239,
           "context": "**Current code:** ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Current fail2ban Status:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 35,
+          "context": "### Current fail2ban Status: ```"
+        }
+      ]
+    },
+    {
+      "topic": "Current SSH Config:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 6,
+          "context": "### Current SSH Config: ```"
         }
       ]
     },
@@ -2703,6 +2783,16 @@
       ]
     },
     {
+      "topic": "Docker daemon config:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 224,
+          "context": "### Docker daemon config: ```"
+        }
+      ]
+    },
+    {
       "topic": "Documentation",
       "files": [
         {
@@ -2939,6 +3029,16 @@
           "path": "memory/integration-plan.md",
           "line": 141,
           "context": "### Execution Order Summary"
+        }
+      ]
+    },
+    {
+      "topic": "fail2ban NOT active — enabling now...",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 43,
+          "context": "### fail2ban NOT active — enabling now... Failed to enable unit: Unit file fail2ban.service does not exist."
         }
       ]
     },
@@ -4623,6 +4723,16 @@
       ]
     },
     {
+      "topic": "iptables INPUT rules:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 162,
+          "context": "### iptables INPUT rules: ```"
+        }
+      ]
+    },
+    {
       "topic": "Issue 1",
       "files": [
         {
@@ -4744,6 +4854,16 @@
           "path": "memory/2026-06-05.md",
           "line": 258,
           "context": "### Issues Found & Fixed"
+        }
+      ]
+    },
+    {
+      "topic": "Jail config for sshd:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 45,
+          "context": "### Jail config for sshd: ```"
         }
       ]
     },
@@ -6493,6 +6613,16 @@
       ]
     },
     {
+      "topic": "Restart result:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 22,
+          "context": "### Restart result: sshd restarted OK"
+        }
+      ]
+    },
+    {
       "topic": "Result:",
       "files": [
         {
@@ -6549,6 +6679,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 54,
           "context": "- **Rollback:** Per-batch if one fails (don't rollback passing batches) - **Dependency rule:** File A imports File B → same agent (sequential). No shared imports → parallel."
+        }
+      ]
+    },
+    {
+      "topic": "Root authorized_keys:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 25,
+          "context": "### Root authorized_keys: ```"
         }
       ]
     },
@@ -6804,6 +6944,26 @@
           "path": "memory/contacts.md",
           "line": 8,
           "context": "- **Rules:** Card_wallet → Column H only. Receipt templates: NO Burmese footer text. - **Timezone:** Asia/Yangon (UTC+6:30) — ALWAYS convert UTC to Myanmar Time"
+        }
+      ]
+    },
+    {
+      "topic": "Running Containers:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 176,
+          "context": "### Running Containers: ```"
+        }
+      ]
+    },
+    {
+      "topic": "Running test backup...",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 105,
+          "context": "### Running test backup... ```"
         }
       ]
     },
@@ -7473,6 +7633,16 @@
       ]
     },
     {
+      "topic": "sshd -t result:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 18,
+          "context": "### sshd -t result: ```"
+        }
+      ]
+    },
+    {
       "topic": "Staff booking inconsistency",
       "files": [
         {
@@ -7933,6 +8103,16 @@
       ]
     },
     {
+      "topic": "Summary of Changes",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 235,
+          "context": "## Summary of Changes"
+        }
+      ]
+    },
+    {
       "topic": "Symptom:",
       "files": [
         {
@@ -8104,6 +8284,56 @@
           "path": "memory/contacts.md",
           "line": 5,
           "context": "- **Tagline:** \"Play The Game. Share The VIBE!\" - **Director:** Synergy Hub"
+        }
+      ]
+    },
+    {
+      "topic": "Task 1: SSH Key Audit & Security",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 4,
+          "context": "## Task 1: SSH Key Audit & Security"
+        }
+      ]
+    },
+    {
+      "topic": "Task 2: fail2ban Audit & Tuning",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 33,
+          "context": "## Task 2: fail2ban Audit & Tuning"
+        }
+      ]
+    },
+    {
+      "topic": "Task 3: System Auto-Backup Setup",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 53,
+          "context": "## Task 3: System Auto-Backup Setup"
+        }
+      ]
+    },
+    {
+      "topic": "Task 4: Firewall Check",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 135,
+          "context": "## Task 4: Firewall Check"
+        }
+      ]
+    },
+    {
+      "topic": "Task 5: Docker Container Security",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 174,
+          "context": "## Task 5: Docker Container Security"
         }
       ]
     },
@@ -8458,6 +8688,16 @@
       ]
     },
     {
+      "topic": "UFW Status:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 137,
+          "context": "### UFW Status: ```"
+        }
+      ]
+    },
+    {
       "topic": "Unicode escape corruption",
       "files": [
         {
@@ -8514,6 +8754,16 @@
           "path": "memory/subagent-journal.json",
           "line": 4,
           "context": "status: completed | summary: 32 fetch_* functions in bot/__init__.py converted to API-first with gspread fallback"
+        }
+      ]
+    },
+    {
+      "topic": "Updating /etc/fail2ban/jail.local...",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 49,
+          "context": "### Updating /etc/fail2ban/jail.local... Wrote jail.local"
         }
       ]
     },

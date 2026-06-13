@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T06:07:42Z",
+  "updated": "2026-06-13T07:08:01Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -425,6 +425,12 @@
       "weight": 5
     },
     {
+      "source": "coco-bot",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
       "source": "consolidator",
       "target": "heartbeat-routine",
       "relation": "related_to",
@@ -463,6 +469,12 @@
     {
       "source": "docker",
       "target": "mysql",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "n8n",
       "relation": "depends_on",
       "weight": 5
     },
@@ -541,6 +553,12 @@
     {
       "source": "gmail-api",
       "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "gmail-api",
+      "target": "ssh",
       "relation": "depends_on",
       "weight": 5
     },
@@ -2844,12 +2862,6 @@
     },
     {
       "source": "coco-bot",
-      "target": "openclaw",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "coco-bot",
       "target": "openrouter",
       "relation": "uses",
       "weight": 3
@@ -3536,12 +3548,6 @@
       "source": "docker",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "docker",
-      "target": "n8n",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -4418,12 +4424,6 @@
       "source": "gmail-api",
       "target": "spawn-protocol",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "gmail-api",
-      "target": "ssh",
-      "relation": "depends_on",
       "weight": 3
     },
     {

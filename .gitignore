@@ -18,3 +18,8 @@ psvibe_src/
 system prompt/
 configs/
 backups/
+token.json
+mysql_creds.js
+.secrets_map.json
+email_auto_reply.py
+
