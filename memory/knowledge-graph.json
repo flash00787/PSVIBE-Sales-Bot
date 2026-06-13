@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T07:08:01Z",
+  "updated": "2026-06-13T11:07:55Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -371,6 +371,18 @@
       "weight": 5
     },
     {
+      "source": "caddy",
+      "target": "docker",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "caddy",
+      "target": "mysql",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "chan-su-su-hlaing",
       "target": "gmail-api",
       "relation": "uses",
@@ -468,13 +480,13 @@
     },
     {
       "source": "docker",
-      "target": "mysql",
+      "target": "google-drive-api",
       "relation": "depends_on",
       "weight": 5
     },
     {
       "source": "docker",
-      "target": "n8n",
+      "target": "mysql",
       "relation": "depends_on",
       "weight": 5
     },
@@ -557,8 +569,8 @@
       "weight": 5
     },
     {
-      "source": "gmail-api",
-      "target": "ssh",
+      "source": "google-drive-api",
+      "target": "mysql",
       "relation": "depends_on",
       "weight": 5
     },
@@ -677,6 +689,12 @@
       "weight": 5
     },
     {
+      "source": "mysql",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "nova",
       "target": "coco-bot",
       "relation": "owns",
@@ -764,6 +782,12 @@
       "source": "priority-memory",
       "target": "smart-pruning",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "caddy",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -2058,12 +2082,6 @@
     },
     {
       "source": "caddy",
-      "target": "docker",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "caddy",
       "target": "gemini-api",
       "relation": "depends_on",
       "weight": 3
@@ -2130,12 +2148,6 @@
     },
     {
       "source": "caddy",
-      "target": "mysql",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "caddy",
       "target": "n8n",
       "relation": "depends_on",
       "weight": 3
@@ -2156,6 +2168,12 @@
       "source": "caddy",
       "target": "openrouter",
       "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "caddy",
+      "target": "phase-2",
+      "relation": "related_to",
       "weight": 3
     },
     {
@@ -3510,12 +3528,6 @@
     },
     {
       "source": "docker",
-      "target": "google-drive-api",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "docker",
       "target": "google-sheets",
       "relation": "depends_on",
       "weight": 3
@@ -3548,6 +3560,12 @@
       "source": "docker",
       "target": "memory-upgrade",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "n8n",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -4428,6 +4446,12 @@
     },
     {
       "source": "gmail-api",
+      "target": "ssh",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -4526,12 +4550,6 @@
       "source": "google-drive-api",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "google-drive-api",
-      "target": "mysql",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -5496,12 +5514,6 @@
     },
     {
       "source": "mysql",
-      "target": "ssh",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
       "target": "subagent-tracking",
       "relation": "related_to",
       "weight": 3
@@ -6920,12 +6932,6 @@
       "source": "ps-vibe",
       "target": "boot-protocol",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "ps-vibe",
-      "target": "caddy",
-      "relation": "uses",
       "weight": 3
     },
     {
