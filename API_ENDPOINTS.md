@@ -81,7 +81,10 @@
 | 67 | GET | `/api/bookings/{booking_id}` | Bookings | Get single booking by ID |
 | 68 | POST | `/api/bookings` | Bookings | Create booking (customer bot format) |
 | 69 | POST | `/api/feedback/submit` | Feedback | Submit customer feedback |
-| 70 | POST | `/api/sheets/log` | Logging | Log AI interaction |
+| 70 | GET | `/api/feedback/stats` | Feedback | Feedback stats (count, avg rating, distribution) |
+| 71 | GET | `/api/feedback/list` | Feedback | Paginated feedback list with filters |
+| 72 | POST | `/api/session-end-notify` | Feedback | End-of-session notification & rating prompt |
+| 73 | POST | `/api/sheets/log` | Logging | Log AI interaction |
 | 71 | POST | `/api/bot-users/track` | Bot Users | Track bot user activity |
 
 ---
@@ -876,7 +879,62 @@
 | rating | int | No | Rating (1–5) |
 | comment | string | No | Feedback comment |
 
-**Response:** `{"success": true, "data": {"received": true}}`  
+**Response:** `{"success": true, "data": {"received": true}}`
+
+---
+
+### `GET /api/feedback/stats`
+**Purpose:** Aggregated feedback statistics — total count, average rating, rating distribution, positive/negative percentages.  
+**Auth required:** Yes  
+**Response (JSON):**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| success | bool | Always true |
+| total | int | Total feedback count |
+| avg_rating | float | Average rating (1–5) |
+| positive_pct | float | % of 4–5 star ratings |
+| negative_pct | float | % of 1–3 star ratings |
+| distribution | object | Rating counts: {1: N, 2: N, 3: N, 4: N, 5: N} |
+
+---
+
+### `GET /api/feedback/list`
+**Purpose:** Paginated feedback entries with optional rating filter.  
+**Auth required:** Yes  
+**Query Parameters:**
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| limit | int | 20 | Items per page |
+| offset | int | 0 | Pagination offset |
+| min_rating | int | — | Filter by minimum rating (1–5) |
+
+**Response (JSON):**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| success | bool | Always true |
+| data | array | List of feedback objects |
+| total | int | Total matching count |
+
+**Feedback object fields:** `id`, `tg_id`, `username`, `booking_id`, `rating`, `comment`, `console_id`, `created_at`
+
+---
+
+### `POST /api/session-end-notify`
+**Purpose:** Triggered by Sales Bot when a gaming session ends — notifies the customer via Customer Bot with an inline rating prompt (⭐1–5 buttons) and sends an end-of-session summary to the Admin Group.  
+**Auth required:** Yes  
+**Request Body (JSON):**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| tg_id | int | Yes | Customer's Telegram user ID |
+| booking_id | int | Yes | Associated booking ID |
+| console_id | string | Yes | Console used during session |
+| game_title | string | Yes | Game played during session |
+
+**Behavior:** Sends Telegram message to customer with 5 inline rating buttons (`fb:1:booking_id` through `fb:5:booking_id`). Sends session-end summary to `STAFF_NOTIFY_CHAT` (Admin Group).  
 
 ---
 

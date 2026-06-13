@@ -161,6 +161,23 @@
 
 ---
 
+### `customer_feedback`
+
+**Purpose:** Stores customer ratings and comments submitted after gaming sessions via the Customer Bot.
+
+| Column | Type | Null | Default | Description |
+|--------|------|------|---------|-------------|
+| `id` | int | NO | auto-inc | Primary key |
+| `tg_id` | bigint | YES | NULL | Telegram user ID |
+| `username` | varchar(255) | YES | NULL | Telegram username |
+| `booking_id` | varchar(50) | YES | NULL | Associated booking ID |
+| `rating` | int | YES | NULL | Rating (1–5 stars) |
+| `comment` | text | YES | NULL | Optional feedback comment |
+| `console_id` | varchar(50) | YES | NULL | Console used during session |
+| `created_at` | datetime | YES | CURRENT_TIMESTAMP | When feedback was submitted |
+
+---
+
 ### `finance_advances`
 
 **Purpose:** Tracks cash advances given to members (loans against future play or purchases).
