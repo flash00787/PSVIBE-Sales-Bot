@@ -1,27 +1,26 @@
-[LOCK_MONITOR] Run at 2026-06-13 14:08:06 UTC
+[LOCK_MONITOR] Run at 2026-06-13 15:08:09 UTC
 
 [LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
+  b9bf595d-7344-4799-acda-d41c89fa0f33-topic-125192.trajectory.jsonl: 4184KB (> 500KB threshold)
   02dc7121-489e-4755-b38d-9a339d211c2d-topic-125192.checkpoint.7dcab5d2-385f-40f9-852e-99f7d94c03f3.jsonl: 8139KB (> 500KB threshold)
-  b9bf595d-7344-4799-acda-d41c89fa0f33-topic-125192.jsonl: 2158KB (> 500KB threshold)
   8383ee1b-32ff-444d-ac03-1985be3e3486-topic-126975.jsonl: 587KB (> 500KB threshold)
   71e4e123-1b0f-484a-90cd-8b4aa98044d7-topic-126975.checkpoint.12fbaf13-7ed4-45fd-86af-aa689d8e1f9d.jsonl: 1000KB (> 500KB threshold)
 [LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
   6bcb0d7f-c919-4420-856b-2a9b6dda9ff1.trajectory.jsonl: 5581KB (> 3000KB threshold)
-  b9bf595d-7344-4799-acda-d41c89fa0f33-topic-125192.trajectory.jsonl: 10233KB (> 3000KB threshold)
-[LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
+  b9bf595d-7344-4799-acda-d41c89fa0f33-topic-125192.trajectory.jsonl: 4184KB (> 3000KB threshold)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          880 files,      17299 KB
-  .trajectory.jsonl files:     93 files,      26334 KB
-  .checkpoint.*.jsonl files:   17 files,      59834 KB
+  Main .jsonl files:          884 files,      18288 KB
+  .trajectory.jsonl files:     92 files,      20196 KB
+  .checkpoint.*.jsonl files:   19 files,      65215 KB
   .lock files:                  2 files
   ------------------------------------------
-  TOTAL:                                   103467 KB
+  TOTAL:                                   103699 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 137 KB freed, 8 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 8 warnings
 ==================================================
 === RESULT: OK (warnings: 8) ===

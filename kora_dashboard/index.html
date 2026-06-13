@@ -1475,12 +1475,14 @@
         const balStr = balance !== undefined && balance !== null
           ? `${Number(balance).toLocaleString()} K`
           : '';
+        const tier = m.tier || '';
+        const liability = m.liability_mins !== undefined ? `${Number(m.liability_mins).toLocaleString()} mins` : '';
         return `<div class="search-item" onclick="selectMember('${id}')">
           <div>
-            <div class="s-name">${escapeHtml(name)}</div>
+            <div class="s-name">${escapeHtml(name)} <span style="font-size:0.7rem;color:var(--accent);">${escapeHtml(tier)}</span></div>
             <div class="s-id">ID: ${escapeHtml(String(id))}</div>
           </div>
-          ${balStr ? `<div class="s-balance">${balStr}</div>` : ''}
+          <div class="s-balance">${balStr ? balStr + ' &nbsp;|&nbsp; ' : ''}${liability ? `<span style="color:var(--orange);">⬡ ${liability}</span>` : ''}</div>
         </div>`;
       }).join('');
     }
@@ -2416,7 +2418,7 @@
       var firstSeen = u.first_seen ? u.first_seen.substring(0, 16) : '—';
       var lastSeen = u.last_seen ? u.last_seen.substring(0, 16) : '—';
       var cmd = escapeHtml(u.last_command || '—');
-      return '<tr class="' + selected + '" onclick="showUserActivity('' + u.tg_id + '','' + name.replace(/'/g, '\\'') + '')">'
+      return '<tr class="' + selected + '" onclick="showUserActivity(\'' + escapeHtml(String(u.tg_id)) + '\',\'' + escapeHtml(name.replace(/'/g, "")) + '\')">'
         + '<td>@' + uname + '</td>'
         + '<td>' + name + '</td>'
         + '<td>' + firstSeen + '</td>'
