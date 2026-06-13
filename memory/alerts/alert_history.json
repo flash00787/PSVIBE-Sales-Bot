@@ -2,6 +2,76 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-10 last updated 10.9h ago",
+    "consoleId": "C-10",
+    "timestamp": "2026-06-13T20:07:43.466Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-09 last updated 10.0h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-06-13T20:07:43.464Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 9.6h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-13T20:07:43.463Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 10.0h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-13T20:07:43.461Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 77.9h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-13T20:07:43.460Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 11.8h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-13T20:07:43.458Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 9.5h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-13T20:07:43.457Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 9.9h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-13T20:07:43.456Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 7.4h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-13T20:07:43.454Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 10.6h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-13T20:07:43.452Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 7.9h ago",
     "consoleId": "C-10",
     "timestamp": "2026-06-12T20:07:43.714Z"
