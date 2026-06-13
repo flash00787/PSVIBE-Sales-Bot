@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T11:07:55.032323+00:00",
+  "updated": "2026-06-13T11:44:54.063032+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -1038,6 +1038,16 @@
       ]
     },
     {
+      "topic": "API Endpoints Added (app.py)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 43,
+          "context": "### API Endpoints Added (app.py) - `POST /api/bot-users/track` — upgraded from GSheets-only → MySQL upsert + GSheets fallback"
+        }
+      ]
+    },
+    {
       "topic": "API fix:",
       "files": [
         {
@@ -1499,6 +1509,16 @@
           "path": "memory/project-state.md",
           "line": 30,
           "context": "| 19 | **Bot Menu restructure** — removed Add/Delete/Discs/SSD from bot | ✅ | | 20 | **Console Install moved** — under Consoles menu | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Bot Tracking Added (handlers.py + api.py)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 49,
+          "context": "### Bot Tracking Added (handlers.py + api.py) - `track_usage()` now accepts `detail` parameter"
         }
       ]
     },
@@ -2523,6 +2543,16 @@
       ]
     },
     {
+      "topic": "Customer Bot User Tracking (Option C) — Deployed ✅",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 35,
+          "context": "## Customer Bot User Tracking (Option C) — Deployed ✅"
+        }
+      ]
+    },
+    {
       "topic": "Customer Bot — Menu Eaten by ConversationHandler (FIXED)",
       "files": [
         {
@@ -2619,6 +2649,16 @@
           "path": "memory/project-state.md",
           "line": 15,
           "context": "| 4 | **Dashboard sidebar** — AppLayout wrapper all 6 views | ✅ | | 5 | **Dashboard data** — JWT auth + Food Stock dedup + Promotions dedup | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard Tab (Kora Dashboard :9091)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 55,
+          "context": "### Dashboard Tab (Kora Dashboard :9091) - New \"👥 Users\" tab with: stats row, searchable user table, click-to-view activity log, new users chart (7-day canvas bar chart)"
         }
       ]
     },
@@ -4143,6 +4183,16 @@
       ]
     },
     {
+      "topic": "Full implementation:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 37,
+          "context": "**Full implementation:** MySQL tables + API endpoints + Bot tracking + Kora Dashboard tab"
+        }
+      ]
+    },
+    {
       "topic": "Game Library cleaned",
       "files": [
         {
@@ -5609,6 +5659,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 114,
           "context": "- **MySQL port 3306 is DENIED externally** — excellent - Docker bridge networks have internal access on port 8000"
+        }
+      ]
+    },
+    {
+      "topic": "MySQL Tables Created",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 39,
+          "context": "### MySQL Tables Created - `customer_bot_users` — tg_id, username, first_name, first_seen, last_seen, total_interactions, ai_chat_count, last_command, last_activity_type"
         }
       ]
     },

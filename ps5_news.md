@@ -1,6 +1,37 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-13 05:30 UTC
+> Last updated: 2026-06-13 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 13, 2026 - 11:30 UTC) — SpeedRunners 2 + DOA6 Last Round Details
+
+> **Summary:** Two minor but lounge-relevant finds since the 05:30 update. No critical news.
+
+### 🏃💨 SpeedRunners 2: King of Speed — July 2026 (NEW FIND! Not previously in tracker!)
+- Sequel to the 2013 indie competitive platformer hit, developed by **Fair Play Labs**, published by **tinyBuild**
+- Platforms: **PS5**, Xbox Series X|S, Nintendo Switch, PC — with **crossplay** across all platforms
+- Release: **July 2026** (exact date TBD)
+- Genre: Up to 4-player competitive platformer / party game — think Mario Kart meets platformer racing with grappling hooks
+- Original SpeedRunners was a couch multiplayer staple at gaming events
+- **💡💡 Lounge Note:** This is a SLEEPER HIT for gaming lounges! Competitive local multiplayer party games are PERFECT for lounge sessions — easy to pick up, fast rounds, high-energy. The original SpeedRunners was a staple at gaming parties. With crossplay, customers can even play against friends online. Budget-friendly indie pricing expected. **Add to July wishlist immediately!**
+
+### 🥊 Dead or Alive 6: Last Round — New Details (June 25)
+- Previously in our calendar for June 25 — now with confirmed details:
+  - **29 characters at launch**: 24 original DOA6 fighters + 5 DLC characters included (Nyotengu, Phase 4, Momiji, Rachel, Tamaki)
+  - **Mai Shiranui & Kula Diamond** (King of Fighters collab) return but are paid DLC
+  - Post-launch roadmap: new costumes + new characters planned throughout the year
+  - **Free-to-play version** available alongside paid Standard Edition
+- **💡 Lounge Note:** The free-to-play version is KEY for a lounge! Customers can try DOA6 without buying it — and DOA's accessible fighting mechanics + stunning visuals make it a great casual fighting game for the lounge. 29-character roster at launch is solid. Team NINJA promises ongoing updates.
+
+### ⏰ Key Deadlines This Week (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 16** | FFXVI joins PS Plus Extra | 3 days! Promote to RPG fans! |
+| **June 16** | EA Sports FC 26 free (last day) | 3 days! |
+| **June 16** | Destiny 2: Legacy Collection (last day to claim) | 3 days! |
+| **June 28-29** | FREE Online Multiplayer Weekend | 2 weeks! Start promoting NOW! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! |
 
 ---
 
@@ -1111,6 +1142,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jul TBD | 👾 **Disgaea Mayhem** 🆕 | ⭐⭐⭐⭐ (Beloved SRPG series!) |
 | Jul TBD | 🎵 **Blue Reflection Quartet** 🆕 | ⭐⭐⭐ (Magical girl RPG!) |
 | Jul TBD | **Where Winds Meet — Hidden Mountain** 🆕 | ⭐⭐⭐ (Expansion) |
+| Jul TBD | 🏃💨 **SpeedRunners 2: King of Speed** 🆕 | ⭐⭐⭐⭐ (4-player competitive party game! Crossplay! Perfect lounge title!) |
 | Aug 4 | **Beast of Reincarnation** 🐺🆕 | ⭐⭐⭐ (New action title!) |
 | Aug 6 | Marvel Tōkon: Fighting Souls (Magneto, Green Goblin, Carnage + Doom) | ⭐⭐⭐⭐ |
 | Aug 13 | **Wild Blue Skies** ✈️🆕 | ⭐⭐⭐ (New flying/sim!) |
@@ -1173,6 +1205,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🧟 **State of Decay 3** 🆕 — Now OFFICIALLY confirmed for PS5!
 - ⛏️ **Minecraft Dungeons II** 🆕 — Dungeon crawler sequel, **Sep 29, 2026**!
 - 🎯 **Marathon** — from Halo/Destiny creators
+- 🏃💨 **SpeedRunners 2: King of Speed** 🆕 — Competitive 4-player party platformer! **July 2026**! Crossplay on PS5, Xbox, Switch, PC! Original was a couch multiplayer legend — this is PERFECT lounge material!
 - ⚽ **Captain Tsubasa 2: World Fighters** 🆕🔥 — Football anime game! **Aug 28, 2026**! MASSIVE in Asia + Myanmar!
 - 🦇 **Castlevania: Belmont's Curse** — **Oct 15, 2026** 🔒 DATE LOCKED!
 - 🦁 **Planet Zoo 2** 🆕 — **Oct 13, 2026**! Family-friendly sim builder!
@@ -1238,6 +1271,8 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🆓 **MARATHON FREE WEEK (June 2-9):** ENDED — hope customers got to play! Season 2 continues for owners.
 - 🔥 **STATE OF PLAY (June 2)** was the most-watched ever (3M+ viewers) — update your social media / customer chats with the big reveals!
 - **God of War: Laufey** is MASSIVE — PlayStation's biggest 2026 exclusive reveal since GTA 6. Start the hype early.
+- 🏃💨🆕 **SPEEDRUNNERS 2: KING OF SPEED (July 2026)** — 4-player competitive party platformer with crossplay! Original SpeedRunners was a couch multiplayer legend at gaming events. Fast rounds, high energy, easy to learn — PERFECT for lounge social sessions! Add to July wishlist NOW!
+- 🥊🆕 **DEAD OR ALIVE 6: LAST ROUND (June 25)** — 29 characters at launch + FREE-TO-PLAY version available! DOA's accessible fighting + stunning visuals = great casual fighter for the lounge. Free version means customers can try before committing!
 - ⏰ **Days of Play ends TODAY (June 10)** — LAST CHANCE to renew lounge PS Plus subscriptions now at 33% off Premium!
 - **Tekken 8: Kunimitsu** DLC is out — make sure lounge consoles have it! Fighting game fans will ask.
 - **Onimusha demo** is live NOW on PS Store — let customers try it at the lounge

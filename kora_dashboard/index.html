@@ -398,6 +398,23 @@
       padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(51,65,85,0.2);
     }
     .staff-table tr:hover { background: rgba(56,189,248,0.03); }
+    /* User table */
+    .user-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .user-table th { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--border); color: var(--muted); font-weight: 600; white-space: nowrap; }
+    .user-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); }
+    .user-table tr:hover { background: rgba(56,189,248,0.03); cursor: pointer; }
+    .user-table tr.selected { background: rgba(56,189,248,0.08); }
+    .user-table .badge { display:inline-block; padding:0.1rem 0.45rem; border-radius:999px; font-size:0.7rem; font-weight:600; }
+    .user-table .badge.cmd { background:rgba(56,189,248,0.12); color:var(--accent); }
+    /* Activity table */
+    .activity-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .activity-table th { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--border); color: var(--muted); font-weight: 600; white-space: nowrap; }
+    .activity-table td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--border); }
+    .activity-table tr:hover { background: rgba(56,189,248,0.03); }
+    .activity-type-badge { display:inline-block; padding:0.1rem 0.4rem; border-radius:4px; font-size:0.7rem; font-weight:600; background:rgba(56,189,248,0.1); color:var(--accent); }
+    .activity-type-badge.ai { background:rgba(168,85,247,0.15); color:#c084fc; }
+    .activity-type-badge.booking { background:rgba(74,222,128,0.15); color:#4ade80; }
+    .activity-type-badge.feedback { background:rgba(251,191,36,0.15); color:#fbbf24; }
 
     /* EOD Summary */
     .eod-grid {
@@ -656,6 +673,7 @@
     <button class="tab-btn" data-tab="staff" data-i18n="tab_staff">👤 Staff</button>
     <button class="tab-btn" data-tab="food" data-i18n="tab_food">🍔 Food</button>
     <button class="tab-btn" data-tab="alerts" data-i18n="tab_alerts">⚠️ Alerts</button>
+    <button class="tab-btn" data-tab="users" data-i18n="tab_users">👥 Users</button>
   </div>
 
   <div class="container">
@@ -923,7 +941,117 @@
       </div>
     </div>
 
-    <!-- ═══ TAB: Alerts ═══ -->
+    <!-- ═══ TAB: Users ═══ -->
+    <div class="tab-content" id="tab-users">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshUsers()">🔄 <span data-i18n="refresh_users">Refresh Users</span></button>
+          <span class="auto-refresh-indicator"><span class="status-dot ok pulse"></span> <span data-i18n="auto_refresh">Auto-refresh: 60s</span></span>
+        </div>
+        <input type="text" id="userSearch" placeholder="🔍 Search users..." oninput="onUserSearch(this.value)" style="padding:0.4rem 0.6rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-size:0.8rem;width:200px;">
+      </div>
+
+      <!-- User Stats Row -->
+      <div class="stats-grid" id="userStatsRow">
+        <div class="stat-card">
+          <div class="icon">👥</div>
+          <div class="label" data-i18n="stat_total_users">Total Users</div>
+          <div class="value" id="statTotalUsers">—</div>
+          <div class="sub" data-i18n="all_time">all time</div>
+        </div>
+        <div class="stat-card green">
+          <div class="icon">🟢</div>
+          <div class="label" data-i18n="stat_active_today">Active Today</div>
+          <div class="value" id="statActiveToday">—</div>
+          <div class="sub" data-i18n="last_24h">last 24h</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">📅</div>
+          <div class="label" data-i18n="stat_active_week">Active This Week</div>
+          <div class="value" id="statActiveWeek">—</div>
+          <div class="sub" data-i18n="last_7d">last 7 days</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">🤖</div>
+          <div class="label" data-i18n="stat_ai_chats">AI Chats</div>
+          <div class="value" id="statAiChats">—</div>
+          <div class="sub" data-i18n="total">total</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">📊</div>
+          <div class="label" data-i18n="stat_top_command">Top Command</div>
+          <div class="value" id="statTopCmd" style="font-size:0.85rem">—</div>
+          <div class="sub">&nbsp;</div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <!-- LEFT: User Table -->
+        <div style="grid-column: 1 / -1;">
+          <div class="panel">
+            <div class="panel-header">
+              👥 <span data-i18n="panel_user_list">Bot Users</span>
+              <span style="font-size:0.75rem;color:var(--muted)" id="userCountLabel">0 users</span>
+            </div>
+            <div class="panel-body" style="overflow-x:auto;">
+              <table class="user-table" id="userTable">
+                <thead>
+                  <tr>
+                    <th data-i18n="col_username">Username</th>
+                    <th data-i18n="col_name">Name</th>
+                    <th data-i18n="col_first_seen">First Seen</th>
+                    <th data-i18n="col_last_seen">Last Seen</th>
+                    <th data-i18n="col_interactions">Interactions</th>
+                    <th data-i18n="col_ai_chats">AI Chats</th>
+                    <th data-i18n="col_last_command">Last Command</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody">
+                  <tr><td colspan="7" class="empty-state">Loading users...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Activity Log (shown when user clicked) -->
+      <div class="panel" id="userActivityPanel" style="display:none;margin-top:1rem;">
+        <div class="panel-header">
+          📋 <span id="userActivityTitle">Activity Log</span>
+          <button class="btn-sm" onclick="closeUserActivity()" style="margin-left:auto;">✕</button>
+        </div>
+        <div class="panel-body" style="overflow-x:auto;max-height:400px;overflow-y:auto;">
+          <table class="activity-table" id="activityTable">
+            <thead>
+              <tr>
+                <th data-i18n="col_time">Time</th>
+                <th data-i18n="col_action">Action</th>
+                <th data-i18n="col_detail">Detail</th>
+              </tr>
+            </thead>
+            <tbody id="activityTableBody">
+              <tr><td colspan="3" class="empty-state">Select a user to see activity</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Daily New Users Chart -->
+      <div class="panel" style="margin-top:1rem;">
+        <div class="panel-header">
+          📈 <span data-i18n="panel_new_users_chart">New Users (7 Days)</span>
+        </div>
+        <div class="panel-body">
+          <div class="chart-wrap">
+            <canvas id="usersChartCanvas" width="600" height="200"></canvas>
+          </div>
+          <div id="usersChartFallback" class="empty-state" style="display:none;">Loading chart...</div>
+        </div>
+      </div>
+    </div>
+
+  <!-- ═══ TAB: Alerts ═══ -->
     <div class="tab-content" id="tab-alerts">
       <div class="refresh-bar">
         <div class="refresh-bar-left">
@@ -993,6 +1121,7 @@
       tab_staff: '👤 Staff',
       tab_food: '🍔 Food',
       tab_alerts: '⚠️ Alerts',
+      tab_users: '👥 Users',
       refresh_all: 'Refresh All',
       auto_refresh: 'Auto-refresh: 60s',
       stat_consoles_free: 'Consoles Free',
@@ -1056,6 +1185,27 @@
       error: 'Error',
       welcome_back: 'Welcome back,',
       session_expired: 'Session expired. Please login again.',
+      refresh_users: 'Refresh Users',
+      stat_total_users: 'Total Users',
+      stat_active_today: 'Active Today',
+      stat_active_week: 'Active This Week',
+      stat_ai_chats: 'AI Chats',
+      stat_top_command: 'Top Command',
+      all_time: 'all time',
+      last_24h: 'last 24h',
+      last_7d: 'last 7 days',
+      total: 'total',
+      panel_user_list: 'Bot Users',
+      col_username: 'Username',
+      col_name: 'Name',
+      col_first_seen: 'First Seen',
+      col_last_seen: 'Last Seen',
+      col_interactions: 'Interactions',
+      col_ai_chats: 'AI Chats',
+      col_last_command: 'Last Command',
+      col_action: 'Action',
+      col_detail: 'Detail',
+      panel_new_users_chart: 'New Users (7 Days)',
     },
     my: {
       login_title: 'Kora ဒက်ရှ်ဘုတ်',
@@ -1077,6 +1227,7 @@
       tab_staff: '👤 ဝန်ထမ်းများ',
       tab_food: '🍔 အစားအသောက်',
       tab_alerts: '⚠️ သတိပေးချက်များ',
+      tab_users: '👥 အသုံးပြုသူများ',
       refresh_all: 'အားလုံးပြန်လည်ဆန်းသစ်ရန်',
       auto_refresh: 'အော်တို-ပြန်ဆန်းသစ်: စက္ကန့် ၆၀',
       stat_consoles_free: 'စက်အားလပ်',
@@ -1140,6 +1291,27 @@
       error: 'အမှား',
       welcome_back: 'ပြန်လည်ကြိုဆိုပါတယ်,',
       session_expired: 'ဆက်ရှင်သက်တမ်းကုန်သွားပါပြီ။ ပြန်ဝင်ပါ။',
+      refresh_users: 'အသုံးပြုသူများပြန်ဆန်းသစ်ရန်',
+      stat_total_users: 'စုစုပေါင်းအသုံးပြုသူ',
+      stat_active_today: 'ယနေ့သုံးစွဲသူ',
+      stat_active_week: 'ဤတစ်ပတ်အတွင်း',
+      stat_ai_chats: 'AI စကားပြော',
+      stat_top_command: 'ထိပ်တန်းကွန်မန့်',
+      all_time: 'အားလုံး',
+      last_24h: 'နောက်ဆုံး ၂၄ နာရီ',
+      last_7d: 'နောက်ဆုံး ၇ ရက်',
+      total: 'စုစုပေါင်း',
+      panel_user_list: 'Bot အသုံးပြုသူများ',
+      col_username: 'အသုံးပြုသူအမည်',
+      col_name: 'နာမည်',
+      col_first_seen: 'ပထမဆုံးတွေ့ရှိ',
+      col_last_seen: 'နောက်ဆုံးတွေ့ရှိ',
+      col_interactions: 'ဆက်သွယ်မှု',
+      col_ai_chats: 'AI စကားပြော',
+      col_last_command: 'နောက်ဆုံးကွန်မန့်',
+      col_action: 'လုပ်ဆောင်ချက်',
+      col_detail: 'အသေးစိတ်',
+      panel_new_users_chart: 'အသုံးပြုသူအသစ် (၇ ရက်)',
     }
   };
 
@@ -2127,6 +2299,7 @@
     else if (tabName === 'food') refreshFood();
     else if (tabName === 'alerts') refreshAlerts();
     else if (tabName === 'schedule') refreshSchedule();
+    else if (tabName === 'users') refreshUsers();
   }
 
   document.getElementById('tabNav').addEventListener('click', function(e) {
@@ -2181,6 +2354,200 @@
     var d = document.createElement('div');
     d.textContent = text;
     return d.innerHTML;
+  }
+
+  // ═══════════════════════════════════════
+  // USER TRACKING FUNCTIONS
+  // ═══════════════════════════════════════
+  var _selectedUserId = null;
+  var _userSearchTimeout = null;
+
+  async function fetchUserStats() {
+    try {
+      const data = await apiCall('/api/bot-users/stats');
+      const d = data.data || data || {};
+      document.getElementById('statTotalUsers').textContent = d.total_users || 0;
+      document.getElementById('statActiveToday').textContent = d.active_today || 0;
+      document.getElementById('statActiveWeek').textContent = d.active_this_week || 0;
+      document.getElementById('statAiChats').textContent = d.total_ai_chats || 0;
+      if (d.top_commands && d.top_commands.length > 0) {
+        document.getElementById('statTopCmd').textContent = d.top_commands[0].action + ' (' + d.top_commands[0].count + ')';
+      }
+      return d;
+    } catch (err) {
+      console.warn('[Users] Stats fetch failed:', err.message);
+      return {};
+    }
+  }
+
+  async function fetchUserList(search) {
+    try {
+      var url = '/api/bot-users/list?limit=50';
+      if (search) url += '&search=' + encodeURIComponent(search);
+      const data = await apiCall(url);
+      return data.data || data || { users: [], total: 0 };
+    } catch (err) {
+      console.warn('[Users] User list fetch failed:', err.message);
+      return { users: [], total: 0 };
+    }
+  }
+
+  async function fetchUserActivity(tgId) {
+    try {
+      const data = await apiCall('/api/bot-users/activity?tg_id=' + encodeURIComponent(tgId) + '&limit=30');
+      return data.data || data || { activities: [] };
+    } catch (err) {
+      console.warn('[Users] Activity fetch failed:', err.message);
+      return { activities: [] };
+    }
+  }
+
+  function renderUserTable(users, total) {
+    var tbody = document.getElementById('userTableBody');
+    document.getElementById('userCountLabel').textContent = total + ' users';
+    if (!users || users.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No users found</td></tr>';
+      return;
+    }
+    tbody.innerHTML = users.map(function(u) {
+      var selected = _selectedUserId === u.tg_id ? ' selected' : '';
+      var name = escapeHtml(u.first_name || u.username || '—');
+      var uname = escapeHtml(u.username || '—');
+      var firstSeen = u.first_seen ? u.first_seen.substring(0, 16) : '—';
+      var lastSeen = u.last_seen ? u.last_seen.substring(0, 16) : '—';
+      var cmd = escapeHtml(u.last_command || '—');
+      return '<tr class="' + selected + '" onclick="showUserActivity('' + u.tg_id + '','' + name.replace(/'/g, '\\'') + '')">'
+        + '<td>@' + uname + '</td>'
+        + '<td>' + name + '</td>'
+        + '<td>' + firstSeen + '</td>'
+        + '<td>' + lastSeen + '</td>'
+        + '<td>' + (u.total_interactions || 0) + '</td>'
+        + '<td>' + (u.ai_chat_count || 0) + '</td>'
+        + '<td><span class="badge cmd">' + cmd + '</span></td>'
+        + '</tr>';
+    }).join('');
+  }
+
+  async function showUserActivity(tgId, userName) {
+    _selectedUserId = tgId;
+    // Update selected row
+    document.querySelectorAll('#userTableBody tr').forEach(function(el) { el.classList.remove('selected'); });
+    var rows = document.querySelectorAll('#userTableBody tr');
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].getAttribute('onclick') && rows[i].getAttribute('onclick').indexOf(tgId) >= 0) {
+        rows[i].classList.add('selected');
+        break;
+      }
+    }
+
+    var panel = document.getElementById('userActivityPanel');
+    var title = document.getElementById('userActivityTitle');
+    title.textContent = '📋 Activity Log — ' + (userName || tgId);
+    panel.style.display = 'block';
+
+    var tbody = document.getElementById('activityTableBody');
+    tbody.innerHTML = '<tr><td colspan="3" class="empty-state">Loading...</td></tr>';
+
+    var result = await fetchUserActivity(tgId);
+    var activities = result.activities || [];
+    if (activities.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" class="empty-state">No activity recorded yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = activities.map(function(a) {
+      var time = a.created_at ? a.created_at.substring(0, 16) : '—';
+      var type = escapeHtml(a.activity_type || '—');
+      var cls = 'activity-type-badge';
+      if (type.indexOf('ai') >= 0) cls += ' ai';
+      else if (type.indexOf('book') >= 0 || type.indexOf('booking') >= 0) cls += ' booking';
+      else if (type.indexOf('feedback') >= 0) cls += ' feedback';
+      var detail = escapeHtml(a.detail || '');
+      return '<tr><td>' + time + '</td><td><span class="' + cls + '">' + type + '</span></td><td>' + detail + '</td></tr>';
+    }).join('');
+  }
+
+  function closeUserActivity() {
+    document.getElementById('userActivityPanel').style.display = 'none';
+    _selectedUserId = null;
+    document.querySelectorAll('#userTableBody tr').forEach(function(el) { el.classList.remove('selected'); });
+  }
+
+  function onUserSearch(value) {
+    clearTimeout(_userSearchTimeout);
+    _userSearchTimeout = setTimeout(function() {
+      refreshUsers(value.trim());
+    }, 400);
+  }
+
+  async function refreshUsers(search) {
+    // Fetch stats + users in parallel
+    var statsPromise = fetchUserStats();
+    var listResult = await fetchUserList(search);
+    renderUserTable(listResult.users, listResult.total);
+    var stats = await statsPromise;
+
+    // Draw new users chart
+    drawUsersChart(stats.users_by_day || []);
+  }
+
+  function drawUsersChart(usersByDay) {
+    var canvas = document.getElementById('usersChartCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var parent = canvas.parentElement;
+    canvas.width = parent.clientWidth || 600;
+    canvas.height = 200;
+
+    // Simple bar chart without external libraries
+    var w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    if (!usersByDay || usersByDay.length === 0) {
+      ctx.fillStyle = '#666';
+      ctx.font = '14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('No data yet — users will appear here', w/2, h/2);
+      return;
+    }
+
+    var maxVal = Math.max.apply(null, usersByDay.map(function(d) { return d.count; }));
+    if (maxVal === 0) maxVal = 1;
+    var barAreaLeft = 50, barAreaRight = w - 20;
+    var barAreaTop = 20, barAreaBottom = h - 30;
+    var barAreaW = barAreaRight - barAreaLeft;
+    var barW = Math.min(50, barAreaW / usersByDay.length - 8);
+    var gap = (barAreaW - barW * usersByDay.length) / (usersByDay.length + 1);
+
+    ctx.fillStyle = '#333';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+
+    usersByDay.forEach(function(d, i) {
+      var x = barAreaLeft + gap + i * (barW + gap);
+      var barH = (d.count / maxVal) * (barAreaBottom - barAreaTop);
+      var y = barAreaBottom - barH;
+
+      // Bar
+      var grad = ctx.createLinearGradient(x, y, x, barAreaBottom);
+      grad.addColorStop(0, '#38bdf8');
+      grad.addColorStop(1, '#2563eb');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(x, y, barW, barH, [4,4,0,0]) : ctx.fillRect(x, y, barW, barH);
+      ctx.fill();
+
+      // Value on top
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(d.count, x + barW/2, y - 5);
+
+      // Date label
+      ctx.fillStyle = '#888';
+      ctx.font = '10px sans-serif';
+      var label = d.date ? d.date.substring(5) : '';
+      ctx.fillText(label, x + barW/2, barAreaBottom + 15);
+    });
   }
 
   // ═══════════════════════════════════════
