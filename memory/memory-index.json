@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T12:07:29.539492+00:00",
+  "updated": "2026-06-13T21:07:41.977638+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -658,16 +658,6 @@
       ]
     },
     {
-      "topic": "91.6/100",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 28,
-          "context": "- Health Monitor: **91.6/100** ✅ - Memory index: 823 topics rebuilt"
-        }
-      ]
-    },
-    {
       "topic": "ACM's Acc is a business account",
       "files": [
         {
@@ -928,6 +918,16 @@
       ]
     },
     {
+      "topic": "All services restarted:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 23,
+          "context": "5. **All services restarted:** psvibe-api ✅, psvibe_customer_bot ✅, kora-dashboard (:9091) ✅"
+        }
+      ]
+    },
+    {
       "topic": "ALL TESTS PASSED",
       "files": [
         {
@@ -1034,16 +1034,6 @@
           "path": "memory/coupon-system-implemented.md",
           "line": 14,
           "context": "### API Endpoints (app.py) | Endpoint | Method | Purpose |"
-        }
-      ]
-    },
-    {
-      "topic": "API Endpoints Added (app.py)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 43,
-          "context": "### API Endpoints Added (app.py) - `POST /api/bot-users/track` — upgraded from GSheets-only → MySQL upsert + GSheets fallback"
         }
       ]
     },
@@ -1457,7 +1447,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 3,
+          "line": 9,
           "context": "## Boss — Ko Aung Chan Myint (ကိုအောင်ချန်မြင့်) - **Business:** Founder & Manager — PS VIBE - PS5 Gaming Lounge"
         }
       ]
@@ -1509,16 +1499,6 @@
           "path": "memory/project-state.md",
           "line": 30,
           "context": "| 19 | **Bot Menu restructure** — removed Add/Delete/Discs/SSD from bot | ✅ | | 20 | **Console Install moved** — under Consoles menu | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "Bot Tracking Added (handlers.py + api.py)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 49,
-          "context": "### Bot Tracking Added (handlers.py + api.py) - `track_usage()` now accepts `detail` parameter"
         }
       ]
     },
@@ -1579,6 +1559,16 @@
           "path": "memory/fix-history.md",
           "line": 7,
           "context": "### Bug Fix: Pending Bookings Display - **SHA:** `d606bed`"
+        }
+      ]
+    },
+    {
+      "topic": "Bug:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 123,
+          "context": "- **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\" - **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>`"
         }
       ]
     },
@@ -1657,7 +1647,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 4,
+          "line": 10,
           "context": "- **Business:** Founder & Manager — PS VIBE - PS5 Gaming Lounge - **Tagline:** \"Play The Game. Share The VIBE!\""
         }
       ]
@@ -1737,12 +1727,12 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 14,
+          "line": 20,
           "context": "| **Chan Su Su Hlaing** | chansusuhlaing@gmail.com | — | | **You Ko Htet** (ယူကိုထက်) | rein020124@gmail.com | — |"
         },
         {
           "path": "memory/contacts.md",
-          "line": 25,
+          "line": 31,
           "context": "- **Chan Su Su Hlaing:** Colleague / Business"
         }
       ]
@@ -1759,6 +1749,11 @@
           "path": "memory/2026-06-05.md",
           "line": 374,
           "context": "- **Changes made:** - Added reminder logic that checks for confirmed bookings starting within ~10 minutes"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 8,
+          "context": "**Changes Made:** 1. **MySQL:** Added columns to `customer_bot_users`: `member_id` (indexed), `member_name`, `phone` (indexed), `balance_mins`"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -1891,6 +1886,11 @@
       "topic": "Cleanup:",
       "files": [
         {
+          "path": "memory/2026-06-13.md",
+          "line": 162,
+          "context": "- **Cleanup:** Removed temp fix files (`/tmp/fix_social.py`, `/tmp/fix_contact_newlines.py`, `/tmp/debug_pattern.py`, `/tmp/fix_social_links.py`, `/tmp/patch_social_links.py`, `/tmp/ssh_put.js`, `/tmp"
+        },
+        {
           "path": "memory/UPGRADE_SPEC.md",
           "line": 116,
           "context": "### Cleanup: - If active_tasks.json has entries that aren't in journal → orphaned → report"
@@ -1954,6 +1954,26 @@
           "path": "memory/2026-06-09.md",
           "line": 12,
           "context": "- **Closing = 28,758,453 Ks** ✅ (matches Web Finance exactly) - **No Financing section** (no capital events in June; 3.69M was advance recovery + member topup, not capital injection)"
+        }
+      ]
+    },
+    {
+      "topic": "Cloudflare DNS:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 149,
+          "context": "1. **Cloudflare DNS:** Add CNAME for `kora.ps-vibe.com` → `tunnel-endpoint` for subdomain access 2. **n8n Payment (€25.68):** 2nd notice received, subscription may expire"
+        }
+      ]
+    },
+    {
+      "topic": "Cloudflare Tunnel path routing limitation",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 207,
+          "context": "13. **Cloudflare Tunnel path routing limitation** — `/kora/` path routes to localhost:8000 (API server) cannot also route to :9091 (Kora Dashboard). Solution: DNS CNAME record (`kora.ps-vibe.com`) for"
         }
       ]
     },
@@ -2098,6 +2118,16 @@
       ]
     },
     {
+      "topic": "completely missing",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 96,
+          "context": "- **Root cause:** The sales bot calls `POST /session-end-notify` but this endpoint was **completely missing** from `app.py` - Created full `POST /api/session-end-notify` endpoint in `app.py`:"
+        }
+      ]
+    },
+    {
       "topic": "Compression:",
       "files": [
         {
@@ -2222,7 +2252,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 11,
+          "line": 17,
           "context": "## Contacts | Name | Email | Telegram |"
         }
       ]
@@ -2473,6 +2503,16 @@
       ]
     },
     {
+      "topic": "Current State",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 55,
+          "context": "### Current State | Service | Status |"
+        }
+      ]
+    },
+    {
       "topic": "Customer Booking Flow (booking_handlers.py)",
       "files": [
         {
@@ -2543,12 +2583,12 @@
       ]
     },
     {
-      "topic": "Customer Bot User Tracking (Option C) — Deployed ✅",
+      "topic": "Customer Bot Users — Member Enrichment",
       "files": [
         {
           "path": "memory/2026-06-13.md",
-          "line": 35,
-          "context": "## Customer Bot User Tracking (Option C) — Deployed ✅"
+          "line": 5,
+          "context": "### Customer Bot Users — Member Enrichment Per Boss request: when a Customer Bot user is also a PS VIBE member, auto-populate their member details."
         }
       ]
     },
@@ -2569,16 +2609,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 355,
           "context": "| **Customer picks a console, then staff changes it during approval** | LOW | This is EXISTING behavior. Feature 1 just lets customer PREFER a console. Staff always has final say. | | **State machine "
-        }
-      ]
-    },
-    {
-      "topic": "Daily Auto-Backup",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 12,
-          "context": "| **Daily Auto-Backup** | Cron: `0 2 * * * /bin/bash /root/auto_backup.sh` — MySQL dump + app files, 7-day retention | | **MySQL Backup Fixed** | DB name was wrong (`psvibe_sales` → `psvibe_api`), cre"
         }
       ]
     },
@@ -2609,6 +2639,16 @@
           "path": "memory/project-state.md",
           "line": 16,
           "context": "| 5 | **Dashboard data** — JWT auth + Food Stock dedup + Promotions dedup | ✅ | | 6 | **Dashboard Food Stock Split** — 4 pages (Menu Reg, Stock In/Out, Inventory) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard file deployment:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 168,
+          "context": "4. **Dashboard file deployment:** Base64 chunked SSH transfer reliable for large files. Temp file approach prevents partial writes. Kill stale processes before restart."
         }
       ]
     },
@@ -2649,16 +2689,6 @@
           "path": "memory/project-state.md",
           "line": 15,
           "context": "| 4 | **Dashboard sidebar** — AppLayout wrapper all 6 views | ✅ | | 5 | **Dashboard data** — JWT auth + Food Stock dedup + Promotions dedup | ✅ |"
-        }
-      ]
-    },
-    {
-      "topic": "Dashboard Tab (Kora Dashboard :9091)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 55,
-          "context": "### Dashboard Tab (Kora Dashboard :9091) - New \"👥 Users\" tab with: stats row, searchable user table, click-to-view activity log, new users chart (7-day canvas bar chart)"
         }
       ]
     },
@@ -2842,7 +2872,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 6,
+          "line": 12,
           "context": "- **Director:** Synergy Hub - **Email:** chanmyint123456789@gmail.com"
         }
       ]
@@ -2874,16 +2904,6 @@
           "path": "memory/2026-06-08.md",
           "line": 108,
           "context": "- **Disposal record reversed** — `Game Discs` (id=3) disposed_qty=3 → 0; `asset_disposals` table now empty (was test data from disposal feature dev)"
-        }
-      ]
-    },
-    {
-      "topic": "Docker Audit",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 15,
-          "context": "| **Docker Audit** | 5/7 containers non-root; MySQL/Caddy root is standard/expected |"
         }
       ]
     },
@@ -2992,7 +3012,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 7,
+          "line": 13,
           "context": "- **Email:** chanmyint123456789@gmail.com - **Rules:** Card_wallet → Column H only. Receipt templates: NO Burmese footer text."
         }
       ]
@@ -3014,6 +3034,16 @@
           "path": "memory/2026-06-10.md",
           "line": 95,
           "context": "### Empty (unreleased) Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3"
+        }
+      ]
+    },
+    {
+      "topic": "End-to-end flow:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 101,
+          "context": "- **End-to-end flow:** Sales bot → `_session_end_notify()` → API → Customer Bot (rating prompt) → user taps star → `cb_feedback_rating` → POST `/api/feedback/submit` → MySQL → Kora Dashboard"
         }
       ]
     },
@@ -3138,12 +3168,32 @@
       ]
     },
     {
-      "topic": "fail2ban Installed",
+      "topic": "Extra step:",
       "files": [
         {
           "path": "memory/2026-06-13.md",
-          "line": 11,
-          "context": "| **fail2ban Installed** | Was completely missing! Now running, 5 attacking IPs already banned | | **Daily Auto-Backup** | Cron: `0 2 * * * /bin/bash /root/auto_backup.sh` — MySQL dump + app files, 7-"
+          "line": 35,
+          "context": "- **Extra step:** App.py was corrupted by broken string escaping during the fix → restored to clean git state, then reapplied fix correctly"
+        }
+      ]
+    },
+    {
+      "topic": "Facebook:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 5,
+          "context": "- **Facebook:** https://www.facebook.com/ps5gamecenter - **Telegram Admin:** https://t.me/psvibeofficial"
+        }
+      ]
+    },
+    {
+      "topic": "fail2ban is baseline security",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 206,
+          "context": "12. **fail2ban is baseline security** — Was completely missing from VPS until audit discovered it. Every production server should have fail2ban running from day one. 13. **Cloudflare Tunnel path routi"
         }
       ]
     },
@@ -3189,6 +3239,16 @@
           "path": "memory/2026-06-05.md",
           "line": 381,
           "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
+        }
+      ]
+    },
+    {
+      "topic": "FastAPI response_model:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 166,
+          "context": "2. **FastAPI response_model:** Silently strips undeclared fields — add all response fields to `response_model` Pydantic class. 3. **file corruption from string slicing:** When editing HTML/JS files wi"
         }
       ]
     },
@@ -3269,6 +3329,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 73,
           "context": "- **File backups:** Tars `/root/psvibe-sales-bot/` and `/root/psvibe_api_server/` - **Compression:** SQL dumps gzipped immediately"
+        }
+      ]
+    },
+    {
+      "topic": "file corruption from string slicing:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 167,
+          "context": "3. **file corruption from string slicing:** When editing HTML/JS files with Python string operations, always verify `grep count` of function names before and after to detect duplication/truncation. 4."
         }
       ]
     },
@@ -3673,16 +3743,6 @@
       ]
     },
     {
-      "topic": "Firewall",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 14,
-          "context": "| **Firewall** | Already well-configured (UFW active, 3306 blocked externally) — no changes needed | | **Docker Audit** | 5/7 containers non-root; MySQL/Caddy root is standard/expected |"
-        }
-      ]
-    },
-    {
       "topic": "Fix (3 rounds):",
       "files": [
         {
@@ -3956,6 +4016,11 @@
           "context": "- **Fix**: Need to delete that drop-in file via Hetzner Web Console - Resolution: Postponed to morning (Boss said \"မနက်ကျမှ လုပ်တော့မယ်\")"
         },
         {
+          "path": "memory/2026-06-13.md",
+          "line": 34,
+          "context": "- **Fix:** Added staff notification block after customer notification — sends cancel details (booking ID, date, time, console, game, member, phone) to `STAFF_NOTIFY_CHAT` via Sales Bot token - **Extra"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -4079,6 +4144,11 @@
           "path": "memory/2026-06-08.md",
           "line": 10,
           "context": "- **Fixed** asset query: `SUM(amount)` → `SUM(per_price * qty)` (was returning wrong 820M) - **API restarted** ✅"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 47,
+          "context": "- **Fixed:** 1. Created `customer_feedback` table (id, tg_id, username, booking_id, rating, comment, console_id, created_at)"
         }
       ]
     },
@@ -4163,11 +4233,21 @@
       ]
     },
     {
+      "topic": "Found:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 45,
+          "context": "- **Found:** Customer Bot ALREADY has `cmd_feedback` with inline rating buttons (1-5 ⭐) + comment prompt - **Missing:** No MySQL table or API endpoints existed — feedback was going nowhere"
+        }
+      ]
+    },
+    {
       "topic": "Friend & Colleague Notes",
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 20,
+          "line": 26,
           "context": "## Friend & Colleague Notes - **You Ko Htet:** Friend"
         }
       ]
@@ -4179,16 +4259,6 @@
           "path": "memory/2026-06-03.md",
           "line": 33,
           "context": "## Full Audit Completed See final report for architecture, endpoints, GSheets usage analysis"
-        }
-      ]
-    },
-    {
-      "topic": "Full implementation:",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 37,
-          "context": "**Full implementation:** MySQL tables + API endpoints + Bot tracking + Kora Dashboard tab"
         }
       ]
     },
@@ -4229,6 +4299,36 @@
           "path": "memory/2026-06-10.md",
           "line": 78,
           "context": "- **Gameplay:** Steam API `store.steampowered.com/api/appdetails?appids={appid}` → `screenshots[0].path_full` — 1920x1080 gameplay screenshots - **Fallback:** Alphacoders.com for PS5 exclusives"
+        }
+      ]
+    },
+    {
+      "topic": "Games changed to Both:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 76,
+          "context": "- **Games changed to Both:** 5 titles (It Takes Two, Sackboy, LEGO Star Wars, GTA V, Overcooked) - Used `solo_multi` column which maps directly to `players` field in bot's game data"
+        }
+      ]
+    },
+    {
+      "topic": "Games changed to Multi:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 75,
+          "context": "- **Games changed to Multi:** 7 titles (FIFA, Mortal Kombat, Tekken, etc.) - **Games changed to Both:** 5 titles (It Takes Two, Sackboy, LEGO Star Wars, GTA V, Overcooked)"
+        }
+      ]
+    },
+    {
+      "topic": "Games changed to Solo:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 74,
+          "context": "- **Games changed to Solo:** 19 titles (Action games, Platformers, Souls-like, etc.) - **Games changed to Multi:** 7 titles (FIFA, Mortal Kombat, Tekken, etc.)"
         }
       ]
     },
@@ -4321,9 +4421,24 @@
           "context": "(dedup) 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch (dedup) 10. disc_count values are intentional — never \"fix\" without Boss confirmation"
         },
         {
+          "path": "memory/ARCHIVE.md",
+          "line": 53,
+          "context": "(dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
+        {
           "path": "MEMORY.md",
           "line": 127,
           "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        }
+      ]
+    },
+    {
+      "topic": "GitHub Deploy:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 151,
+          "context": "3. **GitHub Deploy:** PSVIBE-API-Server master branch failing (pre-existing issue)"
         }
       ]
     },
@@ -4598,16 +4713,6 @@
       ]
     },
     {
-      "topic": "Heartbeat (07:07 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 27,
-          "context": "### Heartbeat (07:07 UTC) - Health Monitor: **91.6/100** ✅"
-        }
-      ]
-    },
-    {
       "topic": "Heartbeat 16:37 UTC — 2026-06-04",
       "files": [
         {
@@ -4649,6 +4754,16 @@
           "path": "memory/fix-history.md",
           "line": 23,
           "context": "- **HEARTBEAT.md:** All Phase 3 tools added to ~4h routine - **MEMORY.md:** Index updated with Phase 3 references"
+        }
+      ]
+    },
+    {
+      "topic": "How linking works moving forward:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 25,
+          "context": "**How linking works moving forward:** - When a user books through the bot (provides phone), `track_usage()` receives the phone → API auto-resolves member_id → auto-enriched"
         }
       ]
     },
@@ -5023,16 +5138,6 @@
       ]
     },
     {
-      "topic": "Key Changes",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 7,
-          "context": "### Key Changes | Fix | Detail |"
-        }
-      ]
-    },
-    {
       "topic": "Key Decisions:",
       "files": [
         {
@@ -5138,6 +5243,16 @@
       ]
     },
     {
+      "topic": "Kora Dashboard URL",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 210,
+          "context": "3. **Kora Dashboard URL**: `kora.ps-vibe.com` needs DNS CNAME record at Cloudflare 4. **Wallet rate**: `effective_rate` = 1.00 for all members (might need Boss to confirm intended pricing)"
+        }
+      ]
+    },
+    {
       "topic": "Kora Tools Upgraded:",
       "files": [
         {
@@ -5219,6 +5334,16 @@
           "path": "memory/2026-06-10.md",
           "line": 27,
           "context": "Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original path). Cloudflare"
+        }
+      ]
+    },
+    {
+      "topic": "LEGO Star Wars fix:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 89,
+          "context": "- **LEGO Star Wars fix:** Changed from Solo/Platformer to Both/Platformer Co-op (has local co-op)"
         }
       ]
     },
@@ -5598,6 +5723,16 @@
       ]
     },
     {
+      "topic": "Missing:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 46,
+          "context": "- **Missing:** No MySQL table or API endpoints existed — feedback was going nowhere - **Fixed:**"
+        }
+      ]
+    },
+    {
       "topic": "Modify",
       "files": [
         {
@@ -5609,16 +5744,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 141,
           "context": "6. **Modify** BK_DATE → BK_TIME flow: - After time selected, change transition from `return BK_CONSOLE` to `return BK_SPECIFIC_CONSOLE`"
-        }
-      ]
-    },
-    {
-      "topic": "MySQL Backup Fixed",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 13,
-          "context": "| **MySQL Backup Fixed** | DB name was wrong (`psvibe_sales` → `psvibe_api`), credentials found, `/root/.my.cnf` created | | **Firewall** | Already well-configured (UFW active, 3306 blocked externally"
         }
       ]
     },
@@ -5663,16 +5788,6 @@
       ]
     },
     {
-      "topic": "MySQL Tables Created",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 39,
-          "context": "### MySQL Tables Created - `customer_bot_users` — tg_id, username, first_name, first_seen, last_seen, total_interactions, ai_chat_count, last_command, last_activity_type"
-        }
-      ]
-    },
-    {
       "topic": "MySQL-GSheet Sync Deletion Gap (KNOWN)",
       "files": [
         {
@@ -5685,6 +5800,11 @@
     {
       "topic": "MySQL:",
       "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 9,
+          "context": "1. **MySQL:** Added columns to `customer_bot_users`: `member_id` (indexed), `member_name`, `phone` (indexed), `balance_mins` 2. **API (`app.py`):**"
+        },
         {
           "path": "memory/infrastructure.md",
           "line": 21,
@@ -5708,8 +5828,18 @@
       ]
     },
     {
-      "topic": "n8n Payment (€25.68)",
+      "topic": "n8n Payment (€25.68):",
       "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 150,
+          "context": "2. **n8n Payment (€25.68):** 2nd notice received, subscription may expire 3. **GitHub Deploy:** PSVIBE-API-Server master branch failing (pre-existing issue)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 52,
+          "context": "(dedup) 1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
         {
           "path": "MEMORY.md",
           "line": 126,
@@ -5906,6 +6036,11 @@
       "topic": "New:",
       "files": [
         {
+          "path": "memory/2026-06-13.md",
+          "line": 86,
+          "context": "- **New:** Grouped by `solo_games` → `multi_games` → `both_games` → `other_games` - Used `<b>` HTML tags with `parse_mode=\"HTML\"` for section headers (Telegram bold)"
+        },
+        {
           "path": "memory/project-state.md",
           "line": 67,
           "context": "**New:** Web Dashboard now handles Game CRUD + Disc/SSD management (removed from bot)"
@@ -5973,6 +6108,16 @@
       ]
     },
     {
+      "topic": "Not yet done:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 52,
+          "context": "- **Not yet done:** Kora Dashboard feedback tab, auto-trigger after session end - **Services restarted:** psvibe-api ✅"
+        }
+      ]
+    },
+    {
       "topic": "Note:",
       "files": [
         {
@@ -5984,6 +6129,11 @@
           "path": "memory/2026-06-05.md",
           "line": 322,
           "context": "- **Note:** API-level check protects both dashboard and bot paths - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 81,
+          "context": "- **Note:** Some games were reclassified as already correct (FIFA, Madden, Unravel Two, etc.)"
         },
         {
           "path": "memory/booking-features-plan.md",
@@ -6022,7 +6172,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 24,
+          "line": 30,
           "context": "- **Nova:** Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup) - **Chan Su Su Hlaing:** Colleague / Business"
         }
       ]
@@ -6049,6 +6199,16 @@
           "path": "memory/emails.md",
           "line": 20,
           "context": "## OAuth Token Status (Updated 2026-06-10) - **Scopes**: gmail.readonly + gmail.send + drive.file ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Old:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 85,
+          "context": "- **Old:** Grouped by platform (PS5: 37 titles, PS4: 4 titles) — poor organization since 90% are PS5-only - **New:** Grouped by `solo_games` → `multi_games` → `both_games` → `other_games`"
         }
       ]
     },
@@ -6478,6 +6638,26 @@
       ]
     },
     {
+      "topic": "Phone:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 7,
+          "context": "- **Phone:** 09 773355 915"
+        }
+      ]
+    },
+    {
+      "topic": "PNL Food Revenue ≠ Console Multiplier",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 205,
+          "context": "11. **PNL Food Revenue ≠ Console Multiplier** — Food revenue must come from `stock_out` table (items sold × unit_price), NOT from `gross-amount` (console multiplier). These are fundamentally different"
+        }
+      ]
+    },
+    {
       "topic": "Post-Fix Status (13:43 UTC)",
       "files": [
         {
@@ -6494,6 +6674,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 67,
           "context": "## Post-Fix Testing The Boss should test again:"
+        }
+      ]
+    },
+    {
+      "topic": "Post-fix:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 41,
+          "context": "- **Post-fix:** Removed `/checkin_XX` and `/cancel_XX` buttons per Boss's feedback (clutters admin group)"
         }
       ]
     },
@@ -6594,6 +6784,16 @@
           "path": "memory/infrastructure.md",
           "line": 3,
           "context": "## PS VIBE Sales Bot (V2 Modular) - **Path:** `/root/psvibe-sales-bot/` (109 .py files)"
+        }
+      ]
+    },
+    {
+      "topic": "PS VIBE Social Links",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 3,
+          "context": "## PS VIBE Social Links - **TikTok:** https://www.tiktok.com/@ps.vibe.game.cent"
         }
       ]
     },
@@ -7101,6 +7301,21 @@
           "context": "### Root Cause Dashboard is a Vue SPA with **lazy-loaded components**. The main JS was renamed to `.v2.js` (cache busting), but ALL lazy chunks still imported from `\"./index-DDJXoolO.js\"` (original pa"
         },
         {
+          "path": "memory/2026-06-13.md",
+          "line": 32,
+          "context": "- **Root cause:** API cancel endpoint (`app.py` `api_booking_cancel`) only notifies customer via Customer Bot — has NO code to notify staff/admin group - Customer notification already existed (Telegra"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 96,
+          "context": "- **Root cause:** The sales bot calls `POST /session-end-notify` but this endpoint was **completely missing** from `app.py` - Created full `POST /api/session-end-notify` endpoint in `app.py`:"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 124,
+          "context": "- **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>` columns** - The 4 member enrichment columns (Member ID, Member Name, Phone, Balance) were added to "
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 63,
           "context": "- **Root cause:** Parallel sub-agents (6) editing `bot/__init__.py` simultaneously without locks → chain-reaction corruption. See Framework v2.0 for prevention. - **Fix approach:** Sequential fixes wi"
@@ -7192,7 +7407,7 @@
         },
         {
           "path": "memory/contacts.md",
-          "line": 8,
+          "line": 14,
           "context": "- **Rules:** Card_wallet → Column H only. Receipt templates: NO Burmese footer text. - **Timezone:** Asia/Yangon (UTC+6:30) — ALWAYS convert UTC to Myanmar Time"
         }
       ]
@@ -7463,6 +7678,16 @@
       ]
     },
     {
+      "topic": "Service restarted:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 161,
+          "context": "- **Service restarted:** psvibe_customer_bot ✅ - **Cleanup:** Removed temp fix files (`/tmp/fix_social.py`, `/tmp/fix_contact_newlines.py`, `/tmp/debug_pattern.py`, `/tmp/fix_social_links.py`, `/tmp/p"
+        }
+      ]
+    },
+    {
       "topic": "Service Status:",
       "files": [
         {
@@ -7534,6 +7759,11 @@
           "path": "memory/2026-06-06.md",
           "line": 88,
           "context": "**Services Restarted:** ✅ `psvibe_customer_bot` restarted at 03:30 UTC, running for 10+ hours"
+        },
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 53,
+          "context": "- **Services restarted:** psvibe-api ✅"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -7673,6 +7903,16 @@
       ]
     },
     {
+      "topic": "Session IV (~15:50-16:30 UTC — Customer Bot Member Enrichment)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 3,
+          "context": "### Session IV (~15:50-16:30 UTC — Customer Bot Member Enrichment)"
+        }
+      ]
+    },
+    {
       "topic": "Session Lock Timeout Fix (2026-06-02)",
       "files": [
         {
@@ -7729,6 +7969,46 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 21,
           "context": "## Session Summary (2026-05-28 09:00-10:00)"
+        }
+      ]
+    },
+    {
+      "topic": "Session V (~16:30-18:30 UTC — Booking Notifications & Feedback System)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 29,
+          "context": "### Session V (~16:30-18:30 UTC — Booking Notifications & Feedback System)"
+        }
+      ]
+    },
+    {
+      "topic": "Session VI (~18:30-19:00 UTC — Kora Dashboard: Game Library & Cleanup Tasks)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 70,
+          "context": "### Session VI (~18:30-19:00 UTC — Kora Dashboard: Game Library & Cleanup Tasks)"
+        }
+      ]
+    },
+    {
+      "topic": "Session VII (~19:00-19:24 UTC — Dashboard Bug Fix)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 120,
+          "context": "### Session VII (~19:00-19:24 UTC — Dashboard Bug Fix)"
+        }
+      ]
+    },
+    {
+      "topic": "Session VIII (~19:47-19:51 UTC — Social Links: FB + TikTok in Customer Bot)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 153,
+          "context": "### Session VIII (~19:47-19:51 UTC — Social Links: FB + TikTok in Customer Bot)"
         }
       ]
     },
@@ -7879,16 +8159,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 14,
           "context": "| **Sale Bot (Staff)** | `psvibe-sale-bot` | 9-state `ConversationHandler` (SBK_CONSOLE → ... → SBK_CONFIRM) | Staff picks a **specific console unit** (C-01 through C-10) from a live-status keyboard |"
-        }
-      ]
-    },
-    {
-      "topic": "SSH Hardening",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 10,
-          "context": "| **SSH Hardening** | `PermitRootLogin` → `prohibit-password`, `PasswordAuthentication no`, `sshd -t` passed | | **fail2ban Installed** | Was completely missing! Now running, 5 attacking IPs already b"
         }
       ]
     },
@@ -8373,16 +8643,6 @@
       ]
     },
     {
-      "topic": "Subagent (Pro)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 4,
-          "context": "- **Subagent (Pro)** executed full security audit on VPS 5.223.81.16 ✅ - Report saved: `memory/security-audit-2026-06-13.md`"
-        }
-      ]
-    },
-    {
       "topic": "Summary",
       "files": [
         {
@@ -8567,7 +8827,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 5,
+          "line": 11,
           "context": "- **Tagline:** \"Play The Game. Share The VIBE!\" - **Director:** Synergy Hub"
         }
       ]
@@ -8629,6 +8889,16 @@
           "path": "memory/tools-commands.md",
           "line": 29,
           "context": "## Task Bridge ```bash"
+        }
+      ]
+    },
+    {
+      "topic": "Telegram Admin:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 6,
+          "context": "- **Telegram Admin:** https://t.me/psvibeofficial - **Phone:** 09 773355 915"
         }
       ]
     },
@@ -8798,6 +9068,16 @@
       ]
     },
     {
+      "topic": "TikTok:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 4,
+          "context": "- **TikTok:** https://www.tiktok.com/@ps.vibe.game.cent - **Facebook:** https://www.facebook.com/ps5gamecenter"
+        }
+      ]
+    },
+    {
       "topic": "Time zone confusion",
       "files": [
         {
@@ -8842,7 +9122,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 9,
+          "line": 15,
           "context": "- **Timezone:** Asia/Yangon (UTC+6:30) — ALWAYS convert UTC to Myanmar Time"
         }
       ]
@@ -9088,16 +9368,6 @@
       ]
     },
     {
-      "topic": "v1:",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 20,
-          "context": "- **v1:** Simple concat, 9:16, text overlay, music (27MB, 2:36min) - **v2:** Transitions added! xfade chain (fade, slideright, fadeblack, slidedown, fade) between each clip"
-        }
-      ]
-    },
-    {
       "topic": "V2 Fixes (Round 2)",
       "files": [
         {
@@ -9108,12 +9378,12 @@
       ]
     },
     {
-      "topic": "v2:",
+      "topic": "Validation:",
       "files": [
         {
           "path": "memory/2026-06-13.md",
-          "line": 21,
-          "context": "- **v2:** Transitions added! xfade chain (fade, slideright, fadeblack, slidedown, fade) between each clip - Each clip trimmed to ~12s for TikTok pacing"
+          "line": 136,
+          "context": "8. **Validation:** `grep -c 'renderUserTable'` = 1, `grep -c 'memId'` = correct count, feedback tab intact"
         }
       ]
     },
@@ -9258,6 +9528,16 @@
       ]
     },
     {
+      "topic": "Wallet rate",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 211,
+          "context": "4. **Wallet rate**: `effective_rate` = 1.00 for all members (might need Boss to confirm intended pricing)"
+        }
+      ]
+    },
+    {
       "topic": "Wave/AYA Pay not saving",
       "files": [
         {
@@ -9342,12 +9622,12 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 16,
+          "line": 22,
           "context": "| **Wi Wi** (ဝီဝီ) | thirishetpaing.t@gmail.com | — | | **Ye Yint Oo** | yeyintoo12345678@gmail.com | `8336350778` |"
         },
         {
           "path": "memory/contacts.md",
-          "line": 22,
+          "line": 28,
           "context": "- **Wi Wi:** Friend - **Ye Yint Oo:** Colleague / Business"
         }
       ]
@@ -9387,7 +9667,7 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 18,
+          "line": 24,
           "context": "| **Ye Myat** (ရဲမြတ်) | yemyat.7.14.1999@gmail.com | — |"
         }
       ]
@@ -9397,12 +9677,12 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 17,
+          "line": 23,
           "context": "| **Ye Yint Oo** | yeyintoo12345678@gmail.com | `8336350778` | | **Ye Myat** (ရဲမြတ်) | yemyat.7.14.1999@gmail.com | — |"
         },
         {
           "path": "memory/contacts.md",
-          "line": 23,
+          "line": 29,
           "context": "- **Ye Yint Oo:** Colleague / Business - **Nova:** Ye Yint Oo ၏ Personal AI Assistant (OpenClaw, local setup)"
         }
       ]
@@ -9412,12 +9692,12 @@
       "files": [
         {
           "path": "memory/contacts.md",
-          "line": 15,
+          "line": 21,
           "context": "| **You Ko Htet** (ယူကိုထက်) | rein020124@gmail.com | — | | **Wi Wi** (ဝီဝီ) | thirishetpaing.t@gmail.com | — |"
         },
         {
           "path": "memory/contacts.md",
-          "line": 21,
+          "line": 27,
           "context": "- **You Ko Htet:** Friend - **Wi Wi:** Friend"
         }
       ]
@@ -9558,6 +9838,16 @@
       ]
     },
     {
+      "topic": "✅ 10-Minute-Before Staff Notification",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 37,
+          "context": "### ✅ 10-Minute-Before Staff Notification - Added `check_and_notify_staff_10min()` function to `booking_reminder.py`"
+        }
+      ]
+    },
+    {
       "topic": "✅ All 10 Issues Fixed + Verify PASS",
       "files": [
         {
@@ -9598,6 +9888,16 @@
       ]
     },
     {
+      "topic": "✅ Final Service Status",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 138,
+          "context": "### ✅ Final Service Status | Service | Status | Notes |"
+        }
+      ]
+    },
+    {
       "topic": "✅ Fixes Deployed",
       "files": [
         {
@@ -9624,6 +9924,16 @@
           "path": "memory/project-state.md",
           "line": 8,
           "context": "## ✅ Recently Completed (2026-06-03 → 2026-06-04 — 31+ fixes)"
+        }
+      ]
+    },
+    {
+      "topic": "✅ Services Status (after Session VI)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 112,
+          "context": "### ✅ Services Status (after Session VI) | Service | Status |"
         }
       ]
     },
@@ -9658,6 +9968,36 @@
       ]
     },
     {
+      "topic": "⭐ Feedback & Rating System",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 43,
+          "context": "### ⭐ Feedback & Rating System - Boss asked about adding feedback/rating for customers"
+        }
+      ]
+    },
+    {
+      "topic": "⭐ Kora Dashboard Feedback Tab",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 103,
+          "context": "### ⭐ Kora Dashboard Feedback Tab - Added \"⭐ Feedback\" tab to Kora Dashboard (`index.html`):"
+        }
+      ]
+    },
+    {
+      "topic": "🌐 Social Links Added to Customer Bot",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 155,
+          "context": "### 🌐 Social Links Added to Customer Bot - **Contact section (`cmd_contact`):** Added \"🌐 Social Links\" sub-section with:"
+        }
+      ]
+    },
+    {
       "topic": "🍔 Food Menu Grouping (11:07-11:25 UTC)",
       "files": [
         {
@@ -9674,16 +10014,6 @@
           "path": "memory/2026-06-08.md",
           "line": 53,
           "context": "### 🍔 Food Sale Feature (17:00-17:30 UTC) - Standalone `🍔 Food Sale` button (no console/game)"
-        }
-      ]
-    },
-    {
-      "topic": "🎬 Video Editing for Osmo (08:17-08:27 UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-13.md",
-          "line": 17,
-          "context": "## 🎬 Video Editing for Osmo (08:17-08:27 UTC) - Osmo (@kingkong00787) requested TikTok-style video edit with transitions"
         }
       ]
     },
@@ -9843,6 +10173,16 @@
       ]
     },
     {
+      "topic": "🐛 Fixed: Kora Dashboard Users Tab Column Misalignment",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 122,
+          "context": "### 🐛 Fixed: Kora Dashboard Users Tab Column Misalignment - **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\""
+        }
+      ]
+    },
+    {
       "topic": "🐛 Known Issues",
       "files": [
         {
@@ -9933,6 +10273,16 @@
       ]
     },
     {
+      "topic": "📋 Pending (Boss Action Needed)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 148,
+          "context": "### 📋 Pending (Boss Action Needed) 1. **Cloudflare DNS:** Add CNAME for `kora.ps-vibe.com` → `tunnel-endpoint` for subdomain access"
+        }
+      ]
+    },
+    {
       "topic": "📋 Pending — Boss Action Needed",
       "files": [
         {
@@ -9973,12 +10323,42 @@
       ]
     },
     {
+      "topic": "📌 June 13 — New Critical Lessons",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 202,
+          "context": "## 📌 June 13 — New Critical Lessons"
+        }
+      ]
+    },
+    {
       "topic": "📌 New Lessons (June 12)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 161,
           "context": "### 📌 New Lessons (June 12) - **Dashboard JS only supports 4 final_status values:** Available, Damaged, Lost, In Use"
+        }
+      ]
+    },
+    {
+      "topic": "📌 Pending Issues (June 13, 15:30 UTC)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 209,
+          "context": "## 📌 Pending Issues (June 13, 15:30 UTC) 3. **Kora Dashboard URL**: `kora.ps-vibe.com` needs DNS CNAME record at Cloudflare"
+        }
+      ]
+    },
+    {
+      "topic": "📚 Genre Classification",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 79,
+          "context": "### 📚 Genre Classification - Updated genres for all 41 games: Action Adventure(9), Fighting(6), Action RPG(5), Sports(4), Action(2), Platformer(2), Co-op(2), Horror(2), Survival Horror(2), Strategy(1)"
         }
       ]
     },
@@ -10113,6 +10493,16 @@
       ]
     },
     {
+      "topic": "🔧 Fix Applied:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 128,
+          "context": "### 🔧 Fix Applied: 1. Restored clean git version (`853297a`) — removed file corruption (duplicated renderUserTable)"
+        }
+      ]
+    },
+    {
       "topic": "🔴 Core Docs (workspace root)",
       "files": [
         {
@@ -10159,6 +10549,16 @@
           "path": "memory/2026-06-09.md",
           "line": 3,
           "context": "## 🕐 Time UTC 17:30-19:30 | Myanmar 00:00-02:00 (June 10)"
+        }
+      ]
+    },
+    {
+      "topic": "🕹️ Game Library — Solo/Multi Classification",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 72,
+          "context": "### 🕹️ Game Library — Solo/Multi Classification - Classified all 41 games in `games_library` table via SQL: Solo(23), Multi(13), Both(5)"
         }
       ]
     },
@@ -10428,12 +10828,42 @@
       ]
     },
     {
+      "topic": "🧠 New Lessons (June 13)",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 164,
+          "context": "### 🧠 New Lessons (June 13) 1. **JS `<script>` block fragility:** A single syntax error in any inline `onclick` or template literal within a `<script>` block kills ALL JavaScript in that block. Always"
+        }
+      ]
+    },
+    {
       "topic": "🧪 Critical Lessons Archive",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 96,
           "context": "## 🧪 Critical Lessons Archive"
+        }
+      ]
+    },
+    {
+      "topic": "🧹 Customer Bot Game Library — Display Overhaul",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 83,
+          "context": "### 🧹 Customer Bot Game Library — Display Overhaul - Changed `cmd_game_library`: replaced PS5/PS4 platform grouping with Solo/Multi/Both grouping"
+        }
+      ]
+    },
+    {
+      "topic": "🧹 Food Menu Reposition",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 91,
+          "context": "### 🧹 Food Menu Reposition - Moved `BTN_FOOD` button up to row 3: `[BTN_FOOD, BTN_RATE]` (right below `[BTN_MYBOOKINGS, BTN_GAMES]`)"
         }
       ]
     },
@@ -10468,12 +10898,12 @@
       ]
     },
     {
-      "topic": "🩺 System Security Hardening (07:05–07:09 UTC / 13:05–13:09 Myanmar)",
+      "topic": "🩺 Services (June 13, 15:30 UTC)",
       "files": [
         {
-          "path": "memory/2026-06-13.md",
-          "line": 3,
-          "context": "## 🩺 System Security Hardening (07:05–07:09 UTC / 13:05–13:09 Myanmar) - **Subagent (Pro)** executed full security audit on VPS 5.223.81.16 ✅"
+          "path": "MEMORY.md",
+          "line": 213,
+          "context": "## 🩺 Services (June 13, 15:30 UTC) | Service | Status |"
         }
       ]
     }
