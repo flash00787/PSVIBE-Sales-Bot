@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T11:07:55Z",
+  "updated": "2026-06-13T11:44:54Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -632,6 +632,12 @@
       "source": "kora",
       "target": "memory-upgrade",
       "relation": "implements",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "mysql",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -5186,12 +5192,6 @@
       "source": "kora",
       "target": "knowledge-graph-concept",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "mysql",
-      "relation": "uses",
       "weight": 3
     },
     {
