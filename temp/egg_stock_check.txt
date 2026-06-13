@@ -1,0 +1,117 @@
+============================================================
+PS VIBE - Egg Stock-In Check Report
+============================================================
+Date/Time: 2026-06-13 11:03 UTC / ~17:33 MMT
+Checked by: Kora (subagent)
+Staff: Osmo
+Action: Attempted to stock-in 10 eggs via web dashboard ~1 hour ago
+
+============================================================
+VERDICT: ❌ 10 EGGS DID NOT GO THROUGH. NO MONEY DEDUCTED.
+============================================================
+
+----------------------------------------------------------
+1. CURRENT EGG STOCK LEVEL
+----------------------------------------------------------
+Database: psvibe_api.inventory (id=1741)
+  Item:     Egg
+  Category: Other
+  Quantity: 0  ⬅️ OUT OF STOCK
+  Unit Price: 1,000 MMK
+  Last Updated: 2026-06-13 10:09:07 UTC
+
+Egg stock is at ZERO. The last 2 eggs were sold at 10:09 UTC today
+(voucher 20260613-344), draining the inventory.
+
+----------------------------------------------------------
+2. RECENT STOCK-IN TRANSACTIONS (Last 12 Hours)
+----------------------------------------------------------
+RESULT: NONE — ZERO stock_in entries in the last 12 hours.
+
+----------------------------------------------------------
+3. LAST EGG STOCK-IN
+----------------------------------------------------------
+ID:       36
+Batch:    SI-655782D146F8
+Date:     2026-06-08 14:05:59 UTC (5 days ago)
+Quantity: 10 eggs
+Unit Cost: 500 MMK
+Total:    5,000 MMK
+Payment:  Cash, paid by "Capital"
+Staff:    Bot
+
+No egg stock-in since June 8.
+
+----------------------------------------------------------
+4. RECENT STOCK-OUT TRANSACTIONS (Last 12 Hours)
+----------------------------------------------------------
+ID 61 — Yum Yum Eye × 2 (2,500 each = 5,000) | Voucher 20260613-344 | 10:09 UTC
+ID 62 — EGG × 2 (1,000 each = 2,000)          | Voucher 20260613-344 | 10:09 UTC
+ID 60 — Water × 1 (1,000)                      | Voucher 20260613-404 | 07:53 UTC
+ID 59 — Royal D × 1 (2,500)                    | Voucher 20260613-291 | 07:04 UTC
+ID 58 — Water × 1 (1,000)                      | Voucher 20260613-503 | 05:36 UTC
+
+----------------------------------------------------------
+5. WAS MONEY DEDUCTED?
+----------------------------------------------------------
+❌ NO. No cash_movements entries in the last 12 hours.
+   No finance_opex_log entries in the last 12 hours.
+   No stock_in entries at all today.
+
+----------------------------------------------------------
+6. WHAT HAPPENED? (Server Log Analysis)
+----------------------------------------------------------
+The server logs (server.log) show:
+
+  210.14.102.140 → GET  /assets/StockIn-B8NnD_OB.js   200 OK
+  210.14.102.140 → GET  /api/dashboard/stock-in?limit=100  401 Unauthorized
+  210.14.102.140 → POST /auth/refresh                    200 OK
+  210.14.102.140 → GET  /api/dashboard/stock-in?limit=100  200 OK
+  210.14.102.140 → GET  /api/dashboard/inventory?limit=500  200 OK
+
+These requests are consistent with Osmo opening the StockIn page
+on the web dashboard. The page loaded successfully.
+
+However, there is NO POST /api/dashboard/stock-in request in the logs.
+This means Osmo either:
+  a) Viewed the page but never clicked "Submit" / "Save"
+  b) Clicked submit but the browser/network failed silently
+  c) The form submission failed client-side (JS error, validation)
+  d) The POST endpoint is different from what was checked
+
+----------------------------------------------------------
+7. RELEVANT TABLES & SCHEMAS
+----------------------------------------------------------
+stock_in (where stock additions are recorded):
+  id, branch_id, batch_id (unique), item_name, quantity,
+  unit_cost, total_cost (generated), source, receipt_no,
+  payment_method, paid_by, staff_name, created_at
+
+stock_out (where sales/consumption are recorded):
+  id, branch_id, item_name, quantity, unit_price, total,
+  sale_date, staff_name, notes, created_at
+
+inventory (current stock levels):
+  id, branch_id, item_name, category, quantity, unit_price,
+  reorder_level, last_updated
+
+cash_movements (cash flow tracking):
+  (no entries today)
+
+finance_opex_log (operational expense tracking):
+  (no entries today)
+
+----------------------------------------------------------
+8. RECOMMENDATION
+----------------------------------------------------------
+1. Tell Osmo the 10 eggs were NOT stocked in. The transaction
+   never reached the database.
+2. Ask Osmo to try again, and this time watch for:
+   - Any error message after clicking submit
+   - Check if the StockIn page shows a success/failure banner
+   - Verify the entry appears in the stock-in table immediately
+3. Consider checking the browser console (F12) if it fails again
+   for any JavaScript errors.
+4. Egg is currently at ZERO — if more egg orders come in today,
+   there will be no stock to sell until restocked.
+============================================================
