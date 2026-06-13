@@ -1,6 +1,48 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-12 23:30 UTC
+> Last updated: 2026-06-13 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 13, 2026 - 05:30 UTC) — Minor Finds: No Major Developments
+
+> **Summary:** No critical news since the June 12 update. Minor finds only.
+
+### 🧪 Atelier Karia: The Night Kingdom & Guide of Memories — Early 2027 (NEW FIND!)
+- Latest entry in Gust/Koei Tecmo's long-running **Atelier** JRPG series, announced **June 12, 2026**
+- First trailer revealed; coming to PS5, Xbox Series X|S, Nintendo Switch 2, and PC
+- **Release window: Early 2027**
+- **💡 Lounge Note:** Atelier has a dedicated niche fanbase among JRPG enthusiasts. The alchemy-crafting focused RPG series has been running for 25+ years. Minor draw but worth tracking for RPG section of lounge library.
+
+### 🧩 Screenbound — September 10, 2026 (NEW FIND!)
+- Unique "5D" platformer: simultaneously control a 2D character on an in-game handheld "Qboy" AND a 3D character
+- Puzzles require awareness across both planes — obstacles visible on only one plane
+- **Release date: September 10, 2026** on PS5, Xbox Series X|S, PC
+- Demo available now on Steam
+- **💡 Lounge Note:** Quirky dual-reality mechanic makes this a conversation-starter indie. Not a blockbuster but could be a hidden gem for puzzle/platformer fans.
+
+### 🗺️ Uncharted Reboot — RUMOR (Unconfirmed)
+- Jordan Middler (VGC Podcast, reliable insider) reported in June 2026 that a **new Uncharted game is "on the way"** from PlayStation
+- Likely a **reboot** rather than Uncharted 5 — Nathan Drake's story concluded in Uncharted 4
+- Speculation that **Naughty Dog** is developing it (Shaun Escayg, director of Lost Legacy, teased a new project)
+- PlayStation filed a patent for "**Break In**" in May 2026 — possibly related
+- Potential **2026 announcement**, no release window
+- **💡 Lounge Note:** ⚠️ RUMOR ONLY — do NOT promote yet. But Uncharted is a top-5 PlayStation franchise. If a reboot is really in development at Naughty Dog, it would be a massive PS5 system-seller. Track this closely.
+
+### 🛒 Mid-Year Deals — Start Date Confirmed: June 11
+- Previously our tracker just said "live now" — now confirmed the sale **started June 11, 2026** and runs through **July 1, 2026**
+- Up to **75-80% off** on 3,600+ items (PS Plus members get additional stacked discounts)
+- Additional deals spotted: **MLB The Show 26**, **NBA 2K26 Superstar Edition**, **Battlefield 6**
+- **Will: Follow the Light** (May 7 adventure game, previously not in tracker) — on sale until July 2
+
+### ⏰ Key Deadlines This Week:
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 16** | FFXVI joins PS Plus Extra | 3 days! Promote to RPG fans! |
+| **June 16** | EA Sports FC 26 free (last day) | 3 days! |
+| **June 16** | Destiny 2: Legacy Collection (last day to claim) | 3 days! |
+| **June 28-29** | FREE Online Multiplayer Weekend | 2 weeks! Start promoting NOW! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! |
 
 ---
 
