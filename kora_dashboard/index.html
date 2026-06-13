@@ -2499,7 +2499,7 @@
     var tbody = document.getElementById('userTableBody');
     document.getElementById('userCountLabel').textContent = total + ' users';
     if (!users || users.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No users found</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="11" class="empty-state">No users found</td></tr>';
       return;
     }
     tbody.innerHTML = users.map(function(u) {
@@ -2509,9 +2509,17 @@
       var firstSeen = u.first_seen ? u.first_seen.substring(0, 16) : '—';
       var lastSeen = u.last_seen ? u.last_seen.substring(0, 16) : '—';
       var cmd = escapeHtml(u.last_command || '—');
+            var memId = u.member_id ? '<span class="badge" style="background:#166534;color:#86efac;font-size:0.72rem;padding:1px 6px;border-radius:4px;">' + escapeHtml(u.member_id) + '</span>' : '<span class="muted">\u2014</span>';
+      var memName = escapeHtml(u.member_name || '\u2014');
+      var phone = escapeHtml(u.phone || '\u2014');
+      var bal = u.balance_mins || '\u2014';
       return '<tr class="' + selected + '" onclick="showUserActivity(\'' + escapeHtml(String(u.tg_id)) + '\',\'' + escapeHtml(name.replace(/'/g, "")) + '\')">'
         + '<td>@' + uname + '</td>'
         + '<td>' + name + '</td>'
+                + '<td>' + memId + '</td>'
+        + '<td>' + memName + '</td>'
+        + '<td>' + phone + '</td>'
+        + '<td>' + bal + '</td>'
         + '<td>' + firstSeen + '</td>'
         + '<td>' + lastSeen + '</td>'
         + '<td>' + (u.total_interactions || 0) + '</td>'
