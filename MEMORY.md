@@ -198,3 +198,33 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 7. Dashboard only supports 4 statuses: Available/Damaged/Lost/In Use
 8. ISP can block entire IP routing; Cloudflare Tunnel + HTTPS bypasses it
 9. Staff group Forum mode: always include message_thread_id
+
+## 📌 June 13 — New Critical Lessons
+
+10. **JS `<script>` block fragility** — A single syntax error (e.g., broken quoting in onclick) anywhere in a `<script>` block kills ALL JavaScript in that block, including unrelated functions like `doLogin()`. Always validate inline scripts carefully.
+11. **PNL Food Revenue ≠ Console Multiplier** — Food revenue must come from `stock_out` table (items sold × unit_price), NOT from `gross-amount` (console multiplier). These are fundamentally different data sources. Mixing them corrupts both food and game margins.
+12. **fail2ban is baseline security** — Was completely missing from VPS until audit discovered it. Every production server should have fail2ban running from day one.
+13. **Cloudflare Tunnel path routing limitation** — `/kora/` path routes to localhost:8000 (API server) cannot also route to :9091 (Kora Dashboard). Solution: DNS CNAME record (`kora.ps-vibe.com`) for separate services behind same tunnel.
+
+## 📌 Pending Issues (June 13, 15:30 UTC)
+1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire
+2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing
+3. **Kora Dashboard URL**: `kora.ps-vibe.com` needs DNS CNAME record at Cloudflare
+4. **Wallet rate**: `effective_rate` = 1.00 for all members (might need Boss to confirm intended pricing)
+
+## 🩺 Services (June 13, 15:30 UTC)
+| Service | Status |
+|---------|--------|
+| psvibe-api | ✅ |
+| psvibe-sale-bot | ✅ |
+| psvibe_customer_bot | ✅ |
+| psvibe-dashboard (:9090) | ✅ |
+| kora-dashboard (:9091) | ✅ |
+| cloudflared-tunnel | ✅ |
+| wssh (web SSH :8888) | ✅ |
+| Caddy | ✅ |
+| n8n | ✅ |
+| MySQL | ✅ |
+| fail2ban | ✅ (NEW) |
+| Daily Auto-Backup | ✅ (NEW: cron 0 2 * * *) |
+| Health Monitor | ~93/100 ✅ |
