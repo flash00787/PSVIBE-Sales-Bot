@@ -674,6 +674,7 @@
     <button class="tab-btn" data-tab="food" data-i18n="tab_food">🍔 Food</button>
     <button class="tab-btn" data-tab="alerts" data-i18n="tab_alerts">⚠️ Alerts</button>
     <button class="tab-btn" data-tab="users" data-i18n="tab_users">👥 Users</button>
+    <button class="tab-btn" data-tab="feedback" data-i18n="tab_feedback">⭐ Feedback</button>
   </div>
 
   <div class="container">
@@ -1080,6 +1081,65 @@
     </div>
   </div>
 </div>
+  </div>
+
+    <!-- ═══ TAB: Feedback ═══ -->
+    <div class="tab-content" id="tab-feedback">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshFeedback()">🔄 <span data-i18n="refresh_feedback">Refresh Feedback</span></button>
+          <span class="auto-refresh-indicator"><span class="status-dot ok pulse"></span> <span data-i18n="auto_refresh">Auto-refresh: 60s</span></span>
+        </div>
+      </div>
+
+      <!-- Feedback Stats Row -->
+      <div class="stats-grid" id="feedbackStatsRow">
+        <div class="stat-card">
+          <div class="icon">📊</div>
+          <div class="label" data-i18n="fb_total">Total Feedbacks</div>
+          <div class="value" id="statFbTotal">—</div>
+          <div class="sub" data-i18n="all_time">all time</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">⭐</div>
+          <div class="label" data-i18n="fb_avg_rating">Avg Rating</div>
+          <div class="value" id="statFbAvg">—</div>
+          <div class="sub" data-i18n="fb_out_of_5">out of 5</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">😊</div>
+          <div class="label" data-i18n="fb_positive">Positive (4-5⭐)</div>
+          <div class="value" id="statFbPositive">—</div>
+          <div class="sub" data-i18n="fb_pct">% of total</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">😔</div>
+          <div class="label" data-i18n="fb_negative">Negative (1-3⭐)</div>
+          <div class="value" id="statFbNegative">—</div>
+          <div class="sub" data-i18n="fb_pct">% of total</div>
+        </div>
+      </div>
+
+      <!-- Rating Distribution Bar -->
+      <div class="panel">
+        <div class="panel-header">
+          ⭐ <span data-i18n="fb_distribution">Rating Distribution</span>
+        </div>
+        <div class="panel-body" id="fbDistPanel">
+          <div class="empty-state"><span data-i18n="no_data">No data available</span></div>
+        </div>
+      </div>
+
+      <!-- Recent Feedback List -->
+      <div class="panel">
+        <div class="panel-header">
+          💬 <span data-i18n="fb_recent">Recent Feedback</span>
+        </div>
+        <div class="panel-body" id="fbListPanel">
+          <div class="empty-state"><span data-i18n="loading">Loading...</span></div>
+        </div>
+      </div>
+    </div>
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
@@ -1214,6 +1274,17 @@
       col_action: 'Action',
       col_detail: 'Detail',
       panel_new_users_chart: 'New Users (7 Days)',
+      tab_feedback: '⭐ Feedback',
+      refresh_feedback: 'Refresh Feedback',
+      fb_total: 'Total Feedbacks',
+      fb_avg_rating: 'Avg Rating',
+      fb_out_of_5: 'out of 5',
+      fb_positive: 'Positive (4-5⭐)',
+      fb_negative: 'Negative (1-3⭐)',
+      fb_pct: '% of total',
+      fb_distribution: 'Rating Distribution',
+      fb_recent: 'Recent Feedback',
+      fb_no_feedback: 'No feedback yet',
     },
     my: {
       login_title: 'Kora ဒက်ရှ်ဘုတ်',
@@ -1320,6 +1391,17 @@
       col_action: 'လုပ်ဆောင်ချက်',
       col_detail: 'အသေးစိတ်',
       panel_new_users_chart: 'အသုံးပြုသူအသစ် (၇ ရက်)',
+      tab_feedback: '⭐ တုံ့ပြန်ချက်',
+      refresh_feedback: 'တုံ့ပြန်ချက်များ ပြန်ဆန်းသစ်ရန်',
+      fb_total: 'တုံ့ပြန်ချက်အရေအတွက်',
+      fb_avg_rating: 'ပျမ်းမျှအဆင့်',
+      fb_out_of_5: 'အဆင့် ၅ မှတ်',
+      fb_positive: 'ကောင်း (၄-၅⭐)',
+      fb_negative: 'မကောင်း (၁-၃⭐)',
+      fb_pct: '%',
+      fb_distribution: 'အဆင့်သတ်မှတ်ချက်ဖြန့်ကျက်မှု',
+      fb_recent: 'မကြာသေးမီ တုံ့ပြန်ချက်များ',
+      fb_no_feedback: 'တုံ့ပြန်ချက်မရှိသေးပါ',
     }
   };
 
@@ -2310,6 +2392,7 @@
     else if (tabName === 'alerts') refreshAlerts();
     else if (tabName === 'schedule') refreshSchedule();
     else if (tabName === 'users') refreshUsers();
+    else if (tabName === 'feedback') refreshFeedback();
   }
 
   document.getElementById('tabNav').addEventListener('click', function(e) {
@@ -2558,6 +2641,101 @@
       var label = d.date ? d.date.substring(5) : '';
       ctx.fillText(label, x + barW/2, barAreaBottom + 15);
     });
+  }
+
+  // ═══════════════════════════════════════
+  // FEEDBACK
+  // ═══════════════════════════════════════
+  async function refreshFeedback() {
+    fetchFeedbackStats();
+    fetchFeedbackList();
+  }
+
+  async function fetchFeedbackStats() {
+    try {
+      const data = await apiCall('/api/feedback/stats');
+      const d = data.data || data || {};
+      document.getElementById('statFbTotal').textContent = d.total || 0;
+      document.getElementById('statFbAvg').textContent = d.avg_rating || '0.00';
+
+      var dist = d.distribution || {};
+      var positive = (parseInt(dist['5']||0) + parseInt(dist['4']||0));
+      var negative = (parseInt(dist['3']||0) + parseInt(dist['2']||0) + parseInt(dist['1']||0));
+      var total = positive + negative;
+      document.getElementById('statFbPositive').textContent = positive;
+      document.getElementById('statFbNegative').textContent = negative;
+
+      renderRatingDistribution(dist, total);
+      return d;
+    } catch (err) {
+      console.warn('[Feedback] Stats fetch failed:', err.message);
+      return {};
+    }
+  }
+
+  function renderRatingDistribution(dist, total) {
+    var panel = document.getElementById('fbDistPanel');
+    if (!panel) return;
+    var labels = ['5','4','3','2','1'];
+    var stars = { '5':'⭐⭐⭐⭐⭐','4':'⭐⭐⭐⭐','3':'⭐⭐⭐','2':'⭐⭐','1':'⭐' };
+    var html = '<div style="margin:0.5rem 0;">';
+    labels.forEach(function(r) {
+      var count = parseInt(dist[r] || 0);
+      var pct = total > 0 ? (count / total * 100).toFixed(0) : 0;
+      html += '<div style="margin:0.4rem 0;">';
+      html += '<span style="display:inline-block;width:100px;font-size:0.9rem;">' + stars[r] + '</span>';
+      html += '<span style="display:inline-block;width:40px;text-align:right;font-weight:bold;margin-right:8px;">' + count + '</span>';
+      html += '<div style="display:inline-block;width:200px;height:16px;background:var(--border);border-radius:8px;vertical-align:middle;overflow:hidden;">';
+      html += '<div style="height:100%;width:' + pct + '%;background:' + (r >= 4 ? '#22c55e' : r >= 3 ? '#f59e0b' : '#ef4444') + ';border-radius:8px;"></div>';
+      html += '</div>';
+      html += '<span style="margin-left:8px;font-size:0.8rem;color:var(--muted);">' + pct + '%</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    panel.innerHTML = html;
+  }
+
+  async function fetchFeedbackList() {
+    try {
+      const data = await apiCall('/api/feedback/list?limit=50');
+      var d = data.data || data || { items: [], total: 0 };
+      renderFeedbackList(d.items || []);
+    } catch (err) {
+      console.warn('[Feedback] List fetch failed:', err.message);
+      document.getElementById('fbListPanel').innerHTML = '<div class="empty-state">' + t('error') + '</div>';
+    }
+  }
+
+  function renderFeedbackList(items) {
+    var panel = document.getElementById('fbListPanel');
+    if (!panel) return;
+    if (!items || items.length === 0) {
+      panel.innerHTML = '<div class="empty-state">' + t('fb_no_feedback') + '</div>';
+      return;
+    }
+    var html = '<div style="overflow-x:auto;"><table class="dt-table"><thead><tr>';
+    html += '<th>' + t('col_name') + '</th>';
+    html += '<th>Rating</th>';
+    html += '<th>' + t('col_detail') + '</th>';
+    html += '<th>' + t('col_member_id') + '</th>';
+    html += '<th>' + t('col_time') + '</th>';
+    html += '</tr></thead><tbody>';
+    items.forEach(function(fb) {
+      var stars = '&#9733;'.repeat(fb.rating || 0) + '&#9734;'.repeat(5 - (fb.rating || 0));
+      var comment = fb.comment ? escapeHtml(fb.comment.substring(0, 80)) : '<span class="muted">—</span>';
+      var uname = escapeHtml(fb.username || '—');
+      var ts = fb.created_at ? fb.created_at.substring(0, 16) : '—';
+      var color = fb.rating >= 4 ? '#22c55e' : fb.rating >= 3 ? '#f59e0b' : '#ef4444';
+      html += '<tr>';
+      html += '<td>@' + uname + '</td>';
+      html += '<td><span style="color:' + color + ';font-weight:bold;">' + stars + '</span></td>';
+      html += '<td>' + comment + '</td>';
+      html += '<td>' + escapeHtml(fb.tg_id || '—') + '</td>';
+      html += '<td>' + ts + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    panel.innerHTML = html;
   }
 
   // ═══════════════════════════════════════
