@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-13T12:07:29Z",
+  "updated": "2026-06-13T21:07:42Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -642,6 +642,18 @@
     },
     {
       "source": "kora",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
       "target": "phase-3",
       "relation": "implements",
       "weight": 5
@@ -649,6 +661,12 @@
     {
       "source": "kora",
       "target": "ps-vibe",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "sales-tele-bot",
       "relation": "owns",
       "weight": 5
     },
@@ -698,6 +716,12 @@
       "source": "mysql",
       "target": "ssh",
       "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "n8n",
+      "target": "smart-pruning",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -5196,12 +5220,6 @@
     },
     {
       "source": "kora",
-      "target": "n8n",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
       "target": "nova",
       "relation": "related_to",
       "weight": 3
@@ -5215,12 +5233,6 @@
     {
       "source": "kora",
       "target": "oauth2",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "openclaw",
       "relation": "uses",
       "weight": 3
     },
@@ -5252,12 +5264,6 @@
       "source": "kora",
       "target": "python",
       "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "sales-tele-bot",
-      "relation": "owns",
       "weight": 3
     },
     {
@@ -5647,12 +5653,6 @@
     {
       "source": "n8n",
       "target": "session-summary",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "n8n",
-      "target": "smart-pruning",
       "relation": "related_to",
       "weight": 3
     },
