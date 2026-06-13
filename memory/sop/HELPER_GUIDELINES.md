@@ -17,6 +17,24 @@
 | 6 | ❌ Restart services without Kora approval | Code changes only |
 | 7 | ❌ Run as Pro model | All helpers = Flash only |
 
+### 📖 BEFORE WORK — READ PROJECT DOCS FIRST
+
+When starting a new task about a project (PS VIBE, API, Bot, etc.), **if you don't remember the full context**:
+
+1. First, **memory_search** the topic in the workspace memory
+2. Then **read the relevant project docs** before starting work:
+   - `PROJECT_STRUCTURE.md` — Project layout & architecture
+   - `API_ENDPOINTS.md` — API endpoint reference
+   - `DB_SCHEMA.md` — Database table schemas
+   - `memory/psvibe-code-structure.md` — File-by-file code reference
+   - `memory/project-state.md` — Current state & known issues
+   - `memory/infrastructure.md` — Services, tools, config
+3. Read the relevant SOP files in `memory/sop/`
+4. **Only start the task after you have full context**
+
+> ⚠️ **Why:** Each session is fresh — no memory of prior conversations.
+> Reading docs first prevents mistakes, duplicate work, and wrong assumptions.
+
 ### 🟢 EVERY HELPER — FREE TO DO
 
 | # | Action | Scope |

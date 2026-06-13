@@ -22,6 +22,23 @@ Do not manually reread startup files unless:
 2. The provided context is missing something you need
 3. You need a deeper follow-up read beyond the provided startup context
 
+### 📖 Project Context — Read First Before Starting a Task
+
+When Boss assigns a new task or asks about a project, **if you don't remember the full context**:
+
+1. First, **memory_search** the relevant topic (project name, feature, bug)
+2. Then **read the relevant project docs** before starting work:
+   - `PROJECT_STRUCTURE.md` — Top-level project layout
+   - `API_ENDPOINTS.md` — API endpoint reference
+   - `DB_SCHEMA.md` — Database schemas
+   - `memory/psvibe-code-structure.md` — File-by-file code reference
+   - `memory/project-state.md` — Current state & known issues
+   - `memory/infrastructure.md` — Coordination tools & services
+3. Only start the task after you have full context
+
+> ⚠️ **Why:** You wake up fresh each session with no memory of prior conversations.
+> Reading docs first prevents mistakes, duplicate work, and wrong assumptions.
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:
