@@ -1,7 +1,6 @@
-=== Bulk Session Cleanup 07:08 ===
-Before: 167M
+=== Bulk Session Cleanup 07:28 ===
+Before: 168M
   >6h trajectory: 2 files, ~0MB deleted
-  >2d session: 2 files deleted
+  >2d session: 1 files deleted
   >7d trajectory-path: 20 files deleted
-After: 167M
-=== RESULT: OK ||| Cleanup completed: 24 files deleted (trajectory + session), disk unchanged at 167M ===
+After: 168M
