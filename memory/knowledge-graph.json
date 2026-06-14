@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-14T08:37:40Z",
+  "updated": "2026-06-14T09:12:45Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -383,6 +383,12 @@
       "weight": 5
     },
     {
+      "source": "caddy",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "chan-su-su-hlaing",
       "target": "gmail-api",
       "relation": "uses",
@@ -708,6 +714,12 @@
     },
     {
       "source": "mysql",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
       "target": "python",
       "relation": "depends_on",
       "weight": 5
@@ -948,6 +960,12 @@
     },
     {
       "source": "sales-tele-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
       "target": "docker",
       "relation": "uses",
       "weight": 5
@@ -955,6 +973,12 @@
     {
       "source": "sales-tele-bot",
       "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -2178,12 +2202,6 @@
     },
     {
       "source": "caddy",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "caddy",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -5460,12 +5478,6 @@
     },
     {
       "source": "mysql",
-      "target": "n8n",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
       "target": "oauth2",
       "relation": "depends_on",
       "weight": 3
@@ -7182,12 +7194,6 @@
     },
     {
       "source": "sales-tele-bot",
-      "target": "caddy",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "sales-tele-bot",
       "target": "claude-sonnet",
       "relation": "uses",
       "weight": 3
@@ -7286,12 +7292,6 @@
       "source": "sales-tele-bot",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "sales-tele-bot",
-      "target": "n8n",
-      "relation": "uses",
       "weight": 3
     },
     {
