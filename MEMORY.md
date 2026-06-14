@@ -226,3 +226,46 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 | fail2ban | ✅ (NEW) |
 | Daily Auto-Backup | ✅ (NEW: cron 0 2 * * *) |
 | Health Monitor | ~93/100 ✅ |
+
+---
+
+## 📋 June 14 — Summary
+
+### Fixes Deployed (6 total)
+| # | Fix | File(s) | Root Cause |
+|---|-----|---------|------------|
+| 1 | Booking Flow — Member Keyboard Hang | `sales.py` line 1491, 2541 | `fetch_members_async` wrapper overridden by alias; needed `[m["id"] for m in result]` mapping |
+| 2 | "No telegram_chat_id, skip notification" | `app.py` line 1517→1601 | Orphaned `@app.post` decorator on wrong function |
+| 3 | Food Sale — Stock Map Rebuild Failed | `api_client.py` | `_psvibe_get_async` imported in 3 places but never defined |
+| 4 | Booking Extend — `message_thread_id` undefined | `booking_flow.py` | Missing parameter in `_do_extend()` + `persist_reminder()` |
+| 5 | `name 'os' is not defined` | `notify.py` | `_check_low_balance_alert` used `os` module without import |
+| 6 | Ovaltine Cookies — Case-Sensitive Match | `sales.py` | `step_food_menu` used exact dict key lookup; "Ovaltine cookies" ≠ "Ovaltine Cookies" |
+
+### 🔍 Investigation: `_remind_loop` Never Fires (Known Bug — Not Fixed)
+- Logs confirm task is created via `load_and_restore()` but **never executes**
+- Zero `_extend_timer_kb` calls logged all day for any console
+- Hypotheses: `asyncio.sleep(initial_delay)` never completes / task cancelled / negative delay
+- **Mitigation:** Staff using "No Timer" (`mins=0`) for recent sessions
+- **Deferred:** Needs debug logging inside `_remind_loop`
+
+### 📌 New Lessons (June 14)
+14. **Case-insensitive matching for user input** — Dictionary key lookups on user-typed text must be case-insensitive. Normalize to consistent case at system boundary or use case-insensitive matching.
+15. **Decorator placement is critical** — `@app.post("/path")` on the wrong function silently routes requests to the wrong handler. Always verify decorator → function mapping after edits.
+16. **Async imports must be defined, not just imported** — Importing a function name doesn't create it. Always verify the source file actually defines what downstream files import.
+
+### Pre-existing Warnings (Non-Blocking)
+- `inv_sh = None` — K1 inventory Google Sheets update always fails silently
+- `fetch_balance_mins/-` 404 — Empty member_id when checking Guest wallet
+
+### 🩺 Services (June 14, 15:30 UTC)
+| Service | Status |
+|---------|--------|
+| psvibe-api | ✅ |
+| psvibe-sale-bot | ✅ |
+| psvibe_customer_bot | ✅ |
+| cloudflared-tunnel | ✅ |
+| Caddy | ✅ |
+| n8n | ✅ |
+| MySQL | ✅ |
+| fail2ban | ✅ |
+| Health Monitor | ~91.6/100 ✅ |
