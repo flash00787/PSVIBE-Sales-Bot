@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-14T10:45:07.459956+00:00",
+  "updated": "2026-06-14T12:07:57.396872+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -2798,6 +2798,16 @@
       ]
     },
     {
+      "topic": "Deferred:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 86,
+          "context": "- **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        }
+      ]
+    },
+    {
       "topic": "Dependency check:",
       "files": [
         {
@@ -3069,6 +3079,21 @@
           "path": "memory/2026-06-14.md",
           "line": 17,
           "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 45,
+          "context": "- **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console - **Root cause (2 layers):**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 56,
+          "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 71,
+          "context": "- **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\" (capital C) - **Root cause:** `step_food_menu` used exac"
         }
       ]
     },
@@ -3541,6 +3566,16 @@
           "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 61,
+          "context": "- **File:** `bot/handlers/booking_flow.py` - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 66,
+          "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/home/node/.openclaw/openclaw.json`"
@@ -3589,6 +3624,11 @@
           "path": "memory/2026-06-05.md",
           "line": 43,
           "context": "### Files Modified - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 74,
+          "context": "- **Files modified:** `bot/handlers/sales.py` — `step_food_menu()` + `step_food_qty()` functions - **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -3784,6 +3824,11 @@
           "path": "memory/2026-06-14.md",
           "line": 5,
           "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 44,
+          "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
         }
       ]
     },
@@ -3793,6 +3838,11 @@
         {
           "path": "memory/2026-06-14.md",
           "line": 12,
+          "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 51,
           "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
         }
       ]
@@ -3804,6 +3854,11 @@
           "path": "memory/2026-06-14.md",
           "line": 16,
           "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 55,
+          "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
         }
       ]
     },
@@ -3813,6 +3868,11 @@
         {
           "path": "memory/2026-06-14.md",
           "line": 21,
+          "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 60,
           "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
         }
       ]
@@ -3824,6 +3884,21 @@
           "path": "memory/2026-06-14.md",
           "line": 26,
           "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 65,
+          "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 6: Ovaltine Cookies — Case-Sensitive Match Error",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 70,
+          "context": "### Fix 6: Ovaltine Cookies — Case-Sensitive Match Error - **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\""
         }
       ]
     },
@@ -4116,6 +4191,31 @@
           "context": "- **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 53,
+          "context": "- **Fix:** Moved decorator to line 1601 (before correct function)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 58,
+          "context": "- **Fix:** Added `async def _psvibe_get_async(path)` to `api_client.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 63,
+          "context": "- **Fix:** Added `message_thread_id: int = 0` parameter, updated both callers to extract from `query.message` / `update.message`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 68,
+          "context": "- **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 73,
+          "context": "- **Fix:** Added case-insensitive matching in `step_food_menu` and `step_food_qty` — uses `matched_key` to find correct-case key from `prices` dict, stores in `last_food_key` for quantity step - **Fil"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -4253,6 +4353,11 @@
         {
           "path": "memory/2026-06-14.md",
           "line": 3,
+          "context": "## Fixes Deployed Today"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 42,
           "context": "## Fixes Deployed Today"
         }
       ]
@@ -4869,6 +4974,11 @@
           "path": "memory/2026-06-14.md",
           "line": 38,
           "context": "## Heartbeats Multiple heartbeats throughout the day. All clear. Known old notification (yyo-personal-wallet, June 11) still present."
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 95,
+          "context": "## Heartbeats Multiple heartbeats throughout the day. All clear. Known old notification (yyo-personal-wallet, June 11) still present."
         }
       ]
     },
@@ -5084,6 +5194,16 @@
           "path": "memory/integration-plan.md",
           "line": 93,
           "context": "## Integration Strategy"
+        }
+      ]
+    },
+    {
+      "topic": "Investigation: `_remind_loop` Never Fires (Known Pre-existing Bug)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 77,
+          "context": "## Investigation: `_remind_loop` Never Fires (Known Pre-existing Bug) - **Status:** Investigated but not fixed. Root cause inconclusive."
         }
       ]
     },
@@ -5848,6 +5968,16 @@
       ]
     },
     {
+      "topic": "Mitigation:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 85,
+          "context": "- **Mitigation:** Staff using \"No Timer\" (`mins=0`) for recent sessions, so reminders not needed currently - **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        }
+      ]
+    },
+    {
       "topic": "Modify",
       "files": [
         {
@@ -6034,6 +6164,16 @@
           "path": "memory/delegation-rules.md",
           "line": 70,
           "context": "- ❌ **NEVER do quick \"urgent\" fixes manually**"
+        }
+      ]
+    },
+    {
+      "topic": "never executes",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 79,
+          "context": "- Logs confirm `_remind_loop` task is created via `load_and_restore()` but **never executes** `_extend_timer_kb()` or `sendMessage` - Zero `_extend_timer_kb` calls logged all day for any console"
         }
       ]
     },
@@ -6819,6 +6959,11 @@
           "path": "memory/2026-06-14.md",
           "line": 31,
           "context": "## Pre-existing (Warning-level, Not Blocking) - **`inv_sh` = None** — K1 inventory Google Sheets update always fails silently (try/except catches it)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 88,
+          "context": "## Pre-existing (Warning-level, Not Blocking) - **`inv_sh` = None** — K1 inventory Google Sheets update always fails silently (try/except catches it)"
         }
       ]
     },
@@ -7134,6 +7279,11 @@
           "path": "memory/2026-06-14.md",
           "line": 9,
           "context": "- Layer 2: Alias at line 2541 (`fetch_members_async = api_fetch_members_async`) overrode the wrapper — **removed** - **Result:** Booking flow now works for Guest (walk-in) ✅"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 48,
+          "context": "- Layer 2: Alias at line 2541 (`fetch_members_async = api_fetch_members_async`) overrode the wrapper — **removed** - **Result:** Booking flow now works for Guest (walk-in) ✅"
         }
       ]
     },
@@ -7236,6 +7386,16 @@
           "context": "- **Result:** Booking flow now works for Guest (walk-in) ✅"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 49,
+          "context": "- **Result:** Booking flow now works for Guest (walk-in) ✅"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 75,
+          "context": "- **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -7288,6 +7448,11 @@
         {
           "path": "memory/2026-06-14.md",
           "line": 7,
+          "context": "- **Root cause (2 layers):** - Layer 1: `fetch_members_async()` wrapper (line 1491) needed `[m[\"id\"] for m in result if ...]` mapping — ✅ fixed"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 46,
           "context": "- **Root cause (2 layers):** - Layer 1: `fetch_members_async()` wrapper (line 1491) needed `[m[\"id\"] for m in result if ...]` mapping — ✅ fixed"
         }
       ]
@@ -7484,6 +7649,31 @@
           "path": "memory/2026-06-14.md",
           "line": 28,
           "context": "- **Root cause:** `_check_low_balance_alert` used `os` module but never imported it - **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 52,
+          "context": "- **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_start_console_session` - **Fix:** Moved decorator to l"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 57,
+          "context": "- **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined - **Fix:** Added `async def _psvibe_get_async(path)` to `api_client.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 62,
+          "context": "- **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter - **Fix:** Added `message_thread_id: int = 0` parameter, updated both call"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 67,
+          "context": "- **Root cause:** `_check_low_balance_alert` used `os` module but never imported it - **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 72,
+          "context": "- **Root cause:** `step_food_menu` used exact/raw dictionary key lookup — case mismatch caused item to appear not found - **Fix:** Added case-insensitive matching in `step_food_menu` and `step_food_qt"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -7948,6 +8138,11 @@
         {
           "path": "memory/2026-06-14.md",
           "line": 35,
+          "context": "## Services Status All active throughout the day: psvibe-sale-bot, psvibe_customer_bot, psvibe-api, cloudflared-tunnel, Caddy, n8n, MySQL, fail2ban, Health Monitor (~91.6/100)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 92,
           "context": "## Services Status All active throughout the day: psvibe-sale-bot, psvibe_customer_bot, psvibe-api, cloudflared-tunnel, Caddy, n8n, MySQL, fail2ban, Health Monitor (~91.6/100)"
         },
         {
@@ -8594,6 +8789,11 @@
           "path": "memory/2026-06-05.md",
           "line": 378,
           "context": "- **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 78,
+          "context": "- **Status:** Investigated but not fixed. Root cause inconclusive. - Logs confirm `_remind_loop` task is created via `load_and_restore()` but **never executes** `_extend_timer_kb()` or `sendMessage`"
         },
         {
           "path": "memory/IMPLEMENTATION_LOG.md",

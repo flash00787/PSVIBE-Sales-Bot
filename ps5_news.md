@@ -1,6 +1,33 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-13 11:30 UTC
+> Last updated: 2026-06-14 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 14, 2026 - 11:30 UTC) — Minor: Refurbished PS5 Hardware + June 16 Countdown
+
+> **Summary:** No major news since June 13. Minor hardware find + deadline countdown.
+
+### 🔧 Refurbished PS5 Consoles — New Hardware Option (NEW FIND!)
+- **PlayStation Direct** (US) is now offering **certified refurbished PS5 consoles**:
+  - **PS5 Digital Edition (refurbished): $499**
+  - **PS5 Slim (refurbished): $549**
+- UK: PS5 Slim | Fortnite Cobalt Star bundle and PS5 Ghost of Yotei Edition bundles available
+- Retailers (Amazon, Best Buy, Walmart) also running PS5 bundle deals
+- **💡 Lounge Note:** Refurbished consoles from PlayStation Direct come with warranty and newest firmware pre-installed. For a lounge looking to add stations on a budget, this could be worth checking — especially at $499 vs the new Digital Edition price.
+
+### 🔴🔴 JUNE 16 — 48 HOURS AWAY! Triple Deadline Day!
+| Deadline | What | Action |
+|----------|------|--------|
+| 🔥 **June 16** | **FFXVI joins PS Plus Extra** | THE biggest PS Plus addition in months! $70 flagship RPG FREE for subscribers! Promote to RPG fans NOW! |
+| ⚽ **June 16** | **EA Sports FC 26 free (LAST DAY)** | Extended World Cup freebie! Get it claimed on all lounge consoles! |
+| 🔴 **June 16** | **Destiny 2: Legacy Collection (LAST DAY)** | Final Destiny 2 content bundle! Claim before it's gone forever! |
+
+### ⏰ Other Key Deadlines This Week (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 28-29** | FREE Online Multiplayer Weekend | 2 weeks! Start promoting NOW! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! |
 
 ---
 
