@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-14T08:37:39.901089+00:00",
+  "updated": "2026-06-14T09:12:44.685485+00:00",
   "entries": [
     {
       "topic": "-264.3M",
@@ -3058,6 +3058,21 @@
       ]
     },
     {
+      "topic": "Error:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 6,
+          "context": "- **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console - **Root cause (2 layers):**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 17,
+          "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        }
+      ]
+    },
+    {
       "topic": "Estimate Accuracy Tracker",
       "files": [
         {
@@ -3516,6 +3531,16 @@
           "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 22,
+          "context": "- **File:** `bot/handlers/booking_flow.py` - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 27,
+          "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/home/node/.openclaw/openclaw.json`"
@@ -3749,6 +3774,56 @@
           "path": "memory/2026-06-05.md",
           "line": 337,
           "context": "- **Fix (3 rounds):** 1. `cmd_staff_booking` → return `SBK_TIME` (date handler)"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 1: Booking Flow — Member Keyboard Hang",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 5,
+          "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2: \"No telegram_chat_id, skip notification\"",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 12,
+          "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3: Food Sale — Stock Map Rebuild Failed",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 16,
+          "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 4: Booking Extend — `message_thread_id is not defined`",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 21,
+          "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 5: `name 'os' is not defined`",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 26,
+          "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
         }
       ]
     },
@@ -4021,6 +4096,26 @@
           "context": "- **Fix:** Added staff notification block after customer notification — sends cancel details (booking ID, date, time, console, game, member, phone) to `STAFF_NOTIFY_CHAT` via Sales Bot token - **Extra"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 14,
+          "context": "- **Fix:** Moved decorator to line 1601 (before correct function)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 19,
+          "context": "- **Fix:** Added `async def _psvibe_get_async(path)` to `api_client.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 24,
+          "context": "- **Fix:** Added `message_thread_id: int = 0` parameter, updated both callers to extract from `query.message` / `update.message`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 29,
+          "context": "- **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -4149,6 +4244,16 @@
           "path": "memory/2026-06-13.md",
           "line": 47,
           "context": "- **Fixed:** 1. Created `customer_feedback` table (id, tg_id, username, booking_id, rating, comment, console_id, created_at)"
+        }
+      ]
+    },
+    {
+      "topic": "Fixes Deployed Today",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 3,
+          "context": "## Fixes Deployed Today"
         }
       ]
     },
@@ -4754,6 +4859,16 @@
           "path": "memory/fix-history.md",
           "line": 23,
           "context": "- **HEARTBEAT.md:** All Phase 3 tools added to ~4h routine - **MEMORY.md:** Index updated with Phase 3 references"
+        }
+      ]
+    },
+    {
+      "topic": "Heartbeats",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 38,
+          "context": "## Heartbeats Multiple heartbeats throughout the day. All clear. Known old notification (yyo-personal-wallet, June 11) still present."
         }
       ]
     },
@@ -6698,6 +6813,16 @@
       ]
     },
     {
+      "topic": "Pre-existing (Warning-level, Not Blocking)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 31,
+          "context": "## Pre-existing (Warning-level, Not Blocking) - **`inv_sh` = None** — K1 inventory Google Sheets update always fails silently (try/except catches it)"
+        }
+      ]
+    },
+    {
       "topic": "Prepaid Rent Amortization (✅ Done)",
       "files": [
         {
@@ -7003,6 +7128,16 @@
       ]
     },
     {
+      "topic": "removed",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 9,
+          "context": "- Layer 2: Alias at line 2541 (`fetch_members_async = api_fetch_members_async`) overrode the wrapper — **removed** - **Result:** Booking flow now works for Guest (walk-in) ✅"
+        }
+      ]
+    },
+    {
       "topic": "Repository 1: Sales Bot (`/root/psvibe-sales-bot/`)",
       "files": [
         {
@@ -7096,6 +7231,11 @@
           "context": "- **Result:** `rows` gets a coroutine object instead of the keyboard layout → `InjectedKeyboard` silently fails - **Fix:** Changed to `rows = await _sbk_console_kb()`"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 10,
+          "context": "- **Result:** Booking flow now works for Guest (walk-in) ✅"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -7139,6 +7279,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 133,
           "context": "| `caddy-1` | caddy:latest | **root** ⚠️ | — |"
+        }
+      ]
+    },
+    {
+      "topic": "Root cause (2 layers):",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 7,
+          "context": "- **Root cause (2 layers):** - Layer 1: `fetch_members_async()` wrapper (line 1491) needed `[m[\"id\"] for m in result if ...]` mapping — ✅ fixed"
         }
       ]
     },
@@ -7314,6 +7464,26 @@
           "path": "memory/2026-06-13.md",
           "line": 124,
           "context": "- **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>` columns** - The 4 member enrichment columns (Member ID, Member Name, Phone, Balance) were added to "
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 13,
+          "context": "- **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_start_console_session` - **Fix:** Moved decorator to l"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 18,
+          "context": "- **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined - **Fix:** Added `async def _psvibe_get_async(path)` to `api_client.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 23,
+          "context": "- **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter - **Fix:** Added `message_thread_id: int = 0` parameter, updated both call"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 28,
+          "context": "- **Root cause:** `_check_low_balance_alert` used `os` module but never imported it - **Fix:** Added `import os` (initially placed wrong — broke multi-line import — fixed in second attempt)"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -7775,6 +7945,11 @@
     {
       "topic": "Services Status",
       "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 35,
+          "context": "## Services Status All active throughout the day: psvibe-sale-bot, psvibe_customer_bot, psvibe-api, cloudflared-tunnel, Caddy, n8n, MySQL, fail2ban, Health Monitor (~91.6/100)"
+        },
         {
           "path": "memory/full-audit-2026-06-03.md",
           "line": 12,
