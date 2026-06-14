@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "updated": "2026-06-14T14:37:28.203764+00:00",
+  "updated": "2026-06-14T18:37:45.979156+00:00",
   "entries": [
+    {
+      "topic": "# June 14, 2026 — Daily Log (cont.)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 98,
+          "context": "## # June 14, 2026 — Daily Log (cont.)"
+        }
+      ]
+    },
     {
       "topic": "-264.3M",
       "files": [
@@ -1088,6 +1098,16 @@
       ]
     },
     {
+      "topic": "API Verified:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 166,
+          "context": "### API Verified: - POST /api/food-cart: CREATE ✅"
+        }
+      ]
+    },
+    {
       "topic": "API:",
       "files": [
         {
@@ -1144,6 +1164,16 @@
           "path": "memory/2026-06-08.md",
           "line": 64,
           "context": "- **Asset query**: `SUM(amount)`→`SUM(per_price*qty)` (820M→126M) - **KBZ Bank deductions**: Assets 126.6M + Advances 104.8M + Prepaid 22.4M"
+        }
+      ]
+    },
+    {
+      "topic": "Async imports must be defined, not just imported",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 254,
+          "context": "16. **Async imports must be defined, not just imported** — Importing a function name doesn't create it. Always verify the source file actually defines what downstream files import."
         }
       ]
     },
@@ -1699,6 +1729,16 @@
           "path": "memory/2026-06-05.md",
           "line": 358,
           "context": "- **Card Wallet records:** Cleared - **Console Status Board:** 10/10 Free ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Case-insensitive matching for user input",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 252,
+          "context": "14. **Case-insensitive matching for user input** — Dictionary key lookups on user-typed text must be case-insensitive. Normalize to consistent case at system boundary or use case-insensitive matching."
         }
       ]
     },
@@ -2778,6 +2818,16 @@
       ]
     },
     {
+      "topic": "Decorator placement is critical",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 253,
+          "context": "15. **Decorator placement is critical** — `@app.post(\"/path\")` on the wrong function silently routes requests to the wrong handler. Always verify decorator → function mapping after edits. 16. **Async "
+        }
+      ]
+    },
+    {
       "topic": "Dedup rules:",
       "files": [
         {
@@ -2804,6 +2854,11 @@
           "path": "memory/2026-06-14.md",
           "line": 86,
           "context": "- **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 249,
+          "context": "- **Deferred:** Needs debug logging inside `_remind_loop`"
         }
       ]
     },
@@ -2864,6 +2919,16 @@
           "path": "memory/integration-plan.md",
           "line": 87,
           "context": "- **Dependency:** Requires `git` CLI installed on the system. - **CLI:** `--init`, `--commit \"msg\"`, `--auto`, `--status`, `--log [N]`"
+        }
+      ]
+    },
+    {
+      "topic": "Design:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 102,
+          "context": "**Design:** Boss approved Phase 1 → Phase 2 approach. Phase 1 done today. **Status:** ✅ Deployed and tested"
         }
       ]
     },
@@ -3631,6 +3696,11 @@
           "context": "- **Files modified:** `bot/handlers/sales.py` — `step_food_menu()` + `step_food_qty()` functions - **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 155,
+          "context": "### Files Modified: | File | Changes |"
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 55,
           "context": "## Files Modified - `bot/__init__.py` — 3 BotState values, 1 function"
@@ -3899,6 +3969,16 @@
           "path": "memory/2026-06-14.md",
           "line": 70,
           "context": "### Fix 6: Ovaltine Cookies — Case-Sensitive Match Error - **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\""
+        }
+      ]
+    },
+    {
+      "topic": "Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 100,
+          "context": "## Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC) **Request:** Customers need to order food during gaming sessions, payment at session end."
         }
       ]
     },
@@ -4348,6 +4428,16 @@
       ]
     },
     {
+      "topic": "Fixes Deployed (6 total)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 234,
+          "context": "### Fixes Deployed (6 total) | # | Fix | File(s) | Root Cause |"
+        }
+      ]
+    },
+    {
       "topic": "Fixes Deployed Today",
       "files": [
         {
@@ -4375,6 +4465,11 @@
     {
       "topic": "Flow:",
       "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 146,
+          "context": "### Flow: ```"
+        },
         {
           "path": "memory/fix-history.md",
           "line": 126,
@@ -4919,6 +5014,26 @@
           "path": "memory/2026-06-04.md",
           "line": 3,
           "context": "**Health Monitor:** 94.5/100 ✅ - All 4 services active ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Heartbeat (17:44 UTC) — During Food Cart Feature Development",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 182,
+          "context": "## Heartbeat (17:44 UTC) — During Food Cart Feature Development - All services running: psvibe-sale-bot, psvibe_customer_bot, psvibe-api, cloudflared-tunnel, Caddy, n8n, MySQL, fail2ban"
+        }
+      ]
+    },
+    {
+      "topic": "Heartbeat (17:44 UTC) — Quick Health Check",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 186,
+          "context": "## Heartbeat (17:44 UTC) — Quick Health Check All services nominal. Food Cart Feature freshly deployed and API-verified."
         }
       ]
     },
@@ -5974,6 +6089,11 @@
           "path": "memory/2026-06-14.md",
           "line": 85,
           "context": "- **Mitigation:** Staff using \"No Timer\" (`mins=0`) for recent sessions, so reminders not needed currently - **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 248,
+          "context": "- **Mitigation:** Staff using \"No Timer\" (`mins=0`) for recent sessions - **Deferred:** Needs debug logging inside `_remind_loop`"
         }
       ]
     },
@@ -6174,6 +6294,11 @@
           "path": "memory/2026-06-14.md",
           "line": 79,
           "context": "- Logs confirm `_remind_loop` task is created via `load_and_restore()` but **never executes** `_extend_timer_kb()` or `sendMessage` - Zero `_extend_timer_kb` calls logged all day for any console"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 245,
+          "context": "- Logs confirm task is created via `load_and_restore()` but **never executes** - Zero `_extend_timer_kb` calls logged all day for any console"
         }
       ]
     },
@@ -6673,6 +6798,16 @@
       ]
     },
     {
+      "topic": "Pending (Phase 2 — Future):",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 177,
+          "context": "### Pending (Phase 2 — Future): - Customer Bot direct ordering (customers order from their own chat)"
+        }
+      ]
+    },
+    {
       "topic": "Pending for Tomorrow (June 12)",
       "files": [
         {
@@ -6964,6 +7099,16 @@
           "path": "memory/2026-06-14.md",
           "line": 88,
           "context": "## Pre-existing (Warning-level, Not Blocking) - **`inv_sh` = None** — K1 inventory Google Sheets update always fails silently (try/except catches it)"
+        }
+      ]
+    },
+    {
+      "topic": "Pre-existing Warnings (Non-Blocking)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 256,
+          "context": "### Pre-existing Warnings (Non-Blocking) - `inv_sh = None` — K1 inventory Google Sheets update always fails silently"
         }
       ]
     },
@@ -7329,6 +7474,11 @@
           "path": "memory/2026-06-05.md",
           "line": 373,
           "context": "- **Request:** Auto-reminder for confirmed bookings 10 minutes before the start time - **Changes made:**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 101,
+          "context": "**Request:** Customers need to order food during gaming sessions, payment at session end. **Design:** Boss approved Phase 1 → Phase 2 approach. Phase 1 done today."
         }
       ]
     },
@@ -8126,6 +8276,11 @@
           "context": "- **Services restarted:** psvibe-api ✅"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 162,
+          "context": "### Services Restarted: - psvibe-api ✅ (food-cart routes)"
+        },
+        {
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 85,
           "context": "## Services Restarted - psvibe-sale-bot.service ✅"
@@ -8796,6 +8951,11 @@
           "context": "- **Status:** Investigated but not fixed. Root cause inconclusive. - Logs confirm `_remind_loop` task is created via `load_and_restore()` but **never executes** `_extend_timer_kb()` or `sendMessage`"
         },
         {
+          "path": "memory/2026-06-14.md",
+          "line": 103,
+          "context": "**Status:** ✅ Deployed and tested"
+        },
+        {
           "path": "memory/IMPLEMENTATION_LOG.md",
           "line": 4,
           "context": "**Status:** Completed"
@@ -9393,6 +9553,16 @@
       ]
     },
     {
+      "topic": "Tests Done:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 172,
+          "context": "### Tests Done: - POST → GET → DELETE cycle verified on all food_cart API endpoints"
+        }
+      ]
+    },
+    {
       "topic": "text",
       "files": [
         {
@@ -9939,6 +10109,16 @@
           "path": "memory/2026-06-08.md",
           "line": 66,
           "context": "- **Web vs Bot identical** endpoints - **Stock In double-counting** removed"
+        }
+      ]
+    },
+    {
+      "topic": "What was built:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 105,
+          "context": "### What was built:"
         }
       ]
     },
@@ -10648,6 +10828,16 @@
       ]
     },
     {
+      "topic": "📋 June 14 — Summary",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 232,
+          "context": "## 📋 June 14 — Summary"
+        }
+      ]
+    },
+    {
       "topic": "📋 Pending (Boss Action Needed)",
       "files": [
         {
@@ -10714,6 +10904,16 @@
           "path": "MEMORY.md",
           "line": 161,
           "context": "### 📌 New Lessons (June 12) - **Dashboard JS only supports 4 final_status values:** Available, Damaged, Lost, In Use"
+        }
+      ]
+    },
+    {
+      "topic": "📌 New Lessons (June 14)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 251,
+          "context": "### 📌 New Lessons (June 14) 14. **Case-insensitive matching for user input** — Dictionary key lookups on user-typed text must be case-insensitive. Normalize to consistent case at system boundary or us"
         }
       ]
     },
@@ -10844,6 +11044,16 @@
           "path": "memory/memory-usage-guide.md",
           "line": 69,
           "context": "## 🔍 How To Find Info"
+        }
+      ]
+    },
+    {
+      "topic": "🔍 Investigation: `_remind_loop` Never Fires (Known Bug — Not Fixed)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 244,
+          "context": "### 🔍 Investigation: `_remind_loop` Never Fires (Known Bug — Not Fixed) - Logs confirm task is created via `load_and_restore()` but **never executes**"
         }
       ]
     },
@@ -11279,6 +11489,16 @@
           "path": "MEMORY.md",
           "line": 213,
           "context": "## 🩺 Services (June 13, 15:30 UTC) | Service | Status |"
+        }
+      ]
+    },
+    {
+      "topic": "🩺 Services (June 14, 15:30 UTC)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 260,
+          "context": "### 🩺 Services (June 14, 15:30 UTC) | Service | Status |"
         }
       ]
     }
