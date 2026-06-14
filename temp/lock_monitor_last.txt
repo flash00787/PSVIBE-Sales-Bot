@@ -1,23 +1,25 @@
-[LOCK_MONITOR] Run at 2026-06-14 08:08:18 UTC
+[LOCK_MONITOR] Run at 2026-06-14 08:33:18 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 2 session file(s) too large:
   b9bf595d-7344-4799-acda-d41c89fa0f33-topic-125192.checkpoint.69b8b342-eb48-45f4-8070-bc0764d58256.jsonl: 5862KB (> 500KB threshold)
-  1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.jsonl: 2349KB (> 500KB threshold)
+  1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.trajectory.jsonl: 7272KB (> 500KB threshold)
 [LOCK_MONITOR] WARNING: 1 trajectory file(s) oversized:
-  1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.trajectory.jsonl: 7173KB (> 3000KB threshold)
+  1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.trajectory.jsonl: 7272KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          964 files,      13245 KB
-  .trajectory.jsonl files:     89 files,      17377 KB
-  .checkpoint.*.jsonl files:   17 files,      68823 KB
-  .lock files:                  2 files
+  Main .jsonl files:          966 files,      13254 KB
+  .trajectory.jsonl files:     87 files,      17309 KB
+  .checkpoint.*.jsonl files:   16 files,      64620 KB
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    99444 KB
+  TOTAL:                                    95183 KB
 ==========================================
 
+
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 129 KB freed, 4 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 130 KB freed, 4 warnings
 ==================================================
-=== RESULT: OK ||| WARNINGS: 4 (2 large sessions, 1 oversized trajectory, old sessions cleaned) ===
+=== RESULT: OK (warnings: 4) ===
+=== RESULT: OK ||| 1 active lock, 0 cleaned, 4 warnings (large session files), 130KB freed ===
