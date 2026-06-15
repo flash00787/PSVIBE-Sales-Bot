@@ -1,1 +1,2 @@
 {"type":"session_end","priority":"medium","message":"⚠️ Console C-02: Occupied 3.0h without booking (Guest)","consoleId":"C-02","hoursElapsed":"3.0","timestamp":"2026-06-14T10:54:15.552Z"}
+{"type":"booking_reminder","priority":"high","message":"📅 Booking #372: Console C-02 starts in 5 min — Member: ?","bookingId":"372","consoleId":"C-02","memberId":"","minsUntil":5,"phone":"09250647478","telegramChatId":"1878333792","timestamp":"2026-06-15T09:55:02.696Z"}
