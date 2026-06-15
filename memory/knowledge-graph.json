@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-15T02:07:46Z",
+  "updated": "2026-06-15T04:08:12Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -720,6 +720,12 @@
     },
     {
       "source": "mysql",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
       "target": "python",
       "relation": "depends_on",
       "weight": 5
@@ -727,6 +733,12 @@
     {
       "source": "mysql",
       "target": "ssh",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "mysql",
+      "target": "vps",
       "relation": "depends_on",
       "weight": 5
     },
@@ -5484,12 +5496,6 @@
     },
     {
       "source": "mysql",
-      "target": "openclaw",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
       "target": "openrouter",
       "relation": "depends_on",
       "weight": 3
@@ -5539,12 +5545,6 @@
     {
       "source": "mysql",
       "target": "telegram",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "mysql",
-      "target": "vps",
       "relation": "depends_on",
       "weight": 3
     },
