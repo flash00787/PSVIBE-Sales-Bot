@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-15T02:07:46.303921+00:00",
+  "updated": "2026-06-15T04:08:12.211081+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -964,6 +964,16 @@
           "path": "memory/2026-06-14.md",
           "line": 372,
           "context": "- **Already fixed** — see Fix 10 above. Non-blocking coupon gen should resolve."
+        }
+      ]
+    },
+    {
+      "topic": "Already Fixed (previous session):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 45,
+          "context": "### Already Fixed (previous session): - Morning Health Summary MySQL query bug (warning line filtered)"
         }
       ]
     },
@@ -3553,6 +3563,16 @@
       ]
     },
     {
+      "topic": "File modified:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 18,
+          "context": "**File modified:** `/home/node/.openclaw/workspace/lib/ssh_vps.js` (lines 49-55) - Changed from: `function mysqlQuery(query) { return sshExec(...2>&1...); }`"
+        }
+      ]
+    },
+    {
       "topic": "File:",
       "files": [
         {
@@ -3736,6 +3756,11 @@
           "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 30,
+          "context": "- **File:** `/root/psvibe_api_server/patch_routes.py` line 1328"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/home/node/.openclaw/openclaw.json`"
@@ -3896,6 +3921,11 @@
           "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 35,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/handlers/sales.py` lines 1310 & 1792"
+        },
+        {
           "path": "memory/fix-history.md",
           "line": 9,
           "context": "- **Files:** `customer_bot/booking.py` - **Fixes:**"
@@ -4023,6 +4053,16 @@
       ]
     },
     {
+      "topic": "Fix 1: POST /api/food-cart `AttributeError: 'int' object has no attribute 'strip'`",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 27,
+          "context": "### Fix 1: POST /api/food-cart `AttributeError: 'int' object has no attribute 'strip'` - **Root cause:** `booking_id` from MySQL is an integer, but API tried `.strip()` on it directly"
+        }
+      ]
+    },
+    {
       "topic": "Fix 2: \"No telegram_chat_id, skip notification\"",
       "files": [
         {
@@ -4039,6 +4079,16 @@
           "path": "memory/2026-06-14.md",
           "line": 199,
           "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2: Coupon generation still blocking voucher",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 32,
+          "context": "### Fix 2: Coupon generation still blocking voucher - **Root cause:** Both `step_sale_confirm` (~line 1310) and `launch_session_sale` (~line 1790) used `await asyncio.to_thread(api_post, \"coupons/gene"
         }
       ]
     },
@@ -4063,6 +4113,16 @@
       ]
     },
     {
+      "topic": "Fix 3: Old API server on port 5001 (stale code without food-cart endpoints)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 37,
+          "context": "### Fix 3: Old API server on port 5001 (stale code without food-cart endpoints) - **Root cause:** Systemd starts API on port 8000, but old process on port 5001 was still running (started before patch_"
+        }
+      ]
+    },
+    {
       "topic": "Fix 4: Booking Extend — `message_thread_id is not defined`",
       "files": [
         {
@@ -4079,6 +4139,16 @@
           "path": "memory/2026-06-14.md",
           "line": 208,
           "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 4: Indentation error in coupon fix (first attempt failed)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 41,
+          "context": "### Fix 4: Indentation error in coupon fix (first attempt failed) - **Root cause:** Fix script used 8-space indent but original code used 4-space"
         }
       ]
     },
@@ -4504,6 +4574,31 @@
           "path": "memory/2026-06-14.md",
           "line": 351,
           "context": "**Fix:** Wrapped coupon generation in `async def _gen_coupon_async()` and called via `asyncio.create_task(_gen_coupon_async())` — no longer blocks voucher opening. **Status:** ✅ Deployed, psvibe-sale-"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 7,
+          "context": "**Fix:** Made `mysqlQuery()` `async` and added a filter: ```"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 29,
+          "context": "- **Fix:** `str(body.get(...)).strip()` — convert to string first - **File:** `/root/psvibe_api_server/patch_routes.py` line 1328"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 34,
+          "context": "- **Fix:** Wrapped in nested `async def _gen_cpn_step()`/`_gen_cpn_launch()` + `asyncio.create_task()` — non-blocking - **Files:** `/root/psvibe-sales-bot/bot/handlers/sales.py` lines 1310 & 1792"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 39,
+          "context": "- **Fix:** Killed old PID 1410543 (port 5001)"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 43,
+          "context": "- **Fix:** Corrected to 4-space indent; sale bot now starts successfully"
         },
         {
           "path": "memory/bug-patterns.md",
@@ -8221,6 +8316,31 @@
           "context": "**Root cause:** `step_end_session` in `console.py` line 370 has `await asyncio.to_thread(api_post, \"coupons/generate\", ...)` — this BLOCKS the entire session end flow until the coupon API responds. Th"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 5,
+          "context": "**Root cause:** `lib/ssh_vps.js` → `mysqlQuery()` used `2>&1` to merge stderr into stdout. MySQL password warning (`\"mysql: [Warning] Using a password on the command line interface can be insecure.\"`)"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 28,
+          "context": "- **Root cause:** `booking_id` from MySQL is an integer, but API tried `.strip()` on it directly - **Fix:** `str(body.get(...)).strip()` — convert to string first"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 33,
+          "context": "- **Root cause:** Both `step_sale_confirm` (~line 1310) and `launch_session_sale` (~line 1790) used `await asyncio.to_thread(api_post, \"coupons/generate\", ...)` — BLOCKING - **Fix:** Wrapped in nested"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 38,
+          "context": "- **Root cause:** Systemd starts API on port 8000, but old process on port 5001 was still running (started before patch_routes changes) - **Fix:** Killed old PID 1410543 (port 5001)"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 42,
+          "context": "- **Root cause:** Fix script used 8-space indent but original code used 4-space - **Fix:** Corrected to 4-space indent; sale bot now starts successfully"
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 63,
           "context": "- **Root cause:** Parallel sub-agents (6) editing `bot/__init__.py` simultaneously without locks → chain-reaction corruption. See Framework v2.0 for prevention. - **Fix approach:** Sequential fixes wi"
@@ -10368,8 +10488,13 @@
       ]
     },
     {
-      "topic": "Verification",
+      "topic": "Verification:",
       "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 13,
+          "context": "**Verification:** Tested with `test_mysqlQuery.js`: - `SELECT COUNT(*) as txns FROM sales_daily WHERE sale_date = '2026-06-14'` → `43` ✅"
+        },
         {
           "path": "memory/IMPLEMENTATION_LOG.md",
           "line": 13,
@@ -10923,12 +11048,32 @@
       ]
     },
     {
+      "topic": "✅ Services Restarted",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 48,
+          "context": "## ✅ Services Restarted | Service | Status |"
+        }
+      ]
+    },
+    {
       "topic": "✅ Services Status (after Session VI)",
       "files": [
         {
           "path": "memory/2026-06-13.md",
           "line": 112,
           "context": "### ✅ Services Status (after Session VI) | Service | Status |"
+        }
+      ]
+    },
+    {
+      "topic": "✅ Services Status (June 15, 02:32 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 22,
+          "context": "## ✅ Services Status (June 15, 02:32 UTC) All services healthy. No critical alerts."
         }
       ]
     },
@@ -11168,12 +11313,32 @@
       ]
     },
     {
+      "topic": "🐛 Fix: Morning Health Summary MySQL Query Bug",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 3,
+          "context": "## 🐛 Fix: Morning Health Summary MySQL Query Bug"
+        }
+      ]
+    },
+    {
       "topic": "🐛 Fixed: Kora Dashboard Users Tab Column Misalignment",
       "files": [
         {
           "path": "memory/2026-06-13.md",
           "line": 122,
           "context": "### 🐛 Fixed: Kora Dashboard Users Tab Column Misalignment - **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\""
+        }
+      ]
+    },
+    {
+      "topic": "🐛 June 15 — Fixes Applied (02:42 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 25,
+          "context": "## 🐛 June 15 — Fixes Applied (02:42 UTC)"
         }
       ]
     },
@@ -11354,6 +11519,16 @@
           "path": "MEMORY.md",
           "line": 251,
           "context": "### 📌 New Lessons (June 14) 14. **Case-insensitive matching for user input** — Dictionary key lookups on user-typed text must be case-insensitive. Normalize to consistent case at system boundary or us"
+        }
+      ]
+    },
+    {
+      "topic": "📌 Pending",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 54,
+          "context": "## 📌 Pending - Boss to test Phase 1 Food Cart flow end-to-end"
         }
       ]
     },
