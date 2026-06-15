@@ -269,3 +269,60 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 | MySQL | ✅ |
 | fail2ban | ✅ |
 | Health Monitor | ~91.6/100 ✅ |
+
+---
+
+## 📋 June 15 — Summary
+
+### 🔧 Fixes Deployed (8 total)
+| # | Fix | File(s) | Root Cause |
+|---|-----|---------|------------|
+| 1 | Morning Health Summary showing 0s | `lib/ssh_vps.js` | MySQL password warning merged into stdout via `2>&1` → parsed as column headers |
+| 2 | Food Cart POST — `int.strip()` crash | `patch_routes.py` L1328 | `booking_id` from MySQL is int; `.strip()` only works on strings |
+| 3 | Coupon gen blocking voucher (v2) | `sales.py` L1310, 1792 | `await asyncio.to_thread()` still blocking; wrapped in `create_task()` |
+| 4 | Stale API on port 5001 | n/a | Old process from before patch_routes changes still running |
+| 5 | Indentation error in coupon fix | `sales.py` | Fix script used 8-space indent; original is 4-space |
+| 6 | Food Note / End Session booking_id not found | `console.py` L225, 355 | `_map_booking_row` maps `console_id` → `consoleType`; code looked for `consoleId` |
+| 7 | **PNL API — Broken Stub** | `patch_routes.py` L665-720 | Stub returned +1.5M fake profit; replaced with real dashboard logic → -15.2M LOSS ✅ |
+| 8 | **Balance Sheet API — Broken Stub** | `patch_routes.py` L724-755 | Stub showed 427K assets (real: 279M); replaced with full dashboard BS logic ✅ |
+
+### 🏗️ Finance Infrastructure
+- **Auto-Depreciation:** Created `/root/scripts/auto_depreciate.py` — monthly cron (1st, 2:30 UTC)
+- **Catch-up:** 12 of 39 assets had `acc_depreciation=0` → fixed; total now 10,257,830 Ks ✅
+- **Balance Sheet verified:** A = L + E @ 279,445,881 Ks ✅
+- **PNL verified:** June YTD = -15,163,987 Ks LOSS ✅
+
+### 🧠 5 New Lessons (June 15)
+- **17.** `%%Y-%%m` doesn't work with `mysql.connector` — uses `%s` params, not printf-style `%%`
+- **18.** Depreciation convention: from purchase month (inclusive), first month gets full depreciation
+- **19.** Dashboard code is source of truth — `patch_routes.py` stubs were outdated prototypes
+- **20.** `sales_daily.net = amount + food` — food IS baked into net; subtract food_rev for pure game revenue
+- **21.** Auto-depreciation cron must NOT use LockMonitor — simple 1-minute operation, non-peak hours
+
+### 📌 Pending (Boss Action Needed)
+1. **n8n payment (€25.68)** — 2nd notice, subscription may expire
+2. **GitHub Deploy failing** — psvibe-api-server master branch
+3. **100+ games discrepancy** — 41 in DB vs claimed 100+
+4. **Food Note issue** — Boss said "ဆက်လုပ်ပါ", awaiting further instruction
+
+### 🩺 Services (June 15, 15:30 UTC)
+| Service | Status |
+|---------|--------|
+| psvibe-api | ✅ |
+| psvibe-sale-bot | ✅ |
+| psvibe_customer_bot | ✅ |
+| psvibe-dashboard | ✅ |
+| kora-dashboard | ✅ |
+| cloudflared-tunnel | ✅ |
+| Caddy | ✅ |
+| n8n | ✅ |
+| MySQL | ✅ |
+| fail2ban | ✅ |
+| Health Monitor | ~91/100 ✅ |
+
+### 🧠 Critical Lessons Archive (continued)
+- 17. **`%%Y-%%m` ≠ `mysql.connector` params** — `mysql.connector.execute()` uses `%s` style, not printf `%%`
+- 18. **Depreciation from purchase month (inclusive)** — first month = full month depreciation
+- 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints
+- 20. **`sales_daily.net` includes food** — food revenue baked into `net`; subtract for pure game revenue
+- 21. **Auto-depreciation cron = no LockMonitor** — simple 1-min op, non-peak hours only
