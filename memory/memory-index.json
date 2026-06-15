@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-15T16:07:39.701952+00:00",
+  "updated": "2026-06-15T21:07:28.203951+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -9,6 +9,16 @@
           "path": "memory/2026-06-14.md",
           "line": 98,
           "context": "## # June 14, 2026 — Daily Log (cont.)"
+        }
+      ]
+    },
+    {
+      "topic": "-11,216,929",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 194,
+          "context": "| PNL Net Profit | -15,153,987 | **-11,216,929** | | Included assets | 31 (all) | 19 (purchased before Jun 1) |"
         }
       ]
     },
@@ -39,6 +49,16 @@
           "path": "memory/2026-06-09.md",
           "line": 10,
           "context": "- Operating: sales 889K + topup income - opex 7.05M - stock 733K = **-6.9M** - Investing: PS5 140.7M + advances 104.8M + prepaid 22.4M - recovery 3.6M = **-264.3M**"
+        }
+      ]
+    },
+    {
+      "topic": "0 months",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 172,
+          "context": "**Problem:** PNL depreciation was `SUM(monthly_dep)` for ALL 39 assets. But 12 assets (Interior Decoration 98.6M, PS5 Console ×8 21.6M, Sofa ×10 14.4M, CCTV, Inverter, Battery, SPC Flooring, etc.) wer"
         }
       ]
     },
@@ -177,7 +197,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 305,
+          "line": 303,
           "context": "3. **100+ games discrepancy** — 41 in DB vs claimed 100+ 4. **Food Note issue** — Boss said \"ဆက်လုပ်ပါ\", awaiting further instruction"
         }
       ]
@@ -259,6 +279,16 @@
           "path": "memory/finance-audit-2026-06.md",
           "line": 206,
           "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
+        }
+      ]
+    },
+    {
+      "topic": "2,416,033",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 208,
+          "context": "| **Total Revenue** | 1,939,633 + 425,700 + 50,700 = **2,416,033** | **2,416,033** | ✅ |"
         }
       ]
     },
@@ -419,6 +449,16 @@
           "path": "memory/fix-history.md",
           "line": 5,
           "context": "## 2026-06-09 — Pending Bookings Fix + Kora Upgrade Integration"
+        }
+      ]
+    },
+    {
+      "topic": "21 Slash Commands",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 276,
+          "context": "- **21 Slash Commands** registered - **Member Counter VC**: `👥 Members: 0` (ID: 1516147221090009098)"
         }
       ]
     },
@@ -1108,6 +1148,16 @@
       ]
     },
     {
+      "topic": "Active",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 274,
+          "context": "- **Active** ✅ (systemd service, auto-restart) - **PID**: Last restarted ~18:52 UTC"
+        }
+      ]
+    },
+    {
       "topic": "Active sessions cleared:",
       "files": [
         {
@@ -1728,11 +1778,21 @@
       ]
     },
     {
+      "topic": "Auto-balancer adjustment:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 220,
+          "context": "- **Auto-balancer adjustment:** -2,508,309 (silent adjustment for cash/income discrepancy)"
+        }
+      ]
+    },
+    {
       "topic": "Auto-depreciation cron = no LockMonitor",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 328,
+          "line": 326,
           "context": "- 21. **Auto-depreciation cron = no LockMonitor** — simple 1-min op, non-peak hours only"
         }
       ]
@@ -2138,6 +2198,26 @@
       ]
     },
     {
+      "topic": "Bot Status",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 273,
+          "context": "### Bot Status - **Active** ✅ (systemd service, auto-restart)"
+        }
+      ]
+    },
+    {
+      "topic": "Bot Updated:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 252,
+          "context": "- **Bot Updated:** Server Members Intent enabled, welcome DM system active - **Guild:** PS VIBE - PS5 Gaming Lounge (ID: 1516119712411422942)"
+        }
+      ]
+    },
+    {
       "topic": "bot-api-read-path",
       "files": [
         {
@@ -2193,6 +2273,26 @@
       ]
     },
     {
+      "topic": "BS Retained Earnings — Remaining Issue",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 214,
+          "context": "### BS Retained Earnings — Remaining Issue"
+        }
+      ]
+    },
+    {
+      "topic": "BS Retained Earnings:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 218,
+          "context": "- **BS Retained Earnings:** -13,747,413 (auto-balanced) - **PNL Cumulative Net Profit:** -11,216,929"
+        }
+      ]
+    },
+    {
       "topic": "Bug 1: Orphaned `###` Headers Silently Dropped",
       "files": [
         {
@@ -2239,6 +2339,16 @@
           "path": "memory/2026-06-13.md",
           "line": 123,
           "context": "- **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\" - **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>`"
+        }
+      ]
+    },
+    {
+      "topic": "Bug: PNL Depreciation Wrong (6,995,548 vs correct 3,078,949)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 170,
+          "context": "### Bug: PNL Depreciation Wrong (6,995,548 vs correct 3,078,949)"
         }
       ]
     },
@@ -2529,6 +2639,16 @@
           "path": "memory/fix-history.md",
           "line": 141,
           "context": "- **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
+        }
+      ]
+    },
+    {
+      "topic": "Channels Created:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 250,
+          "context": "- **Channels Created:** 20 channels across 5 categories (Announcements, General, Game Hub, Events, Voice) - **Roles Created:** Owner, Admin, Moderator, VIP Member, Member"
         }
       ]
     },
@@ -3233,6 +3353,16 @@
       ]
     },
     {
+      "topic": "Current Commands — 21 Total",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 266,
+          "context": "### Current Commands — 21 Total | Public 🌐 | Private 🔒 |"
+        }
+      ]
+    },
+    {
       "topic": "Current State",
       "files": [
         {
@@ -3367,7 +3497,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 326,
+          "line": 324,
           "context": "- 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints - 20. **`sales_daily.net` includes food** — food revenue baked into `net`; subtract for pure gam"
         }
       ]
@@ -3652,7 +3782,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 325,
+          "line": 323,
           "context": "- 18. **Depreciation from purchase month (inclusive)** — first month = full month depreciation - 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints"
         }
       ]
@@ -3699,6 +3829,26 @@
           "path": "MEMORY.md",
           "line": 165,
           "context": "- **disc_count values are intentional** — never modify without Boss confirmation - **Staff group Forum mode:** messages without `message_thread_id` go to General topic"
+        }
+      ]
+    },
+    {
+      "topic": "Discord Bot — Server Setup Completed",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 249,
+          "context": "### Discord Bot — Server Setup Completed - **Channels Created:** 20 channels across 5 categories (Announcements, General, Game Hub, Events, Voice)"
+        }
+      ]
+    },
+    {
+      "topic": "Discord Server Structure",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 247,
+          "context": "2. **Discord Server Structure** — Channels နဲ့ Roles တွေကို ဆက်ပြီး ပြင်ဆင်ရန် (or ask Kora to help)"
         }
       ]
     },
@@ -3859,6 +4009,16 @@
           "path": "memory/2026-06-10.md",
           "line": 95,
           "context": "### Empty (unreleased) Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3"
+        }
+      ]
+    },
+    {
+      "topic": "Enable Privileged Intents",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 244,
+          "context": "1. **Enable Privileged Intents** in Discord Developer Portal → Bot → Privileged Gateway Intents: - ✅ Or ❌ Server Members Intent (for welcome DM on new member join)"
         }
       ]
     },
@@ -4768,6 +4928,16 @@
       ]
     },
     {
+      "topic": "Fix (applied to 2 files):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 176,
+          "context": "**Fix (applied to 2 files):**"
+        }
+      ]
+    },
+    {
       "topic": "Fix 1 (line 225):",
       "files": [
         {
@@ -5523,6 +5693,16 @@
       ]
     },
     {
+      "topic": "Fixes & Updates",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 260,
+          "context": "### Fixes & Updates 1. **`/hours` fixed**: Was showing wrong hours → corrected to \"9:00 AM - 9:00 PM All Days\" ✅"
+        }
+      ]
+    },
+    {
       "topic": "Fixes Deployed (6 total)",
       "files": [
         {
@@ -5612,7 +5792,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 306,
+          "line": 304,
           "context": "4. **Food Note issue** — Boss said \"ဆက်လုပ်ပါ\", awaiting further instruction"
         }
       ]
@@ -5856,14 +6036,14 @@
           "context": "(dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
         },
         {
-          "path": "MEMORY.md",
-          "line": 127,
-          "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+          "path": "memory/ARCHIVE.md",
+          "line": 59,
+          "context": "(dedup) 2. **GitHub Deploy failing** — psvibe-api-server master branch"
         },
         {
           "path": "MEMORY.md",
-          "line": 304,
-          "context": "2. **GitHub Deploy failing** — psvibe-api-server master branch 3. **100+ games discrepancy** — 41 in DB vs claimed 100+"
+          "line": 127,
+          "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
         }
       ]
     },
@@ -5899,6 +6079,16 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 55,
           "context": "**GitHub:** `flash00787/PSVIBE-API-Server`"
+        }
+      ]
+    },
+    {
+      "topic": "Giveaway improved",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 263,
+          "context": "3. **Giveaway improved**: Added `create` (Staff: prize + duration), `end` (Staff), and `id` option for enter/draw. Prize & period now properly defined ✅ 4. **Privacy/Ephemeral**: Made `/vip`, `/report"
         }
       ]
     },
@@ -6124,6 +6314,16 @@
           "path": "memory/full-audit-2026-06-03.md",
           "line": 48,
           "context": "## GSheets Still Used Directly | GSheet | Access Type | Critical? |"
+        }
+      ]
+    },
+    {
+      "topic": "Guild:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 253,
+          "context": "- **Guild:** PS VIBE - PS5 Gaming Lounge (ID: 1516119712411422942)"
         }
       ]
     },
@@ -6768,6 +6968,16 @@
       ]
     },
     {
+      "topic": "Known Issue",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 280,
+          "context": "### Known Issue - Daily sales report cron failed (timed out) — needs investigation"
+        }
+      ]
+    },
+    {
       "topic": "Known Issues",
       "files": [
         {
@@ -6914,6 +7124,16 @@
           "path": "memory/2026-06-13.md",
           "line": 89,
           "context": "- **LEGO Star Wars fix:** Changed from Solo/Platformer to Both/Platformer Co-op (has local co-op)"
+        }
+      ]
+    },
+    {
+      "topic": "Lesson Learned",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 224,
+          "context": "### Lesson Learned"
         }
       ]
     },
@@ -7164,6 +7384,16 @@
           "path": "memory/bug-patterns.md",
           "line": 16,
           "context": "## Member Console Multiplier (FIXED) - Members always got 1.0x. Added `fetch_console_multiplier()` for non-guest members."
+        }
+      ]
+    },
+    {
+      "topic": "Member Counter VC",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 277,
+          "context": "- **Member Counter VC**: `👥 Members: 0` (ID: 1516147221090009098) - **Permanent Invite**: `/invite` uses permanent link now"
         }
       ]
     },
@@ -7461,6 +7691,11 @@
           "context": "(dedup) 1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
         },
         {
+          "path": "memory/ARCHIVE.md",
+          "line": 58,
+          "context": "(dedup) 1. **n8n payment (€25.68)** — 2nd notice, subscription may expire (dedup) 2. **GitHub Deploy failing** — psvibe-api-server master branch"
+        },
+        {
           "path": "MEMORY.md",
           "line": 126,
           "context": "1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
@@ -7469,11 +7704,6 @@
           "path": "MEMORY.md",
           "line": 174,
           "context": "4. **n8n payment (€25.68)** — 2nd notice received"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 303,
-          "context": "1. **n8n payment (€25.68)** — 2nd notice, subscription may expire 2. **GitHub Deploy failing** — psvibe-api-server master branch"
         }
       ]
     },
@@ -8223,6 +8453,26 @@
       ]
     },
     {
+      "topic": "Permanent Invite",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 278,
+          "context": "- **Permanent Invite**: `/invite` uses permanent link now"
+        }
+      ]
+    },
+    {
+      "topic": "Permanent invite link",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 262,
+          "context": "2. **Permanent invite link**: Created never-expire link `https://discord.gg/EXEF7phbZF` ✅ 3. **Giveaway improved**: Added `create` (Staff: prize + duration), `end` (Staff), and `id` option for enter/d"
+        }
+      ]
+    },
+    {
       "topic": "Phase 1: Feature 2 (Foundation — easier, lower risk)",
       "files": [
         {
@@ -8398,6 +8648,16 @@
       ]
     },
     {
+      "topic": "PID",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 275,
+          "context": "- **PID**: Last restarted ~18:52 UTC - **21 Slash Commands** registered"
+        }
+      ]
+    },
+    {
       "topic": "PNL API (`/api/finance/pnl`) — `patch_routes.py` L665-720",
       "files": [
         {
@@ -8418,6 +8678,26 @@
       ]
     },
     {
+      "topic": "PNL Cumulative Net Profit:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 219,
+          "context": "- **PNL Cumulative Net Profit:** -11,216,929 - **Auto-balancer adjustment:** -2,508,309 (silent adjustment for cash/income discrepancy)"
+        }
+      ]
+    },
+    {
+      "topic": "PNL depreciation must filter by purchase_date",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 226,
+          "context": "22. **PNL depreciation must filter by purchase_date**: Include only assets that were purchased BEFORE the current month's start. New assets don't accrue depreciation until the month after purchase."
+        }
+      ]
+    },
+    {
       "topic": "PNL Food Revenue ≠ Console Multiplier",
       "files": [
         {
@@ -8434,6 +8714,16 @@
           "path": "MEMORY.md",
           "line": 293,
           "context": "- **PNL verified:** June YTD = -15,163,987 Ks LOSS ✅"
+        }
+      ]
+    },
+    {
+      "topic": "PNL vs Daily Sales Data — Verification",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 197,
+          "context": "### PNL vs Daily Sales Data — Verification"
         }
       ]
     },
@@ -8548,6 +8838,16 @@
       ]
     },
     {
+      "topic": "Privacy/Ephemeral",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 264,
+          "context": "4. **Privacy/Ephemeral**: Made `/vip`, `/report`, `/book check`, `/book request` — **user-only visible** (ephemeral) ✅"
+        }
+      ]
+    },
+    {
       "topic": "Pro only!",
       "files": [
         {
@@ -8564,6 +8864,11 @@
           "path": "memory/2026-06-15.md",
           "line": 94,
           "context": "**Problem:** 12 of 39 assets had `acc_depreciation = 0` (PS5 Console x8, Sofa x10, Interior Decoration, CCTV, Inverter, Battery, SPC Flooring, etc.) because they were added to DB in June but never had"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 172,
+          "context": "**Problem:** PNL depreciation was `SUM(monthly_dep)` for ALL 39 assets. But 12 assets (Interior Decoration 98.6M, PS5 Console ×8 21.6M, Sofa ×10 14.4M, CCTV, Inverter, Battery, SPC Flooring, etc.) wer"
         }
       ]
     },
@@ -9011,6 +9316,11 @@
           "context": "- **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 189,
+          "context": "**Result:**"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -9028,12 +9338,32 @@
       ]
     },
     {
+      "topic": "Result: PNL 100% matches daily sales data!",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 210,
+          "context": "**Result: PNL 100% matches daily sales data!** ✅"
+        }
+      ]
+    },
+    {
       "topic": "Retention:",
       "files": [
         {
           "path": "memory/security-audit-2026-06-13.md",
           "line": 75,
           "context": "- **Retention:** 7-day cleanup of `.sql.gz` and `.tar.gz` files - **Logging:** `/var/log/auto_backup.log`"
+        }
+      ]
+    },
+    {
+      "topic": "Roles Created:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 251,
+          "context": "- **Roles Created:** Owner, Admin, Moderator, VIP Member, Member - **Bot Updated:** Server Members Intent enabled, welcome DM system active"
         }
       ]
     },
@@ -9384,6 +9714,11 @@
           "path": "memory/2026-06-15.md",
           "line": 60,
           "context": "- **Root cause:** `console.py` booking lookups used `_b.get(\"consoleId\")` but API `_map_booking_row` maps `console_id` → `consoleType`. Never found any booking → booking_id=\"\" → food note \"No booking_"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 174,
+          "context": "**Root cause:** No `purchase_date` filter in the depreciation SQL. The query just did `SUM(monthly_dep)` for all assets with non-zero useful_life."
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -11476,6 +11811,11 @@
       "topic": "Total Revenue",
       "files": [
         {
+          "path": "memory/2026-06-15.md",
+          "line": 208,
+          "context": "| **Total Revenue** | 1,939,633 + 425,700 + 50,700 = **2,416,033** | **2,416,033** | ✅ |"
+        },
+        {
           "path": "memory/finance-audit-2026-06.md",
           "line": 206,
           "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
@@ -11629,6 +11969,16 @@
           "path": "memory/bug-patterns.md",
           "line": 40,
           "context": "- **Use Task Planner FIRST** to identify function-level conflicts"
+        }
+      ]
+    },
+    {
+      "topic": "user-only visible",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 264,
+          "context": "4. **Privacy/Ephemeral**: Made `/vip`, `/report`, `/book check`, `/book request` — **user-only visible** (ephemeral) ✅"
         }
       ]
     },
@@ -12203,6 +12553,16 @@
       ]
     },
     {
+      "topic": "⚠️ Pending (Boss Action Needed)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 243,
+          "context": "### ⚠️ Pending (Boss Action Needed) 1. **Enable Privileged Intents** in Discord Developer Portal → Bot → Privileged Gateway Intents:"
+        }
+      ]
+    },
+    {
       "topic": "⚪ LOW (N issues)",
       "files": [
         {
@@ -12255,6 +12615,11 @@
     {
       "topic": "✅ Completed",
       "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 234,
+          "context": "### ✅ Completed - Bot Application: \"PS VIBE Bot\" (ID: 1516120408393515081)"
+        },
         {
           "path": "memory/PHASE3_SPEC.md",
           "line": 23,
@@ -12423,6 +12788,16 @@
       ]
     },
     {
+      "topic": "🎮 Discord Bot — Session Continuation (June 15, ~18:43-19:10 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 258,
+          "context": "## 🎮 Discord Bot — Session Continuation (June 15, ~18:43-19:10 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "🎮 Game Library Fixes (09:00-09:45 UTC)",
       "files": [
         {
@@ -12439,6 +12814,16 @@
           "path": "memory/2026-06-06.md",
           "line": 5,
           "context": "## 🎮 Grand Opening Day! 🔥 Day of Grand Opening"
+        }
+      ]
+    },
+    {
+      "topic": "🎮 PS VIBE Discord Bot — Deployed (June 15, ~16:55 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 230,
+          "context": "## 🎮 PS VIBE Discord Bot — Deployed (June 15, ~16:55 UTC)"
         }
       ]
     },
@@ -12614,6 +12999,16 @@
           "path": "memory/2026-06-13.md",
           "line": 122,
           "context": "### 🐛 Fixed: Kora Dashboard Users Tab Column Misalignment - **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\""
+        }
+      ]
+    },
+    {
+      "topic": "🐛 June 15 (PM Session) — PNL Depreciation Fix + Daily Sales Verification",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 168,
+          "context": "## 🐛 June 15 (PM Session) — PNL Depreciation Fix + Daily Sales Verification"
         }
       ]
     },
@@ -12833,7 +13228,7 @@
         {
           "path": "MEMORY.md",
           "line": 302,
-          "context": "### 📌 Pending (Boss Action Needed) 1. **n8n payment (€25.68)** — 2nd notice, subscription may expire"
+          "context": "### 📌 Pending (Boss Action Needed) 3. **100+ games discrepancy** — 41 in DB vs claimed 100+"
         }
       ]
     },
@@ -13312,7 +13707,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 323,
+          "line": 321,
           "context": "### 🧠 Critical Lessons Archive (continued) - 17. **`%%Y-%%m` ≠ `mysql.connector` params** — `mysql.connector.execute()` uses `%s` style, not printf `%%`"
         }
       ]
@@ -13457,7 +13852,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 308,
+          "line": 306,
           "context": "### 🩺 Services (June 15, 15:30 UTC) | Service | Status |"
         }
       ]
