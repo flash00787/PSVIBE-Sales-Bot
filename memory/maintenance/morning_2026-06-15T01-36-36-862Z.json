@@ -1,0 +1,24 @@
+{
+  "date": "2026-06-15",
+  "type": "morning",
+  "timestamp": "2026-06-15T01:36:31.471Z",
+  "yesterdaySales": {
+    "mysql: [Warning] Using a password on the command line interface can be insecure.": "txns"
+  },
+  "yesterdayTopups": {
+    "count": "count",
+    "total": "total",
+    "mins": "mins"
+  },
+  "activeMembers": "cnt",
+  "consoleStatus": "mysql: [Warning] Using a password on the command line interface can be insecure.\nconsole_id\tstatus\tconsole_type\nC-01\tFree\tPS5\nC-02\tFree\tPS5\nC-03\tFree\tPS5\nC-04\tFree\tPS5\nC-05\tFree\tPS5\nC-06\tFree\tPS5\nC-07\tFree\tPS5\nC-08\tFree\tPS5\nC-09\tFree\tPS5 Pro\nC-10\tFree\tPS5 Pro",
+  "systemHealth": {
+    "docker": "aungchanmyint-caddy-1 Up 43 hours\naungchanmyint-n8n-1 Up 2 days\noc-nova Up 2 days (healthy)\nconstruction_bot Up 2 days\noc-coco Up 2 days (healthy)\nopenclaw-openclaw-gateway-1 Up 2 days (healthy)\npsvibe-mysql Up 2 days\n",
+    "cpu": "%Cpu(s): 14.1 us,  1.1 sy,  0.0 ni, 84.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+    "memoryPercent": "3.7",
+    "diskPercent": "24"
+  },
+  "dockerContainers": "aungchanmyint-caddy-1: Up 43 hours\naungchanmyint-n8n-1: Up 2 days\noc-nova: Up 2 days (healthy)\nconstruction_bot: Up 2 days\noc-coco: Up 2 days (healthy)\nopenclaw-openclaw-gateway-1: Up 2 days (healthy)\npsvibe-mysql: Up 2 days",
+  "todayBookings": "count",
+  "overallStatus": "healthy"
+}
