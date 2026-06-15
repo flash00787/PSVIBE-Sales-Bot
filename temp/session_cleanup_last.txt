@@ -1,7 +1,7 @@
-=== Bulk Session Cleanup 17:58 ===
-Before: 129M
-  >6h trajectory: 3 files, ~0MB deleted
-  >2d session: 1 files deleted
-  >7d trajectory-path: 20 files deleted
-After: 128M
-=== RESULT: OK ===
+=== Bulk Session Cleanup 18:08 ===
+Before: 119M
+  >6h trajectory: 1 files, ~0MB deleted
+  >2d session: 3 files deleted
+  >7d trajectory-path: 21 files deleted
+After: 118M
+=== RESULT: OK ||| ERROR: none ===
