@@ -1,30 +1,27 @@
-[LOCK_MONITOR] Run at 2026-06-15 07:08:17 UTC
+[LOCK_MONITOR] Run at 2026-06-15 08:08:17 UTC
 
-[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
   1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.checkpoint.6dd8240e-0a6d-48c1-a3b4-f2113a6691f9.jsonl: 3125KB (> 500KB threshold)
   251c9af9-aecc-4963-9898-f1a4b0f3fbcd-topic-125192.trajectory.jsonl: 8232KB (> 500KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 500KB threshold)
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 10028KB (> 500KB threshold)
-[LOCK_MONITOR] WARNING: 3 trajectory file(s) oversized:
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 10028KB (> 3000KB threshold)
+  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 1594KB (> 500KB threshold)
+[LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
   251c9af9-aecc-4963-9898-f1a4b0f3fbcd-topic-125192.trajectory.jsonl: 8232KB (> 3000KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 3000KB threshold)
-[LOCK_MONITOR] Old session cleanup: removed 3 file(s), freed 570KB
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          958 files,      11266 KB
-  .trajectory.jsonl files:     96 files,      35729 KB
+  Main .jsonl files:          957 files,      11355 KB
+  .trajectory.jsonl files:     93 files,      26998 KB
   .checkpoint.*.jsonl files:   18 files,      46546 KB
-  .lock files:                  1 files
+  .lock files:                  2 files
   ------------------------------------------
-  TOTAL:                                    93541 KB
+  TOTAL:                                    84899 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 5 files removed, 704 KB freed, 10 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 141 KB freed, 8 warnings
 ==================================================
-=== RESULT: OK (warnings: 10) ===
-=== RESULT: OK ||| INFO: 1 active lock, 0 cleaned, 5 files trimmed (704KB freed), 10 size warnings ===
+=== RESULT: OK (warnings: 8) ===
