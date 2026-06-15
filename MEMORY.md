@@ -300,8 +300,6 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 - **21.** Auto-depreciation cron must NOT use LockMonitor — simple 1-minute operation, non-peak hours
 
 ### 📌 Pending (Boss Action Needed)
-1. **n8n payment (€25.68)** — 2nd notice, subscription may expire
-2. **GitHub Deploy failing** — psvibe-api-server master branch
 3. **100+ games discrepancy** — 41 in DB vs claimed 100+
 4. **Food Note issue** — Boss said "ဆက်လုပ်ပါ", awaiting further instruction
 

@@ -1,6 +1,6 @@
-[LOCK_MONITOR] Run at 2026-06-15 16:03:20 UTC
-[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
-[LOCK_MONITOR] WARNING: 3 session file(s) too large (> 500KB threshold)
-[LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
-TOTAL: 60729 KB across 1061 files (1 lock, 14 checkpoint, 91 trajectory)
-=== RESULT: OK (warnings: 3 large session files) ===
+[LOCK_MONITOR] Run at 2026-06-15 16:08:20 UTC
+OK: 1 active lock(s), 0 cleaned
+WARNING: 3 large session files (>500KB)
+Self-cleanup: removed 1 old session(s)
+TOTAL session disk usage: 61224 KB
+=== RESULT: OK (warnings: 3) ===

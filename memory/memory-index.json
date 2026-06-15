@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-15T04:08:12.211081+00:00",
+  "updated": "2026-06-15T16:07:39.701952+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -9,6 +9,16 @@
           "path": "memory/2026-06-14.md",
           "line": 98,
           "context": "## # June 14, 2026 — Daily Log (cont.)"
+        }
+      ]
+    },
+    {
+      "topic": "-15,163,987 LOSS",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 78,
+          "context": "- **Result: +1,518,416 FALSE profit** → Fixed: **-15,163,987 LOSS** ✅"
         }
       ]
     },
@@ -29,6 +39,16 @@
           "path": "memory/2026-06-09.md",
           "line": 10,
           "context": "- Operating: sales 889K + topup income - opex 7.05M - stock 733K = **-6.9M** - Investing: PS5 140.7M + advances 104.8M + prepaid 22.4M - recovery 3.6M = **-264.3M**"
+        }
+      ]
+    },
+    {
+      "topic": "1,518,416 PROFIT",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 214,
+          "context": "| **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
         }
       ]
     },
@@ -63,12 +83,62 @@
       ]
     },
     {
+      "topic": "1. Data Source Analysis",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 21,
+          "context": "## 1. Data Source Analysis"
+        }
+      ]
+    },
+    {
       "topic": "1. Session Auto-Summary (`memory/session_summary.py`)",
       "files": [
         {
           "path": "memory/PHASE3_SPEC.md",
           "line": 8,
           "context": "## 1. Session Auto-Summary (`memory/session_summary.py`) **Goal:** Session ပြီးတိုင်း auto-summary generate လုပ်ပြီး daily log + MEMORY.md ကို update လုပ်မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "1.1 Two PNL Implementations Exist",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 23,
+          "context": "### 1.1 Two PNL Implementations Exist"
+        }
+      ]
+    },
+    {
+      "topic": "1.2 Two Balance Sheet Implementations Exist",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 38,
+          "context": "### 1.2 Two Balance Sheet Implementations Exist"
+        }
+      ]
+    },
+    {
+      "topic": "10,012,666",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 111,
+          "context": "| **TOTAL** | **27** | **10,012,666** |"
+        }
+      ]
+    },
+    {
+      "topic": "10,012,666 + 6,995,548",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 213,
+          "context": "| **Total Expenses** | **800,000** | **10,012,666 + 6,995,548** | **−16,208,214** | | **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
         }
       ]
     },
@@ -96,9 +166,19 @@
       "topic": "100+ games discrepancy",
       "files": [
         {
+          "path": "memory/2026-06-15.md",
+          "line": 150,
+          "context": "4. **100+ games discrepancy** — 41 in DB vs claimed 100+"
+        },
+        {
           "path": "MEMORY.md",
           "line": 172,
           "context": "2. **100+ games discrepancy** — 41 in DB vs claimed 100+. Clarify if GSheet had non-game rows 3. **God of War Ragnarök encoding** — \"Ã¶\" vs \"ö\", only LIKE-matched, needs clean fix"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 305,
+          "context": "3. **100+ games discrepancy** — 41 in DB vs claimed 100+ 4. **Food Note issue** — Boss said \"ဆက်လုပ်ပါ\", awaiting further instruction"
         }
       ]
     },
@@ -113,12 +193,42 @@
       ]
     },
     {
+      "topic": "17.",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 296,
+          "context": "- **17.** `%%Y-%%m` doesn't work with `mysql.connector` — uses `%s` params, not printf-style `%%` - **18.** Depreciation convention: from purchase month (inclusive), first month gets full depreciation"
+        }
+      ]
+    },
+    {
+      "topic": "18.",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 297,
+          "context": "- **18.** Depreciation convention: from purchase month (inclusive), first month gets full depreciation - **19.** Dashboard code is source of truth — `patch_routes.py` stubs were outdated prototypes"
+        }
+      ]
+    },
+    {
       "topic": "19,933,333 Ks",
       "files": [
         {
           "path": "memory/2026-06-09.md",
           "line": 28,
           "context": "- Balance Sheet: prepaid now shows **19,933,333 Ks** (remaining 8 months) - Auto-amortization script deployed: `/root/scripts/auto_amortize.py`"
+        }
+      ]
+    },
+    {
+      "topic": "19.",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 298,
+          "context": "- **19.** Dashboard code is source of truth — `patch_routes.py` stubs were outdated prototypes - **20.** `sales_daily.net = amount + food` — food IS baked into net; subtract food_rev for pure game rev"
         }
       ]
     },
@@ -143,12 +253,42 @@
       ]
     },
     {
+      "topic": "2,318,416",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 206,
+          "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
+        }
+      ]
+    },
+    {
       "topic": "2,491,667 Ks",
       "files": [
         {
           "path": "memory/2026-06-09.md",
           "line": 26,
           "context": "- Monthly: **2,491,667 Ks** - June: inserted OPEX Rent entry ✅ + amortization record ✅"
+        }
+      ]
+    },
+    {
+      "topic": "2,682,616",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 206,
+          "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
+        }
+      ]
+    },
+    {
+      "topic": "2,727,000",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 230,
+          "context": "| **Total Liabilities** | **427,000** | **2,727,000** | **−2,300,000** | | Retained Earnings | 0 | ~2,715,785 | ❌ Missing |"
         }
       ]
     },
@@ -193,6 +333,56 @@
       ]
     },
     {
+      "topic": "2. MySQL Verification Results",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 53,
+          "context": "## 2. MySQL Verification Results"
+        }
+      ]
+    },
+    {
+      "topic": "2.1 Revenue Sources — June 2026",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 55,
+          "context": "### 2.1 Revenue Sources — June 2026"
+        }
+      ]
+    },
+    {
+      "topic": "2.2 Expenses — June 2026",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 93,
+          "context": "### 2.2 Expenses — June 2026"
+        }
+      ]
+    },
+    {
+      "topic": "2.3 Balance Sheet Items",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 130,
+          "context": "### 2.3 Balance Sheet Items"
+        }
+      ]
+    },
+    {
+      "topic": "20.",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 299,
+          "context": "- **20.** `sales_daily.net = amount + food` — food IS baked into net; subtract food_rev for pure game revenue - **21.** Auto-depreciation cron must NOT use LockMonitor — simple 1-minute operation, non"
+        }
+      ]
+    },
+    {
       "topic": "2026-06-02",
       "files": [
         {
@@ -229,6 +419,16 @@
           "path": "memory/fix-history.md",
           "line": 5,
           "context": "## 2026-06-09 — Pending Bookings Fix + Kora Upgrade Integration"
+        }
+      ]
+    },
+    {
+      "topic": "21.",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 300,
+          "context": "- **21.** Auto-depreciation cron must NOT use LockMonitor — simple 1-minute operation, non-peak hours"
         }
       ]
     },
@@ -273,6 +473,16 @@
       ]
     },
     {
+      "topic": "3. Discrepancy Analysis",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 197,
+          "context": "## 3. Discrepancy Analysis"
+        }
+      ]
+    },
+    {
       "topic": "3. Feature 1: Console Selection During Booking (တွဲချ)",
       "files": [
         {
@@ -303,12 +513,32 @@
       ]
     },
     {
+      "topic": "3.1 PNL API — MISSING 97% of Expenses",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 199,
+          "context": "### 3.1 PNL API — MISSING 97% of Expenses"
+        }
+      ]
+    },
+    {
       "topic": "3.1 What Changes",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 106,
           "context": "### 3.1 What Changes"
+        }
+      ]
+    },
+    {
+      "topic": "3.2 Balance Sheet API — MISSING 99.9% of Assets",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 218,
+          "context": "### 3.2 Balance Sheet API — MISSING 99.9% of Assets"
         }
       ]
     },
@@ -329,6 +559,26 @@
           "path": "memory/booking-features-plan.md",
           "line": 209,
           "context": "### 3.3 Flow After Feature 1"
+        }
+      ]
+    },
+    {
+      "topic": "3.3 sales_daily `amount` vs `net` Column Issue",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 236,
+          "context": "### 3.3 sales_daily `amount` vs `net` Column Issue"
+        }
+      ]
+    },
+    {
+      "topic": "3.4 Salary Double-Counting Risk",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 247,
+          "context": "### 3.4 Salary Double-Counting Risk"
         }
       ]
     },
@@ -438,6 +688,16 @@
       ]
     },
     {
+      "topic": "4. Root Cause Summary",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 260,
+          "context": "## 4. Root Cause Summary"
+        }
+      ]
+    },
+    {
       "topic": "4. Smart Pruning & Dedup (`memory/memory_pruner.py`)",
       "files": [
         {
@@ -488,12 +748,37 @@
       ]
     },
     {
+      "topic": "427,000",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 227,
+          "context": "| **Total Assets** | **427,000** | **~305,442,785** | **−305,015,785** | | Wallet Liability | 427,000 | 427,000 | ✅ Match |"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 230,
+          "context": "| **Total Liabilities** | **427,000** | **2,727,000** | **−2,300,000** | | Retained Earnings | 0 | ~2,715,785 | ❌ Missing |"
+        }
+      ]
+    },
+    {
       "topic": "5 IPs already banned at time of activation:",
       "files": [
         {
           "path": "memory/security-audit-2026-06-13.md",
           "line": 52,
           "context": "- **5 IPs already banned at time of activation:** - `177.30.64.65`, `185.227.153.56`, `213.209.159.56`, `45.148.10.141`, `80.94.92.184`"
+        }
+      ]
+    },
+    {
+      "topic": "5 Lessons Learned (June 15)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 134,
+          "context": "### 5 Lessons Learned (June 15)"
         }
       ]
     },
@@ -518,12 +803,72 @@
       ]
     },
     {
+      "topic": "5. Recommendations",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 282,
+          "context": "## 5. Recommendations"
+        }
+      ]
+    },
+    {
       "topic": "5. Risk Assessment",
       "files": [
         {
           "path": "memory/booking-features-plan.md",
           "line": 346,
           "context": "## 5. Risk Assessment"
+        }
+      ]
+    },
+    {
+      "topic": "5.1 Immediate Fix (CRITICAL)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 284,
+          "context": "### 5.1 Immediate Fix (CRITICAL) **Replace the PNL API endpoint** with the calculation logic from the Dashboard PNL endpoint. The Dashboard PNL (`dashboard_routes.py` L2241-2330) has the correct imple"
+        }
+      ]
+    },
+    {
+      "topic": "5.2 Immediate Fix (CRITICAL)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 294,
+          "context": "### 5.2 Immediate Fix (CRITICAL) **Replace the Balance Sheet API endpoint** with the calculation logic from the Dashboard Balance Sheet endpoint (`dashboard_routes.py` L2334-2530). The Dashboard imple"
+        }
+      ]
+    },
+    {
+      "topic": "5.3 Data Consistency",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 303,
+          "context": "### 5.3 Data Consistency **Resolve the `amount` vs `net` column split** in `sales_daily`:"
+        }
+      ]
+    },
+    {
+      "topic": "5.4 Salary Calculation",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 309,
+          "context": "### 5.4 Salary Calculation **Use opex table for salary expense** (actual payments), not `staff_records.base_salary` (theoretical rate). The `staff_records` table should be used for payroll planning, n"
+        }
+      ]
+    },
+    {
+      "topic": "5.5 Code Consolidation",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 312,
+          "context": "### 5.5 Code Consolidation **Extract shared calculation functions** into a `finance_calculations.py` module to avoid the current duplication where two implementations exist (one broken, one correct). "
         }
       ]
     },
@@ -638,6 +983,16 @@
       ]
     },
     {
+      "topic": "800,000",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 213,
+          "context": "| **Total Expenses** | **800,000** | **10,012,666 + 6,995,548** | **−16,208,214** | | **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
+        }
+      ]
+    },
+    {
       "topic": "9 Features Delivered in 15 min via 5 Parallel Agents (75% Faster Than Sequential)",
       "files": [
         {
@@ -664,6 +1019,71 @@
           "path": "memory/project-state.md",
           "line": 21,
           "context": "| 10 | **90k purchase spam** — MAX_SESSION_MINS=1440 limit | ✅ | | 11 | **Booking timeout** — auto-cancel + Telegram notify + expired display | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "`/api/finance/account-balances` (WORKS — partially correct)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 369,
+          "context": "### `/api/finance/account-balances` (WORKS — partially correct) ```json"
+        }
+      ]
+    },
+    {
+      "topic": "`/api/finance/balance-sheet` (BROKEN)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 360,
+          "context": "### `/api/finance/balance-sheet` (BROKEN) ```json"
+        }
+      ]
+    },
+    {
+      "topic": "`/api/finance/pnl?m=2026-06` (BROKEN)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 350,
+          "context": "### `/api/finance/pnl?m=2026-06` (BROKEN) ```json"
+        }
+      ]
+    },
+    {
+      "topic": "A = L + E Check",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 234,
+          "context": "| **A = L + E Check** | 427,000 = 427,000 + 0 ✅ | 305,442,785 ≈ 2,727,000 + 302,715,785 | Matches |"
+        }
+      ]
+    },
+    {
+      "topic": "A=L+E forced:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 275,
+          "context": "6. **A=L+E forced:** `assets.total = liabilities.total + equity.total` — since equity=0, it just mirrors wallet liability"
+        }
+      ]
+    },
+    {
+      "topic": "ACCURATE — comprehensive",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 36,
+          "context": "| **Status** | **BROKEN — false profit** | **ACCURATE — comprehensive** |"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 49,
+          "context": "| **Status** | **BROKEN — missing 99.9% of assets** | **ACCURATE — comprehensive** |"
         }
       ]
     },
@@ -813,17 +1233,12 @@
       ]
     },
     {
-      "topic": "After",
+      "topic": "Affected guests:",
       "files": [
         {
-          "path": "memory/security-audit-2026-06-13.md",
-          "line": 14,
-          "context": "### After ```"
-        },
-        {
-          "path": "memory/security-audit-2026-06-13.md",
-          "line": 41,
-          "context": "### After - Installed `fail2ban` via apt"
+          "path": "memory/2026-06-15.md",
+          "line": 64,
+          "context": "- **Affected guests:** Food note users + any session started via Console → End Session # 2026-06-15 Daily Log"
         }
       ]
     },
@@ -844,6 +1259,26 @@
           "path": "memory/2026-06-09.md",
           "line": 43,
           "context": "## After memory flush: YTD + Revenue Trend work (20:10 UTC) - Moving on to build YTD Reports and Revenue Trend Graph features"
+        }
+      ]
+    },
+    {
+      "topic": "After:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 104,
+          "context": "- **After:** 10,257,830 Ks (all 39 assets, June depreciation included)"
+        },
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 14,
+          "context": "### After ```"
+        },
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 41,
+          "context": "### After - Installed `fail2ban` via apt"
         }
       ]
     },
@@ -1143,6 +1578,26 @@
       ]
     },
     {
+      "topic": "Appendix A: All MySQL Queries Used",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 317,
+          "context": "## Appendix A: All MySQL Queries Used"
+        }
+      ]
+    },
+    {
+      "topic": "Appendix B: API Response Comparison",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 348,
+          "context": "## Appendix B: API Response Comparison"
+        }
+      ]
+    },
+    {
       "topic": "Architect's Note: What This System Actually Does",
       "files": [
         {
@@ -1203,12 +1658,42 @@
       ]
     },
     {
+      "topic": "Audit Conclusion:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 384,
+          "context": "**Audit Conclusion:** The `/api/finance/pnl` and `/api/finance/balance-sheet` endpoints are dangerously outdated and should be immediately replaced with the Dashboard-caliber implementations. The busi"
+        }
+      ]
+    },
+    {
+      "topic": "Audit Date:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 3,
+          "context": "**Audit Date:** 2026-06-15 06:30 UTC **Period:** June 1–15, 2026 (partial month)"
+        }
+      ]
+    },
+    {
       "topic": "Audit Summary",
       "files": [
         {
           "path": "memory/integration-plan.md",
           "line": 5,
           "context": "## Audit Summary"
+        }
+      ]
+    },
+    {
+      "topic": "Audited By:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 5,
+          "context": "**Audited By:** OpenClaw Subagent"
         }
       ]
     },
@@ -1239,6 +1724,36 @@
           "path": "memory/tools-commands.md",
           "line": 72,
           "context": "## Auto Healer ```bash"
+        }
+      ]
+    },
+    {
+      "topic": "Auto-depreciation cron = no LockMonitor",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 328,
+          "context": "- 21. **Auto-depreciation cron = no LockMonitor** — simple 1-min op, non-peak hours only"
+        }
+      ]
+    },
+    {
+      "topic": "Auto-depreciation cron must NOT use LockMonitor",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 144,
+          "context": "5. **Auto-depreciation cron must NOT use LockMonitor**: The cron runs on 1st of month at 2:30 UTC (non-peak). If LockMonitor interferes, it should be a one-minute simple operation that runs on startup"
+        }
+      ]
+    },
+    {
+      "topic": "Auto-Depreciation:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 290,
+          "context": "- **Auto-Depreciation:** Created `/root/scripts/auto_depreciate.py` — monthly cron (1st, 2:30 UTC) - **Catch-up:** 12 of 39 assets had `acc_depreciation=0` → fixed; total now 10,257,830 Ks ✅"
         }
       ]
     },
@@ -1313,6 +1828,46 @@
       ]
     },
     {
+      "topic": "Balance Sheet After Fix (June 2026)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 106,
+          "context": "### Balance Sheet After Fix (June 2026) ```"
+        }
+      ]
+    },
+    {
+      "topic": "Balance Sheet API (`/api/finance/balance-sheet`) — `patch_routes.py` L724-755",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 269,
+          "context": "### Balance Sheet API (`/api/finance/balance-sheet`) — `patch_routes.py` L724-755 1. **Cash/assets hardcoded to 0:** No queries to `cash_movements` or `accounts`"
+        }
+      ]
+    },
+    {
+      "topic": "Balance Sheet API — Broken Stub",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 287,
+          "context": "| 8 | **Balance Sheet API — Broken Stub** | `patch_routes.py` L724-755 | Stub showed 427K assets (real: 279M); replaced with full dashboard BS logic ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Balance Sheet verified:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 292,
+          "context": "- **Balance Sheet verified:** A = L + E @ 279,445,881 Ks ✅ - **PNL verified:** June YTD = -15,163,987 Ks LOSS ✅"
+        }
+      ]
+    },
+    {
       "topic": "Balance Sheet: Retained Earnings Missing Depreciation (FIXED — 2026-06-09)",
       "files": [
         {
@@ -1353,8 +1908,13 @@
       ]
     },
     {
-      "topic": "Before",
+      "topic": "Before:",
       "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 103,
+          "context": "- **Before:** 3,262,283 Ks (27 assets only) - **After:** 10,257,830 Ks (all 39 assets, June depreciation included)"
+        },
         {
           "path": "memory/security-audit-2026-06-13.md",
           "line": 10,
@@ -1568,6 +2128,16 @@
       ]
     },
     {
+      "topic": "Bot restarted:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 63,
+          "context": "- **Bot restarted:** psvibe-sale-bot ✅ - **Affected guests:** Food note users + any session started via Console → End Session"
+        }
+      ]
+    },
+    {
       "topic": "bot-api-read-path",
       "files": [
         {
@@ -1584,6 +2154,41 @@
           "path": "memory/2026-06-06.md",
           "line": 21,
           "context": "- **Bot:** Added `consoleType` fallback check alongside `console_id` and `consoleId` - Both fixes applied via SSH SFTP upload + remote execution to ensure exact byte-level correctness"
+        }
+      ]
+    },
+    {
+      "topic": "Broken stub",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 72,
+          "context": "**Broken stub** in `patch_routes.py` L665-720 had: - Zero food revenue (383,200 Ks real)"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 83,
+          "context": "**Broken stub** in `patch_routes.py` L724-755 had: - Total assets: 427,000 Ks (real: ~279M)"
+        }
+      ]
+    },
+    {
+      "topic": "BROKEN — false profit",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 36,
+          "context": "| **Status** | **BROKEN — false profit** | **ACCURATE — comprehensive** |"
+        }
+      ]
+    },
+    {
+      "topic": "BROKEN — missing 99.9% of assets",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 49,
+          "context": "| **Status** | **BROKEN — missing 99.9% of assets** | **ACCURATE — comprehensive** |"
         }
       ]
     },
@@ -1794,6 +2399,26 @@
           "path": "memory/2026-06-09.md",
           "line": 21,
           "context": "4. **Cash Flow uses same per-account income calc as Web Finance** → closing matches exactly (28,758,453 Ks)"
+        }
+      ]
+    },
+    {
+      "topic": "Cash/assets hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 270,
+          "context": "1. **Cash/assets hardcoded to 0:** No queries to `cash_movements` or `accounts` 2. **Inventory hardcoded to 0:** No query to `inventory` table"
+        }
+      ]
+    },
+    {
+      "topic": "Catch-up:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 291,
+          "context": "- **Catch-up:** 12 of 39 assets had `acc_depreciation=0` → fixed; total now 10,257,830 Ks ✅ - **Balance Sheet verified:** A = L + E @ 279,445,881 Ks ✅"
         }
       ]
     },
@@ -2114,6 +2739,16 @@
           "path": "memory/test-report.md",
           "line": 42,
           "context": "**Code:** `consolidator.py:apply_to_memory_md()` — normalization step before write"
+        }
+      ]
+    },
+    {
+      "topic": "Column semantics:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 69,
+          "context": "**Column semantics:** - `amount`: Base rate × minutes (pre-adjustment) — used by PNL API"
         }
       ]
     },
@@ -2513,12 +3148,32 @@
       ]
     },
     {
+      "topic": "Created",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 128,
+          "context": "| `/root/scripts/auto_depreciate.py` | **Created** | Monthly auto-depreciation calculator | | `/var/spool/cron/crontabs/root` | **Modified** | Added `30 2 1 * *` for auto_depreciate.py |"
+        }
+      ]
+    },
+    {
       "topic": "Credentials:",
       "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 91,
           "context": "4. **Credentials:** root/PsVibe@MySQL2024!, psvibe_user/PsVibe@User2024!"
+        }
+      ]
+    },
+    {
+      "topic": "CRITICAL FINDING:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
         }
       ]
     },
@@ -2704,6 +3359,26 @@
           "path": "MEMORY.md",
           "line": 61,
           "context": "### Daily Logs - **`memory/2026-06-02.md`** through **`memory/2026-06-11.md`** — Raw daily logs"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard code is source of truth",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 326,
+          "context": "- 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints - 20. **`sales_daily.net` includes food** — food revenue baked into `net`; subtract for pure gam"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard code is the source of truth",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 140,
+          "context": "3. **Dashboard code is the source of truth**: The PNL/BS stubs in `patch_routes.py` were early prototypes and NOT updated alongside dashboard changes. Always check `dashboard_routes.py` first before t"
         }
       ]
     },
@@ -2963,6 +3638,26 @@
       ]
     },
     {
+      "topic": "Depreciation convention",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 138,
+          "context": "2. **Depreciation convention**: PS VIBE uses \"depreciation from purchase month (inclusive)\". So a Jun-purchased asset has 1 month of depreciation in Jun. Yes, this means first month gets full deprecia"
+        }
+      ]
+    },
+    {
+      "topic": "Depreciation from purchase month (inclusive)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 325,
+          "context": "- 18. **Depreciation from purchase month (inclusive)** — first month = full month depreciation - 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints"
+        }
+      ]
+    },
+    {
       "topic": "Design:",
       "files": [
         {
@@ -3188,6 +3883,26 @@
       ]
     },
     {
+      "topic": "Equipment hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 272,
+          "context": "3. **Equipment hardcoded to 0:** No query to `finance_assets` 4. **Only wallet liability:** Missing advances (2.3M), payables, prepaid"
+        }
+      ]
+    },
+    {
+      "topic": "Equity hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 274,
+          "context": "5. **Equity hardcoded to 0:** No retained earnings calculation, no shareholders capital 6. **A=L+E forced:** `assets.total = liabilities.total + equity.total` — since equity=0, it just mirrors wallet "
+        }
+      ]
+    },
+    {
       "topic": "Error:",
       "files": [
         {
@@ -3358,6 +4073,16 @@
       ]
     },
     {
+      "topic": "Executive Summary",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 9,
+          "context": "## Executive Summary"
+        }
+      ]
+    },
+    {
       "topic": "Expected after Fixes 8+9+10 deployed:",
       "files": [
         {
@@ -3374,6 +4099,16 @@
           "path": "memory/2026-06-13.md",
           "line": 35,
           "context": "- **Extra step:** App.py was corrupted by broken string escaping during the fix → restored to clean git state, then reapplied fix correctly"
+        }
+      ]
+    },
+    {
+      "topic": "Extract shared calculation functions",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 313,
+          "context": "**Extract shared calculation functions** into a `finance_calculations.py` module to avoid the current duplication where two implementations exist (one broken, one correct). All endpoints should call t"
         }
       ]
     },
@@ -3409,6 +4144,16 @@
           "path": "memory/booking-features-implemented.md",
           "line": 25,
           "context": "### Fallback: - If no specific consoles available → falls back to type selection (PS5 / PS5 Pro / Any)"
+        }
+      ]
+    },
+    {
+      "topic": "false profit of 1,518,416 Ks",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
         }
       ]
     },
@@ -4023,6 +4768,16 @@
       ]
     },
     {
+      "topic": "Fix 1 (line 225):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 61,
+          "context": "- **Fix 1 (line 225):** `consoleId` → `consoleType or consoleId` for food note booking lookup - **Fix 2 (line 355-356):** Added `\"in_use\"` to status filter + `consoleType` fallback for end session boo"
+        }
+      ]
+    },
+    {
       "topic": "Fix 10: Coupon Generation Blocking — Voucher Slow to Open (18:34 UTC)",
       "files": [
         {
@@ -4059,6 +4814,16 @@
           "path": "memory/2026-06-15.md",
           "line": 27,
           "context": "### Fix 1: POST /api/food-cart `AttributeError: 'int' object has no attribute 'strip'` - **Root cause:** `booking_id` from MySQL is an integer, but API tried `.strip()` on it directly"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2 (line 355-356):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 62,
+          "context": "- **Fix 2 (line 355-356):** Added `\"in_use\"` to status filter + `consoleType` fallback for end session booking lookup - **Bot restarted:** psvibe-sale-bot ✅"
         }
       ]
     },
@@ -4169,6 +4934,16 @@
           "path": "memory/2026-06-14.md",
           "line": 213,
           "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 5: Food Note & End Session booking_id not found (bug fix)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 59,
+          "context": "### Fix 5: Food Note & End Session booking_id not found (bug fix) - **Root cause:** `console.py` booking lookups used `_b.get(\"consoleId\")` but API `_map_booking_row` maps `console_id` → `consoleType`"
         }
       ]
     },
@@ -4601,6 +5376,21 @@
           "context": "- **Fix:** Corrected to 4-space indent; sale bot now starts successfully"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 80,
+          "context": "**Fix:** Replaced entire `/api/finance/pnl` with dashboard-level logic from `dashboard_routes.py` L2241-2330. Uses `sales_daily.net - food_rev` for game revenue, FIFO wallet consumed, `opex` table, to"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 89,
+          "context": "**Fix:** Replaced entirely with dashboard BS logic from `dashboard_routes.py` L2334-2590. Per-account cash calc, FIFO inventory, equipment NBV, prepaid amortization, member liability, auto-balancer."
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 96,
+          "context": "**Fix:** Created `/root/scripts/auto_depreciate.py` — auto-depreciation script that: - Calculates months from purchase_month through current_month (inclusive)"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -4809,6 +5599,21 @@
           "path": "memory/project-state.md",
           "line": 13,
           "context": "| 2 | **Food Menu empty** — `food_costs` MySQL update (16 items) | ✅ | | 3 | **Customer Bot My Booking** — cancelled booking filter + welcome banner | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Food Note issue",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 147,
+          "context": "1. **Food Note issue** — Boss asked \"ဆက်လုပ်ပါ\" which could mean continue on this. Awaiting further instruction. 2. **n8n payment (€25.68)** — 2nd notice, subscribe may expire"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 306,
+          "context": "4. **Food Note issue** — Boss said \"ဆက်လုပ်ပါ\", awaiting further instruction"
         }
       ]
     },
@@ -5036,6 +5841,11 @@
       "topic": "GitHub Deploy failing",
       "files": [
         {
+          "path": "memory/2026-06-15.md",
+          "line": 149,
+          "context": "3. **GitHub Deploy failing** — psvibe-api-server master branch deploy workflow failing 4. **100+ games discrepancy** — 41 in DB vs claimed 100+"
+        },
+        {
           "path": "memory/ARCHIVE.md",
           "line": 46,
           "context": "(dedup) 5. **GitHub Deploy failing** — PSVIBE-API-Server master branch (dedup) 10. disc_count values are intentional — never \"fix\" without Boss confirmation"
@@ -5049,6 +5859,11 @@
           "path": "MEMORY.md",
           "line": 127,
           "context": "2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 304,
+          "context": "2. **GitHub Deploy failing** — psvibe-api-server master branch 3. **100+ games discrepancy** — 41 in DB vs claimed 100+"
         }
       ]
     },
@@ -5623,6 +6438,16 @@
       ]
     },
     {
+      "topic": "Initial catch-up run (June 15):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 102,
+          "context": "**Initial catch-up run (June 15):** - **Before:** 3,262,283 Ks (27 assets only)"
+        }
+      ]
+    },
+    {
       "topic": "Integrate API read paths into large bot/__init__.py monolith",
       "files": [
         {
@@ -5649,6 +6474,16 @@
           "path": "memory/integration-plan.md",
           "line": 93,
           "context": "## Integration Strategy"
+        }
+      ]
+    },
+    {
+      "topic": "Inventory hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 271,
+          "context": "2. **Inventory hardcoded to 0:** No query to `inventory` table 3. **Equipment hardcoded to 0:** No query to `finance_assets`"
         }
       ]
     },
@@ -5899,6 +6734,16 @@
           "path": "memory/2026-06-10.md",
           "line": 59,
           "context": "### Key Lessons - **Steam Library images** are portrait/poster style (600x900 → 1200x1800 @2x) — exactly what Boss wanted"
+        }
+      ]
+    },
+    {
+      "topic": "Key SQL fix:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 91,
+          "context": "**Key SQL fix:** Used `(\"%Y-%m\", ym)` parameter pattern instead of `%%Y-%%m` because `_mysql_query` uses `mysql.connector.execute()` which doesn't process `%%` escape."
         }
       ]
     },
@@ -6283,6 +7128,16 @@
       ]
     },
     {
+      "topic": "massive LOSS of approximately −7,330,050 Ks",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
+        }
+      ]
+    },
+    {
       "topic": "Max parallel per round:",
       "files": [
         {
@@ -6478,6 +7333,21 @@
       ]
     },
     {
+      "topic": "Modified",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 127,
+          "context": "| `patch_routes.py` (L665-755) | **Modified** | Replaced PNL & BS stubs with dashboard-level logic | | `/root/scripts/auto_depreciate.py` | **Created** | Monthly auto-depreciation calculator |"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 129,
+          "context": "| `/var/spool/cron/crontabs/root` | **Modified** | Added `30 2 1 * *` for auto_depreciate.py | | `/tmp/validate_fix.py` | Temp | Verification script |"
+        }
+      ]
+    },
+    {
       "topic": "Modify",
       "files": [
         {
@@ -6581,6 +7451,11 @@
           "context": "2. **n8n Payment (€25.68):** 2nd notice received, subscription may expire 3. **GitHub Deploy:** PSVIBE-API-Server master branch failing (pre-existing issue)"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 148,
+          "context": "2. **n8n payment (€25.68)** — 2nd notice, subscribe may expire 3. **GitHub Deploy failing** — psvibe-api-server master branch deploy workflow failing"
+        },
+        {
           "path": "memory/ARCHIVE.md",
           "line": 52,
           "context": "(dedup) 1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
@@ -6594,6 +7469,11 @@
           "path": "MEMORY.md",
           "line": 174,
           "context": "4. **n8n payment (€25.68)** — 2nd notice received"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 303,
+          "context": "1. **n8n payment (€25.68)** — 2nd notice, subscription may expire 2. **GitHub Deploy failing** — psvibe-api-server master branch"
         }
       ]
     },
@@ -6614,6 +7494,16 @@
           "path": "memory/integration-plan.md",
           "line": 89,
           "context": "- **Status:** **needs integration** — Should run `--auto` at the end of every heartbeat cycle to commit any changes from index/rebuild steps. Should run `--init` once during setup."
+        }
+      ]
+    },
+    {
+      "topic": "Net Profit",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 214,
+          "context": "| **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
         }
       ]
     },
@@ -6823,6 +7713,16 @@
       ]
     },
     {
+      "topic": "No COGS:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 265,
+          "context": "3. **No COGS:** `cogs` hardcoded to 0, `gross_profit = total_revenue` 4. **No depreciation:** Not queried from `finance_assets`"
+        }
+      ]
+    },
+    {
       "topic": "No coupon-related WARNING logs",
       "files": [
         {
@@ -6833,12 +7733,32 @@
       ]
     },
     {
+      "topic": "No depreciation:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 266,
+          "context": "4. **No depreciation:** Not queried from `finance_assets` 5. **Uses `amount` not `net`:** Different from Dashboard's revenue calculation"
+        }
+      ]
+    },
+    {
       "topic": "No Financing section",
       "files": [
         {
           "path": "memory/2026-06-09.md",
           "line": 13,
           "context": "- **No Financing section** (no capital events in June; 3.69M was advance recovery + member topup, not capital injection) - Stock cost uses **ejections** (actual cash outflow) = 733,940 Ks"
+        }
+      ]
+    },
+    {
+      "topic": "No food revenue:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 264,
+          "context": "2. **No food revenue:** No query to `stock_out` table 3. **No COGS:** `cogs` hardcoded to 0, `gross_profit = total_revenue`"
         }
       ]
     },
@@ -6994,6 +7914,26 @@
           "path": "memory/integration-plan.md",
           "line": 111,
           "context": "### On-Demand Pipeline (manual trigger only)"
+        }
+      ]
+    },
+    {
+      "topic": "Only 1 expense source:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 263,
+          "context": "1. **Only 1 expense source:** `staff_records.base_salary` (line 707) — ignores 27 opex records totaling 10M+ 2. **No food revenue:** No query to `stock_out` table"
+        }
+      ]
+    },
+    {
+      "topic": "Only wallet liability:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 273,
+          "context": "4. **Only wallet liability:** Missing advances (2.3M), payables, prepaid 5. **Equity hardcoded to 0:** No retained earnings calculation, no shareholders capital"
         }
       ]
     },
@@ -7218,6 +8158,16 @@
       ]
     },
     {
+      "topic": "Pending Items",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 146,
+          "context": "### Pending Items 1. **Food Note issue** — Boss asked \"ဆက်လုပ်ပါ\" which could mean continue on this. Awaiting further instruction."
+        }
+      ]
+    },
+    {
       "topic": "Pending:",
       "files": [
         {
@@ -7259,6 +8209,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 3,
           "context": "**Performed by:** OpenClaw Subagent via Node.js SSH2 **Status:** ✅ Complete"
+        }
+      ]
+    },
+    {
+      "topic": "Period:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 4,
+          "context": "**Period:** June 1–15, 2026 (partial month) **Audited By:** OpenClaw Subagent"
         }
       ]
     },
@@ -7438,12 +8398,42 @@
       ]
     },
     {
+      "topic": "PNL API (`/api/finance/pnl`) — `patch_routes.py` L665-720",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 262,
+          "context": "### PNL API (`/api/finance/pnl`) — `patch_routes.py` L665-720 1. **Only 1 expense source:** `staff_records.base_salary` (line 707) — ignores 27 opex records totaling 10M+"
+        }
+      ]
+    },
+    {
+      "topic": "PNL API — Broken Stub",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 286,
+          "context": "| 7 | **PNL API — Broken Stub** | `patch_routes.py` L665-720 | Stub returned +1.5M fake profit; replaced with real dashboard logic → -15.2M LOSS ✅ | | 8 | **Balance Sheet API — Broken Stub** | `patch_"
+        }
+      ]
+    },
+    {
       "topic": "PNL Food Revenue ≠ Console Multiplier",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 205,
           "context": "11. **PNL Food Revenue ≠ Console Multiplier** — Food revenue must come from `stock_out` table (items sold × unit_price), NOT from `gross-amount` (console multiplier). These are fundamentally different"
+        }
+      ]
+    },
+    {
+      "topic": "PNL verified:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 293,
+          "context": "- **PNL verified:** June YTD = -15,163,987 Ks LOSS ✅"
         }
       ]
     },
@@ -7564,6 +8554,26 @@
           "path": "memory/delegation-rules.md",
           "line": 54,
           "context": "| 🤖 Fix Agent (code) | **Pro only!** | 300-900s | | 🔍 Verify Agent | Flash | 300s |"
+        }
+      ]
+    },
+    {
+      "topic": "Problem:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 94,
+          "context": "**Problem:** 12 of 39 assets had `acc_depreciation = 0` (PS5 Console x8, Sofa x10, Interior Decoration, CCTV, Inverter, Battery, SPC Flooring, etc.) because they were added to DB in June but never had"
+        }
+      ]
+    },
+    {
+      "topic": "Problems Found & Fixed",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 69,
+          "context": "### Problems Found & Fixed"
         }
       ]
     },
@@ -7853,6 +8863,26 @@
       ]
     },
     {
+      "topic": "Replace the Balance Sheet API endpoint",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 295,
+          "context": "**Replace the Balance Sheet API endpoint** with the calculation logic from the Dashboard Balance Sheet endpoint (`dashboard_routes.py` L2334-2530). The Dashboard implementation correctly calculates: -"
+        }
+      ]
+    },
+    {
+      "topic": "Replace the PNL API endpoint",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 285,
+          "context": "**Replace the PNL API endpoint** with the calculation logic from the Dashboard PNL endpoint. The Dashboard PNL (`dashboard_routes.py` L2241-2330) has the correct implementation including: - Game reven"
+        }
+      ]
+    },
+    {
       "topic": "Repository 1: Sales Bot (`/root/psvibe-sales-bot/`)",
       "files": [
         {
@@ -7984,6 +9014,16 @@
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
+        }
+      ]
+    },
+    {
+      "topic": "Result: +1,518,416 FALSE profit",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 78,
+          "context": "- **Result: +1,518,416 FALSE profit** → Fixed: **-15,163,987 LOSS** ✅"
         }
       ]
     },
@@ -8341,6 +9381,11 @@
           "context": "- **Root cause:** Fix script used 8-space indent but original code used 4-space - **Fix:** Corrected to 4-space indent; sale bot now starts successfully"
         },
         {
+          "path": "memory/2026-06-15.md",
+          "line": 60,
+          "context": "- **Root cause:** `console.py` booking lookups used `_b.get(\"consoleId\")` but API `_map_booking_row` maps `console_id` → `consoleType`. Never found any booking → booking_id=\"\" → food note \"No booking_"
+        },
+        {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 63,
           "context": "- **Root cause:** Parallel sub-agents (6) editing `bot/__init__.py` simultaneously without locks → chain-reaction corruption. See Framework v2.0 for prevention. - **Fix approach:** Sequential fixes wi"
@@ -8414,6 +9459,11 @@
           "path": "memory/2026-06-06.md",
           "line": 16,
           "context": "- **Root causes:** 1. **API `_map_booking_row` (patch_routes.py):** maps `console_id` → `consoleType` (not `consoleId`). Customer bot's `_get_available_consoles` checks `b.get(\"console_id\")` or `b.get"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 13,
+          "context": "**Root causes:** Two outdated/simplified API endpoints that: 1. Only pull salaries from `staff_records` (snapshot view) — completely ignoring the `opex` table (10M+ in June expenses)"
         },
         {
           "path": "memory/fix-history.md",
@@ -8643,6 +9693,16 @@
       ]
     },
     {
+      "topic": "Scripts & Files Created/Modified",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 124,
+          "context": "### Scripts & Files Created/Modified | File | Action | Notes |"
+        }
+      ]
+    },
+    {
       "topic": "Scripts to Discard / Consider Deprecating",
       "files": [
         {
@@ -8839,6 +9899,16 @@
           "path": "memory/2026-06-08.md",
           "line": 87,
           "context": "### Services Status (17:55 UTC) - psvibe-api ✅ | psvibe-sale-bot ✅ | psvibe_customer_bot ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Services Status (June 15, 08:37 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 152,
+          "context": "### Services Status (June 15, 08:37 UTC) | Service | Status |"
         }
       ]
     },
@@ -9506,6 +10576,16 @@
           "context": "**Status:** Completed"
         },
         {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 36,
+          "context": "| **Status** | **BROKEN — false profit** | **ACCURATE — comprehensive** |"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 49,
+          "context": "| **Status** | **BROKEN — missing 99.9% of assets** | **ACCURATE — comprehensive** |"
+        },
+        {
           "path": "memory/integration-plan.md",
           "line": 25,
           "context": "- **Status:** **standalone** — Ready to use on demand during heartbeats or manual runs."
@@ -10138,6 +11218,26 @@
       ]
     },
     {
+      "topic": "The Dashboard Endpoints Are Correct",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 277,
+          "context": "### The Dashboard Endpoints Are Correct The `/dashboard/financial/pnl` and `/dashboard/financial/balance-sheet` endpoints have comprehensive implementations that correctly calculate all the above item"
+        }
+      ]
+    },
+    {
+      "topic": "The PNL API is reporting a 1.5M profit when the business actually lost ~14.3M this month.",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 216,
+          "context": "> 🔴 **The PNL API is reporting a 1.5M profit when the business actually lost ~14.3M this month.**"
+        }
+      ]
+    },
+    {
       "topic": "The Problem",
       "files": [
         {
@@ -10284,6 +11384,11 @@
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 47,
           "context": "| **Total** | **11** | **11** | **0** |"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 111,
+          "context": "| **TOTAL** | **27** | **10,012,666** |"
         }
       ]
     },
@@ -10298,12 +11403,32 @@
       ]
     },
     {
+      "topic": "Total Assets",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 227,
+          "context": "| **Total Assets** | **427,000** | **~305,442,785** | **−305,015,785** | | Wallet Liability | 427,000 | 427,000 | ✅ Match |"
+        }
+      ]
+    },
+    {
       "topic": "Total coordination tools: 20 → 25",
       "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 37,
           "context": "**Total coordination tools: 20 → 25** at `/root/coordination/`"
+        }
+      ]
+    },
+    {
+      "topic": "Total Equity",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 233,
+          "context": "| **Total Equity** | **0** | **~302,715,785** | **−302,715,785** | | **A = L + E Check** | 427,000 = 427,000 + 0 ✅ | 305,442,785 ≈ 2,727,000 + 302,715,785 | Matches |"
         }
       ]
     },
@@ -10318,12 +11443,42 @@
       ]
     },
     {
+      "topic": "Total Expenses",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 213,
+          "context": "| **Total Expenses** | **800,000** | **10,012,666 + 6,995,548** | **−16,208,214** | | **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
+        }
+      ]
+    },
+    {
+      "topic": "Total Liabilities",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 230,
+          "context": "| **Total Liabilities** | **427,000** | **2,727,000** | **−2,300,000** | | Retained Earnings | 0 | ~2,715,785 | ❌ Missing |"
+        }
+      ]
+    },
+    {
       "topic": "Total Monthly Dep:",
       "files": [
         {
           "path": "memory/ARCHIVE.md",
           "line": 16,
           "context": "(dedup) - **Total Monthly Dep:** 4,029,826 Ks | **Total Acc. Dep:** 3,262,283 Ks"
+        }
+      ]
+    },
+    {
+      "topic": "Total Revenue",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 206,
+          "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
         }
       ]
     },
@@ -10454,6 +11609,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 174,
           "context": "2. **Use it in the INSERT** instead of empty string: ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Use opex table for salary expense",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 310,
+          "context": "**Use opex table for salary expense** (actual payments), not `staff_records.base_salary` (theoretical rate). The `staff_records` table should be used for payroll planning, not P&L reporting."
         }
       ]
     },
@@ -10823,6 +11988,26 @@
       ]
     },
     {
+      "topic": "~302,715,785",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 233,
+          "context": "| **Total Equity** | **0** | **~302,715,785** | **−302,715,785** | | **A = L + E Check** | 427,000 = 427,000 + 0 ✅ | 305,442,785 ≈ 2,727,000 + 302,715,785 | Matches |"
+        }
+      ]
+    },
+    {
+      "topic": "~305,442,785",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 227,
+          "context": "| **Total Assets** | **427,000** | **~305,442,785** | **−305,015,785** | | Wallet Liability | 427,000 | 427,000 | ✅ Match |"
+        }
+      ]
+    },
+    {
       "topic": "သတိထားရန်:",
       "files": [
         {
@@ -10849,6 +12034,86 @@
           "path": "memory/memory-usage-guide.md",
           "line": 14,
           "context": "**အရင်တုန်းက:** MEMORY.md တစ်ခုတည်းမှာ အကုန်ထည့် → ပိလာတယ် **အခု:** Category အလိုက် သပ်သပ်စီ → လိုတာပဲ ဖွင့်ဖတ်"
+        }
+      ]
+    },
+    {
+      "topic": "−14,325,598 Ks",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
+        }
+      ]
+    },
+    {
+      "topic": "−14,325,598 LOSS",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 214,
+          "context": "| **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
+        }
+      ]
+    },
+    {
+      "topic": "−15,844,014 OFF",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 214,
+          "context": "| **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
+        }
+      ]
+    },
+    {
+      "topic": "−16,208,214",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 213,
+          "context": "| **Total Expenses** | **800,000** | **10,012,666 + 6,995,548** | **−16,208,214** | | **Net Profit** | **1,518,416 PROFIT** | **−14,325,598 LOSS** | **−15,844,014 OFF** |"
+        }
+      ]
+    },
+    {
+      "topic": "−2,300,000",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 230,
+          "context": "| **Total Liabilities** | **427,000** | **2,727,000** | **−2,300,000** | | Retained Earnings | 0 | ~2,715,785 | ❌ Missing |"
+        }
+      ]
+    },
+    {
+      "topic": "−302,715,785",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 233,
+          "context": "| **Total Equity** | **0** | **~302,715,785** | **−302,715,785** | | **A = L + E Check** | 427,000 = 427,000 + 0 ✅ | 305,442,785 ≈ 2,727,000 + 302,715,785 | Matches |"
+        }
+      ]
+    },
+    {
+      "topic": "−305,015,785",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 227,
+          "context": "| **Total Assets** | **427,000** | **~305,442,785** | **−305,015,785** | | Wallet Liability | 427,000 | 427,000 | ✅ Match |"
+        }
+      ]
+    },
+    {
+      "topic": "−364,200 (13.6%)",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 206,
+          "context": "| **Total Revenue** | **2,318,416** | **2,682,616** | **−364,200 (13.6%)** | | COGS | 0 | Unknown (FIFO) | ❌ Missing |"
         }
       ]
     },
@@ -11223,6 +12488,26 @@
       ]
     },
     {
+      "topic": "🏗️ Finance Fixes — PNL, Balance Sheet & Auto-Depreciation",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 67,
+          "context": "## 🏗️ Finance Fixes — PNL, Balance Sheet & Auto-Depreciation"
+        }
+      ]
+    },
+    {
+      "topic": "🏗️ Finance Infrastructure",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 289,
+          "context": "### 🏗️ Finance Infrastructure - **Auto-Depreciation:** Created `/root/scripts/auto_depreciate.py` — monthly cron (1st, 2:30 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "🏗️ Financial Dashboard Deployed (19:44 UTC)",
       "files": [
         {
@@ -11443,6 +12728,16 @@
       ]
     },
     {
+      "topic": "📋 June 15 — Summary",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 275,
+          "context": "## 📋 June 15 — Summary"
+        }
+      ]
+    },
+    {
       "topic": "📋 Pending (Boss Action Needed)",
       "files": [
         {
@@ -11529,6 +12824,16 @@
           "path": "memory/2026-06-15.md",
           "line": 54,
           "context": "## 📌 Pending - Boss to test Phase 1 Food Cart flow end-to-end"
+        }
+      ]
+    },
+    {
+      "topic": "📌 Pending (Boss Action Needed)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 302,
+          "context": "### 📌 Pending (Boss Action Needed) 1. **n8n payment (€25.68)** — 2nd notice, subscription may expire"
         }
       ]
     },
@@ -11699,6 +13004,16 @@
           "path": "memory/2026-06-13.md",
           "line": 128,
           "context": "### 🔧 Fix Applied: 1. Restored clean git version (`853297a`) — removed file corruption (duplicated renderUserTable)"
+        }
+      ]
+    },
+    {
+      "topic": "🔧 Fixes Deployed (8 total)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 277,
+          "context": "### 🔧 Fixes Deployed (8 total) | # | Fix | File(s) | Root Cause |"
         }
       ]
     },
@@ -11973,12 +13288,32 @@
       ]
     },
     {
+      "topic": "🧠 5 New Lessons (June 15)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 295,
+          "context": "### 🧠 5 New Lessons (June 15) - **17.** `%%Y-%%m` doesn't work with `mysql.connector` — uses `%s` params, not printf-style `%%`"
+        }
+      ]
+    },
+    {
       "topic": "🧠 Critical Lessons (Running Archive)",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 191,
           "context": "### 🧠 Critical Lessons (Running Archive) 1. FastAPI response_model silently strips undeclared fields"
+        }
+      ]
+    },
+    {
+      "topic": "🧠 Critical Lessons Archive (continued)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 323,
+          "context": "### 🧠 Critical Lessons Archive (continued) - 17. **`%%Y-%%m` ≠ `mysql.connector` params** — `mysql.connector.execute()` uses `%s` style, not printf `%%`"
         }
       ]
     },
@@ -12114,6 +13449,16 @@
           "path": "MEMORY.md",
           "line": 260,
           "context": "### 🩺 Services (June 14, 15:30 UTC) | Service | Status |"
+        }
+      ]
+    },
+    {
+      "topic": "🩺 Services (June 15, 15:30 UTC)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 308,
+          "context": "### 🩺 Services (June 15, 15:30 UTC) | Service | Status |"
         }
       ]
     }

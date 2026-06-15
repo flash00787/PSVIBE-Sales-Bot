@@ -51,3 +51,9 @@
 
 (dedup) 1. **n8n Payment (€25.68)** — 2nd notice received, subscription may expire
   (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing
+
+# Archived Memory Entries
+*Archived: 2026-06-15 16:07 UTC*
+
+(dedup) 1. **n8n payment (€25.68)** — 2nd notice, subscription may expire
+  (dedup) 2. **GitHub Deploy failing** — psvibe-api-server master branch
