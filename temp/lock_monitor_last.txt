@@ -1,29 +1,29 @@
-[LOCK_MONITOR] Run at 2026-06-15 06:33:18 UTC
+[LOCK_MONITOR] Run at 2026-06-15 07:03:16 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
   1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.checkpoint.6dd8240e-0a6d-48c1-a3b4-f2113a6691f9.jsonl: 3125KB (> 500KB threshold)
   251c9af9-aecc-4963-9898-f1a4b0f3fbcd-topic-125192.trajectory.jsonl: 8232KB (> 500KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 500KB threshold)
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.jsonl: 1740KB (> 500KB threshold)
+  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.jsonl: 2111KB (> 500KB threshold)
 [LOCK_MONITOR] WARNING: 3 trajectory file(s) oversized:
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 7429KB (> 3000KB threshold)
+  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 9643KB (> 3000KB threshold)
   251c9af9-aecc-4963-9898-f1a4b0f3fbcd-topic-125192.trajectory.jsonl: 8232KB (> 3000KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 3000KB threshold)
+[LOCK_MONITOR] Old session cleanup: removed 1 file(s), freed 587KB
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          961 files,      11971 KB
-  .trajectory.jsonl files:     95 files,      32849 KB
-  .checkpoint.*.jsonl files:   17 files,      44773 KB
-  .lock files:                  2 files
+  Main .jsonl files:          961 files,      11812 KB
+  .trajectory.jsonl files:     96 files,      35333 KB
+  .checkpoint.*.jsonl files:   18 files,      46546 KB
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    89594 KB
+  TOTAL:                                    93690 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 135 KB freed, 10 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 3 files removed, 719 KB freed, 10 warnings
 ==================================================
 === RESULT: OK (warnings: 10) ===
-=== RESULT: OK (2 active locks, 0 cleaned, 1 old session removed, 10 warnings) ===
