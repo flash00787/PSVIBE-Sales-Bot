@@ -1,6 +1,39 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-14 11:30 UTC
+> Last updated: 2026-06-15 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 15, 2026 - 05:30 UTC) — New Find: Big Walk + $1 PS Store Sale
+
+> **Summary:** Quiet weekend. One new co-op game discovery + minor PS Store flash sale.
+
+### 🚶‍♂️ Big Walk — August 4, 2026 (NEW FIND! Not in tracker!)
+- From **House House** — the creators of **Untitled Goose Game**
+- Genre: Cooperative multiplayer adventure — 2 to 12 players online co-op
+- Open world filled with puzzles and challenges requiring teamwork and communication
+- **Cross-play** across PS5, Nintendo Switch 2, PC, and Mac
+- **Day 1 PS Plus Essential** — FREE for all PS Plus subscribers at launch!
+- **$19.99** with 25% launch discount for non-subscribers
+- **💡💡 Lounge Note:** This is a PERFECT lounge game! From the creators of one of the most beloved indie co-op games ever. Supports up to 12 players — ideal for large group sessions at the lounge. Being on PS Plus Essential Day 1 means it's free to add to every lounge console. The Untitled Goose Game pedigree guarantees charm and quality. Add to August wishlist!
+
+### 🛒 PS Store Flash Sale — 13 Games Under $1 (June 14)
+- Sony ran a special flash sale with **13 PS5 games priced at less than $1 each** on June 14
+- Titles are smaller/indie releases — not AAA blockbusters
+- **💡 Lounge Note:** Minor — good for padding the lounge library with variety titles at pocket-change prices. Check PS Store to see if any are multiplayer/party games worth grabbing.
+
+### ⏰ Reminder: TOMORROW IS JUNE 16 — Triple Deadline Day!
+| Deadline | What | Action |
+|----------|------|--------|
+| 🔥 **June 16** | **FFXVI joins PS Plus Extra** | THE biggest PS Plus addition in months! $70 flagship RPG FREE! Promote NOW! |
+| ⚽ **June 16** | **EA Sports FC 26 free (LAST DAY)** | Extended World Cup freebie! Claim on all lounge consoles! |
+| 🔴 **June 16** | **Destiny 2: Legacy Collection (LAST DAY)** | Final Destiny 2 content bundle! |
+
+### Other Upcoming Deadlines (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 28-29** | FREE Online Multiplayer Weekend | Under 2 weeks! Start promoting! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! |
 
 ---
 
@@ -1170,6 +1203,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jul TBD | 🎵 **Blue Reflection Quartet** 🆕 | ⭐⭐⭐ (Magical girl RPG!) |
 | Jul TBD | **Where Winds Meet — Hidden Mountain** 🆕 | ⭐⭐⭐ (Expansion) |
 | Jul TBD | 🏃💨 **SpeedRunners 2: King of Speed** 🆕 | ⭐⭐⭐⭐ (4-player competitive party game! Crossplay! Perfect lounge title!) |
+| Aug 4 | 🚶‍♂️ **Big Walk** 🆕 | ⭐⭐⭐⭐ (House House! 2-12p co-op! Day 1 PS Plus Essential! Cross-play!) |
 | Aug 4 | **Beast of Reincarnation** 🐺🆕 | ⭐⭐⭐ (New action title!) |
 | Aug 6 | Marvel Tōkon: Fighting Souls (Magneto, Green Goblin, Carnage + Doom) | ⭐⭐⭐⭐ |
 | Aug 13 | **Wild Blue Skies** ✈️🆕 | ⭐⭐⭐ (New flying/sim!) |
@@ -1261,12 +1295,14 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 - 🎭 **Senua** 🆕 — Ninja Theory project, 2027, PS5 confirmed
 - 🧟 **State of Decay 3** 🆕 — OFFICIALLY confirmed for PS5!
 - 👾 **Aliens: Fireteam Elite 2** 🆕 — 4-player co-op TPS, Cold Iron Games, TBD
+- 🚶‍♂️🆕 **BIG WALK (Aug 4, 2026)** — House House (Untitled Goose Game devs)! 2-12 player online co-op with cross-play! Day 1 PS Plus Essential = FREE for all subscribers! $19.99 with 25% launch discount! Open-world puzzle adventure — PERFECT for large lounge group sessions!
 - 🚕 **Crazy Taxi: World Tour** 🆕 — Sega arcade revival, 2027, story + arcade modes, The Offspring OST!
 
 ---
 
 ## 📋 Lounge Recommendations for PS VIBE
 - 🆓🔥🆕 **FREE ONLINE MULTIPLAYER WEEKEND (June 28-29)** — ALL PS5/PS4 players can play online multiplayer WITHOUT PS Plus! Promote to casual customers — great way to attract new foot traffic to the lounge!
+- 🚶‍♂️🆕 **BIG WALK (Aug 4)** — House House co-op adventure! 2-12 players, cross-play, Day 1 PS Plus Essential ($19.99). Untitled Goose Game pedigree! PERFECT lounge group game — FREE for all subscribers! Add to August wishlist!
 - 🧩🆕 **TRINE 6: TOGETHER IN TIME (Sep 17)** — 4-player co-op puzzle platformer with cross-play! Perfect lounge group game — add to wishlist!
 - 🛒🆕 **PS STORE MID-YEAR DEALS (until July 1)** — Up to 80% off on 3,600+ PS5/PS4 games! Replaces Days of Play. Lounge-worthy deals: Returnal, Tekken 8, RE4 Gold, Dragon Quest 7, Yakuza Kiwami 3, Guilty Gear Strive, MK Legacy Kollection! Stock up NOW!
 - 🐉🆕 **GRANBLUE FANTASY RELINK: ENDLESS RAGNAROK (July 9)** — Granblue expansion alongside AC Black Flag = stacked day! Granblue is MASSIVE in Asia. Promote both!
