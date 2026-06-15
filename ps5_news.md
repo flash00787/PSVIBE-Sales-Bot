@@ -1,10 +1,46 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-15 05:30 UTC
+> Last updated: 2026-06-15 11:30 UTC
 
 ---
 
-## ⚡ UPDATE (June 15, 2026 - 05:30 UTC) — New Find: Big Walk + $1 PS Store Sale
+## ⚡ UPDATE (June 15, 2026 - 11:30 UTC) — Minor Calendar Additions + Demo Drop
+
+> **Summary:** Quiet Monday. No critical news. Minor indie release dates added to calendar + free demo.
+
+### 🆕 New Minor Calendar Additions (Not in Tracker):
+
+| Game | Details | Date | Lounge Value |
+|------|---------|------|-------------|
+| 🧮 **BlackJack Math** | Math + blackjack indie | Jun 15 | ⭐ — Filler |
+| 🔄 **The Alters: Last Variable** | New title | **Jul 13, 2026** | ⭐⭐ |
+| 🏹 **Mistfall Hunter** | New title | **Jul 29, 2026** | ⭐⭐⭐ |
+| 🃏 **Culdcept The First Saturn Tribute** | Sega Saturn classic — board game + card battler hybrid | **Sep 8, 2026** | ⭐⭐ — Niche cult classic |
+| 🧸 **Moomintroll: Winter's Warmth** | Family-friendly adventure based on Moomin IP | **Sep 17, 2026** | ⭐⭐⭐ — Moomin IP popular in Asia/Nordic |
+| 🐱 **Garfield: Escape from Monday** | Garfield-themed game | **Sep 24, 2026** | ⭐⭐ — Kids/family IP |
+| 🌾 **Harvest Moon: Echoes of Teradea** | New Harvest Moon farming sim | **Sep 24, 2026** | ⭐⭐⭐ — Niche but loyal fanbase |
+| 👊 **Fallen City Brawl** | New beat 'em up | **Sep 25, 2026** | ⭐⭐⭐ — Arcade brawler, good for casual sessions |
+| ⚡ **Breach Signal** | New title | **Oct 26, 2026** | ⭐⭐ |
+
+### 🎮 Free Demo: 70's Robot Anime Geppy-X (June 15)
+- PS1 Japan-only cult classic getting a **free PS5 remaster demo** on PS Store
+- Single-player scrolling shooter — play up to Stage 4 without PS Plus
+- **💡 Lounge Note:** Retro novelty — niche but could be a fun curiosity for old-school gaming fans
+
+### 🔴 PSVR2: Already Dead — Fall 2026
+- Retro-styled survival horror for PSVR2, new trailer dropped June 12
+- **💡 Lounge Note:** VR-only, niche. Only relevant if PS VIBE has PSVR2 stations
+
+### ⏰ TOMORROW IS JUNE 16 — Triple Deadline Reminder (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| 🔥 **June 16** | **FFXVI joins PS Plus Extra** | THE biggest PS Plus addition! $70 RPG FREE! Promote NOW! |
+| ⚽ **June 16** | **EA Sports FC 26 free (LAST DAY)** | Extended World Cup freebie! |
+| 🔴 **June 16** | **Destiny 2: Legacy Collection (LAST DAY)** | Final Destiny 2 content bundle! |
+
+---
+
+## ⚡ PREVIOUS UPDATE (June 15, 2026 - 05:30 UTC) — Big Walk + $1 PS Store Sale
 
 > **Summary:** Quiet weekend. One new co-op game discovery + minor PS Store flash sale.
 
