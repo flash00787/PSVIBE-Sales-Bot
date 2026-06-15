@@ -1,4 +1,4 @@
-[LOCK_MONITOR] Run at 2026-06-15 21:08:25 UTC
+[LOCK_MONITOR] Run at 2026-06-15 21:33:24 UTC
 
 [LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
@@ -9,16 +9,16 @@
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          956 files,      11594 KB
-  .trajectory.jsonl files:     94 files,      15499 KB
+  Main .jsonl files:          956 files,      11625 KB
+  .trajectory.jsonl files:     94 files,      15503 KB
   .checkpoint.*.jsonl files:   15 files,      32555 KB
   .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    59649 KB
+  TOTAL:                                    59683 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 136 KB freed, 4 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 130 KB freed, 4 warnings
 ==================================================
 === RESULT: OK (warnings: 4) ===
