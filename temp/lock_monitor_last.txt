@@ -1,27 +1,26 @@
-[LOCK_MONITOR] Run at 2026-06-15 09:03:18 UTC
+[LOCK_MONITOR] Run at 2026-06-15 09:08:20 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 4 session file(s) too large:
   1bb775ec-53e1-43b7-952c-b39a3f26e732-topic-125192.checkpoint.6dd8240e-0a6d-48c1-a3b4-f2113a6691f9.jsonl: 3125KB (> 500KB threshold)
   251c9af9-aecc-4963-9898-f1a4b0f3fbcd-topic-125192.checkpoint.bb71c332-2d7b-48a5-94c5-a988e1e908c4.jsonl: 4441KB (> 500KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 500KB threshold)
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.jsonl: 3086KB (> 500KB threshold)
+  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 7094KB (> 500KB threshold)
 [LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
-  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 6459KB (> 3000KB threshold)
+  02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.trajectory.jsonl: 7094KB (> 3000KB threshold)
   9c341e03-b44e-449b-acef-9b23d6079271-topic-129835.trajectory.jsonl: 6519KB (> 3000KB threshold)
-[LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          956 files,      12069 KB
-  .trajectory.jsonl files:     90 files,      23436 KB
+  Main .jsonl files:          956 files,      12135 KB
+  .trajectory.jsonl files:     90 files,      24072 KB
   .checkpoint.*.jsonl files:   19 files,      49124 KB
-  .lock files:                  2 files
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    84629 KB
+  TOTAL:                                    85331 KB
 ==========================================
 
 
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 140 KB freed, 8 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 8 warnings
 ==================================================
 === RESULT: OK (warnings: 8) ===
