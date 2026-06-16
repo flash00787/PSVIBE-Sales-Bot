@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-16T03:37:29Z",
+  "updated": "2026-06-16T04:07:33Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -324,6 +324,12 @@
     },
     {
       "source": "boss",
+      "target": "openclaw",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "priority-memory",
       "relation": "implements",
       "weight": 5
@@ -450,7 +456,19 @@
     },
     {
       "source": "consolidator",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "consolidator",
       "target": "heartbeat-routine",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "consolidator",
+      "target": "knowledge-graph-concept",
       "relation": "related_to",
       "weight": 5
     },
@@ -511,6 +529,12 @@
     {
       "source": "git-backup",
       "target": "phase-3",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "consolidator",
       "relation": "related_to",
       "weight": 5
     },
@@ -2022,12 +2046,6 @@
     },
     {
       "source": "boss",
-      "target": "openclaw",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "openrouter",
       "relation": "uses",
       "weight": 3
@@ -3132,18 +3150,6 @@
     },
     {
       "source": "consolidator",
-      "target": "git-backup",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "consolidator",
-      "target": "knowledge-graph-concept",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "consolidator",
       "target": "memory-index",
       "relation": "related_to",
       "weight": 3
@@ -4231,12 +4237,6 @@
     {
       "source": "github",
       "target": "coding-rules",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "github",
-      "target": "consolidator",
       "relation": "related_to",
       "weight": 3
     },
