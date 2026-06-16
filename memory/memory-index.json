@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-16T07:09:39.350009+00:00",
+  "updated": "2026-06-16T07:37:51.677188+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -1778,6 +1778,16 @@
       ]
     },
     {
+      "topic": "Auto role rewards",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 138,
+          "context": "- **Auto role rewards**: Level 2 → `1516321126610108518`, Level 5 → `1516321128195424276`, Level 10 → `1516321129785069698` (auto-assigned on level up)"
+        }
+      ]
+    },
+    {
       "topic": "Auto-balancer adjustment:",
       "files": [
         {
@@ -2134,6 +2144,16 @@
           "path": "memory/2026-06-14.md",
           "line": 356,
           "context": "## Boss Reports (Ongoing Issues — 18:22-18:42 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "Boss wanted conditional disable",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 172,
+          "context": "- **Boss wanted conditional disable**: \"All Games\" → other options disabled (Discord API can't do this natively) - **Memory git backup**: Not yet committed for this session"
         }
       ]
     },
@@ -2649,6 +2669,16 @@
           "path": "memory/fix-history.md",
           "line": 141,
           "context": "- **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
+        }
+      ]
+    },
+    {
+      "topic": "Channel sorting",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 119,
+          "context": "- **Channel sorting**: Re-sorted all 12 categories, fixed parent IDs, deleted duplicate channels (call-of-duty, valorant, mobile-games) - **Invite link**: Updated `discord.gg/U7Gae4Rh6` → `discord.gg/"
         }
       ]
     },
@@ -3688,6 +3718,16 @@
       ]
     },
     {
+      "topic": "Default channels",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 118,
+          "context": "- **Default channels**: Expanded from 2 → 14 channels covering all categories - **Channel sorting**: Re-sorted all 12 categories, fixed parent IDs, deleted duplicate channels (call-of-duty, valorant, "
+        }
+      ]
+    },
+    {
       "topic": "DEFAULT Fix Agent:",
       "files": [
         {
@@ -4134,6 +4174,11 @@
           "path": "memory/2026-06-14.md",
           "line": 349,
           "context": "**Error:** Sale voucher opening still very slow (Boss confirms) **Root cause:** `step_end_session` in `console.py` line 370 has `await asyncio.to_thread(api_post, \"coupons/generate\", ...)` — this BLOC"
+        },
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 141,
+          "context": "- **Error**: `UnboundLocalError: cannot access local variable 'discord_msg'` at line 245 - **Root cause**: `discord_msg` defined inside `if referred_by:` block but used outside it; referral-less start"
         }
       ]
     },
@@ -5576,6 +5621,11 @@
           "context": "**Fix:** Created `/root/scripts/auto_depreciate.py` — auto-depreciation script that: - Calculates months from purchase_month through current_month (inclusive)"
         },
         {
+          "path": "memory/2026-06-16.md",
+          "line": 143,
+          "context": "- **Fix**: Moved `discord_msg` assignment outside the `if` block - **Result**: Bot restarted → active ✅, log clean ✅"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 45,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
@@ -6758,6 +6808,16 @@
       ]
     },
     {
+      "topic": "Invite link",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 120,
+          "context": "- **Invite link**: Updated `discord.gg/U7Gae4Rh6` → `discord.gg/9axZwfQEFu` (both bot.js + customer bot)"
+        }
+      ]
+    },
+    {
       "topic": "IP 5.223.81.16 completely unreachable",
       "files": [
         {
@@ -7493,8 +7553,13 @@
       ]
     },
     {
-      "topic": "Memory Git Backup:",
+      "topic": "Memory git backup",
       "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 173,
+          "context": "- **Memory git backup**: Not yet committed for this session"
+        },
         {
           "path": "memory/fix-history.md",
           "line": 18,
@@ -7584,6 +7649,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 21,
           "context": "- **Merge:** All done → single merge report → single service restart - **Rollback:** Per-batch rollback if one fails (don't rollback passing batches)"
+        }
+      ]
+    },
+    {
+      "topic": "Message XP handler",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 137,
+          "context": "- **Message XP handler**: `messageCreate` event adds 5-15 XP per chat message - **Auto role rewards**: Level 2 → `1516321126610108518`, Level 5 → `1516321128195424276`, Level 10 → `1516321129785069698"
         }
       ]
     },
@@ -8243,6 +8318,16 @@
       ]
     },
     {
+      "topic": "Onboarding prompt",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 117,
+          "context": "- **Onboarding prompt**: 5 categories, single-select → multi-select, `required: false` (skip allowed) - **Default channels**: Expanded from 2 → 14 channels covering all categories"
+        }
+      ]
+    },
+    {
       "topic": "Only 1 expense source:",
       "files": [
         {
@@ -8729,6 +8814,16 @@
           "path": "memory/subagent-journal.json",
           "line": 9,
           "context": "status: failed | summary: subagent actually timed out"
+        }
+      ]
+    },
+    {
+      "topic": "Phone Verification (#5)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 171,
+          "context": "- **Phone Verification (#5)**: 3rd-party service needed (SimpleVerify), not implemented - **Boss wanted conditional disable**: \"All Games\" → other options disabled (Discord API can't do this natively)"
         }
       ]
     },
@@ -9416,6 +9511,11 @@
           "context": "**Result:**"
         },
         {
+          "path": "memory/2026-06-16.md",
+          "line": 144,
+          "context": "- **Result**: Bot restarted → active ✅, log clean ✅"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 87,
           "context": "- **Result:** Bot always sees `{\"success\":false,\"error\":\"unknown\"}` — real error was filtered out - **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any c"
@@ -9824,6 +9924,11 @@
           "path": "memory/2026-06-16.md",
           "line": 76,
           "context": "**Root Cause:** Bot code had `const TEMP_VC_CREATOR = 'create-vc';` and checked `channel.name === TEMP_VC_CREATOR`, but the actual channel name was `➕ Create VC`."
+        },
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 142,
+          "context": "- **Root cause**: `discord_msg` defined inside `if referred_by:` block but used outside it; referral-less starts crashed - **Fix**: Moved `discord_msg` assignment outside the `if` block"
         },
         {
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
@@ -11239,6 +11344,26 @@
           "path": "memory/lessons.md",
           "line": 59,
           "context": "## Sub-Agent Timeout by Task Size (2026-06-01) | Task Type | Timeout |"
+        }
+      ]
+    },
+    {
+      "topic": "SubAgent 1 (Bot Code Upgrades)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 147,
+          "context": "- **SubAgent 1 (Bot Code Upgrades)**: Welcome cards, suggestion system, music upgrade, weekly leaderboard — all ✅ - **SubAgent 2 (API + AutoMod)**: Multi-language channels, AutoMod rules — all ✅"
+        }
+      ]
+    },
+    {
+      "topic": "SubAgent 2 (API + AutoMod)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 148,
+          "context": "- **SubAgent 2 (API + AutoMod)**: Multi-language channels, AutoMod rules — all ✅"
         }
       ]
     },
@@ -13023,6 +13148,16 @@
       ]
     },
     {
+      "topic": "🏗️ Major Discord Server Overhaul (June 16)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 106,
+          "context": "### 🏗️ Major Discord Server Overhaul (June 16)"
+        }
+      ]
+    },
+    {
       "topic": "🏦 ACM's Acc + API Auth (14:50-15:15 UTC)",
       "files": [
         {
@@ -13069,6 +13204,16 @@
           "path": "memory/2026-06-07.md",
           "line": 5,
           "context": "## 🐛 api_client.py Fix Summary (18:17 UTC) - `api_post()` in api_client.py changed from `?api_key=` query param to `X-API-Key` header"
+        }
+      ]
+    },
+    {
+      "topic": "🐛 Bug Fix: Customer Bot (handlers.py)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 140,
+          "context": "### 🐛 Bug Fix: Customer Bot (handlers.py) - **Error**: `UnboundLocalError: cannot access local variable 'discord_msg'` at line 245"
         }
       ]
     },
@@ -13253,6 +13398,16 @@
       ]
     },
     {
+      "topic": "📋 Key Channel IDs (Discord, Guild: 1516119712411422942)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 162,
+          "context": "### 📋 Key Channel IDs (Discord, Guild: 1516119712411422942) - Create VC: `1516314120222281788`"
+        }
+      ]
+    },
+    {
       "topic": "📋 Pending (Boss Action Needed)",
       "files": [
         {
@@ -13359,6 +13514,16 @@
           "path": "MEMORY.md",
           "line": 302,
           "context": "### 📌 Pending (Boss Action Needed) 3. **100+ games discrepancy** — 41 in DB vs claimed 100+"
+        }
+      ]
+    },
+    {
+      "topic": "📌 Pending / Not Started",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 170,
+          "context": "### 📌 Pending / Not Started - **Phone Verification (#5)**: 3rd-party service needed (SimpleVerify), not implemented"
         }
       ]
     },
@@ -13948,12 +14113,32 @@
       ]
     },
     {
+      "topic": "🧠 Session Memory Flush — 07:25 UTC (13:55 MMT) — Near Compaction",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 104,
+          "context": "## 🧠 Session Memory Flush — 07:25 UTC (13:55 MMT) — Near Compaction"
+        }
+      ]
+    },
+    {
       "topic": "🧪 Critical Lessons Archive",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 96,
           "context": "## 🧪 Critical Lessons Archive"
+        }
+      ]
+    },
+    {
+      "topic": "🧪 Sub-Agent Work",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 146,
+          "context": "### 🧪 Sub-Agent Work - **SubAgent 1 (Bot Code Upgrades)**: Welcome cards, suggestion system, music upgrade, weekly leaderboard — all ✅"
         }
       ]
     },
@@ -14044,6 +14229,16 @@
           "path": "memory/2026-06-16.md",
           "line": 86,
           "context": "### 🩺 Services Status | Service | Status | Note |"
+        }
+      ]
+    },
+    {
+      "topic": "🩺 Services Status (Session End)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 150,
+          "context": "### 🩺 Services Status (Session End) | Service | Status | Notes |"
         }
       ]
     }
