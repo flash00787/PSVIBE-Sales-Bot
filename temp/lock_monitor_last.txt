@@ -1,26 +1,25 @@
-[LOCK_MONITOR] Run at 2026-06-16 07:34:11 UTC
+[LOCK_MONITOR] Run at 2026-06-16 09:09:11 UTC
 
-[LOCK_MONITOR] OK: 2 active lock(s), 0 cleaned
+[LOCK_MONITOR] OK: 1 active lock(s), 0 cleaned
 [LOCK_MONITOR] WARNING: 3 session file(s) too large:
-  5ec6aec5-e3aa-4533-a9f3-4db12e410106-topic-125192.jsonl: 2840KB (> 500KB threshold)
-  30525765-2866-4232-a228-d7989083d8ab-topic-125192.jsonl: 5275KB (> 500KB threshold)
+  5ec6aec5-e3aa-4533-a9f3-4db12e410106-topic-125192.trajectory.jsonl: 7797KB (> 500KB threshold)
+  30525765-2866-4232-a228-d7989083d8ab-topic-125192.trajectory.jsonl: 5275KB (> 500KB threshold)
   02b2b0ed-8080-4c99-acd9-2bc965f43b32-topic-129835.checkpoint.045b801b-da7d-43aa-bc7f-9c923690a65e.jsonl: 3265KB (> 500KB threshold)
 [LOCK_MONITOR] WARNING: 2 trajectory file(s) oversized:
-  5ec6aec5-e3aa-4533-a9f3-4db12e410106-topic-125192.trajectory.jsonl: 7123KB (> 3000KB threshold)
+  5ec6aec5-e3aa-4533-a9f3-4db12e410106-topic-125192.trajectory.jsonl: 7797KB (> 3000KB threshold)
   30525765-2866-4232-a228-d7989083d8ab-topic-125192.trajectory.jsonl: 5275KB (> 3000KB threshold)
 [LOCK_MONITOR] Self-cleanup: removed 1 old session(s)
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:          939 files,      12155 KB
-  .trajectory.jsonl files:     79 files,      21517 KB
-  .checkpoint.*.jsonl files:   18 files,      39501 KB
-  .lock files:                  2 files
+  Main .jsonl files:          934 files,      12167 KB
+  .trajectory.jsonl files:     69 files,      20946 KB
+  .checkpoint.*.jsonl files:   17 files,      37498 KB
+  .lock files:                  1 files
   ------------------------------------------
-  TOTAL:                                    73173 KB
+  TOTAL:                                    70611 KB
 ==========================================
 
-
 ==================================================
-[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 139 KB freed, 7 warnings
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 2 files removed, 137 KB freed, 7 warnings
 ==================================================
 === RESULT: OK (warnings: 7) ===
