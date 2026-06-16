@@ -229,11 +229,20 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Add referral welcome if user came via referral link
     referral_msg = ""
+    discord_msg = (
+        "\n\n"
+        "💬 PS VIBE Discord Community\n"
+        "ဂိမ်းအကြောင်းတွေ ဆွေးနွေးဖို့နဲ့ အတူတူဆော့မယ့် အဖွဲ့ရှာဖို့ "
+        "ကျွန်တော်တို့ PS VIBE ရဲ့ Discord Community လေးထဲ ဝင်ထားလို့ ရတယ်ဗျ။\n"
+        "Promotion အသစ်တွေ Tournament တွေလုပ်ရင်လည်း အဲ့ဒီမှာ အရင်ဆုံး announce လုပ်မှာမို့\n"
+        "👉 ဒီလင့်ခ်လေးကနေ join ထားလို့ရတယ်နော်: https://discord.gg/9axZwfQEFu"
+    )
+
     if referred_by:
         referral_msg = f"\n🎉 *Referral* link ကနေ ဝင်လာတာပါနော်! (ref: `{referred_by}`) ကြိုဆိုပါတယ်!"
 
     await update.message.reply_text(
-        time_greet + referral_msg + banner,
+        time_greet + referral_msg + banner + discord_msg,
         parse_mode="Markdown",
         reply_markup=MAIN_MENU_KB,
     )
@@ -561,14 +570,24 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
         raw     = g.get("title", "-")
         title   = TITLE_ALIASES.get(raw.lower(), raw)
         genre   = (g.get("genre")   or "").strip()
-        players = (g.get("players") or "").strip()
-        mp_icon = " 👥" if ("2" in players or "multi" in players.lower()) else ""
+        players = (g.get("players") or "").strip().lower()
+        mode_icon = ""
+        if players == "solo":
+            mode_icon = " 🎯"
+        elif players == "multi":
+            mode_icon = " 👥"
+        elif players == "both":
+            mode_icon = " 🎯👥"
         genre_tag = f" | {genre}" if genre else ""
-        return f"{indent}▶ {title}{genre_tag}{mp_icon}"
+        return f"{indent}▶ {title}{genre_tag}{mode_icon}"
 
+    solo_games  = [g for g in real_games if g.get("players","").strip().lower() == "solo"]
+    multi_games = [g for g in real_games if g.get("players","").strip().lower() == "multi"]
+    both_games_m = [g for g in real_games if g.get("players","").strip().lower() == "both"]
     lines = [
         f"🕹️ PS Vibe Game Library  |  {now_str} MMT",
         f"ဆိုင်မှာ ကစားလို့ရသောဂိမ်း — {len(real_games)} titles",
+        f"🎯 Solo: {len(solo_games)}  |  👥 Multi: {len(multi_games)}  |  🎯👥 Both: {len(both_games_m)}",
     ]
 
     if has_platform:

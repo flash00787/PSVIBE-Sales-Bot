@@ -68,7 +68,7 @@ async def cmd_food_sale(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["member_id"] = None
     # Load stock map
     try:
-        from bot.api_client import _psvibe_get_async
+        from bot import _psvibe_get_async
         inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_list = inv_data.get("data", inv_data.get("items", inv_data.get("stock", [])))
@@ -138,6 +138,33 @@ async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
     )
     return CONSOLE
+
+
+async def cmd_session_food_order(update: Update, context: ContextTypes.DEFAULT_TYPE, target: dict):
+    from bot import next_voucher
+    from bot import _psvibe_get_async
+    cid = target["id"]
+    mbr = target.get("member") or "Guest"
+    session_staff = target.get("staff", "")
+    booking_id = target.get("booking_id", "")
+    context.user_data.update({
+        "m_id": "0 (Guest)" if mbr in ("Guest", "0 (Guest)", "") else mbr,
+        "c_id": cid, "v_no": next_voucher(), "food_items": [],
+        "food_prices": await fetch_food_prices_async(), "food_stock_map": {},
+        "staff": session_staff, "is_food_sale": True,
+        "session_food_order": True, "booking_id": booking_id,
+    })
+    try:
+        inv_data = await _psvibe_get_async("stock/current")
+        if inv_data and isinstance(inv_data, dict):
+            sl = inv_data.get("data", inv_data.get("items", inv_data.get("stock", [])))
+            context.user_data["food_stock_map"] = {s["item_name"]: s["quantity"] for s in sl if isinstance(s, dict) and s.get("item_name")}
+    except Exception:
+        pass
+    await update.message.reply_text("Food Order - " + cid + "\n(" + mbr + ")\nSelect items, click Done when finished")
+    return await prompt_food_menu(update, context)
+
+
 
 @log_duration("sales:prompt_mins")
 async def prompt_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -845,7 +872,7 @@ async def step_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        from bot.api_client import _psvibe_get_async
+        from bot import _psvibe_get_async
         inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
@@ -880,12 +907,14 @@ async def step_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.pop("food_items", None)
         return await prompt_mins(update, context)
 
-    if choice == BTN_DONE:
-        return await prompt_confirm(update, context)
-
     if choice == BTN_CLEAR_CART:
         context.user_data["food_items"] = []
         return await prompt_food_menu(update, context)
+
+    if choice == BTN_DONE:
+        if context.user_data.get("session_food_order"):
+            return await _save_food_cart(update, context)
+        return await prompt_confirm(update, context)
 
     prices = context.user_data.get("food_prices", {})
     if choice not in prices:
@@ -953,6 +982,33 @@ async def step_food_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "subtotal":   qty * unit_price,
     })
     return await prompt_food_menu(update, context)
+
+
+async def _save_food_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from bot.api_client import api_post
+    import asyncio
+    items = context.user_data.get("food_items", [])
+    booking_id = context.user_data.get("booking_id", "")
+    if not items:
+        await update.message.reply_text("No items to save")
+        return await show_console_menu(update, context)
+    if booking_id:
+        for item in items:
+            try:
+                await asyncio.to_thread(api_post, "food-cart", {"booking_id": booking_id, "item_name": item["name"], "quantity": item["qty"], "unit_price": item["unit_price"]})
+            except Exception as e:
+                from bot import logger
+                logger.error("food-cart save failed: %s", e)
+        total = sum(i["subtotal"] for i in items)
+        await update.message.reply_text("\u2705 " + str(len(items)) + " items added = " + str(total) + " Ks\nWill be charged at session end", parse_mode="Markdown")
+    else:
+        await update.message.reply_text("No booking_id - please reorder from Console Menu")
+    context.user_data.pop("session_food_order", None)
+    context.user_data.pop("food_items", None)
+    from bot.handlers.console import show_console_menu
+    return await show_console_menu(update, context)
+
+
 
 @log_duration("sales:step_confirm")
 async def step_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1253,19 +1309,21 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ── CashBack Coupon: Auto-generate via MySQL API (ALL sales flows) ──
     if play_mins > 0 and not d.get("_cashback_coupon"):
         _cpn_mins = wallet_deduct if wallet_deduct > play_mins else play_mins
-        try:
-            from bot.api_client import api_post
-            gen_result = await asyncio.to_thread(
-                api_post, "coupons/generate",
-                {"member_id": m_id, "session_minutes": _cpn_mins}
-            )
-            if gen_result and isinstance(gen_result, dict):
-                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("code"):
-                    d["_cashback_coupon"] = cd["code"]
-                    d["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins)
-        except Exception as _ecp:
-            logger.warning("step_sale_confirm: coupon gen failed: %s", _ecp)
+        async def _gen_cpn_step():
+            try:
+                from bot.api_client import api_post
+                gen_result = await asyncio.to_thread(
+                    api_post, "coupons/generate",
+                    {"member_id": m_id, "session_minutes": _cpn_mins}
+                )
+                if gen_result and isinstance(gen_result, dict):
+                    cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                    if cd and cd.get("code"):
+                        d["_cashback_coupon"] = cd["code"]
+                        d["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins)
+            except Exception as _ecp:
+                logger.warning("step_sale_confirm: coupon gen failed: %s", _ecp)
+        asyncio.create_task(_gen_cpn_step())
 
 
     # Build receipt strings before clearing user_data
@@ -1462,6 +1520,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
             for item in food_sold:
                 cp = food_costs.get(item["name"], 0)
+                # Skip stock_out for items already held via Food Cart
+                if item.get("from_cart"):
+                    continue
                 # ── Stock-out: API first ──
                 _stockout_api_ok = False
                 try:
@@ -1489,6 +1550,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 _lazy_update_inv_total_k1()
                 try: _psvibe_get("stock/current?nocache=1")
                 except Exception: pass
+
+
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
             if _promo_id and (_disc or _bonus_mins):
                 _psvibe_post("sheets/promotions-log", {
@@ -1526,6 +1589,14 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await asyncio.to_thread(_do)
         except Exception as _e:
             logging.error("sale_bg_write: %s", _e)
+        # Fulfill held food_cart items after sale write
+        bk_id = _linked_bk_id
+        if bk_id and context.user_data.get("_food_cart_loaded"):
+            try:
+                from bot.api_client import api_post
+                await asyncio.to_thread(api_post, "food-cart/" + bk_id, {})
+            except Exception as fulfil_e:
+                logging.warning("Food cart fulfill failed: %s", fulfil_e)
     asyncio.create_task(_sale_bg())
     # ── Mark linked booking as completed ─────────────────────────────────────
     _linked_bk_id = booking_id
@@ -1627,7 +1698,7 @@ async def launch_session_sale(
     food_prices = await fetch_food_prices_async()
     stock_map: dict = {}
     try:
-        from bot.api_client import _psvibe_get_async
+        from bot import _psvibe_get_async
         inv_data = await _psvibe_get_async("stock/current")
         if inv_data and isinstance(inv_data, dict):
             stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
@@ -1661,6 +1732,24 @@ async def launch_session_sale(
         "from_session":     bool(total_mins > 0 and cid),
         "booking_id":       booking_id,
     })
+
+    if booking_id:
+        try:
+            from bot import _psvibe_get_async
+            cart_resp = await _psvibe_get_async("food-cart/" + booking_id)
+            if cart_resp and cart_resp.get("ok") and cart_resp.get("items"):
+                for ci in cart_resp["items"]:
+                    context.user_data["food_items"].append({
+                        "name": ci["item_name"], "qty": ci["quantity"],
+                        "unit_price": ci["unit_price"],
+                        "subtotal": ci["quantity"] * ci["unit_price"],
+                        "from_cart": True
+                    })
+                context.user_data["_food_cart_loaded"] = True
+        except Exception as ec:
+            logger.warning("launch_session_sale: food_cart load failed: %s", ec)
+
+
 
     if is_guest:
         game_amt = round((total_mins * base_rate * multiplier) / 60)
@@ -1702,19 +1791,21 @@ async def launch_session_sale(
     # ── CashBack Coupon: Auto-generate via MySQL API ──
     if total_mins > 0 and not context.user_data.get("_cashback_coupon"):
         _cpn_mins2 = effective_cost_mins if effective_cost_mins > total_mins else total_mins
-        try:
-            from bot.api_client import api_post
-            gen_result = await asyncio.to_thread(
-                api_post, "coupons/generate",
-                {"member_id": member_id, "session_minutes": _cpn_mins2}
-            )
-            if gen_result and isinstance(gen_result, dict):
-                cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
-                if cd and cd.get("code"):
-                    context.user_data["_cashback_coupon"] = cd["code"]
-                    context.user_data["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins2)
-        except Exception as _ecp:
-            logger.warning("launch_session_sale: coupon gen failed: %s", _ecp)
+        async def _gen_cpn_launch():
+            try:
+                from bot.api_client import api_post
+                gen_result = await asyncio.to_thread(
+                    api_post, "coupons/generate",
+                    {"member_id": member_id, "session_minutes": _cpn_mins2}
+                )
+                if gen_result and isinstance(gen_result, dict):
+                    cd = gen_result.get("coupon") or (gen_result.get("data") or {}).get("coupon")
+                    if cd and cd.get("code"):
+                        context.user_data["_cashback_coupon"] = cd["code"]
+                        context.user_data["_cashback_coupon_mins"] = cd.get("minutes", _cpn_mins2)
+            except Exception as _ecp:
+                logger.warning("launch_session_sale: coupon gen failed: %s", _ecp)
+        asyncio.create_task(_gen_cpn_launch())
 
 
     if wallet_balance >= effective_cost_mins:

@@ -59,6 +59,7 @@ from telegram.ext import (
     ApplicationHandlerStop,
     ContextTypes,
 )
+from telegram.request import HTTPXRequest
 import bot
 from bot.handlers import *  # noqa: F401,F403
 from bot.handlers import error_handler
@@ -93,10 +94,13 @@ def main():
     app = (
         Application.builder()
         .token(os.environ["BOT_TOKEN"])
-        .get_updates_read_timeout(30)
-        .get_updates_write_timeout(30)
-        .get_updates_connect_timeout(30)
-        .get_updates_pool_timeout(30)
+        .request(HTTPXRequest(
+            http_version="2",
+            read_timeout=30,
+            write_timeout=30,
+            connect_timeout=30,
+            pool_timeout=30,
+        ))
         .build()
     )
     app.add_error_handler(error_handler)
@@ -115,6 +119,7 @@ def main():
             CommandHandler("help",       cmd_help),
             # Food Sale (standalone)
             MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_SALE) + r"$"), cmd_food_sale),
+            MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_NOTE) + r"$"), show_console_menu),
             CommandHandler("version",    cmd_version),
             # Sales
             CommandHandler("sales",      cmd_sales_direct),
@@ -328,6 +333,7 @@ def main():
             CommandHandler("help",       cmd_help),
             # Food Sale (standalone)
             MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_SALE) + r"$"), cmd_food_sale),
+            MessageHandler(filters.Regex(r"^" + re.escape(BTN_FOOD_NOTE) + r"$"), show_console_menu),
             CommandHandler("version",    cmd_version),
             # Sales
             CommandHandler("sales",      cmd_sales_direct),

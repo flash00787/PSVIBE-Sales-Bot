@@ -410,9 +410,16 @@ async def api_fetch_wallet_mins_async(member_id: str) -> dict | None:
     return await _api_call_async("GET", f"fetch_wallet_mins/{member_id}")
 
 
-async def api_fetch_members_async() -> dict | None:
-    """Async: Fetch all member records."""
-    return await _api_call_async("GET", "fetch_members")
+async def api_fetch_members_async() -> list | None:
+    """Async: Fetch all member records. Returns list of member ID strings."""
+    result = await _api_call_async("GET", "fetch_members")
+    if result is not None and isinstance(result, list):
+        if result and isinstance(result[0], dict):
+            ids = [m.get("id", "").strip() for m in result if m.get("id")]
+            if ids:
+                return ids
+        return result
+    return result
 
 
 async def api_fetch_member_data_async(member_id: str) -> dict | None:

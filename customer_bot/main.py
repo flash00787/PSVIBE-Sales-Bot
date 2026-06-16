@@ -23,6 +23,7 @@ from telegram.ext import (
     Application, ApplicationBuilder, CommandHandler, ConversationHandler,
     MessageHandler, filters, CallbackQueryHandler,
 )
+from telegram.request import HTTPXRequest
 
 from customer_bot.handlers import (
     cmd_my_coupons,
@@ -244,6 +245,7 @@ def main() -> None:
     app = (
         ApplicationBuilder()
         .token(BOT_TOKEN)
+        .request(HTTPXRequest(http_version="2"))
         .post_init(_post_init)
         .build()
     )

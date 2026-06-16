@@ -1,8 +1,9 @@
-"""PS VIBE Bot — Handlers package (Phase 6 refactor).
+"""PS VIBE Bot — Handlers package
 Domain-split modules for maintainability.
 
 All handler functions are re-exported for backward compatibility.
 """
+from bot import BTN_FOOD_NOTE  # noqa: F401
 # ═══════ Domain handler modules ═══════
 
 from .admin_bookings import *  # noqa: F401,F403

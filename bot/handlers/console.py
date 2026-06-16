@@ -4,7 +4,7 @@
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, BTN_CHANGE_GAME,
     BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
-    BTN_SSD_MANAGE, BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT,
+    BTN_FOOD_NOTE, BTN_SSD_MANAGE, BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT,
     _delete_session_game,
     _psvibe_get, _psvibe_get_async, add_console_game, _psvibe_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
@@ -17,7 +17,7 @@ from bot.api_client import api_fetch_console_status_async
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
-import asyncio, logging, re, json
+import asyncio, logging, re, json, time
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
@@ -156,9 +156,9 @@ async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Console Management submenu — accessible from Main Menu and Admin Panel."""
     kb = [
         [BTN_START_SESSION,  BTN_END_SESSION],
-        [BTN_STATUS_BOARD,   BTN_GAME_LIB_MENU],
+        [BTN_FOOD_NOTE,      BTN_STATUS_BOARD],
         [BTN_CONSOLE_INSTALL, BTN_SSD_MANAGE],
-        [BTN_BACK_MAIN],
+        [BTN_GAME_LIB_MENU,  BTN_BACK_MAIN],
     ]
     await update.message.reply_text(
         "🕹️ *Console Management*\n"
@@ -190,6 +190,46 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_SSD_MANAGE:
         from bot.handlers.ssd_disc import show_ssd_menu
         return await show_ssd_menu(update, context)
+    if choice == BTN_FOOD_NOTE:
+        # Show active console list for food note
+        try:
+            cons = fetch_console_status()
+        except Exception:
+            cons = []
+        active_consoles = [c for c in cons if c.get("id") and c.get("status", "").lower() in ("in use", "active")]
+        if not active_consoles:
+            await update.message.reply_text("❌ Active session ရှိသော Console မရှိပါ။")
+            return await show_console_menu(update, context)
+        msg = "📝 Food Note ထည့်ရန် Console ရွေးပါ:"
+        kb = [[c["id"]] for c in active_consoles]
+        kb.append([BTN_BACK])
+        context.user_data["_food_note_pick"] = True
+        await update.message.reply_text(
+            msg,
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+        )
+        return CONSOLE_MENU
+    # Check if in food note console picker mode
+    if context.user_data.pop("_food_note_pick", False):
+        from bot.handlers.sales import cmd_session_food_order
+        from bot import _psvibe_get_async
+        # Find linked booking_id for this console
+        _bk_id = ""
+        try:
+            _bks = await _psvibe_get_async("bookings") or []
+            if not isinstance(_bks, list):
+                _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
+            for _b in _bks:
+                if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
+                        and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == choice):
+                    _bk_id = str(_b.get("id", ""))
+                    break
+        except Exception as e:
+            logger.error("food_note booking lookup: %s", e)
+        target = {"id": choice, "member": "", "staff": "", "booking_id": _bk_id}
+        logger.warning("food_note_booking: choice=%s _bk_id=%s", choice, _bk_id)
+        return await cmd_session_food_order(update, context, target)
     return await show_console_menu(update, context)
 
 async def prompt_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -227,6 +267,7 @@ async def prompt_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User picked a console to end — find its booking and end it."""
+    _t0 = time.monotonic()
     text = update.message.text.strip()
     if text in (BTN_BACK, BTN_BACK_MAIN):
         return await show_console_menu(update, context)
@@ -254,7 +295,8 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session_staff = target.get("staff", "")
     total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
 
-    ok = await end_booking_async(bk_id) if bk_id else False
+    ok = await end_booking_async(bk_id) if bk_id else True
+    logger.warning("step_t end_booking: %dms", (time.monotonic() - _t0) * 1000)
     if not ok:
         if bk_id:
             await update.message.reply_text(f"❌ Booking ID {bk_id} ရှာမတွေ့ပါ")
@@ -300,8 +342,10 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{ssd_warn}",
         parse_mode="HTML",
     )
+    logger.warning("step_t after_voucher_msg: %dms", (time.monotonic() - _t0) * 1000)
     # Clean up Session game entry for this console
     _delete_session_game(cid)
+    logger.warning("step_t after_delete_game: %dms", (time.monotonic() - _t0) * 1000)
     # Try to find linked booking_id from bookings store
     _linked_bk_id = ""
     try:
@@ -309,13 +353,13 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not isinstance(_bks, list):
             _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
         for _b in _bks:
-            if (_b.get("status") in ("confirmed", "arrived")
-                    and (_b.get("consoleId") or "").strip() == cid):
+            if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
+                    and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == cid):
                 _linked_bk_id = str(_b.get("id", ""))
                 break
     except Exception as e:
-        logger.error("step_end_session: %s", e, exc_info=True)
         pass
+    logger.warning("step_t after_bookings_fetch: %dms", (time.monotonic() - _t0) * 1000)
     # ── CashBack Coupon: Auto-generate via MySQL API ──
     try:
         from bot.api_client import api_post
@@ -337,7 +381,12 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 
     from bot.handlers.sales import launch_session_sale
-    return await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
-                                     booking_id=_linked_bk_id)
+    _t5 = time.monotonic()
+    _pre_ms = (_t5 - _t0) * 1000
+    _ls_result = await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
+                                           booking_id=_linked_bk_id)
+    _total_ms = (time.monotonic() - _t0) * 1000
+    logger.warning("CONSOLE_TIME step_end_session: pre_sale=%dms sale=%dms total=%dms", _pre_ms, _total_ms - _pre_ms, _total_ms)
+    return _ls_result
 
 # Duplicate import removed - already imported at top
