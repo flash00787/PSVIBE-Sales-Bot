@@ -2,7 +2,7 @@ from bot import (
     BTN_BACK_MAIN, BTN_CONFIRM_SAVE, BTN_SI_ADD, BTN_SI_FINISH,
     BTN_SI_SPLIT, MAIN_MENU, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM,
     SI_PAY, SI_PAY_SPLIT, SI_QTY, fetch_food_costs, fetch_food_prices,
-    now_mmt, show_main_menu, stock_in_sh,
+    now_mmt, show_main_menu,
     fetch_food_prices_async,
     fetch_food_costs_async,
 )
@@ -243,7 +243,6 @@ async def step_si_pay_split(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return await _show_si_review(update, context)
 
 async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    from bot.handlers.stock import update_inv_total_k1
     text = update.message.text.strip()
     if text == BTN_BACK_MAIN:
         return await show_si_cart(update, context)
@@ -292,15 +291,11 @@ async def step_si_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         logging.warning("Stock-in API returned success=False: %s", result)
                 except Exception as ex:
                     logging.warning("Stock-in API write failed: %s", ex)
-            # ── GSheet fallback (backward compat) ──
-            stock_in_sh.append_row([today, e["item"], e["qty"], e["cost"], e["total"], payment, "Bot", e["qty"]],
-                value_input_option="USER_ENTERED",
-            )
+            # GSheet fallback removed — API is primary write path
             if not api_ok:
                 logging.info("Stock in saved (GSheet only): %s x%d cost=%d", e["item"], e["qty"], e["cost"])
         grand_total = sum(e["total"] for e in cart)
-        inv_total   = update_inv_total_k1()
-        total_note  = f"\n📊 Inv Value: *{inv_total:,} Ks*" if inv_total else ""
+        total_note  = ""
         lines = [
             f"• *{e['item']}*  ×{e['qty']}  = {e['total']:,} Ks"
             for e in cart

@@ -11,9 +11,9 @@ from bot import (
     fetch_member_data, fetch_member_effective_rate, fetch_member_tier,
     fetch_members, fetch_new_member_defaults, fetch_rank_table_display,
     fetch_rank_thresholds, fetch_staff, fetch_payment_methods, get_bonus_mins, get_receipt_kb,
-    member_sh, next_member_id, next_member_row_no, next_write_row,
+    next_member_id, next_member_row_no,
     now_mmt, rank_emoji, save_receipt_json, show_main_menu, STAFF_NOTIFY_CHAT, step_hdr,
-    today_str, topup_sh, update_member_effective_rate,
+    today_str, update_member_effective_rate,
     fetch_members_async,
     fetch_base_rate_async,
     fetch_member_tier_async,
@@ -566,6 +566,7 @@ async def prompt_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if remaining <= 0:
         d["nm_kpay"] = d["nm_payments"].get("KPay", 0)
         d["nm_cash"] = d["nm_payments"].get("Cash", 0)
+        d["nm_aya"] = d["nm_payments"].get("AYA Pay", 0)
         return await prompt_nm_referral(update, context)
 
     # Filter out already-used payment methods (prevent duplicate selection)
@@ -652,6 +653,7 @@ async def step_nm_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return await prompt_nm_kpay(update, context)
         d["nm_kpay"] = payments.get("KPay", 0)
         d["nm_cash"] = payments.get("Cash", 0)
+        d["nm_aya"] = payments.get("AYA Pay", 0)
         # Show review via referral (old flow: step_nm_kpay showed review → referral → confirm)
         return await prompt_nm_referral(update, context)
 
@@ -795,8 +797,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── Pre-compute (lightweight sync — reserve rows before background) ──
     row_no   = next_member_row_no()
-    cw_row   = next_write_row(member_sh)
-    tl_row   = next_write_row(topup_sh)
+    cw_row   = 0  # was next_write_row(member_sh) — GSheet removed
+    tl_row   = 0  # was next_write_row(topup_sh) — GSheet removed
     nm_staff = d.get("nm_staff", "")
 
     # Balance = mins just added (new member has no prior balance — Phase B)
@@ -809,7 +811,7 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Snapshot all fields before clearing user_data
     nm_id    = d["nm_id"];  nm_name = d["nm_name"]
     nm_amt   = d["nm_amt"]; nm_mins = d["nm_mins"]
-    nm_kpay  = d["nm_kpay"]; nm_cash = d["nm_cash"]
+    nm_kpay  = d["nm_kpay"]; nm_cash = d["nm_cash"]; nm_aya = d.get("nm_aya", 0)
     nm_payments = d.get("nm_payments", {})
     _other_pay_str = _fmt_other_payments(nm_payments)
     nm_email        = d.get("nm_email", "")
@@ -898,30 +900,20 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "amount": nm_amt,
                     "kpay": nm_kpay,
                     "cash": nm_cash,
+                    "aya": nm_aya,
                     "mins_added": nm_mins,
                 })
             except Exception as e:
                 logging.warning("Member API write failed (GSheet fallback OK): %s", e)
-            member_sh.batch_update(batch, value_input_option="USER_ENTERED")
-            # 2. TopUp_Log (cols A–C, E–I, J)
-            # If referral code used, add +30 bonus mins to new member's added_mins
-            _nm_added_mins = nm_mins + (30 if nm_referral_code and nm_referrer_id else 0)
-            # NOTE: api_add_member (members/register) already creates wallet + topup_log entry.
+
+            # 2. TopUp_Log — handled by API (members/register creates wallet + topup_log entry)
             # No separate api_add_topup call here to avoid double-balance bug.
-            topup_sh.batch_update(
-                [{"range": f"A{tl_row}:C{tl_row}",
-                  "values": [[today, nm_id, "New Member"]]},
-                 {"range": f"E{tl_row}:I{tl_row}",
-                  "values": [[nm_amt, nm_kpay, nm_cash, _nm_added_mins, tl_type]]},
-                 {"range": f"J{tl_row}", "values": [[nm_staff]]}],
-                value_input_option="USER_ENTERED",
-            )
+            pass
             # 3. Effective rate (skipped for gift cards)
             if initial_rate > 0:
                 update_member_effective_rate(nm_id, initial_rate)
-            # 4. Referral bonus: +30 mins to referrer via a new TopUp_Log row
+            # 4. Referral bonus: +30 mins to referrer — handled by API
             if nm_referral_code and nm_referrer_id:
-                _ref_tl_row = next_write_row(topup_sh)
                 # ── API write (best-effort) ──
                 try:
                     api_add_topup({
@@ -935,35 +927,8 @@ async def step_nm_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "staff": nm_staff,
                     })
                 except Exception as e:
-                    logging.warning("Referral topup API write failed (GSheet fallback OK): %s", e)
-                topup_sh.batch_update(
-                    [{"range": f"A{_ref_tl_row}:C{_ref_tl_row}",
-                      "values": [[today, nm_referrer_id, "Referral Bonus"]]},
-                     {"range": f"E{_ref_tl_row}:I{_ref_tl_row}",
-                      "values": [[0, 0, 0, 30, "Referral Bonus"]]},
-                     {"range": f"J{_ref_tl_row}", "values": [[nm_staff]]}],
-                    value_input_option="USER_ENTERED",
-                )
-                logging.info("referral_bonus: referrer %s +30 mins via TopUp_Log", nm_referrer_id)
-                # Update referrer Card_Wallet Column H with +30 bonus mins
-                try:
-                    # Read referrer wallet via API instead of sheet scan
-                    ref_data = fetch_member_data(nm_referrer_id)
-                    _ref_prev_bal = ref_data.get("wallet_mins", 0) if isinstance(ref_data, dict) else 0
-                    _ref_prev_i = _ref_prev_bal  # total_bought_mins
-                    # Write back via sheet (API write path handles MySQL sync)
-                    try:
-                        _ref_rows_chk = member_sh.get_all_values()
-                        for _ri, _rr in enumerate(_ref_rows_chk):
-                            if _rr and len(_rr) > 1 and _rr[1].strip() == nm_referrer_id.strip():
-                                member_sh.update_cell(_ri + 1, 8, _ref_prev_bal + 30)
-                                member_sh.update_cell(_ri + 1, 9, _ref_prev_i + 30)
-                                break
-                    except Exception:
-                        pass
-                    logging.info("referral_bonus_wallet: referrer %s %d → %d mins via API", nm_referrer_id, _ref_prev_bal, _ref_prev_bal + 30)
-                except Exception as _rte:
-                    logging.error("referral_bonus_wallet_update: %s", _rte)
+                    logging.warning("Referral topup API write failed: %s", e)
+                logging.info("referral_bonus: referrer %s +30 mins via API", nm_referrer_id)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:
@@ -1119,6 +1084,7 @@ async def _show_tu_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total_mins = d.get("tu_mins", 0)
     kpay       = d.get("tu_kpay", 0)
     cash       = d.get("tu_cash", 0)
+    aya        = d.get("tu_aya", 0)
     tu_amt     = d.get("tu_amt", 0)
     tu_id      = d.get("tu_id", "")
     tu_name    = d.get("tu_name", "")
@@ -1215,10 +1181,11 @@ async def prompt_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if remaining <= 0:
         d["tu_kpay"] = d["tu_payments"].get("KPay", 0)
         d["tu_cash"] = d["tu_payments"].get("Cash", 0)
+        d["tu_aya"] = d["tu_payments"].get("AYA Pay", 0)
         return await _show_tu_review(update, context)
 
     # Filter out already-used payment methods (prevent duplicate selection)
-    used = {m for m, v in d.get("nm_payments", {}).items() if v > 0}
+    used = {m for m, v in d.get("tu_payments", {}).items() if v > 0}
     avail = [m for m in methods if m not in used]
     kb = [[m] for m in avail] if avail else []
     if kb:
@@ -1300,6 +1267,7 @@ async def step_tu_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return await prompt_tu_kpay(update, context)
         d["tu_kpay"] = payments.get("KPay", 0)
         d["tu_cash"] = payments.get("Cash", 0)
+        d["tu_aya"] = payments.get("AYA Pay", 0)
         return await _show_tu_review(update, context)
 
     # Unrecognized input — re-prompt
@@ -1331,7 +1299,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # 0. Capture tier + balance BEFORE write (needed for col C and rate calc)
     current_tier = await fetch_member_tier_async(d["tu_id"])
     prev_bal     = await fetch_balance_mins_async(d["tu_id"])
-    tl_row       = await asyncio.to_thread(next_write_row, topup_sh)
+    tl_row       = 0  # was next_write_row(topup_sh) — GSheet removed
 
     # 1. Balance = previous balance + mins just added (Phase B — no sheet re-read)
     bal_mins = prev_bal + d["tu_mins"]
@@ -1349,7 +1317,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Snapshot all fields before clearing user_data
     tu_id       = d["tu_id"];       tu_amt  = d["tu_amt"]
-    tu_kpay     = d["tu_kpay"];     tu_cash = d["tu_cash"]
+    tu_kpay     = d["tu_kpay"];     tu_cash = d["tu_cash"];     tu_aya = d.get("tu_aya", 0)
     tu_mins     = d["tu_mins"];     tu_name = d.get("tu_name", "")
     tu_name_safe = tu_name.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("]", "\\]").replace("(", "\\(").replace(")", "\\)").replace("`", "\\`")
     tu_base     = d.get("tu_base_mins", 0)
@@ -1382,7 +1350,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "type": "topup", "voucher_id": tu_vid, "date": today,
         "member_id": tu_id, "rank": r_saved, "amount": tu_amt,
         "base_mins": tu_base, "bonus_mins": tu_bonus, "total_mins": tu_mins,
-        "kpay": tu_kpay, "cash": tu_cash, "phone": tu_phone,
+        "kpay": tu_kpay, "cash": tu_cash, "aya": tu_aya, "phone": tu_phone,
         "balance_mins": bal_mins, "prev_balance": prev_bal,
         "balance_change": tu_mins, "balance_after": bal_mins,
     })
@@ -1393,7 +1361,7 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "type": "topup", "voucher_id": tu_vid, "date": today,
         "member_id": tu_id, "rank": r_saved, "amount": tu_amt,
         "base_mins": tu_base, "bonus_mins": tu_bonus, "total_mins": tu_mins,
-        "kpay": tu_kpay, "cash": tu_cash, "phone": tu_phone,
+        "kpay": tu_kpay, "cash": tu_cash, "aya": tu_aya, "phone": tu_phone,
         "balance_mins": bal_mins, "prev_balance": prev_bal,
         "balance_change": tu_mins, "balance_after": bal_mins,
     }
@@ -1419,39 +1387,17 @@ async def step_tu_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "amount": tu_amt,
                     "kpay": tu_kpay,
                     "cash": tu_cash,
+                    "aya": tu_aya,
                     "mins_added": tu_mins,
                     "tier": current_tier,
                 })
             except Exception as e:
                 logging.warning("Topup API write failed (GSheet fallback OK): %s", e)
-            topup_sh.batch_update(
-                [{"range": f"A{tl_row}:C{tl_row}",
-                  "values": [[today, tu_id, current_tier]]},
-                 {"range": f"E{tl_row}:I{tl_row}",
-                  "values": [[tu_amt, tu_kpay, tu_cash, tu_mins, "Top Up"]]}],
-                value_input_option="USER_ENTERED",
-            )
+            # TopUp_Log write handled by API (api_add_topup above)
+            pass
             if new_rate > 0:
                 update_member_effective_rate(tu_id, new_rate)
-            # Update Card_Wallet Column H with new balance
-            try:
-                _tu_rows_chk = member_sh.get_all_values()
-                _found = False
-                for _ti, _tr in enumerate(_tu_rows_chk):
-                    if _tr and len(_tr) > 1 and _tr[1].strip() == tu_id.strip():
-                        # Column H: wallet balance (pre-computed bal_mins)
-                        member_sh.update_cell(_ti + 1, 8, bal_mins)
-                        # Column I: cumulative total bought mins (read from sheet, not API)
-                        _cur_i = int(str(_tr[8]).replace(',', '').strip() or 0) if len(_tr) > 8 else 0
-                        member_sh.update_cell(_ti + 1, 9, _cur_i + tu_mins)
-                        _found = True
-                        break
-                if _found:
-                    logging.info("topup: %s %d → %d mins (sheet updated)", tu_id, prev_bal, bal_mins)
-                else:
-                    logging.warning("topup_wallet_update: member %s not found in Card_Wallet", tu_id)
-            except Exception as _te:
-                logging.error("topup_wallet_update: %s", _te, exc_info=True)
+            # Wallet balance update handled by API (api_add_topup above)
         try:
             await asyncio.to_thread(_do)
         except Exception as _e:

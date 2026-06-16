@@ -42,10 +42,6 @@ from datetime import datetime, timezone, timedelta
 from bot.handlers.notify import _check_low_balance_alert, get_customer_chat_id
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, remove_no_timer_console
 
-def _lazy_update_inv_total_k1():
-    from bot.handlers.stock import update_inv_total_k1 as _f
-    return _f()
-
 def next_voucher() -> str:
     """Generate next sequential voucher number (YYYYMMDD-NNN)."""
     from datetime import datetime
@@ -1040,6 +1036,7 @@ async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d["kpay"] = payments.get("KPay", 0)
         total_paid = sum(payments.values())
         d["cash"] = payments.get("Cash", 0)
+        d["aya"] = payments.get("AYA Pay", 0)
         try:
             return await _show_payment_review(update, context)
         except Exception as e:
@@ -1133,6 +1130,7 @@ async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         d["kpay"] = payments.get("KPay", 0)
         d["cash"] = payments.get("Cash", 0)
+        d["aya"] = payments.get("AYA Pay", 0)
         try:
             return await _show_payment_review(update, context)
         except Exception as e:
@@ -1278,6 +1276,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     kpay  = d.get("kpay", 0)
     cash  = d.get("cash", 0)
+    aya   = d.get("aya", 0)
     today = today_str()
 
     v_no       = d.get("v_no") or next_voucher()
@@ -1372,6 +1371,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "net_total":      net_total,
         "kpay":           kpay,
         "cash":           cash,
+        "aya":            aya,
         "multiplier":     mult,
         "is_guest":       is_guest,
         "prev_balance":   wallet_before,
@@ -1506,18 +1506,8 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 })
                 _sales_api_ok = _result and _result.get("success")
             except Exception as e:
-                logging.warning("Sales API failed, falling back to GSheet: %s", e)
+                logging.warning("Sales API failed: %s", e)
 
-            if not _sales_api_ok:
-                s_row = next_write_row(sales_sh)
-                sales_sh.batch_update(
-                    [{"range": f"A{s_row}:K{s_row}",
-                      "values": [[today, v_no, _m_id, c_id, play_mins,
-                                  game_amt, food_total, _disc, net_total, kpay, cash]]},
-                     {"range": f"N{s_row}", "values": [[_w_deduct if _w_deduct else ""]]},
-                     {"range": f"O{s_row}", "values": [[staff_name]]}],
-                    value_input_option="USER_ENTERED",
-                )
             for item in food_sold:
                 cp = food_costs.get(item["name"], 0)
                 # Skip stock_out for items already held via Food Cart
@@ -1538,19 +1528,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     })
                     _stockout_api_ok = _result and _result.get("success")
                 except Exception as e:
-                    logging.warning("Stock-out API failed, falling back to GSheet: %s", e)
-
-                if not _stockout_api_ok:
-                    stock_sh.append_row(
-                        [today, v_no, item["name"], item["qty"],
-                         item.get("unit_price", 0), item.get("subtotal", 0), cp, cp * item["qty"]],
-                        value_input_option="USER_ENTERED",
-                    )
-            if food_sold:
-                _lazy_update_inv_total_k1()
-                try: _psvibe_get("stock/current?nocache=1")
-                except Exception: pass
-
+                    logging.warning("Stock-out API failed: %s", e)
 
             # ── Promotions_Log: record if a promotion was applied ────────────────────────
             if _promo_id and (_disc or _bonus_mins):
@@ -1581,7 +1559,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         })
                         _wallet_api_ok = _result and _result.get("success")
                     except Exception as _we:
-                        logging.warning("Wallet API failed, falling back to GSheet: %s", _we)
+                        logging.warning("Wallet API failed: %s", _we)
 
                     if not _wallet_api_ok:
                         logging.warning("Wallet API failed for %s: deduct=%d bonus=%d", _m_id, _w_deduct, _bonus_mins)

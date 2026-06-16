@@ -1,6 +1,6 @@
 from bot import (
     BTN_BACK_MAIN, SAL_ADV_AMT, SAL_ADV_CONFIRM, SAL_ADV_PAY,
-    SAL_ADV_STAFF, fetch_staff, get_salary_adv_sh, now_mmt,
+    SAL_ADV_STAFF, fetch_staff, now_mmt,
     show_admin_menu, today_str,
 )
 
@@ -107,10 +107,7 @@ async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYP
     pay_icon  = "💵" if payment == "Cash" else "💙"
 
     try:
-        sh = get_salary_adv_sh()
-        sh.append_row([today_str, staff, amt, payment, ""])
-
-        # ── API write (best-effort) ──
+        # ── API write (primary) ──
         try:
             api_add_salary_advance({
                 "staff_name": staff,

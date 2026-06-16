@@ -39,7 +39,7 @@ category_constants = [
     '    လစာ, ငှားရမ်းခ, မီတာခ, အင်တာနက်,',
     '    ပြုပြင်စရိတ်, ရုံးသုံးစရိတ်, အခြား,',
     ']',
-    'PAY_METHODS = [Cash, KPay, WavePay, Bank Transfer]',
+    'PAY_METHODS = [Cash, KPay, WavePay, AYA Pay]',
     'ASSET_CATEGORIES = [Furniture, Equipment, Electronics, Vehicle, Gaming Console, Other]',
     'PREPAID_CATEGORIES = [Rent, Insurance, Subscription, Software License, Other]',
     'FINANCE_ACCOUNTS = [Cash, KPay, WavePay, CB Bank, AYA Bank, Other]',

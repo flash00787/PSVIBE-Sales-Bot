@@ -184,7 +184,7 @@ def _register_handlers(app: Application) -> None:
 
     # Menu buttons catch-all (handles main menu clicks when not in conversation)
 
-    
+
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu_buttons))
 
     # Bot Commands (shown in chat menu)
@@ -294,4 +294,3 @@ def run() -> None:
 
 if __name__ == "__main__":
     run()
-

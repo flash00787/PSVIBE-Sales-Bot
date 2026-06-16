@@ -20,34 +20,7 @@ import logging, re, json
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 
-def update_inv_total_k1() -> int:
-    """Calculate total inventory value from Inventory!G col and write to K1. Returns total.
-    DEPRECATED: direct gspread write — should use API endpoint when available."""
-    try:
-    # TODO: Migrate to MySQL via API -- direct gspread is fallback only
-        food_prices = fetch_food_prices()
-        food_costs = fetch_food_costs()
-        vals = []
-        if food_prices and isinstance(food_prices, dict):
-            for k, v in food_prices.items():
-                cost = float(str(food_costs.get(k, 0)).replace(",", "")) if food_costs else 0
-                vals.append(str(v * cost))          # col G = Inventory Value, skip header
-        total = 0
-        for v in vals:
-            try:
-                s = str(v).replace(",", "").strip()
-                if s:
-                    total += int(float(s))
-            except (ValueError, TypeError):
-                pass
-        updated_at = now_mmt().strftime("%-m/%-d/%Y %H:%M")
-        inv_sh.update("K1", [[total]], value_input_option="USER_ENTERED")
-        inv_sh.update("L1", [[updated_at]], value_input_option="USER_ENTERED")
-        logging.info("Inv K1 updated: %d at %s", total, updated_at)
-        return total
-    except Exception as e:
-        logging.warning("K1 update failed: %s", e)
-        return 0
+# update_inv_total_k1() removed — GSheet fallback dead code
 
 
 
@@ -235,10 +208,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📋 Ref      : `{ref}`\n"
             f"📅 Date     : {today}"
         )
-        # Update K1 total inventory value
-        inv_total = update_inv_total_k1()
-        if inv_total:
-            msg += f"\n\n📊 Total Inv Value: *{inv_total:,} Ks*"
+        # K1 total inventory value — removed (GSheet dead code)
         # Low stock alert
         inv_data = await _psvibe_get_async("sheets/inventory")
         if inv_data:
