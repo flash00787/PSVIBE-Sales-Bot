@@ -1,2 +1,3 @@
 {"type":"session_end","priority":"medium","message":"⚠️ Console C-02: Occupied 3.0h without booking (Guest)","consoleId":"C-02","hoursElapsed":"3.0","timestamp":"2026-06-14T10:54:15.552Z"}
 {"type":"booking_reminder","priority":"high","message":"📅 Booking #372: Console C-02 starts in 5 min — Member: ?","bookingId":"372","consoleId":"C-02","memberId":"","minsUntil":5,"phone":"09250647478","telegramChatId":"1878333792","timestamp":"2026-06-15T09:55:02.696Z"}
+{"type":"booking_reminder","priority":"high","message":"📅 Booking #370: Console C-09 starts in 5 min — Member: ?","bookingId":"370","consoleId":"C-09","memberId":"","minsUntil":5,"phone":"09402786494","telegramChatId":"7227455935","timestamp":"2026-06-16T03:25:02.721Z"}
