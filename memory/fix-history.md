@@ -17,6 +17,11 @@
 | Reminder shows "Plan: 1 min" after extend | `session_reminder_store.py` | Missing `_SESSION_TOTAL_MINS` dict; `rem_mins` calculated remaining seconds instead of accumulated total | Added `_SESSION_TOTAL_MINS` tracking + cleanup on session end |
 | Stale sessions with no reminder | `session_reminder_store.py`, `fix_reminders.py` | C-06 had `message_thread_id=null`; C-09 had no reminder entry at all | Created `fix_reminders.py` script + manual restore |
 
+### 4. Session Extend — Double /api/ Path → 404
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| Session extend → API 404, duration not updated | `booking_flow.py` L630 | `_do_extend()` called `_psvibe_post_async("/api/bookings/extend-duration", ...)` — path starts with `/api/` but `_api_call_async()` ALREADY prepends `/api/`, causing URL `{base}/api/api/...` = 404 | Changed path to `"bookings/extend-duration"` (without `/api/` prefix) |
+
 ### 3. Cleanup & Security
 | Fix | Details |
 |-----|---------|
@@ -25,10 +30,16 @@
 | Real GSheet fallback code removed | `sales.py` had actual GSheet fallback that interfered with MySQL operations |
 | STOCK_PIN removed from `.env.example` | Production PIN leaked to GitHub-tracked file → replaced with `<set_in_secrets>` placeholder |
 
+### 4. Customer Booking — Slot Availability Date Filter
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| Slot availability always shows "No consoles available" | `psvibe_api_server/app.py` | `GET /api/search-bookings` endpoint had NO `date` parameter — client sends date but API ignores it, SQL returns ALL bookings across ALL dates | Added `date: str = Query("")` to endpoint, dynamic WHERE clause builds `booking_date=%s` filter when date provided; date format normalization for 5 formats
+
 ### Lessons
 - `PAY_METHODS` must be synced in **both** `constants.py` and `apply_fixes.py` — modifying only one causes inconsistency
 - Reminder persistence needs `message_thread_id` at EVERY extend point, not just initial booking
 - `_SESSION_TOTAL_MINS` is required for proper remaining-time display after session extension
+- API endpoint parameters must be checked in ALL 3 places: (1) function signature, (2) SQL WHERE clause, (3) client call — missing any one = silent bug
 
 ---
 

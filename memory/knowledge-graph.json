@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-16T14:08:05Z",
+  "updated": "2026-06-16T15:37:54Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -444,6 +444,12 @@
     },
     {
       "source": "coco-bot",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
       "target": "docker",
       "relation": "uses",
       "weight": 5
@@ -456,25 +462,25 @@
     },
     {
       "source": "coco-bot",
+      "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
       "target": "openclaw",
       "relation": "uses",
       "weight": 5
     },
     {
-      "source": "consolidator",
-      "target": "git-backup",
+      "source": "coco-bot",
+      "target": "ps-vibe",
       "relation": "related_to",
       "weight": 5
     },
     {
       "source": "consolidator",
       "target": "heartbeat-routine",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "consolidator",
-      "target": "knowledge-graph-concept",
       "relation": "related_to",
       "weight": 5
     },
@@ -522,6 +528,12 @@
     },
     {
       "source": "docker",
+      "target": "n8n",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
       "target": "smart-pruning",
       "relation": "related_to",
       "weight": 5
@@ -535,12 +547,6 @@
     {
       "source": "git-backup",
       "target": "phase-3",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "github",
-      "target": "consolidator",
       "relation": "related_to",
       "weight": 5
     },
@@ -780,6 +786,12 @@
     },
     {
       "source": "nova",
+      "target": "caddy",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
       "target": "coco-bot",
       "relation": "owns",
       "weight": 5
@@ -793,6 +805,12 @@
     {
       "source": "nova",
       "target": "mysql",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "nova",
+      "target": "n8n",
       "relation": "uses",
       "weight": 5
     },
@@ -2826,12 +2844,6 @@
     },
     {
       "source": "coco-bot",
-      "target": "caddy",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "coco-bot",
       "target": "claude-sonnet",
       "relation": "uses",
       "weight": 3
@@ -2940,12 +2952,6 @@
     },
     {
       "source": "coco-bot",
-      "target": "n8n",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "coco-bot",
       "target": "nova-bot",
       "relation": "related_to",
       "weight": 3
@@ -2977,12 +2983,6 @@
     {
       "source": "coco-bot",
       "target": "priority-memory",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "coco-bot",
-      "target": "ps-vibe",
       "relation": "related_to",
       "weight": 3
     },
@@ -3145,6 +3145,18 @@
     {
       "source": "consolidator",
       "target": "deploy-process",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "git-backup",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "consolidator",
+      "target": "knowledge-graph-concept",
       "relation": "related_to",
       "weight": 3
     },
@@ -3626,12 +3638,6 @@
       "source": "docker",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "docker",
-      "target": "n8n",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -4237,6 +4243,12 @@
     {
       "source": "github",
       "target": "coding-rules",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "github",
+      "target": "consolidator",
       "relation": "related_to",
       "weight": 3
     },
@@ -5730,12 +5742,6 @@
     },
     {
       "source": "nova",
-      "target": "caddy",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "nova",
       "target": "claude-sonnet",
       "relation": "uses",
       "weight": 3
@@ -5840,12 +5846,6 @@
       "source": "nova",
       "target": "memory-upgrade",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "nova",
-      "target": "n8n",
-      "relation": "uses",
       "weight": 3
     },
     {

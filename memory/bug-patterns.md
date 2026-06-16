@@ -135,3 +135,15 @@
 - **Root cause:** `rem_mins = max(1, int(total_rem_secs / 60))` calculates remaining seconds from end time. When session is extended with only ~1 min left, rem_mins = 1. Missing `_SESSION_TOTAL_MINS` dict to track accumulated session duration.
 - **Fix:** Added `_SESSION_TOTAL_MINS` dict that accumulates total minutes across extensions; display uses accumulated total instead of remaining time
 - **Pattern:** Remaining time != total session time after an extension. Always track both.
+
+## Customer Booking Slot — Date Filter Ignored by API (FIXED — 2026-06-16)
+- Customer Bot slot availability shows "No consoles available" even when consoles are free
+- **Root cause:** `GET /api/search-bookings` endpoint had no `date` query parameter. Client sends `date=2026-06-17` but API ignores it — SQL query returns ALL bookings across all dates → slot logic marks everything unavailable
+- **Fix:** Added `date: str = Query("")` parameter to endpoint; built dynamic WHERE clause with date normalization (supports 5 date formats)
+  ```python
+  sql = "SELECT ... FROM console_booking WHERE 1=1"
+  if date:
+      sql += " AND booking_date=%s"
+      params.append(cleaned_date)
+  ```
+- **Pattern:** When an API endpoint has a `date`/`filter` parameter in the client call but NOT in the server's function signature or SQL query, it becomes a silent no-op — the code works but returns wrong data. Always cross-check: (1) endpoint function parameters, (2) SQL WHERE clause, (3) client call parameters.
