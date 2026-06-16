@@ -1,6 +1,57 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-15 11:30 UTC
+> Last updated: 2026-06-16 05:30 UTC
+
+---
+
+## 🔥🔥 UPDATE (June 16, 2026 - 05:30 UTC) — JUNE 16 IS HERE! FFXVI LIVE + Double Freebie Expiry!
+
+> **Summary:** THE day has arrived! FFXVI is NOW LIVE on PS Plus Extra. Two major freebies expire TODAY. All "other regions" PS Plus Extra games available NOW.
+
+### 🔥🔥 FINAL FANTASY XVI — NOW LIVE ON PS PLUS EXTRA!
+- **FFXVI is NOW AVAILABLE globally** on PS Plus Extra/Premium as of TODAY (June 16)!
+- This is a **$70 flagship PS5 RPG** — completely FREE for Extra/Premium subscribers
+- 50+ hour epic with stunning Eikon battles, deep story, and action combat
+- **💡💡 Lounge Action:** This is THE single best PS Plus Extra addition in months. FFXVI will draw RPG fans to the lounge. Make sure all lounge PS5 consoles have it downloaded and ready to play!
+
+### 🌏 ALL PS Plus Extra June Games AVAILABLE NOW in Myanmar ("Other Regions"):
+Sony's staggered rollout means US/UK/Japan get games on different dates, but **Myanmar (all other regions) gets the FULL lineup TODAY (June 16):**
+
+| Game | Tier | Status | Lounge Value |
+|------|------|--------|-------------|
+| 🔥 **Final Fantasy XVI** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐⭐⭐ — $70 RPG FREE!
+| 🔥 **Sonic X Shadow Generations** | Extra/Premium | ✅ Available | ⭐⭐⭐⭐⭐ — Family-friendly platformer
+| **Kingdom Come: Deliverance** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐⭐ — Medieval RPG, 100+ hours
+| **Life is Strange: Double Exposure** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐⭐ — Narrative adventure
+| **Farming Simulator 25** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐ — Niche casual
+| **Blades of Fire** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐ — New action
+| **Black Desert** | Extra/Premium | ✅ LIVE NOW | ⭐⭐⭐ — MMO
+| 🎸 **Gitaroo Man** | Premium | ✅ LIVE NOW | ⭐⭐⭐ — Cult rhythm classic
+| **Destiny 2: Legacy Collection** | Extra/Premium | ⏰ EXPIRES TODAY | ⭐⭐⭐⭐ — Last chance!
+
+### ⏰⏰ EXPIRING TODAY (June 16) — FINAL FINAL CALL!
+| Deadline | What | Action |
+|----------|------|--------|
+| ⚽ **TODAY** | **EA Sports FC 26 free (LAST DAY)** | World Cup extended freebie — claim on ALL lounge consoles NOW! |
+| 🔴 **TODAY** | **Destiny 2: Legacy Collection (LAST DAY)** | Final Destiny 2 content bundle — claim before gone forever! |
+
+### 📊 What's Already Passed:
+- ❌ Days of Play 2026 — ENDED June 10 (PS Plus 33% off, game deals, avatars — ALL GONE)
+- ❌ Marathon FREE Open Play — ENDED June 9
+- ❌ Resident Evil Requiem 20% off — ENDED June 11
+
+### ⏰ Next Key Deadlines (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 28-29** | FREE Online Multiplayer Weekend | 12 days! Start promoting NOW! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! 15 days left! |
+
+### 💡 Lounge Priority Actions for TODAY (June 16):
+1. **Download FFXVI on ALL lounge PS5 consoles** — it's LIVE on PS Plus Extra!
+2. **Claim EA Sports FC 26 on ALL consoles** — TODAY IS THE ABSOLUTE LAST DAY!
+3. **Claim Destiny 2: Legacy Collection** — LAST DAY!
+4. **Download all new PS Plus Extra games** — Kingdom Come, Life is Strange, Farming Simulator 25, Blades of Fire, Black Desert, Gitaroo Man
+5. **Promote FFXVI on social media** — "$70 AAA RPG — FREE at PS VIBE!"
 
 ---
 
