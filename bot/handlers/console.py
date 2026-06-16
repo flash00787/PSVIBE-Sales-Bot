@@ -393,20 +393,23 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Clean up Session game entry for this console
     _delete_session_game(cid)
     logger.warning("step_t after_delete_game: %dms", (time.monotonic() - _t0) * 1000)
-    # Try to find linked booking_id from bookings store
-    _linked_bk_id = ""
-    try:
-        _bks = await _psvibe_get_async(f"bookings?memberId={mbr}") or []
-        if not isinstance(_bks, list):
-            _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
-        for _b in _bks:
-            if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
-                    and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == cid):
-                _linked_bk_id = str(_b.get("id", ""))
-                break
-    except Exception as e:
-        pass
-    logger.warning("step_t after_bookings_fetch: %dms", (time.monotonic() - _t0) * 1000)
+    # Use booking_id from console status (already found). After end_booking_async above,
+    # the booking status is 'Done' so a second member-based lookup would fail to find it.
+    # Only fall back to member lookup if bk_id was empty.
+    _linked_bk_id = bk_id
+    if not _linked_bk_id:
+        try:
+            _bks = await _psvibe_get_async(f"bookings?memberId={mbr}") or []
+            if not isinstance(_bks, list):
+                _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
+            for _b in _bks:
+                if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
+                        and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == cid):
+                    _linked_bk_id = str(_b.get("id", ""))
+                    break
+        except Exception:
+            pass
+    logger.warning("step_t linked_bk_id=%s food_cart_lookup: %dms", _linked_bk_id, (time.monotonic() - _t0) * 1000)
     # ── CashBack Coupon: Auto-generate via MySQL API ──
     try:
         from bot.api_client import api_post
