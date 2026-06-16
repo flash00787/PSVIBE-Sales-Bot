@@ -140,4 +140,3 @@ async def step_sal_adv_confirm(update: Update, context: ContextTypes.DEFAULT_TYP
     context.user_data.pop("sal_adv_amt", None)
     context.user_data.pop("sal_adv_pay", None)
     return await show_admin_menu(update, context)
-
