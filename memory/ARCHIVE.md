@@ -279,3 +279,11 @@
 *Archived: 2026-06-16 17:37 UTC*
 
 (dedup) ### 🧠 Critical Lessons Archive (continued)
+
+# Archived Memory Entries
+*Archived: 2026-06-16 18:46 UTC*
+
+(dedup) - 22. **PAY_METHODS sync** — must update BOTH `constants.py` AND `apply_fixes.py`
+  (dedup) - 23. **Reminder thread_id** — `message_thread_id` must carry through EVERY extend point
+  (dedup) - 24. **Session total tracking** — `_SESSION_TOTAL_MINS` for proper remaining-time after extend
+  (dedup) - 25. **API date filter** — endpoint signature, SQL WHERE clause, AND client call must all agree; missing any one = silent no-op
