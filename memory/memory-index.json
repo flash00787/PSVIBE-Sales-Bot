@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-16T03:37:29.248082+00:00",
+  "updated": "2026-06-16T04:07:32.634819+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -2094,6 +2094,16 @@
           "path": "memory/2026-06-05.md",
           "line": 389,
           "context": "9. **Booking flow: Date/Time first → then check availability** — UX improvement, prevents console selection before knowing if it's free"
+        }
+      ]
+    },
+    {
+      "topic": "Booking Reminder Disabled",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 7,
+          "context": "- **Booking Reminder Disabled** — Boss said \"Booking reminder က ငါ့ဆီ မပို့လည်းရတယ်\" → OpenClaw smart reminder disabled, VPS cron removed (was failing every 15 min). EOD report / auto backup / auto de"
         }
       ]
     },
@@ -5763,6 +5773,16 @@
       ]
     },
     {
+      "topic": "Food Cart Flow Fixed",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 6,
+          "context": "- **Food Cart Flow Fixed** — Added `POST /api/food-cart` and `GET /api/food-cart/{booking_id}` to `patch_routes.py`. Tested: both endpoints return correct format. Launch_session_sale response parsing "
+        }
+      ]
+    },
+    {
       "topic": "Food Data Path",
       "files": [
         {
@@ -6408,6 +6428,16 @@
       ]
     },
     {
+      "topic": "Heartbeat Polls (03:25–03:37 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 9,
+          "context": "### Heartbeat Polls (03:25–03:37 UTC) - 5 heartbeat polls → all HEARTBEAT_OK"
+        }
+      ]
+    },
+    {
       "topic": "HEARTBEAT.md:",
       "files": [
         {
@@ -6904,6 +6934,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 51,
           "context": "### Key Decisions: - **Max parallel per round:** 5 agents (buffer 3-4 slots for emergency)"
+        }
+      ]
+    },
+    {
+      "topic": "Key Events (continued from above)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 5,
+          "context": "### Key Events (continued from above) - **Food Cart Flow Fixed** — Added `POST /api/food-cart` and `GET /api/food-cart/{booking_id}` to `patch_routes.py`. Tested: both endpoints return correct format."
         }
       ]
     },
@@ -10219,6 +10259,11 @@
           "path": "memory/2026-06-14.md",
           "line": 240,
           "context": "## Services Status All active throughout the day: psvibe-sale-bot, psvibe_customer_bot, psvibe-api, cloudflared-tunnel, Caddy, n8n, MySQL, fail2ban, Health Monitor (~91.6/100)"
+        },
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 16,
+          "context": "### Services Status | Service | Status |"
         },
         {
           "path": "memory/full-audit-2026-06-03.md",
@@ -13764,6 +13809,16 @@
           "path": "memory/2026-06-13.md",
           "line": 164,
           "context": "### 🧠 New Lessons (June 13) 1. **JS `<script>` block fragility:** A single syntax error in any inline `onclick` or template literal within a `<script>` block kills ALL JavaScript in that block. Always"
+        }
+      ]
+    },
+    {
+      "topic": "🧠 Session Memory Flush — 03:41 UTC (10:11 MMT)",
+      "files": [
+        {
+          "path": "memory/2026-06-16.md",
+          "line": 3,
+          "context": "## 🧠 Session Memory Flush — 03:41 UTC (10:11 MMT)"
         }
       ]
     },
