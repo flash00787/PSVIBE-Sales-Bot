@@ -443,6 +443,7 @@
 - All lazy chunks: import from `./index-DDJXoolO.v2.js`
 - Original file: `index-DDJXoolO.js` (overwritten with correct content)
 ## 🎯 Sales Daily Lazy-Load Fix (07:02-07:08 UTC)
+
 ## 🖼️ Data For Game Menu — Poster + Gameplay Project (18:00-19:30 UTC)
 - **33 games**: ✅ Poster (Steam Library 1200x1800 box art) + Gameplay (Steam screenshots)
 - **4 games**: ✅ Poster only (Assassin's Creed Shadows, Astro Bot, INVINCIBLE VS, Spider-Man 2)
@@ -634,6 +635,7 @@
 - **Mitigation:** Staff using "No Timer" (`mins=0`) for recent sessions, so reminders not needed currently
 - **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason
 ## Pre-existing (Warning-level, Not Blocking)
+
 ## Services Status
 
 ## Heartbeats
@@ -675,12 +677,15 @@
 ## Fixes Deployed Today
 - **Root cause (2 layers):**
 ## Investigation: `_remind_loop` Never Fires (Known Pre-existing Bug)
+
 ## Pre-existing (Warning-level, Not Blocking)
+
 ## Services Status
 
 ## Heartbeats
 
 ## Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC)
+
 ## Fix 8: Import Path Error — `cmd_session_food_order` (18:20 UTC)
 - `fetch_members_async = api_fetch_members_async` alias at `__init__.py` line 2555 which returns a list of member dicts, not a list of IDs
 - `cmd_session_food_order` calls `await fetch_members_async()` → gets dicts → passes to `prompt_food_menu` which expects IDs → breaks
@@ -1061,9 +1066,15 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 | fail2ban | ✅ |
 | Health Monitor | ~91/100 ✅ |
 
-### 🧠 Critical Lessons Archive (continued)
 - 17. **`%%Y-%%m` ≠ `mysql.connector` params** — `mysql.connector.execute()` uses `%s` style, not printf `%%`
 - 18. **Depreciation from purchase month (inclusive)** — first month = full month depreciation
 - 19. **Dashboard code is source of truth** — always check `dashboard_routes.py` before other endpoints
 - 20. **`sales_daily.net` includes food** — food revenue baked into `net`; subtract for pure game revenue
 - 21. **Auto-depreciation cron = no LockMonitor** — simple 1-min op, non-peak hours only
+- 22. **PAY_METHODS sync** — must update BOTH `constants.py` AND `apply_fixes.py`
+- 23. **Reminder thread_id** — `message_thread_id` must carry through EVERY extend point
+- 24. **Session total tracking** — `_SESSION_TOTAL_MINS` for proper remaining-time after extend
+- 25. **API date filter** — endpoint signature, SQL WHERE clause, AND client call must all agree; missing any one = silent no-op
+- 26. **Persist in-memory state** — any state that must survive bot restart needs explicit serialization to JSON
+- 27. **In-memory dicts are ephemeral** — always pair with a persistence layer when cross-restart survival is needed
+- 28. **Don't re-lookup bookings by status after ending them** — after `end_booking_async()` changes status to 'Done', a subsequent filter by ('confirmed','arrived','in_use','Active') will exclude the booking you just ended. Use the ID you already had before the status change.

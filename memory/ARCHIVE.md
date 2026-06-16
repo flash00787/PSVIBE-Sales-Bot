@@ -274,3 +274,8 @@
   (dedup) 1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire
   (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing
   (dedup) - `fetch_balance_mins/-` 404 — Empty member_id when checking Guest wallet
+
+# Archived Memory Entries
+*Archived: 2026-06-16 17:37 UTC*
+
+(dedup) ### 🧠 Critical Lessons Archive (continued)

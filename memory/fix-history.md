@@ -8,6 +8,11 @@
 | Bug | File | Root Cause |
 |-----|------|-----------|
 | AYA Pay disappeared after restart/apply_fixes | `bot/constants.py`, `apply_fixes.py` | `PAY_METHODS` had `[Cash, KPay, WavePay]` only — AYA Pay missing from BOTH files |
+
+### 7. _SESSION_TOTAL_MINS Persistence
+| Bug | Files | Root Cause |
+|-----|-------|-----------|
+| Bot restart → extend reminder shows "Plan: 1 min" | `session_reminder_store.py`, `booking_flow.py` | `_SESSION_TOTAL_MINS` dict was in-memory only, never persisted to `session_reminders.json` |
 | **Fix:** Added "AYA Pay" to both `constants.py` PAY_METHODS constant and `apply_fixes.py` injection list |
 
 ### 2. Session Extended Reminder Broken (2 bugs)
@@ -180,3 +185,10 @@
 ### Session Lock Timeout Permanent Fix
 - **Files:** `openclaw.json`, `memory/lock_monitor.py`
 - **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap
+
+## 2026-06-16 — Fix 8: Food Cart Not Loading in Session End Voucher
+- **Bug:** Food note items saved to food_cart table but never loaded in voucher at session end
+- **Root cause:** `step_end_session()` in `console.py` — after `end_booking_async()` changed status to 'Done', the second lookup for `_linked_bk_id` used a status filter ('confirmed','arrived','in_use','Active') that excluded 'Done'. Result: empty booking_id passed to `launch_session_sale()`, food cart never fetched.
+- **Fix:** Use `bk_id` from console_status `booking_id` directly (already found before end_booking). Fallback to member lookup only if `bk_id` was empty.
+- **File:** `bot/handlers/console.py` — `step_end_session()`
+- **Status:** ✅ Deployed + verified syntax OK

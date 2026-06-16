@@ -147,3 +147,18 @@
       params.append(cleaned_date)
   ```
 - **Pattern:** When an API endpoint has a `date`/`filter` parameter in the client call but NOT in the server's function signature or SQL query, it becomes a silent no-op — the code works but returns wrong data. Always cross-check: (1) endpoint function parameters, (2) SQL WHERE clause, (3) client call parameters.
+
+## In-Memory State Lost on Bot Restart (FIXED)
+- `_SESSION_TOTAL_MINS` dict က in-memory-only → bot restart တိုင်း extend အတွက် total mins တန်ဖိုးတွေ ပျောက်သွားပြီး "Plan: 1 min" ပြတယ်
+- **Fix:** `session_reminder_store.py` persist/restore logic ထဲမှာ `total_plan_mins` ကို JSON နဲ့ serialise လုပ်
+- **Lesson:** Any in-memory state that should survive restart must be explicitly persisted to a file. `_SESSION_TOTAL_MINS` is a dict living in the bot process — gone on restart. Pair with `session_reminders.json` (or equivalent) for restart survival.
+
+## Food Cart Lost in Voucher After Session End — booking_id Lookup After Booking Ended (FIXED)
+- Food Note → food_cart table ထဲမှာ items တွေကို booking_id နဲ့ သိမ်းတယ်
+- Session End → `step_end_session()` က console_status ကနေ `bk_id` ကို ရှာတယ် ✅
+- `end_booking_async(bk_id)` → booking status → 'Done' ✅
+- ပြီးမှ `_linked_bk_id` ကို `bookings?memberId={mbr}` API နဲ့ ထပ်ရှာတယ် ❌
+- Filter: status IN ('confirmed','arrived','in_use','Active') — 'Done' က exclude
+- Result: `_linked_bk_id` က empty → `launch_session_sale()` မှာ `booking_id=''` → food cart items က ဘယ်တော့မှ load မလုပ်ခံရဘူး
+- **Fix:** `_linked_bk_id = bk_id` (console_status ကနေရတဲ့ ID ကိုတန်းသုံး) — fallback အနေနဲ့ member lookup ကို bk_id empty မှသာလုပ်မယ်
+- **Lesson:** After ending a booking, never try to find it again by status filter. Use the ID you already had from the pre-end console status lookup.
