@@ -1,7 +1,7 @@
 from bot import (
     BTN_BACK_MAIN, CONSOLE_MENU, CUSTOMER_BOT_TOKEN, MAIN_MENU, MMT,
     N8N_BOOKING_WEBHOOK, N8N_SESSION_WEBHOOK, STAFF_NOTIFY_CHAT,
-    _api_base, _psvibe_get, _psvibe_get_async, _psvibe_patch, _psvibe_patch_async, get_booking_sh, now_mmt,
+    _api_base, _psvibe_get, _psvibe_get_async, _psvibe_patch, _psvibe_patch_async, _psvibe_post_async, get_booking_sh, now_mmt,
     today_str,
 )
 
@@ -103,7 +103,8 @@ async def _remind_loop(
     _SESSION_END_TIMES[key] = end_t               # track current planned end time
     # Persist to disk so it survives bot restart
     _end_dt_iso = (now_mmt() + timedelta(minutes=planned_mins)).isoformat()
-    persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id)
+    persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id,
+                      total_plan_mins=_SESSION_TOTAL_MINS.get(key, planned_mins))
     # Guard: if this console is No Timer, don't run reminders
     if cid in _NO_TIMER_CONSOLES:
         logger.info("_remind_loop: %s is No Timer — exiting immediately", cid)
@@ -625,10 +626,19 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     # Accumulate total plan mins (original + all extends)
     _old_total = _SESSION_TOTAL_MINS.get(_session_key, 0)
     _SESSION_TOTAL_MINS[_session_key] = _old_total + extra_mins
+    # Sync extended duration to DB via API (so console status shows correct timer)
+    try:
+        asyncio.ensure_future(_psvibe_post_async(
+            "bookings/extend-duration",
+            {"console_id": cid, "extra_mins": extra_mins}
+        ))
+    except Exception as e:
+        logger.error("_do_extend: DB sync failed for %s: %s", cid, e)
     # Persist updated end time to disk (rem_mins ≈ remaining minutes)
     _persist_rem_mins = max(1, int(total_rem_secs / 60))
     persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t,
-                      new_end_dt.isoformat(), message_thread_id)
+                      new_end_dt.isoformat(), message_thread_id,
+                      total_plan_mins=_SESSION_TOTAL_MINS[_session_key])
     # Skip timer if original session was No Timer
     if cid in _NO_TIMER_CONSOLES:
         has_remind = False

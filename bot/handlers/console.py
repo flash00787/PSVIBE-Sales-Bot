@@ -47,6 +47,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     _normalized = []
     for _c in api_consoles:
         _st = (_c.get("start_time") or _c.get("startTime") or "")
+        _st_dt = _c.get("start_time_dt") or ""
         if "T" in _st:
             try:
                 from datetime import datetime as _dt
@@ -71,6 +72,8 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             "liveStatus": _c.get("status") or _c.get("liveStatus", "Free"),
             "member": _c.get("current_member") or _c.get("member"),
             "startTime": _st,
+            "startTimeDt": _st_dt,
+            "durationMins": _c.get("duration_mins") or 0,
             "reservedFor": _c.get("reservedFor") or _c.get("reserved_for"),
             "reservedAt": _c.get("reservedAt") or _c.get("reserved_at"),
             "reservedDuration": _c.get("reservedDuration") or _c.get("reserved_duration"),
@@ -107,9 +110,22 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             # Calculate end time
             dur = c.get("reservedDuration") or c.get("durationMins") or 60
             try:
-                sh, sm = map(int, rsv_at.split(":"))
+                # Parse rsv_at which is already AM/PM format
+                rsv_clean = rsv_at.replace(" AM","").replace(" PM","")
+                sh, sm = map(int, rsv_clean.split(":"))
+                is_pm = "PM" in rsv_at
+                if is_pm and sh != 12:
+                    sh += 12
+                elif not is_pm and sh == 12:
+                    sh = 0
                 total_m = sh * 60 + sm + int(dur)
-                end_str = f"{total_m // 60:02d}:{total_m % 60:02d}"
+                end_h = total_m // 60
+                end_m = total_m % 60
+                end_ampm = "AM" if end_h < 12 else "PM"
+                end_h12 = end_h % 12
+                if end_h12 == 0:
+                    end_h12 = 12
+                end_str = f"{end_h12}:{end_m:02d} {end_ampm}"
                 time_range = f"{rsv_at}–{end_str}"
             except Exception as e:
                 logger.error("cmd_console_status: %s", e, exc_info=True)
@@ -118,8 +134,39 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         else:
             icon   = "🔴"
             mbr    = c.get("member") or "Guest"
-            since  = f" since {c['startTime']}" if c.get("startTime") else ""
-            detail = f"Active — {mbr}{since}"
+
+            # ── Timer calculation ──
+            timer_str = ""
+            st_dt = c.get("startTimeDt", "")
+            dur_mins = int(c.get("durationMins") or 0)
+            since = f" since {c['startTime']}" if c.get("startTime") else ""
+            if st_dt:
+                try:
+                    from datetime import datetime as _dt, timezone, timedelta
+                    def _fmt(m: int) -> str:
+                        hh = m // 60
+                        rr = m % 60
+                        if hh > 0 and rr > 0: return f"{hh}h{rr}m"
+                        if hh > 0: return f"{hh}h"
+                        return f"{m}m"
+                    _start = _dt.strptime(st_dt, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone(timedelta(hours=6, minutes=30)))
+                    _now = now_mmt()  # offset-aware
+                    _elapsed = int((_now - _start).total_seconds() // 60)
+                    if dur_mins > 0:
+                        _remaining = max(0, dur_mins - _elapsed)
+                        _end_dt = _start + timedelta(minutes=dur_mins)
+                        _end_str = _end_dt.strftime("%I:%M %p").lstrip("0")
+                        if _elapsed < dur_mins:
+                            timer_str = f"  ⏱ {_fmt(_elapsed)}/{_fmt(dur_mins)} ({_fmt(_remaining)} left · ends {_end_str})"
+                        else:
+                            _over = _elapsed - dur_mins
+                            timer_str = f"  ⏱ {_fmt(_elapsed)}/{_fmt(dur_mins)} (OVER +{_fmt(_over)} · was {_end_str})"
+                    else:
+                        timer_str = f"  ⏱ {_fmt(_elapsed)} elapsed"
+                except Exception as e:
+                    logger.error("cmd_console_status timer: %s", e, exc_info=True)
+
+            detail = f"Active — {mbr}{since}{timer_str}"
 
         # For Active consoles, show current session game only
         game_str = ""

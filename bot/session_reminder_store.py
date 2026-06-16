@@ -71,6 +71,7 @@ def persist_reminder(
     cid: str, chat_id: int, member_id: str,
     planned_mins: int, end_t: str, end_dt_iso: str,
     message_thread_id: int = 0,
+    total_plan_mins: int = 0,
 ) -> None:
     """Save / update a single reminder entry to the JSON store."""
     key = remind_key(cid, chat_id)
@@ -83,6 +84,7 @@ def persist_reminder(
         "end_t":             end_t,
         "end_dt_iso":        end_dt_iso,
         "message_thread_id": message_thread_id,
+        "total_plan_mins":   total_plan_mins,
         "updated_at":        datetime.now(timezone.utc).isoformat(),
     }
     _write_store(store)
@@ -109,6 +111,7 @@ async def restore_reminders_async(app) -> None:
     from bot.handlers.booking_flow import (
         _remind_loop, _REMIND_TASKS, _remind_key,
         _NO_TIMER_CONSOLES, _is_session_active,
+        _SESSION_TOTAL_MINS,
     )
 
     store = _read_store()
@@ -183,6 +186,9 @@ async def restore_reminders_async(app) -> None:
             _remind_loop(bot, chat_id, cid, member_id, planned, end_t, delay, _mtid)
         )
         _REMIND_TASKS[_remind_key(cid, chat_id)] = task
+        # Restore accumulated total plan mins so "Plan: X min" displays correctly
+        _total_plan = entry.get("total_plan_mins", planned)
+        _SESSION_TOTAL_MINS[_remind_key(cid, chat_id)] = _total_plan
         restored += 1
 
     _write_store(store)

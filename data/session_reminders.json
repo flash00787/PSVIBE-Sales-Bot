@@ -1,1 +1,34 @@
-{}
+{
+  "C-02|1003686032747": {
+    "cid": "C-02",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 32,
+    "end_t": "00:35",
+    "end_dt_iso": "2026-06-17T00:36:23.374464+06:30",
+    "message_thread_id": null,
+    "updated_at": "2026-06-16T17:34:23.374645+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 32,
+    "end_t": "00:46",
+    "end_dt_iso": "2026-06-17T00:52:40.032840+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 32,
+    "updated_at": "2026-06-16T17:50:40.032914+00:00"
+  },
+  "C-01|1003686032747": {
+    "cid": "C-01",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 30,
+    "end_t": "00:53",
+    "end_dt_iso": "2026-06-17T00:53:35.647318+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 60,
+    "updated_at": "2026-06-16T17:53:35.647703+00:00"
+  }
+}

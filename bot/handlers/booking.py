@@ -127,10 +127,9 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
             f"🎫 *Booking #{b['id']}*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
-            f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
-            f"🎮 {b['consoleType']}  ⏱️ {b['durationMins']} mins\n"
-            f"🕹️ {b.get('gameName') or '-'}\n"
-            f"🏷️ Console ID: {b.get('console_id') or b.get('consoleId') or '—'}"
+            f"📅 {b['date']}  ⏰ {b['timeSlot']}\n"
+            f"🕹️ Console: {b.get('console_id') or b.get('consoleType') or '—'}  ⏱️ {b['durationMins']} mins\n"
+            f"🎮 Game: {b.get('gameName') or '—'}\n"
         )
         kb = InlineKeyboardMarkup([[
             InlineKeyboardButton("✅ Approve", callback_data=f"bkm:approve:{b['id']}"),
@@ -175,10 +174,9 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
             f"✅ *Booking #{b['id']}*{today_tag}\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
-            f"📅 {b['date']}  🕐 {b['timeSlot']}\n"
-            f"🎮 {console_hint}  ⏱️ {b.get('durationMins', '?')} mins\n"
-            f"🕹️ {b.get('gameName') or '-'}\n"
-            f"🏷️ Console ID: {b.get('console_id') or b.get('consoleId') or '—'}"
+            f"📅 {b['date']}  ⏰ {b['timeSlot']}\n"
+            f"🕹️ Console: {console_hint}  ⏱️ {b.get('durationMins', '?')} mins\n"
+            f"🎮 Game: {b.get('gameName') or '—'}\n"
         )
         kb = InlineKeyboardMarkup([[
                         InlineKeyboardButton("✅ Check In", callback_data=f"bkm:checkin:{b['id']}"),
@@ -279,7 +277,7 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
     return SBK_DATE
 
 async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle phone → then ask booking date."""
+    """Handle phone → then ask booking duration (mins)."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
@@ -297,22 +295,18 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     phone = "—" if text == BTN_SBK_SKIP_PHONE else text
     context.user_data["sbk_phone"] = phone
 
-    # Ask date
-    today    = now_mmt().date()
-    tomorrow = today + timedelta(days=1)
-    d2       = today + timedelta(days=2)
-    def dfmt(d): return d.strftime("%-m/%-d/%Y")
+    # Ask duration (mins) — then game, then confirm
     kb = [
-        [dfmt(today) + " (ယနေ့)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
-        [dfmt(d2)],
-        [BTN_SBK_CUSTOM],
+        ["30", "60", "90"],
+        ["120", "150", "180"],
+        ["240", "300", "360"],
         [BTN_BACK, BTN_CANCEL],
     ]
     await update.message.reply_text(
-        "📅 Booking Date ရွေးပါ:",
+        "⏱️ ကစားမည့် မိနစ် (Duration) ရွေးပါ:",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_TIME
+    return SBK_GAME
 
 async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle date → then ask time slot."""
