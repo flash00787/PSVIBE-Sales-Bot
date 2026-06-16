@@ -23,6 +23,7 @@ from bot.session_reminder_store import persist_reminder, remove_persisted_remind
 _pending_cancel_note: Dict[int, dict] = {}
 _REMIND_TASKS: dict[str, "asyncio.Task[None]"] = {}
 _SESSION_END_TIMES: dict[str, str] = {}
+_SESSION_TOTAL_MINS: dict[str, int] = {}  # accumulated total plan (original + all extends)
 _NO_TIMER_CONSOLES: set[str] = set()  # consoles that should never fire reminders
 
 
@@ -130,14 +131,15 @@ async def _remind_loop(
                 else:
                     _overdue_mins = (fire_count - 2) * 5
                     _warn_line = f"🚨 <b>Session ကျော်လွန်နေပြီ! ({_overdue_mins} မိနစ် ကျော်ပြီ)</b>"
-                # Always read current end time from _SESSION_END_TIMES (updated on extend)
+                # Always read current end time + total plan from shared state (updated on extend)
                 _current_end_t = _SESSION_END_TIMES.get(key, end_t)
+                _current_plan = _SESSION_TOTAL_MINS.get(key, planned_mins)
                 _remind_text = (
                     f"⏰ <b>Session Reminder!</b>\n"
                     f"━━━━━━━━━━━━━━━━━━\n"
                     f"🕹️ Console : <b>{cid}</b>\n"
                     f"👤 Member  : <b>{member_id}</b>\n"
-                    f"⏱️ Planned : <b>{planned_mins} mins</b>\n"
+                    f"⏱️ Plan    : <b>{_current_plan} mins</b>\n"
                     f"🕑 End ~   : <b>{_current_end_t}</b>\n"
                     f"━━━━━━━━━━━━━━━━━━\n"
                     f"{_warn_line}\n"
@@ -618,7 +620,11 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     total_rem_secs = max(0, (new_end_dt - now).total_seconds())
     _cancel_remind(cid, chat_id)   # stop old loop before starting new one
     # Update stored end time immediately so next extend uses correct base
-    _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
+    _session_key = _remind_key(cid, chat_id)
+    _SESSION_END_TIMES[_session_key] = new_end_t
+    # Accumulate total plan mins (original + all extends)
+    _old_total = _SESSION_TOTAL_MINS.get(_session_key, 0)
+    _SESSION_TOTAL_MINS[_session_key] = _old_total + extra_mins
     # Persist updated end time to disk (rem_mins ≈ remaining minutes)
     _persist_rem_mins = max(1, int(total_rem_secs / 60))
     persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t,
