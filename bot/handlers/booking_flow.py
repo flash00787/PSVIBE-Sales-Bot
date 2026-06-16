@@ -555,7 +555,8 @@ async def handle_cancel_note_input(update: Update, context: ContextTypes.DEFAULT
     await _do_cancel_booking(update.message, bk_id, staff, reason)
 
 async def _do_extend(bot, query, cid: str, member_id: str,
-                     chat_id: int, extra_mins: int):
+                     chat_id: int, extra_mins: int,
+                     message_thread_id: int = 0):
     """Shared logic: acknowledge extension and schedule next reminder."""
     now = now_mmt()
     # Use actual session end time as base (not current time / remind time)
@@ -620,7 +621,8 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     _SESSION_END_TIMES[_remind_key(cid, chat_id)] = new_end_t
     # Persist updated end time to disk (rem_mins ≈ remaining minutes)
     _persist_rem_mins = max(1, int(total_rem_secs / 60))
-    persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t, new_end_dt.isoformat(), message_thread_id)
+    persist_reminder(cid, chat_id, member_id, _persist_rem_mins, new_end_t,
+                      new_end_dt.isoformat(), message_thread_id)
     # Skip timer if original session was No Timer
     if cid in _NO_TIMER_CONSOLES:
         has_remind = False
@@ -632,7 +634,7 @@ async def _do_extend(bot, query, cid: str, member_id: str,
         # Bot loop: fire at "5 min before end", then every 5 min
         task = asyncio.create_task(
             _remind_loop(bot, chat_id, cid, member_id,
-                         rem_mins, new_end_t, ext_delay, getattr(getattr(getattr(update, 'callback_query', None), 'message', None), 'message_thread_id', 0))
+                         rem_mins, new_end_t, ext_delay, message_thread_id)
         )
         _REMIND_TASKS[_remind_key(cid, chat_id)] = task
 
@@ -731,7 +733,8 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         _cancel_remind(cid, chat_id)
         return
-    await _do_extend(context.bot, query, cid, member_id, chat_id, extra_mins)
+    _mtid = getattr(getattr(query, 'message', None), 'message_thread_id', 0)
+    await _do_extend(context.bot, query, cid, member_id, chat_id, extra_mins, _mtid)
 
 async def cb_booking_arrive(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Inline button handler for ✅ ရောက်ပြီ / ❌ မရောက်ဘူး on arrive-check messages."""
@@ -856,5 +859,6 @@ async def handle_custom_extend_reply(update: Update, context: ContextTypes.DEFAU
     context.bot_data.pop(f"_extend_pending_{presser_id}", None)
     context.user_data.pop("_extend_pending", None)
 
-    await _do_extend(context.bot, None, cid, member_id, chat_id, extra_mins)
+    _mtid = getattr(getattr(update, 'message', None), 'message_thread_id', 0)
+    await _do_extend(context.bot, None, cid, member_id, chat_id, extra_mins, _mtid)
     raise ApplicationHandlerStop  # done — don't let conv handler see this message
