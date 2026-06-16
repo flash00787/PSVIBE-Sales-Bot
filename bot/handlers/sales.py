@@ -419,7 +419,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             title = "📋 *စာရင်းအချုပ် — Member + Cash Down*"
         else:
-            game_amt  = 0
+            game_amt  = round(d.get("effective_cost_mins", mins) * base_rate / 60)
             net_total = food_total
             wallet_mins       = d.get("wallet_mins")
             effective_cost    = d.get("effective_cost_mins", mins)
@@ -985,23 +985,34 @@ async def _save_food_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
     import asyncio
     items = context.user_data.get("food_items", [])
     booking_id = context.user_data.get("booking_id", "")
+    from bot.handlers.console import show_console_menu
     if not items:
         await update.message.reply_text("No items to save")
         return await show_console_menu(update, context)
     if booking_id:
+        hold_items = []
         for item in items:
             try:
                 await asyncio.to_thread(api_post, "food-cart", {"booking_id": booking_id, "item_name": item["name"], "quantity": item["qty"], "unit_price": item["unit_price"]})
+                hold_items.append({"item_name": item["name"], "quantity": item["qty"], "unit_price": item["unit_price"]})
+                item["from_cart"] = True  # ✅ Mark for release flow
             except Exception as e:
                 from bot import logger
                 logger.error("food-cart save failed: %s", e)
+        # Hold stock for these items
+        if hold_items:
+            try:
+                await asyncio.to_thread(api_post, "food-cart/hold", {"booking_id": str(booking_id), "items": hold_items})
+                context.user_data["_stock_held"] = True
+            except Exception as he:
+                from bot import logger
+                logger.warning("food-cart hold failed: %s", he)
         total = sum(i["subtotal"] for i in items)
         await update.message.reply_text("\u2705 " + str(len(items)) + " items added = " + str(total) + " Ks\nWill be charged at session end", parse_mode="Markdown")
     else:
         await update.message.reply_text("No booking_id - please reorder from Console Menu")
     context.user_data.pop("session_food_order", None)
     context.user_data.pop("food_items", None)
-    from bot.handlers.console import show_console_menu
     return await show_console_menu(update, context)
 
 
@@ -1385,6 +1396,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     payments_data = d.get("payments", {})
     coupon_code = d.get("_cashback_coupon", "")
     coupon_mins = d.get("_cashback_coupon_mins", 0)
+    # ── Save food-cart flags BEFORE clear() so _sale_bg closure can read them ──
+    _food_cart_loaded_flag = d.get("_food_cart_loaded", False)
+    _stock_held_flag = d.get("_stock_held", False)
     context.user_data.clear()
 
     # Round all display amounts to nearest 50 (voucher format --50/--00)
@@ -1567,14 +1581,21 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await asyncio.to_thread(_do)
         except Exception as _e:
             logging.error("sale_bg_write: %s", _e)
-        # Fulfill held food_cart items after sale write
+        # Release held food_cart items: stock-out + release hold
         bk_id = _linked_bk_id
-        if bk_id and context.user_data.get("_food_cart_loaded"):
+        if bk_id and (_food_cart_loaded_flag or _stock_held_flag):
             try:
                 from bot.api_client import api_post
-                await asyncio.to_thread(api_post, "food-cart/" + bk_id, {})
+                held_items = [{"item_name": i["name"], "quantity": i["qty"], "unit_price": i.get("unit_price", 0)} for i in food_sold if i.get("from_cart")]
+                if held_items:
+                    await asyncio.to_thread(api_post, "food-cart/release", {
+                        "booking_id": str(bk_id),
+                        "items": held_items,
+                        "staff_name": staff_name
+                    })
+                    logging.info("Food cart released: booking=%s items=%d", bk_id, len(held_items))
             except Exception as fulfil_e:
-                logging.warning("Food cart fulfill failed: %s", fulfil_e)
+                logging.warning("Food cart release failed: %s", fulfil_e)
     asyncio.create_task(_sale_bg())
     # ── Mark linked booking as completed ─────────────────────────────────────
     _linked_bk_id = booking_id
@@ -1714,7 +1735,7 @@ async def launch_session_sale(
     if booking_id:
         try:
             from bot import _psvibe_get_async
-            cart_resp = await _psvibe_get_async("food-cart/" + booking_id)
+            cart_resp = await _psvibe_get_async(f"food-cart/{booking_id}")
             if cart_resp and cart_resp.get("ok") and cart_resp.get("items"):
                 for ci in cart_resp["items"]:
                     context.user_data["food_items"].append({
@@ -1724,6 +1745,7 @@ async def launch_session_sale(
                         "from_cart": True
                     })
                 context.user_data["_food_cart_loaded"] = True
+                context.user_data["_stock_held"] = True
         except Exception as ec:
             logger.warning("launch_session_sale: food_cart load failed: %s", ec)
 
@@ -1787,8 +1809,9 @@ async def launch_session_sale(
 
 
     if wallet_balance >= effective_cost_mins:
-        # Sufficient — wallet covers it fully
-        context.user_data["game_amt"] = 0
+        # Sufficient — wallet covers it fully, but still record game cash value
+        game_val = round(effective_cost_mins * base_rate / 60)
+        context.user_data["game_amt"] = game_val
         # Show time-adjust step when from_session flag is True AND session data
         # (c_id, mins) is present. Guards against stale flags from prior flows.
         if (context.user_data.get("from_session")

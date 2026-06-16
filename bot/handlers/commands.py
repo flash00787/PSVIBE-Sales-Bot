@@ -11,6 +11,15 @@ from datetime import datetime, timezone, timedelta
 
 
 async def cmd_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # Release any held food cart stock for this session
+    bk_id = context.user_data.get("booking_id", "")
+    if bk_id and context.user_data.get("_stock_held"):
+        try:
+            from bot.api_client import api_post
+            import asyncio
+            asyncio.create_task(asyncio.to_thread(api_post, "food-cart/cancel-release", {"booking_id": str(bk_id)}))
+        except Exception:
+            pass
     await update.message.reply_text(
         "❌ ဖျက်သိမ်းလိုက်ပါပြီ။", reply_markup=ReplyKeyboardRemove()
     )

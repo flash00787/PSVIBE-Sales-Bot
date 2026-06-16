@@ -14,6 +14,7 @@ from bot import (
 )
 
 from bot.api_client import api_fetch_console_status_async
+from bot.handlers.booking_flow import _SESSION_TOTAL_MINS, _remind_key
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
@@ -268,7 +269,7 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if not isinstance(_bks, list):
                 _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
             for _b in _bks:
-                if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
+                if (_b.get("status") in ("arrived", "in_use", "Active")
                         and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == choice):
                     _bk_id = str(_b.get("id", ""))
                     break
@@ -341,6 +342,19 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     mbr     = target.get("member") or "Guest"
     session_staff = target.get("staff", "")
     total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
+    # 🐛 Fix: Check _SESSION_TOTAL_MINS for extended minutes.
+    # calc_duration only returns elapsed wall-clock time from start_t.
+    # If staff extended the session via the extend button, _SESSION_TOTAL_MINS
+    # has the accumulated planned total. Use the max of both values.
+    _ext_chat_id = update.effective_chat.id
+    _ext_key = _remind_key(cid, _ext_chat_id)
+    _planned_total = _SESSION_TOTAL_MINS.get(_ext_key, 0)
+    if _planned_total > total_mins:
+        total_mins = _planned_total
+        # Recompute display format with new total
+        hrs  = total_mins // 60
+        mins_rem = total_mins % 60
+        dur_fmt = f"{hrs}h {mins_rem}m" if hrs > 0 else f"{mins_rem}m"
 
     ok = await end_booking_async(bk_id) if bk_id else True
     logger.warning("step_t end_booking: %dms", (time.monotonic() - _t0) * 1000)
@@ -396,15 +410,15 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Use booking_id from console status (already found). After end_booking_async above,
     # the booking status is 'Done' so a second member-based lookup would fail to find it.
     # Only fall back to member lookup if bk_id was empty.
-    _linked_bk_id = bk_id
+    # Cast to str: API may return int, but food_cart URL building expects string.
+    _linked_bk_id = str(bk_id) if bk_id else ""
     if not _linked_bk_id:
         try:
-            _bks = await _psvibe_get_async(f"bookings?memberId={mbr}") or []
+            _bks = await _psvibe_get_async("bookings?status=Active") or []
             if not isinstance(_bks, list):
                 _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
             for _b in _bks:
-                if (_b.get("status") in ("confirmed", "arrived", "in_use", "Active")
-                        and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == cid):
+                if (_b.get("consoleId") or _b.get("consoleType") or "").strip() == cid:
                     _linked_bk_id = str(_b.get("id", ""))
                     break
         except Exception:

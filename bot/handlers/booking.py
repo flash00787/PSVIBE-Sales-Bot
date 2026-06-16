@@ -1149,7 +1149,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             "console_id": cid,
             "member_id": member_id,
             "game_name": game,
-            "duration_mins": planned_mins if planned_mins > 0 else 60,
+            "duration_mins": planned_mins if planned_mins > 0 else 0,
         }
         result = await _psvibe_post_async("consoles/start-session", payload)
         if not result or not result.get("booking_id"):

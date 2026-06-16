@@ -114,12 +114,16 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("❌ Inventory data ရယူ၍ မရပါ။")
             return await show_stock_menu(update, context)
         items = data.get("items", [])
-        STATUS_EMOJI = {"In Stock": "🟢", "Low Stock": "🟡", "Out of Stock": "🔴", "No Stock": "⚫"}
         lines = ["📦 *Inventory Status*\n━━━━━━━━━━━━━━━━━━"]
         for item in items:
-            em  = STATUS_EMOJI.get(item.get("status", "No Stock"), "⚫")
             name = item.get("name", "?")
-            stock_qty = max(0, item.get("current_stock", 0))
+            stock_qty = max(0, item.get("qty", 0))
+            if stock_qty > 5:
+                em = "🟢"
+            elif stock_qty > 0:
+                em = "🟡"
+            else:
+                em = "🔴"
             lines.append(f"{em} *{name}*: {stock_qty} pcs")
         await update.message.reply_text("\n".join(lines), parse_mode="Markdown")
         return await show_stock_menu(update, context)

@@ -52,7 +52,9 @@ async def prompt_discount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     mult      = d.get("multiplier", 1.0)
     eff_mins  = d.get("effective_cost_mins") or d.get("mins", 0)
 
-    if game_amt == 0:
+    # Wallet session = member card holder with wallet minutes (not guest, not booking_id)
+    is_member_wallet = bool(d.get("wallet_mins"))
+    if is_member_wallet:
         # Wallet session (with or without food) — compute wallet game value
         # If effective_cost_mins is set (session flow), multiplier already baked in
         if d.get("effective_cost_mins"):
@@ -217,7 +219,7 @@ async def step_promo_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         is_member = d.get("m_id", "-").strip() not in ("-", "0 (Guest)")
 
         # Wallet session = member card holder; game cost deducted from wallet mins (no cash)
-        is_wallet_session = is_member and game_amt_val == 0
+        is_wallet_session = is_member and bool(d.get("wallet_mins"))
         eff_mins = d.get("effective_cost_mins") or d.get("mins", 0)
 
         # Member wallet session: game/overall discount -> bonus mins
