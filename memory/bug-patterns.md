@@ -117,3 +117,21 @@
 - **Root cause:** `retained = ti - te - cost_of_sold - member_liab` — no `- total_dep`
 - **Fix:** `retained = ti - te - cost_of_sold - member_liab - total_dep`
 - **Pattern:** Any time accumulated depreciation is added to BS, retained earnings must subtract it too
+
+## AYA Pay Missing After Restart/Apply Fixes (FIXED — 2026-06-16)
+- AYA Pay disappears from payment options after bot restart or `apply_fixes.py` run
+- **Root cause:** `PAY_METHODS` constant exists in BOTH `bot/constants.py` AND `apply_fixes.py`. Modifying only one leaves the other stale. `apply_fixes.py` overwrites constants.py on every run.
+- **Fix:** Add "AYA Pay" to BOTH `bot/constants.py` (L35) AND `apply_fixes.py` PAY_METHODS injection list
+- **Pattern:** Any shared constant/setting that's duplicated across a "source" file and a "fix/override" file — always check both
+
+## Session Extended Reminder: Missing message_thread_id (FIXED — 2026-06-16)
+- Extended sessions lose reminder notifications
+- **Root cause:** `_do_extend()` calls `notify_update()` without passing `message_thread_id`. The reminder store persists `message_thread_id` during initial booking but the extend flow doesn't carry it forward.
+- **Fix:** Add `message_thread_id` parameter through extend call chain (`booking_flow.py` → `console.py` → `sales.py`), use `kwargs.get("message_thread_id")` in `notify_update()`
+- **Pattern:** When a feature has an "initial" flow and an "update/extend" flow, the update flow may drop parameters that the initial flow correctly passes
+
+## Session Reminder: "Plan: 1 min" After Extend (FIXED — 2026-06-16)
+- After session extension, reminder shows wrong remaining time ("Plan: 1 min")
+- **Root cause:** `rem_mins = max(1, int(total_rem_secs / 60))` calculates remaining seconds from end time. When session is extended with only ~1 min left, rem_mins = 1. Missing `_SESSION_TOTAL_MINS` dict to track accumulated session duration.
+- **Fix:** Added `_SESSION_TOTAL_MINS` dict that accumulates total minutes across extensions; display uses accumulated total instead of remaining time
+- **Pattern:** Remaining time != total session time after an extension. Always track both.

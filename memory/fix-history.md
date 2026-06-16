@@ -2,6 +2,36 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-16 — Sale Bot Fixes: AYA Pay, Session Reminders, Cleanup
+
+### 1. AYA Pay Missing from Constants
+| Bug | File | Root Cause |
+|-----|------|-----------|
+| AYA Pay disappeared after restart/apply_fixes | `bot/constants.py`, `apply_fixes.py` | `PAY_METHODS` had `[Cash, KPay, WavePay]` only — AYA Pay missing from BOTH files |
+| **Fix:** Added "AYA Pay" to both `constants.py` PAY_METHODS constant and `apply_fixes.py` injection list |
+
+### 2. Session Extended Reminder Broken (2 bugs)
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| Extended sessions → no reminder | `booking_flow.py`, `console.py` | `_do_extend()` didn't pass `message_thread_id`; `notify_update()` called without thread_id | Added `message_thread_id` through call chain, `notify_update()` → `kwargs.get("message_thread_id")` |
+| Reminder shows "Plan: 1 min" after extend | `session_reminder_store.py` | Missing `_SESSION_TOTAL_MINS` dict; `rem_mins` calculated remaining seconds instead of accumulated total | Added `_SESSION_TOTAL_MINS` tracking + cleanup on session end |
+| Stale sessions with no reminder | `session_reminder_store.py`, `fix_reminders.py` | C-06 had `message_thread_id=null`; C-09 had no reminder entry at all | Created `fix_reminders.py` script + manual restore |
+
+### 3. Cleanup & Security
+| Fix | Details |
+|-----|---------|
+| Stale .bak files (14) cleaned | All `.bak` files left from old auto-fix pipeline removed |
+| Dead GSheet batcher disabled | `input_logger.py` background task running every 5s → made no-op; GSheets fully replaced by MySQL |
+| Real GSheet fallback code removed | `sales.py` had actual GSheet fallback that interfered with MySQL operations |
+| STOCK_PIN removed from `.env.example` | Production PIN leaked to GitHub-tracked file → replaced with `<set_in_secrets>` placeholder |
+
+### Lessons
+- `PAY_METHODS` must be synced in **both** `constants.py` and `apply_fixes.py` — modifying only one causes inconsistency
+- Reminder persistence needs `message_thread_id` at EVERY extend point, not just initial booking
+- `_SESSION_TOTAL_MINS` is required for proper remaining-time display after session extension
+
+---
+
 ## 2026-06-09 — Pending Bookings Fix + Kora Upgrade Integration
 
 ### Bug Fix: Pending Bookings Display
