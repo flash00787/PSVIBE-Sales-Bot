@@ -1,0 +1,476 @@
+{
+    "id": "1516119712411422942",
+    "name": "PS VIBE - PS5 Gaming Lounge",
+    "icon": "3c783bc9174a1507431fc1c44fd3778f",
+    "description": null,
+    "home_header": null,
+    "splash": null,
+    "discovery_splash": null,
+    "features": [
+        "AUTO_MODERATION",
+        "AUDIO_BITRATE_128_KBPS",
+        "GUILD_ONBOARDING",
+        "STAGE_CHANNEL_VIEWERS_50",
+        "COMMUNITY",
+        "INVITE_SPLASH",
+        "ANIMATED_ICON",
+        "GUILD_ONBOARDING_EVER_ENABLED",
+        "NEWS",
+        "GUILD_ONBOARDING_HAS_PROMPTS",
+        "WELCOME_SCREEN_ENABLED",
+        "TIERLESS_BOOSTING",
+        "VIDEO_BITRATE_ENHANCED",
+        "VIDEO_QUALITY_720_60FPS"
+    ],
+    "banner": null,
+    "owner_id": "482472771419504640",
+    "application_id": null,
+    "region": "japan",
+    "afk_channel_id": null,
+    "afk_timeout": 300,
+    "system_channel_id": null,
+    "system_channel_flags": 0,
+    "widget_enabled": false,
+    "widget_channel_id": null,
+    "verification_level": 1,
+    "verification_role_id": null,
+    "roles": [
+        {
+            "id": "1516119712411422942",
+            "name": "@everyone",
+            "description": null,
+            "permissions": "2222085186637377",
+            "position": 0,
+            "color": 0,
+            "colors": {
+                "primary_color": 0,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516122939815100581",
+            "name": "PS VIBE Bot",
+            "description": null,
+            "permissions": "8864258447638527",
+            "position": 1,
+            "color": 0,
+            "colors": {
+                "primary_color": 0,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": true,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "tags": {
+                "bot_id": "1516120408393515081"
+            },
+            "flags": 0
+        },
+        {
+            "id": "1516124886106378302",
+            "name": "Owner",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 16766720,
+            "colors": {
+                "primary_color": 16766720,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516124888040214648",
+            "name": "Admin",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 15158332,
+            "colors": {
+                "primary_color": 15158332,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516124889713606766",
+            "name": "Moderator",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 3447003,
+            "colors": {
+                "primary_color": 3447003,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516124891148193882",
+            "name": "VIP Member",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 10181046,
+            "colors": {
+                "primary_color": 10181046,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516124892779511889",
+            "name": "Member",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 3066993,
+            "colors": {
+                "primary_color": 3066993,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516312366978044006",
+            "name": "FIFA Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 65280,
+            "colors": {
+                "primary_color": 65280,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312368034877451",
+            "name": "Tekken Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 16711680,
+            "colors": {
+                "primary_color": 16711680,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312370069110856",
+            "name": "GTA Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 16737792,
+            "colors": {
+                "primary_color": 16737792,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312371902021772",
+            "name": "CoD Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 8421504,
+            "colors": {
+                "primary_color": 8421504,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312373412237403",
+            "name": "Minecraft Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 43520,
+            "colors": {
+                "primary_color": 43520,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312375110664212",
+            "name": "Valorant Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 16729156,
+            "colors": {
+                "primary_color": 16729156,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312377014882374",
+            "name": "Fortnite Players",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 10181046,
+            "colors": {
+                "primary_color": 10181046,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 1
+        },
+        {
+            "id": "1516312378503856169",
+            "name": "Event Notifications",
+            "description": null,
+            "permissions": "2248473465835073",
+            "position": 1,
+            "color": 16766720,
+            "colors": {
+                "primary_color": 16766720,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516317996233261057",
+            "name": "Server Booster",
+            "description": null,
+            "permissions": "0",
+            "position": 1,
+            "color": 16741370,
+            "colors": {
+                "primary_color": 16741370,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": true,
+            "managed": false,
+            "mentionable": true,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516321126610108518",
+            "name": "Level 2",
+            "description": null,
+            "permissions": "2222085186637377",
+            "position": 1,
+            "color": 65280,
+            "colors": {
+                "primary_color": 65280,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516321128195424276",
+            "name": "Level 5",
+            "description": null,
+            "permissions": "2222085186637377",
+            "position": 1,
+            "color": 3447003,
+            "colors": {
+                "primary_color": 3447003,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516321129785069698",
+            "name": "Level 10",
+            "description": null,
+            "permissions": "2222085186637377",
+            "position": 1,
+            "color": 16766720,
+            "colors": {
+                "primary_color": 16766720,
+                "secondary_color": null,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": false,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "flags": 0
+        },
+        {
+            "id": "1516682125137543381",
+            "name": "Server Booster",
+            "description": null,
+            "permissions": "2222085186637377",
+            "position": 1,
+            "color": 16023551,
+            "colors": {
+                "primary_color": 16023551,
+                "secondary_color": 11816191,
+                "tertiary_color": null
+            },
+            "hoist": false,
+            "managed": true,
+            "mentionable": false,
+            "icon": null,
+            "unicode_emoji": null,
+            "tags": {
+                "premium_subscriber": null
+            },
+            "flags": 0
+        }
+    ],
+    "default_message_notifications": 1,
+    "mfa_level": 0,
+    "explicit_content_filter": 2,
+    "max_presences": null,
+    "max_members": 25000000,
+    "max_stage_video_channel_users": 50,
+    "max_video_channel_users": 25,
+    "vanity_url_code": null,
+    "premium_tier": 1,
+    "premium_subscription_count": 2,
+    "preferred_locale": "en-US",
+    "rules_channel_id": "1516312164477042830",
+    "safety_alerts_channel_id": null,
+    "public_updates_channel_id": "1516124908839501924",
+    "hub_type": null,
+    "premium_progress_bar_enabled": false,
+    "premium_progress_bar_enabled_user_updated_at": null,
+    "latest_onboarding_question_id": "1516331957393297515",
+    "nsfw": false,
+    "nsfw_level": 0,
+    "owner_configured_content_level": 0,
+    "emojis": [
+        {
+            "id": "1516682712373530645",
+            "name": "emoji_1",
+            "roles": [],
+            "require_colons": true,
+            "managed": false,
+            "animated": false,
+            "available": true
+        }
+    ],
+    "stickers": [
+        {
+            "id": "1516683059473420308",
+            "name": "PSV_logo",
+            "tags": "heart",
+            "type": 2,
+            "format_type": 1,
+            "description": "",
+            "asset": "",
+            "available": true,
+            "guild_id": "1516119712411422942"
+        }
+    ],
+    "incidents_data": null,
+    "inventory_settings": null,
+    "official_message_color": null,
+    "theme": null,
+    "embed_enabled": false,
+    "embed_channel_id": null
+}

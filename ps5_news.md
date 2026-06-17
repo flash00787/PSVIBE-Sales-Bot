@@ -1,6 +1,44 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-17 11:30 UTC
+> Last updated: 2026-06-17 17:31 UTC
+
+---
+
+## ⚡ UPDATE (June 17, 2026 - 17:31 UTC) — Amazon Prime Day Incoming + PSN Still Down
+
+> **Summary:** Two new finds since the 11:30 update. Amazon Prime Day confirmed for next week — great chance to stock up lounge gear. PSN partial outage still ongoing (no resolution yet).
+
+### 🛒🛒 Amazon Prime Day 2026 — June 23-26 (4 Days!)
+- Amazon Prime Day 2026 officially runs **June 23 through June 26, 2026** — a 4-day sales event
+- **Early Prime Day deals are ALREADY LIVE** on PS5 games and accessories:
+  - NBA 2K26 spotted **under $20**
+  - PS Portal bundles discounted
+  - Early deals on controllers and accessories from third-party sellers
+- Full deals revealed when Prime Day starts June 23
+- Other retailers (Walmart, Target, Best Buy) typically run competing sales around Prime Day
+- **💡💡 Lounge Action:** Prime Day is one of the best times of year to stock up on:
+  - **DualSense controllers** — always need spares for a lounge!
+  - **PS5 games** at deep discounts — pad the lounge library
+  - **PS Portal bundles** — if considering handheld stations
+  - **External SSDs** for expanded storage
+  - **Gaming headsets** and accessories
+- Mark your calendar for June 23 — check early deals NOW and prepare a wishlist!
+
+### 🎮 EMPULSE — June 24, 2026 (New Find! Not in Tracker!)
+- 6v6 movement-based first-person shooter developed by **1047 Games**
+- Launches in **Early Access** on PS5, Xbox Series X|S, and PC (Steam)
+- **$19.99** price point
+- Core mechanics: wall-running, grapple hooks, "Holojumps," and "P.A.I.N.T. bombs" that alter surfaces for tactical advantage
+- Player-controllable **mechs** spawn on the map with heavy weapons and unique abilities
+- PC demo available now (Steam Next Fest, June 15)
+- **💡 Lounge Note:** Budget-friendly FPS with mechs and high mobility = fast-paced fun for casual lounge sessions. At $19.99, a low-risk add. Check if it has split-screen/local multiplayer for lounge appeal.
+
+### 🔴 PSN Partial Outage — STILL ONGOING (No Resolution Yet)
+- The PSN "gaming and social" disruption that started **June 16 evening** is **still unresolved** as of June 17 PM
+- Users continue reporting difficulty launching games, apps, or network features
+- Sony has stated they are "working to resolve the issue as soon as possible"
+- Multiplayer services reportedly unaffected, but game launching remains problematic for some
+- **💡💡 Lounge Action:** This directly impacts lounge operations — customers may be unable to launch digital games. Keep physical disc backups ready. Monitor status.playstation.com. Proactively inform customers that some digital games may be unavailable and offer disc-based alternatives.
 
 ---
 
@@ -1290,6 +1328,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jun 18 | **The Adventures of Elliot: The Millennium Tales** | Adventure |
 | Jun 19 | **EA Sports UFC 6** | Fighting/Sports |
 | Jun 24 | 🃏 **DELTARUNE Chapter 5** 🆕 | RPG (Free Update!) |
+| Jun 24 | 🔫 **EMPULSE** 🆕 | 6v6 Movement FPS ($19.99 Early Access) |
 | Jun 25 | **Dead or Alive 6: Last Round** | Fighting |
 | Jun TBD | **Go-Go Town!** | Sim/Management |
 | Jun TBD | **S.T.A.L.K.E.R. 2: Cost of Hope** | FPS/Horror |
