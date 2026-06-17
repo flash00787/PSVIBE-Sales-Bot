@@ -1074,3 +1074,36 @@ See `memory/config.md` for details. See `memory/lessons.md` for spawn & lock les
 - 26. **Persist in-memory state** — any state that must survive bot restart needs explicit serialization to JSON
 - 27. **In-memory dicts are ephemeral** — always pair with a persistence layer when cross-restart survival is needed
 - 28. **Don't re-lookup bookings by status after ending them** — after `end_booking_async()` changes status to 'Done', a subsequent filter by ('confirmed','arrived','in_use','Active') will exclude the booking you just ended. Use the ID you already had before the status change.
+
+## 🎮 Discord Bot V3 — June 16, 2026
+
+### 📁 Bot Location
+`/root/psvibe-discord-bot/` — PS VIBE Discord Bot
+
+### ✅ V3 Modules (`/root/psvibe-discord-bot/modules/`)
+| Module | Purpose |
+|--------|--------|
+| `balance.js` | `/balance [query]` + `/my-stats` via live API |
+| `achievements.js` | `/achievements` — 6 badges (newcomer, chatter, booster, etc.) |
+| `daily.js` | `/daily` streak rewards (50-150 XP) |
+| `lfg.js` | `/lfg create|list|join|leave|cancel` — Looking For Game |
+| `automod.js` | Spam/link/word filter + `/automod` Staff commands |
+| `birthday-cron.js` | Auto birthday wishes every hour |
+
+### ✅ Core Updates
+- `deploy-commands.js`: **27 → 35 commands** (8 new)
+- `bot.js`: imports all modules, routes commands, event hooks
+- Auto-mod listener + birthday cron + LFG cleanup all active
+- Syntax-verified, deployed, bot restarted, running clean
+
+### 📊 Full Command List (35)
+🎮 Gaming: /games /slots /promo /rank-tiers /tournament
+💳 Account: /balance /my-stats
+🏆 XP: /rank /leaderboard /daily /achievements
+🍕 Info: /hours /menu
+📅 Booking: /book check /book request
+🎵 Music: /play /skip /stop /queue /nowplaying
+🌟 Community: /suggest /giveaway /vip /report /invite /8ball /dice /set-birthday /lfg
+🔧 Staff: /automod /event /status-set
+🎫 Support: /ticket open /ticket close
+💎 Features: /poll /help

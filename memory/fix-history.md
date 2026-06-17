@@ -192,3 +192,26 @@
 - **Fix:** Use `bk_id` from console_status `booking_id` directly (already found before end_booking). Fallback to member lookup only if `bk_id` was empty.
 - **File:** `bot/handlers/console.py` — `step_end_session()`
 - **Status:** ✅ Deployed + verified syntax OK
+
+## 2026-06-16 — Fix 9: Food Cart Release Flags + Stock Out (19:33 UTC)
+
+### Bug 1: `context.user_data.clear()` kills food-cart release flags
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| Food cart items never released at sale confirm | `bot/handlers/sales.py` L1395-1399 | `step_sale_confirm()` calls `context.user_data.clear()` BEFORE `_sale_bg()` closure reads `_food_cart_loaded` and `_stock_held` flags → release API never fires | Save flags to local vars before `clear()`, use in closure |
+
+### Bug 2: Food cart items skip stock_out entirely
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| `food-cart/release` never called → no stock_out records | `bot/handlers/sales.py` | Items with `from_cart=True` skip `api_add_stock_out()`. The `food-cart/release` API handles stock_out, but Bug 1 prevented it from running | Bug 1 fix ensures release API runs, which records stock_out |
+- **Files:** `bot/handlers/sales.py`
+- **Status:** ✅ Deployed + bot restarted (PID 136936)
+
+## 2026-06-16 — Fix 10: `calc_duration()` Ignores Extended Minutes (20:09 UTC)
+
+### Bug: Session end voucher shows wrong game_amt (missing extended minutes)
+| Bug | File | Root Cause | Fix |
+|-----|------|-----------|-----|
+| Extended minutes not reflected in voucher game_amt | `bot/handlers/console.py` | `step_end_session()` calls `calc_duration(start_t)` which uses wall-clock elapsed time instead of `_SESSION_TOTAL_MINS`. Extended minutes tracked in dict but never read at session end | Modified `step_end_session()` to read `_SESSION_TOTAL_MINS` and use it as session duration when available |
+- **Files:** `bot/handlers/console.py` — `step_end_session()`
+- **Status:** ⚠️ Edit failed on first try, needs manual verification
