@@ -17,7 +17,7 @@
 
 ## 🧹 Stale Lock Cleanup
 ```bash
-bash /home/node/.openclaw/workspace/memory/cleanup_session_locks.sh
+bash /root/.openclaw/workspace/memory/cleanup_session_locks.sh
 ```
 - On session boot (via boot_protocol.py)
 - Every heartbeat
@@ -133,5 +133,5 @@ Agent >3 min with multi-step work → check slots → split into narrow-scope ag
 - Track message_count in heartbeat-state.json
 - Log subagent spawn count and failure rate
 - Review stats every 4th heartbeat
-- Check fallback: `grep -l "fallback\|timed out\|retrying" /home/node/.openclaw/agents/main/sessions/*.jsonl | tail -5`
+- Check fallback: `grep -l "fallback\|timed out\|retrying" /root/.openclaw/agents/main/sessions/*.jsonl | tail -5`
 - >3 fallback events in 4h → report Boss

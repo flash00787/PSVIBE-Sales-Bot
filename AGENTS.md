@@ -22,6 +22,13 @@ Do not manually reread startup files unless:
 2. The provided context is missing something you need
 3. You need a deeper follow-up read beyond the provided startup context
 
+### ⚡ Session Startup: Auto-Run Steps
+At the START of every session, BEFORE replying to user, execute these steps:
+1. **Run boot protocol:** `python3 /root/.openclaw/workspace/memory/boot_protocol.py --no-fail` (check for incomplete tasks — exit code 0 = all clear)
+2. **Load latest context:** Search memory for today's date: `memory_search("$(date -u +%Y-%m-%d)")` 
+3. **Check pending:** Read `memory/active_tasks.json` for in-progress tasks
+4. **Proceed normally** — continue with the user's request
+
 ### 📖 Project Context — Read First Before Starting a Task
 
 When Boss assigns a new task or asks about a project, **if you don't remember the full context**:
