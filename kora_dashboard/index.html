@@ -503,6 +503,52 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* Action buttons for tables */
+    .action-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 2px 6px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+      margin: 0 1px; transition: all 0.2s;
+    }
+    .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .action-btn.success:hover { border-color: var(--green); color: var(--green); }
+    .action-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+    /* Overlay for modals */
+    .overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6); display: flex; align-items: center;
+      justify-content: center; z-index: 2000;
+    }
+    .detail-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; width: 90%; max-width: 600px;
+      max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .detail-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+      font-weight: 700; font-size: 1.1rem;
+    }
+    .close-btn {
+      background: transparent; border: none; color: var(--muted);
+      font-size: 1.25rem; cursor: pointer; padding: 4px 8px;
+    }
+    .close-btn:hover { color: var(--red); }
+    .detail-body { padding: 1.25rem; line-height: 1.8; }
+    .detail-body p { margin-bottom: 0.5rem; }
+    .detail-actions {
+      display: flex; gap: 0.5rem; padding: 0.75rem 1.25rem;
+      border-top: 1px solid var(--border); justify-content: flex-end;
+    }
+    .btn {
+      padding: 0.45rem 1rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); cursor: pointer; font-size: 0.85rem;
+      font-weight: 600; transition: all 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn.success { background: var(--green); color: #000; border-color: var(--green); }
+    .btn.danger { background: var(--red); color: #fff; border-color: var(--red); }
+
     .flex-between { display: flex; justify-content: space-between; align-items: center; }
     .text-muted { color: var(--muted); font-size: 0.75rem; }
     .mt-1 { margin-top: 0.5rem; }
@@ -681,6 +727,7 @@
     <button class="tab-btn" data-tab="users" data-i18n="tab_users">👥 Users</button>
     <button class="tab-btn" data-tab="analytics" data-i18n="tab_analytics">📊 Bot Analytics</button>
     <button class="tab-btn" data-tab="feedback" data-i18n="tab_feedback">⭐ Feedback</button>
+    <button class="tab-btn" data-tab="suggestions" data-i18n="tab_suggestions">💡 Suggestions</button>
   </div>
 
   <div class="container">
@@ -1235,6 +1282,65 @@
       </div>
     </div>
 
+    <!-- ═══ TAB: Suggestions ═══ -->
+    <div class="tab-content" id="tab-suggestions">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshSuggestions()">🔄 Refresh Suggestions</button>
+          <select id="sugStatusFilter" onchange="refreshSuggestions()" style="margin-left:10px;padding:6px 10px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:6px;">
+            <option value="">All Status</option>
+            <option value="pending">⏳ Pending</option>
+            <option value="approved">✅ Approved</option>
+            <option value="rejected">❌ Rejected</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Suggestions Stats -->
+      <div class="stats-grid" id="sugStatsRow">
+        <div class="stat-card">
+          <div class="icon">📊</div>
+          <div class="label">Total Suggestions</div>
+          <div class="value" id="statSugTotal">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">⏳</div>
+          <div class="label">Pending</div>
+          <div class="value" id="statSugPending">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">✅</div>
+          <div class="label">Approved</div>
+          <div class="value" id="statSugApproved">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">❌</div>
+          <div class="label">Rejected</div>
+          <div class="value" id="statSugRejected">—</div>
+        </div>
+      </div>
+
+      <!-- Suggestions Table -->
+      <div class="panel">
+        <div class="panel-header">💡 Suggestions List</div>
+        <div class="panel-body" id="sugListPanel">
+          <div class="empty-state">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Detail Modal -->
+      <div class="overlay" id="sugDetailOverlay" style="display:none;" onclick="closeSugDetail()">
+        <div class="detail-card" style="max-width:600px;" onclick="event.stopPropagation()">
+          <div class="detail-header">
+            <span id="sugDetailTitle">💡 Suggestion #</span>
+            <button class="close-btn" onclick="closeSugDetail()">✕</button>
+          </div>
+          <div class="detail-body" id="sugDetailBody"></div>
+          <div class="detail-actions" id="sugDetailActions"></div>
+        </div>
+      </div>
+    </div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
@@ -1379,6 +1485,14 @@
       fb_distribution: 'Rating Distribution',
       fb_recent: 'Recent Feedback',
       fb_no_feedback: 'No feedback yet',
+      tab_suggestions: '💡 Suggestions',
+      sug_total: 'Total Suggestions',
+      sug_pending: 'Pending',
+      sug_approved: 'Approved',
+      sug_rejected: 'Rejected',
+      sug_approve: '✅ Approve',
+      sug_reject: '❌ Reject',
+      sug_no_suggestions: 'No suggestions yet',
       tab_analytics: '📊 Bot Analytics',
       stat_conversion_rate: 'Booking Conv. Rate',
       stat_tag_dist: 'Tag Distribution',
@@ -1511,6 +1625,14 @@
       fb_distribution: 'အဆင့်သတ်မှတ်ချက်ဖြန့်ကျက်မှု',
       fb_recent: 'မကြာသေးမီ တုံ့ပြန်ချက်များ',
       fb_no_feedback: 'တုံ့ပြန်ချက်မရှိသေးပါ',
+      tab_suggestions: '💡 အကြံပြုချက်များ',
+      sug_total: 'စုစုပေါင်း',
+      sug_pending: 'စောင့်ဆိုင်းဆဲ',
+      sug_approved: 'အတည်ပြုပြီး',
+      sug_rejected: 'ငြင်းပယ်ပြီး',
+      sug_approve: '✅ အတည်ပြုမည်',
+      sug_reject: '❌ ငြင်းပယ်မည်',
+      sug_no_suggestions: 'အကြံပြုချက်မရှိသေးပါ',
       tab_analytics: '📊 Bot အသုံးပြုသူ ခွဲခြမ်းစိတ်ဖြာချက်',
       stat_conversion_rate: 'Booking ပြောင်းလဲနှုန်း',
       stat_tag_dist: 'Tag ခွဲခြားမှု',
@@ -2518,6 +2640,7 @@
     else if (tabName === 'users') refreshUsers();
     else if (tabName === 'feedback') refreshFeedback();
     else if (tabName === 'analytics') refreshBotAnalytics();
+    else if (tabName === 'suggestions') refreshSuggestions();
   }
 
   document.getElementById('tabNav').addEventListener('click', function(e) {
@@ -3021,6 +3144,160 @@
     });
     html += '</tbody></table></div>';
     panel.innerHTML = html;
+  }
+
+  // ═══════════════════════════════════════
+  // SUGGESTIONS TAB
+  // ═══════════════════════════════════════
+  let _currentSuggestionId = null;
+
+  async function refreshSuggestions() {
+    const status = document.getElementById('sugStatusFilter').value;
+    const endpoint = status ? '/api/suggestions?status=' + status : '/api/suggestions';
+    try {
+      const data = await apiCall(endpoint);
+      const suggestions = (data.data && data.data.suggestions) ? data.data.suggestions : (data.suggestions || []);
+
+      // Update stats
+      const pending = suggestions.filter(s => s.status === 'pending').length;
+      const approved = suggestions.filter(s => s.status === 'approved').length;
+      const rejected = suggestions.filter(s => s.status === 'rejected').length;
+      document.getElementById('statSugTotal').textContent = suggestions.length;
+      document.getElementById('statSugPending').textContent = pending;
+      document.getElementById('statSugApproved').textContent = approved;
+      document.getElementById('statSugRejected').textContent = rejected;
+
+      renderSuggestionsList(suggestions);
+    } catch (err) {
+      console.warn('[Suggestions] Fetch failed:', err.message);
+      document.getElementById('sugListPanel').innerHTML = '<div class="empty-state">' + t('error') + '</div>';
+    }
+  }
+
+  function renderSuggestionsList(items) {
+    var panel = document.getElementById('sugListPanel');
+    if (!panel) return;
+    if (!items || items.length === 0) {
+      panel.innerHTML = '<div class="empty-state">' + t('sug_no_suggestions') + '</div>';
+      return;
+    }
+    var html = '<div style="overflow-x:auto;"><table class="dt-table"><thead><tr>';
+    html += '<th>ID</th>';
+    html += '<th>Suggestion</th>';
+    html += '<th>User</th>';
+    html += '<th>Status</th>';
+    html += '<th>Votes</th>';
+    html += '<th>Date</th>';
+    html += '<th>Actions</th>';
+    html += '</tr></thead><tbody>';
+    items.forEach(function(s) {
+      var statusEmoji = s.status === 'approved' ? '✅' : s.status === 'rejected' ? '❌' : '⏳';
+      var statusColor = s.status === 'approved' ? '#22c55e' : s.status === 'rejected' ? '#ef4444' : '#f59e0b';
+      var game = escapeHtml((s.suggestion || s.game || 'No name').substring(0, 60));
+      var user = escapeHtml(s.user || 'Unknown');
+      var ts = (s.timestamp || '').substring(0, 10);
+      html += '<tr>';
+      html += '<td><strong>#' + s.id + '</strong></td>';
+      html += '<td>' + game + '</td>';
+      html += '<td>' + user + '</td>';
+      html += '<td><span style="color:' + statusColor + ';font-weight:bold;">' + statusEmoji + ' ' + s.status + '</span></td>';
+      html += '<td>' + (s.votes || 0) + '</td>';
+      html += '<td>' + ts + '</td>';
+      html += '<td>';
+      html += '<button class="action-btn" onclick="viewSuggestion(' + s.id + ')" title="View">👁️</button>';
+      if (s.status === 'pending') {
+        html += '<button class="action-btn success" onclick="approveSuggestion(' + s.id + ')" title="Approve">✅</button>';
+        html += '<button class="action-btn danger" onclick="showRejectDialog(' + s.id + ')" title="Reject">❌</button>';
+      }
+      html += '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    panel.innerHTML = html;
+  }
+
+  async function viewSuggestion(sugId) {
+    try {
+      const data = await apiCall('/api/suggestions/' + sugId);
+      var s = data.data || data || {};
+      _currentSuggestionId = s.id;
+      var statusEmoji = s.status === 'approved' ? '✅' : s.status === 'rejected' ? '❌' : '⏳';
+
+      document.getElementById('sugDetailTitle').textContent = '💡 Suggestion #' + s.id;
+      var body = '';
+      body += '<p><strong>Suggestion:</strong> ' + escapeHtml(s.suggestion || s.game || 'No name') + '</p>';
+      body += '<p><strong>By:</strong> ' + escapeHtml(s.user || 'Unknown') + '</p>';
+      body += '<p><strong>Status:</strong> ' + statusEmoji + ' ' + (s.status || 'pending') + '</p>';
+      body += '<p><strong>Votes:</strong> ' + (s.votes || 0) + '</p>';
+      if (s.reason) body += '<p><strong>Reason:</strong> ' + escapeHtml(s.reason) + '</p>';
+      if (s.rejectReason) body += '<p><strong>Rejection:</strong> ' + escapeHtml(s.rejectReason) + '</p>';
+      if (s.approvedBy) body += '<p><strong>Approved by:</strong> ' + escapeHtml(s.approvedBy) + '</p>';
+      if (s.rejectedBy) body += '<p><strong>Rejected by:</strong> ' + escapeHtml(s.rejectedBy) + '</p>';
+      body += '<p><strong>Date:</strong> ' + (s.timestamp || 'N/A') + '</p>';
+      document.getElementById('sugDetailBody').innerHTML = body;
+
+      var actions = '';
+      if (s.status === 'pending') {
+        actions += '<button class="btn success" onclick="approveSuggestion(' + s.id + ');closeSugDetail();">' + t('sug_approve') + '</button>';
+        actions += '<button class="btn danger" onclick="showRejectDialog(' + s.id + ');closeSugDetail();">' + t('sug_reject') + '</button>';
+      }
+      actions += '<button class="btn" onclick="closeSugDetail()">Close</button>';
+      document.getElementById('sugDetailActions').innerHTML = actions;
+
+      document.getElementById('sugDetailOverlay').style.display = 'flex';
+    } catch (err) {
+      showToast('❌ Error: ' + err.message, 'error');
+    }
+  }
+
+  function closeSugDetail() {
+    document.getElementById('sugDetailOverlay').style.display = 'none';
+    _currentSuggestionId = null;
+  }
+
+  async function approveSuggestion(sugId) {
+    try {
+      await apiCall('/api/suggestions/' + sugId, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'approved', reviewedBy: getAuthUser() })
+      });
+      showToast('✅ Suggestion #' + sugId + ' approved!', 'success');
+      refreshSuggestions();
+    } catch (err) {
+      showToast('❌ Error: ' + err.message, 'error');
+    }
+  }
+
+  function showRejectDialog(sugId) {
+    var reason = prompt('Enter rejection reason for #' + sugId + ':');
+    if (reason === null) return; // cancelled
+    rejectSuggestion(sugId, reason || 'No reason provided');
+  }
+
+  async function rejectSuggestion(sugId, reason) {
+    try {
+      await apiCall('/api/suggestions/' + sugId, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'rejected', reason: reason, reviewedBy: getAuthUser() })
+      });
+      showToast('❌ Suggestion #' + sugId + ' rejected.', 'success');
+      refreshSuggestions();
+    } catch (err) {
+      showToast('❌ Error: ' + err.message, 'error');
+    }
+  }
+
+  function getAuthUser() {
+    try {
+      var stored = localStorage.getItem(AUTH_USER_KEY);
+      if (stored) {
+        var u = JSON.parse(stored);
+        return u.username || u.sub || 'dashboard';
+      }
+    } catch {}
+    return 'dashboard';
   }
 
   // ═══════════════════════════════════════
