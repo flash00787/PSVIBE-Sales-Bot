@@ -104,3 +104,8 @@ See `HEARTBEAT.md` for full schedule
 - Auto-fix commits may corrupt `\uXXXX` escape sequences in Burmese text
 - The pipeline re-processes the file and can double-escape: `\u1012` → `\\u1012`
 - **Lesson:** For Burmese text in Telegram bots, use direct Unicode string literals (Python handles UTF-8 natively) or simple English text. Never use `\u` escape sequences if you can avoid them.
+
+## 2026-06-17: `COALESCE('', val)` SQL Trap
+**Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get("staffName", "")` → `""` → `COALESCE('', 'Real Name')` returns `''` → wipes existing data.
+**Fix:** Always wrap with `NULLIF`: `COALESCE(NULLIF(%s, ''), staff_name)`.
+**File:** `app.py` line 1335 (PATCH /api/bookings/{id}/status)
