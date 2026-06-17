@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T09:09:18Z",
+  "updated": "2026-06-17T09:38:12Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -274,6 +274,12 @@
     }
   ],
   "edges": [
+    {
+      "source": "boot-protocol",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 5
+    },
     {
       "source": "boss",
       "target": "daily-digest",
@@ -816,6 +822,12 @@
     },
     {
       "source": "openclaw",
+      "target": "boot-protocol",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
       "target": "consolidator",
       "relation": "related_to",
       "weight": 5
@@ -950,6 +962,12 @@
       "source": "ps-vibe",
       "target": "vps",
       "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "python",
+      "target": "boot-protocol",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -1825,12 +1843,6 @@
     {
       "source": "boot-protocol",
       "target": "knowledge-graph-concept",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "boot-protocol",
-      "target": "memory-index",
       "relation": "related_to",
       "weight": 3
     },
@@ -6360,12 +6372,6 @@
     },
     {
       "source": "openclaw",
-      "target": "boot-protocol",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "openclaw",
       "target": "coding-rules",
       "relation": "related_to",
       "weight": 3
@@ -7075,12 +7081,6 @@
     {
       "source": "python",
       "target": "backup-strategy",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "python",
-      "target": "boot-protocol",
       "relation": "related_to",
       "weight": 3
     },

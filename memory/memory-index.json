@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T09:09:18.209526+00:00",
+  "updated": "2026-06-17T09:38:07.787046+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -469,6 +469,26 @@
           "path": "memory/fix-history.md",
           "line": 5,
           "context": "## 2026-06-16 — Sale Bot Fixes: AYA Pay, Session Reminders, Cleanup"
+        }
+      ]
+    },
+    {
+      "topic": "2026-06-17.md duplicate content",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 120,
+          "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
+        }
+      ]
+    },
+    {
+      "topic": "2026-06-17: `COALESCE('', val)` SQL Trap",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 108,
+          "context": "## 2026-06-17: `COALESCE('', val)` SQL Trap **Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get(\"staffName\", \"\")` "
         }
       ]
     },
@@ -1463,8 +1483,13 @@
       ]
     },
     {
-      "topic": "AGENTS.md:",
+      "topic": "AGENTS.md",
       "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 122,
+          "context": "7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search). 8. **memory-index.json** — Rebuilt clean."
+        },
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 30,
@@ -1519,6 +1544,16 @@
           "path": "memory/ARCHIVE.md",
           "line": 127,
           "context": "(dedup) - **All critical path bugs fixed:** (dedup) - ✅ Console normalization (spaces in console IDs)"
+        }
+      ]
+    },
+    {
+      "topic": "ALL CRON Paths Broken (/home/node/ → /root/)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 113,
+          "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
         }
       ]
     },
@@ -3433,6 +3468,16 @@
       ]
     },
     {
+      "topic": "Critical Lesson",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 99,
+          "context": "### Critical Lesson - **`COALESCE('', val)` returns `''` because empty string IS NOT NULL in SQL.** When using COALESCE as \"use this new value, or keep existing if not provided\", always wrap the new v"
+        }
+      ]
+    },
+    {
       "topic": "CRITICAL:",
       "files": [
         {
@@ -3548,6 +3593,16 @@
       ]
     },
     {
+      "topic": "Customer Bot Fix",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 89,
+          "context": "### Customer Bot Fix - Also fixed customer bot to force name entry when member record has empty name:"
+        }
+      ]
+    },
+    {
       "topic": "Customer Bot Food Menu",
       "files": [
         {
@@ -3614,6 +3669,16 @@
           "path": "memory/fix-history.md",
           "line": 67,
           "context": "- **Daily Digest:** Auto-generated for June 9 - **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges)"
+        }
+      ]
+    },
+    {
+      "topic": "daily-git-backup timeout",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 117,
+          "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
         }
       ]
     },
@@ -4781,6 +4846,11 @@
           "context": "- **File:** `/root/psvibe_api_server/patch_routes.py` line 1328"
         },
         {
+          "path": "memory/2026-06-17.md",
+          "line": 93,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
           "path": "memory/ARCHIVE.md",
           "line": 70,
           "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` line 2097 (dedup) - **Status:** ✅ Verified working (600→540 mins deducted)"
@@ -4924,6 +4994,11 @@
           "path": "memory/fix-history.md",
           "line": 193,
           "context": "- **File:** `bot/handlers/console.py` — `step_end_session()` - **Status:** ✅ Deployed + verified syntax OK"
+        },
+        {
+          "path": "memory/lessons.md",
+          "line": 111,
+          "context": "**File:** `app.py` line 1335 (PATCH /api/bookings/{id}/status)"
         },
         {
           "path": "memory/test-report.md",
@@ -6131,6 +6206,11 @@
           "context": "- **Fix:** Always audit response_model classes against actual return shapes. Add all fields that any code path might return. - **Lesson:** FastAPI's response_model is a filter, not just a schema hint."
         },
         {
+          "path": "memory/lessons.md",
+          "line": 110,
+          "context": "**Fix:** Always wrap with `NULLIF`: `COALESCE(NULLIF(%s, ''), staff_name)`. **File:** `app.py` line 1335 (PATCH /api/bookings/{id}/status)"
+        },
+        {
           "path": "memory/test-report.md",
           "line": 20,
           "context": "**Fix:** When a `### ` header appears with no parent `## `, treat it as a top-level section **Code:** `consolidator.py:parse_sections()` — added `else` branch for orphan `### ` headers"
@@ -6174,6 +6254,41 @@
           "path": "memory/2026-06-13.md",
           "line": 47,
           "context": "- **Fixed:** 1. Created `customer_feedback` table (id, tg_id, username, booking_id, rating, comment, console_id, created_at)"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 111,
+          "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 113,
+          "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 117,
+          "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 120,
+          "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
+        }
+      ]
+    },
+    {
+      "topic": "Fixed.",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 115,
+          "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 121,
+          "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
     },
@@ -6229,6 +6344,11 @@
           "path": "memory/2026-06-14.md",
           "line": 296,
           "context": "### Flow: ```"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 64,
+          "context": "- **Flow:** - 1. Customer bot creates booking → POST with `customerName: \"Naing Htet Aung\"` → INSERT stores `staff_name = \"Naing Htet Aung\"` ✅"
         },
         {
           "path": "memory/fix-history.md",
@@ -6583,6 +6703,16 @@
       ]
     },
     {
+      "topic": "Gmail Morning Check — 3 consecutive errors",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 115,
+          "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
+        }
+      ]
+    },
+    {
       "topic": "Goal:",
       "files": [
         {
@@ -6864,6 +6994,16 @@
           "path": "memory/integration-plan.md",
           "line": 95,
           "context": "### Heartbeat Pipeline (runs periodically)"
+        }
+      ]
+    },
+    {
+      "topic": "heartbeat-procedures.md stale paths",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 121,
+          "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
     },
@@ -7723,6 +7863,16 @@
       ]
     },
     {
+      "topic": "Location:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 62,
+          "context": "- **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint - \"staff_name=COALESCE(%s, staff_name), notes=COALESCE(%s, notes)\""
+        }
+      ]
+    },
+    {
       "topic": "Lock Monitor Updates (2026-06-02)",
       "files": [
         {
@@ -7929,6 +8079,36 @@
           "path": "memory/fix-history.md",
           "line": 65,
           "context": "- **Memory Pruner:** 3 exact dupes + 26 similar merged (1.1 KB saved) - **Memory Index:** Rebuilt (1,146 topics, 47 files)"
+        }
+      ]
+    },
+    {
+      "topic": "memory-index.json",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 123,
+          "context": "8. **memory-index.json** — Rebuilt clean. 9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
+        }
+      ]
+    },
+    {
+      "topic": "MEMORY.md backup preserved",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 124,
+          "context": "9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
+        }
+      ]
+    },
+    {
+      "topic": "MEMORY.md Bloat (115 KB → 4 KB)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 111,
+          "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
         }
       ]
     },
@@ -8189,6 +8369,26 @@
           "path": "memory/ARCHIVE.md",
           "line": 274,
           "context": "(dedup) 1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
+        }
+      ]
+    },
+    {
+      "topic": "NAME WIPED!",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 69,
+          "context": "- 5. `COALESCE('', 'Naing Htet Aung')` → `''` 💀 **NAME WIPED!** - 6. Same for `notes`: `COALESCE('', 'Game: FC 26 | Phone: ... | User: ...')` → `'Approved by Osmo'` 💀"
+        }
+      ]
+    },
+    {
+      "topic": "Names Recovered from Server Log",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 75,
+          "context": "### Names Recovered from Server Log - Server log at `/root/psvibe_api_server/server.log` had `logging.warning(\"api_bookings_create: customer_name=%s\", ...)` entries. Cross-referenced log entries with "
         }
       ]
     },
@@ -8758,7 +8958,7 @@
         {
           "path": "memory/2026-06-17.md",
           "line": 58,
-          "context": "- **P&L Game Profit**: Now includes wallet consumption ✅"
+          "context": "- **P&L Game Profit**: Now includes wallet consumption ✅ - Boss reported: Confirmed bookings in Sales Bot don't show customer names. Admin Group notification shows names (like \"Yoon\", \"Naing Htet Aung"
         }
       ]
     },
@@ -8769,6 +8969,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 74,
           "context": "- **P0 (Critical)** — Boss's rules, business decisions, security → Never delete, always in MEMORY.md - **P1 (Important)** — Project updates, significant events → 30 days in MEMORY.md, then archive"
+        }
+      ]
+    },
+    {
+      "topic": "P0 Fixes:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 110,
+          "context": "### P0 Fixes: 1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent contex"
         }
       ]
     },
@@ -8789,6 +8999,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 76,
           "context": "- **P2 (Normal)** — Task completions, routine info → 7 days in daily logs - **P3 (Transient)** — One-time convos, temp info → 24h then prune"
+        }
+      ]
+    },
+    {
+      "topic": "P2 Fixes:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 119,
+          "context": "### P2 Fixes: 5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated."
         }
       ]
     },
@@ -9369,6 +9589,11 @@
           "path": "memory/2026-06-15.md",
           "line": 172,
           "context": "**Problem:** PNL depreciation was `SUM(monthly_dep)` for ALL 39 assets. But 12 assets (Interior Decoration 98.6M, PS5 Console ×8 21.6M, Sofa ×10 14.4M, CCTV, Inverter, Battery, SPC Flooring, etc.) wer"
+        },
+        {
+          "path": "memory/lessons.md",
+          "line": 109,
+          "context": "**Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get(\"staffName\", \"\")` → `\"\"` → `COALESCE('', 'Real Name')` returns"
         }
       ]
     },
@@ -9823,6 +10048,16 @@
       ]
     },
     {
+      "topic": "Restored from Backup:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 126,
+          "context": "### Restored from Backup: - Booking fix section restored to this daily log (was only in MEMORY.md, not in daily log)."
+        }
+      ]
+    },
+    {
       "topic": "Result:",
       "files": [
         {
@@ -10054,6 +10289,16 @@
           "path": "memory/2026-06-14.md",
           "line": 362,
           "context": "- **Root cause (probable):** Import error (Fix 8) prevented `cmd_session_food_order` from running properly. The `session_food_order` flag was never set, so `BTN_DONE` fell through to regular flow (sta"
+        }
+      ]
+    },
+    {
+      "topic": "Root Cause Found — `COALESCE('', name)` Trap",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 61,
+          "context": "### Root Cause Found — `COALESCE('', name)` Trap - **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint"
         }
       ]
     },
@@ -10984,6 +11229,11 @@
           "path": "memory/2026-06-14.md",
           "line": 312,
           "context": "### Services Restarted: - psvibe-api ✅ (food-cart routes)"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 95,
+          "context": "### Services Restarted - `psvibe-api` ✅ (restarted for PATCH fix, list endpoint phone fallback)"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -12459,6 +12709,16 @@
           "path": "memory/finance-audit-2026-06.md",
           "line": 277,
           "context": "### The Dashboard Endpoints Are Correct The `/dashboard/financial/pnl` and `/dashboard/financial/balance-sheet` endpoints have comprehensive implementations that correctly calculate all the above item"
+        }
+      ]
+    },
+    {
+      "topic": "The Fix",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 72,
+          "context": "### The Fix - \"staff_name=COALESCE(NULLIF(%s, ''), staff_name), notes=COALESCE(NULLIF(%s, ''), notes)\""
         }
       ]
     },
@@ -14249,6 +14509,16 @@
           "path": "memory/2026-06-17.md",
           "line": 21,
           "context": "### 🔧 Memory System - Index rebuilt: 1,172 topics"
+        }
+      ]
+    },
+    {
+      "topic": "🔧 Memory System Audit & Repair (09:00+ UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 105,
+          "context": "## 🔧 Memory System Audit & Repair (09:00+ UTC)"
         }
       ]
     },
