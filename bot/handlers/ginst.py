@@ -241,10 +241,10 @@ async def step_ginst_del_game(update: Update, context: ContextTypes.DEFAULT_TYPE
         await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
         return GINST_DEL_GAME
     # Remove from Console_Games + clear Game_Library checkbox
-    ok, gl_ok = await asyncio.gather(
-        remove_console_game_async(cid, target["game_title"]),
-        update_game_library_install_async(target["game_title"], cid, False),
-    )
+    # SEQUENTIAL: update game lib first, THEN delete — avoids race condition
+    # where DELETE finishes first and update_game_library INSERTs a ghost record
+    gl_ok = await update_game_library_install_async(target["game_title"], cid, False)
+    ok = await remove_console_game_async(cid, target["game_title"])
     if ok:
         gl_note = "  📊 Game Library ✅" if gl_ok else "  📊 Game Library ⚠️ (manual update လို)"
         await update.message.reply_text(

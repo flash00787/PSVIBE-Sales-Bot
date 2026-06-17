@@ -8,7 +8,7 @@ from bot import (
     BTN_SBK_WAITLIST, BTN_SKIP_GAME, BTN_SKIP_TIMER, BTN_SSD_TRANSFER,
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
     SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
-    SSD_XFER_SSD, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+    SSD_XFER_SSD, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, VALID_CONSOLES,
     _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
 import asyncio
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, add_no_timer_console, remove_no_timer_console
-from bot.handlers.notify import _notify_customer
+from bot.handlers.notify import _notify_customer, get_customer_chat_id
 
 
 async def _sbk_console_kb() -> list:
@@ -382,7 +382,7 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d2       = today + timedelta(days=2)
         def dfmt(d): return d.strftime("%-m/%-d/%Y")
         kb = [
-            [dfmt(today) + " (ယနော)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
+            [dfmt(today) + " (ယနေ့)", dfmt(tomorrow) + " (မနက်ဖြန်)"],
             [dfmt(d2)],
             [BTN_SBK_CUSTOM],
             [BTN_BACK, BTN_CANCEL],
@@ -408,7 +408,7 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     else:
         await update.message.reply_text(
-            "⚠️ Free console မရှိပါ\nေန့ရက်အသစ်ရွေးပါ:",
+            "⚠️ Free console မရှိပါ\nနေ့ရက်အသစ် ရွေးပါ:",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
         )
     return SBK_CONSOLE
@@ -541,6 +541,22 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text("⏳ Booking ဖန်တီးနေသည်...", reply_markup=ReplyKeyboardRemove())
 
+        # Look up customer's telegram_chat_id from phone (for auto-cancel notifications)
+        tg_chat_id = ""
+        if phone and phone != "—":
+            try:
+                # Resolve phone → member_id → telegram_chat_id
+                from bot.handlers.notify import get_customer_chat_id as _gcci
+                members = await fetch_members_async()
+                for m in (members or []):
+                    if str(m.get("phone", "")).strip() == phone.strip():
+                        mid = m.get("member_id", "")
+                        if mid:
+                            tg_chat_id = await asyncio.to_thread(_gcci, mid) or ""
+                        break
+            except Exception as _e:
+                logger.warning("step_sbk_confirm: tg_chat lookup failed: %s", _e)
+
         payload = {
             "customerName": name,
             "phone":        phone,
@@ -553,6 +569,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "status":       "confirmed",
             "source":       "staff",
             "staffNote":    f"Console: {cid} | Booked by {staff}",
+            "telegramChatId": tg_chat_id,
         }
 
         result = await _psvibe_post_async("bookings", payload)
@@ -581,7 +598,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             bk_id=bk_id, customer_name=name, phone=phone,
             console_id=cid, console_type=ctype,
             date_str=date, time_slot=slot, duration_mins=int(dur),
-            tg_chat="",
+            tg_chat=tg_chat_id,
         ))
 
         # Schedule 10-min advance reminder (non-blocking)
@@ -1214,7 +1231,7 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
         _cancel_remind(cid, _remind_chat_id)   # clear any stale task for this console
         task = asyncio.create_task(
             _remind_loop(context.bot, _remind_chat_id, cid, member_id,
-                         planned_mins, end_t, delay_secs, getattr(update.effective_message, 'message_thread_id', 0) or 125192)
+                         planned_mins, end_t, delay_secs, getattr(update.effective_message, 'message_thread_id', 0) or STAFF_NOTIFY_THREAD)
         )
         _REMIND_TASKS[_remind_key(cid, _remind_chat_id)] = task
         timer_line = f"\n⏰ Timer    : <b>{planned_mins} mins</b> (remind @ {remind_t} — ဆုံးတဲ့အချိန် 5min ကြားတိုင်း repeat)"

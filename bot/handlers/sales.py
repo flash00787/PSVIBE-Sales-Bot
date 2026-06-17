@@ -6,7 +6,7 @@ from bot import (
     BTN_TOPUP_SESSION, BTN_YES, BTN_YES_END_SESSION, CONFIRM_SUMMARY,
     CONSOLE, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION, FOOD_MENU,
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
-    SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, VALID_CONSOLES,
+    SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, VALID_CONSOLES,
           calc_duration, cmd_cancel,
     end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
@@ -1661,7 +1661,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         _cancel_remind(c_id, _rcid)
         _task = asyncio.create_task(
             _remind_loop(context.bot, _rcid, c_id, _m_id_clean,
-                         play_mins, _end_t, _delay)
+                         play_mins, _end_t, _delay, STAFF_NOTIFY_THREAD)
         )
         _REMIND_TASKS[_remind_key(c_id, _rcid)] = _task
 

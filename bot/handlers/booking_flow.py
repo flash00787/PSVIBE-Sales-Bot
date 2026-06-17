@@ -1,6 +1,6 @@
 from bot import (
     BTN_BACK_MAIN, CONSOLE_MENU, CUSTOMER_BOT_TOKEN, MAIN_MENU, MMT,
-    N8N_BOOKING_WEBHOOK, N8N_SESSION_WEBHOOK, STAFF_NOTIFY_CHAT,
+    N8N_BOOKING_WEBHOOK, N8N_SESSION_WEBHOOK, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD,
     _api_base, _psvibe_get, _psvibe_get_async, _psvibe_patch, _psvibe_patch_async, _psvibe_post_async, get_booking_sh, now_mmt,
     today_str,
 )
@@ -16,7 +16,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional
 import asyncio
 import time
-from bot.handlers.notify import _notify_customer
+from bot.handlers.notify import _notify_customer, get_customer_chat_id
 from bot.session_reminder_store import persist_reminder, remove_persisted_reminder
 
 # Module-level state
@@ -157,11 +157,12 @@ async def _remind_loop(
                 _remind_kb = _extend_timer_kb(cid, member_id, _target_chat)
                 await bot.send_message(
                     chat_id=_target_chat,
-                        message_thread_id=message_thread_id or 125192,
+                        message_thread_id=message_thread_id or STAFF_NOTIFY_THREAD,
                     text=_remind_text,
                     parse_mode="HTML",
                     reply_markup=_remind_kb,
                 )
+                logger.info("reminder_sent: %s | fire=%d | to=%d", cid, fire_count, _target_chat)
             except Exception as e:
                 logger.error("_remind_loop: %s", e, exc_info=True)
                 pass
@@ -210,7 +211,7 @@ async def _send_session_reminder(
     try:
         await bot.send_message(
             chat_id=chat_id,
-            message_thread_id=125192,
+            message_thread_id=STAFF_NOTIFY_THREAD,
             text=(
                 f"⏰ <b>Session Reminder!</b>\n"
                 f"━━━━━━━━━━━━━━━━━━\n"

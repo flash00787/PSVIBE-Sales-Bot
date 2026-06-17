@@ -157,7 +157,11 @@ async def _get_user_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 
 async def _get_available_slots(date_str: str) -> list[str]:
-    """Get available time slots for a given date."""
+    """Get available time slots for a given date.
+    
+    Uses time-range OVERLAP detection: a booking at 14:30 (60min) blocks the
+    14:00 AND 15:00 hourly slots because 14:30-15:30 overlaps both windows.
+    """
     try:
         bks = await _api._api_get(f"search-bookings?date={date_str}")
     except Exception:
@@ -165,9 +169,43 @@ async def _get_available_slots(date_str: str) -> list[str]:
     bks = bks if isinstance(bks, list) else []
     if isinstance(bks, dict) and "bookings" in bks:
         bks = bks["bookings"]
-    booked_slots = {b.get("timeSlot", "") for b in bks if b.get("status", "").lower() not in ("cancelled", "done")}
+
+    # Parse active bookings into (start_min, end_min) tuples
+    active_ranges = []
+    for b in bks:
+        if b.get("status", "").lower() in ("cancelled", "done"):
+            continue
+        b_time = b.get("timeSlot", "")
+        if not b_time:
+            continue
+        try:
+            bh, bm = map(int, b_time.split(":"))
+            b_start = bh * 60 + bm
+            b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
+            b_end = b_start + b_dur
+            active_ranges.append((b_start, b_end))
+        except (ValueError, AttributeError):
+            continue
+
     all_slots = [f"{h:02d}:00" for h in range(OPEN_HOUR, CLOSE_HOUR)]
-    available = [s for s in all_slots if s not in booked_slots]
+
+    # Check each hourly slot [slot_start, slot_start+60) for overlap
+    available = []
+    for slot in all_slots:
+        try:
+            sh, sm = map(int, slot.split(":"))
+            slot_start = sh * 60 + sm
+            slot_end = slot_start + 60
+        except (ValueError, AttributeError):
+            available.append(slot)
+            continue
+
+        blocked = any(
+            bk_start < slot_end and bk_end > slot_start
+            for bk_start, bk_end in active_ranges
+        )
+        if not blocked:
+            available.append(slot)
 
     # [FEATURE] Filter past time slots for today (MMT)
     try:
@@ -208,7 +246,12 @@ def _make_specific_console_keyboard(consoles):
 
 
 async def _get_available_consoles(date_str, time_str, duration_mins=60):
-    """Fetch available consoles for a given date/time, filtering out busy ones."""
+    """Fetch available consoles for a given date/time, filtering out busy ones.
+    
+    Two-level filter:
+    1. Console real-time status (skip Active/Reserved consoles)
+    2. Booking time-range overlap detection (skip consoles with conflicting bookings)
+    """
     try:
         consoles_raw = await _api._fetch_consoles()
         bks = await _api._api_get(f"search-bookings?date={date_str}")
@@ -219,6 +262,8 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     bks = bks if isinstance(bks, list) else []
     if isinstance(bks, dict) and "bookings" in bks:
         bks = bks["bookings"]
+
+    # Parse target time range
     try:
         target_h, target_m = map(int, time_str.split(":"))
         target_start = target_h * 60 + target_m
@@ -226,6 +271,8 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     except (ValueError, AttributeError):
         target_start = 0
         target_end = duration_mins
+
+    # Build set of console IDs that have conflicting bookings
     conflicting = set()
     for b in bks:
         b_status = b.get("status", "").lower()
@@ -235,19 +282,25 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
         if not b_console:
             continue
         b_slot = b.get("timeSlot", "")
+        if not b_slot:
+            continue
         try:
             bh, bm = map(int, b_slot.split(":"))
             b_start = bh * 60 + bm
-            b_dur = int(b.get("durationMins", duration_mins))
+            # Use actual booking duration, fallback to 60 (not user's preference)
+            b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
             b_end = b_start + b_dur
+            # Standard overlap: booking_start < target_end AND booking_end > target_start
             if b_start < target_end and b_end > target_start:
                 conflicting.add(b_console)
         except (ValueError, AttributeError):
-            pass
+            continue
+
     available = []
     for console in consoles_raw:
         cid = console.get("id", "")
         cstatus = console.get("status", "").lower()
+        # Skip consoles that are currently occupied or reserved
         if cstatus in ("active", "reserved"):
             continue
         if cid in conflicting:
@@ -987,7 +1040,6 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if OPEN_HOUR <= hour < CLOSE_HOUR:
                 context.user_data["bk_time"] = text
                 _push_state(context, BK_TIME)
-                date_str = context.user_data.get("bk_date", "")
                 await update.message.reply_text(
                     f"⏰ အချိန်: *{text}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
                     parse_mode="Markdown",
@@ -995,15 +1047,56 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
                 return BK_CONSOLE
 
-        # Check custom time HH:MM
+        # Check custom time HH:MM — validate availability before accepting
         m = re.match(r'^(\d{1,2}):(\d{2})$', text)
         if m:
             hour, minute = int(m.group(1)), int(m.group(2))
             if OPEN_HOUR <= hour < CLOSE_HOUR and 0 <= minute <= 59:
                 time_str = f"{hour:02d}:{minute:02d}"
+                
+                # Validate custom time against existing bookings
+                date_str = context.user_data.get("bk_date", "")
+                if date_str:
+                    try:
+                        bks = await _api._api_get(f"search-bookings?date={date_str}")
+                        bks = bks if isinstance(bks, list) else []
+                        if isinstance(bks, dict) and "bookings" in bks:
+                            bks = bks["bookings"]
+                        dur = context.user_data.get("bk_duration_mins", 60)
+                        req_start = hour * 60 + minute
+                        req_end = req_start + dur
+                        blocked = False
+                        for b in bks:
+                            if b.get("status", "").lower() in ("cancelled", "done"):
+                                continue
+                            b_slot = b.get("timeSlot", "")
+                            if not b_slot:
+                                continue
+                            try:
+                                bh, bm = map(int, b_slot.split(":"))
+                                b_start = bh * 60 + bm
+                                b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
+                                b_end = b_start + b_dur
+                                if b_start < req_end and b_end > req_start:
+                                    blocked = True
+                                    break
+                            except (ValueError, AttributeError):
+                                continue
+                        if blocked:
+                            free_slots = await _get_available_slots(date_str)
+                            slot_list = ", ".join(free_slots[:6]) if free_slots else "မရှိပါ"
+                            await update.message.reply_text(
+                                f"⚠️ *{time_str}* အချိန်တွင် booking ရှိပြီးသားပါ။\n\n"
+                                f"ရနိုင်သော slot များ: {slot_list}\n"
+                                f"အခြားအချိန်ရွေးပါ သို့မဟုတ် HH:MM ထပ်ရိုက်ပါ:",
+                                parse_mode="Markdown",
+                            )
+                            return BK_TIME
+                    except Exception:
+                        pass  # If validation fails, allow proceeding (API will catch)
+                
                 context.user_data["bk_time"] = time_str
                 _push_state(context, BK_TIME)
-                date_str = context.user_data.get("bk_date", "")
                 await update.message.reply_text(
                     f"⏰ Custom Time: *{time_str}*\n\n🎮 Console အမျိုးအစား ရွေးပါ:",
                     parse_mode="Markdown",
@@ -1557,14 +1650,38 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             date_str = context.user_data.get("bk_date", "")
             time_str = context.user_data.get("bk_time", "")
 
-            # Check for duplicate booking
+            # Check for duplicate booking (time-range overlap, not exact match)
             try:
                 existing = await _api._api_get(
                     f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
-                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
-                dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done")]
+                
+                # Time-range overlap check
+                dur = context.user_data.get("bk_duration_mins", 60)
+                try:
+                    th, tm = map(int, time_str.split(":"))
+                    req_start = th * 60 + tm
+                    req_end = req_start + dur
+                except (ValueError, AttributeError):
+                    req_start = req_end = 0
+                
+                dupes = []
+                for b in existing_active:
+                    b_slot = b.get("timeSlot", "")
+                    if not b_slot:
+                        continue
+                    try:
+                        bh, bm = map(int, b_slot.split(":"))
+                        b_start = bh * 60 + bm
+                        b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
+                        b_end = b_start + b_dur
+                        if b_start < req_end and b_end > req_start:
+                            dupes.append(b)
+                    except (ValueError, AttributeError):
+                        continue
+                
                 if dupes:
                     await update.message.reply_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"
@@ -1604,13 +1721,37 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             date_str = context.user_data.get("bk_date", "")
             time_str = context.user_data.get("bk_time", "")
 
+            # Check for duplicate booking (time-range overlap, not exact match)
             try:
                 existing = await _api._api_get(
                     f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
-                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled",)]
-                dupes = [b for b in existing_active if b.get("timeSlot") == time_str]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done")]
+                
+                dur = context.user_data.get("bk_duration_mins", 60)
+                try:
+                    th, tm = map(int, time_str.split(":"))
+                    req_start = th * 60 + tm
+                    req_end = req_start + dur
+                except (ValueError, AttributeError):
+                    req_start = req_end = 0
+                
+                dupes = []
+                for b in existing_active:
+                    b_slot = b.get("timeSlot", "")
+                    if not b_slot:
+                        continue
+                    try:
+                        bh, bm = map(int, b_slot.split(":"))
+                        b_start = bh * 60 + bm
+                        b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
+                        b_end = b_start + b_dur
+                        if b_start < req_end and b_end > req_start:
+                            dupes.append(b)
+                    except (ValueError, AttributeError):
+                        continue
+                
                 if dupes:
                     await query.edit_message_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"
