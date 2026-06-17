@@ -187,6 +187,8 @@ async def step_ssd_view(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚠️ မှန်သော SSD ရွေးပါ:", reply_markup=_ssd_kb())
         return SSD_VIEW_SSD
     rows = [r for r in await fetch_console_games_async() if r["console_id"] == ssd_id]
+    # Filter out test/debug games
+    rows = [r for r in rows if not _is_test_game(r.get("game_title", ""))]
     if not rows:
         await update.message.reply_text(
             f"📀 <b>{SSD_NAMES[ssd_id]}</b> — ဂိမ်း မရှိသေးပါ",
@@ -211,9 +213,18 @@ async def step_ssd_add_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚠️ မှန်သော SSD ရွေးပါ:", reply_markup=_ssd_kb())
         return SSD_ADD_SSD
     context.user_data["ssd_target"] = ssd_id
-    # Show Game Library as options
+    # Show Game Library as options (filter test games + dedup)
     games = fetch_game_library()
-    titles = [g["title"] for g in games if g.get("title")]
+    seen_lib = set()
+    titles = []
+    for g in games:
+        t = (g.get("title") or "").strip()
+        if not t or _is_test_game(t):
+            continue
+        if t.lower() in seen_lib:
+            continue
+        seen_lib.add(t.lower())
+        titles.append(t)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"📀 <b>{SSD_NAMES[ssd_id]}</b> ထဲ ထည့်မည့် ဂိမ်း ရွေးပါ:\n"
@@ -295,7 +306,7 @@ async def step_ssd_del_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await show_ssd_menu(update, context)
     context.user_data["ssd_target"] = ssd_id
-    titles = [r["game_title"] for r in rows]
+    titles = _filter_game_titles(rows)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"📀 <b>{SSD_NAMES[ssd_id]}</b> မှ ဖျက်မည့် ဂိမ်း ရွေးပါ:",
@@ -342,7 +353,7 @@ async def step_ssd_xfer_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await show_ssd_menu(update, context)
     context.user_data["ssd_xfer_src"] = ssd_id
-    titles = [r["game_title"] for r in rows]
+    titles = _filter_game_titles(rows)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"🔄 <b>{SSD_NAMES[ssd_id]}</b> မှ Transfer မည့် ဂိမ်း ရွေးပါ:",
@@ -469,7 +480,7 @@ async def step_ssd_ret_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await show_ssd_menu(update, context)
     context.user_data["ssd_ret_cons"] = cid
-    titles = [r["game_title"] for r in rows]
+    titles = _filter_game_titles(rows)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"↩️ <b>{cid}</b> မှ SSD ပြန်ရွေ့မည့် ဂိမ်း ရွေးပါ:",
@@ -513,7 +524,7 @@ async def step_ssd_move_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await show_ssd_menu(update, context)
     context.user_data["ssd_move_src"] = ssd_id
-    titles = [r["game_title"] for r in rows]
+    titles = _filter_game_titles(rows)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"\U0001f504 <b>{SSD_NAMES[ssd_id]}</b> \u1019\u103e Move \u1019\u100a\u1037\u103a \u1002\u102d\u1019\u103a\u1038 \u101b\u103d\u1031\u1038\u1015\u102b:",
@@ -555,6 +566,33 @@ async def step_ssd_move_cons(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await update.message.reply_text("\u274c Move \u1019\u101b\u1015\u102b \u2014 \u1011\u1015\u103a\u1000\u103c\u102d\u102f\u1038\u1005\u102c\u1038\u1015\u102b")
     return await show_ssd_menu(update, context)
 
+TEST_PATTERNS = ("test game", "testgame", "debug", "placeholder", "test-", "-test", "tmp game", "tmpgame")
+
+def _is_test_game(title: str) -> bool:
+    """Check if a game title is a test/debug entry."""
+    t = (title or "").strip().lower()
+    if not t:
+        return False
+    return any(p in t for p in TEST_PATTERNS)
+
+def _filter_game_titles(rows: list, dedup: bool = True) -> list:
+    """Filter out test/debug games and optionally deduplicate game titles."""
+    titles = []
+    seen = set()
+    for r in rows:
+        t = (r.get("game_title") or "").strip()
+        if not t:
+            continue
+        if _is_test_game(t):
+            continue
+        tl = t.lower()
+        if dedup and tl in seen:
+            continue
+        seen.add(tl)
+        titles.append(t)
+    return titles
+
+
 async def step_ssd_move_from_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User chose source console for Console->SSD move."""
     text = update.message.text.strip()
@@ -571,7 +609,7 @@ async def step_ssd_move_from_cons(update: Update, context: ContextTypes.DEFAULT_
         )
         return await show_ssd_menu(update, context)
     context.user_data["ssd_move_from_cons"] = cid
-    titles = [r["game_title"] for r in rows]
+    titles = _filter_game_titles(rows)
     kb_rows = [[t] for t in titles] + [[BTN_BACK]]
     await update.message.reply_text(
         f"\U0001f504 <b>{cid}</b> \u1019\u103e Move \u1019\u100a\u1037\u103a \u1002\u102d\u1019\u103a\u1038 \u101b\u103d\u1031\u1038\u1015\u102b:",

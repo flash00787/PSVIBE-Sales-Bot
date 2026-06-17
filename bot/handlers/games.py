@@ -16,6 +16,14 @@ from bot import (
     show_main_menu, show_console_menu, SSD_NAMES,
 )
 
+# ── Test-game filter (shared with ssd_disc.py patterns) ──
+_TEST_PATTERNS = ("test game", "testgame", "debug", "placeholder", "test-", "-test", "tmp game", "tmpgame")
+
+def _is_test_game(title: str) -> bool:
+    t = (title or "").strip().lower()
+    if not t:
+        return False
+    return any(p in t for p in _TEST_PATTERNS)
 
 
 # ── Pagination constants ──
@@ -169,6 +177,8 @@ async def _show_game_detail(update, game: dict) -> None:
 async def show_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show game library directly with paginated view and edit/delete options."""
     games = await fetch_games_async()
+    # Filter out test/debug games
+    games = [g for g in games if not _is_test_game(g.get("title", ""))]
     count = len(games)
     # Clear any lingering game view state
     context.user_data.pop("game_list", None)

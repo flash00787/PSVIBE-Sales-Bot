@@ -1,3 +1,5 @@
+from bot.handlers.booking_flow import _post_n8n_booking_reminder
+
 from bot import (
     BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_LINK, BOOK_MEMBER,
     BOOK_MINS, BTN_BACK, BTN_BACK_MAIN, BTN_BOOK_PROCEED, BTN_CANCEL,
