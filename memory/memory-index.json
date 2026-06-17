@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T00:07:45.876704+00:00",
+  "updated": "2026-06-17T03:07:51.902709+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -269,6 +269,16 @@
           "path": "MEMORY.md",
           "line": 1039,
           "context": "- **18.** Depreciation convention: from purchase month (inclusive), first month gets full depreciation - **19.** Dashboard code is source of truth — `patch_routes.py` stubs were outdated prototypes"
+        }
+      ]
+    },
+    {
+      "topic": "180,000 MMK",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 7,
+          "context": "- Top-up: ၂ ခု၊ **180,000 MMK** (1,200 mins) - Active members: **၇ ယောက်**"
         }
       ]
     },
@@ -748,6 +758,16 @@
       ]
     },
     {
+      "topic": "25%",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 13,
+          "context": "- Disk: **25%** (36G/150G used) - Memory: **4.6/15 GB** — ပုံမှန်"
+        }
+      ]
+    },
+    {
       "topic": "27 → 35 commands",
       "files": [
         {
@@ -774,6 +794,16 @@
           "path": "memory/project-state.md",
           "line": 72,
           "context": "- **3 Services:** `psvibe-sale-bot` | `psvibe_customer_bot` | `psvibe-api` - **MySQL:** Docker `psvibe-mysql` (:3306), DB: `psvibe_api`"
+        }
+      ]
+    },
+    {
+      "topic": "3 uncommitted changes",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 29,
+          "context": "- API Server Git: **3 uncommitted changes** ⚠️ - YYO Wallet alerts (7 unread — known ongoing issue, no instance running)"
         }
       ]
     },
@@ -1108,6 +1138,16 @@
       ]
     },
     {
+      "topic": "4.6/15 GB",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 14,
+          "context": "- Memory: **4.6/15 GB** — ပုံမှန် - Console: ၁၀ လုံး free"
+        }
+      ]
+    },
+    {
       "topic": "4/41 empty",
       "files": [
         {
@@ -1243,6 +1283,16 @@
       ]
     },
     {
+      "topic": "58/100",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 28,
+          "context": "- Quality Gate: **58/100** (up from 55 — improving) - API Server Git: **3 uncommitted changes** ⚠️"
+        }
+      ]
+    },
+    {
       "topic": "6. `memory/consolidator.py` — Enhanced to Auto-Write",
       "files": [
         {
@@ -1269,6 +1319,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 369,
           "context": "## 6. Implementation Order"
+        }
+      ]
+    },
+    {
+      "topic": "7 containers, အားလုံး healthy",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 12,
+          "context": "- Docker: **7 containers, အားလုံး healthy** ✅ - Disk: **25%** (36G/150G used)"
         }
       ]
     },
@@ -1309,6 +1369,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 144,
           "context": "## 7. Knowledge Graph (`memory/knowledge_graph.py` + `memory/knowledge-graph.json`) **Goal:** Topic/People/Project တွေကြားက relationship ကို track မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "708,100 MMK",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 6,
+          "context": "- ရောင်းရငွေ: **708,100 MMK** (28 transactions) - Top-up: ၂ ခု၊ **180,000 MMK** (1,200 mins)"
         }
       ]
     },
@@ -15268,6 +15338,26 @@
       ]
     },
     {
+      "topic": "၁ ခု",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 9,
+          "context": "- ဒီနေ့ booking: **၁ ခု**"
+        }
+      ]
+    },
+    {
+      "topic": "၇ ယောက်",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 8,
+          "context": "- Active members: **၇ ယောက်** - ဒီနေ့ booking: **၁ ခု**"
+        }
+      ]
+    },
+    {
       "topic": "−14,325,598 Ks",
       "files": [
         {
@@ -15393,6 +15483,16 @@
       ]
     },
     {
+      "topic": "☀️ နံနက်ခင်း System Report (01:37 UTC / 08:07 MMT)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 3,
+          "context": "## ☀️ နံနက်ခင်း System Report (01:37 UTC / 08:07 MMT)"
+        }
+      ]
+    },
+    {
       "topic": "☁️ Cloudflare — Resolved (June 11)",
       "files": [
         {
@@ -15454,6 +15554,16 @@
           "path": "memory/2026-06-16.md",
           "line": 45,
           "context": "### ⚠️ Pending Items - `BIRTHDAY_FILE` error and `getLevel` error seen in old process logs (pre-restart) — current process is clean"
+        }
+      ]
+    },
+    {
+      "topic": "⚠️ သတိထားရန်",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 27,
+          "context": "### ⚠️ သတိထားရန် - Quality Gate: **58/100** (up from 55 — improving)"
         }
       ]
     },
@@ -16158,6 +16268,16 @@
       ]
     },
     {
+      "topic": "📊 PS VIBE Sales",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 5,
+          "context": "### 📊 PS VIBE Sales - ရောင်းရငွေ: **708,100 MMK** (28 transactions)"
+        }
+      ]
+    },
+    {
       "topic": "📊 Revenue Breakdown (final verified)",
       "files": [
         {
@@ -16518,6 +16638,16 @@
       ]
     },
     {
+      "topic": "🔧 Memory System",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 21,
+          "context": "### 🔧 Memory System - Index rebuilt: 1,172 topics"
+        }
+      ]
+    },
+    {
       "topic": "🔴 Core Docs (workspace root)",
       "files": [
         {
@@ -16579,6 +16709,16 @@
           "path": "memory/2026-06-13.md",
           "line": 72,
           "context": "### 🕹️ Game Library — Solo/Multi Classification - Classified all 41 games in `games_library` table via SQL: Solo(23), Multi(13), Both(5)"
+        }
+      ]
+    },
+    {
+      "topic": "🖥️ Infrastructure",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 11,
+          "context": "### 🖥️ Infrastructure - Docker: **7 containers, အားလုံး healthy** ✅"
         }
       ]
     },
