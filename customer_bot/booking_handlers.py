@@ -407,6 +407,7 @@ def _pop_state(context) -> int | None:
 
 async def bk_member_check_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle member card Yes/No — entry point for booking flow."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_member_check", detail="Booking: member check"))
     text = (update.message.text or "").strip() if update.message else ""
 
     # Intercept menu buttons
@@ -541,14 +542,28 @@ async def _lookup_and_confirm_member(update: Update, context: ContextTypes.DEFAU
         return BK_NAME
 
     context.user_data["bk_member_id"] = mid
-    context.user_data["bk_name"] = m.get("name", "")
     context.user_data["bk_phone"] = m.get("phone", "")
     context.user_data["bk_member_data"] = m
+    _name = m.get("name", "") or ""
     phone = m.get("phone", "")
     masked = phone[-4:] if len(phone) >= 4 else phone
+    if not _name.strip():
+        # Member has no name → force manual entry
+        _push_state(context, BK_MEMBER_SELECT)
+        msg = (
+            f'⚠️ *Member ရှိပါသည်* သို့သော် "နာမည်" မထည့်ထားပါ။\n'
+            f"📞 ဖုန်းနံပါတ် နောက်ဆုံး ၄ လုံး: *...{masked}*\n\n"
+            f"👤 နာမည် ရိုက်ထည့်ပေးပါ:"
+        )
+        if update.message:
+            await update.message.reply_text(msg, parse_mode="Markdown")
+        elif update.callback_query:
+            await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
+        return BK_NAME
+    context.user_data["bk_name"] = _name
     _push_state(context, BK_MEMBER_SELECT)
     msg = (
-        f"👤 *{m.get('name','?')}*\n"
+        f"👤 *{_name}*\n"
         f"📞 ဖုန်းနံပါတ် နောက်ဆုံး ၄ လုံး: *...{masked}*\n\n"
         f"မှန်ကန်ပါက ✅ နှိပ်ပါ — သို့မဟုတ် ဖုန်းနံပါတ် အပြည့် ရိုက်ထည့်ပါ"
     )
@@ -610,18 +625,34 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Single match — auto-fill and confirm
         mid, m = matched[0]
         context.user_data["bk_member_id"] = mid
-        context.user_data["bk_name"] = m.get("name", "")
         context.user_data["bk_phone"] = m.get("phone", "")
         context.user_data["bk_member_data"] = m
+        _name = m.get("name", "") or ""
         phone = m.get("phone", "")
         masked = phone[-4:] if len(phone) >= 4 else phone
         balance = m.get("balance_mins", m.get("balance", "N/A"))
+
+        if not _name.strip():
+            # Member has no name → force manual entry
+            _push_state(context, BK_PHONE_VERIFY)
+            msg = (
+                f"✅ *Member တွေ့ရှိပါသည်!*\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"📞 ဖုန်း: ...{masked}\n"
+                f"💰 Balance: *{balance} mins*\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"⚠️ Member ရှိသော်လည်း \"နာမည်\" မထည့်ထားပါ။\n"
+                f"👤 နာမည် ရိုက်ထည့်ပေးပါ:"
+            )
+            await update.message.reply_text(msg, parse_mode="Markdown")
+            return BK_NAME
+        context.user_data["bk_name"] = _name
 
         _push_state(context, BK_PHONE_VERIFY)
         msg = (
             f"✅ *Member တွေ့ရှိပါသည်!*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
-            f"👤 အမည်: *{m.get('name', '?')}*\n"
+            f"👤 အမည်: *{_name}*\n"
             f"📞 ဖုန်း: ...{masked}\n"
             f"💰 Balance: *{balance} mins*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
@@ -733,6 +764,7 @@ async def bk_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_name_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Store customer name and ask for phone."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_name", detail="Booking: name entry"))
     text = (update.message.text or "").strip()
     menu_result = await _bk_intercept_menu(text, update, context)
     if menu_result:
@@ -764,6 +796,7 @@ async def bk_name_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Store phone number and proceed to date selection."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_phone", detail="Booking: phone entry"))
     text = (update.message.text or "").strip()
     menu_result = await _bk_intercept_menu(text, update, context)
     if menu_result:
@@ -803,6 +836,7 @@ async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle date selection — works with ReplyKeyboard text and inline callback."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_date", detail="Booking: date selection"))
     text = (update.message.text or "").strip() if update.message else ""
 
     # Handle ReplyKeyboard text
@@ -918,6 +952,7 @@ async def _show_data_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle time slot selection — works with ReplyKeyboard text and inline callback."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_time", detail="Booking: time selection"))
     text = (update.message.text or "").strip() if update.message else ""
 
     # Handle ReplyKeyboard text
@@ -1027,6 +1062,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle console type selection."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_console", detail="Booking: console selection"))
     text = (update.message.text or "").strip() if update.message else ""
 
     if not update.callback_query and text:
@@ -1140,6 +1176,7 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle duration selection."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_duration", detail="Booking: duration selection"))
     text = (update.message.text or "").strip() if update.message else ""
 
     if not update.callback_query and text:
@@ -1239,6 +1276,7 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle game selection."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_game", detail="Booking: game selection"))
     text = (update.message.text or "").strip() if update.message else ""
 
     if not update.callback_query and text:
@@ -1483,6 +1521,7 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle booking confirmation and submission to API."""
+    asyncio.create_task(_api.track_usage(update.effective_user, "book_step_confirm", detail="Booking: confirmation"))
     text = (update.message.text or "").strip() if update.message else ""
 
     if not update.callback_query and text:

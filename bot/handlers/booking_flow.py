@@ -347,7 +347,7 @@ async def cmd_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
     for b in upcoming[:10]:
         console_hint = b.get("consoleId") or b.get("consoleType","?")
         card = (
-            f"🎫 <b>#{b['id']} {b['customerName']}</b>\n"
+            f"🎫 <b>#{b['id']} {b.get('customerName') or '—'}</b>\n"
             f"📅 {b['date']}  ⏰ {b['timeSlot']}\n"
             f"🕹️ {console_hint}  ⏱️ {b.get('durationMins','?')} min\n"
             f"📞 {b.get('phone','-')}  "

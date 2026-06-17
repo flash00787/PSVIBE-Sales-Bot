@@ -594,19 +594,22 @@ async def log_to_sheet(
         logging.warning("log_to_sheet failed: %s", e)
 
 
-async def track_usage(user, action: str, member_id: str = "", phone: str = "") -> None:
-    """Fire-and-forget: upsert user row in Bot_Users sheet."""
+async def track_usage(user, action: str, member_id: str = "", phone: str = "", detail: str = "") -> None:
+    """Fire-and-forget: upsert user row in Bot_Users table."""
     if not API_BASE or not user:
         return
     try:
-        await _api_post("bot-users/track", {
+        body = {
             "tg_id": str(user.id),
             "username": user.username or "",
             "user_name": user.full_name or "",
             "action": action,
             "member_id": member_id,
             "phone": phone,
-        })
+        }
+        if detail:
+            body["detail"] = detail
+        await _api_post("bot-users/track", body)
     except Exception as e:
         logging.warning("track_usage failed: %s", e)
 

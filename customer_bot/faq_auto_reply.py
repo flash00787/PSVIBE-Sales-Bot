@@ -62,9 +62,10 @@ def match_faq(text: str) -> Optional[str]:
     return None
 
 def test():
-    print(load())
+    import sys
+    sys.stdout.write(str(load()) + "\n")
     for q in ["price", "ဘယ်လောက်လဲ", "ဘယ်အချိန်ဖွင့်လဲ", "မင်္ဂလာပါ", "ဘယ်မှာလဲ", "ဘယ်ဂိမ်းတွေရှိလဲ"]:
-        print(f"  {q}: {match_faq(q)[:50] if match_faq(q) else None}")
+        sys.stdout.write(f"  {q}: {match_faq(q)[:50] if match_faq(q) else None}\n")
 
 if __name__ == "__main__":
     test()

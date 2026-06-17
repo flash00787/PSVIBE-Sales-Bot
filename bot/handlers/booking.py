@@ -126,7 +126,7 @@ async def cmd_staff_book_hub(update: Update, context: ContextTypes.DEFAULT_TYPE)
         card = (
             f"🎫 *Booking #{b['id']}*\n"
             f"━━━━━━━━━━━━━━━━━━\n"
-            f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
+            f"👤 {b.get('customerName') or '—'}  📞 {b.get('phone') or '—'}\n"
             f"📅 {b['date']}  ⏰ {b['timeSlot']}\n"
             f"🕹️ Console: {b.get('console_id') or b.get('consoleType') or '—'}  ⏱️ {b['durationMins']} mins\n"
             f"🎮 Game: {b.get('gameName') or '—'}\n"
@@ -170,10 +170,17 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
         console_hint = b.get("console_id") or b.get("consoleType", "?")
         is_today = b.get("date", "") == today_s
         today_tag = "  🔵 Today" if is_today else ""
+        _cname = (b.get('customerName') or '').strip()
+        _phone = (b.get('phone') or '').strip()
+        # If customerName is the same as phone or looks like a phone number (09xxx), skip 👤
+        if _cname and _cname != _phone and not _cname.startswith('09'):
+            _name_line = f"👤 {_cname}  📞 {_phone}\n"
+        else:
+            _name_line = f"📞 {_phone}\n"
         card = (
             f"✅ *Booking #{b['id']}*{today_tag}\n"
             f"━━━━━━━━━━━━━━━━━━\n"
-            f"👤 {b['customerName']}  📞 {b.get('phone') or '—'}\n"
+            f"{_name_line}"
             f"📅 {b['date']}  ⏰ {b['timeSlot']}\n"
             f"🕹️ Console: {console_hint}  ⏱️ {b.get('durationMins', '?')} mins\n"
             f"🎮 Game: {b.get('gameName') or '—'}\n"

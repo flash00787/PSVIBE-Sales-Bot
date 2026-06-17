@@ -34,6 +34,7 @@ class TestStockManagement:
         await cmd_stock_menu(mock_update, mock_context)
         assert mock_context.user_data.get('stock_dest') == 'menu'
 
+    @pytest.mark.skip(reason="update_inv_total_k1 removed — GSheet fallback dead code")
     @pytest.mark.asyncio
     async def test_update_inv_total_k1(self):
         """update_inv_total_k1 returns non-negative int."""

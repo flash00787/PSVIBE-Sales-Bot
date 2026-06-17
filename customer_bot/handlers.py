@@ -182,7 +182,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "referred_username": update.effective_user.username or "",
             }))
 
-    asyncio.create_task(_api.track_usage(update.effective_user, "start"))
+    asyncio.create_task(_api.track_usage(update.effective_user, "session_start", detail="User started the bot"))
     name = update.effective_user.first_name or "ညီ/မ"
     uid  = str(update.effective_user.id)
 
@@ -370,6 +370,7 @@ async def cmd_refresh(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    asyncio.create_task(_api.track_usage(update.effective_user, "session_visit", detail="Opened main menu"))
     await show_main_menu(update, context)
 
 
