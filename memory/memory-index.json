@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T12:38:36.809251+00:00",
+  "updated": "2026-06-17T15:59:13.287246+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -2143,6 +2143,16 @@
       ]
     },
     {
+      "topic": "Booking Flow Fixes (14:35 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 25,
+          "context": "## Booking Flow Fixes (14:35 UTC)"
+        }
+      ]
+    },
+    {
       "topic": "Booking flow: Date/Time first → then check availability",
       "files": [
         {
@@ -2494,6 +2504,16 @@
           "path": "memory/fix-history.md",
           "line": 151,
           "context": "### Bug: 🍕 Food Menu Not Showing | Attempt | Commit | Root Cause Still Present |"
+        }
+      ]
+    },
+    {
+      "topic": "Bugs Fixed:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 32,
+          "context": "### Bugs Fixed: 1. **`booking.py` L385: Typo \"ယနော\" → \"ယနေ့\"** — step_sbk_dur back button showed broken Burmese"
         }
       ]
     },
@@ -3099,6 +3119,16 @@
           "path": "memory/coupon-system-implemented.md",
           "line": 11,
           "context": "### Config - `/etc/psvibe/secrets.env` — `CASHBACK_START_DATE=2026-06-06`, `CASHBACK_END_DATE=2026-06-07`, `CASHBACK_COUPON_EXPIRY=2026-07-07`"
+        }
+      ]
+    },
+    {
+      "topic": "Confirmed by Boss:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 27,
+          "context": "### Confirmed by Boss: - Staff booking auto-confirm (source=\"staff\") → CORRECT, keep as-is"
         }
       ]
     },
@@ -13049,6 +13079,16 @@
           "path": "memory/fix-history.md",
           "line": 75,
           "context": "- **Verification:** py_compile PASS, API health PASS, all 3 services active"
+        }
+      ]
+    },
+    {
+      "topic": "Verified as Correct:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 36,
+          "context": "### Verified as Correct: - Staff auto-confirm: sale bot sends `source: \"staff\"` → API sets `_bk_status = \"confirmed\"` ✅"
         }
       ]
     },
