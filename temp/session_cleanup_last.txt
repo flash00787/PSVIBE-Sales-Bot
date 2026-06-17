@@ -1,32 +1,3 @@
-==========================================
-🧹 Session Cleanup Run — 2026-06-16T19:50:08Z UTC
-==========================================
-
-📋 Step 1: Scanning for orphan/stale sub-agent entries...
-
-✅ Cleanup complete: 0 stale task(s) removed. 0 active remaining.
-   ✅ Orphan scan complete.
-
-📋 Step 2: Cross-referencing active sub-agents with task journal...
-🔍 No --running provided. Attempting discovery via openclaw CLI...
-   openclaw CLI returned no active sub-agents.
-
-🧹 Running auto-cleanup...
-
-
-✅ Cleanup complete: 0 stale task(s) removed. 0 active remaining.
-
-✅ Auto-cleanup integration complete.
-   ✅ Integrate cleanup complete.
-
-📋 Step 3: Active tasks status...
-   Active tasks remaining: 0
-
-📋 Step 4: Sub-agent journal status...
-   Journal: 2 total, 2 completed
-
-==========================================
-✅ Session cleanup completed successfully.
-==========================================
-=== RESULT: 0 ===
-=== RESULT: OK ===
+=== Bulk Session Cleanup 09:33 ===
+Before: 4.0K
+After: 4.0K
