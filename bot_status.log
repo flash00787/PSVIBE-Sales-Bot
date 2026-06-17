@@ -1,0 +1,2 @@
+2026-06-17 18:19:03,153 [WARNING] API_BASE_URL is not set – skipping API call GET fetch_console_status
+2026-06-17 18:19:03,153 [WARNING] API fetch_console_status failed, no fallback
