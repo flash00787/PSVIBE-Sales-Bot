@@ -2,26 +2,26 @@
 
 ## 🩺 Unified Health Monitor (Hourly auto-check)
 ```bash
-python3 /home/node/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
+python3 /root/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
 ```
 
 ## 🤖 Automated Scripts (Every ~4h heartbeat)
 ```bash
-python3 /home/node/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
-python3 /home/node/.openclaw/workspace/memory/heartbeat_routine.py
-python3 /home/node/.openclaw/workspace/memory/consolidator.py --all
-python3 /home/node/.openclaw/workspace/memory/memory_pruner.py --apply
-python3 /home/node/.openclaw/workspace/memory/memory_index.py --rebuild
-python3 /home/node/.openclaw/workspace/memory/git_backup.py --auto
-python3 /home/node/.openclaw/workspace/memory/daily_digest.py
-python3 /home/node/.openclaw/workspace/memory/knowledge_graph.py --rebuild
+python3 /root/.openclaw/workspace/coordination/kora_health_monitor.py --json 2>&1 | tail -1
+python3 /root/.openclaw/workspace/memory/heartbeat_routine.py
+python3 /root/.openclaw/workspace/memory/consolidator.py --all
+python3 /root/.openclaw/workspace/memory/memory_pruner.py --apply
+python3 /root/.openclaw/workspace/memory/memory_index.py --rebuild
+python3 /root/.openclaw/workspace/memory/git_backup.py --auto
+python3 /root/.openclaw/workspace/memory/daily_digest.py
+python3 /root/.openclaw/workspace/memory/knowledge_graph.py --rebuild
 python3 /root/coordination/notifier.py list --unread
 python3 /root/coordination/task_bridge.py list pending
 ```
 
 ## 🧹 Stale Lock Cleanup
 ```bash
-bash /home/node/.openclaw/workspace/memory/cleanup_session_locks.sh
+bash /root/.openclaw/workspace/memory/cleanup_session_locks.sh
 ```
 
 ## ✅ Heartbeat Checklist

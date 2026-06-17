@@ -1,7 +1,7 @@
 # 🔧 Config Changes
 
 ## Session Lock Timeout Fix (2026-06-02)
-**File:** `/home/node/.openclaw/openclaw.json`
+**File:** `/root/.openclaw/openclaw.json`
 
 | Key | Before | After |
 |-----|--------|-------|
@@ -12,7 +12,7 @@
 | `session.maintenance.resetArchiveRetention` | — | **2d** |
 
 ## Lock Monitor Updates (2026-06-02)
-**File:** `/home/node/.openclaw/workspace/memory/lock_monitor.py`
+**File:** `/root/.openclaw/workspace/memory/lock_monitor.py`
 
 | Key | Before | After |
 |-----|--------|-------|
