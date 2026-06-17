@@ -61,12 +61,13 @@ async function dailyReport() {
   const today = new Date();
   const dateStr = today.toISOString().split('T')[0];
   
-  // Fetch from API
+  // Fetch correct data from real MySQL tables
+  // sales_daily table (NOT sales_records) — column is net (not amount)
   const [dailySales, foodSales, activeSessions, topGames] = await Promise.all([
-    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(amount), 0) as total FROM sales_records WHERE DATE(created_at) = CURDATE()`),
-    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(total), 0) as total FROM food_sales WHERE DATE(created_at) = CURDATE()`),
-    queryDB(`SELECT COUNT(*) as count FROM console_bookings WHERE DATE(start_time) = CURDATE() AND status = 'active'`),
-    queryDB(`SELECT g.name, COUNT(*) as plays FROM game_sessions gs JOIN games g ON gs.game_id = g.id WHERE DATE(gs.created_at) = CURDATE() GROUP BY g.name ORDER BY plays DESC LIMIT 5`),
+    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(net), 0) as total FROM sales_daily WHERE sale_date = CURDATE()`),
+    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(quantity * unit_price), 0) as total FROM food_cart WHERE DATE(created_at) = CURDATE()`),
+    queryDB(`SELECT COUNT(*) as count FROM console_booking WHERE status = 'confirmed' AND DATE(start_time) = CURDATE()`),
+    queryDB(`SELECT COALESCE(game_name, 'Direct') as name, COUNT(*) as plays FROM console_booking WHERE DATE(start_time) = CURDATE() AND game_name IS NOT NULL AND game_name != '' GROUP BY game_name ORDER BY plays DESC LIMIT 5`),
   ]);
 
   // Parse results
@@ -123,73 +124,81 @@ async function dailyReport() {
 async function weeklyReport() {
   const [weeklyRevenue, topGames, topMembers] = await Promise.all([
     queryDB(`
-      SELECT DATE(created_at) as day, SUM(amount) as total 
-      FROM sales_records 
-      WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-      GROUP BY DATE(created_at) ORDER BY day
+      SELECT sale_date as day, SUM(net) as total 
+      FROM sales_daily 
+      WHERE sale_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+      GROUP BY sale_date ORDER BY day
     `),
     queryDB(`
-      SELECT g.name, COUNT(*) as plays 
-      FROM game_sessions gs JOIN games g ON gs.game_id = g.id 
-      WHERE gs.created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
-      GROUP BY g.name ORDER BY plays DESC LIMIT 5
+      SELECT COALESCE(game_name, 'Direct') as name, COUNT(*) as plays 
+      FROM console_booking 
+      WHERE DATE(start_time) >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
+        AND game_name IS NOT NULL AND game_name != ''
+      GROUP BY game_name ORDER BY plays DESC LIMIT 5
     `),
     queryDB(`
-      SELECT member_id, SUM(amount) as total 
-      FROM sales_records 
-      WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND member_id IS NOT NULL 
+      SELECT COALESCE(member_id, 'Guest') as member, SUM(net) as total 
+      FROM sales_daily 
+      WHERE sale_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
       GROUP BY member_id ORDER BY total DESC LIMIT 5
     `),
   ]);
 
-  const report = [
+  let report = [
     `📈 **PS VIBE — Weekly Trend Report**`,
     `📅 ${new Date().toISOString().split('T')[0]}`,
     ``,
     `━━━━━━━━━━━━━━━━━━━`,
     ``,
     `**🎮 Top Games (This Week)**`,
-    topGames.split('\n').slice(1, 6).filter(l => l.trim()).forEach((l, i) => {
-      const [name, plays] = l.split('\t');
-      report.push(`• ${i+1}. ${name} — ${plays} plays`);
-    }),
-    ``,
-    `**👤 Top Members**`,
-    topMembers.split('\n').slice(1, 6).filter(l => l.trim()).forEach((l, i) => {
-      const [member, total] = l.split('\t');
-      report.push(`• ${i+1}. ${member} — ${fmt(parseInt(total))}`);
-    }),
-    ``,
-    `━━━━━━━━━━━━━━━━━━━`,
   ].join('\n');
+
+  // Add top games
+  const gameLines = topGames.split('\n').filter(l => l.trim());
+  for (let i = 1; i < Math.min(gameLines.length, 6); i++) {
+    const [name, plays] = gameLines[i].split('\t');
+    if (name) report += `\n• ${i}. ${name} — ${plays} plays`;
+  }
+  
+  report += `\n\n**👤 Top Members**`;
+  
+  // Add top members
+  const memberLines = topMembers.split('\n').filter(l => l.trim());
+  for (let i = 1; i < Math.min(memberLines.length, 6); i++) {
+    const [member, total] = memberLines[i].split('\t');
+    if (member) report += `\n• ${i}. ${member} — ${fmt(parseInt(total))}`;
+  }
+  
+  report += `\n\n━━━━━━━━━━━━━━━━━━━`;
 
   return report;
 }
 
-// ── 3. Top Games ──
+// ── 3. Top Games (30 days) ──
 async function topGamesReport() {
   const result = await queryDB(`
-    SELECT g.name, COUNT(*) as plays, COALESCE(SUM(s.amount), 0) as revenue
-    FROM game_sessions gs 
-    JOIN games g ON gs.game_id = g.id 
-    LEFT JOIN sales_records s ON s.game_session_id = gs.id
-    WHERE gs.created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-    GROUP BY g.name ORDER BY plays DESC LIMIT 10
+    SELECT COALESCE(game_name, 'Direct') as name, COUNT(*) as plays
+    FROM console_booking 
+    WHERE DATE(start_time) >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+      AND game_name IS NOT NULL AND game_name != ''
+    GROUP BY game_name ORDER BY plays DESC LIMIT 10
   `);
 
   const lines = result.split('\n').filter(l => l.trim());
   if (lines.length <= 1) return '❌ No game data available';
 
-  const report = [`🎮 **Top Games (30 Days)**`, ``, `━━━━━━━━━━━━━━━━━━━`, ``];
-  lines.slice(1).forEach((l, i) => {
-    const [name, plays, revenue] = l.split('\t');
-    report.push(`**${i+1}. ${name}**`);
-    report.push(`   🎯 ${plays} sessions | 💰 ${fmt(parseInt(revenue))}`);
-    report.push(``);
-  });
-  report.push(`━━━━━━━━━━━━━━━━━━━`);
+  let report = [`🎮 **Top Games (30 Days)**`, ``, `━━━━━━━━━━━━━━━━━━━`, ``].join('\n');
+  for (let i = 1; i < lines.length; i++) {
+    const [name, plays] = lines[i].split('\t');
+    if (name) {
+      report += `\n**${i}. ${name}**`;
+      report += `\n   🎯 ${plays} plays`;
+      report += `\n`;
+    }
+  }
+  report += `\n━━━━━━━━━━━━━━━━━━━`;
   
-  return report.join('\n');
+  return report;
 }
 
 // ── 4. Full Report ──

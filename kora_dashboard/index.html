@@ -334,6 +334,11 @@
     .badge.warning { background: rgba(251,191,36,0.2); color: var(--yellow); }
     .badge.info { background: rgba(56,189,248,0.2); color: var(--accent); }
     .badge.in-stock { background: rgba(74,222,128,0.2); color: var(--green); }
+    .badge.active-booker { background: rgba(74,222,128,0.2); color: var(--green); }
+    .badge.chat-only { background: rgba(56,189,248,0.2); color: var(--accent); }
+    .badge.lapsed-30d { background: rgba(148,163,184,0.2); color: var(--muted); }
+    .badge.high-value { background: rgba(251,191,36,0.2); color: var(--yellow); }
+    .badge.needs-attention { background: rgba(248,113,113,0.2); color: var(--red); }
 
     /* Quick commands */
     .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
@@ -674,6 +679,7 @@
     <button class="tab-btn" data-tab="food" data-i18n="tab_food">🍔 Food</button>
     <button class="tab-btn" data-tab="alerts" data-i18n="tab_alerts">⚠️ Alerts</button>
     <button class="tab-btn" data-tab="users" data-i18n="tab_users">👥 Users</button>
+    <button class="tab-btn" data-tab="analytics" data-i18n="tab_analytics">📊 Bot Analytics</button>
     <button class="tab-btn" data-tab="feedback" data-i18n="tab_feedback">⭐ Feedback</button>
   </div>
 
@@ -1009,10 +1015,15 @@
                     <th data-i18n="col_interactions">Interactions</th>
                     <th data-i18n="col_ai_chats">AI Chats</th>
                     <th data-i18n="col_last_command">Last Command</th>
+                    <th data-i18n="col_session_count">Sessions</th>
+                    <th data-i18n="col_booking_count">Bookings</th>
+                    <th data-i18n="col_total_spend">Total Spend</th>
+                    <th data-i18n="col_tags">Tags</th>
+                    <th data-i18n="col_funnel_step">Funnel Step</th>
                   </tr>
                 </thead>
                 <tbody id="userTableBody">
-                  <tr><td colspan="11" class="empty-state">Loading users...</td></tr>
+                  <tr><td colspan="16" class="empty-state">Loading users...</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1052,6 +1063,89 @@
             <canvas id="usersChartCanvas" width="600" height="200"></canvas>
           </div>
           <div id="usersChartFallback" class="empty-state" style="display:none;">Loading chart...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Bot Analytics ═══ -->
+    <div class="tab-content" id="tab-analytics">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left">
+          <button class="refresh-btn" onclick="refreshBotAnalytics()">🔄 <span data-i18n="refresh_all">Refresh Analytics</span></button>
+          <span class="auto-refresh-indicator"><span class="status-dot ok pulse"></span> <span data-i18n="auto_refresh">Auto-refresh: 60s</span></span>
+        </div>
+      </div>
+
+      <!-- Stats Cards Row -->
+      <div class="stats-grid" id="analyticsStatsRow">
+        <div class="stat-card">
+          <div class="icon">📈</div>
+          <div class="label" data-i18n="stat_conversion_rate">Booking Conv. Rate</div>
+          <div class="value" id="statConversionRate">—</div>
+          <div class="sub">booking_count > 0 users / total</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">🏷️</div>
+          <div class="label" data-i18n="stat_tag_dist">Tag Distribution</div>
+          <div class="value" id="statTagDist">—</div>
+          <div class="sub">auto-segmented</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">⏰</div>
+          <div class="label" data-i18n="stat_peak_hour">Peak Hour</div>
+          <div class="value" id="statPeakHour">—</div>
+          <div class="sub">most active hour</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">👥</div>
+          <div class="label" data-i18n="stat_active_bookers">Active Bookers</div>
+          <div class="value" id="statActiveBookers">—</div>
+          <div class="sub">booking_count ≥ 3</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">💬</div>
+          <div class="label" data-i18n="stat_chat_only">Chat Only</div>
+          <div class="value" id="statChatOnly">—</div>
+          <div class="sub">chat_only tag</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">💎</div>
+          <div class="label" data-i18n="stat_high_value">High Value</div>
+          <div class="value" id="statHighValue">—</div>
+          <div class="sub">high_value tag</div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <!-- LEFT COLUMN -->
+        <div>
+          <div class="panel">
+            <div class="panel-header">
+              📊 <span data-i18n="panel_user_segments">User Segments</span>
+            </div>
+            <div class="panel-body" id="userSegmentsPanel">
+              <div class="empty-state">Loading segments...</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              📋 <span data-i18n="panel_top_commands">Top Commands</span>
+            </div>
+            <div class="panel-body" id="topCommandsPanel">
+              <div class="empty-state">Loading commands...</div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT COLUMN -->
+        <div>
+          <div class="panel">
+            <div class="panel-header">
+              ⏰ <span data-i18n="panel_peak_hours">Peak Hours Activity</span>
+            </div>
+            <div class="panel-body" id="peakHoursPanel">
+              <div class="empty-state">Loading activity data...</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1285,6 +1379,21 @@
       fb_distribution: 'Rating Distribution',
       fb_recent: 'Recent Feedback',
       fb_no_feedback: 'No feedback yet',
+      tab_analytics: '📊 Bot Analytics',
+      stat_conversion_rate: 'Booking Conv. Rate',
+      stat_tag_dist: 'Tag Distribution',
+      stat_peak_hour: 'Peak Hour',
+      stat_active_bookers: 'Active Bookers',
+      stat_chat_only: 'Chat Only',
+      stat_high_value: 'High Value',
+      col_session_count: 'Sessions',
+      col_booking_count: 'Bookings',
+      col_total_spend: 'Total Spend',
+      col_tags: 'Tags',
+      col_funnel_step: 'Funnel Step',
+      panel_user_segments: 'User Segments',
+      panel_top_commands: 'Top Commands',
+      panel_peak_hours: 'Peak Hours Activity',
     },
     my: {
       login_title: 'Kora ဒက်ရှ်ဘုတ်',
@@ -1402,6 +1511,21 @@
       fb_distribution: 'အဆင့်သတ်မှတ်ချက်ဖြန့်ကျက်မှု',
       fb_recent: 'မကြာသေးမီ တုံ့ပြန်ချက်များ',
       fb_no_feedback: 'တုံ့ပြန်ချက်မရှိသေးပါ',
+      tab_analytics: '📊 Bot အသုံးပြုသူ ခွဲခြမ်းစိတ်ဖြာချက်',
+      stat_conversion_rate: 'Booking ပြောင်းလဲနှုန်း',
+      stat_tag_dist: 'Tag ခွဲခြားမှု',
+      stat_peak_hour: 'အလုပ်အများဆုံးအချိန်',
+      stat_active_bookers: 'Active Booker များ',
+      stat_chat_only: 'Chat သီးသန့်',
+      stat_high_value: 'မြင့်မားသောတန်ဖိုး',
+      col_session_count: 'ဝင်ရောက်မှု',
+      col_booking_count: 'Booking အရေအတွက်',
+      col_total_spend: 'စုစုပေါင်းသုံးစွဲငွေ',
+      col_tags: 'Tag များ',
+      col_funnel_step: 'နောက်ဆုံးအဆင့်',
+      panel_user_segments: 'အသုံးပြုသူအုပ်စုများ',
+      panel_top_commands: 'အသုံးများသော Command များ',
+      panel_peak_hours: 'အချိန်အလိုက် လုပ်ဆောင်ချက်',
     }
   };
 
@@ -2393,6 +2517,7 @@
     else if (tabName === 'schedule') refreshSchedule();
     else if (tabName === 'users') refreshUsers();
     else if (tabName === 'feedback') refreshFeedback();
+    else if (tabName === 'analytics') refreshBotAnalytics();
   }
 
   document.getElementById('tabNav').addEventListener('click', function(e) {
@@ -2499,7 +2624,7 @@
     var tbody = document.getElementById('userTableBody');
     document.getElementById('userCountLabel').textContent = total + ' users';
     if (!users || users.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="11" class="empty-state">No users found</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="16" class="empty-state">No users found</td></tr>';
       return;
     }
     tbody.innerHTML = users.map(function(u) {
@@ -2525,6 +2650,11 @@
         + '<td>' + (u.total_interactions || 0) + '</td>'
         + '<td>' + (u.ai_chat_count || 0) + '</td>'
         + '<td><span class="badge cmd">' + cmd + '</span></td>'
+        + '<td>' + (u.session_count || 0) + '</td>'
+        + '<td>' + (u.booking_count || 0) + '</td>'
+        + '<td>' + (u.total_spend_ks ? Number(u.total_spend_ks).toLocaleString() : '0') + ' K</td>'
+        + '<td>' + renderTagBadges(u.tags) + '</td>'
+        + '<td>' + escapeHtml(u.last_funnel_step || '—') + '</td>'
         + '</tr>';
     }).join('');
   }
@@ -2649,6 +2779,153 @@
       var label = d.date ? d.date.substring(5) : '';
       ctx.fillText(label, x + barW/2, barAreaBottom + 15);
     });
+  }
+
+  // ═══════════════════════════════════════
+  // TAG BADGES HELPER
+  // ═══════════════════════════════════════
+  function renderTagBadges(tags) {
+    if (!tags) return '—';
+    var tagList = Array.isArray(tags) ? tags : String(tags).split(',').map(function(t) { return t.trim(); });
+    var colorMap = {
+      'active_booker': 'active-booker',
+      'chat_only': 'chat-only',
+      'lapsed_30d': 'lapsed-30d',
+      'high_value': 'high-value',
+      'needs_attention': 'needs-attention'
+    };
+    return tagList.map(function(t) {
+      var cls = colorMap[t] || '';
+      return '<span class="badge ' + cls + '">' + escapeHtml(t) + '</span>';
+    }).join(' ');
+  }
+
+  // ═══════════════════════════════════════
+  // BOT ANALYTICS
+  // ═══════════════════════════════════════
+  async function refreshBotAnalytics() {
+    try {
+      var data = await apiCall('/api/bot-users/stats');
+      var d = data.data || data || {};
+
+      // Conversion rate: booking_count > 0 users / total
+      var totalUsers = d.total_users || 0;
+      var usersWithBookings = d.users_with_bookings || 0;
+      var convRate = totalUsers > 0 ? ((usersWithBookings / totalUsers) * 100).toFixed(1) : '0.0';
+      document.getElementById('statConversionRate').textContent = convRate + '%';
+
+      // Tag distribution
+      var tagDist = d.tag_distribution || {};
+      var tagCount = Object.keys(tagDist).length;
+      document.getElementById('statTagDist').textContent = tagCount;
+
+      // Peak hour
+      var peakHours = d.peak_hours || {};
+      var peakHour = '—';
+      var peakCount = 0;
+      Object.keys(peakHours).forEach(function(h) {
+        if (peakHours[h] > peakCount) { peakCount = peakHours[h]; peakHour = h; }
+      });
+      document.getElementById('statPeakHour').textContent = peakHour !== '—' ? peakHour + ':00' : '—';
+
+      // Active bookers
+      document.getElementById('statActiveBookers').textContent = d.active_bookers_count || 0;
+
+      // Chat only
+      document.getElementById('statChatOnly').textContent = d.chat_only_count || 0;
+
+      // High value
+      document.getElementById('statHighValue').textContent = d.high_value_count || 0;
+
+      // Render panels
+      renderUserSegments(tagDist);
+      renderTopCommands(d.top_commands || []);
+      renderPeakHours(d.peak_hours || {});
+    } catch (err) {
+      console.warn('[Analytics] Stats fetch failed:', err.message);
+    }
+  }
+
+  function renderUserSegments(tagDist) {
+    var panel = document.getElementById('userSegmentsPanel');
+    if (!panel) return;
+    var segments = [
+      { key: 'active_booker', label: 'Active Booker', color: 'active-booker', cssColor: 'var(--green)' },
+      { key: 'chat_only', label: 'Chat Only', color: 'chat-only', cssColor: 'var(--accent)' },
+      { key: 'lapsed_30d', label: 'Lapsed 30d', color: 'lapsed-30d', cssColor: 'var(--muted)' },
+      { key: 'high_value', label: 'High Value', color: 'high-value', cssColor: 'var(--yellow)' },
+      { key: 'needs_attention', label: 'Needs Attention', color: 'needs-attention', cssColor: 'var(--red)' },
+    ];
+    var total = 0;
+    Object.values(tagDist).forEach(function(v) { total += v; });
+    if (total === 0) total = 1;
+
+    // Badges row
+    var html = '<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">';
+    segments.forEach(function(s) {
+      var count = tagDist[s.key] || 0;
+      var pct = ((count / total) * 100).toFixed(0);
+      html += '<span class="badge ' + s.color + '">' + s.label + ': ' + count + '</span>';
+    });
+    html += '</div>';
+
+    // Bar chart
+    html += '<div>';
+    segments.forEach(function(s) {
+      var count = tagDist[s.key] || 0;
+      var pct = ((count / total) * 100).toFixed(0);
+      html += '<div style="margin:0.4rem 0;display:flex;align-items:center;gap:0.5rem;">';
+      html += '<span style="width:120px;font-size:0.8rem;flex-shrink:0;">' + s.label + '</span>';
+      html += '<span style="font-weight:bold;width:36px;text-align:right;font-size:0.8rem;flex-shrink:0;">' + count + '</span>';
+      html += '<div style="flex:1;height:16px;background:var(--border);border-radius:8px;overflow:hidden;">';
+      html += '<div style="height:100%;width:' + pct + '%;background:' + s.cssColor + ';border-radius:8px;transition:width 0.5s ease;"></div>';
+      html += '</div>';
+      html += '<span style="font-size:0.7rem;color:var(--muted);width:36px;text-align:right;flex-shrink:0;">' + pct + '%</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    panel.innerHTML = html;
+  }
+
+  function renderTopCommands(commands) {
+    var panel = document.getElementById('topCommandsPanel');
+    if (!panel) return;
+    if (!commands || commands.length === 0) {
+      panel.innerHTML = '<div class="empty-state">No commands recorded yet</div>';
+      return;
+    }
+    var html = '<table class="food-table" style="width:100%;"><thead><tr><th>#</th><th>Command</th><th>Count</th></tr></thead><tbody>';
+    commands.forEach(function(c, i) {
+      html += '<tr><td>' + (i + 1) + '</td><td><span class="badge cmd">' + escapeHtml(c.action || c.command || '—') + '</span></td><td>' + (c.count || 0) + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    panel.innerHTML = html;
+  }
+
+  function renderPeakHours(peakHours) {
+    var panel = document.getElementById('peakHoursPanel');
+    if (!panel) return;
+    if (!peakHours || Object.keys(peakHours).length === 0) {
+      panel.innerHTML = '<div class="empty-state">No activity data yet</div>';
+      return;
+    }
+    var maxVal = Math.max.apply(null, Object.values(peakHours)) || 1;
+    var hours = [];
+    for (var h = 0; h < 24; h++) {
+      var key = String(h);
+      hours.push({ hour: h, count: peakHours[key] || 0 });
+    }
+    var html = '<div style="display:flex;align-items:flex-end;gap:2px;height:130px;padding-top:10px;">';
+    hours.forEach(function(h) {
+      var pct = (h.count / maxVal) * 100;
+      var barHeight = Math.max(4, pct);
+      html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:6px;">';
+      html += '<div style="width:100%;height:' + barHeight + '%;background:linear-gradient(to top, #38bdf8, #2563eb);border-radius:2px 2px 0 0;min-height:2px;" title="' + h.hour + ':00 — ' + h.count + ' activities"></div>';
+      html += '<span style="font-size:0.55rem;color:var(--muted);margin-top:3px;">' + h.hour + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    panel.innerHTML = html;
   }
 
   // ═══════════════════════════════════════
@@ -2830,6 +3107,9 @@
       updateClock();
       updateNotifBadge();
       refreshAll();
+      if (document.getElementById('tab-analytics').classList.contains('active')) {
+        refreshBotAnalytics();
+      }
     }, REFRESH_INTERVAL);
   }
 
