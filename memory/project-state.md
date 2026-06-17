@@ -51,7 +51,7 @@
 | sheets/config still GSheets (not MySQL) | MED | Migration pending |
 
 ## 🗓️ Upcoming
-- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!**
+- **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed**
 - **Opening Hours:** 9 AM - 9 PM (daily)
 - **Staff Training:** 04 June 2026 ✅ Completed
 

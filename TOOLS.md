@@ -16,6 +16,12 @@
 | PS VIBE API | `/root/psvibe_api_server/` | `psvibe-api` |
 | Construction Bot | `/opt/construction-bot/` (Docker) | `@three_brothers_accounting_bot` |
 | YYO Wallet Bot | `/opt/yyo-personal-wallet/` | `yyo-personal-wallet` |
+| PS VIBE Analytics | — | `psvibe-analytics.service` |
+| Staff Attendance | — | `psvibe-attendance.service` |
+| Discord Bot | — | `psvibe-discord-bot.service` |
+| Kora Host API | — | `kora-host-api.service` |
+| Kora Voice | — | `kora-voice.service` |
+| ACM Wallet Bot | `/opt/acm-personal-wallet/` | `acm-personal-wallet.service` |
 
 ## Research Agent
 ```bash

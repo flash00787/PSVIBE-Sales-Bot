@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T09:38:07.787046+00:00",
+  "updated": "2026-06-17T10:38:20.896429+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -477,7 +477,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 120,
+          "line": 140,
           "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
         }
       ]
@@ -489,6 +489,16 @@
           "path": "memory/lessons.md",
           "line": 108,
           "context": "## 2026-06-17: `COALESCE('', val)` SQL Trap **Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get(\"staffName\", \"\")` "
+        }
+      ]
+    },
+    {
+      "topic": "2026-06-17: System Audit & Batch Improvements",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 113,
+          "context": "## 2026-06-17: System Audit & Batch Improvements **What:** Full system audit → 10-item improvement list executed via batch sub-agents"
         }
       ]
     },
@@ -1237,7 +1247,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 56,
+          "line": 76,
           "context": "- **A ≈ L+E**: 33,216 gap (0.01%) — minor rounding - **Retained Earnings**: -10,563,923 vs P&L Net Profit -10,380,590 — diff 183,333 (April depreciation not in June P&L)"
         }
       ]
@@ -1282,7 +1292,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 52,
+          "line": 72,
           "context": "4. **ACM's Acc opex normalization**: \"acm's_acc\" → \"acm_acc\" in opex parsing — 415K missed in both BS and CF — fixed"
         }
       ]
@@ -1433,6 +1443,16 @@
       ]
     },
     {
+      "topic": "Additional Services (systemd)",
+      "files": [
+        {
+          "path": "memory/infrastructure.md",
+          "line": 41,
+          "context": "## Additional Services (systemd) | Service | Description | Status |"
+        }
+      ]
+    },
+    {
       "topic": "Affected guests:",
       "files": [
         {
@@ -1487,7 +1507,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 122,
+          "line": 142,
           "context": "7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search). 8. **memory-index.json** — Rebuilt clean."
         },
         {
@@ -1552,7 +1572,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 113,
+          "line": 133,
           "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
         }
       ]
@@ -2422,7 +2442,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 55,
+          "line": 75,
           "context": "- **BS CA = FB = CF**: All three perfectly match at -10,801,469 ✅ - **A ≈ L+E**: 33,216 gap (0.01%) — minor rounding"
         }
       ]
@@ -3108,6 +3128,16 @@
       ]
     },
     {
+      "topic": "Completed",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 54,
+          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed** - **Opening Hours:** 9 AM - 9 PM (daily)"
+        }
+      ]
+    },
+    {
       "topic": "completely missing",
       "files": [
         {
@@ -3472,7 +3502,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 99,
+          "line": 119,
           "context": "### Critical Lesson - **`COALESCE('', val)` returns `''` because empty string IS NOT NULL in SQL.** When using COALESCE as \"use this new value, or keep existing if not provided\", always wrap the new v"
         }
       ]
@@ -3597,7 +3627,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 89,
+          "line": 109,
           "context": "### Customer Bot Fix - Also fixed customer bot to force name entry when member record has empty name:"
         }
       ]
@@ -3677,7 +3707,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 117,
+          "line": 137,
           "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
         }
       ]
@@ -4847,7 +4877,7 @@
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 93,
+          "line": 113,
           "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
         },
         {
@@ -5257,7 +5287,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 54,
+          "line": 74,
           "context": "### Final State: - **BS CA = FB = CF**: All three perfectly match at -10,801,469 ✅"
         }
       ]
@@ -5277,7 +5307,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 39,
+          "line": 59,
           "context": "## Financial Validation Cron Setup - Script: `/root/psvibe_api_server/scripts/financial_validation.py`"
         }
       ]
@@ -6257,22 +6287,22 @@
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 111,
+          "line": 131,
           "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 113,
+          "line": 133,
           "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 117,
+          "line": 137,
           "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 120,
+          "line": 140,
           "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
         }
       ]
@@ -6282,12 +6312,12 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 115,
+          "line": 135,
           "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 121,
+          "line": 141,
           "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
@@ -6347,7 +6377,7 @@
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 64,
+          "line": 84,
           "context": "- **Flow:** - 1. Customer bot creates booking → POST with `customerName: \"Naing Htet Aung\"` → INSERT stores `staff_name = \"Naing Htet Aung\"` ✅"
         },
         {
@@ -6707,7 +6737,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 115,
+          "line": 135,
           "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
         }
       ]
@@ -6823,7 +6853,7 @@
         {
           "path": "memory/project-state.md",
           "line": 54,
-          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!** - **Opening Hours:** 9 AM - 9 PM (daily)"
+          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed** - **Opening Hours:** 9 AM - 9 PM (daily)"
         }
       ]
     },
@@ -7002,7 +7032,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 121,
+          "line": 141,
           "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
@@ -7829,6 +7859,11 @@
           "path": "memory/lessons.md",
           "line": 106,
           "context": "- **Lesson:** For Burmese text in Telegram bots, use direct Unicode string literals (Python handles UTF-8 natively) or simple English text. Never use `\\u` escape sequences if you can avoid them."
+        },
+        {
+          "path": "memory/lessons.md",
+          "line": 116,
+          "context": "**Lesson:** Batch processing with max-2-parallel sub-agents + direct work = efficient full-system upgrade"
         }
       ]
     },
@@ -7867,7 +7902,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 62,
+          "line": 82,
           "context": "- **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint - \"staff_name=COALESCE(%s, staff_name), notes=COALESCE(%s, notes)\""
         }
       ]
@@ -7897,7 +7932,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 36,
+          "line": 56,
           "context": "- **Logic:** Wallet top-ups = Deferred Revenue; Wallet consumption = Recognized Revenue (member သုံးတဲ့ minutes) - API restarted ✅"
         },
         {
@@ -8087,7 +8122,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 123,
+          "line": 143,
           "context": "8. **memory-index.json** — Rebuilt clean. 9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
         }
       ]
@@ -8097,7 +8132,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 124,
+          "line": 144,
           "context": "9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
         }
       ]
@@ -8107,7 +8142,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 111,
+          "line": 131,
           "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
         }
       ]
@@ -8377,7 +8412,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 69,
+          "line": 89,
           "context": "- 5. `COALESCE('', 'Naing Htet Aung')` → `''` 💀 **NAME WIPED!** - 6. Same for `notes`: `COALESCE('', 'Game: FC 26 | Phone: ... | User: ...')` → `'Approved by Osmo'` 💀"
         }
       ]
@@ -8387,7 +8422,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 75,
+          "line": 95,
           "context": "### Names Recovered from Server Log - Server log at `/root/psvibe_api_server/server.log` had `logging.warning(\"api_bookings_create: customer_name=%s\", ...)` entries. Cross-referenced log entries with "
         }
       ]
@@ -8937,7 +8972,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 46,
+          "line": 66,
           "context": "## P&L + Balance Sheet + Cash Flow Consistency Fix"
         }
       ]
@@ -8947,7 +8982,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 33,
+          "line": 53,
           "context": "## P&L Fix — Game Profit includes Wallet Consumption - Boss က P&L မှာ Game Profit က Game Revenue ကော Wallet Consumption ကော ထည့်တွက်သင့်တယ်လို့ မေးလာတယ်"
         }
       ]
@@ -8957,7 +8992,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 58,
+          "line": 78,
           "context": "- **P&L Game Profit**: Now includes wallet consumption ✅ - Boss reported: Confirmed bookings in Sales Bot don't show customer names. Admin Group notification shows names (like \"Yoon\", \"Naing Htet Aung"
         }
       ]
@@ -8977,7 +9012,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 110,
+          "line": 130,
           "context": "### P0 Fixes: 1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent contex"
         }
       ]
@@ -9007,7 +9042,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 119,
+          "line": 139,
           "context": "### P2 Fixes: 5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated."
         }
       ]
@@ -9607,7 +9642,7 @@
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 48,
+          "line": 68,
           "context": "### Problems Found & Fixed: 1. **Retained Earnings formula**: Removed `member_liab`, removed auto-balance, added `wallet_consumed`, excluded topups from revenue"
         }
       ]
@@ -9952,7 +9987,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 50,
+          "line": 70,
           "context": "2. **Rent Amortization double-count**: KBZ was deducted BOTH via prepaid deduction AND opex (2.49M) — fixed by excluding it from opex query 3. **WavePay account name mismatch**: BS used \"WavePay\" but "
         }
       ]
@@ -10052,7 +10087,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 126,
+          "line": 146,
           "context": "### Restored from Backup: - Booking fix section restored to this daily log (was only in MEMORY.md, not in daily log)."
         }
       ]
@@ -10197,7 +10232,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 57,
+          "line": 77,
           "context": "- **Retained Earnings**: -10,563,923 vs P&L Net Profit -10,380,590 — diff 183,333 (April depreciation not in June P&L) - **P&L Game Profit**: Now includes wallet consumption ✅"
         }
       ]
@@ -10207,7 +10242,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 49,
+          "line": 69,
           "context": "1. **Retained Earnings formula**: Removed `member_liab`, removed auto-balance, added `wallet_consumed`, excluded topups from revenue 2. **Rent Amortization double-count**: KBZ was deducted BOTH via pr"
         }
       ]
@@ -10297,7 +10332,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 61,
+          "line": 81,
           "context": "### Root Cause Found — `COALESCE('', name)` Trap - **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint"
         }
       ]
@@ -11232,7 +11267,7 @@
         },
         {
           "path": "memory/2026-06-17.md",
-          "line": 95,
+          "line": 115,
           "context": "### Services Restarted - `psvibe-api` ✅ (restarted for PATCH fix, list endpoint phone fallback)"
         },
         {
@@ -11582,7 +11617,7 @@
       "files": [
         {
           "path": "memory/infrastructure.md",
-          "line": 41,
+          "line": 51,
           "context": "## Shop Info | Detail | Value |"
         }
       ]
@@ -12081,6 +12116,11 @@
           "context": "- **Status:** **needs integration** — Should run `--auto` at the end of every heartbeat cycle to commit any changes from index/rebuild steps. Should run `--init` once during setup."
         },
         {
+          "path": "memory/lessons.md",
+          "line": 115,
+          "context": "**Status:** Quality Gate 58→100 🟢, Paths fixed, Cron jobs migrated to OpenClaw, Backup secured, Docs updated **Lesson:** Batch processing with max-2-parallel sub-agents + direct work = efficient full-"
+        },
+        {
           "path": "memory/security-audit-2026-06-13.md",
           "line": 4,
           "context": "**Status:** ✅ Complete"
@@ -12242,7 +12282,7 @@
       "files": [
         {
           "path": "memory/infrastructure.md",
-          "line": 50,
+          "line": 60,
           "context": "## Sub-Agent Configuration | Setting | Value |"
         }
       ]
@@ -12717,7 +12757,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 72,
+          "line": 92,
           "context": "### The Fix - \"staff_name=COALESCE(NULLIF(%s, ''), staff_name), notes=COALESCE(NULLIF(%s, ''), notes)\""
         }
       ]
@@ -12819,16 +12859,6 @@
           "path": "memory/contacts.md",
           "line": 15,
           "context": "- **Timezone:** Asia/Yangon (UTC+6:30) — ALWAYS convert UTC to Myanmar Time"
-        }
-      ]
-    },
-    {
-      "topic": "TODAY!",
-      "files": [
-        {
-          "path": "memory/project-state.md",
-          "line": 54,
-          "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!** - **Opening Hours:** 9 AM - 9 PM (daily)"
         }
       ]
     },
@@ -13322,7 +13352,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 51,
+          "line": 71,
           "context": "3. **WavePay account name mismatch**: BS used \"WavePay\" but DB stores \"Wave\" — transfer_out 95K missed — fixed 4. **ACM's Acc opex normalization**: \"acm's_acc\" → \"acm_acc\" in opex parsing — 415K misse"
         }
       ]
@@ -13369,6 +13399,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 48,
           "context": "### What was NOT changed - The API server (`app.py`) — coupon endpoints already exist and work correctly"
+        }
+      ]
+    },
+    {
+      "topic": "What:",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 114,
+          "context": "**What:** Full system audit → 10-item improvement list executed via batch sub-agents **Status:** Quality Gate 58→100 🟢, Paths fixed, Cron jobs migrated to OpenClaw, Backup secured, Docs updated"
         }
       ]
     },
@@ -13703,6 +13743,16 @@
       ]
     },
     {
+      "topic": "⚠️ Notes",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 48,
+          "context": "### ⚠️ Notes - VPS (5.223.81.16): SSH key rejected (known ongoing issue — server pingable but `id_rsa` missing, `id_ed25519` rejected)"
+        }
+      ]
+    },
+    {
       "topic": "⚠️ Pending (Boss Action Needed)",
       "files": [
         {
@@ -13769,6 +13819,16 @@
           "path": "memory/v2-audit-2026-06-03.md",
           "line": 3,
           "context": "## ✅ All 10 Issues Fixed + Verify PASS"
+        }
+      ]
+    },
+    {
+      "topic": "✅ All Clear",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 35,
+          "context": "### ✅ All Clear - Health monitor: 53.5 overall (paths mismatch false positives; VPS SSH key rejected — known)"
         }
       ]
     },
@@ -14517,7 +14577,7 @@
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 105,
+          "line": 125,
           "context": "## 🔧 Memory System Audit & Repair (09:00+ UTC)"
         }
       ]
@@ -14559,6 +14619,16 @@
           "path": "memory/lessons.md",
           "line": 6,
           "context": "## 🔴 Post-Task SOP See `POST_TASK_SOP.md` (workspace root)"
+        }
+      ]
+    },
+    {
+      "topic": "🕐 Heartbeat Check (09:37 UTC / 16:07 MMT)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 33,
+          "context": "## 🕐 Heartbeat Check (09:37 UTC / 16:07 MMT)"
         }
       ]
     },
@@ -14638,7 +14708,7 @@
         {
           "path": "memory/project-state.md",
           "line": 53,
-          "context": "## 🗓️ Upcoming - **Grand Opening:** 06 June 2026 (Saturday) 🎉 **TODAY!**"
+          "context": "## 🗓️ Upcoming - **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed**"
         }
       ]
     },

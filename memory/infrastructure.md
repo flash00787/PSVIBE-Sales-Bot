@@ -38,6 +38,16 @@ Bot (python-telegram-bot) → API (:8000) → MySQL (primary) → gspread (cold 
 | Health Monitor | — | 30 checks, 5 pillars |
 | Dashboard | — | Web UI port 9090 |
 
+## Additional Services (systemd)
+| Service | Description | Status |
+|---------|-------------|--------|
+| `psvibe-analytics.service` | PS VIBE Predictive Analytics Engine | 🟢 Running |
+| `psvibe-attendance.service` | Staff Attendance System | 🟢 Running |
+| `psvibe-discord-bot.service` | Discord Bot (PS VIBE) | 🟢 Running |
+| `kora-host-api.service` | Kora Host API Bridge for Nova | 🟢 Running |
+| `kora-voice.service` | Kora Voice Assistant | 🟢 Running |
+| `acm-personal-wallet.service` | ACM's Personal Wallet Bot | 🟢 Running |
+
 ## Shop Info
 | Detail | Value |
 |--------|-------|

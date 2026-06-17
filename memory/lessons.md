@@ -109,3 +109,8 @@ See `HEARTBEAT.md` for full schedule
 **Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get("staffName", "")` → `""` → `COALESCE('', 'Real Name')` returns `''` → wipes existing data.
 **Fix:** Always wrap with `NULLIF`: `COALESCE(NULLIF(%s, ''), staff_name)`.
 **File:** `app.py` line 1335 (PATCH /api/bookings/{id}/status)
+
+## 2026-06-17: System Audit & Batch Improvements
+**What:** Full system audit → 10-item improvement list executed via batch sub-agents
+**Status:** Quality Gate 58→100 🟢, Paths fixed, Cron jobs migrated to OpenClaw, Backup secured, Docs updated
+**Lesson:** Batch processing with max-2-parallel sub-agents + direct work = efficient full-system upgrade
