@@ -627,11 +627,33 @@ async def _do_extend(bot, query, cid: str, member_id: str,
     _old_total = _SESSION_TOTAL_MINS.get(_session_key, 0)
     _SESSION_TOTAL_MINS[_session_key] = _old_total + extra_mins
     # Sync extended duration to DB via API (so console status shows correct timer)
+    # ⚠️ AWAIT instead of fire-and-forget: ensures DB is updated before returning.
+    # Without this, the console status board shows the OLD duration when extend
+    # API call silently fails (fire-and-forget catches exceptions but can't retry).
     try:
-        asyncio.ensure_future(_psvibe_post_async(
+        _db_result = await _psvibe_post_async(
             "bookings/extend-duration",
             {"console_id": cid, "extra_mins": extra_mins}
-        ))
+        )
+        if _db_result is None:
+            logger.error("_do_extend: DB sync returned empty for %s", cid)
+            # Try to notify staff about the failure
+            try:
+                await bot.send_message(
+                    chat_id=chat_id,
+                    text=(
+                        f"⚠️ <b>DB Sync Warning</b>\n"
+                        f"━━━━━━━━━━━━━━━━━━\n"
+                        f"🕹️ Console: <b>{cid}</b>\n"
+                        f"➕ Extended: <b>+{extra_mins} mins</b>\n"
+                        f"━━━━━━━━━━━━━━━━━━\n"
+                        f"Database ကို sync မလုပ်နိုင်ပါ — Console Status ပေါ်တွင်\n"
+                        f"အချိန်မှန်မပြတတ်ပါ။ ထပ်မံကြိုးစားရန် session ကို ပြန် Extend လုပ်ပေးပါ။"
+                    ),
+                    parse_mode="HTML",
+                )
+            except Exception:
+                pass
     except Exception as e:
         logger.error("_do_extend: DB sync failed for %s: %s", cid, e)
     # Persist updated end time to disk (rem_mins ≈ remaining minutes)
