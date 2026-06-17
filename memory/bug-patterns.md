@@ -136,6 +136,20 @@
 - **Fix:** Added `_SESSION_TOTAL_MINS` dict that accumulates total minutes across extensions; display uses accumulated total instead of remaining time
 - **Pattern:** Remaining time != total session time after an extension. Always track both.
 
+## Session Extend — Console Status Not Updating (FIXED — 2026-06-17)
+- Staff extends session via reminder → "Extended!" message shown ✅
+- But `/status` / Console Status Board still shows OLD duration ❌
+- **Root cause:** `_do_extend()` in `booking_flow.py` used `asyncio.ensure_future(_psvibe_post_async(...))` — fire-and-forget!
+  - API call runs in background without await
+  - If API call fails silently (network blip, server error), ONLY the error is logged
+  - `_SESSION_END_TIMES` / `_SESSION_TOTAL_MINS` updated in-memory ✅ (so End Session shows correct total)
+  - But `console_booking.duration_mins` in MySQL NOT updated ❌ → `/status` reads from DB → shows old duration
+- **Fix:** Changed `asyncio.ensure_future(...)` to `await _psvibe_post_async(...)`
+  - DB sync now happens BEFORE function returns
+  - Added error message to staff if DB sync fails (instead of silent swallow)
+- **Secondary issue:** 3 orphaned Active bookings found (id=434,444,463) where session ended but console_booking.status never set to 'Done'. Fixed.
+- **Pattern:** `asyncio.ensure_future()` with fire-and-forget = silent failure risk. If the result matters (like DB sync), always `await`.
+
 ## Customer Booking Slot — Date Filter Ignored by API (FIXED — 2026-06-16)
 - Customer Bot slot availability shows "No consoles available" even when consoles are free
 - **Root cause:** `GET /api/search-bookings` endpoint had no `date` query parameter. Client sends `date=2026-06-17` but API ignores it — SQL query returns ALL bookings across all dates → slot logic marks everything unavailable

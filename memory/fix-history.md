@@ -40,7 +40,21 @@
 |-----|------|-----------|-----|
 | Slot availability always shows "No consoles available" | `psvibe_api_server/app.py` | `GET /api/search-bookings` endpoint had NO `date` parameter — client sends date but API ignores it, SQL returns ALL bookings across ALL dates | Added `date: str = Query("")` to endpoint, dynamic WHERE clause builds `booking_date=%s` filter when date provided; date format normalization for 5 formats
 
+## 2026-06-17 — Session Extend DB Sync & Orphaned Bookings
+
+### Bug: Console Status Not Updated After Session Extend
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| `/status` shows OLD duration after extend | `booking_flow.py` L629-636 | `_do_extend()` used `asyncio.ensure_future(_psvibe_post_async(...))` — fire-and-forget. API error silently swallowed → DB not updated → console status reads old `duration_mins` from DB | Changed to `await _psvibe_post_async(...)` + added staff warning message on failure |
+
+### Cleanup: Orphaned Active Bookings
+| Console | Issue | Fix |
+|---------|-------|-----|
+| C-01, C-03, (empty) | 3 `console_booking` records had `status='Active'` but console was Free — session ended without updating booking to 'Done' | `UPDATE console_booking SET status='Done' WHERE id IN (434,444,463)` |
+
 ### Lessons
+- `asyncio.ensure_future()` = fire-and-forget = silent failure. If the result matters (DB sync), always `await`.
+- When ending a session, verify BOTH `console_status.status='Free'` AND `console_booking.status='Done'`. If only console_status is updated, the orphaned Active booking skews extend/status queries.
 - `PAY_METHODS` must be synced in **both** `constants.py` and `apply_fixes.py` — modifying only one causes inconsistency
 - Reminder persistence needs `message_thread_id` at EVERY extend point, not just initial booking
 - `_SESSION_TOTAL_MINS` is required for proper remaining-time display after session extension
