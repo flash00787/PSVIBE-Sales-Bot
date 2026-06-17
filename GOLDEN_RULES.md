@@ -10,6 +10,16 @@ All other docs (SOUL.md, MEMORY.md, AGENTS.md, HEARTBEAT.md) link here. DO NOT d
 - Simple reads/checks (grep, curl, SSH commands) → Kora ကိုယ်တိုင်လုပ်လို့ရ
 - But COMPLEX work MUST use sub-agents (Boss explicitly requires this)
 
+## 1a. 🚫 NEVER Analyze Complex Data with Flash Model
+**Kora ကိုယ်တိုင် Flash model နဲ့ complex analysis လုပ်ဖို့ တင်းကြပ်စွာ တားမြစ်သည်။**
+- **Financial audit / Cash audit / Balance sheet analysis** → MUST delegate to Pro sub-agent
+- **Code review / Bug analysis / SQL queries** → MUST delegate to Pro sub-agent
+- **ဘယ် analysis မဆို 3+ steps ရှိရင်** → Pro sub-agent ကို လွှတ်ရမယ်
+- **Exception:** Simple single-step lookups (e.g., "check this one value") → Kora လုပ်လို့ရ
+- **Boss ကိုတိုက်ရိုက်ပြန်မပြောခင် → Sub-agent result ကို ပြန်စစ်ဖို့ Verify Agent ကိုလွှတ်ရမယ်**
+
+**Why?** Flash model က speed/price အတွက်ကောင်းပေမယ့် complex reasoning အတွက် မှားနိုင်ခြေများတယ်။ Financial numbers, code logic, multi-step deduction တွေမှာ Pro model ကိုပဲ သုံးရမယ်။
+
 ## 2. If You Spawn — Don't Show Waiting Messages
 **Sub-agent လွှတ်ပြီဆိုရင် intermediate messages တွေ Boss ကိုမပြပါနဲ့။**
 - After spawn → reply directly or just listen (no "လုပ်နေပါတယ်" / "စောင့်နေပါ" messages)

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T12:08:00.442299+00:00",
+  "updated": "2026-06-17T12:38:36.809251+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -209,26 +209,6 @@
           "path": "memory/config.md",
           "line": 22,
           "context": "| `TRAJECTORY_FORCE_CLEAN_KB` | — | **10000** (new) |"
-        }
-      ]
-    },
-    {
-      "topic": "17:42 MMT — Plan Display Bug Fix (Session Extend)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 161,
-          "context": "## 17:42 MMT — Plan Display Bug Fix (Session Extend)"
-        }
-      ]
-    },
-    {
-      "topic": "180,000 MMK",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 7,
-          "context": "- Top-up: ၂ ခု၊ **180,000 MMK** (1,200 mins) - Active members: **၇ ယောက်**"
         }
       ]
     },
@@ -493,16 +473,6 @@
       ]
     },
     {
-      "topic": "2026-06-17.md duplicate content",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 140,
-          "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
-        }
-      ]
-    },
-    {
       "topic": "2026-06-17: `COALESCE('', val)` SQL Trap",
       "files": [
         {
@@ -543,16 +513,6 @@
       ]
     },
     {
-      "topic": "25%",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 13,
-          "context": "- Disk: **25%** (36G/150G used) - Memory: **4.6/15 GB** — ပုံမှန်"
-        }
-      ]
-    },
-    {
       "topic": "3 distinct root causes",
       "files": [
         {
@@ -569,16 +529,6 @@
           "path": "memory/project-state.md",
           "line": 72,
           "context": "- **3 Services:** `psvibe-sale-bot` | `psvibe_customer_bot` | `psvibe-api` - **MySQL:** Docker `psvibe-mysql` (:3306), DB: `psvibe_api`"
-        }
-      ]
-    },
-    {
-      "topic": "3 uncommitted changes",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 29,
-          "context": "- API Server Git: **3 uncommitted changes** ⚠️ - YYO Wallet alerts (7 unread — known ongoing issue, no instance running)"
         }
       ]
     },
@@ -888,16 +838,6 @@
       ]
     },
     {
-      "topic": "4.6/15 GB",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 14,
-          "context": "- Memory: **4.6/15 GB** — ပုံမှန် - Console: ၁၀ လုံး free"
-        }
-      ]
-    },
-    {
       "topic": "4/41 empty",
       "files": [
         {
@@ -1033,16 +973,6 @@
       ]
     },
     {
-      "topic": "58/100",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 28,
-          "context": "- Quality Gate: **58/100** (up from 55 — improving) - API Server Git: **3 uncommitted changes** ⚠️"
-        }
-      ]
-    },
-    {
       "topic": "6. `memory/consolidator.py` — Enhanced to Auto-Write",
       "files": [
         {
@@ -1069,16 +999,6 @@
           "path": "memory/booking-features-plan.md",
           "line": 369,
           "context": "## 6. Implementation Order"
-        }
-      ]
-    },
-    {
-      "topic": "7 containers, အားလုံး healthy",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 12,
-          "context": "- Docker: **7 containers, အားလုံး healthy** ✅ - Disk: **25%** (36G/150G used)"
         }
       ]
     },
@@ -1119,16 +1039,6 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 144,
           "context": "## 7. Knowledge Graph (`memory/knowledge_graph.py` + `memory/knowledge-graph.json`) **Goal:** Topic/People/Project တွေကြားက relationship ကို track မယ်"
-        }
-      ]
-    },
-    {
-      "topic": "708,100 MMK",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 6,
-          "context": "- ရောင်းရငွေ: **708,100 MMK** (28 transactions) - Top-up: ၂ ခု၊ **180,000 MMK** (1,200 mins)"
         }
       ]
     },
@@ -1273,16 +1183,6 @@
       ]
     },
     {
-      "topic": "A ≈ L+E",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 76,
-          "context": "- **A ≈ L+E**: 33,216 gap (0.01%) — minor rounding - **Retained Earnings**: -10,563,923 vs P&L Net Profit -10,380,590 — diff 183,333 (April depreciation not in June P&L)"
-        }
-      ]
-    },
-    {
       "topic": "A=L+E forced:",
       "files": [
         {
@@ -1314,26 +1214,6 @@
           "path": "memory/2026-06-09.md",
           "line": 19,
           "context": "2. **ACM's Acc is a business account** — just separate cash box, not owner transfer 3. **Opening = all KBZ transfer_in** (300M) regardless of date"
-        }
-      ]
-    },
-    {
-      "topic": "ACM's Acc opex normalization",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 72,
-          "context": "4. **ACM's Acc opex normalization**: \"acm's_acc\" → \"acm_acc\" in opex parsing — 415K missed in both BS and CF — fixed"
-        }
-      ]
-    },
-    {
-      "topic": "Action:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 174,
-          "context": "**Action:** Bot restarted ✅, docs updated ✅"
         }
       ]
     },
@@ -1543,12 +1423,17 @@
       ]
     },
     {
-      "topic": "AGENTS.md",
+      "topic": "AGENTS.md:",
       "files": [
         {
           "path": "memory/2026-06-17.md",
-          "line": 142,
-          "context": "7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search). 8. **memory-index.json** — Rebuilt clean."
+          "line": 14,
+          "context": "3. **AGENTS.md:** Added Pre-Response Verification checklist (4-step mental check before answering complex analysis) 4. **SOUL.md:** Added hard rule about complex analysis → Pro sub-agent delegation"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 16,
+          "context": "5. **AGENTS.md:** Updated fallback chain to reflect Pro as primary"
         },
         {
           "path": "memory/ARCHIVED_LESSONS.md",
@@ -1604,16 +1489,6 @@
           "path": "memory/ARCHIVE.md",
           "line": 127,
           "context": "(dedup) - **All critical path bugs fixed:** (dedup) - ✅ Console normalization (spaces in console IDs)"
-        }
-      ]
-    },
-    {
-      "topic": "ALL CRON Paths Broken (/home/node/ → /root/)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 133,
-          "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
         }
       ]
     },
@@ -2248,16 +2123,6 @@
       ]
     },
     {
-      "topic": "Bonus Fix:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 155,
-          "context": "**Bonus Fix:** 3 orphaned Active bookings cleaned (C-01 id=444, C-03 id=463, [empty] id=434) — sessions ended without setting booking to 'Done'."
-        }
-      ]
-    },
-    {
       "topic": "Booking Confirm → Notify Customer",
       "files": [
         {
@@ -2488,16 +2353,6 @@
       ]
     },
     {
-      "topic": "BS CA = FB = CF",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 75,
-          "context": "- **BS CA = FB = CF**: All three perfectly match at -10,801,469 ✅ - **A ≈ L+E**: 33,216 gap (0.01%) — minor rounding"
-        }
-      ]
-    },
-    {
       "topic": "BS Retained Earnings — Remaining Issue",
       "files": [
         {
@@ -2594,11 +2449,6 @@
           "path": "memory/2026-06-13.md",
           "line": 123,
           "context": "- **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\" - **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>`"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 165,
-          "context": "**Bug:** `_SESSION_TOTAL_MINS` dict never initialized in `_remind_loop()`. When `_do_extend()` called `.get(_session_key, 0)`, it returned 0, so: ```python"
         },
         {
           "path": "memory/fix-history.md",
@@ -2829,6 +2679,11 @@
           "path": "memory/2026-06-13.md",
           "line": 8,
           "context": "**Changes Made:** 1. **MySQL:** Added columns to `customer_bot_users`: `member_id` (indexed), `member_name`, `phone` (indexed), `balance_mins`"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 11,
+          "context": "### Changes Made 1. **Config:** Changed `agents.defaults.model.primary` from `deepseek/deepseek-v4-flash` → `deepseek/deepseek-v4-pro`"
         },
         {
           "path": "memory/booking-fixes-checkin-implemented.md",
@@ -3233,8 +3088,13 @@
       ]
     },
     {
-      "topic": "Config",
+      "topic": "Config:",
       "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 12,
+          "context": "1. **Config:** Changed `agents.defaults.model.primary` from `deepseek/deepseek-v4-flash` → `deepseek/deepseek-v4-pro` 2. **GOLDEN_RULES.md:** Added Rule #1a — 🚫 NEVER Analyze Complex Data with Flash M"
+        },
         {
           "path": "memory/coupon-system-implemented.md",
           "line": 11,
@@ -3573,16 +3433,6 @@
       ]
     },
     {
-      "topic": "Critical Lesson",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 119,
-          "context": "### Critical Lesson - **`COALESCE('', val)` returns `''` because empty string IS NOT NULL in SQL.** When using COALESCE as \"use this new value, or keep existing if not provided\", always wrap the new v"
-        }
-      ]
-    },
-    {
       "topic": "CRITICAL:",
       "files": [
         {
@@ -3634,6 +3484,16 @@
           "path": "memory/2026-06-15.md",
           "line": 266,
           "context": "### Current Commands — 21 Total | Public 🌐 | Private 🔒 |"
+        }
+      ]
+    },
+    {
+      "topic": "Current Model Chain",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 21,
+          "context": "### Current Model Chain - **Main:** DeepSeek V4 Pro (primary) → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash"
         }
       ]
     },
@@ -3694,16 +3554,6 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 44,
           "context": "### Customer Bot (`customer_bot/`) | File | Purpose |"
-        }
-      ]
-    },
-    {
-      "topic": "Customer Bot Fix",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 109,
-          "context": "### Customer Bot Fix - Also fixed customer bot to force name entry when member record has empty name:"
         }
       ]
     },
@@ -3774,16 +3624,6 @@
           "path": "memory/fix-history.md",
           "line": 81,
           "context": "- **Daily Digest:** Auto-generated for June 9 - **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges)"
-        }
-      ]
-    },
-    {
-      "topic": "daily-git-backup timeout",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 137,
-          "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
         }
       ]
     },
@@ -4961,16 +4801,6 @@
           "context": "- **File:** `/root/psvibe_api_server/patch_routes.py` line 1328"
         },
         {
-          "path": "memory/2026-06-17.md",
-          "line": 113,
-          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 172,
-          "context": "**File:** `/root/psvibe-sales-bot/bot/handlers/booking_flow.py` line 104-106"
-        },
-        {
           "path": "memory/ARCHIVE.md",
           "line": 70,
           "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` line 2097 (dedup) - **Status:** ✅ Verified working (600→540 mins deducted)"
@@ -5373,32 +5203,12 @@
       ]
     },
     {
-      "topic": "Final State:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 74,
-          "context": "### Final State: - **BS CA = FB = CF**: All three perfectly match at -10,801,469 ✅"
-        }
-      ]
-    },
-    {
       "topic": "Final system verification test",
       "files": [
         {
           "path": "memory/subagent-journal.json",
           "line": 12,
           "context": "status: completed | summary: Final verification passed"
-        }
-      ]
-    },
-    {
-      "topic": "Financial Validation Cron Setup",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 59,
-          "context": "## Financial Validation Cron Setup - Script: `/root/psvibe_api_server/scripts/financial_validation.py`"
         }
       ]
     },
@@ -6056,16 +5866,6 @@
           "context": "**Fix:** Created `/root/scripts/auto_depreciate.py` — auto-depreciation script that: - Calculates months from purchase_month through current_month (inclusive)"
         },
         {
-          "path": "memory/2026-06-17.md",
-          "line": 153,
-          "context": "**Fix:** Changed to `await _psvibe_post_async(...)` + staff warning msg on failure."
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 170,
-          "context": "**Fix:** Added `if key not in _SESSION_TOTAL_MINS: _SESSION_TOTAL_MINS[key] = planned_mins` in `_remind_loop()` right after `_SESSION_END_TIMES[key] = end_t`"
-        },
-        {
           "path": "memory/ARCHIVE.md",
           "line": 65,
           "context": "(dedup) - **Fix:** Changed to `cd.get(\"code\")` and `cd.get(\"minutes\")` (dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()`"
@@ -6399,41 +6199,6 @@
           "path": "memory/2026-06-13.md",
           "line": 47,
           "context": "- **Fixed:** 1. Created `customer_feedback` table (id, tg_id, username, booking_id, rating, comment, console_id, created_at)"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 131,
-          "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 133,
-          "context": "2. **ALL CRON Paths Broken (/home/node/ → /root/)** — 22 file occurrences + 14 cron jobs used non-existent `/home/node/.openclaw/workspace/` paths. **Fixed:** All to `/root/`."
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 137,
-          "context": "4. **daily-git-backup timeout** — No timeout limit set. **Fixed:** Added timeoutSeconds:60 + lightContext."
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 140,
-          "context": "5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated. 6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.**"
-        }
-      ]
-    },
-    {
-      "topic": "Fixed.",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 135,
-          "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 141,
-          "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
     },
@@ -6489,11 +6254,6 @@
           "path": "memory/2026-06-14.md",
           "line": 296,
           "context": "### Flow: ```"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 84,
-          "context": "- **Flow:** - 1. Customer bot creates booking → POST with `customerName: \"Naing Htet Aung\"` → INSERT stores `staff_name = \"Naing Htet Aung\"` ✅"
         },
         {
           "path": "memory/fix-history.md",
@@ -6848,16 +6608,6 @@
       ]
     },
     {
-      "topic": "Gmail Morning Check — 3 consecutive errors",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 135,
-          "context": "3. **Gmail Morning Check — 3 consecutive errors** — Missing `to` field in delivery config. **Fixed.**"
-        }
-      ]
-    },
-    {
       "topic": "Goal:",
       "files": [
         {
@@ -6919,6 +6669,16 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 54,
           "context": "**Goal:** Auto-cancel bookings if customer doesn't check in within 15 minutes of booking time."
+        }
+      ]
+    },
+    {
+      "topic": "GOLDEN_RULES.md:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 13,
+          "context": "2. **GOLDEN_RULES.md:** Added Rule #1a — 🚫 NEVER Analyze Complex Data with Flash Model 3. **AGENTS.md:** Added Pre-Response Verification checklist (4-step mental check before answering complex analysi"
         }
       ]
     },
@@ -7139,16 +6899,6 @@
           "path": "memory/integration-plan.md",
           "line": 95,
           "context": "### Heartbeat Pipeline (runs periodically)"
-        }
-      ]
-    },
-    {
-      "topic": "heartbeat-procedures.md stale paths",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 141,
-          "context": "6. **heartbeat-procedures.md stale paths** — 2 `/home/node/` references. **Fixed.** 7. **AGENTS.md** — Added Session Startup auto-run steps (boot protocol + memory search)."
         }
       ]
     },
@@ -7613,16 +7363,6 @@
       ]
     },
     {
-      "topic": "Issue:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 163,
-          "context": "**Issue:** Boss reported \"Plan တွေက မှားနေတယ်\" — session reminder notifications showing wrong plan minutes after extending."
-        }
-      ]
-    },
-    {
       "topic": "Issues Found & Fixed",
       "files": [
         {
@@ -7694,6 +7434,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 59,
           "context": "### Key Functions"
+        }
+      ]
+    },
+    {
+      "topic": "Key Lesson",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 18,
+          "context": "### Key Lesson Flash model is fine for simple chat/lookups but **NOT for complex reasoning, financial numbers, code analysis, or multi-step deduction.** Must always delegate to Pro sub-agents for thes"
         }
       ]
     },
@@ -7789,6 +7539,16 @@
           "path": "memory/2026-06-07.md",
           "line": 13,
           "context": "**Known valid coupon codes (sample):** CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B"
+        }
+      ]
+    },
+    {
+      "topic": "Kora doing analysis directly",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 8,
+          "context": "2. **Kora doing analysis directly** instead of delegating to Pro sub-agents 3. **Overconfidence without verification** — jumping to conclusions"
         }
       ]
     },
@@ -8023,16 +7783,6 @@
       ]
     },
     {
-      "topic": "Location:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 82,
-          "context": "- **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint - \"staff_name=COALESCE(%s, staff_name), notes=COALESCE(%s, notes)\""
-        }
-      ]
-    },
-    {
       "topic": "Lock Monitor Updates (2026-06-02)",
       "files": [
         {
@@ -8055,11 +7805,6 @@
     {
       "topic": "Logic:",
       "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 56,
-          "context": "- **Logic:** Wallet top-ups = Deferred Revenue; Wallet consumption = Recognized Revenue (member သုံးတဲ့ minutes) - API restarted ✅"
-        },
         {
           "path": "memory/booking-features-implemented.md",
           "line": 37,
@@ -8094,6 +7839,26 @@
           "path": "memory/full-audit-2026-06-03.md",
           "line": 25,
           "context": "### Main API (app.py) — 72 Endpoints - System (3): health, mysql/health, mysql/status"
+        }
+      ]
+    },
+    {
+      "topic": "Main session model was Flash",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 7,
+          "context": "1. **Main session model was Flash** (`deepseek/deepseek-v4-flash`) — not suitable for complex analysis 2. **Kora doing analysis directly** instead of delegating to Pro sub-agents"
+        }
+      ]
+    },
+    {
+      "topic": "Main:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 22,
+          "context": "- **Main:** DeepSeek V4 Pro (primary) → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash - **Sub-agents:** DeepSeek V4 Pro (primary) → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash"
         }
       ]
     },
@@ -8249,36 +8014,6 @@
           "path": "memory/fix-history.md",
           "line": 79,
           "context": "- **Memory Pruner:** 3 exact dupes + 26 similar merged (1.1 KB saved) - **Memory Index:** Rebuilt (1,146 topics, 47 files)"
-        }
-      ]
-    },
-    {
-      "topic": "memory-index.json",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 143,
-          "context": "8. **memory-index.json** — Rebuilt clean. 9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
-        }
-      ]
-    },
-    {
-      "topic": "MEMORY.md backup preserved",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 144,
-          "context": "9. **MEMORY.md backup preserved** — at MEMORY.md.backup (original 115KB)."
-        }
-      ]
-    },
-    {
-      "topic": "MEMORY.md Bloat (115 KB → 4 KB)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 131,
-          "context": "1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent context. **Fixed:** "
         }
       ]
     },
@@ -8539,26 +8274,6 @@
           "path": "memory/ARCHIVE.md",
           "line": 274,
           "context": "(dedup) 1. **n8n Payment (€25.68)** — 2nd notice, subscription may expire (dedup) 2. **GitHub Deploy Failing** — PSVIBE-API-Server master branch deploy workflow failing"
-        }
-      ]
-    },
-    {
-      "topic": "NAME WIPED!",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 89,
-          "context": "- 5. `COALESCE('', 'Naing Htet Aung')` → `''` 💀 **NAME WIPED!** - 6. Same for `notes`: `COALESCE('', 'Game: FC 26 | Phone: ... | User: ...')` → `'Approved by Osmo'` 💀"
-        }
-      ]
-    },
-    {
-      "topic": "Names Recovered from Server Log",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 95,
-          "context": "### Names Recovered from Server Log - Server log at `/root/psvibe_api_server/server.log` had `logging.warning(\"api_bookings_create: customer_name=%s\", ...)` entries. Cross-referenced log entries with "
         }
       ]
     },
@@ -8868,6 +8583,16 @@
       ]
     },
     {
+      "topic": "NOT for complex reasoning, financial numbers, code analysis, or multi-step deduction.",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 19,
+          "context": "Flash model is fine for simple chat/lookups but **NOT for complex reasoning, financial numbers, code analysis, or multi-step deduction.** Must always delegate to Pro sub-agents for these tasks."
+        }
+      ]
+    },
+    {
       "topic": "not installed",
       "files": [
         {
@@ -9093,6 +8818,16 @@
       ]
     },
     {
+      "topic": "Overconfidence without verification",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 9,
+          "context": "3. **Overconfidence without verification** — jumping to conclusions"
+        }
+      ]
+    },
+    {
       "topic": "Overview",
       "files": [
         {
@@ -9103,52 +8838,12 @@
       ]
     },
     {
-      "topic": "P&L + Balance Sheet + Cash Flow Consistency Fix",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 66,
-          "context": "## P&L + Balance Sheet + Cash Flow Consistency Fix"
-        }
-      ]
-    },
-    {
-      "topic": "P&L Fix — Game Profit includes Wallet Consumption",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 53,
-          "context": "## P&L Fix — Game Profit includes Wallet Consumption - Boss က P&L မှာ Game Profit က Game Revenue ကော Wallet Consumption ကော ထည့်တွက်သင့်တယ်လို့ မေးလာတယ်"
-        }
-      ]
-    },
-    {
-      "topic": "P&L Game Profit",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 78,
-          "context": "- **P&L Game Profit**: Now includes wallet consumption ✅ - Boss reported: Confirmed bookings in Sales Bot don't show customer names. Admin Group notification shows names (like \"Yoon\", \"Naing Htet Aung"
-        }
-      ]
-    },
-    {
       "topic": "P0 (Critical)",
       "files": [
         {
           "path": "memory/PHASE3_SPEC.md",
           "line": 74,
           "context": "- **P0 (Critical)** — Boss's rules, business decisions, security → Never delete, always in MEMORY.md - **P1 (Important)** — Project updates, significant events → 30 days in MEMORY.md, then archive"
-        }
-      ]
-    },
-    {
-      "topic": "P0 Fixes:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 130,
-          "context": "### P0 Fixes: 1. **MEMORY.md Bloat (115 KB → 4 KB)** — Full daily logs (Jun 3-17) duplicated in MEMORY.md instead of keeping card catalog only. Caused session startup truncation → losing recent contex"
         }
       ]
     },
@@ -9169,16 +8864,6 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 76,
           "context": "- **P2 (Normal)** — Task completions, routine info → 7 days in daily logs - **P3 (Transient)** — One-time convos, temp info → 24h then prune"
-        }
-      ]
-    },
-    {
-      "topic": "P2 Fixes:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 139,
-          "context": "### P2 Fixes: 5. **2026-06-17.md duplicate content** — File had duplicated sections. **Fixed:** Deduplicated."
         }
       ]
     },
@@ -9781,6 +9466,11 @@
           "context": "**Problem:** PNL depreciation was `SUM(monthly_dep)` for ALL 39 assets. But 12 assets (Interior Decoration 98.6M, PS5 Console ×8 21.6M, Sofa ×10 14.4M, CCTV, Inverter, Battery, SPC Flooring, etc.) wer"
         },
         {
+          "path": "memory/2026-06-17.md",
+          "line": 5,
+          "context": "### Problem Boss pointed out Kora has been giving inaccurate/wrong answers recently. Root causes identified:"
+        },
+        {
           "path": "memory/lessons.md",
           "line": 109,
           "context": "**Problem:** `COALESCE(%s, staff_name)` with empty string `''` returns `''` because empty string IS NOT NULL in SQL. PATCH sends `req.get(\"staffName\", \"\")` → `\"\"` → `COALESCE('', 'Real Name')` returns"
@@ -9794,11 +9484,6 @@
           "path": "memory/2026-06-15.md",
           "line": 69,
           "context": "### Problems Found & Fixed"
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 68,
-          "context": "### Problems Found & Fixed: 1. **Retained Earnings formula**: Removed `member_liab`, removed auto-balance, added `wallet_consumed`, excluded topups from revenue"
         }
       ]
     },
@@ -10138,16 +9823,6 @@
       ]
     },
     {
-      "topic": "Rent Amortization double-count",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 70,
-          "context": "2. **Rent Amortization double-count**: KBZ was deducted BOTH via prepaid deduction AND opex (2.49M) — fixed by excluding it from opex query 3. **WavePay account name mismatch**: BS used \"WavePay\" but "
-        }
-      ]
-    },
-    {
       "topic": "Replace the Balance Sheet API endpoint",
       "files": [
         {
@@ -10234,16 +9909,6 @@
           "path": "memory/UPGRADE_SPEC.md",
           "line": 40,
           "context": "**Requirements:** - Uses only stdlib"
-        }
-      ]
-    },
-    {
-      "topic": "Restored from Backup:",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 157,
-          "context": "### Restored from Backup: - Booking fix section restored to this daily log (was only in MEMORY.md, not in daily log)."
         }
       ]
     },
@@ -10383,26 +10048,6 @@
       ]
     },
     {
-      "topic": "Retained Earnings",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 77,
-          "context": "- **Retained Earnings**: -10,563,923 vs P&L Net Profit -10,380,590 — diff 183,333 (April depreciation not in June P&L) - **P&L Game Profit**: Now includes wallet consumption ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Retained Earnings formula",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 69,
-          "context": "1. **Retained Earnings formula**: Removed `member_liab`, removed auto-balance, added `wallet_consumed`, excluded topups from revenue 2. **Rent Amortization double-count**: KBZ was deducted BOTH via pr"
-        }
-      ]
-    },
-    {
       "topic": "Retention:",
       "files": [
         {
@@ -10479,16 +10124,6 @@
           "path": "memory/2026-06-14.md",
           "line": 362,
           "context": "- **Root cause (probable):** Import error (Fix 8) prevented `cmd_session_food_order` from running properly. The `session_food_order` flag was never set, so `BTN_DONE` fell through to regular flow (sta"
-        }
-      ]
-    },
-    {
-      "topic": "Root Cause Found — `COALESCE('', name)` Trap",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 81,
-          "context": "### Root Cause Found — `COALESCE('', name)` Trap - **Location:** `app.py` line 1335 — `PATCH /api/bookings/{id}/status` endpoint"
         }
       ]
     },
@@ -10784,11 +10419,6 @@
           "path": "memory/2026-06-15.md",
           "line": 174,
           "context": "**Root cause:** No `purchase_date` filter in the depreciation SQL. The query just did `SUM(monthly_dep)` for all assets with non-zero useful_life."
-        },
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 147,
-          "context": "**Root Cause:** `_do_extend()` in `booking_flow.py:L629` used `asyncio.ensure_future(_psvibe_post_async(...))` — fire-and-forget! - API call runs in background without `await`"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -11446,11 +11076,6 @@
           "context": "### Services Restarted: - psvibe-api ✅ (food-cart routes)"
         },
         {
-          "path": "memory/2026-06-17.md",
-          "line": 115,
-          "context": "### Services Restarted - `psvibe-api` ✅ (restarted for PATCH fix, list endpoint phone fallback)"
-        },
-        {
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 85,
           "context": "## Services Restarted - psvibe-sale-bot.service ✅"
@@ -11835,6 +11460,11 @@
     {
       "topic": "SOUL.md:",
       "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 15,
+          "context": "4. **SOUL.md:** Added hard rule about complex analysis → Pro sub-agent delegation 5. **AGENTS.md:** Updated fallback chain to reflect Pro as primary"
+        },
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 28,
@@ -12488,6 +12118,16 @@
       ]
     },
     {
+      "topic": "Sub-agents:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 23,
+          "context": "- **Sub-agents:** DeepSeek V4 Pro (primary) → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash"
+        }
+      ]
+    },
+    {
       "topic": "Summary",
       "files": [
         {
@@ -12944,16 +12584,6 @@
           "path": "memory/finance-audit-2026-06.md",
           "line": 277,
           "context": "### The Dashboard Endpoints Are Correct The `/dashboard/financial/pnl` and `/dashboard/financial/balance-sheet` endpoints have comprehensive implementations that correctly calculate all the above item"
-        }
-      ]
-    },
-    {
-      "topic": "The Fix",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 92,
-          "context": "### The Fix - \"staff_name=COALESCE(NULLIF(%s, ''), staff_name), notes=COALESCE(NULLIF(%s, ''), notes)\""
         }
       ]
     },
@@ -13543,16 +13173,6 @@
       ]
     },
     {
-      "topic": "WavePay account name mismatch",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 71,
-          "context": "3. **WavePay account name mismatch**: BS used \"WavePay\" but DB stores \"Wave\" — transfer_out 95K missed — fixed 4. **ACM's Acc opex normalization**: \"acm's_acc\" → \"acm_acc\" in opex parsing — 415K misse"
-        }
-      ]
-    },
-    {
       "topic": "Web vs Bot identical",
       "files": [
         {
@@ -13763,26 +13383,6 @@
       ]
     },
     {
-      "topic": "၁ ခု",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 9,
-          "context": "- ဒီနေ့ booking: **၁ ခု**"
-        }
-      ]
-    },
-    {
-      "topic": "၇ ယောက်",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 8,
-          "context": "- Active members: **၇ ယောက်** - ဒီနေ့ booking: **၁ ခု**"
-        }
-      ]
-    },
-    {
       "topic": "−14,325,598 Ks",
       "files": [
         {
@@ -13898,16 +13498,6 @@
       ]
     },
     {
-      "topic": "☀️ နံနက်ခင်း System Report (01:37 UTC / 08:07 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 3,
-          "context": "## ☀️ နံနက်ခင်း System Report (01:37 UTC / 08:07 MMT)"
-        }
-      ]
-    },
-    {
       "topic": "☁️ SSH / Network / WARP",
       "files": [
         {
@@ -13938,16 +13528,6 @@
       ]
     },
     {
-      "topic": "⚠️ Notes",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 48,
-          "context": "### ⚠️ Notes - VPS (5.223.81.16): SSH key rejected (known ongoing issue — server pingable but `id_rsa` missing, `id_ed25519` rejected)"
-        }
-      ]
-    },
-    {
       "topic": "⚠️ Pending (Boss Action Needed)",
       "files": [
         {
@@ -13964,16 +13544,6 @@
           "path": "memory/2026-06-16.md",
           "line": 45,
           "context": "### ⚠️ Pending Items - `BIRTHDAY_FILE` error and `getLevel` error seen in old process logs (pre-restart) — current process is clean"
-        }
-      ]
-    },
-    {
-      "topic": "⚠️ သတိထားရန်",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 27,
-          "context": "### ⚠️ သတိထားရန် - Quality Gate: **58/100** (up from 55 — improving)"
         }
       ]
     },
@@ -14014,16 +13584,6 @@
           "path": "memory/v2-audit-2026-06-03.md",
           "line": 3,
           "context": "## ✅ All 10 Issues Fixed + Verify PASS"
-        }
-      ]
-    },
-    {
-      "topic": "✅ All Clear",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 35,
-          "context": "### ✅ All Clear - Health monitor: 53.5 overall (paths mismatch false positives; VPS SSH key rejected — known)"
         }
       ]
     },
@@ -14478,16 +14038,6 @@
       ]
     },
     {
-      "topic": "🐛 Session Extend — Console Status Not Updating (FIXED ~17:00 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 146,
-          "context": "### 🐛 Session Extend — Console Status Not Updating (FIXED ~17:00 MMT) **Root Cause:** `_do_extend()` in `booking_flow.py:L629` used `asyncio.ensure_future(_psvibe_post_async(...))` — fire-and-forget!"
-        }
-      ]
-    },
-    {
       "topic": "💡 Key Decisions",
       "files": [
         {
@@ -14534,16 +14084,6 @@
           "path": "memory/2026-06-16.md",
           "line": 31,
           "context": "### 📊 Complete Command List (35 Total) ```"
-        }
-      ]
-    },
-    {
-      "topic": "📊 PS VIBE Sales",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 5,
-          "context": "### 📊 PS VIBE Sales - ရောင်းရငွေ: **708,100 MMK** (28 transactions)"
         }
       ]
     },
@@ -14768,26 +14308,6 @@
       ]
     },
     {
-      "topic": "🔧 Memory System",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 21,
-          "context": "### 🔧 Memory System - Index rebuilt: 1,172 topics"
-        }
-      ]
-    },
-    {
-      "topic": "🔧 Memory System Audit & Repair (09:00+ UTC)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 125,
-          "context": "## 🔧 Memory System Audit & Repair (09:00+ UTC)"
-        }
-      ]
-    },
-    {
       "topic": "🔴 Core Docs (workspace root)",
       "files": [
         {
@@ -14828,16 +14348,6 @@
       ]
     },
     {
-      "topic": "🕐 Heartbeat Check (09:37 UTC / 16:07 MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 33,
-          "context": "## 🕐 Heartbeat Check (09:37 UTC / 16:07 MMT)"
-        }
-      ]
-    },
-    {
       "topic": "🕐 Time",
       "files": [
         {
@@ -14854,16 +14364,6 @@
           "path": "memory/2026-06-13.md",
           "line": 72,
           "context": "### 🕹️ Game Library — Solo/Multi Classification - Classified all 41 games in `games_library` table via SQL: Solo(23), Multi(13), Both(5)"
-        }
-      ]
-    },
-    {
-      "topic": "🖥️ Infrastructure",
-      "files": [
-        {
-          "path": "memory/2026-06-17.md",
-          "line": 11,
-          "context": "### 🖥️ Infrastructure - Docker: **7 containers, အားလုံး healthy** ✅"
         }
       ]
     },
@@ -14964,6 +14464,16 @@
           "path": "memory/delegation-rules.md",
           "line": 63,
           "context": "## 🚫 What Kora NEVER Does - ❌ **NEVER write/edit code directly** — use Fix Agent (Pro)"
+        }
+      ]
+    },
+    {
+      "topic": "🛑 Critical Incident: Kora Giving Wrong Answers (Flash Model Issue)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 3,
+          "context": "## 🛑 Critical Incident: Kora Giving Wrong Answers (Flash Model Issue)"
         }
       ]
     },

@@ -77,7 +77,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 ### ⚠️ Fallback Chain Quality-Aware
 - Fallback if primary model empty/error: wait for Gateway retry.
   Subagents: Pro → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash
-  Main: Flash → Gemini 2.5 Flash → Gemini 3.5 Flash
+  Main: **Pro** → Flash → Gemini 2.5 Flash → Gemini 3.5 Flash *(Updated 2026-06-17)*
 - Log all fallback events
 - Track fallback rate in weekly memory review
 
@@ -93,6 +93,28 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 ## 🚨 Golden Reflex Rule
 
 See GOLDEN_RULES.md
+
+## ⚡ Pre-Response Verification (MANDATORY — 2026-06-17)
+
+Before responding to Boss with ANY complex analysis, run this mental checklist:
+
+1. **Is this a complex analysis?** (3+ steps, financial numbers, code logic, multi-step deduction)
+   - YES → **STOP.** Delegate to Pro sub-agent. Do NOT analyze directly.
+   - NO → Proceed (simple lookup/reference only)
+2. **Did I delegate to a Pro sub-agent?**
+   - NO → **DO NOT answer yet.** Spawn a sub-agent.
+   - YES → Wait for result, then verify before replying.
+3. **Did I verify the sub-agent's result?**
+   - Cross-check with docs/source first.
+   - If unsure → spawn a Verify Agent.
+   - Only reply to Boss after verification passes.
+4. **Am I certain this is correct?**
+   - Not 100% sure? → Tell Boss "သေချာမစစ်ရသေးဘူး" or "uncertainty ရှိတယ်"
+   - Never fake confidence.
+
+**Hard rule:** If the task involves financial numbers, code review, SQL queries, or multi-file analysis → **ALWAYS sub-agent (Pro). NEVER answer directly with Flash.**
+
+## 🔀 Hybrid Spawning Rules
 
 ## 🔀 Hybrid Spawning Rules
 

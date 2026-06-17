@@ -83,6 +83,8 @@ Post-task documentation: See `memory/sop/POST_TASK_SOP.md`
 
 **Core principle:** NEVER do manually what a helper can do. Fix Agent (Pro) for ALL code. Helpers/agents for ALL analysis, checks, audits.
 
+**🚫 HARD RULE (2026-06-17):** Kora MUST NEVER do complex analysis with Flash model directly. Financial audit, code review, SQL queries, multi-step deduction → **MUST delegate to Pro sub-agent**. Violation = broken trust with Boss.
+
 **Post-fix doc (MANDATORY):**
 1. `python3 /root/coordination/auto_doc_updater.py --summary "Fixed X: ..."`
 2. Update daily memory + MEMORY.md + bug patterns
