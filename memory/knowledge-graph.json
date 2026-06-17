@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T12:08:00Z",
+  "updated": "2026-06-17T12:38:37Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -275,12 +275,6 @@
   ],
   "edges": [
     {
-      "source": "boot-protocol",
-      "target": "memory-index",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
       "source": "boss",
       "target": "daily-digest",
       "relation": "implements",
@@ -485,6 +479,12 @@
       "weight": 5
     },
     {
+      "source": "deepseek",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "docker",
       "target": "google-drive-api",
       "relation": "depends_on",
@@ -614,6 +614,12 @@
       "source": "knowledge-graph-concept",
       "target": "smart-pruning",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "deepseek",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -1849,6 +1855,12 @@
     {
       "source": "boot-protocol",
       "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "boot-protocol",
+      "target": "memory-index",
       "relation": "related_to",
       "weight": 3
     },
@@ -3330,12 +3342,6 @@
     },
     {
       "source": "deepseek",
-      "target": "gemini-api",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "deepseek",
       "target": "git-backup",
       "relation": "related_to",
       "weight": 3
@@ -4130,6 +4136,12 @@
       "source": "gemini-api",
       "target": "openrouter",
       "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gemini-api",
+      "target": "phase-2",
+      "relation": "related_to",
       "weight": 3
     },
     {
@@ -5216,12 +5228,6 @@
       "source": "kora",
       "target": "daily-digest",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "deepseek",
-      "relation": "uses",
       "weight": 3
     },
     {
