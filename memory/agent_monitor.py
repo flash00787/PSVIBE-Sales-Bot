@@ -6,7 +6,7 @@ Tracks sub-agent spawns, success/failure rates, and model fallback patterns.
 import json, os, subprocess, time, re
 from datetime import datetime, timezone
 
-WORKSPACE = "/home/node/.openclaw/workspace"
+WORKSPACE = "/root/.openclaw/workspace"
 LOG_FILE = os.path.join(WORKSPACE, "memory/agent_stats.json")
 MAX_HISTORY = 100
 

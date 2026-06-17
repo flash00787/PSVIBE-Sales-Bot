@@ -41,7 +41,7 @@ def check_stuck_subagents():
     import json
     import time
     
-    active_path = "/home/node/.openclaw/workspace/memory/active_tasks.json"
+    active_path = "/root/.openclaw/workspace/memory/active_tasks.json"
     if not os.path.exists(active_path):
         return "No active tasks file"
     

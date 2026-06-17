@@ -6,7 +6,7 @@
 #
 # Run from heartbeat or cron every 5 minutes
 
-LOCK_DIR="/home/node/.openclaw/agents/main/sessions"
+LOCK_DIR="/root/.openclaw/agents/main/sessions"
 CLEANED=0
 ERRORS=0
 NOW_EPOCH=$(date +%s)

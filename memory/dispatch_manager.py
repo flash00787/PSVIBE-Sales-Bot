@@ -144,7 +144,7 @@ def print_report(commands):
         print(f'      taskName="{cmd["taskName"]}",')
         print(f'      task="""Fix {cmd["description"]}')
         print()
-        print(f"  VPS: 5.223.81.16 (key /home/node/.openclaw/workspace/.ssh/id_rsa)")
+        print(f"  VPS: 5.223.81.16 (key /root/.openclaw/workspace/.ssh/id_rsa)")
         print(f"  Files: {cmd['files']}")
         print(f"  Bot path: /root/psvibe-sales-bot")
         print(f'      """,')
