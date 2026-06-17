@@ -10,17 +10,6 @@
     "total_plan_mins": 120,
     "updated_at": "2026-06-17T09:15:55.032166+00:00"
   },
-  "C-06|1003686032747": {
-    "cid": "C-06",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 90,
-    "end_t": "17:45",
-    "end_dt_iso": "2026-06-17T17:45:21.442064+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 240,
-    "updated_at": "2026-06-17T09:45:21.442148+00:00"
-  },
   "C-01|1003686032747": {
     "cid": "C-01",
     "chat_id": -1003686032747,
@@ -32,37 +21,37 @@
     "total_plan_mins": 120,
     "updated_at": "2026-06-17T09:53:05.166791+00:00"
   },
-  "C-08|1003686032747": {
-    "cid": "C-08",
+  "C-05|1003686032747": {
+    "cid": "C-05",
     "chat_id": -1003686032747,
     "member_id": "Guest",
-    "planned_mins": 64,
-    "end_t": "17:28",
-    "end_dt_iso": "2026-06-17T17:27:58.805371+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 240,
-    "updated_at": "2026-06-17T09:53:58.805780+00:00"
-  },
-  "C-02|1003686032747": {
-    "cid": "C-02",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 63,
-    "end_t": "17:32",
-    "end_dt_iso": "2026-06-17T17:31:11.242702+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 180,
-    "updated_at": "2026-06-17T09:58:11.243203+00:00"
-  },
-  "C-07|1003686032747": {
-    "cid": "C-07",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "17:38",
-    "end_dt_iso": "2026-06-17T17:38:04.811264+06:30",
+    "planned_mins": 90,
+    "end_t": "18:51",
+    "end_dt_iso": "2026-06-17T18:51:25.862136+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-06-17T10:08:04.811428+00:00"
+    "total_plan_mins": 90,
+    "updated_at": "2026-06-17T10:51:25.862307+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 120,
+    "end_t": "19:37",
+    "end_dt_iso": "2026-06-17T19:37:10.698107+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-17T11:07:10.698246+00:00"
+  },
+  "C-06|1003686032747": {
+    "cid": "C-06",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 32,
+    "end_t": "18:15",
+    "end_dt_iso": "2026-06-17T18:14:01.069212+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 270,
+    "updated_at": "2026-06-17T11:12:01.069353+00:00"
   }
 }

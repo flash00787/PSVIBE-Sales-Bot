@@ -101,6 +101,10 @@ async def _remind_loop(
     key = _remind_key(cid, chat_id)
     _REMIND_TASKS[key] = asyncio.current_task()   # type: ignore[assignment]
     _SESSION_END_TIMES[key] = end_t               # track current planned end time
+    # 🐛 Fix: Initialize _SESSION_TOTAL_MINS so first extend doesn't lose original plan minutes.
+    # Without this, _do_extend's  .get(_session_key, 0)  returns 0 and overwrites the total.
+    if key not in _SESSION_TOTAL_MINS:
+        _SESSION_TOTAL_MINS[key] = planned_mins
     # Persist to disk so it survives bot restart
     _end_dt_iso = (now_mmt() + timedelta(minutes=planned_mins)).isoformat()
     persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id,
