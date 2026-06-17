@@ -79,3 +79,8 @@
 | NEVER modify `disc_count` without explicit Boss approval | FC 26 disc_count=10 is intentional (physical disc copies) |
 | Staff group has Forum/topics mode | All messages need `message_thread_id` or staff won't see them |
 | Sales bot restart doesn't change PID on silent failure | Always verify with `systemctl status` after restart |
+
+## `_SESSION_TOTAL_MINS` returns 0 on first extend — wrong Plan display
+- **Look for:** In-memory accumulator dict (e.g., `_SESSION_TOTAL_MINS`) not initialized at entry point
+- **Fix:** Init in `_remind_loop()`: `if key not in _SESSION_TOTAL_MINS: _SESSION_TOTAL_MINS[key] = planned_mins`
+- **Detection:** "Plan: X mins" shows only extension minutes, not accumulated total

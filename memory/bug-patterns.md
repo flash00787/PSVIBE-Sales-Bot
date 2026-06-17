@@ -176,3 +176,9 @@
 - Result: `_linked_bk_id` က empty → `launch_session_sale()` မှာ `booking_id=''` → food cart items က ဘယ်တော့မှ load မလုပ်ခံရဘူး
 - **Fix:** `_linked_bk_id = bk_id` (console_status ကနေရတဲ့ ID ကိုတန်းသုံး) — fallback အနေနဲ့ member lookup ကို bk_id empty မှသာလုပ်မယ်
 - **Lesson:** After ending a booking, never try to find it again by status filter. Use the ID you already had from the pre-end console status lookup.
+
+## Plan Display Wrong After Session Extend (FIXED — 2026-06-17)
+- **Symptom:** After extending a session, the reminder shows wrong "Plan: X mins" value. First extension loses the original plan minutes entirely (e.g., 240 min + 30 min extend shows "30 mins" instead of "270 mins").
+- **Root cause:** `_SESSION_TOTAL_MINS` dict is never initialized when `_remind_loop()` starts (line 102-104 in `booking_flow.py`). When `_do_extend()` calls `.get(_session_key, 0)`, it returns 0, so `_SESSION_TOTAL_MINS[_session_key] = 0 + extra_mins` — losing the original plan.
+- **Fix:** Added `if key not in _SESSION_TOTAL_MINS: _SESSION_TOTAL_MINS[key] = planned_mins` in `_remind_loop()` right after `_SESSION_END_TIMES[key] = end_t`.
+- **Pattern:** Any module-level dict that tracks session state across functions must be initialized at the FIRST entry point (`_remind_loop`), not only at mutation points (`_do_extend`).

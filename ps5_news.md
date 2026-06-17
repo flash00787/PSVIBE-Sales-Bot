@@ -1,6 +1,37 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-16 05:30 UTC
+> Last updated: 2026-06-17 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 17, 2026 - 11:30 UTC) — PSN Partial Outage + DELTARUNE Chapter 5!
+
+> **Summary:** Two new findings since yesterday's update. PSN is partially down — affects lounge operations. DELTARUNE Chapter 5 date confirmed — was completely missing from the tracker.
+
+### 🔴 PSN PARTIAL OUTAGE — Started June 16 Evening, Still Ongoing!
+- PlayStation Network is experiencing **partial service disruption** as of June 17, 2026
+- **"Gaming and social" services affected** — customers may have difficulty launching games, apps, or network features
+- Official PlayStation Service Status page confirms: **"Some services are experiencing issues"** (Account management also affected)
+- Cause: PS Store glitch on June 16 evening showed unpurchased and inappropriate games appearing in users' libraries and "Recently Played" sections
+- Multiplayer services reportedly NOT impacted (but game launching issues may still occur)
+- **💡💡 Lounge Action:** Check all lounge PS5 consoles — some customers may be unable to launch digital games. Offline/physical disc games should work fine. Keep an eye on status.playstation.com for resolution. Consider having physical disc backups of popular lounge games ready as fallback.
+
+### 🃏 DELTARUNE Chapter 5 — June 24, 2026 (MISSED FROM TRACKER!)
+- Toby Fox announced **DELTARUNE Chapter 5** launches **June 24, 2026** at 8:00 AM PT on PS5, PS4, Switch, Switch 2, and PC
+- **Free update** for existing DELTARUNE owners (base game is $24.99)
+- Announced during the June 2026 Nintendo Direct — completely absent from our tracker until now!
+- **💡 Lounge Note:** Undertale/DELTARUNE has a massive, passionate fanbase. Chapter 5 is a major release for the indie RPG community. The first 4 chapters are already available — customers may want to catch up before Chapter 5 drops in ONE WEEK. Ensure DELTARUNE is installed on lounge consoles!
+
+### 📋 Added to June Calendar:
+| Date | Game | Lounge Value |
+|------|------|-------------|
+| 🃏 **Jun 24** | **DELTARUNE Chapter 5** 🆕 | ⭐⭐⭐⭐ — Free update! Massive indie RPG fanbase! |
+
+### ⏰ Key Deadlines (UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **June 28-29** | FREE Online Multiplayer Weekend | 11 days! Start promoting! |
+| **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! 14 days left! |
 
 ---
 
@@ -1258,6 +1289,7 @@ Cairn, Forever Skies, Inscryption, Besiege, **Animal Well**, **Balatro**, **Hade
 | Jun 18 | **Drive Rally** | Racing |
 | Jun 18 | **The Adventures of Elliot: The Millennium Tales** | Adventure |
 | Jun 19 | **EA Sports UFC 6** | Fighting/Sports |
+| Jun 24 | 🃏 **DELTARUNE Chapter 5** 🆕 | RPG (Free Update!) |
 | Jun 25 | **Dead or Alive 6: Last Round** | Fighting |
 | Jun TBD | **Go-Go Town!** | Sim/Management |
 | Jun TBD | **S.T.A.L.K.E.R. 2: Cost of Hope** | FPS/Horror |
