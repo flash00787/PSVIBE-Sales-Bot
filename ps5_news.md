@@ -1,6 +1,41 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-18 05:30 UTC
+> Last updated: 2026-06-18 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 18, 2026 - 23:30 UTC) — PSN Still Down (Day 3 Evening) + Minor Date Confirmations
+
+> **Summary:** No critical new developments. PSN outage continues into Day 3 evening. Two minor DLC dates confirmed for June 23.
+
+### 🔴 PSN Outage — Still Unresolved (Day 3 Evening)
+- The PSN "gaming and social" disruption that started June 16 evening remains **ongoing** as of June 18 evening (23:30 UTC)
+- No ETA from Sony; status page still shows "Some services are experiencing issues"
+- Some users report "Recently Played" lists returning to normal, but many still affected
+- **💡 Lounge Action:** Unchanged from earlier — keep physical disc backups ready, monitor status.playstation.com, proactively inform customers
+
+### 📅 New Date Confirmations (Minor):
+| Title | Date | Notes |
+|-------|------|-------|
+| 🧊 **Frostpunk 2: Breach of Trust** (DLC) | **Jun 23** 🔒 | Was "Jun TBD" — now locked! Strategy/survival DLC |
+| ⚔️ **Warhammer 40K: Darktide — Skitarii Class** (DLC) | **Jun 23** 🆕 | New playable class ($11.99) + free Expeditions Update. Darktide is June's free PS Plus game! |
+| 🎮 **Forgotlings** | **Jun 18** 🆕 | New indie (not previously tracked) |
+
+### 🔍 Quick Checks (Nothing New):
+- **PSN Outage:** Still ongoing — Day 3 evening. No resolution.
+- **PS Plus July Essential:** No leak yet. Reveal still expected **June 25**.
+- **PS Store Mid-Year Deals:** Still running through **July 1**.
+- **PS5 Firmware:** No new update since v26.04-13.40.00.
+- **All major dates unchanged.** See below.
+
+### ⏰ Immediate Deadlines (Next 7 Days — UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 📅 | PS Plus Essential July reveal | Watch for new free games! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | Start promoting NOW! |
 
 ---
 

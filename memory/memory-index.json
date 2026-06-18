@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "updated": "2026-06-18T18:38:29.048619+00:00",
+  "updated": "2026-06-18T23:38:09.658250+00:00",
   "entries": [
+    {
+      "topic": "\"Free\"",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 104,
+          "context": "All 10 consoles show **\"Free\"** — no stale reservations:"
+        }
+      ]
+    },
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
       "files": [
@@ -579,6 +589,16 @@
           "path": "memory/2026-06-08.md",
           "line": 104,
           "context": "- Deleted **25 duplicate asset rows** (all had `per_price=NULL`) - Before: 54 rows → After: 29 rows (all clean, unique)"
+        }
+      ]
+    },
+    {
+      "topic": "3 confirmed booking conflicts found",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 9,
+          "context": "**3 confirmed booking conflicts found** across 3 different dates. All involve the same console double-booked at overlapping times. The recent bug fix (only mark consoles \"Reserved\" for bookings within"
         }
       ]
     },
@@ -1813,6 +1833,16 @@
       ]
     },
     {
+      "topic": "All Non-Cancelled/Non-Rejected Bookings (Forward View)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 61,
+          "context": "## All Non-Cancelled/Non-Rejected Bookings (Forward View)"
+        }
+      ]
+    },
+    {
       "topic": "All Related Files",
       "files": [
         {
@@ -2543,6 +2573,16 @@
       ]
     },
     {
+      "topic": "BK#536",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 81,
+          "context": "> ⚠️ **BK#536**: booking_date=2026-06-20 but start_time=2026-06-18 16:00:36. Start time is in the past. Status is \"Waiting\". Likely a test/abandoned entry — no end_time, duration=0, console=C-01. **Re"
+        }
+      ]
+    },
+    {
       "topic": "Block Spam Keywords",
       "files": [
         {
@@ -2619,6 +2659,16 @@
           "path": "memory/booking_upgrade_audit.md",
           "line": 252,
           "context": "3. **Booking State Machine in DB**: Instead of scattered status transitions across 3 bots and 7 endpoints, implement booking status transitions as a state machine in the API layer with allowed transit"
+        }
+      ]
+    },
+    {
+      "topic": "Booking Status Distribution (MySQL):",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 22,
+          "context": "**Booking Status Distribution (MySQL):** | Status     | Count |"
         }
       ]
     },
@@ -3638,6 +3688,16 @@
       ]
     },
     {
+      "topic": "Code Fix: Add Overlap Check",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 178,
+          "context": "### Code Fix: Add Overlap Check"
+        }
+      ]
+    },
+    {
       "topic": "Code Quality",
       "files": [
         {
@@ -3838,6 +3898,36 @@
       ]
     },
     {
+      "topic": "Conflict 1: 🟥 C-03 — June 19",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 35,
+          "context": "### Conflict 1: 🟥 C-03 — June 19 | BK# | Console | Date | Time (MMT) | Dur | Status | Customer |"
+        }
+      ]
+    },
+    {
+      "topic": "Conflict 2: 🟥 C-01 — June 20",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 43,
+          "context": "### Conflict 2: 🟥 C-01 — June 20 | BK# | Console | Date | Time (MMT) | Dur | Status | Customer |"
+        }
+      ]
+    },
+    {
+      "topic": "Conflict 3: 🟥 C-10 — June 21",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 51,
+          "context": "### Conflict 3: 🟥 C-10 — June 21 | BK# | Console | Date | Time (MMT) | Dur | Status | Customer |"
+        }
+      ]
+    },
+    {
       "topic": "Consider reducing SSH ports",
       "files": [
         {
@@ -3874,6 +3964,26 @@
           "path": "memory/project-state.md",
           "line": 31,
           "context": "| 20 | **Console Install moved** — under Consoles menu | ✅ | | 21 | **Session Start/End fixes** — wrong API endpoint `\"bookings\"`→`\"create_booking\"` (root cause) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Console State Analysis",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 101,
+          "context": "## Console State Analysis"
+        }
+      ]
+    },
+    {
+      "topic": "Console state is clean.",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 119,
+          "context": "✅ **Console state is clean.** The recent bug fix (restrict \"Reserved\" to bookings within 60 minutes) is working correctly. No stale \"Reserved\" states remain."
         }
       ]
     },
@@ -4238,6 +4348,16 @@
       ]
     },
     {
+      "topic": "Current `console_status` Table",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 103,
+          "context": "### Current `console_status` Table All 10 consoles show **\"Free\"** — no stale reservations:"
+        }
+      ]
+    },
+    {
       "topic": "Current code:",
       "files": [
         {
@@ -4489,6 +4609,26 @@
           "path": "memory/bug-patterns.md",
           "line": 82,
           "context": "- But **Data keys** 12 mismatch (CRITICAL, HIGH, MED) - **Fix:** API server dual key format accept + bot `__init__.py` key mapping"
+        }
+      ]
+    },
+    {
+      "topic": "Database Overview",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 15,
+          "context": "## Database Overview"
+        }
+      ]
+    },
+    {
+      "topic": "Database:",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 3,
+          "context": "**Database:** MySQL `psvibe_api` (production) + SQLite `/root/psvibe-sales-bot/psvibe.db` (bot cache)"
         }
       ]
     },
@@ -5285,6 +5425,11 @@
     {
       "topic": "Executive Summary",
       "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 7,
+          "context": "## Executive Summary"
+        },
         {
           "path": "memory/finance-audit-2026-06.md",
           "line": 9,
@@ -8209,6 +8354,11 @@
           "path": "memory/booking-features-plan.md",
           "line": 3,
           "context": "> **Generated:** 2026-06-02 | **Analyst:** Subagent | **Method:** SSH into VPS + source reading"
+        },
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 2,
+          "context": "**Generated:** 2026-06-18 20:28 UTC (2026-06-19 02:58 MMT) **Database:** MySQL `psvibe_api` (production) + SQLite `/root/psvibe-sales-bot/psvibe.db` (bot cache)"
         }
       ]
     },
@@ -9003,6 +9153,16 @@
       ]
     },
     {
+      "topic": "Immediate (Manual SQL)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 159,
+          "context": "### Immediate (Manual SQL)"
+        }
+      ]
+    },
+    {
       "topic": "Immediate Action Items (this week):",
       "files": [
         {
@@ -9674,6 +9834,66 @@
           "path": "memory/2026-06-05.md",
           "line": 258,
           "context": "### Issues Found & Fixed"
+        }
+      ]
+    },
+    {
+      "topic": "June 18 Walk-In Audit (Done bookings)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 121,
+          "context": "### June 18 Walk-In Audit (Done bookings) ✅ **Zero conflicts.** All 30+ \"Done\" bookings on June 18 were clean — no console had overlapping active sessions. The floor staff managed walk-ins correctly."
+        }
+      ]
+    },
+    {
+      "topic": "June 19 (all confirmed)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 63,
+          "context": "### June 19 (all confirmed) | BK# | Console | Time | Dur | Status | Customer | Game |"
+        }
+      ]
+    },
+    {
+      "topic": "June 20 (all confirmed + 1 Waiting)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 72,
+          "context": "### June 20 (all confirmed + 1 Waiting) | BK# | Console | Time | Dur | Status | Customer | Game |"
+        }
+      ]
+    },
+    {
+      "topic": "June 21",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 83,
+          "context": "### June 21 | BK# | Console | Time | Dur | Status | Customer | Game |"
+        }
+      ]
+    },
+    {
+      "topic": "June 22",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 89,
+          "context": "### June 22 | BK# | Console | Time | Dur | Status | Customer | Game |"
+        }
+      ]
+    },
+    {
+      "topic": "June 24",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 94,
+          "context": "### June 24 | BK# | Console | Time | Dur | Status | Customer | Game |"
         }
       ]
     },
@@ -11338,6 +11558,16 @@
       ]
     },
     {
+      "topic": "No check",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 145,
+          "context": "3. **No check**: \"Is this console already booked at this time?\""
+        }
+      ]
+    },
+    {
       "topic": "no check against existing bookings",
       "files": [
         {
@@ -11643,6 +11873,16 @@
       ]
     },
     {
+      "topic": "Optional: Add UNIQUE Constraint (Defense in Depth)",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 200,
+          "context": "### Optional: Add UNIQUE Constraint (Defense in Depth)"
+        }
+      ]
+    },
+    {
       "topic": "Other",
       "files": [
         {
@@ -11704,6 +11944,41 @@
           "path": "memory/booking-audit-deep-round2.md",
           "line": 23,
           "context": "| **Overall** | **D+** | Works under low load but will fail under concurrency |"
+        }
+      ]
+    },
+    {
+      "topic": "overlap check",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 141,
+          "context": "The booking approval system (`app.py`, booking confirmation around line 1395) lacks an **overlap check** before confirming a booking. The flow is:"
+        }
+      ]
+    },
+    {
+      "topic": "Overlap: 12:00–12:30",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 41,
+          "context": "> ⚠️ **Overlap: 12:00–12:30** — Both bookings occupy C-03 simultaneously. BK#435 (3 hours) completely engulfs BK#473 (30 min)."
+        }
+      ]
+    },
+    {
+      "topic": "Overlap: 13:00–14:00",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 49,
+          "context": "> ⚠️ **Overlap: 13:00–14:00** — Hsu Myat's hour is entirely inside SuperCatz's 2-hour block."
+        },
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 57,
+          "context": "> ⚠️ **Overlap: 13:00–14:00** — One hour shared between both 3-hour bookings."
         }
       ]
     },
@@ -12723,6 +12998,16 @@
       ]
     },
     {
+      "topic": "Recommend: cancel or delete.",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 81,
+          "context": "> ⚠️ **BK#536**: booking_date=2026-06-20 but start_time=2026-06-18 16:00:36. Start time is in the past. Status is \"Waiting\". Likely a test/abandoned entry — no end_time, duration=0, console=C-01. **Re"
+        }
+      ]
+    },
+    {
       "topic": "Recommendation:",
       "files": [
         {
@@ -12754,6 +13039,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 154,
           "context": "## Recommendations (Not Implemented — For Review) 1. **Consider reducing SSH ports** — SSH is exposed on 22, 80, 443, 22222 (this is deliberate for bypassing firewalls but increases attack surface)"
+        }
+      ]
+    },
+    {
+      "topic": "Recommended Fixes",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 157,
+          "context": "## Recommended Fixes"
         }
       ]
     },
@@ -13244,6 +13539,16 @@
           "path": "memory/2026-06-14.md",
           "line": 362,
           "context": "- **Root cause (probable):** Import error (Fix 8) prevented `cmd_session_food_order` from running properly. The `session_food_order` flag was never set, so `BTN_DONE` fell through to regular flow (sta"
+        }
+      ]
+    },
+    {
+      "topic": "Root Cause Analysis",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 139,
+          "context": "## Root Cause Analysis"
         }
       ]
     },
@@ -15158,6 +15463,16 @@
       ]
     },
     {
+      "topic": "SQLite Bot DB: Orphaned \"Active\" Bookings",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 126,
+          "context": "## SQLite Bot DB: Orphaned \"Active\" Bookings"
+        }
+      ]
+    },
+    {
       "topic": "SSH Test",
       "files": [
         {
@@ -15876,6 +16191,11 @@
           "context": "## Summary Applied 12 fixes across `/root/psvibe_api_server/app.py` for concurrency safety, data integrity, input validation, and error handling in the PS VIBE booking system."
         },
         {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 244,
+          "context": "## Summary"
+        },
+        {
           "path": "memory/security-audit-2026-06-13.md",
           "line": 144,
           "context": "## Summary"
@@ -16364,6 +16684,26 @@
           "path": "memory/memory-usage-guide.md",
           "line": 91,
           "context": "**The auto-doc updater does NOT touch workspace files** — it only updates VPS coordination doc. So restructuring workspace files doesn't break it."
+        }
+      ]
+    },
+    {
+      "topic": "The Bug That Was Fixed",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 149,
+          "context": "### The Bug That Was Fixed Previous behavior: ALL confirmed bookings (regardless of date) set `console_status.status = 'Reserved'`."
+        }
+      ]
+    },
+    {
+      "topic": "the conflicts in the booking table remain unresolved",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 9,
+          "context": "**3 confirmed booking conflicts found** across 3 different dates. All involve the same console double-booked at overlapping times. The recent bug fix (only mark consoles \"Reserved\" for bookings within"
         }
       ]
     },
@@ -16903,6 +17243,16 @@
       ]
     },
     {
+      "topic": "Verification After Fix",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 223,
+          "context": "## Verification After Fix"
+        }
+      ]
+    },
+    {
       "topic": "Verification Results",
       "files": [
         {
@@ -17179,6 +17529,16 @@
           "path": "memory/coupon-bug-fix-2026-06-05.md",
           "line": 48,
           "context": "### What was NOT changed - The API server (`app.py`) — coupon endpoints already exist and work correctly"
+        }
+      ]
+    },
+    {
+      "topic": "What was NOT fixed:",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 153,
+          "context": "**What was NOT fixed:** The existing conflicts in the `console_booking` table created before the fix."
         }
       ]
     },
@@ -17529,6 +17889,16 @@
           "path": "memory/booking-audit-deep-round2.md",
           "line": 429,
           "context": "The PS VIBE booking system **works correctly under single-user load** but has **zero concurrency safety**. The four critical issues (CI-1 through CI-4) mean that under any concurrent usage scenario (w"
+        }
+      ]
+    },
+    {
+      "topic": "Zero conflicts.",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 122,
+          "context": "✅ **Zero conflicts.** All 30+ \"Done\" bookings on June 18 were clean — no console had overlapping active sessions. The floor staff managed walk-ins correctly."
         }
       ]
     },
@@ -18814,6 +19184,16 @@
           "path": "memory/memory-usage-guide.md",
           "line": 69,
           "context": "## 🔍 How To Find Info"
+        }
+      ]
+    },
+    {
+      "topic": "🔥 CONFLICTS FOUND: Same Console + Same Date + Overlapping Time",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 33,
+          "context": "## 🔥 CONFLICTS FOUND: Same Console + Same Date + Overlapping Time"
         }
       ]
     },
