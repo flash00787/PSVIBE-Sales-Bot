@@ -39,6 +39,7 @@ from customer_bot.handlers import (
     cb_feedback_rating, cb_feedback_comment_prompt, cb_feedback_skip,
     handle_menu_buttons, show_main_menu, BTN_BOOK, BTN_FOOD,
 )
+from customer_bot.broadcast import cmd_admin_broadcast
 from customer_bot.booking_handlers import (
     bk_catch_all,
     bk_member_check_entry, bk_member_select, bk_phone_verify, bk_data_confirm,
@@ -74,6 +75,7 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler("feedback",cmd_feedback))
     app.add_handler(CommandHandler("mybookings",cmd_mybookings))
     app.add_handler(CommandHandler("cancelbooking",cmd_cancel_booking))
+    app.add_handler(CommandHandler("admin_broadcast", cmd_admin_broadcast))
     app.add_handler(CommandHandler("refer",  cmd_refer))
     app.add_handler(CommandHandler("mycoupons", cmd_my_coupons))
     app.add_handler(CommandHandler("waitlist",cmd_waitlist))
