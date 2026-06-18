@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-17T12:38:37Z",
+  "updated": "2026-06-18T04:08:37Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -479,12 +479,6 @@
       "weight": 5
     },
     {
-      "source": "deepseek",
-      "target": "gemini-api",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
       "source": "docker",
       "target": "google-drive-api",
       "relation": "depends_on",
@@ -530,6 +524,12 @@
       "source": "github",
       "target": "knowledge-graph-concept",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "github",
+      "target": "mysql",
+      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -614,12 +614,6 @@
       "source": "knowledge-graph-concept",
       "target": "smart-pruning",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "kora",
-      "target": "deepseek",
-      "relation": "uses",
       "weight": 5
     },
     {
@@ -3342,6 +3336,12 @@
     },
     {
       "source": "deepseek",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
       "target": "git-backup",
       "relation": "related_to",
       "weight": 3
@@ -4140,12 +4140,6 @@
     },
     {
       "source": "gemini-api",
-      "target": "phase-2",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "gemini-api",
       "target": "phase-3",
       "relation": "related_to",
       "weight": 3
@@ -4334,12 +4328,6 @@
       "source": "github",
       "target": "memory-upgrade",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "github",
-      "target": "mysql",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -5228,6 +5216,12 @@
       "source": "kora",
       "target": "daily-digest",
       "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
+      "target": "deepseek",
+      "relation": "uses",
       "weight": 3
     },
     {
