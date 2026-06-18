@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-18T04:08:37Z",
+  "updated": "2026-06-18T05:38:17Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -356,6 +356,12 @@
       "source": "boss",
       "target": "synergy-hub",
       "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
+      "target": "vps",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -2113,12 +2119,6 @@
     {
       "source": "boss",
       "target": "telegram",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
-      "target": "vps",
       "relation": "uses",
       "weight": 3
     },
