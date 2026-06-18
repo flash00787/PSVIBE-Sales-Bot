@@ -23,6 +23,15 @@ const KEY_PATH = path.join(__dirname, '.ssh', 'id_rsa');
 const BACKUP_DIR = path.join(__dirname, 'backups');
 const STATE_PATH = path.join(__dirname, 'memory', 'dr_state.json');
 
+// Detect if running on VPS itself (same host) — skip SSH, use local exec
+function isLocalHost() {
+  try {
+    const { execSync: es } = require('child_process');
+    const ips = es('hostname -I 2>/dev/null', { timeout: 3000 }).toString().trim().split(/\s+/);
+    return ips.includes(VPS_HOST);
+  } catch { return false; }
+}
+
 const BACKUP_ITEMS = [
   { name: 'MySQL Database', path: 'psvibe_api', cmd: 'mysqldump -u root -p"PsVibe@MySQL2024!" -h 127.0.0.1 --all-databases --single-transaction 2>/dev/null' },
   { name: 'Sale Bot Code', path: '/root/psvibe-sales-bot', cmd: 'tar czf - /root/psvibe-sales-bot/bot /root/psvibe-sales-bot/customer_bot /root/psvibe-sales-bot/main.py /root/psvibe-sales-bot/requirements.txt 2>/dev/null' },
@@ -33,6 +42,17 @@ const BACKUP_ITEMS = [
 
 // ── SSH helper ──
 function sshExec(cmd, timeout = 30000) {
+  // If running on the VPS itself, skip SSH — execute locally
+  if (isLocalHost()) {
+    return new Promise((resolve, reject) => {
+      const { exec: ex } = require('child_process');
+      ex(cmd, { timeout, maxBuffer: 50 * 1024 * 1024 }, (error, stdout, stderr) => {
+        if (error && !stdout) { reject(error); return; }
+        resolve({ out: (stdout || '').trim(), err: (stderr || '').trim() });
+      });
+    });
+  }
+
   return new Promise((resolve, reject) => {
     const conn = new Client();
     let out = '';
