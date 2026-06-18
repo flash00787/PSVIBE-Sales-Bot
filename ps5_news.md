@@ -1,6 +1,41 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-17 17:31 UTC
+> Last updated: 2026-06-17 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 17, 2026 - 23:30 UTC) — PS Plus July Catalog Departures + July Essential Date
+
+> **Summary:** Minor update. PSN still down. PS Plus games leaving in July confirmed — 12 titles departing. July Essential announcement date set.
+
+### 📤 PS Plus Extra/Premium — 12 Games Leaving in July 2026
+Sony has confirmed the following games will **depart the PS Plus Extra and Premium catalog** in July 2026 (around July 14-22):
+
+| Game | Lounge Relevance |
+|------|-----------------|
+| 🎮 **Risk of Rain 2** | ⭐⭐⭐ — Popular co-op roguelike! Customers may want to play before it leaves |
+| 🏝️ **Tropico 6** | ⭐⭐⭐ — Strategy management sim, niche but loyal fans |
+| ⚔️ **Clash: Artifacts of Chaos** | ⭐⭐ — Action-adventure |
+| 🧊 **Roki** | ⭐⭐ — Narrative adventure |
+| 👾 **Source of Madness** | ⭐⭐ — Roguelite |
+| ⛳ **Cursed to Golf** | ⭐⭐ — Golf roguelike |
+| 🍷 **Hundred Days: Winemaking Simulator** | ⭐⭐ — Niche sim |
+| ⚔️ **Onee Chanbara Origin** | ⭐⭐ — Hack-and-slash |
+| 🔫 **Get Even** | ⭐⭐ — FPS horror |
+| ✈️ **Bomber Crew** | ⭐⭐ — Strategy sim |
+| 🚀 **Space Crew: Legendary Edition** | ⭐⭐ — Strategy sim |
+| ⛳ **Infinite Minigolf** | ⭐⭐ — Casual sports |
+
+### 📅 July 2026 PS Plus Essential — Announcement June 25!
+- PS Plus Essential July 2026 monthly games will be **announced Wednesday, June 25, 2026**
+- Games become available **Tuesday, July 7** (first Tuesday of July)
+- Extra/Premium catalog additions announced early July
+- **💡 Lounge Action:** Mark June 25 on the calendar — check the reveal for potential lounge-worthy free games!
+
+### 🔴 PSN Partial Outage — STILL ONGOING (No Resolution Yet)
+- The PSN "gaming and social" disruption that started **June 16 evening** remains **unresolved** as of June 17 evening
+- Sony: "working to resolve the issue as soon as possible" — no ETA given
+- **💡 Lounge Action:** Keep physical disc backups ready. Check `status.playstation.com` before lounge sessions.
 
 ---
 
@@ -65,11 +100,13 @@
 |------|------|-------------|
 | 🃏 **Jun 24** | **DELTARUNE Chapter 5** 🆕 | ⭐⭐⭐⭐ — Free update! Massive indie RPG fanbase! |
 
-### ⏰ Key Deadlines (UNCHANGED):
+### ⏰ Key Deadlines:
 | Deadline | What | Action |
 |----------|------|--------|
+| **June 25** 🆕 | PS Plus Essential July reveal | Watch for new free games! |
 | **June 28-29** | FREE Online Multiplayer Weekend | 11 days! Start promoting! |
 | **July 1** | Mid-Year Deals end | Stock up on discounted lounge games! 14 days left! |
+| **July ~14-22** 🆕 | 12 PS Plus Extra/Premium games leave | Risk of Rain 2, Tropico 6 etc. — let customers know! |
 
 ---
 
