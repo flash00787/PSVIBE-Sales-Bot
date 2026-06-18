@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-18T08:08:13.346038+00:00",
+  "updated": "2026-06-18T08:38:18.820798+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -1428,16 +1428,6 @@
       ]
     },
     {
-      "topic": "Actions Taken",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 36,
-          "context": "### Actions Taken - Updated `~/.ssh/config` to use `id_boss` for bot-server-01"
-        }
-      ]
-    },
-    {
       "topic": "Active",
       "files": [
         {
@@ -2771,16 +2761,6 @@
           "context": "- **Bug:** User reported column header/data mismatch in Users tab; other tabs stuck on \"Loading...\" - **Root cause:** `renderUserTable()` rendered only **7 `<td>` elements** but header had **11 `<th>`"
         },
         {
-          "path": "memory/2026-06-18.md",
-          "line": 50,
-          "context": "**Bug:** Bot restart တိုင်း timer က 2h+ drift သွားတာ — e.g., 8100s delay after restart **Root cause:** `_end_dt_iso = now + planned_mins` — `now` = restart time (NOT original start time)"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 59,
-          "context": "**Bug:** Booking operations (checkin, cancel) → sync → `start_time=NOW()` resets timer on Active consoles **Root cause:** `_sync_console_status()` always did `start_time=NOW()` — no check if already A"
-        },
-        {
           "path": "memory/fix-history.md",
           "line": 228,
           "context": "- **Bug:** Food note items saved to food_cart table but never loaded in voucher at session end - **Root cause:** `step_end_session()` in `console.py` — after `end_booking_async()` changed status to 'D"
@@ -4053,16 +4033,6 @@
       ]
     },
     {
-      "topic": "Current status:",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 7,
-          "context": "**Current status:** ✅ Fully operational"
-        }
-      ]
-    },
-    {
       "topic": "Customer Booking Flow (booking_handlers.py)",
       "files": [
         {
@@ -4584,16 +4554,6 @@
           "path": "memory/2026-06-08.md",
           "line": 108,
           "context": "- **Disposal record reversed** — `Game Discs` (id=3) disposed_qty=3 → 0; `asset_disposals` table now empty (was test data from disposal feature dev)"
-        }
-      ]
-    },
-    {
-      "topic": "Docker Containers — All Up 43h ✅",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 25,
-          "context": "### Docker Containers — All Up 43h ✅ | Container | Status |"
         }
       ]
     },
@@ -6096,16 +6056,6 @@
           "context": "- **Files:** `/root/psvibe-sales-bot/bot/handlers/sales.py` lines 1310 & 1792"
         },
         {
-          "path": "memory/2026-06-18.md",
-          "line": 55,
-          "context": "**Files:** `session_reminder_store.py` **Status:** ✅ Verified — 5 consecutive restarts, max drift 12s"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 62,
-          "context": "**Files:** `psvibe_api_server/app.py` — `_sync_console_status()` **Status:** ✅ Verified — extend + checkin + cancel all preserve start_time"
-        },
-        {
           "path": "memory/ARCHIVE.md",
           "line": 66,
           "context": "(dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` (dedup) - **Status:** ✅ Boss confirmed coupon is showing"
@@ -6368,16 +6318,6 @@
       ]
     },
     {
-      "topic": "Fix 1: Session Timer Drift on Bot Restart → end-of-session",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 49,
-          "context": "### Fix 1: Session Timer Drift on Bot Restart → end-of-session **Bug:** Bot restart တိုင်း timer က 2h+ drift သွားတာ — e.g., 8100s delay after restart"
-        }
-      ]
-    },
-    {
       "topic": "Fix 2 (line 355-356):",
       "files": [
         {
@@ -6418,16 +6358,6 @@
       ]
     },
     {
-      "topic": "Fix 2: Console Status start_time Reset by _sync_console_status()",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 58,
-          "context": "### Fix 2: Console Status start_time Reset by _sync_console_status() **Bug:** Booking operations (checkin, cancel) → sync → `start_time=NOW()` resets timer on Active consoles"
-        }
-      ]
-    },
-    {
       "topic": "Fix 2: Coupon generation still blocking voucher",
       "files": [
         {
@@ -6444,16 +6374,6 @@
           "path": "memory/fix-history.md",
           "line": 19,
           "context": "### Fix 3: Existing Active Consoles Restored Same root cause as Fix 2 — verified all active consoles in DB."
-        }
-      ]
-    },
-    {
-      "topic": "Fix 3: Existing Active Consoles start_time Restore",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 65,
-          "context": "### Fix 3: Existing Active Consoles start_time Restore **Same root cause as Fix 2.** Applied fix to all already-active consoles in DB."
         }
       ]
     },
@@ -6989,16 +6909,6 @@
           "path": "memory/2026-06-15.md",
           "line": 96,
           "context": "**Fix:** Created `/root/scripts/auto_depreciate.py` — auto-depreciation script that: - Calculates months from purchase_month through current_month (inclusive)"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 52,
-          "context": "**Fix:** Calculate `end_t` from stored HH:MM format + dual-layer protection: - Layer 1: `restore_session_reminders()` → `_active_timers` recovery uses `end_t.time()`"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 61,
-          "context": "**Fix:** Check if console already Active → skip `start_time` update. Only set `start_time=NOW()` for newly activated consoles. **Files:** `psvibe_api_server/app.py` — `_sync_console_status()`"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -8243,16 +8153,6 @@
       ]
     },
     {
-      "topic": "Health Monitor Notes",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 40,
-          "context": "### Health Monitor Notes - Overall score 53.5 (VPS pillar 0 due to key mismatch — now fixed)"
-        }
-      ]
-    },
-    {
       "topic": "Health Monitor:",
       "files": [
         {
@@ -8309,6 +8209,16 @@
           "path": "memory/2026-06-04.md",
           "line": 16,
           "context": "## Heartbeat 20:07 UTC (03:37 MMT) - All services active: API, bot, customer bot"
+        }
+      ]
+    },
+    {
+      "topic": "Heartbeat Checks (14:37 MMT)",
+      "files": [
+        {
+          "path": "memory/2026-06-18.md",
+          "line": 3,
+          "context": "## Heartbeat Checks (14:37 MMT) - Health monitor: overall 53.5 (false positives on path mismatches for AGENTS.md/SOUL.md, VPS unreachable)"
         }
       ]
     },
@@ -9578,13 +9488,18 @@
       ]
     },
     {
-      "topic": "Lessons",
+      "topic": "Lessons Learned",
       "files": [
         {
-          "path": "memory/2026-06-18.md",
-          "line": 75,
-          "context": "### Lessons - Bot restart recovery: NEVER calculate end_time from `datetime.now()` — always restore from stored `end_t` (HH:MM format)"
-        },
+          "path": "memory/2026-06-09.md",
+          "line": 32,
+          "context": "### Lessons Learned - cash_movements raw balance (304M) ≠ actual financial position — it only tracks internal transfers"
+        }
+      ]
+    },
+    {
+      "topic": "Lessons:",
+      "files": [
         {
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 87,
@@ -9604,16 +9519,6 @@
           "path": "MEMORY.md",
           "line": 68,
           "context": "- **Lessons:** See `memory/lessons.md` - **Project state:** See `memory/project-state.md`"
-        }
-      ]
-    },
-    {
-      "topic": "Lessons Learned",
-      "files": [
-        {
-          "path": "memory/2026-06-09.md",
-          "line": 32,
-          "context": "### Lessons Learned - cash_movements raw balance (304M) ≠ actual financial position — it only tracks internal transfers"
         }
       ]
     },
@@ -9814,16 +9719,6 @@
           "path": "memory/booking-audit-complete.md",
           "line": 91,
           "context": "- **Lines:** ~355-380 - Auto-assign is called within `_submit_booking()` which is also called by `bk_confirm` → both also check dupes"
-        }
-      ]
-    },
-    {
-      "topic": "Load:",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 11,
-          "context": "- **Load:** 1.17, 1.25, 1.20 - **SSH Key:** Rotated — now using `id_boss` key (id_ed25519 no longer accepted)"
         }
       ]
     },
@@ -11788,16 +11683,6 @@
       ]
     },
     {
-      "topic": "Previous status:",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 6,
-          "context": "**Previous status:** DOWN since June 17 19:31 UTC (Connection Refused) **Current status:** ✅ Fully operational"
-        }
-      ]
-    },
-    {
       "topic": "Priority Levels:",
       "files": [
         {
@@ -12906,16 +12791,6 @@
           "context": "**Root cause:** No `purchase_date` filter in the depreciation SQL. The query just did `SUM(monthly_dep)` for all assets with non-zero useful_life."
         },
         {
-          "path": "memory/2026-06-18.md",
-          "line": 51,
-          "context": "**Root cause:** `_end_dt_iso = now + planned_mins` — `now` = restart time (NOT original start time) **Fix:** Calculate `end_t` from stored HH:MM format + dual-layer protection:"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 60,
-          "context": "**Root cause:** `_sync_console_status()` always did `start_time=NOW()` — no check if already Active **Fix:** Check if console already Active → skip `start_time` update. Only set `start_time=NOW()` for"
-        },
-        {
           "path": "memory/ARCHIVE.md",
           "line": 64,
           "context": "(dedup) - **Root cause:** Added coupon API call but used `cd.get(\"coupon_code\")` and `cd.get(\"coupon_mins\")` — API response uses `code` and `minutes` (dedup) - **Fix:** Changed to `cd.get(\"code\")` and"
@@ -13284,16 +13159,6 @@
           "path": "memory/bug-patterns.md",
           "line": 105,
           "context": "- **Same pattern as Sales Bot's double-unwrap** (`__init__.py` line ~95, fixed 2026-06-03) - **Fix:** Just check `if not resp:` and use `items = resp or {}`"
-        }
-      ]
-    },
-    {
-      "topic": "Same root cause as Fix 2.",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 66,
-          "context": "**Same root cause as Fix 2.** Applied fix to all already-active consoles in DB. **Status:** ✅ All active consoles verified"
         }
       ]
     },
@@ -14253,16 +14118,6 @@
       ]
     },
     {
-      "topic": "SSH Key:",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 12,
-          "context": "- **SSH Key:** Rotated — now using `id_boss` key (id_ed25519 no longer accepted)"
-        }
-      ]
-    },
-    {
       "topic": "SSH Test",
       "files": [
         {
@@ -14589,21 +14444,6 @@
           "path": "memory/2026-06-17.md",
           "line": 6,
           "context": "**Status:** ❌ UNRESOLVED"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 56,
-          "context": "**Status:** ✅ Verified — 5 consecutive restarts, max drift 12s"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 63,
-          "context": "**Status:** ✅ Verified — extend + checkin + cancel all preserve start_time"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 67,
-          "context": "**Status:** ✅ All active consoles verified"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -15203,16 +15043,6 @@
       ]
     },
     {
-      "topic": "Systemd Services — All ACTIVE ✅",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 14,
-          "context": "### Systemd Services — All ACTIVE ✅ | Service | Status |"
-        }
-      ]
-    },
-    {
       "topic": "Systems & Accounts",
       "files": [
         {
@@ -15539,11 +15369,6 @@
           "path": "memory/2026-06-17.md",
           "line": 5,
           "context": "**Time detected:** 19:31 UTC (02:01 AM Myanmar Time) **Status:** ❌ UNRESOLVED"
-        },
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 5,
-          "context": "**Time detected:** 05:11 UTC (11:41 AM Myanmar Time) **Previous status:** DOWN since June 17 19:31 UTC (Connection Refused)"
         }
       ]
     },
@@ -15883,16 +15708,6 @@
       ]
     },
     {
-      "topic": "Uptime:",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 10,
-          "context": "- **Uptime:** 1 day 19:25 (rebooted ~June 16 10:00 UTC) - **Load:** 1.17, 1.25, 1.20"
-        }
-      ]
-    },
-    {
       "topic": "URL:",
       "files": [
         {
@@ -16048,16 +15863,6 @@
       ]
     },
     {
-      "topic": "Verify: C-05 3hr Timer Reminder Working ✅",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 69,
-          "context": "### Verify: C-05 3hr Timer Reminder Working ✅ - Console C-05 | Member: Nay Lin Khant | Game: Naruto x Boruto"
-        }
-      ]
-    },
-    {
       "topic": "verify_agent.py:",
       "files": [
         {
@@ -16094,16 +15899,6 @@
           "path": "memory/memory-usage-guide.md",
           "line": 81,
           "context": "Auto-doc updater က **VPS coordination files တွေကို** update လုပ်တယ်: - `/root/coordination/KNOWN_BUG_PATTERNS.md` (457 lines, VPS)"
-        }
-      ]
-    },
-    {
-      "topic": "VPS Details (5.223.81.16)",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 9,
-          "context": "### VPS Details (5.223.81.16) - **Uptime:** 1 day 19:25 (rebooted ~June 16 10:00 UTC)"
         }
       ]
     },
@@ -17133,16 +16928,6 @@
       ]
     },
     {
-      "topic": "✅ VPS Back Online — All Services Healthy",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 3,
-          "context": "## ✅ VPS Back Online — All Services Healthy"
-        }
-      ]
-    },
-    {
       "topic": "✅ What Kora Always Does",
       "files": [
         {
@@ -17454,16 +17239,6 @@
           "path": "memory/2026-06-07.md",
           "line": 5,
           "context": "## 🐛 api_client.py Fix Summary (18:17 UTC) - `api_post()` in api_client.py changed from `?api_key=` query param to `X-API-Key` header"
-        }
-      ]
-    },
-    {
-      "topic": "🐛 Bug Fixes (05:00–05:27 UTC, 11:30 AM–12:00 PM MMT)",
-      "files": [
-        {
-          "path": "memory/2026-06-18.md",
-          "line": 47,
-          "context": "## 🐛 Bug Fixes (05:00–05:27 UTC, 11:30 AM–12:00 PM MMT)"
         }
       ]
     },
