@@ -65,16 +65,24 @@ def _rp_kb(rows: list, one_time: bool = True) -> ReplyKeyboardMarkup:
 # ── Reply Keyboard Builders ───────────────────────────────────────────────────
 
 def _make_date_keyboard() -> ReplyKeyboardMarkup:
-    """Build date selection reply keyboard: Today, Tomorrow, Day After."""
+    """Build date selection reply keyboard: 7 days (Today → Day+6)."""
     today = datetime.strptime(today_mmt(), "%Y-%m-%d")
-    tomorrow = today + timedelta(days=1)
-    day_after = today + timedelta(days=2)
-    return _rp_kb([
-        [f"ယနေ့ (Today)  {today.strftime('%Y-%m-%d')}"],
-        [f"မနက်ဖြန် (Tomorrow)  {tomorrow.strftime('%Y-%m-%d')}"],
-        [f"သဘက်ခါ (Day After)  {day_after.strftime('%Y-%m-%d')}"],
-        [BTN_BACK, BTN_CANCEL],
-    ])
+    DAY_LABELS = [
+        "ယနေ့ (Today)",
+        "မနက်ဖြန် (Tomorrow)",
+        "သဘက်ခါ (Day After)",
+        "သန်ဘက်ခါ",
+    ]
+    buttons = []
+    for i in range(7):
+        d = today + timedelta(days=i)
+        if i < len(DAY_LABELS):
+            prefix = DAY_LABELS[i]
+        else:
+            prefix = f"{i} ရက်နောက်"
+        buttons.append([f"{prefix}  {d.strftime('%Y-%m-%d')}"])
+    buttons.append([BTN_BACK, BTN_CANCEL])
+    return _rp_kb(buttons)
 
 
 def _make_time_keyboard(free_slots: list[str]) -> ReplyKeyboardMarkup:
