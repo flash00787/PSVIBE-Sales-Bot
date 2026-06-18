@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-18T08:38:18.820798+00:00",
+  "updated": "2026-06-18T16:12:11.432730+00:00",
   "entries": [
     {
       "topic": "# June 14, 2026 — Daily Log (cont.)",
@@ -133,6 +133,16 @@
       ]
     },
     {
+      "topic": "1. Issue List — Complete",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 24,
+          "context": "## 1. Issue List — Complete"
+        }
+      ]
+    },
+    {
       "topic": "1. Session Auto-Summary (`memory/session_summary.py`)",
       "files": [
         {
@@ -247,7 +257,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 69,
+          "line": 70,
           "context": "- **2 Repos:** Bot = `/root/psvibe-sales-bot/`, API = `/root/psvibe_api_server/` - **Dashboard:** Vue 3 + TypeScript at `/root/psvibe-dashboard/` → builds to `/root/psvibe_api_server/dashboard-dist/`"
         }
       ]
@@ -369,6 +379,16 @@
           "path": "memory/fix-history.md",
           "line": 42,
           "context": "### 2. Session Extended Reminder Broken (2 bugs) | Bug | File | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "2. Upgrade Plan — Prioritized Phases",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 207,
+          "context": "## 2. Upgrade Plan — Prioritized Phases"
         }
       ]
     },
@@ -557,7 +577,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 72,
+          "line": 73,
           "context": "- **3 Services:** `psvibe-sale-bot` | `psvibe_customer_bot` | `psvibe-api` - **MySQL:** Docker `psvibe-mysql` (:3306), DB: `psvibe_api`"
         }
       ]
@@ -629,6 +649,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 70,
           "context": "## 3. Priority Memory System (`memory/priority_engine.py`) **Goal:** Important vs routine — priority ခွဲမယ်။ MEMORY.md ကို auto-manage လုပ်မယ်"
+        }
+      ]
+    },
+    {
+      "topic": "3. Recommendations for Error-Free Operation",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 245,
+          "context": "## 3. Recommendations for Error-Free Operation"
         }
       ]
     },
@@ -844,6 +874,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 88,
           "context": "## 4. Smart Pruning & Dedup (`memory/memory_pruner.py`) **Goal:** MEMORY.md ကို clean & lean ဖြစ်အောင်ထားမယ်။ 20K ထက်မကျော်အောင်ထိန်းမယ်"
+        }
+      ]
+    },
+    {
+      "topic": "4. Summary by Severity",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 294,
+          "context": "## 4. Summary by Severity"
         }
       ]
     },
@@ -1483,6 +1523,26 @@
       ]
     },
     {
+      "topic": "Add booking conflict API",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 237,
+          "context": "| 3.3 | **Add booking conflict API** — `POST /api/booking-conflicts` endpoint that accepts `{date, time, duration_mins, console_id}` and returns conflicting bookings. Use this from ALL bots before sub"
+        }
+      ]
+    },
+    {
+      "topic": "Add booking history view for customers",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 238,
+          "context": "| 3.4 | **Add booking history view for customers** — Customer bot: \"📋 My Bookings\" button showing upcoming + past bookings from `search-bookings?telegram_chat_id=` | `customer_bot/` | 1.5h | | 3.5 | *"
+        }
+      ]
+    },
+    {
       "topic": "Add handler",
       "files": [
         {
@@ -1523,6 +1583,16 @@
       ]
     },
     {
+      "topic": "Add MAX_SESSION_MINS validation to ALL booking paths",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 229,
+          "context": "| 2.7 | **Add MAX_SESSION_MINS validation to ALL booking paths** — 1440 min cap should be enforced in `api_bookings_create` (server-side), not just in bot handlers | `app.py:1882` | 15 min |"
+        }
+      ]
+    },
+    {
       "topic": "Add MySQL API endpoints (/api/mysql/*) to app.py and config.py",
       "files": [
         {
@@ -1539,6 +1609,26 @@
           "path": "memory/booking-features-plan.md",
           "line": 116,
           "context": "1. **Add new constant** `BK_SPECIFIC_CONSOLE` (= 16, new state after BK_TIME, before BK_CONSOLE)"
+        }
+      ]
+    },
+    {
+      "topic": "Add retry + graceful degradation for API calls in customer bot",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 228,
+          "context": "| 2.6 | **Add retry + graceful degradation for API calls in customer bot** — Wrap `_api_get`/`_api_post` calls with retry (3x) and show \"ခဏစောင့်ပါ — ပြန်ကြိုးစားနေသည်\" instead of silent failures | `c"
+        }
+      ]
+    },
+    {
+      "topic": "Add state stack for staff booking back navigation",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 224,
+          "context": "| 2.2 | **Add state stack for staff booking back navigation** — Implement a proper `_bk_state_stack` (like customer bot) so Back always returns exactly one step | `booking.py` | 1.5h | | 2.3 | **Add d"
         }
       ]
     },
@@ -2031,6 +2121,11 @@
       "topic": "Architecture",
       "files": [
         {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 247,
+          "context": "### Architecture 1. **Single Booking API Gateway**: ALL booking mutations (create, checkin, cancel, end) must go through the API server. Block direct DB access from bots/discord. Add DB user permissio"
+        },
+        {
           "path": "memory/full-audit-2026-06-03.md",
           "line": 3,
           "context": "## Architecture ```"
@@ -2070,6 +2165,11 @@
     {
       "topic": "Audit Date:",
       "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 3,
+          "context": "**Audit Date:** 2026-06-18 **Auditor:** Kora (Subagent)"
+        },
         {
           "path": "memory/finance-audit-2026-06.md",
           "line": 3,
@@ -2134,6 +2234,11 @@
           "path": "memory/booking-timeslot-audit.md",
           "line": 4,
           "context": "**Auditor:** Subagent (Pro) **Files Audited:**"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 4,
+          "context": "**Auditor:** Kora (Subagent) **Scope:** Full booking codebase — API server, Sale Bot, Customer Bot, Discord Bot, DB schema, n8n webhooks"
         }
       ]
     },
@@ -2164,6 +2269,16 @@
           "path": "memory/2026-06-15.md",
           "line": 220,
           "context": "- **Auto-balancer adjustment:** -2,508,309 (silent adjustment for cash/income discrepancy)"
+        }
+      ]
+    },
+    {
+      "topic": "Auto-cancel expired pending bookings",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 236,
+          "context": "| 3.2 | **Auto-cancel expired pending bookings** — Add background task that cancels `pending` bookings older than 24h (or with past start_time) | `app.py` (startup task) | 1h | | 3.3 | **Add booking c"
         }
       ]
     },
@@ -2428,6 +2543,16 @@
       ]
     },
     {
+      "topic": "Booking Anomaly Alerts",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 261,
+          "context": "4. **Booking Anomaly Alerts**: Add alerts for: - Two Active bookings on same console (scan every 5 min)"
+        }
+      ]
+    },
+    {
       "topic": "Booking Confirm → Notify Customer",
       "files": [
         {
@@ -2454,6 +2579,16 @@
           "path": "memory/2026-06-05.md",
           "line": 389,
           "context": "9. **Booking flow: Date/Time first → then check availability** — UX improvement, prevents console selection before knowing if it's free"
+        }
+      ]
+    },
+    {
+      "topic": "Booking State Machine in DB",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 252,
+          "context": "3. **Booking State Machine in DB**: Instead of scattered status transitions across 3 bots and 7 endpoints, implement booking status transitions as a state machine in the API layer with allowed transit"
         }
       ]
     },
@@ -3417,7 +3552,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 74,
+          "line": 75,
           "context": "- **Cloudflare:** `ps-vibe.com` → Cloudflare tunnel → localhost:8000"
         }
       ]
@@ -3439,6 +3574,16 @@
           "path": "memory/booking-audit-deep-round2.md",
           "line": 22,
           "context": "| **Code Quality** | **D** | State name confusion, 2 MySQL modules, duplicate endpoints | | **Overall** | **D+** | Works under low load but will fail under concurrency |"
+        }
+      ]
+    },
+    {
+      "topic": "Code Review Checklist for Booking Changes",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 285,
+          "context": "8. **Code Review Checklist for Booking Changes**: Any PR touching booking logic must verify: - Transaction wrapping for all multi-statement operations"
         }
       ]
     },
@@ -3557,7 +3702,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 54,
+          "line": 55,
           "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed** - **Opening Hours:** 9 AM - 9 PM (daily)"
         }
       ]
@@ -3593,6 +3738,16 @@
       ]
     },
     {
+      "topic": "Concurrency Test Suite",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 273,
+          "context": "6. **Concurrency Test Suite**: Write tests that: - Fire 5 simultaneous `POST /api/bookings/checkin` for the same console"
+        }
+      ]
+    },
+    {
       "topic": "Config",
       "files": [
         {
@@ -3619,6 +3774,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 155,
           "context": "1. **Consider reducing SSH ports** — SSH is exposed on 22, 80, 443, 22222 (this is deliberate for bypassing firewalls but increases attack surface) 2. **MySQL `.my.cnf`** created with credentials — en"
+        }
+      ]
+    },
+    {
+      "topic": "Console availability heatmap",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 240,
+          "context": "| 3.6 | **Console availability heatmap** — Dashboard view showing hourly availability for next 7 days, color-coded by # free consoles | Dashboard SPA | 3h | | 3.7 | **Waitlist auto-notify on cancel** "
         }
       ]
     },
@@ -4093,7 +4258,7 @@
         {
           "path": "memory/project-state.md",
           "line": 44,
-          "context": "| 33 | **Customer Bot Food Menu** — `_bk_intercept_menu` BTN_FOOD missing + API unwrap logic + Unicode corruption | ✅ |"
+          "context": "| 33 | **Customer Bot Food Menu** — `_bk_intercept_menu` BTN_FOOD missing + API unwrap logic + Unicode corruption | ✅ | | 34 | **Waitlist Auto-Notify on Cancel (Phase 3.7)** — Cancel booking → auto no"
         }
       ]
     },
@@ -4222,7 +4387,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 70,
+          "line": 71,
           "context": "- **Dashboard:** Vue 3 + TypeScript at `/root/psvibe-dashboard/` → builds to `/root/psvibe_api_server/dashboard-dist/` - **URL:** `psvibemm.com`"
         }
       ]
@@ -4329,6 +4494,16 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 3,
           "context": "## Date: 2026-06-02 ## Implemented by: Subagent"
+        }
+      ]
+    },
+    {
+      "topic": "DB Index Review",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 278,
+          "context": "7. **DB Index Review**: Before deployment, review all query patterns against `console_booking` and ensure covering indexes: ```sql"
         }
       ]
     },
@@ -4689,6 +4864,16 @@
           "path": "memory/2026-06-08.md",
           "line": 29,
           "context": "- **Elif bug**: `== \"wave\"` only, not `== \"wavepay\"` → fixed"
+        }
+      ]
+    },
+    {
+      "topic": "Email/SMS booking confirmation",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 239,
+          "context": "| 3.5 | **Email/SMS booking confirmation** — Post-booking hook to send confirmation via customer's registered phone/email | n8n workflow or new endpoint | 2h | | 3.6 | **Console availability heatmap**"
         }
       ]
     },
@@ -5836,6 +6021,101 @@
           "context": "**File:** `booking.py` lines ~510-530 **Severity:** LOW"
         },
         {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 31,
+          "context": "- **File:** `/root/psvibe-discord-bot/bot.js:812` - **Root Cause:** Discord bot performs direct `INSERT INTO console_booking` via `dbPool.execute()`, completely bypassing the API server's conflict che"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 37,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1243-1255` - **Root Cause:** `api_booking_checkin()` checks for existing Active bookings on the console **outside** the transaction block. Two concurrent ch"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 43,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1331-1377` - **Root Cause:** The deprecated endpoint uses separate `_mysql_exec()` calls without wrapping in a transaction. No `FOR UPDATE`, no rollback cap"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 55,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1956` (`api_bookings_create`) - **Root Cause:** In `api_bookings_create`, the transaction commits first, THEN `_sync_console_status()` is called in a new co"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 83,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:351` - **Root Cause:** In `step_sbk_date`, pressing Back goes to `SBK_PHONE` (asks for phone again), but the user was previously at `SBK_TIM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 89,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:346-358` - **Root Cause:** `step_sbk_phone` on Back shows customer name prompt text but returns `SBK_CUST_NAME` — this is actually correct f"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 95,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:528-529`, `step_sbk_time` - **Root Cause:** `step_sbk_time` builds time slot availability from booking data fetched locally, not via a dedic"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 101,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py:_submit_booking()` - **Root Cause:** Customer bot's `_submit_booking()` calls `_get_available_consoles()` at submit time and auto-a"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 107,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1331` (`api_create_booking` — deprecated) - **Root Cause:** The deprecated endpoint (and the staff-format path in `/api/bookings`) doesn't compute or store "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 128,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:295-299` - **Root Cause:** In `step_sbk_console`, BTN_BACK calls `cmd_staff_booking(update, context)` which clears ALL user_data and restart"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 134,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py:bk_confirm()` - **Root Cause:** The customer bot does a duplicate-booking overlap check client-side, then the API also does one ser"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 146,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - **Root Cause:** If `_api_get(\"fetch_console_status\")` or `_api_get(\"search-bookings\")` fails (timeout, 500), the customer bot sh"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 152,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py:348-385` - **Root Cause:** On API failure, `fetch_console_status()` logs a warning and returns `[]`. This causes the console selection keyboards to "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 158,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `_fetch_wallet_mins_from_mysql` (10 min), `_fetch_member_data_from_mysql` (15 min) - **Root Cause:** Wallet balance reads have a 10-15 minute staleness w"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 164,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking_flow.py` + `/root/psvibe-sales-bot/bot/session_reminder_store.py` - **Root Cause:** `_SESSION_TOTAL_MINS` is saved to disk via `persist_reminde"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 181,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1882-2028` - **Root Cause:** One endpoint handles both customer bot format (with `customerName`, `date`, `timeSlot`) and staff format (with `console_id`, `m"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 186,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking_flow.py:247` - **Root Cause:** This function posts to n8n but is never called from any handler. `_remind_loop` handles all reminders directly. "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 191,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:step_book_mins()` - **Root Cause:** `step_book_mins` allows free-text minutes entry. `_do_create_booking` sends the value to `api_start_cons"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 201,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` importing `_delete_session_game` from `bot` - **Root Cause:** `_delete_session_game` is a sync function that calls `api_delete_session_game"
+        },
+        {
           "path": "memory/config.md",
           "line": 4,
           "context": "**File:** `/root/.openclaw/openclaw.json`"
@@ -5939,6 +6219,11 @@
           "path": "memory/2026-06-17.md",
           "line": 59,
           "context": "### Files Modified - `/root/psvibe-discord-bot/bot.js`, `deploy-commands.js`, `suggestions.json`"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 71,
+          "context": "### Files Modified - **`/root/psvibe_api_server/app.py`:**"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -6129,6 +6414,36 @@
           "path": "memory/booking-timeslot-audit.md",
           "line": 228,
           "context": "**Files:** `customer_bot/data/prompts.py` and `customer_bot/data/time_utils.py` **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 67,
+          "context": "- **Files:** - `POST /api/bookings` — `/root/psvibe_api_server/app.py:1882` (customer bot + staff format, unified)"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 75,
+          "context": "- **Files:** - API server: `/root/psvibe_api_server/session_timer.py` (single-fire, no extend, `_active_timers`)"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 113,
+          "context": "- **Files:** Multiple booking handlers - **Root Cause:**"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 140,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/__init__.py:1438-1439` - **Root Cause:** `N8N_SESSION_WEBHOOK` and `N8N_BOOKING_WEBHOOK` default to `\"\"` (empty string). The n8n integration (`_post_n8n_bookin"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 176,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/__init__.py` — `create_booking()`, `end_booking()`, `fetch_console_status()`, etc. - **Root Cause:** Every function has `if _HAS_API: ... else: GSheet fallback"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 196,
+          "context": "- **Files:** Throughout all bot handlers and API responses - **Root Cause:** API returns `console_id` in DB rows but the API response mapping code creates BOTH `console_id` and `consoleId` fields. Bot"
         },
         {
           "path": "memory/fix-history.md",
@@ -6534,6 +6849,16 @@
           "path": "memory/AUDIT_REPORT_TEMPLATE.md",
           "line": 64,
           "context": "- **Fix approach:** Sequential fixes with coordination framework after deploying lock_manager, preflight, validate, rollback."
+        }
+      ]
+    },
+    {
+      "topic": "Fix Discord bot to route through API",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 214,
+          "context": "| 1.2 | **Fix Discord bot to route through API** — Replace direct `INSERT` with `POST /api/bookings` call, or at minimum add conflict check + console_status sync | `bot.js:812` | 1h | | 1.3 | **Move c"
         }
       ]
     },
@@ -7992,7 +8317,7 @@
         },
         {
           "path": "memory/project-state.md",
-          "line": 54,
+          "line": 55,
           "context": "- **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed** - **Opening Hours:** 9 AM - 9 PM (daily)"
         }
       ]
@@ -8149,6 +8474,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 327,
           "context": "The Sale Bot's `step_sbk_time()` uses **hardcoded** slots (10:00, 11:00, ..., 22:00). These are NOT filtered. However, staff bookings may intentionally want past slots (for creating back-dated entries"
+        }
+      ]
+    },
+    {
+      "topic": "Health Check Endpoint",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 267,
+          "context": "5. **Health Check Endpoint**: `GET /api/bookings/health` that verifies: - `console_booking` ↔ `console_status` consistency (Active bookings have Active consoles)"
         }
       ]
     },
@@ -8478,6 +8813,16 @@
       ]
     },
     {
+      "topic": "Idempotency Keys",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 250,
+          "context": "2. **Idempotency Keys**: Add `idempotency_key` to all booking mutation endpoints. Clients generate a UUID; server stores it in a new `idempotency_keys` table with TTL. Prevents double-submit from retr"
+        }
+      ]
+    },
+    {
       "topic": "identical income allocation",
       "files": [
         {
@@ -8504,6 +8849,16 @@
           "path": "memory/2026-06-10.md",
           "line": 80,
           "context": "- **IGN:** OG images for some games"
+        }
+      ]
+    },
+    {
+      "topic": "Immediate Action Items (this week):",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 305,
+          "context": "**Immediate Action Items (this week):** 1. Add `console_id` DB index (5 min, no downtime)"
         }
       ]
     },
@@ -8734,6 +9089,106 @@
           "path": "memory/booking-timeslot-audit.md",
           "line": 137,
           "context": "**Impact:** Customer sees consoles as available, goes through entire booking flow, only to be rejected at submission. Frustrating UX."
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 33,
+          "context": "- **Impact:** Any Discord user can create bookings that double-book consoles, ignore time conflicts, and leave `console_status` out of sync. **This is the #1 double-booking vector.** - **Severity:** C"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 39,
+          "context": "- **Impact:** Two members can be checked into the same console simultaneously, creating two Active bookings on one console. - **Severity:** CRITICAL"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 45,
+          "context": "- **Impact:** Can create Active bookings on consoles already in use. Data corruption on partial failure. - **Severity:** CRITICAL"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 51,
+          "context": "- **Impact:** With 300+ bookings, conflict checks are progressively slower. Under concurrent load, full table scans hold locks longer and worsen race windows. - **Severity:** HIGH → CRITICAL (amplifie"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 57,
+          "context": "- **Impact:** `console_status` can drift out of sync, causing the console dashboard to show wrong status. Active sessions can appear Free and vice versa. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 71,
+          "context": "- **Impact:** Future developers or API consumers may use the wrong endpoint. The deprecated endpoint has none of the safety fixes applied to the unified endpoint. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 79,
+          "context": "- **Impact:** Duplicate reminder messages in the admin group. Confusing state where extend on one system doesn't update the other. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 85,
+          "context": "- **Impact:** Staff gets confused when Back doesn't return to the previous step but jumps several steps backward. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 91,
+          "context": "- **Impact:** Brittle back navigation. If flow order changes, back buttons break silently. - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 97,
+          "context": "- **Impact:** Staff may schedule a booking at a slot that's already taken but not reflected in the cached data. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 103,
+          "context": "- **Impact:** Race condition — customer gets a booking confirmed for a console that's already taken. The API does catch this with its conflict check, returning an error, but the customer sees a confus"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 109,
+          "context": "- **Impact:** Session timer displays wrong remaining time; extend doesn't have a base end time to add to. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 118,
+          "context": "- **Impact:** Booking-to-member analytics/reporting is unreliable. Wallet deduction can't find the member. - **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 130,
+          "context": "- **Impact:** If staff makes a mistake at console selection, they lose ALL previously entered data (date, time). - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 136,
+          "context": "- **Impact:** False positive duplicate warnings (client warns about user's own bookings on any console, server checks actual console-level conflicts). Confusing UX. - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 142,
+          "context": "- **Impact:** Staff booking reminders (10-min-before, auto-cancel) won't fire via n8n. Restart-proof timers won't work. - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 148,
+          "context": "- **Impact:** Customer booking flow aborts silently; user has to restart from the beginning. - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 154,
+          "context": "- **Impact:** Staff can't book sessions during API downtime. No graceful degradation. - **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 160,
+          "context": "- **Impact:** Customer may be told they can't book (low balance) when they just topped up. Or vice versa — told they have balance but wallet was drained by another concurrent session. - **Severity:** "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 166,
+          "context": "- **Impact:** On session recovery after restart, accumulated total_plan_mins may be lost, showing wrong \"Plan: X min\" in reminder messages. - **Severity:** MEDIUM"
         }
       ]
     },
@@ -9099,6 +9554,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 51,
           "context": "### Key Decisions: - **Max parallel per round:** 5 agents (buffer 3-4 slots for emergency)"
+        }
+      ]
+    },
+    {
+      "topic": "Key Design Decisions",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 78,
+          "context": "### Key Design Decisions - Waitlist lives in `console_booking` with `status='Waiting'` (no separate table)"
         }
       ]
     },
@@ -9723,6 +10188,16 @@
       ]
     },
     {
+      "topic": "Live wallet balance at booking time",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 235,
+          "context": "| 3.1 | **Live wallet balance at booking time** — Add `GET /api/wallet/live/{member_id}` that bypasses the 10-min cache for booking-critical reads | `app.py` (new endpoint) | 30 min | | 3.2 | **Auto-c"
+        }
+      ]
+    },
+    {
       "topic": "Lock Monitor Updates (2026-06-02)",
       "files": [
         {
@@ -10313,6 +10788,26 @@
       ]
     },
     {
+      "topic": "Monitoring",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 260,
+          "context": "### Monitoring 4. **Booking Anomaly Alerts**: Add alerts for:"
+        }
+      ]
+    },
+    {
+      "topic": "Move checkin guard INSIDE transaction",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 215,
+          "context": "| 1.3 | **Move checkin guard INSIDE transaction** — In `api_booking_checkin`, move the `existing = _mysql_query_one(...)` check into the transaction block with `FOR UPDATE` on ALL Active rows for that"
+        }
+      ]
+    },
+    {
       "topic": "MySQL container running ≠ MySQL in use",
       "files": [
         {
@@ -10387,7 +10882,7 @@
         },
         {
           "path": "memory/project-state.md",
-          "line": 73,
+          "line": 74,
           "context": "- **MySQL:** Docker `psvibe-mysql` (:3306), DB: `psvibe_api` - **Cloudflare:** `ps-vibe.com` → Cloudflare tunnel → localhost:8000"
         }
       ]
@@ -10677,7 +11172,7 @@
         },
         {
           "path": "memory/project-state.md",
-          "line": 67,
+          "line": 68,
           "context": "**New:** Web Dashboard now handles Game CRUD + Disc/SSD management (removed from bot)"
         }
       ]
@@ -10982,7 +11477,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 55,
+          "line": 56,
           "context": "- **Opening Hours:** 9 AM - 9 PM (daily) - **Staff Training:** 04 June 2026 ✅ Completed"
         }
       ]
@@ -11039,6 +11534,16 @@
           "path": "memory/PHASE3_SPEC.md",
           "line": 116,
           "context": "**Output format:** ```"
+        }
+      ]
+    },
+    {
+      "topic": "outside",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 38,
+          "context": "- **Root Cause:** `api_booking_checkin()` checks for existing Active bookings on the console **outside** the transaction block. Two concurrent checkins can both pass the guard, then both proceed into "
         }
       ]
     },
@@ -11343,6 +11848,16 @@
       ]
     },
     {
+      "topic": "Phase 1: Critical Fixes (Data Integrity & Race Conditions)",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 209,
+          "context": "### Phase 1: Critical Fixes (Data Integrity & Race Conditions)"
+        }
+      ]
+    },
+    {
       "topic": "Phase 1: Feature 2 (Foundation — easier, lower risk)",
       "files": [
         {
@@ -11383,6 +11898,16 @@
       ]
     },
     {
+      "topic": "Phase 2: Structural Improvements",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 219,
+          "context": "### Phase 2: Structural Improvements"
+        }
+      ]
+    },
+    {
       "topic": "Phase 3 (5):",
       "files": [
         {
@@ -11414,6 +11939,26 @@
           "path": "memory/2026-06-05.md",
           "line": 304,
           "context": "## Phase 3.5 — Booking Flow Fixes (16:00-17:00 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 3.7 — Waitlist Auto-Notify on Booking Cancel ✅ (04:35 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 66,
+          "context": "## Phase 3.7 — Waitlist Auto-Notify on Booking Cancel ✅ (04:35 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "Phase 3: Feature Upgrades & Polish",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 231,
+          "context": "### Phase 3: Feature Upgrades & Polish"
         }
       ]
     },
@@ -11754,6 +12299,16 @@
           "path": "memory/2026-06-15.md",
           "line": 69,
           "context": "### Problems Found & Fixed"
+        }
+      ]
+    },
+    {
+      "topic": "Process",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 284,
+          "context": "### Process 8. **Code Review Checklist for Booking Changes**: Any PR touching booking logic must verify:"
         }
       ]
     },
@@ -12936,6 +13491,136 @@
           "context": "**Root Cause:** BK_SPECIFIC_CONSOLE state (16) was not registered in the `customer_bot/main.py` ConversationHandler states dict, but `bk_time_select` returns this state when available consoles exist. "
         },
         {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 32,
+          "context": "- **Root Cause:** Discord bot performs direct `INSERT INTO console_booking` via `dbPool.execute()`, completely bypassing the API server's conflict checks, transactions, `FOR UPDATE` locking, and `_syn"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 38,
+          "context": "- **Root Cause:** `api_booking_checkin()` checks for existing Active bookings on the console **outside** the transaction block. Two concurrent checkins can both pass the guard, then both proceed into "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 44,
+          "context": "- **Root Cause:** The deprecated endpoint uses separate `_mysql_exec()` calls without wrapping in a transaction. No `FOR UPDATE`, no rollback capability. It inserts a booking, then tries to update `co"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 50,
+          "context": "- **Root Cause:** Every conflict check queries `WHERE console_id=%s AND status IN (...)` — without an index on `console_id`, these queries do full table scans. - **Impact:** With 300+ bookings, confli"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 56,
+          "context": "- **Root Cause:** In `api_bookings_create`, the transaction commits first, THEN `_sync_console_status()` is called in a new connection. If the sync fails (network blip, DB error), the booking is commi"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 70,
+          "context": "- **Root Cause:** The deprecated endpoint still exists and handles staff walk-in format differently (no transaction, no conflict check, skips customer bot logic). Both are active and routable. - **Imp"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 78,
+          "context": "- **Root Cause:** Two independent timer systems were built. `session_timer.py` schedules timers from API endpoints (`api_booking_checkin`), while `booking_flow.py` schedules from Sale Bot handlers (`_"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 84,
+          "context": "- **Root Cause:** In `step_sbk_date`, pressing Back goes to `SBK_PHONE` (asks for phone again), but the user was previously at `SBK_TIME` → `SBK_DATE`. The correct back target should be to time select"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 90,
+          "context": "- **Root Cause:** `step_sbk_phone` on Back shows customer name prompt text but returns `SBK_CUST_NAME` — this is actually correct for going back one step. But there's no state stack tracking; it relie"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 96,
+          "context": "- **Root Cause:** `step_sbk_time` builds time slot availability from booking data fetched locally, not via a dedicated API endpoint. The data is queried across multiple statuses independently. If the "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 102,
+          "context": "- **Root Cause:** Customer bot's `_submit_booking()` calls `_get_available_consoles()` at submit time and auto-assigns the first free console. Between the availability check and the actual booking sub"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 108,
+          "context": "- **Root Cause:** The deprecated endpoint (and the staff-format path in `/api/bookings`) doesn't compute or store `end_time`. This means session duration is only tracked by `duration_mins`, and elapse"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 114,
+          "context": "- **Root Cause:** - Customer bot stores `telegram_chat_id` in the `telegram_chat_id` column but often leaves `member_id` empty if the phone→member lookup fails."
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 129,
+          "context": "- **Root Cause:** In `step_sbk_console`, BTN_BACK calls `cmd_staff_booking(update, context)` which clears ALL user_data and restarts from date selection. It should go back to time selection. - **Impac"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 135,
+          "context": "- **Root Cause:** The customer bot does a duplicate-booking overlap check client-side, then the API also does one server-side in `api_bookings_create`. This double-check is redundant but uses differen"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 141,
+          "context": "- **Root Cause:** `N8N_SESSION_WEBHOOK` and `N8N_BOOKING_WEBHOOK` default to `\"\"` (empty string). The n8n integration (`_post_n8n_booking_reminder`, `_post_n8n_session_reminder`) checks for non-empty "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 147,
+          "context": "- **Root Cause:** If `_api_get(\"fetch_console_status\")` or `_api_get(\"search-bookings\")` fails (timeout, 500), the customer bot shows \"⚠️ Game list မရဘူး\" or returns empty slots. There's no retry logi"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 153,
+          "context": "- **Root Cause:** On API failure, `fetch_console_status()` logs a warning and returns `[]`. This causes the console selection keyboards to be empty, showing \"⚠️ Free console မရှိပါ\" to the staff. - **"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 159,
+          "context": "- **Root Cause:** Wallet balance reads have a 10-15 minute staleness window. If a member tops up between being cached and booking, the customer bot shows stale balance (or wrong \"insufficient balance\""
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 165,
+          "context": "- **Root Cause:** `_SESSION_TOTAL_MINS` is saved to disk via `persist_reminder()`, but the weekly cleanup task in `cleanup_stale_reminders_async` can purge entries while sessions are still active (if "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 177,
+          "context": "- **Root Cause:** Every function has `if _HAS_API: ... else: GSheet fallback`. The fallback code references GSheet functions (`get_booking_sh()`, `sh.append_row()`) that are no longer the primary data"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 182,
+          "context": "- **Root Cause:** One endpoint handles both customer bot format (with `customerName`, `date`, `timeSlot`) and staff format (with `console_id`, `member_id`). The format detection is brittle — it checks"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 187,
+          "context": "- **Root Cause:** This function posts to n8n but is never called from any handler. `_remind_loop` handles all reminders directly. The function exists as dead code. - **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 192,
+          "context": "- **Root Cause:** `step_book_mins` allows free-text minutes entry. `_do_create_booking` sends the value to `api_start_console_session` which accepts any integer. A typo like `99999` could create a ses"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 197,
+          "context": "- **Root Cause:** API returns `console_id` in DB rows but the API response mapping code creates BOTH `console_id` and `consoleId` fields. Bot handlers sometimes use one, sometimes the other. This work"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 202,
+          "context": "- **Root Cause:** `_delete_session_game` is a sync function that calls `api_delete_session_game` via the API. It's called from `_do_create_booking` (async) without `asyncio.to_thread`, potentially blo"
+        },
+        {
           "path": "memory/bug-patterns.md",
           "line": 7,
           "context": "- **Root cause:** `_end_dt_iso = datetime.now() + planned_mins` — `now` = restart time, not original start - **Fix:** Calculate end time from stored `end_t` (HH:MM format), not from current time"
@@ -13234,6 +13919,16 @@
           "path": "memory/lessons.md",
           "line": 16,
           "context": "## Schema Gaps: GSheet→MySQL Migration (2026-05-30) - MySQL `member_wallets` missing 5 GSheet columns"
+        }
+      ]
+    },
+    {
+      "topic": "Scope:",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 5,
+          "context": "**Scope:** Full booking codebase — API server, Sale Bot, Customer Bot, Discord Bot, DB schema, n8n webhooks"
         }
       ]
     },
@@ -13971,6 +14666,136 @@
           "context": "**Severity:** LOW"
         },
         {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 34,
+          "context": "- **Severity:** CRITICAL"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 40,
+          "context": "- **Severity:** CRITICAL"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 46,
+          "context": "- **Severity:** CRITICAL"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 52,
+          "context": "- **Severity:** HIGH → CRITICAL (amplifies all race conditions)"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 58,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 72,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 80,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 86,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 92,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 98,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 104,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 110,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 119,
+          "context": "- **Severity:** HIGH"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 131,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 137,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 143,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 149,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 155,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 161,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 167,
+          "context": "- **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 178,
+          "context": "- **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 183,
+          "context": "- **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 188,
+          "context": "- **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 193,
+          "context": "- **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 198,
+          "context": "- **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 203,
+          "context": "- **Severity:** LOW"
+        },
+        {
           "path": "memory/test-report.md",
           "line": 16,
           "context": "**Severity:** HIGH — data loss **File:** `2026-05-26.md` (uses only `### ` headers, no `## ` parent)"
@@ -14024,6 +14849,16 @@
           "path": "memory/infrastructure.md",
           "line": 51,
           "context": "## Shop Info | Detail | Value |"
+        }
+      ]
+    },
+    {
+      "topic": "Single Booking API Gateway",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 248,
+          "context": "1. **Single Booking API Gateway**: ALL booking mutations (create, checkin, cancel, end) must go through the API server. Block direct DB access from bots/discord. Add DB user permission restrictions (r"
         }
       ]
     },
@@ -14152,7 +14987,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 56,
+          "line": 57,
           "context": "- **Staff Training:** 04 June 2026 ✅ Completed"
         }
       ]
@@ -15043,12 +15878,32 @@
       ]
     },
     {
+      "topic": "System Overview",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 9,
+          "context": "## System Overview"
+        }
+      ]
+    },
+    {
       "topic": "Systems & Accounts",
       "files": [
         {
           "path": "MEMORY.md",
           "line": 17,
           "context": "### Systems & Accounts - **`memory/contacts.md`** — 👥 Contacts, Boss info, friend contacts"
+        }
+      ]
+    },
+    {
+      "topic": "Table:",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 49,
+          "context": "- **Table:** `console_booking` — indexes exist for `booking_date`, `status`, `branch_id` — but NOT `console_id`. - **Root Cause:** Every conflict check queries `WHERE console_id=%s AND status IN (...)"
         }
       ]
     },
@@ -15248,6 +16103,16 @@
       ]
     },
     {
+      "topic": "Testing",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 272,
+          "context": "### Testing 6. **Concurrency Test Suite**: Write tests that:"
+        }
+      ]
+    },
+    {
       "topic": "Tests Done:",
       "files": [
         {
@@ -15319,6 +16184,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 56,
           "context": "- **The system proved itself:** 2 rounds of parallel batches this session, both faster than sequential."
+        }
+      ]
+    },
+    {
+      "topic": "This is the #1 double-booking vector.",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 33,
+          "context": "- **Impact:** Any Discord user can create bookings that double-book consoles, ignore time conflicts, and leave `console_status` out of sync. **This is the #1 double-booking vector.** - **Severity:** C"
         }
       ]
     },
@@ -15563,6 +16438,16 @@
       ]
     },
     {
+      "topic": "Total Issues Found:",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 303,
+          "context": "**Total Issues Found:** 26"
+        }
+      ]
+    },
+    {
       "topic": "Total Liabilities",
       "files": [
         {
@@ -15688,6 +16573,16 @@
       ]
     },
     {
+      "topic": "Unify timer systems",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 223,
+          "context": "| 2.1 | **Unify timer systems** — Remove `session_timer.py` → have `api_booking_checkin` call the Sale Bot's timer via API or shared module. Single source of truth for session timers | `session_timer."
+        }
+      ]
+    },
+    {
       "topic": "Update",
       "files": [
         {
@@ -15712,7 +16607,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 71,
+          "line": 72,
           "context": "- **URL:** `psvibemm.com` - **3 Services:** `psvibe-sale-bot` | `psvibe_customer_bot` | `psvibe-api`"
         }
       ]
@@ -15794,6 +16689,11 @@
           "path": "memory/2026-06-15.md",
           "line": 13,
           "context": "**Verification:** Tested with `test_mysqlQuery.js`: - `SELECT COUNT(*) as txns FROM sales_daily WHERE sale_date = '2026-06-14'` → `43` ✅"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 85,
+          "context": "### Verification - Syntax check: ✅ Both files pass"
         },
         {
           "path": "memory/IMPLEMENTATION_LOG.md",
@@ -15913,6 +16813,26 @@
       ]
     },
     {
+      "topic": "Waitlist auto-notify on cancel",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 241,
+          "context": "| 3.7 | **Waitlist auto-notify on cancel** — When a booking is cancelled, automatically notify the next waitlisted customer for that date/time/console-type | `app.py` + `waitlist.py` | 2h |"
+        }
+      ]
+    },
+    {
+      "topic": "Waitlist Auto-Notify on Cancel (Phase 3.7)",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 45,
+          "context": "| 34 | **Waitlist Auto-Notify on Cancel (Phase 3.7)** — Cancel booking → auto notify first waitlisted customer via Telegram | ✅ |"
+        }
+      ]
+    },
+    {
       "topic": "Wallet Balance Column H (FIXED — 3 bugs)",
       "files": [
         {
@@ -15994,6 +16914,11 @@
           "path": "memory/2026-06-17.md",
           "line": 31,
           "context": "### What Was Done"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 68,
+          "context": "### What Was Done When a booking is cancelled, the system now auto-notifies the first matching waitlisted customer via Telegram."
         }
       ]
     },
@@ -17167,7 +18092,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 58,
+          "line": 59,
           "context": "## 🏗️ Architecture (Updated) ```"
         }
       ]
@@ -17317,7 +18242,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 46,
+          "line": 47,
           "context": "## 🐛 Known Issues | Issue | Priority | Status |"
         }
       ]
@@ -17677,7 +18602,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 76,
+          "line": 77,
           "context": "## 🔧 Coordination Tools All at `/root/coordination/` — 45+ scripts."
         }
       ]
@@ -17857,7 +18782,7 @@
       "files": [
         {
           "path": "memory/project-state.md",
-          "line": 53,
+          "line": 54,
           "context": "## 🗓️ Upcoming - **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed**"
         }
       ]
@@ -17923,6 +18848,16 @@
       ]
     },
     {
+      "topic": "🟠 HIGH (Structural / Design)",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 62,
+          "context": "### 🟠 HIGH (Structural / Design)"
+        }
+      ]
+    },
+    {
       "topic": "🟡 HIGH (N issues)",
       "files": [
         {
@@ -17939,6 +18874,16 @@
           "path": "memory/booking-timeslot-audit.md",
           "line": 143,
           "context": "## 🟡 HIGH ISSUES (Misleading UI or Incorrect Filtering)"
+        }
+      ]
+    },
+    {
+      "topic": "🟡 MEDIUM (Bugs / UX)",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 123,
+          "context": "### 🟡 MEDIUM (Bugs / UX)"
         }
       ]
     },

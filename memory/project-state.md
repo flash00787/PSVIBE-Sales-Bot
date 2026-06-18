@@ -42,6 +42,7 @@
 | 31 | **Grand Opening Data Reset** — all test data cleared, 3 real members kept | ✅ |
 | 32 | **C-09/C-10 Multiplier 1.2x** — API endpoint was looking for individual keys, fixed to parse JSON blob | ✅ |
 | 33 | **Customer Bot Food Menu** — `_bk_intercept_menu` BTN_FOOD missing + API unwrap logic + Unicode corruption | ✅ |
+| 34 | **Waitlist Auto-Notify on Cancel (Phase 3.7)** — Cancel booking → auto notify first waitlisted customer via Telegram | ✅ |
 
 ## 🐛 Known Issues
 | Issue | Priority | Status |
