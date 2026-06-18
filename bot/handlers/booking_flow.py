@@ -491,12 +491,25 @@ async def cb_cancel_with_reason(update: Update, context: ContextTypes.DEFAULT_TY
 
 async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: str):
     """Execute the cancel PATCH and notify customer. Works for both callback query and message."""
+    is_query = hasattr(query_or_msg, "edit_message_text")
+
+    # Fetch full booking data BEFORE cancelling — PATCH response only has {booking_id, status}
+    _bk_pre = await _psvibe_get_async(f"bookings/{bk_id}")
+    if isinstance(_bk_pre, dict) and "booking" in _bk_pre:
+        _bk_pre = _bk_pre["booking"]
+    _pre_cust = (_bk_pre.get("customerName") or "") if isinstance(_bk_pre, dict) else ""
+    _pre_date = (_bk_pre.get("date") or "") if isinstance(_bk_pre, dict) else ""
+    _pre_time = (_bk_pre.get("timeSlot") or "") if isinstance(_bk_pre, dict) else ""
+    _pre_console = (_bk_pre.get("consoleType") or _bk_pre.get("console_id") or "") if isinstance(_bk_pre, dict) else ""
+    _pre_duration = (_bk_pre.get("durationMins") or 60) if isinstance(_bk_pre, dict) else 60
+    _pre_game = (_bk_pre.get("gameName") or "") if isinstance(_bk_pre, dict) else ""
+    _pre_tg_chat = (_bk_pre.get("telegramChatId") or "") if isinstance(_bk_pre, dict) else ""
+
     staff_note = f"Cancelled by {staff_name}: {reason}"
     result = await _psvibe_patch_async(
         f"bookings/{bk_id}/status",
         {"status": "cancelled", "staffNote": staff_note},
     )
-    is_query = hasattr(query_or_msg, "edit_message_text")
     if not result:
         txt = f"❌ Booking #{bk_id} cancel မရပါ — API စစ်ပါ"
         try:
@@ -509,9 +522,8 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
             pass
         return
 
-
     # Clean up any Scheduled Console_Booking row for this booking's console
-    _cancel_console = (result.get("consoleId") or "").strip() if isinstance(result, dict) else ""
+    _cancel_console = (_bk_pre.get("console_id") or "").strip() if isinstance(_bk_pre, dict) else ""
     if _cancel_console:
         try:
             _bk_sh = get_booking_sh()
@@ -532,8 +544,8 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
     done_txt = (
         f"🚫 <b>Booking #{bk_id} Cancelled</b>\n"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"👤 {result.get('customerName','?')}  📅 {result.get('date','?')}\n"
-        f"⏰ {result.get('timeSlot','?')}  🎮 {result.get('consoleType','?')}\n"
+        f"👤 {_pre_cust or '?'}  📅 {_pre_date or '?'}\n"
+        f"⏰ {_pre_time or '?'}  🎮 {_pre_console or '?'}\n"
         f"📝 {reason}\n"
         f"👮 {staff_name}"
     )
@@ -546,23 +558,18 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
         logger.error("_do_cancel_booking: %s", e, exc_info=True)
         pass
 
-    # Notify customer if they have Telegram
-    # Fetch full booking data via GET (PATCH result has no customer fields)
-    _bk_full = await _psvibe_get_async(f"bookings/{bk_id}")
-    if isinstance(_bk_full, dict) and "booking" in _bk_full:
-        _bk_full = _bk_full["booking"]
-    tg_chat = _bk_full.get("telegramChatId") or ""
-    if tg_chat and CUSTOMER_BOT_TOKEN:
+    # Notify customer if they have Telegram (use pre-fetched data)
+    if _pre_tg_chat and CUSTOMER_BOT_TOKEN:
         cust_msg = (
             f"❌ <b>Booking #{bk_id} ကို ပယ်ဖျက်ပြီ</b>\n"
             f"━━━━━━━━━━━━━━━━━━\n"
-            f"📅 {result.get('date','?')}  ⏰ {result.get('timeSlot','?')}\n"
-            f"🎮 {result.get('consoleType','?')}\n"
+            f"📅 {_pre_date or '?'}  ⏰ {_pre_time or '?'}\n"
+            f"🎮 {_pre_console or '?'}  🕹 {_pre_game or '—'}\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"📝 အကြောင်းပြချက်: {reason}\n"
             f"ကျေးဇူးပြု၍ ဆက်သွယ်ရန် @psvibeofficial"
         )
-        await asyncio.to_thread(_notify_customer, tg_chat, cust_msg)
+        await asyncio.to_thread(_notify_customer, _pre_tg_chat, cust_msg)
 
 async def handle_cancel_note_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle typed cancel reason from staff (pending custom note)."""
