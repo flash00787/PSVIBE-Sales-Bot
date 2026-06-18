@@ -139,9 +139,8 @@ async def restore_reminders_async(app) -> None:
             discarded += 1
             continue
 
-        # Parse end_dt_iso
-        end_dt_iso = entry.get("end_dt_iso", "")
-        end_dt = _parse_end_iso(end_dt_iso, end_t, now)
+        # Parse end datetime — prefer end_t (never drifts) over end_dt_iso
+        end_dt = _parse_end_from_end_t(end_t, now) or _parse_end_iso(entry.get("end_dt_iso", ""), end_t, now)
         if end_dt is None:
             store.pop(key, None)
             discarded += 1
@@ -193,6 +192,17 @@ async def restore_reminders_async(app) -> None:
 
     _write_store(store)
     logger.info("reminder_store restore done: %d restored, %d discarded", restored, discarded)
+
+
+def _parse_end_from_end_t(end_t: str, now) -> Optional[datetime]:
+    """Compute end datetime from HH:MM end_t + today's date (primary source, never drifts)."""
+    if not end_t:
+        return None
+    try:
+        eh, em = map(int, end_t.split(":"))
+        return now.replace(hour=eh, minute=em, second=0, microsecond=0)
+    except (ValueError, AttributeError):
+        return None
 
 
 def _parse_end_iso(end_dt_iso: str, end_t: str, now) -> Optional[datetime]:

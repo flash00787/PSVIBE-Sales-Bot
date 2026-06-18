@@ -76,7 +76,7 @@ def auto_cancel():
     
     all_bookings = []
     
-    for status_filter in ("confirmed", "pending", "scheduled"):
+    for status_filter in ("confirmed", "pending"):
         try:
             resp = requests.get(
                 f"{API_URL}/api/bookings",
@@ -119,7 +119,7 @@ def auto_cancel():
     
     for b in all_bookings:
         status = (b.get("status") or "").lower()
-        if status not in ("confirmed", "pending", "scheduled"):
+        if status not in ("confirmed", "pending"):
             continue
         
         time_slot = b.get("timeSlot") or b.get("startTime") or ""
@@ -161,6 +161,17 @@ def auto_cancel():
         game = b.get("gameName") or ""
         telegram_chat_id = b.get("telegramChatId") or b.get("telegram_chat_id") or ""
         phone = b.get("phone") or ""
+        
+        # Re-fetch current status to avoid canceling in-progress sessions
+        try:
+            check = requests.get(f"{API_URL}/api/bookings/{bk_id}", headers=headers, timeout=10)
+            if check.status_code == 200:
+                current_status = check.json().get("booking", {}).get("status", "")
+                if current_status.lower() in ("active", "done", "cancelled"):
+                    print(f"  [SKIP] Booking {bk_id} status already {current_status}")
+                    continue
+        except Exception as e:
+            print(f"  ⚠ Could not re-check status for #{bk_id}: {e}")
         
         # Cancel via API
         try:
@@ -231,8 +242,9 @@ def send_booking_reminders():
         except:
             reminded_ids = set()
     
-    # Clean old entries (keep only today's)
-    reminded_ids = {x for x in reminded_ids if str(x).startswith(now_mmt.strftime("%Y%m%d"))}
+    # Clean old entries older than 7 days
+    cutoff_date = (now_mmt - timedelta(days=7)).strftime("%Y%m%d")
+    reminded_ids = {x for x in reminded_ids if str(x) >= str(cutoff_date)}
     
     try:
         resp = requests.get(
@@ -258,7 +270,7 @@ def send_booking_reminders():
         
         for b in all_bk:
             status = (b.get("status") or "").lower()
-            if status not in ("confirmed", "scheduled"):
+            if status not in ("confirmed",):
                 continue
             
             time_slot = b.get("timeSlot") or b.get("startTime") or ""

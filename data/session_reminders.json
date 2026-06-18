@@ -1,1 +1,24 @@
-{}
+{
+  "C-05|1003686032747": {
+    "cid": "C-05",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 180,
+    "end_t": "13:03",
+    "end_dt_iso": "2026-06-18T13:03:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-06-18T04:59:41.952615+00:00"
+  },
+  "C-07|1003686032747": {
+    "cid": "C-07",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "12:57",
+    "end_dt_iso": "2026-06-18T12:57:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-06-18T05:27:24.221165+00:00"
+  }
+}

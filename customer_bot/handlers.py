@@ -27,8 +27,9 @@ from .faq_auto_reply import match_faq as _match_faq
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
-    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_SPECIFIC_CONSOLE,
-) = range(17)
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
+) = range(16)
+# BK_SPECIFIC_CONSOLE removed — unused state
 
 WL_PREF, WL_NAME, WL_PHONE, WL_CONFIRM = range(100, 104)
 
@@ -62,10 +63,10 @@ BTN_CHANGE_TIME_CONFLICT = "⏰ အချိန် ပြောင်းမည�
 MAIN_MENU_KB = ReplyKeyboardMarkup([
     [BTN_BOOK,       BTN_STATUS],
     [BTN_MYBOOKINGS, BTN_GAMES],
-    [BTN_RATE,       BTN_PROMOTIONS],
-    [BTN_BALANCE,    BTN_REFER],
-    [BTN_CONTACT,    BTN_LOCATION],
-    [BTN_FOOD,       BTN_HELP_BTN],
+    [BTN_FOOD,       BTN_RATE],
+    [BTN_PROMOTIONS, BTN_BALANCE],
+    [BTN_REFER,      BTN_CONTACT],
+    [BTN_LOCATION,   BTN_HELP_BTN],
     [BTN_REFRESH],
 ], resize_keyboard=True)
 
@@ -996,8 +997,9 @@ BUFFER_GLOBAL_WAIT = 0.25
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
-    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_SPECIFIC_CONSOLE,
-) = range(17)
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
+) = range(16)
+# BK_SPECIFIC_CONSOLE removed — unused state
 BK_END = -1
 
 # ── Waitlist conversation states (100-103) ────────────────────────────────────

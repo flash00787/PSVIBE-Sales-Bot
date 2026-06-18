@@ -7,8 +7,8 @@ from bot import (
     BTN_SBK_CUSTOM, BTN_SBK_NEW, BTN_SBK_SKIP_GAME, BTN_SBK_SKIP_PHONE,
     BTN_SBK_WAITLIST, BTN_SKIP_GAME, BTN_SKIP_TIMER, BTN_SSD_TRANSFER,
     CONSOLE_MENU, MAIN_MENU, N8N_BOOKING_WEBHOOK, SBK_CONFIRM,
-    SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME, SBK_TIME,
-    SSD_XFER_SSD, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, VALID_CONSOLES,
+    SBK_CONSOLE, SBK_CUST_NAME, SBK_PHONE, SBK_DATE, SBK_TIME,
+    SBK_DURATION, SSD_XFER_SSD, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, VALID_CONSOLES,
     _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
@@ -32,45 +32,78 @@ from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASK
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
 
 
-async def _sbk_console_kb() -> list:
-    """Return keyboard of all consoles with live+reserved status via API."""
+async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
+    """Return keyboard of all consoles with availability for the selected time slot.
+    
+    When date_str+time_slot are provided, checks booking conflicts at the selected
+    time (not just current live status). A console currently Active will show ✅
+    if its session ends before the selected time.
+    """
     try:
-        data = {"consoles": [{"id": c["id"], "type": c.get("type",""), "liveStatus": c.get("status","Free")} for c in fetch_console_status()]}
-        consoles = data.get("consoles", []) if isinstance(data, dict) else []
+        consoles = fetch_console_status()
     except Exception as e:
-        logging.warning("Failed to fetch consoles via API for staff booking keyboard: %s", e)
-        consoles = []
-    if not consoles:
-        # fallback to local fetch
+        logging.warning("Failed to fetch console status (staff booking): %s", e)
+        return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
+    
+    # ── If date + time provided, override live status with future availability ──
+    conflict_cids = set()  # consoles that have a conflict at the selected time
+    if date_str and time_slot:
         try:
-            consoles = [{"id": c["id"], "type": c.get("type",""), "liveStatus": c.get("status","Free")}
-                        for c in fetch_console_status()]
+            from datetime import datetime as _dt
+            # Parse selected start time
+            sel_dt = _dt.strptime(f"{date_str} {time_slot}", "%Y-%m-%d %H:%M")
+            # Fetch all bookings that could block the selected time
+            all_bks = []
+            for st in ("Active", "confirmed", "pending", "pending_check_in"):
+                try:
+                    raw = await _psvibe_get_async(f"bookings?status={st}")
+                    if isinstance(raw, list):
+                        all_bks.extend(raw)
+                    elif isinstance(raw, dict):
+                        all_bks.extend(raw.get("bookings", []))
+                except Exception:
+                    pass
+            for b in all_bks:
+                b_date = (b.get("date") or "")[:10]
+                if b_date != date_str:
+                    continue
+                b_slot = b.get("timeSlot", "")
+                b_dur = int(b.get("durationMins") or 60)
+                if not b_slot:
+                    continue
+                try:
+                    b_start = _dt.strptime(f"{b_date} {b_slot}", "%Y-%m-%d %H:%M")
+                    from datetime import timedelta
+                    b_end = b_start + timedelta(minutes=b_dur)
+                    # Conflict if selected time falls within booking window
+                    if b_start <= sel_dt < b_end:
+                        conflict_cids.add((b.get("consoleId") or b.get("console_id") or "").strip())
+                except Exception:
+                    pass
         except Exception as e:
-            logging.warning("Failed to fetch console status (staff booking fallback): %s", e)
-            return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
-    else:
-        # Map API keys to expected format (console_id→id, status→liveStatus)
-        mapped = []
-        for c in consoles:
-            if "id" not in c and "console_id" in c:
-                c["id"] = c["console_id"]
-            if "liveStatus" not in c and "status" in c:
-                c["liveStatus"] = c["status"]
-            if "type" not in c:
-                c["type"] = c.get("console_type", "")
-            mapped.append(c)
-        consoles = mapped
+            logging.warning("_sbk_console_kb: future-avail check failed: %s", e)
+    
     rows = []
     row  = []
-    for c in sorted(consoles, key=lambda x: x["id"]):
-        live = c.get("liveStatus", "Free")
-        if live == "Free":
-            icon = "✅"
-        elif live == "Reserved":
-            icon = "🟡"
+    for c in sorted(consoles, key=lambda x: x.get("id", x.get("console_id", ""))):
+        cid = c.get("id") or c.get("console_id", "")
+        if date_str and time_slot:
+            # Future availability mode: check booking conflicts at selected time
+            if cid in conflict_cids:
+                icon = "🔴"
+            else:
+                icon = "✅"  # will be free at selected time (even if currently Active)
         else:
-            icon = "🔴"
-        label = f"{c['id']} ({c.get('type','?')}) {icon}"
+            # Live status mode (current behavior)
+            live = c.get("status", c.get("liveStatus", "Free"))
+            if live == "Free":
+                icon = "✅"
+            elif live == "Reserved":
+                icon = "🟡"
+            else:
+                icon = "🔴"
+        ctype = c.get("type") or c.get("console_type", "")
+        label = f"{cid} ({ctype}) {icon}" if ctype else f"{cid} {icon}"
         row.append(label)
         if len(row) == 2:
             rows.append(row)
@@ -221,7 +254,7 @@ async def cmd_staff_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_TIME
+    return SBK_DATE
 
 async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle console selection."""
@@ -270,7 +303,13 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        return await cmd_staff_booking(update, context)
+        # Go back to console selection (preserve saved date/time if any)
+        rows = await _sbk_console_kb()
+        await update.message.reply_text(
+            "🕹️ Console ပြန်ရွေးပါ:",
+            reply_markup=ReplyKeyboardMarkup(rows, resize_keyboard=True),
+        )
+        return SBK_CONSOLE
 
     name = "Guest" if text == "👤 Guest (Walk-in)" else text
     context.user_data["sbk_cust_name"] = name
@@ -283,9 +322,9 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
         parse_mode="HTML",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_DATE
+    return SBK_PHONE
 
-async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def step_sbk_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle phone → then ask booking duration (mins)."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -315,9 +354,9 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "⏱️ ကစားမည့် မိနစ် (Duration) ရွေးပါ:",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_GAME
+    return SBK_DURATION
 
-async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle date → then ask time slot."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -331,14 +370,14 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
             reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
         )
-        return SBK_DATE
+        return SBK_PHONE
 
     if text == BTN_SBK_CUSTOM:
         await update.message.reply_text(
             "📅 ရက် ရိုက်ထည့်ပါ (format: M/D/YYYY)\nဥပမာ: 5/10/2026",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
         )
-        return SBK_TIME
+        return SBK_DATE
 
     # Parse date from label like "5/4/2026 (ယနေ့)"
     import re as _re
@@ -352,26 +391,78 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
             date_str = text
         else:
             await update.message.reply_text("⚠️ ရက် format မမှန်ပါ (M/D/YYYY)")
-            return SBK_TIME
+            return SBK_DATE
 
     context.user_data["sbk_date"] = date_str
 
-    # Build time slot keyboard
-    slots = [
-        ["10:00", "11:00", "12:00"],
-        ["13:00", "14:00", "15:00"],
-        ["16:00", "17:00", "18:00"],
-        ["19:00", "20:00", "21:00"],
-        ["22:00"],
-    ]
-    kb = slots + [[BTN_BACK, BTN_CANCEL]]
+    # Fetch existing bookings for this date to show available/unavailable slots
+    # Uses bookings API (no date filter → fetch all active statuses, filter locally)
+    unavailable = set()
+    try:
+        parts_date = date_str.split("/")
+        if len(parts_date) == 3:
+            api_date = f"{parts_date[2]}-{parts_date[0].zfill(2)}-{parts_date[1].zfill(2)}"
+            # Fetch ALL active/confirmed/pending bookings (no date filter in API)
+            all_bookings = []
+            for st in ("Active", "confirmed", "pending", "pending_check_in"):
+                try:
+                    raw = await _psvibe_get_async(f"bookings?status={st}")
+                    if isinstance(raw, list):
+                        all_bookings.extend(raw)
+                    elif isinstance(raw, dict):
+                        all_bookings.extend(raw.get("bookings", []))
+                except Exception:
+                    pass
+            for b in all_bookings:
+                # Filter to selected date only
+                b_date = (b.get("date") or "")[:10]
+                if b_date != api_date:
+                    continue
+                b_slot = b.get("timeSlot", "")
+                if not b_slot:
+                    continue
+                b_dur = int(b.get("durationMins") or 60)
+                # Parse start time → calculate blocked range by duration
+                parts_t = b_slot.split(":")
+                if len(parts_t) >= 2:
+                    try:
+                        start_h = int(parts_t[0])
+                        start_m = int(parts_t[1])
+                        total_mins = start_h * 60 + start_m + b_dur
+                        end_h = min(total_mins // 60, 23)  # cap at 23:00
+                        # Mark all hourly slots from start_h to end_h (inclusive)
+                        for h in range(start_h, end_h + 1):
+                            unavailable.add(f"{h:02d}:00")
+                    except (ValueError, TypeError):
+                        # Fallback: mark at least the exact hour
+                        bh = b_slot.split(":")[0]
+                        unavailable.add(f"{bh}:00")
+    except Exception:
+        pass
+
+    # Build time slot keyboard with availability indicators
+    all_hours = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
+                 "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+    row = []
+    rows = []
+    for slot in all_hours:
+        icon = "🔴" if slot in unavailable else "🟢"
+        label = f"{icon} {slot}"
+        row.append(label)
+        if len(row) == 3:
+            rows.append(row)
+            row = []
+    if row:
+        rows.append(row)
+    kb = rows + [[BTN_BACK, BTN_CANCEL]]
+    free_count = len([s for s in all_hours if s not in unavailable])
     await update.message.reply_text(
-        f"📅 {date_str}\n\n⏰ Time Slot ရွေးပါ (HH:MM):",
+        f"📅 {date_str}\n\n⏰ Time Slot ရွေးပါ — 🟢 Available: {free_count}/{len(all_hours)} slots",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
-    return SBK_DUR
+    return SBK_TIME
 
-async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle time slot -> check avail and show console selection."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -391,16 +482,25 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "📅 Booking Date ရွေးပါ:",
             reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
         )
-        return SBK_TIME
+        return SBK_DATE
 
     import re as _re2
-    if not _re2.match(r"^\d{1,2}:\d{2}$", text):
+    # Strip icon prefix (🟢/🔴) if present
+    time_clean = _re2.sub(r'^[🟢🔴]\s*', '', text)
+    if not _re2.match(r"^\d{1,2}:\d{2}$", time_clean):
         await update.message.reply_text("⚠️ Time format: HH:MM  (ဥပမာ: 14:30)")
-        return SBK_DUR
+        return SBK_TIME
 
-    context.user_data["sbk_time"] = text
+    context.user_data["sbk_time"] = time_clean
 
-    rows = await _sbk_console_kb()
+    # Pass date+time so _sbk_console_kb can check future availability
+    sbk_date = context.user_data.get("sbk_date", "")
+    api_date = ""
+    if sbk_date:
+        parts = sbk_date.split("/")
+        if len(parts) == 3:
+            api_date = f"{parts[2]}-{parts[0].zfill(2)}-{parts[1].zfill(2)}"
+    rows = await _sbk_console_kb(date_str=api_date, time_slot=time_clean)
     if rows and len(rows) > 1:
         await update.message.reply_text(
             "✅ Available Consoles:\n\nConsole ID ရွေးပါ:",
@@ -412,7 +512,7 @@ async def step_sbk_dur(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
         )
     return SBK_CONSOLE
-async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle duration → ask game."""
     text = update.message.text.strip()
     if text == BTN_CANCEL:
@@ -430,13 +530,16 @@ async def step_sbk_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "⏰ Time Slot ရွေးပါ:",
             reply_markup=ReplyKeyboardMarkup(slots + [[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
         )
-        return SBK_DUR
+        return SBK_TIME
 
     try:
         dur = int(text)
     except ValueError:
         await update.message.reply_text("⚠️ ဂဏန်းသာ ထည့်ပါ သို့ keyboard မှ ရွေးပါ")
-        return SBK_GAME
+        return SBK_DURATION
+    if dur < 1 or dur > 1440:
+        await update.message.reply_text("⚠️ Duration သည် 1-1440 မိနစ်ကြား ဖြစ်ရပါမည်")
+        return SBK_DURATION
     context.user_data["sbk_dur"] = dur
 
     # Build game keyboard
@@ -941,10 +1044,20 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ---------------------------------------------------------------------------------
 
     members = await fetch_members_async()
-    kb = [["0 (Guest)"]] + [[m] for m in members] + [[BTN_BACK, BTN_CANCEL]]
+    # Fetch member names for display labels (ID → Name map)
+    member_names = {}
+    try:
+        raw = await _psvibe_get_async("fetch_members")
+        if isinstance(raw, list):
+            member_names = {m.get("id", ""): (m.get("name") or "").strip() for m in raw if isinstance(m, dict)}
+    except Exception:
+        pass
+    kb = [["0 (Guest)"]] + \
+         [[f"{m} — {member_names.get(m, '')}" if member_names.get(m) else m] for m in members] + \
+         [[BTN_BACK, BTN_CANCEL]]
     await update.message.reply_text(
         f"🕹️ *{cid}* — session\n\n"
-        "👤 Member ID ရွေးပါ (သို့) ရိုက်ရှာပါ:",
+        "👤 Member ရွေးပါ (သို့) ရိုက်ရှာပါ:",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
     )
@@ -963,23 +1076,36 @@ async def step_book_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cid = context.user_data.get("bk_console", "")
     try:
         members = await fetch_members_async()
+        # Fetch member names for search-result display
+        member_names = {}
+        try:
+            raw = await _psvibe_get_async("fetch_members")
+            if isinstance(raw, list):
+                member_names = {m.get("id", ""): (m.get("name") or "").strip() for m in raw if isinstance(m, dict)}
+        except Exception:
+            pass
     except Exception as e:
         await update.message.reply_text(f"❌ Member list ဖတ်မရပါ: {e}\nထပ်ကြိုးစားပါ")
         return BOOK_MEMBER
 
     member_id = "Guest"
 
-    if text == "0 (Guest)":
+    # Strip " — Name" suffix from display label (e.g., "1 — PSV_A_001" → "1")
+    _raw_text = text.split(" — ")[0].strip() if " — " in text else text
+
+    if _raw_text == "0 (Guest)":
         member_id = "Guest"
-    elif text in members:
-        member_id = text
+    elif _raw_text in members:
+        member_id = _raw_text
     else:
-        # partial search
-        matches = [m for m in members if text.upper() in m.upper()]
+        # partial search against IDs AND names
+        matches = [m for m in members if _raw_text.upper() in m.upper() or _raw_text.upper() in member_names.get(m, "").upper()]
         if len(matches) == 1:
             member_id = matches[0]
         elif matches:
-            kb = [["0 (Guest)"]] + [[m] for m in matches] + [[BTN_BACK, BTN_CANCEL]]
+            kb = [["0 (Guest)"]] + \
+                 [[f"{m} — {member_names.get(m, '')}" if member_names.get(m) else m] for m in matches] + \
+                 [[BTN_BACK, BTN_CANCEL]]
             await update.message.reply_text(
                 f"🔍 <b>{len(matches)}</b> ကိုက်ညီသည် — ရွေးပါ:",
                 parse_mode="HTML",
@@ -987,7 +1113,7 @@ async def step_book_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return BOOK_MEMBER
         else:
-            member_id = text  # allow free-text (walk-in not in sheet)
+            member_id = _raw_text  # allow free-text (walk-in not in sheet)
 
     try:
         staff_list = fetch_staff()

@@ -9,7 +9,7 @@ UPDATED: Added back buttons throughout + phone last-3-digit member matching
 import asyncio
 import logging
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, Update
 from telegram.ext import ContextTypes, ConversationHandler
@@ -19,7 +19,7 @@ from .handlers import (
     BK_MEMBER_CHECK, BK_MEMBER_SELECT, BK_PHONE_VERIFY, BK_DATA_CONFIRM,
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
-    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_SPECIFIC_CONSOLE,
+    BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
     BK_END, MAIN_MENU_KB, CONSOLE_TYPES, DURATION_OPTS,
     BTN_BOOK_ANYWAY, BTN_BOOK_GOBACK,
     BTN_DISC_GAME, BTN_DISC_TIME,
@@ -296,12 +296,19 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
         except (ValueError, AttributeError):
             continue
 
+    # ── Today? Use live status as additional guard (session started manually, no booking record) ──
+    _now_mmt = datetime.utcnow() + timedelta(hours=6, minutes=30)
+    today_str = _now_mmt.strftime("%Y-%m-%d")
+    is_today = (date_str == today_str)
+
     available = []
     for console in consoles_raw:
         cid = console.get("id", "")
         cstatus = console.get("status", "").lower()
-        # Skip consoles that are currently occupied or reserved
-        if cstatus in ("active", "reserved"):
+        # Only filter by live status for TODAY's bookings.
+        # For future dates, current live status is irrelevant — the booking overlap
+        # check below (search-bookings) already catches any time conflicts.
+        if is_today and cstatus in ("active", "reserved"):
             continue
         if cid in conflicting:
             continue
@@ -440,7 +447,7 @@ def _push_state(context, state: int):
     stack.append(state)
     # Keep stack manageable (max 20)
     if len(stack) > 20:
-        stack.pop(0)
+        stack.pop()
 
 
 def _pop_state(context) -> int | None:
@@ -684,6 +691,11 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
         phone = m.get("phone", "")
         masked = phone[-4:] if len(phone) >= 4 else phone
         balance = m.get("balance_mins", m.get("balance", "N/A"))
+        balance_warn = ""
+        if isinstance(balance, (int, float)) and balance <= 0:
+            balance_warn = "\n⚠️ *Balance မရှိပါ — Top Up လုပ်ရန်လိုပါမည်*"
+        elif str(balance).strip() in ("0", "0.0", "N/A", ""):
+            balance_warn = "\n⚠️ *Balance အချက်အလက် မရှိပါ — Top Up လုပ်ရန်လိုပါမည်*"
 
         if not _name.strip():
             # Member has no name → force manual entry
@@ -692,7 +704,8 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"✅ *Member တွေ့ရှိပါသည်!*\n"
                 f"━━━━━━━━━━━━━━━━━━\n"
                 f"📞 ဖုန်း: ...{masked}\n"
-                f"💰 Balance: *{balance} mins*\n"
+                f"💰 Balance: *{balance} mins*"
+                f"{balance_warn}\n"
                 f"━━━━━━━━━━━━━━━━━━\n"
                 f"⚠️ Member ရှိသော်လည်း \"နာမည်\" မထည့်ထားပါ။\n"
                 f"👤 နာမည် ရိုက်ထည့်ပေးပါ:"
@@ -707,7 +720,8 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"━━━━━━━━━━━━━━━━━━\n"
             f"👤 အမည်: *{_name}*\n"
             f"📞 ဖုန်း: ...{masked}\n"
-            f"💰 Balance: *{balance} mins*\n"
+            f"💰 Balance: *{balance} mins*"
+            f"{balance_warn}\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"မှန်ကန်ပါက ✅ မှန်ပါသည် ကိုနှိပ်ပါ။\n"
             f"မဟုတ်ပါက ❌ မဟုတ်ပါ ကိုနှိပ်ပြီး ကိုယ်တိုင်ရိုက်ထည့်ပါ။"
@@ -872,6 +886,16 @@ async def bk_phone_entry(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(cleaned) < 7:
         await update.message.reply_text(
             "⚠️ ဖုန်းနံပါတ် မှန်ကန်ပုံမရပါ — ထပ်ရိုက်ပေးပါ:"
+        )
+        return BK_PHONE
+    # Myanmar phone validation: must start with 09 or +959, 9-11 digits
+    mm_phone = re.sub(r'[\s\-]', '', text)
+    if mm_phone.startswith('+959'):
+        mm_phone = '09' + mm_phone[4:]
+    if not re.match(r'^09\d{7,9}$', mm_phone):
+        await update.message.reply_text(
+            "⚠️ မြန်မာဖုန်းနံပါတ် (09xxxxxxxxx) မှန်ကန်စွာ ထည့်ပါ\n"
+            "ဥပမာ: 09773355915"
         )
         return BK_PHONE
 
@@ -1438,7 +1462,14 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if matched:
             context.user_data["bk_game"] = matched[0]
         else:
-            context.user_data["bk_game"] = text[:50]
+            # Free text doesn't match any known game — ask to select from list
+            page = context.user_data.get("_bk_game_page", 0)
+            await update.message.reply_text(
+                f"⚠️ \"{text[:40]}\" သည် game list ထဲတွင် မတွေ့ပါ။\n"
+                "ကျေးဇူးပြုပြီး list ထဲမှ ရွေးချယ်ပါ:",
+                reply_markup=_make_game_keyboard(games, page),
+            )
+            return BK_GAME
 
         _push_state(context, BK_GAME)
         summary = _format_booking_summary(context)

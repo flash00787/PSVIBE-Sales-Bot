@@ -3,7 +3,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
-import logging, re, json
+import logging, re, json, html
 
 from bot import (
     CUSTOMER_BOT_TOKEN,
@@ -327,15 +327,32 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     if not result:
         await reply_fn(f"❌ Booking #{bk_id} ကို update မရပါ")
         return
+    
+    # Check for conflict (another staff already approved/rejected)
+    if isinstance(result, dict) and result.get("conflict"):
+        conflict_status = result.get("current_status", "processed")
+        await reply_fn(
+            f"⚠️ Booking #{bk_id} ကို အခြား staff မှ {conflict_status} လုပ်ပြီးပါပြီ။",
+            parse_mode="HTML",
+        )
+        return
+    if isinstance(result, dict) and result.get("status_code") == 409:
+        await reply_fn(
+            f"⚠️ Booking #{bk_id} ကို အခြား staff မှ ပြောင်းလဲပြီးပါပြီ။ ထပ်စစ်ဆေးပါ။",
+            parse_mode="HTML",
+        )
+        return
 
     # Use bk_info (from GET /api/bookings/{id}) for all customer fields.
     # PATCH result only returns {booking_id, status} — no customer data.
     if action == "approve":
+        customer_name = html.escape(bk_info.get('customerName', 'Unknown'))
+        customer_phone = html.escape(bk_info.get('phone', '-'))
         console_line = f"\n🖥️ Console: <b>{assigned_console}</b>" if assigned_console else ""
         game_line    = f"\n🕹️ Game: <b>{bk_info.get('gameName') or '—'}</b>" if bk_info.get("gameName") else ""
         msg = (
             f"✅ <b>Booking #{bk_id} Confirmed!</b>\n"
-            f"👤 {bk_info.get('customerName', 'Unknown')}  📞 {bk_info.get('phone', '-')}\n"
+            f"👤 {customer_name}  📞 {customer_phone}\n"
             f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
             f"🎮 {bk_info.get('consoleType', '-')}  ⏱️ {bk_info.get('durationMins', '?')} mins"
             f"{game_line}{console_line}\n"
@@ -343,9 +360,10 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
             f"{install_warn}"
         )
     else:
+        customer_name = html.escape(bk_info.get('customerName', 'Unknown'))
         msg = (
             f"❌ <b>Booking #{bk_id} Rejected</b>\n"
-            f"👤 {bk_info.get('customerName', 'Unknown')}  📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
+            f"👤 {customer_name}  📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
             f"<i>Rejected by {staff_name}</i>"
         )
     await reply_fn(msg, parse_mode="HTML")

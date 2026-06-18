@@ -81,6 +81,7 @@ def _register_handlers(app: Application) -> None:
     app.add_handler(CommandHandler(["foodmenu", "food"], cmd_food_menu, block=False))
 
     # Booking conversation — all 16 states support ReplyKeyboard text + legacy callbacks
+    from datetime import timedelta
     bk_conv = ConversationHandler(
         entry_points=[
             CommandHandler("book", cmd_book),
@@ -174,6 +175,7 @@ def _register_handlers(app: Application) -> None:
             CommandHandler("cancel", cmd_cancel),
             MessageHandler(filters.TEXT & ~filters.COMMAND, bk_catch_all),
         ],
+        conversation_timeout=timedelta(minutes=30),
     )
     app.add_handler(bk_conv)
 

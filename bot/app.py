@@ -28,8 +28,8 @@ from bot import (
     REC_AMT, REC_CONFIRM, REC_CUST, REC_DESC, REC_DUE, REC_SETTLE_ACCT,
     REC_SETTLE_CONFIRM, REC_SETTLE_LIST, REFERRAL_CODE, SALE_CONFIRM,
     SAL_ADV_AMT, SAL_ADV_CONFIRM, SAL_ADV_PAY, SAL_ADV_STAFF,
-    SBK_CONFIRM, SBK_CONSOLE, SBK_CUST_NAME, SBK_DATE, SBK_DUR, SBK_GAME,
-    SBK_TIME, SESSION_SHORTFALL, SHARE_CAP, SHARE_CONFIRM, SHARE_NAME,
+    SBK_CONFIRM, SBK_CONSOLE, SBK_CUST_NAME, SBK_PHONE, SBK_DATE, SBK_TIME,
+    SBK_DURATION, SESSION_SHORTFALL, SHARE_CAP, SHARE_CONFIRM, SHARE_NAME,
     SHARE_OWN, SHARE_ROLE, SI_CART, SI_CONFIRM, SI_COST, SI_ITEM, SI_PAY,
     SI_PAY_SPLIT, SI_QTY, SSD_ADD_GAME, SSD_ADD_SSD, SSD_ADD_TYPE,
     SSD_DEL_GAME, SSD_DEL_SSD, SSD_MENU, SSD_RET_CONS, SSD_RET_GAME,
@@ -316,10 +316,10 @@ def main():
             # ── Staff Advance Booking flow ──
             SBK_CONSOLE:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_console)],
             SBK_CUST_NAME:[MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_cust_name)],
+            SBK_PHONE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_phone)],
             SBK_DATE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_date)],
-            SBK_TIME:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_time)],
-            SBK_DUR:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_dur)],
-            SBK_GAME:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_game)],
+            SBK_TIME:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_time)],
+            SBK_DURATION:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_duration)],
             SBK_CONFIRM:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sbk_confirm)],
 
             # ── Advance Payment ──

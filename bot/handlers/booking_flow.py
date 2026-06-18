@@ -106,7 +106,16 @@ async def _remind_loop(
     if key not in _SESSION_TOTAL_MINS:
         _SESSION_TOTAL_MINS[key] = planned_mins
     # Persist to disk so it survives bot restart
-    _end_dt_iso = (now_mmt() + timedelta(minutes=planned_mins)).isoformat()
+    # 🐛 Fix: Compute end datetime from end_t (HH:MM), NOT from now+planned_mins.
+    # now+planned_mins drifts forward on every restart because 'now' becomes the
+    # restart time instead of the original session start time.
+    _now = now_mmt()
+    try:
+        _eh, _em = map(int, end_t.split(":"))
+        _end_dt = _now.replace(hour=_eh, minute=_em, second=0, microsecond=0)
+    except (ValueError, AttributeError):
+        _end_dt = _now + timedelta(minutes=planned_mins)
+    _end_dt_iso = _end_dt.isoformat()
     persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id,
                       total_plan_mins=_SESSION_TOTAL_MINS.get(key, planned_mins))
     # Guard: if this console is No Timer, don't run reminders
