@@ -2,6 +2,22 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-18 — Cancel Confirmed Booking Fix + Display Data Fix
+
+### Fix 3: PATCH /api/bookings/{id}/status — Can't Cancel Confirmed Bookings
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Sale Bot cancel on confirmed bookings returns "already processed" | `psvibe_api_server/app.py` L1400 | `WHERE status='pending'` hardcoded — only allowed cancel from pending | If status='cancelled' → `WHERE status IN ('pending','confirmed','pending_check_in')` |
+
+### Fix 4: Cancel Display Shows "?" Instead of Booking Data
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Cancel confirmation message shows ? for name, date, time, console | `bot/handlers/booking_flow.py` L492-572 | `_do_cancel_booking` used PATCH response (only `{booking_id, status}`) for display and customer notification | Fetch full booking data BEFORE cancelling via GET; use pre-fetched data for both staff + customer messages |
+
+**Verification:** Both fixes deployed, bots restarted ✅
+
+---
+
 ## 2026-06-18 — Session Timer Drift + Console start_time Reset
 
 ### Fix 1: Session Timer Drift on Bot Restart
