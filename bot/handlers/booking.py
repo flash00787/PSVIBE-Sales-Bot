@@ -1,5 +1,28 @@
 from bot.handlers.booking_flow import _post_n8n_booking_reminder
 
+# ── Staff Booking State Stack (for proper Back navigation) ─────────────────
+def _sbk_push(context, state):
+    """Push current state onto navigation stack."""
+    stack = context.user_data.setdefault("_sbk_state_stack", [])
+    stack.append(state)
+
+def _sbk_pop(context):
+    """Pop and return previous state, or None if stack is empty."""
+    stack = context.user_data.get("_sbk_state_stack", [])
+    return stack.pop() if stack else None
+
+def _sbk_back(context, update, fallback_fn):
+    """Handle Back button: pop stack, return to previous state or fallback."""
+    prev = _sbk_pop(context)
+    if prev is not None:
+        return prev
+    # Stack empty → go to admin menu or booking hub
+    if context.user_data.get("sbk_from_hub"):
+        return fallback_fn  # will be awaited by caller
+    from bot.handlers.admin import show_admin_menu
+    return show_admin_menu
+
+
 from bot import (
     BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_LINK, BOOK_MEMBER,
     BOOK_MINS, BTN_BACK, BTN_BACK_MAIN, BTN_BOOK_PROCEED, BTN_CANCEL,
@@ -235,6 +258,7 @@ async def cmd_staff_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Clear everything EXCEPT the hub flag
     sbk_from_hub = context.user_data.pop("sbk_from_hub", False)
     context.user_data.clear()
+    context.user_data["_sbk_state_stack"] = []  # fresh navigation stack
     if sbk_from_hub or from_hub:
         context.user_data["sbk_from_hub"] = True
 
@@ -263,6 +287,9 @@ async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text in (BTN_BACK, BTN_BACK_MAIN):
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
         if context.user_data.get("sbk_from_hub"):
             return await cmd_staff_book_hub(update, context)
         return await show_admin_menu(update, context)
@@ -296,6 +323,7 @@ async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="HTML",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    _sbk_push(context, SBK_CONSOLE)
     return SBK_CUST_NAME
 
 async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -304,7 +332,10 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        # Go back to console selection (preserve saved date/time if any)
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        # Fallback: go back to console selection
         rows = await _sbk_console_kb()
         await update.message.reply_text(
             "🕹️ Console ပြန်ရွေးပါ:",
@@ -323,6 +354,7 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
         parse_mode="HTML",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    _sbk_push(context, SBK_CUST_NAME)
     return SBK_PHONE
 
 async def step_sbk_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -331,7 +363,10 @@ async def step_sbk_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        # Go back to customer name step (preserve context)
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        # Fallback
         name = context.user_data.get("sbk_cust_name", "")
         kb = [[BTN_SBK_SKIP_PHONE], [BTN_BACK, BTN_CANCEL]]
         await update.message.reply_text(
@@ -355,6 +390,7 @@ async def step_sbk_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "⏱️ ကစားမည့် မိနစ် (Duration) ရွေးပါ:",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    _sbk_push(context, SBK_PHONE)
     return SBK_DURATION
 
 async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -362,16 +398,13 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
-    if text == BTN_BACK:
-        # re-ask phone
-        name = context.user_data.get("sbk_cust_name", "")
-        kb = [[BTN_SBK_SKIP_PHONE], [BTN_BACK, BTN_CANCEL]]
-        await update.message.reply_text(
-            f"👤 Customer: <b>{name}</b>\n\n📞 Phone number ထည့်ပါ:",
-            parse_mode="HTML",
-            reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
-        )
-        return SBK_PHONE
+    if text in (BTN_BACK, BTN_BACK_MAIN):
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        if context.user_data.get("sbk_from_hub"):
+            return await cmd_staff_book_hub(update, context)
+        return await show_admin_menu(update, context)
 
     if text == BTN_SBK_CUSTOM:
         await update.message.reply_text(
@@ -461,6 +494,7 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"📅 {date_str}\n\n⏰ Time Slot ရွေးပါ — 🟢 Available: {free_count}/{len(all_hours)} slots",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    _sbk_push(context, SBK_DATE)
     return SBK_TIME
 
 async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -469,6 +503,10 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        # Fallback: show date selection
         today    = now_mmt().date()
         tomorrow = today + timedelta(days=1)
         d2       = today + timedelta(days=2)
@@ -512,6 +550,7 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "⚠️ Free console မရှိပါ\nနေ့ရက်အသစ် ရွေးပါ:",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK, BTN_CANCEL]], resize_keyboard=True),
         )
+    _sbk_push(context, SBK_TIME)
     return SBK_CONSOLE
 async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle duration → ask game."""
@@ -519,7 +558,10 @@ async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
     if text == BTN_BACK:
-        # re-ask time
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        # Fallback: re-ask time
         slots = [
             ["10:00", "11:00", "12:00"],
             ["13:00", "14:00", "15:00"],
@@ -568,6 +610,7 @@ async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="HTML",
         reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
     )
+    _sbk_push(context, SBK_DURATION)
     return SBK_CONFIRM
 
 
@@ -740,6 +783,10 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── BTN_BACK: re-show game selection ──────────────────────────────────
     if text == BTN_BACK:
+        prev = _sbk_pop(context)
+        if prev is not None:
+            return prev
+        # Fallback: re-show game selection
         dur = context.user_data.get("sbk_dur", 60)
         context.user_data.pop("sbk_game", None)
         try:
@@ -1310,14 +1357,15 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
     if _linked_cust_bk:
         _notes = f"{game} [BK#{_linked_cust_bk}]" if game else f"[BK#{_linked_cust_bk}]"
     try:
-        # Use unified start-session endpoint (auto-checkin confirmed booking + guard)
+        # FIX 2.4: Use dedicated sessions/start endpoint
         payload = {
             "console_id": cid,
             "member_id": member_id,
             "game_name": game,
             "duration_mins": planned_mins if planned_mins > 0 else 0,
+            "booking_date": now_mmt().strftime("%Y-%m-%d"),
         }
-        result = await _psvibe_post_async("consoles/start-session", payload)
+        result = await _psvibe_post_async("sessions/start", payload)
         if not result or not result.get("booking_id"):
             err_msg = (result or {}).get("error", "") or str(result) or "API returned empty response"
             await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {err_msg}")

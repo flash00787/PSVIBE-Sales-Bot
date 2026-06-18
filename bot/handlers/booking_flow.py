@@ -62,6 +62,9 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
     task = _REMIND_TASKS.pop(key, None)
     if task and not task.done():
         task.cancel()
+    # Clean up in-memory state so old sessions don't leak into new ones
+    _SESSION_END_TIMES.pop(key, None)
+    _SESSION_TOTAL_MINS.pop(key, None)
     # Also purge from persistent store so restarts don't revive it
     remove_persisted_reminder(cid, chat_id)
 
@@ -208,6 +211,7 @@ async def _remind_loop(
         if _REMIND_TASKS.get(key) is asyncio.current_task():
             _REMIND_TASKS.pop(key, None)
             _SESSION_END_TIMES.pop(key, None)
+            _SESSION_TOTAL_MINS.pop(key, None)
             remove_persisted_reminder(cid, chat_id)
 
 async def _send_session_reminder(
@@ -633,12 +637,13 @@ async def _do_extend(bot, query, cid: str, member_id: str,
 
     # Compute total remaining seconds for timer delay correction
     total_rem_secs = max(0, (new_end_dt - now).total_seconds())
+    # Save accumulated total BEFORE _cancel_remind (it now clears the dict)
+    _session_key = _remind_key(cid, chat_id)
+    _old_total = _SESSION_TOTAL_MINS.get(_session_key, 0)
     _cancel_remind(cid, chat_id)   # stop old loop before starting new one
     # Update stored end time immediately so next extend uses correct base
-    _session_key = _remind_key(cid, chat_id)
     _SESSION_END_TIMES[_session_key] = new_end_t
     # Accumulate total plan mins (original + all extends)
-    _old_total = _SESSION_TOTAL_MINS.get(_session_key, 0)
     _SESSION_TOTAL_MINS[_session_key] = _old_total + extra_mins
     # Sync extended duration to DB via API (so console status shows correct timer)
     # ⚠️ AWAIT instead of fire-and-forget: ensures DB is updated before returning.

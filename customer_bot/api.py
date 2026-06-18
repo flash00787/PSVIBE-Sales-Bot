@@ -288,7 +288,7 @@ async def _fetch_games_full() -> List[Any]:
                     "discs":  g.get("disc_count", ""),
                 })
     except ValueError as e:
-        logging.warning("fetch_games_full: %s", e)
+        logging.error("fetch_games_full: API failed after retries — %s", e)
         games = []
     await _cache_set("games_full", games, ttl=600)
     return games
@@ -412,7 +412,7 @@ async def _fetch_consoles() -> List[Any]:
                 }
                 consoles.append(mapped)
     except ValueError as e:
-        logging.warning("fetch_consoles: %s", e)
+        logging.error("fetch_consoles: API failed after retries — %s", e)
         consoles = []
     if consoles:
         await _cache_set("consoles", consoles)

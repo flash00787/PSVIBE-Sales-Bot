@@ -90,10 +90,13 @@ async def fetch_console_games_async() -> list[dict]:
 
 
 async def fetch_console_status_async() -> list[dict]:
-    """Async version of fetch_console_status()."""
+    """Async version of fetch_console_status().
+    Raises RuntimeError if the API call fails after retries so callers can handle gracefully.
+    """
     result = await api_fetch_console_status_async()
     if result is None:
-        return []
+        logging.error("fetch_console_status_async: API returned None after all retries — server may be down")
+        raise RuntimeError("Console status unavailable — API server may be down. Please try again later.")
     mapped = []
     for c in result.get("consoles", []):
         mapped.append({
@@ -378,7 +381,7 @@ def fetch_console_status() -> list[dict]:
                     seen[norm] = True
                     deduped.append(item)
             return deduped
-        logging.warning("API api_fetch_console_status() failed, no fallback")
+        logging.error("api_fetch_console_status() returned None after all retries — API server may be down")
     return []
 def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
     """Append a row to Console_Booking and return the BookingID.

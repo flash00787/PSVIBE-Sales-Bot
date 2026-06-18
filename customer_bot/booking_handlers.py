@@ -55,6 +55,86 @@ BTN_NOT_SURE = "🤷 မရွေးတတ်ပါ"
 BTN_CONFIRM_BOOK = "✅ Confirm Booking"
 BTN_SKIP = "⏭️ Skip"
 BTN_TRY_AGAIN = "🔄 ထပ်ကြိုးစားမည်"
+BTN_RETRY_BOOKING = "🔄 ပြန်ကြိုးစားမယ်"
+
+
+async def _show_api_error_with_retry(update: Update, context, error_msg: str = "",
+                                      retry_action: str = "retry_games") -> int:
+    """Show API error with retry button. Returns BK_GAME or stays in current state."""
+    user_msg = (
+        "⚠️ စနစ်ခဏပြဿနာရှိနေပါတယ်။ ခဏနေပြီးမှ ပြန်ကြိုးစားပေးပါ။\n\n"
+        f"{error_msg}"
+    )
+    kb = _rp_kb([[BTN_RETRY_BOOKING], [BTN_BACK, BTN_CANCEL]])
+    # Store retry action in context so we know what to retry
+    context.user_data["_bk_retry_action"] = retry_action
+
+    if update.message:
+        await update.message.reply_text(user_msg, reply_markup=kb)
+    elif update.callback_query:
+        await update.callback_query.edit_message_text(user_msg, reply_markup=kb)
+        await update.callback_query.answer()
+    return BK_GAME  # fallback state — go to game select for retry logic
+
+
+async def _handle_retry(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | None:
+    """Handle retry button press. Returns next state or None if not a retry."""
+    text = (update.message.text or "").strip() if update.message else ""
+    if text != BTN_RETRY_BOOKING:
+        return None  # not a retry
+
+    action = context.user_data.get("_bk_retry_action", "")
+    context.user_data.pop("_bk_retry_action", None)
+
+    msg = update.message if update.message else (update.callback_query.message if update.callback_query else None)
+    if msg:
+        await msg.reply_text("ခဏစောင့်ပါ — ပြန်ကြိုးစားနေသည် ⏳")
+
+    if action == "retry_games":
+        try:
+            games = await _api._fetch_games(context.user_data.get("bk_console", ""))
+        except Exception:
+            return await _show_api_error_with_retry(
+                update, context,
+                error_msg="Game list ပြန်ဆွဲမရသေးပါ။",
+                retry_action="retry_games",
+            )
+        context.user_data["_bk_game_list"] = games
+        context.user_data["_bk_game_page"] = 0
+        if not games:
+            return await _show_api_error_with_retry(
+                update, context,
+                error_msg="Game list ပြန်ဆွဲမရသေးပါ — data မရှိပါ။",
+                retry_action="retry_games",
+            )
+        await msg.reply_text(
+            f"🕹️ ဆော့မည့်ဂိမ်းရွေးပါ (Total: {len(games)} games):",
+            reply_markup=_make_game_keyboard(games),
+        )
+        return BK_GAME
+
+    elif action == "retry_slots":
+        date_str = context.user_data.get("bk_date", "")
+        try:
+            free_slots = await _get_available_slots(date_str)
+        except Exception:
+            free_slots = []
+        if not free_slots:
+            return await _show_api_error_with_retry(
+                update, context,
+                error_msg="Time slots ပြန်စစ်မရသေးပါ။",
+                retry_action="retry_slots",
+            )
+        await msg.reply_text(
+            f"📅 *{date_str}* တွင် ရနိုင်သော အချိန်များ:\n"
+            f"ရနိုင်သော slot — *{len(free_slots)} ခု*",
+            parse_mode="Markdown",
+            reply_markup=_make_time_keyboard(free_slots),
+        )
+        return BK_TIME
+
+    # Unknown action — go back to start
+    return await bk_member_check_entry(update, context)
 
 # ── Helper: build one_time ReplyKeyboardMarkup ─────────────────────────────────
 
@@ -959,7 +1039,10 @@ async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["bk_date"] = date_str
         _push_state(context, BK_DATE)
         await update.message.reply_text("⏳ Available slots စစ်ဆေးနေသည်...")
-        free_slots = await _get_available_slots(date_str)
+        try:
+            free_slots = await _get_available_slots(date_str)
+        except Exception:
+            free_slots = []
 
         if not free_slots:
             await update.message.reply_text(
@@ -991,7 +1074,10 @@ async def bk_date_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["bk_date"] = date_str
 
         await query.edit_message_text("⏳ Available slots စစ်ဆေးနေသည်...")
-        free_slots = await _get_available_slots(date_str)
+        try:
+            free_slots = await _get_available_slots(date_str)
+        except Exception:
+            free_slots = []
 
         if not free_slots:
             await query.edit_message_text(
@@ -1045,6 +1131,12 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
             return menu_result
+
+        # Handle retry button
+        if text == BTN_RETRY_BOOKING:
+            retry_result = await _handle_retry(update, context)
+            if retry_result is not None:
+                return retry_result
 
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
@@ -1195,6 +1287,12 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if menu_result:
             return menu_result
 
+        # Handle retry button
+        if text == BTN_RETRY_BOOKING:
+            retry_result = await _handle_retry(update, context)
+            if retry_result is not None:
+                return retry_result
+
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
@@ -1309,6 +1407,12 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
         if menu_result:
             return menu_result
 
+        # Handle retry button
+        if text == BTN_RETRY_BOOKING:
+            retry_result = await _handle_retry(update, context)
+            if retry_result is not None:
+                return retry_result
+
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
 
@@ -1328,7 +1432,15 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 _push_state(context, BK_DURATION)
                 await update.message.reply_text("🕹️ Game list ဆွဲနေသည်...")
 
-                games = await _api._fetch_games(context.user_data.get("bk_console", ""))
+                try:
+                    games = await _api._fetch_games(context.user_data.get("bk_console", ""))
+                except Exception as e:
+                    logger.error("bk_duration_select: _fetch_games failed: %s", e)
+                    return await _show_api_error_with_retry(
+                        update, context,
+                        error_msg="Game list မရပါ — API server ခဏပြဿနာရှိနေသည်။",
+                        retry_action="retry_games",
+                    )
                 context.user_data["_bk_game_list"] = games
                 context.user_data["_bk_game_page"] = 0
 
@@ -1372,13 +1484,22 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
             context.user_data["bk_duration_mins"] = mins
             await query.edit_message_text("🕹️ Game list ဆွဲနေသည်...")
 
-            games = await _api._fetch_games(context.user_data.get("bk_console", ""))
+            try:
+                games = await _api._fetch_games(context.user_data.get("bk_console", ""))
+            except Exception as e:
+                logger.error("bk_duration_select(cb): _fetch_games failed: %s", e)
+                return await _show_api_error_with_retry(
+                    update, context,
+                    error_msg="Game list မရပါ — API server ခဏပြဿနာရှိနေသည်။",
+                    retry_action="retry_games",
+                )
+
             context.user_data["_bk_game_list"] = games
             context.user_data["_bk_game_page"] = 0
 
             if not games:
                 await query.edit_message_text(
-                    "⚠️ Game list မရဘူး — skip လုပ်မလား?",
+                    "⚠️ Game list မရဘူး — data မရှိပါ။ skip လုပ်မလား?",
                     reply_markup=_rp_kb([[BTN_SKIP], [BTN_BACK, BTN_CANCEL]]),
                 )
                 return BK_GAME
@@ -1408,6 +1529,12 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
             return menu_result
+
+        # Handle retry button
+        if text == BTN_RETRY_BOOKING:
+            retry_result = await _handle_retry(update, context)
+            if retry_result is not None:
+                return retry_result
 
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)
@@ -1660,6 +1787,12 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         menu_result = await _bk_intercept_menu(text, update, context)
         if menu_result:
             return menu_result
+
+        # Handle retry button
+        if text == BTN_RETRY_BOOKING:
+            retry_result = await _handle_retry(update, context)
+            if retry_result is not None:
+                return retry_result
 
         if text == BTN_CANCEL:
             return await _cleanup_and_end(update, context)

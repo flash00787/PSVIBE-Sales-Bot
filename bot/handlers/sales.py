@@ -82,6 +82,16 @@ async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
     v_no    = context.user_data["v_no"]
     members = await fetch_members_async()
 
+    # Fetch member names for display labels (ID → Name map)
+    member_names = {}
+    try:
+        from bot import _psvibe_get_async
+        raw = await _psvibe_get_async("fetch_members")
+        if isinstance(raw, list):
+            member_names = {m.get("id", ""): (m.get("name") or "").strip() for m in raw if isinstance(m, dict)}
+    except Exception:
+        pass
+
     if search_results is not None:
         # Filtered view after a search query
         display  = search_results
@@ -91,7 +101,9 @@ async def prompt_member(update: Update, context: ContextTypes.DEFAULT_TYPE,
         hint     = "🔍 _ID ရိုက်ပြီး ရှာနိုင်သည်_ (e.g. `PSV_A`)\n" if len(members) > 5 else ""
 
     # Guest always pinned at top; members below
-    kb = [["0 (Guest)"]] + [[m] for m in display] + [[BTN_BACK_MAIN, BTN_CANCEL]]
+    kb = [["0 (Guest)"]] + \
+         [[f"{m} — {member_names.get(m, '')}" if member_names.get(m) else m] for m in display] + \
+         [[BTN_BACK_MAIN, BTN_CANCEL]]
     await update.message.reply_text(
         step_hdr(1, 6, "Select Member") +
         f"📋 Voucher: *{v_no}*\n\n"
@@ -533,15 +545,18 @@ async def step_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     members = await fetch_members_async()
 
+    # Strip " — Name" suffix from display label (e.g., "PSV_A_001 — Smart On Live" → "PSV_A_001")
+    _raw_text = text.split(" — ")[0].strip() if " — " in text else text
+
     # ── Exact match (keyboard tap or exact type) ──────────────────────────
-    if text == "0 (Guest)" or text in members:
-        context.user_data["m_id"] = text
-        if text != "0 (Guest)":
-            context.user_data["wallet_mins"] = await fetch_wallet_mins_async(text)
+    if _raw_text == "0 (Guest)" or _raw_text in members:
+        context.user_data["m_id"] = _raw_text
+        if _raw_text != "0 (Guest)":
+            context.user_data["wallet_mins"] = await fetch_wallet_mins_async(_raw_text)
         else:
             context.user_data["wallet_mins"] = None
-        if text != "0 (Guest)":
-            return await _check_member_in_session(update, context, text)
+        if _raw_text != "0 (Guest)":
+            return await _check_member_in_session(update, context, _raw_text)
         return await prompt_console(update, context)
 
     # ── Search mode: partial match on ID (case-insensitive) ──────────────

@@ -12,7 +12,7 @@ from bot import (
     now_mmt, show_admin_menu,
 )
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
-from bot.handlers.booking_flow import _post_n8n_booking_reminder
+from bot.handlers.booking_flow import _post_n8n_booking_reminder, _remind_loop, _remind_key, _REMIND_TASKS, _cancel_remind
 
 
 logger = logging.getLogger(__name__)
@@ -240,6 +240,23 @@ async def cb_checkin_select_console(update: Update, context: ContextTypes.DEFAUL
             f"Done by: {staff_name}",
             parse_mode="Markdown",
         )
+
+        # Schedule Sale Bot timer (replaces old API timer)
+        duration_mins = result.get("duration_mins", 60)
+        member_id = result.get("member_id", "Guest")
+        real_cid = console_id if console_id != "skip" else ""
+        if real_cid and duration_mins > 5:
+            from bot import STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, now_mmt
+            end_dt = now_mmt() + timedelta(minutes=duration_mins)
+            end_t = end_dt.strftime("%H:%M")
+            delay = (duration_mins - 5) * 60
+            target_chat = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else query.message.chat_id
+            _cancel_remind(real_cid, target_chat)
+            task = asyncio.create_task(
+                _remind_loop(context.bot, target_chat, real_cid, member_id,
+                             duration_mins, end_t, delay, STAFF_NOTIFY_THREAD)
+            )
+            _REMIND_TASKS[_remind_key(real_cid, target_chat)] = task
 
         if tg_chat:
             asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))
