@@ -1,7 +1,7 @@
 # TOOLS.md — Local Notes
 
 ## SSH
-- **bot-server-01:** `5.223.81.16` (root@) — Key: `.ssh/id_rsa`
+- **bot-server-01:** `5.223.81.16` (root@) — Key: `.ssh/id_boss`
 - **Connection:** Node.js `ssh2` package
 
 ## API Keys

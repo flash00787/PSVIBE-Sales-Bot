@@ -2,6 +2,18 @@
 
 > ⏳ = Known but unsolved
 
+## Session Timer Drift on Bot Restart (FIXED — 2026-06-18)
+- Bot restart → end-of-session timer drifts forward by 2h+
+- **Root cause:** `_end_dt_iso = datetime.now() + planned_mins` — `now` = restart time, not original start
+- **Fix:** Calculate end time from stored `end_t` (HH:MM format), not from current time
+- **Pattern:** NEVER use `datetime.now()` in restore/boot code for time calculations. Always derive from stored absolute values.
+
+## _sync_console_status() Overwrites Active start_time (FIXED — 2026-06-18)
+- Booking operations (checkin, cancel, extend) → sync → `start_time=NOW()` resets already-running timers
+- **Root cause:** `_sync_console_status()` unconditionally sets `start_time=NOW()`
+- **Fix:** Check `already_active` before updating start_time — only set for newly activated consoles
+- **Pattern:** Sync/utility functions that update state must check current state first (idempotency). Blind `SET col=NOW()` on every sync = timer reset bug.
+
 ## Payment Cash Calculation (FIXED)
 - `d["cash"] = net - total_paid` → `d["cash"] = payments.get("Cash", 0)`
 

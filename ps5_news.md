@@ -1,6 +1,47 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-17 23:30 UTC
+> Last updated: 2026-06-18 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 18, 2026 - 05:30 UTC) — PSN Outage: Day 3 + New Escalation Details
+
+> **Summary:** No major new game announcements overnight. PSN outage still unresolved — now entering Day 3 with additional details. Everything from June 17 tracker remains current.
+
+### 🔴🔴 PSN Outage — Still NOT Resolved (Day 3, Started June 16 Evening)
+- The PSN "gaming and social" disruption is **still ongoing** as of June 18 AM — now entering the **third day**
+- **NEW DETAIL:** Sony has **disabled the "Recently Played" dashboard feature** as a response to the glitch
+- **NEW DETAIL:** Some users are reporting **entire game libraries disappearing** — more severe than previously thought
+- The root cause remains the PS Store glitch from June 16 evening that caused unpurchased/inappropriate games to appear in users' libraries
+- Multiplayer services reportedly still working, but game launching remains problematic for many
+- Sony: "working to resolve the issue as soon as possible" — still no ETA
+- **💡💡 Lounge Action:** This is now a DAY 3 outage — customers coming to the lounge today may still be unable to launch digital games. Keep physical disc backups at the ready and proactively inform customers. Monitor `status.playstation.com` constantly.
+
+### 📊 Tracker Status Check (All Confirmed Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 Amazon Prime Day | June 23-26 | Early deals live. No changes. |
+| 📤 PS Plus July Departures | 12 titles leaving | Risk of Rain 2, Tropico 6 etc. No changes. |
+| 📅 PS Plus Essential July Reveal | June 25 | No leak yet. Watching. |
+| 🆓 FREE Online Multiplayer Weekend | June 28-29 | 10 days away! Start promoting! |
+| 🃏 DELTARUNE Chapter 5 | June 24 | 6 days away! Free update! |
+| 🔫 EMPULSE Early Access | June 24 | $19.99 6v6 movement FPS |
+| 🛒 Mid-Year Deals | Until July 1 | 13 days left to stock up! |
+| 🔴 PSN Outage | Day 3, ongoing | Critical for lounge operations |
+
+### 🔍 Quick Checks (Nothing New Found):
+- **PS Plus July Essential:** No official announcement yet (expected June 25, no early leak)
+- **New Game Releases:** No major new announcements since June 17
+- **PS Store:** No new flash sales or promotions since Mid-Year Deals
+- **PS5 Firmware:** No new updates since v26.04-13.40.00
+
+### ⏰ Immediate Deadlines (Next 7 Days):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! Controllers, SSDs, games! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS — check for split-screen! |
+| **Jun 25** 📅 | PS Plus Essential July reveal | Watch for new free games! |
 
 ---
 

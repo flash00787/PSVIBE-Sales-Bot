@@ -2,6 +2,30 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-18 — Session Timer Drift + Console start_time Reset
+
+### Fix 1: Session Timer Drift on Bot Restart
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Bot restart → timer drifts 2h+ forward | `session_reminder_store.py` | `_end_dt_iso = now + planned_mins` used restart-time `now` instead of original start time | Calculate from stored `end_t` (HH:MM) + dual-layer: restore layer validates drift < 300s |
+
+**Verification:** 5 consecutive restarts, max drift 12s ✅
+
+### Fix 2: _sync_console_status() Resets Active Console start_time
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Checkin/cancel → sync → console timer resets | `psvibe_api_server/app.py` | `_sync_console_status()` always set `start_time=NOW()` unconditionally | Check if already Active → skip start_time update; only set for newly activated consoles |
+
+### Fix 3: Existing Active Consoles Restored
+Same root cause as Fix 2 — verified all active consoles in DB.
+
+### Lessons
+- NEVER calculate end_time from `datetime.now()` during restore — use stored `end_t` HH:MM
+- `_sync_console_status()` must be idempotent — check current state before overwriting fields
+- Dual-layer protection (restore + validate) essential for timer integrity across restarts
+
+---
+
 ## 2026-06-16 — Sale Bot Fixes: AYA Pay, Session Reminders, Cleanup
 
 ### 1. AYA Pay Missing from Constants
