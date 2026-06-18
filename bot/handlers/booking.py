@@ -17,6 +17,7 @@ from bot import (
     get_games_on_console, get_games_on_console_async, now_mmt, show_admin_menu, show_console_menu,
     show_main_menu, today_str,
     fetch_members_async,
+    api_fetch_member_data_async,
 )
 
 """PS VIBE Bot — Handler module.
@@ -645,18 +646,31 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⏳ Booking ဖန်တီးနေသည်...", reply_markup=ReplyKeyboardRemove())
 
         # Look up customer's telegram_chat_id from phone (for auto-cancel notifications)
+        # fetch_members_async() returns member ID strings; resolve phone → member_id via API
         tg_chat_id = ""
         if phone and phone != "—":
             try:
-                # Resolve phone → member_id → telegram_chat_id
                 from bot.handlers.notify import get_customer_chat_id as _gcci
-                members = await fetch_members_async()
-                for m in (members or []):
-                    if str(m.get("phone", "")).strip() == phone.strip():
-                        mid = m.get("member_id", "")
-                        if mid:
-                            tg_chat_id = await asyncio.to_thread(_gcci, mid) or ""
-                        break
+                mids = await fetch_members_async()
+                if mids and isinstance(mids, list):
+                    # Find member_id matching the phone by fetching each member's data
+                    for mid in mids[:30]:  # limit to avoid too many API calls
+                        if not isinstance(mid, str):
+                            # Old format — dict with phone
+                            if str(mid.get("phone", "")).strip() == phone.strip():
+                                _found_id = mid.get("member_id") or mid.get("id", "")
+                                if _found_id:
+                                    tg_chat_id = await asyncio.to_thread(_gcci, _found_id) or ""
+                                break
+                        else:
+                            # New format — member ID string; fetch full data
+                            try:
+                                mdata = await api_fetch_member_data_async(mid)
+                                if mdata and str(mdata.get("phone", "")).strip() == phone.strip():
+                                    tg_chat_id = await asyncio.to_thread(_gcci, mid) or ""
+                                    break
+                            except Exception:
+                                continue
             except Exception as _e:
                 logger.warning("step_sbk_confirm: tg_chat lookup failed: %s", _e)
 
