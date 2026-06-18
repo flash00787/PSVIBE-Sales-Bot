@@ -2,6 +2,24 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-18 — Broadcast System Fix + Feature
+
+### Fix 5: Broadcast API Returns Wrong Key + Route Order Bug
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Broadcast always "targets not found" | `patch_routes.py:594`, `app.py:1440` | API returned `member_id` (not `telegram_chat_id`); route after `{booking_id}` catch-all → 422 | Return `telegram_ids` from DISTINCT query; move route BEFORE `{booking_id}` |
+
+### Feature: Customer Bot `/admin_broadcast`
+| File | Description |
+|------|-------------|
+| `customer_bot/broadcast.py` (new) | Admin-only broadcast to all customer bot users via `/admin_broadcast <message>` |
+| `customer_bot/main.py` | Registered `CommandHandler("admin_broadcast", cmd_admin_broadcast)` |
+| `/etc/psvibe/secrets.env` | Added `ADMIN_USER_IDS=6296803251` (Boss only) |
+
+**Verification:** API returns 44 targets ✅, Boss included ✅
+
+---
+
 ## 2026-06-18 — Cancel Confirmed Booking Fix + Display Data Fix
 
 ### Fix 3: PATCH /api/bookings/{id}/status — Can't Cancel Confirmed Bookings
