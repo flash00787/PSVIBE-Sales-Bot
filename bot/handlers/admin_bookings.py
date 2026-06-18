@@ -118,7 +118,7 @@ async def _send_checkin_notification(tg_chat: str, booking_id: int):
     msg = (
         f"\U0001f389 *Welcome to PS VIBE!* \ud83c\udfae\n\n"
         f"\u2705 Booking #{booking_id} \u2014 Checked In!\n"
-        f"Your session has started. Enjoy! \ud83c\udf89"
+        f"Staff will start your session shortly. Enjoy! \ud83c\udf89"
     )
     try:
         from bot import CUSTOMER_BOT_TOKEN
@@ -237,26 +237,12 @@ async def cb_checkin_select_console(update: Update, context: ContextTypes.DEFAUL
         await query.edit_message_text(
             f"\u2705 *Customer Checked In!*\n"
             f"Booking #{bk_id}{cid_line}\n"
-            f"Done by: {staff_name}",
+            f"Done by: {staff_name}\n\n"
+            f"\U0001f4cb Session \u1019\u1005\u101e\u1031\u1038\u1015\u102b\u104b *Start Session* \u1014\u103e\u102d\u1015\u103a\u1015\u102b",
             parse_mode="Markdown",
         )
 
-        # Schedule Sale Bot timer (replaces old API timer)
-        duration_mins = result.get("duration_mins", 60)
-        member_id = result.get("member_id", "Guest")
-        real_cid = console_id if console_id != "skip" else ""
-        if real_cid and duration_mins > 5:
-            from bot import STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, now_mmt
-            end_dt = now_mmt() + timedelta(minutes=duration_mins)
-            end_t = end_dt.strftime("%H:%M")
-            delay = (duration_mins - 5) * 60
-            target_chat = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else query.message.chat_id
-            _cancel_remind(real_cid, target_chat)
-            task = asyncio.create_task(
-                _remind_loop(context.bot, target_chat, real_cid, member_id,
-                             duration_mins, end_t, delay, STAFF_NOTIFY_THREAD)
-            )
-            _REMIND_TASKS[_remind_key(real_cid, target_chat)] = task
+        # NO timer scheduling here — timer starts only when session starts (separate action)
 
         if tg_chat:
             asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))

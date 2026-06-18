@@ -2,7 +2,7 @@ from bot import (
     BTN_BACK_MAIN, CONSOLE_MENU, CUSTOMER_BOT_TOKEN, MAIN_MENU, MMT,
     N8N_BOOKING_WEBHOOK, N8N_SESSION_WEBHOOK, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD,
     _api_base, _psvibe_get, _psvibe_get_async, _psvibe_patch, _psvibe_patch_async, _psvibe_post_async, get_booking_sh, now_mmt,
-    today_str,
+    today_str, end_booking_async,
 )
 
 """PS VIBE Bot — Handler module.
@@ -719,12 +719,39 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── ✅ End ───────────────────────────────────────────────────────────────
     if extra_str == "0":
-        await query.edit_message_text(
-            f"✅ <b>Session ပြီးပြီ!</b>\n"
-            f"🕹️ Console : <b>{cid}</b>  👤 <b>{member_id}</b>\n"
-            f"⏹️ Session ဆုံး နှိပ်ပြီး Voucher ဖန်တီးပါ",
-            parse_mode="HTML",
-        )
+        # Find active booking for this console and end it
+        bk_id = None
+        try:
+            consoles = await _psvibe_get_async("fetch_console_status")
+            for c in (consoles or []):
+                if (c.get("console_id") or "").strip().upper() == cid.strip().upper():
+                    bk_id = c.get("booking_id")
+                    break
+        except Exception as e:
+            logger.warning("cb_extend_timer: fetch_console_status failed: %s", e)
+        
+        if bk_id:
+            ok = await end_booking_async(str(bk_id))
+            if ok:
+                _cancel_remind(cid, chat_id)
+                await query.edit_message_text(
+                    f"✅ <b>Session ပြီးပြီ!</b>\n"
+                    f"🕹️ Console : <b>{cid}</b>  👤 <b>{member_id}</b>\n"
+                    f"⏹️ Session ဆုံး နှိပ်ပြီး Voucher ဖန်တီးပါ",
+                    parse_mode="HTML",
+                )
+            else:
+                await query.edit_message_text(
+                    f"⚠️ Session ဆုံးဖို့ API error တက်ပါသည်။\n"
+                    f"Console Management → Session End မှ ပြန်လုပ်ပါ။",
+                    parse_mode="HTML",
+                )
+        else:
+            await query.edit_message_text(
+                f"⚠️ <b>{cid}</b> တွင် active session မတွေ့ပါ။\n"
+                f"Console Management → Session End မှ ပြန်လုပ်ပါ။",
+                parse_mode="HTML",
+            )
         return
 
     # ── ✏️ Custom ────────────────────────────────────────────────────────────

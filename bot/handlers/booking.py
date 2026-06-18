@@ -919,7 +919,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
                 return True
         pending_bks = [
             b for b in bks_raw if isinstance(b, dict)
-            if b.get("status") in ("confirmed", "arrived")
+            if b.get("status") in ("confirmed", "arrived", "checked_in")
             and b.get("date", "") == today
             and _in_window(b)
         ]
@@ -1365,6 +1365,9 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             "duration_mins": planned_mins if planned_mins > 0 else 0,
             "booking_date": now_mmt().strftime("%Y-%m-%d"),
         }
+        # If linked to a checked-in booking, pass the ID to transition it to Active
+        if _linked_cust_bk:
+            payload["linked_booking_id"] = int(_linked_cust_bk)
         result = await _psvibe_post_async("sessions/start", payload)
         if not result or not result.get("booking_id"):
             err_msg = (result or {}).get("error", "") or str(result) or "API returned empty response"
