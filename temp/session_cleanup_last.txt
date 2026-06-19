@@ -1,4 +1,5 @@
-=== Bulk Session Cleanup 03:16 ===
+=== Bulk Session Cleanup 04:37 ===
 Before: 4.0K
 After: 4.0K
-=== RESULT: OK ===
+=== RESULT: 0 ===
+=== RESULT: OK ||| No sessions to clean (4.0K before/after) ===
