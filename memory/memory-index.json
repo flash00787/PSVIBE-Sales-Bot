@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-19T15:40:48.571497+00:00",
+  "updated": "2026-06-19T18:39:05.767521+00:00",
   "entries": [
     {
       "topic": "\"Free\"",
@@ -129,6 +129,16 @@
           "path": "memory/booking-audit-deep-round2.md",
           "line": 392,
           "context": "### 1. Add Row-Level Locking to Slot Booking (CI-1) **Risk if unfixed:** Customers WILL get double-booked under concurrent load."
+        }
+      ]
+    },
+    {
+      "topic": "1. All Booking Paths (Numbered)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 8,
+          "context": "## 1. All Booking Paths (Numbered)"
         }
       ]
     },
@@ -459,6 +469,16 @@
           "path": "memory/finance-audit-2026-06.md",
           "line": 53,
           "context": "## 2. MySQL Verification Results"
+        }
+      ]
+    },
+    {
+      "topic": "2. Protection Status for Each Path",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 96,
+          "context": "## 2. Protection Status for Each Path"
         }
       ]
     },
@@ -808,6 +828,16 @@
       ]
     },
     {
+      "topic": "3. Race Condition Analysis",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 113,
+          "context": "## 3. Race Condition Analysis"
+        }
+      ]
+    },
+    {
       "topic": "3. Recommendations for Error-Free Operation",
       "files": [
         {
@@ -1013,6 +1043,16 @@
       ]
     },
     {
+      "topic": "4. Conflict Check Implementation Comparison",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 150,
+          "context": "## 4. Conflict Check Implementation Comparison"
+        }
+      ]
+    },
+    {
       "topic": "4. Customer Booking — Slot Availability Date Filter",
       "files": [
         {
@@ -1198,6 +1238,16 @@
       ]
     },
     {
+      "topic": "5. Edge Case Analysis",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 174,
+          "context": "## 5. Edge Case Analysis"
+        }
+      ]
+    },
+    {
       "topic": "5. Recommendations",
       "files": [
         {
@@ -1298,6 +1348,16 @@
       ]
     },
     {
+      "topic": "6. MySQL Transaction Isolation & Locking",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 197,
+          "context": "## 6. MySQL Transaction Isolation & Locking"
+        }
+      ]
+    },
+    {
       "topic": "7. _SESSION_TOTAL_MINS Persistence",
       "files": [
         {
@@ -1338,6 +1398,16 @@
       ]
     },
     {
+      "topic": "7. Recommendations — Ranked by Severity",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 219,
+          "context": "## 7. Recommendations — Ranked by Severity"
+        }
+      ]
+    },
+    {
       "topic": "74 total files",
       "files": [
         {
@@ -1349,6 +1419,16 @@
           "path": "MEMORY.md",
           "line": 666,
           "context": "- **74 total files** uploaded to Google Drive"
+        }
+      ]
+    },
+    {
+      "topic": "8. Code Needing Immediate Fix",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 311,
+          "context": "## 8. Code Needing Immediate Fix"
         }
       ]
     },
@@ -1409,6 +1489,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 36,
           "context": "### 9 Features Delivered in 15 min via 5 Parallel Agents (75% Faster Than Sequential) **Total coordination tools: 20 → 25** at `/root/coordination/`"
+        }
+      ]
+    },
+    {
+      "topic": "9. Summary",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 363,
+          "context": "## 9. Summary"
         }
       ]
     },
@@ -1879,6 +1969,11 @@
           "path": "memory/2026-06-08.md",
           "line": 8,
           "context": "- **Added** `POST /api/member/wallet/update` endpoint for real-time wallet deduction - **Integrated** into `dashboard_routes.py` — member liability + wallet consumption via FIFO"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 17,
+          "context": "- **Added:** Overlap check at lines 1403-1426 - When status=\"confirmed\", queries existing bookings on same console at same time"
         },
         {
           "path": "MEMORY.md",
@@ -2408,6 +2503,16 @@
       ]
     },
     {
+      "topic": "app.py (mysql.connector, used by mutation endpoints)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 205,
+          "context": "### app.py (mysql.connector, used by mutation endpoints) - **Connection:** Fresh connection per request via `_mc.connect()`"
+        }
+      ]
+    },
+    {
       "topic": "Appendix A: All MySQL Queries Used",
       "files": [
         {
@@ -2489,6 +2594,16 @@
           "path": "memory/psvibe-code-structure.md",
           "line": 66,
           "context": "## Architecture ```"
+        }
+      ]
+    },
+    {
+      "topic": "Architecture improvement — future",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 296,
+          "context": "- **Architecture improvement — future**"
         }
       ]
     },
@@ -2586,6 +2701,11 @@
           "context": "> **Audited:** 2026-06-17 | **Auditor:** Kora (Pro subagent, deep dive) > **Files Audited:** 9 files | ~6,000+ lines | **Previous audit:** Round 1 found 9 issues"
         },
         {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 3,
+          "context": "**Auditor:** Kora (Subagent, DeepSeek V4 Pro) **Scope:** Every booking creation, approval, checkin, session start, and cancel path across API server + both bots"
+        },
+        {
           "path": "memory/booking-timeslot-audit.md",
           "line": 4,
           "context": "**Auditor:** Subagent (Pro) **Files Audited:**"
@@ -2639,6 +2759,16 @@
           "path": "memory/booking_upgrade_audit.md",
           "line": 236,
           "context": "| 3.2 | **Auto-cancel expired pending bookings** — Add background task that cancels `pending` bookings older than 24h (or with past start_time) | `app.py` (startup task) | 1h | | 3.3 | **Add booking c"
+        }
+      ]
+    },
+    {
+      "topic": "Auto-commit:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 201,
+          "context": "- **Auto-commit:** Every query is followed by `conn.commit()` — effectively READ UNCOMMITTED between queries - **Isolation level:** Default pymysql (REPEATABLE READ, but irrelevant with per-query auto"
         }
       ]
     },
@@ -2804,6 +2934,21 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 26,
           "context": "- **batch_coordinator.py:** New tool at /root/coordination/ - **verify_agent.py:** Partial verify mode"
+        }
+      ]
+    },
+    {
+      "topic": "Before next release",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 250,
+          "context": "- **Before next release**"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 264,
+          "context": "- **Before next release**"
         }
       ]
     },
@@ -3203,6 +3348,16 @@
       ]
     },
     {
+      "topic": "Bottom line:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 377,
+          "context": "**Bottom line:** The primary customer booking path (Path 1) and staff booking path (Path 2) are well-protected with FOR UPDATE locking. The critical gaps are in the session-start paths (Paths 4 and 5)"
+        }
+      ]
+    },
+    {
       "topic": "Broadcast System Fix + Customer Bot Broadcast (17:22 UTC / 23:52 MMT)",
       "files": [
         {
@@ -3549,6 +3704,16 @@
           "path": "memory/contacts.md",
           "line": 10,
           "context": "- **Business:** Founder & Manager — PS VIBE - PS5 Gaming Lounge - **Tagline:** \"Play The Game. Share The VIBE!\""
+        }
+      ]
+    },
+    {
+      "topic": "By:",
+      "files": [
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 | **By:** Kora (Boss request)"
         }
       ]
     },
@@ -4048,6 +4213,16 @@
       ]
     },
     {
+      "topic": "Cleanup — whenever",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 302,
+          "context": "- **Cleanup — whenever**"
+        }
+      ]
+    },
+    {
       "topic": "Cleanup:",
       "files": [
         {
@@ -4448,6 +4623,16 @@
       ]
     },
     {
+      "topic": "Connection:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 206,
+          "context": "- **Connection:** Fresh connection per request via `_mc.connect()` - **Transactions:** Explicit `conn.start_transaction()` with `conn.commit()`/`conn.rollback()`"
+        }
+      ]
+    },
+    {
       "topic": "Consider reducing SSH ports",
       "files": [
         {
@@ -4539,6 +4724,16 @@
           "path": "MEMORY.md",
           "line": 313,
           "context": "- **Console Status Board:** 10/10 Free ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Console Status Drift",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 190,
+          "context": "### Console Status Drift - `_sync_console_status()` called after every mutation. ✅"
         }
       ]
     },
@@ -5246,6 +5441,11 @@
           "context": "> **Date:** 2026-06-02 | **Commits:** d53acb4 + 4582b6c"
         },
         {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 **Auditor:** Kora (Subagent, DeepSeek V4 Pro)"
+        },
+        {
           "path": "memory/booking-timeslot-audit.md",
           "line": 3,
           "context": "**Date:** 2026-06-17 **Auditor:** Subagent (Pro)"
@@ -5269,6 +5469,11 @@
           "path": "memory/next-available-session-timer-2026-06-19.md",
           "line": 2,
           "context": "**Date:** 2026-06-19 **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 | **By:** Kora (Boss request)"
         },
         {
           "path": "memory/security-audit-2026-06-13.md",
@@ -5414,6 +5619,16 @@
           "path": "memory/integration-plan.md",
           "line": 87,
           "context": "- **Dependency:** Requires `git` CLI installed on the system. - **CLI:** `--init`, `--commit \"msg\"`, `--auto`, `--status`, `--log [N]`"
+        }
+      ]
+    },
+    {
+      "topic": "Depends on H1",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 278,
+          "context": "- **Depends on H1**"
         }
       ]
     },
@@ -5779,6 +5994,16 @@
           "path": "MEMORY.md",
           "line": 687,
           "context": "### Empty (unreleased) - Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3"
+        }
+      ]
+    },
+    {
+      "topic": "Empty/NULL console_id",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 176,
+          "context": "### Empty/NULL console_id - `api_bookings_create`: When console_id is empty, checks ALL consoles of matching type. Auto-assign NOT done at API layer — left empty in INSERT. ✅ Handled (no conflict chec"
         }
       ]
     },
@@ -6961,6 +7186,71 @@
           "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - Added balance_warn variable when member balance is 0 or N/A"
         },
         {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 19,
+          "context": "**File:** `customer_bot/booking_handlers.py:2073-2473` + `app.py:2278-2420`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 28,
+          "context": "**File:** `bot/handlers/booking.py:703-933` + `app.py:2278-2420`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 37,
+          "context": "**File:** `bot/handlers/admin_bookings.py:257-465` + `app.py:1378-1448`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 46,
+          "context": "**File:** `app.py:1848-1940`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 55,
+          "context": "**File:** `app.py:2140-2278`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 63,
+          "context": "**File:** `app.py:1232-1315`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 71,
+          "context": "**File:** `app.py:2031-2100`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 78,
+          "context": "**File:** `bot/__init__.py:537-610`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 86,
+          "context": "**File:** `app.py:4197-4265`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 92,
+          "context": "**File:** `app.py:1316-1377`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 314,
+          "context": "**File:** `app.py`, lines 1860-1925 **Issue:** The pre-check on console_status (line 1862) happens OUTSIDE the transaction without FOR UPDATE. Two concurrent calls will both pass and both create sessi"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 326,
+          "context": "**File:** `app.py`, lines 2180-2202 **Issue:** Only checks `status='Active'`. A staff walk-in can overlap with a pending customer booking."
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 345,
+          "context": "**File:** `app.py`, lines 1410-1428 **Issue:** Overlap check runs inside transaction but without row lock. Two concurrent approvals could both pass."
+        },
+        {
           "path": "memory/booking-timeslot-audit.md",
           "line": 17,
           "context": "**File:** `app.py` line ~1758 **Severity:** HIGH (API safety net exists, but UI shows wrong availability)"
@@ -7144,6 +7434,11 @@
           "path": "memory/next-available-session-timer-2026-06-19.md",
           "line": 3,
           "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 16,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_update_booking_status()` - **Added:** Overlap check at lines 1403-1426"
         },
         {
           "path": "memory/test-report.md",
@@ -7768,6 +8063,16 @@
       ]
     },
     {
+      "topic": "FIX 1: `consoles/start-session` — Missing locking + conflict check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 313,
+          "context": "### FIX 1: `consoles/start-session` — Missing locking + conflict check **File:** `app.py`, lines 1860-1925"
+        }
+      ]
+    },
+    {
       "topic": "Fix 1: Booking Flow — Member Keyboard Hang",
       "files": [
         {
@@ -7868,6 +8173,16 @@
       ]
     },
     {
+      "topic": "FIX 2: `sessions/start` — Missing pending/confirmed conflict check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 325,
+          "context": "### FIX 2: `sessions/start` — Missing pending/confirmed conflict check **File:** `app.py`, lines 2180-2202"
+        }
+      ]
+    },
+    {
       "topic": "Fix 2: Coupon generation still blocking voucher",
       "files": [
         {
@@ -7879,6 +8194,16 @@
           "path": "MEMORY.md",
           "line": 1127,
           "context": "### Fix 2: Coupon generation still blocking voucher - **Root cause:** Both `step_sale_confirm` (~line 1310) and `launch_session_sale` (~line 1790) used `await asyncio.to_thread(api_post, \"coupons/gene"
+        }
+      ]
+    },
+    {
+      "topic": "FIX 3: `api_update_booking_status` — Missing FOR UPDATE on overlap check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 344,
+          "context": "### FIX 3: `api_update_booking_status` — Missing FOR UPDATE on overlap check **File:** `app.py`, lines 1410-1428"
         }
       ]
     },
@@ -9296,6 +9621,56 @@
           "context": "### Flow: ```"
         },
         {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 11,
+          "context": "**Flow:** Customer Bot `bk_confirm()` → `_submit_booking()` → `POST /api/bookings` - Customer selects date, time, console type, duration, game"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 22,
+          "context": "**Flow:** Staff Bot `step_sbk_confirm()` → `POST /api/bookings` - Staff fills all booking details including explicit console_id"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 31,
+          "context": "**Flow:** `_do_booking_action()` → `PATCH /api/bookings/{id}/status` - Auto-assign: queries free consoles, pre-checks each via `/api/booking-conflicts`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 40,
+          "context": "**Flow:** `POST /api/consoles/start-session` - Pre-check: console_status not Active (NO lock)"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 49,
+          "context": "**Flow:** `POST /api/sessions/start` - Checks console_status not Active (pre-check, no lock)"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 58,
+          "context": "**Flow:** `POST /api/bookings/checkin` - Marks booking status → `checked_in`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 66,
+          "context": "**Flow:** `POST /api/bookings/cancel` - Cancels only non-Active/non-Done bookings"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 74,
+          "context": "**Flow:** `check_disc_session_conflict()` - Checks Google Sheets (now returns None — Sheets removed)"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 81,
+          "context": "**Flow:** `POST /api/booking-conflicts` - Queries: `status IN ('pending','confirmed','pending_check_in','Active')`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 89,
+          "context": "**Flow:** `POST /api/create_booking` → returns 410 Gone - No longer executable. Safely dead."
+        },
+        {
           "path": "memory/fix-history.md",
           "line": 244,
           "context": "- **Flow:** Confirm → \"Scheduled\" | Cancel/No-show → \"Done\" | Session start → cleanup"
@@ -9379,6 +9754,21 @@
           "path": "memory/memory-usage-guide.md",
           "line": 72,
           "context": "2. **For unknown info:** `memory_search(query)` — searches all module files 3. **For session log:** `memory_get(path=memory/YYYY-MM-DD.md)` or check memory/"
+        }
+      ]
+    },
+    {
+      "topic": "FOR UPDATE:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 203,
+          "context": "- **FOR UPDATE:** NEVER used in mysql_db.py queries"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 209,
+          "context": "- **FOR UPDATE:** Used in: - `api_bookings_create` (line 2352, 2366) ✅"
         }
       ]
     },
@@ -10449,6 +10839,11 @@
           "path": "memory/booking-audit-complete.md",
           "line": 317,
           "context": "### How it works 1. Fetches bookings with status: confirmed, pending, scheduled"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 22,
+          "context": "## How It Works ```"
         }
       ]
     },
@@ -10604,6 +10999,21 @@
           "path": "memory/booking_upgrade_audit.md",
           "line": 305,
           "context": "**Immediate Action Items (this week):** 1. Add `console_id` DB index (5 min, no downtime)"
+        }
+      ]
+    },
+    {
+      "topic": "Immediate fix needed",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 227,
+          "context": "- **Immediate fix needed**"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 242,
+          "context": "- **Immediate fix needed**"
         }
       ]
     },
@@ -10993,6 +11403,16 @@
       ]
     },
     {
+      "topic": "INCONSISTENT!",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 159,
+          "context": "| `api_sessions_start` (line 2180) | `= 'Active'` ← **INCONSISTENT!** | | `api_consoles/start-session` | **NO CHECK** ← **MISSING!** |"
+        }
+      ]
+    },
+    {
       "topic": "Independent files:",
       "files": [
         {
@@ -11119,6 +11539,21 @@
           "path": "MEMORY.md",
           "line": 952,
           "context": "### Investigation: `_remind_loop` Never Fires (Known Pre-existing Bug) - **Status:** Investigated but not fixed. Root cause inconclusive."
+        }
+      ]
+    },
+    {
+      "topic": "Isolation level:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 202,
+          "context": "- **Isolation level:** Default pymysql (REPEATABLE READ, but irrelevant with per-query auto-commit) - **FOR UPDATE:** NEVER used in mysql_db.py queries"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 208,
+          "context": "- **Isolation level:** MySQL default REPEATABLE READ (not explicitly set) - **FOR UPDATE:** Used in:"
         }
       ]
     },
@@ -11324,6 +11759,21 @@
           "path": "memory/booking-audit-complete.md",
           "line": 85,
           "context": "- **Issue:** Uses `search-bookings?telegram_chat_id={uid}&date={date_str}` which returns ALL bookings for the user on that date, then does overlap detection IN the bot - **API level** also has slot co"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 315,
+          "context": "**Issue:** The pre-check on console_status (line 1862) happens OUTSIDE the transaction without FOR UPDATE. Two concurrent calls will both pass and both create sessions. Also, no overlap check against "
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 327,
+          "context": "**Issue:** Only checks `status='Active'`. A staff walk-in can overlap with a pending customer booking. ```python"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 346,
+          "context": "**Issue:** Overlap check runs inside transaction but without row lock. Two concurrent approvals could both pass. ```python"
         }
       ]
     },
@@ -11698,12 +12148,32 @@
       ]
     },
     {
+      "topic": "L1: Standardize conflict check to a shared helper function",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 288,
+          "context": "**L1: Standardize conflict check to a shared helper function** - All three implementations (create, approve, conflicts) use slightly different overlap queries"
+        }
+      ]
+    },
+    {
       "topic": "L2. Customer Bot Uses Two Different MMT Implementations",
       "files": [
         {
           "path": "memory/booking-timeslot-audit.md",
           "line": 226,
           "context": "### L2. Customer Bot Uses Two Different MMT Implementations"
+        }
+      ]
+    },
+    {
+      "topic": "L2: Migrate mysql_db.py from auto-commit to proper connection pooling",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 293,
+          "context": "**L2: Migrate mysql_db.py from auto-commit to proper connection pooling** - Current: single connection with per-query auto-commit — no isolation guarantees"
         }
       ]
     },
@@ -12234,6 +12704,16 @@
           "path": "memory/ERROR_PATTERNS.md",
           "line": 84,
           "context": "- **Look for:** In-memory accumulator dict (e.g., `_SESSION_TOTAL_MINS`) not initialized at entry point - **Fix:** Init in `_remind_loop()`: `if key not in _SESSION_TOTAL_MINS: _SESSION_TOTAL_MINS[key"
+        }
+      ]
+    },
+    {
+      "topic": "M2: Close auto-assign TOCTOU window in admin_bookings.py",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 274,
+          "context": "**M2: Close auto-assign TOCTOU window in admin_bookings.py** - File: `bot/handlers/admin_bookings.py:316-330`"
         }
       ]
     },
@@ -12888,6 +13368,16 @@
       ]
     },
     {
+      "topic": "MISSING!",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 160,
+          "context": "| `api_consoles/start-session` | **NO CHECK** ← **MISSING!** | | Customer Bot `_get_available_consoles` | Excludes 'cancelled','done','rejected' ← equivalent |"
+        }
+      ]
+    },
+    {
       "topic": "Missing:",
       "files": [
         {
@@ -12924,6 +13414,36 @@
           "path": "memory/booking-audit-complete.md",
           "line": 272,
           "context": "- **Mitigation:** Bot's `_submit_booking` now auto-assigns before calling API"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 117,
+          "context": "**Mitigation:** Optimistic lock — `WHERE status IN ('pending')`. One wins, the other gets `affected=0`. **Verdict:** ✅ SAFE"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 122,
+          "context": "**Mitigation:** The PATCH endpoint re-checks overlap (line 1406-1428), so if a conflict exists by the time the PATCH runs, it will reject. However, the check uses NO FOR UPDATE, so two concurrent appr"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 130,
+          "context": "**Mitigation:** NONE. The transaction does NOT re-check console_status with FOR UPDATE. **Verdict:** ❌ CRITICAL — Two simultaneous start-session calls on same console will both succeed"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 135,
+          "context": "**Mitigation:** FOR UPDATE on the conflict query locks the row until INSERT commits. **Verdict:** ✅ SAFE"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 140,
+          "context": "**Mitigation:** NONE — Only Active bookings are checked. **Verdict:** ❌ HIGH — Staff walk-in can preempt customer bookings"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 145,
+          "context": "**Mitigation:** NONE. **Verdict:** ❌ HIGH"
         },
         {
           "path": "MEMORY.md",
@@ -12989,6 +13509,16 @@
           "path": "memory/booking_upgrade_audit.md",
           "line": 260,
           "context": "### Monitoring 4. **Booking Anomaly Alerts**: Add alerts for:"
+        }
+      ]
+    },
+    {
+      "topic": "Monitoring improvement",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 307,
+          "context": "- **Monitoring improvement**"
         }
       ]
     },
@@ -13084,6 +13614,16 @@
           "path": "MEMORY.md",
           "line": 747,
           "context": "- 1. **MySQL:** Added columns to `customer_bot_users`: `member_id` (indexed), `member_name`, `phone` (indexed), `balance_mins` - 2. **API (`app.py`):**"
+        }
+      ]
+    },
+    {
+      "topic": "mysql_db.py (pymysql, used by some queries)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 199,
+          "context": "### mysql_db.py (pymysql, used by some queries) - **Pool:** Single persistent connection"
         }
       ]
     },
@@ -13398,6 +13938,21 @@
       ]
     },
     {
+      "topic": "Next sprint",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 272,
+          "context": "- **Next sprint**"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 284,
+          "context": "- **Next sprint**"
+        }
+      ]
+    },
+    {
       "topic": "No available consoles",
       "files": [
         {
@@ -13408,8 +13963,13 @@
       ]
     },
     {
-      "topic": "No check",
+      "topic": "NO CHECK",
       "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 160,
+          "context": "| `api_consoles/start-session` | **NO CHECK** ← **MISSING!** | | Customer Bot `_get_available_consoles` | Excludes 'cancelled','done','rejected' ← equivalent |"
+        },
         {
           "path": "memory/console-conflict-report-2026-06-18.md",
           "line": 145,
@@ -13509,6 +14069,16 @@
           "path": "memory/booking-features-plan.md",
           "line": 697,
           "context": "2. **No MySQL schema changes needed.** Both `console_booking.console_id` (VARCHAR(20)) and `console_booking` already exist. The console_id field is already in the table schema. Customer bot just curre"
+        }
+      ]
+    },
+    {
+      "topic": "NO overlap check",
+      "files": [
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 5,
+          "context": "- Booking approval endpoint (`PATCH /api/bookings/{id}/status`) had **NO overlap check** - Customer flow (`booking.py`) checked conflicts, but staff approval bypassed it"
         }
       ]
     },
@@ -13863,6 +14433,16 @@
       ]
     },
     {
+      "topic": "Overlap logic comparison:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 164,
+          "context": "**Overlap logic comparison:** - `api_bookings_create` uses: `(start_time <= %s AND end_time > %s) OR (start_time < %s AND end_time >= %s) OR (start_time >= %s AND end_time <= %s)` — 3-condition overla"
+        }
+      ]
+    },
+    {
       "topic": "Overlap: 12:00–12:30",
       "files": [
         {
@@ -13989,6 +14569,116 @@
           "path": "memory/bug-patterns.md",
           "line": 49,
           "context": "## Parallel Agent Collision — Same Function Overwrite (FIXED) - Multiple fix agents modified the same function (`_fetch_games_from_mysql()`) in parallel"
+        }
+      ]
+    },
+    {
+      "topic": "Past Dates",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 181,
+          "context": "### Past Dates - `api_bookings_create`: Validates `start_dt < now_mmt()` → returns 400. ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Path 1 — Customer Bot Booking (Customer → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 10,
+          "context": "### Path 1 — Customer Bot Booking (Customer → API) **Flow:** Customer Bot `bk_confirm()` → `_submit_booking()` → `POST /api/bookings`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 10 — Legacy create_booking (DEPRECATED — hard-disabled)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 88,
+          "context": "### Path 10 — Legacy create_booking (DEPRECATED — hard-disabled) **Flow:** `POST /api/create_booking` → returns 410 Gone"
+        }
+      ]
+    },
+    {
+      "topic": "Path 2 — Staff Bot Booking (Staff → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 21,
+          "context": "### Path 2 — Staff Bot Booking (Staff → API) **Flow:** Staff Bot `step_sbk_confirm()` → `POST /api/bookings`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 3 — Admin Approve Booking (Staff Bot → PATCH API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 30,
+          "context": "### Path 3 — Admin Approve Booking (Staff Bot → PATCH API) **Flow:** `_do_booking_action()` → `PATCH /api/bookings/{id}/status`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 4 — Console Start-Session (Staff → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 39,
+          "context": "### Path 4 — Console Start-Session (Staff → API) **Flow:** `POST /api/consoles/start-session`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 5 — Walk-In Session Start (Staff → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 48,
+          "context": "### Path 5 — Walk-In Session Start (Staff → API) **Flow:** `POST /api/sessions/start`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 6 — Booking Checkin (Staff → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 57,
+          "context": "### Path 6 — Booking Checkin (Staff → API) **Flow:** `POST /api/bookings/checkin`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 7 — Booking Cancel (Staff → API)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 65,
+          "context": "### Path 7 — Booking Cancel (Staff → API) **Flow:** `POST /api/bookings/cancel`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 8 — Disc-Game Conflict Check (Bot-side utility)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 73,
+          "context": "### Path 8 — Disc-Game Conflict Check (Bot-side utility) **Flow:** `check_disc_session_conflict()`"
+        }
+      ]
+    },
+    {
+      "topic": "Path 9 — Booking Conflict Check (Dedicated endpoint)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 80,
+          "context": "### Path 9 — Booking Conflict Check (Dedicated endpoint) **Flow:** `POST /api/booking-conflicts`"
         }
       ]
     },
@@ -14588,6 +15278,16 @@
       ]
     },
     {
+      "topic": "Pool:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 200,
+          "context": "- **Pool:** Single persistent connection - **Auto-commit:** Every query is followed by `conn.commit()` — effectively READ UNCOMMITTED between queries"
+        }
+      ]
+    },
+    {
       "topic": "Possible cause:",
       "files": [
         {
@@ -14704,6 +15404,16 @@
           "path": "MEMORY.md",
           "line": 578,
           "context": "### Prepaid Rent Amortization (✅ Done) - Created `prepaid_amortization` table"
+        }
+      ]
+    },
+    {
+      "topic": "Prevention (permanent fix)",
+      "files": [
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 15,
+          "context": "## Prevention (permanent fix) - **File:** `/root/psvibe_api_server/app.py` — `api_update_booking_status()`"
         }
       ]
     },
@@ -14984,6 +15694,66 @@
           "path": "MEMORY.md",
           "line": 63,
           "context": "## Quick Reference - **Latest daily log:** See `memory/2026-06-17.md`"
+        }
+      ]
+    },
+    {
+      "topic": "R1: Double Approval Race (PATCH endpoint)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 115,
+          "context": "### R1: Double Approval Race (PATCH endpoint) **Risk:** Two staff members approve the same pending booking simultaneously."
+        }
+      ]
+    },
+    {
+      "topic": "R2: Auto-Assign TOCTOU (Admin approve)",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 120,
+          "context": "### R2: Auto-Assign TOCTOU (Admin approve) **Risk:** Staff bot pre-checks `/api/booking-conflicts` for candidate consoles, then sends `consoleId` in PATCH. Between pre-check and PATCH, another booking"
+        }
+      ]
+    },
+    {
+      "topic": "R3: Console Start-Session No-Lock Race",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 125,
+          "context": "### R3: Console Start-Session No-Lock Race **Risk:** Two staff members start sessions on the same console concurrently."
+        }
+      ]
+    },
+    {
+      "topic": "R4: Customer Booking Concurrent Submissions",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 133,
+          "context": "### R4: Customer Booking Concurrent Submissions **Risk:** Two customers book the same console at the same time."
+        }
+      ]
+    },
+    {
+      "topic": "R5: Walk-In Session Bypasses Pending Bookings",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 138,
+          "context": "### R5: Walk-In Session Bypasses Pending Bookings **Risk:** Staff starts a walk-in session (`POST /api/sessions/start`) that overlaps with a pending customer booking. The endpoint only checks `status="
+        }
+      ]
+    },
+    {
+      "topic": "R6: Start-Session Bypasses Pending/Confirmed Bookings",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 143,
+          "context": "### R6: Start-Session Bypasses Pending/Confirmed Bookings **Risk:** Same as R5 but for `consoles/start-session`. Only looks for confirmed bookings to auto-link (line 1871), but doesn't check if anothe"
         }
       ]
     },
@@ -15589,6 +16359,36 @@
           "path": "memory/booking-audit-complete.md",
           "line": 266,
           "context": "- **Risk:** Confusion about which to use; `/api/create_booking` bypasses all validation"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 116,
+          "context": "**Risk:** Two staff members approve the same pending booking simultaneously. **Mitigation:** Optimistic lock — `WHERE status IN ('pending')`. One wins, the other gets `affected=0`."
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 121,
+          "context": "**Risk:** Staff bot pre-checks `/api/booking-conflicts` for candidate consoles, then sends `consoleId` in PATCH. Between pre-check and PATCH, another booking can claim the same console. **Mitigation:*"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 126,
+          "context": "**Risk:** Two staff members start sessions on the same console concurrently. - Pre-check: `console_status != Active` (no lock, line 1862)"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 134,
+          "context": "**Risk:** Two customers book the same console at the same time. **Mitigation:** FOR UPDATE on the conflict query locks the row until INSERT commits."
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 139,
+          "context": "**Risk:** Staff starts a walk-in session (`POST /api/sessions/start`) that overlaps with a pending customer booking. The endpoint only checks `status='Active'` (line 2180+), not pending/confirmed. **M"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 144,
+          "context": "**Risk:** Same as R5 but for `consoles/start-session`. Only looks for confirmed bookings to auto-link (line 1871), but doesn't check if another pending/confirmed booking exists on the same console. **"
         }
       ]
     },
@@ -16351,6 +17151,11 @@
           "context": "- **Root Cause:** `session.writeLock.acquireTimeoutMs` defaulted to 60s - **Fix:** Config → 300s (5 min) + maintenance mode enforce + 300mb cap"
         },
         {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 4,
+          "context": "## Root Cause - Booking approval endpoint (`PATCH /api/bookings/{id}/status`) had **NO overlap check**"
+        },
+        {
           "path": "memory/test-report.md",
           "line": 19,
           "context": "**Root cause:** `### ` lines were only captured when `current_header` was set (i.e., a parent `## ` existed) **Fix:** When a `### ` header appears with no parent `## `, treat it as a top-level section"
@@ -16750,6 +17555,11 @@
     {
       "topic": "Scope:",
       "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 4,
+          "context": "**Scope:** Every booking creation, approval, checkin, session start, and cancel path across API server + both bots"
+        },
         {
           "path": "memory/booking_upgrade_audit.md",
           "line": 5,
@@ -17769,6 +18579,16 @@
           "path": "memory/infrastructure.md",
           "line": 51,
           "context": "## Shop Info | Detail | Value |"
+        }
+      ]
+    },
+    {
+      "topic": "Simultaneous Bookings on Different Consoles",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 187,
+          "context": "### Simultaneous Bookings on Different Consoles - Conflict checks are console-id-scoped. Two bookings on different consoles at the same time are allowed. ✅ Correct behavior."
         }
       ]
     },
@@ -19168,6 +19988,16 @@
       ]
     },
     {
+      "topic": "Tech debt — whenever convenient",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 291,
+          "context": "- **Tech debt — whenever convenient**"
+        }
+      ]
+    },
+    {
       "topic": "Telegram Admin:",
       "files": [
         {
@@ -19763,6 +20593,16 @@
       ]
     },
     {
+      "topic": "Transactions:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 207,
+          "context": "- **Transactions:** Explicit `conn.start_transaction()` with `conn.commit()`/`conn.rollback()` - **Isolation level:** MySQL default REPEATABLE READ (not explicitly set)"
+        }
+      ]
+    },
+    {
       "topic": "Trigger:",
       "files": [
         {
@@ -19979,6 +20819,41 @@
           "path": "MEMORY.md",
           "line": 871,
           "context": "- 8. **Validation:** `grep -c 'renderUserTable'` = 1, `grep -c 'memId'` = correct count, feedback tab intact"
+        }
+      ]
+    },
+    {
+      "topic": "Verdict:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 118,
+          "context": "**Verdict:** ✅ SAFE"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 123,
+          "context": "**Verdict:** ⚠️ PARTIALLY MITIGATED — No FOR UPDATE on the overlap check means simultaneous transactions could both pass"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 131,
+          "context": "**Verdict:** ❌ CRITICAL — Two simultaneous start-session calls on same console will both succeed"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 136,
+          "context": "**Verdict:** ✅ SAFE"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 141,
+          "context": "**Verdict:** ❌ HIGH — Staff walk-in can preempt customer bookings"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 146,
+          "context": "**Verdict:** ❌ HIGH"
         }
       ]
     },
@@ -20319,6 +21194,11 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 74,
           "context": "### What Was Fixed: - Seeded member_wallets table from members"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 9,
+          "context": "## What Was Fixed - Found 8 overlaps across June 20-21 (C-01, C-09)"
         }
       ]
     },
@@ -22594,6 +23474,16 @@
           "path": "memory/booking-timeslot-audit.md",
           "line": 143,
           "context": "## 🟡 HIGH ISSUES (Misleading UI or Incorrect Filtering)"
+        }
+      ]
+    },
+    {
+      "topic": "🟡 MEDIUM",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 266,
+          "context": "### 🟡 MEDIUM"
         }
       ]
     },

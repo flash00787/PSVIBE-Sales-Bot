@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-19T15:40:49Z",
+  "updated": "2026-06-19T18:39:06Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -620,6 +620,12 @@
       "source": "knowledge-graph-concept",
       "target": "smart-pruning",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "deepseek",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -5234,12 +5240,6 @@
       "source": "kora",
       "target": "daily-digest",
       "relation": "implements",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "deepseek",
-      "relation": "uses",
       "weight": 3
     },
     {
