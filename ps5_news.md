@@ -1,6 +1,49 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-18 23:30 UTC
+> Last updated: 2026-06-19 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 19, 2026 - 05:30 UTC) — PSN Day 4: Signs of Recovery + Status Check
+
+> **Summary:** No critical new developments. PSN showing signs of recovery on Day 4. All tracker data verified against official PS Blog. Upcoming deadlines unchanged.
+
+### 🔴 PSN Outage — Day 4, Signs of Recovery
+- The PSN "gaming and social" disruption that started June 16 evening is now in its **fourth day**
+- **NEW:** Multiple PSN status trackers now show "all services are up and running" as of June 19 — suggesting recovery is underway
+- However, Sony's official status page may still show partial disruption for some users/regions
+- Some users continue reporting intermittent issues with game libraries and "Recently Played"
+- **💡 Lounge Action:** Check all lounge PS5 consoles this morning. If services are restored, resume normal operations. Keep physical disc backups handy as a precaution for another day. Monitor `status.playstation.com` for official all-clear.
+
+### 📊 Quick Status Check (All Confirmed Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 PSN Outage | Day 4, recovering | Some trackers show all services up |
+| 🛒 Mid-Year Deals | Until July 1 | 12 days left to stock up! |
+| 🛒 Amazon Prime Day | June 23-26 | 4 days away! Prep wishlist! |
+| 📅 PS Plus Essential July Reveal | June 25 | 6 days away! Watch for new free games! |
+| 🆓 FREE Online Multiplayer Weekend | June 28-29 | 9 days away! Start promoting! |
+| 🃏 DELTARUNE Chapter 5 | June 24 | 5 days away! Free update! |
+| 🔫 EMPULSE Early Access | June 24 | $19.99 FPS |
+| 🧊 Frostpunk 2: Breach of Trust DLC | June 23 | 4 days away! |
+| ⚔️ Warhammer 40K: Darktide — Skitarii DLC | June 23 | 4 days away! $11.99 |
+
+### 🔍 Verified Against Official PS Blog:
+- **PS Plus Extra June lineup** confirmed 100% accurate — FFXVI, Sonic X Shadow Generations, Kingdom Come, Life is Strange DE, Farming Simulator 25, Blades of Fire, Black Desert, Gitaroo Man
+- **No additional unannounced PS Plus titles** — the 8-game lineup is the complete list per official PS Blog
+- **PS5 Firmware:** No new update since v26.04-13.40.00
+- **No new flash sales or promotions** since Mid-Year Deals
+
+### ⏰ Immediate Deadlines (Next 7 Days — UNCHANGED):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! |
+| **Jun 23** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop same day! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 📅 | PS Plus Essential July reveal | Watch for new free games! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 characters + free-to-play version! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | Start promoting NOW! |
 
 ---
 
