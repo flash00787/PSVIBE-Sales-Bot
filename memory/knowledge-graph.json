@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-19T09:12:52Z",
+  "updated": "2026-06-19T14:10:19Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -852,6 +852,12 @@
     },
     {
       "source": "openclaw",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "openclaw",
       "target": "ssh",
       "relation": "depends_on",
       "weight": 5
@@ -1050,6 +1056,12 @@
     },
     {
       "source": "ssh",
+      "target": "smart-pruning",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "ssh",
       "target": "vps",
       "relation": "depends_on",
       "weight": 5
@@ -1075,6 +1087,12 @@
     {
       "source": "vps",
       "target": "phase-3",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "vps",
+      "target": "smart-pruning",
       "relation": "related_to",
       "weight": 5
     },
@@ -6450,12 +6468,6 @@
     },
     {
       "source": "openclaw",
-      "target": "smart-pruning",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "openclaw",
       "target": "spawn-protocol",
       "relation": "related_to",
       "weight": 3
@@ -7506,12 +7518,6 @@
     },
     {
       "source": "ssh",
-      "target": "smart-pruning",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "ssh",
       "target": "spawn-protocol",
       "relation": "related_to",
       "weight": 3
@@ -7951,12 +7957,6 @@
     {
       "source": "vps",
       "target": "session-summary",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "vps",
-      "target": "smart-pruning",
       "relation": "related_to",
       "weight": 3
     },
