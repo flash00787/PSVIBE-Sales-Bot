@@ -10,6 +10,7 @@
 | SSH connects but password fails then re-prompts | Wrong password or WARP interfering with auth | Verify WARP disconnected; retry with correct password |
 | `530 Origin unregistered` via Cloudflare | Tunnel process restarted; edge config stale | Restart tunnel (`systemctl restart cloudflared-tunnel`); wait 5s for edge sync |
 | `context deadline exceeded` in tunnel logs | Tunnel origin (localhost:8000) not responding in time | Verify origin service active, restart if needed |
+| 🚨 **ALL SSH DOWN (Connection Refused)** | File in `/etc/systemd/system/ssh.socket.d/` broke ssh.socket | **NEVER touch that dir.** Delete bad file via Hetzner Console → `systemctl restart ssh.socket` |
 
 ## 🤖 Telegram Bot Errors
 

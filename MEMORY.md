@@ -130,26 +130,21 @@
 
 ## Memory (2026-06-17)
 
-### 🔴 VPS DOWN — 5.223.81.16 SSH Connection Refused
-- **Time detected:** 19:31 UTC (02:01 AM Myanmar Time)
-- **Status:** ❌ UNRESOLVED
+### 🔴 VPS DOWN — 5.223.81.16 SSH Connection Refused → RESOLVED
+- **Time detected:** June 17, 19:31 UTC
+- **Resolved:** June 16 (VPS reboot brought SSH back) — confirmed working June 20
+- **Root cause:** Kora's helper created `/etc/systemd/system/ssh.socket.d/extra-ports.conf` on June 11 which broke ssh.socket
+- **Fix:** Boss deleted the drop-in file via Hetzner Console on June 12
+- **VPS uptime now:** 4+ days, all services active
 
-### Disaster Recovery Backup Failure (5/6 items failed)
-- All 5 remote-dependent items failed with `ECONNREFUSED 5.223.81.16:22`:
-- ❌ MySQL Database
-- ❌ Sale Bot Code
-- ❌ API Server Code
-- ❌ Dashboard Build
-- ❌ Systemd Services
-- ✅ Kora Config (local only, 483.1 KB)
-
-### SSH Test
-- ssh root@5.223.81.16:22 → Connection refused
-- Confirmed: VPS is actively refusing SSH. May be down, firewalled, or sshd crashed.
-
-### Action Taken
-- [ ] Set morning reminder to notify Boss at 8:30 AM Myanmar Time
-- [ ] Logged in daily memory
+### 🚨 CRITICAL LESSON: NEVER touch ssh.socket.d!
+- **Date:** June 11, 2026
+- **What:** Kora attempted to add extra SSH ports via `/etc/systemd/system/ssh.socket.d/extra-ports.conf`
+- **Result:** ssh.socket crashed → ALL SSH (including port 22) went down → VPS inaccessible
+- **Fix method:** Only recoverable via Hetzner Web Console (no SSH = no remote fix)
+- **HARD RULE:** NEVER create/modify files in `/etc/systemd/system/ssh.socket.d/`
+- **Correct approach for extra SSH ports:** Edit `/etc/ssh/sshd_config` directly (Port directive), then `systemctl restart sshd`
+- **Boss reminder:** "အဲ့တာကို သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ" — REMEMBER THIS PERMANENTLY
 
 ### Suggestion System — Full Integration (Discord + Web Dashboard)
 
