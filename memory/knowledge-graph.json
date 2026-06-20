@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-20T18:44:21Z",
+  "updated": "2026-06-20T23:37:35Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -438,6 +438,12 @@
     },
     {
       "source": "coco-bot",
+      "target": "gayzoelay-bot",
+      "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "coco-bot",
       "target": "mysql",
       "relation": "uses",
       "weight": 5
@@ -485,6 +491,12 @@
       "weight": 5
     },
     {
+      "source": "deepseek",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "docker",
       "target": "google-drive-api",
       "relation": "depends_on",
@@ -500,6 +512,12 @@
       "source": "docker",
       "target": "smart-pruning",
       "relation": "related_to",
+      "weight": 5
+    },
+    {
+      "source": "gayzoelay-bot",
+      "target": "docker",
+      "relation": "uses",
       "weight": 5
     },
     {
@@ -798,6 +816,12 @@
     },
     {
       "source": "nova",
+      "target": "gayzoelay-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "nova",
       "target": "mysql",
       "relation": "uses",
       "weight": 5
@@ -1045,6 +1069,12 @@
     {
       "source": "sales-tele-bot",
       "target": "n8n",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "python",
       "relation": "uses",
       "weight": 5
     },
@@ -2916,12 +2946,6 @@
     },
     {
       "source": "coco-bot",
-      "target": "gayzoelay-bot",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "coco-bot",
       "target": "gemini-api",
       "relation": "uses",
       "weight": 3
@@ -3355,12 +3379,6 @@
     {
       "source": "deepseek",
       "target": "docker",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "deepseek",
-      "target": "gemini-api",
       "relation": "depends_on",
       "weight": 3
     },
@@ -3836,12 +3854,6 @@
       "source": "gayzoelay-bot",
       "target": "deploy-process",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "gayzoelay-bot",
-      "target": "docker",
-      "relation": "uses",
       "weight": 3
     },
     {
@@ -5802,12 +5814,6 @@
     },
     {
       "source": "nova",
-      "target": "gayzoelay-bot",
-      "relation": "owns",
-      "weight": 3
-    },
-    {
-      "source": "nova",
       "target": "gemini-api",
       "relation": "uses",
       "weight": 3
@@ -7340,12 +7346,6 @@
       "source": "sales-tele-bot",
       "target": "priority-memory",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "sales-tele-bot",
-      "target": "python",
-      "relation": "uses",
       "weight": 3
     },
     {
