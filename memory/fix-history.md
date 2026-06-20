@@ -2,6 +2,28 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-20 — Sale Bot Approve/Reject + Customer Bot Duration Conflict
+
+### #38: Sale Bot Approve Button Crash 🐛
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Approve button → UnboundLocalError | `admin_bookings.py` L302-325 | `consoles_with_game` variable only defined inside `if not chosen:` auto-assign block, but accessed in `if chosen:` block when customer chose own console | Moved `consoles_with_game` init BEFORE all branching; fetch once at top |
+
+### #39: Sale Bot Reject Button Crash 🐛
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Reject button → UnboundLocalError | `admin_bookings.py` L267-285 | `bk_info` variable only defined inside `if action == "approve":` block, but accessed in `else:` (reject) block | Moved `bk_info` fetch OUTSIDE approve block — now shared |
+
+### #40: Reject Reason Feature 🆕
+| Feature | Files | Details |
+|---------|-------|---------|
+| Reject လုပ်ရင် reason ထည့်လို့ရ | `admin_bookings.py`, `app.py` | When "❌ Reject" clicked → prompts for reason with Skip button. Reason shown in card + customer notification. State stored in `bot_data` (not `user_data`) to avoid ConversationHandler interference. New handlers: `handle_reject_reason` (group -1), `cb_reject_skip` |
+
+### #41: Customer Bot Duration Conflict Reset 🐛
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Duration too long → form resets | `customer_bot/booking_handlers.py` | `_submit_booking` failure → `context.user_data.clear()` + `ConversationHandler.END` | Added `_get_max_duration_for_console()`; modified `_submit_booking()` to return max duration + `go_back_to_duration` flag; caller redirects to BK_DURATION step with filtered keyboard |
+
 ## 2026-06-19 — Booking System Concurrency Fixes (H1, C1, H2)
 
 ### H1: Approve Overlap Lock 🔒

@@ -2,6 +2,33 @@
 
 > ⏳ = Known but unsolved
 
+## UnboundLocalError: Variable Scope Across Branches (2026-06-20)
+
+**Pattern:** Variable defined inside one `if` branch but accessed in another `if/else` branch.
+
+**Example:**
+```python
+if action == "approve":
+    bk_info = ...  # defined here only
+# --- several blocks later ---
+if action == "reject":  # or: else:
+    customer_name = bk_info.get(...)  # ❌ UnboundLocalError!
+```
+
+**Fix:** Move variable definition BEFORE all conditional branches that use it.
+
+**Affected bugs:** #38 (consoles_with_game), #39 (bk_info)
+
+## ConversationHandler Interferes with context.user_data (2026-06-20)
+
+**Pattern:** State stored in `context.user_data` between CallbackQueryHandler and MessageHandler gets lost/altered by ConversationHandler's internal state management.
+
+**Symptom:** MessageHandler at group -1 fires but `context.user_data.get('key')` returns None.
+
+**Fix:** Use `context.bot_data` keyed by `user_id` instead of `context.user_data`.
+
+**Affected bugs:** #40 (reject reason flow)
+
 ## Session Timer Drift on Bot Restart (FIXED — 2026-06-18)
 - Bot restart → end-of-session timer drifts forward by 2h+
 - **Root cause:** `_end_dt_iso = datetime.now() + planned_mins` — `now` = restart time, not original start
