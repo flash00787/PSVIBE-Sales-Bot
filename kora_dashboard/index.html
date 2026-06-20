@@ -710,6 +710,96 @@
 
     .tl-booking .tl-name { font-weight: 600; font-size: 0.72rem; }
     .tl-booking .tl-time { font-size: 0.6rem; opacity: 0.8; }
+    .tl-booking .tl-game { font-size: 0.58rem; opacity: 0.65; font-style: italic; }
+
+    /* Pending & Checked-in statuses */
+    .tl-booking.pending { background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.1)); border-left: 3px solid #fbbf24; color: #fde68a; }
+    .tl-booking.checked_in { background: linear-gradient(135deg, rgba(45,212,191,0.2), rgba(45,212,191,0.1)); border-left: 3px solid #2dd4bf; color: #99f6e4; animation: tlPulse 2.5s infinite; }
+
+    /* Summary Stats Bar */
+    .tl-summary-bar {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem; border-radius: 10px;
+      background: rgba(15,23,42,0.5); border: 1px solid var(--border);
+    }
+    .tl-stat-card {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.85rem; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .tl-stat-card .tl-stat-icon { font-size: 1.2rem; }
+    .tl-stat-card .tl-stat-val { font-weight: 700; font-size: 1.1rem; }
+    .tl-stat-card .tl-stat-label { font-size: 0.7rem; color: var(--muted); }
+    .tl-stat-card.confirmed-stat { border-left: 3px solid #4ade80; }
+    .tl-stat-card.active-stat { border-left: 3px solid #38bdf8; }
+    .tl-stat-card.pending-stat { border-left: 3px solid #fbbf24; }
+    .tl-stat-card.checkedin-stat { border-left: 3px solid #2dd4bf; }
+    .tl-stat-card.util-stat { border-left: 3px solid #a78bfa; }
+
+    /* Now Indicator */
+    .tl-now-line {
+      position: absolute; top: 0; bottom: 0; z-index: 3;
+      width: 2px; pointer-events: none;
+    }
+    .tl-now-line::before {
+      content: 'NOW'; position: absolute; top: -2px; left: 50%;
+      transform: translateX(-50%);
+      background: #ef4444; color: #fff; font-size: 0.55rem;
+      font-weight: 700; padding: 1px 5px; border-radius: 3px;
+      white-space: nowrap;
+    }
+    .tl-now-line.line-red { background: rgba(239,68,68,0.6); }
+    .tl-now-line.line-red::before { background: #ef4444; }
+    .tl-now-line.line-out { background: rgba(148,163,184,0.3); }
+    .tl-now-line.line-out::before { content: 'OUT'; background: #64748b; }
+
+    /* Console Utilization */
+    .tl-util-bar {
+      position: absolute; bottom: 2px; left: 3px; right: 3px;
+      height: 3px; border-radius: 2px; background: rgba(51,65,85,0.3);
+      overflow: hidden;
+    }
+    .tl-util-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, #a78bfa, #818cf8);
+      transition: width 0.5s ease;
+    }
+    .tl-console-label-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .tl-console-label-wrap .tl-util-pct { font-size: 0.55rem; color: var(--muted); }
+
+    /* Timeline Detail Modal */
+    .tl-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.7);
+      align-items: center; justify-content: center;
+    }
+    .tl-modal-overlay.show { display: flex; }
+    .tl-modal {
+      background: var(--card); border: 1px solid var(--accent);
+      border-radius: 14px; padding: 1.5rem; max-width: 420px; width: 90%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      position: relative;
+    }
+    .tl-modal h3 { margin: 0 0 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .tl-modal .tl-close { position: absolute; top: 0.75rem; right: 1rem; background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; }
+    .tl-modal .tl-close:hover { color: var(--text); }
+    .tl-modal .tl-meta-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .tl-modal .tl-meta-val { color: var(--text); font-weight: 600; }
+    .tl-modal .tl-status-badge {
+      display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    }
+    .tl-modal .tl-status-badge.confirmed { background: rgba(74,222,128,0.2); color: #4ade80; }
+    .tl-modal .tl-status-badge.active { background: rgba(56,189,248,0.2); color: #38bdf8; }
+    .tl-modal .tl-status-badge.pending { background: rgba(251,191,36,0.2); color: #fbbf24; }
+    .tl-modal .tl-status-badge.checked_in { background: rgba(45,212,191,0.2); color: #2dd4bf; }
+
+    .tl-detail-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .tl-detail-row:last-child { border-bottom: none; }
+    .tl-detail-row .tl-detail-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+    .tl-detail-row .tl-detail-label { font-size: 0.75rem; color: var(--muted); width: 60px; flex-shrink: 0; }
+    .tl-detail-row .tl-detail-val { font-size: 0.85rem; font-weight: 600; }
 
     /* Tooltip */
     .tl-tooltip {
@@ -732,9 +822,14 @@
       .tl-booking { font-size: 0.6rem; padding: 2px 4px; }
       .tl-booking .tl-name { font-size: 0.62rem; }
       .tl-booking .tl-time { font-size: 0.55rem; }
+      .tl-booking .tl-game { display: none; }
       .tl-row { min-height: 38px; }
       .tl-slot-track { min-height: 38px; }
       .tl-grid { min-width: 860px; }
+      .tl-summary-bar { padding: 0.5rem; gap: 0.35rem; }
+      .tl-stat-card { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+      .tl-stat-card .tl-stat-val { font-size: 0.9rem; }
+      .tl-modal { max-width: 95vw; padding: 1rem; }
     }
   </style>
 </head>
@@ -1456,16 +1551,26 @@
           📅 <span data-i18n="tab_timeline">Timeline</span>
           <span style="font-size:0.75rem;color:var(--muted);">
             <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#4ade80;vertical-align:middle;margin-right:4px;"></span> Confirmed
+            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#2dd4bf;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Checked-in
             <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#38bdf8;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Active
-            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#fbbf24;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Waiting
+            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#fbbf24;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Pending
           </span>
         </div>
+        <div id="timelineSummary"></div>
         <div class="panel-body no-pad">
           <div class="timeline-scroll">
             <div id="timelineContent">
               <div class="empty-state" data-i18n="timeline_no_bookings">Loading timeline...</div>
             </div>
           </div>
+        </div>
+      </div>
+      <!-- Timeline Detail Modal -->
+      <div class="tl-modal-overlay" id="tlModalOverlay" onclick="closeBookingModal(event)">
+        <div class="tl-modal" onclick="event.stopPropagation()">
+          <button class="tl-close" onclick="closeBookingModal()">✕</button>
+          <h3 id="tlModalTitle">Booking Details</h3>
+          <div id="tlModalBody"></div>
         </div>
       </div>
     </div>
@@ -2683,7 +2788,7 @@
   // ═══════════════════════════════════════
   // TIMELINE
   // ═══════════════════════════════════════
-  const timelineState = { date: '', consoles: [] };
+  const timelineState = { date: '', consoles: [], _bookings: [] };
   const OPEN_HOUR = 9, CLOSE_HOUR = 21;
 
   function timelineDateStr() {
@@ -2721,25 +2826,66 @@
     document.getElementById('timelineDateInput').value = date;
     document.getElementById('timelineDateLabel').textContent = date;
     try {
-      const [confResp, actResp, csResp] = await Promise.all([
+      const [confResp, actResp, pendResp, csResp] = await Promise.all([
         fetch(API_BASE + '/api/bookings?status=confirmed&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
-        fetch(API_BASE + '/api/bookings?status=active&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
+        fetch(API_BASE + '/api/bookings?status=Active&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
+        fetch(API_BASE + '/api/bookings?status=pending&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
         fetch(API_BASE + '/api/fetch_console_status', { headers: { 'Authorization': 'Bearer ' + getToken() } })
       ]);
       const confirmed = (await confResp.json()).data?.bookings || [];
       const active = (await actResp.json()).data?.bookings || [];
+      const pending = (await pendResp.json()).data?.bookings || [];
       const csData = (await csResp.json()).data || (await csResp.json());
       let consoles = Array.isArray(csData) ? csData : (csData.consoles || csData.data || []);
       if (consoles.length === 0) {
         consoles = Array.from({length:10}, (_,i) => ({ console_id: 'C-' + String(i+1).padStart(2,'0') }));
       }
       consoles.sort((a,b) => (a.console_id||a.consoleId||'').localeCompare(b.console_id||b.consoleId||''));
-      const allBookings = [...confirmed, ...active];
+      // Merge all bookings with dedup by id (Active may overlap with confirmed)
+      const seenIds = new Set();
+      const allBookings = [];
+      for (const b of [...confirmed, ...active, ...pending]) {
+        if (!seenIds.has(b.id)) { seenIds.add(b.id); allBookings.push(b); }
+      }
+      // Cache for modal access
+      timelineState._bookings = allBookings;
+      renderTimelineSummary(allBookings, consoles);
       renderTimeline(allBookings, consoles);
       document.getElementById('timelineRefreshTime').textContent = 'Updated: ' + new Date().toLocaleTimeString();
     } catch(e) {
       document.getElementById('timelineContent').innerHTML = '<div class="empty-state">⚠️ Failed to load timeline: ' + e.message + '</div>';
     }
+  }
+
+  function renderTimelineSummary(bookings, consoles) {
+    const container = document.getElementById('timelineSummary');
+    const confCount = bookings.filter(b => b.status === 'confirmed').length;
+    const activeCount = bookings.filter(b => b.status === 'Active').length;
+    const pendCount = bookings.filter(b => b.status === 'pending').length;
+    const chkInCount = bookings.filter(b => b.status === 'checked_in').length;
+    // Console utilization: % of operating hours booked
+    const totalSlotMin = (CLOSE_HOUR - OPEN_HOUR) * 60;
+    let totalBookedMin = 0;
+    for (const b of bookings) {
+      const st = b.startTime || b.timeSlot || '';
+      const et = b.endTime || '';
+      if (!st || !et) continue;
+      const [sh, sm] = st.split(':').map(Number);
+      const [eh, em] = et.split(':').map(Number);
+      const startMin = Math.max((sh - OPEN_HOUR) * 60 + sm, 0);
+      const endMin = Math.min((eh - OPEN_HOUR) * 60 + em, totalSlotMin);
+      totalBookedMin += Math.max(endMin - startMin, 0);
+    }
+    const utilPct = consoles.length ? Math.round((totalBookedMin / (totalSlotMin * consoles.length)) * 100) : 0;
+    const total = confCount + activeCount + pendCount + chkInCount;
+    if (total === 0) { container.innerHTML = ''; return; }
+    container.innerHTML = '<div class="tl-summary-bar">' +
+      '<div class="tl-stat-card confirmed-stat"><span class="tl-stat-icon">✅</span><div><div class="tl-stat-val">' + confCount + '</div><div class="tl-stat-label">Confirmed</div></div></div>' +
+      (chkInCount > 0 ? '<div class="tl-stat-card checkedin-stat"><span class="tl-stat-icon">📍</span><div><div class="tl-stat-val">' + chkInCount + '</div><div class="tl-stat-label">Checked-in</div></div></div>' : '') +
+      '<div class="tl-stat-card active-stat"><span class="tl-stat-icon">🎮</span><div><div class="tl-stat-val">' + activeCount + '</div><div class="tl-stat-label">Active</div></div></div>' +
+      (pendCount > 0 ? '<div class="tl-stat-card pending-stat"><span class="tl-stat-icon">⏳</span><div><div class="tl-stat-val">' + pendCount + '</div><div class="tl-stat-label">Pending</div></div></div>' : '') +
+      '<div class="tl-stat-card util-stat"><span class="tl-stat-icon">📊</span><div><div class="tl-stat-val">' + utilPct + '%</div><div class="tl-stat-label">Utilization</div></div></div>' +
+      '</div>';
   }
 
   function renderTimeline(bookings, consoles) {
@@ -2748,9 +2894,19 @@
       container.innerHTML = '<div class="empty-state" data-i18n="timeline_no_bookings">' + t('timeline_no_bookings') + '</div>';
       return;
     }
-    const totalSlots = CLOSE_HOUR - OPEN_HOUR; // 12 hours
+    const totalSlots = CLOSE_HOUR - OPEN_HOUR;
+    const totalMin = totalSlots * 60;
     const slotPct = 100 / totalSlots;
-    let html = '<div class="tl-grid">';
+    // Calculate NOW position (Myanmar Time)
+    const now = new Date();
+    const mmtNow = new Date(now.getTime() + 6.5 * 3600000);
+    const nowHour = mmtNow.getUTCHours();
+    const nowMin = mmtNow.getUTCMinutes();
+    const nowTotalMin = (nowHour - OPEN_HOUR) * 60 + nowMin;
+    const nowPctVal = (nowTotalMin / totalMin) * 100;
+    const isInHours = nowHour >= OPEN_HOUR && nowHour < CLOSE_HOUR;
+
+    let html = '<div class="tl-grid" id="tlGrid">';
     // Header row
     html += '<div class="tl-header-row"><div class="tl-corner">Console</div>';
     for (let h = OPEN_HOUR; h < CLOSE_HOUR; h++) {
@@ -2761,11 +2917,34 @@
     for (const c of consoles) {
       const cid = c.console_id || c.consoleId || '';
       const cb = bookings.filter(b => (b.console_id || b.consoleId || '') === cid);
-      html += '<div class="tl-row"><div class="tl-console-label">' + cid + '</div><div class="tl-slot-track">';
+      // Calculate per-console utilization
+      let conBookedMin = 0;
+      for (const b of cb) {
+        const bst = b.startTime || b.timeSlot || '';
+        const bet = b.endTime || '';
+        if (!bst || !bet) continue;
+        const [bsh, bsm] = bst.split(':').map(Number);
+        const [beh, bem] = bet.split(':').map(Number);
+        const bsMin = Math.max((bsh - OPEN_HOUR) * 60 + bsm, 0);
+        const beMin = Math.min((beh - OPEN_HOUR) * 60 + bem, totalMin);
+        conBookedMin += Math.max(beMin - bsMin, 0);
+      }
+      const conUtil = Math.round((conBookedMin / totalMin) * 100);
+      const hasBookings = cb.length > 0;
+
+      html += '<div class="tl-row"><div class="tl-console-label"><div class="tl-console-label-wrap"><span>' + cid + '</span>' +
+        (hasBookings ? '<span class="tl-util-pct" style="color:' + (conUtil > 70 ? '#f87171' : conUtil > 40 ? '#fbbf24' : '#4ade80') + '">' + conUtil + '%</span>' : '') +
+        '</div></div>' +
+        '<div class="tl-slot-track">';
       // Hour markers
       for (let h = OPEN_HOUR; h <= CLOSE_HOUR; h++) {
         const leftPct = (h - OPEN_HOUR) * slotPct;
         html += '<div class="tl-hour-marker" style="left:' + leftPct + '%"></div>';
+      }
+      // Now indicator (inside each track if in hours)
+      if (isInHours && nowPctVal >= 0 && nowPctVal <= 100) {
+        html += '<div class="tl-now-line line-red" style="left:' + nowPctVal + '%" title="Now: ' +
+          String(nowHour).padStart(2,'0') + ':' + String(nowMin).padStart(2,'0') + ' MMT"></div>';
       }
       // Booking blocks
       for (const b of cb) {
@@ -2777,21 +2956,23 @@
         const startMin = (sh - OPEN_HOUR) * 60 + sm;
         const endMin = (eh - OPEN_HOUR) * 60 + em;
         const durMin = Math.max(endMin - startMin, 15);
-        const leftPct = (startMin / (totalSlots * 60)) * 100;
-        const widthPct = Math.max((durMin / (totalSlots * 60)) * 100, 3);
-        const statusClass = b.status === 'Active' ? 'active' : (b.status === 'Waiting' ? 'waiting' : 'confirmed');
-        const custName = (b.customerName || b.phone || '—').substring(0, 18);
-        const tooltipData = encodeURIComponent(JSON.stringify({
-          id: b.id, customer: b.customerName || '—', phone: b.phone || '',
-          time: st + ' – ' + et, dur: b.durationMins + ' mins',
-          game: b.gameName || '—', console: cid, status: b.status
-        }));
+        const leftPct = (startMin / totalMin) * 100;
+        const widthPct = Math.max((durMin / totalMin) * 100, 3);
+        const statusClass = (b.status || '').toLowerCase() === 'active' ? 'active' :
+          (b.status || '') === 'pending' ? 'pending' :
+          (b.status || '') === 'checked_in' ? 'checked_in' :
+          (b.status || '').toLowerCase() === 'waiting' ? 'waiting' : 'confirmed';
+        const custName = (b.customerName || b.phone || '—').substring(0, 16);
+        const gameName = (b.gameName || '').substring(0, 12);
+        const bookingIdx = timelineState._bookings ? timelineState._bookings.findIndex(bk => bk.id === b.id) : -1;
         html += '<div class="tl-booking ' + statusClass + '" ' +
           'style="left:' + leftPct + '%;width:' + widthPct + '%" ' +
-          'onmouseenter="showTimelineTooltip(event,\'' + tooltipData + '\')" ' +
-          'onmouseleave="hideTimelineTooltip()">' +
+          'onmouseenter="showTimelineTooltip(event,' + bookingIdx + ')" ' +
+          'onmouseleave="hideTimelineTooltip()" ' +
+          'onclick="openBookingModal(' + bookingIdx + ')">' +
           '<span class="tl-name">' + custName + '</span>' +
           '<span class="tl-time">' + st + '–' + et + '</span>' +
+          (gameName && widthPct > 12 ? '<span class="tl-game">🎮 ' + gameName + '</span>' : '') +
           '</div>';
       }
       html += '</div></div>';
@@ -2800,7 +2981,8 @@
     container.innerHTML = html;
   }
 
-  function showTimelineTooltip(e, dataStr) {
+  // Tooltip uses booking index into cached _bookings array
+  function showTimelineTooltip(e, idx) {
     let tt = document.getElementById('tlTooltip');
     if (!tt) {
       tt = document.createElement('div');
@@ -2809,12 +2991,18 @@
       document.body.appendChild(tt);
     }
     try {
-      const d = JSON.parse(decodeURIComponent(dataStr));
-      tt.innerHTML = '<div><span class="tt-label">Customer:</span> <span class="tt-val">' + d.customer + '</span></div>' +
-        '<div><span class="tt-label">Console:</span> <span class="tt-val">' + d.console + ' | #' + d.id + '</span></div>' +
-        '<div><span class="tt-label">Time:</span> <span class="tt-val">' + d.time + ' (' + d.dur + ')</span></div>' +
-        '<div><span class="tt-label">Game:</span> <span class="tt-val">' + d.game + '</span></div>' +
-        '<div><span class="tt-label">Status:</span> <span class="tt-val">' + d.status + '</span></div>';
+      const b = timelineState._bookings[idx];
+      if (!b) { tt.classList.remove('show'); return; }
+      const st = b.startTime || b.timeSlot || '';
+      const et = b.endTime || '';
+      const cid = b.console_id || b.consoleId || '';
+      const statusBadge = '<span class="tl-status-badge ' + (b.status||'').toLowerCase() + '">' + (b.status||'') + '</span>';
+      tt.innerHTML = '<div><span class="tt-label">#' + b.id + '</span> ' + statusBadge + '</div>' +
+        '<div><span class="tt-label">Customer:</span> <span class="tt-val">' + (b.customerName || '—') + '</span></div>' +
+        '<div><span class="tt-label">Console:</span> <span class="tt-val">' + cid + '</span></div>' +
+        '<div><span class="tt-label">Time:</span> <span class="tt-val">' + st + ' – ' + et + ' (' + (b.durationMins||'?') + ' min)</span></div>' +
+        (b.gameName ? '<div><span class="tt-label">Game:</span> <span class="tt-val">' + b.gameName + '</span></div>' : '') +
+        '<div style="font-size:0.6rem;color:var(--muted);margin-top:2px;">🖱️ Click for details</div>';
       tt.style.left = (e.clientX + 15) + 'px';
       tt.style.top = (e.clientY + 10) + 'px';
       tt.classList.add('show');
@@ -2824,6 +3012,33 @@
   function hideTimelineTooltip() {
     const tt = document.getElementById('tlTooltip');
     if (tt) tt.classList.remove('show');
+  }
+
+  function openBookingModal(idx) {
+    const b = timelineState._bookings && timelineState._bookings[idx];
+    if (!b) return;
+    const st = b.startTime || b.timeSlot || '';
+    const et = b.endTime || '';
+    const cid = b.console_id || b.consoleId || '';
+    const phone = b.phone || b.telegramChatId || b.telegram_chat_id || '—';
+    const statusBadge = '<span class="tl-status-badge ' + (b.status||'').toLowerCase() + '">' + (b.status||'') + '</span>';
+    document.getElementById('tlModalTitle').innerHTML = '📋 Booking #' + b.id + ' ' + statusBadge;
+    let body = '<div class="tl-detail-row"><span class="tl-detail-icon">👤</span><span class="tl-detail-label">Customer</span><span class="tl-detail-val">' + (b.customerName || '—') + '</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">📞</span><span class="tl-detail-label">Phone</span><span class="tl-detail-val">' + phone + '</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">🎮</span><span class="tl-detail-label">Console</span><span class="tl-detail-val">' + cid + ' (' + (b.consoleType||'PS5') + ')</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">🕐</span><span class="tl-detail-label">Time</span><span class="tl-detail-val">' + st + ' – ' + et + ' (' + (b.durationMins||'?') + ' mins)</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">🎯</span><span class="tl-detail-label">Game</span><span class="tl-detail-val">' + (b.gameName || 'Any / None') + '</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">📅</span><span class="tl-detail-label">Date</span><span class="tl-detail-val">' + (b.date || '—') + '</span></div>';
+    if (b.member_id) body += '<div class="tl-detail-row"><span class="tl-detail-icon">💳</span><span class="tl-detail-label">Member</span><span class="tl-detail-val">' + b.member_id + '</span></div>';
+    if (b.staff_name || b.customerName) body += '<div class="tl-detail-row"><span class="tl-detail-icon">👨‍💼</span><span class="tl-detail-label">Staff</span><span class="tl-detail-val">' + (b.staff_name || 'Walk-in') + '</span></div>';
+    body += '<div class="tl-detail-row"><span class="tl-detail-icon">📊</span><span class="tl-detail-label">Status</span><span class="tl-detail-val">' + statusBadge + '</span></div>';
+    document.getElementById('tlModalBody').innerHTML = body;
+    document.getElementById('tlModalOverlay').classList.add('show');
+  }
+
+  function closeBookingModal(e) {
+    if (e && e.target !== document.getElementById('tlModalOverlay')) return;
+    document.getElementById('tlModalOverlay').classList.remove('show');
   }
 
   async function refreshSchedule() {
