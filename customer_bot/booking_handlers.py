@@ -459,19 +459,20 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     return available
 
 
-async def _get_max_duration_for_console(date_str: str, time_str: str, console_id: str, max_dur: int = 360) -> int:
+async def _get_max_duration_for_console(date_str: str, time_str: str, console_id: str, max_dur: int = 360):
     """Calculate max available duration (in minutes) for a specific console at a time.
-    Returns 0 if console is completely unavailable at that time."""
+    Returns (max_dur_mins, next_booking_time) tuple — next_booking_time is "HH:MM" or empty.
+    max_dur_mins = 0 if console is completely unavailable."""
     logger = logging.getLogger(__name__)
     try:
         consoles_raw = await _api._fetch_consoles()
         bks = await _api._api_get(f"search-bookings?date={date_str}")
     except Exception as e:
         logger.warning("_get_max_duration_for_console: API fetch failed — %s", e)
-        return 0
+        return 0, ""
 
     if not consoles_raw:
-        return 0
+        return 0, ""
 
     if isinstance(bks, dict):
         if "bookings" in bks:
@@ -486,7 +487,7 @@ async def _get_max_duration_for_console(date_str: str, time_str: str, console_id
             console_found = c
             break
     if not console_found:
-        return 0
+        return 0, ""
     status = console_found.get("status", "").lower()
     if status not in ("free", "reserved"):
         return 0  # Console is Active/Unavailable
@@ -496,7 +497,7 @@ async def _get_max_duration_for_console(date_str: str, time_str: str, console_id
         target_h, target_m = map(int, time_str.split(":"))
         target_start = target_h * 60 + target_m
     except (ValueError, AttributeError):
-        return 0
+        return 0, ""
 
     # Build conflict intervals for this console only
     conflicts = []
@@ -542,9 +543,13 @@ async def _get_max_duration_for_console(date_str: str, time_str: str, console_id
             break
 
     if next_conflict_start <= target_start:
-        return 0  # Completely blocked
+        return 0, ""  # Completely blocked
 
-    return next_conflict_start - target_start
+    max_mins = next_conflict_start - target_start
+    nb_h = next_conflict_start // 60
+    nb_m = next_conflict_start % 60
+    next_time = f"{nb_h:02d}:{nb_m:02d}"
+    return max_mins, next_time
 
 
 def _get_next_available_times(consoles_raw, bookings, target_start_minutes, target_end_minutes, target_date=""):
@@ -730,12 +735,13 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 # Customer picked a specific console — validate it's still available
                 if console_id not in available_ids:
                     # Calculate max available duration for this console
-                    max_dur = await _get_max_duration_for_console(date_str, time_str, console_id)
+                    max_dur, next_booking = await _get_max_duration_for_console(date_str, time_str, console_id)
                     if max_dur > 0:
                         context.user_data["_bk_max_duration"] = max_dur
+                        next_info = f"⏱️ {next_booking} မှာ Booking ရှိနေလို့ *{max_dur} min* ပဲ ရပါတော့မယ် ခင်ဗျ" if next_booking else f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။"
                         return (
                             f"❌ Console {console_id} သည် {duration_mins} min အတွက် မရနိုင်ပါ။\n\n"
-                            f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။\n"
+                            f"{next_info}\n"
                             f"Duration ပြန်ရွေးပါ 👇",
                             False,
                             True,  # go_back_to_duration=True
@@ -752,6 +758,40 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 console_type = assigned.get("type", console_type)
                 context.user_data["bk_console"] = console_type
                 context.user_data["bk_specific_console_id"] = console_id
+            else:
+                # No console available for this duration — find max possible duration
+                # Pick any console of matching type to calculate max_dur
+                max_dur = 0
+                try:
+                    all_consoles = await _api._fetch_consoles()
+                    for c in all_consoles:
+                        c_type = c.get("type", "")
+                        c_status = c.get("status", "").lower()
+                        if console_type == "Any" or c_type.lower() == console_type.lower():
+                            if c_status in ("free", "reserved"):
+                                cid = c.get("id", "")
+                                if cid:
+                                    max_dur, next_booking = await _get_max_duration_for_console(date_str, time_str, cid)
+                                    if max_dur > 0:
+                                        break  # First console with availability
+                except Exception:
+                    pass
+                if max_dur > 0:
+                    context.user_data["_bk_max_duration"] = max_dur
+                    next_info = f"⏱️ {next_booking} မှာ Booking ရှိနေလို့ *{max_dur} min* ပဲ ရပါတော့မယ် ခင်ဗျ" if next_booking else f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။"
+                    return (
+                        f"❌ {console_type} တွင် {duration_mins} min အတွက် console မရနိုင်ပါ။\n\n"
+                        f"{next_info}\n"
+                        f"Duration ပြန်ရွေးပါ 👇",
+                        False,
+                        True,  # go_back_to_duration
+                    )
+                # No console available at all — show generic error
+                return (
+                    f"❌ {console_type} တွင် ထိုအချိန်၌ console အားလုံး မရနိုင်ပါ。\n\n"
+                    "အခြားအချိန် သို့မဟုတ် အခြား console အမျိုးအစားကို ထပ်ရွေးပါ။\n"
+                    "🔄 /start — ပြန်ကြိုးစားရန်"
+                ), False, False
         except Exception as e:
             logging.warning("_submit_booking: _get_available_consoles failed — %s", e)
 
@@ -793,15 +833,16 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             max_dur = 0
             if console_id and date_str and time_str:
                 try:
-                    max_dur = await _get_max_duration_for_console(date_str, time_str, console_id)
+                    max_dur, next_booking = await _get_max_duration_for_console(date_str, time_str, console_id)
                 except Exception:
                     pass
             if max_dur > 0 and max_dur < duration_mins:
                 context.user_data["_bk_max_duration"] = max_dur
+                next_info = f"⏱️ {next_booking} မှာ Booking ရှိနေလို့ *{max_dur} min* ပဲ ရပါတော့မယ် ခင်ဗျ" if next_booking else f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။"
                 return (
                     f"❌ Booking မအောင်မြင်ပါ\n"
                     f"Console {console_id} ({console_type}) သည် {duration_mins} min အတွက် မရနိုင်ပါ။\n\n"
-                    f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။\n"
+                    f"{next_info}\n"
                     f"Duration ပြန်ရွေးပါ 👇"
                 ), False, True
             return (
@@ -810,8 +851,44 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 "အခြားအချိန် သို့မဟုတ် အခြား console ကို ထပ်ရွေးပါ။\n"
                 "🔄 /start — ပြန်ကြိုးစားရန်"
             ), False, False
+    except ValueError as e:
+        # API returned HTTP error (e.g., 409 Conflict) — treat as booking failure, not crash
+        logger.warning("Booking API error (ValueError): %s", e)
+        max_dur = 0
+        # Try max_duration even for API errors
+        if console_id and date_str and time_str:
+            try:
+                max_dur, next_booking = await _get_max_duration_for_console(date_str, time_str, console_id)
+            except Exception:
+                pass
+        # If no console_id (auto-assign with empty available), try any matching console
+        if max_dur <= 0 and not console_id and date_str and time_str and console_type:
+            try:
+                all_consoles = await _api._fetch_consoles()
+                for c in all_consoles:
+                    c_type = c.get("type", "")
+                    c_status = c.get("status", "").lower()
+                    if console_type == "Any" or c_type.lower() == console_type.lower():
+                        if c_status in ("free", "reserved"):
+                            dur, _nb = await _get_max_duration_for_console(date_str, time_str, c.get("id", ""))
+                            if dur > max_dur:
+                                max_dur = dur
+                            if max_dur > 0:
+                                break
+            except Exception:
+                pass
+        if max_dur > 0 and max_dur < duration_mins:
+            context.user_data["_bk_max_duration"] = max_dur
+            next_info = f"⏱️ {next_booking} မှာ Booking ရှိနေလို့ *{max_dur} min* ပဲ ရပါတော့မယ် ခင်ဗျ" if next_booking else f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။"
+            return (
+                f"❌ Booking မအောင်မြင်ပါ\n"
+                f"{duration_mins} min အတွက် {console_type} console မရနိုင်ပါ။\n\n"
+                f"{next_info}\n"
+                f"Duration ပြန်ရွေးပါ 👇"
+            ), False, True
+        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False, False
     except Exception as e:
-        logger.error("Booking submission failed: %s", e)
+        logger.error("Booking submission failed (unexpected): %s", e)
         return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False, False
 
 
