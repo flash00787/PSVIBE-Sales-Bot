@@ -639,6 +639,103 @@
       .eod-grid { grid-template-columns: 1fr; }
       .tab-btn { padding: 0.4rem 0.5rem; font-size: 0.68rem; }
     }
+
+    /* ═══ TIMELINE STYLES ═══ */
+    .timeline-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .timeline-scroll::-webkit-scrollbar { height: 6px; }
+    .timeline-scroll::-webkit-scrollbar-track { background: var(--bg); }
+    .timeline-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .tl-grid { position: relative; min-width: 1040px; }
+    .tl-header-row {
+      display: flex; border-bottom: 1px solid var(--border);
+      background: rgba(15,23,42,0.8); position: sticky; top: 0; z-index: 5;
+    }
+    .tl-corner {
+      width: 70px; flex-shrink: 0; padding: 0.5rem 0.4rem;
+      font-size: 0.7rem; font-weight: 700; color: var(--muted);
+      text-align: center; border-right: 1px solid var(--border);
+      background: rgba(15,23,42,0.95);
+    }
+    .tl-time-cell {
+      flex: 1; min-width: 80px; padding: 0.45rem 0.25rem;
+      font-size: 0.65rem; color: var(--muted); text-align: center;
+      border-right: 1px solid rgba(51,65,85,0.3);
+      font-weight: 600;
+    }
+    .tl-time-cell:last-child { border-right: none; }
+
+    .tl-row {
+      display: flex; position: relative;
+      border-bottom: 1px solid rgba(51,65,85,0.2);
+      min-height: 46px;
+    }
+    .tl-row:hover { background: rgba(56,189,248,0.03); }
+    .tl-console-label {
+      width: 70px; flex-shrink: 0; display: flex; align-items: center;
+      padding: 0.4rem; font-size: 0.72rem; font-weight: 700;
+      color: var(--accent); border-right: 1px solid var(--border);
+      background: rgba(15,23,42,0.6);
+    }
+    .tl-slot-track {
+      flex: 1; position: relative; min-height: 46px;
+    }
+    .tl-hour-marker {
+      position: absolute; top: 0; bottom: 0;
+      width: 1px; background: rgba(51,65,85,0.15);
+      pointer-events: none;
+    }
+
+    .tl-booking {
+      position: absolute; top: 4px; height: calc(100% - 8px);
+      border-radius: 6px; padding: 4px 6px;
+      font-size: 0.68rem; line-height: 1.3;
+      overflow: hidden; white-space: nowrap;
+      text-overflow: ellipsis; cursor: pointer;
+      transition: all 0.15s; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      min-width: 5px;
+    }
+    .tl-booking:hover {
+      z-index: 10; transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      filter: brightness(1.15);
+    }
+    .tl-booking.confirmed { background: linear-gradient(135deg, rgba(74,222,128,0.25), rgba(74,222,128,0.15)); border-left: 3px solid #4ade80; color: #bbf7d0; }
+    .tl-booking.active { background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(56,189,248,0.15)); border-left: 3px solid #38bdf8; color: #bae6fd; animation: tlPulse 2s infinite; }
+    .tl-booking.waiting { background: linear-gradient(135deg, rgba(251,191,36,0.25), rgba(251,191,36,0.15)); border-left: 3px solid #fbbf24; color: #fde68a; }
+    @keyframes tlPulse { 0%,100%{ opacity: 1; } 50%{ opacity: 0.85; } }
+
+    .tl-booking .tl-name { font-weight: 600; font-size: 0.72rem; }
+    .tl-booking .tl-time { font-size: 0.6rem; opacity: 0.8; }
+
+    /* Tooltip */
+    .tl-tooltip {
+      display: none; position: fixed; z-index: 9999;
+      background: var(--card); border: 1px solid var(--accent);
+      border-radius: 10px; padding: 0.75rem 1rem;
+      font-size: 0.8rem; line-height: 1.6; min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+    .tl-tooltip.show { display: block; }
+    .tl-tooltip .tt-label { color: var(--muted); font-size: 0.7rem; }
+    .tl-tooltip .tt-val { color: var(--text); font-weight: 600; }
+
+    /* Mobile Timeline */
+    @media (max-width: 767px) {
+      .tl-corner { width: 52px; font-size: 0.6rem; }
+      .tl-console-label { width: 52px; font-size: 0.65rem; padding: 0.25rem; }
+      .tl-time-cell { min-width: 60px; font-size: 0.58rem; padding: 0.35rem 0.15rem; }
+      .tl-booking { font-size: 0.6rem; padding: 2px 4px; }
+      .tl-booking .tl-name { font-size: 0.62rem; }
+      .tl-booking .tl-time { font-size: 0.55rem; }
+      .tl-row { min-height: 38px; }
+      .tl-slot-track { min-height: 38px; }
+      .tl-grid { min-width: 860px; }
+    }
   </style>
 </head>
 <body>
@@ -728,6 +825,7 @@
     <button class="tab-btn" data-tab="analytics" data-i18n="tab_analytics">📊 Bot Analytics</button>
     <button class="tab-btn" data-tab="feedback" data-i18n="tab_feedback">⭐ Feedback</button>
     <button class="tab-btn" data-tab="suggestions" data-i18n="tab_suggestions">💡 Suggestions</button>
+    <button class="tab-btn" data-tab="timeline" data-i18n="tab_timeline">📅 Timeline</button>
   </div>
 
   <div class="container">
@@ -1341,6 +1439,37 @@
       </div>
     </div>
 
+    <!-- ═══ TAB: Timeline ═══ -->
+    <div class="tab-content" id="tab-timeline">
+      <div class="refresh-bar">
+        <div class="refresh-bar-left" style="display:flex;gap:0.5rem;align-items:center;">
+          <button class="refresh-btn" onclick="goTimelineToday()" data-i18n="timeline_today">📅 Today</button>
+          <button class="refresh-btn" onclick="goTimelineTomorrow()" data-i18n="timeline_tomorrow">➡️ Tomorrow</button>
+          <input type="date" id="timelineDateInput" onchange="onTimelineDateChange()" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.3rem 0.6rem;border-radius:6px;font-size:0.8rem;">
+          <span style="font-size:0.85rem;color:var(--accent);font-weight:600;" id="timelineDateLabel">—</span>
+        </div>
+        <span style="font-size:0.75rem;color:var(--muted);" id="timelineRefreshTime">—</span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          📅 <span data-i18n="tab_timeline">Timeline</span>
+          <span style="font-size:0.75rem;color:var(--muted);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#4ade80;vertical-align:middle;margin-right:4px;"></span> Confirmed
+            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#38bdf8;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Active
+            <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#fbbf24;vertical-align:middle;margin-left:8px;margin-right:4px;"></span> Waiting
+          </span>
+        </div>
+        <div class="panel-body no-pad">
+          <div class="timeline-scroll">
+            <div id="timelineContent">
+              <div class="empty-state" data-i18n="timeline_no_bookings">Loading timeline...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
@@ -1508,6 +1637,10 @@
       panel_user_segments: 'User Segments',
       panel_top_commands: 'Top Commands',
       panel_peak_hours: 'Peak Hours Activity',
+      tab_timeline: '📅 Timeline',
+      timeline_today: '📅 Today',
+      timeline_tomorrow: '➡️ Tomorrow',
+      timeline_no_bookings: 'No bookings for this date',
     },
     my: {
       login_title: 'Kora ဒက်ရှ်ဘုတ်',
@@ -1648,6 +1781,10 @@
       panel_user_segments: 'အသုံးပြုသူအုပ်စုများ',
       panel_top_commands: 'အသုံးများသော Command များ',
       panel_peak_hours: 'အချိန်အလိုက် လုပ်ဆောင်ချက်',
+      tab_timeline: '📅 Timeline',
+      timeline_today: '📅 ဒီနေ့',
+      timeline_tomorrow: '➡️ မနက်ဖြန်',
+      timeline_no_bookings: 'ဒီနေ့အတွက် booking မရှိပါ',
     }
   };
 
@@ -2543,6 +2680,152 @@
       `Last refresh: ${new Date().toLocaleTimeString()} (${elapsed}ms)`;
   }
 
+  // ═══════════════════════════════════════
+  // TIMELINE
+  // ═══════════════════════════════════════
+  const timelineState = { date: '', consoles: [] };
+  const OPEN_HOUR = 9, CLOSE_HOUR = 21;
+
+  function timelineDateStr() {
+    const d = new Date();
+    const mmt = new Date(d.getTime() + 6.5 * 3600000);
+    if (timelineState.date) return timelineState.date;
+    return mmt.toISOString().slice(0,10);
+  }
+
+  function goTimelineToday() {
+    const d = new Date();
+    const mmt = new Date(d.getTime() + 6.5 * 3600000);
+    timelineState.date = mmt.toISOString().slice(0,10);
+    document.getElementById('timelineDateInput').value = timelineState.date;
+    refreshTimeline();
+  }
+
+  function goTimelineTomorrow() {
+    const d = new Date();
+    const mmt = new Date(d.getTime() + 6.5 * 3600000);
+    const tmr = new Date(mmt.getTime() + 86400000);
+    timelineState.date = tmr.toISOString().slice(0,10);
+    document.getElementById('timelineDateInput').value = timelineState.date;
+    refreshTimeline();
+  }
+
+  function onTimelineDateChange() {
+    timelineState.date = document.getElementById('timelineDateInput').value;
+    refreshTimeline();
+  }
+
+  async function refreshTimeline() {
+    if (!isAuthenticated()) return;
+    const date = timelineDateStr();
+    document.getElementById('timelineDateInput').value = date;
+    document.getElementById('timelineDateLabel').textContent = date;
+    try {
+      const [confResp, actResp, csResp] = await Promise.all([
+        fetch(API_BASE + '/api/bookings?status=confirmed&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
+        fetch(API_BASE + '/api/bookings?status=active&date=' + date, { headers: { 'Authorization': 'Bearer ' + getToken() } }),
+        fetch(API_BASE + '/api/fetch_console_status', { headers: { 'Authorization': 'Bearer ' + getToken() } })
+      ]);
+      const confirmed = (await confResp.json()).data?.bookings || [];
+      const active = (await actResp.json()).data?.bookings || [];
+      const csData = (await csResp.json()).data || (await csResp.json());
+      let consoles = Array.isArray(csData) ? csData : (csData.consoles || csData.data || []);
+      if (consoles.length === 0) {
+        consoles = Array.from({length:10}, (_,i) => ({ console_id: 'C-' + String(i+1).padStart(2,'0') }));
+      }
+      consoles.sort((a,b) => (a.console_id||a.consoleId||'').localeCompare(b.console_id||b.consoleId||''));
+      const allBookings = [...confirmed, ...active];
+      renderTimeline(allBookings, consoles);
+      document.getElementById('timelineRefreshTime').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+    } catch(e) {
+      document.getElementById('timelineContent').innerHTML = '<div class="empty-state">⚠️ Failed to load timeline: ' + e.message + '</div>';
+    }
+  }
+
+  function renderTimeline(bookings, consoles) {
+    const container = document.getElementById('timelineContent');
+    if (!bookings.length) {
+      container.innerHTML = '<div class="empty-state" data-i18n="timeline_no_bookings">' + t('timeline_no_bookings') + '</div>';
+      return;
+    }
+    const totalSlots = CLOSE_HOUR - OPEN_HOUR; // 12 hours
+    const slotPct = 100 / totalSlots;
+    let html = '<div class="tl-grid">';
+    // Header row
+    html += '<div class="tl-header-row"><div class="tl-corner">Console</div>';
+    for (let h = OPEN_HOUR; h < CLOSE_HOUR; h++) {
+      html += '<div class="tl-time-cell">' + String(h).padStart(2,'0') + ':00</div>';
+    }
+    html += '</div>';
+    // Console rows
+    for (const c of consoles) {
+      const cid = c.console_id || c.consoleId || '';
+      const cb = bookings.filter(b => (b.console_id || b.consoleId || '') === cid);
+      html += '<div class="tl-row"><div class="tl-console-label">' + cid + '</div><div class="tl-slot-track">';
+      // Hour markers
+      for (let h = OPEN_HOUR; h <= CLOSE_HOUR; h++) {
+        const leftPct = (h - OPEN_HOUR) * slotPct;
+        html += '<div class="tl-hour-marker" style="left:' + leftPct + '%"></div>';
+      }
+      // Booking blocks
+      for (const b of cb) {
+        const st = b.startTime || b.timeSlot || '';
+        const et = b.endTime || '';
+        if (!st || !et) continue;
+        const [sh, sm] = st.split(':').map(Number);
+        const [eh, em] = et.split(':').map(Number);
+        const startMin = (sh - OPEN_HOUR) * 60 + sm;
+        const endMin = (eh - OPEN_HOUR) * 60 + em;
+        const durMin = Math.max(endMin - startMin, 15);
+        const leftPct = (startMin / (totalSlots * 60)) * 100;
+        const widthPct = Math.max((durMin / (totalSlots * 60)) * 100, 3);
+        const statusClass = b.status === 'Active' ? 'active' : (b.status === 'Waiting' ? 'waiting' : 'confirmed');
+        const custName = (b.customerName || b.phone || '—').substring(0, 18);
+        const tooltipData = encodeURIComponent(JSON.stringify({
+          id: b.id, customer: b.customerName || '—', phone: b.phone || '',
+          time: st + ' – ' + et, dur: b.durationMins + ' mins',
+          game: b.gameName || '—', console: cid, status: b.status
+        }));
+        html += '<div class="tl-booking ' + statusClass + '" ' +
+          'style="left:' + leftPct + '%;width:' + widthPct + '%" ' +
+          'onmouseenter="showTimelineTooltip(event,\'' + tooltipData + '\')" ' +
+          'onmouseleave="hideTimelineTooltip()">' +
+          '<span class="tl-name">' + custName + '</span>' +
+          '<span class="tl-time">' + st + '–' + et + '</span>' +
+          '</div>';
+      }
+      html += '</div></div>';
+    }
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function showTimelineTooltip(e, dataStr) {
+    let tt = document.getElementById('tlTooltip');
+    if (!tt) {
+      tt = document.createElement('div');
+      tt.id = 'tlTooltip';
+      tt.className = 'tl-tooltip';
+      document.body.appendChild(tt);
+    }
+    try {
+      const d = JSON.parse(decodeURIComponent(dataStr));
+      tt.innerHTML = '<div><span class="tt-label">Customer:</span> <span class="tt-val">' + d.customer + '</span></div>' +
+        '<div><span class="tt-label">Console:</span> <span class="tt-val">' + d.console + ' | #' + d.id + '</span></div>' +
+        '<div><span class="tt-label">Time:</span> <span class="tt-val">' + d.time + ' (' + d.dur + ')</span></div>' +
+        '<div><span class="tt-label">Game:</span> <span class="tt-val">' + d.game + '</span></div>' +
+        '<div><span class="tt-label">Status:</span> <span class="tt-val">' + d.status + '</span></div>';
+      tt.style.left = (e.clientX + 15) + 'px';
+      tt.style.top = (e.clientY + 10) + 'px';
+      tt.classList.add('show');
+    } catch(ex) {}
+  }
+
+  function hideTimelineTooltip() {
+    const tt = document.getElementById('tlTooltip');
+    if (tt) tt.classList.remove('show');
+  }
+
   async function refreshSchedule() {
     const [consoles, schedule] = await Promise.all([
       fetchConsoleStatus(),
@@ -2641,6 +2924,7 @@
     else if (tabName === 'feedback') refreshFeedback();
     else if (tabName === 'analytics') refreshBotAnalytics();
     else if (tabName === 'suggestions') refreshSuggestions();
+    else if (tabName === 'timeline') refreshTimeline();
   }
 
   document.getElementById('tabNav').addEventListener('click', function(e) {
