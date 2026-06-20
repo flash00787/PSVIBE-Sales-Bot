@@ -490,7 +490,7 @@ async def _get_max_duration_for_console(date_str: str, time_str: str, console_id
         return 0, ""
     status = console_found.get("status", "").lower()
     if status not in ("free", "reserved"):
-        return 0  # Console is Active/Unavailable
+        return 0, ""  # Console is Active/Unavailable
 
     # Parse target time
     try:
@@ -2317,7 +2317,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
-                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done")]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done", "rejected")]
                 
                 # Time-range overlap check
                 dur = context.user_data.get("bk_duration_mins", 60)
@@ -2396,7 +2396,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"search-bookings?telegram_chat_id={uid}&date={date_str}"
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
-                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done")]
+                existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done", "rejected")]
                 
                 dur = context.user_data.get("bk_duration_mins", 60)
                 try:
