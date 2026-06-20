@@ -108,29 +108,36 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             icon      = "🟡"
             rsv_who   = c.get("reservedFor") or c.get("member") or "Guest"
             rsv_at    = c.get("reservedAt") or c.get("startTime") or "—"
-            # Calculate end time
+            # Calculate end time (only if we have a valid start time)
             dur = c.get("reservedDuration") or c.get("durationMins") or 60
             try:
-                # Parse rsv_at which is already AM/PM format
-                rsv_clean = rsv_at.replace(" AM","").replace(" PM","")
-                sh, sm = map(int, rsv_clean.split(":"))
-                is_pm = "PM" in rsv_at
-                if is_pm and sh != 12:
-                    sh += 12
-                elif not is_pm and sh == 12:
-                    sh = 0
-                total_m = sh * 60 + sm + int(dur)
-                end_h = total_m // 60
-                end_m = total_m % 60
-                end_ampm = "AM" if end_h < 12 else "PM"
-                end_h12 = end_h % 12
-                if end_h12 == 0:
-                    end_h12 = 12
-                end_str = f"{end_h12}:{end_m:02d} {end_ampm}"
-                time_range = f"{rsv_at}–{end_str}"
-            except Exception as e:
-                logger.error("cmd_console_status: %s", e, exc_info=True)
+                dur = int(dur)
+            except (ValueError, TypeError):
+                dur = 60
+            if rsv_at == "—" or ":" not in rsv_at:
                 time_range = rsv_at
+            else:
+                try:
+                    # Parse rsv_at which is already AM/PM format
+                    rsv_clean = rsv_at.replace(" AM","").replace(" PM","")
+                    sh, sm = map(int, rsv_clean.split(":"))
+                    is_pm = "PM" in rsv_at
+                    if is_pm and sh != 12:
+                        sh += 12
+                    elif not is_pm and sh == 12:
+                        sh = 0
+                    total_m = sh * 60 + sm + dur
+                    end_h = total_m // 60
+                    end_m = total_m % 60
+                    end_ampm = "AM" if end_h < 12 else "PM"
+                    end_h12 = end_h % 12
+                    if end_h12 == 0:
+                        end_h12 = 12
+                    end_str = f"{end_h12}:{end_m:02d} {end_ampm}"
+                    time_range = f"{rsv_at}–{end_str}"
+                except Exception as e:
+                    logger.error("cmd_console_status: %s", e, exc_info=True)
+                    time_range = rsv_at
             detail = f"Reserved {time_range} — {rsv_who}"
         else:
             icon   = "🔴"
@@ -139,7 +146,10 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             # ── Timer calculation ──
             timer_str = ""
             st_dt = c.get("startTimeDt", "")
-            dur_mins = int(c.get("durationMins") or 0)
+            try:
+                dur_mins = int(c.get("durationMins") or 0)
+            except (ValueError, TypeError):
+                dur_mins = 0
             since = f" since {c['startTime']}" if c.get("startTime") else ""
             if st_dt:
                 try:

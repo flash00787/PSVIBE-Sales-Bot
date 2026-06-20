@@ -1,9 +1,9 @@
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.ext import ContextTypes, ConversationHandler
+from telegram.ext import ContextTypes, ConversationHandler, ApplicationHandlerStop
 from telegram.constants import ParseMode
-import logging, re, json, html
+import logging, re, json, html, random
 
 from bot import (
     CUSTOMER_BOT_TOKEN,
@@ -111,7 +111,124 @@ async def cb_booking_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
             logger.error("edit_fn: %s", e, exc_info=True)
             pass
 
+    if action == "reject":
+        # Prompt for rejection reason
+        await query.answer("📝 Reason ရိုက်ထည့်ပါ (သို့မဟုတ် Skip နှိပ်ပါ)", show_alert=False)
+        
+        user_id = query.from_user.id
+        # Store pending reject state in bot_data (keyed by user_id) to avoid ConversationHandler conflicts
+        context.bot_data[f'_reject_{user_id}'] = {
+            'bk_id': bk_id,
+            'staff_name': staff_name,
+            'card_chat_id': query.message.chat_id,
+            'card_message_id': query.message.message_id,
+        }
+        logger.info("REJECT DEBUG: Set pending_reject for BK#%d (user=%d)", bk_id, user_id)
+        
+        # Send reason prompt
+        keyboard = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⏭️ Skip (No Reason)", callback_data=f"bkr:skip:{bk_id}")],
+        ])
+        prompt = await query.message.reply_text(
+            f"📋 <b>Booking #{bk_id} — Reject</b>\n\n"
+            f"ဘာကြောင့် <b>Reject</b> လုပ်တာလဲ?\n"
+            f"Reason ရိုက်ထည့်ပါ (သို့မဟုတ် Skip နှိပ်ပါ):",
+            reply_markup=keyboard,
+            parse_mode="HTML",
+        )
+        context.bot_data[f'_reject_{user_id}']['prompt_message_id'] = prompt.message_id
+        return
+
+    # Approve — proceed directly
     await _do_booking_action(bk_id, action, staff_name, reply_fn=edit_fn)
+
+
+async def cb_reject_skip(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle Skip button when rejecting — proceed without reason."""
+    query = update.callback_query
+    await query.answer()
+    try:
+        _, _, bk_id_str = query.data.split(":")
+        bk_id = int(bk_id_str)
+    except Exception:
+        return
+
+    user_id = query.from_user.id
+    logger.info("REJECT DEBUG: cb_reject_skip for BK#%d (user=%d)", bk_id, user_id)
+    pending = context.bot_data.pop(f'_reject_{user_id}', None)
+    if not pending or pending['bk_id'] != bk_id:
+        await query.edit_message_text("⚠️ Reject expired or already processed", parse_mode="HTML")
+        logger.warning("REJECT DEBUG: Skip — pending_reject missing or mismatched (got bk_id=%d, expected=%s, bot_data_keys=%s)", 
+                       bk_id, pending.get('bk_id') if pending else 'None', list(context.bot_data.keys()))
+        return
+
+    staff_name = pending['staff_name']
+    card_chat_id = pending['card_chat_id']
+    card_message_id = pending['card_message_id']
+
+    # Clean up the prompt message
+    try:
+        await query.message.delete()
+    except Exception:
+        pass
+
+    # Edit the original booking card with reject result
+    async def edit_card(text: str, **kw):
+        try:
+            await context.bot.edit_message_text(
+                chat_id=card_chat_id,
+                message_id=card_message_id,
+                text=text,
+                **kw
+            )
+        except Exception as e:
+            logger.error("edit_card: %s", e, exc_info=True)
+
+    await _do_booking_action(bk_id, "reject", staff_name, reply_fn=edit_card)
+
+
+async def handle_reject_reason(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle text input for rejection reason."""
+    user_id = update.effective_user.id if update.effective_user else 0
+    pending = context.bot_data.get(f'_reject_{user_id}')
+    logger.info("REJECT DEBUG: handle_reject_reason called, user=%d, pending=%s, text=%s",
+                user_id, pending is not None,
+                (update.message.text or '')[:50] if update.message else 'None')
+    if not pending:
+        return  # Not in reject-reason mode — let other handlers process
+
+    bk_id = pending['bk_id']
+    staff_name = pending['staff_name']
+    card_chat_id = pending['card_chat_id']
+    card_message_id = pending['card_message_id']
+    prompt_message_id = pending.get('prompt_message_id')
+    reason = update.message.text.strip() if update.message and update.message.text else ""
+
+    # Clear pending state immediately
+    context.bot_data.pop(f'_reject_{user_id}', None)
+    logger.info("REJECT DEBUG: Processing reject BK#%d, reason=%s", bk_id, reason[:50])
+
+    # Clean up the prompt message
+    if prompt_message_id:
+        try:
+            await context.bot.delete_message(chat_id=update.message.chat_id, message_id=prompt_message_id)
+        except Exception:
+            pass
+
+    # Edit the original booking card with reject result
+    async def edit_card(text: str, **kw):
+        try:
+            await context.bot.edit_message_text(
+                chat_id=card_chat_id,
+                message_id=card_message_id,
+                text=text,
+                **kw
+            )
+        except Exception as e:
+            logger.error("edit_card: %s", e, exc_info=True)
+
+    await _do_booking_action(bk_id, "reject", staff_name, reason, reply_fn=edit_card)
+    raise ApplicationHandlerStop()  # Prevent ConversationHandler from processing
 
 async def _send_checkin_notification(tg_chat: str, booking_id: int):
     """Notify customer that they've checked in."""
@@ -254,13 +371,33 @@ async def cb_checkin_select_console(update: Update, context: ContextTypes.DEFAUL
         )
 
 
-async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn):
+async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn, reject_reason: str = ""):
     """Shared approve/reject logic — updates DB, replies, notifies customer."""
     new_status = "confirmed" if action == "approve" else "rejected"
 
+    # Fetch booking info early — needed for both approve and reject paths
+    bk_data = await _psvibe_get_async(f"bookings/{bk_id}")
+    bk_info = bk_data or {}
+    # Unwrap {"booking": {...}} or {"data": {"booking": {...}}} envelope
+    if isinstance(bk_info, dict):
+        if "booking" in bk_info:
+            bk_info = bk_info["booking"]
+        elif bk_info.get("data") and isinstance(bk_info["data"], dict):
+            inner = bk_info["data"]
+            if "booking" in inner:
+                bk_info = inner["booking"]
+            else:
+                bk_info = inner
+
+    # Build staffNote with optional reject reason
+    if action == "reject" and reject_reason.strip():
+        staff_note = f"Rejected by {staff_name}: {reject_reason.strip()}"
+    else:
+        staff_note = f"{'Approved' if action == 'approve' else 'Rejected'} by {staff_name}"
+
     patch_body: dict = {
         "status":    new_status,
-        "staffNote": f"{'Approved' if action == 'approve' else 'Rejected'} by {staff_name}",
+        "staffNote": staff_note,
     }
 
     # Auto-assign a free console of the matching type on approval
@@ -268,20 +405,10 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
     assigned_console = ""
     install_warn     = ""
     if action == "approve":
-        bk_data      = await _psvibe_get_async(f"bookings/{bk_id}")
-        bk_info      = bk_data or {}
-        # Unwrap {"booking": {...}} or {"data": {"booking": {...}}} envelope
-        if isinstance(bk_info, dict):
-            if "booking" in bk_info:
-                bk_info = bk_info["booking"]
-            elif bk_info.get("data") and isinstance(bk_info["data"], dict):
-                inner = bk_info["data"]
-                if "booking" in inner:
-                    bk_info = inner["booking"]
-                else:
-                    bk_info = inner
         console_type = bk_info.get("consoleType", "")
         game_name    = (bk_info.get("gameName") or "").strip()
+        # ✅ Respect customer's chosen console (if any)
+        customer_console = (bk_info.get("consoleId") or bk_info.get("console_id") or "").strip()
 
         if console_type:
             from bot import fetch_console_status
@@ -292,38 +419,67 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                     and c.get("liveStatus", "").lower() == "free"]
 
             chosen = None
-            # Build candidate list: game-installed consoles first, then rest
-            candidates = []
-            consoles_with_game = []
-            if game_name:
-                consoles_with_game = await get_consoles_with_game_async(game_name)
-                cw_upper = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
-                game_free = [c for c in free if c["id"].upper() in cw_upper]
-                other_free = [c for c in free if c["id"].upper() not in cw_upper]
-                candidates = game_free + other_free
-            else:
-                candidates = list(free)
-
-            # ✅ Conflict-aware auto-assign: check each candidate against existing bookings
             bk_date = bk_info.get("date", "")
             bk_time = bk_info.get("timeSlot", "")
             bk_dur = int(bk_info.get("durationMins", 60))
-            for candidate in candidates:
-                cid = candidate["id"]
-                cf = await _psvibe_post_async("booking-conflicts", {
-                    "date": bk_date,
-                    "time_slot": bk_time,
-                    "duration_mins": bk_dur,
-                    "console_id": cid,
-                    "exclude_booking_id": bk_id,
-                })
-                if cf and not cf.get("has_conflict"):
-                    chosen = candidate
-                    break
-                elif cf and cf.get("has_conflict"):
-                    logger.info("Auto-assign: %s has conflict for BK#%d — skipping", cid, bk_id)
-            if not chosen and candidates:
-                logger.warning("Auto-assign: ALL %d free consoles have conflicts for BK#%d", len(candidates), bk_id)
+
+            # Fetch game-installed consoles early (needed for both paths)
+            consoles_with_game = []
+            if game_name:
+                consoles_with_game = await get_consoles_with_game_async(game_name)
+
+            # 🔑 Priority 1: Customer-chosen console — verify & use if free + no conflict
+            if customer_console:
+                cust_upper = customer_console.upper()
+                matched = [c for c in free if c["id"].upper() == cust_upper]
+                if matched:
+                    cf = await _psvibe_post_async("booking-conflicts", {
+                        "date": bk_date,
+                        "time_slot": bk_time,
+                        "duration_mins": bk_dur,
+                        "console_id": customer_console,
+                        "exclude_booking_id": bk_id,
+                    })
+                    if cf and not cf.get("has_conflict"):
+                        chosen = matched[0]
+                        logger.info("Approve BK#%d: using customer-chosen console %s", bk_id, customer_console)
+                    else:
+                        logger.warning("Approve BK#%d: customer-chosen %s has conflict or not free — falling back to auto-assign", bk_id, customer_console)
+                else:
+                    logger.warning("Approve BK#%d: customer-chosen %s not free (type=%s) — falling back to auto-assign", bk_id, customer_console, console_type)
+
+            # Priority 2: Auto-assign (only if customer console unavailable)
+            if not chosen:
+                # Build candidate list: game-installed consoles first, then rest
+                candidates = []
+                if game_name:
+                    cw_upper = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
+                    game_free = [c for c in free if c["id"].upper() in cw_upper]
+                    other_free = [c for c in free if c["id"].upper() not in cw_upper]
+                    random.shuffle(game_free)
+                    random.shuffle(other_free)
+                    candidates = game_free + other_free
+                else:
+                    candidates = list(free)
+                    random.shuffle(candidates)
+
+                # ✅ Conflict-aware auto-assign: check each candidate against existing bookings
+                for candidate in candidates:
+                    cid = candidate["id"]
+                    cf = await _psvibe_post_async("booking-conflicts", {
+                        "date": bk_date,
+                        "time_slot": bk_time,
+                        "duration_mins": bk_dur,
+                        "console_id": cid,
+                        "exclude_booking_id": bk_id,
+                    })
+                    if cf and not cf.get("has_conflict"):
+                        chosen = candidate
+                        break
+                    elif cf and cf.get("has_conflict"):
+                        logger.info("Auto-assign: %s has conflict for BK#%d — skipping", cid, bk_id)
+                if not chosen and candidates:
+                    logger.warning("Auto-assign: ALL %d free consoles have conflicts for BK#%d", len(candidates), bk_id)
 
             if chosen:
                 # Game-install warnings (if not in game-installed list)
@@ -334,7 +490,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                             install_warn = (
                                 f"\n⚠️ <b>「{game_name}」 Install စစ်ဆေးပါ!</b>\n"
                                 f"Free console ({chosen['id']}) မှာ install မရှိပါ\n"
-                                f"Install ရှိသော console: <b>{', '.join(consoles_with_game)}</b>\n"
+                                f"Install ရှိသော console: <b>{', '.join(c.get('console_id','') for c in consoles_with_game)}</b>\n"
                                 f"ကြိုတင် Install / SSD transfer ပြင်ဆင်ပါ"
                             )
                         else:
@@ -403,9 +559,11 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         )
     else:
         customer_name = html.escape(bk_info.get('customerName', 'Unknown'))
+        reason_line = f"\n📝 Reason: <i>{html.escape(reject_reason.strip())}</i>" if reject_reason.strip() else ""
         msg = (
             f"❌ <b>Booking #{bk_id} Rejected</b>\n"
-            f"👤 {customer_name}  📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n"
+            f"👤 {customer_name}  📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}"
+            f"{reason_line}\n"
             f"<i>Rejected by {staff_name}</i>"
         )
     await reply_fn(msg, parse_mode="HTML")
@@ -436,9 +594,11 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                 f"ကျေးဇူးတင်ပါတယ်"
             )
         else:
+            reason_line = f"\n📝 Reason: {html.escape(reject_reason.strip())}" if reject_reason.strip() else ""
             cust_msg = (
                 f"😔 <b>Booking #{bk_id} Rejected</b>\n\n"
-                f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}\n\n"
+                f"📅 {bk_info.get('date', '?')}  🕐 {bk_info.get('timeSlot', '?')}"
+                f"{reason_line}\n\n"
                 f"အဆင်မပြေသဖြင့် တောင်းပန်ပါသည်။ နောက်ထပ် booking ထပ်မံလုပ်နိုင်ပါသည်။\n"
                 f"📞 ဆက်သွယ်ရန် @psvibeofficial"
             )

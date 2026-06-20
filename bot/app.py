@@ -374,12 +374,18 @@ def main():
         MessageHandler(filters.TEXT & ~filters.COMMAND, handle_custom_extend_reply),
         group=-1,
     )
+    # Reject reason input — intercept before ConversationHandler
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_reject_reason),
+        group=-1,
+    )
 
     app.add_handler(conv)
 
     # Global inline-button handler — works regardless of conversation state
     app.add_handler(CallbackQueryHandler(cb_extend_timer,  pattern=r"^ext:"))
     app.add_handler(CallbackQueryHandler(cb_booking_mgmt,   pattern=r"^bkm:(approve|reject):\d+$"))
+    app.add_handler(CallbackQueryHandler(cb_reject_skip,   pattern=r"^bkr:skip:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_checkin_booking,  pattern=r"^bkm:checkin:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_checkin_select_console, pattern=r"^bkm:ckin_console:\d+:.+$"))
     app.add_handler(CallbackQueryHandler(cb_wl_action,       pattern=r"^wl:(notify|remove):\d+$"))

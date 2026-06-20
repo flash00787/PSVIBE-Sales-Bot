@@ -188,12 +188,17 @@ def _make_console_keyboard() -> ReplyKeyboardMarkup:
     ])
 
 
-def _make_duration_keyboard() -> ReplyKeyboardMarkup:
-    """Build duration selection reply keyboard."""
+def _make_duration_keyboard(max_dur: int = 0) -> ReplyKeyboardMarkup:
+    """Build duration selection reply keyboard. If max_dur is set, only show valid durations."""
+    opts = DURATION_OPTS
+    if max_dur > 0:
+        opts = [d for d in DURATION_OPTS if int(d.split()[0]) <= max_dur]
+        if not opts:
+            opts = [f"{max_dur} mins"]  # Show max available
     return _rp_kb([
-        DURATION_OPTS[:2],
-        DURATION_OPTS[2:4],
-        DURATION_OPTS[4:],
+        opts[:2],
+        opts[2:4],
+        opts[4:],
         [BTN_BACK, BTN_CANCEL],
     ])
 
@@ -454,6 +459,94 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     return available
 
 
+async def _get_max_duration_for_console(date_str: str, time_str: str, console_id: str, max_dur: int = 360) -> int:
+    """Calculate max available duration (in minutes) for a specific console at a time.
+    Returns 0 if console is completely unavailable at that time."""
+    logger = logging.getLogger(__name__)
+    try:
+        consoles_raw = await _api._fetch_consoles()
+        bks = await _api._api_get(f"search-bookings?date={date_str}")
+    except Exception as e:
+        logger.warning("_get_max_duration_for_console: API fetch failed — %s", e)
+        return 0
+
+    if not consoles_raw:
+        return 0
+
+    if isinstance(bks, dict):
+        if "bookings" in bks:
+            bks = bks["bookings"]
+    if not isinstance(bks, list):
+        bks = []
+
+    # Check console real-time status
+    console_found = None
+    for c in consoles_raw:
+        if c.get("id", "").upper() == console_id.upper():
+            console_found = c
+            break
+    if not console_found:
+        return 0
+    status = console_found.get("status", "").lower()
+    if status not in ("free", "reserved"):
+        return 0  # Console is Active/Unavailable
+
+    # Parse target time
+    try:
+        target_h, target_m = map(int, time_str.split(":"))
+        target_start = target_h * 60 + target_m
+    except (ValueError, AttributeError):
+        return 0
+
+    # Build conflict intervals for this console only
+    conflicts = []
+    for b in bks:
+        b_status = b.get("status", "").lower()
+        if b_status in ("cancelled", "done", "rejected"):
+            continue
+        b_console = (b.get("console_id") or b.get("consoleId") or "").upper()
+        if not b_console:
+            continue
+        if b_console == console_id.upper():
+            try:
+                t = b.get("start_time") or b.get("startTime") or b.get("timeSlot") or b.get("time_slot") or b.get("time", "")
+                if isinstance(t, str) and len(t) >= 16:
+                    t = t[11:16]  # Extract HH:MM from datetime string
+                elif isinstance(t, str) and ":" in t:
+                    t = t.split(":")[:2]
+                    t = f"{int(t[0]):02d}:{int(t[1]):02d}"
+                else:
+                    continue
+                bh, bm = map(int, t.split(":"))
+                b_start = bh * 60 + bm
+                b_dur = int(b.get("durationMins") or b.get("duration_mins") or b.get("duration", 60))
+                b_end = b_start + b_dur
+                conflicts.append((b_start, b_end))
+            except (ValueError, AttributeError) as e:
+                logger.warning("_get_max_duration: failed to parse booking %s — %s", b.get("id", "?"), e)
+                continue
+
+    # Sort conflicts by start time
+    conflicts.sort()
+
+    # Find the earliest conflict that overlaps with target_start
+    next_conflict_start = target_start + max_dur  # default: max_dur available
+    for c_start, c_end in conflicts:
+        if c_start < target_start + 1 and c_end > target_start:
+            # Overlapping — this booking blocks us
+            next_conflict_start = c_start
+            break
+        elif c_start > target_start:
+            # Future booking — we can only go up to this
+            next_conflict_start = min(next_conflict_start, c_start)
+            break
+
+    if next_conflict_start <= target_start:
+        return 0  # Completely blocked
+
+    return next_conflict_start - target_start
+
+
 def _get_next_available_times(consoles_raw, bookings, target_start_minutes, target_end_minutes, target_date=""):
     """Find when each console becomes available after a busy target slot.
 
@@ -636,8 +729,20 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             if console_id:
                 # Customer picked a specific console — validate it's still available
                 if console_id not in available_ids:
+                    # Calculate max available duration for this console
+                    max_dur = await _get_max_duration_for_console(date_str, time_str, console_id)
+                    if max_dur > 0:
+                        context.user_data["_bk_max_duration"] = max_dur
+                        return (
+                            f"❌ Console {console_id} သည် {duration_mins} min အတွက် မရနိုင်ပါ။\n\n"
+                            f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။\n"
+                            f"Duration ပြန်ရွေးပါ 👇",
+                            False,
+                            True,  # go_back_to_duration=True
+                        )
                     return (
                         f"❌ Console {console_id} သည် ထိုအချိန်တွင် မရနိုင်တော့ပါ။ ပြန်ရွေးပါ。",
+                        False,
                         False,
                     )
             elif available:
@@ -681,18 +786,33 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 f"_Staff မှ confirm လုပ်ပြီးပါက အကြောင်းကြားပါမည်_ 🎮"
             )
             asyncio.create_task(_api.track_usage(user, "booking_created"))
-            return msg, True
+            return msg, True, False
         else:
             err_msg = str(result) if result else "unknown"
+            # Try to calculate max available duration
+            max_dur = 0
+            if console_id and date_str and time_str:
+                try:
+                    max_dur = await _get_max_duration_for_console(date_str, time_str, console_id)
+                except Exception:
+                    pass
+            if max_dur > 0 and max_dur < duration_mins:
+                context.user_data["_bk_max_duration"] = max_dur
+                return (
+                    f"❌ Booking မအောင်မြင်ပါ\n"
+                    f"Console {console_id} ({console_type}) သည် {duration_mins} min အတွက် မရနိုင်ပါ။\n\n"
+                    f"⏱️ Max duration: *{max_dur} min* သာရပါမည်။\n"
+                    f"Duration ပြန်ရွေးပါ 👇"
+                ), False, True
             return (
                 "❌ Booking မအောင်မြင်ပါ\n"
                 f"Console {console_id} ({console_type}) သည် ထိုအချိန်တွင် မရနိုင်ပါ။\n\n"
                 "အခြားအချိန် သို့မဟုတ် အခြား console ကို ထပ်ရွေးပါ။\n"
                 "🔄 /start — ပြန်ကြိုးစားရန်"
-            ), False
+            ), False, False
     except Exception as e:
         logger.error("Booking submission failed: %s", e)
-        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False
+        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False, False
 
 
 async def _cleanup_and_end(update: Update, context: ContextTypes.DEFAULT_TYPE, msg: str = "❌ Booking ဖျက်လိုက်ပါပြီ"):
@@ -2159,11 +2279,19 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception:
                 pass
 
-            msg, ok = await _submit_booking(update, context)
+            result = await _submit_booking(update, context)
+            msg, ok = result[0], result[1]
+            go_back = len(result) > 2 and result[2]
             if ok:
                 await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=MAIN_MENU_KB)
-            else:
-                await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+                context.user_data.clear()
+                return ConversationHandler.END
+            if go_back:
+                max_dur = context.user_data.pop("_bk_max_duration", 0)
+                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_make_duration_keyboard(max_dur))
+                _push_state(context, BK_DURATION)
+                return BK_DURATION
+            await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
             context.user_data.clear()
             return ConversationHandler.END
 
@@ -2229,10 +2357,18 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception:
                 pass
 
-            msg, ok = await _submit_booking(update, context)
+            result = await _submit_booking(update, context)
+            msg, ok = result[0], result[1]
+            go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
                 await query.message.reply_text("🎮", reply_markup=MAIN_MENU_KB)
+            elif go_back:
+                await query.edit_message_text(msg, parse_mode="Markdown")
+                max_dur = context.user_data.pop("_bk_max_duration", 0)
+                await query.message.reply_text("Duration ပြန်ရွေးပါ 👇", reply_markup=_make_duration_keyboard(max_dur))
+                _push_state(context, BK_DURATION)
+                return BK_DURATION
             else:
                 await query.edit_message_text(msg)
                 await query.message.reply_text(reply_markup=MAIN_MENU_KB)
@@ -2268,9 +2404,16 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if text in (BTN_BOOK_ANYWAY, "⚠️ ဒါပေမဲ့ ဆက်တင်မည်"):
             await update.message.reply_text("⏳ Booking တင်နေသည် (duplicate warning overridden)...")
-            msg, ok = await _submit_booking(update, context)
+            result = await _submit_booking(update, context)
+            msg, ok = result[0], result[1]
+            go_back = len(result) > 2 and result[2]
             if ok:
                 await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=MAIN_MENU_KB)
+            elif go_back:
+                max_dur = context.user_data.pop("_bk_max_duration", 0)
+                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_make_duration_keyboard(max_dur))
+                _push_state(context, BK_DURATION)
+                return BK_DURATION
             else:
                 await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
             context.user_data.clear()
@@ -2285,10 +2428,18 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if data == "bk_warn:dup_ok":
             await query.edit_message_text("⏳ Booking တင်နေသည် (duplicate warning overridden)...")
-            msg, ok = await _submit_booking(update, context)
+            result = await _submit_booking(update, context)
+            msg, ok = result[0], result[1]
+            go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
                 await query.message.reply_text("🎮", reply_markup=MAIN_MENU_KB)
+            elif go_back:
+                await query.edit_message_text(msg, parse_mode="Markdown")
+                max_dur = context.user_data.pop("_bk_max_duration", 0)
+                await query.message.reply_text("Duration ပြန်ရွေးပါ 👇", reply_markup=_make_duration_keyboard(max_dur))
+                _push_state(context, BK_DURATION)
+                return BK_DURATION
             else:
                 await query.edit_message_text(msg)
                 await query.message.reply_text(reply_markup=MAIN_MENU_KB)
