@@ -1,6 +1,63 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-19 05:30 UTC
+> Last updated: 2026-06-20 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 20, 2026 - 23:30 UTC) — PSN Resolved + HALO Co-op Alert!
+
+> **Summary:** Two notable findings since June 19. PSN outage is now resolved. New details on Halo: Campaign Evolved's co-op requirements — CRITICAL for lounge planning.
+
+### ✅ PSN Outage — RESOLVED
+- The PSN "gaming and social" disruption that started **June 16 evening** is now **largely resolved** as of June 20
+- "Recently Played/Most Played" sections on PS5 profiles have been restored to normal
+- Official status checks on June 20 indicate all PlayStation services (including Gaming and Social) are **operational**
+- Some isolated user reports still persist, but the broader issue is fixed
+- **💡 Lounge Action:** Resume normal operations. Digital games should launch normally. Still keep physical disc backups as a routine precaution.
+
+### 🔴🔴 CRITICAL: Halo: Campaign Evolved — Split-Screen Requires 2 PS Plus Subscriptions!
+- **Halo: Campaign Evolved** launches **July 28, 2026** on PS5 with 2-player split-screen co-op
+- **NEW DETAIL (June 20):** For local split-screen co-op on PS5, **BOTH players need active PlayStation Plus subscriptions AND linked Microsoft accounts**
+- Online co-op (up to 4 players, cross-play) also requires PS Plus for all players
+- This is a significant departure from traditional split-screen games where only the host needs PS Plus
+- **💡💡 Lounge Impact:** This directly affects how the lounge offers Halo multiplayer!
+  - Customers wanting couch co-op will each need their OWN PS Plus subscription
+  - The lounge's PS Plus accounts will cover player 1, but player 2 needs their own subscription
+  - Online multiplayer: all 4 players need PS Plus (standard requirement)
+  - **Plan ahead:** Consider how to handle this — possibly pre-loading Microsoft accounts on lounge consoles, or informing customers in advance
+  - Promote online co-op as the primary multiplayer mode (lounge PS Plus accounts can host)
+
+### 📊 Quick Status Check (All Confirmed Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| ✅ PSN Outage | RESOLVED | All services operational as of June 20 |
+| 🛒 Mid-Year Deals | Until July 1 | 11 days left to stock up! |
+| 🛒 Amazon Prime Day | June 23-26 | 3 days away! Prep wishlist! |
+| 📅 PS Plus Essential July Reveal | June 25 | 5 days away! Watch for new free games! |
+| 🆓 FREE Online Multiplayer Weekend | June 28-29 | 8 days away! Start promoting! |
+| 🃏 DELTARUNE Chapter 5 | June 24 | 4 days away! Free update! |
+| 🔫 EMPULSE Early Access | June 24 | $19.99 FPS |
+| 🧊 Frostpunk 2: Breach of Trust DLC | June 23 | 3 days away! |
+| ⚔️ Warhammer 40K: Darktide — Skitarii DLC | June 23 | 3 days away! $11.99 |
+| 🟢 Halo: Campaign Evolved | July 28 | Split-screen needs 2 PS Plus! Plan ahead! |
+
+### 📊 PS5 Exclusive Sales Data (June 20 — Interesting Context):
+- Alinea Analytics report: older PS5 exclusives are outperforming newer releases like SAROS and Marathon in 2026
+- **Marvel's Spider-Man 2** (approaching 3 years old): 699,000 copies sold in 2026 alone
+- **Ghost of Yotei** (Oct 2025): 1.1M units sold in H1 2026, nearing 5M lifetime
+- **MLB The Show 26** (Mar 2026): 756,000 copies on PS5
+- **💡 Lounge Note:** Spider-Man 2 and Ghost of Yotei remain crowd-pullers — make sure they're installed on lounge consoles! Older exclusives have more staying power than expected.
+
+### ⏰ Immediate Deadlines (Next 7 Days):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! |
+| **Jun 23** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop same day! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 📅 | PS Plus Essential July reveal | Watch for new free games! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 characters + free-to-play version! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | Start promoting NOW! |
 
 ---
 
