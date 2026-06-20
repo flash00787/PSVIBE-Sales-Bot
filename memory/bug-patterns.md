@@ -29,6 +29,31 @@ if action == "reject":  # or: else:
 
 **Affected bugs:** #40 (reject reason flow)
 
+## ValueError from API Treated as Crash (2026-06-20)
+
+**Pattern:** `_validate_response()` raises `ValueError` for HTTP 4xx/5xx. If your `try/except` only has blanket `except Exception`, the API error gets treated as a crash (generic "ခဏနေ ပြန်ကြိုးစားပါ") instead of a booking failure (show specific error + max duration).
+
+**Symptom:** Customer sees generic crash message instead of specific booking error.
+
+**Fix:** Add `except ValueError` BEFORE `except Exception`. Handle ValueError as a booking failure (calculate max_dur, show specific message). Reserve `except Exception` for truly unexpected crashes.
+
+**Affected bugs:** #42 (auto-assign duration v3)
+
+## API Error vs Exception — Different User Experience (2026-06-20)
+
+**Pattern:** When `_api._api_post` fails due to HTTP 409 Conflict (duration too long), it raises `ValueError`. The caller should interpret this as "booking not possible under current constraints" → show helpful guidance (max available duration). Only true network/unexpected errors should show generic "try again" message.
+
+**Decision tree for `_submit_booking`:**
+```
+try _api_post("bookings")
+  ✅ Success → show confirmation
+  ❌ result error → check max_dur → show guidance
+catch ValueError (API HTTP error) → check max_dur → show guidance  
+catch Exception (network/crash) → generic "try again"
+```
+
+**Affected bugs:** #42 (auto-assign duration v3)
+
 ## Session Timer Drift on Bot Restart (FIXED — 2026-06-18)
 - Bot restart → end-of-session timer drifts forward by 2h+
 - **Root cause:** `_end_dt_iso = datetime.now() + planned_mins` — `now` = restart time, not original start

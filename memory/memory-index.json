@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-20T18:44:21.204976+00:00",
+  "updated": "2026-06-20T19:20:04.064704+00:00",
   "entries": [
     {
       "topic": "\"Free\"",
@@ -19,6 +19,46 @@
           "path": "memory/2026-06-14.md",
           "line": 98,
           "context": "## # June 14, 2026 — Daily Log (cont.)"
+        }
+      ]
+    },
+    {
+      "topic": "#38: Sale Bot Approve Button Crash 🐛",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 7,
+          "context": "### #38: Sale Bot Approve Button Crash 🐛 | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "#39: Sale Bot Reject Button Crash 🐛",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 12,
+          "context": "### #39: Sale Bot Reject Button Crash 🐛 | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "#40: Reject Reason Feature 🆕",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 17,
+          "context": "### #40: Reject Reason Feature 🆕 | Feature | Files | Details |"
+        }
+      ]
+    },
+    {
+      "topic": "#41: Customer Bot Duration Conflict Reset 🐛",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 22,
+          "context": "### #41: Customer Bot Duration Conflict Reset 🐛 | Bug | Files | Root Cause | Fix |"
         }
       ]
     },
@@ -117,7 +157,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 86,
+          "line": 108,
           "context": "### 1. AYA Pay Missing from Constants | Bug | File | Root Cause |"
         }
       ]
@@ -427,7 +467,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 97,
+          "line": 119,
           "context": "### 2. Session Extended Reminder Broken (2 bugs) | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -477,7 +517,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 259,
+          "line": 281,
           "context": "## 2026-06-02"
         }
       ]
@@ -487,7 +527,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 167,
+          "line": 189,
           "context": "## 2026-06-03 — MEGA FIX DAY (15+ bugs)"
         }
       ]
@@ -497,7 +537,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 228,
+          "line": 250,
           "context": "## 2026-06-06 — Food Menu Fix (Customer Bot)"
         }
       ]
@@ -507,7 +547,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 144,
+          "line": 166,
           "context": "## 2026-06-09 — Pending Bookings Fix + Kora Upgrade Integration"
         }
       ]
@@ -517,7 +557,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 303,
+          "line": 325,
           "context": "## 2026-06-16 — Fix 10: `calc_duration()` Ignores Extended Minutes (20:09 UTC)"
         }
       ]
@@ -527,7 +567,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 282,
+          "line": 304,
           "context": "## 2026-06-16 — Fix 8: Food Cart Not Loading in Session End Voucher - **Bug:** Food note items saved to food_cart table but never loaded in voucher at session end"
         }
       ]
@@ -537,7 +577,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 289,
+          "line": 311,
           "context": "## 2026-06-16 — Fix 9: Food Cart Release Flags + Stock Out (19:33 UTC)"
         }
       ]
@@ -547,7 +587,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 84,
+          "line": 106,
           "context": "## 2026-06-16 — Sale Bot Fixes: AYA Pay, Session Reminders, Cleanup"
         }
       ]
@@ -557,7 +597,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 122,
+          "line": 144,
           "context": "## 2026-06-17 — Session Extend DB Sync & Orphaned Bookings"
         }
       ]
@@ -587,7 +627,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 26,
+          "line": 48,
           "context": "## 2026-06-18 — Broadcast System Fix + Feature"
         }
       ]
@@ -597,7 +637,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 44,
+          "line": 66,
           "context": "## 2026-06-18 — Cancel Confirmed Booking Fix + Display Data Fix"
         }
       ]
@@ -607,7 +647,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 60,
+          "line": 82,
           "context": "## 2026-06-18 — Session Timer Drift + Console start_time Reset"
         }
       ]
@@ -617,8 +657,18 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 5,
+          "line": 27,
           "context": "## 2026-06-19 — Booking System Concurrency Fixes (H1, C1, H2)"
+        }
+      ]
+    },
+    {
+      "topic": "2026-06-20 — Sale Bot Approve/Reject + Customer Bot Duration Conflict",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 5,
+          "context": "## 2026-06-20 — Sale Bot Approve/Reject + Customer Bot Duration Conflict"
         }
       ]
     },
@@ -722,7 +772,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 109,
+          "line": 131,
           "context": "### 3. Cleanup & Security | Fix | Details |"
         }
       ]
@@ -967,7 +1017,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 117,
+          "line": 139,
           "context": "### 4. Customer Booking — Slot Availability Date Filter | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -1007,7 +1057,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 104,
+          "line": 126,
           "context": "### 4. Session Extend — Double /api/ Path → 404 | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -1267,7 +1317,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 91,
+          "line": 113,
           "context": "### 7. _SESSION_TOTAL_MINS Persistence | Bug | Files | Root Cause |"
         }
       ]
@@ -1437,7 +1487,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 11,
+          "line": 38,
           "context": "## _sync_console_status() Overwrites Active start_time (FIXED — 2026-06-18) - Booking operations (checkin, cancel, extend) → sync → `start_time=NOW()` resets already-running timers"
         }
       ]
@@ -1888,6 +1938,21 @@
       ]
     },
     {
+      "topic": "Affected bugs:",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 20,
+          "context": "**Affected bugs:** #38 (consoles_with_game), #39 (bk_info)"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 30,
+          "context": "**Affected bugs:** #40 (reject reason flow)"
+        }
+      ]
+    },
+    {
       "topic": "Affected guests:",
       "files": [
         {
@@ -2122,7 +2187,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 46,
+          "line": 73,
           "context": "- **Always check BOTH repos when investigating bugs** - Include `PROJECT_STRUCTURE.md` in EVERY sub-agent spawn context"
         }
       ]
@@ -2142,7 +2207,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 249,
+          "line": 271,
           "context": "2. **API auto-unwrap mismatch** — `_api._api_get()` auto-unwraps `{success,data}` → raw `{items}`, but code checked `resp.get(\"success\")` / `resp.get(\"data\")` → always failed 3. **Unicode escape corru"
         }
       ]
@@ -2187,7 +2252,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 102,
+          "line": 129,
           "context": "## API Client Auto-Unwrap Confusion (FIXED — 2026-06-06) - Customer Bot's `_api._api_get()` auto-unwraps `{\"success\":true,\"data\":{items}}` → `{items}` directly"
         }
       ]
@@ -2237,7 +2302,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 153,
+          "line": 175,
           "context": "- **API fix:** `app.py` `api_search_bookings`: derive consoleType from console_id instead of hardcoding PS5 - **Verification:** py_compile PASS, API health PASS, all 3 services active"
         }
       ]
@@ -2247,7 +2312,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 80,
+          "line": 107,
           "context": "## API Key Mismatch After MySQL Migration (FIXED 2026-06-02) - CallNames (36/36) & endpoint paths: 100% match"
         }
       ]
@@ -2287,7 +2352,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 44,
+          "line": 71,
           "context": "## API Server is SEPARATE from Bot (FIXED) - Two repos! Sub-agents almost always miss the API server"
         }
       ]
@@ -2374,6 +2439,16 @@
           "path": "memory/booking-audit-complete.md",
           "line": 295,
           "context": "### Approve Flow 1. Staff clicks ✅ Approve on pending booking"
+        }
+      ]
+    },
+    {
+      "topic": "Approve/Reject Bug Fixes (18:00-18:45 UTC — 00:30-01:15 MMT)",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 21,
+          "context": "## Approve/Reject Bug Fixes (18:00-18:45 UTC — 00:30-01:15 MMT)"
         }
       ]
     },
@@ -2632,7 +2707,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 133,
+          "line": 160,
           "context": "## AYA Pay Missing After Restart/Apply Fixes (FIXED — 2026-06-16) - AYA Pay disappears from payment options after bot restart or `apply_fixes.py` run"
         }
       ]
@@ -2692,7 +2767,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 127,
+          "line": 154,
           "context": "## Balance Sheet: Retained Earnings Missing Depreciation (FIXED — 2026-06-09) - After adding Fixed Assets depreciation, BS shows Assets > L+E"
         }
       ]
@@ -2892,7 +2967,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 267,
+          "line": 289,
           "context": "### Booking Confirm → Notify Customer - **SHA:** `6e3c556`"
         }
       ]
@@ -2952,7 +3027,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 261,
+          "line": 283,
           "context": "### Booking ↔ Console Status Link - **SHA:** `941d0a5`"
         }
       ]
@@ -2964,6 +3039,16 @@
           "path": "memory/2026-06-14.md",
           "line": 356,
           "context": "## Boss Reports (Ongoing Issues — 18:22-18:42 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "Boss request:",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 45,
+          "context": "- **Boss request:** Show max available duration + return to duration step only - **Fix:**"
         }
       ]
     },
@@ -3007,7 +3092,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 54,
+          "line": 81,
           "context": "## Bot Crash Loop — KeyError: 0 → 703 Restarts (FIXED) - `KeyError: 0` in asyncio task crashes bot with NO visible journal error"
         }
       ]
@@ -3112,7 +3197,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 137,
+          "line": 159,
           "context": "- `PAY_METHODS` must be synced in **both** `constants.py` and `apply_fixes.py` — modifying only one causes inconsistency - Reminder persistence needs `message_thread_id` at EVERY extend point, not jus"
         }
       ]
@@ -3202,8 +3287,18 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 291,
+          "line": 313,
           "context": "### Bug 1: `context.user_data.clear()` kills food-cart release flags | Bug | File | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Bug 1: Approve Button Crash (admin_bookings.py)",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 23,
+          "context": "### Bug 1: Approve Button Crash (admin_bookings.py) - **Cause:** `consoles_with_game` variable only defined inside `if not chosen:` auto-assign block, but accessed in `if chosen:` block when customer "
         }
       ]
     },
@@ -3243,6 +3338,16 @@
       ]
     },
     {
+      "topic": "Bug 2.5: Reject Still Not Working (v2 fix)",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 37,
+          "context": "### Bug 2.5: Reject Still Not Working (v2 fix) - **Issue:** `context.user_data['pending_reject']` lost between CallbackQueryHandler and MessageHandler — likely ConversationHandler interference"
+        }
+      ]
+    },
+    {
       "topic": "Bug 2: Cancel လုပ်ရင် Data \"?\" ပဲပြတာ",
       "files": [
         {
@@ -3272,8 +3377,18 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 296,
+          "line": 318,
           "context": "### Bug 2: Food cart items skip stock_out entirely | Bug | File | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Bug 2: Reject Button Crash (admin_bookings.py)",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 28,
+          "context": "### Bug 2: Reject Button Crash (admin_bookings.py) - **Cause:** `bk_info` variable only defined inside `if action == \"approve\":` block, but accessed in `else:` (reject) block at lines 437, 450"
         }
       ]
     },
@@ -3298,11 +3413,21 @@
       ]
     },
     {
+      "topic": "Bug 4: Customer Bot Duration Conflict — Form Resets (19:00-19:12 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 43,
+          "context": "### Bug 4: Customer Bot Duration Conflict — Form Resets (19:00-19:12 UTC) - **Issue:** When booking duration too long → API conflict → `context.user_data.clear()` + `ConversationHandler.END` resets en"
+        }
+      ]
+    },
+    {
       "topic": "Bug Fix: Pending Bookings Display",
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 146,
+          "line": 168,
           "context": "### Bug Fix: Pending Bookings Display - **SHA:** `d606bed`"
         }
       ]
@@ -3327,7 +3452,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 283,
+          "line": 305,
           "context": "- **Bug:** Food note items saved to food_cart table but never loaded in voucher at session end - **Root cause:** `step_end_session()` in `console.py` — after `end_booking_async()` changed status to 'D"
         }
       ]
@@ -3337,7 +3462,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 124,
+          "line": 146,
           "context": "### Bug: Console Status Not Updated After Session Extend | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -3357,7 +3482,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 305,
+          "line": 327,
           "context": "### Bug: Session end voucher shows wrong game_amt (missing extended minutes) | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -3367,7 +3492,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 230,
+          "line": 252,
           "context": "### Bug: 🍕 Food Menu Not Showing | Attempt | Commit | Root Cause Still Present |"
         }
       ]
@@ -3427,7 +3552,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 271,
+          "line": 293,
           "context": "- **Burmese message:** \"မင်္ဂလာပါ... သင်၏ Booking ကို အတည်ပြုပြီးပါပြီ\""
         }
       ]
@@ -3497,7 +3622,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 12,
+          "line": 34,
           "context": "### C1: Console Start-Session Lock 🔒 | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -3648,6 +3773,21 @@
       ]
     },
     {
+      "topic": "Cause:",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 24,
+          "context": "- **Cause:** `consoles_with_game` variable only defined inside `if not chosen:` auto-assign block, but accessed in `if chosen:` block when customer chose their own console - **Fix:** Moved `consoles_w"
+        },
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 29,
+          "context": "- **Cause:** `bk_info` variable only defined inside `if action == \"approve\":` block, but accessed in `else:` (reject) block at lines 437, 450 - **Fix:** Moved `bk_info` fetch + unwrap OUTSIDE `if acti"
+        }
+      ]
+    },
+    {
       "topic": "Chan Su Su Hlaing",
       "files": [
         {
@@ -3702,7 +3842,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 239,
+          "line": 261,
           "context": "### Changes Made | File | What |"
         },
         {
@@ -3747,22 +3887,22 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 264,
+          "line": 286,
           "context": "- **Changes:** Console_Booking sheet auto-update (Scheduled/Done rows) - **Flow:** Confirm → \"Scheduled\" | Cancel/No-show → \"Done\" | Session start → cleanup"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 270,
+          "line": 292,
           "context": "- **Changes:** Telegram notification to customer when booking confirmed - **Burmese message:** \"မင်္ဂလာပါ... သင်၏ Booking ကို အတည်ပြုပြီးပါပြီ\""
         },
         {
           "path": "memory/fix-history.md",
-          "line": 276,
+          "line": 298,
           "context": "- **Changes:** Friendly Burmese message when no bookings; API error handling"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 280,
+          "line": 302,
           "context": "- **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
         }
       ]
@@ -3802,7 +3942,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 58,
+          "line": 85,
           "context": "- **Check:** `systemctl show <service> -p NRestarts`"
         }
       ]
@@ -3812,7 +3952,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 60,
+          "line": 87,
           "context": "## chr() Encoding Corruption in Auto-Fix (FIXED) - Fix script replaced `d[\"nm_name\"]` with `d[chr(39)+chr(110)+...]` → `d[\"'nm_name'\"]`"
         }
       ]
@@ -3957,7 +4097,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 129,
+          "line": 151,
           "context": "### Cleanup: Orphaned Active Bookings | Console | Issue | Fix |"
         }
       ]
@@ -4357,7 +4497,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 31,
+          "line": 58,
           "context": "## Console ID URL Encoding (⏳ KNOWN) - Console IDs = \"C - 01\" (with spaces), `_api_call()` doesn't URL-encode"
         }
       ]
@@ -4503,6 +4643,16 @@
       ]
     },
     {
+      "topic": "ConversationHandler Interferes with context.user_data (2026-06-20)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 22,
+          "context": "## ConversationHandler Interferes with context.user_data (2026-06-20)"
+        }
+      ]
+    },
+    {
       "topic": "Convert fetch_* functions in bot/__init__.py to API-first with gspread fallback",
       "files": [
         {
@@ -4597,7 +4747,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 86,
+          "line": 113,
           "context": "## Coupon API Field Name Mismatch (FIXED — 2026-06-05) - Bot checked `cd.get(\"coupon_code\")`/`cd.get(\"coupon_mins\")` but API returns `code`/`minutes`"
         }
       ]
@@ -4817,7 +4967,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 165,
+          "line": 192,
           "context": "## Customer Booking Slot — Date Filter Ignored by API (FIXED — 2026-06-16) - Customer Bot slot availability shows \"No consoles available\" even when consoles are free"
         }
       ]
@@ -4842,7 +4992,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 273,
+          "line": 295,
           "context": "### Customer Bot \"My Booking\" Fix - **SHA:** `6e3c556`"
         }
       ]
@@ -4888,6 +5038,16 @@
       ]
     },
     {
+      "topic": "Customer Bot restarted",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 52,
+          "context": "- **Customer Bot restarted** at 19:12 UTC"
+        }
+      ]
+    },
+    {
       "topic": "Customer Bot Users — Member Enrichment",
       "files": [
         {
@@ -4902,7 +5062,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 35,
+          "line": 62,
           "context": "## Customer Bot — Menu Eaten by ConversationHandler (FIXED) - All reply keyboard menu buttons consumed by booking text handlers"
         }
       ]
@@ -4922,7 +5082,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 160,
+          "line": 182,
           "context": "- **Daily Digest:** Auto-generated for June 9 - **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges)"
         }
       ]
@@ -5022,7 +5182,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 82,
+          "line": 109,
           "context": "- But **Data keys** 12 mismatch (CRITICAL, HIGH, MED) - **Fix:** API server dual key format accept + bot `__init__.py` key mapping"
         }
       ]
@@ -5482,7 +5642,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 24,
+          "line": 51,
           "context": "## Double Multiplier in wallet_game_value (FIXED) - `eff_mins` already × multiplier, then `wallet_val` applied mult again"
         }
       ]
@@ -5884,6 +6044,11 @@
           "path": "memory/booking-features-implemented.md",
           "line": 44,
           "context": "### Example: - It's 2:30 PM → available: 3 PM, 4 PM, 5 PM, 6 PM, 7 PM, 8 PM, 9 PM"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 9,
+          "context": "**Example:** ```python"
         }
       ]
     },
@@ -6112,8 +6277,18 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 33,
+          "line": 55,
           "context": "### Feature: Customer Bot `/admin_broadcast` | File | Description |"
+        }
+      ]
+    },
+    {
+      "topic": "Feature: Reject Reason",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 32,
+          "context": "### Feature: Reject Reason - When \"❌ Reject\" clicked → prompts \"ဘာကြောင့် Reject လုပ်တာလဲ?\" with Skip button"
         }
       ]
     },
@@ -6932,7 +7107,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 286,
+          "line": 308,
           "context": "- **File:** `bot/handlers/console.py` — `step_end_session()` - **Status:** ✅ Deployed + verified syntax OK"
         },
         {
@@ -7039,6 +7214,11 @@
           "path": "memory/2026-06-17.md",
           "line": 71,
           "context": "### Files Modified - **`/root/psvibe_api_server/app.py`:**"
+        },
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 59,
+          "context": "### Files Modified - `/root/psvibe-sales-bot/bot/handlers/admin_bookings.py` — Multiple edits"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -7292,37 +7472,37 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 148,
+          "line": 170,
           "context": "- **Files:** `customer_bot/booking.py` - **Fixes:**"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 263,
+          "line": 285,
           "context": "- **Files:** `admin_bookings.py`, `booking_flow.py` - **Changes:** Console_Booking sheet auto-update (Scheduled/Done rows)"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 269,
+          "line": 291,
           "context": "- **Files:** `admin_bookings.py` - **Changes:** Telegram notification to customer when booking confirmed"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 275,
+          "line": 297,
           "context": "- **Files:** `customer_bot/booking.py` - **Changes:** Friendly Burmese message when no bookings; API error handling"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 279,
+          "line": 301,
           "context": "- **Files:** `openclaw.json`, `memory/lock_monitor.py` - **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 300,
+          "line": 322,
           "context": "- **Files:** `bot/handlers/sales.py` - **Status:** ✅ Deployed + bot restarted (PID 136936)"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 309,
+          "line": 331,
           "context": "- **Files:** `bot/handlers/console.py` — `step_end_session()` - **Status:** ⚠️ Edit failed on first try, needs manual verification"
         }
       ]
@@ -7332,7 +7512,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 237,
+          "line": 259,
           "context": "| **FINAL** | `1dd1be1` | ✅ ALL fixed |"
         }
       ]
@@ -7497,7 +7677,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 62,
+          "line": 84,
           "context": "### Fix 1: Session Timer Drift on Bot Restart | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -7537,7 +7717,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 69,
+          "line": 91,
           "context": "### Fix 2: _sync_console_status() Resets Active Console start_time | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -7577,7 +7757,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 74,
+          "line": 96,
           "context": "### Fix 3: Existing Active Consoles Restored Same root cause as Fix 2 — verified all active consoles in DB."
         }
       ]
@@ -7617,7 +7797,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 46,
+          "line": 68,
           "context": "### Fix 3: PATCH /api/bookings/{id}/status — Can't Cancel Confirmed Bookings | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -7647,7 +7827,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 51,
+          "line": 73,
           "context": "### Fix 4: Cancel Display Shows \"?\" Instead of Booking Data | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -7687,7 +7867,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 28,
+          "line": 50,
           "context": "### Fix 5: Broadcast API Returns Wrong Key + Route Order Bug | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -7809,6 +7989,16 @@
           "path": "memory/tools-commands.md",
           "line": 42,
           "context": "## Fix Protocol (MANDATORY) ```bash"
+        }
+      ]
+    },
+    {
+      "topic": "Fix v2:",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 39,
+          "context": "- **Fix v2:** Changed state storage from `context.user_data` to `context.bot_data` keyed by user_id (`f'_reject_{user_id}'`) - Added debug logging to `handle_reject_reason`, `cb_reject_skip`, and `cb_"
         }
       ]
     },
@@ -8166,6 +8356,21 @@
           "context": "**Fix:** Cancel မလုပ်ခင် GET `/api/bookings/{id}` နဲ့ booking data အပြည့် pre-fetch လုပ်။ Staff display + customer notification နှစ်ခုလုံး pre-fetched data သုံး."
         },
         {
+          "path": "memory/2026-06-20.md",
+          "line": 25,
+          "context": "- **Fix:** Moved `consoles_with_game = []` + `await get_consoles_with_game_async(game_name)` BEFORE all branching (line ~302) - Also fixed `', '.join(consoles_with_game)` — was joining dicts, now extr"
+        },
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 30,
+          "context": "- **Fix:** Moved `bk_info` fetch + unwrap OUTSIDE `if action == \"approve\":` block — now available for both approve and reject"
+        },
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 46,
+          "context": "- **Fix:** - Added `_get_max_duration_for_console()` function — calculates max duration by checking booking conflicts"
+        },
+        {
           "path": "memory/ARCHIVE.md",
           "line": 65,
           "context": "(dedup) - **Fix:** Changed to `cd.get(\"code\")` and `cd.get(\"minutes\")` (dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()`"
@@ -8457,127 +8662,137 @@
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 8,
+          "line": 18,
+          "context": "**Fix:** Move variable definition BEFORE all conditional branches that use it."
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 28,
+          "context": "**Fix:** Use `context.bot_data` keyed by `user_id` instead of `context.user_data`."
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 35,
           "context": "- **Fix:** Calculate end time from stored `end_t` (HH:MM format), not from current time - **Pattern:** NEVER use `datetime.now()` in restore/boot code for time calculations. Always derive from stored "
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 14,
+          "line": 41,
           "context": "- **Fix:** Check `already_active` before updating start_time — only set for newly activated consoles - **Pattern:** Sync/utility functions that update state must check current state first (idempotency"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 57,
+          "line": 84,
           "context": "- **Fix:** Added `asyncio.get_event_loop().set_exception_handler()` in `bot/app.py` - **Check:** `systemctl show <service> -p NRestarts`"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 63,
+          "line": 90,
           "context": "- **Fix:** Always `ast.parse()` output before deploying auto-generated code"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 74,
+          "line": 101,
           "context": "- **Fix:** Add comma. **Lesson:** Always `ast.parse()` after manual dict edits."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 78,
+          "line": 105,
           "context": "- **Fix:** Use `_to_mdv2()` escape before any MarkdownV2 text"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 83,
+          "line": 110,
           "context": "- **Fix:** API server dual key format accept + bot `__init__.py` key mapping - **Lesson:** MySQL migration → check API response keys match bot handler expectations"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 89,
+          "line": 116,
           "context": "- **Fix:** Changed to `cd.get(\"code\")`/`cd.get(\"minutes\")` in `sales.py` - **Lesson:** When adding API calls, verify response field names match the actual API output, not assumed names"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 94,
+          "line": 121,
           "context": "- **Fix:** Added `deduct_mins = req.get(\"deduct_mins\")` before usage - **Pattern:** Python NameError in API endpoints — variable used but never read from request body"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 99,
+          "line": 126,
           "context": "- **Fix:** Use `getattr(worksheet, '_name', None)` first, fallback to `getattr(worksheet, 'title', '')` - **Pattern:** gspread proxy objects may have properties that look like attributes but are metho"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 106,
+          "line": 133,
           "context": "- **Fix:** Just check `if not resp:` and use `items = resp or {}` - **Pattern:** Any `_api_get` / `_api_call` with \"get\" in name likely unwraps data. Audit ALL handlers if one mismatches."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 112,
+          "line": 139,
           "context": "- **Fix:** Use simple English text or direct Unicode chars, never double-escaped sequences - **Pattern:** When bot shows garbled/nonsense Burmese text → check for corrupted Unicode escape sequences"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 118,
+          "line": 145,
           "context": "- **Fix:** `find ... -name '*.pyc' -delete` AND `find ... -name '__pycache__' -type d -exec rm -rf {} +` THEN restart - **Pattern:** Any backend edit that returns \"not defined\" error despite correct c"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 124,
+          "line": 151,
           "context": "- **Fix:** Use `repr(txt[idx:idx+N])` to verify exact whitespace before patching - **Pattern:** After Python patch script says \"done\" but file hasn't changed"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 130,
+          "line": 157,
           "context": "- **Fix:** `retained = ti - te - cost_of_sold - member_liab - total_dep` - **Pattern:** Any time accumulated depreciation is added to BS, retained earnings must subtract it too"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 136,
+          "line": 163,
           "context": "- **Fix:** Add \"AYA Pay\" to BOTH `bot/constants.py` (L35) AND `apply_fixes.py` PAY_METHODS injection list - **Pattern:** Any shared constant/setting that's duplicated across a \"source\" file and a \"fix"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 142,
+          "line": 169,
           "context": "- **Fix:** Add `message_thread_id` parameter through extend call chain (`booking_flow.py` → `console.py` → `sales.py`), use `kwargs.get(\"message_thread_id\")` in `notify_update()` - **Pattern:** When a"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 148,
+          "line": 175,
           "context": "- **Fix:** Added `_SESSION_TOTAL_MINS` dict that accumulates total minutes across extensions; display uses accumulated total instead of remaining time - **Pattern:** Remaining time != total session ti"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 159,
+          "line": 186,
           "context": "- **Fix:** Changed `asyncio.ensure_future(...)` to `await _psvibe_post_async(...)` - DB sync now happens BEFORE function returns"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 168,
+          "line": 195,
           "context": "- **Fix:** Added `date: str = Query(\"\")` parameter to endpoint; built dynamic WHERE clause with date normalization (supports 5 date formats) ```python"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 179,
+          "line": 206,
           "context": "- **Fix:** `session_reminder_store.py` persist/restore logic ထဲမှာ `total_plan_mins` ကို JSON နဲ့ serialise လုပ် - **Lesson:** Any in-memory state that should survive restart must be explicitly persis"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 189,
+          "line": 216,
           "context": "- **Fix:** `_linked_bk_id = bk_id` (console_status ကနေရတဲ့ ID ကိုတန်းသုံး) — fallback အနေနဲ့ member lookup ကို bk_id empty မှသာလုပ်မယ် - **Lesson:** After ending a booking, never try to find it again "
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 195,
+          "line": 222,
           "context": "- **Fix:** Added `if key not in _SESSION_TOTAL_MINS: _SESSION_TOTAL_MINS[key] = planned_mins` in `_remind_loop()` right after `_SESSION_END_TIMES[key] = end_t`. - **Pattern:** Any module-level dict th"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 95,
+          "line": 117,
           "context": "| **Fix:** Added \"AYA Pay\" to both `constants.py` PAY_METHODS constant and `apply_fixes.py` injection list |"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 285,
+          "line": 307,
           "context": "- **Fix:** Use `bk_id` from console_status `booking_id` directly (already found before end_booking). Fallback to member lookup only if `bk_id` was empty. - **File:** `bot/handlers/console.py` — `step_"
         },
         {
@@ -8717,7 +8932,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 149,
+          "line": 171,
           "context": "- **Fixes:** - `_format_booking_line`: robust `.get()` fallback chain for console type"
         }
       ]
@@ -8787,7 +9002,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 265,
+          "line": 287,
           "context": "- **Flow:** Confirm → \"Scheduled\" | Cancel/No-show → \"Done\" | Session start → cleanup"
         }
       ]
@@ -8797,7 +9012,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 182,
+          "line": 209,
           "context": "## Food Cart Lost in Voucher After Session End — booking_id Lookup After Booking Ended (FIXED) - Food Note → food_cart table ထဲမှာ items တွေကို booking_id နဲ့ သိမ်းတယ်"
         }
       ]
@@ -9147,7 +9362,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 40,
+          "line": 67,
           "context": "## Git Push Blocked by SA JSON (FIXED) - `git push` blocked because commit contained `kora_drive_sa.json` in cache files"
         }
       ]
@@ -9427,7 +9642,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 97,
+          "line": 124,
           "context": "## GSheet _LazyWorksheet .title Returns Bound Method (FIXED — 2026-06-05) - `getattr(worksheet, 'title', '')` on `_LazyWorksheet` proxy returns a bound method, not a string"
         }
       ]
@@ -9492,7 +9707,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 7,
+          "line": 29,
           "context": "### H1: Approve Overlap Lock 🔒 | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -9512,7 +9727,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 17,
+          "line": 39,
           "context": "### H2: Walk-in Session → Pending Booking Warning ⚠️ | Bug | Files | Root Cause | Fix |"
         }
       ]
@@ -9687,7 +9902,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 162,
+          "line": 184,
           "context": "- **HEARTBEAT.md:** All Phase 3 tools added to ~4h routine - **MEMORY.md:** Index updated with Phase 3 references"
         }
       ]
@@ -10372,7 +10587,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 177,
+          "line": 204,
           "context": "## In-Memory State Lost on Bot Restart (FIXED) - `_SESSION_TOTAL_MINS` dict က in-memory-only → bot restart တိုင်း extend အတွက် total mins တန်ဖိုးတွေ ပျောက်သွားပြီး \"Plan: 1 min\" ပြတယ်"
         }
       ]
@@ -10651,6 +10866,16 @@
       "topic": "Issue:",
       "files": [
         {
+          "path": "memory/2026-06-20.md",
+          "line": 38,
+          "context": "- **Issue:** `context.user_data['pending_reject']` lost between CallbackQueryHandler and MessageHandler — likely ConversationHandler interference - **Fix v2:** Changed state storage from `context.user"
+        },
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 44,
+          "context": "- **Issue:** When booking duration too long → API conflict → `context.user_data.clear()` + `ConversationHandler.END` resets entire form - **Boss request:** Show max available duration + return to dura"
+        },
+        {
           "path": "memory/booking-audit-complete.md",
           "line": 85,
           "context": "- **Issue:** Uses `search-bookings?telegram_chat_id={uid}&date={date_str}` which returns ALL bookings for the user on that date, then does overlap detection IN the bot - **API level** also has slot co"
@@ -10867,7 +11092,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 161,
+          "line": 183,
           "context": "- **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges) - **HEARTBEAT.md:** All Phase 3 tools added to ~4h routine"
         }
       ]
@@ -10962,7 +11187,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 156,
+          "line": 178,
           "context": "### Kora Upgrade Phase 3 — Fully Integrated - **Memory Git Backup:** 1,470 files committed (bitbckt to GitHub)"
         }
       ]
@@ -11147,42 +11372,42 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 38,
+          "line": 65,
           "context": "- **Lesson:** Check ALL related handlers, not just the reported one"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 69,
+          "line": 96,
           "context": "- **Lesson:** Schema gaps include missing DELETE sync"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 74,
+          "line": 101,
           "context": "- **Fix:** Add comma. **Lesson:** Always `ast.parse()` after manual dict edits."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 84,
+          "line": 111,
           "context": "- **Lesson:** MySQL migration → check API response keys match bot handler expectations"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 90,
+          "line": 117,
           "context": "- **Lesson:** When adding API calls, verify response field names match the actual API output, not assumed names"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 180,
+          "line": 207,
           "context": "- **Lesson:** Any in-memory state that should survive restart must be explicitly persisted to a file. `_SESSION_TOTAL_MINS` is a dict living in the bot process — gone on restart. Pair with `session_re"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 190,
+          "line": 217,
           "context": "- **Lesson:** After ending a booking, never try to find it again by status filter. Use the ID you already had from the pre-end console status lookup."
         },
         {
           "path": "memory/fix-history.md",
-          "line": 252,
+          "line": 274,
           "context": "### Lesson - When `_api_get` auto-unwraps, DON'T check `success`/`data` — just use the response directly"
         },
         {
@@ -11247,12 +11472,12 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 77,
+          "line": 99,
           "context": "### Lessons - NEVER calculate end_time from `datetime.now()` during restore — use stored `end_t` HH:MM"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 134,
+          "line": 156,
           "context": "### Lessons - `asyncio.ensure_future()` = fire-and-forget = silent failure. If the result matters (DB sync), always `await`."
         },
         {
@@ -11612,7 +11837,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 76,
+          "line": 103,
           "context": "## MarkdownV2 `-` Character Escape (FIXED 2026-06-02) - FAQ template `\"Mon-Sun: 10AM-11PM\"` — unescaped `-` causes `Can't parse entities`"
         }
       ]
@@ -11652,7 +11877,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 28,
+          "line": 55,
           "context": "## Member Console Multiplier (FIXED) - Members always got 1.0x. Added `fetch_console_multiplier()` for non-guest members."
         }
       ]
@@ -11712,7 +11937,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 157,
+          "line": 179,
           "context": "- **Memory Git Backup:** 1,470 files committed (bitbckt to GitHub) - **Memory Pruner:** 3 exact dupes + 26 similar merged (1.1 KB saved)"
         }
       ]
@@ -11722,7 +11947,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 159,
+          "line": 181,
           "context": "- **Memory Index:** Rebuilt (1,146 topics, 47 files) - **Daily Digest:** Auto-generated for June 9"
         }
       ]
@@ -11732,7 +11957,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 158,
+          "line": 180,
           "context": "- **Memory Pruner:** 3 exact dupes + 26 similar merged (1.1 KB saved) - **Memory Index:** Rebuilt (1,146 topics, 47 files)"
         }
       ]
@@ -11762,7 +11987,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 163,
+          "line": 185,
           "context": "- **MEMORY.md:** Index updated with Phase 3 references"
         }
       ]
@@ -12032,7 +12257,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 71,
+          "line": 98,
           "context": "## Missing Comma = API Crash Loop (FIXED 2026-06-02) - Missing trailing comma in `patch_routes.py` → SyntaxError → API won't start"
         }
       ]
@@ -12237,7 +12462,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 65,
+          "line": 92,
           "context": "## MySQL-GSheet Sync Deletion Gap (KNOWN) - Deleting from GSheet does NOT delete from MySQL `member_wallets`"
         }
       ]
@@ -12946,6 +13171,11 @@
       "topic": "Other",
       "files": [
         {
+          "path": "memory/2026-06-20.md",
+          "line": 54,
+          "context": "### Other - Test bookings BK#692, BK#700, BK#704 cleaned up"
+        },
+        {
           "path": "memory/tools-commands.md",
           "line": 78,
           "context": "## Other ```bash"
@@ -13152,7 +13382,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 49,
+          "line": 76,
           "context": "## Parallel Agent Collision — Same Function Overwrite (FIXED) - Multiple fix agents modified the same function (`_fetch_games_from_mysql()`) in parallel"
         }
       ]
@@ -13292,77 +13522,87 @@
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 9,
+          "line": 7,
+          "context": "**Pattern:** Variable defined inside one `if` branch but accessed in another `if/else` branch."
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 24,
+          "context": "**Pattern:** State stored in `context.user_data` between CallbackQueryHandler and MessageHandler gets lost/altered by ConversationHandler's internal state management."
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 36,
           "context": "- **Pattern:** NEVER use `datetime.now()` in restore/boot code for time calculations. Always derive from stored absolute values."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 15,
+          "line": 42,
           "context": "- **Pattern:** Sync/utility functions that update state must check current state first (idempotency). Blind `SET col=NOW()` on every sync = timer reset bug."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 95,
+          "line": 122,
           "context": "- **Pattern:** Python NameError in API endpoints — variable used but never read from request body"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 100,
+          "line": 127,
           "context": "- **Pattern:** gspread proxy objects may have properties that look like attributes but are methods"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 107,
+          "line": 134,
           "context": "- **Pattern:** Any `_api_get` / `_api_call` with \"get\" in name likely unwraps data. Audit ALL handlers if one mismatches."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 113,
+          "line": 140,
           "context": "- **Pattern:** When bot shows garbled/nonsense Burmese text → check for corrupted Unicode escape sequences"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 119,
+          "line": 146,
           "context": "- **Pattern:** Any backend edit that returns \"not defined\" error despite correct code"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 125,
+          "line": 152,
           "context": "- **Pattern:** After Python patch script says \"done\" but file hasn't changed"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 131,
+          "line": 158,
           "context": "- **Pattern:** Any time accumulated depreciation is added to BS, retained earnings must subtract it too"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 137,
+          "line": 164,
           "context": "- **Pattern:** Any shared constant/setting that's duplicated across a \"source\" file and a \"fix/override\" file — always check both"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 143,
+          "line": 170,
           "context": "- **Pattern:** When a feature has an \"initial\" flow and an \"update/extend\" flow, the update flow may drop parameters that the initial flow correctly passes"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 149,
+          "line": 176,
           "context": "- **Pattern:** Remaining time != total session time after an extension. Always track both."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 163,
+          "line": 190,
           "context": "- **Pattern:** `asyncio.ensure_future()` with fire-and-forget = silent failure risk. If the result matters (like DB sync), always `await`."
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 175,
+          "line": 202,
           "context": "- **Pattern:** When an API endpoint has a `date`/`filter` parameter in the client call but NOT in the server's function signature or SQL query, it becomes a silent no-op — the code works but returns w"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 196,
+          "line": 223,
           "context": "- **Pattern:** Any module-level dict that tracks session state across functions must be initialized at the FIRST entry point (`_remind_loop`), not only at mutation points (`_do_extend`)."
         }
       ]
@@ -13382,7 +13622,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 17,
+          "line": 44,
           "context": "## Payment Cash Calculation (FIXED) - `d[\"cash\"] = net - total_paid` → `d[\"cash\"] = payments.get(\"Cash\", 0)`"
         }
       ]
@@ -13752,7 +13992,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 192,
+          "line": 219,
           "context": "## Plan Display Wrong After Session Extend (FIXED — 2026-06-17) - **Symptom:** After extending a session, the reminder shows wrong \"Plan: X mins\" value. First extension loses the original plan minutes"
         }
       ]
@@ -14137,7 +14377,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 115,
+          "line": 142,
           "context": "## Python .pyc Cache Stale (FIXED — 2026-06-09) - Edit .py file → restart service → `NameError: name 'X' is not defined` even though X is clearly in file"
         }
       ]
@@ -15472,62 +15712,62 @@
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 7,
+          "line": 34,
           "context": "- **Root cause:** `_end_dt_iso = datetime.now() + planned_mins` — `now` = restart time, not original start - **Fix:** Calculate end time from stored `end_t` (HH:MM format), not from current time"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 13,
+          "line": 40,
           "context": "- **Root cause:** `_sync_console_status()` unconditionally sets `start_time=NOW()` - **Fix:** Check `already_active` before updating start_time — only set for newly activated consoles"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 88,
+          "line": 115,
           "context": "- **Root cause:** Bot-side field names differed from API response schema — no shared type definition - **Fix:** Changed to `cd.get(\"code\")`/`cd.get(\"minutes\")` in `sales.py`"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 117,
+          "line": 144,
           "context": "- **Root cause:** Python cached bytecode (`.pyc`/`__pycache__`) still has old code; `systemctl restart` doesn't clear it - **Fix:** `find ... -name '*.pyc' -delete` AND `find ... -name '__pycache__' -"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 123,
+          "line": 150,
           "context": "- **Root cause:** `old` string has different whitespace/newline count than actual file (e.g., `\\n\\n` vs `\\n`) - **Fix:** Use `repr(txt[idx:idx+N])` to verify exact whitespace before patching"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 129,
+          "line": 156,
           "context": "- **Root cause:** `retained = ti - te - cost_of_sold - member_liab` — no `- total_dep` - **Fix:** `retained = ti - te - cost_of_sold - member_liab - total_dep`"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 135,
+          "line": 162,
           "context": "- **Root cause:** `PAY_METHODS` constant exists in BOTH `bot/constants.py` AND `apply_fixes.py`. Modifying only one leaves the other stale. `apply_fixes.py` overwrites constants.py on every run. - **F"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 141,
+          "line": 168,
           "context": "- **Root cause:** `_do_extend()` calls `notify_update()` without passing `message_thread_id`. The reminder store persists `message_thread_id` during initial booking but the extend flow doesn't carry i"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 147,
+          "line": 174,
           "context": "- **Root cause:** `rem_mins = max(1, int(total_rem_secs / 60))` calculates remaining seconds from end time. When session is extended with only ~1 min left, rem_mins = 1. Missing `_SESSION_TOTAL_MINS` "
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 154,
+          "line": 181,
           "context": "- **Root cause:** `_do_extend()` in `booking_flow.py` used `asyncio.ensure_future(_psvibe_post_async(...))` — fire-and-forget! - API call runs in background without await"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 167,
+          "line": 194,
           "context": "- **Root cause:** `GET /api/search-bookings` endpoint had no `date` query parameter. Client sends `date=2026-06-17` but API ignores it — SQL query returns ALL bookings across all dates → slot logic ma"
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 194,
+          "line": 221,
           "context": "- **Root cause:** `_SESSION_TOTAL_MINS` dict is never initialized when `_remind_loop()` starts (line 102-104 in `booking_flow.py`). When `_do_extend()` calls `.get(_session_key, 0)`, it returns 0, so "
         },
         {
@@ -15537,7 +15777,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 284,
+          "line": 306,
           "context": "- **Root cause:** `step_end_session()` in `console.py` — after `end_booking_async()` changed status to 'Done', the second lookup for `_linked_bk_id` used a status filter ('confirmed','arrived','in_use"
         },
         {
@@ -15592,7 +15832,7 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 247,
+          "line": 269,
           "context": "### Root Causes 1. **`_bk_intercept_menu` missing BTN_FOOD** — booking conversation silently ate the button"
         }
       ]
@@ -15697,7 +15937,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 105,
+          "line": 132,
           "context": "- **Same pattern as Sales Bot's double-unwrap** (`__init__.py` line ~95, fixed 2026-06-03) - **Fix:** Just check `if not resp:` and use `items = resp or {}`"
         }
       ]
@@ -15917,7 +16157,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 162,
+          "line": 189,
           "context": "- **Secondary issue:** 3 orphaned Active bookings found (id=434,444,463) where session ended but console_booking.status never set to 'Done'. Fixed. - **Pattern:** `asyncio.ensure_future()` with fire-a"
         }
       ]
@@ -16197,7 +16437,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 169,
+          "line": 191,
           "context": "### Session 1: Core Sales Bot + Customer Bot | Bug | SHA/File | Root Cause |"
         }
       ]
@@ -16207,7 +16447,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 176,
+          "line": 198,
           "context": "### Session 2: Web Dashboard | Fix | Files | What |"
         }
       ]
@@ -16217,7 +16457,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 187,
+          "line": 209,
           "context": "### Session 3: 3 More Sales Bot Bugs | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16227,7 +16467,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 194,
+          "line": 216,
           "context": "### Session 4: Booking Timeout | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16237,7 +16477,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 200,
+          "line": 222,
           "context": "### Session 5: Console + Game Library | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16247,7 +16487,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 209,
+          "line": 231,
           "context": "### Session 6: Sale Completion Bugs | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16257,7 +16497,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 217,
+          "line": 239,
           "context": "### Session 7: Food Data Path | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16267,7 +16507,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 222,
+          "line": 244,
           "context": "### Session 8: Layout Restructure + Session Start/End | Bug | File | Root Cause | Fix |"
         }
       ]
@@ -16287,7 +16527,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 151,
+          "line": 178,
           "context": "## Session Extend — Console Status Not Updating (FIXED — 2026-06-17) - Staff extends session via reminder → \"Extended!\" message shown ✅"
         }
       ]
@@ -16297,7 +16537,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 139,
+          "line": 166,
           "context": "## Session Extended Reminder: Missing message_thread_id (FIXED — 2026-06-16) - Extended sessions lose reminder notifications"
         }
       ]
@@ -16327,7 +16567,7 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 278,
+          "line": 300,
           "context": "### Session Lock Timeout Permanent Fix - **Files:** `openclaw.json`, `memory/lock_monitor.py`"
         }
       ]
@@ -16347,7 +16587,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 145,
+          "line": 172,
           "context": "## Session Reminder: \"Plan: 1 min\" After Extend (FIXED — 2026-06-16) - After session extension, reminder shows wrong remaining time (\"Plan: 1 min\")"
         }
       ]
@@ -16387,7 +16627,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 5,
+          "line": 32,
           "context": "## Session Timer Drift on Bot Restart (FIXED — 2026-06-18) - Bot restart → end-of-session timer drifts forward by 2h+"
         }
       ]
@@ -16687,22 +16927,22 @@
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 147,
+          "line": 169,
           "context": "- **SHA:** `d606bed` - **Files:** `customer_bot/booking.py`"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 262,
+          "line": 284,
           "context": "- **SHA:** `941d0a5` - **Files:** `admin_bookings.py`, `booking_flow.py`"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 268,
+          "line": 290,
           "context": "- **SHA:** `6e3c556` - **Files:** `admin_bookings.py`"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 274,
+          "line": 296,
           "context": "- **SHA:** `6e3c556` - **Files:** `customer_bot/booking.py`"
         }
       ]
@@ -17201,6 +17441,11 @@
           "context": "**Status:** ❌ UNRESOLVED"
         },
         {
+          "path": "memory/2026-06-20.md",
+          "line": 41,
+          "context": "- **Status:** ⚠️ Needs Boss to test with a real pending booking"
+        },
+        {
           "path": "memory/ARCHIVE.md",
           "line": 67,
           "context": "(dedup) - **Status:** ✅ Boss confirmed coupon is showing (dedup) - **Root cause:** API server's `api_member_wallet_update()` endpoint was missing `deduct_mins = req.get(\"deduct_mins\")` — variable unde"
@@ -17327,17 +17572,17 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 287,
+          "line": 309,
           "context": "- **Status:** ✅ Deployed + verified syntax OK"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 301,
+          "line": 323,
           "context": "- **Status:** ✅ Deployed + bot restarted (PID 136936)"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 310,
+          "line": 332,
           "context": "- **Status:** ⚠️ Edit failed on first try, needs manual verification"
         },
         {
@@ -17527,7 +17772,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 121,
+          "line": 148,
           "context": "## String replace() Whitespace Mismatch (FIXED — 2026-06-09) - Python patch script with `txt.replace(old, new)` silently does nothing — no error, no change"
         }
       ]
@@ -17727,7 +17972,12 @@
         },
         {
           "path": "memory/bug-patterns.md",
-          "line": 193,
+          "line": 26,
+          "context": "**Symptom:** MessageHandler at group -1 fires but `context.user_data.get('key')` returns None."
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 220,
           "context": "- **Symptom:** After extending a session, the reminder shows wrong \"Plan: X mins\" value. First extension loses the original plan minutes entirely (e.g., 240 min + 30 min extend shows \"30 mins\" instead"
         },
         {
@@ -18568,11 +18818,21 @@
       ]
     },
     {
+      "topic": "UnboundLocalError: Variable Scope Across Branches (2026-06-20)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 5,
+          "context": "## UnboundLocalError: Variable Scope Across Branches (2026-06-20)"
+        }
+      ]
+    },
+    {
       "topic": "Unicode escape corruption",
       "files": [
         {
           "path": "memory/fix-history.md",
-          "line": 250,
+          "line": 272,
           "context": "3. **Unicode escape corruption** — Auto-fix pipeline corrupted `\\u` sequences → garbled Burmese text"
         }
       ]
@@ -18582,7 +18842,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 109,
+          "line": 136,
           "context": "## Unicode Escape Corruption in Auto-Fix Pipeline (FIXED — 2026-06-06) - Burmese Unicode escapes (`\\u1012\\u103d\\u102c...`) can be corrupted by auto-fix/auto-commit scripts"
         }
       ]
@@ -18682,7 +18942,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 52,
+          "line": 79,
           "context": "- **Use Task Planner FIRST** to identify function-level conflicts"
         }
       ]
@@ -18827,27 +19087,27 @@
         },
         {
           "path": "memory/fix-history.md",
-          "line": 22,
+          "line": 44,
           "context": "**Verification:** All 3 fixes deployed, API + bots restarted ✅"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 40,
+          "line": 62,
           "context": "**Verification:** API returns 44 targets ✅, Boss included ✅"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 56,
+          "line": 78,
           "context": "**Verification:** Both fixes deployed, bots restarted ✅"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 67,
+          "line": 89,
           "context": "**Verification:** 5 consecutive restarts, max drift 12s ✅"
         },
         {
           "path": "memory/fix-history.md",
-          "line": 154,
+          "line": 176,
           "context": "- **Verification:** py_compile PASS, API health PASS, all 3 services active"
         },
         {
@@ -18967,7 +19227,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 20,
+          "line": 47,
           "context": "## Wallet Balance Column H (FIXED — 3 bugs) - Sale flow, new registration, top-up — none wrote to Card_Wallet Column H"
         }
       ]
@@ -18987,7 +19247,7 @@
       "files": [
         {
           "path": "memory/bug-patterns.md",
-          "line": 92,
+          "line": 119,
           "context": "## Wallet Deduction Endpoint Missing Variable (FIXED — 2026-06-05) - `api_member_wallet_update()` used `deduct_mins` without reading it from request → NameError"
         }
       ]

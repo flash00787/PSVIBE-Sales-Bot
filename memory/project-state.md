@@ -5,8 +5,21 @@
 
 ---
 
-## ✅ Recently Completed (2026-06-03 → 2026-06-04 — 31+ fixes)
+## ✅ Recently Completed (2026-06-19 → 2026-06-20 — 43+ fixes)
 
+### 2026-06-20 — Sale Bot + Customer Bot Fixes
+| # | Feature | Status |
+|---|---------|--------|
+| 27 | **Pending booking time slot holding** — verified 3-layer conflict detection | ✅ |
+| 28 | **Sale Bot Approve crash** — `consoles_with_game` variable scope | ✅ |
+| 29 | **Sale Bot Reject crash** — `bk_info` variable scope | ✅ |
+| 30 | **Reject reason feature** — prompt + card update + customer notify | ✅ |
+| 31 | **Reject state persistence** — `user_data`→`bot_data` for ConversationHandler | ✅ |
+| 32 | **Customer Bot duration conflict** — max duration + redirect to duration step | ✅ |
+| 33 | **Customer Bot auto-assign v3** — empty available + ValueError handler | ✅ |
+| 34 | **Customer Bot text polish** — natural Burmese with next booking time | ✅ |
+
+### 2026-06-03 → 2026-06-19 (26 fixes)
 | # | Feature | Status |
 |---|---------|--------|
 | 1 | **Sales Daily stuck** — `await` fix + double-unwrap fix + dict guard | ✅ |

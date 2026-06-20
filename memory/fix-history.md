@@ -19,10 +19,15 @@
 |---------|-------|---------|
 | Reject လုပ်ရင် reason ထည့်လို့ရ | `admin_bookings.py`, `app.py` | When "❌ Reject" clicked → prompts for reason with Skip button. Reason shown in card + customer notification. State stored in `bot_data` (not `user_data`) to avoid ConversationHandler interference. New handlers: `handle_reject_reason` (group -1), `cb_reject_skip` |
 
-### #41: Customer Bot Duration Conflict Reset 🐛
+### #42: Customer Bot Duration — Auto-Assign v3 🐛
 | Bug | Files | Root Cause | Fix |
 |-----|-------|-----------|-----|
-| Duration too long → form resets | `customer_bot/booking_handlers.py` | `_submit_booking` failure → `context.user_data.clear()` + `ConversationHandler.END` | Added `_get_max_duration_for_console()`; modified `_submit_booking()` to return max duration + `go_back_to_duration` flag; caller redirects to BK_DURATION step with filtered keyboard |
+| Auto-assign still crashes on duration conflict | `customer_bot/booking_handlers.py` | (1) `available` list empty → no console_id → API crash, (2) `_validate_response()` raises ValueError for HTTP 4xx → caught by `except Exception`, never reaches max_dur code | (1) Added `else` block: when available empty, find any matching console, calc max_dur, return go_back, (2) Added `except ValueError` before `except Exception` — treats API errors as booking failures with max_dur check |
+
+### #43: Customer Bot Duration — Text Polish ✨
+| Improvement | Files | Details |
+|-------------|-------|----------|
+| Natural Burmese message format | `customer_bot/booking_handlers.py` | Changed from "Max duration: X min သာရပါမည်" to "XX:XX မှာ Booking ရှိနေလို့ XX min ပဲ ရပါတော့မယ် ခင်ဗျ" — shows WHY only X minutes available. `_get_max_duration_for_console()` now returns `(max_mins, next_booking_time)` tuple. Updated all 4 error message sites. |
 
 ## 2026-06-19 — Booking System Concurrency Fixes (H1, C1, H2)
 
