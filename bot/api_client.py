@@ -18,6 +18,7 @@ import logging
 import os
 import urllib.request
 import urllib.parse
+import urllib.error
 import time
 
 # ---------------------------------------------------------------------------
@@ -113,9 +114,28 @@ def _api_call(
                             'API %s %s responded success=false: %s',
                             method, path_clean, data.get('error', 'unknown'),
                         )
-                        return None
+                        # Return full error response with status_code so callers can handle it
+                        data['status_code'] = resp.status if hasattr(resp, 'status') else 0
+                        return data
                     return data.get('data')
                 return data
+        except urllib.error.HTTPError as http_err:
+            # Read error response body for non-2xx status codes (e.g. 409 conflict)
+            try:
+                err_body = http_err.read().decode('utf-8')
+                err_data = json.loads(err_body)
+                err_data['status_code'] = http_err.code
+                logger.warning(
+                    'API %s %s HTTP %d: %s',
+                    method, path_clean, http_err.code, err_data.get('message', err_data.get('error', '')),
+                )
+                # Don't retry 4xx errors (client errors like 409 conflict)
+                if 400 <= http_err.code < 500:
+                    return err_data
+            except Exception:
+                pass
+            # Fall through — server error (5xx) retry or unknown
+            last_error = http_err
         except Exception as exc:
             last_error = exc
             if attempt < DEFAULT_MAX_RETRIES:
@@ -197,9 +217,28 @@ async def _api_call_async(
                         'API %s %s responded success=false: %s',
                         method, path_clean, data.get('error', 'unknown'),
                     )
-                    return None
+                    # Return full error response with status_code so callers can handle it
+                    data['status_code'] = 0  # success=false but HTTP 200
+                    return data
                 return data.get('data')
             return data
+        except urllib.error.HTTPError as http_err:
+            # Read error response body for non-2xx status codes (e.g. 409 conflict)
+            try:
+                err_body = http_err.read().decode('utf-8')
+                err_data = json.loads(err_body)
+                err_data['status_code'] = http_err.code
+                logger.warning(
+                    'API %s %s HTTP %d: %s',
+                    method, path_clean, http_err.code, err_data.get('message', err_data.get('error', '')),
+                )
+                # Don't retry 4xx errors (client errors like 409 conflict)
+                if 400 <= http_err.code < 500:
+                    return err_data
+            except Exception:
+                pass
+            # Fall through — server error (5xx) retry or unknown
+            last_error = http_err
         except Exception as exc:
             last_error = exc
             if attempt < DEFAULT_MAX_RETRIES:

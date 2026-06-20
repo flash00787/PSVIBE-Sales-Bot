@@ -69,24 +69,50 @@ def _cancel_remind(cid: str, chat_id: int) -> None:
     remove_persisted_reminder(cid, chat_id)
 
 async def _is_session_active(cid: str) -> bool:
-    """Quick sync check: is this console Active today? (via MySQL API)."""
+    """Quick sync check: is this console Active today? (via console_status + cross-check booking)."""
     try:
-        # Use fetch_console_status endpoint - _psvibe_get_async returns list of dicts
+        # Check console_status via API
         bk_data = await _psvibe_get_async("fetch_console_status")
+        console_status_active = False
         if isinstance(bk_data, list):
             for row in bk_data:
                 if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
-                    return True
+                    console_status_active = True
+                    break
         elif isinstance(bk_data, dict):
             consoles = bk_data.get("consoles", bk_data.get("data", []))
             if isinstance(consoles, list):
                 for row in consoles:
                     if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
-                        return True
+                        console_status_active = True
+                        break
             elif isinstance(consoles, dict):
                 for row in consoles.get("consoles", []):
                     if isinstance(row, dict) and row.get("console_id", "").strip() == cid and row.get("status", "").strip() == "Active":
-                        return True
+                        console_status_active = True
+                        break
+
+        # Cross-check: if console_status says NOT Active, verify against booking table
+        if not console_status_active:
+            bookings = await _psvibe_get_async("bookings")
+            booking_active = False
+            booking_list = []
+            if isinstance(bookings, list):
+                booking_list = bookings
+            elif isinstance(bookings, dict):
+                booking_list = bookings.get("bookings", bookings.get("data", []))
+            if isinstance(booking_list, list):
+                for b in booking_list:
+                    if isinstance(b, dict) and (b.get("console_id", "") or "").strip() == cid and str(b.get("status", "")).strip() == "Active":
+                        booking_active = True
+                        logger.warning(
+                            "console_status/booking MISMATCH for %s (BK#%s) — trusting booking table",
+                            cid, b.get("id", "?"))
+                        break
+            if booking_active:
+                return True  # Booking says Active → console_status is wrong
+
+        return console_status_active
     except Exception as e:
         logger.error("_is_session_active: %s", e, exc_info=True)
         return True
@@ -213,6 +239,8 @@ async def _remind_loop(
             _SESSION_END_TIMES.pop(key, None)
             _SESSION_TOTAL_MINS.pop(key, None)
             remove_persisted_reminder(cid, chat_id)
+        # Clean up No Timer tracking so next timer session works
+        remove_no_timer_console(cid)
 
 async def _send_session_reminder(
     bot, chat_id: int, cid: str, member_id: str,
@@ -540,6 +568,9 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
                     break
         except Exception as _e:
             logger.warning("Console_Booking cleanup on cancel failed: %s", _e, exc_info=True)
+        # Clean up No Timer tracking for this console
+        if _cancel_console:
+            remove_no_timer_console(_cancel_console)
 
     done_txt = (
         f"🚫 <b>Booking #{bk_id} Cancelled</b>\n"
@@ -881,6 +912,9 @@ async def cb_booking_arrive(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             break
             except Exception as _e:
                 logger.warning("Console_Booking cleanup on no-show failed: %s", _e, exc_info=True)
+            # Clean up No Timer tracking for this console
+            if _ns_console:
+                remove_no_timer_console(_ns_console)
 
             await query.edit_message_text(
                 f"❌ <b>No-Show မှတ်တမ်းတင်ပြီ</b>\n"

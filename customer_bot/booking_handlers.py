@@ -145,13 +145,12 @@ def _rp_kb(rows: list, one_time: bool = True) -> ReplyKeyboardMarkup:
 # ── Reply Keyboard Builders ───────────────────────────────────────────────────
 
 def _make_date_keyboard() -> ReplyKeyboardMarkup:
-    """Build date selection reply keyboard: 7 days (Today → Day+6)."""
+    """Build date selection reply keyboard: 7 days (Today + Tomorrow + 5 weekdays)."""
     today = datetime.strptime(today_mmt(), "%Y-%m-%d")
+    BURMESE_DAYS = ["တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ", "စနေ", "တနင်္ဂနွေ"]
     DAY_LABELS = [
         "ယနေ့ (Today)",
         "မနက်ဖြန် (Tomorrow)",
-        "သဘက်ခါ (Day After)",
-        "သန်ဘက်ခါ",
     ]
     buttons = []
     for i in range(7):
@@ -159,8 +158,8 @@ def _make_date_keyboard() -> ReplyKeyboardMarkup:
         if i < len(DAY_LABELS):
             prefix = DAY_LABELS[i]
         else:
-            prefix = f"{i} ရက်နောက်"
-        buttons.append([f"{prefix}  {d.strftime('%Y-%m-%d')}"])
+            prefix = BURMESE_DAYS[d.weekday()]
+        buttons.append([f"{prefix} - {d.strftime('%Y-%m-%d')}"])
     buttons.append([BTN_BACK, BTN_CANCEL])
     return _rp_kb(buttons)
 
@@ -254,16 +253,18 @@ async def _get_available_slots(date_str: str) -> list[str]:
         bks = await _api._api_get(f"search-bookings?date={date_str}")
     except Exception:
         bks = []
-    bks = bks if isinstance(bks, list) else []
     if isinstance(bks, dict) and "bookings" in bks:
         bks = bks["bookings"]
+    if not isinstance(bks, list):
+        bks = []
 
-    # Parse active bookings into (start_min, end_min) tuples
+    # Parse active bookings into (console_id, start_min, end_min) tuples
     active_ranges = []
     for b in bks:
-        if b.get("status", "").lower() in ("cancelled", "done"):
+        if b.get("status", "").lower() in ("cancelled", "done", "rejected"):
             continue
         b_time = b.get("timeSlot", "")
+        b_console = b.get("console_id", "") or b.get("consoleId", "")
         if not b_time:
             continue
         try:
@@ -271,13 +272,20 @@ async def _get_available_slots(date_str: str) -> list[str]:
             b_start = bh * 60 + bm
             b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
             b_end = b_start + b_dur
-            active_ranges.append((b_start, b_end))
+            active_ranges.append((b_console, b_start, b_end))
         except (ValueError, AttributeError):
             continue
 
     all_slots = [f"{h:02d}:00" for h in range(OPEN_HOUR, CLOSE_HOUR)]
 
-    # Check each hourly slot [slot_start, slot_start+60) for overlap
+    # Get total console count (with cache)
+    try:
+        all_consoles = await _api._fetch_consoles()
+        total_consoles = len(all_consoles) if all_consoles else 10
+    except Exception:
+        total_consoles = 10
+
+    # Check each hourly slot: only block when ALL consoles are busy
     available = []
     for slot in all_slots:
         try:
@@ -288,11 +296,14 @@ async def _get_available_slots(date_str: str) -> list[str]:
             available.append(slot)
             continue
 
-        blocked = any(
-            bk_start < slot_end and bk_end > slot_start
-            for bk_start, bk_end in active_ranges
-        )
-        if not blocked:
+        # Count how many consoles are busy during this slot
+        busy_consoles = set()
+        for cid, bk_start, bk_end in active_ranges:
+            if bk_start < slot_end and bk_end > slot_start:
+                busy_consoles.add(cid)
+
+        # Slot is available if at least 1 console is free
+        if len(busy_consoles) < total_consoles:
             available.append(slot)
 
     # [FEATURE] Filter past time slots for today (MMT)
@@ -317,6 +328,8 @@ async def _get_available_slots(date_str: str) -> list[str]:
 def _make_specific_console_keyboard(consoles):
     """Build ReplyKeyboard for specific console selection."""
     buttons = []
+    # Auto Assign at the top
+    buttons.append([BTN_AUTO_ASSIGN])
     row = []
     for console in consoles:
         cid = console.get("id", "")
@@ -328,9 +341,30 @@ def _make_specific_console_keyboard(consoles):
             row = []
     if row:
         buttons.append(row)
-    buttons.append([BTN_AUTO_ASSIGN])
-    buttons.append([BTN_CANCEL])
+    buttons.append([BTN_BACK, BTN_CANCEL])
     return _rp_kb(buttons)
+
+
+def _calc_session_end_minutes(console: dict) -> int | None:
+    """Calculate when an Active session will end (in minutes from midnight).
+    Returns None if data is missing."""
+    start_str = console.get("start_time", "")  # HH:MM format
+    if not start_str:
+        # Try start_time_dt as fallback
+        start_dt = console.get("start_time_dt", "")
+        if start_dt:
+            try:
+                dt = datetime.strptime(str(start_dt)[:19], "%Y-%m-%d %H:%M:%S")
+                return dt.hour * 60 + dt.minute
+            except (ValueError, TypeError):
+                pass
+        return None
+    try:
+        h, m = map(int, str(start_str).split(":")[:2])
+    except (ValueError, AttributeError, TypeError):
+        return None
+    dur = int(console.get("duration_mins") or 60)
+    return h * 60 + m + dur
 
 
 async def _get_available_consoles(date_str, time_str, duration_mins=60):
@@ -340,16 +374,24 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     1. Console real-time status (skip Active/Reserved consoles)
     2. Booking time-range overlap detection (skip consoles with conflicting bookings)
     """
+    logger = logging.getLogger(__name__)
+    logger.info("_get_available_consoles: date=%s time=%s dur=%s", date_str, time_str, duration_mins)
     try:
         consoles_raw = await _api._fetch_consoles()
         bks = await _api._api_get(f"search-bookings?date={date_str}")
-    except Exception:
+    except Exception as e:
+        logger.warning("_get_available_consoles: API fetch failed — %s", e)
         return []
     if not consoles_raw:
         return []
-    bks = bks if isinstance(bks, list) else []
-    if isinstance(bks, dict) and "bookings" in bks:
-        bks = bks["bookings"]
+    logger.info("_get_available_consoles: raw bks type=%s", type(bks).__name__)
+    if isinstance(bks, dict):
+        logger.info("_get_available_consoles: bks keys=%s", list(bks.keys())[:10])
+        if "bookings" in bks:
+            bks = bks["bookings"]
+    if not isinstance(bks, list):
+        bks = []
+    logger.info("_get_available_consoles: %d bookings to check", len(bks))
 
     # Parse target time range
     try:
@@ -364,7 +406,7 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     conflicting = set()
     for b in bks:
         b_status = b.get("status", "").lower()
-        if b_status in ("cancelled", "done"):
+        if b_status in ("cancelled", "done", "rejected"):
             continue
         b_console = b.get("console_id", "") or b.get("consoleId", "")
         if not b_console:
@@ -393,16 +435,147 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     for console in consoles_raw:
         cid = console.get("id", "")
         cstatus = console.get("status", "").lower()
-        # Only filter by live status for TODAY's bookings.
+        # ── Today? Check Active sessions — skip only if session won't end before target ──
         # For future dates, current live status is irrelevant — the booking overlap
         # check below (search-bookings) already catches any time conflicts.
-        if is_today and cstatus in ("active", "reserved"):
-            continue
+        if is_today and cstatus == "active":
+            # Check if Active session will end before the target booking time
+            session_end = _calc_session_end_minutes(console)
+            if session_end is None or session_end > target_start:
+                continue  # Session overlaps with target time — skip
+            # Session ends before target — console will be free, allow booking
+        elif is_today and cstatus == "reserved":
+            # Reserved is display-only — treat as available for booking
+            pass
         if cid in conflicting:
             continue
         available.append(console)
+    logger.info("_get_available_consoles: conflicting=%s available=%d consoles", conflicting, len(available))
     return available
 
+
+def _get_next_available_times(consoles_raw, bookings, target_start_minutes, target_end_minutes, target_date=""):
+    """Find when each console becomes available after a busy target slot.
+
+    Returns list of {console_id, console_type, free_from (minutes), free_from_str (HH:MM)}.
+    """
+    # Build per-console booking intervals (confirmed, checked_in, Active, pending only)
+    console_bookings = {}
+    for b in bookings:
+        b_status = b.get("status", "").lower()
+        if b_status in ("cancelled", "done", "rejected"):
+            continue
+        b_console = b.get("console_id", "") or b.get("consoleId", "")
+        if not b_console:
+            continue
+        b_slot = b.get("timeSlot", "")
+        if not b_slot:
+            continue
+        try:
+            bh, bm = map(int, b_slot.split(":"))
+            b_start = bh * 60 + bm
+            b_dur = int(b.get("durationMins") or b.get("duration_mins") or 60)
+            b_end = b_start + b_dur
+            console_bookings.setdefault(b_console, []).append((b_start, b_end))
+        except (ValueError, AttributeError):
+            continue
+
+    # ── Live session detection for TODAY ──
+    is_today = False
+    now_mmt = datetime.utcnow() + timedelta(hours=6, minutes=30)
+    if target_date:
+        today_str = now_mmt.strftime("%Y-%m-%d")
+        is_today = (target_date == today_str)
+
+    if is_today:
+        now_minutes = now_mmt.hour * 60 + now_mmt.minute
+        for console in consoles_raw:
+            c_status = (console.get("status") or "").lower()
+            if c_status not in ("active", "reserved"):
+                continue
+            start_time = console.get("start_time")
+            if not start_time:
+                continue
+            cid = console.get("id", "")
+            if not cid:
+                continue
+            try:
+                # Parse start_time (may be "2026-06-19T12:30:00" or "2026-06-19 12:30:00")
+                st_str = str(start_time).replace(" ", "T")
+                st_dt = datetime.fromisoformat(st_str)
+                # start_time from console_status is already in MMT (local time)
+                session_start = st_dt.hour * 60 + st_dt.minute
+
+                # Check for a matching booking with the same console and overlapping time
+                expected_end = None
+                for b_start, b_end in console_bookings.get(cid, []):
+                    if b_start <= session_start < b_end:
+                        expected_end = b_end
+                        break
+
+                if expected_end is None:
+                    # Walk-in: no matching booking, use default 60 min
+                    expected_end = session_start + 60
+
+                # If session is already over, skip it
+                if now_minutes >= expected_end:
+                    continue
+
+                # Add to console_bookings (duplicate check: skip if identical interval exists)
+                existing = console_bookings.get(cid, [])
+                if (session_start, expected_end) not in existing:
+                    console_bookings.setdefault(cid, []).append((session_start, expected_end))
+                    logger.info(
+                        "_get_next_available_times: live session console=%s start=%d end=%d now=%d walkin=%s",
+                        cid, session_start, expected_end, now_minutes,
+                        expected_end == session_start + 60
+                    )
+            except (ValueError, TypeError) as e:
+                logger.warning("_get_next_available_times: failed to parse start_time for %s — %s", cid, e)
+                continue
+
+    # Sort each console's bookings by start time
+    for cid in console_bookings:
+        console_bookings[cid].sort(key=lambda x: x[0])
+
+    gap_mins = target_end_minutes - target_start_minutes
+
+    results = []
+    for console in consoles_raw:
+        cid = console.get("id", "")
+        ctype = console.get("type", "")
+        bk_list = console_bookings.get(cid, [])
+
+        # Find earliest gap of at least gap_mins starting from target_start
+        free_from = target_start_minutes
+
+        if bk_list:
+            # Push free_from past any overlapping bookings
+            for bk_start, bk_end in bk_list:
+                if bk_start < free_from + gap_mins and bk_end > free_from:
+                    free_from = max(free_from, bk_end)
+                elif bk_start >= free_from + gap_mins:
+                    break
+
+            # Final pass to catch any remaining overlaps after adjustments
+            for bk_start, bk_end in bk_list:
+                if bk_start < free_from + gap_mins and bk_end > free_from:
+                    free_from = max(free_from, bk_end)
+
+        hh = free_from // 60
+        mm = free_from % 60
+        free_from_str = f"{hh:02d}:{mm:02d}"
+
+        results.append({
+            "console_id": cid,
+            "console_type": ctype,
+            "free_from": free_from,
+            "free_from_str": free_from_str,
+        })
+
+    # Sort by earliest available first
+    results.sort(key=lambda x: x["free_from"])
+    return results
 
 
 def _format_booking_summary(context: ContextTypes.DEFAULT_TYPE) -> str:
@@ -453,19 +626,29 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     time_str = context.user_data.get("bk_time", "")
     duration_mins = context.user_data.get("bk_duration_mins", 60)
 
-    if not console_id and date_str and time_str:
+    # FINAL AVAILABILITY CHECK: Always validate before submission
+    if date_str and time_str:
         try:
             available = await _get_available_consoles(date_str, time_str, duration_mins)
             if console_type != "Any":
                 available = [c for c in available if c.get("type", "").lower() == console_type.lower()]
-            if available:
+            available_ids = {c.get("id", "") for c in available}
+            if console_id:
+                # Customer picked a specific console — validate it's still available
+                if console_id not in available_ids:
+                    return (
+                        f"❌ Console {console_id} သည် ထိုအချိန်တွင် မရနိုင်တော့ပါ။ ပြန်ရွေးပါ。",
+                        False,
+                    )
+            elif available:
+                # Auto-assign: pick first available matching type
                 assigned = available[0]
                 console_id = assigned.get("id", "")
                 console_type = assigned.get("type", console_type)
                 context.user_data["bk_console"] = console_type
                 context.user_data["bk_specific_console_id"] = console_id
-        except Exception:
-            pass
+        except Exception as e:
+            logging.warning("_submit_booking: _get_available_consoles failed — %s", e)
 
     assigned_console_label = ""
     if console_id:
@@ -608,7 +791,7 @@ async def _handle_member_yes_text(update: Update, context: ContextTypes.DEFAULT_
     )
     msg_source = update.message if update.message else (update.callback_query.message if update.callback_query else None)
     kb = ReplyKeyboardMarkup(
-        [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+        [["no (Guest)"], [BTN_BACK, BTN_CANCEL]],
         resize_keyboard=True,
         one_time_keyboard=True,
     )
@@ -754,7 +937,7 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Validate: must be at least 2 digits
     if len(digits_only) < 2 or len(digits_only) > 6:
         kb = ReplyKeyboardMarkup(
-            [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+            [["no (Guest)"], [BTN_BACK, BTN_CANCEL]],
             resize_keyboard=True,
             one_time_keyboard=True,
         )
@@ -839,7 +1022,7 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         # No match
         kb = ReplyKeyboardMarkup(
-            [["no (Guest)"], ["❌ ပယ်ဖျက်မည်"]],
+            [["no (Guest)"], [BTN_BACK, BTN_CANCEL]],
             resize_keyboard=True,
             one_time_keyboard=True,
         )
@@ -1183,9 +1366,10 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if date_str:
                     try:
                         bks = await _api._api_get(f"search-bookings?date={date_str}")
-                        bks = bks if isinstance(bks, list) else []
                         if isinstance(bks, dict) and "bookings" in bks:
                             bks = bks["bookings"]
+                        if not isinstance(bks, list):
+                            bks = []
                         dur = context.user_data.get("bk_duration_mins", 60)
                         req_start = hour * 60 + minute
                         req_end = req_start + dur
@@ -1326,8 +1510,36 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             reply_markup=_make_specific_console_keyboard(available),
                         )
                         return BK_CONSOLE_PREF
-                except Exception:
-                    pass
+                except Exception as e:
+                    logging.warning("bk_console_select: _get_available_consoles failed — %s", e)
+            # ── No consoles available at this time — show next available times ──
+            if date_str and time_str:
+                try:
+                    target_h, target_m = map(int, time_str.split(":"))
+                    target_start = target_h * 60 + target_m
+                    target_end = target_start + dur
+                    consoles_raw = await _api._fetch_consoles()
+                    if text != "Any":
+                        consoles_raw = [c for c in consoles_raw if c.get("type", "").lower() == text.lower()]
+                    bks = await _api._api_get(f"search-bookings?date={date_str}")
+                    if isinstance(bks, dict) and "bookings" in bks:
+                        bks = bks["bookings"]
+                    if not isinstance(bks, list):
+                        bks = []
+                    next_times = _get_next_available_times(consoles_raw, bks, target_start, target_end, date_str)
+                    if next_times:
+                        lines = [f"🎮 *{text}* စက်များ {time_str} တွင် မအားသေးပါ。\n"]
+                        for nt in next_times:
+                            lines.append(f"{nt['console_id']} → {nt['free_from_str']} နောက်ပိုင်း ရနိုင်ပါမည်")
+                        lines.append("\n⏰ အခြားအချိန်ရွေးရန် Back နှိပ်ပါ")
+                        await update.message.reply_text(
+                            "\n".join(lines),
+                            parse_mode="Markdown",
+                            reply_markup=_rp_kb([[BTN_BACK], [BTN_CANCEL]]),
+                        )
+                        return BK_CONSOLE
+                except Exception as e:
+                    logging.warning("bk_console_select: _get_next_available_times failed — %s", e)
             # Fallback: no specific consoles or data missing → go to duration
             await update.message.reply_text(
                 f"🎮 Console: *{text}*\n\n⏱️ ကြာချိန် ရွေးပါ:",
@@ -1352,8 +1564,34 @@ async def bk_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             reply_markup=_make_specific_console_keyboard(available),
                         )
                         return BK_CONSOLE_PREF
-                except Exception:
-                    pass
+                except Exception as e:
+                    logging.warning("bk_console_select(Any): _get_available_consoles failed — %s", e)
+            # ── No consoles available at this time — show next available times ──
+            if date_str and time_str:
+                try:
+                    target_h, target_m = map(int, time_str.split(":"))
+                    target_start = target_h * 60 + target_m
+                    target_end = target_start + dur
+                    all_consoles = await _api._fetch_consoles()
+                    bks = await _api._api_get(f"search-bookings?date={date_str}")
+                    if isinstance(bks, dict) and "bookings" in bks:
+                        bks = bks["bookings"]
+                    if not isinstance(bks, list):
+                        bks = []
+                    next_times = _get_next_available_times(all_consoles, bks, target_start, target_end, date_str)
+                    if next_times:
+                        lines = ["🎮 *Any* — စက်များ " + time_str + " တွင် မအားသေးပါ。\n"]
+                        for nt in next_times:
+                            lines.append(f"{nt['console_id']} → {nt['free_from_str']} နောက်ပိုင်း ရနိုင်ပါမည်")
+                        lines.append("\n⏰ အခြားအချိန်ရွေးရန် Back နှိပ်ပါ")
+                        await update.message.reply_text(
+                            "\n".join(lines),
+                            parse_mode="Markdown",
+                            reply_markup=_rp_kb([[BTN_BACK], [BTN_CANCEL]]),
+                        )
+                        return BK_CONSOLE
+                except Exception as e:
+                    logging.warning("bk_console_select(Any): _get_next_available_times failed — %s", e)
             # Fallback
             await update.message.reply_text(
                 "🎮 Console: *Any*\n\n⏱️ ကြာချိန် ရွေးပါ:",
@@ -1418,6 +1656,27 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
         if text == BTN_BACK:
             _pop_state(context)
+            # Try to go back to specific console selection
+            date_str = context.user_data.get("bk_date", "")
+            time_str = context.user_data.get("bk_time", "")
+            dur = context.user_data.get("bk_duration_mins", 60)
+            pref = context.user_data.get("bk_console", "") or context.user_data.get("bk_console_pref", "")
+            if date_str and time_str and pref:
+                try:
+                    available = await _get_available_consoles(date_str, time_str, dur)
+                    if pref != "Any":
+                        available = [c for c in available if c.get("type", "").lower() == pref.lower()]
+                    if available:
+                        spec_kb = _make_specific_console_keyboard(available)
+                        await update.message.reply_text(
+                            f"\ud83c\udfae <b>{pref}</b> \u1021\u1010\u103ack\u1039\u101e \u101b\u1014\u1039\u1014\u102d\u102f\u1000\u103c console \u1019\u103b\u102c\u1038:\n\u1021\u102c\u1031\u1037\u1019\u103d \u1010\u102d\u102f\u1000\u103c\u103d\u1031\u1038 \u101b\u103d\u1031\u1038\u1015\u102b \u101e\u102d\u102f\u101b\u103d\u1019\u1039\u1019\u102d '\u1018\u101a\u103a\u1005\u1000\u103a\u1016\u103c\u1005\u103a\u1016\u103c\u1005\u103a \u101b\u1015\u102b\u1010\u101a\u103a' \u1000\u102d\u102f \u101b\u103d\u1031\u1038\u1015\u102b:",
+                            parse_mode="HTML",
+                            reply_markup=spec_kb,
+                        )
+                        return BK_CONSOLE_PREF
+                except:
+                    pass
+            # Fallback: go to console type selection
             await update.message.reply_text(
                 "🎮 Console အမျိုးအစား ရွေးပါ:",
                 reply_markup=_make_console_keyboard(),
@@ -1652,7 +1911,7 @@ async def bk_game_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ── State 11: BK_CONSOLE_PREF — Console preference ─────────────────────────
-BTN_AUTO_ASSIGN = "↩️ Auto Assign"
+BTN_AUTO_ASSIGN = "🔄 ဘယ်စက်ဖြစ်ဖြစ် ရပါတယ်"
 
 async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle console preference selection. After type, show available specific consoles."""
@@ -1710,7 +1969,11 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
             pref = "Any"
         elif text == BTN_BACK:
             _pop_state(context)
-            return BK_DATE
+            await update.message.reply_text(
+                "🎮 Console အမျိုးအစား ရွေးပါ:",
+                reply_markup=_make_console_keyboard(),
+            )
+            return BK_CONSOLE
         else:
             await update.message.reply_text(
                 "\ud83d\udcbb \u1000\u103c\u1031\u102c\u103a\u1015\u1030\u1012\u103e\u102d\u1033 console preference \u101b\u103d\u1031\u1038\u1015\u102b:",
@@ -1730,13 +1993,42 @@ async def bk_console_pref(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if available:
                     spec_kb = _make_specific_console_keyboard(available)
                     await update.message.reply_text(
-                        f"\ud83c\udfae <b>{pref}</b> \u1021\u1010\u103ack\u1039\u101e \u101b\u1014\u1039\u1014\u102d\u102f\u1000\u103c console \u1019\u103b\u102c\u1038:\n\u1021\u102c\u1031\u1037\u1019\u103d \u1010\u102d\u102f\u1000\u103c\u103d\u1031\u1038 \u101b\u103d\u1031\u1038\u1015\u102b \u101e\u102d\u102f\u101b\u103d\u1019\u1039\u1019\u102d Auto Assign \u101c\u1031\u102c\u103a\u1015\u102b\u1038:",
+                        f"\ud83c\udfae <b>{pref}</b> \u1021\u1010\u103ack\u1039\u101e \u101b\u1014\u1039\u1014\u102d\u102f\u1000\u103c console \u1019\u103b\u102c\u1038:\n\u1021\u102c\u1031\u1037\u1019\u103d \u1010\u102d\u102f\u1000\u103c\u103d\u1031\u1038 \u101b\u103d\u1031\u1038\u1015\u102b \u101e\u102d\u102f\u101b\u103d\u1019\u1039\u1019\u102d '\u1018\u101a\u103a\u1005\u1000\u103a\u1016\u103c\u1005\u103a\u1016\u103c\u1005\u103a \u101b\u1015\u102b\u1010\u101a\u103a' \u1000\u102d\u102f \u101b\u103d\u1031\u1038\u1015\u102b:",
                         parse_mode="HTML",
                         reply_markup=spec_kb,
                     )
                     return BK_CONSOLE_PREF
-            except Exception:
-                pass
+            except Exception as e:
+                logging.warning("bk_console_pref: _get_available_consoles failed — %s", e)
+
+        # ── No consoles available at this time — show next available times ──
+        if date_str and time_str:
+            try:
+                target_h, target_m = map(int, time_str.split(":"))
+                target_start = target_h * 60 + target_m
+                target_end = target_start + dur
+                consoles_raw = await _api._fetch_consoles()
+                if pref != "Any":
+                    consoles_raw = [c for c in consoles_raw if c.get("type", "").lower() == pref.lower()]
+                bks = await _api._api_get(f"search-bookings?date={date_str}")
+                if isinstance(bks, dict) and "bookings" in bks:
+                    bks = bks["bookings"]
+                if not isinstance(bks, list):
+                    bks = []
+                next_times = _get_next_available_times(consoles_raw, bks, target_start, target_end, date_str)
+                if next_times:
+                    lines = [f"🎮 *{pref}* စက်များ {time_str} တွင် မအားသေးပါ。\n"]
+                    for nt in next_times:
+                        lines.append(f"{nt['console_id']} → {nt['free_from_str']} နောက်ပိုင်း ရနိုင်ပါမည်")
+                    lines.append("\n⏰ အခြားအချိန်ရွေးရန် Back နှိပ်ပါ")
+                    await update.message.reply_text(
+                        "\n".join(lines),
+                        parse_mode="Markdown",
+                        reply_markup=_rp_kb([[BTN_BACK], [BTN_CANCEL]]),
+                    )
+                    return BK_CONSOLE_PREF
+            except Exception as e:
+                logging.warning("bk_console_pref: _get_next_available_times failed — %s", e)
 
         # No specific consoles to show - go to duration
         _push_state(context, BK_CONSOLE_PREF)

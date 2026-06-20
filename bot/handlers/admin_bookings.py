@@ -292,36 +292,59 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
                     and c.get("liveStatus", "").lower() == "free"]
 
             chosen = None
-            if free and game_name:
-                # Prefer a free console that already has the game installed
+            # Build candidate list: game-installed consoles first, then rest
+            candidates = []
+            consoles_with_game = []
+            if game_name:
                 consoles_with_game = await get_consoles_with_game_async(game_name)
-                cw_upper  = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
+                cw_upper = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
                 game_free = [c for c in free if c["id"].upper() in cw_upper]
+                other_free = [c for c in free if c["id"].upper() not in cw_upper]
+                candidates = game_free + other_free
+            else:
+                candidates = list(free)
 
-                if game_free:
-                    chosen = game_free[0]
-                else:
-                    # Fall back to first free console, but warn staff
-                    chosen = free[0]
-                    if consoles_with_game:
-                        install_warn = (
-                            f"\n⚠️ <b>「{game_name}」 Install စစ်ဆေးပါ!</b>\n"
-                            f"Free console ({chosen['id']}) မှာ install မရှိပါ\n"
-                            f"Install ရှိသော console: <b>{', '.join(consoles_with_game)}</b>\n"
-                            f"ကြိုတင် Install / SSD transfer ပြင်ဆင်ပါ"
-                        )
-                    else:
-                        install_warn = (
-                            f"\n⚠️ <b>「{game_name}」 မည်သည့် Console မှ Install မရှိ!</b>\n"
-                            f"Session မတိုင်မီ Install ပြင်ဆင်ပါ"
-                        )
-            elif free:
-                chosen = free[0]
+            # ✅ Conflict-aware auto-assign: check each candidate against existing bookings
+            bk_date = bk_info.get("date", "")
+            bk_time = bk_info.get("timeSlot", "")
+            bk_dur = int(bk_info.get("durationMins", 60))
+            for candidate in candidates:
+                cid = candidate["id"]
+                cf = await _psvibe_post_async("booking-conflicts", {
+                    "date": bk_date,
+                    "time_slot": bk_time,
+                    "duration_mins": bk_dur,
+                    "console_id": cid,
+                    "exclude_booking_id": bk_id,
+                })
+                if cf and not cf.get("has_conflict"):
+                    chosen = candidate
+                    break
+                elif cf and cf.get("has_conflict"):
+                    logger.info("Auto-assign: %s has conflict for BK#%d — skipping", cid, bk_id)
+            if not chosen and candidates:
+                logger.warning("Auto-assign: ALL %d free consoles have conflicts for BK#%d", len(candidates), bk_id)
 
             if chosen:
+                # Game-install warnings (if not in game-installed list)
+                if game_name:
+                    cw_upper = {c.get("console_id","").upper() for c in consoles_with_game if isinstance(c, dict)}
+                    if chosen["id"].upper() not in cw_upper:
+                        if consoles_with_game:
+                            install_warn = (
+                                f"\n⚠️ <b>「{game_name}」 Install စစ်ဆေးပါ!</b>\n"
+                                f"Free console ({chosen['id']}) မှာ install မရှိပါ\n"
+                                f"Install ရှိသော console: <b>{', '.join(consoles_with_game)}</b>\n"
+                                f"ကြိုတင် Install / SSD transfer ပြင်ဆင်ပါ"
+                            )
+                        else:
+                            install_warn = (
+                                f"\n⚠️ <b>「{game_name}」 မည်သည့် Console မှ Install မရှိ!</b>\n"
+                                f"Session မတိုင်မီ Install ပြင်ဆင်ပါ"
+                            )
                 patch_body["consoleId"] = chosen["id"]
-                assigned_console        = chosen["id"]
-                import bot as _b; _b._BK_TS = 0.0  # invalidate booking cache so status reflects new reservation
+                assigned_console = chosen["id"]
+                import bot as _b; _b._BK_TS = 0.0  # invalidate booking cache
 
     result = await _psvibe_patch_async(
         f"bookings/{bk_id}/status",
@@ -340,6 +363,22 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn)
         )
         return
     if isinstance(result, dict) and result.get("status_code") == 409:
+        # Booking already processed — fetch current status and update the card
+        try:
+            current = await _psvibe_get_async(f"bookings/{bk_id}")
+            if current:
+                cur_status = current.get("status", "processed").replace("rejected", "Rejected").replace("confirmed", "Confirmed")
+                cur_staff = current.get("notes", "").replace("Rejected by ", "").replace("Approved by ", "") or "Staff"
+                customer_name = html.escape(current.get('customerName', 'Unknown'))
+                msg = (
+                    f"⚠️ <b>Booking #{bk_id}</b> — လက်ရှိ <b>{cur_status}</b> ဖြစ်ပြီးပါပြီ\n"
+                    f"👤 {customer_name}  📅 {current.get('date', '?')}  🕐 {current.get('timeSlot', '?')}\n"
+                    f"<i>By {cur_staff}</i>"
+                )
+                await reply_fn(msg, parse_mode="HTML")
+                return
+        except Exception:
+            pass
         await reply_fn(
             f"⚠️ Booking #{bk_id} ကို အခြား staff မှ ပြောင်းလဲပြီးပါပြီ။ ထပ်စစ်ဆေးပါ။",
             parse_mode="HTML",

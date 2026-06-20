@@ -59,8 +59,8 @@ from bot.handlers.notify import _notify_customer, get_customer_chat_id
 async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     """Return keyboard of all consoles with availability for the selected time slot.
     
-    When date_str+time_slot are provided, checks booking conflicts at the selected
-    time (not just current live status). A console currently Active will show ✅
+    When date_str+time_slot are provided, checks booking conflicts AND live Active
+    session end times (from console_status). A console currently Active will show ✅
     if its session ends before the selected time.
     """
     try:
@@ -71,12 +71,38 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     
     # ── If date + time provided, override live status with future availability ──
     conflict_cids = set()  # consoles that have a conflict at the selected time
+    active_ends_before = {}  # cid -> True if Active session ends before target
     if date_str and time_slot:
         try:
             from datetime import datetime as _dt
             # Parse selected start time
             sel_dt = _dt.strptime(f"{date_str} {time_slot}", "%Y-%m-%d %H:%M")
-            # Fetch all bookings that could block the selected time
+            sel_min = sel_dt.hour * 60 + sel_dt.minute
+            today_str = _dt.utcnow().strftime("%Y-%m-%d")
+            is_today = (date_str == today_str)
+            
+            # ── Check console_status for Active sessions (today only) ──
+            if is_today:
+                for c in consoles:
+                    cid = c.get("id") or c.get("console_id", "")
+                    cstatus = (c.get("status") or "").lower()
+                    if cstatus != "active":
+                        continue
+                    start_str = c.get("start_time", "")
+                    if not start_str:
+                        continue
+                    try:
+                        h, m = map(int, str(start_str).split(":")[:2])
+                        dur = int(c.get("duration_mins") or 0)
+                        if dur <= 0:
+                            continue
+                        end_min = h * 60 + m + dur
+                        if end_min > sel_min:
+                            conflict_cids.add(cid)
+                    except (ValueError, TypeError, AttributeError):
+                        pass
+            
+            # ── Check bookings API for conflicts ──
             all_bks = []
             for st in ("Active", "confirmed", "pending", "pending_check_in"):
                 try:
@@ -112,7 +138,7 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     for c in sorted(consoles, key=lambda x: x.get("id", x.get("console_id", ""))):
         cid = c.get("id") or c.get("console_id", "")
         if date_str and time_slot:
-            # Future availability mode: check booking conflicts at selected time
+            # Future availability mode: check console_status + booking conflicts at selected time
             if cid in conflict_cids:
                 icon = "🔴"
             else:
@@ -225,7 +251,7 @@ async def cmd_confirmed_bookings(update: Update, context: ContextTypes.DEFAULT_T
         parse_mode="Markdown",
     )
 
-    for b in bookings[:15]:
+    for b in bookings[:30]:
         console_hint = b.get("console_id") or b.get("consoleType", "?")
         is_today = b.get("date", "") == today_s
         today_tag = "  🔵 Today" if is_today else ""
@@ -429,8 +455,12 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     context.user_data["sbk_date"] = date_str
 
-    # Fetch existing bookings for this date to show available/unavailable slots
-    # Uses bookings API (no date filter → fetch all active statuses, filter locally)
+    # Build time slot keyboard with proper overlap-based availability indicators
+    all_hours = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
+                 "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+    # Minimum assumed duration for overlap checking (since actual duration
+    # isn't selected until after console step — 30 min is a safe lower bound)
+    MIN_SLOT_DUR = 30
     unavailable = set()
     try:
         parts_date = date_str.split("/")
@@ -456,27 +486,31 @@ async def step_sbk_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if not b_slot:
                     continue
                 b_dur = int(b.get("durationMins") or 60)
-                # Parse start time → calculate blocked range by duration
-                parts_t = b_slot.split(":")
-                if len(parts_t) >= 2:
+                # Parse booking start/end in minutes since midnight
+                try:
+                    bh, bm = map(int, b_slot.split(":")[:2])
+                    b_start = bh * 60 + bm
+                    b_end = b_start + b_dur
+                except (ValueError, TypeError, AttributeError):
+                    # Fallback: mark the exact hour
+                    bh = b_slot.split(":")[0]
+                    unavailable.add(f"{bh}:00")
+                    continue
+                # Check each time slot for overlap with this booking
+                # Two windows overlap if: slot_start < booking_end AND slot_end > booking_start
+                for slot in all_hours:
+                    if slot in unavailable:
+                        continue
                     try:
-                        start_h = int(parts_t[0])
-                        start_m = int(parts_t[1])
-                        total_mins = start_h * 60 + start_m + b_dur
-                        end_h = min(total_mins // 60, 23)  # cap at 23:00
-                        # Mark all hourly slots from start_h to end_h (inclusive)
-                        for h in range(start_h, end_h + 1):
-                            unavailable.add(f"{h:02d}:00")
+                        sh, sm = map(int, slot.split(":"))
+                        s_start = sh * 60 + sm
+                        s_end = s_start + MIN_SLOT_DUR
+                        if s_start < b_end and s_end > b_start:
+                            unavailable.add(slot)
                     except (ValueError, TypeError):
-                        # Fallback: mark at least the exact hour
-                        bh = b_slot.split(":")[0]
-                        unavailable.add(f"{bh}:00")
+                        pass
     except Exception:
         pass
-
-    # Build time slot keyboard with availability indicators
-    all_hours = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
-                 "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
     row = []
     rows = []
     for slot in all_hours:
@@ -732,10 +766,95 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "telegramChatId": tg_chat_id,
         }
 
+        # ── Client-side overlap check before submitting ──────────────────
+        # Convert date from M/D/YYYY → YYYY-MM-DD for the conflict API
+        import re as _re_cf
+        _cf_date = date
+        _dm = _re_cf.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", date)
+        if _dm:
+            _cf_date = f"{_dm.group(3)}-{_dm.group(1).zfill(2)}-{_dm.group(2).zfill(2)}"
+        try:
+            cf_result = await _psvibe_post_async("booking-conflicts", {
+                "date": _cf_date,
+                "time_slot": slot,
+                "duration_mins": int(dur),
+                "console_id": cid,
+            })
+            if cf_result and cf_result.get("has_conflict"):
+                conflicts = cf_result.get("conflicts", [])
+                _c = conflicts[0] if conflicts else {}
+                _c_id = _c.get("id", "?")
+                _c_cid = _c.get("console_id", cid)
+                _c_status = _c.get("status", "")
+                await update.message.reply_text(
+                    f"⚠️ <b>Booking Conflict!</b>\n"
+                    f"━━━━━━━━━━━━━━━━━━\n"
+                    f"🕹️ Console <b>{_c_cid}</b> တွင် {_cf_date} {slot} မှ\n"
+                    f"Booking <b>#{_c_id}</b> ({_c_status}) စာရင်းရှိပြီးဖြစ်ပါသည်\n\n"
+                    "⏮️ Back နှိပ်၍ အခြား Console/Time ပြန်ရွေးပါ",
+                    parse_mode="HTML",
+                )
+                kb = [[BTN_BACK, BTN_CANCEL]]
+                await update.message.reply_text(
+                    "ပြန်သွားရန် ⏮️ Back နှိပ်ပါ",
+                    reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+                )
+                return SBK_CONFIRM
+        except Exception as _ce:
+            logger.warning("step_sbk_confirm: pre-check conflict API failed: %s — proceeding", _ce)
+
+        # ── Submit booking to API ────────────────────────────────────────
         result = await _psvibe_post_async("bookings", payload)
-        if not result or "id" not in result:
+
+        # Handle connection failure (no response)
+        if not result:
             await update.message.reply_text(
-                "❌ Booking create မအောင်မြင်ပါ\nAPI စစ်ပြီး ထပ်ကြိုးစားပါ",
+                "❌ Booking create မအောင်မြင်ပါ\nAPI ချိတ်ဆက်မရပါ — ထပ်ကြိုးစားပါ",
+            )
+            return await show_main_menu(update, context)
+
+        # Handle HTTP 4xx/5xx error responses
+        _http_sc = result.get("status_code")
+        if _http_sc is not None and _http_sc >= 400:
+            _err_msg = result.get("message") or result.get("error") or "Unknown error"
+            if _http_sc == 409:
+                # 409 Conflict — show API's conflict message
+                await update.message.reply_text(
+                    f"⚠️ <b>Booking Conflict!</b>\n━━━━━━━━━━━━━━━━━━\n{_err_msg}\n\n"
+                    "⏮️ Back နှိပ်၍ အခြား Console/Time ပြန်ရွေးပါ",
+                    parse_mode="HTML",
+                )
+            else:
+                await update.message.reply_text(
+                    f"❌ Booking create မအောင်မြင်ပါ\n"
+                    f"Error #{_http_sc}: {_err_msg}\n\n"
+                    "⏮️ Back နှိပ်၍ ပြန်စစ်ပြီး ထပ်ကြိုးစားပါ",
+                )
+            kb = [[BTN_BACK, BTN_CANCEL]]
+            await update.message.reply_text(
+                "ပြန်သွားရန် ⏮️ Back နှိပ်ပါ",
+                reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+            )
+            return SBK_CONFIRM
+
+        # Handle success=false at HTTP 200 level (API validation errors, etc.)
+        if isinstance(result, dict) and result.get("success") is False:
+            _api_err = result.get("error") or result.get("message") or "Unknown error"
+            await update.message.reply_text(
+                f"❌ Booking create မအောင်မြင်ပါ\n{_api_err}\n\n"
+                "⏮️ Back နှိပ်၍ ပြန်စစ်ပြီး ထပ်ကြိုးစားပါ",
+            )
+            kb = [[BTN_BACK, BTN_CANCEL]]
+            await update.message.reply_text(
+                "ပြန်သွားရန် ⏮️ Back နှိပ်ပါ",
+                reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True),
+            )
+            return SBK_CONFIRM
+
+        # Handle unexpected response format (no booking id)
+        if "id" not in result:
+            await update.message.reply_text(
+                "❌ Booking create မအောင်မြင်ပါ\nထပ်ကြိုးစားပါ",
             )
             return await show_main_menu(update, context)
 
@@ -883,7 +1002,7 @@ async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE
     except Exception as e:
         await update.message.reply_text(f"❌ Error: {e}")
         return CONSOLE_MENU
-    free = [c for c in consoles if c["status"] == "Free"]
+    free = [c for c in consoles if c["status"] in ("Free", "Reserved")]
     if not free:
         await update.message.reply_text(
             "⚠️ လက်ရှိ Free ဖြစ်သော Console မရှိပါ\n"
@@ -964,7 +1083,7 @@ async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYP
     if free_consoles is None:
         try:
             consoles = await fetch_console_status_async()
-            free_consoles = [c for c in consoles if c["status"] == "Free"]
+            free_consoles = [c for c in consoles if c["status"] in ("Free", "Reserved")]
         except Exception as e:
             await update.message.reply_text(f"❌ Error: {e}")
             return CONSOLE_MENU
@@ -1011,7 +1130,7 @@ async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         consoles = fetch_console_status()
-        free_ids = {c["id"] for c in consoles if c["status"] == "Free"}
+        free_ids = {c["id"] for c in consoles if c["status"] in ("Free", "Reserved")}
     except Exception as e:
         logger.error("step_book_link: %s", e, exc_info=True)
         free_ids = set()
@@ -1379,6 +1498,13 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             await update.message.reply_text("❌ booking_id not returned from API")
             return await show_console_menu(update, context)
         linked = result.get("linked_booking", False)
+        # H2: Show warning if pending/confirmed booking overlaps (staff walk-in)
+        _warn = result.get("warning") or result.get("data", {}).get("warning", "")
+        if _warn:
+            await update.message.reply_text(
+                f"{_warn}\n\n🟢 Session ဆက်လက်စတင်ပါမည် — customer နောက်ကျပါက ဤ console အားသုံးနိုင်ပါသည်",
+                parse_mode="HTML",
+            )
         logger.info("start-session success: booking_id=%s linked=%s", bk_id, linked)
     except Exception as e:
         await update.message.reply_text(f"❌ Session start မအောင်မြင်ပါ: {e}")

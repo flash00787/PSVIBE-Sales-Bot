@@ -409,6 +409,9 @@ async def _fetch_consoles() -> List[Any]:
                     "type":       x.get("console_type", ""),
                     "status":     x.get("status", ""),
                     "multiplier": float(x.get("mult", x.get("multiplier", 1.0))),
+                    "start_time": x.get("start_time", ""),
+                    "start_time_dt": x.get("start_time_dt", ""),
+                    "duration_mins": int(x.get("duration_mins") or 0),
                 }
                 consoles.append(mapped)
     except ValueError as e:
