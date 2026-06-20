@@ -2,6 +2,33 @@
 
 > ⏳ = Known but unsolved
 
+## String-Based Editing Misses Comment-Annotated Lines (2026-06-20)
+
+**Pattern:** When using Python scripts for batch string replacement, `str.strip()` or exact-match checks can miss lines with trailing comments.
+
+**Example:**
+```python
+# Script checks: line.strip() == 'return 0'
+# Fails on:       return 0  # Console is Active/Unavailable
+# Because:        line.strip() produces 'return 0  # Console is Active/Unavailable'
+```
+
+**Symptom:** One function return value is wrong type → crashes downstream.
+
+**Fix:** Always verify with `grep` after batch edits, or use regex that accounts for optional comments.
+
+**Affected bugs:** #44 (return 0 tuple miss)
+
+## Rejected Status Not Excluded from Active Filters (2026-06-20)
+
+**Pattern:** Status filters that exclude cancelled/done bookings often forget `"rejected"` — rejected bookings are also inactive and should be excluded.
+
+**Symptom:** Rejected bookings trigger duplicate warnings, conflict detection, or show up in active lists.
+
+**Fix:** Always include `"rejected"` in inactive status lists alongside `("cancelled", "done")`.
+
+**Affected bugs:** #45 (duplicate check on rejected bookings)
+
 ## UnboundLocalError: Variable Scope Across Branches (2026-06-20)
 
 **Pattern:** Variable defined inside one `if` branch but accessed in another `if/else` branch.

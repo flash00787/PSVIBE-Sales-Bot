@@ -4,6 +4,16 @@
 
 ## 2026-06-20 — Sale Bot Approve/Reject + Customer Bot Duration Conflict
 
+### #44: Text Polish Script Miss — return 0 Tuple 🐛
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Python script missed `return 0` on line 493 | `customer_bot/booking_handlers.py` L493 | `line.strip() == 'return 0'` didn't match `return 0  # Console is Active/Unavailable` due to trailing comment | Manual fix: `return 0, ""` |
+
+### #45: Rejected Bookings Trigger Duplicate Warning 🐛
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| "Duplicate Booking Detected!" on rejected bookings | `customer_bot/booking_handlers.py` L2318, L2397 | Status filter excluded only `("cancelled", "done")` — "rejected" bookings still triggered overlap check | Added `"rejected"` → `("cancelled", "done", "rejected")` in both BK_CONFIRM paths |
+
 ### #38: Sale Bot Approve Button Crash 🐛
 | Bug | Files | Root Cause | Fix |
 |-----|-------|-----------|-----|

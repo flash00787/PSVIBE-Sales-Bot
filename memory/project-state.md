@@ -18,6 +18,8 @@
 | 32 | **Customer Bot duration conflict** — max duration + redirect to duration step | ✅ |
 | 33 | **Customer Bot auto-assign v3** — empty available + ValueError handler | ✅ |
 | 34 | **Customer Bot text polish** — natural Burmese with next booking time | ✅ |
+| 35 | **Text polish script miss** — `return 0` at L493 with comment not replaced | ✅ |
+| 36 | **Rejected bookings duplicate warning** — added `rejected` to inactive filter | ✅ |
 
 ### 2026-06-03 → 2026-06-19 (26 fixes)
 | # | Feature | Status |
