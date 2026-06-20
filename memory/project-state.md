@@ -43,6 +43,9 @@
 | 32 | **C-09/C-10 Multiplier 1.2x** — API endpoint was looking for individual keys, fixed to parse JSON blob | ✅ |
 | 33 | **Customer Bot Food Menu** — `_bk_intercept_menu` BTN_FOOD missing + API unwrap logic + Unicode corruption | ✅ |
 | 34 | **Waitlist Auto-Notify on Cancel (Phase 3.7)** — Cancel booking → auto notify first waitlisted customer via Telegram | ✅ |
+| 35 | **H1: Approve Overlap Lock** — `FOR UPDATE` lock on overlap check (app.py L1415), prevents double-approve | ✅ |
+| 36 | **C1: Console Start-Session Lock** — `console_status` check moved inside transaction with `FOR UPDATE` (app.py L1882) | ✅ |
+| 37 | **H2: Walk-in Warning** — Active booking → 409 BLOCK; Pending/Confirmed → ⚠️ WARNING only (Bot shows staff warning) | ✅ |
 
 ## 🐛 Known Issues
 | Issue | Priority | Status |

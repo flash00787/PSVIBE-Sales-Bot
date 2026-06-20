@@ -2,6 +2,27 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-19 — Booking System Concurrency Fixes (H1, C1, H2)
+
+### H1: Approve Overlap Lock 🔒
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Staff ၂ယောက် တပြိုင်နက် approve → နှစ်ယောက်စလုံးအောင် | `app.py` L1415 | Overlap check တွင် row-level lock မရှိ — race condition | `SELECT ... FOR UPDATE` lock ထည့် — တစ်ယောက်ပဲအောင် |
+
+### C1: Console Start-Session Lock 🔒
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Console status race — session ၂ခု တပြိုင်နက်စ | `app.py` L1882 | `console_status` check က transaction အပြင်မှာ — stale read | Console_status check ကို transaction အတွင်း `FOR UPDATE` နဲ့ ရွှေ့ |
+
+### H2: Walk-in Session → Pending Booking Warning ⚠️
+| Bug | Files | Root Cause | Fix |
+|-----|-------|-----------|-----|
+| Staff walk-in က pending/confirmed booking ကျော်နိုင် | `app.py` L2180-2202, `booking.py` | `status='Active'` ပဲစစ် — pending/confirmed မစစ် | Active → 409 BLOCK (အရင်အတိုင်း); Pending/Confirmed → ⚠️ WARNING only (မတား); Bot က warning message ပြ |
+
+**Verification:** All 3 fixes deployed, API + bots restarted ✅
+
+---
+
 ## 2026-06-18 — Broadcast System Fix + Feature
 
 ### Fix 5: Broadcast API Returns Wrong Key + Route Order Bug
