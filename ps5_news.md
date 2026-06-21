@@ -1,12 +1,71 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-20 23:30 UTC
+> Last updated: 2026-06-21 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 21, 2026 - 11:30 UTC) — Halo PS Plus CORRECTION + Sony Exclusivity Strategy + PS Plus July Date Change
+
+> **Summary:** Three notable findings since June 20. Halo Studios has CORRECTED the split-screen PS Plus requirement — this is a BIG deal for the lounge! Sony CEO confirms first-party exclusivity strategy shift. PS Plus Essential July reveal may be July 1 (not June 25).
+
+### 🔴🔴 CRITICAL CORRECTION: Halo Split-Screen — NO PS Plus Required for Player 2!
+- **Halo Studios issued a correction on June 20-21** regarding the local split-screen co-op requirements for Halo: Campaign Evolved (July 28)
+- **PREVIOUS (WRONG):** Both players need active PS Plus subscriptions
+- **CORRECTED:** Each player needs a **PlayStation account + linked Microsoft account**, but a PlayStation Plus subscription is **NOT required** for local split-screen co-op
+- Online co-op (up to 4 players, cross-play) STILL requires PS Plus for all players
+- **💡💡 Lounge Impact — MAJOR RELIEF!**
+  - Customers wanting couch co-op do NOT each need their own PS Plus — just a free PSN account + Microsoft account link
+  - The lounge only needs to pre-setup Microsoft accounts on consoles (free!) — much simpler than buying extra PS Plus subs!
+  - Online multiplayer: all 4 players still need PS Plus (standard)
+  - **Previous June 20 warning is now OBSOLETE** — update any customer communications or planning docs!
+  - Source: PushSquare ("Halo PS5 Backtracks PS Plus Co-op Demands, Says They Were a Mistake")
+
+### 🎮 Sony CEO Confirms First-Party Exclusivity Strategy (June 20)
+- PlayStation CEO **Hideaki Nishino** confirmed a strategic shift:
+  - **Major first-party single-player games will REMAIN PS5 EXCLUSIVE at launch** — no more day-one PC ports for flagship titles
+  - **Live-service games will continue to launch simultaneously on PS5 + PC** (to build larger player communities)
+- This reverses Sony's recent trend of timed PC releases for single-player titles
+- **💡 Lounge Note:** This strengthens PS5's value as the ONLY place to play Sony's biggest single-player games at launch. For PS VIBE, it means Sony exclusives (God of War: Laufey, Marvel's Wolverine, etc.) will remain exclusive draws to the lounge for longer. Customers who want to play these games day-one MUST come to PS5!
+
+### 📅 PS Plus Essential July Reveal — Date May Have Shifted
+- Our tracker had the reveal as **June 25**, but newer sources suggest **July 1, 2026**
+- Games still expected to become available **July 7** (first Tuesday)
+- Previous prediction sources listed (FF7 Remake Intergrade, Vampire Swansong, etc.) are speculation — no confirmed leak yet
+- **💡 Lounge Action:** Monitor both dates. If reveal is July 1, that's a full week later than expected. Check official PS Blog on June 25 just in case.
+
+### 📊 Quick Status Check (All Confirmed Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 Halo PS Plus Co-op | CORRECTED | Player 2 does NOT need PS Plus! Only PSN + MS account! |
+| 🎮 Sony Exclusivity Strategy | SHIFTED | Single-player games = PS5 exclusive at launch. No day-one PC! |
+| ✅ PSN Outage | RESOLVED | All services operational |
+| 🛒 Mid-Year Deals | Until July 1 | 10 days left to stock up! |
+| 🛒 Amazon Prime Day | June 23-26 | 2 days away! Prep wishlist! |
+| 📅 PS Plus Essential July Reveal | June 25 OR July 1 | Date may have shifted — watch both! |
+| 🆓 FREE Online Multiplayer Weekend | June 28-29 | 7 days away! Start promoting! |
+| 🃏 DELTARUNE Chapter 5 | June 24 | 3 days away! |
+| 🔫 EMPULSE Early Access | June 24 | $19.99 FPS |
+| 🧊 Frostpunk 2: Breach of Trust DLC | June 23 | 2 days away! |
+| ⚔️ Warhammer 40K: Darktide — Skitarii DLC | June 23 | 2 days away! $11.99 |
+| 🥊 Dead or Alive 6: Last Round | June 25 | 29 characters + free-to-play version! |
+| 🟢 Halo: Campaign Evolved | July 28 | Split-screen NO PS Plus needed for P2! Corrected! |
+
+### ⏰ Immediate Deadlines (Next 7 Days):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! Controllers, SSDs, games! |
+| **Jun 23** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 📅 | PS Plus Essential July reveal? | Watch — date may be July 1 instead! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 characters + free-to-play version! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | Start promoting NOW! |
 
 ---
 
 ## ⚡ UPDATE (June 20, 2026 - 23:30 UTC) — PSN Resolved + HALO Co-op Alert!
 
-> **Summary:** Two notable findings since June 19. PSN outage is now resolved. New details on Halo: Campaign Evolved's co-op requirements — CRITICAL for lounge planning.
+> **Summary:** Two notable findings since June 19. PSN outage is now resolved. ⚠️ Halo co-op PS Plus info was LATER CORRECTED (see June 21 update) — Player 2 does NOT need PS Plus for split-screen!
 
 ### ✅ PSN Outage — RESOLVED
 - The PSN "gaming and social" disruption that started **June 16 evening** is now **largely resolved** as of June 20
@@ -15,17 +74,15 @@
 - Some isolated user reports still persist, but the broader issue is fixed
 - **💡 Lounge Action:** Resume normal operations. Digital games should launch normally. Still keep physical disc backups as a routine precaution.
 
-### 🔴🔴 CRITICAL: Halo: Campaign Evolved — Split-Screen Requires 2 PS Plus Subscriptions!
+### ⛔ CORRECTED (June 21): Halo Split-Screen — NO PS Plus for Player 2!
+⛔ **The information below was CORRECTED by Halo Studios on June 20-21.** Player 2 does NOT need PS Plus for local split-screen. Only a free PSN account + linked Microsoft account is needed. See the June 21 update at the top of this file for the full correction.
 - **Halo: Campaign Evolved** launches **July 28, 2026** on PS5 with 2-player split-screen co-op
-- **NEW DETAIL (June 20):** For local split-screen co-op on PS5, **BOTH players need active PlayStation Plus subscriptions AND linked Microsoft accounts**
-- Online co-op (up to 4 players, cross-play) also requires PS Plus for all players
-- This is a significant departure from traditional split-screen games where only the host needs PS Plus
-- **💡💡 Lounge Impact:** This directly affects how the lounge offers Halo multiplayer!
-  - Customers wanting couch co-op will each need their OWN PS Plus subscription
-  - The lounge's PS Plus accounts will cover player 1, but player 2 needs their own subscription
-  - Online multiplayer: all 4 players need PS Plus (standard requirement)
-  - **Plan ahead:** Consider how to handle this — possibly pre-loading Microsoft accounts on lounge consoles, or informing customers in advance
-  - Promote online co-op as the primary multiplayer mode (lounge PS Plus accounts can host)
+- ~~NEW DETAIL (June 20):~~ ⛔ CORRECTED: For local split-screen co-op on PS5, **BOTH players need a PlayStation account + linked Microsoft account. PS Plus is NOT required for player 2.**
+- Online co-op (up to 4 players, cross-play) DOES require PS Plus for all players
+- **💡💡 Lounge Impact (UPDATED):** Much simpler than initially reported!
+  - Customers wanting couch co-op just need a free PSN account + Microsoft account link
+  - Pre-load Microsoft accounts on lounge consoles for seamless experience
+  - Online multiplayer: all 4 players still need PS Plus (standard requirement)
 
 ### 📊 Quick Status Check (All Confirmed Current):
 | Topic | Status | Notes |
@@ -39,7 +96,7 @@
 | 🔫 EMPULSE Early Access | June 24 | $19.99 FPS |
 | 🧊 Frostpunk 2: Breach of Trust DLC | June 23 | 3 days away! |
 | ⚔️ Warhammer 40K: Darktide — Skitarii DLC | June 23 | 3 days away! $11.99 |
-| 🟢 Halo: Campaign Evolved | July 28 | Split-screen needs 2 PS Plus! Plan ahead! |
+| 🟢 Halo: Campaign Evolved | July 28 | Split-screen: NO PS Plus needed for P2! ⛔ CORRECTED June 21! |
 
 ### 📊 PS5 Exclusive Sales Data (June 20 — Interesting Context):
 - Alinea Analytics report: older PS5 exclusives are outperforming newer releases like SAROS and Marathon in 2026
