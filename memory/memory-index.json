@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-21T16:07:37.209326+00:00",
+  "updated": "2026-06-21T16:37:36.440695+00:00",
   "entries": [
     {
       "topic": "\"Free\"",
@@ -4787,4 +4787,3715 @@
         }
       ]
     },
-    
+    {
+      "topic": "Conflict check:",
+      "files": [
+        {
+          "path": "memory/console-conflict-fix-2026-06-18.md",
+          "line": 59,
+          "context": "- **Conflict check:** 0 remaining conflicts ✅ - **All moved bookings:** confirmed on their new consoles with no overlaps"
+        }
+      ]
+    },
+    {
+      "topic": "Connection:",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 206,
+          "context": "- **Connection:** Fresh connection per request via `_mc.connect()` - **Transactions:** Explicit `conn.start_transaction()` with `conn.commit()`/`conn.rollback()`"
+        }
+      ]
+    },
+    {
+      "topic": "Consider reducing SSH ports",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 155,
+          "context": "1. **Consider reducing SSH ports** — SSH is exposed on 22, 80, 443, 22222 (this is deliberate for bypassing firewalls but increases attack surface) 2. **MySQL `.my.cnf`** created with credentials — en"
+        }
+      ]
+    },
+    {
+      "topic": "Console availability heatmap",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 240,
+          "context": "| 3.6 | **Console availability heatmap** — Dashboard view showing hourly availability for next 7 days, color-coded by # free consoles | Dashboard SPA | 3h | | 3.7 | **Waitlist auto-notify on cancel** "
+        }
+      ]
+    },
+    {
+      "topic": "Console Conflict Fix Summary",
+      "files": [
+        {
+          "path": "memory/console-conflict-fix-2026-06-18.md",
+          "line": 1,
+          "context": "## Console Conflict Fix Summary **Date:** 2026-06-19 02:13 UTC"
+        }
+      ]
+    },
+    {
+      "topic": "Console ID URL Encoding (⏳ KNOWN)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 143,
+          "context": "## Console ID URL Encoding (⏳ KNOWN) - Console IDs = \"C - 01\" (with spaces), `_api_call()` doesn't URL-encode"
+        }
+      ]
+    },
+    {
+      "topic": "Console Install moved",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 46,
+          "context": "| 20 | **Console Install moved** — under Consoles menu | ✅ | | 21 | **Session Start/End fixes** — wrong API endpoint `\"bookings\"`→`\"create_booking\"` (root cause) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Console State Analysis",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 101,
+          "context": "## Console State Analysis"
+        }
+      ]
+    },
+    {
+      "topic": "Console state is clean.",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 119,
+          "context": "✅ **Console state is clean.** The recent bug fix (restrict \"Reserved\" to bookings within 60 minutes) is working correctly. No stale \"Reserved\" states remain."
+        }
+      ]
+    },
+    {
+      "topic": "Console Status",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 38,
+          "context": "| 12 | **Console Status** — `\"consoles\"`→`\"console\"` in list_keywords (TRUE root cause) | ✅ | | 13 | **Console Status simplified** — status only (no all-games list) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Console Status Board:",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 359,
+          "context": "- **Console Status Board:** 10/10 Free ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Console Status Drift",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 190,
+          "context": "### Console Status Drift - `_sync_console_status()` called after every mutation. ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Console Status simplified",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 39,
+          "context": "| 13 | **Console Status simplified** — status only (no all-games list) | ✅ | | 14 | **Game Library v2** — pagination (8/page) + search + tap-for-details | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Console Status wrong time/game",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 54,
+          "context": "| 28 | **Console Status wrong time/game** — MMT time, game from notes | ✅ | | 29 | **Coupon Dashboard page** — `/api/dashboard/coupons` + `Coupons.vue` + route | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "console type BEFORE duration",
+      "files": [
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 125,
+          "context": "The customer selects **console type BEFORE duration**. At this point, `bk_duration_mins` is always the default 60 (since duration hasn't been set yet). This means:"
+        }
+      ]
+    },
+    {
+      "topic": "console_booking table",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 73,
+          "context": "### console_booking table ```sql"
+        }
+      ]
+    },
+    {
+      "topic": "console_status table",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 91,
+          "context": "### console_status table ```sql"
+        }
+      ]
+    },
+    {
+      "topic": "Constants to add",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 414,
+          "context": "**Constants to add** (near line 44): ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Contacts",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 17,
+          "context": "## Contacts | Name | Email | Telegram |"
+        }
+      ]
+    },
+    {
+      "topic": "Context",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 5,
+          "context": "### Context Boss reported: \"Session start\" နှိပ်ရင် checked-in customers နဲ့ link ဖို့ optional prompt တစ်ခုလိုတယ်။ Timeline မှာ checked-in နဲ့ session start သပ်သပ်ဖြစ်ပြီး conflict ဖြစ်နေတယ်။"
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 41,
+          "context": "### Context Boss reported: \"Session start\" နှိပ်ရင် checked-in customers နဲ့ link ဖို့ optional prompt တစ်ခုလိုတယ်။ Timeline မှာ checked-in နဲ့ session start သပ်သပ်ဖြစ်ပြီး conflict ဖြစ်နေတယ်।"
+        }
+      ]
+    },
+    {
+      "topic": "ConversationHandler Fallbacks = CRITICAL (2026-05-30)",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 46,
+          "context": "## ConversationHandler Fallbacks = CRITICAL (2026-05-30) Every ConversationHandler with text-accepting states MUST have:"
+        }
+      ]
+    },
+    {
+      "topic": "ConversationHandler Interferes with context.user_data (2026-06-20)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 82,
+          "context": "## ConversationHandler Interferes with context.user_data (2026-06-20)"
+        }
+      ]
+    },
+    {
+      "topic": "Convert fetch_* functions in bot/__init__.py to API-first with gspread fallback",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 4,
+          "context": "status: completed | summary: 32 fetch_* functions in bot/__init__.py converted to API-first with gspread fallback"
+        }
+      ]
+    },
+    {
+      "topic": "Coordination Tools (25+ at `/root/coordination/`)",
+      "files": [
+        {
+          "path": "memory/infrastructure.md",
+          "line": 25,
+          "context": "## Coordination Tools (25+ at `/root/coordination/`) | Tool | Lines | Purpose |"
+        }
+      ]
+    },
+    {
+      "topic": "Coordination Tools Table",
+      "files": [
+        {
+          "path": "memory/tools-commands.md",
+          "line": 92,
+          "context": "## Coordination Tools Table"
+        }
+      ]
+    },
+    {
+      "topic": "Coordination Tools — Full Inventory (25 tools)",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 58,
+          "context": "### Coordination Tools — Full Inventory (25 tools) - **Core (12):** flow_analyzer, arch_mapper, enhanced_validator, import_scanner, integration_tester, fix_safety, quality_gate, tool_orchestrator, sta"
+        }
+      ]
+    },
+    {
+      "topic": "Coordination Tools:",
+      "files": [
+        {
+          "path": "memory/session-memory.md",
+          "line": 8,
+          "context": "- **Coordination Tools:** 25 at `/root/coordination/` — Hybrid Batch v2 active - **Project:** PS VIBE Sales Bot — 33/33 tests pass, Quality Gate 100/100"
+        }
+      ]
+    },
+    {
+      "topic": "Core (12):",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 59,
+          "context": "- **Core (12):** flow_analyzer, arch_mapper, enhanced_validator, import_scanner, integration_tester, fix_safety, quality_gate, tool_orchestrator, star_import_fixer, smart_import_resolver, auto_verify,"
+        }
+      ]
+    },
+    {
+      "topic": "Core Analysis Tools",
+      "files": [
+        {
+          "path": "memory/tools-commands.md",
+          "line": 94,
+          "context": "### Core Analysis Tools | Tool | Lines | Purpose |"
+        }
+      ]
+    },
+    {
+      "topic": "Core Dev",
+      "files": [
+        {
+          "path": "memory/tools-commands.md",
+          "line": 7,
+          "context": "## Core Dev ```bash"
+        }
+      ]
+    },
+    {
+      "topic": "Cosmetic Fix: Blank Line Normalization",
+      "files": [
+        {
+          "path": "memory/test-report.md",
+          "line": 38,
+          "context": "### Cosmetic Fix: Blank Line Normalization **Severity:** LOW — cosmetic only, no data loss"
+        }
+      ]
+    },
+    {
+      "topic": "Coupon API Field Name Mismatch (FIXED — 2026-06-05)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 198,
+          "context": "## Coupon API Field Name Mismatch (FIXED — 2026-06-05) - Bot checked `cd.get(\"coupon_code\")`/`cd.get(\"coupon_mins\")` but API returns `code`/`minutes`"
+        }
+      ]
+    },
+    {
+      "topic": "Coupon code generating",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 48,
+          "context": "| 22 | **Coupon code generating** — `console_status` update fixed via correct endpoint | ✅ | | 23 | **Wallet balance deducting** — flow restored via correct session-end sequence | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Coupon codes:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 35,
+          "context": "- **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B"
+        }
+      ]
+    },
+    {
+      "topic": "Coupon Dashboard page",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 55,
+          "context": "| 29 | **Coupon Dashboard page** — `/api/dashboard/coupons` + `Coupons.vue` + route | ✅ | | 30 | **TopUp Logs Dashboard page** — `/api/dashboard/topups` + `TopUpLogs.vue` + route | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Create boot_protocol.py, session_start.py, task_retry.py for Phase 2",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 6,
+          "context": "status: completed | summary: Created boot_protocol.py, session_start.py, task_retry.py"
+        }
+      ]
+    },
+    {
+      "topic": "Create bot/api_client.py with all API wrapper functions",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 3,
+          "context": "status: completed | summary: Created bot/api_client.py (450L, 48 api_* functions)"
+        }
+      ]
+    },
+    {
+      "topic": "Create heartbeat_routine.py, consolidator.py, session_tracker.py for Phase 2",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 7,
+          "context": "status: completed | summary: Created heartbeat_routine.py, consolidator.py, session_tracker.py"
+        }
+      ]
+    },
+    {
+      "topic": "Create sync_service.py and db_client.py for database synchronization layer",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 1,
+          "context": "status: superseded | summary: Superseded by Phase 3 deployment — files not deployed to VPS, no integration needed"
+        }
+      ]
+    },
+    {
+      "topic": "create_api_client",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 3,
+          "context": "status: completed | summary: Created bot/api_client.py (450L, 48 api_* functions)"
+        }
+      ]
+    },
+    {
+      "topic": "Created",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 128,
+          "context": "| `/root/scripts/auto_depreciate.py` | **Created** | Monthly auto-depreciation calculator | | `/var/spool/cron/crontabs/root` | **Modified** | Added `30 2 1 * *` for auto_depreciate.py |"
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 69,
+          "context": "### Created - `POST /api/feedback/submit` — inserts into `customer_feedback` table"
+        },
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 97,
+          "context": "- **Created:** `🎤 Community Stage` (ID: `1516855186818207816`) - Type: Stage (13)"
+        },
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 104,
+          "context": "- **Created:** `🎮-game-discussion` (ID: `1516855187367657543`) - Type: Forum (15)"
+        },
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 110,
+          "context": "- **Created:** `🤝-find-teammates` (ID: `1516855187610796192`) - Type: Forum (15)"
+        }
+      ]
+    },
+    {
+      "topic": "Credentials:",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 91,
+          "context": "4. **Credentials:** root/PsVibe@MySQL2024!, psvibe_user/PsVibe@User2024!"
+        }
+      ]
+    },
+    {
+      "topic": "Critical Discoveries",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 187,
+          "context": "## Critical Discoveries 1. **`import patch_routes` position** — MUST be before catch-all route or ALL secondary API endpoints break"
+        }
+      ]
+    },
+    {
+      "topic": "CRITICAL FINDING:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
+        }
+      ]
+    },
+    {
+      "topic": "Critical insight:",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 16,
+          "context": "**Critical insight:** The customer bot's console selection is a *type preference* (`bk_console` holds \"PS5\" or \"PS5 Pro\" or \"Any\"). The actual unit assignment happens when staff approves + later durin"
+        }
+      ]
+    },
+    {
+      "topic": "CRITICAL:",
+      "files": [
+        {
+          "path": "memory/infrastructure.md",
+          "line": 15,
+          "context": "- **CRITICAL:** Always check BOTH repos when investigating bugs!"
+        },
+        {
+          "path": "memory/psvibe-code-structure.md",
+          "line": 3,
+          "context": "> **CRITICAL:** TWO repos! Sub-agents MUST check BOTH."
+        }
+      ]
+    },
+    {
+      "topic": "Cron",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 83,
+          "context": "### Cron ```"
+        }
+      ]
+    },
+    {
+      "topic": "Cross-Bot Batching",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 45,
+          "context": "| 5 | **Cross-Bot Batching** | `batch_coordinator.py` | Different bots = always parallel. Cross-bot file edit + read-only = parallel. | | 6 | **Priority Scheduling** | `batch_coordinator.py` + `queue_"
+        }
+      ]
+    },
+    {
+      "topic": "Current `console_status` Table",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 103,
+          "context": "### Current `console_status` Table All 10 consoles show **\"Free\"** — no stale reservations:"
+        }
+      ]
+    },
+    {
+      "topic": "Current code:",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 239,
+          "context": "**Current code:** ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Current Commands — 21 Total",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 266,
+          "context": "### Current Commands — 21 Total | Public 🌐 | Private 🔒 |"
+        }
+      ]
+    },
+    {
+      "topic": "Current State",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 55,
+          "context": "### Current State | Service | Status |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Booking Flow (booking_handlers.py)",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 24,
+          "context": "### Customer Booking Flow (booking_handlers.py)"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Booking Slot — Date Filter Ignored by API (FIXED — 2026-06-16)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 277,
+          "context": "## Customer Booking Slot — Date Filter Ignored by API (FIXED — 2026-06-16) - Customer Bot slot availability shows \"No consoles available\" even when consoles are free"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 13,
+          "context": "| **Customer Bot** | `psvibe_customer_bot` | 16-state `ConversationHandler` (BK_MEMBER_CHECK → ... → BK_CONFIRM) | User picks a **type** (PS5 / PS5 Pro / Any), NOT a specific unit | | **Sale Bot (Staf"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 173,
+          "context": "- **Customer bot:** `OPEN_HOUR = 9` — slots from 09:00 to 21:00"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot \"My Booking\" Fix",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 319,
+          "context": "### Customer Bot \"My Booking\" Fix - **SHA:** `6e3c556`"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot (`customer_bot/`)",
+      "files": [
+        {
+          "path": "memory/psvibe-code-structure.md",
+          "line": 44,
+          "context": "### Customer Bot (`customer_bot/`) | File | Purpose |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot auto-assign v3",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 19,
+          "context": "| 33 | **Customer Bot auto-assign v3** — empty available + ValueError handler | ✅ | | 34 | **Customer Bot text polish** — natural Burmese with next booking time | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot duration conflict",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 18,
+          "context": "| 32 | **Customer Bot duration conflict** — max duration + redirect to duration step | ✅ | | 33 | **Customer Bot auto-assign v3** — empty available + ValueError handler | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot Food Menu",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 59,
+          "context": "| 33 | **Customer Bot Food Menu** — `_bk_intercept_menu` BTN_FOOD missing + API unwrap logic + Unicode corruption | ✅ | | 34 | **Waitlist Auto-Notify on Cancel (Phase 3.7)** — Cancel booking → auto no"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot Integration",
+      "files": [
+        {
+          "path": "memory/coupon-system-implemented.md",
+          "line": 27,
+          "context": "### Customer Bot Integration - **`/my_coupons`** command (`handlers.py`): Shows member's coupons with balance & expiry"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot My Booking",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 29,
+          "context": "| 3 | **Customer Bot My Booking** — cancelled booking filter + welcome banner | ✅ | | 4 | **Dashboard sidebar** — AppLayout wrapper all 6 views | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot restarted",
+      "files": [
+        {
+          "path": "memory/2026-06-20.md",
+          "line": 6,
+          "context": "- **Customer Bot restarted** at 20:32 UTC"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot text polish",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 20,
+          "context": "| 34 | **Customer Bot text polish** — natural Burmese with next booking time | ✅ | | 35 | **Text polish script miss** — `return 0` at L493 with comment not replaced | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot Users — Member Enrichment",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 5,
+          "context": "### Customer Bot Users — Member Enrichment Per Boss request: when a Customer Bot user is also a PS VIBE member, auto-populate their member details."
+        }
+      ]
+    },
+    {
+      "topic": "Customer Bot — Menu Eaten by ConversationHandler (FIXED)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 147,
+          "context": "## Customer Bot — Menu Eaten by ConversationHandler (FIXED) - All reply keyboard menu buttons consumed by booking text handlers"
+        }
+      ]
+    },
+    {
+      "topic": "Customer picks a console, then staff changes it during approval",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 355,
+          "context": "| **Customer picks a console, then staff changes it during approval** | LOW | This is EXISTING behavior. Feature 1 just lets customer PREFER a console. Staff always has final say. | | **State machine "
+        }
+      ]
+    },
+    {
+      "topic": "Daily Digest:",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 206,
+          "context": "- **Daily Digest:** Auto-generated for June 9 - **Knowledge Graph:** Rebuilt (54 nodes, 1,423 edges)"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard code is the source of truth",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 140,
+          "context": "3. **Dashboard code is the source of truth**: The PNL/BS stubs in `patch_routes.py` were early prototypes and NOT updated alongside dashboard changes. Always check `dashboard_routes.py` first before t"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 64,
+          "context": "19. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first. 20. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/fre"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard data",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 31,
+          "context": "| 5 | **Dashboard data** — JWT auth + Food Stock dedup + Promotions dedup | ✅ | | 6 | **Dashboard Food Stock Split** — 4 pages (Menu Reg, Stock In/Out, Inventory) | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard file deployment:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 168,
+          "context": "4. **Dashboard file deployment:** Base64 chunked SSH transfer reliable for large files. Temp file approach prevents partial writes. Kill stale processes before restart."
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 58,
+          "context": "15. **Dashboard file deployment** — Base64 chunked SSH transfer reliable for large files. Kill stale processes before restart. 16. **`GROUP BY` collapses pipe-delimited data** — iterate all rows inste"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard Food Stock Split",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 32,
+          "context": "| 6 | **Dashboard Food Stock Split** — 4 pages (Menu Reg, Stock In/Out, Inventory) | ✅ | | 7 | **Menu Register save** — `rowcount`→`lastrowid`, hardcoded filter | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard Routes (dashboard_routes.py) — 33 Endpoints",
+      "files": [
+        {
+          "path": "memory/full-audit-2026-06-03.md",
+          "line": 40,
+          "context": "### Dashboard Routes (dashboard_routes.py) — 33 Endpoints - GET /stats, /consoles, /schedule, /revenue-trend"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard sidebar",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 30,
+          "context": "| 4 | **Dashboard sidebar** — AppLayout wrapper all 6 views | ✅ | | 5 | **Dashboard data** — JWT auth + Food Stock dedup + Promotions dedup | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Dashboard:",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 99,
+          "context": "- **Dashboard:** Vue 3 + TypeScript at `/root/psvibe-dashboard/` → builds to `/root/psvibe_api_server/dashboard-dist/` - **URL:** `psvibemm.com`"
+        }
+      ]
+    },
+    {
+      "topic": "Data Consistency",
+      "files": [
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 19,
+          "context": "| **Data Consistency** | **D** | Multiple writers to console_status; no transactions | | **Input Validation** | **C** | Parameterized queries prevent SQLi, but app-level validation weak |"
+        }
+      ]
+    },
+    {
+      "topic": "data corruption, double bookings, and session disruption are inevitable",
+      "files": [
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 429,
+          "context": "The PS VIBE booking system **works correctly under single-user load** but has **zero concurrency safety**. The four critical issues (CI-1 through CI-4) mean that under any concurrent usage scenario (w"
+        }
+      ]
+    },
+    {
+      "topic": "Data keys",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 194,
+          "context": "- But **Data keys** 12 mismatch (CRITICAL, HIGH, MED) - **Fix:** API server dual key format accept + bot `__init__.py` key mapping"
+        }
+      ]
+    },
+    {
+      "topic": "Database Overview",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 15,
+          "context": "## Database Overview"
+        }
+      ]
+    },
+    {
+      "topic": "Database:",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 3,
+          "context": "**Database:** MySQL `psvibe_api` (production) + SQLite `/root/psvibe-sales-bot/psvibe.db` (bot cache)"
+        }
+      ]
+    },
+    {
+      "topic": "Date Format Comparison — Silent Failure (2026-06-21)",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 17,
+          "context": "## Date Format Comparison — Silent Failure (2026-06-21) - `today_str()` → `\"6/21/2026\"` vs API → `\"2026-06-21\"` — compare လုပ်ရင် `False`"
+        }
+      ]
+    },
+    {
+      "topic": "Date format inconsistency",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 48,
+          "context": "7. **Date format inconsistency** — Bot sends locale-dependent format (M/D/YYYY) but API expects YYYY-MM-DD. Always normalize at API boundary. 8. **API field naming is inconsistent** — camelCase (`cust"
+        }
+      ]
+    },
+    {
+      "topic": "Date format inconsistency between bot and API",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 221,
+          "context": "5. **Date format inconsistency between bot and API** — Bot sends locale-dependent date format but API expects strict YYYY-MM-DD. Always normalize to YYYY-MM-DD at the API boundary. 6. **Same-console d"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 385,
+          "context": "5. **Date format inconsistency between bot and API** — Bot sends locale-dependent format; always normalize to YYYY-MM-DD at the API boundary 6. **Same-console double booking** — Must check existing bo"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 185,
+          "context": "(dedup) 5. **Date format inconsistency between bot and API** — Bot sends locale-dependent format; always normalize to YYYY-MM-DD at the API boundary (dedup) - `psvibe-sale-bot` — ✅ active"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 315,
+          "context": "(dedup) - 5. **Date format inconsistency between bot and API** — Bot sends locale-dependent format; always normalize to YYYY-MM-DD at the API boundary (dedup) - `psvibe-sale-bot` — ✅ active"
+        }
+      ]
+    },
+    {
+      "topic": "Date Format Mismatch: `today_str()` vs API (2026-06-21)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 5,
+          "context": "## Date Format Mismatch: `today_str()` vs API (2026-06-21)"
+        }
+      ]
+    },
+    {
+      "topic": "Date:",
+      "files": [
+        {
+          "path": "memory/AUDIT_REPORT_TEMPLATE.md",
+          "line": 7,
+          "context": "**Date:** YYYY-MM-DD HH:MM UTC | **Auditor:** [agent-name] | **Files scanned:** N"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 212,
+          "context": "| `SBK_TIME` | Time selection | **Date** selection | | `SBK_DUR` | Duration selection | **Time** selection |"
+        },
+        {
+          "path": "memory/booking-features-implemented.md",
+          "line": 3,
+          "context": "> **Date:** 2026-06-02 | **Commits:** d53acb4 + 4582b6c"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 **Auditor:** Kora (Subagent, DeepSeek V4 Pro)"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 3,
+          "context": "**Date:** 2026-06-17 **Auditor:** Subagent (Pro)"
+        },
+        {
+          "path": "memory/console-conflict-fix-2026-06-18.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 02:13 UTC **Status:** ✅ All conflicts resolved"
+        },
+        {
+          "path": "memory/coupon-system-implemented.md",
+          "line": 3,
+          "context": "> **Date:** 2026-06-02 | **Grand Opening:** June 6-7, 2026"
+        },
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 3,
+          "context": "**Date:** 2026-06-17 17:19 UTC **Guild:** PS VIBE - PS5 Gaming Lounge (`1516119712411422942`)"
+        },
+        {
+          "path": "memory/next-available-session-timer-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-19 | **By:** Kora (Boss request)"
+        },
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 2,
+          "context": "**Date:** 2026-06-13 07:05–07:09 UTC **Performed by:** OpenClaw Subagent via Node.js SSH2"
+        },
+        {
+          "path": "memory/test-report.md",
+          "line": 3,
+          "context": "**Date:** 2026-05-28 **Tester:** Subagent (audit)"
+        }
+      ]
+    },
+    {
+      "topic": "Date: 2026-06-02",
+      "files": [
+        {
+          "path": "memory/booking-fixes-checkin-implemented.md",
+          "line": 3,
+          "context": "## Date: 2026-06-02 ## Implemented by: Subagent"
+        }
+      ]
+    },
+    {
+      "topic": "DB Index Review",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 278,
+          "context": "7. **DB Index Review**: Before deployment, review all query patterns against `console_booking` and ensure covering indexes: ```sql"
+        }
+      ]
+    },
+    {
+      "topic": "DB Tables (MySQL: psvibe_api)",
+      "files": [
+        {
+          "path": "memory/coupon-system-implemented.md",
+          "line": 7,
+          "context": "### DB Tables (MySQL: psvibe_api) - **`promotions`** — Promotion definitions (type, dates, coupon expiry)"
+        }
+      ]
+    },
+    {
+      "topic": "Dedup rules:",
+      "files": [
+        {
+          "path": "memory/PHASE3_SPEC.md",
+          "line": 99,
+          "context": "**Dedup rules:** - Exact line match → remove duplicate"
+        }
+      ]
+    },
+    {
+      "topic": "DEFAULT Fix Agent:",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 58,
+          "context": "- **DEFAULT Fix Agent:** DeepSeek Pro — ALWAYS try first - **Basic Checks/Reports:** DeepSeek Flash"
+        }
+      ]
+    },
+    {
+      "topic": "Deferred:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 86,
+          "context": "- **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 234,
+          "context": "- **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 244,
+          "context": "(dedup) - **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason (dedup) - **`inv_sh` = None** — K1 inventory Google Sheets update always fails silently (try/except catches it"
+        }
+      ]
+    },
+    {
+      "topic": "Delegation:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 108,
+          "context": "- **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do. - **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code f"
+        }
+      ]
+    },
+    {
+      "topic": "Dependency check:",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 16,
+          "context": "- **Dependency check:** Files that import from each other → same agent (sequential) - **Independent files:** Different handlers, different modules → parallel ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Dependency rule:",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 55,
+          "context": "- **Dependency rule:** File A imports File B → same agent (sequential). No shared imports → parallel. - **The system proved itself:** 2 rounds of parallel batches this session, both faster than sequen"
+        }
+      ]
+    },
+    {
+      "topic": "Dependency:",
+      "files": [
+        {
+          "path": "memory/integration-plan.md",
+          "line": 23,
+          "context": "- **Dependency:** None (stdlib only: os, json, sys, re, datetime) - **CLI:** `--today`, `--date YYYY-MM-DD`, `--all`, `--send`"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 33,
+          "context": "- **Dependency:** None (stdlib only: os, sys, re, json, pathlib) - **CLI:** `--classify \"<text>\"`, `--audit`, `--audit-file <path>`"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 43,
+          "context": "- **Dependency:** None (stdlib only). **Mirrors** priority_engine's keyword lists internally (copied, not imported) — works standalone. - **CLI:** `--dry-run` (default), `--apply`, `--status`, `--targ"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 53,
+          "context": "- **Dependency:** None (stdlib only: os, json, sys, re, datetime) - **CLI:** (no args → quick status), `--rebuild`, `--stats`, `--query <entity>`, `--graph`"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 67,
+          "context": "- **Dependency:** None (stdlib only: json, os, re, sys, datetime) - **CLI:** (no args → quick status), `--rebuild`, `--search <topic>`, `--stats`"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 77,
+          "context": "- **Dependency:** None (stdlib only: os, sys, json, re, datetime) - **CLI:** `--dry-run` (default), `--generate`, `--update-memory`, `--session YYYY-MM-DD`"
+        },
+        {
+          "path": "memory/integration-plan.md",
+          "line": 87,
+          "context": "- **Dependency:** Requires `git` CLI installed on the system. - **CLI:** `--init`, `--commit \"msg\"`, `--auto`, `--status`, `--log [N]`"
+        }
+      ]
+    },
+    {
+      "topic": "Depends on H1",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 278,
+          "context": "- **Depends on H1**"
+        }
+      ]
+    },
+    {
+      "topic": "Depreciation convention",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 138,
+          "context": "2. **Depreciation convention**: PS VIBE uses \"depreciation from purchase month (inclusive)\". So a Jun-purchased asset has 1 month of depreciation in Jun. Yes, this means first month gets full deprecia"
+        }
+      ]
+    },
+    {
+      "topic": "derived view",
+      "files": [
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 237,
+          "context": "- **Fix:** Make console_status a **derived view** computed from the booking table, not independently maintained. Or at minimum, use a single function/trigger that updates console_status based on curre"
+        }
+      ]
+    },
+    {
+      "topic": "Design:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 102,
+          "context": "**Design:** Boss approved Phase 1 → Phase 2 approach. Phase 1 done today. **Status:** ✅ Deployed and tested"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 252,
+          "context": "**Design:** Boss approved Phase 1 → Phase 2 approach. Phase 1 done today. **Status:** ✅ Deployed and tested"
+        }
+      ]
+    },
+    {
+      "topic": "Detection:",
+      "files": [
+        {
+          "path": "memory/ERROR_PATTERNS.md",
+          "line": 87,
+          "context": "- **Detection:** \"Plan: X mins\" shows only extension minutes, not accumulated total"
+        }
+      ]
+    },
+    {
+      "topic": "Diagnosis:",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 35,
+          "context": "- **Diagnosis:** Log shows this has been happening since 03:01 UTC today — pre-existing issue - **Status:** 🔍 Needs Boss to re-test to see real error"
+        }
+      ]
+    },
+    {
+      "topic": "Director:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 12,
+          "context": "- **Director:** Synergy Hub - **Email:** chanmyint123456789@gmail.com"
+        }
+      ]
+    },
+    {
+      "topic": "Disaster Recovery Backup Failure (5/6 items failed)",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 8,
+          "context": "### Disaster Recovery Backup Failure (5/6 items failed) All 5 remote-dependent items failed with `ECONNREFUSED 5.223.81.16:22`:"
+        }
+      ]
+    },
+    {
+      "topic": "Discord Bot (June 15-16)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 84,
+          "context": "### Discord Bot (June 15-16) - 35 slash commands across gaming, account, community, staff modules"
+        }
+      ]
+    },
+    {
+      "topic": "Discord Bot — Server Setup Completed",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 249,
+          "context": "### Discord Bot — Server Setup Completed - **Channels Created:** 20 channels across 5 categories (Announcements, General, Game Hub, Events, Voice)"
+        }
+      ]
+    },
+    {
+      "topic": "Discord Server Structure",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 247,
+          "context": "2. **Discord Server Structure** — Channels နဲ့ Roles တွေကို ဆက်ပြီး ပြင်ဆင်ရန် (or ask Kora to help)"
+        }
+      ]
+    },
+    {
+      "topic": "Discord:",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 16,
+          "context": "- **Discord:** Guild ID 1516119712411422942 | [Invite](https://discord.gg/EXEF7phbZF)"
+        }
+      ]
+    },
+    {
+      "topic": "Discount → Apply Coupon",
+      "files": [
+        {
+          "path": "memory/coupon-system-implemented.md",
+          "line": 25,
+          "context": "- **Discount → Apply Coupon** (`discount.py`): Staff can enter coupon code → validates → applies discount → deducts balance"
+        }
+      ]
+    },
+    {
+      "topic": "Disposal record reversed",
+      "files": [
+        {
+          "path": "memory/2026-06-08.md",
+          "line": 108,
+          "context": "- **Disposal record reversed** — `Game Discs` (id=3) disposed_qty=3 → 0; `asset_disposals` table now empty (was test data from disposal feature dev)"
+        }
+      ]
+    },
+    {
+      "topic": "Docker secrets",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 158,
+          "context": "4. **Docker secrets** — MySQL passwords are in container environment variables; consider secrets manager 5. **Regular audit** — Re-run this audit weekly via cron"
+        }
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "files": [
+        {
+          "path": "memory/tools-commands.md",
+          "line": 24,
+          "context": "## Documentation ```bash"
+        }
+      ]
+    },
+    {
+      "topic": "double bookings, data corruption, and session conflicts are guaranteed eventually",
+      "files": [
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 10,
+          "context": "The PS VIBE booking system has **no concurrency protection whatsoever**. Every multi-step database operation that should be atomic (slot booking, check-in, cancellation, approval) uses separate `SELEC"
+        }
+      ]
+    },
+    {
+      "topic": "Double fail masking",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 111,
+          "context": "4. **Double fail masking** — Both API (MySQL) and GSheet fallback were broken simultaneously → masked the true root cause. Monitor both paths independently."
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 220,
+          "context": "4. **Double fail masking** — Both API (MySQL) and GSheet fallback were broken simultaneously → masked the true root cause. Monitor both paths independently. 5. **Date format inconsistency between bot "
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 384,
+          "context": "4. **Double fail masking** — Both API (MySQL) and GSheet fallback broken simultaneously → masked the true root cause 5. **Date format inconsistency between bot and API** — Bot sends locale-dependent f"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 122,
+          "context": "(dedup) 4. **Double fail masking** — Both API (MySQL) and GSheet fallback were broken simultaneously → masked the true root cause. Monitor both paths independently. (dedup) - `psvibe_customer_bot` — ✅"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 184,
+          "context": "(dedup) 4. **Double fail masking** — Both API (MySQL) and GSheet fallback broken simultaneously → masked the true root cause (dedup) 5. **Date format inconsistency between bot and API** — Bot sends lo"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 299,
+          "context": "(dedup) - 4. **Double fail masking** — Both API (MySQL) and GSheet fallback were broken simultaneously → masked the true root cause. Monitor both paths independently. (dedup) - `psvibe_customer_bot` —"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 314,
+          "context": "(dedup) - 4. **Double fail masking** — Both API (MySQL) and GSheet fallback broken simultaneously → masked the true root cause (dedup) - 5. **Date format inconsistency between bot and API** — Bot send"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 51,
+          "context": "10. **Double fail masking** — When both MySQL and GSheet fallback break simultaneously, root cause is masked. Monitor both paths independently. 11. **`%%` pattern doesn't work with `mysql.connector`**"
+        }
+      ]
+    },
+    {
+      "topic": "Double Multiplier in wallet_game_value (FIXED)",
+      "files": [
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 136,
+          "context": "## Double Multiplier in wallet_game_value (FIXED) - `eff_mins` already × multiplier, then `wallet_val` applied mult again"
+        }
+      ]
+    },
+    {
+      "topic": "Drive Write",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 24,
+          "context": "- **Drive Write**: ✅ Working (PS VIBE folder — direct upload via OAuth token)"
+        }
+      ]
+    },
+    {
+      "topic": "Duplicate C-01 console",
+      "files": [
+        {
+          "path": "memory/project-state.md",
+          "line": 53,
+          "context": "| 27 | **Duplicate C-01 console** — SQL subquery + Python dedup + ended stale booking | ✅ | | 28 | **Console Status wrong time/game** — MMT time, game from notes | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Duration:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 341,
+          "context": "**Duration:** Broken for ~1 hour before root cause found"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 217,
+          "context": "| `SBK_GAME` | Game selection | **Duration** selection | | `SBK_CONFIRM` | Confirmation | Game + Confirm (correct!) |"
+        }
+      ]
+    },
+    {
+      "topic": "Earlier Today (June 8) — Tasks before FIFO",
+      "files": [
+        {
+          "path": "memory/2026-06-08.md",
+          "line": 24,
+          "context": "## Earlier Today (June 8) — Tasks before FIFO"
+        }
+      ]
+    },
+    {
+      "topic": "ejections",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 14,
+          "context": "- Stock cost uses **ejections** (actual cash outflow) = 733,940 Ks - Advance recovery (Sunh Furniture 3.6M) shown in investing"
+        }
+      ]
+    },
+    {
+      "topic": "Elif bug",
+      "files": [
+        {
+          "path": "memory/2026-06-08.md",
+          "line": 29,
+          "context": "- **Elif bug**: `== \"wave\"` only, not `== \"wavepay\"` → fixed"
+        }
+      ]
+    },
+    {
+      "topic": "Elif chains must cover ALL variants",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 44,
+          "context": "5. **Elif chains must cover ALL variants** — `\"wave\"` ≠ `\"wavepay\"`."
+        }
+      ]
+    },
+    {
+      "topic": "Email/SMS booking confirmation",
+      "files": [
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 239,
+          "context": "| 3.5 | **Email/SMS booking confirmation** — Post-booking hook to send confirmation via customer's registered phone/email | n8n workflow or new endpoint | 2h | | 3.6 | **Console availability heatmap**"
+        }
+      ]
+    },
+    {
+      "topic": "Email:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 13,
+          "context": "- **Email:** chanmyint123456789@gmail.com - **Rules:** Card_wallet → Column H only. Receipt templates: NO Burmese footer text."
+        }
+      ]
+    },
+    {
+      "topic": "Emergency Context",
+      "files": [
+        {
+          "path": "memory/coupon-bug-fix-2026-06-05.md",
+          "line": 3,
+          "context": "## Emergency Context - PS VIBE Grand Opening: June 6, 2026 (TOMORROW)"
+        }
+      ]
+    },
+    {
+      "topic": "Empty (unreleased)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 95,
+          "context": "### Empty (unreleased) Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3"
+        }
+      ]
+    },
+    {
+      "topic": "Empty/NULL console_id",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 176,
+          "context": "### Empty/NULL console_id - `api_bookings_create`: When console_id is empty, checks ALL consoles of matching type. Auto-assign NOT done at API layer — left empty in INSERT. ✅ Handled (no conflict chec"
+        }
+      ]
+    },
+    {
+      "topic": "Enable Privileged Intents",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 244,
+          "context": "1. **Enable Privileged Intents** in Discord Developer Portal → Bot → Privileged Gateway Intents: - ✅ Or ❌ Server Members Intent (for welcome DM on new member join)"
+        }
+      ]
+    },
+    {
+      "topic": "End-to-end flow:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 101,
+          "context": "- **End-to-end flow:** Sales bot → `_session_end_notify()` → API → Customer Bot (rating prompt) → user taps star → `cb_feedback_rating` → POST `/api/feedback/submit` → MySQL → Kora Dashboard"
+        }
+      ]
+    },
+    {
+      "topic": "Endpoint confusion:",
+      "files": [
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 370,
+          "context": "3. **Endpoint confusion:** Two create-booking endpoints with different semantics (#5)"
+        }
+      ]
+    },
+    {
+      "topic": "enforce",
+      "files": [
+        {
+          "path": "memory/config.md",
+          "line": 9,
+          "context": "| `session.maintenance.mode` | warn | **enforce** | | `session.maintenance.maxDiskBytes` | unlimited | **314572800 (300mb)** |"
+        }
+      ]
+    },
+    {
+      "topic": "Enter PHONE",
+      "files": [
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 108,
+          "context": "| `SBK_DATE` → `step_sbk_date` | **Enter PHONE** | → SBK_GAME | | `SBK_GAME` → `step_sbk_game` | **Select DURATION** | → SBK_CONFIRM |"
+        }
+      ]
+    },
+    {
+      "topic": "Entry Points",
+      "files": [
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 44,
+          "context": "### Entry Points - `/book`, `/booking` commands"
+        }
+      ]
+    },
+    {
+      "topic": "Equipment hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 272,
+          "context": "3. **Equipment hardcoded to 0:** No query to `finance_assets` 4. **Only wallet liability:** Missing advances (2.3M), payables, prepaid"
+        }
+      ]
+    },
+    {
+      "topic": "Equity hardcoded to 0:",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 274,
+          "context": "5. **Equity hardcoded to 0:** No retained earnings calculation, no shareholders capital 6. **A=L+E forced:** `assets.total = liabilities.total + equity.total` — since equity=0, it just mirrors wallet "
+        }
+      ]
+    },
+    {
+      "topic": "Error Handling",
+      "files": [
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 21,
+          "context": "| **Error Handling** | **C** | Silent failures on notifications; no retry queues | | **Code Quality** | **D** | State name confusion, 2 MySQL modules, duplicate endpoints |"
+        }
+      ]
+    },
+    {
+      "topic": "Error:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 6,
+          "context": "- **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console - **Root cause (2 layers):**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 17,
+          "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 45,
+          "context": "- **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console - **Root cause (2 layers):**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 56,
+          "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 71,
+          "context": "- **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\" (capital C) - **Root cause:** `step_food_menu` used exac"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 193,
+          "context": "- **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console - **Root cause (2 layers):**"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 204,
+          "context": "- **Error:** `name '_psvibe_get_async' is not defined` - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 219,
+          "context": "- **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\" (capital C) - **Root cause:** `step_food_menu` used exac"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 335,
+          "context": "**Error:** \"Food Sale\" button shows active consoles → staff picks console → bot shows game list (wrong menu) / crashes **Root cause:** `cmd_session_food_order` (sales.py line 145) imports `_psvibe_get"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 344,
+          "context": "**Error:** BTN_CLEAR_CART handler never triggers **Root cause:** In `step_food_menu`, when `session_food_order` flag is set and user clicks Done, the code hits `return await prompt_confirm(...)` BEFOR"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 349,
+          "context": "**Error:** Sale voucher opening still very slow (Boss confirms) **Root cause:** `step_end_session` in `console.py` line 370 has `await asyncio.to_thread(api_post, \"coupons/generate\", ...)` — this BLOC"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 201,
+          "context": "(dedup) - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console (dedup) - Layer 1: `fetch_members_async()` wrapper (line 1491) needed `[m[\"id\"] for m in result if .."
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 207,
+          "context": "(dedup) - **Error:** `name '_psvibe_get_async' is not defined` (dedup) - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 218,
+          "context": "(dedup) - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console (dedup) - Layer 1: `fetch_members_async()` wrapper (line 1491) needed `[m[\"id\"] for m in result if .."
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 224,
+          "context": "(dedup) - **Error:** `name '_psvibe_get_async' is not defined` (dedup) - **Root cause:** Function never existed in `api_client.py` — was imported in 3 places in `sales.py` but never defined"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 233,
+          "context": "(dedup) - **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\" (capital C) (dedup) - **Root cause:** `step_food"
+        }
+      ]
+    },
+    {
+      "topic": "Estimate Accuracy Tracker",
+      "files": [
+        {
+          "path": "memory/ARCHIVED_LESSONS.md",
+          "line": 47,
+          "context": "| 7 | **Estimate Accuracy Tracker** | `batch_coordinator.py` | `--estimate-log` command tracks predicted vs actual time per batch | | 8 | **Timeout Auto-Split** | `timeout_auto_split.py` (NEW, 517 lin"
+        }
+      ]
+    },
+    {
+      "topic": "Estimated effort:",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 149,
+          "context": "**Estimated effort:** MEDIUM (~80-100 lines new code + 30 lines modifications)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 161,
+          "context": "**Estimated effort:** SMALL (~5 lines)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 180,
+          "context": "**Estimated effort:** SMALL (~3 lines)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 193,
+          "context": "**Estimated effort:** SMALL (~15 lines)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 205,
+          "context": "**Estimated effort:** NONE (already exists)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 307,
+          "context": "**Estimated effort:** SMALL (~20 lines changed)"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 321,
+          "context": "**Estimated effort:** NONE"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 329,
+          "context": "**Estimated effort:** NONE"
+        }
+      ]
+    },
+    {
+      "topic": "Estimated time:",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 377,
+          "context": "**Estimated time:** 30 minutes"
+        },
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 391,
+          "context": "**Estimated time:** 2-3 hours"
+        }
+      ]
+    },
+    {
+      "topic": "Event created:",
+      "files": [
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 60,
+          "context": "- **Event created:** `🎮 Weekly Game Night` (ID: `1516855125615050842`) - 📅 Saturday, June 20, 2026"
+        }
+      ]
+    },
+    {
+      "topic": "Every Session (Daily Log)",
+      "files": [
+        {
+          "path": "memory/memory-usage-guide.md",
+          "line": 21,
+          "context": "### Every Session (Daily Log) ```"
+        }
+      ]
+    },
+    {
+      "topic": "Example of false unavailability:",
+      "files": [
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 65,
+          "context": "**Example of false unavailability:** - Booking at 10:30 for 30 mins → blocks slot 11:00 with 🔴"
+        }
+      ]
+    },
+    {
+      "topic": "Example:",
+      "files": [
+        {
+          "path": "memory/booking-features-implemented.md",
+          "line": 44,
+          "context": "### Example: - It's 2:30 PM → available: 3 PM, 4 PM, 5 PM, 6 PM, 7 PM, 8 PM, 9 PM"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 9,
+          "context": "**Example:** ```python"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 26,
+          "context": "**Example:** ```python"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 42,
+          "context": "**Example:** ```python"
+        },
+        {
+          "path": "memory/bug-patterns.md",
+          "line": 69,
+          "context": "**Example:** ```python"
+        }
+      ]
+    },
+    {
+      "topic": "Exec approach: checking PNL endpoint",
+      "files": [
+        {
+          "path": "memory/2026-06-09.md",
+          "line": 51,
+          "context": "## Exec approach: checking PNL endpoint"
+        }
+      ]
+    },
+    {
+      "topic": "Execution Order Summary",
+      "files": [
+        {
+          "path": "memory/integration-plan.md",
+          "line": 141,
+          "context": "### Execution Order Summary"
+        }
+      ]
+    },
+    {
+      "topic": "Executive Summary",
+      "files": [
+        {
+          "path": "memory/console-conflict-report-2026-06-18.md",
+          "line": 7,
+          "context": "## Executive Summary"
+        },
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 9,
+          "context": "## Executive Summary"
+        }
+      ]
+    },
+    {
+      "topic": "Expected after Fixes 8+9+10 deployed:",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 363,
+          "context": "- **Expected after Fixes 8+9+10 deployed:** Fresh session should work"
+        }
+      ]
+    },
+    {
+      "topic": "Extra step:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 35,
+          "context": "- **Extra step:** App.py was corrupted by broken string escaping during the fix → restored to clean git state, then reapplied fix correctly"
+        }
+      ]
+    },
+    {
+      "topic": "Extract shared calculation functions",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 313,
+          "context": "**Extract shared calculation functions** into a `finance_calculations.py` module to avoid the current duplication where two implementations exist (one broken, one correct). All endpoints should call t"
+        }
+      ]
+    },
+    {
+      "topic": "Facebook:",
+      "files": [
+        {
+          "path": "memory/contacts.md",
+          "line": 5,
+          "context": "- **Facebook:** https://www.facebook.com/ps5gamecenter - **Telegram Admin:** https://t.me/psvibeofficial"
+        }
+      ]
+    },
+    {
+      "topic": "Fallback:",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 79,
+          "context": "- **Fallback:** Alphacoders.com for PS5 exclusives - **IGN:** OG images for some games"
+        },
+        {
+          "path": "memory/booking-features-implemented.md",
+          "line": 25,
+          "context": "### Fallback: - If no specific consoles available → falls back to type selection (PS5 / PS5 Pro / Any)"
+        }
+      ]
+    },
+    {
+      "topic": "false profit of 1,518,416 Ks",
+      "files": [
+        {
+          "path": "memory/finance-audit-2026-06.md",
+          "line": 11,
+          "context": "> ⚠️ **CRITICAL FINDING:** The PNL API (`/api/finance/pnl`) is reporting a **false profit of 1,518,416 Ks** when the actual result for June 2026 is a **massive LOSS of approximately −7,330,050 Ks** (b"
+        }
+      ]
+    },
+    {
+      "topic": "FastAPI response_model Silently Strips Fields (2026-06-05)",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 101,
+          "context": "## FastAPI response_model Silently Strips Fields (2026-06-05) - `@app.post(..., response_model=GenericResponse)` — if GenericResponse only has `success`/`message`/`data` but endpoint returns `{\"error\""
+        }
+      ]
+    },
+    {
+      "topic": "FastAPI response_model silently strips undeclared fields",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 108,
+          "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 217,
+          "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 381,
+          "context": "1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes 2. **`bool(0) == False`** — `\"x if x else default\"` pattern breaks on `0`; u"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 119,
+          "context": "(dedup) 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes (dedup) 2. **`bool(0) == False`** — `\"x if x else default\"` pattern "
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 182,
+          "context": "(dedup) 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes (dedup) 2. **`bool(0) == False`** — `\"x if x else default\"` pattern "
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 296,
+          "context": "(dedup) - 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes (dedup) - 2. **`bool(0) == False`** — `\"x if x else default\"` patt"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 312,
+          "context": "(dedup) - 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes (dedup) - 2. **`bool(0) == False`** — `\"x if x else default\"` patt"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 47,
+          "context": "6. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes. 7. **Date format inconsistency** — Bot sends locale-dependent format (M/D/Y"
+        }
+      ]
+    },
+    {
+      "topic": "FastAPI response_model:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 166,
+          "context": "2. **FastAPI response_model:** Silently strips undeclared fields — add all response fields to `response_model` Pydantic class. 3. **file corruption from string slicing:** When editing HTML/JS files wi"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 1 Risks",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 348,
+          "context": "### Feature 1 Risks"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 1 Tests",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 680,
+          "context": "### Feature 1 Tests - [ ] After time selection → shows available console list"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 1: Console Selection During Booking (တွဲချ) ✅",
+      "files": [
+        {
+          "path": "memory/booking-features-implemented.md",
+          "line": 5,
+          "context": "## Feature 1: Console Selection During Booking (တွဲချ) ✅ **Commit:** `d53acb4` on Sales Bot + API Server"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 2 Risks",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 358,
+          "context": "### Feature 2 Risks"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 2 Tests",
+      "files": [
+        {
+          "path": "memory/booking-features-plan.md",
+          "line": 671,
+          "context": "### Feature 2 Tests - [ ] Today 9:00 AM → slots 9:00-21:00 shown (all available)"
+        }
+      ]
+    },
+    {
+      "topic": "Feature 2: Time-Slot Restriction ✅",
+      "files": [
+        {
+          "path": "memory/booking-features-implemented.md",
+          "line": 29,
+          "context": "## Feature 2: Time-Slot Restriction ✅ **Commit:** `4582b6c` on Sales Bot only"
+        }
+      ]
+    },
+    {
+      "topic": "Feature Exists ≠ Feature Works (2026-06-21)",
+      "files": [
+        {
+          "path": "memory/lessons.md",
+          "line": 22,
+          "context": "## Feature Exists ≠ Feature Works (2026-06-21) - `prompt_book_link` function ရှိပြီးသား၊ flow လည်းရှိပြီးသား — ဒါပေမဲ့ တစ်ခါမှ run မဖြစ်ခဲ့"
+        }
+      ]
+    },
+    {
+      "topic": "Feature: Customer Bot `/admin_broadcast`",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 79,
+          "context": "### Feature: Customer Bot `/admin_broadcast` | File | Description |"
+        }
+      ]
+    },
+    {
+      "topic": "FIFO for wallet consumption",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 65,
+          "context": "20. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value."
+        }
+      ]
+    },
+    {
+      "topic": "FIFO Logic:",
+      "files": [
+        {
+          "path": "memory/2026-06-08.md",
+          "line": 13,
+          "context": "**FIFO Logic:** ```"
+        }
+      ]
+    },
+    {
+      "topic": "File backups:",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 73,
+          "context": "- **File backups:** Tars `/root/psvibe-sales-bot/` and `/root/psvibe_api_server/` - **Compression:** SQL dumps gzipped immediately"
+        }
+      ]
+    },
+    {
+      "topic": "file corruption from string slicing:",
+      "files": [
+        {
+          "path": "memory/2026-06-13.md",
+          "line": 167,
+          "context": "3. **file corruption from string slicing:** When editing HTML/JS files with Python string operations, always verify `grep count` of function names before and after to detect duplication/truncation. 4."
+        }
+      ]
+    },
+    {
+      "topic": "File Inventory (New)",
+      "files": [
+        {
+          "path": "memory/PHASE3_SPEC.md",
+          "line": 173,
+          "context": "## File Inventory (New)"
+        }
+      ]
+    },
+    {
+      "topic": "File Locations",
+      "files": [
+        {
+          "path": "memory/UPGRADE_SPEC.md",
+          "line": 121,
+          "context": "## File Locations All files under: `/root/.openclaw/workspace/memory/`"
+        }
+      ]
+    },
+    {
+      "topic": "File modified:",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 18,
+          "context": "**File modified:** `/home/node/.openclaw/workspace/lib/ssh_vps.js` (lines 49-55) - Changed from: `function mysqlQuery(query) { return sshExec(...2>&1...); }`"
+        }
+      ]
+    },
+    {
+      "topic": "File:",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 16,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` line 2097 - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 23,
+          "context": "- **File:** `/root/psvibe_api_server/models.py` - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 29,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function - **Status:** ✅ Fixed"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 72,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` line 2097 - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 79,
+          "context": "- **File:** `/root/psvibe_api_server/models.py` - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 85,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function - **Status:** ✅ Fixed"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 96,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Fixed, needs Boss re-test"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 104,
+          "context": "- **File:** `bot/handlers/sales.py` (around booking conversation handler) - **Status:** ✅ Fixed, bot restarted"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 152,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` line 2097 - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 159,
+          "context": "- **File:** `/root/psvibe_api_server/models.py` - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 165,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function - **Status:** ✅ Fixed"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 176,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Fixed, Boss confirmed working"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 184,
+          "context": "- **File:** `bot/handlers/sales.py` (around booking conversation handler) - **Status:** ✅ Fixed, bot restarted"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 193,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint - **Status:** ✅ Fixed, Boss confirmed booking is working"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 199,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (status assignment logic) - **Status:** ✅ Done"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 206,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint - **Status:** ✅ Done"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 213,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Done, bot restarted"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 269,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` line 2097 - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 276,
+          "context": "- **File:** `/root/psvibe_api_server/models.py` - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 282,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function - **Status:** ✅ Fixed"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 293,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Fixed, Boss confirmed working"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 301,
+          "context": "- **File:** `bot/handlers/sales.py` (around booking conversation handler) - **Status:** ✅ Fixed, bot restarted"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 310,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint - **Status:** ✅ Fixed, Boss confirmed booking is working"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 316,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (status assignment logic) - **Status:** ✅ Done"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 323,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint - **Status:** ✅ Done"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 330,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Done, bot restarted"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 341,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` - **Status:** ✅ Fixed after Unicode encoding issue resolved (used SFTP upload instead of inline replace)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 348,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` - **Status:** ✅ Fixed"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 369,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — console status endpoint - **Status:** ✅ Done (per Kora's claim; need Boss to verify display)"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 377,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 22,
+          "context": "- **File:** `bot/handlers/booking_flow.py` - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 27,
+          "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 61,
+          "context": "- **File:** `bot/handlers/booking_flow.py` - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 66,
+          "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 209,
+          "context": "- **File:** `bot/handlers/booking_flow.py` - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 214,
+          "context": "- **File:** `bot/handlers/notify.py` - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 30,
+          "context": "- **File:** `/root/psvibe_api_server/patch_routes.py` line 1328"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 70,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` line 2097 (dedup) - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 75,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/models.py` (dedup) - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 79,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function (dedup) - `psvibe-api` — ✅ active (restarted multiple times)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 92,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` line 2097 (dedup) - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 97,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/models.py` (dedup) - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 101,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function (dedup) - **Root cause:** Line 1301 in `bot/handlers/sales.py`:"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 109,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - **Symptom:** Sale bot stuck at booking menu after restart — \"New Booking\" button visible but does nothing"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 114,
+          "context": "(dedup) - **File:** `bot/handlers/sales.py` (around booking conversation handler) (dedup) - **Status:** ✅ Fixed, bot restarted"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 117,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 118,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 136,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` line 2097 (dedup) - **Status:** ✅ Verified working (600→540 mins deducted)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 141,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/models.py` (dedup) - **Impact:** Now error messages from API will be visible in bot logs"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 145,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` function (dedup) - **Root cause:** Line 1301 in `bot/handlers/sales.py`:"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 153,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - **Status:** ✅ Fixed, Boss confirmed working"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 159,
+          "context": "(dedup) - **File:** `bot/handlers/sales.py` (around booking conversation handler) (dedup) - **Status:** ✅ Fixed, bot restarted"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 164,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (dedup) - **Status:** ✅ Fixed, Boss confirmed booking is working"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 168,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (status assignment logic) (dedup) - **Symptom:** Same console, same time could be double-booked"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 172,
+          "context": "(dedup) - **File:** `/root/psvibe_api_server/app.py` — `api_bookings_create()` endpoint (dedup) - **Symptom:** Cancel booking doesn't work — `NameError: name '_notify_customer' is not defined`"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 176,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - **Status:** ✅ Done, bot restarted"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 178,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 179,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 180,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar (dedup) - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 210,
+          "context": "(dedup) - **File:** `bot/handlers/booking_flow.py` (dedup) - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 213,
+          "context": "(dedup) - **File:** `bot/handlers/notify.py` (dedup) - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 227,
+          "context": "(dedup) - **File:** `bot/handlers/booking_flow.py` (dedup) - **Root cause:** `_do_extend()` called `persist_reminder(..., message_thread_id)` but `message_thread_id` wasn't a parameter"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 230,
+          "context": "(dedup) - **File:** `bot/handlers/notify.py` (dedup) - **Root cause:** `_check_low_balance_alert` used `os` module but never imported it"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 295,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 308,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 309,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 310,
+          "context": "(dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar (dedup) - **Status:** ✅ Done (per Kora's claim; need Boss to verify)"
+        },
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 78,
+          "context": "- **File:** `customer_bot/handlers.py:30` — `BK_SPECIFIC_CONSOLE` constant defined - **File:** `customer_bot/main.py` — NOT in ConversationHandler states"
+        },
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 79,
+          "context": "- **File:** `customer_bot/main.py` — NOT in ConversationHandler states - **Impact:** State constant dead code; no functional issue since flow uses BK_CONSOLE_PREF instead"
+        },
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 84,
+          "context": "- **File:** `booking_handlers.py` — `bk_confirm()` lines ~1770-1820 - **Issue:** Uses `search-bookings?telegram_chat_id={uid}&date={date_str}` which returns ALL bookings for the user on that date, the"
+        },
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 131,
+          "context": "- **File:** `booking.py` — `step_sbk_time()` - Unlike customer bot which uses `_get_available_slots()`, staff booking shows ALL hardcoded slots"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 30,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1744-1865` - **What's Wrong:** The booking creation endpoint (`POST /api/bookings`) performs:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 52,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1675-1726` (`api_booking_cancel`) - **What's Wrong:** `UPDATE console_booking SET status='cancelled' WHERE id=%s` — no status check at all. If a booking is "
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 71,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — all booking endpoints - **What's Wrong:** Every `_mysql_exec()` is a standalone auto-commit. Multi-step operations like:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 94,
+          "context": "- **File:** `/root/psvibe-sales-bot/scripts/auto_cancel_no_shows.py:85-140` - **What's Wrong:** The script:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 143,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1580-1640` (`api_start_console_session`) - **What's Wrong:** When starting a session:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 171,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:293-340` (`step_sbk_time`) - **What's Wrong:** Staff booking shows hardcoded time slots (10:00, 11:00, ..., 22:00) with **no check against e"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 186,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1780-1800` - **What's Wrong:** `POST /api/bookings` attempts to parse `date + time_slot`:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 258,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` + `main.py` - **What's Wrong:** `ConversationHandler` has no `conversation_timeout` set. If a customer starts booking then abandon"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 284,
+          "context": "- **File:** `customer_bot/booking_handlers.py:bk_phone_entry` - **What's Wrong:** Only checks `len(cleaned) < 7`. Accepts \"1234567\" (fake), \"0000000000\" (invalid MM number). No Myanmar format validati"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 290,
+          "context": "- **File:** `customer_bot/booking_handlers.py:bk_game_select` - **What's Wrong:** Any text input becomes the game name. Matches against game list but falls back to `text[:50]` if no match. User can ty"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 302,
+          "context": "- **File:** `app.py:1826-1835` (in `api_bookings_create`) - **What's Wrong:** `if console_id:` guard means bookings without a specific console bypass conflict detection. Customer bot now auto-assigns "
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 308,
+          "context": "- **File:** `scripts/auto_cancel_no_shows.py:20` (TRACK_FILE) - **What's Wrong:** `booking_reminders.json` tracks reminded booking IDs. Only today's entries are cleaned. If the script runs once, the f"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 314,
+          "context": "- **File:** `customer_bot/booking_handlers.py:45-48` - **What's Wrong:** `if len(stack) > 20: stack.pop(0)` — removes the OLDEST state. If user goes deep into the flow and then wants to go back all th"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 323,
+          "context": "- **File:** `scripts/auto_cancel_no_shows.py:80` + `:175` - **What's Wrong:** Both `auto_cancel()` and `send_booking_reminders()` query for `status=\"scheduled\"` which is not a valid booking status (va"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 328,
+          "context": "- **File:** Multiple places where names are shown via `parse_mode=\"HTML\"` - **What's Wrong:** Customer names with `<` or `>` characters would break HTML rendering in Telegram messages."
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 334,
+          "context": "- **File:** `customer_bot/booking_handlers.py:bk_phone_verify` - **What's Wrong:** When a member has 0 balance, it's shown but no warning is displayed. The member can still book (need to pay)."
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 339,
+          "context": "- **File:** `customer_bot/handlers.py:30` — constant defined but not in ConversationHandler states - **Impact:** Dead code. No functional impact."
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 343,
+          "context": "- **File:** `customer_bot/booking_handlers.py:355-380` - **What's Wrong:** `_get_available_consoles()` is called in `bk_console_select()` AND again in `_submit_booking()`. Redundant but ensures freshn"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 348,
+          "context": "- **File:** `/root/psvibe_api_server/sync_service.py` - **What's Wrong:** All functions are stubs (`pass`). GSheet sync is intentionally disabled."
+        },
+        {
+          "path": "memory/booking-fixes-api-round3.md",
+          "line": 77,
+          "context": "**File:** `app.py` **What:** Added comment block noting the duplication between `mysql.connector` helpers and `mysql_db.py` (pymysql), recommending future consolidation to pymysql-based functions."
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 6,
+          "context": "**File:** `/root/psvibe-sales-bot/scripts/auto_cancel_no_shows.py` - Added re-fetch of booking status before canceling"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 12,
+          "context": "**File:** `/root/psvibe-sales-bot/bot/handlers/admin_bookings.py` - After PATCH, checks for `conflict` field or 409 status code"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 17,
+          "context": "**File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` - `step_sbk_date`: Fetches existing bookings for selected date via API"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 33,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/main.py` - Added `conversation_timeout=timedelta(minutes=30)` to booking ConversationHandler"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 37,
+          "context": "**File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` - In `step_sbk_duration`, validates duration is 1-1440 minutes"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 41,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - Added Myanmar phone format validation in `bk_phone_entry`"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 47,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - In `bk_game_select`, free text not matching any known game now shows error"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 52,
+          "context": "**File:** `/root/psvibe-sales-bot/scripts/auto_cancel_no_shows.py` - Changed `booking_reminders.json` cleanup from \"today only\" to \"7-day window\""
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 57,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - Changed `stack.pop(0)` to `stack.pop()` in `_push_state`"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 62,
+          "context": "**File:** `/root/psvibe-sales-bot/scripts/auto_cancel_no_shows.py` - Removed \"scheduled\" from status filters (both auto_cancel and send_reminders)"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 67,
+          "context": "**File:** `/root/psvibe-sales-bot/bot/handlers/admin_bookings.py` - Added `import html`"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 72,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - Added balance_warn variable when member balance is 0 or N/A"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 19,
+          "context": "**File:** `customer_bot/booking_handlers.py:2073-2473` + `app.py:2278-2420`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 28,
+          "context": "**File:** `bot/handlers/booking.py:703-933` + `app.py:2278-2420`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 37,
+          "context": "**File:** `bot/handlers/admin_bookings.py:257-465` + `app.py:1378-1448`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 46,
+          "context": "**File:** `app.py:1848-1940`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 55,
+          "context": "**File:** `app.py:2140-2278`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 63,
+          "context": "**File:** `app.py:1232-1315`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 71,
+          "context": "**File:** `app.py:2031-2100`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 78,
+          "context": "**File:** `bot/__init__.py:537-610`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 86,
+          "context": "**File:** `app.py:4197-4265`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 92,
+          "context": "**File:** `app.py:1316-1377`"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 314,
+          "context": "**File:** `app.py`, lines 1860-1925 **Issue:** The pre-check on console_status (line 1862) happens OUTSIDE the transaction without FOR UPDATE. Two concurrent calls will both pass and both create sessi"
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 326,
+          "context": "**File:** `app.py`, lines 2180-2202 **Issue:** Only checks `status='Active'`. A staff walk-in can overlap with a pending customer booking."
+        },
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 345,
+          "context": "**File:** `app.py`, lines 1410-1428 **Issue:** Overlap check runs inside transaction but without row lock. Two concurrent approvals could both pass."
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 17,
+          "context": "**File:** `app.py` line ~1758 **Severity:** HIGH (API safety net exists, but UI shows wrong availability)"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 45,
+          "context": "**File:** `booking.py` lines 435-445 **Severity:** HIGH (Shows many slots as unavailable when they're actually free)"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 93,
+          "context": "**File:** `customer_bot/booking_handlers.py` lines 160-170 **Severity:** LOW (shop is closed during mismatch window)"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 116,
+          "context": "**File:** `customer_bot/booking_handlers.py` lines ~720-740 **Severity:** HIGH (False console availability)"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 147,
+          "context": "**File:** `booking.py` lines ~55-70 **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 160,
+          "context": "**File:** `customer_bot/booking_handlers.py` lines 130-150 **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 169,
+          "context": "**File:** `booking.py` line 444 vs `customer_bot/data/prompts.py` line 14 **Severity:** MEDIUM"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 181,
+          "context": "**File:** `booking.py` lines ~470-480 **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 204,
+          "context": "**File:** `customer_bot/booking_handlers.py` line ~165 **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 240,
+          "context": "**File:** `customer_bot/booking_handlers.py` line ~245 **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 256,
+          "context": "**File:** `session_timer.py` line ~30 **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 269,
+          "context": "**File:** `app.py` line ~1478 **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 278,
+          "context": "**File:** `booking.py` lines ~510-530 **Severity:** LOW"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 31,
+          "context": "- **File:** `/root/psvibe-discord-bot/bot.js:812` - **Root Cause:** Discord bot performs direct `INSERT INTO console_booking` via `dbPool.execute()`, completely bypassing the API server's conflict che"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 37,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1243-1255` - **Root Cause:** `api_booking_checkin()` checks for existing Active bookings on the console **outside** the transaction block. Two concurrent ch"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 43,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1331-1377` - **Root Cause:** The deprecated endpoint uses separate `_mysql_exec()` calls without wrapping in a transaction. No `FOR UPDATE`, no rollback cap"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 55,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1956` (`api_bookings_create`) - **Root Cause:** In `api_bookings_create`, the transaction commits first, THEN `_sync_console_status()` is called in a new co"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 83,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:351` - **Root Cause:** In `step_sbk_date`, pressing Back goes to `SBK_PHONE` (asks for phone again), but the user was previously at `SBK_TIM"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 89,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:346-358` - **Root Cause:** `step_sbk_phone` on Back shows customer name prompt text but returns `SBK_CUST_NAME` — this is actually correct f"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 95,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:528-529`, `step_sbk_time` - **Root Cause:** `step_sbk_time` builds time slot availability from booking data fetched locally, not via a dedic"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 101,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py:_submit_booking()` - **Root Cause:** Customer bot's `_submit_booking()` calls `_get_available_consoles()` at submit time and auto-a"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 107,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1331` (`api_create_booking` — deprecated) - **Root Cause:** The deprecated endpoint (and the staff-format path in `/api/bookings`) doesn't compute or store "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 128,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:295-299` - **Root Cause:** In `step_sbk_console`, BTN_BACK calls `cmd_staff_booking(update, context)` which clears ALL user_data and restart"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 134,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py:bk_confirm()` - **Root Cause:** The customer bot does a duplicate-booking overlap check client-side, then the API also does one ser"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 146,
+          "context": "- **File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py` - **Root Cause:** If `_api_get(\"fetch_console_status\")` or `_api_get(\"search-bookings\")` fails (timeout, 500), the customer bot sh"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 152,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/__init__.py:348-385` - **Root Cause:** On API failure, `fetch_console_status()` logs a warning and returns `[]`. This causes the console selection keyboards to "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 158,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `_fetch_wallet_mins_from_mysql` (10 min), `_fetch_member_data_from_mysql` (15 min) - **Root Cause:** Wallet balance reads have a 10-15 minute staleness w"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 164,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking_flow.py` + `/root/psvibe-sales-bot/bot/session_reminder_store.py` - **Root Cause:** `_SESSION_TOTAL_MINS` is saved to disk via `persist_reminde"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 181,
+          "context": "- **File:** `/root/psvibe_api_server/app.py:1882-2028` - **Root Cause:** One endpoint handles both customer bot format (with `customerName`, `date`, `timeSlot`) and staff format (with `console_id`, `m"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 186,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking_flow.py:247` - **Root Cause:** This function posts to n8n but is never called from any handler. `_remind_loop` handles all reminders directly. "
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 191,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py:step_book_mins()` - **Root Cause:** `step_book_mins` allows free-text minutes entry. `_do_create_booking` sends the value to `api_start_cons"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 201,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py` importing `_delete_session_game` from `bot` - **Root Cause:** `_delete_session_game` is a sync function that calls `api_delete_session_game"
+        },
+        {
+          "path": "memory/config.md",
+          "line": 4,
+          "context": "**File:** `/root/.openclaw/openclaw.json`"
+        },
+        {
+          "path": "memory/config.md",
+          "line": 15,
+          "context": "**File:** `/root/.openclaw/workspace/memory/lock_monitor.py`"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 332,
+          "context": "- **File:** `bot/handlers/console.py` — `step_end_session()` - **Status:** ✅ Deployed + verified syntax OK"
+        },
+        {
+          "path": "memory/fix-queue-2026-06-21.md",
+          "line": 8,
+          "context": "- **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py:278` - **Fix:** Import `_psvibe_get_async` at function scope (inline import), or add to top-level imports"
+        },
+        {
+          "path": "memory/fix-queue-2026-06-21.md",
+          "line": 13,
+          "context": "- **File:** Customer Bot (find where it calls sheets/config) - **Fix:** Remove the call or point to correct endpoint"
+        },
+        {
+          "path": "memory/lessons.md",
+          "line": 127,
+          "context": "**File:** `app.py` line 1335 (PATCH /api/bookings/{id}/status)"
+        },
+        {
+          "path": "memory/next-available-session-timer-2026-06-19.md",
+          "line": 3,
+          "context": "**File:** `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
+          "path": "memory/overlap-fix-2026-06-19.md",
+          "line": 16,
+          "context": "- **File:** `/root/psvibe_api_server/app.py` — `api_update_booking_status()` - **Added:** Overlap check at lines 1403-1426"
+        },
+        {
+          "path": "memory/test-report.md",
+          "line": 17,
+          "context": "**File:** `2026-05-26.md` (uses only `### ` headers, no `## ` parent) **Symptom:** `parse_sections()` returned empty dict → `*(no section content found)*`"
+        },
+        {
+          "path": "memory/test-report.md",
+          "line": 25,
+          "context": "**File:** `2026-05-28.md` (`## Session Summary (2026-05-28)` appeared twice with identical sub-sections) **Symptom:** `✅ Completed` / `❌ Pending` bullet lists duplicated in output"
+        }
+      ]
+    },
+    {
+      "topic": "File: `/root/psvibe-sales-bot/bot/handlers/sales.py`",
+      "files": [
+        {
+          "path": "memory/coupon-bug-fix-2026-06-05.md",
+          "line": 28,
+          "context": "### File: `/root/psvibe-sales-bot/bot/handlers/sales.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Files Audited:",
+      "files": [
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 4,
+          "context": "> **Files Audited:** 6 files, ~4,000 lines of code"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 4,
+          "context": "> **Files Audited:** 9 files | ~6,000+ lines | **Previous audit:** Round 1 found 9 issues"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 5,
+          "context": "**Files Audited:** 1. `/root/psvibe-sales-bot/bot/handlers/booking.py` — Staff booking flow"
+        }
+      ]
+    },
+    {
+      "topic": "Files Created",
+      "files": [
+        {
+          "path": "memory/booking-fixes-checkin-implemented.md",
+          "line": 82,
+          "context": "## Files Created - `/root/psvibe-sales-bot/scripts/auto_cancel_no_shows.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 43,
+          "context": "### Files Modified - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 74,
+          "context": "- **Files modified:** `bot/handlers/sales.py` — `step_food_menu()` + `step_food_qty()` functions - **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 155,
+          "context": "### Files Modified: | File | Changes |"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 222,
+          "context": "- **Files modified:** `bot/handlers/sales.py` — `step_food_menu()` + `step_food_qty()` functions - **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 305,
+          "context": "### Files Modified: | File | Changes |"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 59,
+          "context": "### Files Modified - `/root/psvibe-discord-bot/bot.js`, `deploy-commands.js`, `suggestions.json`"
+        },
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 71,
+          "context": "### Files Modified - **`/root/psvibe_api_server/app.py`:**"
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 25,
+          "context": "### Files Modified - `/root/psvibe-sales-bot/bot/handlers/booking.py` — `prompt_book_link()`, `step_book_link()`"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 236,
+          "context": "(dedup) - **Files modified:** `bot/handlers/sales.py` — `step_food_menu()` + `step_food_qty()` functions (dedup) - **Result:** Ovaltine cookies, Ovaltine Cookies, or any case variant now matches ✅"
+        },
+        {
+          "path": "memory/AUDIT_REPORT_TEMPLATE.md",
+          "line": 55,
+          "context": "## Files Modified - `bot/__init__.py` — 3 BotState values, 1 function"
+        },
+        {
+          "path": "memory/booking-fixes-api-round3.md",
+          "line": 118,
+          "context": "## Files Modified - `/root/psvibe_api_server/app.py` — All fixes applied (3787 lines after edits)"
+        },
+        {
+          "path": "memory/booking-fixes-checkin-implemented.md",
+          "line": 74,
+          "context": "## Files Modified - `/root/psvibe-sales-bot/customer_bot/booking_handlers.py`"
+        },
+        {
+          "path": "memory/coupon-bug-fix-2026-06-05.md",
+          "line": 61,
+          "context": "## Files Modified - `/root/psvibe-sales-bot/bot/handlers/sales.py` — 2 lines changed (removed `not is_guest and` guard)"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified (Final Inventory)",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 229,
+          "context": "### Files Modified (Final Inventory) - `/root/psvibe_api_server/app.py` — `deduct_mins` + `GenericResponse` import + date format parsing + auto-confirm staff bookings + slot conflict check"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified (Final Session Inventory)",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 118,
+          "context": "### Files Modified (Final Session Inventory) - `/root/psvibe_api_server/app.py` — added `deduct_mins = req.get(\"deduct_mins\")`"
+        }
+      ]
+    },
+    {
+      "topic": "Files Modified Today",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 173,
+          "context": "## Files Modified Today | File | Changes |"
+        }
+      ]
+    },
+    {
+      "topic": "Files NOT Modified (read-only audit check)",
+      "files": [
+        {
+          "path": "memory/booking-fixes-api-round3.md",
+          "line": 121,
+          "context": "## Files NOT Modified (read-only audit check) - `/root/psvibe_api_server/mysql_db.py` — No changes needed for this round"
+        }
+      ]
+    },
+    {
+      "topic": "Files scanned:",
+      "files": [
+        {
+          "path": "memory/AUDIT_REPORT_TEMPLATE.md",
+          "line": 7,
+          "context": "**Date:** YYYY-MM-DD HH:MM UTC | **Auditor:** [agent-name] | **Files scanned:** N"
+        }
+      ]
+    },
+    {
+      "topic": "Files to Create",
+      "files": [
+        {
+          "path": "memory/UPGRADE_SPEC.md",
+          "line": 6,
+          "context": "## Files to Create"
+        }
+      ]
+    },
+    {
+      "topic": "Files to Modify",
+      "files": [
+        {
+          "path": "memory/UPGRADE_SPEC.md",
+          "line": 66,
+          "context": "## Files to Modify"
+        }
+      ]
+    },
+    {
+      "topic": "Files:",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 10,
+          "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 66,
+          "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 146,
+          "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 263,
+          "context": "- **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 35,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/handlers/sales.py` lines 1310 & 1792"
+        },
+        {
+          "path": "memory/2026-06-18.md",
+          "line": 33,
+          "context": "**Files:** - `/root/psvibe_api_server/app.py` (L1397-1404)"
+        },
+        {
+          "path": "memory/2026-06-18.md",
+          "line": 56,
+          "context": "**Files:** - `/root/psvibe_api_server/app.py` (L1440-1453)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 66,
+          "context": "(dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` (dedup) - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 88,
+          "context": "(dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` (dedup) - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 132,
+          "context": "(dedup) - **Files:** `bot/handlers/sales.py` — both `step_sale_confirm()` and `launch_session_sale()` (dedup) - **Status:** ✅ Boss confirmed coupon is showing"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 356,
+          "context": "- **Files:** - `/root/psvibe_api_server/app.py` (L1397-1404)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 372,
+          "context": "- **Files:** - `/root/psvibe_api_server/app.py` (L1440-1453)"
+        },
+        {
+          "path": "memory/booking-audit-complete.md",
+          "line": 115,
+          "context": "- **Files:** `bot/handlers/booking.py` + `bot/app.py` - **Problem:** Every state name is wrong vs what it actually does:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 125,
+          "context": "- **Files:** `/root/psvibe_api_server/app.py:1336` + `/root/psvibe-sales-bot/bot/handlers/admin_bookings.py:125` - **What's Wrong:** `PATCH /api/bookings/{id}/status` does:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 207,
+          "context": "- **Files:** `bot/handlers/booking.py` + `bot/app.py` - **What's Wrong:** Every state name is the OPPOSITE of what it does:"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 234,
+          "context": "- **Files:** Multiple app.py endpoints (`api_create_booking`, `api_start_console_session`, `api_booking_checkin`, `api_end_booking`, `api_booking_cancel`) - **What's Wrong:** `console_status` table is"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 244,
+          "context": "- **Files:** `/root/psvibe_api_server/app.py:45-100` + `/root/psvibe_api_server/mysql_db.py` - `app.py` has `_mysql_query()`, `_mysql_query_one()`, `_mysql_exec()` using **mysql.connector** (new conne"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 252,
+          "context": "- **Files:** `app.py:_notify_booking_received()`, `app.py:api_booking_checkin`, `app.py:api_booking_cancel` - **What's Wrong:** All Telegram notifications are fire-and-forget with bare `except: pass`."
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 271,
+          "context": "- **Files:** `customer_bot/booking_handlers.py:bk_duration_select` + `bot/handlers/booking.py:step_sbk_game` + `app.py:api_bookings_create` - **What's Wrong:**"
+        },
+        {
+          "path": "memory/booking-audit-deep-round2.md",
+          "line": 296,
+          "context": "- **Files:** `app.py:api_bookings_create` (POST /api/bookings) + `app.py:api_create_booking` (POST /api/create_booking) - **What's Wrong:** Two endpoints do very similar things with different payload "
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 24,
+          "context": "**Files:** `bot/__init__.py`, `bot/app.py`, `bot/handlers/booking.py` - SBK_DATE (74, was phone step) → **SBK_PHONE** (74)"
+        },
+        {
+          "path": "memory/booking-fixes-bots-round3.md",
+          "line": 77,
+          "context": "**Files:** `customer_bot/handlers.py`, `customer_bot/booking_handlers.py`, `customer_bot/__init__.py` - Removed BK_SPECIFIC_CONSOLE from all imports and state definitions"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 219,
+          "context": "**Files:** `customer_bot/booking_handlers.py`, multiple locations **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking-timeslot-audit.md",
+          "line": 228,
+          "context": "**Files:** `customer_bot/data/prompts.py` and `customer_bot/data/time_utils.py` **Severity:** COSMETIC"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 67,
+          "context": "- **Files:** - `POST /api/bookings` — `/root/psvibe_api_server/app.py:1882` (customer bot + staff format, unified)"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 75,
+          "context": "- **Files:** - API server: `/root/psvibe_api_server/session_timer.py` (single-fire, no extend, `_active_timers`)"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 113,
+          "context": "- **Files:** Multiple booking handlers - **Root Cause:**"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 140,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/__init__.py:1438-1439` - **Root Cause:** `N8N_SESSION_WEBHOOK` and `N8N_BOOKING_WEBHOOK` default to `\"\"` (empty string). The n8n integration (`_post_n8n_bookin"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 176,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/__init__.py` — `create_booking()`, `end_booking()`, `fetch_console_status()`, etc. - **Root Cause:** Every function has `if _HAS_API: ... else: GSheet fallback"
+        },
+        {
+          "path": "memory/booking_upgrade_audit.md",
+          "line": 196,
+          "context": "- **Files:** Throughout all bot handlers and API responses - **Root Cause:** API returns `console_id` in DB rows but the API response mapping code creates BOTH `console_id` and `consoleId` fields. Bot"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 194,
+          "context": "- **Files:** `customer_bot/booking.py` - **Fixes:**"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 309,
+          "context": "- **Files:** `admin_bookings.py`, `booking_flow.py` - **Changes:** Console_Booking sheet auto-update (Scheduled/Done rows)"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 315,
+          "context": "- **Files:** `admin_bookings.py` - **Changes:** Telegram notification to customer when booking confirmed"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 321,
+          "context": "- **Files:** `customer_bot/booking.py` - **Changes:** Friendly Burmese message when no bookings; API error handling"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 325,
+          "context": "- **Files:** `openclaw.json`, `memory/lock_monitor.py` - **Changes:** acquireTimeoutMs 60s→300s, maintenance enforce+300mb cap"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 346,
+          "context": "- **Files:** `bot/handlers/sales.py` - **Status:** ✅ Deployed + bot restarted (PID 136936)"
+        },
+        {
+          "path": "memory/fix-history.md",
+          "line": 355,
+          "context": "- **Files:** `bot/handlers/console.py` — `step_end_session()` - **Status:** ⚠️ Edit failed on first try, needs manual verification"
+        },
+        {
+          "path": "memory/fix-queue-2026-06-21.md",
+          "line": 18,
+          "context": "- **Files:** `/root/psvibe-sales-bot/bot/handlers/admin_bookings.py:126,157,194,209` - **Fix:** Change `logger.info` to `logger.debug` or remove"
+        }
+      ]
+    },
+    {
+      "topic": "FINAL",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 283,
+          "context": "| **FINAL** | `1dd1be1` | ✅ ALL fixed |"
+        }
+      ]
+    },
+    {
+      "topic": "Final audit",
+      "files": [
+        {
+          "path": "memory/delegation-rules.md",
+          "line": 77,
+          "context": "- ✅ **Final audit** — Findings Manager → Git Sync → Report - ✅ **🛡️ Safety Net** — Every `sessions_spawn` MUST end with `=== RESULT: OK ||| ERROR: <reason> ===`"
+        }
+      ]
+    },
+    {
+      "topic": "Final Changes (commit 1dd1be1):",
+      "files": [
+        {
+          "path": "memory/2026-06-06.md",
+          "line": 78,
+          "context": "**Final Changes (commit 1dd1be1):** | File | Change |"
+        }
+      ]
+    },
+    {
+      "topic": "Final Result (37/41 games populated)",
+      "files": [
+        {
+          "path": "memory/2026-06-10.md",
+          "line": 48,
+          "context": "### Final Result (37/41 games populated) - **33 games**: ✅ Poster (Steam Library 1200x1800 box art) + Gameplay (Steam screenshots)"
+        }
+      ]
+    },
+    {
+      "topic": "Final Server State Summary",
+      "files": [
+        {
+          "path": "memory/discord-improvements-summary.md",
+          "line": 123,
+          "context": "## Final Server State Summary"
+        }
+      ]
+    },
+    {
+      "topic": "Final Status:",
+      "files": [
+        {
+          "path": "memory/2026-06-17.md",
+          "line": 106,
+          "context": "**Final Status:** All 15 features verified + working ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Final system verification test",
+      "files": [
+        {
+          "path": "memory/subagent-journal.json",
+          "line": 12,
+          "context": "status: completed | summary: Final verification passed"
+        }
+      ]
+    },
+    {
+      "topic": "Finance System (June 15)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 79,
+          "context": "### Finance System (June 15) - PNL & Balance Sheet endpoints fixed (were broken stubs)"
+        }
+      ]
+    },
+    {
+      "topic": "Finding:",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 84,
+          "context": "- **Finding:** `staff_name` holds actual customer name for linked bookings, `member_id` is empty. Walk-ins have empty `staff_name` + `member_id=\"Guest\"`."
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 148,
+          "context": "### Finding `session_timer.py` → `resume_active_timers()` runs on EVERY API restart:"
+        }
+      ]
+    },
+    {
+      "topic": "Findings",
+      "files": [
+        {
+          "path": "memory/security-audit-2026-06-13.md",
+          "line": 113,
+          "context": "### Findings - **MySQL port 3306 is DENIED externally** — excellent"
+        }
+      ]
+    },
+    {
+      "topic": "Fix (3 rounds):",
+      "files": [
+        {
+          "path": "memory/2026-06-05.md",
+          "line": 337,
+          "context": "- **Fix (3 rounds):** 1. `cmd_staff_booking` → return `SBK_TIME` (date handler)"
+        }
+      ]
+    },
+    {
+      "topic": "Fix (applied to 2 files):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 176,
+          "context": "**Fix (applied to 2 files):**"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 1 (line 225):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 61,
+          "context": "- **Fix 1 (line 225):** `consoleId` → `consoleType or consoleId` for food note booking lookup - **Fix 2 (line 355-356):** Added `\"in_use\"` to status filter + `consoleType` fallback for end session boo"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 10: Coupon Generation Blocking — Voucher Slow to Open (18:34 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 348,
+          "context": "### Fix 10: Coupon Generation Blocking — Voucher Slow to Open (18:34 UTC) **Error:** Sale voucher opening still very slow (Boss confirms)"
+        }
+      ]
+    },
+    {
+      "topic": "FIX 1: `consoles/start-session` — Missing locking + conflict check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 313,
+          "context": "### FIX 1: `consoles/start-session` — Missing locking + conflict check **File:** `app.py`, lines 1860-1925"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 1: Booking Flow — Member Keyboard Hang",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 5,
+          "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 44,
+          "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 192,
+          "context": "### Fix 1: Booking Flow — Member Keyboard Hang - **Error:** `Can't parse keyboard button: can't find field 'text'` when selecting console"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 1: POST /api/food-cart `AttributeError: 'int' object has no attribute 'strip'`",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 27,
+          "context": "### Fix 1: POST /api/food-cart `AttributeError: 'int' object has no attribute 'strip'` - **Root cause:** `booking_id` from MySQL is an integer, but API tried `.strip()` on it directly"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 1: Session Timer Drift on Bot Restart",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 108,
+          "context": "### Fix 1: Session Timer Drift on Bot Restart | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2 (line 355-356):",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 62,
+          "context": "- **Fix 2 (line 355-356):** Added `\"in_use\"` to status filter + `consoleType` fallback for end session booking lookup - **Bot restarted:** psvibe-sale-bot ✅"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2: \"No telegram_chat_id, skip notification\"",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 12,
+          "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 51,
+          "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 199,
+          "context": "### Fix 2: \"No telegram_chat_id, skip notification\" - **Root cause:** `app.py` line 1517 had `@app.post(\"/api/consoles/start-session\")` orphaned — decorated `api_session_end_notify` instead of `api_st"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2: _sync_console_status() Resets Active Console start_time",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 115,
+          "context": "### Fix 2: _sync_console_status() Resets Active Console start_time | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "FIX 2: `sessions/start` — Missing pending/confirmed conflict check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 325,
+          "context": "### FIX 2: `sessions/start` — Missing pending/confirmed conflict check **File:** `app.py`, lines 2180-2202"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 2: Coupon generation still blocking voucher",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 32,
+          "context": "### Fix 2: Coupon generation still blocking voucher - **Root cause:** Both `step_sale_confirm` (~line 1310) and `launch_session_sale` (~line 1790) used `await asyncio.to_thread(api_post, \"coupons/gene"
+        }
+      ]
+    },
+    {
+      "topic": "FIX 3: `api_update_booking_status` — Missing FOR UPDATE on overlap check",
+      "files": [
+        {
+          "path": "memory/booking-system-audit-2026-06-19.md",
+          "line": 344,
+          "context": "### FIX 3: `api_update_booking_status` — Missing FOR UPDATE on overlap check **File:** `app.py`, lines 1410-1428"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3: Existing Active Consoles Restored",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 120,
+          "context": "### Fix 3: Existing Active Consoles Restored Same root cause as Fix 2 — verified all active consoles in DB."
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3: Food Sale — Stock Map Rebuild Failed",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 16,
+          "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 55,
+          "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 203,
+          "context": "### Fix 3: Food Sale — Stock Map Rebuild Failed - **Error:** `name '_psvibe_get_async' is not defined`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3: Old API server on port 5001 (stale code without food-cart endpoints)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 37,
+          "context": "### Fix 3: Old API server on port 5001 (stale code without food-cart endpoints) - **Root cause:** Systemd starts API on port 8000, but old process on port 5001 was still running (started before patch_"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 3: PATCH /api/bookings/{id}/status — Can't Cancel Confirmed Bookings",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 92,
+          "context": "### Fix 3: PATCH /api/bookings/{id}/status — Can't Cancel Confirmed Bookings | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 4: Booking Extend — `message_thread_id is not defined`",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 21,
+          "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 60,
+          "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 208,
+          "context": "### Fix 4: Booking Extend — `message_thread_id is not defined` - **File:** `bot/handlers/booking_flow.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 4: Cancel Display Shows \"?\" Instead of Booking Data",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 97,
+          "context": "### Fix 4: Cancel Display Shows \"?\" Instead of Booking Data | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 4: Indentation error in coupon fix (first attempt failed)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 41,
+          "context": "### Fix 4: Indentation error in coupon fix (first attempt failed) - **Root cause:** Fix script used 8-space indent but original code used 4-space"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 5: `name 'os' is not defined`",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 26,
+          "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 65,
+          "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 213,
+          "context": "### Fix 5: `name 'os' is not defined` - **File:** `bot/handlers/notify.py`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 5: Broadcast API Returns Wrong Key + Route Order Bug",
+      "files": [
+        {
+          "path": "memory/fix-history.md",
+          "line": 74,
+          "context": "### Fix 5: Broadcast API Returns Wrong Key + Route Order Bug | Bug | Files | Root Cause | Fix |"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 5: Food Note & End Session booking_id not found (bug fix)",
+      "files": [
+        {
+          "path": "memory/2026-06-15.md",
+          "line": 59,
+          "context": "### Fix 5: Food Note & End Session booking_id not found (bug fix) - **Root cause:** `console.py` booking lookups used `_b.get(\"consoleId\")` but API `_map_booking_row` maps `console_id` → `consoleType`"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 6: Ovaltine Cookies — Case-Sensitive Match Error",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 70,
+          "context": "### Fix 6: Ovaltine Cookies — Case-Sensitive Match Error - **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\""
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 218,
+          "context": "### Fix 6: Ovaltine Cookies — Case-Sensitive Match Error - **Error:** \"Ovaltine cookies\" (lowercase) chosen from food menu but `if choice not in prices:` failed because database has \"Ovaltine Cookies\""
+        }
+      ]
+    },
+    {
+      "topic": "Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 100,
+          "context": "## Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC) **Request:** Customers need to order food during gaming sessions, payment at session end."
+        },
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 250,
+          "context": "## Fix 7 (NEW): Food Cart Feature — Session Food Orders (17:44 UTC) **Request:** Customers need to order food during gaming sessions, payment at session end."
+        }
+      ]
+    },
+    {
+      "topic": "Fix 8: Import Path Error — `cmd_session_food_order` (18:20 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 334,
+          "context": "## Fix 8: Import Path Error — `cmd_session_food_order` (18:20 UTC) **Error:** \"Food Sale\" button shows active consoles → staff picks console → bot shows game list (wrong menu) / crashes"
+        }
+      ]
+    },
+    {
+      "topic": "Fix 9: BTN_CLEAR_CART Dead Code (18:20 UTC)",
+      "files": [
+        {
+          "path": "memory/2026-06-14.md",
+          "line": 343,
+          "context": "### Fix 9: BTN_CLEAR_CART Dead Code (18:20 UTC) **Error:** BTN_CLEAR_CART handler never triggers"
+        }
+      ]
+    },
+    {
+      "topic": "Fix Applied",
+      "files": [
+        {
+          "path": "memory/coupon-bug-fix-2026-06-05.md",
+          "line": 26,
+          "context": "## Fix Applied"
+        }
+      ]
+    },
+    {
+      "topic": "Fix approach:",
+      "files": [
+        {
+          "path": "memory/AUDIT_REPORT_TEMPLATE.md",
+          "line": 64,
+          "context": "- **Fix approach:** Sequential fixes with coordination framework after deploying lock_manager, preflight, validate, rollback."
