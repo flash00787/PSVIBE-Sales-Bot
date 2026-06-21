@@ -1,239 +1,111 @@
-# MEMORY.md — Kora's Long-Term Memory Index
+# 🧠 Kora's Long-Term Memory
 
-> 🗂️ Short master index. Detailed history → module files in `memory/`.
-> Search via `memory_search` or `memory_get(path=memory/<file>.md)`.
-## 🔴 Core Docs (workspace root)
-| File | Purpose |
-|------|---------|
-| `GOLDEN_RULES.md` | Golden rules — never break |
-| `HEARTBEAT.md` | Periodic tasks & cron schedule |
-| `AGENTS.md` | Identity, workflow, hybrid spawning |
-| `SOUL.md` | Personality, language, tone |
-| `TOOLS.md` | SSH, bots, commands, API keys |
-| `PROJECT_STRUCTURE.md` | Project overview (2 repos) |
+## People
 
-## 📁 Module Files (`memory/`)
+- **Boss:** Ko Aung Chan Myint (ကိုအောင်ချမ်းမြင့်) — Founder of PS VIBE - PS5 Gaming Lounge. Call him "Boss" or "အစ်ကို" internally.
+- **Osmo:** Discord username `@kingkong00787` — helped set up PS VIBE Discord server.
 
-### Systems & Accounts
-- **`memory/contacts.md`** — 👥 Contacts, Boss info, friend contacts
-- **`memory/emails.md`** — 📧 Gmail accounts, API, Google Drive
+## Business: PS VIBE - PS5 Gaming Lounge
 
-### Infrastructure
-- **`memory/infrastructure.md`** — 🏗️ Bot paths, services, MySQL, coordination tools
-- **`memory/config.md`** — 🔧 Gateway config, lock_monitor, fix_protocol
-- **`memory/psvibe-code-structure.md`** — 📂 File-by-file code reference (both repos)
-- **`memory/project-state.md`** — 📋 Current project state & known issues
+### Info
+- **Tagline:** "Play The Game. Share The VIBE!"
+- **Hours:** 9:00 AM - 9:00 PM daily
+- **Address:** Yangon, Myanmar
+- **Opened:** June 6, 2026 (Saturday) 🎮
+- **Socials:** [Facebook](https://www.facebook.com/ps5gamecenter) | [TikTok](https://www.tiktok.com/@ps.vibe.game.cent)
+- **Discord:** Guild ID 1516119712411422942 | [Invite](https://discord.gg/EXEF7phbZF)
 
-### SOPs & Frameworks (`memory/sop/`)
-- **`memory/sop/SPAWN_PROTOCOL.md`** — 🔀 Sub-agent spawn rules & hybrid spawning
-- **`memory/sop/POST_TASK_SOP.md`** — 📝 Post-task documentation SOP
-- **`memory/sop/COORDINATION_FRAMEWORK.md`** — 🏗️ Agent coordination framework
-- **`memory/sop/HELPER_GUIDELINES.md`** — 👷 Helper agent guidelines
-- **`memory/sop/heartbeat-procedures.md`** — 💓 Full heartbeat procedures
-- **`memory/sop/DISPATCH_MANAGER_SOP.md`** — 📋 Dispatch manager SOP
-- **`memory/sop/FINDINGS_MANAGER_SOP.md`** — 🔍 Findings manager SOP
-- **`memory/sop/TASK_PLANNER_SOP.md`** — 📊 Task planner SOP
-- **`memory/sop/STATUS_REPORTER_SOP.md`** — 📈 Status reporter SOP
-- **`memory/sop/VERIFY_AGENT_SOP.md`** — ✅ Verify agent SOP
-- **`memory/sop/DEPLOY_MANAGER_SOP.md`** — 🚀 Deploy manager SOP
-- **`memory/sop/GIT_SYNC_SOP.md`** — 🔄 Git sync SOP
-- **`memory/sop/SPAWNING_MANAGER_SOP.md`** — 🥚 Spawning manager SOP
+### Infrastructure (bot-server-01: 5.223.81.16)
+| Service | Purpose |
+|---------|---------|
+| psvibe-api | Main API server (port 8000) |
+| psvibe-sale-bot | Staff sale/booking bot |
+| psvibe_customer_bot | Customer-facing bot |
+| psvibe-dashboard | Vue web dashboard (:9090) |
+| kora-dashboard | Kora admin dashboard (:9091) |
+| psvibe-discord-bot | Discord bot (35 commands) |
+| MySQL | Primary database |
+| cloudflared-tunnel | Cloudflare Tunnel |
+| Caddy | Reverse proxy |
+| n8n | Workflow automation |
 
-### Operations
-- **`memory/tools-commands.md`** — 🛠️ All coordination tool commands reference
-- **`memory/memory-usage-guide.md`** — 📖 How to use the memory system (decision tree, write rules)
+### Key Operations
+- **Member balance:** Column H of Card_wallet Google Sheet (legacy) → MySQL `member_wallets` (primary)
+- **Receipts:** Burmese footer text must be removed
+- **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B
 
-### Memory Automation (Phase 3)
-- **`memory/session_summary.py`** — Session end auto-summary
-- **`memory/memory_index.py`** — Topic search index (1,146 topics)
-- **`memory/priority_engine.py`** — P0-P3 priority classifier
-- **`memory/memory_pruner.py`** — Dedup & prune (target ~20KB MEMORY.md)
-- **`memory/daily_digest.py`** — Daily digest generator
-- **`memory/git_backup.py`** — Memory git auto-backup
-- **`memory/knowledge_graph.py`** — Entity relationship graph (54 nodes)
+## 🧠 Critical Lessons Learned (Cumulative)
 
-### Bugs, Fixes & Lessons
-- **`memory/bug-patterns.md`** — 🐛 All known bug patterns (fixed & known)
-- **`memory/ERROR_PATTERNS.md`** — ⚡ Quick ref: error → root cause → fix
-- **`memory/lessons.md`** — 📚 Critical lessons learned
-- **`memory/fix-history.md`** — 📋 Recent fix history (by date)
+### Python Patterns
+1. **`bool(0) == False`** — `"x if x else default"` breaks on 0. Use `"x if x is not None else default"`.
+2. **`async def` + missing `await`** — coroutine objects silently pass type checks. Always use proper type hints.
+3. **Unicode escape sequences in fix scripts** — `content.replace()` with escaped Unicode may not match file bytes. Use SFTP upload + remote execution instead.
+4. **Systemd restart can silently fail** — verify PID; fallback to `kill -9` if needed.
+5. **Elif chains must cover ALL variants** — `"wave"` ≠ `"wavepay"`.
 
-#
+### API & Database Patterns
+6. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes.
+7. **Date format inconsistency** — Bot sends locale-dependent format (M/D/YYYY) but API expects YYYY-MM-DD. Always normalize at API boundary.
+8. **API field naming is inconsistent** — camelCase (`customerName`, `timeSlot`) mixed with snake_case (`member_id`, `console_id`) in same response. Always verify field names exist before `.get()`.
+9. **`today_str()` format ≠ API format** — `M/D/YYYY` vs `YYYY-MM-DD` — don't mix in comparisons.
+10. **Double fail masking** — When both MySQL and GSheet fallback break simultaneously, root cause is masked. Monitor both paths independently.
+11. **`%%` pattern doesn't work with `mysql.connector`** — uses `%s` parameter style, not printf. Pass format string as parameter.
 
-## Quick Reference
-- **Latest daily log:** See `memory/2026-06-17.md`
-- **Recent fixes:** See `memory/fix-history.md`
-- **Bug patterns:** See `memory/bug-patterns.md`
-- **Lessons:** See `memory/lessons.md`
-- **Project state:** See `memory/project-state.md`
+### System Patterns
+12. **NEVER touch ssh.socket.d** — A drop-in file created on June 11 crashed ssh.socket, taking ALL SSH down. VPS unrecoverable without Hetzner Console. Boss emphasized: "သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ".
+13. **Gateway DNS failures** — Docker containers need explicit DNS config (Hetzner + Cloudflare) and `host` networking for reliable DNS.
+14. **JS inline `<script>` blocks are fragile** — one syntax error kills ALL JavaScript in that block.
+15. **Dashboard file deployment** — Base64 chunked SSH transfer reliable for large files. Kill stale processes before restart.
+16. **`GROUP BY` collapses pipe-delimited data** — iterate all rows instead.
 
-## Memory (2026-06-16)
+### Business Logic
+17. **Same-console double booking** — Always check existing bookings at API level before allowing new ones.
+18. **PNL depreciation must filter by purchase_date** — New assets don't accrue depreciation until month after purchase. Per agreed convention.
+19. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
+20. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
 
-### 🎮 Discord Bot V3 — Full Feature Upgrade (20:00-20:45 UTC)
+## Major Projects & Milestones
 
-### ✅ New Modules Created (6 files in `/root/psvibe-discord-bot/modules/`)
-| Module | File | Size | Description |
-|--------|------|------|-------------|
-| Balance & Stats | `balance.js` | 8.8 KB | `/balance [query]` + `/my-stats` via live API |
-| Achievements | `achievements.js` | 7.9 KB | `/achievements` + auto-check on events |
-| Daily Rewards | `daily.js` | 7.3 KB | `/daily` with streak system (50-150 XP) |
-| LFG System | `lfg.js` | 14.2 KB | `/lfg create|list|join|leave|cancel` |
-| Auto-Mod | `automod.js` | 18.7 KB | `/automod toggle|whitelist|warn|strikes|reset` |
-| Birthday Cron | `birthday-cron.js` | 10.7 KB | Auto birthday wishes every hour |
+### Grand Opening (June 6, 2026)
+- Data reset: All tables cleared except 4 confirmed bookings
+- 10+ critical bugs fixed in 2 days leading up (coupon, wallet, booking, sales)
+- All services active and stable
 
-### ✅ Core Files Updated
-- `deploy-commands.js` — 27 → 35 commands (+8 new)
-- `bot.js` — Imports all modules, routes commands, hooks into events
-- Auto-mod listener attached in `ready` event ✅
-- Birthday cron (1h interval) attached ✅
-- LFG cleanup (30min interval) attached ✅
-- Achievement check in `messageCreate`, `guildMemberAdd`, `guildMemberUpdate` ✅
-- Help command updated with all V3 commands ✅
+### Food Cart Feature (June 14)
+- Phase 1 deployed: Staff can add food to active sessions via Console → Food Sale
+- Food items auto-loaded into sale voucher at session end
+- Phase 2 pending: Customer Bot self-ordering
 
-### ✅ Commands Deployed + Bot Restarted
-- 35 commands registered via `node deploy-commands.js` ✅
-- `systemctl restart psvibe-discord-bot` ✅
-- Syntax check: all modules + bot.js + deploy-commands.js passed ✅
-- Bot active, no errors in logs ✅
+### Finance System (June 15)
+- PNL & Balance Sheet endpoints fixed (were broken stubs)
+- Auto-depreciation script deployed (monthly cron, 1st of month)
+- Auto-amortization for prepaid rent (monthly cron)
 
-### 📊 Complete Command List (35 Total)
-- 🎮 Gaming:       /games /slots /promo /rank-tiers /tournament
-- 💳 Account:      /balance /my-stats
-- 🏆 XP & Levels:  /rank /leaderboard /daily /achievements
-- 🍕 Food & Info:  /hours /menu
-- 📅 Booking:      /book check /book request
-- 🎵 Music:        /play /skip /stop /queue /nowplaying
-- 🌟 Community:    /suggest /giveaway /vip /report /invite /8ball /dice /set-birthday /lfg
-- 🔧 Staff:        /automod /event /status-set
-- 🎫 Support:      /ticket open /ticket close
-- 💎 Features:     /poll /help
+### Discord Bot (June 15-16)
+- 35 slash commands across gaming, account, community, staff modules
+- Auto-mod, birthday cron, LFG system, suggestion system
+- Full integration with web dashboard feedback tab
 
-### ⚠️ Pending Items
-- `BIRTHDAY_FILE` error and `getLevel` error seen in old process logs (pre-restart) — current process is clean
-- Some unhandled interaction warnings (non-blocking, cosmetic)
-- Boss said to continue with docs update
+### Suggestion System (June 17)
+- Full pipeline: Discord → API → Dashboard
+- Staff approve/reject with embed updates
 
-### 🔧 Bot Running Status (20:45 UTC)
-- ✅ PS VIBE Bot — active (pid 147161, 60.5MB mem)
-- ✅ 35 commands registered
-- ✅ Auto-mod, birthday cron, LFG cleanup all active
-- ✅ No errors in current session
+## ⚠️ Known Issues (Persistent)
 
-### Bot Analytics Tab Added to Kora Dashboard
-- Tab button + content panel added to `/root/.openclaw/workspace/kora_dashboard/index.html`
-- 6 stats cards, user segments, top commands, peak hours panels
-- User table expanded 11→16 columns (Sessions, Bookings, Total Spend, Tags, Funnel Step)
-- Tags rendered as colored badges
-- i18n keys for both EN/MY
-- Auto-refresh every 60s
-- Dashboard serving HTTP 200 on port 9091 ✅
+| Issue | Severity | Status |
+|-------|----------|--------|
+| n8n payment (€25.68) overdue | Medium | Pending boss action |
+| GitHub Deploy failing (psvibe-api-server) | Low | Pre-existing |
+| Food Note issue — Phase 2 pending | Low | Deferred |
+| VPS reboot caused DNS issues June 20 | Low | Mitigated |
+| `_remind_loop` timer never fires | Low | Known, not critical |
+| 100+ games claim vs 41 in DB | Low | Needs verification |
 
-## Memory (2026-06-17)
+## Working Preferences
 
-### 🔴 VPS DOWN — 5.223.81.16 SSH Connection Refused → RESOLVED
-- **Time detected:** June 17, 19:31 UTC
-- **Resolved:** June 16 (VPS reboot brought SSH back) — confirmed working June 20
-- **Root cause:** Kora's helper created `/etc/systemd/system/ssh.socket.d/extra-ports.conf` on June 11 which broke ssh.socket
-- **Fix:** Boss deleted the drop-in file via Hetzner Console on June 12
-- **VPS uptime now:** 4+ days, all services active
-
-### 🚨 CRITICAL LESSON: NEVER touch ssh.socket.d!
-- **Date:** June 11, 2026
-- **What:** Kora attempted to add extra SSH ports via `/etc/systemd/system/ssh.socket.d/extra-ports.conf`
-- **Result:** ssh.socket crashed → ALL SSH (including port 22) went down → VPS inaccessible
-- **Fix method:** Only recoverable via Hetzner Web Console (no SSH = no remote fix)
-- **HARD RULE:** NEVER create/modify files in `/etc/systemd/system/ssh.socket.d/`
-- **Correct approach for extra SSH ports:** Edit `/etc/ssh/sshd_config` directly (Port directive), then `systemctl restart sshd`
-- **Boss reminder:** "အဲ့တာကို သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ" — REMEMBER THIS PERMANENTLY
-
-### Suggestion System — Full Integration (Discord + Web Dashboard)
-
-### What Was Done
-
-#### 1. Discord Bot — Staff Review Commands (`/root/psvibe-discord-bot/bot.js`)
-- Converted the `/suggest` command from a simple input to subcommand-based:
-- `/suggest create <game> [reason]` — Submit a suggestion
-- `/suggest approve <id>` — Staff only — Sets status to "approved", updates embed in #suggestions with green ✅
-- `/suggest reject <id> [reason]` — Staff only — Sets status to "rejected", updates embed with red ❌
-- `/suggest list` — Staff only — Shows all pending suggestions
-- `/suggest view <id>` — Anyone — View any suggestion by ID
-
-#### 2. deploy-commands.js
-- Updated to register all 5 subcommands under `/suggest`. Deployed successfully (35 commands).
-
-#### 3. API Server (`/root/psvibe_api_server/app.py`)
-- Added 3 new endpoints:
-- `GET /api/suggestions?status=pending|approved|rejected`
-- `GET /api/suggestions/<id>`
-- `PUT /api/suggestions/<id>`
-
-#### 4. Kora Dashboard (`/root/.openclaw/workspace/kora_dashboard/index.html`)
-- Added "💡 Suggestions" tab with stats, filters, sorting, action buttons, detail modal.
-
-#### 5. Data Normalization — Fixed suggestion #1 missing `status` field.
-
-### Services Restarted
-- `psvibe-discord-bot` ✅
-- `psvibe-api` ✅
-
-### Files Modified
-- `/root/psvibe-discord-bot/bot.js`, `deploy-commands.js`, `suggestions.json`
-
-### Phase 3.7 — Waitlist Auto-Notify on Booking Cancel ✅ (04:35 UTC)
-
-### What Was Done
-- When a booking is cancelled, the system now auto-notifies the first matching waitlisted customer via Telegram.
-
-### Files Modified
-- Lines 1905–1971: Added `_auto_notify_waitlist()` helper function
-- Lines 2016–2025: Fire-and-forget call in `api_booking_cancel()`
-- Lines 1338–1352: Added to `PATCH /api/bookings/{id}/status` when status=cancelled
-
-### Key Design Decisions
-- Waitlist lives in `console_booking` with `status='Waiting'` (no separate table)
-- Uses `asyncio.create_task()` fire-and-forget — cancel NEVER fails due to waitlist
-- Matches by `booking_date` + `console_id` (with `console_type` fallback via JOIN)
-- Oldest waiting entry (by `created_at ASC`) gets Notified first
-- Telegram notification sent via Customer Bot / Sale Bot
-
-### Verification
-- Syntax check: ✅ Both files pass
-- API restart: ✅ Active
-- Cancel booking #531 (C-10): ✅ Cancelled, console freed
-- Cancel booking #490 + waitlist entry #535 match: ✅ Entry marked Notified
-- Existing cancel preserved: ✅ No breakage
-
-### Phase 1-3 Full Verification & Bug Fixes (05:00 UTC)
-
-### Verification Results
-| ✅ Pass | ၁၂ ချက် |
-| ⚠️ Partial → Fixed | ၃ ချက် |
-| ❌ Critical → Fixed | ၁ ချက် (P3.3) |
-
-### 3 Fixes Applied
-- **P3.3 Booking Conflicts SQL:** `time_slot` → `start_time` in SQL query (app.py line 4150)
-- **P1.1 Index:** Created `idx_date_console_time(booking_date, console_id, start_time)`, dropped old incomplete index
-- **P2.1 Timer Dedup:** `session_timer.py` now skips API-side timer when booking has `telegram_chat_id` (bot handles own reminders)
-- **Final Status:** All 15 features verified + working ✅
-
-## Memory (2026-06-21)
-
-### Session Start Booking Link — 4 Bugs Fixed (11:00 MMT)
-- Flow existed but NEVER worked: date format mismatch (`today_str()` M/D/YYYY vs API YYYY-MM-DD), checked_in not fetched, customerName field not used, dict+list TypeError
-- Full detail → `memory/2026-06-21.md`
-
-### System Audit — Fix Queue (11:30 MMT)
-- 7 issues found: Food Menu import missing, Customer Bot 404 spam, REJECT DEBUG log spam, task cleanup, dead endpoints, Discord log silent
-- Fix scheduled for after 9 PM tonight — detail → `memory/fix-queue-2026-06-21.md`
-- ⏰ Reminder cron set for 9 PM MMT (`b36ff8c7`)
-
-## Memory (2026-06-19)
-
-### Heartbeat Check (13:08 MMT)
-- Health monitor: overall 53.5 (mostly false positives - core files exist, VPS reachable)
-- Dead-letter queue: empty
-- Git backup: OK (5 files committed)
-- Memory index: 1436 topics
-- Knowledge graph: 54 nodes, 1419 edges
-- Lock cleanup: 0 cleaned
-- yyo-personal-wallet: old alerts (Jun 9-16), checking status
+- **Language:** Burmese primary, English for tech terms
+- **Timezone:** Asia/Yangon (UTC+6:30) — always convert for Boss
+- **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do.
+- **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code fix
+- **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md
+- **Sub-agent timeout:** 300s default
