@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-21T16:37:36.440695+00:00",
+  "updated": "2026-06-21T17:07:35.230812+00:00",
   "entries": [
     {
       "topic": "\"Free\"",
@@ -429,6 +429,36 @@
           "path": "memory/2026-06-21.md",
           "line": 146,
           "context": "## 14:20 MMT — Session Auto-End Investigation"
+        }
+      ]
+    },
+    {
+      "topic": "14:20-14:30 MMT — Session Auto-End Decision",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 200,
+          "context": "## 14:20-14:30 MMT — Session Auto-End Decision"
+        }
+      ]
+    },
+    {
+      "topic": "14:30-16:00 MMT — 9 PM Fix Queue: 7 Audit Items Processed",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 210,
+          "context": "## 14:30-16:00 MMT — 9 PM Fix Queue: 7 Audit Items Processed"
+        }
+      ]
+    },
+    {
+      "topic": "16:00-16:50 MMT — Timeline Cancelled Booking Display",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 230,
+          "context": "## 16:00-16:50 MMT — Timeline Cancelled Booking Display"
         }
       ]
     },
@@ -2343,6 +2373,16 @@
       ]
     },
     {
+      "topic": "All Completed Today",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 276,
+          "context": "## All Completed Today - [x] Timeline auto-confirm + game dropdown"
+        }
+      ]
+    },
+    {
       "topic": "All critical path bugs fixed and data reset complete:",
       "files": [
         {
@@ -2523,6 +2563,16 @@
       ]
     },
     {
+      "topic": "ambiguously",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 247,
+          "context": "- JS `new Date()` parses timezone-less ISO string **ambiguously** (UTC on Chrome, local on Safari) - 6.5hr MMT offset + ambiguous parsing → `created_at > twoHoursAgo` always false"
+        }
+      ]
+    },
+    {
       "topic": "Analyst:",
       "files": [
         {
@@ -2648,6 +2698,16 @@
       ]
     },
     {
+      "topic": "API field naming inconsistent",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 263,
+          "context": "| 1 | **API field naming inconsistent** — camelCase + snake_case in same response | | 2 | **`today_str()` ≠ API format** — M/D/YYYY vs YYYY-MM-DD |"
+        }
+      ]
+    },
+    {
       "topic": "API field naming is inconsistent:",
       "files": [
         {
@@ -2714,6 +2774,16 @@
           "path": "memory/2026-06-21.md",
           "line": 190,
           "context": "3. **API restarts auto-end sessions** — `resume_active_timers()` has no grace period or notes 4. **Multiple tables hold same config** — `settings` vs `settings_config` for `allowed_staff_ids`"
+        }
+      ]
+    },
+    {
+      "topic": "API restarts kill active sessions",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 267,
+          "context": "| 5 | **API restarts kill active sessions** — `resume_active_timers()` has no grace period | | 6 | **`console_status` table drifts** — not always updated when session starts |"
         }
       ]
     },
@@ -3323,6 +3393,16 @@
       ]
     },
     {
+      "topic": "Bonus: Git + Docker",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 223,
+          "context": "### Bonus: Git + Docker - ✅ Git commits in both repos (`psvibe-sales-bot` + `psvibe_api_server`)"
+        }
+      ]
+    },
+    {
       "topic": "Booking Anomaly Alerts",
       "files": [
         {
@@ -3399,6 +3479,16 @@
           "path": "memory/fix-history.md",
           "line": 307,
           "context": "### Booking ↔ Console Status Link - **SHA:** `941d0a5`"
+        }
+      ]
+    },
+    {
+      "topic": "Boss Decision: **Option C — Disable auto-end entirely**",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 202,
+          "context": "### Boss Decision: **Option C — Disable auto-end entirely** - **Rationale:** Staff must manually end sessions. No automatic ending."
         }
       ]
     },
@@ -3689,6 +3779,16 @@
           "path": "memory/booking-fix-phase2-2026-06-19.md",
           "line": 5,
           "context": "### BUG 1: Race condition — Specific console not validated before submission"
+        }
+      ]
+    },
+    {
+      "topic": "Bug 2 (16:47): Timezone Mismatch (ROOT CAUSE)",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 244,
+          "context": "**Bug 2 (16:47): Timezone Mismatch (ROOT CAUSE)** - MySQL TIMESTAMP stored in UTC (`2026-06-21 16:50:49`)"
         }
       ]
     },
@@ -5266,6 +5366,11 @@
       "topic": "CRITICAL:",
       "files": [
         {
+          "path": "memory/2026-06-21.md",
+          "line": 287,
+          "context": "- [x] **CRITICAL:** Account Balance 404 (patch_routes import) - [x] Session auto-end disabled (Option C)"
+        },
+        {
           "path": "memory/infrastructure.md",
           "line": 15,
           "context": "- **CRITICAL:** Always check BOTH repos when investigating bugs!"
@@ -5814,6 +5919,11 @@
           "path": "memory/2026-06-14.md",
           "line": 234,
           "context": "- **Deferred:** Needs debug logging added inside `_remind_loop` to confirm reason"
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 293,
+          "context": "## Deferred - [ ] Fix queue #4: Unhandled task exception — proper async cancellation in shutdown handler"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -6784,6 +6894,16 @@
           "path": "memory/lessons.md",
           "line": 22,
           "context": "## Feature Exists ≠ Feature Works (2026-06-21) - `prompt_book_link` function ရှိပြီးသား၊ flow လည်းရှိပြီးသား — ဒါပေမဲ့ တစ်ခါမှ run မဖြစ်ခဲ့"
+        }
+      ]
+    },
+    {
+      "topic": "Feature: Auto-cancelled bookings visible on timeline (2hr after cancel)",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 232,
+          "context": "### Feature: Auto-cancelled bookings visible on timeline (2hr after cancel) - `timeline.ts` — added `cancelled` status fetch + client-side 2hr filter via `created_at`"
         }
       ]
     },
@@ -8553,6 +8673,16 @@
       ]
     },
     {
+      "topic": "Fix Queue 7 items:",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 212,
+          "context": "### Fix Queue 7 items: | # | Issue | Status |"
+        }
+      ]
+    },
+    {
       "topic": "Fix → Verify Loop",
       "files": [
         {
@@ -8919,6 +9049,16 @@
           "path": "memory/2026-06-21.md",
           "line": 133,
           "context": "### Fix Moved `import patch_routes` to line 3473 (BEFORE catch-all), properly indented inside try block."
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 204,
+          "context": "- **Fix:** `session_timer.py` → `resume_active_timers()` — removed all auto-end UPDATE queries - Changed to log-only: `⚠️ Session #ID for CID expired but NOT auto-ending (manual-only policy)`"
+        },
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 249,
+          "context": "- **Fix:** `_created.replace(tzinfo=timezone.utc).isoformat()` → `\"2026-06-21T16:50:49+00:00\"` (explicit UTC) - JS consistently parses `\"+00:00\"` as UTC → correct comparison"
         },
         {
           "path": "memory/ARCHIVE.md",
@@ -11848,6 +11988,16 @@
       ]
     },
     {
+      "topic": "Key Lessons from Today",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 259,
+          "context": "## Key Lessons from Today"
+        }
+      ]
+    },
+    {
       "topic": "Key Operations",
       "files": [
         {
@@ -13224,6 +13374,16 @@
           "path": "memory/security-audit-2026-06-13.md",
           "line": 114,
           "context": "- **MySQL port 3306 is DENIED externally** — excellent - Docker bridge networks have internal access on port 8000"
+        }
+      ]
+    },
+    {
+      "topic": "MySQL TIMESTAMP = SYSTEM timezone",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 272,
+          "context": "| 10 | **MySQL TIMESTAMP = SYSTEM timezone** — not necessarily MMT. Check before assuming. |"
         }
       ]
     },
@@ -15143,6 +15303,16 @@
       ]
     },
     {
+      "topic": "Promise.all + async = silent date mismatch",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 271,
+          "context": "| 9 | **Promise.all + async = silent date mismatch** — `\"2026-06-21\"` ≠ `\"6/21/2026\"` True/False comparison | | 10 | **MySQL TIMESTAMP = SYSTEM timezone** — not necessarily MMT. Check before assuming."
+        }
+      ]
+    },
+    {
       "topic": "Proposed Fix Options (pending Boss decision)",
       "files": [
         {
@@ -15370,6 +15540,11 @@
     {
       "topic": "Rationale:",
       "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 203,
+          "context": "- **Rationale:** Staff must manually end sessions. No automatic ending. - **Fix:** `session_timer.py` → `resume_active_timers()` — removed all auto-end UPDATE queries"
+        },
         {
           "path": "memory/integration-plan.md",
           "line": 105,
@@ -19313,6 +19488,16 @@
       ]
     },
     {
+      "topic": "Test Booking #775",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 252,
+          "context": "### Test Booking #775 - Created at `2026-06-21 16:56 UTC` (within 2hr window)"
+        }
+      ]
+    },
+    {
       "topic": "Test Results",
       "files": [
         {
@@ -19848,6 +20033,16 @@
       ]
     },
     {
+      "topic": "Two settings tables",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 266,
+          "context": "| 4 | **Two settings tables** — `settings` vs `settings_config`, API reads from `settings_config` | | 5 | **API restarts kill active sessions** — `resume_active_timers()` has no grace period |"
+        }
+      ]
+    },
+    {
       "topic": "type",
       "files": [
         {
@@ -20194,6 +20389,16 @@
           "path": "memory/subagent-journal.json",
           "line": 10,
           "context": "status: completed | summary: subagent apparently completed"
+        }
+      ]
+    },
+    {
+      "topic": "Verify pages are in router",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 270,
+          "context": "| 8 | **Verify pages are in router** — edited `FoodStock.vue` (dead page) before finding `FoodMenuRegister.vue` | | 9 | **Promise.all + async = silent date mismatch** — `\"2026-06-21\"` ≠ `\"6/21/2026\"` "
         }
       ]
     },
@@ -21764,6 +21969,16 @@
           "path": "memory/project-state.md",
           "line": 65,
           "context": "## 🐛 Known Issues | Issue | Priority | Status |"
+        }
+      ]
+    },
+    {
+      "topic": "🐛 Two Bugs Found:",
+      "files": [
+        {
+          "path": "memory/2026-06-21.md",
+          "line": 237,
+          "context": "### 🐛 Two Bugs Found:"
         }
       ]
     },
