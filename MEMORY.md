@@ -216,6 +216,17 @@
 - **P2.1 Timer Dedup:** `session_timer.py` now skips API-side timer when booking has `telegram_chat_id` (bot handles own reminders)
 - **Final Status:** All 15 features verified + working ✅
 
+## Memory (2026-06-21)
+
+### Session Start Booking Link — 4 Bugs Fixed (11:00 MMT)
+- Flow existed but NEVER worked: date format mismatch (`today_str()` M/D/YYYY vs API YYYY-MM-DD), checked_in not fetched, customerName field not used, dict+list TypeError
+- Full detail → `memory/2026-06-21.md`
+
+### System Audit — Fix Queue (11:30 MMT)
+- 7 issues found: Food Menu import missing, Customer Bot 404 spam, REJECT DEBUG log spam, task cleanup, dead endpoints, Discord log silent
+- Fix scheduled for after 9 PM tonight — detail → `memory/fix-queue-2026-06-21.md`
+- ⏰ Reminder cron set for 9 PM MMT (`b36ff8c7`)
+
 ## Memory (2026-06-19)
 
 ### Heartbeat Check (13:08 MMT)

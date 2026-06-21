@@ -2,6 +2,39 @@
 
 > ⏳ = Known but unsolved
 
+## Date Format Mismatch: `today_str()` vs API (2026-06-21)
+
+**Pattern:** `today_str()` returns `M/D/YYYY` format but API returns dates as `YYYY-MM-DD`. Comparing them always fails, producing empty results silently.
+
+**Example:**
+```python
+# Helper: today_str() → "6/21/2026"
+# API:    date field → "2026-06-21"
+# Compare: "2026-06-21" == "6/21/2026" → False (SILENT failure)
+```
+
+**Symptom:** Filtering/display code produces empty results with no error. Feature appears to "not work" but logs are clean.
+
+**Fix:** Use `now_mmt().strftime("%Y-%m-%d")` when comparing against API date fields. Consider standardizing all date formats.
+
+**Affected bugs:** #45 (booking link prompt never worked)
+
+## PTB Handler Group Collision (2026-06-21)
+
+**Pattern:** python-telegram-bot's `Application.process_update()` only runs ONE handler per group (breaks after first match). Same-group handlers won't both fire.
+
+**Example:**
+```python
+app.add_handler(handle_custom_extend_reply, group=-1)  # Fires first, blocks
+app.add_handler(handle_reject_reason, group=-1)         # Never fires!
+```
+
+**Symptom:** One handler works, another with same group number is completely ignored.
+
+**Fix:** Use different group numbers. Handler that should fire first gets lower group number.
+
+**Affected bugs:** Reject reason input not working (#43)
+
 ## String-Based Editing Misses Comment-Annotated Lines (2026-06-20)
 
 **Pattern:** When using Python scripts for batch string replacement, `str.strip()` or exact-match checks can miss lines with trailing comments.

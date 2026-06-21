@@ -2,12 +2,21 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
-## 2026-06-20 — Sale Bot Approve/Reject + Customer Bot Duration Conflict
+## 2026-06-21 — Session Start Booking Link (4 Bugs Fixed)
 
-### #44: Text Polish Script Miss — return 0 Tuple 🐛
+### #45: Session Start → Booking Link Completely Broken 🐛🐛🐛🐛
 | Bug | Files | Root Cause | Fix |
 |-----|-------|-----------|-----|
-| Python script missed `return 0` on line 493 | `customer_bot/booking_handlers.py` L493 | `line.strip() == 'return 0'` didn't match `return 0  # Console is Active/Unavailable` due to trailing comment | Manual fix: `return 0, ""` |
+| ① checked_in not fetched | `booking.py:1020-1021` | API query only filtered `status=confirmed`, never included `checked_in` | Added second API call for `status=checked_in` |
+| ② Date format mismatch | `booking.py:1018` | `today_str()` returns `M/D/YYYY` but API returns `YYYY-MM-DD` → comparison always `False` | Changed to `now_mmt().strftime("%Y-%m-%d")` |
+| ③ dict+list TypeError | `booking.py:1025` | Single checked_in booking returned as dict, couldn't concatenate with list | Added safe type checking + unwrap logic |
+| ④ customerName not used | `booking.py:1078,1158` | `b.get("memberId")` always `None` (API has `customerName`, not `memberId`) → always showed "Guest" | Use `customerName` > `member_id` > `memberId` > "Guest" |
+
+**Additional improvements:**
+- Moved "⏭️ Skip" button to top of booking list
+- Checked_in bookings always linkable (no 30-min window restriction)
+
+### #44: Text Polish Script Miss — return 0 Tuple
 
 ### #45: Rejected Bookings Trigger Duplicate Warning 🐛
 | Bug | Files | Root Cause | Fix |

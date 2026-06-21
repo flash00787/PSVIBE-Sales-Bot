@@ -69,6 +69,16 @@
 | MySQL-GSheet sync — DELETE not synced | MED | Known |
 | sheets/config still GSheets (not MySQL) | MED | Migration pending |
 
+### ✅ Recently Resolved (2026-06-21)
+| Issue | Status |
+|-------|--------|
+| Session Start → Booking Link prompt (never worked) | ✅ Fixed (4 bugs) |
+| Checked-in bookings not appearing in link list | ✅ Fixed |
+| Customer names showing "Guest" instead of real names | ✅ Fixed |
+| Reject reason text input not working in Sale Bot | ✅ Fixed |
+| Timeline auto-confirm for staff bookings | ✅ Fixed |
+| Timeline game dropdown (was plain text) | ✅ Fixed |
+
 ## 🗓️ Upcoming
 - **Grand Opening:** 06 June 2026 (Saturday) 🎉 ✅ **Completed**
 - **Opening Hours:** 9 AM - 9 PM (daily)

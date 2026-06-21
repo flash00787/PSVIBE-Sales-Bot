@@ -8,6 +8,22 @@ See `POST_TASK_SOP.md` (workspace root)
 
 ---
 
+## Always Verify API Field Names Before Using `.get()` (2026-06-21)
+- `b.get("memberId")` က Booking link page မှာ အမြဲ `None` → `"Guest"` ပြနေခဲ့
+- API မှာ `memberId` field လုံးဝမရှိ — `customerName` နဲ့ `member_id` ပဲရှိတာ
+- `.get()` fallback to default က silent failure ဖြစ်သွားတာ — error မပြဘူး
+- **Lesson:** API response field names တွေကို တစ်ခါမှာ verify လုပ်ပြီးမှ code ထဲသုံးပါ။ CamelCase/snake_case inconsistency ရှိနိုင်တယ်။
+
+## Date Format Comparison — Silent Failure (2026-06-21)
+- `today_str()` → `"6/21/2026"` vs API → `"2026-06-21"` — compare လုပ်ရင် `False`
+- Feature တစ်ခုလုံး (booking link prompt) create ထားပြီးသားဖြစ်ပေမဲ့ date mismatch တစ်ခုကြောင့် တစ်ခါမှ အလုပ်မလုပ်ခဲ့
+- **Lesson:** Date format မတူရင် `==` comparison silent fail ဖြစ်တယ်။ API format နဲ့တူအောင်သုံးပါ ဒါမှမဟုတ် `dateutil.parser` သုံးပါ။
+
+## Feature Exists ≠ Feature Works (2026-06-21)
+- `prompt_book_link` function ရှိပြီးသား၊ flow လည်းရှိပြီးသား — ဒါပေမဲ့ တစ်ခါမှ run မဖြစ်ခဲ့
+- Date format နဲ့ API field name bug ၂ ခုကြောင့် silently fallback ဖြစ်ပြီး `_show_console_select` တန်းရောက်သွားတာ
+- **Lesson:** "Code ရှိပြီးသား" ≠ "အလုပ်လုပ်ပြီးသား" — တကယ် run ဖြစ်မဖြစ် verify လုပ်ဖို့လိုတယ်။ Empty result ≠ no data — bug ဖြစ်နိုင်တယ်။
+
 ## Code Exists ≠ Code Runs (2026-05-30)
 - `sync_service.py` (860+ lines) existed but NEVER executed — no cron, no systemd
 - **Fix:** Created `run_sync.sh` wrapper, cron every 5 min, fixed imports
