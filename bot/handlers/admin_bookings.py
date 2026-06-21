@@ -227,7 +227,7 @@ async def handle_reject_reason(update: Update, context: ContextTypes.DEFAULT_TYP
         except Exception as e:
             logger.error("edit_card: %s", e, exc_info=True)
 
-    await _do_booking_action(bk_id, "reject", staff_name, reason, reply_fn=edit_card)
+    await _do_booking_action(bk_id, "reject", staff_name, reply_fn=edit_card, reject_reason=reason)
     raise ApplicationHandlerStop()  # Prevent ConversationHandler from processing
 
 async def _send_checkin_notification(tg_chat: str, booking_id: int):

@@ -368,15 +368,18 @@ def main():
         ],
     )
 
+    # Reject reason input — intercept before ConversationHandler
+    # Must be in group=-2 to fire BEFORE handle_custom_extend_reply (group=-1)
+    # PTB only runs ONE handler per group
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_reject_reason),
+        group=-2,
+    )
+
     # Group -1: custom extend reply — fires BEFORE ConversationHandler (group 0)
     # raises ApplicationHandlerStop so conv never sees the message when pending
     app.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, handle_custom_extend_reply),
-        group=-1,
-    )
-    # Reject reason input — intercept before ConversationHandler
-    app.add_handler(
-        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_reject_reason),
         group=-1,
     )
 

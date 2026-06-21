@@ -258,7 +258,7 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not active_consoles:
             await update.message.reply_text("❌ Active session ရှိသော Console မရှိပါ။")
             return await show_console_menu(update, context)
-        msg = "📝 Food Note ထည့်ရန် Console ရွေးပါ:"
+        msg = "🍔 Food Order ထည့်ရန် Console ရွေးပါ:"
         kb = [[c["id"]] for c in active_consoles]
         kb.append([BTN_BACK])
         context.user_data["_food_note_pick"] = True

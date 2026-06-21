@@ -1016,8 +1016,24 @@ async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE
 async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
     """Ask staff whether to link this session to a confirmed booking (optional)."""
     try:
-        today = today_str()
+        today = now_mmt().strftime("%Y-%m-%d")  # match API format (YYYY-MM-DD), not today_str() which returns M/D/YYYY
+        # Fetch both confirmed AND checked_in bookings for linking
         bks_raw = await _psvibe_get_async("bookings?status=confirmed&date=" + today) or []
+        chk_raw = await _psvibe_get_async("bookings?status=checked_in&date=" + today) or []
+        # Ensure both are lists before concatenating
+        if isinstance(bks_raw, dict):
+            bks_raw = bks_raw.get("bookings", bks_raw.get("data", []))
+        if isinstance(chk_raw, dict):
+            chk_raw = chk_raw.get("bookings", chk_raw.get("data", []))
+        if not isinstance(bks_raw, list):
+            bks_raw = [bks_raw] if bks_raw else []
+        if not isinstance(chk_raw, list):
+            chk_raw = [chk_raw] if chk_raw else []
+        _cnt_confirmed = len(bks_raw) if isinstance(bks_raw, list) else (1 if bks_raw else 0)
+        _cnt_checked = len(chk_raw) if isinstance(chk_raw, list) else (1 if chk_raw else 0)
+        bks_raw = bks_raw + chk_raw
+        logger.warning("DBG: prompt_book_link raw total=%d (confirmed=%d checked_in=%d)", 
+                       len(bks_raw), _cnt_confirmed, _cnt_checked)
         # Include confirmed + arrived; filter to today only
         # Also apply a 30-min past window so check-in'd bookings are still linkable
         from datetime import datetime as _dt
@@ -1025,8 +1041,12 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
         _cutoff_str = (_now_mmt.replace(hour=0, minute=0, second=0, microsecond=0))
         def _in_window(b):
             ts = b.get("timeSlot", "")
+            status = b.get("status", "")
             if not ts:
                 return True  # no time info — include it
+            # checked_in bookings are always linkable (customer already here, waiting)
+            if status == "checked_in":
+                return True
             try:
                 h, m = map(int, ts.split(":"))
                 bk_dt = _now_mmt.replace(hour=h, minute=m, second=0, microsecond=0)
@@ -1042,6 +1062,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
             and b.get("date", "") == today
             and _in_window(b)
         ]
+        logger.warning("DBG: prompt_book_link pending_bks=%d (today=%s)", len(pending_bks), today)
     except Exception as e:
         logger.error("_in_window: %s", e, exc_info=True)
         pending_bks = []
@@ -1049,11 +1070,11 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
     if not pending_bks:
         return await _show_console_select(update, context, free_consoles)
 
-    kb_rows = []
+    kb_rows = [["⏭️ Booking လုပ်ရန်မလိုဘဲ ဆက်သွား"]]
     for b in pending_bks:
         bk_id   = b.get("id", "?")
-        member  = b.get("memberId") or "Guest"
-        console = (b.get("console_id") or "?").strip()
+        member  = b.get("customerName") or b.get("member_id") or b.get("memberId") or "Guest"
+        console = (b.get("console_id") or b.get("consoleId") or "?").strip()
         bk_time = b.get("timeSlot") or ""
         game    = b.get("gameName") or ""
         label   = f"#{bk_id} | {console} | {member}"
@@ -1062,7 +1083,6 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
         if game:
             label += f" | {game}"
         kb_rows.append([label])
-    kb_rows.append(["⏭️ Booking မရှိဘဲ ဆက်သွား"])
     kb_rows.append([BTN_BACK, BTN_CANCEL])
 
     context.user_data["_bk_link_list"] = pending_bks
@@ -1105,7 +1125,7 @@ async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await cmd_cancel(update, context)
     if text in (BTN_BACK, BTN_BACK_MAIN):
         return await show_console_menu(update, context)
-    if text == "⏭️ Booking မရှိဘဲ ဆက်သွား":
+    if text == "⏭️ Booking လုပ်ရန်မလိုဘဲ ဆက်သွား":
         context.user_data.pop("_bk_link_list", None)
         return await _show_console_select(update, context)
 
@@ -1123,8 +1143,8 @@ async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return BOOK_LINK
 
     bk_id   = selected_bk.get("id")
-    console = (selected_bk.get("console_id") or "").strip()
-    member  = selected_bk.get("memberId") or "Guest"
+    console = (selected_bk.get("console_id") or selected_bk.get("consoleId") or "").strip()
+    member  = selected_bk.get("customerName") or selected_bk.get("member_id") or selected_bk.get("memberId") or "Guest"
     game    = selected_bk.get("gameName") or ""
     dur     = selected_bk.get("durationMins") or 0
 
