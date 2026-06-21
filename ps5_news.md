@@ -1,6 +1,66 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-21 11:30 UTC
+> Last updated: 2026-06-21 17:31 UTC
+
+---
+
+## ⚡ UPDATE (June 21, 2026 - 17:31 UTC) — Fortnite C7S3 + Supplementary PS Store Sale + Minor Calendar Fills
+
+> **Summary:** No critical developments since the 11:30 update. Fortnite Chapter 7 Season 3 "Runners" is live (launched June 6, missed from tracker). A supplementary PS Store sale with 200+ games at all-time-low prices runs alongside Mid-Year Deals until July 1. Minor indie calendar additions.
+
+### 🏝️ Fortnite: Chapter 7 - Season 3 "Runners" — LIVE Since June 6! (MISSED FROM TRACKER!)
+- Fortnite Chapter 7 Season 3 titled **"Runners"** launched **June 6, 2026** following the "Shattered" live event
+- Tropical-themed island, movement-focused mechanics, return of **Sprites** (ability-granting collectibles)
+- **John Wick – Pen & Ink** skin in Battle Pass + new weapons: Extending Focus Shotgun, Surgical Burst Rifle, Chaos Exploder Rifle, Lancehead Pistol
+- Storyline: The Foundation vs Ice King conflict, Dr. Slone returns
+- Expected to conclude **August 19, 2026**
+- **💡 Lounge Note:** Fortnite is consistently one of the most-played games at gaming lounges. New season = always draws players. Make sure all lounge PS5s have the update installed. The sprite mechanic + new weapons give returning players fresh content. Promote on lounge socials!
+
+### 🛒 Supplementary PS Store Sale — 2,000+ Games, 200 at All-Time Lows!
+- A **second major PS Store sale** running alongside the Mid-Year Deals through **July 1, 2026**
+- Over **2,000 PS5 games** discounted, with nearly **200 at their lowest-ever prices**
+- Notable all-time-low deals: **Clair Obscur: Expedition 33 Deluxe Edition**, **Final Fantasy VII Rebirth**, **Dead Island 2**, **EA Sports FC 26**, **Anger Foot**, **Another Crab's Treasure**, **Arc Raiders**
+- **💡 Lounge Action:** Stack this with Mid-Year Deals! FF7 Rebirth at its lowest price ever is a must-buy for the lounge RPG library. Clair Obscur: Expedition 33 at all-time-low is a beautiful RPG to add. These deals all expire July 1 — final week to stock up!
+
+### 📝 Minor June Calendar Additions (Previously Missed):
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🏰 **Medieval Quest** | Jun 22 | ⭐ — Minor indie |
+| 💀 **The Necromancer's Tale** | Jun 24 | ⭐ — Minor indie |
+| 🎨 **Psycasso** | Jun 25 | ⭐ — Minor indie |
+| 🚛 **SnowRunner: S18 - Patch & Power** | Jun 25 | ⭐⭐ — Niche sim |
+| 👑 **King Slime in Cashtle** | Jun 29 | ⭐ — Minor indie |
+| 🎸 **Deathbulge: Battle of the Bands** | Jun 30 | ⭐⭐ — Music/rhythm indie |
+| ⏳ **Momento** | Jun 30 | ⭐ — Minor indie |
+| ⚔️ **Blasphemous II: The Third Sin** | Jun TBD | ⭐⭐⭐ — Metroidvania cult following! |
+| ⚽ **Soccer Kid Collection** | Jun TBD | ⭐ — Retro collection |
+| 🔫 **Hitman WOA: The Wizard Pack** | Jun TBD | ⭐⭐ — Niche DLC |
+| 🤖 **Arknights: Endfield - Update 1.3** | Jun TBD | ⭐⭐ — Gacha game update |
+
+### 📊 Quick Status Check (All Confirmed Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 Halo PS Plus Co-op | CORRECTED | Player 2 does NOT need PS Plus |
+| 🎮 Sony Exclusivity Strategy | CONFIRMED | Single-player games PS5 exclusive at launch |
+| 🛒 Mid-Year Deals | Until Jul 1 | PLUS supplementary sale with 200+ ATL prices! |
+| 🛒 Amazon Prime Day | Jun 23-26 | Starts in 2 days! |
+| 📅 PS Plus Essential July Reveal | **July 1** | Confirmed shift from June 25 |
+| 🆓 FREE Online Multiplayer Weekend | Jun 28-29 | 7 days away! Start promoting! |
+| 🏝️ Fortnite C7S3 "Runners" | LIVE since Jun 6 | New season! Update lounge consoles! |
+| 🛒 FF7 Rebirth | ATL price! | Buy before July 1! |
+
+### ⏰ Immediate Deadlines (Next 7 Days):
+| Deadline | What | Action |
+|----------|------|--------|
+| **Jun 22** 🏰 | Medieval Quest | Minor indie release |
+| **Jun 23** 🛒 | Amazon Prime Day BEGINS | Prepare lounge wishlist! Controllers, SSDs, games! |
+| **Jun 23** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 characters + free-to-play version! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | Start promoting NOW! |
+| **Jul 1** 📅 | PS Plus Essential July REVEAL | Watch for new free games! |
+| **Jul 1** 🛒 | ALL PS Store sales END | Final day for Mid-Year + supplementary sale! |
 
 ---
 

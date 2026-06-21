@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-21T16:37:37Z",
+  "updated": "2026-06-21T17:07:35Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -493,6 +493,12 @@
     {
       "source": "deepseek",
       "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "github",
       "relation": "depends_on",
       "weight": 5
     },
@@ -3638,12 +3644,6 @@
       "source": "docker",
       "target": "git-backup",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "docker",
-      "target": "github",
-      "relation": "depends_on",
       "weight": 3
     },
     {
