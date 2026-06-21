@@ -58,7 +58,7 @@ from bot.handlers.notify import _notify_customer, get_customer_chat_id
 
 async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     """Return keyboard of all consoles with availability for the selected time slot.
-    
+
     When date_str+time_slot are provided, checks booking conflicts AND live Active
     session end times (from console_status). A console currently Active will show ✅
     if its session ends before the selected time.
@@ -68,7 +68,7 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     except Exception as e:
         logging.warning("Failed to fetch console status (staff booking): %s", e)
         return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
-    
+
     # ── If date + time provided, override live status with future availability ──
     conflict_cids = set()  # consoles that have a conflict at the selected time
     active_ends_before = {}  # cid -> True if Active session ends before target
@@ -80,7 +80,7 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
             sel_min = sel_dt.hour * 60 + sel_dt.minute
             today_str = _dt.utcnow().strftime("%Y-%m-%d")
             is_today = (date_str == today_str)
-            
+
             # ── Check console_status for Active sessions (today only) ──
             if is_today:
                 for c in consoles:
@@ -101,7 +101,7 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
                             conflict_cids.add(cid)
                     except (ValueError, TypeError, AttributeError):
                         pass
-            
+
             # ── Check bookings API for conflicts ──
             all_bks = []
             for st in ("Active", "confirmed", "pending", "pending_check_in"):
@@ -132,7 +132,7 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
                     pass
         except Exception as e:
             logging.warning("_sbk_console_kb: future-avail check failed: %s", e)
-    
+
     rows = []
     row  = []
     for c in sorted(consoles, key=lambda x: x.get("id", x.get("console_id", ""))):
@@ -995,7 +995,6 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE,
                               origin: str = "console"):
     """Show available consoles for booking. origin='console'|'admin'."""
-    logging.warning("DBG: prompt_book_console start, origin=%s", origin)
     context.user_data["bk_origin"] = origin
     try:
         consoles = await fetch_console_status_async()
@@ -1029,11 +1028,7 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
             bks_raw = [bks_raw] if bks_raw else []
         if not isinstance(chk_raw, list):
             chk_raw = [chk_raw] if chk_raw else []
-        _cnt_confirmed = len(bks_raw) if isinstance(bks_raw, list) else (1 if bks_raw else 0)
-        _cnt_checked = len(chk_raw) if isinstance(chk_raw, list) else (1 if chk_raw else 0)
         bks_raw = bks_raw + chk_raw
-        logger.warning("DBG: prompt_book_link raw total=%d (confirmed=%d checked_in=%d)", 
-                       len(bks_raw), _cnt_confirmed, _cnt_checked)
         # Include confirmed + arrived; filter to today only
         # Also apply a 30-min past window so check-in'd bookings are still linkable
         from datetime import datetime as _dt
@@ -1062,7 +1057,6 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
             and b.get("date", "") == today
             and _in_window(b)
         ]
-        logger.warning("DBG: prompt_book_link pending_bks=%d (today=%s)", len(pending_bks), today)
     except Exception as e:
         logger.error("_in_window: %s", e, exc_info=True)
         pending_bks = []
@@ -1099,7 +1093,6 @@ async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, f
 
 async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
     """Show the console selection keyboard."""
-    logging.warning("DBG: _show_console_select called, free_consoles=%s", free_consoles)
     if free_consoles is None:
         try:
             consoles = await fetch_console_status_async()

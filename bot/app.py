@@ -390,7 +390,6 @@ def main():
     app.add_handler(CallbackQueryHandler(cb_booking_mgmt,   pattern=r"^bkm:(approve|reject):\d+$"))
     app.add_handler(CallbackQueryHandler(cb_reject_skip,   pattern=r"^bkr:skip:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_checkin_booking,  pattern=r"^bkm:checkin:\d+$"))
-    app.add_handler(CallbackQueryHandler(cb_checkin_select_console, pattern=r"^bkm:ckin_console:\d+:.+$"))
     app.add_handler(CallbackQueryHandler(cb_wl_action,       pattern=r"^wl:(notify|remove):\d+$"))
     app.add_handler(CallbackQueryHandler(cb_cancel_booking,     pattern=r"^bkc:\d+$"))
     app.add_handler(CallbackQueryHandler(cb_cancel_with_reason, pattern=r"^bkcr:\d+:\w+$"))

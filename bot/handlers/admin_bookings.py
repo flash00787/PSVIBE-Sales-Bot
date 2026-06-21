@@ -114,7 +114,7 @@ async def cb_booking_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if action == "reject":
         # Prompt for rejection reason
         await query.answer("📝 Reason ရိုက်ထည့်ပါ (သို့မဟုတ် Skip နှိပ်ပါ)", show_alert=False)
-        
+
         user_id = query.from_user.id
         # Store pending reject state in bot_data (keyed by user_id) to avoid ConversationHandler conflicts
         context.bot_data[f'_reject_{user_id}'] = {
@@ -123,8 +123,8 @@ async def cb_booking_mgmt(update: Update, context: ContextTypes.DEFAULT_TYPE):
             'card_chat_id': query.message.chat_id,
             'card_message_id': query.message.message_id,
         }
-        logger.info("REJECT DEBUG: Set pending_reject for BK#%d (user=%d)", bk_id, user_id)
-        
+        logger.debug("REJECT DEBUG: Set pending_reject for BK#%d (user=%d)", bk_id, user_id)
+
         # Send reason prompt
         keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("⏭️ Skip (No Reason)", callback_data=f"bkr:skip:{bk_id}")],
@@ -154,11 +154,11 @@ async def cb_reject_skip(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     user_id = query.from_user.id
-    logger.info("REJECT DEBUG: cb_reject_skip for BK#%d (user=%d)", bk_id, user_id)
+    logger.debug("REJECT DEBUG: cb_reject_skip for BK#%d (user=%d)", bk_id, user_id)
     pending = context.bot_data.pop(f'_reject_{user_id}', None)
     if not pending or pending['bk_id'] != bk_id:
         await query.edit_message_text("⚠️ Reject expired or already processed", parse_mode="HTML")
-        logger.warning("REJECT DEBUG: Skip — pending_reject missing or mismatched (got bk_id=%d, expected=%s, bot_data_keys=%s)", 
+        logger.debug("REJECT DEBUG: Skip — pending_reject missing or mismatched (got bk_id=%d, expected=%s, bot_data_keys=%s)",
                        bk_id, pending.get('bk_id') if pending else 'None', list(context.bot_data.keys()))
         return
 
@@ -191,7 +191,7 @@ async def handle_reject_reason(update: Update, context: ContextTypes.DEFAULT_TYP
     """Handle text input for rejection reason."""
     user_id = update.effective_user.id if update.effective_user else 0
     pending = context.bot_data.get(f'_reject_{user_id}')
-    logger.info("REJECT DEBUG: handle_reject_reason called, user=%d, pending=%s, text=%s",
+    logger.debug("REJECT DEBUG: handle_reject_reason called, user=%d, pending=%s, text=%s",
                 user_id, pending is not None,
                 (update.message.text or '')[:50] if update.message else 'None')
     if not pending:
@@ -206,7 +206,7 @@ async def handle_reject_reason(update: Update, context: ContextTypes.DEFAULT_TYP
 
     # Clear pending state immediately
     context.bot_data.pop(f'_reject_{user_id}', None)
-    logger.info("REJECT DEBUG: Processing reject BK#%d, reason=%s", bk_id, reason[:50])
+    logger.debug("REJECT DEBUG: Processing reject BK#%d, reason=%s", bk_id, reason[:50])
 
     # Clean up the prompt message
     if prompt_message_id:
@@ -252,7 +252,8 @@ async def _send_checkin_notification(tg_chat: str, booking_id: int):
         pass
 
 async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Staff checks in a customer. First asks console assignment (optional), then checkin."""
+    """Staff checks in a customer — marks booking as checked_in directly.
+    Console assignment happens later during Session Start if needed."""
     query = update.callback_query
     await query.answer()
     try:
@@ -262,7 +263,7 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
         logger.error("cb_checkin_booking: %s", e, exc_info=True)
         return
 
-    # Fetch booking details + free consoles
+    # Fetch booking to show customer name
     bk_data = await _psvibe_get_async(f"bookings/{bk_id}") or {}
     if isinstance(bk_data, dict):
         if "booking" in bk_data:
@@ -274,44 +275,37 @@ async def cb_checkin_booking(update: Update, context: ContextTypes.DEFAULT_TYPE)
             else:
                 bk_data = inner
 
-    current_console = bk_data.get("console_id", "") or bk_data.get("consoleId", "")
-    console_type = bk_data.get("consoleType", "")
-
-    # Build console selection keyboard
-    rows = []
-    try:
-        import bot as _b
-        cs = _b.fetch_console_status()
-        free = [c for c in cs if c.get("status", "").lower() == "free"]
-        # Free consoles first
-        for c in free:
-            cid = c.get("id", "")
-            ctype = c.get("type", "")
-            label = f"🖥️ {cid} ({ctype})"
-            rows.append([InlineKeyboardButton(label, callback_data=f"bkm:ckin_console:{bk_id}:{cid}")])
-    except Exception:
-        pass
-
-    # Current booking console (if assigned and not free)
-    if current_console:
-        rows.append([InlineKeyboardButton(f"✅ Keep {current_console} (current)", callback_data=f"bkm:ckin_console:{bk_id}:{current_console}")])
-
-    # Skip / No console option
-    if not current_console:
-        rows.append([InlineKeyboardButton("⏭️ Skip (no console)", callback_data=f"bkm:ckin_console:{bk_id}:skip")])
-
-    rows.append([InlineKeyboardButton("↩️ Cancel", callback_data=f"bkm:ckin_console:{bk_id}:cancel")])
-
     name = bk_data.get("customerName", "") or bk_data.get("phone", "?")
-    msg = (
-        f"✅ *Check In — Booking #{bk_id}*\n"
-        f"👤 {name}\n"
-        f"📅 {bk_data.get('date', '?')}  🕐 {bk_data.get('timeSlot', '?')}\n"
-        f"🎮 {console_type or '—'}  ⏱️ {bk_data.get('durationMins', '?')} mins\n"
-        f"🕹️ {bk_data.get('gameName') or '—'}\n\n"
-        f"Console ရွေးပါ (optional):"
+
+    await query.edit_message_text(
+        f"⏳ Checking in Booking #{bk_id} — {name}...",
+        parse_mode="Markdown",
     )
-    await query.edit_message_text(msg, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(rows))
+
+    # Direct check-in — no console selection
+    payload = {"id": bk_id}
+    try:
+        result = await _psvibe_post_async("bookings/checkin", payload)
+    except Exception as e:
+        await query.edit_message_text(f"❌ *Check-in failed:* {e}", parse_mode="Markdown")
+        return
+
+    if result and isinstance(result, dict):
+        tg_chat = result.get("telegram_chat_id", "")
+        await query.edit_message_text(
+            f"✅ *Checked In — Booking #{bk_id}*\n"
+            f"👤 {name}\n"
+            f"\n_Session Start တွင် Console နှင့် ချိတ်ဆက်နိုင်ပါသည်_",
+            parse_mode="Markdown",
+        )
+        # Send notification
+        if tg_chat:
+            asyncio.create_task(_send_checkin_notification(tg_chat, bk_id))
+    else:
+        await query.edit_message_text(
+            f"❌ *Check-in failed* for Booking #{bk_id}",
+            parse_mode="Markdown",
+        )
 
 
 async def cb_checkin_select_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -509,7 +503,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
     if not result:
         await reply_fn(f"❌ Booking #{bk_id} ကို update မရပါ")
         return
-    
+
     # Check for conflict (another staff already approved/rejected)
     if isinstance(result, dict) and result.get("conflict"):
         conflict_status = result.get("current_status", "processed")

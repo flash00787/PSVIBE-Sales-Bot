@@ -18,9 +18,50 @@ from bot.handlers.booking_flow import _SESSION_TOTAL_MINS, _remind_key
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
-import asyncio, logging, re, json, time
+import asyncio, logging, re, json, time, os
 logger = logging.getLogger(__name__)
 from datetime import datetime, timezone, timedelta
+
+# ── Feedback helpers ──────────────────────────────────────────────────────────
+_CUSTOMER_BOT_TOKEN = os.environ.get("CUSTOMER_BOT_TOKEN", "")
+
+async def _send_feedback_to_customer(chat_id: str, booking_id: str):
+    """Send a star-rating inline keyboard to a customer after session ends.
+    Uses Customer Bot's token so callbacks route to Customer Bot handlers."""
+    if not _CUSTOMER_BOT_TOKEN:
+        logger.warning("Feedback: CUSTOMER_BOT_TOKEN not set, skipping")
+        return
+    try:
+        import urllib.request as _req
+        kb = {
+            "inline_keyboard": [[
+                {"text": "1 ⭐", "callback_data": f"fb:1:{booking_id}"},
+                {"text": "2 ⭐⭐", "callback_data": f"fb:2:{booking_id}"},
+                {"text": "3 ⭐⭐⭐", "callback_data": f"fb:3:{booking_id}"},
+                {"text": "4 ⭐⭐⭐⭐", "callback_data": f"fb:4:{booking_id}"},
+                {"text": "5 ⭐⭐⭐⭐⭐", "callback_data": f"fb:5:{booking_id}"},
+            ]]
+        }
+        payload = json.dumps({
+            "chat_id": chat_id,
+            "text": (
+                "🎮 <b>ဒီနေ့ PS VIBE မှာ ဂိမ်းဆော့ပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်!</b>\n\n"
+                "အတွေ့အကြုံလေး Rating ပေးပေးပါဦးနော် 🙏"
+            ),
+            "parse_mode": "HTML",
+            "reply_markup": json.dumps(kb),
+        }).encode("utf-8")
+        url = f"https://api.telegram.org/bot{_CUSTOMER_BOT_TOKEN}/sendMessage"
+        req = _req.Request(url, data=payload, headers={"Content-Type": "application/json"})
+        loop = asyncio.get_event_loop()
+        resp = await loop.run_in_executor(None, lambda: _req.urlopen(req, timeout=10))
+        result = json.loads(resp.read().decode())
+        if result.get("ok"):
+            logger.info("Feedback sent to chat=%s bk=%s", chat_id, booking_id)
+        else:
+            logger.warning("Feedback send failed: %s", result.get("description", "unknown"))
+    except Exception as e:
+        logger.warning("Feedback send error (non-critical): %s", e)
 
 
 
@@ -368,6 +409,18 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     ok = await end_booking_async(bk_id) if bk_id else True
     logger.warning("step_t end_booking: %dms", (time.monotonic() - _t0) * 1000)
+
+    # ── Feedback: send star rating to linked booking customer ──
+    _send_feedback_async = None
+    try:
+        _booking_detail = await _psvibe_get_async(f"bookings/{bk_id}") if bk_id else None
+        _cust_chat_id = (_booking_detail or {}).get("telegram_chat_id") or (_booking_detail or {}).get("telegramChatId", "")
+        if _cust_chat_id:
+            _cust_chat_id = str(_cust_chat_id).strip()
+            if _cust_chat_id:
+                _send_feedback_async = asyncio.create_task(_send_feedback_to_customer(_cust_chat_id, str(bk_id)))
+    except Exception as _fe:
+        logger.warning("Feedback trigger prep failed (non-critical): %s", _fe)
     if not ok:
         if bk_id:
             await update.message.reply_text(f"❌ Booking ID {bk_id} ရှာမတွေ့ပါ")

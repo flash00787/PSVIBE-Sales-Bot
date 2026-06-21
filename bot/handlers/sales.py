@@ -275,6 +275,7 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     stock_map = context.user_data.get("food_stock_map")
     if not stock_map:
         try:
+            from bot import _psvibe_get_async
             inv_data = await _psvibe_get_async("stock/current")
             if inv_data and isinstance(inv_data, dict):
                 stock_map = {i.get("item_name", ""): max(0, i.get("quantity", 0))
