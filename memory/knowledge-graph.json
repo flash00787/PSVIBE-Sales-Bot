@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-21T04:37:31Z",
+  "updated": "2026-06-21T05:08:08Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -1069,12 +1069,6 @@
     {
       "source": "sales-tele-bot",
       "target": "n8n",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "sales-tele-bot",
-      "target": "python",
       "relation": "uses",
       "weight": 5
     },
@@ -7346,6 +7340,12 @@
       "source": "sales-tele-bot",
       "target": "priority-memory",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "python",
+      "relation": "uses",
       "weight": 3
     },
     {
