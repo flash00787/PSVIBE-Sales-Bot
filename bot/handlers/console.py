@@ -220,6 +220,12 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
             detail = f"Active — {mbr}{since}{timer_str}"
 
+        # For Active consoles with upcoming booking: show dual-status badge
+        rsv_for = c.get("reserved_for") or c.get("reservedFor")
+        rsv_at = c.get("reserved_at") or c.get("reservedAt")
+        if live in ("Active", "Scheduled") and rsv_at and rsv_at != "—":
+            detail += f"  🟡 {rsv_at} → {rsv_for or 'Booking'}"
+
         # For Active consoles, show current session game only
         game_str = ""
         if live in ("Active", "Scheduled"):

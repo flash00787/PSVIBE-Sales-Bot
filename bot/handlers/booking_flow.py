@@ -187,7 +187,7 @@ async def _remind_loop(
                     f"━━━━━━━━━━━━━━━━━━\n"
                     f"{_warn_line}\n"
                     f"ဆက်ကစားမည်ဆိုက ➕ Extend ကိုနှိပ်ပါ\n"
-                    f"ပြီးပြီဆိုက ✅ ပြီးပြီ ကိုနှိပ်ပြီး ⏹️ Session ဆုံး နှိပ်ပါ"
+                    f"ပြီးပြီဆိုက ⏹️ <b>Manual End လုပ်ပါ</b> (Session auto-end မဖြစ်ပါ)"
                 )
                 # Send ONLY to group chat with inline buttons
                 # (single destination prevents dual-chat end/extend conflict)

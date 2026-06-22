@@ -258,7 +258,16 @@ def main() -> None:
     _register_handlers(app)
 
     _log.info("Customer bot (clean V2, ReplyKeyboard booking flow) starting polling...")
-    app.run_polling(drop_pending_updates=True)
+    try:
+        app.run_polling(drop_pending_updates=True)
+    except (KeyboardInterrupt, SystemExit):
+        _log.info("Shutdown requested, stopping customer bot...")
+    finally:
+        try:
+            app.stop()
+        except Exception:
+            pass
+        _log.info("Customer bot shutdown complete.")
 
 # Global flag for graceful shutdown
 _shutdown_requested = False

@@ -7,7 +7,7 @@ from bot import (
     ASSET_DISPOSE_DATE, ASSET_DISPOSE_PROCEEDS, ASSET_DISPOSE_QTY,
     ASSET_DISPOSE_SEL, ASSET_LIFE, ASSET_NAME, ASSET_PAY, ASSET_QTY,
     ASSET_SALVAGE, ATTEND_DEDUCT, ATTEND_LATE, ATTEND_LEAVE,
-    ATTEND_STAFF, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_LINK,
+    ATTEND_STAFF, BOOK_CHECKIN_BIND, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME,
     BOOK_MEMBER, BOOK_MINS, BUNDLE_FOC, CAP_ACCT, CAP_AMT, CAP_CONFIRM,
     CONFIRM_SUMMARY, CONSOLE, CONSOLE_MENU, CON_ADD_ID, CON_ADD_MULT,
     CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, DISCOUNT, DISC_SELECT,
@@ -237,9 +237,9 @@ def main():
             SAL_ADV_CONFIRM: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_sal_adv_confirm)],
 
             # ── Console Booking flow ──
-            BOOK_LINK:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_link)],
-            BOOK_CONSOLE: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_console)],
-            BOOK_MEMBER:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_member)],
+            BOOK_CONSOLE:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_console)],
+            BOOK_CHECKIN_BIND:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_checkin_bind)],
+            BOOK_MEMBER:        [MessageHandler(filters.TEXT & ~filters.COMMAND, step_book_member)],
 
             # ── Console Management submenu ──
             CONSOLE_MENU:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_console_menu)],
@@ -487,19 +487,36 @@ def main():
     def _handle_task_exception(loop, context):
         """Log and suppress unhandled task exceptions to prevent bot crash."""
         msg = context.get("exception", context.get("message", "Unknown task error"))
-        logging.error("Unhandled task exception: %s", msg, exc_info=context.get("exception"))
+        exc = context.get("exception")
+        # Suppress CancelledError noise during shutdown
+        if isinstance(exc, (asyncio.CancelledError, RuntimeError)):
+            logging.debug("Suppressed shutdown exception: %s", msg)
+            return
+        logging.error("Unhandled task exception: %s", msg, exc_info=exc)
 
     loop = asyncio.get_event_loop()
     loop.set_exception_handler(_handle_task_exception)
-    loop.create_task(_bg_cache_refresh())
-    loop.create_task(input_logger_batcher())
+    
+    # Store task references for proper cleanup on shutdown
+    _tasks = []
+    _tasks.append(loop.create_task(_bg_cache_refresh()))
+    _tasks.append(loop.create_task(input_logger_batcher()))
     # Start periodic stale-reminder cleanup (every 15 min)
     from bot.session_reminder_store import cleanup_stale_reminders_async
-    loop.create_task(cleanup_stale_reminders_async(app))
+    _tasks.append(loop.create_task(cleanup_stale_reminders_async(app)))
 
     logging.info("PS Vibe Bot is running...")
-    app.run_polling(
-        allowed_updates=Update.ALL_TYPES,
-        timeout=30,
-        drop_pending_updates=True,
-    )
+    try:
+        app.run_polling(
+            allowed_updates=Update.ALL_TYPES,
+            timeout=30,
+            drop_pending_updates=True,
+        )
+    except (KeyboardInterrupt, SystemExit):
+        logging.info("Shutdown requested, cleaning up background tasks...")
+    finally:
+        for t in _tasks:
+            if not t.done():
+                t.cancel()
+        loop.run_until_complete(asyncio.gather(*_tasks, return_exceptions=True))
+        logging.info("Sale Bot shutdown complete.")

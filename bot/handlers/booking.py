@@ -24,7 +24,7 @@ def _sbk_back(context, update, fallback_fn):
 
 
 from bot import (
-    BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_LINK, BOOK_MEMBER,
+    BOOK_CHECKIN_BIND, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME, BOOK_MEMBER,
     BOOK_MINS, BTN_BACK, BTN_BACK_MAIN, BTN_BOOK_PROCEED, BTN_CANCEL,
     BTN_NO_RESELECT, BTN_SBK_CONFIRMED, BTN_SBK_CONFIRM_BOOK,
     BTN_SBK_CUSTOM, BTN_SBK_NEW, BTN_SBK_SKIP_GAME, BTN_SBK_SKIP_PHONE,
@@ -1009,87 +1009,8 @@ async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
         )
         return CONSOLE_MENU
-    # ── Step 0: Check for today's confirmed/arrived bookings ─────────────────
-    return await prompt_book_link(update, context, free)
-
-async def prompt_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
-    """Ask staff whether to link this session to a confirmed booking (optional)."""
-    try:
-        today = now_mmt().strftime("%Y-%m-%d")  # match API format (YYYY-MM-DD), not today_str() which returns M/D/YYYY
-        # Fetch both confirmed AND checked_in bookings for linking
-        bks_raw = await _psvibe_get_async("bookings?status=confirmed&date=" + today) or []
-        chk_raw = await _psvibe_get_async("bookings?status=checked_in&date=" + today) or []
-        # Ensure both are lists before concatenating
-        if isinstance(bks_raw, dict):
-            bks_raw = bks_raw.get("bookings", bks_raw.get("data", []))
-        if isinstance(chk_raw, dict):
-            chk_raw = chk_raw.get("bookings", chk_raw.get("data", []))
-        if not isinstance(bks_raw, list):
-            bks_raw = [bks_raw] if bks_raw else []
-        if not isinstance(chk_raw, list):
-            chk_raw = [chk_raw] if chk_raw else []
-        bks_raw = bks_raw + chk_raw
-        # Include confirmed + arrived; filter to today only
-        # Also apply a 30-min past window so check-in'd bookings are still linkable
-        from datetime import datetime as _dt
-        _now_mmt = now_mmt()
-        _cutoff_str = (_now_mmt.replace(hour=0, minute=0, second=0, microsecond=0))
-        def _in_window(b):
-            ts = b.get("timeSlot", "")
-            status = b.get("status", "")
-            if not ts:
-                return True  # no time info — include it
-            # checked_in bookings are always linkable (customer already here, waiting)
-            if status == "checked_in":
-                return True
-            try:
-                h, m = map(int, ts.split(":"))
-                bk_dt = _now_mmt.replace(hour=h, minute=m, second=0, microsecond=0)
-                # Show if booking time is within past 30 min or in the future
-                diff_mins = (_now_mmt - bk_dt).total_seconds() / 60
-                return diff_mins <= 30
-            except Exception as e:
-                logger.error("_in_window: %s", e, exc_info=True)
-                return True
-        pending_bks = [
-            b for b in bks_raw if isinstance(b, dict)
-            if b.get("status") in ("confirmed", "arrived", "checked_in")
-            and b.get("date", "") == today
-            and _in_window(b)
-        ]
-    except Exception as e:
-        logger.error("_in_window: %s", e, exc_info=True)
-        pending_bks = []
-
-    if not pending_bks:
-        return await _show_console_select(update, context, free_consoles)
-
-    kb_rows = [["⏭️ Booking လုပ်ရန်မလိုဘဲ ဆက်သွား"]]
-    for b in pending_bks:
-        bk_id   = b.get("id", "?")
-        member  = b.get("customerName") or b.get("member_id") or b.get("memberId") or "Guest"
-        console = (b.get("console_id") or b.get("consoleId") or "?").strip()
-        bk_time = b.get("timeSlot") or ""
-        game    = b.get("gameName") or ""
-        label   = f"#{bk_id} | {console} | {member}"
-        if bk_time:
-            label += f" | {bk_time}"
-        if game:
-            label += f" | {game}"
-        kb_rows.append([label])
-    kb_rows.append([BTN_BACK, BTN_CANCEL])
-
-    context.user_data["_bk_link_list"] = pending_bks
-    await update.message.reply_text(
-        "▶️ <b>New Console Session</b>\n"
-        "━━━━━━━━━━━━━━━━━━\n"
-        "📋 ဒီနေ့ Confirmed Booking ရှိသည် — Session နှင့် ချိတ်ဆက်မည်လား?\n\n"
-        "<i>Booking ရွေးလျှင် Member / Console / Game autofill ဖြစ်မည်</i>\n"
-        "မရှိဘဲ ဆက်သွားလျှင် ⏭️ နှိပ်ပါ",
-        parse_mode="HTML",
-        reply_markup=ReplyKeyboardMarkup(kb_rows, resize_keyboard=True),
-    )
-    return BOOK_LINK
+    # ── Step 0: Show console selection FIRST ────────────────────────────
+    return await _show_console_select(update, context, free)
 
 async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
     """Show the console selection keyboard."""
@@ -1110,95 +1031,6 @@ async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYP
         reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
     )
     return BOOK_CONSOLE
-
-async def step_book_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle booking-link selection. Autofill or skip."""
-    text = update.message.text.strip()
-    if text == BTN_CANCEL:
-        return await cmd_cancel(update, context)
-    if text in (BTN_BACK, BTN_BACK_MAIN):
-        return await show_console_menu(update, context)
-    if text == "⏭️ Booking လုပ်ရန်မလိုဘဲ ဆက်သွား":
-        context.user_data.pop("_bk_link_list", None)
-        return await _show_console_select(update, context)
-
-    pending_bks = context.user_data.pop("_bk_link_list", [])
-    selected_bk = None
-    for b in pending_bks:
-        bk_id = b.get("id", "?")
-        if text.startswith(f"#{bk_id} "):
-            selected_bk = b
-            break
-
-    if not selected_bk:
-        await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
-        context.user_data["_bk_link_list"] = pending_bks
-        return BOOK_LINK
-
-    bk_id   = selected_bk.get("id")
-    console = (selected_bk.get("console_id") or selected_bk.get("consoleId") or "").strip()
-    member  = selected_bk.get("customerName") or selected_bk.get("member_id") or selected_bk.get("memberId") or "Guest"
-    game    = selected_bk.get("gameName") or ""
-    dur     = selected_bk.get("durationMins") or 0
-
-    try:
-        consoles = fetch_console_status()
-        free_ids = {c["id"] for c in consoles if c["status"] in ("Free", "Reserved")}
-    except Exception as e:
-        logger.error("step_book_link: %s", e, exc_info=True)
-        free_ids = set()
-
-    # Allow if console is Free OR Scheduled (reserved but not yet Active/in-session)
-    try:
-        consoles_full = fetch_console_status()
-        console_status_map = {c["id"]: c["status"] for c in consoles_full}
-    except Exception as e:
-        logger.error("step_book_link: %s", e, exc_info=True)
-        console_status_map = {}
-    console_current_status = console_status_map.get(console, "Free")
-    if console and console_current_status == "Active":
-        await update.message.reply_text(
-            f"⚠️ <b>{console}</b> ယခု Session တက်နေပြီ (Active)\n"
-            f"Console ကို ကိုယ်တိုင် ရွေးပါ",
-            parse_mode="HTML",
-        )
-        context.user_data["_bk_linked_id"] = bk_id
-        return await _show_console_select(update, context)
-    elif console and console not in free_ids and console_current_status != "Scheduled":
-        await update.message.reply_text(
-            f"⚠️ <b>{console}</b> ယခု Free မဟုတ်ပါ\n"
-            f"Console ကို ကိုယ်တိုင် ရွေးပါ",
-            parse_mode="HTML",
-        )
-        context.user_data["_bk_linked_id"] = bk_id
-        return await _show_console_select(update, context)
-
-    context.user_data["bk_console"]      = console
-    context.user_data["bk_member"]       = member
-    context.user_data["bk_game"]         = game
-    context.user_data["bk_planned_mins"] = int(dur)
-    context.user_data["_bk_linked_id"]   = bk_id
-
-    try:
-        staff_list = fetch_staff()
-        staff = staff_list[0] if len(staff_list) == 1 else context.user_data.get("staff_name", "")
-    except Exception as e:
-        logger.error("step_book_link: %s", e, exc_info=True)
-        staff = context.user_data.get("staff_name", "")
-    context.user_data["bk_staff"] = staff
-
-    await update.message.reply_text(
-        f"✅ <b>Booking #{bk_id} ချိတ်ဆက်ပြီ!</b>\n"
-        f"━━━━━━━━━━━━━━━━━━\n"
-        f"🕹️ Console : <b>{console}</b>\n"
-        f"👤 Member  : <b>{member}</b>\n"
-        f"🎮 Game    : <b>{game or '—'}</b>\n"
-        f"⏱️ Duration: <b>{dur or '—'} mins</b>\n"
-        f"━━━━━━━━━━━━━━━━━━\n"
-        f"အချက်အလက်များ autofill ဖြစ်ပြီ — ဆက်သွားမည်",
-        parse_mode="HTML",
-    )
-    return await prompt_book_mins(update, context)
 
 async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
@@ -1236,6 +1068,53 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         pass
     # ---------------------------------------------------------------------------------
 
+    # ── Check for checked_in customers to optionally bind ─────────────────
+    try:
+        today = now_mmt().strftime("%Y-%m-%d")
+        chk_raw = await _psvibe_get_async("bookings?status=checked_in&date=" + today) or []
+        if isinstance(chk_raw, dict):
+            chk_raw = chk_raw.get("bookings", chk_raw.get("data", []))
+        if not isinstance(chk_raw, list):
+            chk_raw = [chk_raw] if chk_raw else []
+        
+        from datetime import datetime as _dt
+        pending_bks = [
+            b for b in chk_raw if isinstance(b, dict)
+            and b.get("status") == "checked_in"
+            and b.get("date", "") == today
+        ]
+    except Exception as e:
+        logger.error("step_book_console: checkin fetch %s", e, exc_info=True)
+        pending_bks = []
+    
+    if pending_bks:
+        kb_rows = [["⏭️ Bind မလုပ်ဘဲ ဆက်သွား"]]
+        for b in pending_bks:
+            bk_id   = b.get("id", "?")
+            member  = b.get("customerName") or b.get("member_id") or b.get("memberId") or "Guest"
+            bk_time = b.get("timeSlot") or ""
+            game    = b.get("gameName") or ""
+            label   = f"#{bk_id} | {member}"
+            if bk_time:
+                label += f" | {bk_time}"
+            if game:
+                label += f" | {game}"
+            kb_rows.append([label])
+        kb_rows.append([BTN_BACK, BTN_CANCEL])
+        context.user_data["_bk_checkin_list"] = pending_bks
+        
+        await update.message.reply_text(
+            f"🕹️ <b>{cid}</b> Console\n"
+            "━━━━━━━━━━━━━━━━━━\n"
+            "📋 Checked‑In Customer ရှိသည် — Bind လုပ်မည်လား?\n\n"
+            "<i>Bind လုပ်လျှင် Member / Game autofill ဖြစ်မည်</i>\n"
+            "မလိုဘဲ ဆက်သွားလျှင် ⏭️ နှိပ်ပါ",
+            parse_mode="HTML",
+            reply_markup=ReplyKeyboardMarkup(kb_rows, resize_keyboard=True),
+        )
+        return BOOK_CHECKIN_BIND
+
+    # No check-ins — continue to member selection
     members = await fetch_members_async()
     # Fetch member names for display labels (ID → Name map)
     member_names = {}
@@ -1255,6 +1134,125 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
     )
     return BOOK_MEMBER
+
+async def step_book_checkin_bind(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle checked-in customer binding after console selection."""
+    text = update.message.text.strip()
+    if text == BTN_CANCEL:
+        return await cmd_cancel(update, context)
+    if text in (BTN_BACK, BTN_BACK_MAIN):
+        context.user_data.pop("_bk_checkin_list", None)
+        return await prompt_book_console(update, context)
+    if text == "⏭️ Bind မလုပ်ဘဲ ဆက်သွား":
+        context.user_data.pop("_bk_checkin_list", None)
+        # Continue to member selection (same as original step_book_console end)
+        from bot import fetch_members_async
+        members = await fetch_members_async()
+        member_names = {}
+        try:
+            raw = await _psvibe_get_async("fetch_members")
+            if isinstance(raw, list):
+                member_names = {m.get("id", ""): (m.get("name") or "").strip() for m in raw if isinstance(m, dict)}
+        except Exception:
+            pass
+        kb = [["0 (Guest)"]] + \
+             [[f"{m} — {member_names.get(m, '')}" if member_names.get(m) else m] for m in members] + \
+             [[BTN_BACK, BTN_CANCEL]]
+        cid = context.user_data.get("bk_console", "")
+        await update.message.reply_text(
+            f"🕹️ *{cid}* — session\n\n"
+            "👤 Member ရွေးပါ (သို့) ရိုက်ရှာပါ:",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+        )
+        return BOOK_MEMBER
+
+    pending_bks = context.user_data.pop("_bk_checkin_list", [])
+    selected_bk = None
+    for b in pending_bks:
+        bk_id = b.get("id", "?")
+        if text.startswith(f"#{bk_id} "):
+            selected_bk = b
+            break
+
+    if not selected_bk:
+        await update.message.reply_text("⚠️ Keyboard မှ ရွေးပေးပါ")
+        context.user_data["_bk_checkin_list"] = pending_bks
+        return BOOK_CHECKIN_BIND
+
+    bk_id   = selected_bk.get("id")
+    member  = selected_bk.get("customerName") or selected_bk.get("member_id") or selected_bk.get("memberId") or "Guest"
+    game    = selected_bk.get("gameName") or ""
+    dur     = selected_bk.get("durationMins") or 0
+    bk_console = (selected_bk.get("console_id") or selected_bk.get("consoleId") or "?").strip()
+    cid = context.user_data.get("bk_console", "")
+
+    # Mark booking as Active via API
+    api_failed = False
+    try:
+        await _psvibe_post_async("update_booking", {
+            "id": bk_id,
+            "status": "Active",
+            "console_id": cid,
+        })
+        logger.info(f"checkin_bind: #{bk_id} {member} → Active on {cid}")
+    except Exception as e:
+        logger.warning(f"checkin_bind: API update failed for #{bk_id}: {e}")
+        api_failed = True
+
+    if api_failed:
+        await update.message.reply_text(
+            f"⚠️ Booking #{bk_id} bind လုပ်ရန် API error ဖြစ်နေပါသည်။\n\n"
+            f"Console <b>{cid}</b> အတွက် Member ကို ကိုယ်တိုင်ရွေးပါ။\n\n"
+            f"<i>ဆက်သွားရန် Member တစ်ခုရွေးပါ</i>",
+            parse_mode="HTML",
+        )
+        context.user_data["_bk_checkin_list"] = []
+        # Fall through to member selection (same as skip logic)
+        from bot import fetch_members_async
+        members = await fetch_members_async()
+        member_names = {}
+        try:
+            raw = await _psvibe_get_async("fetch_members")
+            if isinstance(raw, list):
+                member_names = {m.get("id", ""): (m.get("name") or "").strip() for m in raw if isinstance(m, dict)}
+        except Exception:
+            pass
+        kb = [["0 (Guest)"]] + \
+             [[f"{m} — {member_names.get(m, '')}" if member_names.get(m) else m] for m in members] + \
+             [[BTN_BACK, BTN_CANCEL]]
+        await update.message.reply_text(
+            f"🕹️ *{cid}* — session\n\n"
+            "👤 Member ရွေးပါ (သို့) ရိုက်ရှာပါ:",
+            parse_mode="Markdown",
+            reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+        )
+        return BOOK_MEMBER
+
+    context.user_data["bk_member"]       = member
+    context.user_data["bk_game"]         = game
+    context.user_data["bk_planned_mins"] = int(dur) if dur else 0
+    context.user_data["_bk_linked_id"]   = bk_id
+
+    try:
+        staff_list = fetch_staff()
+        staff = staff_list[0] if len(staff_list) == 1 else context.user_data.get("staff_name", "")
+    except Exception:
+        staff = context.user_data.get("staff_name", "")
+    context.user_data["bk_staff"] = staff
+
+    await update.message.reply_text(
+        f"✅ <b>Checked‑in #{bk_id} Bind လုပ်ပြီ!</b>\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"🕹️ Console : <b>{cid}</b>\n"
+        f"👤 Member  : <b>{member}</b>\n"
+        f"🎮 Game    : <b>{game or '—'}</b>\n"
+        f"⏱️ Duration: <b>{dur or '—'} mins</b>\n"
+        f"━━━━━━━━━━━━━━━━━━\n"
+        f"အချက်အလက်များ autofill ဖြစ်ပြီ — ဆက်သွားမည်",
+        parse_mode="HTML",
+    )
+    return await prompt_book_mins(update, context)
 
 async def step_book_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()

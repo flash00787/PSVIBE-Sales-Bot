@@ -752,12 +752,9 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                         False,
                     )
             elif available:
-                # Auto-assign: pick first available matching type
-                assigned = available[0]
-                console_id = assigned.get("id", "")
-                console_type = assigned.get("type", console_type)
-                context.user_data["bk_console"] = console_type
-                context.user_data["bk_specific_console_id"] = console_id
+                # Let API server auto-assign atomically (FOR UPDATE lock) — avoid race condition
+                console_id = ""  # Server picks first free console in transaction
+                context.user_data.pop("bk_specific_console_id", None)
             else:
                 # No console available for this duration — find max possible duration
                 # Pick any console of matching type to calculate max_dur

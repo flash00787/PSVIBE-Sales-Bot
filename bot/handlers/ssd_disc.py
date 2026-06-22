@@ -19,6 +19,7 @@ from bot import (
     SSD_XFER_SSD, SSD_BTN_TO_ID, SSD_NAMES,
     SSD_MOVE_SSD, SSD_MOVE_GAME, SSD_MOVE_CONS,
     SSD_MOVE_FROM_CONS, SSD_MOVE_FROM_GAME, SSD_MOVE_TO_SSD,
+    log_duration,
     add_console_game_async,
     fetch_console_games, fetch_console_games_async, fetch_game_library,
     get_consoles_from_setting, remove_console_game_async,
@@ -507,6 +508,7 @@ async def step_ssd_ret_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
+@log_duration("ssd:step_ssd_move_ssd")
 async def step_ssd_move_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User chose SSD to move from (SSD->Console flow)."""
     text = update.message.text.strip()
@@ -533,6 +535,7 @@ async def step_ssd_move_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return SSD_MOVE_GAME
 
+@log_duration("ssd:step_ssd_move_game")
 async def step_ssd_move_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User chose game to move from SSD -> pick destination console."""
     text = update.message.text.strip()
@@ -548,6 +551,7 @@ async def step_ssd_move_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     return SSD_MOVE_CONS
 
+@log_duration("ssd:step_ssd_move_cons")
 async def step_ssd_move_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Execute SSD->Console move."""
     text = update.message.text.strip()
@@ -593,6 +597,7 @@ def _filter_game_titles(rows: list, dedup: bool = True) -> list:
     return titles
 
 
+@log_duration("ssd:step_ssd_move_from_cons")
 async def step_ssd_move_from_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User chose source console for Console->SSD move."""
     text = update.message.text.strip()
@@ -618,6 +623,7 @@ async def step_ssd_move_from_cons(update: Update, context: ContextTypes.DEFAULT_
     )
     return SSD_MOVE_FROM_GAME
 
+@log_duration("ssd:step_ssd_move_from_game")
 async def step_ssd_move_from_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User chose game to move from console -> pick destination SSD."""
     text = update.message.text.strip()
@@ -631,6 +637,7 @@ async def step_ssd_move_from_game(update: Update, context: ContextTypes.DEFAULT_
     )
     return SSD_MOVE_TO_SSD
 
+@log_duration("ssd:step_ssd_move_to_ssd")
 async def step_ssd_move_to_ssd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Execute Console->SSD move."""
     text = update.message.text.strip()
