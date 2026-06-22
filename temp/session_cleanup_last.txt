@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 11:47 ===
+=== Bulk Session Cleanup 12:47 ===
 Before: 412K
 After: 412K
-
-=== RESULT: OK ===
+=== RESULT: OK ||| Cleanup completed. Disk usage unchanged at 412K ===
