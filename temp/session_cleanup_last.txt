@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 23:44 ===
+=== Bulk Session Cleanup 00:44 ===
 Before: 412K
 After: 412K
-EXIT_CODE=0
 === RESULT: OK ===
