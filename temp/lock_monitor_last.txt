@@ -1,4 +1,19 @@
-2026-06-22 05:43:55 UTC — Lock monitor run (cron)
-Result: OK — no locks found, 0 cleaned, 0 files removed, 0 KB freed, 0 warnings
-Session files: 3 main .jsonl (382 KB), 0 stale
+[LOCK_MONITOR] Run at 2026-06-22 06:44:03 UTC
+
+[LOCK_MONITOR] OK: no locks found
+
+========== Session Disk Usage ==========
+  Main .jsonl files:            3 files,        382 KB
+  .trajectory.jsonl files:      0 files,          0 KB
+  .checkpoint.*.jsonl files:    0 files,          0 KB
+  .lock files:                  0 files
+  ------------------------------------------
+  TOTAL:                                      382 KB
+==========================================
+
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+==================================================
 === RESULT: OK ===
+=== RESULT: OK ||| No stale locks, all clear ===
