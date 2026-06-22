@@ -50,19 +50,24 @@
 9. **`today_str()` format ≠ API format** — `M/D/YYYY` vs `YYYY-MM-DD` — don't mix in comparisons.
 10. **Double fail masking** — When both MySQL and GSheet fallback break simultaneously, root cause is masked. Monitor both paths independently.
 11. **`%%` pattern doesn't work with `mysql.connector`** — uses `%s` parameter style, not printf. Pass format string as parameter.
+12. **BotState IntEnum value collisions** — IntEnum auto-assigns values; collisions silently break ConversationHandler routing. Always verify uniqueness after edits. 10+ collisions found and fixed Jun 22.
+13. **API response shape varies by endpoint** — `/api/bookings` returns time-only strings, `/api/dashboard/bookings` returns raw datetimes. Always check endpoint output before consuming.
 
 ### System Patterns
-12. **NEVER touch ssh.socket.d** — A drop-in file created on June 11 crashed ssh.socket, taking ALL SSH down. VPS unrecoverable without Hetzner Console. Boss emphasized: "သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ".
-13. **Gateway DNS failures** — Docker containers need explicit DNS config (Hetzner + Cloudflare) and `host` networking for reliable DNS.
-14. **JS inline `<script>` blocks are fragile** — one syntax error kills ALL JavaScript in that block.
-15. **Dashboard file deployment** — Base64 chunked SSH transfer reliable for large files. Kill stale processes before restart.
-16. **`GROUP BY` collapses pipe-delimited data** — iterate all rows instead.
+14. **NEVER touch ssh.socket.d** — A drop-in file created on June 11 crashed ssh.socket, taking ALL SSH down. VPS unrecoverable without Hetzner Console. Boss emphasized: "သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ".
+15. **Gateway DNS failures** — Docker containers need explicit DNS config (Hetzner + Cloudflare) and `host` networking for reliable DNS.
+16. **JS inline `<script>` blocks are fragile** — one syntax error kills ALL JavaScript in that block.
+17. **Dashboard file deployment** — Base64 chunked SSH transfer reliable for large files. Kill stale processes before restart.
+18. **`GROUP BY` collapses pipe-delimited data** — iterate all rows instead.
+19. **DB stores ALL times in MMT (UTC+6:30)** — never assume UTC. `now_mmt()` is used throughout API. Timers, bookings, session times all MMT.
+20. **`position: sticky` breaks with parent `overflow: hidden`** — frozen columns need parent without overflow clipping. Semi-transparent backgrounds also break visual freeze effect.
 
 ### Business Logic
-17. **Same-console double booking** — Always check existing bookings at API level before allowing new ones.
-18. **PNL depreciation must filter by purchase_date** — New assets don't accrue depreciation until month after purchase. Per agreed convention.
-19. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
-20. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
+21. **Same-console double booking** — Always check existing bookings at API level before allowing new ones.
+22. **PNL depreciation must filter by purchase_date** — New assets don't accrue depreciation until month after purchase. Per agreed convention.
+23. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
+24. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
+25. **No Timer (duration=0) display** — Shows "∞ Open End" on Timeline. Conflict check uses 480 min (8hr) window. Never apply `duration or 60` pattern for display.
 
 ## Major Projects & Milestones
 
@@ -90,10 +95,21 @@
 - Full pipeline: Discord → API → Dashboard
 - Staff approve/reject with embed updates
 
+### Console Timer & Booking System Overhaul (June 22)
+- Console Timers page: live elapsed/remaining with 30s refresh, timer adjust dropdown
+- Timeline AM/PM format + frozen console column
+- No Timer support: "∞ Open End" display, 8hr conflict window
+- Re-book cancelled bookings with date/time/duration modal
+- Booking soft-delete (no physical deletions, 30-day cleanup)
+- Auto-cancel disabled; manual-only end policy
+- Customer Feedback dashboard page with stats, 14-day trend, full table
+
 ## ⚠️ Known Issues (Persistent)
 
 | Issue | Severity | Status |
 |-------|----------|--------|
+| Feedback: 76% walk-in sessions lack telegram_chat_id | Medium | Deferred (Boss: keep as-is) |
+| Feedback Dashboard page added (Jun 22) | — | Done |
 | n8n payment (€25.68) overdue | Medium | Pending boss action |
 | GitHub Deploy failing (psvibe-api-server) | Low | Pre-existing |
 | Food Note issue — Phase 2 pending | Low | Deferred |
