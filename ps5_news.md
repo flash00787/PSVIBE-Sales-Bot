@@ -1,6 +1,170 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-22 11:30 UTC
+> Last updated: 2026-06-22 23:30 UTC
+
+---
+
+## 🔴🔴 CRITICAL UPDATE (June 22, 2026 - 23:30 UTC) — JUNE 2 STATE OF PLAY: MASSIVE CONTENT MISSED!
+
+> **Summary:** The June 2, 2026 State of Play (60+ min, most-watched ever at 3M+ viewers) revealed at least **14 major PS5 titles** that were NEVER captured in this tracker! This is the single biggest content gap found. Marvel's Wolverine has a CONFIRMED September 15 release date with pre-orders LIVE. Multiple September-October dates that were missing are now locked in.
+
+### 🔴🔴 CRITICAL: State of Play June 2 — COMPLETELY MISSED Announcements!
+
+The PS Blog published the full recap on June 2 (blog.playstation.com/2026/06/02/state-of-play-june-2026-all-announcements-trailers/). Our tracker only mentioned it for "viewership record" — NONE of the actual game announcements were captured! Here's everything missed:
+
+### 🪓 God of War: Laufey — OFFICIALLY REVEALED! (2027)
+- Santa Monica Studio announced **God of War: Laufey** — starring **Faye (Kratos' wife)** as the protagonist!
+- Story: Faye awakens in the afterlife of gods ("The Everywhen") after her death, fights through gods from various mythologies to protect Kratos & Atreus
+- Deborah Ann Woll reprises Faye; companions Phranque (Jack Quaid) & Rue (Perlina Lau)
+- 20-minute gameplay shown: classic Greek-era combat elements + modern GoW combat, increased mobility, air-to-ground transitions
+- **PS5 exclusive. 2027 release.**
+- **💡💡 Lounge Impact:** This is the next flagship God of War — a PS5 system-seller. The Kratos-era God of War (2018) and Ragnarök were two of PS5's biggest games. Faye as protagonist is a bold new direction that will generate massive buzz.
+
+### 🐺 Marvel's Wolverine — September 15, 2026! PRE-ORDERS LIVE!
+- Insomniac Games showed **new gameplay deep dive**: brutal combat, motorcycle riding, interactions with Jean Grey, Mystique, Sabretooth
+- **Jean Grey teams up with Logan** for devastating takedowns against cybernetic Reavers
+- Single-player, linear action-adventure (different from Spider-Man's open-world formula)
+- **Release date: September 15, 2026** — PS5 exclusive — **PRE-ORDERS NOW OPEN!**
+- **💡💡💡 Lounge Action:** This is a CRITICAL MISS. Marvel's Wolverine is one of PlayStation's biggest 2026 exclusives and it launches in LESS THAN 3 MONTHS. Pre-order lounge copies NOW. This will be a massive draw — Insomniac + Marvel + Wolverine IP is box office gold.
+
+### 👻 Until Dawn 2 — NEW Standalone Sequel (2027)
+- New standalone sequel announced for PS5 — new cast, new setting
+- **💡 Lounge Note:** Until Dawn was a cult hit for horror fans and a perfect "pass the controller" couch game. The sequel will be a major horror draw.
+
+### 🏛️ Tomb Raider: Legacy of Atlantis — February 12, 2027
+- Release date CONFIRMED: **February 12, 2027** on PS5
+- **💡 Lounge Note:** Tomb Raider is a top-tier action-adventure IP. Date is now locked.
+
+### 👻 Silent Hill: Townfall — September 24, 2026!
+- New trailer at State of Play — **release date: September 24, 2026** on PS5
+- Digital Deluxe Edition pre-purchases get 48-hour early access (Sep 22)
+- **💡💡 Lounge Impact:** Silent Hill is the crown jewel of survival horror. Townfall launching September 24 alongside Control Resonant (same day!) makes September 24 a STACKED horror day. Pre-order for lounge!
+
+### 🔮 Control Resonant — September 24, 2026!
+- Remedy Entertainment — **global launch September 24, 2026** on PS5
+- Dylan Faden navigates paranatural Manhattan, revisiting Oldest House areas
+- **💡💡 Lounge Note:** Same day as Silent Hill: Townfall! September 24 is now a double-blockbuster day for horror/supernatural fans.
+
+### ⚔️ Onimusha: Way of the Sword — September 25, 2026
+- Capcom — **releasing September 25, 2026** — **DEMO AVAILABLE NOW on PS Store!**
+- Note: Some sources say date moved to Sep 4 to avoid GTA 6, but PS Blog confirms Sep 25
+- **💡💡 Lounge Action:** Iconic Capcom samurai series returns! Download the free demo on lounge PS5s NOW — let customers try it!
+
+### 🎬 Stuntman: Hollywood — Coming Soon
+- Revival of the classic Stuntman franchise announced for PS5
+- **💡 Lounge Note:** Nostalgia play — Stuntman was a PS2 cult classic. Perfect casual drop-in game.
+
+### 👻 Kemuri — 2027 (Unseen)
+- Stylish supernatural adventure from Unseen (Ikumi Nakamura's studio)
+- **💡 Lounge Note:** Nakamura (Ghostwire: Tokyo, Tango Gameworks) brings her unique visual style
+
+### 🦎 Rayman Legends Retold — October 1, 2026!
+- Full **3D remake** of Rayman Legends — different from Rayman Origins Enhanced Edition (also Oct 1!)
+- **💡💡 Lounge Note:** Oct 1 is now a DOUBLE Rayman day (Origins Enhanced + Legends Retold)! Family-friendly platforming gold.
+
+### 🥋 Marvel Tōkon: Fighting Souls — August 6, 2026!
+- New Marvel fighting game with anime-inspired visual style — heroes AND villains
+- **Release date: August 6, 2026** on PS5
+- **💡💡 Lounge Action:** Marvel IP + fighting game = PERFECT lounge title. Only ~6 weeks away! Add to August wishlist.
+
+### 🍣 Bancho The Chef — TBA
+- Prequel to Dave the Diver! 
+- **💡 Lounge Note:** Dave the Diver was a surprise indie hit. The prequel expands the universe.
+
+### 🏜️ Dune: Awakening — September 22, 2026!
+- Officially coming to PS5 with **new single-player mode** — September 22, 2026
+- **💡💡 Lounge Note:** Dune IP is white-hot after the films. Open-world survival MMO with single-player option = broad appeal.
+
+### 🦖 The Lost Wild — 2027
+- Confirmed for PS5 in 2027 — dinosaur survival horror
+- **💡 Lounge Note:** Dinosaurs + horror = always draws a crowd
+
+### 🏴‍☠️ Phantom Blade Zero — Updates Shown
+- New details revealed at State of Play — already in tracker (Oct 29)
+
+### 🎮 Additional State of Play Mentions:
+- Dynasty Warriors 3: Complete Edition Remastered (already in tracker for Oct 1)
+- Marathon updates (already tracked)
+- No Rest for the Wicked updates
+- PS Plus Classics additions: Gitaroo Man (Jun 16), Psi-Ops: The Mindgate Conspiracy, Onimusha: Dawn of Dreams
+
+---
+
+### 📋 June Game Releases — Minor Titles Missed from Tracker:
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 👻 **The 7th Guest Remake** | Jun 4 | ⭐⭐ — Classic puzzle-horror for retro fans |
+| ⚔️ **Gothic 1 Remake** | Jun 5 | ⭐⭐⭐ — Cult RPG classic, hardcore fanbase |
+| 🚂 **Denshattack!** | Jun 16 | ⭐ — Niche indie |
+| 🚗 **Drive Rally** | Jun 18 | ⭐⭐ — Arcade rally, casual racing fun |
+| 🔫 **Hell Let Loose: Vietnam** | Jun 18 | ⭐⭐⭐ — Tactical shooter, Vietnam setting |
+| 📖 **The Adventures of Elliot: Millennium Tales** | Jun 18 | ⭐⭐ — HD-2D RPG |
+| 🩸 **Flesh Made Fear** | Jun 25 | ⭐⭐⭐ — Survival horror, classic mechanics |
+
+### ⚠️ Date Correction Watch:
+- **Onimusha: Way of the Sword** — PS Blog says Sep 25 but some reports say moved to **Sep 4** to avoid GTA 6 proximity. Monitor for official confirmation.
+
+### 📊 September 2026 NOW LOOKS LIKE THIS (HUGE!):
+| Date | Game | Lounge Value |
+|------|------|-------------|
+| **Sep 4 or 25** ⚔️ | Onimusha: Way of the Sword | ⭐⭐⭐⭐ — Capcom samurai revival! |
+| **Sep 8** 🃏 | Culdcept The First Saturn Tribute | ⭐⭐ |
+| **Sep 10** 🧩 | Screenbound | ⭐⭐ |
+| **Sep 15** 🔥🔥 | **Marvel's Wolverine** 🆕 | ⭐⭐⭐⭐⭐ — PS5 EXCLUSIVE! PRE-ORDERS LIVE! |
+| **Sep 15** 🐉 | Runescape: Dragonwilds (PS Plus Day 1) | ⭐⭐⭐ |
+| **Sep 17** 🧩 | Trine 6: Together in Time | ⭐⭐⭐⭐ |
+| **Sep 17** 🧸 | Moomintroll: Winter's Warmth | ⭐⭐⭐ |
+| **Sep 17** ⚔️ | Trails in the Sky 2nd Chapter | ⭐⭐⭐⭐ |
+| **Sep 22** 🏜️ | **Dune: Awakening** 🆕 | ⭐⭐⭐⭐ — New single-player mode! |
+| **Sep 24** 👻 | **Silent Hill: Townfall** 🆕 | ⭐⭐⭐⭐⭐ — HORROR CROWN JEWEL! |
+| **Sep 24** 🔮 | **Control Resonant** 🆕 | ⭐⭐⭐⭐⭐ — Remedy on PS5! |
+| **Sep 24** 🏎️ | Hot Wheels Infinite Rush | ⭐⭐⭐ |
+| **Sep 24** 💀 | Valor Mortis | ⭐⭐⭐ |
+| **Sep 24** 🌾 | Harvest Moon: Echoes of Teradea | ⭐⭐⭐ |
+| **Sep 24** 🐱 | Garfield: Escape from Monday | ⭐⭐ |
+| **Sep 25** 👊 | Fallen City Brawl | ⭐⭐⭐ |
+| **Sep 29** ⛏️ | Minecraft Dungeons II | ⭐⭐⭐⭐ |
+| **Sep 29** ⚔️ | Gothic 2 Complete Classic | ⭐⭐⭐ |
+
+> **September has 6+ MAJOR titles in ONE month:** Marvel's Wolverine (Sep 15), Silent Hill: Townfall + Control Resonant (Sep 24), Onimusha (Sep 25), Dune: Awakening (Sep 22), Minecraft Dungeons II (Sep 29). This is going to be an EXPENSIVE month for the lounge library!
+
+### 💡 Priority Lounge Actions:
+1. **PRE-ORDER Marvel's Wolverine for ALL lounge consoles** — September 15! Pre-orders are LIVE NOW on PS Store!
+2. **PRE-ORDER Silent Hill: Townfall** — September 24! Survival horror king returns!
+3. **Download Onimusha: Way of the Sword DEMO** on all lounge PS5s — let customers try it NOW!
+4. **Add God of War: Laufey to 2027 hype board** — the next flagship PlayStation exclusive
+5. **September budget planning** — 6+ major games in one month = significant lounge library investment needed
+6. **Rayman Legends Retold + Origins Enhanced BOTH on Oct 1** — double Rayman family fun!
+
+### ⏰ Today's Deadlines & Countdown (UNCHANGED from 11:30 UTC update):
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| **TODAY (Jun 22)** 🏰 | Medieval Quest releases | Minor indie — no action needed |
+| **TOMORROW (Jun 23)** 🛒 | Amazon Prime Day BEGINS | Prepare wishlist! Controllers, SSDs, games! |
+| **TOMORROW (Jun 23)** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 🔥 | GTA 6 PRE-ORDERS GO LIVE! | Pre-order for lounge consoles! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 chars + free-to-play version! |
+| **Jun 25** 🔫 | Abyssus | New multiplayer FPS |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | 6 days away! Promote NOW! |
+| **Jul 1** 📅 | PS Plus Essential July reveal | New free games! |
+| **Jul 1** 🛒 | ALL PS Store sales END | Final day for Mid-Year + supplementary sale! |
+
+### 📊 Quick Status Check:
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴🔴 State of Play June 2 | **MASSIVE GAP FILLED** | 14+ major PS5 title reveals were missing from tracker! |
+| 🐺 Marvel's Wolverine | Sep 15, 2026! | PS5 exclusive! PRE-ORDERS LIVE! CRITICAL MISS! |
+| 🪓 God of War: Laufey | OFFICIALLY REVEALED | Faye as protagonist! 2027 PS5 exclusive! |
+| 👻 Silent Hill: Townfall | Sep 24, 2026 | Same day as Control Resonant! |
+| 🔮 Control Resonant | Sep 24, 2026 | Remedy on PS5! |
+| 🥋 Marvel Tōkon | Aug 6, 2026 | Marvel fighting game! |
+| ⚔️ Onimusha WotS | Sep 25, 2026 | Demo available NOW! |
+| 🏜️ Dune: Awakening | Sep 22, 2026 | Single-player mode confirmed! |
+| 🛒 Amazon Prime Day | Jun 23-26 | STARTS TOMORROW! |
+| 🔥 GTA 6 Pre-Orders | June 25 | Go live in 3 days! |
+| 🆓 FREE Online Multiplayer Weekend | Jun 28-29 | 6 days away! |
 
 ---
 
