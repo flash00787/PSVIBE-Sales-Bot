@@ -1,6 +1,59 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-21 17:31 UTC
+> Last updated: 2026-06-22 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 22, 2026 - 11:30 UTC) — GTA 6 Pre-Orders June 25 + Abyssus + Countdown Check
+
+> **Summary:** Quiet Sunday morning. Only 18 hours since last update. Two minor new finds: GTA 6 pre-orders confirmed for June 25 and new shooter Abyssus releasing same day. All tracker data verified current. Amazon Prime Day starts TOMORROW (June 23)!
+
+### 🔥 GTA 6 — Pre-Orders Go Live June 25, 2026!
+- Rockstar Games confirmed that **Grand Theft Auto VI pre-orders** will go live on **June 25, 2026** on PS Store and Xbox Store
+- Release date remains locked: **November 19, 2026**
+- This is the final countdown milestone — pre-orders opening signals launch is on track with no further delays
+- **💡💡 Lounge Action:** Pre-order GTA 6 for lounge consoles on June 25! This is THE biggest game of the decade. Consider a "GTA 6 Countdown" display/poster in the lounge to build excitement. Pre-order customers may get early beta access or exclusive bonuses — check PS Store on June 25.
+
+### 🔫 Abyssus — June 25 (New Find! Not in Tracker!)
+- Fast-paced multiplayer FPS with a unique brinepunk/underwater aesthetic
+- Developer: DoubleMoose Games
+- **June 25, 2026** release on PS5
+- **💡 Lounge Note:** Multiplayer shooter with a distinctive visual style. Worth checking if it has split-screen/local multiplayer for lounge appeal. Unlikely to be a major draw but adds variety.
+
+### ⏰ CRITICAL: Amazon Prime Day Starts TOMORROW (June 23)!
+- **June 23-26** — 4-day sales event
+- Early deals already live on PS5 games, controllers, and accessories
+- **💡 Lounge Action:** Prepare your wishlist TODAY if you haven't already! Controllers, SSDs, PS5 games, and gaming headsets will be at some of their lowest prices of the year. Other retailers (Walmart, Target, Best Buy) will run competing sales.
+
+### 📊 Today's Deadlines & Countdown Check:
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| **TODAY (Jun 22)** 🏰 | Medieval Quest releases | Minor indie — no action needed |
+| **TOMORROW (Jun 23)** 🛒 | Amazon Prime Day BEGINS | Prepare wishlist! Controllers, SSDs, games! |
+| **TOMORROW (Jun 23)** 🧊⚔️ | Frostpunk 2 DLC + Darktide Skitarii DLC | Two DLCs drop! |
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 🔥 | GTA 6 PRE-ORDERS GO LIVE! | Pre-order for lounge consoles! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 chars + free-to-play version! |
+| **Jun 25** 🔫 | Abyssus | New multiplayer FPS |
+| **Jun 25** 📅 | PS Plus Essential July reveal? | Watch — date may be July 1 instead! |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | 6 days away! Promote NOW! |
+| **Jul 1** 📅 | PS Plus Essential July reveal (confirmed date) | New free games! |
+| **Jul 1** 🛒 | ALL PS Store sales END | Final day for Mid-Year + supplementary sale! |
+
+### 📊 Quick Status Check (All Verified Current):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 Halo PS Plus Co-op | CORRECTED | Player 2 does NOT need PS Plus |
+| 🎮 Sony Exclusivity Strategy | CONFIRMED | Single-player games PS5 exclusive at launch |
+| 🛒 Mid-Year Deals | Until Jul 1 | PLUS supplementary sale with 200+ ATL prices |
+| 🛒 Amazon Prime Day | Jun 23-26 | STARTS TOMORROW! |
+| 🔥 GTA 6 Pre-Orders | June 25 | NEW! Go live in 3 days! |
+| 📅 PS Plus Essential July Reveal | July 1 | Confirmed shift from June 25 |
+| 🆓 FREE Online Multiplayer Weekend | Jun 28-29 | 6 days away! |
+| 🏝️ Fortnite C7S3 "Runners" | LIVE since Jun 6 | Update lounge consoles! |
+| 🔫 EMPULSE Early Access | Jun 24 | $19.99 FPS |
+| 🥊 Dead or Alive 6: Last Round | Jun 25 | 29 chars + free-to-play version |
 
 ---
 
