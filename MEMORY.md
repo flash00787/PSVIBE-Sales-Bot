@@ -116,6 +116,9 @@
 | VPS reboot caused DNS issues June 20 | Low | Mitigated |
 | `_remind_loop` timer never fires | Low | Known, not critical |
 | 100+ games claim vs 41 in DB | Low | Needs verification |
+| food-cart/release silent fail (stock_out) | — | ✅ Fixed Jun 23 |
+| Move API start_time reset | — | ✅ Fixed Jun 23 |
+| booking_id path game_amt=0 | — | ✅ Fixed Jun 23 |
 
 ## Working Preferences
 
@@ -125,3 +128,38 @@
 - **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code fix
 - **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md
 - **Sub-agent timeout:** 300s default
+
+## 🆕 June 23, 2026 — Major Bug Fixes & Features
+
+### Critical Bug Fixes
+1. **start-session checked_in gap:** Query only checked `status='confirmed'`, missing `checked_in` bookings. Fixed to `status IN ('confirmed','checked_in')` at 5 locations. Always audit status filter lists for completeness.
+2. **Auto-Checkin overlap false positive:** Auto-checkin booking caught itself as conflict. Fix: skip self-check via `if bk:`/`else:` conditional.
+3. **Feedback routed to admin group:** `chat_id.startsWith('-')` check added in `console.py` — skip notifications when target is a group, not individual user.
+4. **No Timer (duration=0) comprehensive fix:**
+   - Timeline bar: extended to NOW instead of 5% fixed width
+   - Utilization: counts up to NOW for live stats
+   - Timezone: removed `+ 6.5 * 3600000` — browser provides MMT natively
+   - Conflict check: `_dur_end = 360 if duration_mins == 0 else duration_mins` at 5 locations
+5. **Session Reminder System — 3-type complete fix:**
+   - Type 1 (API timer gap): `schedule_session_timer` now called from 5 start-session paths; `_bot_has_persistent_reminder()` reads `session_reminders.json`
+   - Type 2 (Telegram format): `parse_mode: "Markdown"` with HTML `<b>` tags → HTTP 400. Changed to `parse_mode: "HTML"` consistently.
+   - Type 3 (event loop): `resume_active_timers()` at module load time had no event loop → moved to FastAPI `lifespan` handler.
+6. **console_mgmt.py import failure:** Module-level `__getattr__` lazy loader failed at runtime. Added explicit `import asyncio` + `from bot import fetch_console_status`.
+7. **Receipt template overhaul (v1→v3):** Thermal 80mm format, base64 logo (no static file mount), AYA Pay fix, Topup field fixes, WALLET BALANCE section.
+
+### New Features
+8. **Active Session Move API:** `POST /api/sessions/move` — transaction-safe console swap with FOR UPDATE row locking, timer reschedule, conflict check.
+9. **End Session Confirm Step:** Inline keyboard confirm dialog prevents accidental session endings.
+
+### New Critical Lessons
+- **`parse_mode` must match tag type** — "Markdown" + `<b>` = HTTP 400 Bad Request. Match format to content.
+- **Module-level lazy `__getattr__` is fragile** — explicit imports are more reliable at runtime.
+- **Destructive actions need confirm steps** — End Session, Cancel, Delete all benefit from inline confirm dialogs.
+- **Event loop timing matters** — code running at module import time has no event loop. Use `lifespan` handler for async startup tasks.
+- **No Timer (0 min) special-casing** — never use `duration or 60` / fallback pattern for display or logic. Use explicit `if duration_mins == 0` check everywhere: display, conflict check, utilization.
+- **Status filter completeness** — when querying bookings by status, always verify ALL possible valid states are included. Missing `checked_in` = sessions silently invisible.
+- **Base64-embedded assets** — avoid static file mounts for single-file deployments. Embed logos/images as base64 in HTML templates.
+- **`from module import *` does NOT export underscore-prefixed names** — `_mc`, `_MYSQL_CFG` etc. are hidden. Must use explicit `from app import _mc` or local import inside function. Silent NameError → try/except returns 200 OK → stock_out never happens. This is a **double-fail silent bug pattern.**
+- **API 200 OK on error is misleading** — always check error response body, not just HTTP status. `error_response()` should use non-200 status codes.
+- **Move API must preserve start_time** — use `_bk["start_time"]`, not `_now`. Resetting start_time breaks session duration calculation.
+- **booking_id paths must still calculate game_amt** — `if booking_id: game_amt = 0` is wrong. Booking customers still need game_amt from play time.

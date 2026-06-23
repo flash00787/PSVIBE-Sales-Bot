@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 14:48 ===
-Before: 148K
-  >2d session: 1 files deleted
+=== Bulk Session Cleanup 17:45 ===
+Before: 76K
 After: 76K
-=== RESULT: OK ===
+=== RESULT: OK ||| No sessions needed cleanup (76K steady) ===
