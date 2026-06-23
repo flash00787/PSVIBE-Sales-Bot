@@ -1,10 +1,60 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-23 05:30 UTC
+> Last updated: 2026-06-23 11:30 UTC
 
 ---
 
-## ⚡ STATUS CHECK (June 23, 2026 - 05:30 UTC) — Prime Day Is LIVE + All Clear
+## ⚡ UPDATE (June 23, 2026 - 11:30 UTC) — Prime Day Deals Specifics + New Co-op Game + GTA 6 Price Confirmed
+
+> **Summary:** Six hours since last update. Prime Day is in full swing with concrete PS5 game prices now available. One new indie co-op game announced today. GTA 6 pre-order pricing emerges. No critical new announcements.
+
+### 🛒 Prime Day 2026 — CONFIRMED PS5 Game Deals (June 23-26)
+Prime Day is LIVE and specific pricing is now available. Here are the best lounge-relevant deals spotted:
+
+| Game | Prime Day Price | Normal Price | Lounge Value |
+|------|----------------|-------------|-------------|
+| **Marvel's Spider-Man 2** | **$29.99** | $59.99 | ⭐⭐⭐⭐⭐ — 50% off! Essential lounge title! |
+| **God of War Ragnarök** | **$32.43** | $69.99 | ⭐⭐⭐⭐⭐ — 54% off! Must-have! |
+| **Astro Bot** | **$39.00** | $59.99 | ⭐⭐⭐⭐ — 35% off! Family-friendly GOTY winner! |
+| **Gran Turismo 7** | **$38.99** | $69.99 | ⭐⭐⭐⭐ — 44% off! Lounge racing staple! |
+| **NBA 2K26** | **$19.91** | $69.99 | ⭐⭐⭐ — **71% off! ALL-TIME LOW!** |
+| **EA Sports FC 26** | **$29.83** | $69.99 | ⭐⭐⭐⭐ — 57% off! Sports crowd magnet! |
+| **Sonic Racing: CrossWorlds** | **$39.99** | $69.99 | ⭐⭐⭐ — 43% off! Family arcade racer! |
+| **The Last of Us Part I** | **$34.38** | $69.99 | ⭐⭐⭐⭐ — 51% off! |
+| **Red Dead Redemption** | **$24.99** | $29.99 | ⭐⭐⭐ — 17% off |
+| **Sonic Superstars** | **$19.99** | $29.99 | ⭐⭐⭐ — 33% off |
+
+**Hardware:** PS5 Standard Edition 1TB console **16% off** (back to pre-price-increase level). Used PS5 Pro consoles ~$695 on Amazon Resale.
+
+**💡 Lounge Action: Spider-Man 2 + God of War Ragnarök under $33 each are the standout deals for any lounge library. NBA 2K26 at $19.91 (all-time low) is an absolute steal for sports fans. These deals end June 26 — 3 days to shop!**
+
+### 🎮 "7 Trials" — NEW 4-Player Co-op Roguelite Announced TODAY!
+- Stylish roguelite action game announced **June 23, 2026** for **PS5**, Xbox Series, and PC
+- **Cooperative support for up to 4 players** — key lounge feature!
+- Developer/publisher TBD; release date TBA
+- **💡 Lounge Note:** Any co-op roguelite with 4-player support is automatically lounge material. Track this one — if it reviews well, it could be a great addition to the lounge's co-op lineup.
+
+### 🔥 GTA 6 Pre-Orders — $79.99 Expected Price + New Details
+- Pre-orders go live in **2 DAYS (June 25)** — $79.99 standard edition expected across PS5 and Xbox Series X|S
+- Rockstar has revealed the official **GTA 6 cover art + a new screenshot + main theme song** in the lead-up to pre-orders
+- Release date: **November 19, 2026** (unchanged)
+- **💡 Lounge Action:** 2 days until pre-orders! Have budget ready for lounge copies. At $79.99 standard, consider how many copies the lounge needs. This will be THE biggest game launch of the decade.
+
+### 📺 VR Games Showcase + PAYDAY: Aces High Direct — TODAY (June 23)
+- VR Games Showcase and a dedicated PAYDAY: Aces High Direct are both airing today
+- **💡 Lounge Note:** Minor interest — only relevant if PS VIBE has PSVR2 stations
+
+### 🎂 Sonic the Hedgehog 35th Birthday Live Stream — TODAY
+- Sega celebrating Sonic's 35th anniversary with a live stream today
+- Possible new game teasers or announcements
+
+### 💻 PS6 Leak — Targeting 2027 Release (RUMOR)
+- Unverified leaks suggest PlayStation 6 is still targeting a **2027 release window**
+- Some analysts speculate potential delay to 2028-2029 due to rising component costs
+- Sony has made NO official PS6 announcements
+- **💡 Lounge Note:** ⚠️ PURE RUMOR — do NOT promote or act on this. PS5 still has years of life ahead with GTA 6, Wolverine, GoW Laufey, and dozens of exclusives in the pipeline.
+
+### 📊 STATUS CHECK (June 23, 2026 - 05:30 UTC) — Prime Day Is LIVE + All Clear
 
 > **Summary:** No new gaming announcements in the last 6 hours. Amazon Prime Day has officially BEGUN. All tracker data verified current. DLC day: Frostpunk 2: Breach of Trust + Darktide Skitarii Class both drop TODAY.
 
