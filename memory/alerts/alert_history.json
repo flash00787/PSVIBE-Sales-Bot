@@ -2,6 +2,86 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-10 last updated 5.5h ago",
+    "consoleId": "C-10",
+    "timestamp": "2026-06-23T20:10:05.749Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-09 last updated 5.5h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-06-23T20:10:05.747Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 3.5h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-23T20:10:05.745Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 5.1h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-23T20:10:05.742Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 3.7h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-23T20:10:05.740Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 3.5h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-23T20:10:05.738Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 3.5h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-23T20:10:05.735Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 7.2h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-23T20:10:05.731Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 4.7h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-23T20:10:05.729Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 3.7h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-23T20:10:05.727Z"
+  },
+  {
+    "type": "balance_drop",
+    "severity": "critical",
+    "message": "🚨 Balance drop for Wai Lin Htike: 420m → 234m (44.3% drop, -186m)",
+    "memberId": "PSV_A_006",
+    "memberName": "Wai Lin Htike",
+    "dropPercent": 44.285714285714285,
+    "dropAbsolute": 186,
+    "timestamp": "2026-06-23T20:10:05.724Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 4.0h ago",
     "consoleId": "C-10",
     "timestamp": "2026-06-22T20:10:08.329Z"
