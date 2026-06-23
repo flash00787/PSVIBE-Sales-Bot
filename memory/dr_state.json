@@ -111,7 +111,15 @@
       "total": 6,
       "size": 6970870,
       "path": "/root/.openclaw/workspace/backups/2026-06-21"
+    },
+    {
+      "timestamp": "2026-06-23T19-30-48-822Z",
+      "date": "2026-06-23",
+      "items": 6,
+      "total": 6,
+      "size": 7155373,
+      "path": "/root/.openclaw/workspace/backups/2026-06-23"
     }
   ],
-  "lastCheck": "2026-06-21T19-30-23-300Z"
+  "lastCheck": "2026-06-23T19-30-48-822Z"
 }
