@@ -387,6 +387,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return CONFIRM_SUMMARY
 
     mins      = d["mins"]
+    logger.info("confirm_summary: mins=%s is_guest=%s booking_id=%s game_amt_in_context=%s", mins, d.get("m_id") == "0 (Guest)", d.get("booking_id","none"), d.get("game_amt",0))
     base_rate = await fetch_base_rate_async()
     d["base_rate"] = base_rate
     is_guest  = d["m_id"].strip() == "0 (Guest)"
@@ -1542,10 +1543,13 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 logging.warning("Sales API failed: %s", e)
 
+            logging.info("_sale_bg: food_sold=%d items, food_costs keys=%s", len(food_sold), list(food_costs.keys())[:5])
             for item in food_sold:
                 cp = food_costs.get(item["name"], 0)
+                logging.info("_sale_bg: item=%s qty=%s from_cart=%s", item.get("name","?"), item.get("qty",0), item.get("from_cart", False))
                 # Skip stock_out for items already held via Food Cart
                 if item.get("from_cart"):
+                    logging.info("_sale_bg: SKIP stock_out for from_cart item=%s", item.get("name","?"))
                     continue
                 # ── Stock-out: API first ──
                 _stockout_api_ok = False
@@ -1707,6 +1711,7 @@ async def launch_session_sale(
     booking_id: if set, link this sale to the customer booking for tracking.
     """
     is_guest = member_id in ("Guest", "0 (Guest)", "")
+    logger.info("launch_session_sale: cid=%s member=%s is_guest=%s total_mins=%s booking_id=%s", cid, member_id[:20] if member_id else "empty", is_guest, total_mins, booking_id or "none")
 
     base_rate  = await fetch_base_rate_async()
     # For combined cids (e.g. "C-09+C-10") multiplier lookup returns 1.0 — that's fine
@@ -1783,9 +1788,13 @@ async def launch_session_sale(
             return await prompt_adjust_time(update, context)
         return await prompt_food_menu(update, context)
 
-    # Booking customer - skip wallet check
+    # Booking customer — still calculate game_amt from play time
+    # (booking_id is tracking only; game charge is based on actual play time)
     if booking_id:
-        context.user_data["game_amt"] = 0
+        logger.info("launch_session_sale: booking_id path — total_mins=%s rate=%s mult=%s → game_amt=%s", total_mins, base_rate, multiplier, round((total_mins * base_rate * multiplier) / 60))
+        game_amt = round((total_mins * base_rate * multiplier) / 60)
+        context.user_data["wallet_mins"] = None
+        context.user_data["game_amt"] = game_amt
         if (context.user_data.get("from_session")
                 and context.user_data.get("c_id")
                 and context.user_data.get("mins", 0) > 0):

@@ -1,5 +1,13 @@
 import asyncio
-from bot import fetch_console_status
+from bot import (
+    fetch_console_status,
+    get_consoles_from_setting, add_console_to_setting, remove_console_from_setting,
+    BTN_BACK, BTN_CANCEL, BTN_ADD_CONSOLE, BTN_LIST_CONSOLE, BTN_DEL_CONSOLE,
+    BTN_EDIT_MULT, BTN_MOVE_CONSOLE,
+    CON_MGMT_MENU, CON_ADD_ID, CON_ADD_MULT, CON_ADD_TYPE,
+    CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE,
+    MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM,
+)
 """PS VIBE Bot — Handler module.
 """
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -31,6 +39,7 @@ async def show_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
     kb    = [
         [BTN_LIST_CONSOLE, BTN_ADD_CONSOLE],
         [BTN_EDIT_MULT,    BTN_DEL_CONSOLE],
+        [BTN_MOVE_CONSOLE],
         [BTN_BACK],
     ]
     await update.message.reply_text(
@@ -95,6 +104,8 @@ async def step_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
             reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
         )
         return CON_EDIT_MULT_SELECT
+    if choice == BTN_MOVE_CONSOLE:
+        return await prompt_move_session(update, context)
     return await show_con_mgmt_menu(update, context)
 
 async def step_con_add_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -348,6 +359,7 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # Execute move via API
     try:
+        from bot.api_client import api_post
         result = await asyncio.to_thread(
             api_post, "sessions/move",
             {"booking_id": int(src_bk), "to_console_id": text}

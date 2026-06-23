@@ -4,7 +4,7 @@
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, BTN_CHANGE_GAME,
     BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
-    BTN_FOOD_NOTE, BTN_SSD_MANAGE, BTN_STATUS_BOARD, BTN_YES_END, BTN_NO_BACK, CONSOLE_MENU, END_SESSION_SELECT, END_SESSION_CONFIRM,
+    BTN_FOOD_NOTE, BTN_SSD_MANAGE, BTN_STATUS_BOARD, BTN_YES_END, BTN_NO_BACK, BTN_CON_MANAGE, BTN_MOVE_CONSOLE, CONSOLE_MENU, END_SESSION_SELECT, END_SESSION_CONFIRM,
     _delete_session_game,
     _psvibe_get, _psvibe_get_async, add_console_game, _psvibe_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
@@ -261,9 +261,10 @@ async def show_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Console Management submenu — accessible from Main Menu and Admin Panel."""
     kb = [
         [BTN_START_SESSION,  BTN_END_SESSION],
-        [BTN_FOOD_NOTE,      BTN_STATUS_BOARD],
-        [BTN_CONSOLE_INSTALL, BTN_SSD_MANAGE],
-        [BTN_GAME_LIB_MENU,  BTN_BACK_MAIN],
+        [BTN_MOVE_CONSOLE,   BTN_STATUS_BOARD],
+        [BTN_FOOD_NOTE,      BTN_CONSOLE_INSTALL],
+        [BTN_SSD_MANAGE,     BTN_GAME_LIB_MENU],
+        [BTN_BACK_MAIN],
     ]
     await update.message.reply_text(
         "🕹️ *Console Management*\n"
@@ -295,6 +296,9 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if choice == BTN_SSD_MANAGE:
         from bot.handlers.ssd_disc import show_ssd_menu
         return await show_ssd_menu(update, context)
+    if choice == BTN_MOVE_CONSOLE:
+        from bot.handlers.console_mgmt import prompt_move_session
+        return await prompt_move_session(update, context)
     if choice == BTN_FOOD_NOTE:
         # Show active console list for food note
         try:
