@@ -65,6 +65,8 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     """
     try:
         consoles = fetch_console_status()
+        if not consoles:
+            return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
     except Exception as e:
         logging.warning("Failed to fetch console status (staff booking): %s", e)
         return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
@@ -321,13 +323,15 @@ async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_admin_menu(update, context)
 
     cid, ctype = _sbk_parse_console_label(text)
-    # validate against known consoles
-    try:
-        all_c = fetch_console_status()
-        valid = {c["id"] for c in all_c}
-    except Exception as e:
-        logging.warning("Failed to validate console IDs (staff booking): %s", e)
-        valid = VALID_CONSOLES
+    # Use cached valid set from _sbk_console_kb (avoids extra API call) + VALID_CONSOLES
+    valid = context.user_data.get("_sbk_valid_consoles", set()) | VALID_CONSOLES
+    if not valid:
+        # Cold path: no cached data yet, fetch live
+        try:
+            all_c = fetch_console_status()
+            valid = {c["id"] for c in all_c} if all_c else VALID_CONSOLES
+        except Exception:
+            valid = VALID_CONSOLES
     if cid not in valid:
         await update.message.reply_text("⚠️ Keyboard မှ Console ရွေးပေးပါ")
         return await cmd_staff_booking(update, context)
@@ -363,6 +367,12 @@ async def step_sbk_cust_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
             return prev
         # Fallback: go back to console selection
         rows = await _sbk_console_kb()
+        # Cache valid console IDs for step_sbk_console validation
+        try:
+            all_c = fetch_console_status()
+            context.user_data["_sbk_valid_consoles"] = {c["id"] for c in all_c if c.get("id")}
+        except Exception:
+            context.user_data["_sbk_valid_consoles"] = set(VALID_CONSOLES)
         await update.message.reply_text(
             "🕹️ Console ပြန်ရွေးပါ:",
             reply_markup=ReplyKeyboardMarkup(rows, resize_keyboard=True),
@@ -574,6 +584,12 @@ async def step_sbk_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if len(parts) == 3:
             api_date = f"{parts[2]}-{parts[0].zfill(2)}-{parts[1].zfill(2)}"
     rows = await _sbk_console_kb(date_str=api_date, time_slot=time_clean)
+    # Cache valid console IDs for step_sbk_console validation (avoids extra API call)
+    try:
+        all_c = fetch_console_status()
+        context.user_data["_sbk_valid_consoles"] = {c["id"] for c in all_c if c.get("id")}
+    except Exception:
+        context.user_data["_sbk_valid_consoles"] = set(VALID_CONSOLES)
     if rows and len(rows) > 1:
         await update.message.reply_text(
             "✅ Available Consoles:\n\nConsole ID ရွေးပါ:",
@@ -1010,17 +1026,21 @@ async def prompt_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE
         )
         return CONSOLE_MENU
     # ── Step 0: Show console selection FIRST ────────────────────────────
-    return await _show_console_select(update, context, free)
+    return await _show_console_select(update, context, free, consoles)
 
-async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None):
+async def _show_console_select(update: Update, context: ContextTypes.DEFAULT_TYPE, free_consoles=None, all_consoles=None):
     """Show the console selection keyboard."""
     if free_consoles is None:
         try:
             consoles = await fetch_console_status_async()
             free_consoles = [c for c in consoles if c["status"] in ("Free", "Reserved")]
+            all_consoles = consoles
         except Exception as e:
             await update.message.reply_text(f"❌ Error: {e}")
             return CONSOLE_MENU
+    # Cache ALL valid console IDs for step_book_console validation (avoids extra API call)
+    if all_consoles:
+        context.user_data["_bk_valid_consoles"] = {c["id"] for c in all_consoles if c.get("id")}
     kb = [[c["id"] + (f" ({c['type']})" if c.get("type") else "")] for c in free_consoles]
     kb += [[BTN_BACK, BTN_CANCEL]]
     await update.message.reply_text(
@@ -1042,7 +1062,8 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Extract console ID (text may include " (PS5)" suffix)
     cid = text.split("(")[0].strip()
-    valid = {c["id"] for c in fetch_console_status()} or VALID_CONSOLES
+    # Use cached valid set from prompt_book_console (no extra API call) + VALID_CONSOLES
+    valid = context.user_data.get("_bk_valid_consoles", set()) | VALID_CONSOLES
     if cid not in valid:
         await update.message.reply_text("⚠️ Keyboard မှ Console ရွေးပေးပါ")
         return await prompt_book_console(update, context)

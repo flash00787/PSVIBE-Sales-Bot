@@ -147,6 +147,17 @@ async def _remind_loop(
     _end_dt_iso = _end_dt.isoformat()
     persist_reminder(cid, chat_id, member_id, planned_mins, end_t, _end_dt_iso, message_thread_id,
                       total_plan_mins=_SESSION_TOTAL_MINS.get(key, planned_mins))
+    # Mark DB that bot is handling reminders for this session (prevents API timer duplication)
+    try:
+        from bot import _psvibe_post_async
+        # Set telegram_chat_id on the active booking so API timer skips
+        _result = await _psvibe_post_async("bookings/mark-bot-reminder", {
+            "console_id": cid, "telegram_chat_id": str(chat_id)
+        })
+        if _result is None:
+            logger.debug("_remind_loop: mark-bot-reminder returned None for %s", cid)
+    except Exception as _mark_err:
+        logger.debug("_remind_loop: mark-bot-reminder failed for %s: %s", cid, _mark_err)
     # Guard: if this console is No Timer, don't run reminders
     if cid in _NO_TIMER_CONSOLES:
         logger.info("_remind_loop: %s is No Timer — exiting immediately", cid)

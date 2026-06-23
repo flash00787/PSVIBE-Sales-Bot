@@ -136,6 +136,8 @@ async def prompt_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logging.warning("Failed to fetch console status for booking keyboard: %s", e)
         _cons = sorted(VALID_CONSOLES)
+    # Cache valid console set for step_console validation (avoids extra API call)
+    context.user_data["_valid_consoles"] = set(_cons)
     kb  = [_cons[i:i+3] for i in range(0, len(_cons), 3)]
     kb += [NAV_ROW]
     await update.message.reply_text(
@@ -598,7 +600,9 @@ async def step_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Normalize: remove spaces so "C - 09" matches "C-09"
     normalized = text.replace(" ", "")
-    if normalized not in VALID_CONSOLES:
+    # Use cached valid set from prompt_console (no extra API call) + VALID_CONSOLES fallback
+    valid = context.user_data.get("_valid_consoles", set()) | VALID_CONSOLES
+    if normalized not in valid:
         await update.message.reply_text("⚠️ ကျေးဇူးပြု၍ keyboard မှ Console ID ရွေးပါ -")
         return await prompt_console(update, context)
 

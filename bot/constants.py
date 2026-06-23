@@ -200,3 +200,5 @@ RANK_EMOJI = {"Warrior": "⚔️", "Master": "🏅", "Immortal": "💎"}
 
 # ── OPEX Categories ──────────────────────────────────────────────────────
 OPEX_CATEGORIES = ["Electricity", "Water", "Rent", "Staff Salary", "Internet", "Snacks/Drinks", "Maintenance", "Marketing", "Others"]
+
+BTN_MOVE_CONSOLE = "🔄 Move Console"

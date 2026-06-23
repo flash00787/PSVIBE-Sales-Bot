@@ -4,7 +4,7 @@
 from bot import (
     BTN_BACK, BTN_BACK_MAIN, BTN_CANCEL, BTN_CHANGE_GAME,
     BTN_CONSOLE_INSTALL, BTN_END_SESSION, BTN_GAME_LIB_MENU, BTN_START_SESSION,
-    BTN_FOOD_NOTE, BTN_SSD_MANAGE, BTN_STATUS_BOARD, CONSOLE_MENU, END_SESSION_SELECT,
+    BTN_FOOD_NOTE, BTN_SSD_MANAGE, BTN_STATUS_BOARD, BTN_YES_END, BTN_NO_BACK, CONSOLE_MENU, END_SESSION_SELECT, END_SESSION_CONFIRM,
     _delete_session_game,
     _psvibe_get, _psvibe_get_async, add_console_game, _psvibe_post_async,
     calc_duration, cmd_cancel, end_booking, end_booking_async, fetch_console_games,
@@ -371,7 +371,7 @@ async def prompt_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE)
     return END_SESSION_SELECT
 
 async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """User picked a console to end — find its booking and end it."""
+    """User picked a console to end — show confirmation first."""
     _t0 = time.monotonic()
     text = update.message.text.strip()
     if text in (BTN_BACK, BTN_BACK_MAIN):
@@ -394,21 +394,63 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return await prompt_end_session(update, context)
 
+    # Store in context for confirm step
+    context.user_data["_end_target"] = target
+    context.user_data["_end_cid"] = cid
+    
+    mbr_name = target.get("member") or "Guest"
+    start_t = target.get("start", "?")
+    _, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
+    
+    await update.message.reply_text(
+        "⏹️ <b>သေချာပါသလား?</b>\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"🕹️ Console: <b>{cid}</b>\n"
+        f"👤 Member: <b>{mbr_name}</b>\n"
+        f"🕐 Started: {start_t}\n"
+        f"⏱ Elapsed: {dur_fmt}\n"
+        "\n<i>Session end လုပ်ရင် Sales Voucher ဖွင့်ပါမယ်</i>",
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup([[BTN_YES_END, BTN_NO_BACK]], one_time_keyboard=True, resize_keyboard=True),
+    )
+    return END_SESSION_CONFIRM
+
+
+async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """User confirmed (or cancelled) ending the session."""
+    text = update.message.text.strip()
+    
+    if text == BTN_NO_BACK or text == BTN_BACK:
+        context.user_data.pop("_end_target", None)
+        context.user_data.pop("_end_cid", None)
+        return await show_console_menu(update, context)
+    
+    if text != BTN_YES_END:
+        await update.message.reply_text(
+            "⏹️ Yes သို့မဟုတ် No ရွေးပါ",
+            reply_markup=ReplyKeyboardMarkup([[BTN_YES_END, BTN_NO_BACK]], one_time_keyboard=True, resize_keyboard=True),
+        )
+        return END_SESSION_CONFIRM
+    
+    _t0 = time.monotonic()
+    target = context.user_data.pop("_end_target", {})
+    cid = context.user_data.pop("_end_cid", "")
+    
+    if not target or not cid:
+        return await show_console_menu(update, context)
+    
     bk_id   = target.get("booking_id", "")
     start_t = target.get("start", "")
     mbr     = target.get("member") or "Guest"
     session_staff = target.get("staff", "")
     total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
-    # 🐛 Fix: Check _SESSION_TOTAL_MINS for extended minutes.
-    # calc_duration only returns elapsed wall-clock time from start_t.
-    # If staff extended the session via the extend button, _SESSION_TOTAL_MINS
-    # has the accumulated planned total. Use the max of both values.
+    
+    # Extended minutes check
     _ext_chat_id = update.effective_chat.id
     _ext_key = _remind_key(cid, _ext_chat_id)
     _planned_total = _SESSION_TOTAL_MINS.get(_ext_key, 0)
     if _planned_total > total_mins:
         total_mins = _planned_total
-        # Recompute display format with new total
         hrs  = total_mins // 60
         mins_rem = total_mins % 60
         dur_fmt = f"{hrs}h {mins_rem}m" if hrs > 0 else f"{mins_rem}m"
@@ -416,17 +458,18 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ok = await end_booking_async(bk_id) if bk_id else True
     logger.warning("step_t end_booking: %dms", (time.monotonic() - _t0) * 1000)
 
-    # ── Feedback: send star rating to linked booking customer ──
+    # Feedback
     _send_feedback_async = None
     try:
         _booking_detail = await _psvibe_get_async(f"bookings/{bk_id}") if bk_id else None
         _cust_chat_id = (_booking_detail or {}).get("telegram_chat_id") or (_booking_detail or {}).get("telegramChatId", "")
-        if _cust_chat_id:
+        if _cust_chat_id and not str(_cust_chat_id).startswith("-"):
             _cust_chat_id = str(_cust_chat_id).strip()
-            if _cust_chat_id:
+            if _cust_chat_id and not str(_cust_chat_id).startswith("-"):
                 _send_feedback_async = asyncio.create_task(_send_feedback_to_customer(_cust_chat_id, str(bk_id)))
     except Exception as _fe:
         logger.warning("Feedback trigger prep failed (non-critical): %s", _fe)
+    
     if not ok:
         if bk_id:
             await update.message.reply_text(f"❌ Booking ID {bk_id} ရှာမတွေ့ပါ")
@@ -436,7 +479,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     end_t = now_mmt().strftime("%H:%M")
 
-    # ── SSD Transfer Warning ────────────────────────────────────────────────
+    # SSD Transfer Warning
     ssd_warn = ""
     ssd_transfers = [
         r for r in fetch_console_games()
@@ -447,11 +490,10 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         game_names = [r["game_title"] for r in ssd_transfers]
         ssd_warn = (
             f"\n\n⚠️ <b>SSD ပြန်ရွေ့ပါ!</b>\n"
-            f"ဤ console မှ SSD ထဲ ပြန်ရွေ့ရမည့် ဂိမ်းများ:\n"
+            f"ဤ console မှ SSD ထဲ ပြန်ရွေ့ရမည့် ဂိမ်းများ:\n"
             + "\n".join(f"  📀 {g}" for g in game_names)
         )
 
-    # Show current session game if any
     session_games = [
         r["game_title"] for r in fetch_console_games()
         if r["console_id"].upper() == cid.upper() and r["install_type"] == "Session"
@@ -468,18 +510,14 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🕑 End      : <b>{end_t}</b>\n"
         f"⏱ Duration : <b>{dur_fmt}</b> ({total_mins} mins)\n"
         f"━━━━━━━━━━━━━━━━━━\n"
-        f"📝 Sales Voucher ဖွင့်နေသည်..."
+        f"📝 Sales Voucher ဖွင့်နေသည်..."
         f"{ssd_warn}",
         parse_mode="HTML",
     )
     logger.warning("step_t after_voucher_msg: %dms", (time.monotonic() - _t0) * 1000)
-    # Clean up Session game entry for this console
     _delete_session_game(cid)
     logger.warning("step_t after_delete_game: %dms", (time.monotonic() - _t0) * 1000)
-    # Use booking_id from console status (already found). After end_booking_async above,
-    # the booking status is 'Done' so a second member-based lookup would fail to find it.
-    # Only fall back to member lookup if bk_id was empty.
-    # Cast to str: API may return int, but food_cart URL building expects string.
+    
     _linked_bk_id = str(bk_id) if bk_id else ""
     if not _linked_bk_id:
         try:
@@ -492,8 +530,10 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     break
         except Exception:
             pass
+    
     logger.warning("step_t linked_bk_id=%s food_cart_lookup: %dms", _linked_bk_id, (time.monotonic() - _t0) * 1000)
-    # ── CashBack Coupon: Auto-generate via MySQL API ──
+    
+    # CashBack Coupon
     try:
         from bot.api_client import api_post
         member_id_for_coupon = mbr if mbr not in ("Guest", "0 (Guest)", "") else ""
@@ -508,8 +548,6 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     context.user_data["_cashback_coupon"] = cd["code"]
                     context.user_data["_cashback_coupon_mins"] = cd.get("minutes", total_mins)
                     logger.warning("COUPON GEN OK: code=%s mins=%s member=%s", cd["code"], cd.get("minutes", total_mins), member_id_for_coupon)
-                else:
-                    logger.warning("COUPON GEN: no coupon in response: gen_result=%s", gen_result)
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 
@@ -519,7 +557,7 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     _ls_result = await launch_session_sale(update, context, cid, mbr, total_mins, session_staff,
                                            booking_id=_linked_bk_id)
     _total_ms = (time.monotonic() - _t0) * 1000
-    logger.warning("CONSOLE_TIME step_end_session: pre_sale=%dms sale=%dms total=%dms", _pre_ms, _total_ms - _pre_ms, _total_ms)
+    logger.warning("CONSOLE_TIME step_end_confirm: pre_sale=%dms sale=%dms total=%dms", _pre_ms, _total_ms - _pre_ms, _total_ms)
     return _ls_result
 
 # Duplicate import removed - already imported at top

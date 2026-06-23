@@ -10,9 +10,9 @@ from bot import (
     ATTEND_STAFF, BOOK_CHECKIN_BIND, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME,
     BOOK_MEMBER, BOOK_MINS, BUNDLE_FOC, CAP_ACCT, CAP_AMT, CAP_CONFIRM,
     CONFIRM_SUMMARY, CONSOLE, CONSOLE_MENU, CON_ADD_ID, CON_ADD_MULT,
-    CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, DISCOUNT, DISC_SELECT,
+    CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM, DISCOUNT, DISC_SELECT,
     DISC_SET_QTY, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION,
-    END_SESSION_SELECT, FINANCE_MENU, FIN_REPORT_MENU, FOOD_MENU,
+    END_SESSION_SELECT, END_SESSION_CONFIRM, FINANCE_MENU, FIN_REPORT_MENU, FOOD_MENU,
     FOOD_QTY, GAME_ADD_GENRE, GAME_ADD_PLATFORM, GAME_ADD_STATUS,
     GAME_ADD_TITLE, GAME_DEL_SELECT,
     GAME_EDIT_FIELD, GAME_EDIT_SELECT, GAME_EDIT_VALUE, GAME_DETAIL_PICK, GAME_MENU,
@@ -246,6 +246,7 @@ def main():
 
             # ── End Session flow ──
             END_SESSION_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_end_session)],
+            END_SESSION_CONFIRM: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_end_confirm)],
 
             # ── Game Library flows ──
             GAME_MENU:          [MessageHandler(filters.TEXT & ~filters.COMMAND, step_game_menu)],
@@ -299,6 +300,10 @@ def main():
             CON_DEL_SELECT:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_del_select)],
             CON_EDIT_MULT_SELECT: [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_edit_mult_select)],
             CON_EDIT_MULT_VALUE:  [MessageHandler(filters.TEXT & ~filters.COMMAND, step_con_edit_mult_value)],
+            # ── Move Session flow ──
+            MOVECON_SOURCE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_source)],
+            MOVECON_TARGET:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_target)],
+            MOVECON_CONFIRM:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_target)],
 
             # ── Session → Daily Sales bridge ──
             SESSION_SHORTFALL:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_session_shortfall)],
