@@ -1,14 +1,14 @@
-[LOCK_MONITOR] Run at 2026-06-23 13:26:31 UTC
+[LOCK_MONITOR] Run at 2026-06-23 14:27:41 UTC
 
 [LOCK_MONITOR] OK: no locks found
 
 ========== Session Disk Usage ==========
-  Main .jsonl files:            3 files,        382 KB
+  Main .jsonl files:            2 files,        125 KB
   .trajectory.jsonl files:      0 files,          0 KB
   .checkpoint.*.jsonl files:    0 files,          0 KB
   .lock files:                  0 files
   ------------------------------------------
-  TOTAL:                                      382 KB
+  TOTAL:                                      125 KB
 ==========================================
 
 
