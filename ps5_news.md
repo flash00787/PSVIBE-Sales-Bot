@@ -1,6 +1,53 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-22 23:30 UTC
+> Last updated: 2026-06-23 05:30 UTC
+
+---
+
+## ⚡ STATUS CHECK (June 23, 2026 - 05:30 UTC) — Prime Day Is LIVE + All Clear
+
+> **Summary:** No new gaming announcements in the last 6 hours. Amazon Prime Day has officially BEGUN. All tracker data verified current. DLC day: Frostpunk 2: Breach of Trust + Darktide Skitarii Class both drop TODAY.
+
+### 🛒 Amazon Prime Day — NOW LIVE (June 23-26)!
+- Prime Day 2026 officially kicked off at midnight PT (07:00 UTC) and runs through June 26
+- Early deals on controllers, SSDs, PS5 games, and accessories already spotted
+- Competing sales from Best Buy, Walmart, Target also live
+- **💡 Lounge Action:** Check deals throughout today! DualSense controllers, gaming headsets, external SSDs, and PS5 games are historically at some of their lowest prices during Prime Day.
+
+### 📊 Today's Deadlines & Releases (June 23):
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| 🛒 **TODAY** | Amazon Prime Day DAY 1 | Shop controllers, SSDs, games! |
+| 🧊 **TODAY** | Frostpunk 2: Breach of Trust DLC | Install on lounge consoles! |
+| ⚔️ **TODAY** | Warhammer 40K: Darktide — Skitarii DLC ($11.99) | New class for June's free PS Plus game! |
+| 🦌 **TODAY** | Deer & Boy | Minor indie |
+
+### ⏰ Key Deadlines This Week (All Verified Current):
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| **Jun 24** 🃏 | DELTARUNE Chapter 5 | Free update! Install on all consoles! |
+| **Jun 24** 🔫 | EMPULSE Early Access | $19.99 FPS |
+| **Jun 25** 🔥 | GTA 6 PRE-ORDERS GO LIVE! | Pre-order for lounge consoles! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 chars + free-to-play version! |
+| **Jun 25** 🔫 | Abyssus | New multiplayer FPS |
+| **Jun 25** 🩸 | Flesh Made Fear | Survival horror |
+| **Jun 28-29** 🔥 | FREE Online Multiplayer Weekend | 5 days away! Promote NOW! |
+| **Jul 1** 📅 | PS Plus Essential July reveal | New free games! |
+| **Jul 1** 🛒 | ALL PS Store sales END | Mid-Year + supplementary sale final day! |
+
+### 📊 Quick Status Check (No Changes Since Jun 22):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| ✅ PSN | Operational | All services normal |
+| 🛒 Mid-Year Deals | Until Jul 1 | Stack with Prime Day deals! |
+| 🔥 GTA 6 Pre-Orders | June 25 | 2 days away! |
+| 🐺 Marvel's Wolverine | Sep 15 | Pre-orders LIVE NOW |
+| 🪓 God of War: Laufey | 2027 | PS5 exclusive revealed |
+| 👻 Silent Hill: Townfall | Sep 24 | Pre-order available |
+| 🔮 Control Resonant | Sep 24 | Same day as Silent Hill! |
+| 🏜️ Dune: Awakening | Sep 22 | Single-player mode confirmed |
+| 📅 PS Plus Essential July | July 1 reveal | No leak yet |
+| 🆓 FREE MP Weekend | Jun 28-29 | Promote on socials! |
 
 ---
 
