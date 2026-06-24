@@ -1,6 +1,88 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-24 11:30 UTC
+> Last updated: 2026-06-24 17:31 UTC
+
+---
+
+## ⚡ UPDATE (June 24, 2026 - 17:31 UTC) — Free MP Weekend DATE CORRECTION + New Finds
+
+> **Summary:** CRITICAL date correction — the free multiplayer weekend already HAPPENED (June 22-23, not June 28-29). Two new PS Blog articles published TODAY. Additional GTA VI Ultimate Edition details confirmed from official Rockstar post.
+
+### 🔴🔴 CRITICAL CORRECTION: Free Online Multiplayer Weekend Was June 22-23 — ALREADY PASSED!
+- The tracker previously stated June 28-29 for the Free Online Multiplayer Weekend — **THIS WAS INCORRECT**
+- Multiple sources (VideoGamesChronicle, Yahoo/Tech, PSU) confirm the actual dates were **June 22-23, 2026**
+- The event has **ALREADY ENDED** (today is June 24)
+- **💡 Lounge Action:** Remove ALL promotional posts about June 28-29 free multiplayer weekend. If any were scheduled, CANCEL them. This was a 2-day window that ended yesterday.
+- Source: VideoGamesChronicle, GameWatcher, Yahoo Tech (all confirm June 22-23)
+
+### 🆕 Void/Breaker — Roguelite Shooter on PS Blog TODAY (June 24)
+- Playstack published a PS Blog article TODAY about **Void/Breaker**, a roguelite shooter using PS5 features
+- Destruction combat mechanics with DualSense haptics and adaptive triggers
+- **💡 Lounge Note:** New roguelite shooter — worth checking if it has co-op for lounge appeal. Add to watchlist.
+
+### 🆕 DOOM: The Dark Ages — Upgraded PSSR on PS5 Pro (PS Blog June 24)
+- id Software's Billy Khan published TODAY on PS Blog: upgraded PSSR upscaling for DOOM: The Dark Ages on PS5 Pro
+- **💡 Lounge Note:** DOOM: The Dark Ages (released May 2026) on PS5 Pro gets visual boost. If lounge has PS5 Pro stations, make sure this is installed — DOOM's fast-paced action is great for lounge spectator sessions.
+
+### 🔥 GTA VI Ultimate Edition — Additional Confirmed Details from Rockstar
+From today's official Rockstar Newswire post (June 24):
+
+| Detail | Confirmed |
+|--------|----------|
+| 💰 **Ultimate Edition Price** | **$99.99** |
+| 💰 **Standard Edition Price** | **$79.99** |
+| 🚗 **Exclusive Vehicles** | '95 Grotti Cheetah, '67 Vapid Dominator Buggy + custom garages |
+| 🔫 **Exclusive Weapons** | Hawk & Little Morgan Revolvers, Jason's Girardi ES9 pistol variant, Lucia's Klose K17 pistol variant |
+| 👔 **Exclusive Apparel** | Vice City Styles for Jason & Lucia |
+| 🏪 **Exclusive Businesses** | Sara's Unisex Salon, Stock 305 Clothing Store, Electric Fang Tattoo |
+| 🎯 **Exclusive Missions** | PTT Youngin$ Illegal Goods Store + additional story action |
+| 📦 **Physical Version** | **Download code in box** — completely digital release (no disc) |
+| 📥 **Pre-load** | **November 12, 2026** (7 days before launch) |
+| 🎁 **Vintage Vice City Pack** | FREE with ANY purchase before Nov 20 — extra vehicles, outfits, hairstyles |
+
+### 🆕 The Planet Crafter — Coming to PS5 July 21, 2026 (MISSED!)
+- Miju Games' space terraforming survival game announced for PS5 via PS Blog on June 16
+- **Release date: July 21, 2026**
+- Genre: Open-world survival crafting — transform a hostile planet into a habitable world
+- **💡 Lounge Note:** Survival-crafting games are popular for extended lounge sessions. Add to July calendar.
+
+### 📝 Other Minor PS Blog Posts (June 15-23):
+- **Granblue Fantasy: Relink – Endless Ragnarok demo** available since June 18
+- **Assassin's Creed Shadows final update "Domains"** — Animus-bending endgame content (June 15)
+
+### 🔴 Date Correction Summary:
+| Previous (WRONG) | Corrected | Status |
+|------------------|-----------|--------|
+| Free MP Weekend: Jun 28-29 | **Jun 22-23** | ✅ Already passed! Cancel promotions! |
+
+### ⏰ Corrected Key Deadlines — Next 7 Days:
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| **Jun 24** 🃏🔫 | DELTARUNE Ch.5 + EMPULSE | BOTH launch TODAY! Install NOW! |
+| **Jun 25** 🔥🔥 | **GTA 6 PRE-ORDERS GO LIVE!** (midnight local) | Have budget ready! $79.99 Standard / $99.99 Ultimate |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 chars + free-to-play version! |
+| **Jun 25** 🔫 | Abyssus | New multiplayer FPS |
+| **Jun 25** 🩸 | Flesh Made Fear | Survival horror |
+| **Jun 26** 🛒 | Prime Day ENDS | Last day for Spider-Man 2 $29.99 etc! |
+| **Jul 1** 📅 | PS Plus Essential July reveal | New free monthly games! |
+| **Jul 1** 🛒 | Mid-Year Deals + Supplementary sale END | Final day to stock up! |
+| **Jul 16** 🛒 | Summer Sale 2026 BEGINS | Mark calendar! 22 days away! |
+
+### 📊 Quick Status Check:
+| Topic | Status | Notes |
+|-------|--------|-------|
+| ✅ PSN | Operational | All services normal |
+| 🃏 DELTARUNE Ch.5 | LAUNCHES TODAY | Free update! "Festival Day" subtitle |
+| 🔫 EMPULSE | LAUNCHES TODAY | $19.99 Early Access |
+| 🔥 GTA 6 Pre-Orders | TOMORROW (Jun 25) | $79.99 Standard / $99.99 Ultimate |
+| 🛒 Prime Day | Until Jun 26 | 2 more days! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 7 days left! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | Mark calendar! |
+| 📅 PS Plus July Essential | Jul 1 reveal | No leak yet |
+| 🔴 Free MP Weekend | **Jun 22-23 — PASSED!** | CORRECTED from wrong Jun 28-29 date! |
+| 🆕 Void/Breaker | PS Blog today | New roguelite shooter |
+| 🆕 DOOM Dark Ages PSSR | PS Blog today | PS5 Pro upgrade |
+| 🆕 Planet Crafter PS5 | Jul 21 | Survival crafter — missed from tracker |
 
 ---
 

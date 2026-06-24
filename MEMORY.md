@@ -37,34 +37,9 @@
 ## 🧠 Critical Lessons Learned (Cumulative)
 
 ### Python Patterns
-1. **`bool(0) == False`** — `"x if x else default"` breaks on 0. Use `"x if x is not None else default"`.
-2. **`async def` + missing `await`** — coroutine objects silently pass type checks. Always use proper type hints.
-3. **Unicode escape sequences in fix scripts** — `content.replace()` with escaped Unicode may not match file bytes. Use SFTP upload + remote execution instead.
-4. **Systemd restart can silently fail** — verify PID; fallback to `kill -9` if needed.
-5. **Elif chains must cover ALL variants** — `"wave"` ≠ `"wavepay"`.
-
 ### API & Database Patterns
-6. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes.
-7. **Date format inconsistency** — Bot sends locale-dependent format (M/D/YYYY) but API expects YYYY-MM-DD. Always normalize at API boundary.
-8. **API field naming is inconsistent** — camelCase (`customerName`, `timeSlot`) mixed with snake_case (`member_id`, `console_id`) in same response. Always verify field names exist before `.get()`.
-9. **`today_str()` format ≠ API format** — `M/D/YYYY` vs `YYYY-MM-DD` — don't mix in comparisons.
-10. **Double fail masking** — When both MySQL and GSheet fallback break simultaneously, root cause is masked. Monitor both paths independently.
-11. **`%%` pattern doesn't work with `mysql.connector`** — uses `%s` parameter style, not printf. Pass format string as parameter.
-12. **BotState IntEnum value collisions** — IntEnum auto-assigns values; collisions silently break ConversationHandler routing. Always verify uniqueness after edits. 10+ collisions found and fixed Jun 22.
-13. **API response shape varies by endpoint** — `/api/bookings` returns time-only strings, `/api/dashboard/bookings` returns raw datetimes. Always check endpoint output before consuming.
-
 ### System Patterns
-14. **NEVER touch ssh.socket.d** — A drop-in file created on June 11 crashed ssh.socket, taking ALL SSH down. VPS unrecoverable without Hetzner Console. Boss emphasized: "သေသေချာချာ တင်းတင်းကျပ်ကျပ် မှတ်ထားပါ".
-15. **Gateway DNS failures** — Docker containers need explicit DNS config (Hetzner + Cloudflare) and `host` networking for reliable DNS.
-16. **JS inline `<script>` blocks are fragile** — one syntax error kills ALL JavaScript in that block.
-17. **Dashboard file deployment** — Base64 chunked SSH transfer reliable for large files. Kill stale processes before restart.
-18. **`GROUP BY` collapses pipe-delimited data** — iterate all rows instead.
-19. **DB stores ALL times in MMT (UTC+6:30)** — never assume UTC. `now_mmt()` is used throughout API. Timers, bookings, session times all MMT.
-20. **`position: sticky` breaks with parent `overflow: hidden`** — frozen columns need parent without overflow clipping. Semi-transparent backgrounds also break visual freeze effect.
-
 ### Business Logic
-21. **Same-console double booking** — Always check existing bookings at API level before allowing new ones.
-22. **PNL depreciation must filter by purchase_date** — New assets don't accrue depreciation until month after purchase. Per agreed convention.
 23. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
 24. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
 25. **No Timer (duration=0) display** — Shows "∞ Open End" on Timeline. Conflict check uses 480 min (8hr) window. Never apply `duration or 60` pattern for display.
@@ -132,8 +107,6 @@
 ## 🆕 June 23, 2026 — Major Bug Fixes & Features
 
 ### Critical Bug Fixes
-1. **start-session checked_in gap:** Query only checked `status='confirmed'`, missing `checked_in` bookings. Fixed to `status IN ('confirmed','checked_in')` at 5 locations. Always audit status filter lists for completeness.
-2. **Auto-Checkin overlap false positive:** Auto-checkin booking caught itself as conflict. Fix: skip self-check via `if bk:`/`else:` conditional.
 3. **Feedback routed to admin group:** `chat_id.startsWith('-')` check added in `console.py` — skip notifications when target is a group, not individual user.
 4. **No Timer (duration=0) comprehensive fix:**
    - Timeline bar: extended to NOW instead of 5% fixed width
@@ -152,14 +125,196 @@
 9. **End Session Confirm Step:** Inline keyboard confirm dialog prevents accidental session endings.
 
 ### New Critical Lessons
-- **`parse_mode` must match tag type** — "Markdown" + `<b>` = HTTP 400 Bad Request. Match format to content.
-- **Module-level lazy `__getattr__` is fragile** — explicit imports are more reliable at runtime.
-- **Destructive actions need confirm steps** — End Session, Cancel, Delete all benefit from inline confirm dialogs.
-- **Event loop timing matters** — code running at module import time has no event loop. Use `lifespan` handler for async startup tasks.
-- **No Timer (0 min) special-casing** — never use `duration or 60` / fallback pattern for display or logic. Use explicit `if duration_mins == 0` check everywhere: display, conflict check, utilization.
-- **Status filter completeness** — when querying bookings by status, always verify ALL possible valid states are included. Missing `checked_in` = sessions silently invisible.
-- **Base64-embedded assets** — avoid static file mounts for single-file deployments. Embed logos/images as base64 in HTML templates.
-- **`from module import *` does NOT export underscore-prefixed names** — `_mc`, `_MYSQL_CFG` etc. are hidden. Must use explicit `from app import _mc` or local import inside function. Silent NameError → try/except returns 200 OK → stock_out never happens. This is a **double-fail silent bug pattern.**
 - **API 200 OK on error is misleading** — always check error response body, not just HTTP status. `error_response()` should use non-200 status codes.
 - **Move API must preserve start_time** — use `_bk["start_time"]`, not `_now`. Resetting start_time breaks session duration calculation.
 - **booking_id paths must still calculate game_amt** — `if booking_id: game_amt = 0` is wrong. Booking customers still need game_amt from play time.
+
+## Memory (2026-06-19 — 2026-06-21)
+
+*(Older memory entries trimmed — full history in git.)*
+
+- Bug 4.7: Duplicate check fixed (added `rejected` to excluded statuses)
+- Gateway DNS: Added fallback DNS (Hetzner + Cloudflare) to Docker daemon + agent compose files
+- SSH Incident: NEVER touch ssh.socket.d (GOLDEN RULE #12)
+- June 22 Improvements: Shutdown handlers, staging env, field_utils.py, type hints — all complete ✅
+
+## Memory (2026-06-22)
+
+### 26. Phase 1 Branch Architecture — Silent Prep ✅ (18:00 MMT)
+- **Boss directive:** Current shop → "Sanchaung Branch" (ဆိုင်ခွဲအတွက်ကြိုပြင်)
+- **What was done (ZERO impact on existing operations):**
+- 1. **DB Migration (50/58 tables):**
+- Added `branch_id INT DEFAULT 1` to all per-branch tables
+- 24 tables already had branch_id (pre-existing)
+- Added to 26 more: accounts, capital_movements, finance_*, promotions, member_coupons, customer_feedback, settings, settings_config, profit_distributions, dividends, shareholders, stock_hold, card_wallet, console_*_backup, food_cart, dashboard_users, staff_records_bak
+- Shared tables intentionally excluded: members, member_wallets, member_loyalty, games_library, loyalty_*, customer_bot_*, referral_log, sync_status
+- All existing data auto-filled with DEFAULT 1
+- 2. **Branches Table:**
+- Renamed "PS VIBE Main" → "Sanchaung Branch" (code: SANCHAUNG)
+- Added open/close time (9AM-9PM), telegram_group_id (-1003686032747)
+- 3. **API Middleware (`app.py`):**
+- `branch_context_middleware` reads `X-Branch-ID` header (defaults to 1)
+- `get_branch_id()` helper for endpoints
+- New endpoint `POST /api/bookings/mark-bot-reminder` for bot→API timer coordination
+- 4. **Bot Config (`__init__.py`):**
+- Added `BRANCH_ID`, `BRANCH_NAME` env vars
+- `_api_headers()` includes `X-Branch-ID` in all API calls
+- `/etc/psvibe/secrets.env` updated with BRANCH_ID=1, BRANCH_NAME=Sanchaung Branch
+- **Architecture:**
+- Sale Bot → separate per branch (copy + config)
+- Customer Bot → shared with branch selection step
+- Wallet → shared across branches
+- **Next:** Phase 2 activates when Branch 2 opens (~1 hour work)
+
+### Profit Distribution Audit (18:48 MMT - 22 Jun 2026)
+- Boss asked to verify Profit Distribution system with 10% management fee.
+
+### Findings
+- 1. **10% Management Fee → FULLY IMPLEMENTED** in `dashboard_routes.py` (lines ~2868-2920)
+- `mgmt_fee = round(net_profit * 0.10, 0)` → Aung Chan Myint
+- 90% distributable → split by ownership % (34/33/33)
+- 2. **API Endpoints** ready: `/profit-distribution/calculate`, `/record`, `/history`
+- 3. **DB Tables** ready: `profit_distributions`, `profit_distribution_details` with `is_management_fee` flag
+- 4. **Dashboard UI** — NOT yet built (missing page for calculate + distribute)
+- 5. **Bot flows** — NOT implemented (CAP_ACCT, SHARE_NAME states defined but no handlers)
+
+### Profit Distribution Formula
+- Net Profit = Total Sales - Opex - COGS - Depreciation - Wallet Liability
+- Mgmt Fee = Net Profit × 10% → Aung Chan Myint
+- Distributable = Net Profit × 90% → Shareholders by ownership %
+
+### Token Accounts
+- Aung Chan Myint: 34% (102M) + 10% mgmt fee
+- Ye Myat: 33% (99M)
+- Wai Yan Htet: 33% (99M)
+- Total Capital: 300M Ks
+
+### What's Missing
+- Dashboard Profit Distribution page (UI only, API ready)
+- Capital Injection/Ejection bot flows
+- Shareholder management bot flows
+
+### Profit Distribution Bug Fix — Date Filters Added ✅ (19:05 MMT - 22 Jun 2026)
+
+### Bug: -12,527,636 Ks net loss showing
+- **Root cause:** `calculate_profit_distribution()` in `dashboard_routes.py` had ZERO date filters on any query — summing ALL data from entire DB history.
+
+### Fix Applied (`dashboard_routes.py` lines ~2831-2890):
+- 1. **Added `period` query parameter** — defaults to current month (e.g., `?period=2026-06`)
+- 2. **sales_daily**: Added `WHERE sale_date >= '2026-06-01' AND sale_date <= '2026-06-30'`
+- 3. **opex**: Added `WHERE expense_date >= '2026-06-01' AND expense_date <= '2026-06-30'`
+- 4. **stock_in (COGS)**: Added `WHERE created_at >= '2026-06-01 00:00:00' AND created_at <= '2026-06-30 23:59:59'`
+- 5. **depreciation**: Changed from summing ALL assets' monthly_dep → `WHERE purchase_date <= '2026-06-30'` (only active assets)
+- 6. **FIFO wallet liability**: REMOVED from monthly P&L calculation (set to 0). This is a balance sheet item (~12M total outstanding), not a monthly expense. Prepays are already deducted when consumed as wallet deductions in sales.
+- 7. **management_fee_to**: Now dynamic — uses shareholder with role "Founder" instead of hardcoded "Aung Chan Myint"
+
+### June 2026 Post-Fix Numbers:
+- Revenue:    8,163,333 Ks  (454 vouchers)
+- Opex:     -11,877,066 Ks  (marketing, rent, salaries)
+- COGS:      -1,795,438 Ks  (stock inventory)
+- Depr:      -7,018,465 Ks  (42 assets monthly)
+- ───────────────
+- Net:      -12,527,636 Ks  (loss — expected for launch month)
+- **Verdict:** June is launch month — startup costs heavy (Vlog marketing 3.5M, Interior Decoration 2.1M/month, Rent 2.5M, Eco Flow 178K/month). July+ should improve as marketing costs drop and revenue grows.
+
+### Files Modified:
+- `/root/psvibe_api_server/dashboard_routes.py` — `calculate_profit_distribution` function
+
+### Note:
+- Sub-agent failed due to missing OpenAI API key for gpt-4o-mini model. Fix applied directly by Kora.
+- Dashboard Profit Distribution UI page was already built and deployed (Boss showed screenshot).
+
+## Memory (2026-06-23)
+
+### Phase 2 Multi-Branch Audit
+- Full audit of all bots + dashboard + API for multi-branch readiness
+- **Critical gap found:** `api_client.py` in Sale Bot & Customer Bot don't send `X-Branch-ID` header
+- API `get_branch_id()` middleware is ready but endpoints don't filter by branch_id
+- Dashboard `client.ts` has no branch header support
+- Dashboard branch selector UI not built
+- Plan: Fix api_client → API endpoints → Dashboard → Deploy Sale Bot copy for Branch 2
+
+### SSD Name Update
+- Updated `console_name` in `console_games` table:
+- SSD-T1 → "Samsung T1 Shield"
+- SSD-Blue → "SanDisk - Light Green"
+- SSD-Grey → "SanDisk - Orange"
+- Now matches Sale Bot names for consistency
+
+### Profit Distribution Fix (Complete from Jun 22)
+- Profit Distribution now 100% aligned with Monthly PNL (-7,781,303 Ks for June)
+- Key fix: PNL-matching logic (same revenue breakdown, stock FIFO for COGS, exclusive depreciation)
+- Excluded FIFO wallet liability from monthly P&L (balance sheet item, not monthly expense)
+
+### Major System Fixes & Features (Jun 23 Session)
+
+
+
+### Key Technical Notes
+- **Server:** VPS `5.223.81.16`, SSH key `/root/.ssh/id_boss`
+- **API server:** `/root/psvibe_api_server/`, service: `psvibe-api`
+- **Dashboard:** `/root/psvibe-dashboard/`, built to `/root/psvibe_api_server/dashboard-dist/`
+- **Sale Bot:** `/root/psvibe-sales-bot/`, reminder store: `/root/psvibe-sales-bot/data/session_reminders.json`
+- **MySQL:** Docker `psvibe-mysql`, user `psvibe_user`, DB `psvibe_api`
+- **Receipt JSON:** `/root/psvibe-sales-bot/bot/receipts/{voucher_id}.json`
+- **API key:** `JWIErd82Apo3j-KKWW8HjOjfizo9s_tpJZhcSb7D-AQ`
+- **MySQL password:** `PsVibe@2026_Rotated!`
+- **Multiple backups preserved** in `app.py.bak-*`, `console.py.bak-*`, `TimelineView.vue.bak-*`, `receipt_template.html.bak-*`
+
+### Additional Fixes (Jun 23 late session)
+
+### 11. console_mgmt.py — Missing Import Fix
+- **Bug:** `NameError: name 'fetch_console_status' is not defined` when pressing "🔄 Move Console"
+- **Root cause:** `console_mgmt.py` relied on module-level `__getattr__` lazy loader but it failed at runtime
+- **Fix:** Added explicit imports at top of file:
+- import asyncio
+- from bot import fetch_console_status
+- Restarted bot service, confirmed running (PID 1843415)
+
+### 12. End Session — Confirm Step Added
+- **Issue:** C-05 session ended prematurely (50 min instead of 120 min) — staff accidentally hit End Session
+- **Fix:** Added inline keyboard confirm step in End Session flow
+- **New flow:** Console Selection → Confirm dialog (shows console, member, start time, elapsed) → Yes/No buttons
+- "No" returns to console menu; "Yes" proceeds to end session + open sales voucher
+- Prevents accidental session endings from misclicks or menu exploration
+
+### Food Order Stock Out Bug (Jun 23 final session)
+
+### 13. Move Console + End Session — Game Minutes Fix
+- **Bug:** console move လုပ်ပြီး session end ရင် game minutes voucher ထဲ မပါလာ
+- **Root cause:** `sales.py` line 1787: `if booking_id: game_amt = 0` — booking_id ရှိရင် game_amt zero လုပ်တာ
+- Move-then-end flow မှာ booking_id မရှိတော့လို့ game_amt တွက်မိ — ဒါက Move Console ရဲ့ side effect
+- **Fix:** booking_id path မှာလည်း `game_amt = round((total_mins * base_rate * multiplier) / 60)` တွက်ခိုင်း
+- **Verified:** logs show `confirm_summary: game_amt_in_context=167` ✅
+
+### 14. 🐛 CRITICAL: Food Cart Stock Out Silent Fail
+- **Bug:** Food order items sale voucher ထွက်ပေမယ့် stock out history မှာ မပေါ်
+- **Root cause:** `patch_routes.py` → `food_cart_release()` function ထဲက `_mc` (MySQL connector) variable က NameError!
+- food_cart_release: name '_mc' is not defined
+- **Why silent:** `from app import *` က underscore-prefixed names (`_mc`, `_MYSQL_CFG`) auto-export မလုပ်ဘူး
+- **Why 200 OK:** try/except က error ဖမ်းပြီး `error_response` ပြန်ပေမယ့် HTTP code 200 ပြန်နေ
+- **Impact:** Food cart items ရဲ့ stock_out records တစ်ခုမှ DB ထဲ မရေးဘူး — inventory က တကယ်ကျမသွား
+- **Fix:** `food_cart_release()` function ထဲမှာ local import ထည့်:
+- from app import _mc, _MYSQL_CFG, _mysql_get_setting
+- API PID 1900814 (restarted)
+- **Additionally:** `_sale_bg()` logs တွေ ထည့်ပြီး — item တစ်ခုစီရဲ့ `from_cart` flag နဲ့ skip/process status log လုပ်ခိုင်း
+
+### 15. Console Management Menu Layout Fix
+- **Removed:** `BTN_CHANGE_GAME` button (Boss: "Game ပြောင်းက ဖြုတ်ထားလိုက်ဦးမယ်")
+- **Removed:** "⚙️ Console စီမံ" submenu from main menu
+- **Added:** `🔄 Move Console` directly in Console Management main menu
+- **Fixed:** function name mismatch `show_console_mgmt_menu` → `show_con_mgmt_menu`
+- **Fixed:** `__getattr__` lazy loader → explicit imports for ALL constants + utility functions in `console_mgmt.py`
+- **Current keyboard:**
+- 🟢 Start  ⏹️ Session ဆုံး  🔄 Move Console  📊 Status
+- 🍔 Food Order  📀 Install  📀 External SSD  🎮 Game Library  🔙 Back
+
+### 16. Move API start_time Preserved
+- **Bug:** `POST /api/sessions/move` resetting `start_time` to current time
+- **Fix:** Changed `_now` → `_bk["start_time"]` in app.py line 2631 — preserves original session start time
+
+### Updated Service State
+| Service | PID | Status |
+|---------|-----|--------|
+| psvibe-api | 1900814 | ✅ Running |
+| psvibe-sale-bot | 1843415 | ✅ Running |
