@@ -1,6 +1,41 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-24 05:30 UTC
+> Last updated: 2026-06-24 11:30 UTC
+
+---
+
+## 🔥🔥 CRITICAL UPDATE (June 24, 2026 - 11:30 UTC) — Sony + Rockstar Official: "GTA VI Plays Best on PS5" + Ultimate Edition Revealed!
+
+> **Summary:** Sony and Rockstar published a MAJOR joint announcement on the PlayStation Blog TODAY confirming PS5 as the "best" platform for GTA 6. GTA VI: Ultimate Edition revealed. Free GTA+ month with any PS Store pre-order. Vintage Vice City Pack bonus. Pre-orders TOMORROW midnight local time.
+
+### 🔥🔥 GTA VI: Ultimate Edition + Sony-Rockstar Partnership ANNOUNCED TODAY!
+- **Published TODAY (June 24)** on PlayStation Blog by **Mary Yee (SVP Marketing, SIE) + Rockstar Games**
+- Official title: **"Grand Theft Auto VI plays best on PS5 November 19"**
+- Sony and Rockstar jointly announce PS5 is THE best platform for GTA 6 — leveraging **PS5's immersive features**
+- This is a MAJOR marketing partnership — Sony positioning PS5 as the definitive GTA 6 platform
+
+### 🎮 GTA VI New Details Revealed:
+| Feature | Details |
+|---------|---------|
+| 🏆 **Ultimate Edition** | CONFIRMED! Exclusive premium vehicles, weapons, apparel, and story action across Jason & Lucia's story |
+| 🎁 **Vintage Vice City Pack** | FREE bonus for ALL purchases made before November 20 — items inspired by Vice City's neon-soaked past |
+| 🎁 **Free GTA+ Month** | Instantly redeemed with ANY PS Store pre-order! |
+| 🎮 **DualSense Haptics** | Responsive vibrations for every action |
+| 🎮 **Adaptive Triggers** | Dynamic resistance matching in-game actions |
+| 🔊 **Controller Speaker** | Sound effects enhanced by haptic feedback |
+| 🎧 **Tempest 3D AudioTech** | Surround soundscapes of Leonida — highly accurate audio positioning |
+| ⚡ **SSD Near-Instant Loading** | Expansive world of Leonida with near-instant load times |
+| 📅 **Pre-orders** | **June 25 at midnight LOCAL TIME** on PS Store |
+| 📅 **Launch** | November 19, 2026 (unchanged) |
+
+### 💡💡💡 Lounge Impact — MASSIVE:
+- **Sony is positioning PS5 as THE definitive GTA 6 experience** — this is a direct marketing partnership
+- For PS VIBE: this validates the lounge's PS5 focus. When Sony says "GTA 6 plays best on PS5," that's free marketing for PS5 lounges worldwide!
+- **Ultimate Edition** means a premium tier worth promoting — customers may want the upgraded experience
+- **Free GTA+ month** with pre-order = bonus value for the lounge's own copies
+- **Vintage Vice City Pack** (pre-Nov 20 purchases) = FOMO incentive. Pre-order before then!
+- **Pre-orders TOMORROW at MIDNIGHT LOCAL TIME** (not 11:00 AM or a specific time) — May 25 at 12:00 AM Myanmar Time
+- **💡 Lounge Action:** Pre-order GTA VI: Ultimate Edition for lounge consoles TONIGHT AT MIDNIGHT! The free GTA+ month + Vice City Pack make it a no-brainer. Promote on socials: "GTA 6 plays BEST on PS5 — experience it at PS VIBE!"
 
 ---
 
