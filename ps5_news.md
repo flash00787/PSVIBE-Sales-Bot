@@ -1,8 +1,87 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-23 11:30 UTC
+> Last updated: 2026-06-24 05:30 UTC
 
 ---
+
+## ⚡ UPDATE (June 24, 2026 - 05:30 UTC) — DELTARUNE Ch.5 + EMPULSE Launch TODAY + GTA 6 Price Leak + Summer Sale Dates
+
+> **Summary:** Two tracked games release TODAY. GTA 6 FNAC price leak stirs controversy (likely bogus per billbil-kun). PS Store Summer Sale dates discovered. GTA 6 pre-orders TOMORROW. Prime Day Day 3 — 2 more days to shop.
+
+### 🃏 DELTARUNE Chapter 5 — LAUNCHES TODAY! (June 24)
+- Launches globally at **11:00 AM EDT** (15:00 UTC / 21:30 Myanmar Time) today!
+- **Free update** for existing DELTARUNE owners on PS5, PS4, Switch, and PC
+- Toby Fox confirmed **Chapter 6 development is progressing well** — easier to make than previous chapters
+- **💡 Lounge Action:** Install/update DELTARUNE on all lounge consoles TODAY. The Undertale/DELTARUNE fanbase is massive and passionate — promote on socials that Chapter 5 is playable at PS VIBE!
+
+### 🔫 EMPULSE Early Access — LAUNCHES TODAY! (June 24)
+- 6v6 movement-based FPS by 1047 Games — $19.99 Early Access on PS5
+- Wall-running, grapple hooks, mechs — high-energy casual shooter
+- **💡 Lounge Action:** Budget-friendly at $19.99. Download and let customers try it — mech combat is always a crowd-pleaser!
+
+### 🔥 GTA 6 Pre-Orders — TOMORROW (June 25) + FNAC Price Leak
+- Pre-orders officially go live **TOMORROW (June 25)** on PS Store and retailers
+- **FNAC France/Portugal price leak** (June 22-23): €89.99 Standard, €119.99 Deluxe, €199.99 Collector's Edition
+- **However:** Reliable leaker **billbil-kun** says these are **placeholder prices — NOT official**. Forbes and GameSpot also report the leak is likely bogus.
+- Analysts say $70-80 USD standard edition is still the most realistic expectation
+- Rockstar has NOT yet revealed official pricing or editions — expected tomorrow with pre-orders
+- **💡💡 Lounge Action:** TOMORROW is GTA 6 pre-order day! Have budget ready. Official pricing and editions will be revealed then. Check PS Store tomorrow for lounge copies. This is THE biggest game launch of the decade.
+
+### 🛒 PS Store Summer Sale 2026 — July 16 to August 1 (NEW TO TRACKER!)
+- The next major PS Store sale after Mid-Year Deals (ends July 1) is the **Summer Sale 2026**
+- Expected to run **July 16 through August 1, 2026**
+- Typically one of the biggest sales of the year alongside Black Friday and end-of-year
+- **💡 Lounge Action:** Mark July 16 on the calendar! Two-week gap between Mid-Year Deals ending (July 1) and Summer Sale starting. Ideal for stocking up on discounted lounge library titles. Summer Sale historically has strong discounts on AAA titles.
+
+### 🧪 Sony's PS Plus Staggered "Experiment" — Backlash
+- PushSquare reports heavy criticism of Sony's staggered PS Plus Extra game releases in US/UK/Japan
+- Games spread across 3 weeks instead of dropping all at once — users called it "absolutely terrible idea nobody likes"
+- **Myanmar/other regions UNAFFECTED** — still get all games on traditional June 16 date
+- Sony says they're "exploring new ways to deliver PS Plus Game Catalog titles in select markets"
+- **💡 Lounge Note:** No impact on PS VIBE — Myanmar continues to get all PS Plus games at once. Worth monitoring if Sony expands this experiment to all regions in future months.
+
+### 🛒 Prime Day 2026 — Day 3 of 4 (Ends June 26)
+- Still ongoing! 2 more days to shop.
+- Best lounge deals still active: Spider-Man 2 ($29.99), God of War Ragnarök ($32.43), NBA 2K26 ($19.91 all-time low!), Astro Bot ($39.00), EA Sports FC 26 ($29.83)
+- **💡 Lounge Action:** Last call for Spider-Man 2 at 50% off and NBA 2K26 at all-time low. Prime Day ends June 26!
+
+### 📊 Today's Releases & Status (June 24):
+| Time | What | Lounge Action |
+|------|------|--------------|
+| 🃏 **TODAY** | DELTARUNE Chapter 5 | FREE update! Install on ALL consoles! |
+| 🔫 **TODAY** | EMPULSE Early Access | $19.99 — download & test! |
+| 💀 **TODAY** | The Necromancer's Tale | Minor indie — skip |
+
+### ⏰ Key Deadlines — Next 7 Days:
+| Deadline | What | Lounge Action |
+|----------|------|--------------|
+| **Jun 24** 🃏🔫 | DELTARUNE Ch.5 + EMPULSE | BOTH launch TODAY! Install NOW! |
+| **Jun 25** 🔥🔥 | **GTA 6 PRE-ORDERS GO LIVE!** | Have budget ready! Official pricing revealed! |
+| **Jun 25** 🥊 | Dead or Alive 6: Last Round | 29 chars + free-to-play version! |
+| **Jun 25** 🔫 | Abyssus | New multiplayer FPS |
+| **Jun 25** 🩸 | Flesh Made Fear | Survival horror |
+| **Jun 26** 🛒 | Prime Day ENDS | Last day for Spider-Man 2 $29.99 etc! |
+| **Jun 28-29** 🔥🔥 | **FREE Online Multiplayer Weekend** | 4 days away! Promote HEAVILY! |
+| **Jul 1** 📅 | PS Plus Essential July reveal | New free monthly games! |
+| **Jul 1** 🛒 | Mid-Year Deals + Supplementary sale END | Final day to stock up! |
+
+### 📊 Quick Status Check:
+| Topic | Status | Notes |
+|-------|--------|-------|
+| ✅ PSN | Operational | All services normal |
+| 🃏 DELTARUNE Ch.5 | LAUNCHES TODAY | Free update! Install on lounge consoles! |
+| 🔫 EMPULSE | LAUNCHES TODAY | $19.99 Early Access |
+| 🔥 GTA 6 Pre-Orders | TOMORROW (Jun 25) | FNAC leak likely bogus — wait for official pricing |
+| 🛒 Prime Day | Until Jun 26 | 2 more days! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 7 days left! |
+| 🛒 Summer Sale 2026 🆕 | Jul 16 - Aug 1 | Mark calendar! 22 days away! |
+| 📅 PS Plus July Essential | Jul 1 reveal | No leak yet |
+| 🆓 FREE MP Weekend | Jun 28-29 | 4 days! Promote NOW! |
+| 🧪 PS Plus Staggered Exp | US/UK/JP only | No impact on Myanmar |
+
+---
+
+
 
 ## ⚡ UPDATE (June 23, 2026 - 11:30 UTC) — Prime Day Deals Specifics + New Co-op Game + GTA 6 Price Confirmed
 
