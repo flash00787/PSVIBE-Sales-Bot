@@ -70,15 +70,9 @@ Kora now manages **8 projects** with full coordination tool support.
 ### API & Database Patterns
 ### System Patterns
 ### Business Logic
-23. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
-24. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
-25. **No Timer (duration=0) display** — Shows "∞ Open End" on Timeline. Conflict check uses 480 min (8hr) window. Never apply `duration or 60` pattern for display.
-26. **API format changes after migration** — When API returns different format, check ALL consumers (DB → API → Bot → Dashboard).
-27. **Minified JS edits** — Use Python string replace for precision, not sed; always backup first.
-28. **Booking creation must respect Active sessions** — Direct `UPDATE console_status` bypasses `_sync_console_status()` safety checks.
-29. **HTTP error handling asymmetry** — `_api_call_async` returns error dict for 4xx (no exception) → callers never know API failed.
-30. **MySQL NOW() is UTC** — All time comparisons in SQL must use app-level MMT time. Direct `NOW()` = always wrong.
-31. **Minified Vue fixes need BOTH save logic AND template** — Remove `v()` from save function AND from template ternary. Missing either = fields invisible or save broken.
+33. **Charges are outgoing-only bank fees** — Buy/Payable has charges (we send money); Sell/Receivable has NO charges (customer pays us).
+34. **Never include cleanup in test scripts** — caused 2 accidental data deletions; use backup restore instead.
+35. **Save-and-restore dropdown selections** — when rebuilding select options via `innerHTML`, save `.value` first then restore after.
 
 ## Major Projects & Milestones
 
@@ -119,14 +113,6 @@ Kora now manages **8 projects** with full coordination tool support.
 
 | Issue | Severity | Status |
 |-------|----------|--------|
-| Feedback: 76% walk-in sessions lack telegram_chat_id | Medium | Deferred (Boss: keep as-is) |
-| Feedback Dashboard page added (Jun 22) | — | Done |
-| n8n payment (€25.68) overdue | Medium | Pending boss action |
-| GitHub Deploy failing (psvibe-api-server) | Low | Pre-existing |
-| Food Note issue — Phase 2 pending | Low | Deferred |
-| VPS reboot caused DNS issues June 20 | Low | Mitigated |
-| `_remind_loop` timer never fires | Low | Known, not critical |
-| 100+ games claim vs 41 in DB | Low | Needs verification |
 | food-cart/release silent fail (stock_out) | — | ✅ Fixed Jun 23 |
 | Move API start_time reset | — | ✅ Fixed Jun 23 |
 | booking_id path game_amt=0 | — | ✅ Fixed Jun 23 |
@@ -140,6 +126,7 @@ Kora now manages **8 projects** with full coordination tool support.
 - **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do.
 - **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code fix
 - **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md
+- **📁 New project onboarding (2026-06-25):** Every new project MUST include: (1) `README.md` at project root, (2) `memory/projects/<slug>/state.md`, (3) Daily memory section, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit
 - **Sub-agent timeout:** 300s default
 
 ## 🆕 June 23, 2026 — Major Bug Fixes & Features
@@ -386,3 +373,17 @@ Kora now manages **8 projects** with full coordination tool support.
 | psvibe-sale-bot | 1843415 | ✅ Running |
 | psvibe-customer-bot | 2267555 | ✅ Running |
 | acm-personal-wallet | (auto) | ✅ Running |
+
+### SEL Currency Exchange — Full Project Built (Baht ↔ MMK) ✅
+- **Stack:** FastAPI (port 8001), SQLite, Telegram Bot, Web Dashboard
+- **Location:** `/opt/kora-projects/sel_exchange/`
+- **Dashboard:** `ps-vibe.com/currency-exchange` with login (HMAC-SHA256 auth)
+- **4 Tabs:** Overview | Receivable & Payable | Inventory | People & Accounts
+- **15 API endpoints** including PNL (FIFO), FIFO inventory, multi-payment lines
+- **FIFO PNL:** Full FIFO matching with effective rates (buy+charges, sell-charges)
+- **Charges separation:** Bank charges tracked per payment line, excluded from supplier debt
+- **Auto-backup:** Hourly cron to `/opt/kora-projects/sel_exchange/backups/`
+- Current config: 4 accounts (Cash/Bank MMK, Cash/Bank THB), 5 contacts (2 suppliers, 3 customers)
+
+### New Lessons (continued)
+- **#33-35:** See \## Critical Lessons Learned above

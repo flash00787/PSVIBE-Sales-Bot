@@ -62,6 +62,13 @@ At the START of every session, BEFORE replying to user, execute these steps:
 
 ### 📖 Project Context — Read First Before Starting a Task
 
+> ⚠️ **NEW PROJECT RULE (2026-06-25):** Project အသစ်တစ်ခု တည်ဆောက်တိုင်း အောက်ပါ docs တွေကို ပါတစ်ခါတည်း တည်ဆောက်ရမယ်:
+> 1. **Project README** — `README.md` at project root (overview, stack, API, business logic, config)
+> 2. **Project State** — `memory/projects/<slug>/state.md` (current features, known issues, next steps)
+> 3. **Daily Memory** — `memory/YYYY-MM-DD.md` section (what was built, decisions, files modified)
+> 4. **MEMORY.md** — Project section + new lessons learned
+> 5. **Auto-doc updater** — `python3 /root/coordination/auto_doc_updater.py --summary "..."`
+
 When Boss assigns a new task or asks about a project, **if you don't remember the full context**:
 
 1. First, **memory_search** the relevant topic (project name, feature, bug)
