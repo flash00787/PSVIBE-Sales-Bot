@@ -1,5 +1,35 @@
 # 🧠 Kora's Long-Term Memory
 
+## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)
+
+Kora now manages **8 projects** with full coordination tool support.
+
+### Project Registry: `/root/coordination/project_registry.json`
+| Slug | Project | Services |
+|------|---------|----------|
+| psvibe | PS VIBE Gaming Lounge | 9 (8 systemd + 1 docker) |
+| construction | Three Brothers Construction | 1 (docker) |
+| yyo_wallet | YYO Personal Wallet | 1 (systemd) |
+| acm_wallet | ACM Personal Wallet | 1 (systemd) |
+| kora_voice | Kora Voice Assistant | 1 (systemd) |
+| social_autoreply | Social Auto-Reply | 1 (systemd) |
+| inventory_alerts | Inventory Alerts | 0 |
+| kora_host_api | Kora Host API Bridge | 4 |
+
+### Key Commands:
+- `kora_status.py` — All projects health dashboard
+- `onboard_project.py` — One-command new project setup
+- `backup_manager.py` — Per-project backups
+- `auto_healer.py --all` — Cross-project monitoring
+- `project_utils.py detect "<message>"` — Auto-detect project from message
+
+### Context Detection:
+- Boss mentions project name/alias → Kora auto-detects
+- Default: psvibe (backward compatible)
+- All coordination tools support `--project <slug>`
+
+---
+
 ## People
 
 - **Boss:** Ko Aung Chan Myint (ကိုအောင်ချမ်းမြင့်) — Founder of PS VIBE - PS5 Gaming Lounge. Call him "Boss" or "အစ်ကို" internally.

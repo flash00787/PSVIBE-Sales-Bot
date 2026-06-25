@@ -1,5 +1,23 @@
 # TOOLS.md — Local Notes
 
+## Project Onboarding (NEW — Multi-Project)
+```bash
+# Standard convention (auto-creates /opt/kora-projects/<slug>/code/ + config/)
+python3 /root/coordination/onboard_project.py mybot "My Bot" /opt/kora-projects/mybot/code \
+    --type telegram-bot --language python --services "mybot-bot"
+
+# Interactive mode
+python3 /root/coordination/onboard_project.py --interactive
+
+# Dry-run (preview without creating)
+python3 /root/coordination/onboard_project.py --dry-run mybot "My Bot" /opt/kora-projects/mybot/code
+
+# Without convention (custom path)
+python3 /root/coordination/onboard_project.py mybot "My Bot" /root/my-custom-bot --no-convention
+```
+> **Convention:** New projects → `/opt/kora-projects/<slug>/code/`  
+> **Full docs:** See `memory/CONVENTIONS.md`
+
 ## SSH
 - **bot-server-01:** `5.223.81.16` (root@) — Key: `.ssh/id_boss`
 - **Connection:** Node.js `ssh2` package
@@ -51,6 +69,18 @@ python3 /root/.openclaw/workspace/drive_tool.py search <query>
 
 ## Essential Commands
 ```bash
+# Multi-Project Coordination (NEW — Phase 5)
+python3 /root/coordination/kora_status.py              # All projects health dashboard
+python3 /root/coordination/kora_status.py --json       # JSON output for automation
+python3 /root/coordination/kora_status.py --project psvibe  # Single project detail
+python3 /root/coordination/onboard_project.py --help   # One-command new project setup
+python3 /root/coordination/backup_manager.py backup    # Backup all projects
+python3 /root/coordination/backup_manager.py list      # List all backups
+python3 /root/coordination/backup_manager.py cleanup --days 30  # Cleanup old backups
+python3 /root/coordination/project_utils.py detect "<message>"  # Auto-detect project from message
+python3 /root/coordination/project_utils.py list       # List all projects
+python3 /root/coordination/project_utils.py set-context <slug>  # Set current project context
+
 # Core dev
 python3 /root/coordination/quality_gate.py --quick
 python3 /root/coordination/tool_orchestrator.py 2>&1 | tail -20
