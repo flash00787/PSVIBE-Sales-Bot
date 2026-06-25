@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-25",
+  "type": "morning",
+  "timestamp": "2026-06-25T01:30:20.366Z",
+  "yesterdaySales": {
+    "txns": "40",
+    "total": "871300.00",
+    "gross": "904850.00",
+    "discounts": "14200.00"
+  },
+  "yesterdayTopups": {
+    "count": "0",
+    "total": "0.00",
+    "mins": "NULL"
+  },
+  "activeMembers": "7",
+  "consoleStatus": "console_id\tstatus\tconsole_type\nC-01\tFree\tPS5\nC-02\tFree\tPS5\nC-03\tFree\tPS5\nC-04\tFree\tPS5\nC-05\tFree\tPS5\nC-06\tFree\tPS5\nC-07\tFree\tPS5\nC-08\tFree\tPS5\nC-09\tFree\tPS5 Pro\nC-10\tFree\tPS5 Pro",
+  "systemHealth": {
+    "docker": "oc-coco Up 4 days (healthy)\noc-nova Up 4 days (healthy)\noc-gayzoelay Up 4 days (healthy)\naungchanmyint-caddy-1 Up 8 days\naungchanmyint-n8n-1 Up 8 days\nconstruction_bot Up 5 days\npsvibe-mysql Up 8 days\n",
+    "cpu": "%Cpu(s): 13.7 us,  4.9 sy,  0.0 ni, 81.4 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+    "memoryPercent": "47.3",
+    "diskPercent": "21"
+  },
+  "dockerContainers": "oc-coco: Up 4 days (healthy)\noc-nova: Up 4 days (healthy)\noc-gayzoelay: Up 4 days (healthy)\naungchanmyint-caddy-1: Up 8 days\naungchanmyint-n8n-1: Up 8 days\nconstruction_bot: Up 5 days\npsvibe-mysql: Up 8 days",
+  "todayBookings": "6",
+  "overallStatus": "healthy"
+}
