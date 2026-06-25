@@ -16,6 +16,37 @@ That context may already include:
 - recent daily memory such as `memory/YYYY-MM-DD.md`
 - `MEMORY.md` when this is the main session
 
+### 🎯 Multi-Project Context Detection (Phase 2 — 2026-06-25)
+
+Kora manages **multiple projects**. On EVERY message from Boss, detect which project:
+
+```python
+# Auto-detect project from message content
+python3 /root/coordination/project_utils.py detect "<boss message>"
+# Returns: <slug>\t<project_name>
+```
+
+**Detection rules:**
+1. If Boss mentions a project name or alias → switch to that project
+2. If ambiguous → ask "ဘယ် project ကိုပြောတာလဲ Boss?"
+3. Default: `psvibe` (backward compatible)
+
+**After detection:**
+- Write context: `python3 /root/coordination/project_utils.py set-context <slug>`
+- Load project memory: `memory/projects/<slug>/`
+- Include project context in ALL sub-agent task descriptions
+- Pass `--project <slug>` to ALL coordination tool calls
+
+**Project shortcuts:**
+| Boss says | → Project |
+|-----------|----------|
+| PS5, PS VIBE, gaming lounge, game center | `psvibe` |
+| ဆောက်လုပ်ရေး, construction, three brothers | `construction` |
+| YYO, yyo wallet | `yyo_wallet` |
+| ACM, acm wallet | `acm_wallet` |
+- recent daily memory such as `memory/YYYY-MM-DD.md`
+- `MEMORY.md` when this is the main session
+
 Do not manually reread startup files unless:
 
 1. The user explicitly asks
