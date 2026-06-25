@@ -1,6 +1,56 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-25 05:30 UTC
+> Last updated: 2026-06-25 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 25, 2026 - 11:30 UTC) — Sony Goes ALL-IN on GTA 6: Custom PS5 Home Screen + Original Tekken Drops!
+
+> **Summary:** Sony rolled out a surprise PS5 feature update TODAY that transforms the PS5 interface with GTA 6 branding — custom Welcome Hub animation on bootup, PS Store takeover, and PS App icon change. Original Tekken hits PS5 via Arcade Archives 2. PS Plus July departure date locked.
+
+### 🔥🔥🔥 MASSIVE: Sony Custom GTA 6 PS5 Experience — LIVE TODAY!
+
+Sony didn't just open pre-orders — they TRANSFORMED the entire PS5 interface for GTA 6:
+
+| Feature | Details |
+|---------|---------|
+| 🔥 **Welcome Hub Animation** | PS5 boots up and auto-plays a GTA VI intro animation before showing the home screen — first time Sony has done this for any game this generation! |
+| 🛒 **PS Store Takeover** | The PlayStation Store UI is "overtaken" by GTA VI branding today |
+| 📱 **PS App Icon Change** | The PlayStation App icon on Android & iOS updated to GTA VI-themed design in supported regions |
+| 🎮 **DualSense Integration** | Sony emphasizes GTA VI "plays best on PS5" with DualSense speaker + haptic feedback |
+
+- This is an **unprecedented marketing partnership** — Sony has NEVER done a console-wide custom UI for any third-party game before
+- The feature update rolled out alongside pre-orders going live at midnight local time
+- Sources: PlayStation Lifestyle, IGN South Africa, TechRadar (all June 25)
+- **💡💡 Lounge Impact:** When customers boot up lounge PS5s today, they'll see GTA VI branding everywhere! This is FREE marketing for PS VIBE — Sony is positioning PS5 as THE place to play GTA 6. If you haven't pre-ordered GTA VI for lounge consoles yet, DO IT TODAY!
+
+### 🥋 Original Tekken — Re-Released TODAY on PS5! (June 25)
+- The **original Tekken** (1994) released TODAY on PS5, Xbox Series X|S, and Switch 2 via **Arcade Archives 2** (Hamster Corporation)
+- **First time ever** the original Tekken is available outside PlayStation platforms!
+- **$16.99** — includes Time Attack, Hi Score, and Caravan Mode (new modes)
+- **💡 Lounge Note:** Retro fighting game nostalgia! At $16.99, a fun novelty for fighting game fans.
+
+### 📋 PS Plus July 2026 — Date Confirmations & New Details
+- **Departure date LOCKED: July 21, 2026** (was previously "around July 14-22") — 12 games leaving
+- **July Essential announcement: July 1** (unchanged) — games go live July 7
+- **⚠️ Shorter claim window:** July Essential games only claimable until **August 3, 2026**
+- **Psi-Ops: The Mindgate Conspiracy** confirmed for PS Plus Premium in July 2026
+- No July Essential leaks yet as of June 25
+
+### 📊 Quick Status Check (June 25 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 GTA 6 Pre-Orders | **LIVE NOW!** | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | **LIVE NOW!** 🆕 | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🥋 Original Tekken | **RELEASED TODAY** 🆕 | $16.99 via Arcade Archives 2 |
+| 🥊 Dead or Alive 6: Last Round | RELEASES TODAY | Free-to-play version! |
+| 🔫 Abyssus | RELEASES TODAY | New multiplayer FPS |
+| 🩸 Flesh Made Fear | RELEASES TODAY | Survival horror |
+| 🛒 Prime Day | ENDS TOMORROW (Jun 26) | Last day for Spider-Man 2 $29.99! |
+| 🛒 Mid-Year Deals | Until Jul 1 | + Supplementary sale (200+ ATL prices) |
+| 📅 PS Plus Essential July Reveal | July 1 | 6 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | Mark calendar! |
+| 📤 PS Plus July Departures | **Jul 21** 🆕 | Date locked! 12 games leaving |
 
 ---
 
