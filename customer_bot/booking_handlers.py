@@ -1155,7 +1155,7 @@ async def bk_phone_verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
         _name = m.get("name", "") or ""
         phone = m.get("phone", "")
         masked = phone[-4:] if len(phone) >= 4 else phone
-        balance = m.get("balance_mins", m.get("balance", "N/A"))
+        balance = m.get("wallet_mins", m.get("balance_mins", m.get("balance", "N/A")))
         balance_warn = ""
         if isinstance(balance, (int, float)) and balance <= 0:
             balance_warn = "\n⚠️ *Balance မရှိပါ — Top Up လုပ်ရန်လိုပါမည်*"

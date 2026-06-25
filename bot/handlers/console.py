@@ -555,6 +555,11 @@ async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as cb_e:
         logger.warning("Cashback coupon generation failed (non-critical): %s", cb_e)
 
+    # Clear stale Food Note flags before launching sales flow
+    context.user_data.pop("session_food_order", None)
+    context.user_data.pop("is_food_sale", None)
+    context.user_data.pop("last_food", None)
+
     from bot.handlers.sales import launch_session_sale
     _t5 = time.monotonic()
     _pre_ms = (_t5 - _t0) * 1000

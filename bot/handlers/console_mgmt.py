@@ -7,6 +7,7 @@ from bot import (
     CON_MGMT_MENU, CON_ADD_ID, CON_ADD_MULT, CON_ADD_TYPE,
     CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE,
     MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM,
+    show_console_menu,
 )
 """PS VIBE Bot — Handler module.
 """
@@ -252,7 +253,7 @@ async def prompt_move_session(update: Update, context: ContextTypes.DEFAULT_TYPE
     except Exception as e:
         await update.message.reply_text(f"❌ Error: {e}")
         return await show_con_mgmt_menu(update, context)
-    
+
     active = [c for c in cons if c.get("status") == "Active"]
     if not active:
         await update.message.reply_text(
@@ -260,7 +261,7 @@ async def prompt_move_session(update: Update, context: ContextTypes.DEFAULT_TYPE
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
         )
         return CON_MGMT_MENU
-    
+
     free = [c for c in cons if c.get("status") == "Free"]
     if len(free) < 1:
         await update.message.reply_text(
@@ -268,9 +269,9 @@ async def prompt_move_session(update: Update, context: ContextTypes.DEFAULT_TYPE
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
         )
         return CON_MGMT_MENU
-    
+
     context.user_data["_move_free_consoles"] = free
-    
+
     lines = ["🔄 <b>Session ရွှေ့မည် — Console ရွေးပါ</b>", "━━━━━━━━━━━━━━━━━━"]
     kb = []
     for c in active:
@@ -279,7 +280,7 @@ async def prompt_move_session(update: Update, context: ContextTypes.DEFAULT_TYPE
         lines.append(f"🔴 <b>{c['id']}</b>  |  👤 {mbr}  |  🕐 {st}")
         kb.append([c["id"]])
     kb.append([BTN_BACK])
-    
+
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="HTML",
@@ -293,25 +294,25 @@ async def step_move_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_BACK:
         return await show_con_mgmt_menu(update, context)
-    
+
     try:
         cons = fetch_console_status()
     except Exception as e:
         await update.message.reply_text(f"❌ Error: {e}")
         return await show_con_mgmt_menu(update, context)
-    
+
     source = next((c for c in cons if c.get("id") == text and c.get("status") == "Active"), None)
     if not source:
         await update.message.reply_text(f"⚠️ <b>{text}</b> သည် Active မဟုတ်ပါ", parse_mode="HTML")
         return await prompt_move_session(update, context)
-    
+
     context.user_data["_move_source"] = source
     free = [c for c in cons if c.get("status") == "Free" and c.get("id") != text]
-    
+
     if not free:
         await update.message.reply_text("⚠️ ရွှေ့ရန် Free console မရှိပါ")
         return await show_con_mgmt_menu(update, context)
-    
+
     lines = [
         f"🔄 <b>{text}</b> → ?",
         "━━━━━━━━━━━━━━━━━━",
@@ -322,7 +323,7 @@ async def step_move_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     kb = [[c["id"]] for c in free]
     kb.append([BTN_BACK])
-    
+
     await update.message.reply_text(
         "\n".join(lines),
         parse_mode="HTML",
@@ -336,19 +337,19 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     if text == BTN_BACK:
         return await prompt_move_session(update, context)
-    
+
     source = context.user_data.get("_move_source", {})
     if not source:
         return await show_con_mgmt_menu(update, context)
-    
+
     src_id = source.get("id", "")
     src_bk = source.get("booking_id", "")
-    
+
     try:
         cons = fetch_console_status()
     except Exception:
         cons = []
-    
+
     free_ids = {c["id"] for c in cons if c.get("status") == "Free"}
     if text not in free_ids:
         await update.message.reply_text(
@@ -356,7 +357,7 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return await step_move_source(update, context)
-    
+
     # Execute move via API
     try:
         from bot.api_client import api_post
@@ -368,7 +369,7 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.exception("move_session api error")
         await update.message.reply_text(f"❌ API Error: {e}")
         return await show_con_mgmt_menu(update, context)
-    
+
     if result and result.get("success"):
         await update.message.reply_text(
             f"✅ <b>Session ရွှေ့ပြီ!</b>\n"
@@ -384,7 +385,7 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"❌ <b>မအောင်မြင်ပါ</b>\n━━━━━━━━━━━━━━━━━━\n{err}",
             parse_mode="HTML",
         )
-    
+
     context.user_data.pop("_move_source", None)
     context.user_data.pop("_move_free_consoles", None)
-    return await show_con_mgmt_menu(update, context)
+    return await show_console_menu(update, context)

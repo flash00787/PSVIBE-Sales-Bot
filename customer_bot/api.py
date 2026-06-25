@@ -295,12 +295,12 @@ async def _fetch_games_full() -> List[Any]:
 
 
 async def _fetch_members() -> dict:
-    """Fetch member list from API, enrich each ID with detail data.
+    """Fetch member list from API, build member dict.
 
-    Flow:
-      1. GET /api/fetch_members  → flat ID list  e.g. ["PSV-001", "PSV-002", ...]
-      2. For each ID → GET /api/fetch_member_data/{id}  to get name/phone/wallet/spend
-      3. Build and cache {member_id: {name, phone, wallet_mins, net_spend, rank_raw, ...}}
+    Handles two API response formats:
+      - New (MySQL): list of dicts with id, name, phone, wallet_balance, tier
+      - Legacy: flat list of member ID strings → individual detail fetches
+
     Cached for 300 s.
     """
     cached = await _cache_get("members")
@@ -309,37 +309,54 @@ async def _fetch_members() -> dict:
 
     members: dict = {}
     try:
-        # Step 1 — get flat ID list
-        ids = await _api_get("fetch_members")
-        if not isinstance(ids, list):
-            logging.warning("fetch_members: unexpected response type %s", type(ids))
+        data = await _api_get("fetch_members")
+        if not isinstance(data, list) or len(data) == 0:
+            if not isinstance(data, list):
+                logging.warning("fetch_members: unexpected response type %s", type(data))
             return {}
 
-        # Step 2 — enrich each ID with member details (concurrency-limited)
-        sem = asyncio.Semaphore(10)  # max 10 concurrent detail fetches
+        # Detect format: first item is dict → new MySQL format; str → legacy
+        first = data[0]
+        if isinstance(first, dict):
+            # ── New MySQL format: full member objects ──
+            for m in data:
+                mid = m.get("id", "")
+                if not mid:
+                    continue
+                members[mid] = {
+                    "name":         m.get("name", "") or "",
+                    "phone":        m.get("phone", "") or "",
+                    "email":        m.get("email", "") or "",
+                    "wallet_mins":  m.get("wallet_balance", m.get("liability_mins", 0)) or 0,
+                    "net_spend":    m.get("total_spend", 0) or 0,
+                    "rank_raw":     m.get("tier", "Warrior") or "Warrior",
+                }
+        else:
+            # ── Legacy format: flat ID strings ──
+            sem = asyncio.Semaphore(10)
 
-        async def _fetch_one(mid: str) -> None:
-            async with sem:
-                try:
-                    detail = await _api_get(f"fetch_member_data/{mid}")
-                    detail = detail if isinstance(detail, dict) else {}
-                    if isinstance(detail, dict) and "name" in detail:
-                        members[mid] = {
-                            "name":         detail.get("name", ""),
-                            "phone":        detail.get("phone", ""),
-                            "email":        detail.get("email", ""),
-                            "wallet_mins":  detail.get("wallet_mins", 0),
-                            "net_spend":    detail.get("net_spend", 0),
-                            "rank_raw":     detail.get("rank_raw", "Warrior"),
-                        }
-                except ValueError:
-                    logging.debug("fetch_members: member %s not found or error", mid)
-                except Exception as exc:
-                    logging.warning("fetch_members: detail fetch failed for %s: %s", mid, exc)
+            async def _fetch_one(mid: str) -> None:
+                async with sem:
+                    try:
+                        detail = await _api_get(f"fetch_member_data/{mid}")
+                        detail = detail if isinstance(detail, dict) else {}
+                        if isinstance(detail, dict) and "name" in detail:
+                            members[mid] = {
+                                "name":         detail.get("name", ""),
+                                "phone":        detail.get("phone", ""),
+                                "email":        detail.get("email", ""),
+                                "wallet_mins":  detail.get("wallet_mins", 0),
+                                "net_spend":    detail.get("net_spend", 0),
+                                "rank_raw":     detail.get("rank_raw", "Warrior"),
+                            }
+                    except ValueError:
+                        logging.debug("fetch_members: member %s not found or error", mid)
+                    except Exception as exc:
+                        logging.warning("fetch_members: detail fetch failed for %s: %s", mid, exc)
 
-        tasks = [asyncio.create_task(_fetch_one(mid)) for mid in ids]
-        if tasks:
-            await asyncio.gather(*tasks)
+            tasks = [asyncio.create_task(_fetch_one(mid)) for mid in data]
+            if tasks:
+                await asyncio.gather(*tasks)
 
     except ValueError as e:
         logging.warning("fetch_members: %s", e)

@@ -1713,6 +1713,13 @@ async def launch_session_sale(
     is_guest = member_id in ("Guest", "0 (Guest)", "")
     logger.info("launch_session_sale: cid=%s member=%s is_guest=%s total_mins=%s booking_id=%s", cid, member_id[:20] if member_id else "empty", is_guest, total_mins, booking_id or "none")
 
+    # Clear stale Food Note flags that would short-circuit the end-session sales flow
+    # (session_food_order=True + is_food_sale=True makes step_food_menu→Done route to
+    # _save_food_cart instead of prompt_confirm, skipping game_amt entirely.)
+    context.user_data.pop("session_food_order", None)
+    context.user_data.pop("is_food_sale", None)
+    context.user_data.pop("last_food", None)
+
     base_rate  = await fetch_base_rate_async()
     # For combined cids (e.g. "C-09+C-10") multiplier lookup returns 1.0 — that's fine
     # because pre_effective_mins already encodes the per-console multipliers.
