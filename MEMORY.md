@@ -73,6 +73,12 @@ Kora now manages **8 projects** with full coordination tool support.
 23. **Dashboard code is the source of truth** — Other API stubs may be outdated. Always check `dashboard_routes.py` first.
 24. **FIFO for wallet consumption** — Oldest topups consumed first; bonus/free minutes have 0 Ks value.
 25. **No Timer (duration=0) display** — Shows "∞ Open End" on Timeline. Conflict check uses 480 min (8hr) window. Never apply `duration or 60` pattern for display.
+26. **API format changes after migration** — When API returns different format, check ALL consumers (DB → API → Bot → Dashboard).
+27. **Minified JS edits** — Use Python string replace for precision, not sed; always backup first.
+28. **Booking creation must respect Active sessions** — Direct `UPDATE console_status` bypasses `_sync_console_status()` safety checks.
+29. **HTTP error handling asymmetry** — `_api_call_async` returns error dict for 4xx (no exception) → callers never know API failed.
+30. **MySQL NOW() is UTC** — All time comparisons in SQL must use app-level MMT time. Direct `NOW()` = always wrong.
+31. **Minified Vue fixes need BOTH save logic AND template** — Remove `v()` from save function AND from template ternary. Missing either = fields invisible or save broken.
 
 ## Major Projects & Milestones
 
