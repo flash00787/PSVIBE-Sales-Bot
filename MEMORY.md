@@ -124,6 +124,8 @@ Kora now manages **8 projects** with full coordination tool support.
 | food-cart/release silent fail (stock_out) | — | ✅ Fixed Jun 23 |
 | Move API start_time reset | — | ✅ Fixed Jun 23 |
 | booking_id path game_amt=0 | — | ✅ Fixed Jun 23 |
+| Customer Bot phone last-3-digits lookup | — | ✅ Fixed Jun 25 |
+| Staff role couldn't access Members tab | — | ✅ Fixed Jun 25 |
 
 ## Working Preferences
 
@@ -348,3 +350,33 @@ Kora now manages **8 projects** with full coordination tool support.
 |---------|-----|--------|
 | psvibe-api | 1900814 | ✅ Running |
 | psvibe-sale-bot | 1843415 | ✅ Running |
+
+## Memory (2026-06-25)
+
+### ACM Wallet — Google Sheets → MySQL Migration Complete ✅
+- Full cutover: `main.py` 5,979→5,197 lines (-782), zero functional Sheets code remaining
+- DB `acm_wallet`: 7 tables, 147 tx, 44 OB, 56 settings migrated
+- Backend: MySQL-only, all read/write via `db.py` (437 lines)
+- Cleanup: gspread removed, `_SHEETS_TIMEOUT`→`_DB_TIMEOUT`, `service_account.json` deleted, mysqldump cron added
+- Service: `acm-personal-wallet` ✅ active
+
+### PS VIBE Web — Staff Role → Members Tab ✅
+- `dashboard-dist/assets/index-B6C8MOLE.js`: Router meta `roles:["admin","staff"]` + sidebar `ie` array
+
+### 🐛 Customer Bot — Phone Last-3-Digits Lookup Fix ✅
+- **Bug:** API `fetch_members` now returns full objects (MySQL) but bot expected flat IDs
+- **Fix:** `customer_bot/api.py` — detect format, build directly from API response (1 call vs 1+N)
+- **Fix:** `customer_bot/booking_handlers.py` — balance key chain: `wallet_mins`→`balance_mins`→`balance`
+- **Performance:** 1 API call instead of 1+N per booking flow
+
+### New Lessons
+- **#26: API format changes after migration** — When API returns different format, check ALL consumers
+- **#27: Minified JS edits** — Use Python string replace for precision, not sed; always backup first
+
+### Updated Service State
+| Service | PID | Status |
+|---------|-----|--------|
+| psvibe-api | 1900814 | ✅ Running |
+| psvibe-sale-bot | 1843415 | ✅ Running |
+| psvibe-customer-bot | 2267555 | ✅ Running |
+| acm-personal-wallet | (auto) | ✅ Running |

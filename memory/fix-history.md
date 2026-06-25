@@ -2,6 +2,23 @@
 
 > Recent major fixes. Full daily logs at `memory/YYYY-MM-DD.md`
 
+## 2026-06-25 — Customer Bot Phone Lookup + Dashboard Staff Permission
+
+### #49: Customer Bot — Phone Last-3-Digits Member Lookup Silent Fail 🐛
+| Item | Detail |
+|------|--------|
+| Files | `customer_bot/api.py:297-372`, `customer_bot/booking_handlers.py:1160` |
+| Root Cause | API `fetch_members` now returns full objects `[{id, name, phone}]` (MySQL) but bot expected flat ID list `["PSV-001"]`. Dict objects passed as URL string → invalid API calls → silent fail → 0 members matched |
+| Fix | Detect format: dict → build directly (1 call vs 1+N); string → legacy individual fetches. Also fixed balance key chain |
+| Bonus | Performance improved: 1 API call instead of 1+N per booking flow |
+
+### #48: PS VIBE Web — Staff Role Missing Members Tab 🐛
+| Item | Detail |
+|------|--------|
+| File | `dashboard-dist/assets/index-B6C8MOLE.js` |
+| Issue | `/members` route restricted to `role:"admin"` only; sidebar filtered to admin-only paths |
+| Fix | Router: `roles:["admin","staff"]` + sidebar `ie` array: added `"/members"` |
+
 ## 2026-06-21 — Session Start Booking Link (4 Bugs Fixed)
 
 ### #45: Session Start → Booking Link Completely Broken 🐛🐛🐛🐛
