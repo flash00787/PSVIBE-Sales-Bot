@@ -1,6 +1,75 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-24 17:31 UTC
+> Last updated: 2026-06-25 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 25, 2026 - 05:30 UTC) — GTA 6 Pre-Orders LIVE TODAY + Summer Game Fest Discoveries
+
+> **Summary:** GTA 6 pre-orders are LIVE TODAY. June 25 releases drop (Dead or Alive 6, Abyssus, Flesh Made Fear). Major Summer Game Fest 2026 (June 5-8) discoveries that were missed from the tracker — including FF7 Revelation, Resident Evil Veronica Remake, Cuphead 2, Guild Wars 3 on console, and more.
+
+### 🔥🔥 GTA 6 PRE-ORDERS — GO LIVE TODAY! (June 25)
+- **Grand Theft Auto VI pre-orders** are expected to go live at **midnight local time** on PS Store
+- **Standard Edition: $79.99** | **Ultimate Edition: $99.99**
+- Free GTA+ month + Vintage Vice City Pack with any pre-order before Nov 20
+- Pre-load: November 12, 2026 | Launch: November 19, 2026
+- **💡 Lounge Action:** Pre-order GTA VI Ultimate Edition for lounge consoles TODAY! The free GTA+ month and Vice City Pack make it a no-brainer. Check PS Store throughout the day!
+
+### 🎮 TODAY'S RELEASES (June 25):
+| Game | Details | Lounge Value |
+|------|---------|-------------|
+| 🥊 **Dead or Alive 6: Last Round** | 29 chars + free-to-play version | ⭐⭐⭐⭐ — FREE version = try before buy! |
+| 🔫 **Abyssus** | Multiplayer brinepunk FPS | ⭐⭐⭐ — Unique aesthetic, check for local MP |
+| 🩸 **Flesh Made Fear** | Classic survival horror | ⭐⭐⭐ — Horror always draws crowds |
+| 🎨 **Psycasso** | Minor indie | ⭐ — Skip |
+| 🚛 **SnowRunner: S18** | Niche sim DLC | ⭐⭐ — Skip |
+
+### 🆕 Summer Game Fest 2026 — Major Discoveries MISSED from Tracker!
+
+The June 5-8 SGF had several major PS5 announcements that were never captured. Here's what was missed:
+
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🔥🔥 **Final Fantasy VII Revelation** | Spring 2027 | ⭐⭐⭐⭐⭐ — FF7 Remake Part 3! This will be MASSIVE! |
+| 🔥🔥 **Resident Evil Veronica Remake** | 2027 | ⭐⭐⭐⭐⭐ — From RE2/RE4 remake teams! Horror GOLD! |
+| 🔥 **Cuphead 2** | TBD | ⭐⭐⭐⭐ — Sequel to indie darling! Co-op run-and-gun! |
+| 🔥 **The Wolf Among Us 2** | 2027 | ⭐⭐⭐⭐ — Telltale cult classic returns! |
+| 🔥 **Guild Wars 3** (console debut!) | Beta Fall 2027 | ⭐⭐⭐⭐ — First GW on home console! MMO fans! |
+| 🔥 **Kingdom Hearts IV** | TBD | ⭐⭐⭐⭐ — Disney + Final Fantasy crossover! |
+| 🔥 **Persona 6** | TBD | ⭐⭐⭐⭐⭐ — Persona 5 was a global phenomenon! |
+| 🔥 **Dragon Quest 12 Beyond Dreams** | TBD | ⭐⭐⭐⭐ — Japan's most beloved RPG franchise! |
+| 🤖 **Gundam Rogue Orbit** | 2027 | ⭐⭐⭐ — Gundam IP popular across Asia |
+| 👽 **Alien: Isolation 2** | TBD | ⭐⭐⭐⭐ — Horror sequel! First game was terrifying! |
+| 👽 **Aliens: Fireteam Elite 2** | TBD | ⭐⭐⭐⭐ — Co-op shooter! Perfect lounge material! |
+| 🚕 **Crazy Taxi: World Tour** | TBD | ⭐⭐⭐⭐ — Arcade classic revived! Casual fun! |
+| ⚔️ **Wo Long 2** | TBD | ⭐⭐⭐ — Nioh-like from Team Ninja |
+| 🏍️ **Mafia: The Old Country – Man of Honor DLC** | **Aug 14, 2026** | ⭐⭐⭐ — New Mafia DLC |
+| 🏎️ **Sonic Racing: CrossWorlds DLC** | Jul (TMNT), Oct (Avatar) | ⭐⭐⭐ — Plus Season 2: Godzilla + Evangelion! |
+
+### 🏈 EA Sports UFC 6 — June 19 (MISSED!)
+- Launched June 19 on PS5 — completely absent from tracker!
+- **💡 Lounge Note:** Combat sports games are popular for casual lounge sessions. UFC 6 has a dedicated fanbase. Worth adding if customers request it.
+
+### 🛒 Costco PS Gift Card Discount (June 22-26)
+- US/Canada only — Costco members get $5-8 off PS Store gift card bundles
+- **💡 Lounge Note:** Not relevant for Myanmar. Skip.
+
+### 🎮 PS Plus Premium — 36 New Game Trials Added (June 2026)
+- Sony added 36 new game trials to PS Plus Premium in June
+- **💡 Lounge Note:** If lounge has Premium, customers can trial games before committing to buy. Good for testing new titles.
+
+### 📊 Quick Status Check (June 25):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 GTA 6 Pre-Orders | LIVE TODAY! | $79.99 Standard / $99.99 Ultimate |
+| 🥊 Dead or Alive 6: Last Round | RELEASES TODAY | Free-to-play version! |
+| 🛒 Prime Day | ENDS TOMORROW (Jun 26) | Last day for Spider-Man 2 $29.99! |
+| 🛒 Mid-Year Deals | Until Jul 1 | + Supplementary sale (200+ ATL prices) |
+| 📅 PS Plus Essential July Reveal | July 1 | 6 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | Mark calendar! |
+| 🆕 FF7 Revelation | Spring 2027 | FF7 Remake Part 3! SGF reveal! |
+| 🆕 RE Veronica Remake | 2027 | From RE2/RE4 devs! SGF reveal! |
+| 🆕 Cuphead 2 | TBD | SGF reveal! |
 
 ---
 
