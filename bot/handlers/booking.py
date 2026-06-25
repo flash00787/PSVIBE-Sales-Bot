@@ -1211,10 +1211,9 @@ async def step_book_checkin_bind(update: Update, context: ContextTypes.DEFAULT_T
     # Mark booking as Active via API
     api_failed = False
     try:
-        await _psvibe_post_async("update_booking", {
-            "id": bk_id,
+        await _psvibe_patch_async(f"bookings/{bk_id}/status", {
             "status": "Active",
-            "console_id": cid,
+            "consoleId": cid,
         })
         logger.info(f"checkin_bind: #{bk_id} {member} → Active on {cid}")
     except Exception as e:
