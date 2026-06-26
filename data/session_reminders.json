@@ -1,1 +1,13 @@
-{}
+{
+  "C-10|1003686032747": {
+    "cid": "C-10",
+    "chat_id": -1003686032747,
+    "member_id": "Htet Wai Yan",
+    "planned_mins": 60,
+    "end_t": "12:00",
+    "end_dt_iso": "2026-06-26T12:00:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-06-26T04:30:02.603928+00:00"
+  }
+}
