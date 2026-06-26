@@ -13,6 +13,7 @@ from bot import (
 )
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
 from bot.handlers.booking_flow import _post_n8n_booking_reminder, _remind_loop, _remind_key, _REMIND_TASKS, _cancel_remind
+from bot.handlers.booking import _sbk_advance_reminder
 
 
 logger = logging.getLogger(__name__)
@@ -608,7 +609,7 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
         except Exception as e:
             logger.warning("Console_Booking post-approval update: %s", e)
 
-    # Fire n8n reminder when customer booking approved
+    # Fire n8n reminder + bot-based fallback when customer booking approved
     if action == "approve":
         asyncio.create_task(_post_n8n_booking_reminder(
             bk_id=bk_id,
@@ -620,4 +621,14 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
             time_slot=bk_info.get("timeSlot", ""),
             duration_mins=int(bk_info.get("durationMins") or 60),
             tg_chat=tg_chat,
+        ))
+        # Bot-based 30-min advance reminder fallback (works even if n8n is down)
+        from bot import app as _app
+        asyncio.create_task(_sbk_advance_reminder(
+            _app.bot, booking_id=bk_id, cid=bk_info.get("consoleId") or bk_info.get("console_id", ""),
+            ctype=bk_info.get("consoleType", ""),
+            name=bk_info.get("customerName", ""), phone=bk_info.get("phone", ""),
+            date_str=bk_info.get("date", ""), time_str=bk_info.get("timeSlot", ""),
+            dur=int(bk_info.get("durationMins") or 60),
+            game=bk_info.get("gameName", ""), staff=staff_name,
         ))

@@ -666,7 +666,7 @@ async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name: str, phone: str,
                                  date_str: str, time_str: str, dur: int, game: str, staff: str):
-    """Send 10-min advance reminder to admin group for a confirmed booking."""
+    """Send 30-min advance reminder to admin group for a confirmed booking."""
     try:
         # Parse date and time - handle M/D/YYYY format
         import re as _re
@@ -682,23 +682,21 @@ async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name
         hr, mi = int(parts[0]), int(parts[1])
 
         booking_dt = datetime(yr, mo, da, hr, mi, 0, tzinfo=timezone(timedelta(hours=6, minutes=30)))
-        remind_dt = booking_dt - timedelta(minutes=10)
-        now_utc = datetime.now(timezone.utc)
+        remind_dt = booking_dt - timedelta(minutes=30)
+        now_mmt_dt = now_mmt()
 
-        # If remind time already passed but booking is still in the future, skip
-        if remind_dt <= now_utc:
-            if booking_dt > now_utc:
-                # Less than 10 min away - fire immediately
-                pass
-            else:
-                return  # Booking already started
+        # If remind time already passed but booking is still in the future, fire immediately
+        if remind_dt <= now_mmt_dt:
+            if booking_dt <= now_mmt_dt:
+                return  # Booking already started — no reminder needed
+            # Booking is < 30 min away — fire immediately
 
-        seconds_until_remind = max(1, int((remind_dt - now_utc).total_seconds()))
+        seconds_until_remind = max(1, int((remind_dt - now_mmt_dt).total_seconds()))
         await asyncio.sleep(seconds_until_remind)
 
         notify_text = (
             f"\u23f0 <b>Booking #{booking_id} Reminder!</b>\n"
-            f"\u23f1\ufe0f <b>10 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102e\u1019\u1000\u103a\n"
+            f"\u23f1\ufe0f <b>30 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102e\u1019\u1000\u103a\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"\u2b07 Customer: <b>{name}</b>  \u2139 {phone}\n"
             f"\u267f {date_str}  \u23f0 {time_str}\n"
