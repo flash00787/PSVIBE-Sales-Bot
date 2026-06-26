@@ -2,6 +2,86 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-10 last updated 6.4h ago",
+    "consoleId": "C-10",
+    "timestamp": "2026-06-26T20:10:46.131Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-09 last updated 6.3h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-06-26T20:10:46.129Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 7.3h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-06-26T20:10:46.126Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 5.9h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-06-26T20:10:46.124Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 9.1h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-06-26T20:10:46.120Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 7.3h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-06-26T20:10:46.117Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 8.4h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-06-26T20:10:46.115Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 7.4h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-06-26T20:10:46.112Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 6.0h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-06-26T20:10:46.110Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 6.7h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-06-26T20:10:46.107Z"
+  },
+  {
+    "type": "balance_drop",
+    "severity": "critical",
+    "message": "🚨 Balance drop for Aung Thurein Oo: 322m → 130m (59.6% drop, -192m)",
+    "memberId": "PSV_A_004",
+    "memberName": "Aung Thurein Oo",
+    "dropPercent": 59.62732919254658,
+    "dropAbsolute": 192,
+    "timestamp": "2026-06-26T20:10:46.104Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 7.3h ago",
     "consoleId": "C-10",
     "timestamp": "2026-06-25T20:10:36.204Z"
