@@ -1,6 +1,79 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-26 05:30 UTC
+> Last updated: 2026-06-26 11:30 UTC
+
+---
+
+## 🔥🔥🔥 CRITICAL UPDATE (June 26, 2026 - 11:30 UTC) — THREE MAJOR AAA TITLES MISSING! CoD MW4 + AC Black Flag Remake + Forza Horizon 6 PS5!
+
+> **Summary:** Midday sweep uncovered THREE massive AAA titles completely absent from the tracker. Call of Duty: Modern Warfare 4 launches October 23 with pre-orders LIVE. Assassin's Creed Black Flag Resynced releases July 9 — only 13 DAYS AWAY! Forza Horizon 6 confirmed for PS5 later this year. These are all lounge-critical titles.
+
+### 🔥🔥🔥 Call of Duty: Modern Warfare 4 — October 23, 2026! PRE-ORDERS LIVE! (MISSED FROM TRACKER!)
+- **Officially announced May 28, 2026** via PlayStation Blog and Activision — completely absent from our tracker!
+- Developer: **Infinity Ward** — the studio behind the original MW series and MW 2019/2022 reboots
+- **Release date: October 23, 2026** on PS5, Xbox Series X|S, and PC
+- **Current-gen ONLY** — will NOT release on PS4/Xbox One (first COD to drop last-gen entirely!)
+- **Campaign:** Missions set in Korea, New York, Paris, and Mumbai
+- **Multiplayer:** 12 new 6v6 maps at launch
+- **DMZ extraction mode returns!** Fan-favorite mode from MW2 (2022) is back
+- **PRE-ORDERS ARE ALREADY LIVE** on PS Store!
+- **💡💡💡 Lounge Impact — MASSIVE:** Call of Duty is consistently THE #1 or #2 most-played franchise at gaming lounges worldwide (alongside FIFA/FC). This was announced nearly a MONTH ago and completely missed! Pre-order lounge copies NOW. CoD MW4 + GTA 6 in back-to-back months (Oct 23 + Nov 19) = the biggest Q4 in gaming history. Prepare lounge for the double-tsunami!
+- Sources: Official PS Blog (May 28), Activision Blog, PlayStation Lifestyle, PSU
+
+### 🏴‍☠️🔥🔥 Assassin's Creed Black Flag Resynced — JULY 9, 2026! Only 13 DAYS AWAY! (MISSED FROM TRACKER!)
+- **FULL REMAKE** of Assassin's Creed IV: Black Flag (2013) — NOT a remaster, completely rebuilt in Ubisoft's latest Anvil Engine
+- Developer: **Ubisoft Singapore** (lead) with support from 15 Ubisoft studios
+- **Release date: July 9, 2026** on PS5, Xbox Series X|S, and PC
+- Announced via **official PS Blog on April 23, 2026** — somehow completely absent from tracker!
+- **Key upgrades:**
+  - Ray-traced lighting + micropolygon rendering + dynamic weather system
+  - 60 FPS mode on consoles + PS5 Pro enhancements
+  - No loading screens entering cities (seamless open world streaming)
+  - Reworked combat: combos, perfect parries, chained takedowns
+  - Improved stealth: manual crouch, revised tailing/eavesdropping missions (detection ≠ auto-fail!)
+  - Enhanced naval combat with new alternate fire modes
+  - Expanded story: new missions, scenes, characters (Blackbeard, Stede Bonnet return + new allies)
+  - New sea shanties, pets, photo mode
+  - **Matt Ryan returns as Edward Kenway** (original voice actor!)
+- **Pre-order bonus:** "Blackbeard's Crimson Pack"
+- **💡💡💡 Lounge Impact — HUGE:** Black Flag is widely considered the BEST Assassin's Creed game ever made. A full UE5-quality remake of a beloved classic = MASSIVE draw. Pirate fantasy + naval combat + open-world Caribbean = perfect lounge spectacle. This launches in LESS THAN 2 WEEKS! Pre-order NOW and promote heavily — "The greatest pirate game of all time, rebuilt for PS5!"
+- Sources: Official Ubisoft, PS Blog (Apr 23), VGChartz, Wikipedia
+
+### 🏎️🔥🔥 Forza Horizon 6 — Confirmed for PS5 Later in 2026! (MISSED FROM TRACKER!)
+- **Forza Horizon 6** released on Xbox Series X|S and PC on **May 19, 2026**
+- **PS5 version CONFIRMED** — Microsoft/Xbox Game Studios has officially stated it's coming to PS5 "later in 2026" (likely Sep-Oct)
+- This follows Forza Horizon 5's successful PS5 launch in April 2025 — Microsoft's multi-platform strategy continues
+- Forza Horizon is THE definitive open-world racing series — 10/10 critic scores, massive casual appeal
+- **💡💡 Lounge Impact:** Forza Horizon 5 was already a hit on PS5 — FH6 on PS5 means the latest entry in the world's best arcade racing franchise is coming to lounge consoles. Open-world driving = perfect for casual drop-in sessions. Add to PS5 wishlist NOW and monitor for the official PS5 release date!
+- Sources: GameSpot, GamesRadar, Wikipedia, Forza.net
+
+### 🛒 Summer Game Fest Sale — Active Now on PS Store!
+- A **separate "Summer Games Fest Sale"** is running on PS Store alongside the Mid-Year Deals — different promotion!
+- Features additional discounted titles themed around Summer Game Fest announcements
+- **💡 Lounge Note:** Check PS Store for SGF-related game discounts. Stack this with Mid-Year Deals (ends July 1) for maximum savings on lounge library titles.
+
+### 📊 Quick Status Check (June 26 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥🔥 CoD Modern Warfare 4 | **MISSED! 🆕** | Oct 23! PRE-ORDERS LIVE! Announced May 28! |
+| 🏴‍☠️🔥🔥 AC Black Flag Resynced | **MISSED! 🆕** | Jul 9! Only 13 days! PS Blog Apr 23! |
+| 🏎️🔥🔥 Forza Horizon 6 PS5 | **MISSED! 🆕** | Confirmed later 2026! Xbox version already out! |
+| 🛒 Summer Game Fest Sale | **NEW FIND 🆕** | Separate from Mid-Year Deals! Active now! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | LIVE NOW! | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🦇 LEGO Batman Legacy | MISSED! | Released May 22! Install on lounge consoles! |
+| ✈️ Ace Combat 8 | Oct 2, 2026 | State of Play reveal was missed! |
+| 🛒 Prime Day | **ENDS TODAY!** | Final hours for deals! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 5 days left! |
+| 📅 PS Plus Essential July Reveal | **July 1** | 5 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 20 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 games leaving |
+
+### 🚨 Priority Lounge Actions (NEW!):
+1. **PRE-ORDER Call of Duty: Modern Warfare 4** on ALL lounge consoles — Oct 23! This is THE biggest annual franchise!
+2. **PRE-ORDER Assassin's Creed Black Flag Resynced** — July 9! Only 13 DAYS AWAY! Promote: "The greatest pirate game ever, rebuilt for PS5!"
+3. **Wishlist Forza Horizon 6 on PS Store** — monitor for PS5 release date drop!
+4. **Check Summer Game Fest Sale** on PS Store for additional deals beyond Mid-Year Deals
 
 ---
 
