@@ -1,6 +1,44 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-25 23:30 UTC
+> Last updated: 2026-06-26 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 26, 2026 - 05:30 UTC) — Ace Combat 8 MISSED from Tracker! + Prime Day Final Day
+
+> **Summary:** Early morning sweep. Ace Combat 8: Wings of Theve (Oct 2, 2026) was revealed at the June 2 State of Play but completely missed from tracker. Prime Day ends TODAY. Otherwise everything current.
+
+### ✈️✈️ Ace Combat 8: Wings of Theve — October 2, 2026 (MISSED from State of Play Coverage!)
+- Bandai Namco's **Ace Combat 8: Wings of Theve** was revealed at the **June 2 State of Play** — completely absent from our tracker until now!
+- **Global release: October 2, 2026** on PS5, Xbox Series X|S, and PC
+- **Deluxe Edition Early Access: September 28, 2026** (4 days early)
+- **Pre-order bonus:** FREE digital copy of **Ace Combat Zero: The Belkan War** (PS5 port) + F-14A Tomcat aircraft
+- Developer: Bandai Namco Aces (ILCA co-development)
+- Genre: Arcade-style flight combat with cinematic storytelling — Ace Combat is a 25+ year PlayStation legacy franchise
+- **💡💡 Lounge Impact:** Ace Combat has a fiercely loyal fanbase. The series is known for stunning aerial visuals, epic orchestral scores, and accessible-but-deep flight mechanics. Perfect for lounge spectator mode — dogfights look INCREDIBLE on big screens. Ace Combat 7 sold 6M+ copies. Add to October wishlist!
+
+### 🛒 Prime Day 2026 — ENDS TODAY! (June 26)
+- Amazon Prime Day ends TODAY — last chance for Spider-Man 2 ($29.99), God of War Ragnarök ($32.43), NBA 2K26 ($19.91), Astro Bot ($39.00), EA Sports FC 26 ($29.83), and more!
+- **💡 Lounge Action:** Final call! If you haven't grabbed those Prime Day deals, TODAY is the last day!
+
+### 🎲 Minor: Monopoly: Star Wars Heroes vs. Villains — June 30
+- Digital board game coming to PS5 on June 30 — Star Wars + Monopoly = family-friendly lounge filler
+- **💡 Lounge Note:** Minor addition. Digital board games can be fun for casual/couples lounge sessions.
+
+### 📊 Quick Status Check (June 26 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 GTA 6 Pre-Orders | **LIVE NOW!** | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | **LIVE NOW!** | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🦇 LEGO Batman Legacy | **MISSED!** | Released May 22! Install on lounge consoles! |
+| ✈️ Ace Combat 8 | **MISSED!** 🆕 | Oct 2, 2026! State of Play reveal was missed! |
+| 🕹️ Jackbox Party Pack 12 | Announced Jun 25 | 5 new games! Date TBD |
+| 🆓 Spellfarers | **AVAILABLE NOW** | FREE PS5 game! 33 trophies! |
+| 🛒 Prime Day | **ENDS TODAY!** | Final hours for deals! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 5 days left! |
+| 📅 PS Plus Essential July Reveal | **July 1** | 5 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 20 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 games leaving |
 
 ---
 
