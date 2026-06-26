@@ -1,6 +1,86 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-25 11:30 UTC
+> Last updated: 2026-06-25 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 25, 2026 - 23:30 UTC) — LEGO Batman MISSED! + Ratatan Delayed + Hell Let Loose Vietnam Date Fix + Enshrouded 1.0!
+
+> **Summary:** Evening research sweep. LEGO Batman: Legacy of the Dark Knight (May 22 release) was COMPLETELY MISSED from tracker — a major family/co-op title. Ratatan delayed from July to October. Hell Let Loose: Vietnam delayed to August 13 (was June 18 in tracker). Enshrouded 1.0 confirmed October 15 on PS5. Jackbox Party Pack 12 announced today. Free PS5 game Spellfarers available now.
+
+### 🦇🦇 LEGO Batman: Legacy of the Dark Knight — Released May 22, COMPLETELY MISSED!
+- **Traveller's Tales / Warner Bros.** released the 4th LEGO Batman game on **May 22, 2026** on PS5, Xbox Series, and PC
+- **OPEN-WORLD Gotham City** built in **Unreal Engine 5** — inspired by Batman: Arkham series
+- Story: Bruce Wayne's journey from League of Shadows training → Batman → forming Bat-family (Jim Gordon, Catwoman, Robin, Nightwing, Batgirl)
+- Re-imagined combat: fluid combos, stealth, unique character abilities (NOT traditional LEGO game combat!)
+- Customizable Batcave + co-op multiplayer
+- Deluxe Edition: Early Access started May 19 + Legacy Collection DLC
+- Post-launch: **Mayhem Collection DLC** (September 2026) adds Joker + Harley Quinn as playable characters
+- **💡💡 Lounge Impact:** This is a MAJOR family-friendly title that was completely missed! Open-world LEGO Batman with UE5 visuals, co-op play, and Arkham-inspired combat = PERFECT lounge game for kids, families, and casual groups. The co-op makes it ideal for lounge sessions. Install on lounge consoles ASAP!
+
+### 🥁 Ratatan DELAYED — July 16 → October 15, 2026!
+- Patapon spiritual successor by Hiroyuki Kotani — delayed from July 16 to **October 15, 2026**
+- Reason: multiplayer stability and bug fixes from Early Access feedback
+- **💡 Lounge Note:** Ratatan was on our July calendar — move to October. The Patapon fanbase is niche but passionate.
+
+### ⚔️ Hell Let Loose: Vietnam — DELAYED to August 13, 2026! (Was June 18!)
+- Our tracker had Hell Let Loose: Vietnam at **June 18** — but it was OFFICIALLY DELAYED to **August 13, 2026**
+- Publisher Team17 + developer Expression Games delayed after open beta feedback
+- 50v50 tactical multiplayer FPS set in Vietnam War — 6 maps, historically accurate weapons/vehicles
+- Digital originally June 18, physical August 4 — BOTH now pushed to August 13
+- **💡 Lounge Action:** Remove from "already released" June list. Move to August 13. Tactical shooter — niche but Vietnam setting + 50v50 may draw military FPS fans.
+
+### 🏚️ Enshrouded 1.0 — October 15, 2026 on PS5!
+- Open-world survival + base-building game by Keen Games — **2 years in Steam Early Access**
+- Full 1.0 launch confirmed for **October 15, 2026** on PS5, PS5 Pro, and PC
+- Massive voxel-based world with crafting, building, RPG progression, and co-op
+- **💡💡 Lounge Note:** Enshrouded is one of Steam's most successful survival games. Coming to PS5 at 1.0 = a polished survival experience. Survival-crafting games are popular for extended lounge sessions. October 15 = same day as Ratatan and Castlevania Requiem!
+
+### 🕹️ Jackbox Party Pack 12 — Announced TODAY! (June 25)
+- **5 new party games** announced today — platforms include PS5
+- Jackbox is THE definitive party game series for group settings — players use phones as controllers
+- **💡💡 Lounge Impact:** Jackbox games are PERFECT for lounges! No controllers needed (phones only), supports 8+ players, and creates a social atmosphere. This is a DAY ONE purchase for any gaming lounge. Previous Jackbox packs are lounge staples.
+
+### 🆓 Spellfarers — FREE PS5 Game Available TODAY!
+- Free-to-play farming simulation with magic — build farms, craft, cast spells with friends
+- 33 trophies including a Platinum
+- **💡 Lounge Note:** Free game with Platinum trophy = no-risk lounge addition. Co-op farming with magic twist could appeal to casual gamers. Download on lounge consoles — it's FREE!
+
+### 🔄 PS Plus July Essential — Announcement July 1 (No Leaks Yet)
+- Official reveal: **July 1, 2026** (unchanged). Games available **July 7** (first Tuesday)
+- Community speculation (UNCONFIRMED): Rise of the Ronin, Atomic Heart, Days Gone Remastered, Elden Ring, Hades, Returnal
+- ⚠️ These are pure speculation — NO credible leaks yet
+- **💡 Lounge Action:** Mark July 1 for the reveal. Any of those speculated titles would be massive lounge additions if they hit PS Plus Essential.
+
+### 📋 Date Corrections & Calendar Updates:
+| Change | Old Date | New Date | Impact |
+|--------|---------|----------|--------|
+| 🥁 Ratatan | Jul 16 | **Oct 15** | Remove from July, add to October |
+| ⚔️ Hell Let Loose: Vietnam | Jun 18 | **Aug 13** | Remove from "released," add to August |
+| 🏚️ Enshrouded 1.0 | — | **Oct 15** | NEW! Add to October calendar |
+| 🦇 LEGO Batman: Legacy of the Dark Knight | — | **May 22** (already out!) | MISSED! Install on lounge consoles! |
+| 🕹️ Jackbox Party Pack 12 | — | Announced Jun 25 | NEW! Date TBD |
+
+### 📊 Quick Status Check (June 25 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 GTA 6 Pre-Orders | **LIVE NOW!** | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | **LIVE NOW!** | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🦇 LEGO Batman Legacy | **MISSED!** 🆕 | Released May 22! Install on lounge consoles! |
+| 🥋 Original Tekken | **RELEASED TODAY** | $16.99 via Arcade Archives 2 |
+| 🥊 Dead or Alive 6: Last Round | RELEASES TODAY | Free-to-play version! |
+| 🔫 Abyssus | RELEASES TODAY | New multiplayer FPS |
+| 🩸 Flesh Made Fear | RELEASES TODAY | Survival horror |
+| 🆓 Spellfarers | **AVAILABLE NOW** 🆕 | FREE PS5 game! 33 trophies! |
+| 🕹️ Jackbox Party Pack 12 | **ANNOUNCED TODAY** 🆕 | 5 new games! |
+| 🛒 Prime Day | ENDS TOMORROW (Jun 26) | Last day for Spider-Man 2 $29.99! |
+| 🛒 Mid-Year Deals | Until Jul 1 | + Supplementary sale (200+ ATL prices) |
+| 📅 PS Plus Essential July Reveal | July 1 | 6 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | Mark calendar! |
+| 📤 PS Plus July Departures | **Jul 21** | Date locked! 12 games leaving |
+| 🥁 Ratatan | **DELAYED to Oct 15** 🆕 | Was Jul 16 |
+| ⚔️ Hell Let Loose: Vietnam | **DELAYED to Aug 13** 🆕 | Was Jun 18 |
+| 🏚️ Enshrouded 1.0 | **Oct 15** 🆕 | PS5 launch confirmed! |
 
 ---
 
