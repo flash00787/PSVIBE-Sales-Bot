@@ -1,109 +1,33 @@
 {
-  "checked_at": "2026-06-26T13:37:27.489435+00:00",
+  "checked_at": "2026-06-27T13:33:08.736205+00:00",
   "method": "IMAP",
-  "total_processed": 60,
-  "promotional_skipped": 37,
+  "total_recent_2d": 32,
+  "total_recent_7d": 88,
+  "unread_recent_2d": 32,
   "nova_found": false,
-  "important_found": true,
   "nova_emails": [],
-  "important_emails": [
+  "important_findings": [
     {
-      "id": "9627",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Sun, 21 Jun 2026 11:37:37 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9G84F9AW2GV7AV with amount 6,400.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
+      "type": "GITHUB_DEPLOY_FAIL",
+      "detail": "PSVIBE-Sales-Bot deploy workflow failed 3 consecutive days (Jun 24, 25, 26)",
+      "last_failure": "2026-06-26",
+      "repo": "flash00787/PSVIBE-Sales-Bot"
     },
     {
-      "id": "9632",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Sun, 21 Jun 2026 22:26:45 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9G9VT2OWWQ2VAV with amount 6,800.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
+      "type": "UAB_DORMANT_ACCOUNT",
+      "detail": "UAB Bank sent Announcement for Dormant Account today (Jun 27)",
+      "date": "2026-06-27"
     },
     {
-      "id": "9634",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Mon, 22 Jun 2026 00:45:03 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/06/22 at 00:45:01 with amount of USD200.00 f",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
-    },
-    {
-      "id": "9682",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Thu, 25 Jun 2026 20:53:42 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9GQ6NF5GWO9RAV with amount 6,400.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
-    },
-    {
-      "id": "9686",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Fri, 26 Jun 2026 11:47:22 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9GSOHDPGWIKVAV with amount 7,100.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
-    },
-    {
-      "id": "9651",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Tue, 23 Jun 2026 14:08:21 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at OISHII RESTAURANT-4 with amount 98,700.00MMK on 2026/06/23",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
-    },
-    {
-      "id": "9660",
-      "from": "ShweNote <info.shwenote.app@gmail.com>",
-      "subject": "ရွှေနုတ်ကို အသုံးပြုနေသော စာဖတ်ချစ်သူများဆီသို့ (To the new readers of Shwe Note )",
-      "date": "Wed, 24 Jun 2026 09:21:27 +0630",
-      "body_preview": "ရွှေနုတ်ကို ယုံကြည်စွာနဲ့ အသုံးပြုပေးခဲ့ကြတဲ့အတွက် အထူးပဲ\r\nကျေးဇူးတင်ပါတယ်ခင်ဗျာ။ နေ့စဉ်ဘဝရဲ့ စိန်ခေါ်မှုတွေကြားမှာ ကိုယ့်ကိုယ်ကိုယ်\r\nတိုးတက်ဖို့ ရင်းနှီးမြှုပ်နှံတာဟာ အကောင်းဆုံးသော ဆုံးဖြတ်ချက်တစ်ခုပဲ\r\nဖြစ်ပါတယ်။\r\n\r\n\r\nအခုလို ကုန်ဈေးနှုန်းတွေ တက်နေတ",
-      "keywords": [
-        "subscription"
-      ]
-    },
-    {
-      "id": "9661",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Wed, 24 Jun 2026 11:46:15 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9GKGOQ8WW5ANAV with amount 6,000.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
-    },
-    {
-      "id": "9672",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Wed, 24 Jun 2026 21:40:03 +0630",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at GRAB* A-9GM74FKGWLQRAV with amount 6,800.00MMK on 2026/06/",
-      "keywords": [
-        "bank",
-        "customer"
-      ]
+      "type": "PAYPAL_PADDLE_CHANGE",
+      "detail": "PayPal notification about change to automatic payment via Paddle.com Market Limited (Vietnamese)",
+      "date": "2026-06-27"
     }
+  ],
+  "other_notable": [
+    "Multiple AYA Bank Grab transaction notifications (routine)",
+    "Twitch stream notifications",
+    "Binance promotional emails",
+    "Samsung EOFY sale"
   ]
 }
