@@ -1,5 +1,4 @@
-=== Bulk Session Cleanup 12:04 ===
+=== Bulk Session Cleanup 13:04 ===
 Before: 16K
 After: 16K
-=== RESULT: OK ||| ERROR: $? ===
-=== RESULT: OK ===
+=== RESULT: OK ||| ERROR: none ===
