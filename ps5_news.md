@@ -1,6 +1,62 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-26 23:30 UTC
+> Last updated: 2026-06-27 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 27, 2026 - 11:30 UTC) — PS5 Shortage Warning + PS Plus July Announcement May Be Delayed
+
+> **Summary:** Saturday morning sweep. Retailers warn PS5 shortages coming ahead of GTA 6 launch — this directly impacts lounge value. PS Plus Essential July reveal may be delayed past July 1. No major new game announcements since yesterday's Bungie layoffs. Mid-Year Deals + Weekend Offer still active.
+
+### 🔴🔴 WARNING: Retailers Caution PS5 Console Shortages Ahead of GTA 6 Launch
+- Multiple major retailers are warning of **potential PS5 shortages by the Christmas holidays** as GTA 6 demand is expected to exceed supply
+- **Component shortages** are cited as a key factor limiting production
+- **Manufacturers have reportedly cautioned retailers** about reduced console supplies ahead of GTA 6's November 19 launch
+- Sony + Rockstar's joint **"Better to play on PS5"** advertising campaign is expected to further drive demand spikes
+- **PS5 price has already increased 33% over the past year** — average new console price hit $502 in May (14% YoY increase)
+- PS5 sales in May 2026 dropped 58% vs May 2025 (worst month since 2000), partly due to high prices and consumers waiting for GTA 6
+- Further console memory storage price increases anticipated
+- Sources: Economic Times (India), ixbt.games, multiple retailer reports — June 27, 2026
+- **💡💡💡 Lounge Impact — STRATEGICALLY IMPORTANT:**
+  - If PS5 consoles become scarce/expensive by late 2026, **PS VIBE's existing console fleet becomes MORE valuable** — the lounge becomes one of the few places people can play GTA 6 without owning a console
+  - **Consider securing additional PS5 units NOW** before shortages hit — prices are already up 33%
+  - This positions PS VIBE as a premium GTA 6 destination: "No console? Play GTA 6 at PS VIBE!"
+  - The PS5 shortage could drive significantly higher lounge traffic during GTA 6 launch window (Nov-Dec 2026)
+  - Monitor: component supply chain news, Sony production updates, retailer stock levels
+
+### 📅 PS Plus Essential July 2026 — Announcement May Be Delayed
+- Official announcement was expected **July 1, 2026** but multiple sources now suggest it may be **slightly delayed**
+- Games becoming available **July 7, 2026** (first Tuesday) — unchanged
+- **NO CONFIRMED LEAKS** as of June 27 — all community predictions remain unverified speculation
+- Speculated titles (UNCONFIRMED): Rise of the Ronin, Atomic Heart, Days Gone Remastered, Hades, Returnal, Elden Ring, Exoprimal, Disco Elysium, Dave the Diver, Remnant 2
+- **Psi-Ops: The Mindgate Conspiracy** CONFIRMED for PS Plus Premium in July (mid-month)
+- **💡 Lounge Action:** Keep monitoring. If any of those speculated titles hit Essential, several would be massive lounge additions (Elden Ring, Returnal, Hades especially). The delay may be minor — check PS Blog on July 1 regardless.
+
+### 📊 Quick Status Check (June 27 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴🔴 PS5 Shortage Warning | **NEW! 🆕** | Retailers warn shortages ahead of GTA 6! Lounge fleet = more valuable! |
+| 📅 PS Plus July Reveal | **May be delayed 🆕** | Watch July 1+ for announcement! |
+| 🛒 Weekend Offer Sale | **LIVE** | Jun 26-29! 2 days left! Co-op + party game deals! |
+| 🔴 Bungie Layoffs | 292 jobs cut | Destiny 2 winding down |
+| 🔥🔥🔥 CoD Modern Warfare 4 | Oct 23! Pre-orders LIVE! | Announced May 28 |
+| 🏴‍☠️🔥🔥 AC Black Flag Resynced | Jul 9! | Only 12 days! Pre-order! |
+| 🏎️🔥🔥 Forza Horizon 6 PS5 | Later 2026 | Confirmed for PS5! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | LIVE NOW! | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 4 days left! |
+| 🛒 Supplementary Sale | Until Jul 1 | 200+ ATL prices! 4 days left! |
+| 🛒 Weekend Offer | Jun 26-29 | 2 days left! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 19 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 games leaving |
+
+### 🚨 Priority Lounge Actions (Updated):
+1. **Assess PS5 console inventory NOW** — shortages predicted. Consider buying additional units before prices rise further!
+2. **Position PS VIBE as "GTA 6 Without a Console" destination** — marketing angle if shortages materialize
+3. **Check Weekend Offer sale on PS Store** — 2 days left! Grab co-op/party games: Lego Star Wars, Overcooked, Unravel 2!
+4. **PRE-ORDER CoD MW4 + AC Black Flag Resynced** on all lounge consoles!
+5. **Mid-Year Deals + Supplementary Sale** — 4 days left! Final stock-up window before July!
+6. **Monitor PS Blog July 1+ for PS Plus Essential July reveal** — announcement may be delayed
 
 ---
 
