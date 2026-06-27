@@ -70,9 +70,9 @@ Kora now manages **8 projects** with full coordination tool support.
 ### API & Database Patterns
 ### System Patterns
 ### Business Logic
-33. **Charges are outgoing-only bank fees** — Buy/Payable has charges (we send money); Sell/Receivable has NO charges (customer pays us).
-34. **Never include cleanup in test scripts** — caused 2 accidental data deletions; use backup restore instead.
-35. **Save-and-restore dropdown selections** — when rebuilding select options via `innerHTML`, save `.value` first then restore after.
+44. **`unwrap_response()` changes response structure** — Functions consuming API responses must NOT access `.data` again after unwrap. Use `data.get("bookings", [])` not `data.get("data", {}).get("bookings", [])`.
+45. **`import X as Y` aliasing** — `import urllib.request as _urllib` means `_urllib` IS the module. Call `_urllib.urlopen()` not `_urllib.request.urlopen()`.
+46. **Never duplicate financial calculation logic** — two endpoints, two different results (KBZ Bank: -30.2M vs -27.8M). Shared function eliminates divergence. Financial numbers must ALWAYS come from a single source of truth.
 
 ## Major Projects & Milestones
 
@@ -131,48 +131,7 @@ Kora now manages **8 projects** with full coordination tool support.
 
 ## 🆕 June 23, 2026 — Major Bug Fixes & Features
 
-### Critical Bug Fixes
-3. **Feedback routed to admin group:** `chat_id.startsWith('-')` check added in `console.py` — skip notifications when target is a group, not individual user.
-4. **No Timer (duration=0) comprehensive fix:**
-   - Timeline bar: extended to NOW instead of 5% fixed width
-   - Utilization: counts up to NOW for live stats
-   - Timezone: removed `+ 6.5 * 3600000` — browser provides MMT natively
-   - Conflict check: `_dur_end = 360 if duration_mins == 0 else duration_mins` at 5 locations
-5. **Session Reminder System — 3-type complete fix:**
-   - Type 1 (API timer gap): `schedule_session_timer` now called from 5 start-session paths; `_bot_has_persistent_reminder()` reads `session_reminders.json`
-   - Type 2 (Telegram format): `parse_mode: "Markdown"` with HTML `<b>` tags → HTTP 400. Changed to `parse_mode: "HTML"` consistently.
-   - Type 3 (event loop): `resume_active_timers()` at module load time had no event loop → moved to FastAPI `lifespan` handler.
-6. **console_mgmt.py import failure:** Module-level `__getattr__` lazy loader failed at runtime. Added explicit `import asyncio` + `from bot import fetch_console_status`.
-7. **Receipt template overhaul (v1→v3):** Thermal 80mm format, base64 logo (no static file mount), AYA Pay fix, Topup field fixes, WALLET BALANCE section.
-
-### New Features
-8. **Active Session Move API:** `POST /api/sessions/move` — transaction-safe console swap with FOR UPDATE row locking, timer reschedule, conflict check.
-9. **End Session Confirm Step:** Inline keyboard confirm dialog prevents accidental session endings.
-
-### New Critical Lessons
-- **API 200 OK on error is misleading** — always check error response body, not just HTTP status. `error_response()` should use non-200 status codes.
-- **Move API must preserve start_time** — use `_bk["start_time"]`, not `_now`. Resetting start_time breaks session duration calculation.
-- **booking_id paths must still calculate game_amt** — `if booking_id: game_amt = 0` is wrong. Booking customers still need game_amt from play time.
-
-## Memory (2026-06-19 — 2026-06-21)
-
-*(Older memory entries trimmed — full history in git.)*
-
-- Bug 4.7: Duplicate check fixed (added `rejected` to excluded statuses)
-- Gateway DNS: Added fallback DNS (Hetzner + Cloudflare) to Docker daemon + agent compose files
-- SSH Incident: NEVER touch ssh.socket.d (GOLDEN RULE #12)
-- June 22 Improvements: Shutdown handlers, staging env, field_utils.py, type hints — all complete ✅
-
-## Memory (2026-06-22)
-
-### 26. Phase 1 Branch Architecture — Silent Prep ✅ (18:00 MMT)
-- Added `branch_id INT DEFAULT 1` to 50 tables, API middleware reads `X-Branch-ID` header, bot config updated. Sale Bot per-branch, Customer Bot shared w/ branch selection, Wallet shared. Phase 2 ready when Branch 2 opens.
-
-### Profit Distribution Audit ✅ (18:48 MMT - 22 Jun 2026)
-- 10% mgmt fee fully implemented in `dashboard_routes.py`; API + DB tables ready. Token: Aung Chan Myint 34%+mgmt, Ye Myat 33%, Wai Yan Htet 33% (300M Ks total). Dashboard UI + bot flows pending.
-
-### Profit Distribution Bug Fix — Date Filters ✅ (19:05 MMT - 22 Jun 2026)
-- Added `period` param + date WHERE clauses to `calculate_profit_distribution()` (sales, opex, COGS, depreciation). Removed FIFO wallet liability from P&L (balance sheet item). June net: -12.5M Ks (expected for launch month).
+*(10+ fixes condensed — see git for full details. Key: food_cart_release stock_out fix, Move API start_time preservation, End Session confirm step, game_amt for booking_id paths, receipt template v3, Session Reminder 3-type fix, console_mgmt imports, Move Console menu layout.)*
 
 ## Memory (2026-06-23)
 
@@ -213,62 +172,7 @@ Kora now manages **8 projects** with full coordination tool support.
 
 ### Additional Fixes (Jun 23 late session)
 
-### 11. console_mgmt.py — Missing Import Fix
-- **Bug:** `NameError: name 'fetch_console_status' is not defined` when pressing "🔄 Move Console"
-- **Root cause:** `console_mgmt.py` relied on module-level `__getattr__` lazy loader but it failed at runtime
-- **Fix:** Added explicit imports at top of file:
-- import asyncio
-- from bot import fetch_console_status
-- Restarted bot service, confirmed running (PID 1843415)
-
-### 12. End Session — Confirm Step Added
-- **Issue:** C-05 session ended prematurely (50 min instead of 120 min) — staff accidentally hit End Session
-- **Fix:** Added inline keyboard confirm step in End Session flow
-- **New flow:** Console Selection → Confirm dialog (shows console, member, start time, elapsed) → Yes/No buttons
-- "No" returns to console menu; "Yes" proceeds to end session + open sales voucher
-- Prevents accidental session endings from misclicks or menu exploration
-
-### Food Order Stock Out Bug (Jun 23 final session)
-
-### 13. Move Console + End Session — Game Minutes Fix
-- **Bug:** console move လုပ်ပြီး session end ရင် game minutes voucher ထဲ မပါလာ
-- **Root cause:** `sales.py` line 1787: `if booking_id: game_amt = 0` — booking_id ရှိရင် game_amt zero လုပ်တာ
-- Move-then-end flow မှာ booking_id မရှိတော့လို့ game_amt တွက်မိ — ဒါက Move Console ရဲ့ side effect
-- **Fix:** booking_id path မှာလည်း `game_amt = round((total_mins * base_rate * multiplier) / 60)` တွက်ခိုင်း
-- **Verified:** logs show `confirm_summary: game_amt_in_context=167` ✅
-
-### 14. 🐛 CRITICAL: Food Cart Stock Out Silent Fail
-- **Bug:** Food order items sale voucher ထွက်ပေမယ့် stock out history မှာ မပေါ်
-- **Root cause:** `patch_routes.py` → `food_cart_release()` function ထဲက `_mc` (MySQL connector) variable က NameError!
-- food_cart_release: name '_mc' is not defined
-- **Why silent:** `from app import *` က underscore-prefixed names (`_mc`, `_MYSQL_CFG`) auto-export မလုပ်ဘူး
-- **Why 200 OK:** try/except က error ဖမ်းပြီး `error_response` ပြန်ပေမယ့် HTTP code 200 ပြန်နေ
-- **Impact:** Food cart items ရဲ့ stock_out records တစ်ခုမှ DB ထဲ မရေးဘူး — inventory က တကယ်ကျမသွား
-- **Fix:** `food_cart_release()` function ထဲမှာ local import ထည့်:
-- from app import _mc, _MYSQL_CFG, _mysql_get_setting
-- API PID 1900814 (restarted)
-- **Additionally:** `_sale_bg()` logs တွေ ထည့်ပြီး — item တစ်ခုစီရဲ့ `from_cart` flag နဲ့ skip/process status log လုပ်ခိုင်း
-
-### 15. Console Management Menu Layout Fix
-- **Removed:** `BTN_CHANGE_GAME` button (Boss: "Game ပြောင်းက ဖြုတ်ထားလိုက်ဦးမယ်")
-- **Removed:** "⚙️ Console စီမံ" submenu from main menu
-- **Added:** `🔄 Move Console` directly in Console Management main menu
-- **Fixed:** function name mismatch `show_console_mgmt_menu` → `show_con_mgmt_menu`
-- **Fixed:** `__getattr__` lazy loader → explicit imports for ALL constants + utility functions in `console_mgmt.py`
-- **Current keyboard:**
-- 🟢 Start  ⏹️ Session ဆုံး  🔄 Move Console  📊 Status
-- 🍔 Food Order  📀 Install  📀 External SSD  🎮 Game Library  🔙 Back
-
-### 16. Move API start_time Preserved
-- **Bug:** `POST /api/sessions/move` resetting `start_time` to current time
-- **Fix:** Changed `_now` → `_bk["start_time"]` in app.py line 2631 — preserves original session start time
-
-### Updated Service State
-| Service | PID | Status |
-|---------|-----|--------|
-| psvibe-api | 1900814 | ✅ Running |
-| psvibe-sale-bot | 1843415 | ✅ Running |
-
+### Key Technical Notes *(fixes #11-16 condensed)*
 ## Memory (2026-06-25)
 
 ### ACM Wallet — Google Sheets → MySQL Migration Complete ✅
