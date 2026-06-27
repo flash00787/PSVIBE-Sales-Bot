@@ -1,6 +1,86 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-26 11:30 UTC
+> Last updated: 2026-06-26 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 26, 2026 - 23:30 UTC) — PS Store Weekend Offer LIVE + Bungie Mass Layoffs
+
+> **Summary:** Evening sweep. A new 3-day PS Store "Weekend Offer" sale went live TODAY (June 26-29) with lounge-relevant co-op and party games discounted. Breaking: Sony laid off 292 Bungie employees — mostly Destiny 2 team, some Marathon devs. No critical lounge-impacting game announcements otherwise.
+
+### 🛒🛒 PS Store "Weekend Offer" Sale — June 26-29 (JUST WENT LIVE!)
+- A new short-term **3-day flash sale** started TODAY on PS Store, running through **June 29**
+- Over 20 PS5 and PS4 titles discounted — stacked ON TOP of the ongoing Mid-Year Deals (ends July 1) and the Supplementary Sale
+- **⚠️ Regional note:** Some regions (e.g., North America) may not have the Weekend Offer active yet — check your local PS Store
+
+**Lounge-relevant deals spotted:**
+
+| Game | Lounge Value | Why |
+|------|-------------|-----|
+| 🧱 **Lego Star Wars: The Skywalker Saga** | ⭐⭐⭐⭐⭐ | **Co-op!** Family-friendly! 9 movies in one game! |
+| 🍳 **Overcooked** (series) | ⭐⭐⭐⭐⭐ | **Local co-op party game!** Perfect lounge staple! |
+| 🧵 **Unravel 2** | ⭐⭐⭐⭐ | **Co-op puzzle platformer!** Charming couch game! |
+| 🎮 **Borderlands 3 / Borderlands GOTY** | ⭐⭐⭐⭐ | **Split-screen co-op!** Loot shooter classic! |
+| 🥊 **Mortal Kombat 1** | ⭐⭐⭐⭐ | **Fighting game!** Tournament potential! |
+| 🧟 **Dying Light 2: Beast Edition** | ⭐⭐⭐⭐ | **Co-op zombie parkour!** Action-packed! |
+| 🎭 **The Quarry** | ⭐⭐⭐⭐ | **Pass-the-controller horror!** Perfect for groups! |
+| 🦇 **Gotham Knights** | ⭐⭐⭐⭐ | **Co-op superhero action!** Batman family! |
+| ⚔️ **Lies of P** | ⭐⭐⭐⭐ | Acclaimed soulslike — spectator-friendly! |
+| 🌟 **Star Wars Jedi: Fallen Order + Survivor** | ⭐⭐⭐⭐ | Premium action-adventure at discount! |
+| 🧬 **Bioshock The Collection** | ⭐⭐⭐ | 3 classic FPS in one — atmospheric! |
+| 🚀 **Mass Effect Legendary Edition** | ⭐⭐⭐ | 100+ hour RPG trilogy — value! |
+| 🤖 **RoboCop: Rogue City Unfinished Business** | ⭐⭐⭐ | Action FPS fun! |
+| 🔫 **Sniper Elite 5** | ⭐⭐⭐ | Co-op stealth sniping! |
+| 🏙️ **GTA V Premium Edition** | ⭐⭐⭐ | Still one of the most-played games! |
+| 🤠 **Red Dead Redemption 2** | ⭐⭐⭐⭐ | Masterpiece open-world — lounge spectacle! |
+| 🏎️ **Need for Speed Hot Pursuit / Heat** | ⭐⭐⭐ | Arcade racing — casual pick-up fun! |
+| 🐗 **Wild Hearts** | ⭐⭐⭐ | Monster hunting co-op (EA's Monster Hunter)! |
+
+- **💡💡 Lounge Action:** This 3-day sale is a great opportunity to grab co-op/party games at discount. Priority picks for lounge: **Lego Star Wars** (co-op + family), **Overcooked** (party), **Unravel 2** (co-op), **Mortal Kombat 1** (fighting), **Dying Light 2** (co-op). Sale ends JUNE 29 — 3 days only! Check your regional PS Store NOW.
+
+### 🔴🔴 BREAKING: Sony Lays Off 292 Bungie Employees (June 25-26)
+- **Sony Interactive Entertainment** announced significant layoffs at **Bungie** (Destiny 2, Marathon) on June 25-26
+- **292 staff** laid off at Bungie's Bellevue, Washington HQ (confirmed via WARN filing)
+- **Official separation date: July 9, 2026**
+- **Impact:** "Most" of the Destiny 2 team cut, some Marathon team members, plus SIE support teams
+- **Reason:** Hermen Hulst (CEO, Studio Business Group) stated Destiny 2 "fell short of expectations" and future projects are in "early incubation" — can't sustain previous headcount
+- Destiny 2 live service content updates are concluding
+- Marathon "remains an important part of our portfolio" per Hulst — development continues but with reduced team
+- **Third wave of layoffs** since Sony acquired Bungie in 2022 (previous: Oct 2023, Jul 2024)
+- Sources: IGN, Forbes, Eurogamer, GeekWire, GameDeveloper (all June 26)
+- **💡 Lounge Impact — LOW for operations, MODERATE for Destiny 2 community:**
+  - Destiny 2 is effectively in maintenance mode — no major new content expected. The June PS Plus Extra offering (Destiny 2: Legacy Collection, which already expired June 16) was likely the last major push
+  - The Destiny 2 player community may be demoralized — fewer players in lounge for Destiny sessions
+  - Marathon (TBD) still alive but development pace may slow
+  - Overall: Minor operational impact. Monitor Destiny 2 player activity at lounge — may decline. Don't invest in Destiny 2 expansions or content going forward.
+
+### 📋 Minor: Tomb Raider Date Clarification
+- **Tomb Raider: Legacy of Atlantis** — Some sources now list release as **February 10, 2027** (previously tracked as Feb 12). Minor 2-day difference — no action needed.
+
+### 📊 Quick Status Check (June 26 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 Weekend Offer Sale | **LIVE NOW! 🆕** | Jun 26-29! Co-op + party game deals! |
+| 🔴 Bungie Layoffs | **BREAKING 🆕** | 292 jobs cut! Destiny 2 winding down |
+| 🔥🔥🔥 CoD Modern Warfare 4 | Oct 23! Pre-orders LIVE! | Announced May 28 |
+| 🏴‍☠️🔥🔥 AC Black Flag Resynced | Jul 9! | Only 13 days! Pre-order! |
+| 🏎️🔥🔥 Forza Horizon 6 PS5 | Later 2026 | Confirmed for PS5! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 PS5 GTA 6 Custom UI | LIVE NOW! | Welcome Hub, PS Store, PS App all GTA-themed! |
+| 🦇 LEGO Batman Legacy | Install on lounge consoles! | Released May 22! |
+| ✈️ Ace Combat 8 | Oct 2, 2026 | Pre-order bonus: Ace Combat Zero free! |
+| 🛒 Mid-Year Deals | Until Jul 1 | 5 days left! |
+| 🛒 Supplementary Sale | Until Jul 1 | 200+ ATL prices! |
+| 📅 PS Plus Essential July Reveal | **July 1** | 5 days away! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 20 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 games leaving |
+
+### 🚨 Priority Lounge Actions (Updated):
+1. **Check Weekend Offer sale on PS Store NOW** — 3 days only! Grab co-op/party games: Lego Star Wars, Overcooked, Unravel 2, Mortal Kombat 1!
+2. **PRE-ORDER CoD MW4 + AC Black Flag Resynced** on all lounge consoles!
+3. **Wishlist Forza Horizon 6** on PS Store — monitor for PS5 date!
+4. **Don't invest in Destiny 2 expansions** — game is winding down post-layoffs
+5. **Mid-Year Deals + Supplementary Sale** — 5 days left! Final stock-up window before July!
 
 ---
 
