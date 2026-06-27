@@ -1,26 +1,5 @@
 {
-  "last_consolidation": "2026-06-27T15:30:00Z",
-  "daily_file": "memory/2026-06-27.md",
-  "mem_updated": true,
-  "new_lessons_added": [
-    "#39",
-    "#40",
-    "#41",
-    "#42",
-    "#43",
-    "#44",
-    "#45",
-    "#46"
-  ],
-  "events_summarized": [
-    "Console Timer NaN fix",
-    "Console Timer sidebar + timer adjust fix",
-    "Customer Bot member linkage",
-    "PSV_A_000 Boss card",
-    "Staff confirm/cancel Telegram notification",
-    "KBZ Bank transfer/finance unified",
-    "Sale Daily period filter",
-    "Voucher 20260627-608 deletion"
-  ],
-  "status": "ok"
+  "lastHeartbeat": "2026-06-27T17:33:11Z",
+  "stuckTasks": [],
+  "pendingTasks": []
 }

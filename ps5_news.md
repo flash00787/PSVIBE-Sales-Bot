@@ -1,6 +1,63 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-27 11:30 UTC
+> Last updated: 2026-06-27 17:31 UTC
+
+---
+
+## ⚡ UPDATE (June 27, 2026 - 17:31 UTC) — Destiny 2 Monument of Triumph (Final Update) + Minor June Releases + PS Plus Reminder
+
+> **Summary:** Saturday evening sweep. Confirmed that Destiny 2: Monument of Triumph (June 9) was the FINAL content update — adds closure to Bungie layoffs story. Minor indie releases catalogued. PS Plus Essential June games available until July 6. No critical new announcements.
+
+### 🔴 Destiny 2: Monument of Triumph — FINAL Content Update (June 9, Confirmed!)
+- **Destiny 2: Monument of Triumph** released June 9, 2026 is **the game's final major content update** — Bungie announced it in May 2026
+- Features: updated Raids/Dungeons with tiered loot, Sparrow Racing League returns, new Exotic mission, Pantheon 2.0 (remixed Raid bosses), restructured Director hub, increased Vault + Loadout slots, Legendary Marks return, Exotic armor refresh
+- **Destiny 2: The Collection** bundles all expansions + content packs
+- Servers remain online but **no more new content** — active live-service development has concluded
+- **💡 Lounge Note:** This adds closure to the June 26 Bungie layoffs story. Destiny 2 is confirmed in "sunset mode" — servers stay online but no new content will arrive. The player base may continue declining. Don't invest in Destiny 2 expansions — focus lounge library budget elsewhere.
+
+### 📋 Minor June Releases (Previously Untracked):
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🔫 **Blood West: Scavengers** | Jun 3 | ⭐⭐ — Weird west shooter |
+| 🥋 **River City Saga: Journey to the West** | Jun 4 | ⭐⭐ — Retro beat-em-up |
+| ⚽ **GOALS** | Jun 4 | ⭐⭐ — Free-to-play football |
+| 🧟 **Hollowbody** | Jun 5 | ⭐⭐⭐ — Survival horror (indie darling) |
+| 🎲 **Terrinoth: Heroes of Descent** | Jun 7 | ⭐⭐ — Board game adaptation |
+| 🌿 **Solarpunk** | Jun 8 | ⭐⭐ — Survival crafter |
+| 🏀 **NBA The Run** | Jun 9 | ⭐⭐ — Arcade basketball |
+| 🍳 **Beastro** | Jun 11 | ⭐ — Cooking indie |
+| ⚔️ **Arashi Gaiden** | Jun 11 | ⭐⭐ — Ninja action |
+| 🔫 **Warhammer 40K: Rogue Trader — Infinite Museion DLC** | Jun 11 | ⭐⭐ — RPG expansion |
+
+### ⏰ PS Plus Essential June 2026 — Available Until July 6!
+- **June Essential games still claimable** until July 6:
+  - 🐜 **Grounded: Fully Yoked Edition** (PS5/PS4) — survival-crafting co-op! ⭐⭐⭐⭐
+  - 🥊 **Nickelodeon All-Star Brawl 2** (PS5/PS4) — family fighting game! ⭐⭐⭐⭐
+  - ⚔️ **Warhammer 40,000: Darktide** (PS5) — co-op FPS! Already free this month! ⭐⭐⭐⭐
+- **💡 Lounge Action:** Make sure all three are claimed on lounge consoles before July 6!
+
+### 📊 Quick Status Check (June 27 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 📅 PS Plus July Reveal | **Expected Jul 1** | May be slightly delayed! |
+| 🛒 Weekend Offer Sale | **LIVE** | Jun 26-29! ~36 hours left! |
+| 🔴 Bungie Layoffs | 292 jobs cut | Destiny 2 Monument of Triumph = final content update |
+| 🔥🔥🔥 CoD Modern Warfare 4 | Oct 23! Pre-orders LIVE! | 
+| 🏴‍☠️🔥🔥 AC Black Flag Resynced | Jul 9! | Only 12 days! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🛒 Mid-Year Deals | Until Jul 1 | 4 days left! |
+| 🛒 Supplementary Sale | Until Jul 1 | 200+ ATL prices! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 19 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 games leaving |
+
+### 🚨 Priority Lounge Actions (Unchanged):
+1. **Assess PS5 console inventory NOW** — shortages predicted!
+2. **Weekend Offer sale** — ~36 hours left! Grab co-op/party games!
+3. **Claim June PS Plus Essential games** (Grounded, Nick All-Stars, Darktide) before July 6!
+4. **PRE-ORDER CoD MW4 + AC Black Flag Resynced** on all lounge consoles!
+5. **Mid-Year Deals + Supplementary Sale** — 4 days left!
+6. **Monitor PS Blog July 1+ for PS Plus Essential July reveal**
 
 ---
 
