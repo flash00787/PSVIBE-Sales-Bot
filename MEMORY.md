@@ -60,6 +60,12 @@ Kora now manages **8 projects** with full coordination tool support.
 | n8n | Workflow automation |
 
 ### Key Operations
+- **Staff Salary System (June 27)**: Full payroll auto-generation with leave tracking, shop-wide food commission (PNL formula), game bonus tiers (1500/1800/2000hr), attendance rules. See `memory/2026-06-27.md` for full details.
+
+### Key Operations (General)
+- **Staff Salary**: Auto-generate via `POST /salary/generate` — formula: base + transport + food_allowance + att_bonus + food_com + game_bonus − advances − leave_penalty
+
+### Key Operations (General)
 - **Member balance:** Column H of Card_wallet Google Sheet (legacy) → MySQL `member_wallets` (primary)
 - **Receipts:** Burmese footer text must be removed
 - **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B
@@ -73,6 +79,11 @@ Kora now manages **8 projects** with full coordination tool support.
 44. **`unwrap_response()` changes response structure** — Functions consuming API responses must NOT access `.data` again after unwrap. Use `data.get("bookings", [])` not `data.get("data", {}).get("bookings", [])`.
 45. **`import X as Y` aliasing** — `import urllib.request as _urllib` means `_urllib` IS the module. Call `_urllib.urlopen()` not `_urllib.request.urlopen()`.
 46. **Never duplicate financial calculation logic** — two endpoints, two different results (KBZ Bank: -30.2M vs -27.8M). Shared function eliminates divergence. Financial numbers must ALWAYS come from a single source of truth.
+
+47. **Leave policy — any leave = forfeit attendance** — Boss clarified: attendance bonus is binary (present → full, absent → 0), not prorated. Extra penalty only applied when >2 days. (#47)
+48. **Food profit = reuse PNL logic** — don't recalculate from sales_daily alone. PNL already has stock_out revenue + FIFO COGS = net profit. Same formula for salary commission. (#48)
+49. **Rename carefully — check all code paths** — `food_charges`→`food_allowance` changed meaning from deduction to addition. Must update: SELECT query, variable names, deductions→additions, frontend labels, form fields. (#49)
+50. **Gmail OAuth tokens expire** — refresh_token can be revoked after time. Need re-auth flow. Device flow not supported for "installed" type — use desktop redirect flow with Boss clicking link. (#50)
 
 ## Major Projects & Milestones
 
