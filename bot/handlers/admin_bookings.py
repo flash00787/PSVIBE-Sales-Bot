@@ -505,6 +505,13 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
         await reply_fn(f"❌ Booking #{bk_id} ကို update မရပါ")
         return
 
+    # Cancel any pending 30-min advance reminder
+    try:
+        _r = await _psvibe_post_async("webhook/booking-reminder/cancel", {"bk_id": bk_id})
+        logger.debug("_do_booking_action: reminder cancel bk#%d → %s", bk_id, _r)
+    except Exception:
+        pass
+
     # Check for conflict (another staff already approved/rejected)
     if isinstance(result, dict) and result.get("conflict"):
         conflict_status = result.get("current_status", "processed")
@@ -631,4 +638,5 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
             date_str=bk_info.get("date", ""), time_str=bk_info.get("timeSlot", ""),
             dur=int(bk_info.get("durationMins") or 60),
             game=bk_info.get("gameName", ""), staff=staff_name,
+            tg_chat=tg_chat,
         ))

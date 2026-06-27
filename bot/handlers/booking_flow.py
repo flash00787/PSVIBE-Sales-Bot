@@ -549,6 +549,12 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
         f"bookings/{bk_id}/status",
         {"status": "cancelled", "staffNote": staff_note},
     )
+    # Cancel any pending 30-min advance reminder
+    try:
+        _r = await _psvibe_post_async("webhook/booking-reminder/cancel", {"bk_id": bk_id})
+        logger.debug("_do_cancel_booking: reminder cancel bk#%d → %s", bk_id, _r)
+    except Exception:
+        pass
     if not result:
         txt = f"❌ Booking #{bk_id} cancel မရပါ — API စစ်ပါ"
         try:
@@ -561,7 +567,13 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
             pass
         return
 
-    # Clean up any Scheduled Console_Booking row for this booking's console
+    # Cancel any pending advance reminder task (bot-based)
+    try:
+        from bot.handlers.booking import _cancel_advance_reminder
+        if _cancel_advance_reminder(bk_id):
+            logger.info("_do_cancel_booking: cancelled advance reminder bk#%d", bk_id)
+    except Exception:
+        pass
     _cancel_console = (_bk_pre.get("console_id") or "").strip() if isinstance(_bk_pre, dict) else ""
     if _cancel_console:
         try:
@@ -771,7 +783,7 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     break
         except Exception as e:
             logger.warning("cb_extend_timer: fetch_console_status failed: %s", e)
-        
+
         if bk_id:
             ok = await end_booking_async(str(bk_id))
             if ok:

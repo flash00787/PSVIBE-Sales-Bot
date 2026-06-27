@@ -459,7 +459,7 @@ async def _get_available_consoles(date_str, time_str, duration_mins=60):
     return available
 
 
-async def _get_max_duration_for_console(date_str: str, time_str: str, console_id: str, max_dur: int = 360):
+async def _get_max_duration_for_console(date_str: str, time_str: str, console_id: str, max_dur: int = 480):
     """Calculate max available duration (in minutes) for a specific console at a time.
     Returns (max_dur_mins, next_booking_time) tuple — next_booking_time is "HH:MM" or empty.
     max_dur_mins = 0 if console is completely unavailable."""

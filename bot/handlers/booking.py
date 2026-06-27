@@ -55,6 +55,18 @@ import asyncio
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, add_no_timer_console, remove_no_timer_console
 from bot.handlers.notify import _notify_customer, get_customer_chat_id
 
+# Track advance reminder tasks for cancellation
+_ADVANCE_REMIND_TASKS: dict[str, asyncio.Task] = {}
+
+def _cancel_advance_reminder(bk_id: int) -> bool:
+    """Cancel a pending advance reminder task for a booking."""
+    key = f"adv_{bk_id}"
+    task = _ADVANCE_REMIND_TASKS.pop(key, None)
+    if task and not task.done():
+        task.cancel()
+        return True
+    return False
+
 
 async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     """Return keyboard of all consoles with availability for the selected time slot.
@@ -420,6 +432,7 @@ async def step_sbk_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ["30", "60", "90"],
         ["120", "150", "180"],
         ["240", "300", "360"],
+        ["420", "480"],
         [BTN_BACK, BTN_CANCEL],
     ]
     await update.message.reply_text(
@@ -665,8 +678,12 @@ async def step_sbk_duration(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name: str, phone: str,
-                                 date_str: str, time_str: str, dur: int, game: str, staff: str):
-    """Send 30-min advance reminder to admin group for a confirmed booking."""
+                                 date_str: str, time_str: str, dur: int, game: str, staff: str,
+                                 tg_chat: str = ""):
+    """Send 30-min advance reminder to admin group for a confirmed booking.
+    Auto-cancels itself if booking is no longer confirmed at reminder time."""
+    key = f"adv_{booking_id}"
+    _ADVANCE_REMIND_TASKS[key] = asyncio.current_task()  # type: ignore
     try:
         # Parse date and time - handle M/D/YYYY format
         import re as _re
@@ -694,6 +711,16 @@ async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name
         seconds_until_remind = max(1, int((remind_dt - now_mmt_dt).total_seconds()))
         await asyncio.sleep(seconds_until_remind)
 
+        # ⚠️ Verify booking is still active before sending
+        bk_data = await _psvibe_get_async(f"bookings/{booking_id}")
+        if isinstance(bk_data, dict):
+            if "booking" in bk_data:
+                bk_data = bk_data["booking"]
+        status = (bk_data or {}).get("status", "") if isinstance(bk_data, dict) else ""
+        if status not in ("confirmed", "pending", "pending_check_in"):
+            logger.info("_sbk_advance_reminder: bk#%s status=%s — skipping reminder", booking_id, status)
+            return
+
         notify_text = (
             f"\u23f0 <b>Booking #{booking_id} Reminder!</b>\n"
             f"\u23f1\ufe0f <b>30 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102e\u1019\u1000\u103a\n"
@@ -711,8 +738,26 @@ async def _sbk_advance_reminder(bot, booking_id: int, cid: str, ctype: str, name
                 parse_mode="HTML",
             )
             logger.info("_sbk_advance_reminder: Booking #%s reminder sent to admin", booking_id)
+
+        # 📱 Also notify customer if they have a Telegram chat ID
+        if tg_chat:
+            cust_notify_text = (
+                f"\u23f0 <b>PS VIBE — Booking Reminder!</b>\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                f"\u267f {date_str}  \u23f0 {time_str}\n"
+                f"\u267f Duration: <b>{dur} mins</b>  \u2694\ufe0f {game or '---'}\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                f"\u23f1\ufe0f <b>30 \u1019\u102d\u1014\u1037\u1001\u103a\u1021\u101c\u102d\u102f</b> \u1000\u103c\u102d\u102f\u1010\u1000\u103a \u101b\u1031\u102c\u1000\u103a\u1015\u102b\n"
+                f"\u26a0\ufe0f \u1021\u1001\u103b\u102d\u1014\u103a\u1019\u103e\u102c \u101c\u102c\u101c\u102c\u1019\u103b\u1010\u103a \u1015\u103c\u1004\u103a\u1006\u1004\u103a\u1015\u102b!"
+            )
+            await asyncio.to_thread(_notify_customer, tg_chat, cust_notify_text)
+            logger.info("_sbk_advance_reminder: Booking #%s customer reminder sent to %s", booking_id, tg_chat)
+    except asyncio.CancelledError:
+        logger.info("_sbk_advance_reminder: bk#%s cancelled", booking_id)
     except Exception as e:
         logger.error("_sbk_advance_reminder: %s", e, exc_info=True)
+    finally:
+        _ADVANCE_REMIND_TASKS.pop(key, None)
 
 async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """SBK_CONFIRM state — phase 1: receive game name and show summary.
@@ -886,6 +931,22 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             await asyncio.to_thread(_notify_customer, STAFF_NOTIFY_CHAT, notif)
 
+        # 📱 Send confirmation notification to customer (if tg_chat_id is known)
+        if tg_chat_id and CUSTOMER_BOT_TOKEN:
+            _cust_msg = (
+                "မင်္ဂလာပါ 🙏\n\n"
+                f"သင်၏ Booking (#{bk_id}) ကို အတည်ပြုပြီးပါပြီ။\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
+                f"🕹️ Console: {cid} ({ctype})\n"
+                f"📅 {date}  ⏰ {slot}\n"
+                f"⏱️ {dur} mins  🎮 {game or '—'}\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
+                f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
+                f"Play The Game. Share The VIBE!"
+            )
+            await asyncio.to_thread(_notify_customer, tg_chat_id, _cust_msg)
+            logger.info(f"step_sbk_confirm: Customer notification sent for BK#{bk_id} to {tg_chat_id}")
+
         # Fire n8n reminder webhook (non-blocking)
         asyncio.create_task(_post_n8n_booking_reminder(
             bk_id=bk_id, customer_name=name, phone=phone,
@@ -898,6 +959,7 @@ async def step_sbk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         asyncio.create_task(_sbk_advance_reminder(
             context.bot, bk_id=bk_id, cid=cid, ctype=ctype, name=name, phone=phone,
             date_str=date, time_str=slot, dur=int(dur), game=game, staff=staff,
+            tg_chat=tg_chat_id,
         ))
 
         await update.message.reply_text(
@@ -1095,7 +1157,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
             chk_raw = chk_raw.get("bookings", chk_raw.get("data", []))
         if not isinstance(chk_raw, list):
             chk_raw = [chk_raw] if chk_raw else []
-        
+
         from datetime import datetime as _dt
         pending_bks = [
             b for b in chk_raw if isinstance(b, dict)
@@ -1105,7 +1167,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.error("step_book_console: checkin fetch %s", e, exc_info=True)
         pending_bks = []
-    
+
     if pending_bks:
         kb_rows = [["⏭️ Bind မလုပ်ဘဲ ဆက်သွား"]]
         for b in pending_bks:
@@ -1121,7 +1183,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
             kb_rows.append([label])
         kb_rows.append([BTN_BACK, BTN_CANCEL])
         context.user_data["_bk_checkin_list"] = pending_bks
-        
+
         await update.message.reply_text(
             f"🕹️ <b>{cid}</b> Console\n"
             "━━━━━━━━━━━━━━━━━━\n"
@@ -1206,17 +1268,38 @@ async def step_book_checkin_bind(update: Update, context: ContextTypes.DEFAULT_T
     bk_console = (selected_bk.get("console_id") or selected_bk.get("consoleId") or "?").strip()
     cid = context.user_data.get("bk_console", "")
 
-    # Mark booking as Active via API
+    # NOTE: Do NOT call PATCH bookings/{bk_id}/status here to set Active
+    # The actual status transition (checked_in → Active) is handled by
+    # _do_create_booking → POST sessions/start with linked_booking_id.
+    # Doing both causes sessions/start to fail because the booking
+    # is already Active and no longer checked_in.
     api_failed = False
+
+    # 📱 Send confirmation notification to customer (best-effort)
     try:
-        await _psvibe_patch_async(f"bookings/{bk_id}/status", {
-            "status": "Active",
-            "consoleId": cid,
-        })
-        logger.info(f"checkin_bind: #{bk_id} {member} → Active on {cid}")
+        _tg_chat = (selected_bk.get("telegramChatId") or selected_bk.get("telegram_chat_id") or "").strip()
+        if _tg_chat and CUSTOMER_BOT_TOKEN:
+            _date = selected_bk.get("date") or selected_bk.get("booking_date", "") or ""
+            _time = selected_bk.get("timeSlot") or selected_bk.get("start_time", "") or ""
+            if _time and len(_time) > 5:
+                _time = _time[11:16] if "T" in str(_time) else str(_time)[:5]
+            _ctype = selected_bk.get("consoleType") or cid or ""
+            _dur = selected_bk.get("durationMins") or 0
+            _cust_msg = (
+                "မင်္ဂလာပါ 🙏\n\n"
+                f"သင်၏ Booking (#{bk_id}) Check-In ပြီးပါပြီ။\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
+                f"🕹️ Console: {cid} ({_ctype})\n"
+                f"📅 {_date}  ⏰ {_time}\n"
+                f"⏱️ {_dur} mins\n"
+                f"━━━━━━━━━━━━━━━━━━━\n"
+                f"PS Vibe မှ ကြိုဆိုပါသည်! ✨\n"
+                f"Play The Game. Share The VIBE!"
+            )
+            await asyncio.to_thread(_notify_customer, _tg_chat, _cust_msg)
+            logger.info(f"checkin_bind: Customer notification sent for BK#{bk_id} to {_tg_chat}")
     except Exception as e:
-        logger.warning(f"checkin_bind: API update failed for #{bk_id}: {e}")
-        api_failed = True
+        logger.warning(f"checkin_bind: Customer notify failed for #{bk_id}: {e}")
 
     if api_failed:
         await update.message.reply_text(
@@ -1446,6 +1529,7 @@ async def prompt_book_mins(update, context):
         ["30", "60", "90"],
         ["120", "150", "180"],
         ["240", "300", "360"],
+        ["420", "480"],
         [BTN_SKIP_TIMER],
         [BTN_BACK, BTN_CANCEL],
     ]

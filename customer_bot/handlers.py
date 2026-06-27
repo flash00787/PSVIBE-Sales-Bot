@@ -71,7 +71,7 @@ MAIN_MENU_KB = ReplyKeyboardMarkup([
 ], resize_keyboard=True)
 
 CONSOLE_TYPES = ["PS5", "PS5 Pro"]
-DURATION_OPTS = ["30 mins", "60 mins", "90 mins", "120 mins", "180 mins"]
+DURATION_OPTS = ["30 mins", "60 mins", "90 mins", "120 mins", "180 mins", "240 mins", "300 mins", "360 mins", "480 mins"]
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 

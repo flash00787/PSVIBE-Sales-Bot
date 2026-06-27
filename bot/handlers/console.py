@@ -323,21 +323,27 @@ async def step_console_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.user_data.pop("_food_note_pick", False):
         from bot.handlers.sales import cmd_session_food_order
         from bot import _psvibe_get_async
-        # Find linked booking_id for this console
+        # Find linked active booking for this console
         _bk_id = ""
+        _member = ""
+        _staff = ""
         try:
-            _bks = await _psvibe_get_async("bookings") or []
+            # Use bookings?status=Active (filtered server-side)
+            _bks = await _psvibe_get_async("bookings?status=Active") or []
             if not isinstance(_bks, list):
                 _bks = _bks.get("bookings", []) if isinstance(_bks, dict) else []
             for _b in _bks:
-                if (_b.get("status") in ("arrived", "in_use", "Active")
-                        and (_b.get("consoleId") or _b.get("consoleType") or "").strip() == choice):
+                # Match by console_id (API may return as consoleId or console_id)
+                _bid = (_b.get("consoleId") or _b.get("console_id") or "").strip()
+                if _bid == choice:
                     _bk_id = str(_b.get("id", ""))
+                    _member = _b.get("memberId", _b.get("member_id", "")) or ""
+                    _staff = _b.get("staffName", _b.get("staff_name", "")) or ""
                     break
         except Exception as e:
             logger.error("food_note booking lookup: %s", e)
-        target = {"id": choice, "member": "", "staff": "", "booking_id": _bk_id}
-        logger.warning("food_note_booking: choice=%s _bk_id=%s", choice, _bk_id)
+        target = {"id": choice, "member": _member, "staff": _staff, "booking_id": _bk_id}
+        logger.info("food_note_booking: console=%s bk_id=%s member=%s", choice, _bk_id, _member)
         return await cmd_session_food_order(update, context, target)
     return await show_console_menu(update, context)
 
@@ -401,11 +407,11 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Store in context for confirm step
     context.user_data["_end_target"] = target
     context.user_data["_end_cid"] = cid
-    
+
     mbr_name = target.get("member") or "Guest"
     start_t = target.get("start", "?")
     _, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
-    
+
     await update.message.reply_text(
         "⏹️ <b>သေချာပါသလား?</b>\n"
         "━━━━━━━━━━━━━━━━━━\n"
@@ -423,32 +429,32 @@ async def step_end_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """User confirmed (or cancelled) ending the session."""
     text = update.message.text.strip()
-    
+
     if text == BTN_NO_BACK or text == BTN_BACK:
         context.user_data.pop("_end_target", None)
         context.user_data.pop("_end_cid", None)
         return await show_console_menu(update, context)
-    
+
     if text != BTN_YES_END:
         await update.message.reply_text(
             "⏹️ Yes သို့မဟုတ် No ရွေးပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_YES_END, BTN_NO_BACK]], one_time_keyboard=True, resize_keyboard=True),
         )
         return END_SESSION_CONFIRM
-    
+
     _t0 = time.monotonic()
     target = context.user_data.pop("_end_target", {})
     cid = context.user_data.pop("_end_cid", "")
-    
+
     if not target or not cid:
         return await show_console_menu(update, context)
-    
+
     bk_id   = target.get("booking_id", "")
     start_t = target.get("start", "")
     mbr     = target.get("member") or "Guest"
     session_staff = target.get("staff", "")
     total_mins, dur_fmt = calc_duration(start_t) if start_t else (0, "?")
-    
+
     # Extended minutes check
     _ext_chat_id = update.effective_chat.id
     _ext_key = _remind_key(cid, _ext_chat_id)
@@ -473,7 +479,7 @@ async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 _send_feedback_async = asyncio.create_task(_send_feedback_to_customer(_cust_chat_id, str(bk_id)))
     except Exception as _fe:
         logger.warning("Feedback trigger prep failed (non-critical): %s", _fe)
-    
+
     if not ok:
         if bk_id:
             await update.message.reply_text(f"❌ Booking ID {bk_id} ရှာမတွေ့ပါ")
@@ -521,7 +527,7 @@ async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.warning("step_t after_voucher_msg: %dms", (time.monotonic() - _t0) * 1000)
     _delete_session_game(cid)
     logger.warning("step_t after_delete_game: %dms", (time.monotonic() - _t0) * 1000)
-    
+
     _linked_bk_id = str(bk_id) if bk_id else ""
     if not _linked_bk_id:
         try:
@@ -534,9 +540,9 @@ async def step_end_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     break
         except Exception:
             pass
-    
+
     logger.warning("step_t linked_bk_id=%s food_cart_lookup: %dms", _linked_bk_id, (time.monotonic() - _t0) * 1000)
-    
+
     # CashBack Coupon
     try:
         from bot.api_client import api_post
