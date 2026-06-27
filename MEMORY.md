@@ -166,88 +166,13 @@ Kora now manages **8 projects** with full coordination tool support.
 ## Memory (2026-06-22)
 
 ### 26. Phase 1 Branch Architecture — Silent Prep ✅ (18:00 MMT)
-- **Boss directive:** Current shop → "Sanchaung Branch" (ဆိုင်ခွဲအတွက်ကြိုပြင်)
-- **What was done (ZERO impact on existing operations):**
-- 1. **DB Migration (50/58 tables):**
-- Added `branch_id INT DEFAULT 1` to all per-branch tables
-- 24 tables already had branch_id (pre-existing)
-- Added to 26 more: accounts, capital_movements, finance_*, promotions, member_coupons, customer_feedback, settings, settings_config, profit_distributions, dividends, shareholders, stock_hold, card_wallet, console_*_backup, food_cart, dashboard_users, staff_records_bak
-- Shared tables intentionally excluded: members, member_wallets, member_loyalty, games_library, loyalty_*, customer_bot_*, referral_log, sync_status
-- All existing data auto-filled with DEFAULT 1
-- 2. **Branches Table:**
-- Renamed "PS VIBE Main" → "Sanchaung Branch" (code: SANCHAUNG)
-- Added open/close time (9AM-9PM), telegram_group_id (-1003686032747)
-- 3. **API Middleware (`app.py`):**
-- `branch_context_middleware` reads `X-Branch-ID` header (defaults to 1)
-- `get_branch_id()` helper for endpoints
-- New endpoint `POST /api/bookings/mark-bot-reminder` for bot→API timer coordination
-- 4. **Bot Config (`__init__.py`):**
-- Added `BRANCH_ID`, `BRANCH_NAME` env vars
-- `_api_headers()` includes `X-Branch-ID` in all API calls
-- `/etc/psvibe/secrets.env` updated with BRANCH_ID=1, BRANCH_NAME=Sanchaung Branch
-- **Architecture:**
-- Sale Bot → separate per branch (copy + config)
-- Customer Bot → shared with branch selection step
-- Wallet → shared across branches
-- **Next:** Phase 2 activates when Branch 2 opens (~1 hour work)
+- Added `branch_id INT DEFAULT 1` to 50 tables, API middleware reads `X-Branch-ID` header, bot config updated. Sale Bot per-branch, Customer Bot shared w/ branch selection, Wallet shared. Phase 2 ready when Branch 2 opens.
 
-### Profit Distribution Audit (18:48 MMT - 22 Jun 2026)
-- Boss asked to verify Profit Distribution system with 10% management fee.
+### Profit Distribution Audit ✅ (18:48 MMT - 22 Jun 2026)
+- 10% mgmt fee fully implemented in `dashboard_routes.py`; API + DB tables ready. Token: Aung Chan Myint 34%+mgmt, Ye Myat 33%, Wai Yan Htet 33% (300M Ks total). Dashboard UI + bot flows pending.
 
-### Findings
-- 1. **10% Management Fee → FULLY IMPLEMENTED** in `dashboard_routes.py` (lines ~2868-2920)
-- `mgmt_fee = round(net_profit * 0.10, 0)` → Aung Chan Myint
-- 90% distributable → split by ownership % (34/33/33)
-- 2. **API Endpoints** ready: `/profit-distribution/calculate`, `/record`, `/history`
-- 3. **DB Tables** ready: `profit_distributions`, `profit_distribution_details` with `is_management_fee` flag
-- 4. **Dashboard UI** — NOT yet built (missing page for calculate + distribute)
-- 5. **Bot flows** — NOT implemented (CAP_ACCT, SHARE_NAME states defined but no handlers)
-
-### Profit Distribution Formula
-- Net Profit = Total Sales - Opex - COGS - Depreciation - Wallet Liability
-- Mgmt Fee = Net Profit × 10% → Aung Chan Myint
-- Distributable = Net Profit × 90% → Shareholders by ownership %
-
-### Token Accounts
-- Aung Chan Myint: 34% (102M) + 10% mgmt fee
-- Ye Myat: 33% (99M)
-- Wai Yan Htet: 33% (99M)
-- Total Capital: 300M Ks
-
-### What's Missing
-- Dashboard Profit Distribution page (UI only, API ready)
-- Capital Injection/Ejection bot flows
-- Shareholder management bot flows
-
-### Profit Distribution Bug Fix — Date Filters Added ✅ (19:05 MMT - 22 Jun 2026)
-
-### Bug: -12,527,636 Ks net loss showing
-- **Root cause:** `calculate_profit_distribution()` in `dashboard_routes.py` had ZERO date filters on any query — summing ALL data from entire DB history.
-
-### Fix Applied (`dashboard_routes.py` lines ~2831-2890):
-- 1. **Added `period` query parameter** — defaults to current month (e.g., `?period=2026-06`)
-- 2. **sales_daily**: Added `WHERE sale_date >= '2026-06-01' AND sale_date <= '2026-06-30'`
-- 3. **opex**: Added `WHERE expense_date >= '2026-06-01' AND expense_date <= '2026-06-30'`
-- 4. **stock_in (COGS)**: Added `WHERE created_at >= '2026-06-01 00:00:00' AND created_at <= '2026-06-30 23:59:59'`
-- 5. **depreciation**: Changed from summing ALL assets' monthly_dep → `WHERE purchase_date <= '2026-06-30'` (only active assets)
-- 6. **FIFO wallet liability**: REMOVED from monthly P&L calculation (set to 0). This is a balance sheet item (~12M total outstanding), not a monthly expense. Prepays are already deducted when consumed as wallet deductions in sales.
-- 7. **management_fee_to**: Now dynamic — uses shareholder with role "Founder" instead of hardcoded "Aung Chan Myint"
-
-### June 2026 Post-Fix Numbers:
-- Revenue:    8,163,333 Ks  (454 vouchers)
-- Opex:     -11,877,066 Ks  (marketing, rent, salaries)
-- COGS:      -1,795,438 Ks  (stock inventory)
-- Depr:      -7,018,465 Ks  (42 assets monthly)
-- ───────────────
-- Net:      -12,527,636 Ks  (loss — expected for launch month)
-- **Verdict:** June is launch month — startup costs heavy (Vlog marketing 3.5M, Interior Decoration 2.1M/month, Rent 2.5M, Eco Flow 178K/month). July+ should improve as marketing costs drop and revenue grows.
-
-### Files Modified:
-- `/root/psvibe_api_server/dashboard_routes.py` — `calculate_profit_distribution` function
-
-### Note:
-- Sub-agent failed due to missing OpenAI API key for gpt-4o-mini model. Fix applied directly by Kora.
-- Dashboard Profit Distribution UI page was already built and deployed (Boss showed screenshot).
+### Profit Distribution Bug Fix — Date Filters ✅ (19:05 MMT - 22 Jun 2026)
+- Added `period` param + date WHERE clauses to `calculate_profit_distribution()` (sales, opex, COGS, depreciation). Removed FIFO wallet liability from P&L (balance sheet item). June net: -12.5M Ks (expected for launch month).
 
 ## Memory (2026-06-23)
 
@@ -387,3 +312,17 @@ Kora now manages **8 projects** with full coordination tool support.
 
 ### New Lessons (continued)
 - **#33-35:** See \## Critical Lessons Learned above
+
+## Memory (2026-06-27)
+
+### Cancelled Bookings 2-Hour Timeline Filter
+- **Added** cancelled_at DATETIME column to console_booking (was missing)
+- **Backfilled** 175 existing cancelled bookings with cancelled_at = created_at
+- **3 API cancel endpoints** now set cancelled_at = NOW()
+- **Server-side filter**: cancelled_at >= NOW() - INTERVAL 2 HOUR in MySQL query
+- **Frontend UTC fix**: new Date(cancelledAt.replace(' ', 'T') + 'Z') — Z suffix forces UTC
+- **Double-layer**: API + JS both filter (defense-in-depth)
+
+### New Lessons
+- **#37: JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps.
+- **#38: Server-side filter > client-side** — for time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing.
