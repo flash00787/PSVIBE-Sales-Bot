@@ -250,7 +250,7 @@ async def _get_user_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 async def _get_available_slots(date_str: str) -> list[str]:
     """Get available time slots for a given date.
-    
+
     Uses time-range OVERLAP detection: a booking at 14:30 (60min) blocks the
     14:00 AND 15:00 hourly slots because 14:30-15:30 overlaps both windows.
     """
@@ -374,7 +374,7 @@ def _calc_session_end_minutes(console: dict) -> int | None:
 
 async def _get_available_consoles(date_str, time_str, duration_mins=60):
     """Fetch available consoles for a given date/time, filtering out busy ones.
-    
+
     Two-level filter:
     1. Console real-time status (skip Active/Reserved consoles)
     2. Booking time-range overlap detection (skip consoles with conflicting bookings)
@@ -806,6 +806,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         "durationMins": duration_mins,
         "gameName": context.user_data.get("bk_game", ""),
         "telegramChatId": uid,
+        "memberId": context.user_data.get("bk_member_id", ""),
         "username": user.username or "",
         "status": "pending",
     }
@@ -1554,7 +1555,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
             hour, minute = int(m.group(1)), int(m.group(2))
             if OPEN_HOUR <= hour < CLOSE_HOUR and 0 <= minute <= 59:
                 time_str = f"{hour:02d}:{minute:02d}"
-                
+
                 # Validate custom time against existing bookings
                 date_str = context.user_data.get("bk_date", "")
                 if date_str:
@@ -1596,7 +1597,7 @@ async def bk_time_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             return BK_TIME
                     except Exception:
                         pass  # If validation fails, allow proceeding (API will catch)
-                
+
                 context.user_data["bk_time"] = time_str
                 _push_state(context, BK_TIME)
                 await update.message.reply_text(
@@ -2315,7 +2316,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done", "rejected")]
-                
+
                 # Time-range overlap check
                 dur = context.user_data.get("bk_duration_mins", 60)
                 try:
@@ -2324,7 +2325,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     req_end = req_start + dur
                 except (ValueError, AttributeError):
                     req_start = req_end = 0
-                
+
                 dupes = []
                 for b in existing_active:
                     b_slot = b.get("timeSlot", "")
@@ -2339,7 +2340,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             dupes.append(b)
                     except (ValueError, AttributeError):
                         continue
-                
+
                 if dupes:
                     await update.message.reply_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"
@@ -2394,7 +2395,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
                 existing = existing.get("bookings", []) if isinstance(existing, dict) else (existing or [])
                 existing_active = [b for b in existing if b.get("status", "").lower() not in ("cancelled", "done", "rejected")]
-                
+
                 dur = context.user_data.get("bk_duration_mins", 60)
                 try:
                     th, tm = map(int, time_str.split(":"))
@@ -2402,7 +2403,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     req_end = req_start + dur
                 except (ValueError, AttributeError):
                     req_start = req_end = 0
-                
+
                 dupes = []
                 for b in existing_active:
                     b_slot = b.get("timeSlot", "")
@@ -2417,7 +2418,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             dupes.append(b)
                     except (ValueError, AttributeError):
                         continue
-                
+
                 if dupes:
                     await query.edit_message_text(
                         "⚠️ *Duplicate Booking Detected!*\n\n"

@@ -372,7 +372,7 @@ async def _is_tracked_customer(chat_id: int) -> bool:
 
 
 async def _get_linked_phone(chat_id: int) -> str | None:
-    """Return phone from most recent non-cancelled booking for this chat_id."""
+    """Return phone from most recent booking for this chat_id (any status)."""
     try:
         data = await _api_get(f"search-bookings?telegram_chat_id={chat_id}")
     except ValueError as e:
@@ -380,10 +380,8 @@ async def _get_linked_phone(chat_id: int) -> str | None:
         return None
     if not data:
         return None
-    bookings = data if isinstance(data, list) else []
+    bookings = data if isinstance(data, list) else (data.get("bookings", []) if isinstance(data, dict) else [])
     for b in sorted(bookings, key=lambda x: x.get("createdAt", ""), reverse=True):
-        if b.get("status", "") == "cancelled":
-            continue
         phone = (b.get("phone") or "").strip()
         if phone:
             return phone
@@ -391,16 +389,34 @@ async def _get_linked_phone(chat_id: int) -> str | None:
 
 
 async def _get_linked_member_id(chat_id: int) -> str | None:
-    """Return member_id whose phone matches this chat_id's booking history."""
+    """Return member_id linked to this chat_id via booking history.
+    Priority: 1) member_id from booking, 2) phone match from booking, 3) direct member_wallets lookup."""
+    try:
+        data = await _api_get(f"search-bookings?telegram_chat_id={chat_id}")
+    except ValueError:
+        data = None
+    bookings = data if isinstance(data, list) else (data.get("bookings", []) if isinstance(data, dict) else [])
+
+    # Priority 1: Check member_id directly from booking history
+    # (include cancelled — the Telegram→member link stays valid even if cancelled)
+    for b in sorted(bookings, key=lambda x: str(x.get("id", "0")), reverse=True):
+        mid = (b.get("member_id") or "").strip()
+        if mid and mid.lower() != "guest":
+            # Verify this member_id exists in member_wallets
+            members = await _fetch_members()
+            if mid in members:
+                return mid
+
+    # Priority 2: Match phone from booking to member_wallets
     phone = await _get_linked_phone(chat_id)
-    if not phone:
-        return None
-    phone_norm = phone.replace(" ", "").replace("-", "")
-    members = await _fetch_members()
-    for mid, m in members.items():
-        m_phone = (m.get("phone") or "").strip().replace(" ", "").replace("-", "")
-        if m_phone and m_phone == phone_norm:
-            return mid
+    if phone:
+        phone_norm = phone.replace(" ", "").replace("-", "")
+        members = await _fetch_members()
+        for mid, m in members.items():
+            m_phone = (m.get("phone") or "").strip().replace(" ", "").replace("-", "")
+            if m_phone and m_phone == phone_norm:
+                return mid
+
     return None
 
 
