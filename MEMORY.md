@@ -1,5 +1,4 @@
 # 🧠 Kora's Long-Term Memory
-
 ## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)
 
 Kora now manages **9 projects** with full coordination tool support.
@@ -147,7 +146,6 @@ Kora now manages **9 projects** with full coordination tool support.
 - Cancelled bookings: 2-hour timeline filter with server-side MySQL + frontend JS double-layer
 - Gmail: OAuth token refreshed, salary structure emails sent to 2 staff
 - Key lessons: #37-38 (JS Date parsing, server-side time filters), #47-50 (leave policy, food PNL reuse, rename checks, Gmail OAuth expiry)
-- See `memory/2026-06-27.md` for full details
 
 ## ⚠️ Known Issues (Persistent)
 
@@ -266,8 +264,6 @@ Kora now manages **9 projects** with full coordination tool support.
 - **Double-layer**: API + JS both filter (defense-in-depth)
 
 ### New Lessons
-- **#37: JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps.
-- **#38: Server-side filter > client-side** — for time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing.
 
 ## Memory (2026-06-28)
 

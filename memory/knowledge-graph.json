@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-21T17:37:39Z",
+  "updated": "2026-06-28T17:33:56Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -324,6 +324,12 @@
     },
     {
       "source": "boss",
+      "target": "oauth2",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "priority-memory",
       "relation": "implements",
       "weight": 5
@@ -474,18 +480,6 @@
     },
     {
       "source": "daily-digest",
-      "target": "knowledge-graph-concept",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "daily-digest",
-      "target": "memory-index",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "daily-digest",
       "target": "session-summary",
       "relation": "related_to",
       "weight": 5
@@ -493,12 +487,6 @@
     {
       "source": "deepseek",
       "target": "gemini-api",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "docker",
-      "target": "github",
       "relation": "depends_on",
       "weight": 5
     },
@@ -529,12 +517,6 @@
     {
       "source": "git-backup",
       "target": "knowledge-graph-concept",
-      "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "git-backup",
-      "target": "phase-3",
       "relation": "related_to",
       "weight": 5
     },
@@ -599,6 +581,12 @@
       "weight": 5
     },
     {
+      "source": "gmail-api",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "google-drive-api",
       "target": "mysql",
       "relation": "depends_on",
@@ -644,12 +632,6 @@
       "source": "kora",
       "target": "deepseek",
       "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "kora",
-      "target": "git-backup",
-      "relation": "implements",
       "weight": 5
     },
     {
@@ -708,6 +690,12 @@
     },
     {
       "source": "kora",
+      "target": "python",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
       "target": "sales-tele-bot",
       "relation": "owns",
       "weight": 5
@@ -727,6 +715,12 @@
     {
       "source": "kora",
       "target": "ssh",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "kora",
+      "target": "telegram",
       "relation": "uses",
       "weight": 5
     },
@@ -857,6 +851,12 @@
       "weight": 5
     },
     {
+      "source": "oauth2",
+      "target": "openclaw",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "openclaw",
       "target": "boot-protocol",
       "relation": "related_to",
@@ -955,12 +955,6 @@
     {
       "source": "ps-vibe",
       "target": "n8n",
-      "relation": "uses",
-      "weight": 5
-    },
-    {
-      "source": "ps-vibe",
-      "target": "oauth2",
       "relation": "uses",
       "weight": 5
     },
@@ -2100,12 +2094,6 @@
     },
     {
       "source": "boss",
-      "target": "oauth2",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "openclaw",
       "relation": "uses",
       "weight": 3
@@ -3282,6 +3270,18 @@
     },
     {
       "source": "daily-digest",
+      "target": "knowledge-graph-concept",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
+      "target": "memory-index",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "daily-digest",
       "target": "memory-upgrade",
       "relation": "related_to",
       "weight": 3
@@ -3644,6 +3644,12 @@
       "source": "docker",
       "target": "git-backup",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "docker",
+      "target": "github",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -4242,6 +4248,12 @@
     },
     {
       "source": "git-backup",
+      "target": "phase-3",
+      "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "git-backup",
       "target": "priority-memory",
       "relation": "related_to",
       "weight": 3
@@ -4507,12 +4519,6 @@
     {
       "source": "gmail-api",
       "target": "n8n",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "gmail-api",
-      "target": "openclaw",
       "relation": "depends_on",
       "weight": 3
     },
@@ -5268,6 +5274,12 @@
     },
     {
       "source": "kora",
+      "target": "git-backup",
+      "relation": "implements",
+      "weight": 3
+    },
+    {
+      "source": "kora",
       "target": "gmail-api",
       "relation": "uses",
       "weight": 3
@@ -5340,12 +5352,6 @@
     },
     {
       "source": "kora",
-      "target": "python",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "kora",
       "target": "session-summary",
       "relation": "implements",
       "weight": 3
@@ -5360,12 +5366,6 @@
       "source": "kora",
       "target": "synergy-hub",
       "relation": "owns",
-      "weight": 3
-    },
-    {
-      "source": "kora",
-      "target": "telegram",
-      "relation": "uses",
       "weight": 3
     },
     {
@@ -6300,12 +6300,6 @@
     },
     {
       "source": "oauth2",
-      "target": "openclaw",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "oauth2",
       "target": "openrouter",
       "relation": "depends_on",
       "weight": 3
@@ -7034,6 +7028,12 @@
       "source": "ps-vibe",
       "target": "memory-upgrade",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "ps-vibe",
+      "target": "oauth2",
+      "relation": "uses",
       "weight": 3
     },
     {

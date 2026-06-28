@@ -375,3 +375,10 @@
 - `/root/psvibe-sales-bot/customer_bot/broadcast.py` (new)
 - `/root/psvibe-sales-bot/customer_bot/main.py` (register handler)
 - `/etc/psvibe/secrets.env` (ADMIN_USER_IDS)
+
+# Archived Memory Entries
+*Archived: 2026-06-28 17:33 UTC*
+
+(dedup) - See `memory/2026-06-27.md` for full details
+  (dedup) - **#37: JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps.
+  (dedup) - **#38: Server-side filter > client-side** — for time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing.
