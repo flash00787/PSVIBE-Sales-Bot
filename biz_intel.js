@@ -58,16 +58,17 @@ function fmt(n) {
 
 // ── 1. Daily Sales Report ──
 async function dailyReport() {
-  const today = new Date();
-  const dateStr = today.toISOString().split('T')[0];
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const dateStr = yesterday.toISOString().split('T')[0];
   
-  // Fetch correct data from real MySQL tables
+  // Fetch correct data from real MySQL tables — use YESTERDAY (morning report)
   // sales_daily table (NOT sales_records) — column is net (not amount)
   const [dailySales, foodSales, activeSessions, topGames] = await Promise.all([
-    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(net), 0) as total FROM sales_daily WHERE sale_date = CURDATE()`),
-    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(quantity * unit_price), 0) as total FROM food_cart WHERE DATE(created_at) = CURDATE()`),
-    queryDB(`SELECT COUNT(*) as count FROM console_booking WHERE status = 'confirmed' AND DATE(start_time) = CURDATE()`),
-    queryDB(`SELECT COALESCE(game_name, 'Direct') as name, COUNT(*) as plays FROM console_booking WHERE DATE(start_time) = CURDATE() AND game_name IS NOT NULL AND game_name != '' GROUP BY game_name ORDER BY plays DESC LIMIT 5`),
+    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(net), 0) as total FROM sales_daily WHERE sale_date = CURDATE() - INTERVAL 1 DAY`),
+    queryDB(`SELECT COUNT(*) as count, COALESCE(SUM(quantity * unit_price), 0) as total FROM food_cart WHERE DATE(created_at) = CURDATE() - INTERVAL 1 DAY`),
+    queryDB(`SELECT COUNT(*) as count FROM console_booking WHERE status = 'confirmed' AND DATE(start_time) = CURDATE() - INTERVAL 1 DAY`),
+    queryDB(`SELECT COALESCE(game_name, 'Direct') as name, COUNT(*) as plays FROM console_booking WHERE DATE(start_time) = CURDATE() - INTERVAL 1 DAY AND game_name IS NOT NULL AND game_name != '' GROUP BY game_name ORDER BY plays DESC LIMIT 5`),
   ]);
 
   // Parse results
@@ -97,11 +98,11 @@ async function dailyReport() {
   // Build report
   const report = [
     `📊 **PS VIBE — Daily Business Summary**`,
-    `📅 ${today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`,
+    `📅 ${yesterday.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`,
     ``,
     `━━━━━━━━━━━━━━━━━━━`,
     ``,
-    `**💰 Sales Overview**`,
+    `**💰 Sales Overview (Yesterday)**`,
     `• Console Sales: ${dailyCount} sessions — ${fmt(dailyTotal)}`,
     `• Food & Drinks: ${foodCount} orders — ${fmt(foodTotal)}`,
     `• **Total Revenue: ${fmt(dailyTotal + foodTotal)}**`,
