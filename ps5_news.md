@@ -1,6 +1,64 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-28 05:30 UTC
+> Last updated: 2026-06-28 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 28, 2026 - 11:30 UTC) — PS6 Handheld: Sony CEO Drops Biggest Hint Yet + PS Plus July Spec Update
+
+> **Summary:** Midday Sunday sweep (6 hours since last update). PlayStation CEO Hideaki Nishino strongly hints at PS6 handheld in Famitsu interview. Additional PS Plus Essential July rumored titles surface. No critical lounge-impacting updates.
+
+### 🎮🔄 PS6 Handheld — CEO Hideaki Nishino Drops "Biggest Hint Yet" (June 26-28)
+- In an interview with Japanese gaming magazine **Famitsu** (published June 26), PlayStation CEO **Hideaki Nishino** made his strongest statement yet about portable PlayStation hardware:
+  - Future PlayStation hardware will **"leverage technologies that can be used in various forms and locations"**
+  - Priority on **"pick up and play"** functionality
+  - Cited **PlayStation Portal's cloud streaming growing 1.5x** (Dec 2025 → Jan 2026) as proof of portable demand
+- Multiple major outlets (IGN, PushSquare, TechRadar, Wccftech, MobileSyrup) interpret this as a **clear signal Sony is developing a PS6 handheld**
+- **Rumored features:** Switch-like hybrid (portable + dockable TV mode), backwards compatible with PS4/PS5 games, potentially 24GB GDDR7 VRAM
+- Analysts suggest performance could approach mobile PS5 level — possibly exceeding Xbox Series X in portable form
+- Some reports say component costs may push PS6 console price over $1,000 — but manufacturing commitments suggest no launch delay
+- **💡 Lounge Note:** This is a **LONG-TERM strategic signal**, not short-term. PS6 handheld (if real) is likely 2028+. PS VIBE's PS5 fleet remains THE premium way to play for years to come. No action needed now — but interesting to track how Sony's "hybrid future" could reshape gaming lounge models in the distant future.
+- Sources: PushSquare (Jun 26), IGN (Jun 27), TechRadar, MobileSyrup, Wccftech
+
+### 📅 PS Plus Essential July — Additional Rumored Titles
+- No official announcement yet (expected **July 1** — 3 days away!)
+- Additional community-speculated titles not in our previous list:
+  - 🐉 **Dragon's Dogma 2** — Capcom's open-world action RPG
+  - ⚔️ **The First Berserker: Khazan** — Dungeon & Fighter spinoff
+  - 🧬 **Hell is Us** — Supernatural action-adventure
+  - 💀 **Nobody Wants To Die** — Noir detective thriller
+  - 🔫 **Call of Duty: Modern Warfare** — original MW remaster or bundle?
+  - 🏒 **NHL 26** — hockey (low Myanmar relevance)
+  - 🎲 **Tiny Tina's Wonderlands** — Borderlands fantasy spinoff
+  - 🦖 **Jurassic World Evolution 3** — dino park builder
+  - 🐜 **Empire of the Ants** — strategy adaptation
+  - ⚔️ **Valkyrie Elysium** — Norse action RPG
+  - 🏯 **Dynasty Warriors Origins** — musou prequel
+- ⚠️ **ALL STILL PURE SPECULATION** — no credible leaks as of June 28. Official reveal July 1!
+- **💡 Lounge Note:** Dragon's Dogma 2 and Tiny Tina's Wonderlands would be excellent lounge additions IF they hit PS Plus Essential. But don't count on it — these are community wishlists, not leaks.
+
+### 📊 Quick Status Check (June 28 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮 PS6 Handheld | **CEO HINT 🆕** | Strongest signal yet from Nishino! Years away! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Date confirmed! Games available Jul 21 |
+| 📅 PS Plus Essential July Reveal | **Jul 1** | 3 days away! No confirmed leak! |
+| 🛒 Weekend Offer Sale | **ENDS TODAY!** | Final hours! Lego Star Wars, Overcooked etc! |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 3 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🏴‍☠️ AC Black Flag Resynced | Jul 9! | Only 11 days! Pre-order! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 🎬 Sony StudioCanal deletion | Sep 1 | 551 films deleted! EU only! |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+| 📤 PS Plus August Departures | **Aug 18** | 5 titles confirmed |
+
+### 🚨 Priority Lounge Actions (Unchanged):
+1. **Weekend Offer sale — FINAL DAY!** Grab co-op/party games before they're gone!
+2. **3 days left for Mid-Year Deals + Supplementary Sale** — final stock-up window!
+3. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog!
+4. **Pre-order AC Black Flag Resynced** (Jul 9 — 11 days!) + CoD MW4!
+5. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
