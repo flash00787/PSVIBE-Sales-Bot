@@ -268,3 +268,37 @@ Kora now manages **9 projects** with full coordination tool support.
 ### New Lessons
 - **#37: JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps.
 - **#38: Server-side filter > client-side** — for time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing.
+
+## Memory (2026-06-28)
+
+### Sales Bot — Food Underscore Markdown Bug (3 Screens Fixed)
+- **Bug:** Food item `လျှာဂျွမ်းထိုး_ဟော့ဟော့` had `_` interpreted as Markdown italic → `Can't parse entities` crash
+- **Fix:** `_md_escape()` function in sales.py escapes `_`, `*`, `` ` ``, `[` — applied to **all 3 screens**: prompt_food_menu, step_food_qty, step_food_menu, prompt_confirm, _show_payment_review (Review), step_sale_confirm (Receipt)
+- **Lesson:** Every screen that renders user content with `parse_mode="Markdown"` must escape. Apply at display time, not at storage time.
+
+### Web Dashboard Booking Notifications — Missing
+- **Bug:** Web dashboard uses `PUT /api/dashboard/bookings/{id}` which had NO notification code. Sales bot uses `PATCH /api/bookings/{id}/status` which HAS notification.
+- **Fix:** Added customer notification (confirm/cancel) to dashboard PUT endpoint using `_send_telegram_customer()` via threading.Thread
+- **Lesson:** Two endpoints for same action = divergence risk. Both need same side effects.
+
+### Customer Bot — User Block System
+- **Implement:** `BLOCKED_IDS` set + `_is_blocked()` check in cmd_start, cmd_menu, handle_menu_buttons
+- **MessageHandler filter:** `filters.User(user_id=X) | filters.User(user_id=Y)` with group=-1
+- **Block message:** "🚫 Access Denied — Contact Admin: @psvibeofficial"
+- **Blocked:** 7158675982 (Unoman66/BK#1121), 8383666570 (BK#1122)
+- **⚠️ Note:** CallbackQueryHandler does NOT accept filters — used in-handler checks instead
+
+### EOD Report — Complete Rewrite
+- **Bug:** `docker exec psvibe-mysql mysql` auth failed (password `!` → shell issues + host mismatch)
+- **Fix:** Replaced with pymysql direct connect (`127.0.0.1`, same as API server)
+- **English format:** All Burmese labels → English (per Boss)
+- **Payment methods fix:** `GROUP BY SUBSTRING_INDEX(payment_method, ':', 1)` — previously grouping by `Cash:20000` instead of just `Cash`
+- **Members table:** `members` (1 record, stale) → `member_wallets` (8 records, actual)
+- **Cron:** `30 13 * * *` (8 PM MMT) → `30 15 * * *` (10 PM MMT)
+
+### New Lessons
+- **#51: docker exec mysql auth pitfalls** — Container internal MySQL client connects as different host (`127.0.0.1`) which may not match user privileges. Use pymysql from host instead.
+- **#52: CallbackQueryHandler ≠ MessageHandler** — CallbackQueryHandler does NOT accept filters as constructor arg. Must use in-handler checks for blocking users.
+- **#53: GROUP BY raw strings is wrong** — `GROUP BY payment_method` when column stores `Cash:20000` creates separate groups per amount. Use `SUBSTRING_INDEX()` to extract the method name.
+- **#54: Two endpoints, same action = divergence** — `PUT /dashboard/bookings/{id}` and `PATCH /api/bookings/{id}/status` both update booking status but only one had notifications. Always check ALL paths.
+- **#55: Check ALL tables after migration** — `members` table had 1 record after migration; `member_wallets` had 8 (correct). Don't assume legacy table names still have data.

@@ -2,19 +2,28 @@
 """
 PS VIBE — Daily EOD (End of Day) Report Script
 ==============================================
-Runs at 20:00 MMT (13:30 UTC) daily via cron.
-Queries MySQL for today's sales, member activity, and top packages.
-Formats a Burmese-language summary and sends to Boss Telegram (6296803251).
+Runs at 22:00 MMT (15:30 UTC) daily via cron.
+Queries MySQL for today's sales, member activity, and top consoles.
+Formats a Burmese-language summary and sends to Admin Group + Boss fallback.
 
-Requires: requests, pymysql (or uses docker exec for MySQL)
+Uses pymysql (direct) — NOT docker exec (auth issues).
 Uses BOT_TOKEN (Sales Bot) for sendMessage.
 """
 
 import os
 import sys
 import json
-import subprocess
+import logging
 from datetime import datetime, timedelta, timezone
+from decimal import Decimal
+
+# ── Setup logging ──
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] eod_report: %(message)s",
+    handlers=[logging.StreamHandler()],
+)
+logger = logging.getLogger("eod_report")
 
 # ── Config ────────────────────────────────────────────────────────────────────
 BOSS_CHAT_ID = "6296803251"
@@ -48,229 +57,259 @@ _load_env_file(SECRETS_FILE)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
-# ── MySQL Query via Docker ────────────────────────────────────────────────────
-def sql(query):
-    """Run MySQL query via docker exec on psvibe-mysql container."""
-    cmd = [
-        "docker", "exec", "psvibe-mysql",
-        "mysql", "-upsvibe_user", "-pPsVibe@2026_Rotated!",
-        "psvibe_api", "-N", "-B", "-e", query
-    ]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-        return r.stdout.strip() if r.returncode == 0 else None
-    except Exception as e:
-        print(f"SQL ERROR: {e}", file=sys.stderr)
-        return None
+# ── MySQL via pymysql ─────────────────────────────────────────────────────────
+import pymysql
+from pymysql.cursors import DictCursor
 
+MYSQL_CFG = {
+    "host": "127.0.0.1",
+    "user": "psvibe_user",
+    "password": "PsVibe@2026_Rotated!",
+    "database": "psvibe_api",
+    "charset": "utf8mb4",
+    "cursorclass": DictCursor,
+}
+
+def _get_conn():
+    return pymysql.connect(**MYSQL_CFG)
 
 def sql_one(query):
     """Run a scalar query, return first value or None."""
-    result = sql(query)
-    if result:
-        lines = result.strip().split("\n")
-        return lines[0] if lines else None
-    return None
+    try:
+        conn = _get_conn()
+        with conn.cursor() as cur:
+            cur.execute(query)
+            row = cur.fetchone()
+            if row:
+                return list(row.values())[0]
+            return None
+    except Exception as e:
+        logger.error("SQL error: %s", e)
+        return None
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+
+def sql(query):
+    """Run a multi-row query, return list of dicts."""
+    try:
+        conn = _get_conn()
+        with conn.cursor() as cur:
+            cur.execute(query)
+            return cur.fetchall()
+    except Exception as e:
+        logger.error("SQL error: %s", e)
+        return []
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+
+def sql_table(query):
+    """Run a query returning tab-separated lines (simulating mysql -N -B output)."""
+    rows = sql(query)
+    if not rows:
+        return None
+    lines = []
+    for row in rows:
+        lines.append("\t".join(str(v) if v is not None else "" for v in row.values()))
+    return "\n".join(lines)
 
 
+# ── Telegram Send ─────────────────────────────────────────────────────────────
 def tg_send(chat_id, text, token=None, parse_mode="HTML"):
     """Send Telegram message via Bot API."""
-    import requests
+    import urllib.request
     token = token or BOT_TOKEN
     if not token or not chat_id:
-        print("ERROR: Missing token or chat_id", file=sys.stderr)
+        logger.error("Missing token or chat_id")
         return False
     try:
-        resp = requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat_id, "text": text, "parse_mode": parse_mode},
-            timeout=15,
-        )
-        ok = resp.status_code == 200
-        if not ok:
-            print(f"Telegram API error: {resp.status_code} {resp.text}", file=sys.stderr)
-        return ok
+        data = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": parse_mode}).encode()
+        url = f"https://api.telegram.org/bot{token}/sendMessage"
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            ok = resp.status == 200
+            if not ok:
+                logger.error("Telegram API error: %s", resp.read().decode())
+            return ok
     except Exception as e:
-        print(f"Telegram send error: {e}", file=sys.stderr)
+        logger.error("Telegram send error: %s", e)
         return False
 
 
 # ── Data Collection ───────────────────────────────────────────────────────────
 now_mmt = datetime.now(MMT)
 today_str = now_mmt.strftime("%Y-%m-%d")
-date_display = now_mmt.strftime("%d %B %Y (%A)")
 
-# 1. Total revenue from sales_daily today
+logger.info("=== Generating EOD report for %s (MMT) ===", today_str)
+
+# 1. Sales today
 total_sales_raw = sql_one(
     f"SELECT COALESCE(SUM(net), 0) FROM sales_daily WHERE sale_date = '{today_str}'"
 )
-total_sales = float(total_sales_raw) if total_sales_raw else 0
+total_sales = float(total_sales_raw or 0)
 
-# 2. Gross sales (before discount)
 gross_sales_raw = sql_one(
     f"SELECT COALESCE(SUM(gross), 0) FROM sales_daily WHERE sale_date = '{today_str}'"
 )
-gross_sales = float(gross_sales_raw) if gross_sales_raw else 0
+gross_sales = float(gross_sales_raw or 0)
 
-# 3. Total discount given today
 discount_raw = sql_one(
     f"SELECT COALESCE(SUM(discount), 0) FROM sales_daily WHERE sale_date = '{today_str}'"
 )
-discount_total = float(discount_raw) if discount_raw else 0
+discount_total = float(discount_raw or 0)
 
-# 4. Number of sales transactions today
 txn_count_raw = sql_one(
     f"SELECT COUNT(*) FROM sales_daily WHERE sale_date = '{today_str}'"
 )
-txn_count = int(txn_count_raw) if txn_count_raw else 0
+txn_count = int(txn_count_raw or 0)
 
-# 5. Top-ups today
+# 2. Top-ups today
 topup_amount_raw = sql_one(
     f"SELECT COALESCE(SUM(amount), 0) FROM topup_log WHERE DATE(topup_date) = '{today_str}'"
 )
-topup_amount = float(topup_amount_raw) if topup_amount_raw else 0
+topup_amount = float(topup_amount_raw or 0)
 
 topup_count_raw = sql_one(
     f"SELECT COUNT(*) FROM topup_log WHERE DATE(topup_date) = '{today_str}'"
 )
-topup_count = int(topup_count_raw) if topup_count_raw else 0
+topup_count = int(topup_count_raw or 0)
 
-# 6. Member check-ins (attendance log today)
+# 3. Attendance today
 checkins_raw = sql_one(
     f"SELECT COUNT(*) FROM attendance_log WHERE date = '{today_str}'"
 )
-checkins = int(checkins_raw) if checkins_raw else 0
+checkins = int(checkins_raw or 0)
 
-# 7. Unique members served today
+# 4. Unique members today
 unique_members_raw = sql_one(
     f"SELECT COUNT(DISTINCT member_id) FROM sales_daily WHERE sale_date = '{today_str}' AND member_id IS NOT NULL AND member_id != ''"
 )
-unique_members = int(unique_members_raw) if unique_members_raw else 0
+unique_members = int(unique_members_raw or 0)
 
-# 8. Active consoles right now
+# 5. Console status
 active_consoles_raw = sql_one(
     "SELECT COUNT(*) FROM console_status WHERE status IN ('Active','in_use','In Use')"
 )
-active_consoles = int(active_consoles_raw) if active_consoles_raw else 0
+active_consoles = int(active_consoles_raw or 0)
 
-# 9. Total consoles
 total_consoles_raw = sql_one("SELECT COUNT(*) FROM console_status")
-total_consoles = int(total_consoles_raw) if total_consoles_raw else 0
+total_consoles = int(total_consoles_raw or 0)
 
-# 10. Top 5 sales by console/game today
-top_items_raw = sql(
+# 6. Top 5 by console
+top_items_raw = sql_table(
     f"SELECT COALESCE(console_id,'Walk-in'), COALESCE(SUM(net),0) as rev, COUNT(*) as cnt "
     f"FROM sales_daily WHERE sale_date = '{today_str}' "
     f"GROUP BY console_id ORDER BY rev DESC LIMIT 5"
 )
 
-# 11. Payment method breakdown
-payment_methods_raw = sql(
-    f"SELECT payment_method, COALESCE(SUM(net),0), COUNT(*) "
+# 7. Payment breakdown
+payment_methods_raw = sql_table(
+    f"SELECT SUBSTRING_INDEX(payment_method, ':', 1) as method, COALESCE(SUM(net),0), COUNT(*) "
     f"FROM sales_daily WHERE sale_date = '{today_str}' "
-    f"GROUP BY payment_method ORDER BY SUM(net) DESC"
+    f"GROUP BY SUBSTRING_INDEX(payment_method, ':', 1) ORDER BY SUM(net) DESC"
 )
 
-# 12. Total members
-total_members_raw = sql_one("SELECT COUNT(*) FROM members")
-total_members = int(total_members_raw) if total_members_raw else 0
+# 8. Total members (active)
+total_members_raw = sql_one("SELECT COUNT(*) FROM member_wallets")
+total_members = int(total_members_raw or 0)
 
-# 13. New members today
+# 9. New members today
 new_members_raw = sql_one(
-    f"SELECT COUNT(*) FROM members WHERE DATE(created_at) = '{today_str}'"
+    f"SELECT COUNT(*) FROM member_wallets WHERE DATE(created_at) = '{today_str}'"
 )
-new_members = int(new_members_raw) if new_members_raw else 0
+new_members = int(new_members_raw or 0)
 
-# ── Build Burmese Report ──────────────────────────────────────────────────────
-# Burmese month names
-mm_months = {
-    1: "ဇန်နဝါရီ", 2: "ဖေဖော်ဝါရီ", 3: "မတ်", 4: "ဧပြီ",
-    5: "မေ", 6: "ဇွန်", 7: "ဇူလိုင်", 8: "ဩဂုတ်",
-    9: "စက်တင်ဘာ", 10: "အောက်တိုဘာ", 11: "နိုဝင်ဘာ", 12: "ဒီဇင်ဘာ"
-}
 
-mm_days = {
-    0: "တနင်္လာ", 1: "အင်္ဂါ", 2: "ဗုဒ္ဓဟူး",
-    3: "ကြာသပတေး", 4: "သောကြာ", 5: "စနေ", 6: "တနင်္ဂနွေ"
-}
+# ── Build English Report ──────────────────────────────────────────────────────
+eng_date = now_mmt.strftime("%d %B %Y (%A)")
 
-mm_date = f"{now_mmt.day} {mm_months[now_mmt.month]} {now_mmt.year} ({mm_days[now_mmt.weekday()]})"
-
-def fmt_k(v):
-    """Format number with commas, Myanmar style."""
+def fmt_num(v):
+    """Format number with commas."""
     if v >= 100000:
-        return f"{v/100000:.1f} သိန်း"
+        return f"{v/100000:.1f}L"
     return f"{v:,.0f}"
 
+def _f(v):
+    """Parse value to float safely."""
+    try:
+        return float(v) if v else 0
+    except:
+        return 0
+
 lines = []
-lines.append("📊 <b>PS VIBE — ယနေ့ အရောင်းအစီရင်ခံစာ</b>")
-lines.append(f"📅 {mm_date}")
+lines.append("📊 <b>PS VIBE — Daily Sales Report</b>")
+lines.append(f"📅 {eng_date}")
 lines.append("")
-lines.append("━" * 22)
+lines.append("━" * 25)
 lines.append("")
 
-# Revenue section
-lines.append("💰 <b>အရောင်း</b>")
-lines.append(f"  📝 အရောင်း အကြိမ်ရေ   : <b>{txn_count}</b> ကြိမ်")
-lines.append(f"  💵 Gross (မလျှော့ခင်) : <b>{fmt_k(gross_sales)} Ks</b>")
+# Revenue
+lines.append("💰 <b>Sales</b>")
+lines.append(f"  📝 Transactions        : <b>{txn_count}</b>")
+lines.append(f"  💵 Gross (before disc) : <b>{fmt_num(gross_sales)} Ks</b>")
 if discount_total > 0:
-    lines.append(f"  🎁 Discount          : <b>{fmt_k(discount_total)} Ks</b>")
-lines.append(f"  💰 Net (စုစုပေါင်း)    : <b>{fmt_k(total_sales)} Ks</b>")
+    lines.append(f"  🎁 Discount             : <b>{fmt_num(discount_total)} Ks</b>")
+lines.append(f"  💰 Net (Total)          : <b>{fmt_num(total_sales)} Ks</b>")
 lines.append("")
 
-# Top-up section
+# Top-up
 lines.append("💳 <b>Top Up</b>")
-lines.append(f"  🔄 Top Up အကြိမ်ရေ  : <b>{topup_count}</b> ကြိမ်")
-lines.append(f"  💵 Top Up ပမာဏ      : <b>{fmt_k(topup_amount)} Ks</b>")
+lines.append(f"  🔄 Top Up Count         : <b>{topup_count}</b>")
+lines.append(f"  💵 Top Up Amount        : <b>{fmt_num(topup_amount)} Ks</b>")
 lines.append("")
 
-# Total
+# Total revenue
 total_revenue = total_sales + topup_amount
-lines.append(f"🏆 <b>စုစုပေါင်း ဝင်ငွေ : {fmt_k(total_revenue)} Ks</b>")
+lines.append(f"🏆 <b>Total Revenue : {fmt_num(total_revenue)} Ks</b>")
 lines.append("")
 
-# Member section
-lines.append("👥 <b>Member</b>")
-lines.append(f"  🆕 Member အသစ်      : <b>{new_members}</b> ယောက်")
-lines.append(f"  🎮 ယနေ့ လာရောက်သူ  : <b>{unique_members}</b> ယောက်")
-lines.append(f"  📋 Member စုစုပေါင်း : <b>{total_members:,}</b> ယောက်")
+# Members
+lines.append("👥 <b>Members</b>")
+lines.append(f"  🆕 New Members          : <b>{new_members}</b>")
+lines.append(f"  🎮 Served Today         : <b>{unique_members}</b>")
+lines.append(f"  📋 Total Members        : <b>{total_members:,}</b>")
 lines.append("")
 
 # Console status
-lines.append("🕹️ <b>Console အခြေအနေ</b>")
+lines.append("🕹️ <b>Console Status</b>")
 lines.append(f"  ✅ Active : <b>{active_consoles}</b> / {total_consoles}")
 lines.append("")
 
 # Staff attendance
-lines.append(f"📅 <b>Staff တက်ရောက်မှု</b>")
-lines.append(f"  👤 ယနေ့ တက်ရောက်   : <b>{checkins}</b> ယောက်")
+lines.append(f"📅 <b>Staff Attendance</b>")
+lines.append(f"  👤 Present Today        : <b>{checkins}</b>")
 lines.append("")
 
-# Top consoles/games
+# Top Consoles/Games
 if top_items_raw:
     lines.append("🏆 <b>Top 5 Consoles / Games</b>")
     for i, line in enumerate(top_items_raw.strip().split("\n")[:5], 1):
         parts = line.split("\t")
         if len(parts) >= 2:
             console = parts[0].strip() or "Walk-in"
-            rev = float(parts[1]) if parts[1] else 0
-            lines.append(f"  {i}. {console} — <b>{fmt_k(rev)} Ks</b>")
+            rev = _f(parts[1])
+            lines.append(f"  {i}. {console} — <b>{fmt_num(rev)} Ks</b>")
     lines.append("")
 
 # Payment breakdown
 if payment_methods_raw:
-    lines.append("💳 <b>ငွေပေးချေမှု ပုံစံ</b>")
+    lines.append("💳 <b>Payment Methods</b>")
     for line in payment_methods_raw.strip().split("\n")[:5]:
         parts = line.split("\t")
         if len(parts) >= 2:
             method = parts[0].strip() or "Unknown"
-            amt = float(parts[1]) if parts[1] else 0
-            lines.append(f"  {method} : <b>{fmt_k(amt)} Ks</b>")
+            amt = _f(parts[1])
+            lines.append(f"  {method} : <b>{fmt_num(amt)} Ks</b>")
     lines.append("")
 
-lines.append("━" * 22)
+lines.append("━" * 25)
 lines.append("🤖 <i>Kora — Auto Daily Report</i>")
-lines.append(f"🕗 {now_mmt.strftime('%I:%M %p')} MMT")
+lines.append(f"🕙 {now_mmt.strftime('%I:%M %p')} MMT")
 
 message = "\n".join(lines)
 
@@ -280,18 +319,17 @@ print(message)
 print("=" * 50)
 
 if BOT_TOKEN:
-    # Try staff/admin group first, fallback to Boss
     success = tg_send(STAFF_CHAT_ID, message)
     if success:
-        print(f"✅ EOD report sent to Admin Group ({STAFF_CHAT_ID})")
+        logger.info("✅ EOD report sent to Admin Group (%s)", STAFF_CHAT_ID)
     else:
-        print(f"⚠️ Admin group send failed, trying Boss fallback...", file=sys.stderr)
+        logger.warning("Admin group send failed, trying Boss fallback...")
         success = tg_send(BOSS_CHAT_ID, message)
         if success:
-            print(f"✅ EOD report sent to Boss ({BOSS_CHAT_ID}) via fallback")
+            logger.info("✅ EOD report sent to Boss (%s) via fallback", BOSS_CHAT_ID)
         else:
-            print(f"❌ Failed to send EOD report to both targets", file=sys.stderr)
+            logger.error("❌ Failed to send EOD report to both targets")
             sys.exit(1)
 else:
-    print("⚠️ BOT_TOKEN not set — message NOT sent (dry run)", file=sys.stderr)
+    logger.error("BOT_TOKEN not set — message NOT sent")
     sys.exit(1)
