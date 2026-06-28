@@ -42,6 +42,11 @@ from datetime import datetime, timezone, timedelta
 from bot.handlers.notify import _check_low_balance_alert, get_customer_chat_id
 from bot.handlers.booking_flow import _cancel_remind, _remind_loop, _REMIND_TASKS, _remind_key, remove_no_timer_console
 
+# ── Markdown escape helper ──
+def _md_escape(text: str) -> str:
+    """Escape Telegram MarkdownV1 special characters in food names."""
+    return text.replace('_', '\\_').replace('*', '\\*').replace('`', '\\`').replace('[', '\\[')
+
 def next_voucher() -> str:
     """Generate next sequential voucher number (YYYYMMDD-NNN)."""
     from datetime import datetime
@@ -329,15 +334,15 @@ async def prompt_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 price_parts.append(f"\n{emoji} <b>{cat}</b>")
                 for n, p in items.items():
                     if n in prices:
-                        price_parts.append(f"  • {n}  —  {p:,} Ks")
+                        price_parts.append(f"  • {_md_escape(n)}  —  {p:,} Ks")
         price_block = "\n".join(price_parts) if price_parts else "  (menu မရှိပါ)"
     else:
-        price_lines = [f"  • {n}  —  {p:,} Ks" for n, p in prices.items()]
+        price_lines = [f"  • {_md_escape(n)}  —  {p:,} Ks" for n, p in prices.items()]
         price_block = "\n".join(price_lines) if price_lines else "  (menu မရှိပါ)"
 
     # Running cart (already fetched above)
     if cart_items:
-        cart_lines    = [f"  ✓ {i['name']} x{i['qty']} = {i['subtotal']:,} Ks" for i in cart_items]
+        cart_lines    = [f"  ✓ {_md_escape(i['name'])} x{i['qty']} = {i['subtotal']:,} Ks" for i in cart_items]
         cart_subtotal = sum(i["subtotal"] for i in cart_items)
         cart_block = (
             f"\n🛒 *ရွေးပြီးသားပစ္စည်း:*\n"
@@ -365,7 +370,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if d.get("is_food_sale"):
         food_lines, food_total = [], 0
         for item in d["food_items"]:
-            food_lines.append(f"  • {item['name']} x{item['qty']} = {item['subtotal']:,} Ks")
+            food_lines.append(f"  • {_md_escape(item['name'])} x{item['qty']} = {item['subtotal']:,} Ks")
             food_total += item["subtotal"]
         food_sec = "\n".join(food_lines) if food_lines else "  • မရှိပါ"
         d["food_total"] = food_total
@@ -394,7 +399,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     food_lines, food_total = [], 0
     for item in d["food_items"]:
-        food_lines.append(f"  • {item['name']} x{item['qty']} = {item['subtotal']:,} Ks")
+        food_lines.append(f"  • {_md_escape(item['name'])} x{item['qty']} = {item['subtotal']:,} Ks")
         food_total += item["subtotal"]
     food_sec = "\n".join(food_lines) if food_lines else "  • မရှိပါ"
 
@@ -953,7 +958,7 @@ async def step_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     stock_note = f"\n📦 Stock ကျန်: *{max_qty} pcs*" if total_stock < 999 else ""
     await update.message.reply_text(
         step_hdr(4, 6, "Food Qty") +
-        f"🔢 *{choice}* ({unit_price:,} Ks/ခု){stock_note}\n\nအရေအတွက် ရွေးပါ သို့မဟုတ် ရိုက်ပါ -",
+        f"🔢 *{_md_escape(choice)}* ({unit_price:,} Ks/ခု){stock_note}\n\nအရေအတွက် ရွေးပါ သို့မဟုတ် ရိုက်ပါ -",
         parse_mode="Markdown",
         reply_markup=ReplyKeyboardMarkup(
             qty_row + [NAV_ROW],
@@ -985,7 +990,7 @@ async def step_food_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     max_qty = context.user_data.get("last_food_max", 999)
     if qty > max_qty:
         await update.message.reply_text(
-            f"❌ *{name}* — stock *{max_qty} pcs* သာ ကျန်တော့သည်!\n\n"
+            f"❌ *{_md_escape(name)}* — stock *{max_qty} pcs* သာ ကျန်တော့သည်!\n\n"
             f"{max_qty} နှင့်အောက် ထည့်ပေးပါ -",
             parse_mode="Markdown",
         )
@@ -1215,7 +1220,7 @@ async def _show_payment_review(update: Update, context: ContextTypes.DEFAULT_TYP
     is_guest = m_id.strip() == "0 (Guest)"
 
     food_lines_review = [
-        f"  • {i['name']} x{i['qty']} = {i['subtotal']:,} Ks"
+        f"  • {_md_escape(i['name'])} x{i['qty']} = {i['subtotal']:,} Ks"
         for i in d.get("food_items", [])
     ]
     food_sec_review = "\n".join(food_lines_review) if food_lines_review else "  • မရှိ"
@@ -1359,7 +1364,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Build receipt strings before clearing user_data
     food_lines_receipt = [
-        f"  • {i['name']} x{i['qty']} = {i['subtotal']:,} Ks" for i in food_sold
+        f"  • {_md_escape(i['name'])} x{i['qty']} = {i['subtotal']:,} Ks" for i in food_sold
     ]
     food_sec_receipt = "\n".join(food_lines_receipt) if food_lines_receipt else "  • မရှိ"
     member_ln = "👤 Guest" if is_guest else f"💳 Member: *{m_id}*"

@@ -1,1 +1,101 @@
-{}
+{
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Soe Moe ",
+    "planned_mins": 120,
+    "end_t": "18:05",
+    "end_dt_iso": "2026-06-28T18:05:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-28T09:35:59.381278+00:00"
+  },
+  "C-10|1003686032747": {
+    "cid": "C-10",
+    "chat_id": -1003686032747,
+    "member_id": "Nyan Lin htut2",
+    "planned_mins": 120,
+    "end_t": "18:26",
+    "end_dt_iso": "2026-06-28T18:26:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-28T09:56:45.737044+00:00"
+  },
+  "C-08|1003686032747": {
+    "cid": "C-08",
+    "chat_id": -1003686032747,
+    "member_id": "Naan Lin htut",
+    "planned_mins": 120,
+    "end_t": "18:27",
+    "end_dt_iso": "2026-06-28T18:27:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-28T09:57:55.153392+00:00"
+  },
+  "C-04|1003686032747": {
+    "cid": "C-04",
+    "chat_id": -1003686032747,
+    "member_id": "ko zaw lin",
+    "planned_mins": 60,
+    "end_t": "17:42",
+    "end_dt_iso": "2026-06-28T17:42:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-06-28T10:12:24.308440+00:00"
+  },
+  "C-05|1003686032747": {
+    "cid": "C-05",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "17:44",
+    "end_dt_iso": "2026-06-28T17:44:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-06-28T10:23:54.071743+00:00"
+  },
+  "C-01|1003686032747": {
+    "cid": "C-01",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 90,
+    "end_t": "18:29",
+    "end_dt_iso": "2026-06-28T18:29:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 90,
+    "updated_at": "2026-06-28T10:29:53.050620+00:00"
+  },
+  "C-02|1003686032747": {
+    "cid": "C-02",
+    "chat_id": -1003686032747,
+    "member_id": "Than Zin Htoo",
+    "planned_mins": 120,
+    "end_t": "19:05",
+    "end_dt_iso": "2026-06-28T19:05:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-28T11:00:07.227819+00:00"
+  },
+  "C-07|1003686032747": {
+    "cid": "C-07",
+    "chat_id": -1003686032747,
+    "member_id": "Te Tee",
+    "planned_mins": 32,
+    "end_t": "18:18",
+    "end_dt_iso": "2026-06-28T18:18:00+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 120,
+    "updated_at": "2026-06-28T11:15:40.679107+00:00"
+  },
+  "C-09|1003686032747": {
+    "cid": "C-09",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 240,
+    "end_t": "21:52",
+    "end_dt_iso": "2026-06-28T21:52:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 240,
+    "updated_at": "2026-06-28T11:22:05.914286+00:00"
+  }
+}
