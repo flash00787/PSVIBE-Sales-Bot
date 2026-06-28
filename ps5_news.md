@@ -1,6 +1,105 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-28 11:30 UTC
+> Last updated: 2026-06-28 17:30 UTC
+
+---
+
+## 🔥🔥 UPDATE (June 28, 2026 - 17:30 UTC) — PALWORLD 1.0 PS5 July 10! + A Plague Tale Legacy Aug 27! + High on Life 2 CORRECTION!
+
+> **Summary:** Evening sweep (6 hours since last update). THREE major findings: Palworld 1.0 CONFIRMED for PS5 on July 10 — a 25M+ player phenomenon coming to lounge consoles! Resonance: A Plague Tale Legacy (3rd entry in acclaimed series) lands August 27 — that day now has 5+ games. CRITICAL CORRECTION: High on Life 2 ALREADY RELEASED on PS5 in February 2026 — our tracker had it wrong as "July 2026"! Plus DOOM TDA Revelations DLC on July 7.
+
+### 🔥🔥🔥 PALWORLD 1.0 — July 10, 2026 on PS5! (COMPLETELY MISSED FROM TRACKER!)
+- **Palworld 1.0 full release CONFIRMED for July 10, 2026** on PS5, Xbox Series X|S, and PC!
+- Developer: **Pocketpair** — the game has been in Early Access since January 2024
+- **Palworld was THE biggest gaming phenomenon of 2024** — 25 MILLION+ players in its first month! "Pokémon-with-guns" survival crafting game
+- The 1.0 launch brings: **new areas, new Pals (creatures), expanded map, new gameplay systems**
+- PS5 version has been in Early Access since September 2024 — this is the FULL 1.0 launch
+- Sources: Pocketpair official, IGN, Gematsu, PlayStation Store, Wikipedia
+- **💡💡💡 Lounge Impact — MASSIVE:**
+  - Palworld was one of the most viral games of the decade. 25M players in month 1 is unprecedented for an indie/small-studio game
+  - Survival crafting + monster collecting + guns = incredibly broad appeal (Minecraft meets Pokémon meets Fortnite)
+  - Multiplayer co-op supports up to 32 players on dedicated servers, 4-player co-op normally
+  - This is a DAY ONE purchase for any gaming lounge. The hype alone will draw customers
+  - **July 10 — only 12 days away!** Pre-order/wishlist on PS Store NOW!
+  - Perfect for extended lounge sessions — survival crafting games keep players engaged for hours
+
+### 🔥🔥 Resonance: A Plague Tale Legacy — August 27, 2026! (COMPLETELY MISSED!)
+- **Third entry** in the critically acclaimed **A Plague Tale series** by **Asobo Studio** (published by Focus Entertainment)
+- **Prequel to A Plague Tale: Requiem** — set 15 years before Requiem's events
+- **Protagonist: Sophia** (character introduced in Requiem) — journey to uncover secrets on the mythical Minotaur's Island
+- **More action-oriented** — Sophia wields sword and dagger (departure from stealth-focused gameplay of previous entries)
+- **Dual-timeline mechanic** — switch between Middle Ages and Minoan period; events in past affect present
+- Day-one on Xbox Game Pass; also on PS5, Xbox Series X|S, Windows
+- Sources: Focus Entertainment, Wikipedia, PushSquare, GameSpot, PSU
+- **💡💡 Lounge Impact:**
+  - A Plague Tale: Innocence and Requiem were critically acclaimed (Metacritic 83+ on both), known for stunning visuals and emotional storytelling
+  - More action-oriented = better lounge spectator value
+  - August 27 is now even MORE stacked: MGS Master Collection Vol 2 + Star Wars Zero Company + Resonance + Aggelos 2 + Brigandine Abyss = **5+ games on one day!**
+  - For lounges: the Plague Tale series has a dedicated fanbase. New entry + prequel hook = strong draw
+
+### 🔴🔴 CRITICAL CORRECTION: High on Life 2 — ALREADY RELEASED on PS5 (Feb 13, 2026)!
+- **OUR TRACKER WAS WRONG.** High on Life 2 was listed as "July 2026 — exact date TBD" — but the game **LAUNCHED ON PS5 ON FEBRUARY 13, 2026**
+- Sources: IGN, Wikipedia, PushSquare, PlayStation Store, VGChartz
+- It has been available on PS5 for **over 4 months!**
+- The **July 1, 2026 date** is ONLY for the **Nintendo Switch 2 port** (delayed from April 20)
+- **💡💡 Lounge Action — URGENT:**
+  - If lounge hasn't purchased High on Life 2 yet — **BUY IT NOW!** It's already been out for 4 months!
+  - The first High on Life was a surprise hit — comedy FPS with talking guns, perfect for casual lounge sessions
+  - Remove all "coming in July" marketing for this game — it's been available since February!
+  - **Do NOT wait for July 1** — that's just the Switch 2 version!
+
+### 🔥 DOOM: The Dark Ages — Revelations DLC — July 7, 2026! (MISSED!)
+- **Campaign expansion** for DOOM: The Dark Ages (released May 15, 2025)
+- New weapon: **Chain Spear** + new story, levels, enemies
+- **Free Ripatorium 3.0 update** included (arena challenge mode improvements)
+- **PS5 Pro PSSR upgrade** arriving alongside Revelations (per PS Blog June 24)
+- Sources: IGN, Bethesda/Slayers Club, PS Blog
+- **💡 Lounge Note:** DOOM TDA's fast-paced FPS combat is great lounge spectacle. DLC adds fresh content for DOOM fans. Free Ripatorium update adds replay value.
+
+### 📋 Minor July/August Additions (Previously Untracked):
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🧩 **Hyperwired** | Jul 2 | ⭐⭐ — Indie puzzle |
+| 🧩 **Sudoku: Master League** | Jul 1 | ⭐ — Niche puzzle |
+| 🎮 **Disgaea Mayhem** | Jul TBD | ⭐⭐⭐ — Strategy RPG series, cult following |
+| 🎀 **Blue Reflection Quartet** | Jul TBD | ⭐⭐ — Anime RPG, niche |
+| 🖱️ **Moss: The Forgotten Relic** | Jul 16 | ⭐⭐⭐ — PSVR2 adventure, acclaimed series |
+| ⚔️ **Aggelos 2** | Aug 27 | ⭐⭐ — Retro action RPG |
+| 🔮 **Brigandine Abyss** | Aug 27 | ⭐⭐ — Strategy RPG |
+| ⚽ **Captain Tsubasa 2: World Fighters** | Aug 28 | ⭐⭐⭐ — Arcade soccer, anime IP popular in Asia |
+| 👾 **Xeno Crisis** | Aug 6 | ⭐⭐ — Top-down shooter |
+| 👻 **Beast of Reincarnation** | Aug 4 | ⭐⭐ — Indie horror |
+| 🔪 **Grave Seasons** | Aug 14 | ⭐⭐⭐ — Stardew Valley meets murder mystery, co-op! |
+
+### 📊 Quick Status Check (June 28 - 17:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥🔥 Palworld 1.0 PS5 | **MISSED! 🆕** | Jul 10! 25M+ player phenomenon! 12 days! |
+| 🔥🔥 Resonance: A Plague Tale Legacy | **MISSED! 🆕** | Aug 27! Prequel to Requiem! |
+| 🔴 High on Life 2 | **CORRECTED! 🆕** | ALREADY OUT since Feb 13! Buy now, not July! |
+| 🔥 DOOM TDA Revelations DLC | **MISSED! 🆕** | Jul 7! Chain Spear weapon + new campaign! |
+| 🎮 PS6 Handheld | CEO HINT | Nishino's strongest signal yet (Jun 26) |
+| 📅 PS Plus Essential July Reveal | **Jul 1** | 3 days away! Still no leak! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Weekend Offer Sale | **ENDS TODAY!** | Final hours! |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 3 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🏴‍☠️ AC Black Flag Resynced | Jul 9! | 11 days! Pre-order! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 🐺 Marvel's Wolverine | Sep 15! | PS5 exclusive! Pre-orders LIVE! |
+| 🎬 Sony StudioCanal deletion | Sep 1 | 551 films deleted! EU only! |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+| 📤 PS Plus August Departures | **Aug 18** | 5 titles confirmed |
+
+### 🚨 Priority Lounge Actions (UPDATED):
+1. **PALWORLD 1.0 — July 10! Only 12 days!** Wishlist/pre-order on PS Store! 25M-player phenomenon coming to PS5!
+2. **FIX: Buy High on Life 2 NOW** — already released Feb 13! Don't wait for July!
+3. **Weekend Offer sale — FINAL HOURS!** Grab co-op/party games before they're gone!
+4. **3 days left for Mid-Year Deals + Supplementary Sale** — final stock-up window!
+5. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog!
+6. **Pre-order AC Black Flag Resynced** (Jul 9 — 11 days!) + CoD MW4!
+7. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
