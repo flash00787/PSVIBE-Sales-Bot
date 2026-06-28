@@ -1,7 +1,7 @@
 # SEL Currency Exchange — Project State
 
 ## Status: Active ✅
-**Last updated:** 2026-06-25 18:11 UTC
+**Last updated:** 2026-06-28 02:05 UTC
 
 ## Services
 - `sel-exchange-api` — FastAPI on port 8001 ✅

@@ -1,33 +1,412 @@
 {
-  "checked_at": "2026-06-27T13:33:08.736205+00:00",
-  "method": "IMAP",
-  "total_recent_2d": 32,
-  "total_recent_7d": 88,
-  "unread_recent_2d": 32,
+  "checked_at": "2026-06-28T01:30:56.512592+00:00",
+  "total_unread": 30,
   "nova_found": false,
   "nova_emails": [],
-  "important_findings": [
+  "important_emails": [
     {
-      "type": "GITHUB_DEPLOY_FAIL",
-      "detail": "PSVIBE-Sales-Bot deploy workflow failed 3 consecutive days (Jun 24, 25, 26)",
-      "last_failure": "2026-06-26",
-      "repo": "flash00787/PSVIBE-Sales-Bot"
+      "id": "19f09b984f70bd7c",
+      "threadId": "19f09b984f70bd7c",
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Sat, 27 Jun 2026 15:36:20 +0000",
+      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limits on messaging, file uploads, and voice mode More",
+      "unread": true,
+      "important": true
     },
     {
-      "type": "UAB_DORMANT_ACCOUNT",
-      "detail": "UAB Bank sent Announcement for Dormant Account today (Jun 27)",
-      "date": "2026-06-27"
+      "id": "19f09939728612e7",
+      "threadId": "19f09939728612e7",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Credit Card Repayment Successful",
+      "date": "Sat, 27 Jun 2026 14:54:54 +0000",
+      "snippet": "Hello, AUNG CHAN MYINT You repaid 3230289.07 MMK to VISA CREDIT CARD This transaction was made on AYA mBanking. Order for Payment Credit Card Repayment Transaction No. 267917092165 Transaction Date 27",
+      "unread": true,
+      "important": true
     },
     {
-      "type": "PAYPAL_PADDLE_CHANGE",
-      "detail": "PayPal notification about change to automatic payment via Paddle.com Market Limited (Vietnamese)",
-      "date": "2026-06-27"
+      "id": "19f099206f8179da",
+      "threadId": "19f099206f8179da",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Received Money",
+      "date": "Sat, 27 Jun 2026 14:53:12 +0000",
+      "snippet": "Hello, AUNG CHAN MYINT You recieved 9900000 MMK From KAY THWE OO This transaction was made on AYA mBanking. Order for Payment Transfer to other AYA Account Transaction No. 267916990606 Transaction Date",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ee0281ab0aede6",
+      "threadId": "19ee0281ab0aede6",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Cebu, selected for you!",
+      "date": "Fri, 19 Jun 2026 13:53:03 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Cebu Your journey starts here! Cebu June 20,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edfcbe18198998",
+      "threadId": "19edfcbe18198998",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
+      "subject": "🦞 DeepMind Leashes Its Agents",
+      "date": "Fri, 19 Jun 2026 20:03:02 +0800 (CST)",
+      "snippet": "Plus: WBD Automates Ad Buying, Deutsche Bank Speeds AI Work ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ede7a32fd5e1b9",
+      "threadId": "19ede7a32fd5e1b9",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Fri, 19 Jun 2026 12:32:32 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at MY HILL PHS with amount 19635.00MMK on 2026/06/19 at 12:32:32. Please call 01-2317777 if you have any query. Best Regards,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edc8a06f6cbfd9",
+      "threadId": "19edc8a06f6cbfd9",
+      "from": "OpenRouter Team <welcome@openrouter.ai>",
+      "subject": "Model Fusion shows frontier-level deep research performance at half the cost",
+      "date": "Thu, 18 Jun 2026 21:01:30 +0000",
+      "snippet": "One API call fans your prompt out to a panel of models and returns the best answer. Plus new server tools, five new models, and a model battle royale. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edb3e5bcda3b79",
+      "threadId": "19edb3e5bcda3b79",
+      "from": "Anthropic <no-reply-H3Or93B_BFMfkfdXXJ_keg@mail.anthropic.com>",
+      "subject": "Your Claude Pro subscription was canceled",
+      "date": "Thu, 18 Jun 2026 14:59:16 +0000 (UTC)",
+      "snippet": "Hello Osmo, Your subscription to Claude Pro has been successfully canceled. Your access to Claude Pro will expire on Jul 17, 2026. We&#39;re sorry to see you go! You can re-subscribe at any time by",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed9c932a8e60fe",
+      "threadId": "19ed9c932a8e60fe",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Thu, 18 Jun 2026 14:41:36 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at FACEBK *WN9Q8TZGS2 with amount 19.96USD on 2026/06/18 at 14:41:35. Please call 01-2317777 if you have any query. Best",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6c5649cc5ba8",
+      "threadId": "19ed6c5649cc5ba8",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Sapa, selected for you!",
+      "date": "Wed, 17 Jun 2026 18:08:39 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Sapa Your journey starts here! Sapa June 20,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6b44782cce93",
+      "threadId": "19ed423bbff2579c",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Thu, 18 Jun 2026 00:19:52 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at DEEPSEEK with amount 53.00USD on 2026/06/18 at 00:19:51. Please call 01-2317777 if you have any query. Best Regards, AYA",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6b3e64d9a5f0",
+      "threadId": "19ed6b3e64d9a5f0",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "OTP (ONE TIME PASSWORD)",
+      "date": "Thu, 18 Jun 2026 00:19:28 +0630",
+      "snippet": "Please enter OTP: 912967. Amount: 53.00 USD. Merchant: DeepSeek. The OTP will expire within 5 minutes. This message contains confidential information and is intended for the use of individual or entity",
+      "unread": true,
+      "important": true
     }
   ],
-  "other_notable": [
-    "Multiple AYA Bank Grab transaction notifications (routine)",
-    "Twitch stream notifications",
-    "Binance promotional emails",
-    "Samsung EOFY sale"
+  "all_emails": [
+    {
+      "id": "19f09b984f70bd7c",
+      "threadId": "19f09b984f70bd7c",
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Sat, 27 Jun 2026 15:36:20 +0000",
+      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limits on messaging, file uploads, and voice mode More",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f09939728612e7",
+      "threadId": "19f09939728612e7",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Credit Card Repayment Successful",
+      "date": "Sat, 27 Jun 2026 14:54:54 +0000",
+      "snippet": "Hello, AUNG CHAN MYINT You repaid 3230289.07 MMK to VISA CREDIT CARD This transaction was made on AYA mBanking. Order for Payment Credit Card Repayment Transaction No. 267917092165 Transaction Date 27",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f099206f8179da",
+      "threadId": "19f099206f8179da",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Received Money",
+      "date": "Sat, 27 Jun 2026 14:53:12 +0000",
+      "snippet": "Hello, AUNG CHAN MYINT You recieved 9900000 MMK From KAY THWE OO This transaction was made on AYA mBanking. Order for Payment Transfer to other AYA Account Transaction No. 267916990606 Transaction Date",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ee0d51296f407c",
+      "threadId": "19ee0d51296f407c",
+      "from": "Cashback from Agoda <no-reply@agoda.com>",
+      "subject": "Hi Aung Chan, your Cashback Reward is expiring in 14 days!",
+      "date": "Fri, 19 Jun 2026 17:01:59 +0000 (UTC)",
+      "snippet": "Agoda.com Aung Chan Myint Hi Aung Chan, your Cashback Reward is expiring in 14 days! Your Cashback Reward offer will expire on July 05, 2026. If you allow it to expire, we will be unable to refund or",
+      "unread": true
+    },
+    {
+      "id": "19ee09b340472524",
+      "threadId": "19ee09b340472524",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "PGL_Dota2 is live: PGL Dota 2 is now live!",
+      "date": "Fri, 19 Jun 2026 15:58:48 +0000",
+      "snippet": "PGL_Dota2 is live! Twitch Hey, aungchanmyint! PGL_Dota2 is live! Nemesis vs. Amaru - TI15 Regional Qualifiers - South America Streaming Dota 2 Watch Now Or click this link: https://www.twitch.tv/",
+      "unread": true
+    },
+    {
+      "id": "19ee0281ab0aede6",
+      "threadId": "19ee0281ab0aede6",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Cebu, selected for you!",
+      "date": "Fri, 19 Jun 2026 13:53:03 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Cebu Your journey starts here! Cebu June 20,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edff25fb43e09a",
+      "threadId": "19edff25fb43e09a",
+      "from": "Binance <do_not_reply@smailer1.binance.com>",
+      "subject": "Start Futures Copy Trading with a Loss Protection Voucher",
+      "date": "Fri, 19 Jun 2026 12:54:22 +0000",
+      "snippet": "[Claim Your 10 USDT Loss Protection Voucher!]— Get Started with Futures Copy Trading Claim Your FREE 10 USDT Loss Protection Voucher CLAIM VOUCHER Are you interested in trying out Futures Copy Trading",
+      "unread": true
+    },
+    {
+      "id": "19edfcbe18198998",
+      "threadId": "19edfcbe18198998",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
+      "subject": "🦞 DeepMind Leashes Its Agents",
+      "date": "Fri, 19 Jun 2026 20:03:02 +0800 (CST)",
+      "snippet": "Plus: WBD Automates Ad Buying, Deutsche Bank Speeds AI Work ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edf926fe936606",
+      "threadId": "19edf926fe936606",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "DanucD just went live on Twitch",
+      "date": "Fri, 19 Jun 2026 11:09:35 +0000",
+      "snippet": "DanucD is live! Twitch Hey, aungchanmyint! DanucD is live! Re-apply creator !code DANUCD | Join my !socials | Daily !YT channel Streaming PUBG: BATTLEGROUNDS Watch Now Or click this link: https://www.",
+      "unread": true
+    },
+    {
+      "id": "19ede7a32fd5e1b9",
+      "threadId": "19ede7a32fd5e1b9",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Fri, 19 Jun 2026 12:32:32 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at MY HILL PHS with amount 19635.00MMK on 2026/06/19 at 12:32:32. Please call 01-2317777 if you have any query. Best Regards,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edd95518017a5a",
+      "threadId": "19edd95518017a5a",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "PGL_DOTA2EN2 is live: PGL Dota 2 is now live!",
+      "date": "Fri, 19 Jun 2026 01:53:29 +0000",
+      "snippet": "PGL_DOTA2EN2 is live! Twitch Hey, aungchanmyint! PGL_DOTA2EN2 is live! Yakutou Brothers vs. Vici Gaming - TI15 Regional Qualifiers - China Streaming Dota 2 Watch Now Or click this link: https://www.",
+      "unread": true
+    },
+    {
+      "id": "19edc8a06f6cbfd9",
+      "threadId": "19edc8a06f6cbfd9",
+      "from": "OpenRouter Team <welcome@openrouter.ai>",
+      "subject": "Model Fusion shows frontier-level deep research performance at half the cost",
+      "date": "Thu, 18 Jun 2026 21:01:30 +0000",
+      "snippet": "One API call fans your prompt out to a panel of models and returns the best answer. Plus new server tools, five new models, and a model battle royale. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edb3e5bcda3b79",
+      "threadId": "19edb3e5bcda3b79",
+      "from": "Anthropic <no-reply-H3Or93B_BFMfkfdXXJ_keg@mail.anthropic.com>",
+      "subject": "Your Claude Pro subscription was canceled",
+      "date": "Thu, 18 Jun 2026 14:59:16 +0000 (UTC)",
+      "snippet": "Hello Osmo, Your subscription to Claude Pro has been successfully canceled. Your access to Claude Pro will expire on Jul 17, 2026. We&#39;re sorry to see you go! You can re-subscribe at any time by",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19edb026318bec57",
+      "threadId": "19edb026318bec57",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "PGL_Dota2 is live: PGL Dota 2 is now live!",
+      "date": "Thu, 18 Jun 2026 13:53:46 +0000",
+      "snippet": "PGL_Dota2 is live! Twitch Hey, aungchanmyint! PGL_Dota2 is live! Team Nemesis vs. PlayTime - TI15 Regional Qualifiers - South America Streaming Dota 2 Watch Now Or click this link: https://www.twitch.",
+      "unread": true
+    },
+    {
+      "id": "19edae158d6ce4b8",
+      "threadId": "19edae158d6ce4b8",
+      "from": "PlayStation <email@email.playstation.com>",
+      "subject": "🤔 Did you forget something? LEGO® The Incredibles is waiting for you in your basket",
+      "date": "Thu, 18 Jun 2026 07:17:25 -0600",
+      "snippet": "Complete your purchase ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "unread": true
+    },
+    {
+      "id": "19edaa669688ad05",
+      "threadId": "19edaa669688ad05",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
+      "subject": "🦞 AI Ads Hit $1.3B",
+      "date": "Thu, 18 Jun 2026 20:04:00 +0800 (CST)",
+      "snippet": "Plus: Singapore Leads AI Work Shift, Stripe Powers Agent Paywalls ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    },
+    {
+      "id": "19eda9ad6fd911c6",
+      "threadId": "19eda9ad6fd911c6",
+      "from": "aulumu <newsletter@aulumu.com>",
+      "subject": "MagSafe, made simple.",
+      "date": "Thu, 18 Jun 2026 12:00:26 +0000",
+      "snippet": "Charge, stand, wallect and mount your iPhone with one simple snap. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    },
+    {
+      "id": "19eda62f637cce1e",
+      "threadId": "19eda62f637cce1e",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "DanucD just went live on Twitch",
+      "date": "Thu, 18 Jun 2026 10:59:39 +0000",
+      "snippet": "DanucD is live! Twitch Hey, aungchanmyint! DanucD is live! Re-apply creator !code DANUCD | Join my !socials | Daily !YT channel Streaming PUBG: BATTLEGROUNDS Watch Now Or click this link: https://www.",
+      "unread": true
+    },
+    {
+      "id": "19ed9c932a8e60fe",
+      "threadId": "19ed9c932a8e60fe",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Thu, 18 Jun 2026 14:41:36 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at FACEBK *WN9Q8TZGS2 with amount 19.96USD on 2026/06/18 at 14:41:35. Please call 01-2317777 if you have any query. Best",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed94b57f4944d9",
+      "threadId": "19ed94b57f4944d9",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "PGL_DOTA2EN2 is live: PGL Dota 2 is now live!",
+      "date": "Thu, 18 Jun 2026 05:54:13 +0000",
+      "snippet": "PGL_DOTA2EN2 is live! Twitch Hey, aungchanmyint! PGL_DOTA2EN2 is live! Team Refuser vs. Vici Gaming - TI15 Regional Qualifiers - China Streaming Dota 2 Watch Now Or click this link: https://www.twitch.",
+      "unread": true
+    },
+    {
+      "id": "19ed936d461814cb",
+      "threadId": "19ed936d461814cb",
+      "from": "MEXC <info@mail.mexc.com>",
+      "subject": "Surprise! A 250 USDT Position Airdrop Is Yours!",
+      "date": "Thu, 18 Jun 2026 13:31:48 +0800 (CST)",
+      "snippet": "Claim your reward before it expires! Dear MEXCer, Luck is truly on your side today! With a 250 USDT Futures Position Airdrop reward, you&#39;re set to pave the way for Futures trading success—earn",
+      "unread": true
+    },
+    {
+      "id": "19ed8d9baa2c1371",
+      "threadId": "19ed8d9baa2c1371",
+      "from": "Grab Myanmar <no-reply@grab.com>",
+      "subject": "လူများများနဲ့ အတူတူမှာလေ ပိုသက်သာလေ",
+      "date": "Wed, 17 Jun 2026 21:45:31 -0600",
+      "snippet": "ဘော်ဒါတွေနဲ့ အချိန်မရွေး Group Order နဲ့ အတူမှာပေး ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "unread": true
+    },
+    {
+      "id": "19ed733a4d7aeea6",
+      "threadId": "19ed733a4d7aeea6",
+      "from": "Discord <updates@m.discord.com>",
+      "subject": "Welcome to Nitro!",
+      "date": "Wed, 17 Jun 2026 20:09:04 +0000",
+      "snippet": "Explore your new perks today ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    },
+    {
+      "id": "19ed6c5649cc5ba8",
+      "threadId": "19ed6c5649cc5ba8",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Sapa, selected for you!",
+      "date": "Wed, 17 Jun 2026 18:08:39 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Sapa Your journey starts here! Sapa June 20,",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6b44782cce93",
+      "threadId": "19ed423bbff2579c",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Thu, 18 Jun 2026 00:19:52 +0630",
+      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at DEEPSEEK with amount 53.00USD on 2026/06/18 at 00:19:51. Please call 01-2317777 if you have any query. Best Regards, AYA",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6b3e64d9a5f0",
+      "threadId": "19ed6b3e64d9a5f0",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "OTP (ONE TIME PASSWORD)",
+      "date": "Thu, 18 Jun 2026 00:19:28 +0630",
+      "snippet": "Please enter OTP: 912967. Amount: 53.00 USD. Merchant: DeepSeek. The OTP will expire within 5 minutes. This message contains confidential information and is intended for the use of individual or entity",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19ed6aa5c3aca071",
+      "threadId": "19ed6aa5c3aca071",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "chocoTaco is live: squads",
+      "date": "Wed, 17 Jun 2026 17:39:08 +0000",
+      "snippet": "chocoTaco is live! Twitch Hey, aungchanmyint! chocoTaco is live! new !update Streaming PUBG: BATTLEGROUNDS Watch Now Or click this link: https://www.twitch.tv/chocotaco twitch-twitter twitch-facebook",
+      "unread": true
+    },
+    {
+      "id": "19ed5d690a2dd4e7",
+      "threadId": "19ed5d690a2dd4e7",
+      "from": "Twitch <no-reply@twitch.tv>",
+      "subject": "PGL_Dota2 is live: PGL Dota 2 is now live!",
+      "date": "Wed, 17 Jun 2026 13:47:48 +0000",
+      "snippet": "PGL_Dota2 is live! Twitch Hey, aungchanmyint! PGL_Dota2 is live! TI15 Regional Qualifiers - South America Streaming Dota 2 Watch Now Or click this link: https://www.twitch.tv/pgl_dota2 twitch-twitter",
+      "unread": true
+    },
+    {
+      "id": "19ed57cae265c483",
+      "threadId": "19ed57cae265c483",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
+      "subject": "🦞 Nvidia Wants New Rules For AI",
+      "date": "Wed, 17 Jun 2026 20:03:08 +0800 (CST)",
+      "snippet": "Plus: Malaysia Trusts AI Productivity, AI Rides Along With HVAC Techs ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    },
+    {
+      "id": "19ed543c96c568d2",
+      "threadId": "19ed543c96c568d2",
+      "from": "PC HelpSoft <pchelpsoft@avqmail.avanquest.com>",
+      "subject": "Our customer service team informs you",
+      "date": "Wed, 17 Jun 2026 07:07:29 -0400 (EDT)",
+      "snippet": "A new version of Driver Updater is available ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    }
   ]
 }

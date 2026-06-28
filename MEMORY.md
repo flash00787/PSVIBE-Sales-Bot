@@ -2,7 +2,7 @@
 
 ## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)
 
-Kora now manages **8 projects** with full coordination tool support.
+Kora now manages **9 projects** with full coordination tool support.
 
 ### Project Registry: `/root/coordination/project_registry.json`
 | Slug | Project | Services |
@@ -14,6 +14,7 @@ Kora now manages **8 projects** with full coordination tool support.
 | kora_voice | Kora Voice Assistant | 1 (systemd) |
 | social_autoreply | Social Auto-Reply | 1 (systemd) |
 | inventory_alerts | Inventory Alerts | 0 |
+| sel_exchange | SEL Currency Exchange | 2 |
 | kora_host_api | Kora Host API Bridge | 4 |
 
 ### Key Commands:
@@ -75,6 +76,18 @@ Kora now manages **8 projects** with full coordination tool support.
 ### Python Patterns
 ### API & Database Patterns
 ### System Patterns
+28. **Never edit minified Vue build output directly** — Always edit source `.vue` files and rebuild. Single-character name conflicts break entire components. Project: `/root/psvibe-dashboard/`. (#28)
+29. **Vite builds replace all hashes** — Every rebuild generates new content hash filenames. Old files must be cleaned to avoid stale cached versions. (#29)
+30. **JS object key sorting trap** — String keys that look like integers (e.g., "848") are sorted numerically by V8, not by insertion order. `.reverse()` on `Object.values()` doesn't reverse insertion order when keys are numeric strings. (#30)
+31. **Lane stacking is wrong UX for timeline overlaps** — Boss prefers natural overlap + tap-to-select popup. Don't force lane splitting; it makes blocks too small. (#31)
+32. **`window` object not available in Vue `<template>`** — Must use computed properties or method-returned style objects instead of inline `window.innerWidth` references. (#32)
+33. **SQLite FOREIGN KEY enforcement** — Must enable `PRAGMA foreign_keys = ON` per connection; not default. (#33)
+34. **FastAPI query params vs path params** — Path params auto-convert types; query params are strings. Must validate/convert manually. (#34)
+35. **CORS middleware ordering** — Must be added BEFORE route registration in FastAPI; order matters. (#35)
+36. **FIFO matching complexity** — Multi-currency FIFO with charges requires careful tracking of remaining quantities per lot. Test thoroughly with partial sales. (#36)
+37. **JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — Without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps. (#37)
+38. **Server-side filter > client-side** — For time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing. (#38)
+
 ### Business Logic
 44. **`unwrap_response()` changes response structure** — Functions consuming API responses must NOT access `.data` again after unwrap. Use `data.get("bookings", [])` not `data.get("data", {}).get("bookings", [])`.
 45. **`import X as Y` aliasing** — `import urllib.request as _urllib` means `_urllib` IS the module. Call `_urllib.urlopen()` not `_urllib.request.urlopen()`.
@@ -120,15 +133,29 @@ Kora now manages **8 projects** with full coordination tool support.
 - Auto-cancel disabled; manual-only end policy
 - Customer Feedback dashboard page with stats, 14-day trend, full table
 
+### Dashboard UX & Timeline Overhaul (June 26)
+- Food Orders: timezone fix (UTC→MMT via CONVERT_TZ), sorting by Active-first + recency
+- Sale Daily: added Time column between Date and Console
+- Timeline: lane-based stacking rejected → tap-to-select popup approach (final)
+- Cashflow: identified 2 bugs (month filter not applied, asset double-counting) — pending fix
+- Key lessons: #28-32 (minified JS edits, Vite hashes, JS key sorting, lane stacking UX, window in templates)
+- See `memory/2026-06-26.md` for full details
+
+### Staff Salary System & Customer Notifications (June 27)
+- Salary: full payroll auto-generation with leave tracking, shop-wide food commission (PNL FIFO COGS), game bonus tiers (1500/1800/2000hr), attendance rules per Boss policy
+- Customer Noti: fixed staff Check-In & Staff Booking flows missing `_notify_customer()` calls
+- Cancelled bookings: 2-hour timeline filter with server-side MySQL + frontend JS double-layer
+- Gmail: OAuth token refreshed, salary structure emails sent to 2 staff
+- Key lessons: #37-38 (JS Date parsing, server-side time filters), #47-50 (leave policy, food PNL reuse, rename checks, Gmail OAuth expiry)
+- See `memory/2026-06-27.md` for full details
+
 ## ⚠️ Known Issues (Persistent)
 
 | Issue | Severity | Status |
 |-------|----------|--------|
-| food-cart/release silent fail (stock_out) | — | ✅ Fixed Jun 23 |
-| Move API start_time reset | — | ✅ Fixed Jun 23 |
-| booking_id path game_amt=0 | — | ✅ Fixed Jun 23 |
-| Customer Bot phone last-3-digits lookup | — | ✅ Fixed Jun 25 |
-| Staff role couldn't access Members tab | — | ✅ Fixed Jun 25 |
+| Cashflow month filter not applied (Jun 26) | Medium | 🔴 Pending |
+| Cashflow asset deduction double-count (Jun 26) | Medium | 🔴 Pending |
+| VPS health monitor unreachable (Jun 28) | Low | 🟡 Investigating |
 
 ## Working Preferences
 
