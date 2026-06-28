@@ -1,6 +1,81 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-27 17:31 UTC
+> Last updated: 2026-06-27 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 27, 2026 - 23:30 UTC) — Metal Gear Solid Master Collection Vol. 2 MISSED! + Star Wars Zero Company + High on Life 2
+
+> **Summary:** Late-night Saturday sweep. Three notable titles completely absent from tracker discovered. Metal Gear Solid Master Collection Vol. 2 was announced in February 2026 State of Play — completely missed! Star Wars Zero Company (Aug 27) and High on Life 2 (Jul 2026) also missing. PS Plus July departures updated with additional titles found.
+
+### 🔴🔴 Metal Gear Solid: Master Collection Vol. 2 — August 27, 2026! (MISSED FROM FEBRUARY STATE OF PLAY!)
+- **Konami officially announced MGS Master Collection Vol. 2** during the February 12, 2026 State of Play — **completely absent from our tracker!**
+- **Release date: August 27, 2026** on PS5, Xbox Series X|S, Switch 2, Switch, and PC
+- **Contents confirmed:**
+  - 🐍 **Metal Gear Solid 4: Guns of the Patriots** — FINALLY freed from PS3 exclusivity! First time playable outside PS3!
+  - ☮️ **Metal Gear Solid: Peace Walker** (HD Collection version)
+  - 🎮 **Metal Gear: Ghost Babel** (Game Boy Color classic) — bonus content
+- Sources: Official PS Blog (Feb 12), Konami, IGN, PushSquare
+- **💡💡 Lounge Impact:** Metal Gear Solid is one of gaming's most legendary franchises. MGS4 has been trapped on PS3 for 18 years — its liberation to modern platforms is a MAJOR event for the PlayStation community. Peace Walker's co-op missions add lounge value. August 27 = same day as Star Wars Zero Company — double drop day!
+
+### ⭐ Star Wars Zero Company — August 27, 2026! (MISSED FROM TRACKER!)
+- **Single-player turn-based tactics game** by **Bit Reactor + Respawn Entertainment** (EA)
+- Set during the **Clone Wars era** — command an elite squad led by former Republic officer Hawks
+- **Release date: August 27, 2026** on PS5, Xbox Series X|S, and PC
+- Genre: XCOM-like tactical strategy with Star Wars IP
+- Source: PushSquare (June 2026), Wikipedia, EA
+- **💡 Lounge Note:** Star Wars IP + Respawn (Jedi series developers) = quality expected. Turn-based tactics is niche for lounges but Star Wars branding + Clone Wars setting may draw strategy fans. Same day as MGS Master Collection Vol 2!
+
+### 🔫 High on Life 2 — July 2026! (MISSED FROM TRACKER!)
+- Sequel to the popular 2022 comedy FPS by Squanch Games
+- First game was a surprise hit — Justin Roiland's distinctive humor, talking guns, Metroidvania-lite exploration
+- Coming to PS5 in **July 2026** — exact date TBD
+- Also launching on Nintendo Switch 2 simultaneously
+- **💡 Lounge Note:** First High on Life was a crowd-pleaser with its unique humor and colorful visuals. Sequel in July = solid lounge addition. Comedy FPS is great for casual drop-in sessions.
+
+### 🚶 Big Walk — Day-One PS Plus Extra/Premium, August 4, 2026! (MISSED FROM TRACKER!)
+- **Cooperative multiplayer adventure game** confirmed as a **Day-One PlayStation Plus Game Catalog title**
+- Launching **August 4, 2026** on PS5
+- **💡 Lounge Note:** Day-one PS Plus = free for lounge if subscribed to Extra/Premium. Co-op focus makes it lounge-friendly.
+
+### 📤 PS Plus July Departures — Additional Titles Found:
+- **The Jackbox Party Pack 9** also departing July 21 (not in our previous list of 12)
+- **Infinite Minigolf** confirmed departing July 21
+- **August 18 departures** (NEW): Clash: Artifacts of Chaos, Roki + 3 more titles
+- **💡 Lounge Note:** Jackbox Party Pack 9 leaving = customers may want to play it before July 21. Jackbox games are lounge staples.
+
+### 🏈 College Football 27 — July 2026 (MISSED!)
+- EA Sports college football title coming to PS5 in July 2026
+- **💡 Lounge Note:** Low relevance for Myanmar market (American college football) — awareness only.
+
+### 📊 Quick Status Check (June 27 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 MGS Master Collection Vol 2 | **MISSED! 🆕** | Aug 27! MGS4 freed from PS3! Feb State of Play! |
+| ⭐ Star Wars Zero Company | **MISSED! 🆕** | Aug 27! XCOM-like tactics, Clone Wars! |
+| 🔫 High on Life 2 | **MISSED! 🆕** | July 2026! Comedy FPS sequel! |
+| 🚶 Big Walk (PS Plus Day 1) | **MISSED! 🆕** | Aug 4! Co-op adventure, free on PS Plus! |
+| 📤 Jackbox Party Pack 9 | **Departing Jul 21 🆕** | Added to departure list! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 📅 PS Plus July Reveal | **Expected Jul 1** | No confirmed leak yet! |
+| 🛒 Weekend Offer Sale | **LIVE** | Jun 26-29! ~24 hours left! |
+| 🔴 Bungie Layoffs | 292 jobs cut | Destiny 2 Monument of Triumph = final content |
+| 🔥🔥🔥 CoD Modern Warfare 4 | Oct 23! Pre-orders LIVE! | 
+| 🏴‍☠️🔥🔥 AC Black Flag Resynced | Jul 9! | Only 12 days! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🛒 Mid-Year Deals | Until Jul 1 | 3 days left! |
+| 🛒 Supplementary Sale | Until Jul 1 | 200+ ATL prices! |
+| 🛒 Summer Sale 2026 | Jul 16 - Aug 1 | 19 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | Now 13+ games leaving (added Jackbox PP9)! |
+
+### 🚨 Priority Lounge Actions (Updated):
+1. **Assess PS5 console inventory NOW** — shortages predicted ahead of GTA 6!
+2. **Weekend Offer sale** — ~24 hours left! Grab co-op/party games!
+3. **Claim June PS Plus Essential games** (Grounded, Nick All-Stars, Darktide) before July 6!
+4. **Add MGS Master Collection Vol 2 to August wishlist** — Aug 27! MGS4 finally on modern platforms!
+5. **Monitor PS Blog July 1+ for PS Plus Essential July reveal** — no leak expected before then
+6. **Pre-order CoD MW4 + AC Black Flag Resynced** on all lounge consoles!
+7. **Mid-Year Deals + Supplementary Sale** — 3 days left!
 
 ---
 
