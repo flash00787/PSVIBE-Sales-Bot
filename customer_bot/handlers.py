@@ -12,6 +12,15 @@ from telegram import (
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
 
+# ── Blocked Users ──
+BLOCKED_IDS = {"7158675982", "8383666570"}
+
+def _is_blocked(update: Update) -> bool:
+    """Check if the user is blocked from using the bot."""
+    if update and update.effective_user:
+        return str(update.effective_user.id) in BLOCKED_IDS
+    return False
+
 from .data.prompts import (
     now_mmt, today_mmt, OPEN_HOUR, CLOSE_HOUR,
     _detect_sentiment, _detect_booking_intent,
@@ -168,6 +177,15 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ══════════════════════════════════════════════════════════════════════════════
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if _is_blocked(update):
+        await update.message.reply_text(
+            "🚫 <b>Access Denied</b>\n\n"
+            "သင့်အနေဖြင့် PS VIBE Customer Bot ကို အသုံးပြုခွင့် <b>ပိတ်ထားပါသည်</b>။\n\n"
+            "အကြောင်းအရင်း သိရှိလိုပါက Admin ကို ဆက်သွယ်မေးမြန်းပါ။\n"
+            "📲 <b>Contact Admin:</b> @psvibeofficial",
+            parse_mode="HTML",
+        )
+        return
     # ── Referral deep-link parsing (e.g., ?start=ref_12345) ──
     referred_by = None
     if context.args and len(context.args) > 0:
@@ -371,6 +389,15 @@ async def cmd_refresh(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if _is_blocked(update):
+        await update.message.reply_text(
+            "🚫 <b>Access Denied</b>\n\n"
+            "သင့်အနေဖြင့် PS VIBE Customer Bot ကို အသုံးပြုခွင့် <b>ပိတ်ထားပါသည်</b>။\n\n"
+            "အကြောင်းအရင်း သိရှိလိုပါက Admin ကို ဆက်သွယ်မေးမြန်းပါ။\n"
+            "📲 <b>Contact Admin:</b> @psvibeofficial",
+            parse_mode="HTML",
+        )
+        return
     asyncio.create_task(_api.track_usage(update.effective_user, "session_visit", detail="Opened main menu"))
     await show_main_menu(update, context)
 
@@ -813,6 +840,15 @@ async def cb_feedback_skip(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 # ══════════════════════════════════════════════════════════════════════════════
 
 async def handle_menu_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if _is_blocked(update):
+        await update.message.reply_text(
+            "🚫 <b>Access Denied</b>\n\n"
+            "သင့်အနေဖြင့် PS VIBE Customer Bot ကို အသုံးပြုခွင့် <b>ပိတ်ထားပါသည်</b>။\n\n"
+            "အကြောင်းအရင်း သိရှိလိုပါက Admin ကို ဆက်သွယ်မေးမြန်းပါ။\n"
+            "📲 <b>Contact Admin:</b> @psvibeofficial",
+            parse_mode="HTML",
+        )
+        return
     text = (update.message.text or "").strip()
 
     # Feedback comment waiting

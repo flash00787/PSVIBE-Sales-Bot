@@ -56,6 +56,18 @@ BOT_TOKEN = os.environ.get("CUSTOMER_BOT_TOKEN", "")
 def _register_handlers(app: Application) -> None:
     """Register all command and callback handlers."""
 
+    # ── Blocked users — inform and ignore ──
+    _blocked_user_filter = filters.User(user_id=7158675982) | filters.User(user_id=8383666570)
+    async def _block_user(update, context):
+        await update.message.reply_text(
+            "🚫 <b>Access Denied</b>\n\n"
+            "သင့်အနေဖြင့် PS VIBE Customer Bot ကို အသုံးပြုခွင့် <b>ပိတ်ထားပါသည်</b>။\n\n"
+            "အကြောင်းအရင်း သိရှိလိုပါက Admin ကို ဆက်သွယ်မေးမြန်းပါ။\n"
+            "📲 <b>Contact Admin:</b> @psvibeofficial",
+            parse_mode="HTML",
+        )
+    app.add_handler(MessageHandler(_blocked_user_filter, _block_user), group=-1)
+
     # Simple commands
     app.add_handler(CommandHandler("start",  cmd_start))
     app.add_handler(CommandHandler("menu",   cmd_menu))
