@@ -1,6 +1,71 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-27 23:30 UTC
+> Last updated: 2026-06-28 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 28, 2026 - 05:30 UTC) — PS Plus July Dates Locked + Weekend Offer Final Day
+
+> **Summary:** Early Sunday morning sweep (6 hours since last update). PS Plus July Extra/Premium announcement date now locked (July 15). August 18 departure list finalized (5 titles). Sony StudioCanal movie deletion controversy. No PS Plus Essential July leak yet. Weekend Offer sale ends TODAY.
+
+### 📅 PS Plus July 2026 — Extra/Premium Reveal Date CONFIRMED
+- **PS Plus Extra/Premium July games** will be **announced July 15, 2026** — available from **July 21**
+- **PS Plus Essential July games** still expected to be announced **July 1** (available July 7)
+- **Psi-Ops: The Mindgate Conspiracy** CONFIRMED for PS Plus Premium in July (mid-month)
+- **No Essential leaks yet** as of June 28 — community speculation only
+- Sources: NME, multiple outlets
+
+### 📤 August 18 PS Plus Departures — Full List Confirmed (5 Titles)
+The tracker previously noted August 18 departures partially. Full confirmed list:
+| Game | Platform |
+|------|----------|
+| ⚔️ **Clash: Artifacts of Chaos** | PS5, PS4 |
+| 👘 **Onee Chanbara Origin** | PS4 |
+| 🚀 **Space Crew: Legendary Edition** | PS4 |
+| ✈️ **Bomber Crew** | PS4 |
+| 🧊 **Roki** | PS5, PS4 |
+- More titles may be added as we get closer to August
+
+### 🎬 Sony to Delete 550+ StudioCanal Films from PS Libraries (Sep 1, 2026)
+- Sony announced removal of **551 purchased StudioCanal films** from PlayStation user libraries in **UK, Germany, Austria, Switzerland, Luxembourg** on September 1, 2026
+- Due to expired licensing agreements — affected users lose access to content they paid for
+- Titles include Apocalypse Now, Paddington, The Hunger Games, Saw, Rambo, Terminator 2
+- Germany's Consumer Rights Authority already challenging this; broader digital ownership debate reignited
+- **💡 Lounge Note:** Myanmar/Asia not directly affected. However, this highlights the risk of digital-only content. For PS VIBE: reinforces the value of physical disc backups for critical lounge games.
+
+### 🛒 Sale Deadlines — TODAY & THIS WEEK:
+| Sale | Deadline | Status |
+|------|----------|--------|
+| 🛒 **Weekend Offer Sale** | **Jun 29 (TODAY!)** | ⚠️ **FINAL DAY!** Co-op/party games! |
+| 🛒 **Mid-Year Deals** | Jul 1 | 3 days left! |
+| 🛒 **Supplementary Sale** | Jul 1 | 200+ ATL prices! 3 days left! |
+| 📅 **PS Plus Essential July Reveal** | Jul 1 | 3 days away! |
+| 🛒 **Summer Sale 2026** | Jul 16 - Aug 1 | 18 days away! |
+
+### 📊 Quick Status Check (June 28 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15 🆕** | Date confirmed! Games available Jul 21 |
+| 📅 PS Plus Essential July Reveal | **Jul 1** | 3 days away! No leak yet! |
+| 🛒 Weekend Offer Sale | **ENDS TODAY!** | Final hours! Lego Star Wars, Overcooked etc! |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 3 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🏴‍☠️ AC Black Flag Resynced | Jul 9! | Only 11 days! Pre-order! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 🔴 MGS Master Collection Vol 2 | Aug 27! | MGS4 freed from PS3! |
+| ⭐ Star Wars Zero Company | Aug 27! | Same day as MGS! |
+| 🚶 Big Walk (PS Plus Day 1) | Aug 4! | Co-op adventure! |
+| 🎬 Sony StudioCanal deletion | Sep 1 🆕 | 551 films deleted! EU only! Digital ownership debate! |
+| 📤 PS Plus July Departures | **Jul 21** | Now 15+ titles leaving |
+| 📤 PS Plus August Departures | **Aug 18 🆕** | 5 titles confirmed |
+
+### 🚨 Priority Lounge Actions (Unchanged):
+1. **Weekend Offer sale — FINAL DAY!** Grab co-op/party games before they're gone!
+2. **3 days left for Mid-Year Deals + Supplementary Sale** — final stock-up window!
+3. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog!
+4. **Pre-order AC Black Flag Resynced** (Jul 9 — 11 days!) + CoD MW4!
+5. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
