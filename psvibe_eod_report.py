@@ -18,6 +18,7 @@ from datetime import datetime, timedelta, timezone
 
 # ── Config ────────────────────────────────────────────────────────────────────
 BOSS_CHAT_ID = "6296803251"
+STAFF_CHAT_ID = "-1003686032747"  # Admin group
 MMT = timezone(timedelta(hours=6, minutes=30))
 
 # Load env vars
@@ -279,12 +280,18 @@ print(message)
 print("=" * 50)
 
 if BOT_TOKEN:
-    success = tg_send(BOSS_CHAT_ID, message)
+    # Try staff/admin group first, fallback to Boss
+    success = tg_send(STAFF_CHAT_ID, message)
     if success:
-        print(f"✅ EOD report sent to Boss ({BOSS_CHAT_ID})")
+        print(f"✅ EOD report sent to Admin Group ({STAFF_CHAT_ID})")
     else:
-        print(f"❌ Failed to send EOD report to Boss", file=sys.stderr)
-        sys.exit(1)
+        print(f"⚠️ Admin group send failed, trying Boss fallback...", file=sys.stderr)
+        success = tg_send(BOSS_CHAT_ID, message)
+        if success:
+            print(f"✅ EOD report sent to Boss ({BOSS_CHAT_ID}) via fallback")
+        else:
+            print(f"❌ Failed to send EOD report to both targets", file=sys.stderr)
+            sys.exit(1)
 else:
     print("⚠️ BOT_TOKEN not set — message NOT sent (dry run)", file=sys.stderr)
     sys.exit(1)
