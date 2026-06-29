@@ -382,3 +382,110 @@
 (dedup) - See `memory/2026-06-27.md` for full details
   (dedup) - **#37: JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps.
   (dedup) - **#38: Server-side filter > client-side** — for time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing.
+
+# Archived Memory Entries
+*Archived: 2026-06-29 18:34 UTC*
+
+(dedup) - Buy#1: 10,000B @ 125.00 + 300 chg = 125.03/B (first buy)
+  (dedup) - Buy#2: 20,000B @ 122.00 + 0 chg = 122.00/B (second buy)
+  (dedup) - **`/root/psvibe-sales-bot/customer_bot/handlers.py`**:
+  (dedup) - **`/root/psvibe-sales-bot/scripts/eod_report.py`**:
+  (dedup) - New API endpoints in dashboard_routes.py (6 new routes)
+  (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`
+  (dedup) - **Status:** ✅ Fixed, Boss confirmed booking is working
+  (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`
+  (dedup) - 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes
+  (dedup) - 2. **`bool(0) == False`** — `"x if x else default"` pattern breaks on `0`; use `"x if x is not None else default"` instead
+  (dedup) - 3. **`async def` + missing `await`** — coroutine objects silently pass type checks at runtime, cause confusing failures. Always use proper type hints to catch this.
+  (dedup) - 4. **Double fail masking** — Both API (MySQL) and GSheet fallback were broken simultaneously → masked the true root cause. Monitor both paths independently.
+  (dedup) - `psvibe_customer_bot` — ✅ active
+  (dedup) - `/root/psvibe_api_server/models.py` — `error: Optional[str]` added to GenericResponse
+  (dedup) - `/root/psvibe-sales-bot/bot/__init__.py` — `next_write_row` title lookup fix
+  (dedup) - `/root/psvibe-sales-bot/bot/handlers/sales.py` — coupon field names, `_disc` fix, console normalization, booking `await`, `_notify_customer` import
+  (dedup) - **All critical path bugs fixed:**
+  (dedup) - ✅ Console normalization (spaces in console IDs)
+  (dedup) - ✅ Auto-confirm for staff bookings
+  (dedup) - ✅ Error messages now visible from API
+  (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/booking.py`
+  (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py`
+  (dedup) - **File:** `/root/psvibe-sales-bot/bot/handlers/sales.py` or similar
+  (dedup) - **Status:** ✅ Done (per Kora's claim; need Boss to verify)
+  (dedup) - 1. **FastAPI response_model silently strips undeclared fields** — always audit response models against actual return shapes
+  (dedup) - 2. **`bool(0) == False`** — `"x if x else default"` pattern breaks on `0`; use `"x if x is not None else default"` instead
+  (dedup) - 4. **Double fail masking** — Both API (MySQL) and GSheet fallback broken simultaneously → masked the true root cause
+  (dedup) - 5. **Date format inconsistency between bot and API** — Bot sends locale-dependent format; always normalize to YYYY-MM-DD at the API boundary
+  (dedup) - `psvibe-sale-bot` — ✅ active
+  (dedup) - `psvibe_customer_bot` — ✅ active
+  (dedup) - ✅ Daily Sale recording to API/MySQL
+  (dedup) - ✅ Auto-confirm for staff bookings
+  (dedup) - const { execSync } = require('child_process');
+  (dedup) - const out = execSync(`ssh -i /home/node/.openclaw/workspace/.ssh/id_rsa -o StrictHostKeyChecking=no root@5.223.81.16 "grep -n 'def.*pnl\\|def.*profit_loss\\|financial/pnl' /root/psvibe_api_server/dashboard_routes.py 2>/dev/null"`, { timeout: 15000 });
+  (dedup) - **4/41 empty** (all unreleased: Basketball 2026, Expedition 33, FIFA 2026, Little Nightmare 3)
+  (dedup) - Auto-resolve: if `member_id` is provided but `phone` isn't → lookup `member_wallets` by member_id
+  (dedup) - **Bot restarted:** psvibe-sale-bot ✅
+  (dedup) - `/root/psvibe_api_server/app.py`
+  (dedup) - `/root/.openclaw/workspace/kora_dashboard/index.html`
+  (dedup) - **`/root/psvibe_api_server/app.py`:**
+  (dedup) - **`/root/psvibe_api_server/patch_routes.py`:**
+
+## [P3] Memory (2026-06-18)
+
+### Heartbeat Checks (14:37 MMT)
+- Health monitor: overall 53.5 (false positives on path mismatches for AGENTS.md/SOUL.md, VPS unreachable)
+- Heartbeat routine: 12 tasks OK, 0 pending, 0 stuck
+- Stale notifier: 2 old yyo-personal-wallet alerts (Jun 11, Jun 14) — service likely restored
+- Check alerts: ✅ All services healthy
+- Dead letter queue: empty
+- Stale locks: 0 cleaned
+- Memory index rebuilt: 1339 topics
+- Knowledge graph rebuilt: 54 nodes, 1419 edges
+- Git backup: committed 7 files
+- Digest: 2026-06-18-digest.md (2 sections)
+- Memory pruner: nothing to prune
+
+### Cancel Confirmed Booking Fix + Display Data Fix (16:46-16:56 UTC / 23:16-23:26 MMT)
+
+### Bug 1: Cancel မရတာ
+- **Root Cause:** `PATCH /api/bookings/{id}/status` (app.py L1400) - `WHERE status='pending'` hardcoded.
+- Confirmed bookings ကို cancel လုပ်ချင်ရင် row affected=0 → "Booking already processed" 409 error.
+- **Fix:** Cancel → `WHERE status IN ('pending','confirmed','pending_check_in')`.
+- **Test:** #539, #513 ✅ cancel, double-cancel → 409 ✅, all restored ✅
+
+### Bug 2: Cancel လုပ်ရင် Data "?" ပဲပြတာ
+- **Root Cause:** `_do_cancel_booking()` (booking_flow.py) က PATCH response (`{booking_id, status}` only) ကို display + customer notification အတွက်သုံး → fields အားလုံး ? ဖြစ်.
+- **Fix:** Cancel မလုပ်ခင် GET `/api/bookings/{id}` နဲ့ booking data အပြည့် pre-fetch လုပ်။ Staff display + customer notification နှစ်ခုလုံး pre-fetched data သုံး.
+- **Files:**
+- `/root/psvibe_api_server/app.py` (L1397-1404)
+- `/root/psvibe-sales-bot/bot/handlers/booking_flow.py` (L492-572)
+
+### Broadcast System Fix + Customer Bot Broadcast (17:22 UTC / 23:52 MMT)
+- **Request:** Customer Bot ကနေ bot user အားလုံးကို broadcast ပို့လို့ရမလား
+- **Found:** Sale Bot မှာ `/broadcast` ရှိပြီးသားဒါပေမယ့် bug 3 ခုကြောင့် အလုပ်မလုပ်:
+- 1. API endpoint `bookings/broadcast-targets` က `member_id` ပြန်နေ (bot က `telegram_ids` ရှာ)
+- 2. Route order — broadcast-targets က `{booking_id}` catch-all အောက်မှာ → 422
+- 3. Customer Bot မှာ broadcast command မရှိ
+- **Fixes:**
+- 1. API endpoint: `DISTINCT telegram_chat_id WHERE telegram_chat_id IS NOT NULL AND != ''`
+- 2. Route order: broadcast-targets ကို `{booking_id}` အရှေ့ကိုရွှေ့ (app.py L1440)
+- 3. Customer Bot `/admin_broadcast` အသစ် (`customer_bot/broadcast.py`)
+- 4. `ADMIN_USER_IDS=6296803251` secrets.env ထဲထည့်
+- **Test:** API returns 44 targets ✅, Boss (6296803251) included ✅
+- **Files:**
+- `/root/psvibe_api_server/app.py` (L1440-1453)
+- `/root/psvibe_api_server/patch_routes.py` (removed duplicate)
+- `/root/psvibe-sales-bot/customer_bot/broadcast.py` (new)
+- `/root/psvibe-sales-bot/customer_bot/main.py` (register handler)
+- `/etc/psvibe/secrets.env` (ADMIN_USER_IDS)
+  (dedup) - Mgmt Fee = Net Profit × 10% → Aung Chan Myint
+  (dedup) - if (a.status !== 'Active' && b.status === 'Active') return 1;
+  (dedup) - **#28: Never edit minified Vue build output directly** — Always edit the source `.vue` files and rebuild. Single-character name conflicts can break the entire component. The project is at `/root/psvibe-dashboard/`.
+  (dedup) - **#30: JS object key sorting trap** — String keys that look like integers (e.g., "848") are sorted numerically by V8, not by insertion order. Using `.reverse()` on `Object.values()` doesn't reverse insertion order when keys are numeric strings.
+  (dedup) - Built: `cd /root/psvibe-dashboard && npx vite build`
+  (dedup) - **#32: `window` object not available in Vue `<template>`** — Must use computed properties or method-returned style objects instead of inline `window.innerWidth` references.
+  (dedup) - `/root/psvibe-dashboard/src/components/AppLayout.vue` — Reconciliation sidebar item added
+  (dedup) - `/root/psvibe-dashboard/src/router/index.ts` — Reconciliation route added
+  (dedup) ### Payment Method Parsing Bug (CRITICAL)
+  (dedup) - Status badge: 🟢 Open / ⚫ Closed / 🟡 Not Opened
+  (dedup) ### API: `GET /api/dashboard/reconciliation?date=YYYY-MM-DD`
+  (dedup) - **Orphan filter:** Excludes food-only sales (notes without "Mins:")
+  (dedup) - `staffOnlyPaths` in AppLayout.vue: added `/till`, `/reconciliation`, `/members`
