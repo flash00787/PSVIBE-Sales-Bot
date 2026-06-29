@@ -336,7 +336,7 @@ async def step_sbk_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     cid, ctype = _sbk_parse_console_label(text)
     # Use cached valid set from _sbk_console_kb (avoids extra API call) + VALID_CONSOLES
-    valid = context.user_data.get("_sbk_valid_consoles", set()) | VALID_CONSOLES
+    valid = context.user_data.get("_sbk_valid_consoles", set()) | set(VALID_CONSOLES)
     if not valid:
         # Cold path: no cached data yet, fetch live
         try:
@@ -1123,7 +1123,7 @@ async def step_book_console(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Extract console ID (text may include " (PS5)" suffix)
     cid = text.split("(")[0].strip()
     # Use cached valid set from prompt_book_console (no extra API call) + VALID_CONSOLES
-    valid = context.user_data.get("_bk_valid_consoles", set()) | VALID_CONSOLES
+    valid = context.user_data.get("_bk_valid_consoles", set()) | set(VALID_CONSOLES)
     if cid not in valid:
         await update.message.reply_text("⚠️ Keyboard မှ Console ရွေးပေးပါ")
         return await prompt_book_console(update, context)

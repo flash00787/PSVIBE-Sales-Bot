@@ -1869,7 +1869,7 @@ async def bk_duration_select(update: Update, context: ContextTypes.DEFAULT_TYPE)
                             reply_markup=spec_kb,
                         )
                         return BK_CONSOLE_PREF
-                except:
+                except Exception:
                     pass
             # Fallback: go to console type selection
             await update.message.reply_text(
