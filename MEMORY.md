@@ -90,6 +90,7 @@ Kora now manages **9 projects** with full coordination tool support.
 57. **Dashboard uses JWT not x-api-key** — Dashboard authenticates via `apiClient` (axios with Bearer token from localStorage), not raw `x-api-key` header. Use `apiClient.get()` not `fetch()` with manual headers. (#57)
 58. **Rebook logic: same phone + date + game → Done** — When a cancelled booking has a matching Done booking by same user on same date for same game, it's a rebook (not a failure). Exclude from cancellation count to get accurate success rate. (#58)
 59. **Console breakdown excludes empty console_id** — Some bookings (especially early ones) have no console assigned. `console_id != ''` filter causes mismatch between total booking count and console breakdown sum. Document this delta, don't "fix" it — it's by design. (#59)
+60. **ALL timestamps MUST be MMT (UTC+6:30)** — MySQL server runs on UTC, so `NOW()` and `CURRENT_TIMESTAMP` return UTC. For DATETIME columns: use `DATE_ADD(NOW(), INTERVAL 390 MINUTE)` in defaults and INSERTs. For TIMESTAMP columns: convert to DATETIME or set session `time_zone='+06:30'`. Never store UTC without conversion. Boss doesn't want to see 7:08 AM when it's really 1:38 PM. Tables affected: food_cart, sales_daily (fixed Jun 29), plus 50+ TIMESTAMP columns across all tables. (#60)
 
 ### Business Logic
 44. **`unwrap_response()` changes response structure** — Functions consuming API responses must NOT access `.data` again after unwrap. Use `data.get("bookings", [])` not `data.get("data", {}).get("bookings", [])`.
