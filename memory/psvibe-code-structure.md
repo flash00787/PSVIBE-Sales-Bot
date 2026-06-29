@@ -63,6 +63,19 @@
 | `analytics.py` | BI dashboard analytics |
 | `sync_service.py` | GSheet → MySQL sync (cron 5min) |
 
+### Dashboard Pages (`/root/psvibe-dashboard/src/views/`)
+| File | Purpose |
+|------|---------|
+| `DashboardView.vue` | Main overview dashboard |
+| `BookingsView.vue` | Booking management |
+| `TimelineView.vue` | Console timeline |
+| `FeedbackView.vue` | Customer feedback |
+| `CustomerBotSuccess.vue` | **Customer Bot booking success rate** (Jun 29) — KPI cards, all users table, rebook-adjusted metrics |
+| `Coupons.vue` | Coupon management |
+| `TopUpLogs.vue` | Top-up logs |
+| `FoodStockView.vue` | Food inventory (multi-tab) |
+| `FinancialReport.vue` | PNL + Balance Sheet |
+
 ## Architecture
 ```
 Bot → API (:8000) → MySQL (primary) → GSheet (fallback)

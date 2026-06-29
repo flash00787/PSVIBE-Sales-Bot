@@ -86,6 +86,10 @@ Kora now manages **9 projects** with full coordination tool support.
 36. **FIFO matching complexity** — Multi-currency FIFO with charges requires careful tracking of remaining quantities per lot. Test thoroughly with partial sales. (#36)
 37. **JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — Without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps. (#37)
 38. **Server-side filter > client-side** — For time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing. (#38)
+56. **Vue pages need `<AppLayout>` wrapper** — Pages rendered via router-view don't auto-inherit sidebar/nav. Must wrap in `<AppLayout title="...">` component or sidebar disappears. (#56)
+57. **Dashboard uses JWT not x-api-key** — Dashboard authenticates via `apiClient` (axios with Bearer token from localStorage), not raw `x-api-key` header. Use `apiClient.get()` not `fetch()` with manual headers. (#57)
+58. **Rebook logic: same phone + date + game → Done** — When a cancelled booking has a matching Done booking by same user on same date for same game, it's a rebook (not a failure). Exclude from cancellation count to get accurate success rate. (#58)
+59. **Console breakdown excludes empty console_id** — Some bookings (especially early ones) have no console assigned. `console_id != ''` filter causes mismatch between total booking count and console breakdown sum. Document this delta, don't "fix" it — it's by design. (#59)
 
 ### Business Logic
 44. **`unwrap_response()` changes response structure** — Functions consuming API responses must NOT access `.data` again after unwrap. Use `data.get("bookings", [])` not `data.get("data", {}).get("bookings", [])`.
@@ -283,6 +287,15 @@ Kora now manages **9 projects** with full coordination tool support.
 - **Block message:** "🚫 Access Denied — Contact Admin: @psvibeofficial"
 - **Blocked:** 7158675982 (Unoman66/BK#1121), 8383666570 (BK#1122)
 - **⚠️ Note:** CallbackQueryHandler does NOT accept filters — used in-handler checks instead
+
+### Customer Bot Booking Success Rate Dashboard (June 29)
+- **New API:** `GET /api/bot-users/booking-success-rate?since=YYYY-MM-DD`
+- **New Dashboard:** `/bot-success` — 6 KPI cards, status bar, daily/weekly trends, console breakdown, all users table
+- **Rebook logic:** Same phone + same date + same game → Done = rebook (excluded from failure count)
+- **Default filter:** June 21+ (first success surge: 14 Done in one day)
+- **Findings:** First Done = June 13 (7 days after opening), 48.3% adj success rate since Jun 21, 61% since Jun 25 bug fix
+- **All Users table:** 11 columns including TG Name, TG ID, @Username, phone, cancel/reject split
+- **Key dates:** Jun 6 (first booking), Jun 13 (first Done), Jun 21 (success surge), Jun 25 (bind bug fix)
 
 ### EOD Report — Complete Rewrite
 - **Bug:** `docker exec psvibe-mysql mysql` auth failed (password `!` → shell issues + host mismatch)

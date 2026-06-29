@@ -59,6 +59,7 @@ Bot (python-telegram-bot) → API (:8000) → MySQL (primary) → gspread (cold 
 ## 📅 Recent Milestones
 | Date | Milestone |
 |------|-----------|
+| Jun 29 | Customer Bot Booking Success Rate — API + Dashboard + Data Audit |
 | Jun 28 | Food underscore Markdown bug fix + EOD report rewrite |
 | Jun 27 | Staff salary system + customer notifications fix |
 | Jun 26 | Dashboard UX overhaul (food orders, timeline, cashflow) |

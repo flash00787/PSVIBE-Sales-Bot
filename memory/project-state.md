@@ -8,6 +8,16 @@
 ## ✅ Recently Completed (2026-06-19 → 2026-06-20 — 43+ fixes)
 
 ### 2026-06-20 — Sale Bot + Customer Bot Fixes
+
+### 2026-06-29 — Customer Bot Booking Success Rate (New Feature)
+| # | Feature | Status |
+|---|---------|--------|
+| 37 | **Customer Bot Success Rate API** — `GET /api/bot-users/booking-success-rate` with rebook logic | ✅ |
+| 38 | **Customer Bot Success Dashboard** — `/bot-success` page with 6 KPI cards, all users table, 11 columns | ✅ |
+| 39 | **First Ever Done Date Found** — June 13, 2026 (phone 09764375834, C-03, 90min, Any game) | ✅ |
+| 40 | **Date filter presets** — Jun 21+ (first surge) / Jun 25+ (post-bind-fix) / All Time | ✅ |
+
+### 2026-06-20 — Sale Bot + Customer Bot Fixes (continued)
 | # | Feature | Status |
 |---|---------|--------|
 | 27 | **Pending booking time slot holding** — verified 3-layer conflict detection | ✅ |
@@ -62,14 +72,14 @@
 | 36 | **C1: Console Start-Session Lock** — `console_status` check moved inside transaction with `FOR UPDATE` (app.py L1882) | ✅ |
 | 37 | **H2: Walk-in Warning** — Active booking → 409 BLOCK; Pending/Confirmed → ⚠️ WARNING only (Bot shows staff warning) | ✅ |
 
+### ✅ Recently Resolved (2026-06-21)
+
 ## 🐛 Known Issues
 | Issue | Priority | Status |
 |-------|----------|--------|
 | Pending bookings display bug (details not showing) | HIGH | Open |
 | MySQL-GSheet sync — DELETE not synced | MED | Known |
 | sheets/config still GSheets (not MySQL) | MED | Migration pending |
-
-### ✅ Recently Resolved (2026-06-21)
 | Issue | Status |
 |-------|--------|
 | Session Start → Booking Link prompt (never worked) | ✅ Fixed (4 bugs) |
