@@ -1,6 +1,146 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-29 05:30 UTC
+> Last updated: 2026-06-29 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 29, 2026 - 11:30 UTC) — Kingdom Hearts Collection PS5! + RuneScape Day 1 PS Plus! + Star Wars Galactic Racer!
+
+> **Summary:** Midday Monday sweep (6 hours since last update). FOUR major titles completely missing from tracker discovered. **Kingdom Hearts Collection [I~III]** coming to PS5 on October 8 with pre-orders LIVE — the entire KH saga in one package! **RuneScape: Dragonwilds** confirmed September 15 as a DAY ONE PS Plus Extra/Premium title — free for subscribers! **Star Wars: Galactic Racer** locked for October 6 — podracing + speeder bikes! **No Rest for the Wicked** (Ori devs' soulslike) hitting PS5 in October with 60+ hours of content. Plus: **SONIC PICO PARK** announced — 8-player co-op puzzle game perfect for lounges! PS Plus Essential July: STILL no leaks — announcement still expected July 1-2.
+
+### 🔥🔥 Kingdom Hearts Collection [I~III] — October 8, 2026 on PS5! PRE-ORDERS LIVE! (COMPLETELY MISSED!)
+- **Square Enix** announced **Kingdom Hearts Collection [I~III]** at the June 2 State of Play — completely absent from tracker!
+- **Release date: October 8, 2026** on PS5, Switch 2, Xbox Series X|S, and PC
+- **PRE-ORDERS WENT LIVE JUNE 9, 2026** — 20 days ago!
+- **Contents:**
+  - 🗝️ **Kingdom Hearts HD 1.5 + 2.5 ReMIX** (6 games: KH1 Final Mix, Re:Chain of Memories, KH2 Final Mix, Birth by Sleep Final Mix, + cinematics for 358/2 Days & Re:Coded)
+  - 🗝️ **Kingdom Hearts HD 2.8 Final Chapter Prologue** (Dream Drop Distance HD, Birth by Sleep 0.2, χ Back Cover movie)
+  - 🗝️ **Kingdom Hearts III + Re Mind DLC** (the full KH3 experience)
+- Individual titles also available for purchase separately
+- Sources: Square Enix, PushSquare, PSU, Gematsu (all June 2026)
+- **💡💡💡 Lounge Impact — MASSIVE:**
+  - Kingdom Hearts is one of gaming's most beloved crossover franchises — Disney + Final Fantasy + original characters = ENORMOUS fanbase
+  - KH3 sold 10M+ copies; the series has sold 36M+ units worldwide
+  - The collection being on PS5 means players can experience the ENTIRE saga on one console — perfect for lounge marathons
+  - Nostalgia factor is enormous — many players grew up with KH1/KH2 on PS2
+  - **October 8 — pre-order NOW!** This is a DAY ONE lounge purchase!
+  - Family-friendly Disney appeal + deep RPG combat = broad demographic draw
+  - ⭐⭐⭐⭐⭐ lounge value — iconic franchise, complete saga, multi-generational appeal
+
+### 🔥🔥 RuneScape: Dragonwilds — September 15, 2026! DAY ONE PS Plus Extra/Premium! (COMPLETELY MISSED!)
+- **Jagex** confirmed RuneScape: Dragonwilds launches on **PS5 on September 15, 2026** — **DAY ONE on PS Plus Extra & Premium!**
+- First RuneScape game on consoles in the franchise's **25-year history!**
+- **1 MILLION+ copies sold** during Steam Early Access (since April 2025)
+- **Genre:** Open-world survival crafting — think Valheim meets RuneScape
+- Full launch includes: "Scorned Wilderness" update + all "Umbral Sands" expansion content
+- **Cross-play** with PC and Xbox Series X|S
+- Sources: Jagex official, Gematsu, PushSquare, GameRant, IGN, PlayStation Lifestyle (June 2026)
+- **💡💡 Lounge Impact:**
+  - RuneScape is a LEGENDARY gaming IP — 300M+ accounts created over 25 years. The RS fanbase is massive and global
+  - DAY ONE on PS Plus Extra/Premium = FREE for lounge if subscribed! Zero purchase cost!
+  - Survival crafting games = extended lounge sessions (players stay longer)
+  - Cross-play means lounge players can join PC/Xbox friends
+  - 1M+ Early Access sales proves strong demand — lounge customers WILL ask for this
+  - **September 15 — mark the calendar! FREE on PS Plus Extra!**
+  - ⭐⭐⭐⭐ lounge value — free via PS Plus, massive IP, survival crafting stickiness
+
+### 🏎️ Star Wars: Galactic Racer — October 6, 2026 on PS5! (COMPLETELY MISSED!)
+- **Fuse Games / Secret Mode** arcade-style Star Wars racing game locked for **October 6, 2026** on PS5, Xbox Series, and PC
+- Announced at **The Game Awards 2025** (December) — completely absent from tracker!
+- **Vehicles:** Podracers, landspeeders, speeder bikes, skimspeeders across iconic planets (Tatooine, Jakku, Ando Prime)
+- **Single-player campaign** as mysterious pilot "Shade" in Outer Rim's Galactic League + **multiplayer mode**
+- PS Blog published a hands-on report **June 25, 2026** (4 days ago!)
+- Pre-orders currently available
+- **💡💡 Lounge Impact:**
+  - Star Wars IP + arcade racing = PERFECT casual lounge combo
+  - Podracing nostalgia (Episode I: The Phantom Menace) = strong millennial drawer
+  - Multiplayer mode for competitive lounge sessions
+  - Same day as Gears of War: E-Day on Xbox (NOT on PS5 — Xbox exclusive) — so Star Wars Galactic Racer is the PS5 racing highlight for Oct 6
+  - ⭐⭐⭐⭐ lounge value — Star Wars branding, accessible racing, multiplayer
+
+### ⚔️ No Rest for the Wicked — October 2026 on PS5! (COMPLETELY MISSED!)
+- **Moon Studios** (creators of the acclaimed Ori series) brings their soulslike action RPG to PS5 in **October 2026**
+- **Version 1.0 launch** after PC Early Access (since April 2024)
+- **60+ hours of new content** in 1.0: new horde mode, weapons, bosses, enemies, areas, reimagined class system
+- **Full cross-play + cross-save** between PC and consoles
+- Announced at State of Play (June 2) — completely missed from tracker!
+- Sources: Gematsu, PSU, PushSquare (June 2026)
+- **💡💡 Lounge Impact:**
+  - Moon Studios has a sterling reputation (Ori and the Blind Forest / Will of the Wisps = critically acclaimed)
+  - Soulslike + cross-play = dedicated player base + multiplayer potential
+  - 60+ hours of content = incredible value for lounge customers
+  - ⭐⭐⭐⭐ lounge value — Moon Studios pedigree, massive content, cross-play
+
+### 🧩 SONIC PICO PARK — 2-8 Player Co-Op Party Game! 2026 on PS5! (COMPLETELY MISSED!)
+- **TECOPARK / PICO PARK Inc.** announced **SONIC PICO PARK** at **Summer Game Fest 2026** (June 5-8) — completely missed!
+- Genre: **Cooperative puzzle-platformer for 2-8 players** — PICO PARK meets Sonic the Hedgehog!
+- **Sonic 35th Anniversary celebratory title** — playable characters include Sonic, Tails, Knuckles, Amy, Shadow + PICO CAT variants
+- Date on PS5 is **TBD 2026** but confirmed coming
+- Sources: Kotaku, MonsterVine, PS Blog (June 8 SGF coverage)
+- **💡💡💡 Lounge Impact:**
+  - PICO PARK + Sonic = PERFECT lounge party game recipe!
+  - 8-player co-op = fills lounge sessions with groups
+  - No controllers needed for all players (PICO PARK uses simplified controls)
+  - Sonic branding = instant recognition + family-friendly
+  - This is a DAY ONE purchase for any gaming lounge — co-op party games are lounge gold
+  - ⭐⭐⭐⭐⭐ lounge value — 8-player co-op, Sonic IP, party game perfection
+
+### 📅 PS Plus Essential July 2026 — STILL No Leaks as of June 29!
+- Announcement still expected **July 1 (Tuesday)** — now only **2 days away!**
+- Some sources (NME, PCQuest) note June PS Plus quality has been "mixed/uneven" — July could be a turnaround month
+- Forbes (June 28): Still no credible leaks — community predictions only
+- PlayStationInfo.de (June 29): "No credible leaks have surfaced at the time of writing"
+- Games would be available **July 7** (first Tuesday)
+- **💡 Lounge Action:** Keep monitoring PS Blog July 1-2. If any of the speculated titles hit (Elden Ring, Dragon's Dogma 2, Returnal, Hades), they would be massive lounge additions for FREE.
+
+### 🛑 CORRECTION: Gears of War: E-Day — NOT on PS5!
+- Some release calendars listed Gears of War: E-Day (Oct 6) for PS5 — this is **INCORRECT**
+- Xbox CEO Asha Sharma confirmed at Xbox Games Showcase 2026: **Xbox console exclusive** (Xbox Series X|S + PC only)
+- A PEGI rating placeholder briefly listed PS5 but was retracted
+- **💡 Lounge Note:** Do NOT add to PS5 wishlist. Star Wars: Galactic Racer (Oct 6 same day) IS the PS5 racing highlight.
+
+### 🔄 Additional Corrections & Notes:
+- **Marvel Tōkon: Fighting Souls** — August 6 confirmed correct (some calendars incorrectly listed Oct 6). Tracker's Aug 6 date is verified via PS Blog (Feb 12 post).
+- **Crimson Desert** — Already released **March 19, 2026** on PS5. If lounge doesn't have it, it's been out for 3+ months.
+- **SAW: Genesis** — PC Early Access only in 2026. PS5 version unconfirmed (likely 2027 at earliest). Not lounge-relevant yet.
+- **Minor June releases** (Momento, Deathbulge: Battle of the Bands, Tales of Seikyu) — not individually tracked (low lounge relevance).
+
+### 📊 Quick Status Check (June 29 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🗝️🔥🔥 Kingdom Hearts Collection | **MISSED! 🆕** | Oct 8! PRE-ORDERS LIVE since Jun 9! Entire saga! |
+| 🔥🔥 RuneScape: Dragonwilds | **MISSED! 🆕** | Sep 15! DAY ONE PS Plus Extra/Premium! FREE! |
+| 🏎️ Star Wars: Galactic Racer | **MISSED! 🆕** | Oct 6! Pre-orders live! Podracing multiplayer! |
+| ⚔️ No Rest for the Wicked | **MISSED! 🆕** | Oct 2026! Ori devs' soulslike! 60+ hours! |
+| 🧩 SONIC PICO PARK | **MISSED! 🆕** | 2026 TBD! 8-player co-op party game GOLD! |
+| 🛑 Gears of War: E-Day | **CORRECTION 🆕** | NOT on PS5! Xbox exclusive! Remove from any PS5 plans! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! Split-screen co-op! |
+| 📅 PS Plus Essential July Reveal | **Jul 1 (maybe delayed)** | 2 days away! Still no leak! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 11 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 10 days! Pre-order! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 2 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 Resonance: A Plague Tale Legacy | Aug 27! | Prequel to Requiem! |
+| 🐺 Marvel's Wolverine | Sep 15! | PS5 exclusive! Pre-orders LIVE! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+| 🎬 Sony StudioCanal deletion | Sep 1 | 551 films deleted! EU only! |
+
+### 🚨 Priority Lounge Actions (UPDATED):
+1. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO EVER ON PLAYSTATION! Historic moment!
+2. **Pre-order Kingdom Hearts Collection [I~III]** — Oct 8! Entire KH saga on PS5! Pre-orders LIVE since June 9!
+3. **Mark September 15** — RuneScape: Dragonwilds is DAY ONE FREE on PS Plus Extra/Premium! Zero cost for lounge!
+4. **Pre-order Star Wars: Galactic Racer** — Oct 6! Podracing + speeder bike multiplayer!
+5. **Wishlist SONIC PICO PARK** — 8-player co-op party game! Lounge perfection when it drops!
+6. **PALWORLD 1.0 — July 10! Only 11 days!** Wishlist/pre-order!
+7. **Mid-Year Deals + Supplementary Sale — 2 DAYS LEFT!** Final stock-up window!
+8. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog! (May be delayed)
+9. **Check if Crimson Desert is on lounge consoles** — already released March 19!
+10. **Pre-order AC Black Flag Resynced** (Jul 9 — 10 days!) + CoD MW4!
+11. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
