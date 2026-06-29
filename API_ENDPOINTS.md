@@ -974,3 +974,27 @@ On auth failure: `HTTP 401` with `{"detail": "Invalid or missing API key"}`.
 - The `ok()` wrapper always returns `{"success": true, "data": <value>}`. If an optional `message` field is present, it's added as `"message": <string>`.
 - MySQL endpoints (prefix `/api/mysql/...`) fall back gracefully with 503 if MySQL is not configured.
 - The BI dashboard HTML serves at both `/dashboard` and `/api/dashboard` with embedded API key auto-injected.
+
+---
+
+## Dashboard — Till Endpoints (June 29)
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/dashboard/till/today` | JWT | Get today's till record (auto-creates if missing). Returns live cash/kpay/wavepay/ayapay sales + cash movements + expected closing |
+| POST | `/api/dashboard/till/open` | JWT | Open till with `{opening_balance, opened_by}` |
+| POST | `/api/dashboard/till/close` | JWT | Close till with `{actual_cash_counted, notes, closed_by}`. Computes variance = actual − expected |
+| GET | `/api/dashboard/till/history?days=7` | JWT | Last N days of till records |
+
+**Expected Formula:** `Opening + Cash Sales + Transfer In + Inject − Eject − Transfer Out`
+
+## Dashboard — Reconciliation Endpoint (June 29)
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/dashboard/reconciliation?date=YYYY-MM-DD` | JWT | Cross-check Done sessions ↔ sales_daily. Returns matched_pairs, missing_sales, orphan_sales |
+
+**Reconciliation logic:**
+- Match by console_id + date + time proximity (mins within ±10)
+- Excludes rebooked cancellations (same phone + date + game → Done)
+- Orphan sales exclude food-only (notes without "Mins:")
