@@ -1,6 +1,62 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-28 17:30 UTC
+> Last updated: 2026-06-28 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 28, 2026 - 23:30 UTC) — Avatar Legends Fighting Game July 23! + No PS Plus Leak Yet
+
+> **Summary:** Late-night Sunday sweep (6 hours since last update). One notable new find: Avatar Legends: The Fighting Game confirmed for July 23 with pre-orders live + closed beta July 2-5. Forbes article published today confirms NO PS Plus Essential July leaks yet. All other July titles remain verified and current. No critical developments.
+
+### 🥋 Avatar Legends: The Fighting Game — July 23, 2026! (NEW TO TRACKER!)
+- **Avatar: The Last Airbender & Legend of Korra** fighting game coming to **PS5 on July 23, 2026**
+- Developer: **Gameplay Group International** | Publisher: **PM Studios / Skydance Games**
+- **12 playable fighters** at launch from both ATLA and Korra series
+- **Year 1 Pass DLC characters confirmed:** Bolin, Ty Lee, Lin Beifong, and Uncle Iroh
+- **Full cross-play support** at launch (PS5, Xbox Series X|S, Switch, PC/Steam)
+- **Pre-orders are LIVE NOW** — closed beta access **July 2-5, 2026** (4 days, this week!)
+- Sources: GameRant (published TODAY Jun 28, 5PM EDT), Gematsu, TheSixthAxis, ComicBook, BleedingCool
+- **💡💡💡 Lounge Impact:**
+  - Avatar: The Last Airbender is one of the most beloved animated series globally — MASSIVE nostalgic fanbase among 20-35 year olds (prime lounge demographic)
+  - The Legend of Korra extends the IP to younger audiences
+  - Fighting games are PERFECT for lounge competitive play — short matches, easy to spectate, high energy
+  - Cross-play means lounge players can match against friends on any platform
+  - Pre-order for closed beta access (July 2-5) — could be a fun early-access event at the lounge!
+  - At 12 characters at launch + DLC roadmap, this has solid post-launch support
+  - ⭐⭐⭐⭐ lounge value — strong IP + fighting genre = reliable draw
+
+### 📅 PS Plus Essential July — Still NO Leak (Forbes Confirms)
+- **Forbes published an article TODAY (June 28)** by Erik Kain confirming: "July's lineup hasn't been revealed yet, though we often see leaks just before the games are officially revealed"
+- Official announcement still expected **July 1 (Tuesday)** — 3 days away!
+- Games available July 7 (first Tuesday)
+- ⚠️ ALL community predictions remain UNVERIFIED speculation
+- **💡 Lounge Action:** Mark July 1 for the official PS Blog reveal. If any of the speculated titles hit (Dragon's Dogma 2, Elden Ring, Returnal etc.), they would be massive lounge additions
+
+### 📊 Quick Status Check (June 28 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🥋 Avatar Legends Fighting Game | **NEW! 🆕** | Jul 23! Pre-orders live! Beta Jul 2-5! |
+| 📅 PS Plus Essential July Reveal | **Jul 1** | 3 days away! Forbes confirms NO leak! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 12 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 11 days! Pre-order! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 3 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 Resonance: A Plague Tale Legacy | Aug 27! | Prequel to Requiem! |
+| 🐺 Marvel's Wolverine | Sep 15! | PS5 exclusive! Pre-orders LIVE! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+| 🎬 Sony StudioCanal deletion | Sep 1 | 551 films deleted! EU only! |
+
+### 🚨 Priority Lounge Actions (UPDATED):
+1. **Avatar Legends: The Fighting Game** — Pre-order for closed beta access (Jul 2-5)! Great lounge fighting game!
+2. **PALWORLD 1.0 — July 10! Only 12 days!** Wishlist/pre-order on PS Store! 25M-player phenomenon!
+3. **Mid-Year Deals + Supplementary Sale — 3 DAYS LEFT!** Final stock-up window!
+4. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog!
+5. **Pre-order AC Black Flag Resynced** (Jul 9 — 11 days!) + CoD MW4!
+6. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
