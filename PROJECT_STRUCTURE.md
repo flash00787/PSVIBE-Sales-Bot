@@ -38,6 +38,39 @@ Bot (python-telegram-bot) → API (:8000) → MySQL (primary) → gspread (cold 
 | `infrastructure.md` | `memory/` | Coordination tools & config |
 | `sop/` (13 files) | `memory/sop/` | SOPs, frameworks, protocols |
 
+## 🔧 Key Paths
+| Path | Purpose |
+|------|---------|
+| `/root/psvibe-sales-bot/bot/` | Main bot handlers (30+ files) |
+| `/root/psvibe-sales-bot/customer_bot/` | Customer-facing bot |
+| `/root/psvibe-sales-bot/tests/` | pytest test suite (78 tests) |
+| `/root/psvibe_api_server/routes/` | FastAPI route handlers |
+| `/root/psvibe_api_server/dashboard-dist/` | Vue.js dashboard (built) |
+| `/root/psvibe-dashboard/` | Dashboard source (Vue 3 + Vite) |
+| `/root/coordination/` | Multi-project coordination tools |
+
+## ⚠️ Known Issues
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Cashflow month filter not applied (Jun 26) | Medium | 🔴 Pending |
+| Cashflow asset deduction double-count (Jun 26) | Medium | 🔴 Pending |
+| Quality Gate mypy errors (2955 pre-existing) | Low | 🟡 Deferred |
+
+## 📅 Recent Milestones
+| Date | Milestone |
+|------|-----------|
+| Jun 28 | Food underscore Markdown bug fix + EOD report rewrite |
+| Jun 27 | Staff salary system + customer notifications fix |
+| Jun 26 | Dashboard UX overhaul (food orders, timeline, cashflow) |
+| Jun 25 | ACM Wallet MySQL migration + SEL Exchange project built |
+| Jun 22 | Console Timer + Booking system overhaul |
+| Jun 15-16 | Discord bot (35 commands) + Finance system |
+| Jun 6 | Grand Opening |
+
+## 🏗️ Multi-Project Architecture
+Kora manages **9 projects** via `/root/coordination/project_registry.json`:
+`psvibe`, `construction`, `yyo_wallet`, `acm_wallet`, `kora_voice`, `social_autoreply`, `inventory_alerts`, `sel_exchange`, `kora_host_api`
+
 See `memory/psvibe-code-structure.md` for file-by-file reference.
 See `memory/infrastructure.md` for coordination tools & sub-agent config.
 See `memory/project-state.md` for current state & known issues.
