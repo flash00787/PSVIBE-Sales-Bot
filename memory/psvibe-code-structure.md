@@ -81,3 +81,18 @@
 Bot → API (:8000) → MySQL (primary) → GSheet (fallback)
 ```
 > Key: sheets/config still GSheets (not MySQL). Most other endpoints MySQL-backed.
+
+### Dashboard Pages (Added June 29)
+| File | Purpose |
+|------|---------|
+| `TillManager.vue` | **Daily Till/Cash Register** — 4-step flow, 4 payment methods, cash movement tracking, live variance preview |
+| `ReconciliationView.vue` | **Session ↔ Sales Reconciliation** — cross-checks Done sessions vs vouchers, flags missing sales and orphan vouchers |
+| `FoodOrders.vue` | Food order fulfillment view (AM/PM time format) |
+
+### API Endpoints (Added June 29)
+| File | Endpoint | Purpose |
+|------|----------|---------|
+| `dashboard_routes.py` | `GET/POST /api/dashboard/till/*` | Daily till: today, open, close, history |
+| `dashboard_routes.py` | `GET /api/dashboard/reconciliation` | Session ↔ sales cross-check |
+| `app.py` | `GET /api/bot-users/booking-success-rate` | Customer Bot booking success analytics |
+| `patch_routes.py` | food_cart hold/release | Updated to use MMT timestamps |

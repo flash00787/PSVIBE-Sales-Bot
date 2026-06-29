@@ -114,3 +114,39 @@ Customer Bot ──→ API Server (:8000) ──→ MySQL (primary)
 
 ## 🔧 Coordination Tools
 All at `/root/coordination/` — 45+ scripts.
+
+## ✅ New: Daily Till Manager (June 29)
+
+### DB
+- `daily_till` — 16 columns, date-unique, branch-scoped
+- Tracks: opening_balance, cash/kpay sales, expected_closing, actual_cash_counted, variance, status
+
+### API
+- `GET/POST /api/dashboard/till/today|open|close|history`
+- Payment method parsing handles split format: `Cash:10000|KPay:0|WavePay:17000`
+- Cash movements integrated: eject (stock expenses), transfer_out (Cash→KPay/Bank), transfer_in, inject
+- **transfer_out amounts are NEGATIVE** — uses `ABS(amount)` in SQL
+
+### Vue
+- `/till` — 4-step flow: ① Open → ② Sales (4 cards) → ③ Expected (breakdown) → ④ Close
+- 4 payment methods: Cash, KPay, WavePay, AYA Pay
+- Live variance preview on close
+
+## ✅ New: Session ↔ Sales Reconciliation (June 29)
+
+### API
+- `GET /api/dashboard/reconciliation?date=YYYY-MM-DD`
+- Cross-checks Done sessions vs sales_daily, flags orphans on both sides
+- Excludes food-only from orphan_sales
+
+### Vue
+- `/reconciliation` — Summary cards + Missing Sales (red) + Orphan Sales (yellow) + All Matched table
+- Date selector, 120s auto-refresh
+
+## ✅ Staff Permissions Extended (June 29)
+- `/till`, `/reconciliation`, `/members` now visible to staff role
+- Sidebar filter updated in AppLayout.vue
+
+## ⚠️ Known Issues
+- **50+ TIMESTAMP columns** across other tables still store UTC (not yet migrated to MMT)
+- Priority tables: attendance_log, topup_log, stock_in, stock_out, receipts, promotions_log

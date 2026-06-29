@@ -312,3 +312,10 @@ Kora now manages **9 projects** with full coordination tool support.
 - **#53: GROUP BY raw strings is wrong** — `GROUP BY payment_method` when column stores `Cash:20000` creates separate groups per amount. Use `SUBSTRING_INDEX()` to extract the method name.
 - **#54: Two endpoints, same action = divergence** — `PUT /dashboard/bookings/{id}` and `PATCH /api/bookings/{id}/status` both update booking status but only one had notifications. Always check ALL paths.
 - **#55: Check ALL tables after migration** — `members` table had 1 record after migration; `member_wallets` had 8 (correct). Don't assume legacy table names still have data.
+
+### Today's Lessons (June 29)
+61. **Customer Bot reminder End bypasses vouchers** — Reminder "End" ends session without Sale Bot, no voucher generated. Replaced with redirect to Sale Bot button. (#61)
+62. **Payment method is NOT simple string** — `payment_method` column stores `Cash:10000`, `KPay:31000|Cash:20000|WavePay:17000`. Never query `WHERE payment_method = 'Cash'`. Parse in code: split by `|`, then split by `:`. (#62)
+63. **transfer_out amounts are NEGATIVE in cash_movements** — Use `ABS(amount)` in SQL to avoid double-negative: `... - (-50000) = +50000` (wrong). `... - ABS(-50000) = -50000` (correct). (#63)
+64. **Account transfers DO affect physical drawer** — Transfer Out (Cash→KPay/Bank) means cash physically leaves the drawer. Must be deducted from till expected. (#64)
+65. **Always verify DB sign conventions per movement type** — eject=positive, transfer_out=negative, transfer_in=positive, inject=various. Assumptions cause silent miscalculations. (#65)
