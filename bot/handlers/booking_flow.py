@@ -40,7 +40,7 @@ def _extend_timer_kb(cid: str, member_id: str, chat_id: int) -> InlineKeyboardMa
             InlineKeyboardButton("➕ +90 min", callback_data=f"ext:90:{tag}"),
         ],
         [InlineKeyboardButton("✏️ Custom (မိနစ် ကိုယ်တိုင်ထည့်)", callback_data=f"ext:custom:{tag}")],
-        [InlineKeyboardButton("✅ ပြီးပြီ (End မည်)", callback_data=f"ext:0:{tag}")],
+        [InlineKeyboardButton("⏹️ Sale Bot → Session End", callback_data=f"ext:redirect:{tag}")],
     ])
 
 def _remind_key(cid: str, chat_id: int) -> str:
@@ -198,7 +198,7 @@ async def _remind_loop(
                     f"━━━━━━━━━━━━━━━━━━\n"
                     f"{_warn_line}\n"
                     f"ဆက်ကစားမည်ဆိုက ➕ Extend ကိုနှိပ်ပါ\n"
-                    f"ပြီးပြီဆိုက ⏹️ <b>Manual End လုပ်ပါ</b> (Session auto-end မဖြစ်ပါ)"
+                    f"ပြီးပြီဆိုက ⏹️ <b>Sale Bot → Session End</b> မှ အဆုံးသတ်ပါ"
                 )
                 # Send ONLY to group chat with inline buttons
                 # (single destination prevents dual-chat end/extend conflict)
@@ -274,7 +274,7 @@ async def _send_session_reminder(
                 f"━━━━━━━━━━━━━━━━━━\n"
                 f"⚠️ <b>Session ဆုံးချိန်ရောက်ပြီ!</b>\n"
                 f"ဆက်ကစားမည်ဆိုက ➕ Extend ကိုနှိပ်ပါ\n"
-                f"ပြီးပြီဆိုက ✅ ပြီးပြီ ကိုနှိပ်ပြီး ⏹️ Session ဆုံး နှိပ်ပါ"
+                f"ပြီးပြီဆိုက ⏹️ <b>Sale Bot → Session End</b> မှ အဆုံးသတ်ပါ"
             ),
             parse_mode="HTML",
             reply_markup=_extend_timer_kb(cid, member_id, chat_id),
@@ -305,7 +305,7 @@ async def _post_n8n_session_reminder(
         f"━━━━━━━━━━━━━━━━━━\n"
         f"⚠️ <b>5 မိနစ်အတွင်း Session ဆုံးမည်!</b>\n"
         f"ဆက်ကစားမည်ဆိုက ➕ Extend ကိုနှိပ်ပါ\n"
-        f"ပြီးပြီဆိုက ✅ ပြီးပြီ ကိုနှိပ်ပြီး ⏹️ Session ဆုံး နှိပ်ပါ"
+        f"ပြီးပြီဆိုက ⏹️ <b>Sale Bot → Session End</b> မှ အဆုံးသတ်ပါ"
     )
     payload = _json.dumps({
         "chat_id":     chat_id,
@@ -771,7 +771,29 @@ async def cb_extend_timer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text("⚠️ Data error — ထပ်မံကြိုးစားပါ")
         return
 
-    # ── ✅ End ───────────────────────────────────────────────────────────────
+    # ── ⏹️ Redirect to Sale Bot ───────────────────────────────────────────────
+    if extra_str == "redirect":
+        still_active_r = await _is_session_active(cid)
+        if not still_active_r:
+            await query.edit_message_text(
+                "⛔ <b>Session ပြီးသွားပြီ!</b>\n"
+                f"🕹️ Console : <b>{cid}</b>  👤 <b>{member_id}</b>",
+                parse_mode="HTML",
+            )
+            _cancel_remind(cid, chat_id)
+        else:
+            await query.edit_message_text(
+                f"⏹️ <b>Session End — Sale Bot မှ လုပ်ပါ</b>\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"🕹️ Console : <b>{cid}</b>  👤 <b>{member_id}</b>\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"📋 Sale Bot → Console Management → Session End\n"
+                f"ဒီနေရာမှာ End လုပ်လို့ မရပါ — Voucher ထွက်မှာမဟုတ်ပါ",
+                parse_mode="HTML",
+            )
+        return
+
+    # ── ✅ End (legacy — button removed, keep for backwards compat) ────────
     if extra_str == "0":
         # Find active booking for this console and end it
         bk_id = None
