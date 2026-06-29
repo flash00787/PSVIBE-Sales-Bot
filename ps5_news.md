@@ -1,6 +1,112 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-28 23:30 UTC
+> Last updated: 2026-06-29 05:30 UTC
+
+---
+
+## 🟢🟢🟢 CRITICAL UPDATE (June 29, 2026 - 05:30 UTC) — HALO COMING TO PS5! + Nioh 3 Already Out! + New Free Demos!
+
+> **Summary:** Early Monday morning sweep (6 hours since last update). THREE major discoveries: **Halo: Campaign Evolved** confirmed for PS5 on July 28 — the first Halo game EVER on PlayStation, a historic moment! **Nioh 3** by Team Ninja ALREADY RELEASED on February 6, 2026 — completely missed from tracker for 4+ months! **Salvation: Echoes of War** free demo now available on PS Store. Also: BlazBlue Entropy Effect free demo + Phantom Blade Zero delay confirmed to Oct 29.
+
+### 🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28, 2026 on PS5! (COMPLETELY MISSED! HISTORIC!)
+
+**THE BIGGEST FIND IN TRACKER HISTORY.** Halo — Xbox's legendary flagship franchise for 25 years — is coming to PlayStation for the FIRST TIME EVER!
+
+- **Halo: Campaign Evolved** — a faithful, modernized remake of **Halo: Combat Evolved's** iconic campaign
+- Developer: **Halo Studios** (formerly 343 Industries) | Publisher: **Xbox Game Studios**
+- **Release date: July 28, 2026** on PS5, Xbox Series X|S, and Windows PC
+- **Early Access: July 23, 2026** for Premium/Collector's Edition owners (5 days early!)
+- Announced at **Xbox Games Showcase on June 7, 2026** — completely absent from our tracker for 3 weeks!
+- **Key features:**
+  - High-definition visuals with modernized controls and updated cinematics
+  - **3 NEW bonus missions** exploring events BEFORE the main Halo story
+  - **2-player split-screen co-op** on consoles (PERFECT for lounge!)
+  - **4-player online cooperative multiplayer** with full **cross-platform play** and **cross-progression**
+  - Rebuilt audio, reorchestrated soundtrack
+- Sources: IGN, Wikipedia, Xbox News, PlayStation Store, OpenCritic
+- **💡💡💡💡 Lounge Impact — HISTORIC & MASSIVE:**
+  - Halo defined a generation of gaming. It's one of the TOP 5 most iconic game franchises of all time
+  - This is the FIRST TIME EVER Halo is playable on a PlayStation console — this is a watershed moment in gaming history
+  - **Split-screen co-op + 4-player online cross-play** = PERFECT lounge game. Friends can play together in lounge or online
+  - The nostalgia factor is enormous — Halo CE was a launch title for the original Xbox in 2001. 25 years later, it's on PS5!
+  - **July 28 — only 29 days away!** Pre-order NOW on PS Store!
+  - This is a "stop everything and promote" moment for PS VIBE. "Halo on PlayStation — experience it at PS VIBE!"
+  - Early Access July 23 for Premium/Collector's — could host a "Halo Early Access Night" at the lounge!
+  - The Halo fanbase is MASSIVE globally. Xbox players have loved this franchise for decades. Now PS5 owners get to experience it too.
+  - ⭐⭐⭐⭐⭐ lounge value — legendary franchise + co-op + cross-play + historic moment = unbeatable combination
+
+### ⚔️ Nioh 3 — ALREADY RELEASED February 6, 2026! (COMPLETELY MISSED FOR 4+ MONTHS!)
+- **Team Ninja / Koei Tecmo** released the third installment in the acclaimed Nioh series on **February 6, 2026**
+- PS5 and PC simultaneous launch — completely absent from our tracker for nearly **5 months!**
+- Dark fantasy action-RPG (soulslike) set after Nioh 2 — samurai + yokai combat
+- **Two DLC packs confirmed:** first by September 2026, second by February 2027 — new stories + weapons
+- A time-limited demo was available January 29 with progress transferable to full game
+- **💡💡 Lounge Note:** The Nioh series has a dedicated hardcore fanbase. Nioh 2 was critically acclaimed (Metacritic 85). If the lounge doesn't have Nioh 3 yet, it's been out for 5 months — pick it up! Soulslike fans will appreciate it. The DLC roadmap means ongoing content support.
+
+### 🎮 Salvation: Echoes of War — FREE Demo Available NOW on PS Store! (NEW FIND!)
+- **Third-person stealth adventure** by developer **Infinite Entropy**
+- **Free demo** now available on PS Store — **no PS Plus required!** 15-25 minute gameplay slice
+- Full game launches **Q3 2026** (July-September)
+- Story: A WWII bomber pilot trapped in a coma navigates a purgatorial landscape, confronting traumatic memories with a loyal companion
+- Gameplay: stealth, puzzle-solving, non-aggressive combat — unique premise
+- Source: GamingBible (Jun 26), PlayStation Lifestyle (Jun 26)
+- **💡 Lounge Note:** Free demo is a no-risk way to try before buying. Unique WWII/purgatory setting stands out. If the full game reviews well at launch, could be an interesting addition. Download the demo on one lounge console for customers to try!
+
+### 🥊 BlazBlue Entropy Effect — Free Demo Available + PS5 Launch Next Month! (NEW FIND!)
+- Free demo now on PS Store — play first 3 levels with characters Ragna, Es, and Hibiki
+- Full PS5 launch **next month** (August 2026 TBD)
+- Arc System Works' acclaimed fighting game series — BlazBlue has a passionate fanbase
+- **💡 Lounge Note:** Fighting games are lounge staples. Free demo = test before buying the full game. If it plays well, the full version would be a great lounge fighting game addition.
+
+### ⚠️ Phantom Blade Zero — Confirmed Delayed to October 29, 2026
+- Previously reported delay now confirmed via State of Play recap sources
+- This was already in our tracker — date is consistent
+
+### 📊 Market Context — PS + Xbox Sales Hit 25-Year Low
+- Reports indicate PlayStation and Xbox combined sales reached a **25-year low** recently
+- **Nintendo is currently dominating** the market (Switch 2 momentum?)
+- Sony plans to "revitalize the market" with renewed focus on live service games
+- **💡 Lounge Note:** The console sales dip doesn't affect PS VIBE directly — lounges thrive on social experiences regardless of hardware sales trends. If anything, fewer home consoles = more people seeking gaming lounges to play. The GTA 6 launch in November could reverse this trend single-handedly.
+
+### 📅 PS Plus Essential July — Still No Leak (1 Day Until Reveal?)
+- Forbes article confirming NO leaks as of June 28 — still current
+- Official announcement expected **July 1** (Tuesday) — now only **2 days away!**
+- Some sources report the announcement may be slightly delayed (OpenCritic: "PS Plus Monthly Free Games Announcement for July 2026 Delayed")
+- Games available **July 7** (first Tuesday)
+- **💡 Lounge Action:** Keep monitoring PS Blog July 1-2. If announcement is delayed, don't panic — games don't go live until July 7 regardless.
+
+### 📊 Quick Status Check (June 29 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | **NEW! 🆕 HISTORIC!** | Jul 28! FIRST HALO ON PLAYSTATION! Split-screen co-op! |
+| ⚔️ Nioh 3 | **MISSED! 🆕** | Already out since Feb 6! 5 months late! |
+| 🎮 Salvation: Echoes of War | **NEW! 🆕** | Free demo on PS Store! Q3 2026! |
+| 🥊 BlazBlue Entropy Effect | **NEW! 🆕** | Free demo! PS5 launch Aug 2026! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! Beta Jul 2-5! |
+| 📅 PS Plus Essential July Reveal | **Jul 1 (maybe delayed)** | 2 days away! Still no leak! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 11 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 10 days! Pre-order! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 2 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔥🔥 Resonance: A Plague Tale Legacy | Aug 27! | Prequel to Requiem! |
+| 🐺 Marvel's Wolverine | Sep 15! | PS5 exclusive! Pre-orders LIVE! |
+| 🔥 CoD Modern Warfare 4 | Oct 23! | Pre-orders LIVE! |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+| 🎬 Sony StudioCanal deletion | Sep 1 | 551 films deleted! EU only! |
+
+### 🚨 Priority Lounge Actions (UPDATED):
+1. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW on PS Store! FIRST HALO EVER ON PLAYSTATION! Split-screen co-op! This is a historic moment — promote HEAVILY!
+2. **Check if Nioh 3 is on lounge consoles** — already released Feb 6! Buy if missing!
+3. **Download Salvation: Echoes of War FREE demo** on lounge PS5s — no PS Plus needed!
+4. **Download BlazBlue Entropy Effect FREE demo** — test before August full launch!
+5. **PALWORLD 1.0 — July 10! Only 11 days!** Wishlist/pre-order on PS Store!
+6. **Mid-Year Deals + Supplementary Sale — 2 DAYS LEFT!** Final stock-up window!
+7. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog! (May be delayed)
+8. **Pre-order AC Black Flag Resynced** (Jul 9 — 10 days!) + Halo: Campaign Evolved + CoD MW4!
+9. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
