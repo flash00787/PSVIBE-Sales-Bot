@@ -39,3 +39,11 @@
 ## Next Steps
 - Boss to enter real transaction data
 - Domain migration when new domain ready
+
+## 2026-06-30 — OPEX Tab Added
+- **New database table:** `opex` (id, category, description, amount, currency, payment_date, from_account_id, notes, created_at)
+- **DB functions:** `opex_list()`, `opex_create()`, `opex_update()`, `opex_delete()`, `opex_summary()` — all with automatic account balance adjustments
+- **API endpoints:** `GET/POST /api/opex`, `PATCH/DELETE /api/opex/{id}` — all auth-protected
+- **Dashboard:** New "OPEX" tab in sidebar with summary cards, expense table, add/edit/delete modal forms, account dropdown integration
+- **Dashboard summary:** `/api/dashboard` now includes `opex` field
+- Account balances auto-adjust when OPEX is created (deduct), edited (reverse + re-apply), or deleted (reverse)
