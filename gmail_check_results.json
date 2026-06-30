@@ -1,40 +1,66 @@
 {
-  "checked_at": "2026-06-28T13:32:23.178309+00:00",
+  "checked_at": "2026-06-30T13:36:57.917616+00:00",
   "total_unread": 30,
-  "total_processed": 48,
+  "total_processed": 57,
   "nova_found": 0,
-  "important_found": 9,
-  "promotional_skipped": 21,
+  "important_found": 8,
+  "promotional_skipped": 11,
   "nova_emails": [],
   "important_emails": [
     {
-      "id": "19f09939728612e7",
-      "threadId": "19f09939728612e7",
-      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "id": "19f1352017e5e468",
+      "threadId": "19f1352017e5e468",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
       "to": "chanmyint123456789@gmail.com",
-      "subject": "Credit Card Repayment Successful",
-      "date": "2026-06-27 14:54 UTC",
-      "is_unread": true,
-      "snippet": "Hello, AUNG CHAN MYINT You repaid 3230289.07 MMK to VISA CREDIT CARD This transaction was made on AYA mBanking. Order for Payment Credit Card Repayment Transaction No. 267917092165 Transaction Date 27",
-      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou repaid 3,230,289.07 MMK to VISA CREDIT CARD\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nCredit Card Repayment\r\nTransaction No.\r\n267917092165\r\nTransaction Date\r\n27 Jun 2026 09:24 PM\r\nPaid By\r\nAccount Holder Name\r\nAUNG CHAN MYINT\r\nAccount Number\r\n40037046561\r\nBranch Code\r\n0211\r\nCard Details\r\nCard Holder Name\r\nAUNG CHAN MYINT\r\nCard Number\r\n4550 **** **** 3567\r\nCard Type\r\nVISA CREDIT CARD\r\nPayment Details\r\nSubtotal\r\n3,230,289.07 MMK\r\nFees\r\n0 MMK\r\nTot",
+      "subject": "\ud83e\udd9e Five Eyes Sounds AI Alarm",
+      "date": "2026-06-29 12:02 UTC",
+      "is_unread": false,
+      "snippet": "Plus: Smart Bikes Get AI Label, Telecom AI agent Hits Reality \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f",
+      "body_preview": "",
       "keywords": [
-        "payment",
-        "account"
+        "tele"
       ]
     },
     {
-      "id": "19f099206f8179da",
-      "threadId": "19f099206f8179da",
-      "from": "AYA Bank <ibanking@ayainnovation.com>",
-      "to": "chanmyint123456789@gmail.com",
-      "subject": "Received Money",
-      "date": "2026-06-27 14:53 UTC",
-      "is_unread": true,
-      "snippet": "Hello, AUNG CHAN MYINT You recieved 9900000 MMK From KAY THWE OO This transaction was made on AYA mBanking. Order for Payment Transfer to other AYA Account Transaction No. 267916990606 Transaction Date",
-      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou recieved 9,900,000 MMK From KAY THWE OO\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nTransfer to other AYA Account\r\nTransaction No.\r\n267916990606\r\nTransaction Date\r\n27 Jun 2026 09:23 PM\r\nSend From\r\nAccount Holder Name\r\nKAY THWE OO\r\nAccount Number\r\n40036114975\r\nBranch Code\r\n0043 0043-Ygn (9) North Okkalapa\r\nReceiver Details\r\nAccount Holder Name\r\nAUNG CHAN MYINT\r\nAccount Number\r\n40037046561\r\nBranch Code\r\n0211 0211-Ygn(87)-JCI\r\nPayment Details\r\nSubto",
+      "id": "19f0ed406d3ea7d9",
+      "threadId": "19f0ed406d3ea7d9",
+      "from": "PlayStation <sony@txn-email03.playstation.com>",
+      "to": "<chanmyint123456789@gmail.com>",
+      "subject": "PS has invited you to join their family on PlayStation",
+      "date": "2026-06-28 15:23 UTC",
+      "is_unread": false,
+      "snippet": "PS has invited you to join their family on PlayStation You received a family request on PlayStation from PS. Click on the link below to confirm the details of the request. \u200b \u200bView Family Request Now\u200b",
+      "body_preview": "\r\n\r\nPS has invited you to join their family on PlayStation\r\n\r\n\r\nPS has invited you to join their family on PlayStation\r\n\r\nYou received a family request on PlayStation from PS. Click on the link below to confirm the details of the request.\r\n\r\n\u200b\r\n\r\n\u200b\r\nhttps://id.sonyentertainmentnetwork.com/id/receive_family_invitation/#/receive_family_invitation?family_invitation_uuid=0bff851f-55dc-4e94-b2e1-0cb4bae443a2&signin_id=chanmyint123456789%40gmail.com \r\nView Family Request Now\u200b\r\n\r\n\r\n\r\n This email messag",
       "keywords": [
-        "payment",
-        "account"
+        "confirm"
+      ]
+    },
+    {
+      "id": "19f0e92b6a4115a2",
+      "threadId": "19f0e92b6a4115a2",
+      "from": "PlayStation <sony@txn-email03.playstation.com>",
+      "to": "<chanmyint123456789@gmail.com>",
+      "subject": "Pre-Order Purchase Confirmation and GTA+ Redemption Instructions",
+      "date": "2026-06-28 14:12 UTC",
+      "is_unread": false,
+      "snippet": "Pre-Order Purchase Confirmation \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f",
+      "body_preview": "\r\n\r\nPre-Order Purchase Confirmation and GTA+ Redemption Instructions Pre-Order Purchase Confirmation&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; \r\n&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; \r\n&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81",
+      "keywords": [
+        "confirm"
+      ]
+    },
+    {
+      "id": "19f0e922b6000ffe",
+      "threadId": "19f0e922b6000ffe",
+      "from": "PlayStation <sony@txn-email03.playstation.com>",
+      "to": "<chanmyint123456789@gmail.com>",
+      "subject": "Funds have been added to your wallet",
+      "date": "2026-06-28 14:11 UTC",
+      "is_unread": false,
+      "snippet": "Wallet Transaction Notification: Funds Added. Dear Aung Chan, The requested funds have been added to your PlayStation\u2122Network wallet. The transaction details are provided below for your records. Online",
+      "body_preview": "\r\n\r\nFunds have been added to your wallet\r\n\r\n\r\nWallet Transaction Notification: Funds Added.\r\n\r\nDear Aung Chan,\r\n\r\nThe requested funds have been added to your PlayStation\u2122Network wallet. The transaction details are provided below for your records.\r\n\r\nOnline ID:\r\nRev-Flash007\r\n\r\nOrder Number:\r\n787086443440070\r\n\r\nDate Purchased:\r\n06/28/2026\r\n\r\nCharge Method: \r\nFunds Added To Wallet:$100.00\r\n\r\nCurrent Wallet Amount*:$119.86\r\n*This wallet amount is current as of the date and time of this transaction.",
+      "keywords": [
+        "wallet"
       ]
     },
     {
@@ -89,48 +115,6 @@
       "is_unread": false,
       "snippet": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Ko Khant \u101b\u1031 \ud83d\ude4f \u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b PS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a",
       "body_preview": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Ko Khant \u101b\u1031 \ud83d\ude4f\n\n\u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b\n\nPS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a \u1000\u102d\u102f\u101a\u103a\u1018\u102c\u1000\u103c\u1031\u102c\u1004\u1037\u103a \u1018\u101a\u103a\u101c\u1031\u102c\u1000\u103a\u101b\u101c\u1032 \u1006\u102d\u102f\u1010\u102c \u101b\u103e\u1004\u103a\u1038\u1015\u102b\u1010\u101a\u103a\u104b\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u1001\u1004\u103a\u1017\u103b\u102c\u1038\u101b\u1032\u1037 \u101e\u1010\u103a\u1019\u103e\u1010\u103a\u1001\u103b\u1000\u103a\u1019\u103b\u102c\u1038\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u2022 Basic Salary             \u2014 400,000 Ks\n\u2022 Transport Allowance      \u2014 0 Ks\n\u2022 Food Allowance           \u2014 200,000 Ks\n\u2022 Full Attendance Bonus    \u2014 50,000 Ks (\u1001\u103d\u1004\u1037\u103a\u101c\u102f\u1036\u1038\u101d\u1019\u101a\u1030\u1019\u103e\u101b\u1019\u101a\u103a)\n\u2022 Food Commi",
-      "keywords": [
-        "ps vibe"
-      ]
-    },
-    {
-      "id": "19f0c12ca4614dbe",
-      "threadId": "19f0c12ca4614dbe",
-      "from": "chanmyint123456789@gmail.com",
-      "to": "rayleighdarking2004@gmail.com",
-      "subject": "PS VIBE - June 2026 \u101c\u1005\u102c\u1016\u103d\u1032\u1037\u1005\u100a\u103a\u1038\u1015\u102f\u1036 / Salary Structure",
-      "date": "2026-06-28 02:33 UTC",
-      "is_unread": false,
-      "snippet": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Ko Khant \u101b\u1031 \ud83d\ude4f PS VIBE - PS5 Gaming Lounge \u101b\u1032\u1037 June 2026 \u101c\u1005\u102c\u1016\u103d\u1032\u1037\u1005\u100a\u103a\u1038\u1015\u102f\u1036\u1000\u102d\u102f \u1021\u1031\u102c\u1000\u103a\u1015\u102b\u1021\u1010\u102d\u102f\u1004\u103a\u1038 \u1021\u101e\u102d\u1015\u1031\u1038\u1021\u1015\u103a\u1015\u102b\u1010\u101a\u103a \u2014 \ud83d\udccb Salary Breakdown (June 2026) \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 \u2022 Base Salary (\u1021\u1001\u103c\u1031\u1001\u1036\u101c\u1005\u102c) +",
-      "body_preview": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Ko Khant \u101b\u1031 \ud83d\ude4f\n\nPS VIBE - PS5 Gaming Lounge \u101b\u1032\u1037 June 2026 \u101c\u1005\u102c\u1016\u103d\u1032\u1037\u1005\u100a\u103a\u1038\u1015\u102f\u1036\u1000\u102d\u102f \u1021\u1031\u102c\u1000\u103a\u1015\u102b\u1021\u1010\u102d\u102f\u1004\u103a\u1038 \u1021\u101e\u102d\u1015\u1031\u1038\u1021\u1015\u103a\u1015\u102b\u1010\u101a\u103a \u2014\n\n\ud83d\udccb Salary Breakdown (June 2026)\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2022 Base Salary (\u1021\u1001\u103c\u1031\u1001\u1036\u101c\u1005\u102c)         + 400,000 Ks\n\u2022 Food Allowance (\u1005\u102c\u1038\u1005\u101b\u102d\u1010\u103a\u1011\u1031\u102c\u1000\u103a\u1015\u1036\u1037\u1000\u103c\u1031\u1038) + 200,000 Ks\n\u2022 Transport Allowance                 + 0 Ks\n\u2022 Attendance Bonus (\u1001\u103d\u1004\u1037\u103a 0 \u101b\u1000\u103a)      + 50,000 Ks\n\u2022 Food Commission (5%)              + 46,919 Ks\n\u2022 Game Bonus (938hrs, no tier)      + 0 Ks\n\u2022 Advance Deduction                 \u2212 2",
-      "keywords": [
-        "ps vibe"
-      ]
-    },
-    {
-      "id": "19f0a2f0bf9f05fc",
-      "threadId": "19f0a2f0bf9f05fc",
-      "from": "chanmyint123456789@gmail.com",
-      "to": "mr.curlybrow@gmail.com",
-      "subject": "PS VIBE \u2014 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036 (June 2026)",
-      "date": "2026-06-27 17:44 UTC",
-      "is_unread": false,
-      "snippet": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Min Myat Naing \u101b\u1031 \ud83d\ude4f \u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b PS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a",
-      "body_preview": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Min Myat Naing \u101b\u1031 \ud83d\ude4f\n\n\u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b\n\nPS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a \u1000\u102d\u102f\u101a\u103a\u1018\u102c\u1000\u103c\u1031\u102c\u1004\u1037\u103a \u1018\u101a\u103a\u101c\u1031\u102c\u1000\u103a\u101b\u101c\u1032 \u1006\u102d\u102f\u1010\u102c \u101b\u103e\u1004\u103a\u1038\u1015\u102b\u1010\u101a\u103a\u104b\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u1001\u1004\u103a\u1017\u103b\u102c\u1038\u101b\u1032\u1037 \u101e\u1010\u103a\u1019\u103e\u1010\u103a\u1001\u103b\u1000\u103a\u1019\u103b\u102c\u1038\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u2022 Basic Salary             \u2014 400,000 Ks\n\u2022 Transport Allowance      \u2014 30,000 Ks\n\u2022 Food Allowance           \u2014 0 Ks\n\u2022 Full Attendance Bonus    \u2014 50,000 Ks (\u1001\u103d\u1004\u1037\u103a\u101c\u102f\u1036\u1038\u101d\u1019\u101a\u1030\u1019\u103e\u101b\u1019\u101a\u103a)\n\u2022 Food ",
-      "keywords": [
-        "ps vibe"
-      ]
-    },
-    {
-      "id": "19f0a2f080a44432",
-      "threadId": "19f0a2f080a44432",
-      "from": "chanmyint123456789@gmail.com",
-      "to": "hteteaindraymaung65@gmail.com",
-      "subject": "PS VIBE \u2014 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036 (June 2026)",
-      "date": "2026-06-27 17:44 UTC",
-      "is_unread": false,
-      "snippet": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Eaindray \u101b\u1031 \ud83d\ude4f \u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b PS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a",
-      "body_preview": "\u1019\u1004\u103a\u1039\u1002\u101c\u102c\u1015\u102b Eaindray \u101b\u1031 \ud83d\ude4f\n\n\u1012\u102e email \u1000\u102d\u102f Aung Chan Myint \u1021\u1005\u103a\u1000\u102d\u102f\u101b\u1032\u1037 personal assistant Kora \u1000 \u1000\u102d\u102f\u101a\u103a\u1005\u102c\u1038\u1015\u102d\u102f\u1037\u1015\u1031\u1038\u1010\u102c\u1015\u102b\u104b\n\nPS VIBE \u101b\u1032\u1037 \u101c\u1005\u102c\u1010\u103d\u1000\u103a\u1001\u103b\u1000\u103a\u1015\u102f\u1036\u1000\u102d\u102f \u101b\u103e\u1004\u103a\u1038\u1015\u103c\u1001\u103b\u1004\u103a\u1015\u102b\u1010\u101a\u103a\u104b \u101c\u1005\u1009\u103a \u1018\u101a\u103a\u101c\u102d\u102f\u1010\u103d\u1000\u103a\u1019\u101c\u1032\u1006\u102d\u102f\u1010\u102c \u101e\u102d\u1011\u102c\u1038\u101b\u1004\u103a \u1000\u102d\u102f\u101a\u103a\u1018\u102c\u1000\u103c\u1031\u102c\u1004\u1037\u103a \u1018\u101a\u103a\u101c\u1031\u102c\u1000\u103a\u101b\u101c\u1032 \u1006\u102d\u102f\u1010\u102c \u101b\u103e\u1004\u103a\u1038\u1015\u102b\u1010\u101a\u103a\u104b\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u1001\u1004\u103a\u1017\u103b\u102c\u1038\u101b\u1032\u1037 \u101e\u1010\u103a\u1019\u103e\u1010\u103a\u1001\u103b\u1000\u103a\u1019\u103b\u102c\u1038\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u2022 Basic Salary             \u2014 400,000 Ks\n\u2022 Transport Allowance      \u2014 30,000 Ks\n\u2022 Food Allowance           \u2014 0 Ks\n\u2022 Full Attendance Bonus    \u2014 50,000 Ks (\u1001\u103d\u1004\u1037\u103a\u101c\u102f\u1036\u1038\u101d\u1019\u101a\u1030\u1019\u103e\u101b\u1019\u101a\u103a)\n\u2022 Food Commis",
       "keywords": [
         "ps vibe"
       ]
