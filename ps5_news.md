@@ -1,6 +1,87 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-30 05:30 UTC
+> Last updated: 2026-06-30 11:30 UTC
+
+---
+
+## ⚡ UPDATE (June 30, 2026 - 11:30 UTC) — PS Plus Extra June Catalog HIDDEN GEMS Found! FFXVI Free + TODAY'S 3 New Additions + July Reveal TOMORROW!
+
+> **Summary:** Midday Tuesday sweep (6 hours since last update). Discovered that the **June PS Plus Extra/Premium Game Catalog** — featuring **Final Fantasy XVI** as a headliner — was completely absent from tracker for 2+ weeks! FFXVI has been FREE for Extra/Premium subscribers since June 16. Additionally, **3 games were added TODAY (June 30)**: Farming Simulator 25, Blades of Fire, and Black Desert. Dead or Alive 6 Last Round released June 25 (not previously tracked). **MID-YEAR DEALS FINAL HOURS — ends tonight.** **PS Plus Essential July reveal is TOMORROW (July 1)** — still NO credible leaks as of midday June 30.
+
+### 🔥🔥 PS Plus Extra/Premium June 2026 Game Catalog — MAJOR ADDITIONS MISSED FROM TRACKER!
+
+The June PS Plus Extra/Premium Game Catalog dropped throughout June 2026 with significant titles. **These were completely absent from our tracker.** Here's what was added:
+
+| Date Added | Game | Platform | Lounge Value |
+|------------|------|----------|-------------|
+| 🔥🔥 **Jun 16** | **Final Fantasy XVI** | PS5 | ⭐⭐⭐⭐⭐ HEADLINE! PS5's flagship RPG — FREE with Extra! |
+| 🦔 **Jun 10-11** | **Sonic X Shadow Generations** | PS5, PS4 | ⭐⭐⭐⭐ Family-friendly platformer, great for lounge! |
+| 🏰 **Jun 23** | **Kingdom Come: Deliverance** | PS5, PS4 | ⭐⭐⭐ Medieval RPG, niche but dedicated fanbase |
+| 📸 **Jun 23** | **Life is Strange: Double Exposure** | PS5 | ⭐⭐⭐⭐ Narrative adventure, perfect for group play |
+| 🚜 **Jun 30 (TODAY!)** | **Farming Simulator 25** | PS5 | ⭐⭐⭐ Surprise hit genre, casual relaxing play |
+| ⚔️ **Jun 30 (TODAY!)** | **Blades of Fire** | PS5 | ⭐⭐⭐ New action title, day-one catalog! |
+| 🏜️ **Jun 30 (TODAY!)** | **Black Desert** | PS5 | ⭐⭐⭐ MMORPG, dedicated playerbase |
+| 🎸 **Jun 16** | **Gitaroo Man** (Premium Classics) | PS4, PS5 | ⭐⭐ Cult classic rhythm game |
+
+- Sources: Official PS Blog (Jun 10), IGN, Wccftech, PSU
+- **💡💡 Lounge Impact — SIGNIFICANT:**
+  - **Final Fantasy XVI** is the headline find. FFXVI was the PS5's BIGGEST exclusive RPG — critically acclaimed, visually spectacular, and now FREE for PS Plus Extra/Premium subscribers. If the lounge has Extra/Premium, download it NOW on all consoles! It's been available for 2 weeks!
+  - **Sonic X Shadow Generations** — excellent family-friendly platformer for lounge. Great for younger customers and Sonic fans.
+  - **Life is Strange: Double Exposure** — narrative adventure games are PERFECT for lounge group play. Players make choices together, discuss outcomes.
+  - **TODAY's 3 additions** (Farming Simulator 25, Blades of Fire, Black Desert) — fresh content for lounge consoles.
+  - These are all **free with the existing PS Plus Extra/Premium subscription** — zero additional cost if lounge already subscribed!
+
+### 🔥 Dead or Alive 6 Last Round — Released June 25! (NOT TRACKED)
+- Koei Tecmo's flagship fighting game series released on PS5 June 25, 2026
+- Fighting games are lounge staples — quick matches, easy to spectate, high energy
+- **💡 Lounge Note:** Check if already on lounge consoles. Dead or Alive has a dedicated competitive scene.
+
+### 📅 PS Plus Essential July — Reveal TOMORROW (July 1)! STILL No Leaks!
+- Official PS Plus Essential July lineup announcement expected **TOMORROW (July 1)**
+- **Still NO credible leaks** as of June 30 11:30 UTC — all community predictions remain pure speculation
+- Games available **July 7** (first Tuesday)
+- **💡 Lounge Action:** Monitor PS Blog throughout July 1. If any major AAA title hits Essential, it's FREE for all lounge PS5s!
+
+### 🛒 MID-YEAR DEALS + SUPPLEMENTARY SALE — FINAL HOURS!
+- Both sales end **TODAY** (June 30 / July 1 00:00 UTC)
+- Over 3,600 games discounted up to 75%
+- **⚠️ LAST CHANCE!** After tonight, prices go back up!
+
+### 📊 Quick Status Check (June 30 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 FFXVI on PS Plus Extra | **MISSED 2 WEEKS! 🆕** | FREE since Jun 16! Download NOW! |
+| 🦔 Sonic X Shadow Generations | **MISSED! 🆕** | FREE on PS Plus Extra since Jun 10! |
+| 📸 Life is Strange: Double Exposure | **MISSED! 🆕** | FREE on PS Plus Extra since Jun 23! |
+| 🚜⚔️🏜️ 3 NEW Today | **TODAY! 🆕** | Farming Sim 25, Blades of Fire, Black Desert! |
+| 🥊 Dead or Alive 6 Last Round | **MISSED! 🆕** | Released Jun 25! Fighting game! |
+| 📅 PS Plus Essential July Reveal | **TOMORROW (Jul 1)** | STILL no credible leaks! |
+| 🛒 Mid-Year + Supplementary Sale | **FINAL HOURS!** | ⚠️ Ends today! Last chance! |
+| 📤 PS Plus July Departures | **Jul 21** | 8 confirmed titles! Jackbox 9 + 7 more! |
+| 📊 Sony PS5 Demand | **STRONG** | Demand steady despite price hike! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 10 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 9 days! Pre-order! |
+| 🔥🔥🔥 Control Resonant | Sep 24! | $60! Dylan Faden! |
+| 🔥🔥🔥 Silent Hill: Townfall | Sep 24! | Pre-orders LIVE! |
+| 🗝️🔥🔥 Kingdom Hearts Collection | Oct 8! | PRE-ORDERS LIVE! Entire saga! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥🔥 Rayman Legends Retold | Oct 1! | 4-player couch co-op! Pre-orders LIVE! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+
+### 🚨 Priority Lounge Actions (UPDATED June 30 - 11:30 UTC):
+1. **🔥🔥 DOWNLOAD Final Fantasy XVI on ALL lounge PS5s** — FREE on PS Plus Extra since June 16! Already been available for 2 weeks!
+2. **Download Life is Strange: Double Exposure + Sonic X Shadow Generations** — also FREE on PS Plus Extra!
+3. **⚠️ MID-YEAR DEALS — FINAL HOURS!** Last chance to stock up on co-op/party/fighting games!
+4. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO EVER ON PLAYSTATION!
+5. **Mark TOMORROW (July 1)** — PS Plus Essential July reveal! Check PS Blog!
+6. **Pre-order Rayman Legends Retold** — Oct 1! 4-player couch co-op!
+7. **Pre-order/wishlist God of War: Laufey** — Early 2027! PlayStation's crown jewel!
+8. **DOWNLOAD Onimusha: Way of the Sword DEMO** on lounge PS5s — available NOW!
+9. **PALWORLD 1.0 — July 10! Only 10 days!** Pre-order!
+10. **Pre-order Kingdom Hearts Collection** — Oct 8! Entire KH saga!
+11. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6! Demand staying strong!
 
 ---
 
