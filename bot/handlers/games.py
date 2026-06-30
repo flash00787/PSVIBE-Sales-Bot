@@ -47,10 +47,12 @@ def _build_game_kb(games: list, page: int, total_pages: int, show_nav: bool = Tr
         name = g.get("title", "").strip()
         if not name:
             continue
+        status = g.get("status", "").strip()
+        status_icon = "✅" if status == "Installed" else ("📀" if status == "Available" else "⚪")
         genre = g.get("genre", "").strip()
         sm = g.get("solo_multi", "").strip()
         sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
-        label = f"{i}. {name}"
+        label = f"{status_icon} {i}. {name}"
         if genre:
             label += f" · {genre}"
         kb.append([label])
@@ -74,11 +76,29 @@ def _build_game_list_text(games: list, page: int, total_pages: int, query: str =
     end = start + GAMES_PER_PAGE
     page_games = games[start:end]
 
+    # ── Status counts ──
+    installed = sum(1 for g in games if g.get("status", "") == "Installed")
+    available = sum(1 for g in games if g.get("status", "") == "Available")
+    not_installed = sum(1 for g in games if g.get("status", "") not in ("Installed", "Available", ""))
+    unknown = sum(1 for g in games if g.get("status", "") not in ("Installed", "Available") or not g.get("status"))
+
     header = "🎮 <b>Game Library</b>"
     if query:
         header += f' — "<i>{query}</i>"'
 
-    lines = [f"{header} ({len(games)} ဂိမ်း)"]
+    lines = [f"{header}"]
+
+    # Status bar
+    status_parts = []
+    if installed > 0:
+        status_parts.append(f"✅ {installed} Installed")
+    if available > 0:
+        status_parts.append(f"📀 {available} Available")
+    others = unknown - available if available > 0 else unknown
+    if others > 0:
+        status_parts.append(f"⚪ {others} Other")
+    lines.append(" · ".join(status_parts) if status_parts else f"({len(games)} ဂိမ်း)")
+
     if total_pages > 1:
         lines.append(f"📄 Page {page + 1}/{total_pages}")
     lines.append("━━━━━━━━━━━━━━━━━━")
@@ -87,20 +107,34 @@ def _build_game_list_text(games: list, page: int, total_pages: int, query: str =
         name = g.get("title", "").strip()
         if not name:
             continue
+        status = g.get("status", "").strip()
         sm = g.get("solo_multi", "").strip()
         genre = g.get("genre", "").strip()
         discs = g.get("discs", "").strip()
 
-        sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
-        tags = ""
-        if sm_icon and sm:
-            tags += f" {sm_icon}{sm}"
-        if genre:
-            tags += f" · {genre}"
-        if discs and discs not in ("", "0"):
-            tags += f" · 💿{discs}"
+        # Status icon
+        if status == "Installed":
+            status_icon = "✅"
+        elif status == "Available":
+            status_icon = "📀"
+        else:
+            status_icon = "⚪"
 
-        lines.append(f"{i}. <b>{name}</b>{tags}")
+        sm_icon = "🧑" if sm == "Solo" else ("👥" if sm == "Multiplayer" else ("🧑👥" if sm else ""))
+
+        # Build tags line
+        tags_parts = []
+        if sm_icon and sm:
+            tags_parts.append(f"{sm_icon}{sm}")
+        if genre:
+            tags_parts.append(genre)
+        if discs and discs not in ("", "0"):
+            tags_parts.append(f"💿{discs}")
+        tags = " · ".join(tags_parts)
+
+        lines.append(f"{status_icon} <b>{i}. {name}</b>")
+        if tags:
+            lines.append(f"   <i>{tags}</i>")
 
     lines.append("")
     lines.append("🔍 ဂိမ်းနာမည်ရိုက်၍ ရှာနိုင်သည်")

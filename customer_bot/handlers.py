@@ -574,10 +574,8 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     def _is_shown_game(g: dict) -> bool:
         title  = (g.get("title")  or "").strip()
-        st     = (g.get("status") or "").strip()
         if not _is_real_game(title):
             return False
-        # Skip "Not Installed" games
         return True
 
     real_games = sorted(
@@ -587,69 +585,98 @@ async def cmd_game_library(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     now_str = now_mmt().strftime("%H:%M")
 
-    def _plat(g: dict) -> str:
-        return (g.get("platform") or "").strip().upper()
-
-    ps5_games  = [g for g in real_games if _plat(g) == "PS5"]
-    ps4_games  = [g for g in real_games if _plat(g) == "PS4"]
-    both_games = [g for g in real_games if _plat(g) not in {"PS5", "PS4"}]
-    has_platform = bool(ps5_games or ps4_games)
-
-    def _game_line(g: dict, indent: str = "  ") -> str:
-        raw     = g.get("title", "-")
-        title   = TITLE_ALIASES.get(raw.lower(), raw)
-        genre   = (g.get("genre")   or "").strip()
-        players = (g.get("players") or "").strip().lower()
-        mode_icon = ""
-        if players == "solo":
-            mode_icon = " 🎯"
-        elif players == "multi":
-            mode_icon = " 👥"
-        elif players == "both":
-            mode_icon = " 🎯👥"
-        genre_tag = f" | {genre}" if genre else ""
-        return f"{indent}▶ {title}{genre_tag}{mode_icon}"
-
+    # ── Mode counts ──
     solo_games  = [g for g in real_games if g.get("players","").strip().lower() == "solo"]
     multi_games = [g for g in real_games if g.get("players","").strip().lower() == "multi"]
     both_games_m = [g for g in real_games if g.get("players","").strip().lower() == "both"]
-    lines = [
-        f"🕹️ PS Vibe Game Library  |  {now_str} MMT",
-        f"ဆိုင်မှာ ကစားလို့ရသောဂိမ်း — {len(real_games)} titles",
-        f"🎯 Solo: {len(solo_games)}  |  👥 Multi: {len(multi_games)}  |  🎯👥 Both: {len(both_games_m)}",
+
+    # ── Genre groups (customer-friendly) ──
+    GENRE_ORDER = {
+        "Action":         "💥 Action",
+        "Action Adventure":"🗺️ Action Adventure",
+        "Fighting":       "🥊 Fighting",
+        "Sports":         "⚽ Sports & Racing",
+        "Racing":         "⚽ Sports & Racing",
+        "Horror":         "🧟 Horror",
+        "Survival Horror":"🧟 Horror",
+        "Co-op":          "🤝 Co-op & Party",
+        "Platformer Co-op":"🤝 Co-op & Party",
+        "Platformer":     "🏃 Platformer",
+        "Strategy":       "♟️ Strategy",
+        "Action RPG":     "⚔️ RPG",
+        "RPG":            "⚔️ RPG",
+        "Hack and Slash": "⚔️ RPG",
+        "Roguelike":      "⚔️ RPG",
+        "Sandbox":        "🏗️ Sandbox",
+    }
+
+    grouped = {}
+    for g in real_games:
+        genre = (g.get("genre") or "Other").strip()
+        cat = GENRE_ORDER.get(genre, "📦 More")
+        grouped.setdefault(cat, []).append(g)
+
+    # Sort within each group alphabetically
+    for cat in grouped:
+        grouped[cat].sort(key=lambda x: x.get("title", "").lower())
+
+    CAT_ORDER = [
+        "💥 Action", "🗺️ Action Adventure", "🥊 Fighting",
+        "⚽ Sports & Racing", "⚔️ RPG", "🤝 Co-op & Party",
+        "🏃 Platformer", "♟️ Strategy", "🧟 Horror",
+        "🏗️ Sandbox", "📦 More",
     ]
 
-    if has_platform:
-        if ps5_games:
-            lines.append(f"\n🎮 PS5  —  {len(ps5_games)} titles")
-            for g in ps5_games:
-                lines.append(_game_line(g))
-        if ps4_games:
-            lines.append(f"\n📀 PS4  —  {len(ps4_games)} titles")
-            for g in ps4_games:
-                lines.append(_game_line(g))
-        if both_games:
-            lines.append(f"\n🎯 PS4 & PS5  —  {len(both_games)} titles")
-            for g in both_games:
-                lines.append(_game_line(g))
-    else:
-        for g in real_games:
-            lines.append(f"▶ {g.get('title', '-')}")
+    def _mode_icon(players: str) -> str:
+        p = (players or "").strip().lower()
+        if p == "multi":
+            return "👥"
+        elif p == "both":
+            return "👥"
+        return ""
 
+    def _game_line(g: dict) -> str:
+        raw     = g.get("title", "-")
+        title   = TITLE_ALIASES.get(raw.lower(), raw)
+        players = g.get("players", "")
+        mi = _mode_icon(players)
+        line = f"  ▸ <b>{title}</b>"
+        if mi:
+            line += f"  {mi}"
+        return line
+
+    # ── Build header ──
+    lines = [
+        f"🕹️ <b>PS Vibe Game Library</b>  |  {now_str} MMT",
+        "━━━━━━━━━━━━━━━━━━━",
+        f"📊 <b>{len(real_games)} games</b>  |  🎯 Solo: {len(solo_games)}  |  👥 Multi: {len(multi_games)}  |  Both: {len(both_games_m)}",
+        "",
+        "👥 = ၂ယောက်အထက် ကစားလို့ရသောဂိမ်း",
+        "━━━━━━━━━━━━━━━━━━━",
+    ]
+
+    # ── Games list grouped by genre ──
+    for cat in CAT_ORDER:
+        gl = grouped.get(cat)
+        if not gl:
+            continue
+        lines.append(f"\n{cat} <i>({len(gl)})</i>")
+        for g in gl:
+            lines.append(_game_line(g))
+
+    # ── Footer ──
     lines += [
-        "\n",
-        "👥 = Multiplayer available",
-        "ဂိမ်းအကြောင်း သိချင်ရင် AI ကို တိုက်ရိုက် မေးပါ 🤖",
+        "\n━━━━━━━━━━━━━━━━━━━",
+        "💡 <i>Game name ရိုက်၍ AI နဲ့ ရှာနိုင်သည်</i>",
+        "🎮 <i>ဂိမ်းအကြောင်း detail သိချင်ရင် နာမည်ရိုက်ပြီး မေးပါ</i>",
     ]
 
     full_text = "\n".join(lines)
     for chunk in _split_message(full_text, 4000):
-        await update.message.reply_text(chunk)
+        await update.message.reply_text(chunk, parse_mode="HTML")
 
-    await update.message.reply_text(
-        "ဂိမ်းနာမည် ရိုက်ပြီး ရှာနိုင်တယ်နော် — AI ကို မေးလည်း ��တယ် 🤖"
-    )
     await update.message.reply_text("─" * 22)
+
 
 
 async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
