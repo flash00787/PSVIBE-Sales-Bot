@@ -1,7 +1,7 @@
 # SEL Currency Exchange — Project State
 
 ## Status: Active ✅
-**Last updated:** 2026-06-28 02:05 UTC
+**Last updated:** 2026-06-30 09:03 UTC
 
 ## Services
 - `sel-exchange-api` — FastAPI on port 8001 ✅
@@ -23,6 +23,14 @@
 - [x] Charges excluded from paid_amount
 - [x] Hourly auto-backup
 - [x] Telegram bot
+
+## Recent Changes (2026-06-30)
+- [x] Contact edit (PATCH /api/counterparties/{cid}) with edit modal in dashboard
+- [x] Duplicate name check on contact create & update (case-insensitive)
+- [x] `esc()` JS helper for safe HTML attribute escaping
+- `db.py`: Added `counterparty_update()`, `counterparty_get_by_name()`
+- `app.py`: Added `CounterpartyUpdate` model, PATCH endpoint, duplicate checks
+- `dashboard/index.html`: Edit button column, `editContact()` modal, save handler
 
 ## Known Issues
 - Inventory tab not yet implemented in dashboard
