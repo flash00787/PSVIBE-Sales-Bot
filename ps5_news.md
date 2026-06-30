@@ -1,6 +1,136 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-30 11:30 UTC
+> Last updated: 2026-06-30 17:31 UTC
+
+---
+
+## 🔥🔥🔥 MAJOR UPDATE (June 30, 2026 - 17:31 UTC) — God of War Sons of Sparta ALREADY OUT! + Kena Sequel + Greek Trilogy Remake + Pragmata Released!
+
+> **Summary:** Tuesday evening deep sweep (6 hours since last update). Focused on the **February 12, 2026 State of Play** — an event that was previously under-explored. FOUR MAJOR finds completely absent from tracker: **God of War: Sons of Sparta ALREADY RELEASED** (shadow-dropped Feb 12 — 4+ months late!), **God of War Greek Trilogy Remake** officially in development, **Kena: Scars of Kosmora** (sequel to acclaimed Bridge of Spirits) announced for 2026, and **Pragmata** — Capcom's long-awaited sci-fi game — **ALREADY RELEASED April 17** (2+ months missed!). Also: Granblue Fantasy Relink expansion coming July, 007 First Light confirmed, and **PS Plus Essential July reveal is TOMORROW (July 1)** with STILL no credible leaks.
+
+### 🔥🔥🔥 God of War: Sons of Sparta — ALREADY RELEASED! Shadow-Dropped February 12, 2026! (MISSED FOR 4+ MONTHS!)
+
+- **Santa Monica Studio + Mega Cat Studios** shadow-dropped a **brand-new 2D God of War game** during the February 12, 2026 State of Play — **immediately playable for 4+ months!**
+- **Genre:** 2D action-platformer / Metroidvania (pixel art style)
+- **Story:** Canon prequel to the ENTIRE God of War series — Kratos's youth training at the Agoge alongside his brother **Deimos**
+- **T.C. Carson** (original voice of young/adult Kratos from the Greek saga) returns as narrator AND voices young Kratos!
+- Price: Budget title (likely $20-30 range)
+- Sources: Official PS Blog (Feb 12), Wikipedia, PlayStation Store, Gadgets360, GameRant
+- **💡💡💡💡 Lounge Impact — MAJOR (missed for months!):**
+  - A brand-new, canon God of War game has been AVAILABLE and PLAYABLE on PS5 since February 12 — **over 4 months!**
+  - 2D Metroidvania format = perfect for casual lounge drop-in sessions
+  - God of War name recognition alone will draw players — even a pixel art spinoff
+  - T.C. Carson's return is a HUGE nostalgia hook for original trilogy fans
+  - **BUY IMMEDIATELY if lounge doesn't have it yet!** It's been out for months!
+  - ⭐⭐⭐⭐⭐ lounge value — God of War IP + accessible 2D gameplay + nostalgia factor
+
+### 🔥🔥🔥 God of War Greek Trilogy Remake — OFFICIALLY IN DEVELOPMENT! Announced Feb 12! (COMPLETELY MISSED!)
+
+- **Santa Monica Studio** officially announced they are **remaking the original God of War trilogy** (2005-2010) for PS5!
+- Announced at the **February 12, 2026 State of Play** — completely absent from tracker for 4+ months!
+- **T.C. Carson confirmed to reprise his role as Kratos** in the remakes
+- **Status:** In early development — no specific release date yet, but "2026" mentioned as target by some sources
+- The trilogy includes: God of War (2005), God of War II (2007), and God of War III (2010)
+- Sources: Official PS Blog (Feb 12), Santa Monica Studio, VGChartz, ScreenHub
+- **💡💡💡💡💡 Lounge Impact — COLOSSAL:**
+  - The original God of War trilogy defined the PS2/PS3 era — these are some of the most beloved action games ever made
+  - God of War III alone is considered one of the greatest action games in history
+  - The Greek saga has a DIFFERENT tone from the Norse games — pure rage, epic scale, brutal combat
+  - Combined with God of War: Laufey (Early 2027) + the existing Norse duology = **the entire God of War saga will be playable on PS5**
+  - This makes PS VIBE the ultimate God of War destination — every single game in the franchise!
+  - Nostalgia factor is ENORMOUS — players who grew up with the original trilogy are now 25-40 (prime lounge demographic)
+  - ⭐⭐⭐⭐⭐ lounge value — legendary trilogy, modern remake, complete saga destination
+
+### 🔥🔥 Kena: Scars of Kosmora — Sequel to Acclaimed Bridge of Spirits! 2026! (COMPLETELY MISSED!)
+
+- **Ember Lab** announced **Kena: Scars of Kosmora** at the February 12, 2026 State of Play — sequel to the acclaimed Kena: Bridge of Spirits (2021)
+- **Release: 2026 on PS5 and PC** (no exact date yet)
+- **Story:** Older, more experienced Kena travels to the mysterious island of Kosmora to find answers about her lifelong afflictions
+- **New gameplay:** Her spirit staff gets fractured by powerful spirits — she must learn forgotten alchemy + elemental manipulation Spirit Guiding
+- Enhanced combat with better ability combos, new spirit companions, and more cinematic boss battles
+- The first game (Bridge of Spirits) was critically acclaimed — Metacritic 81, praised for Pixar-quality visuals and heartfelt story
+- Sources: IGN, Ember Lab, GoSuGamers, Games.gg
+- **💡💡💡 Lounge Impact:**
+  - Kena: Bridge of Spirits was a beloved indie darling — stunning visuals, emotional storytelling, accessible action
+  - The sequel promises expanded world + deeper combat = longer play sessions
+  - Perfect for solo lounge experiences — beautiful to watch on big screens
+  - ⭐⭐⭐⭐ lounge value — acclaimed IP, stunning visuals, accessible gameplay
+
+### 🔥 Pragmata — ALREADY RELEASED April 17, 2026! Capcom's Sci-Fi Epic! (MISSED FOR 2+ MONTHS!)
+
+- **Capcom** released **Pragmata** on **April 17, 2026** on PS5 (moved up from April 24)
+- **Genre:** Sci-fi action-adventure set on a lunar research station
+- **Story:** Spacefarer Hugh Williams and android Diana escape a hostile AI on the moon
+- Pragmata was first revealed in 2020 and became one of Capcom's most mysterious projects — 6 years of anticipation!
+- A demo titled "Pragmata: Sketchbook" was available from February 5, 2026
+- Sources: Wikipedia, PushSquare, Capcom Spotlight (Mar 2026), Official PS Blog
+- **💡💡 Lounge Impact:**
+  - Capcom is on a hot streak (Resident Evil, Street Fighter 6, Dragon's Dogma 2, Onimusha)
+  - Pragmata is a new IP with 6 years of built-up anticipation — curiosity factor alone draws players
+  - Sci-fi setting + Capcom polish = unique lounge offering
+  - **Buy if lounge doesn't have it — released 2+ months ago!**
+  - ⭐⭐⭐ lounge value — Capcom brand, sci-fi novelty, long-awaited title
+
+### ⚔️ Granblue Fantasy: Relink — Endless Ragnarok Expansion — July 2026! (MISSED!)
+- Cygames' acclaimed action RPG getting a major expansion in **July 2026**
+- Granblue Fantasy: Relink was a well-received PS5/PS4 action RPG — expansion adds new story + content
+- **💡 Lounge Note:** Existing Relink players will want the expansion. Good time to market if lounge already has base game. ⭐⭐⭐ lounge value.
+
+### 🕵️ 007 First Light — IO Interactive Bond Game, 2026! (MISSED!)
+- **IO Interactive** (Hitman series) is developing an original James Bond origin story game — **007 First Light**
+- Ranked as a **top GOTY contender** for 2026 by multiple outlets
+- Coming to PS5 in 2026 (no exact date yet)
+- **💡💡 Lounge Impact:** Hitman devs + James Bond IP = guaranteed quality. IO Interactive's sandbox stealth design is perfect for lounge gameplay. Spy thriller spectacle. ⭐⭐⭐⭐ lounge value.
+
+### 📅 PS Plus Essential July 2026 — Reveal TOMORROW (July 1)! STILL No Leaks!
+- Official reveal expected **TOMORROW (July 1)** — typically around afternoon/evening (local time)
+- **STILL NO credible leaks** as of June 30 17:31 UTC
+- Community predictions (Rise of the Ronin, Atomic Heart, Days Gone Remastered, Hades, NBA 2K26, Avatar Frontiers of Pandora) remain **pure speculation**
+- Games available **July 7** (first Tuesday)
+- **💡 Lounge Action:** Monitor PS Blog throughout July 1. Any AAA title hitting Essential = FREE for all lounge PS5s!
+
+### 🔄 Ratatan Date Confirmed: October 15 (DELAYED — Not July)
+- Ratatan (Patapon spiritual successor) was delayed from July 16 to **October 15, 2026**
+- Tracker's existing Oct 15 date is CORRECT — confirmed by TheSixthAxis (June 25) and PushSquare
+- **💡 Lounge Note:** Delay confirmed. No change from existing tracker data.
+
+### 🎁 Free Rocket League Premium Cosmetic Pack for PS Plus — Until Aug 5! (MINOR)
+- PS Plus members can claim a free Rocket League Premium Cosmetic Pack (Heatwave Decal, Cristiano Wheels, etc.) until August 5
+- Minimal lounge impact but freebies are always nice
+
+### 📊 Quick Status Check (June 30 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥🔥 God of War: Sons of Sparta | **MISSED 4+ MONTHS! 🆕** | ALREADY OUT since Feb 12! 2D Metroidvania! Canon prequel! BUY NOW! |
+| 🔥🔥🔥 God of War Greek Trilogy Remake | **MISSED 4+ MONTHS! 🆕** | In development! Full remake of original trilogy! TC Carson returns! |
+| 🔥🔥 Kena: Scars of Kosmora | **MISSED 4+ MONTHS! 🆕** | 2026! Sequel to acclaimed Bridge of Spirits! |
+| 🔥 Pragmata | **MISSED 2+ MONTHS! 🆕** | ALREADY OUT since April 17! Capcom sci-fi epic! BUY NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | **NEW! 🆕** | July 2026! Endless Ragnarok! |
+| 🕵️ 007 First Light | **MISSED! 🆕** | IO Interactive Bond game! 2026 GOTY contender! |
+| 🔄 Ratatan | **CONFIRMED 🆕** | Delayed to Oct 15! Tracker date correct! |
+| 📅 PS Plus Essential July Reveal | **TOMORROW (Jul 1)** | STILL no credible leaks! |
+| 🛒 Mid-Year + Supplementary Sale | **FINAL HOURS!** | ⚠️ Ends today! Last chance! |
+| 🔥🔥 FFXVI on PS Plus Extra | FREE since Jun 16! | Download on ALL lounge PS5s! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! Split-screen co-op! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 10 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 9 days! Pre-order! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥🔥🔥 Control Resonant | Sep 24! | $60! Dylan Faden! |
+| 🔥🔥🔥 Silent Hill: Townfall | Sep 24! | Pre-orders LIVE! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+
+### 🚨 Priority Lounge Actions (UPDATED June 30 - 17:31 UTC):
+1. **🔥🔥🔥 BUY God of War: Sons of Sparta NOW** — shadow-dropped Feb 12! Been available 4+ months! Canon GoW prequel!
+2. **BUY Pragmata NOW** — released April 17! Capcom's sci-fi epic missed for 2+ months!
+3. **🔥🔥🔥 WISHLIST God of War Greek Trilogy Remake** — the ENTIRE original trilogy remade for PS5! Will make PS VIBE the complete GoW destination!
+4. **🔥🔥 DOWNLOAD Final Fantasy XVI on ALL lounge PS5s** — FREE on PS Plus Extra since June 16!
+5. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+6. **⚠️ MID-YEAR DEALS — FINAL HOURS!** Last chance to stock up!
+7. **Mark TOMORROW (July 1)** — PS Plus Essential July reveal! Monitor PS Blog!
+8. **PALWORLD 1.0 — July 10! Only 10 days!** Pre-order!
+9. **Pre-order/wishlist God of War: Laufey** — Early 2027!
+10. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
