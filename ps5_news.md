@@ -1,6 +1,86 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-29 23:30 UTC
+> Last updated: 2026-06-30 05:30 UTC
+
+---
+
+## ⚡ UPDATE (June 30, 2026 - 05:30 UTC) — PS Plus July Departures Refined to 8 Titles + Sony: PS5 Demand Strong Despite Price Hike + FINAL DAY for Mid-Year Deals!
+
+> **Summary:** Early Tuesday morning sweep (6 hours since last update). PS Plus July 2026 departure list refined from "15+" to **8 confirmed titles** — several previously-flagged removals pushed to August. Sony states PS5 demand remains strong despite the April price hike ($649.99 standard / $899.99 Pro). **TODAY is the FINAL DAY** for the Mid-Year Deals + Supplementary Sale (both end July 1 00:00 UTC). PS Plus Essential July reveal is **TOMORROW (July 1)** — still no credible leaks as of 05:30 UTC June 30.
+
+### 📤 PS Plus July 2026 Departures — REFINED to 8 Confirmed Titles (Not 15+)
+- Earlier reports of 12-15 titles leaving PS Plus Extra/Premium in July have been **refined down to 8 confirmed**
+- Several titles previously expected to depart in July have been **pushed to August 2026**
+- **Confirmed July 21 departures:**
+  | Game | Platform |
+  |------|----------|
+  | 🎮 **The Jackbox Party Pack 9** | PS4/PS5 |
+  | 🎮 **Risk of Rain 2** | PS4 |
+  | 🏝️ **Tropico 6** | PS4 |
+  | 👾 **Source of Madness** | PS5 |
+  | ⛳ **Cursed to Golf** | PS4/PS5 |
+  | 🍷 **Hundred Days – Winemaking Simulator** | PS4/PS5 |
+  | 🔍 **Get Even** | PS4 |
+  | ⛳ **Infinite Minigolf** | PS4 |
+- Sources: NotebookCheck (June 29), PlayStation Lifestyle (June 25), IGN
+- **💡 Lounge Action:** Jackbox Party Pack 9 is a lounge staple — customers may want to play it before July 21! Risk of Rain 2 also has co-op appeal.
+
+### 📊 Sony: "No Drop-Off in PS5 Demand Despite Price Increases"
+- PushSquare (June 2026) reports Sony claims PS5 demand remains strong despite the **April 2 official price hike** to **$649.99 (standard disc)** / **$599.99 (digital)** / **$899.99 (Pro)**
+- This contradicts earlier reports of "58% sales drop in May" — suggests the drop may be SUPPLY-constrained rather than demand-driven
+- Combined with the ongoing GTA 6-driven shortage warnings: demand expected to surge further in Q4 2026
+- **💡💡 Lounge Note:** If demand is strong AND supply is tightening, PS VIBE's existing console fleet gains even more value. The lounge becomes a premium GTA 6 destination for those who can't find/buy a console.
+
+### 🛒 MID-YEAR DEALS + SUPPLEMENTARY SALE — FINAL DAY!
+- Both sales end **TODAY (June 30)** or **July 1 00:00 UTC**
+- Over 3,600 games discounted up to 75% on Mid-Year Deals
+- **⚠️ FINAL LOUNGE STOCK-UP WINDOW!** Grab co-op/party/fighting games before prices go back up!
+
+### 📅 PS Plus Essential July Reveal — TOMORROW (July 1)
+- Still **no credible leaks** as of June 30 05:30 UTC
+- Official announcement expected **July 1 (Tuesday)** — could be any hour now
+- Games available **July 7** (first Tuesday)
+- Community predictions remain pure speculation (Horizon Zero Dawn Remastered, Atomfall, Fallout 4 Anniversary, Elden Ring, Returnal, etc.)
+- **💡 Lounge Action:** Monitor PS Blog throughout July 1. If any AAA title hits Essential, it's FREE for lounge PS5s!
+
+### 📊 Quick Status Check (June 30 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📤 PS Plus July Departures | **REFINED 🆕** | Now 8 titles (not 15+), some pushed to Aug! |
+| 📊 Sony PS5 Demand | **STRONG 🆕** | Demand steady despite price hike! Bullish for lounge! |
+| 🛒 Mid-Year + Supplementary Sale | **FINAL DAY!** | ⚠️ Ends today! Stock up now! |
+| 📅 PS Plus Essential July Reveal | **TOMORROW (Jul 1)** | Still no credible leaks! |
+| 🔥🔥 Rayman Legends Retold | Oct 1! | 4-player couch co-op! Pre-orders LIVE! |
+| 🔥🔥 Tomb Raider: Legacy of Atlantis | Feb 12, 2027! | Full UE5 remake! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥🔥 Until Dawn 2 | 2027! | New cast + tropical island! |
+| 🔥🔥🔥 Control Resonant | Sep 24! | $60! Dylan Faden! |
+| 🔥🔥🔥 Silent Hill: Townfall | Sep 24! | Pre-orders LIVE! |
+| 🔥🔥 Onimusha: Way of the Sword | Sep 25! | Demo available NOW! |
+| 🔥🔥 Dune: Awakening PS5 | Sep 22! | Single-player mode! |
+| 🗝️🔥🔥 Kingdom Hearts Collection | Oct 8! | PRE-ORDERS LIVE! Entire saga! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 10 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 9 days! Pre-order! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🏎️ Star Wars: Galactic Racer | Oct 6! | Pre-orders live! |
+| ⚔️ No Rest for the Wicked | Oct 2026! | Ori devs' soulslike! |
+| 🧩 SONIC PICO PARK | 2026 TBD! | 8-player co-op party game! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+
+### 🚨 Priority Lounge Actions (UPDATED June 30):
+1. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO EVER ON PLAYSTATION!
+2. **⚠️ MID-YEAR DEALS — FINAL DAY!** Stock up on co-op/party/fighting games before prices jump!
+3. **Mark TOMORROW (July 1)** — PS Plus Essential July reveal! Check PS Blog!
+4. **Pre-order Rayman Legends Retold** — Oct 1! 4-player couch co-op!
+5. **Pre-order/wishlist God of War: Laufey** — Early 2027! PlayStation's crown jewel!
+6. **DOWNLOAD Onimusha: Way of the Sword DEMO** on lounge PS5s — available NOW!
+7. **Pre-order Kingdom Hearts Collection** — Oct 8! Entire KH saga!
+8. **PALWORLD 1.0 — July 10! Only 10 days!** Pre-order!
+9. **Jackbox Party Pack 9** — leaving PS Plus July 21! Play it while you can!
+10. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6! Demand staying strong!
 
 ---
 
