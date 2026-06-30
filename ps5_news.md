@@ -1,6 +1,101 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-29 17:31 UTC
+> Last updated: 2026-06-29 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 29, 2026 - 23:30 UTC) — Rayman Legends Retold Oct 1 Missed! + Tomb Raider Legacy of Atlantis Feb 2027!
+
+> **Summary:** Late-night Monday sweep (6 hours since last update). TWO significant titles from the June 2 State of Play still missing from tracker discovered: **Rayman Legends Retold** — a 3D reimagining with 4-player couch co-op launching October 1 with pre-orders LIVE! **Tomb Raider: Legacy of Atlantis** — full UE5 remake of the 1996 original landing February 12, 2027. PS Plus Essential July: still NO credible leaks as of June 29 (Forbes/Erik Kain confirms). Official reveal expected July 1-2 (2 days away).
+
+### 🔥🔥 Rayman Legends Retold — October 1, 2026 on PS5! 4-Player Couch Co-Op! PRE-ORDERS LIVE! (MISSED FROM JUNE 2 STATE OF PLAY!)
+
+- **Ubisoft** revealed **Rayman Legends Retold** at the June 2 State of Play — **completely absent from tracker for 27 days!**
+- **Release date: October 1, 2026** on PS5, Xbox Series X|S, Switch 2, and PC
+- **PRE-ORDERS ARE LIVE NOW!**
+- **What it is:** A "bold 3D reimagining" of the beloved 2013 platformer Rayman Legends — NOT a simple remaster
+- **Key features:**
+  - Fully voiced cinematics + expanded orchestral soundtrack
+  - New narrative twists + stunning 3D visuals (UE5 expected)
+  - **4-player couch co-op** — PERFECT for lounge group play!
+  - New musical stages (Rayman's signature rhythm-platforming levels)
+  - **Pre-order bonuses include "Rayman Origins: Enhanced Edition"** (the acclaimed 2011 game, enhanced!)
+- Sources: Official PS Blog (Jun 2), Ubisoft, IGN, Gematsu
+- **💡💡💡 Lounge Impact — SIGNIFICANT:**
+  - Rayman Legends (2013) is widely considered one of the greatest 2D platformers ever made (Metacritic 90+)
+  - 4-player couch co-op = PERFECT lounge game. Groups can play together on one console!
+  - Family-friendly + nostalgia combo = broad demographic appeal
+  - Musical stages are some of the most FUN co-op experiences in gaming — pure joy to watch and play
+  - Pre-order bonus includes Rayman Origins Enhanced Edition — essentially TWO games for the price of one
+  - Ubisoft's Rayman IP is beloved globally — this 3D reimagining could be massive
+  - October 1 — pre-order NOW for the lounge!
+  - ⭐⭐⭐⭐⭐ lounge value — 4-player co-op, iconic IP, family-friendly, musical spectacle
+
+### 🔥🔥 Tomb Raider: Legacy of Atlantis — February 12, 2027! Full UE5 Remake of Original! (MISSED FROM TRACKER!)
+
+- **Crystal Dynamics + Flying Wild Hog** present a **complete UE5 reimagining** of the **original 1996 Tomb Raider**
+- Published by **Amazon Game Studios**
+- **Release date: February 12, 2027** on PS5, Xbox Series X|S, Switch 2, and PC
+- Announced at **The Game Awards 2025** (December) — completely absent from tracker!
+- **Key features:**
+  - Lara Croft voiced by **Alix Wilton Regan** (Tomb Raider 2013/Rise/Shadow trilogy voice)
+  - Hunting for a powerful artifact from the **lost civilization of Atlantis** — expanded narrative
+  - Peru's Lost Valley + Greece ruins expanded into **semi-connected open spaces**
+  - Classic puzzles reimagined with modern design
+  - All-new combat system built for modern audiences
+  - **Pre-orders are OPEN on PS Store!**
+- Sources: Official PS Blog (Jun 2), Crystal Dynamics, Amazon Games, GameSpot, Wikipedia
+- **💡💡 Lounge Impact:**
+  - Tomb Raider is one of gaming's most iconic franchises — Lara Croft is a cultural icon since 1996
+  - A FULL remake of the 1996 original (the game that started it all) has ENORMOUS nostalgia pull
+  - The Survivor trilogy (2013-2018) proved Tomb Raider's modern relevance — this remake bridges old and new
+  - February 2027 = post-GTA 6 window. Lounge will be looking for the NEXT big single-player spectacle
+  - UE5 visuals + expanded Atlantis story = cinematic lounge spectacle
+  - ⭐⭐⭐⭐ lounge value — legendary IP, nostalgia + modern visuals, single-player spectacle
+
+### 📅 PS Plus Essential July 2026 — STILL No Credible Leaks (June 29)
+- Forbes (Erik Kain, June 28) confirms: no reliable leaks exist
+- A YouTube "leak" claiming Dynasty Warriors Origins + Dragon Ball Sparking Zero + Mafia: The Old Country is **unverified and likely fake** — these are wishlist titles, not confirmed
+- Community predictions (Rise of the Ronin, Atomic Heart, Hades, NBA 2K26) remain **pure speculation**
+- Official reveal still expected **July 1 (Tuesday)** — now only **2 days away!** (possibly delayed to July 2-3)
+- Games available **July 7** (first Tuesday)
+- **💡 Lounge Action:** Keep monitoring PS Blog July 1-2. Don't trust YouTube "leaks" — wait for official confirmation.
+
+### 📊 Quick Status Check (June 29 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 Rayman Legends Retold | **MISSED 27 DAYS! 🆕** | Oct 1! 4-player couch co-op! Pre-orders LIVE! |
+| 🔥🔥 Tomb Raider: Legacy of Atlantis | **MISSED! 🆕** | Feb 12, 2027! Full UE5 remake of 1996 original! |
+| 📅 PS Plus Essential July Reveal | **Jul 1 (maybe delayed)** | 2 days away! STILL no credible leak! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥🔥 Until Dawn 2 | 2027! | New cast + tropical island! |
+| 🔥🔥🔥 Control Resonant | Sep 24! | $60! Dylan Faden! |
+| 🔥🔥🔥 Silent Hill: Townfall | Sep 24! | Pre-orders LIVE since Jun 2! |
+| 🔥🔥 Onimusha: Way of the Sword | Sep 25! | Demo available NOW! |
+| 🔥🔥 Dune: Awakening PS5 | Sep 22! | Single-player mode! |
+| 🗝️🔥🔥 Kingdom Hearts Collection | Oct 8! | PRE-ORDERS LIVE! Entire saga! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 11 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 10 days! Pre-order! |
+| 🏎️ Star Wars: Galactic Racer | Oct 6! | Pre-orders live! |
+| ⚔️ No Rest for the Wicked | Oct 2026! | Ori devs' soulslike! |
+| 🧩 SONIC PICO PARK | 2026 TBD! | 8-player co-op party game! |
+| 🛒 Mid-Year + Supplementary Sale | Until Jul 1 | 2 days left! |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Retailers warn shortages ahead of GTA 6! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 📤 PS Plus July Departures | **Jul 21** | 15+ titles leaving |
+
+### 🚨 Priority Lounge Actions (UPDATED):
+1. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO EVER ON PLAYSTATION!
+2. **Pre-order Rayman Legends Retold** — Oct 1! 4-player couch co-op + Rayman Origins Enhanced Edition free!
+3. **Pre-order/wishlist Tomb Raider: Legacy of Atlantis** — Feb 2027! Legendary franchise full remake!
+4. **Pre-order Silent Hill: Townfall** — Sep 24! Pre-orders LIVE since June 2!
+5. **Pre-order/wishlist God of War: Laufey** on PS Store — Early 2027! PlayStation's crown jewel!
+6. **DOWNLOAD Onimusha: Way of the Sword DEMO** on lounge PS5s — available NOW!
+7. **Pre-order Kingdom Hearts Collection** — Oct 8! Entire KH saga!
+8. **PALWORLD 1.0 — July 10! Only 11 days!** Pre-order!
+9. **Mid-Year Deals — 2 DAYS LEFT!** Final stock-up window!
+10. **Mark July 1** — PS Plus Essential July reveal! Check PS Blog!
 
 ---
 
