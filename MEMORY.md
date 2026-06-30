@@ -137,7 +137,7 @@ Kora now manages **9 projects** with full coordination tool support.
 - Food Orders: timezone fix (UTC→MMT via CONVERT_TZ), sorting by Active-first + recency
 - Sale Daily: added Time column between Date and Console
 - Timeline: lane-based stacking rejected → tap-to-select popup approach (final)
-- Cashflow: identified 2 bugs (month filter not applied, asset double-counting) — pending fix
+- Cashflow: identified 2 bugs (month filter not applied ✅ fixed Jul 1, asset double-counting — still pending)
 - Key lessons: #28-32 (minified JS edits, Vite hashes, JS key sorting, lane stacking UX, window in templates)
 - See `memory/2026-06-26.md` for full details
 
@@ -152,8 +152,9 @@ Kora now manages **9 projects** with full coordination tool support.
 
 | Issue | Severity | Status |
 |-------|----------|--------|
-| Cashflow month filter not applied (Jun 26) | Medium | 🔴 Pending |
+| Cashflow month filter not applied (Jun 26) | Medium | 🟢 Fixed Jul 1 |
 | Cashflow asset deduction double-count (Jun 26) | Medium | 🔴 Pending |
+| PNL m-param ignored; Balance Sheet no date filter (Jul 1) | High | 🟢 Fixed Jul 1 |
 | VPS health monitor unreachable (Jun 28) | Low | 🟡 Investigating |
 
 ## Working Preferences
