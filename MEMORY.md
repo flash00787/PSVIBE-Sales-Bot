@@ -176,3 +176,28 @@ Kora now manages **9 projects** with full coordination tool support.
 ## Memory (2026-06-27)
 ## Memory (2026-06-26)
 ## Memory (2026-06-25)
+## Memory (2026-07-01)
+
+### Financial Statement July Fixes — 8 Bugs Fixed ✅
+- **Morning session (4 bugs):** PNL `m` param ignored → parse year/month from `m`, replace `mmt.year/month` hardcodes. Finance Balances + Balance Sheet had no date filters → added year/month query params + WHERE clauses. Cashflow missing total_inflows/outflows → added computed fields.
+- **Afternoon session (4 bugs):** BS Member Liability always 0 → undefined `ym` variable silently caught by `except:` catching. Cashflow investing section cumulative (no month filter) → added WHERE on all 4 asset/advance queries. Cashflow closing wrong (-19M) → formula missed capital + injects; changed to cumulative SQL queries. Cashflow closing 30M too high → `transfer_out` stored negative, `-SUM()` double-subtracted → changed to `+SUM()`.
+- **Verification:** June 2026 PNL 11.7M, Topup 450K; CF opening 300M → net -288.7M → closing 11.32M; BS Member Liability 256,500 Ks. July 2026 all zeros (correct — no data yet).
+- **Files:** `dashboard_routes.py`, `patch_routes.py`
+
+### Customer Bot Notification Audit — 7 Paths Audited, 7 Gaps Found 🔍
+Full audit of all notification paths when a customer creates a booking via Customer Bot.
+
+| # | Critical Gap | Severity |
+|---|-------------|----------|
+| 1 | **Customer receives NO confirmation after booking creation** — No "သင်၏ Booking ကို အတည်ပြုပြီးပါပြီ" message | 🔴 High |
+| 2 | **No proactive no-show auto-cancel** — No background job auto-cancels bookings when time passes without checkin | 🔴 High |
+| 3 | **Inconsistent admin notifications on cancel** — `cmd_cancel_booking` and `_do_cancel_booking` don't notify admin group | 🟡 Medium |
+| 4 | **`_text_cancel_booking` doesn't cancel reminders** — Uses different endpoint that doesn't trigger reminder cancellation | 🟡 Medium |
+| 5 | **`_sbk_advance_reminder` sends at 30 min, not 10 min** — Docstring says 10 min, code uses `timedelta(minutes=30)` | ⚠️ Low |
+| 6 | **Hardcoded admin chat ID** — `_notify_booking_received` uses hardcoded `-1003686032747` instead of env var | ⚠️ Low |
+| 7 | **Double reminder on approve** — Both n8n webhook AND `_sbk_advance_reminder` schedule 30-min reminders | ⚠️ Low |
+
+### Ongoing Work
+- Notification gaps #1-7 from audit above — Boss to prioritize which to fix
+- VPS health monitor: unreachable status still investigating
+
