@@ -1,6 +1,98 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-01 11:30 UTC
+> Last updated: 2026-07-01 17:31 UTC
+
+---
+
+## 🚨🚨🚨 CRITICAL UPDATE (July 1, 2026 - 17:31 UTC) — PS PLUS JULY REVEALED! CoD MW3 FREE! + SONY ENDING PHYSICAL DISCS IN 2028!
+
+> **Summary:** Wednesday evening sweep (6 hours since last update). TWO MASSIVE announcements dropped TODAY on PS Blog: **PS Plus Essential July 2026 games have been OFFICIALLY REVEALED** — headlined by **Call of Duty: Modern Warfare III** (the 2023 CoD, NOT MW4!), plus For the King II (4-player co-op!) and CrossCode. AND… **Sony announced physical game disc production will END in January 2028** — all new games after that date will be DIGITAL ONLY. This is the biggest strategic shift for PlayStation since the PS4 launch.
+
+### 🔥🔥🔥 PS Plus Essential July 2026 — OFFICIALLY REVEALED! CoD MW3 Headlines!
+
+After weeks of waiting and zero credible leaks, Sony officially dropped the July lineup TODAY:
+
+| Game | Platform | Lounge Value |
+|------|----------|-------------|
+| 🔥🔥🔥 **Call of Duty: Modern Warfare III (Cross-Gen Bundle)** | PS5, PS4 | ⭐⭐⭐⭐⭐ AAA blockbuster FPS! Campaign + classic MW2 maps remastered + open-world Zombies! |
+| 🎲 **For the King II** | PS5, PS4 | ⭐⭐⭐⭐ Tactical RPG with **4-player co-op**! Roguelite + tabletop hybrid! |
+| ⚔️ **CrossCode** | PS5, PS4 | ⭐⭐⭐ Critically acclaimed 2D action RPG! Retro 16-bit style + fast combat + sci-fi story! |
+
+- **Available July 7 - August 3** (4 weeks to claim!)
+- All PS Plus tiers (Essential, Extra, Premium) get these games
+- Sources: Official PS Blog (TODAY Jul 1), IGN, GameSpot, PushSquare, ScreenRant
+- **💡💡💡 Lounge Impact — MAJOR:**
+  - **Call of Duty: Modern Warfare III** is a AAA blockbuster — campaign, multiplayer, AND Zombies. This is a $70 game for FREE on every lounge PS5 with PS Plus! The MW2 (2009) map remasters alone are worth it for lounge competitive play. Zombies mode is co-op PvE — groups can play together!
+  - **For the King II** — 4-player co-op tactical RPG. Perfect for small lounge groups! Roguelite + tabletop blend means high replayability. Different every run.
+  - **CrossCode** — critically acclaimed indie RPG (Metacritic 84+). Sci-fi story + fast action combat. Great for solo lounge sessions.
+  - **ZERO COST to lounge** — all 3 games are FREE with existing PS Plus subscription!
+  - **⚠️ CLAIM ALL 3 on every lounge PS5 between July 7 and August 3!**
+  - **⏰ June Essential games (Grounded, Nick All-Star Brawl 2, WH40K Darktide) EXPIRE July 7!** Claim June games NOW before they're gone!
+
+### 🚨🚨🚨 Sony Physical Disc Production ENDING — January 2028! (MASSIVE STRATEGIC NEWS!)
+
+- **Sony Interactive Entertainment officially announced TODAY (July 1, 2026): Physical game disc production for ALL NEW games releasing on PlayStation consoles will be DISCONTINUED starting January 2028**
+- After January 2028, new games will ONLY be available digitally (PS Store + retailer digital codes)
+- Games releasing BEFORE January 2028 in disc format are NOT affected — they continue as normal
+- Sony cites "consumer preference shifting to digital" — digital now "significantly outpaces physical discs"
+- Also announced: **PS3 and PS Vita PlayStation Store closure** (separate announcement, same day)
+- Sources: Official PS Blog (TODAY Jul 1), multiple outlets
+- **💡💡💡💡💡 Lounge Impact — STRATEGICALLY MASSIVE for PS VIBE:**
+  - **This is the end of an era.** PlayStation has been disc-based since 1994 (PS1). The PS5 will be the LAST PlayStation with physical game discs.
+  - **PS VIBE has ~18 months to build its permanent physical library** before new games go digital-only
+  - **Physical disc collection becomes a LONG-TERM ASSET.** After Jan 2028, physical PS5 game discs will become increasingly scarce and valuable — especially popular lounge titles. PS VIBE's disc library could become a unique differentiator.
+  - **GTA 6 (Nov 2026) will still have a physical disc** — it releases well before the cutoff. Secure physical copies!
+  - **God of War: Laufey (Early 2027) will likely be one of the LAST major first-party physical games** — buy physical!
+  - **PS6 (likely 2028+) would be digital-only** — this aligns with earlier PS6 BoM $960 reports. The all-digital future is now official.
+  - **Action items for Boss:**
+    1. Prioritize physical disc purchases for ALL key lounge games between now and Jan 2028
+    2. Start planning for digital license management for post-2028 games
+    3. PS VIBE's physical disc library = marketing angle: "The last generation of physical PlayStation games — play them at PS VIBE!"
+    4. Consider buying backup physical copies of top lounge games before they become scarce
+
+### 🎮 Granblue Fantasy Relink: Endless Ragnarok — Date Refined to July 9
+- Previously tracked as just "July 2026" — now confirmed **July 9** (same day as AC Black Flag Resynced!)
+- **💡 Lounge Note:** Double-drop day with AC Black Flag! Action RPG expansion for existing Relink players.
+
+### 📊 Quick Status Check (July 1 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥🔥 PS Plus Essential July | **REVEALED! 🚨** | CoD MW3 + For the King II + CrossCode! Jul 7 - Aug 3! |
+| 🚨🚨🚨 Physical Discs Ending | **JAN 2028! 🚨** | ALL new games digital-only after Jan 2028! HUGE! |
+| 🔥🔥 GTA V Free PS5 Upgrade | **LIVE!** | FREE since Jun 18! Upgrade all lounge copies NOW! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! 93% Steam positive! |
+| 🎬 Stuntman: Hollywood | **WISHLIST!** | Saber × Universal! Fast & Furious stunts! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9 + 7 more! |
+| 🛒 July Savings Sale | **LIVE!** | EA FC 26 $13.99 (80% off)! TEKKEN 8 $39.99! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 15 days away! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | Grounded, Nick Brawl 2, WH40K Darktide — 6 days! CLAIM NOW! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 27 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 9 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 8 days! Full remake! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | Endless Ragnarok! Same day as AC Black Flag! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Beta Jul 2-5! Pre-orders live! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! SAME DAY as PS Plus refresh! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! ONE OF LAST PHYSICAL GAMES! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+| 💰 PS6 BoM $960 | **Reported** | Digital-only PS6 likely! |
+
+### 🚨 Priority Lounge Actions (July 1 - 17:31 UTC):
+1. **🚨🚨🚨 PHYSICAL DISCS ENDING JAN 2028!** Prioritize physical purchases for ALL key lounge games in next 18 months! This is a STRATEGIC SHIFT!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD for FREE with PS Plus! Campaign + MP + Zombies!
+3. **CLAIM June PS Plus Essential games BEFORE July 7** — Grounded, Nick All-Star Brawl 2, WH40K Darktide! Last 6 days!
+4. **🔥🔥 GTA V FREE PS5 UPGRADE!** Upgrade all PS4 copies to PS5 NOW — 100% free since June 18!
+5. **🛒 EA Sports FC 26 — $13.99 (80% off!) in July Savings!** Buy for ALL lounge consoles!
+6. **🛒 TEKKEN 8 — $39.99 in July Savings!** Grab for lounge fighting game rotation!
+7. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+8. **PALWORLD 1.0 — July 10! Only 9 days!** Pre-order! 25M+ player phenomenon!
+9. **AC Black Flag Resynced — July 9! Only 8 days!** Pre-order! Best AC game remade!
+10. **Wishlist Stuntman: Hollywood** — Saber × Universal, Fast & Furious stunts!
+11. **Pre-order/wishlist God of War: Laufey** — Early 2027! BUY PHYSICAL — one of the last disc releases!
+12. **Mark July 21** — Planet Crafter! 93% positive terraforming co-op!
+13. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
+14. **Start digital license strategy** — post-2028, all games will be digital. Plan ahead!
 
 ---
 
