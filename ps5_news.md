@@ -1,6 +1,112 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-01 05:30 UTC
+> Last updated: 2026-07-01 11:30 UTC
+
+---
+
+## ⚡ UPDATE (July 1, 2026 - 11:30 UTC) — GTA V FREE PS5 Upgrade! + Planet Crafter PS5 Jul 21! + Stuntman Hollywood MISSED!
+
+> **Summary:** Midday Wednesday sweep (6 hours since last update). PS Plus Essential July reveal still pending as of 11:30 UTC (expected afternoon UK time ~3:30-4:30 PM). THREE significant finds since last sweep: **GTA V free PS4→PS5 upgrade** went live June 18 (COMPLETELY MISSED from tracker), **Planet Crafter** confirmed for PS5 on July 21 (open-world terraforming co-op, 93% Steam positive), and **Stuntman: Hollywood** announced at June 2 State of Play but entirely MISSED from tracker (Saber Interactive + Universal, features Fast & Furious + Back to the Future stunts).
+
+### 🔥🔥 GTA V FREE PS5 Upgrade — Available Since June 18! (COMPLETELY MISSED!)
+- **Rockstar Games** made the GTA V **PS4 → PS5 upgrade COMPLETELY FREE** starting June 18, 2026
+- Applies to both digital AND physical PS4 editions — migrate Story Mode + GTA Online progress
+- PS5 version includes: improved graphics, faster loading, DualSense haptics, Hao's Special Works, Career Progress rewards
+- Previously this upgrade cost a fee — now 100% FREE ahead of GTA 6 launch
+- **NEW GTA Online update "The Kortz Center Heist"** coming in July — major new heist content
+- Sources: PushSquare, Rockstar Newswire, CNET (June 18-28)
+- **💡💡 Lounge Action — URGENT:** If PS VIBE has ANY PS4 copies of GTA V (physical or digital), **upgrade them to PS5 versions NOW for FREE!** This is a zero-cost way to get the best GTA V experience on all lounge consoles. GTA V remains one of the most-played games globally — the PS5 version with DualSense + faster loading is a much better lounge experience. The upcoming Kortz Center Heist adds fresh GTA Online content in July!
+
+### 🪐 Planet Crafter — July 21, 2026 on PS5! (MISSED!)
+- Developer: **Miju Games** — open-world **terraforming survival crafting** game
+- **PS5 release date: July 21, 2026** — previously PC-only (93% positive Steam reviews!)
+- **Genre:** Transform a hostile planet from barren wasteland to lush habitable world — terraform Mars-like environment
+- **Co-op multiplayer** supported (up to 4 players?)
+- Also launching on Xbox Series X|S (Game Pass day one)
+- Source: Official PS Blog (Jun 16), Gematsu (Jun 2026), PlayStation Lifestyle
+- **💡💡 Lounge Impact:**
+  - Survival crafting = extended lounge sessions (players stay for hours perfecting their planet)
+  - 93% positive Steam reviews = proven quality, not a gamble
+  - Terraforming is a UNIQUE hook — not just another survival game, but a planet-transformation experience
+  - Co-op multiplayer = group play potential
+  - July 21 — mark the calendar! Good mid-month addition between Palworld (Jul 10) and Halo (Jul 28)
+  - ⭐⭐⭐ lounge value — proven indie hit, co-op, unique terraforming concept
+
+### 🎬 Stuntman: Hollywood — Announced June 2 State of Play! (COMPLETELY MISSED!)
+- **Saber Interactive × Universal Products & Experiences** — **Stuntman franchise revival!**
+- **Genre:** Single-player action-racing game featuring stunts from REAL Universal films & TV shows
+- **Confirmed IPs:** Fast & Furious, Back to the Future, Knight Rider, Miami Vice, Death Race + more!
+- Announced at June 2, 2026 State of Play — completely absent from tracker for 29 days!
+- Available for **wishlisting on PS Store NOW** (no release date yet)
+- Sources: Official PS Blog (Jun 2), Saber Interactive, Gematsu, Kotaku
+- **💡💡 Lounge Impact:**
+  - Stuntman is a beloved cult classic franchise (PS2 era) — nostalgia factor is REAL
+  - Real movie/TV IPs = MASSIVE cross-generational appeal (Fast & Furious alone has a billion-dollar fanbase)
+  - Action-racing = perfect casual lounge spectacle — easy to pick up, thrilling to watch
+  - Saber Interactive has a solid track record (World War Z, Evil Dead, Warhammer 40K: Space Marine 2)
+  - **Wishlist now** — release date TBD but could be a major 2027 title
+  - ⭐⭐⭐⭐ lounge value — iconic IP, nostalgic franchise revival, Hollywood spectacle
+
+### 🎮 Minor July Additions (Previously Untracked):
+| Game | Date | Lounge Value |
+|------|------|-------------|
+| 🔫 **Kusan: City of Wolves** | Jul 30 | ⭐⭐ — Hotline Miami-like with Korean hip-hop theme, very niche |
+| 🚀 **Truxton Extreme** | Jul 30 | ⭐⭐ — Modern shmup, nostalgic but niche |
+| 🧹 **PowerWash Simulator 2: Star Wars Pack** | July TBD | ⭐⭐⭐ — Relaxing co-op casual, Star Wars theme = broader appeal |
+| 👨‍🍳 **Bancho the Chef** | TBD (State of Play) | ⭐⭐ — Cooking game, niche |
+
+### 🛑 PS5 Firmware Update — Version 26.04-13.42.00 (Minor)
+- Small stability update (~1 GB) rolled out late June / early July
+- No new features — just system performance improvements
+- **💡 Lounge Note:** Standard maintenance. No action needed beyond normal console updates.
+
+### 📅 PS Plus Essential July — STILL Pending as of 11:30 UTC
+- Announcement expected **TODAY (July 1)** — typically afternoon/evening UK time (~3:30-4:30 PM UTC)
+- **Still NO credible leaks** as of 11:30 UTC
+- Forbes, GameRant, Express, PlayStation Lifestyle all confirm: no leak, no reveal yet — just community predictions
+- Games available **July 7** (first Tuesday)
+- ⚠️ **June Essential games (Grounded, Nick All-Star Brawl 2, WH40K Darktide) expire July 7** — 6 days left to claim!
+- Psi-Ops: The Mindgate Conspiracy confirmed as PS Plus Premium Classic for July (announced at State of Play)
+- **💡 Lounge Action:** Monitor PS Blog this afternoon. Any AAA title hitting Essential = FREE for lounge PS5s!
+
+### 📊 Quick Status Check (July 1 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 GTA V Free PS5 Upgrade | **MISSED! 🆕** | FREE since Jun 18! Upgrade all lounge copies NOW! |
+| 🪐 Planet Crafter | **MISSED! 🆕** | Jul 21! 93% Steam positive! Terraforming co-op! |
+| 🎬 Stuntman: Hollywood | **MISSED 29 DAYS! 🆕** | Jun 2 SoP! Fast & Furious + Back to the Future stunts! |
+| 📅 PS Plus Essential July Reveal | **TODAY (still pending)** | No leaks at 11:30 UTC! Expected PM UK time! |
+| 🛒 July Savings Sale | **LIVE!** | EA FC 26 $13.99 (80% off)! TEKKEN 8 $39.99! |
+| 🛒 Mid-Year + Supplementary Sale | **ENDED** | Replaced by July Savings Sale |
+| 🎮 June PS Plus Essential | Expires Jul 7! | Grounded, Nick Brawl 2, WH40K Darktide — 6 days! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 27 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 9 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 8 days! Full remake! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Beta Jul 2-5! Pre-orders live! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+| 💰 PS6 BoM $960 | **Reported** | Long PS5 lifecycle expected! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8-12 titles leaving |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 15 days away! |
+| 🎬 Stuntman: Hollywood | **WISHLIST NOW 🆕** | Saber Interactive + Universal IPs! |
+| 🧹 PowerWash Simulator 2 SW Pack | **Jul TBD 🆕** | Star Wars themed! Casual co-op! |
+
+### 🚨 Priority Lounge Actions (July 1 - 11:30 UTC):
+1. **🔥🔥 GTA V FREE PS5 UPGRADE!** Upgrade all PS4 copies to PS5 NOW — 100% free since June 18!
+2. **🛒 EA Sports FC 26 — $13.99 (80% off!) in July Savings!** Buy for ALL lounge consoles!
+3. **🛒 TEKKEN 8 — $39.99 in July Savings!** Grab for lounge fighting game rotation!
+4. **🎮 CLAIM June PS Plus Essential games before July 7** — Grounded, Nick All-Star Brawl 2, WH40K Darktide!
+5. **👀 MONITOR PS Blog TODAY** — PS Plus Essential July reveal expected afternoon UK time!
+6. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+7. **PALWORLD 1.0 — July 10! Only 9 days!** Pre-order! 25M+ player phenomenon!
+8. **AC Black Flag Resynced — July 9! Only 8 days!** Pre-order! Best AC game remade!
+9. **Wishlist Stuntman: Hollywood** — Saber × Universal, Fast & Furious stunts!
+10. **Pre-order/wishlist God of War: Laufey** — Early 2027! PlayStation's crown jewel!
+11. **Mark July 21** — Planet Crafter! 93% positive terraforming co-op!
+12. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
