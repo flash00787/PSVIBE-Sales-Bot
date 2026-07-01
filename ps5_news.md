@@ -1,6 +1,76 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-30 23:30 UTC
+> Last updated: 2026-07-01 05:30 UTC
+
+---
+
+## ⚡ UPDATE (July 1, 2026 - 05:30 UTC) — "July Savings" Sale LIVE! + Mid-Year Deals Over + PS Plus Essential Reveal TODAY!
+
+> **Summary:** Early Wednesday morning sweep (6 hours since last update). Mid-Year Deals + Supplementary Sale have **officially ended**. A NEW **"July Savings" PS Store sale** has gone live to replace it with thousands of discounted titles. PS Plus Essential July reveal is expected **TODAY (July 1)** — still no credible leaks as of 05:30 UTC. Several minor July releases (Sword Art Online, The Mound co-op horror, Mistfall Hunter) discovered but low lounge relevance.
+
+### 🛒🆕 PS Store "July Savings" Sale — NOW LIVE! (Replaced Mid-Year Deals)
+- The Mid-Year Deals + Supplementary Sale have **ended** as scheduled (July 1 00:00 UTC)
+- A **NEW "July Savings" sale** is now live on PS Store — thousands of titles discounted
+- **Key lounge-relevant deals spotted:**
+  | Game | Sale Price | Discount | Lounge Value |
+  |------|-----------|----------|-------------|
+  | ⚽ **EA Sports FC 26** | **$13.99** | **80% off!** | ⭐⭐⭐⭐⭐ Massive deal! Prime lounge sports game! |
+  | 🥊 **TEKKEN 8** | **$39.99** | ~43% off | ⭐⭐⭐⭐ Fighting game staple! |
+  | 🏎️ **Forza Horizon 5 PS5** | **$29.99** | 50% off | ⭐⭐⭐⭐ Arcade racing perfection! |
+  | 🗡️ **Ghost of Tsushima Director's Cut** | $69.99 | ~$20 off | ⭐⭐⭐⭐⭐ Samurai masterpiece! |
+  | 🔫 **Ready or Not** | $49.99 | — | ⭐⭐⭐ Tactical FPS, niche |
+  | 🎮 **GTA V (PS5)** | Discounted | — | ⭐⭐⭐ Always relevant |
+  | ⚔️ **FF7 Rebirth** | Discounted | — | ⭐⭐⭐⭐⭐ JRPG masterpiece |
+  | 🏈 **WWE 2K26** | $46.19 | 34% off | ⭐⭐⭐ Wrestling party game |
+- **💡💡 Lounge Action:** EA Sports FC 26 at $13.99 (80% off!) is a STEAL — buy for ALL lounge consoles if not already owned. TEKKEN 8 at $39.99 is also excellent value for a fighting game staple. The Summer Sale (July 16 - Aug 1) is still coming as a separate, bigger event.
+
+### 📅 PS Plus Essential July — Reveal STILL Expected TODAY (July 1)
+- **Still NO credible leaks** as of 05:30 UTC July 1
+- Official announcement typically drops **afternoon/evening UK time** (~3:30-4:30 PM UTC) — we're still several hours too early
+- Community predictions unchanged: Rise of the Ronin, Atomic Heart, Hades, Days Gone Remastered, etc.
+- Games available **July 7** (first Tuesday)
+- **⚠️ June Essential games (Grounded, Nick All-Star Brawl 2, WH40K Darktide) expire July 7** — 6 days left to claim!
+- **💡 Lounge Action:** Monitor PS Blog throughout today. Next sweep should catch the official announcement.
+
+### 🎮 Minor July Releases Discovered (Low Lounge Relevance):
+| Game | Date | Notes |
+|------|------|-------|
+| ⚔️ **Echoes of Aincrad: Sword Art Online** | Jul 10 | Anime RPG — niche audience, ⭐⭐ |
+| 🔍 **Forensics: Crime Scene Detective** | Jul 13 | Simulator — very niche, ⭐ |
+| 🚂 **Denshattack!** | Jul 15 | Train skateboarding — quirky indie, ⭐⭐ |
+| 🐙 **The Mound: Omen of Cthulhu** | Jul 18 | Co-op Lovecraftian horror (cross-play!), ⭐⭐⭐ |
+| 🏹 **Mistfall Hunter** | Jul 30 | PvPvE extraction boss-rush, ⭐⭐ |
+
+### 📊 Quick Status Check (July 1 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 July Savings Sale | **LIVE NOW! 🆕** | EA FC 26 $13.99 (80% off)! TEKKEN 8 $39.99! |
+| 🛒 Mid-Year + Supplementary Sale | **ENDED** | Confirmed over. July Savings is the replacement. |
+| 📅 PS Plus Essential July Reveal | **TODAY (Jul 1)** | STILL no credible leaks as of 05:30 UTC! |
+| 🎮 June PS Plus Essential | Expires Jul 7! | Grounded, Nick Brawl 2, WH40K Darktide — 6 days! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 27 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 9 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 8 days! Full remake! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | Chain Spear + new campaign! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+| 💰 PS6 BoM $960 | **Reported** | Long PS5 lifecycle expected! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8-12 titles leaving |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 15 days away! |
+
+### 🚨 Priority Lounge Actions (July 1 - 05:30 UTC):
+1. **🛒 EA Sports FC 26 — $13.99 (80% off!) in July Savings!** Buy for ALL lounge consoles! STEAL price!
+2. **🛒 TEKKEN 8 — $39.99 in July Savings!** Grab for lounge fighting game rotation!
+3. **🎮 CLAIM June PS Plus Essential games before July 7** — Grounded, Nick All-Star Brawl 2, WH40K Darktide!
+4. **👀 MONITOR PS Blog TODAY** — PS Plus Essential July reveal expected! Next sweep will catch it!
+5. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+6. **PALWORLD 1.0 — July 10! Only 9 days!** Pre-order! 25M+ player phenomenon!
+7. **AC Black Flag Resynced — July 9! Only 8 days!** Pre-order! Best AC game remade!
+8. **Pre-order/wishlist God of War: Laufey** — Early 2027! PlayStation's crown jewel!
+9. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 

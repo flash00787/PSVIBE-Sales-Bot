@@ -84,6 +84,8 @@ Kora now manages **9 projects** with full coordination tool support.
 34. **FastAPI query params vs path params** — Path params auto-convert types; query params are strings. Must validate/convert manually. (#34)
 35. **CORS middleware ordering** — Must be added BEFORE route registration in FastAPI; order matters. (#35)
 36. **FIFO matching complexity** — Multi-currency FIFO with charges requires careful tracking of remaining quantities per lot. Test thoroughly with partial sales. (#36)
+61. **transfer_out stored as negative in cash_movements** — `SUM(amount)` for `transfer_out` returns negative. Use `+ SUM(transfer_out)` (adding a negative = subtracting), NOT `- SUM(transfer_out)` which double-counts. (#61)
+62. **Cashflow opener/closing should use cumulative queries** — Don't compute `closing = opener + monthly_sections` when cash_movements aren't captured in sections. Use the same cumulative SQL formula for both opener (up to `_start`) and closing (up to `_end`). Sections provide breakdown but may not sum to net_change. (#62)
 37. **JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — Without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps. (#37)
 38. **Server-side filter > client-side** — For time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing. (#38)
 56. **Vue pages need `<AppLayout>` wrapper** — Pages rendered via router-view don't auto-inherit sidebar/nav. Must wrap in `<AppLayout title="...">` component or sidebar disappears. (#56)
@@ -153,8 +155,9 @@ Kora now manages **9 projects** with full coordination tool support.
 | Issue | Severity | Status |
 |-------|----------|--------|
 | Cashflow month filter not applied (Jun 26) | Medium | 🟢 Fixed Jul 1 |
-| Cashflow asset deduction double-count (Jun 26) | Medium | 🔴 Pending |
+| Cashflow asset deduction double-count (Jun 26) | Medium | 🟢 Fixed Jul 1 — cumulative queries + transfer_out sign fix |
 | PNL m-param ignored; Balance Sheet no date filter (Jul 1) | High | 🟢 Fixed Jul 1 |
+| BS Member Liability = 0 (Jul 1) | High | 🟢 Fixed Jul 1 — undefined `ym` variable |
 | VPS health monitor unreachable (Jun 28) | Low | 🟡 Investigating |
 
 ## Working Preferences
@@ -167,8 +170,9 @@ Kora now manages **9 projects** with full coordination tool support.
 - **📁 New project onboarding (2026-06-25):** Every new project MUST include: (1) `README.md` at project root, (2) `memory/projects/<slug>/state.md`, (3) Daily memory section, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit
 - **Sub-agent timeout:** 300s default
 
-## Memory (2026-06-25)
-## Memory (2026-06-27)
-## Memory (2026-06-28)
-## Memory (2026-06-26)
+## Memory (2026-07-01)
 ## Memory (2026-06-29)
+## Memory (2026-06-28)
+## Memory (2026-06-27)
+## Memory (2026-06-26)
+## Memory (2026-06-25)

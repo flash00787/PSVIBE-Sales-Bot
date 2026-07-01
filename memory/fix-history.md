@@ -1,5 +1,18 @@
 ---
 
+## 2026-07-01 (11:00 MMT) — BS Member Liability 0 + Cashflow Wrong
+
+| # | Feature | Severity | Status |
+|---|---------|----------|--------|
+| 1 | BS member_liability = 0 | 🔴 High | ✅ Fixed — `ym` → `_month_key` |
+| 2 | Cashflow investing cumulative (no month filter) | 🔴 High | ✅ Fixed — added month filter to 4 queries |
+| 3 | Cashflow closing -19M (missing 300M capital in formula) | 🔴 High | ✅ Fixed — cumulative SQL for opener/closing |
+| 4 | Cashflow transfer_out sign double-count | 🟡 Medium | ✅ Fixed — `+SUM(transfer_out)` (neg in DB) |
+
+**Lessons:** #61 transfer_out stored negative, #62 cumulative queries for opener/closing
+
+---
+
 ## 2026-06-25 (17:00 MMT) — Booking #974 Disappearance Investigation + Fixes
 
 ### Issues Found & Fixed

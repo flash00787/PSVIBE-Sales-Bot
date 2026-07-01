@@ -5,9 +5,16 @@
 
 ---
 
-## ✅ Recently Completed (2026-06-19 → 2026-06-20 — 43+ fixes)
+## ✅ Recently Completed (2026-06-19 → 2026-07-01 — 48+ fixes)
 
-### 2026-06-20 — Sale Bot + Customer Bot Fixes
+### 2026-07-01 — Financial Statement July + Cashflow/BS Bug Fixes
+| # | Feature | Status |
+|---|---------|--------|
+| 41 | **Financial July 0-data bug** — `now_mmt()` hardcoded → user-selected month params (4 endpoints) | ✅ |
+| 42 | **BS Member Liability = 0** — undefined `ym` variable silently swallowed → `_month_key` | ✅ |
+| 43 | **Cashflow investing month filter** — cumulative queries → month-filtered | ✅ |
+| 44 | **Cashflow closing wrong (-19M)** — formula missed capital → cumulative SQL for opener/closing | ✅ |
+| 45 | **Cashflow transfer_out sign** — double-subtract negative → `+ SUM(transfer_out)` | ✅ |
 
 ### 2026-06-29 — Customer Bot Booking Success Rate (New Feature)
 | # | Feature | Status |
