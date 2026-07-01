@@ -1,6 +1,61 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-06-30 17:31 UTC
+> Last updated: 2026-06-30 23:30 UTC
+
+---
+
+## ⚡ UPDATE (June 30, 2026 - 23:30 UTC) — PS Plus June Essential Reminder + PS6 BoM $960 Report
+
+> **Summary:** Late-night sweep (6 hours since last update). No major new announcements — PS Plus Essential July reveal still expected tomorrow (July 1). Two items of note: the **June PS Plus Essential lineup** (Grounded, Nickelodeon All-Star Brawl 2, Warhammer 40K: Darktide) is expiring July 7 — these 3 games were never explicitly listed in our tracker. Also: fresh reports peg **PS6 manufacturing cost at ~$960** (up from earlier $760 estimate), suggesting $1,000+ retail. Long-term signal but notable for lounge planning.
+
+### 🎮 June PS Plus Essential Lineup — Expiring July 7! (NOT PREVIOUSLY TRACKED)
+- The tracker extensively covers PS Plus Extra/Premium June catalog but never explicitly listed the **June PS Plus Essential** monthly games:
+  | Game | Platform | Lounge Value |
+  |------|----------|-------------|
+  | 🐜 **Grounded: Fully Yoked Edition** | PS5, PS4 | ⭐⭐⭐⭐ Honey-I-Shrunk-the-Kids survival co-op — Obsidian quality, 4-player online co-op |
+  | 🥊 **Nickelodeon All-Star Brawl 2** | PS5, PS4 | ⭐⭐⭐ Platform fighter — Nickelodeon characters (SpongeBob, TMNT etc.), party-game potential |
+  | ⚔️ **Warhammer 40,000: Darktide** | PS5 | ⭐⭐⭐ 4-player co-op FPS — Left 4 Dead meets Warhammer, high-intensity action |
+- Announced May 26 via PS Blog — still claimable until **July 7**
+- **💡 Lounge Action:** These 3 games are FREE to claim for all PS Plus Essential subscribers. Claim them on all lounge PS5s before July 7! Grounded in particular is a quality co-op survival game from Obsidian.
+
+### 💰 PS6 Manufacturing Cost Reportedly ~$960 (New Detail)
+- Eurogamer, Insider Gaming, Mashable report (June 30): PS6 bill of materials (BoM) estimated at **~$960 per unit** — up from earlier $760 estimate in March
+- Rising RAM + SSD costs driven by AI industry demand are the main factor
+- Analysts project retail price **$1,000-$1,500** — radically different from previous console generations
+- Sony: "not yet decided on launch date or price" — late 2027 or 2028 expected, possible delay to 2029
+- **💡 Lounge Note (long-term):** If PS6 launches at $1,000+, PS5 will remain the dominant lounge console for YEARS beyond 2028. The PS5 fleet investment is secure for a very long lifecycle. This also means PS VIBE could be THE place people come to experience next-gen without buying a $1,000+ console when PS6 eventually launches.
+
+### 📅 PS Plus Essential July 2026 — Still Pending (July 1)
+- Official announcement expected **TOMORROW (July 1)** — still no credible leaks as of 23:30 UTC
+- Community predictions unchanged (Rise of the Ronin, Atomic Heart, Hades, Days Gone Remastered, etc.)
+- Games available **July 7**
+
+### 📊 Quick Status Check (June 30 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮 June PS Plus Essential | **EXPLICITLY LISTED 🆕** | Grounded, Nick All-Star Brawl 2, WH40K Darktide! Expiring Jul 7! |
+| 💰 PS6 BoM Cost | **$960 REPORT 🆕** | Up from $760! $1K+ retail projected! Long PS5 lifecycle! |
+| 📅 PS Plus Essential July Reveal | **TOMORROW (Jul 1)** | STILL no credible leaks! |
+| 🛒 Mid-Year + Supplementary Sale | **FINAL HOURS!** | ⚠️ Ends today! Last chance! |
+| 🔥🔥🔥 God of War: Sons of Sparta | **OUT NOW** | Shadow-dropped Feb 12! BUY NOW! |
+| 🔥🔥🔥 God of War Greek Trilogy Remake | **IN DEV** | Early development! TC Carson returns! |
+| 🔥🔥 FFXVI on PS Plus Extra | **FREE** | Since Jun 16! Download on ALL lounge PS5s! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 10 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 9 days! Pre-order! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! Wishlist NOW! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🔴 PS5 Shortage Warning | **ACTIVE** | Demand strong despite price hike! |
+
+### 🚨 Priority Lounge Actions (UPDATED June 30 - 23:30 UTC):
+1. **🎮 CLAIM June PS Plus Essential games** on ALL lounge PS5s before July 7 — Grounded, Nick All-Star Brawl 2, WH40K Darktide!
+2. **Mark TOMORROW (July 1)** — PS Plus Essential July reveal! Monitor PS Blog!
+3. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+4. **PALWORLD 1.0 — July 10! Only 10 days!** Pre-order!
+5. **⚠️ MID-YEAR DEALS — FINAL HOURS!** Last chance to stock up!
+6. **Pre-order/wishlist God of War: Laufey** — Early 2027!
+7. **DOWNLOAD Final Fantasy XVI** on ALL lounge PS5s — FREE on PS Plus Extra!
+8. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 
 ---
 
