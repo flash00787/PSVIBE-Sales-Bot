@@ -1,12 +1,27 @@
 {
-  "checked_at": "2026-07-01T13:30:48.180305+00:00",
+  "checked_at": "2026-07-02T13:30:36.086898+00:00",
   "total_unread": 30,
-  "total_processed": 51,
+  "total_processed": 40,
   "nova_found": 0,
-  "important_found": 9,
-  "promotional_skipped": 9,
+  "important_found": 7,
+  "promotional_skipped": 7,
   "nova_emails": [],
   "important_emails": [
+    {
+      "id": "19f214270b7e5ff1",
+      "threadId": "19f214270b7e5ff1",
+      "from": "Cloudflare <em@em1.cloudflare.com>",
+      "to": "chanmyint123456789@gmail.com",
+      "subject": "New updates to your AI bot controls.",
+      "date": "2026-07-02 05:17 UTC",
+      "is_unread": true,
+      "snippet": "We&#39;re writing to tell you about important upcoming changes to your default AI bot settings \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f We&#39;re writing to tell you about important upcoming changes to",
+      "body_preview": "New updates to your AI bot controls. We're writing to tell you about important upcoming changes to your default AI bot settings\u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007",
+      "keywords": [
+        "important",
+        "bot"
+      ]
+    },
     {
       "id": "19f1abba2f953a3b",
       "threadId": "19f1abba2f953a3b",
@@ -33,6 +48,20 @@
       "body_preview": "",
       "keywords": [
         "account"
+      ]
+    },
+    {
+      "id": "19f2056c0d990f1e",
+      "threadId": "19f2056c0d990f1e",
+      "from": "Accounting - Hetzner Online GmbH <billing@hetzner.com>",
+      "to": "chanmyint123456789@gmail.com",
+      "subject": "Hetzner Online GmbH - Invoice 081000981551 (K0520370026)",
+      "date": "2026-07-02 00:59 UTC",
+      "is_unread": false,
+      "snippet": "Dear Mr Aung Myint, Enclosed you will find your current invoice 081000981551 in PDF format. The open invoice amount of $ 66.59 will soon be debited from your credit card. We bill for our services on a",
+      "body_preview": "",
+      "keywords": [
+        "invoice"
       ]
     },
     {
@@ -75,62 +104,6 @@
       "body_preview": "Hi there,\r\n\r\nEle here, UptimeRobot's new Developer Advocate. Each month I'll share what we're up to: new videos, Discord community highlights, and what's shipping. Between issues, find me on X: https://sesweb.uptimerobot.com/l/ACTNk01nVq0xr1bIOwyg7A/imt7zuoj1RC892qIseIM3xqA/TktG26US2u6cPd9AyGhx2w\r\n\r\nSpeaking of Discord \u2014 we just opened our community server. It's early and still taking shape, but if you want to be one of the first in (and help shape what it becomes), come say hi. I'm eleftheria_u",
       "keywords": [
         "bot"
-      ]
-    },
-    {
-      "id": "19f1352017e5e468",
-      "threadId": "19f1352017e5e468",
-      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
-      "to": "chanmyint123456789@gmail.com",
-      "subject": "\ud83e\udd9e Five Eyes Sounds AI Alarm",
-      "date": "2026-06-29 12:02 UTC",
-      "is_unread": false,
-      "snippet": "Plus: Smart Bikes Get AI Label, Telecom AI agent Hits Reality \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f",
-      "body_preview": "",
-      "keywords": [
-        "tele"
-      ]
-    },
-    {
-      "id": "19f0ed406d3ea7d9",
-      "threadId": "19f0ed406d3ea7d9",
-      "from": "PlayStation <sony@txn-email03.playstation.com>",
-      "to": "<chanmyint123456789@gmail.com>",
-      "subject": "PS has invited you to join their family on PlayStation",
-      "date": "2026-06-28 15:23 UTC",
-      "is_unread": false,
-      "snippet": "PS has invited you to join their family on PlayStation You received a family request on PlayStation from PS. Click on the link below to confirm the details of the request. \u200b \u200bView Family Request Now\u200b",
-      "body_preview": "\r\n\r\nPS has invited you to join their family on PlayStation\r\n\r\n\r\nPS has invited you to join their family on PlayStation\r\n\r\nYou received a family request on PlayStation from PS. Click on the link below to confirm the details of the request.\r\n\r\n\u200b\r\n\r\n\u200b\r\nhttps://id.sonyentertainmentnetwork.com/id/receive_family_invitation/#/receive_family_invitation?family_invitation_uuid=0bff851f-55dc-4e94-b2e1-0cb4bae443a2&signin_id=chanmyint123456789%40gmail.com \r\nView Family Request Now\u200b\r\n\r\n\r\n\r\n This email messag",
-      "keywords": [
-        "confirm"
-      ]
-    },
-    {
-      "id": "19f0e92b6a4115a2",
-      "threadId": "19f0e92b6a4115a2",
-      "from": "PlayStation <sony@txn-email03.playstation.com>",
-      "to": "<chanmyint123456789@gmail.com>",
-      "subject": "Pre-Order Purchase Confirmation and GTA+ Redemption Instructions",
-      "date": "2026-06-28 14:12 UTC",
-      "is_unread": false,
-      "snippet": "Pre-Order Purchase Confirmation \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f",
-      "body_preview": "\r\n\r\nPre-Order Purchase Confirmation and GTA+ Redemption Instructions Pre-Order Purchase Confirmation&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; \r\n&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; \r\n&#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#8199;&#847; &#81",
-      "keywords": [
-        "confirm"
-      ]
-    },
-    {
-      "id": "19f0e922b6000ffe",
-      "threadId": "19f0e922b6000ffe",
-      "from": "PlayStation <sony@txn-email03.playstation.com>",
-      "to": "<chanmyint123456789@gmail.com>",
-      "subject": "Funds have been added to your wallet",
-      "date": "2026-06-28 14:11 UTC",
-      "is_unread": false,
-      "snippet": "Wallet Transaction Notification: Funds Added. Dear Aung Chan, The requested funds have been added to your PlayStation\u2122Network wallet. The transaction details are provided below for your records. Online",
-      "body_preview": "\r\n\r\nFunds have been added to your wallet\r\n\r\n\r\nWallet Transaction Notification: Funds Added.\r\n\r\nDear Aung Chan,\r\n\r\nThe requested funds have been added to your PlayStation\u2122Network wallet. The transaction details are provided below for your records.\r\n\r\nOnline ID:\r\nRev-Flash007\r\n\r\nOrder Number:\r\n787086443440070\r\n\r\nDate Purchased:\r\n06/28/2026\r\n\r\nCharge Method: \r\nFunds Added To Wallet:$100.00\r\n\r\nCurrent Wallet Amount*:$119.86\r\n*This wallet amount is current as of the date and time of this transaction.",
-      "keywords": [
-        "wallet"
       ]
     }
   ]
