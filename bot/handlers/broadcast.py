@@ -83,7 +83,7 @@ async def cmd_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_staff_kpi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Staff KPI — today's per-staff breakdown from Sales_Daily + overall summary."""
     await update.message.reply_text("⏳ KPI data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    rd    = await _psvibe_get_async("sheets/report-data") or {}  # single batch call (was 2 calls)
+    rd    = await _psvibe_get_async("reports/daily") or {}  # single batch call (was 2 calls)
     sales = rd.get("summary")     if rd else None
     stock = rd.get("stock_today") if rd else None
     date  = today_str()
@@ -104,7 +104,7 @@ async def cmd_staff_kpi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     food_item_count = len(stock.get("items", [])) if stock else 0
 
     # Per-staff breakdown — read Sales_Daily directly
-    sb = await _psvibe_get_async("sheets/staff-breakdown") or {}  # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
+    sb = await _psvibe_get_async("staff/breakdown") or {}  # ✅ Migrated to MySQL via API (2026-Q2)
     staff_stats = sb.get("staff", {}) if sb else {}
 
     # Performance rating

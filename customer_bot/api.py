@@ -500,7 +500,7 @@ async def _fetch_config() -> dict:
     if cached is not None:
         return cached
     try:
-        data = await _api_get("sheets/config")
+        data = await _api_get("config")
         if isinstance(data, dict):
             if "config" in data:
                 data = data["config"]
@@ -559,7 +559,7 @@ async def _build_bonus_table_text(config: dict) -> str:
 
 async def _build_rate_lines() -> list[str]:
     """Build per-console-type rate lines using base_rate * per-console multiplier.
-    Reads console_multipliers directly from Settings tab (via sheets/config API),
+    Reads console_multipliers directly from Settings tab (via config API),
     NOT from live console status (which may mix in staff/booking data)."""
     config = await _fetch_config()
     base   = config.get("base_rate", 0)
@@ -621,7 +621,7 @@ async def log_to_sheet(
     if not API_BASE:
         return
     try:
-        await _api_post("sheets/log", {
+        await _api_post("log/ai-interaction", {
             "tg_id": tg_id, "username": username,
             "user_name": user_name, "query": user_query[:300],
             "response": ai_response[:500], "sentiment": sentiment,

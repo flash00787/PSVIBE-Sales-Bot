@@ -436,7 +436,7 @@ def api_fetch_referral_code(member_id: str) -> dict | None:
 
 def api_fetch_sheets_config() -> dict | None:
     """Fetch spreadsheet configuration metadata."""
-    return _api_call("GET", "sheets/config")
+    return _api_call("GET", "config")
 
 
 # ===================================================================
@@ -451,13 +451,17 @@ async def api_fetch_wallet_mins_async(member_id: str) -> dict | None:
 
 async def api_fetch_members_async() -> list | None:
     """Async: Fetch all member records. Returns list of member ID strings."""
-    result = await _api_call_async("GET", "fetch_members")
-    if result is not None and isinstance(result, list):
-        if result and isinstance(result[0], dict):
-            ids = [m.get("id", "").strip() for m in result if m.get("id")]
-            if ids:
-                return ids
-        return result
+    result = await _api_call_async("GET", "fetch_members?limit=9999")
+    if result is not None:
+        # Fix #28: API now returns paginated {"members": [...], "total": N, ...}
+        if isinstance(result, dict) and "members" in result:
+            result = result["members"]
+        if isinstance(result, list):
+            if result and isinstance(result[0], dict):
+                ids = [m.get("id", "").strip() for m in result if m.get("id")]
+                if ids:
+                    return ids
+            return result
     return result
 
 
@@ -637,7 +641,7 @@ async def api_fetch_referral_code_async(member_id: str) -> dict | None:
 
 async def api_fetch_sheets_config_async() -> dict | None:
     """Async: Fetch spreadsheet configuration metadata."""
-    return await _api_call_async("GET", "sheets/config")
+    return await _api_call_async("GET", "config")
 
 
 # ===================================================================

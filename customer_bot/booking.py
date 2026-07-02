@@ -198,6 +198,20 @@ async def cmd_cancel_booking(update, context):
         return
 
     try:
+        # Fetch booking data first for admin notification
+        try:
+            booking = await _api._api_get(f"bookings/{bk_id}")
+            if isinstance(booking, dict) and "booking" in booking:
+                booking = booking["booking"]
+        except Exception:
+            booking = {}
+        _bk_date = (booking.get("date") or booking.get("booking_date") or "?") if isinstance(booking, dict) else "?"
+        _bk_time = (booking.get("timeSlot") or booking.get("startTime") or "?") if isinstance(booking, dict) else "?"
+        _bk_console = (booking.get("consoleType") or booking.get("console_id") or "?") if isinstance(booking, dict) else "?"
+        _bk_game = (booking.get("gameName") or booking.get("game_name") or "") if isinstance(booking, dict) else ""
+        _bk_phone = (booking.get("phone") or booking.get("customerPhone") or "") if isinstance(booking, dict) else ""
+        _bk_cust = (booking.get("customerName") or "") if isinstance(booking, dict) else ""
+
         result = await _api._api_patch(f"bookings/{bk_id}/status", {
             "status": "cancelled",
             "staff_note": "Cancelled by customer",
@@ -207,6 +221,33 @@ async def cmd_cancel_booking(update, context):
                 f"✅ *Booking #{bk_id} ကို ပယ်ဖျက်လိုက်ပါပြီ။*",
                 parse_mode="Markdown",
             )
+            # Notify admin group (deduped: skip if same booking notified <30s ago)
+            staff_chat = _api.STAFF_NOTIFY_CHAT
+            if staff_chat:
+                import time as _time
+                if not hasattr(_api, '_cancel_notify_sent'):
+                    _api._cancel_notify_sent = {}
+                _sent_key = f"cancel_{bk_id}"
+                _now = _time.time()
+                if _now - _api._cancel_notify_sent.get(_sent_key, 0) > 30:
+                    _api._cancel_notify_sent[_sent_key] = _now
+                    cust_name = _bk_cust or update.effective_user.full_name or "Customer"
+                    username = f" @{update.effective_user.username}" if update.effective_user.username else ""
+                    try:
+                        await _api._tg_send({
+                            "chat_id": staff_chat,
+                            "text": (
+                                f"🚫 <b>Booking #{bk_id} — Customer Cancelled</b>\n"
+                                f"👤 {cust_name}{username}  📞 {_bk_phone or '—'}\n"
+                                f"📅 {_bk_date}  ⏰ {_bk_time}\n"
+                                f"🎮 {_bk_console}" +
+                                (f"  🕹 {_bk_game}" if _bk_game else "") +
+                                f"\n📝 Customer မှ /cancelbooking ဖြင့် ပယ်ဖျက်သည်"
+                            ),
+                            "parse_mode": "HTML",
+                        })
+                    except Exception:
+                        pass
         else:
             err = (result or {}).get("error", "") if isinstance(result, dict) else ""
             await update.message.reply_text(

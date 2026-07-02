@@ -109,7 +109,7 @@ async def step_stock_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await show_si_items(update, context)
     if choice == BTN_INVENTORY_VIEW:
         await update.message.reply_text("⏳ Inventory စစ်နေသည်...", reply_markup=ReplyKeyboardRemove())
-        data = await _psvibe_get_async("sheets/inventory")
+        data = await _psvibe_get_async("stock/valuation")
         if not data:
             await update.message.reply_text("❌ Inventory data ရယူ၍ မရပါ။")
             return await show_stock_menu(update, context)
@@ -187,7 +187,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
     total_cogs  = cost_price * qty
 
     try:
-        # TODO: Migrate to MySQL via API -- direct gspread is fallback only
+        # ✅ Migrated to MySQL (2026-Q2) — API endpoint is primary; direct gspread deprecated
         logging.warning("DEPRECATED: direct gspread write in step_stock_qty — should use API endpoint")
         # ── API write (best-effort) ──
         try:
@@ -214,7 +214,7 @@ async def step_stock_qty(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         # K1 total inventory value — removed (GSheet dead code)
         # Low stock alert
-        inv_data = await _psvibe_get_async("sheets/inventory")
+        inv_data = await _psvibe_get_async("stock/valuation")
         if inv_data:
             for inv_item in inv_data.get("items", []):
                 if inv_item.get("name") == item:

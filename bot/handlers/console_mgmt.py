@@ -3,10 +3,11 @@ from bot import (
     fetch_console_status,
     get_consoles_from_setting, add_console_to_setting, remove_console_from_setting,
     BTN_BACK, BTN_CANCEL, BTN_ADD_CONSOLE, BTN_LIST_CONSOLE, BTN_DEL_CONSOLE,
-    BTN_EDIT_MULT, BTN_MOVE_CONSOLE,
+    BTN_EDIT_MULT, BTN_MOVE_CONSOLE, BTN_SWAP_CONSOLE,
     CON_MGMT_MENU, CON_ADD_ID, CON_ADD_MULT, CON_ADD_TYPE,
     CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE,
     MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM,
+    SWAP_SOURCE, SWAP_CONFIRM,
     show_console_menu,
 )
 """PS VIBE Bot — Handler module.
@@ -40,7 +41,7 @@ async def show_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
     kb    = [
         [BTN_LIST_CONSOLE, BTN_ADD_CONSOLE],
         [BTN_EDIT_MULT,    BTN_DEL_CONSOLE],
-        [BTN_MOVE_CONSOLE],
+        [BTN_MOVE_CONSOLE, BTN_SWAP_CONSOLE],
         [BTN_BACK],
     ]
     await update.message.reply_text(
@@ -107,6 +108,8 @@ async def step_con_mgmt_menu(update: Update, context: ContextTypes.DEFAULT_TYPE)
         return CON_EDIT_MULT_SELECT
     if choice == BTN_MOVE_CONSOLE:
         return await prompt_move_session(update, context)
+    if choice == BTN_SWAP_CONSOLE:
+        return await prompt_swap_session(update, context)
     return await show_con_mgmt_menu(update, context)
 
 async def step_con_add_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -389,3 +392,132 @@ async def step_move_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.pop("_move_source", None)
     context.user_data.pop("_move_free_consoles", None)
     return await show_console_menu(update, context)
+
+
+# ═══════════════════════════════════════
+#  Swap Two Active Sessions
+# ═══════════════════════════════════════
+
+async def prompt_swap_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show Active sessions to pick first console for swap."""
+    try:
+        cons = fetch_console_status()
+    except Exception as e:
+        await update.message.reply_text(f"❌ Error: {e}")
+        return await show_con_mgmt_menu(update, context)
+
+    active = [c for c in cons if c.get("status") == "Active"]
+    if len(active) < 2:
+        await update.message.reply_text(
+            "⚠️ Swap လုပ်ရန် Active session အနည်းဆုံး ၂ ခုရှိရမည်",
+            reply_markup=ReplyKeyboardMarkup([[BTN_BACK]], resize_keyboard=True),
+        )
+        return CON_MGMT_MENU
+
+    context.user_data["_swap_active"] = active
+
+    lines = ["↔️ <b>Console Swap — ပထမ Console ရွေးပါ</b>", "━━━━━━━━━━━━━━━━━━"]
+    kb = []
+    for c in active:
+        mbr = c.get("member") or "Guest"
+        st = c.get("start", "?")
+        game = c.get("current_game", "") or ""
+        lines.append(f"🔴 <b>{c['id']}</b>  |  👤 {mbr}  |  🎮 {game}  |  🕐 {st}")
+        kb.append([c["id"]])
+    kb.append([BTN_BACK])
+
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return SWAP_SOURCE
+
+
+async def step_swap_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """User picked first console — show remaining Active consoles for second."""
+    text = update.message.text.strip()
+    if text == BTN_BACK:
+        return await show_con_mgmt_menu(update, context)
+
+    active = context.user_data.get("_swap_active", [])
+    source = next((c for c in active if c.get("id") == text), None)
+    if not source:
+        await update.message.reply_text("⚠️ ပထမ Console ပြန်ရွေးပါ")
+        return await prompt_swap_session(update, context)
+
+    context.user_data["_swap_source"] = source
+    others = [c for c in active if c.get("id") != text]
+
+    lines = [
+        f"↔️ <b>{text}</b> ↔ ?",
+        "━━━━━━━━━━━━━━━━━━",
+        f"👤 {source.get('member') or 'Guest'}",
+        f"🕐 {source.get('start', '?')}",
+        "",
+        "ဒုတိယ Console ရွေးပါ:",
+    ]
+    kb = []
+    for c in others:
+        mbr = c.get("member") or "Guest"
+        st = c.get("start", "?")
+        kb.append([f"{c['id']}  |  👤 {mbr}  |  🕐 {st}"])
+    kb.append([BTN_BACK])
+
+    await update.message.reply_text(
+        "\n".join(lines),
+        parse_mode="HTML",
+        reply_markup=ReplyKeyboardMarkup(kb, one_time_keyboard=True, resize_keyboard=True),
+    )
+    return SWAP_CONFIRM
+
+
+async def step_swap_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """User picked second console — execute swap."""
+    text = (update.message.text or "").strip()
+    if text == BTN_BACK:
+        return await prompt_swap_session(update, context)
+
+    # Extract console_id from the label (format: "C-04  |  👤 Guest  |  🕐 12:25")
+    target_cid = text.split("  |")[0].strip() if "  |" in text else text
+
+    source = context.user_data.get("_swap_source", {})
+    active = context.user_data.get("_swap_active", [])
+
+    target = next((c for c in active if c.get("id") == target_cid and c.get("id") != source.get("id")), None)
+    if not target:
+        await update.message.reply_text("⚠️ ဒုတိယ Console ပြန်ရွေးပါ")
+        return await step_swap_source(update, context)
+
+    src_bk = source.get("booking_id")
+    tgt_bk = target.get("booking_id")
+
+    if not src_bk or not tgt_bk:
+        await update.message.reply_text("❌ Booking data missing — မရွှေ့နိုင်ပါ")
+        return await show_con_mgmt_menu(update, context)
+
+    # Execute swap via API
+    try:
+        from bot.api_client import api_post
+        result = await asyncio.to_thread(
+            api_post, "sessions/swap",
+            {"booking_id_1": int(src_bk), "booking_id_2": int(tgt_bk)}
+        )
+    except Exception as e:
+        logger.exception("swap_sessions api error")
+        await update.message.reply_text(f"❌ API Error: {e}")
+        return await show_con_mgmt_menu(update, context)
+
+    if result and result.get("success"):
+        await update.message.reply_text(
+            f"✅ Swap အောင်မြင်ပါသည်!\n\n"
+            f"🔄 <b>{source['id']}</b> ↔ <b>{target['id']}</b>",
+            parse_mode="HTML",
+        )
+    else:
+        err = (result or {}).get("error") or (result or {}).get("message", "Unknown")
+        await update.message.reply_text(f"❌ Swap မအောင်မြင်ပါ: {err}")
+
+    context.user_data.pop("_swap_source", None)
+    context.user_data.pop("_swap_active", None)
+    return await show_con_mgmt_menu(update, context)

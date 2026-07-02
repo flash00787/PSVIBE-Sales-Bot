@@ -15,7 +15,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current inventory levels - grouped by category."""
     await update.message.reply_text("\u23f3 Inventory \u1005\u1005\u1039\u1001\u1031\u100b\u1000\u1039...", reply_markup=ReplyKeyboardRemove())
     inv_data, cat_data = await asyncio.gather(
-        _psvibe_get_async("sheets/inventory"),
+        _psvibe_get_async("stock/valuation"),
         _psvibe_get_async("fetch_food_menu"),
         return_exceptions=True,
     )
@@ -77,7 +77,7 @@ async def cmd_inventory(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_stocktoday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show today's items sold from Replit API."""
     await update.message.reply_text("⏳ Today's stock data ရယူနေသည်...", reply_markup=ReplyKeyboardRemove())
-    data = await _psvibe_get_async("sheets/stock-today")
+    data = await _psvibe_get_async("stock/daily")
     if not data:
         await update.message.reply_text("❌ Stock data ရယူ၍ မရပါ။")
         return
@@ -104,10 +104,10 @@ async def cmd_promo_reports(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True)
     try:
         # Fetch all promotions (including inactive) via API
-        promo_data = await _psvibe_get_async("sheets/promotions/all")
+        promo_data = await _psvibe_get_async("promotions")
         promos = promo_data.get("promotions", []) if promo_data else []
         # Fetch Promotions_Log analytics
-        log_data   = await _psvibe_get_async("sheets/promotions-log")
+        log_data   = await _psvibe_get_async("promotions/log")
         promo_logs = (log_data or {}).get("logs", [])
         promo_summ = (log_data or {}).get("summary", [])  # list of {promo_id, promo_title, usage_count, total_discount, total_net}
         # Fetch today's sales summary
@@ -241,7 +241,7 @@ async def cmd_today_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         lines.append("🎮 Data မရပါ")
     # Per-staff breakdown from Sales_Daily
-    sb = None   # API cache (was direct gspread call) -- TODO: Migrate to MySQL via API, direct gspread is fallback only
+    sb = None   # ✅ Migrated to MySQL via API (2026-Q2)
     staff_stats = sb.get("staff", {}) if sb else {}
     if staff_stats:
         lines.append(f"━━━━━━━━━━━━━━━━━━")
@@ -289,8 +289,8 @@ async def cmd_financial_report(update: Update, context: ContextTypes.DEFAULT_TYP
     now   = now_mmt()
     m_str = now.strftime("%Y-%m")
     weekly, pnl = await asyncio.gather(
-        _psvibe_get_async("sheets/weekly-report"),
-        _psvibe_get_async(f"sheets/pnl?m={m_str}"),
+        _psvibe_get_async("reports/weekly"),
+        _psvibe_get_async(f"reports/pnl?m={m_str}"),
     )
     lines: list[str] = [f"💹 <b>Financial Report</b>"]
     # ── Weekly summary ──

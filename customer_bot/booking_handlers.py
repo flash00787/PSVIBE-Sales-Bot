@@ -815,13 +815,18 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         if result and isinstance(result, dict) and result.get("id"):
             bk_id = result["id"]
             context.user_data["_bk_last_id"] = bk_id
+            _console_display = f"{payload['consoleType']}{assigned_console_label}"
             msg = (
-                f"✅ *Booking Submitted — Pending Confirmation*\n\n"
-                f"🎫 Booking #{bk_id}\n"
+                "မင်္ဂလာပါ 🙏\n\n"
+                f"သင်၏ Booking (#{bk_id}) အား လက်ခံရရှိပါပြီ။\n"
+                "━━━━━━━━━━━━━━━━━━━\n"
                 f"📅 {payload['date']}  ⏰ {payload['timeSlot']}\n"
-                f"🎮 {payload['consoleType']}{assigned_console_label}  ⏱️ {payload['durationMins']} mins\n"
-                f"🕹️ {payload['gameName']}\n\n"
-                f"_Staff မှ confirm လုပ်ပြီးပါက အကြောင်းကြားပါမည်_ 🎮"
+                f"🕹️ Console: {_console_display}\n"
+                f"⏱️ {payload['durationMins']} mins  🎮 {payload['gameName']}\n"
+                "━━━━━━━━━━━━━━━━━━━\n"
+                "⏳ Staff မှ အတည်ပြုချက် စောင့်ဆိုင်းပေးပါ။\n"
+                "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨\n"
+                "Play The Game. Share The VIBE!"
             )
             asyncio.create_task(_api.track_usage(user, "booking_created"))
             return msg, True, False

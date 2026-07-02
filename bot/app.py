@@ -10,7 +10,7 @@ from bot import (
     ATTEND_STAFF, BOOK_CHECKIN_BIND, BOOK_CONSOLE, BOOK_DUP_WARN, BOOK_GAME,
     BOOK_MEMBER, BOOK_MINS, BUNDLE_FOC, CAP_ACCT, CAP_AMT, CAP_CONFIRM,
     CONFIRM_SUMMARY, CONSOLE, CONSOLE_MENU, CON_ADD_ID, CON_ADD_MULT,
-    CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM, DISCOUNT, DISC_SELECT,
+    CON_ADD_TYPE, CON_DEL_SELECT, CON_EDIT_MULT_SELECT, CON_EDIT_MULT_VALUE, CON_MGMT_MENU, MOVECON_SOURCE, MOVECON_TARGET, MOVECON_CONFIRM, SWAP_SOURCE, SWAP_CONFIRM, BTN_SWAP_CONSOLE, DISCOUNT, DISC_SELECT,
     DISC_SET_QTY, DS_CONSOLE_IN_SESSION, DS_MEMBER_IN_SESSION,
     END_SESSION_SELECT, END_SESSION_CONFIRM, FINANCE_MENU, FIN_REPORT_MENU, FOOD_MENU,
     FOOD_QTY, GAME_ADD_GENRE, GAME_ADD_PLATFORM, GAME_ADD_STATUS,
@@ -63,6 +63,7 @@ from telegram.request import HTTPXRequest
 import bot
 from bot.handlers import *  # noqa: F401,F403
 from bot.handlers import error_handler
+from bot.handlers.console_mgmt import prompt_swap_session, step_swap_source, step_swap_confirm
 from bot.handlers.input_logger import input_logger, input_logger_batcher
 import bot as _bot_module
 
@@ -304,6 +305,8 @@ def main():
             MOVECON_SOURCE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_source)],
             MOVECON_TARGET:     [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_target)],
             MOVECON_CONFIRM:    [MessageHandler(filters.TEXT & ~filters.COMMAND, step_move_target)],
+            SWAP_SOURCE:        [MessageHandler(filters.TEXT & ~filters.COMMAND, step_swap_source)],
+            SWAP_CONFIRM:       [MessageHandler(filters.TEXT & ~filters.COMMAND, step_swap_confirm)],
 
             # ── Session → Daily Sales bridge ──
             SESSION_SHORTFALL:      [MessageHandler(filters.TEXT & ~filters.COMMAND, step_session_shortfall)],
@@ -501,7 +504,7 @@ def main():
 
     loop = asyncio.get_event_loop()
     loop.set_exception_handler(_handle_task_exception)
-    
+
     # Store task references for proper cleanup on shutdown
     _tasks = []
     _tasks.append(loop.create_task(_bg_cache_refresh()))

@@ -1019,20 +1019,39 @@ async def _text_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYP
     except Exception:
         result = None
     if result:
+        # Cancel booking reminders via webhook
+        try:
+            import urllib.request, json
+            webhook_url = "http://localhost:8000/webhook/booking-reminder/cancel"
+            _payload = json.dumps({"booking_id": booking_id}).encode()
+            _req = urllib.request.Request(webhook_url, data=_payload,
+                headers={"Content-Type": "application/json"})
+            urllib.request.urlopen(_req, timeout=5)
+        except Exception:
+            pass
+
         await update.message.reply_text(
             f"🚫 *Booking #{booking_id} ပယ်ဖျက်လိုက်ပြီ*",
             parse_mode="Markdown",
         )
         staff_chat = _api.STAFF_NOTIFY_CHAT
         if staff_chat:
-            await _api._tg_send({
-                "chat_id": staff_chat,
-                "text": (
-                    f"🚫 <b>Booking #{booking_id} — Customer Cancelled</b>\n"
-                    f"👤 {cust_name} မှ ပယ်ဖျက်သည်"
-                ),
-                "parse_mode": "HTML",
-            })
+            # Dedup: skip if same booking notified <30s ago (also checked in booking.py)
+            import time as _time
+            if not hasattr(_api, '_cancel_notify_sent'):
+                _api._cancel_notify_sent = {}
+            _sent_key = f"cancel_{booking_id}"
+            _now = _time.time()
+            if _now - _api._cancel_notify_sent.get(_sent_key, 0) > 30:
+                _api._cancel_notify_sent[_sent_key] = _now
+                await _api._tg_send({
+                    "chat_id": staff_chat,
+                    "text": (
+                        f"🚫 <b>Booking #{booking_id} — Customer Cancelled</b>\n"
+                        f"👤 {cust_name} မှ ပယ်ဖျက်သည်"
+                    ),
+                    "parse_mode": "HTML",
+                })
     else:
         await update.message.reply_text("❌ ပယ်ဖျက်မှု မအောင်မြင်ပါ — Admin ကို ဆက်သွယ်ပါ")
 

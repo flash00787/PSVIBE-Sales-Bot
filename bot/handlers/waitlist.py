@@ -21,7 +21,7 @@ async def _wl_console_availability(console_pref: str) -> dict:
     Check live console availability for a given console_pref ("PS5", "PS5 Pro", "Any").
     Returns dict: { free: [cid,...], busy: [cid,...], total: int }
     """
-    data = await _psvibe_get_async("sheets/consoles")
+    data = await _psvibe_get_async("consoles")
     consoles = data.get("consoles", []) if data else []
     if console_pref == "Any":
         relevant = consoles
