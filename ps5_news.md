@@ -1,6 +1,92 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-02 05:30 UTC
+> Last updated: 2026-07-02 11:30 UTC
+
+---
+
+## 🔥 UPDATE (July 2, 2026 - 11:30 UTC) — CoD Black Ops 1 & 2 Coming to PS5! + Onimusha Date Moved to Sep 4!
+
+> **Summary:** Thursday late-morning sweep (6 hours since last update). TWO notable discoveries: **Call of Duty: Black Ops 1 & 2 are getting official PS5 ports in July 2026** — completely absent from tracker! These are the legendary classic CoDs many consider the peak of the franchise. Also: **Onimusha: Way of the Sword release date moved FORWARD 3 weeks** — from Sep 25 to **Sep 4, 2026**. Plus: July Savings Sale end date confirmed as **July 15**.
+
+### 🔥🔥 Call of Duty: Black Ops 1 & 2 — Official PS5 Ports Coming July 2026! (COMPLETELY MISSED!)
+
+- **Activision** confirmed that both **Call of Duty: Black Ops (2010)** and **Call of Duty: Black Ops 2 (2012)** are being ported to PS4 and PS5 in **July 2026**
+- Developer: **Iron Galaxy** (specialists in game ports)
+- **NOT remasters** — these are direct ports preserving the original experience
+- **Full content included:** Campaign, Multiplayer, AND Zombies modes for both games
+- These classic CoDs have been playable on Xbox via backward compatibility for years but were NEVER available on PS4/PS5 due to lack of PS3 backward compatibility — this finally addresses that gap
+- Expected pricing: ~$40 each (digital only via PS Store), DLC expected to return at reduced prices
+- Exact July release date TBD (no specific day announced yet)
+- Sources: Digital Foundry, PushSquare (June 2026), Dot Esports, Activision official
+- **💡💡💡 Lounge Impact — SIGNIFICANT:**
+  - **Black Ops 1 & 2 are widely considered the PEAK of the Call of Duty franchise** — BO2 especially is frequently voted the best CoD of all time by the community
+  - **BO2 Zombies is LEGENDARY** — Maps like Origins, Mob of the Dead, and Buried are considered the greatest Zombies experiences ever created. This is HUGE for co-op lounge play!
+  - **BO1 Zombies** gave us Kino der Toten, Ascension, Call of the Dead, Moon — all classics
+  - **Multiplayer:** BO2's multiplayer is still regarded as the gold standard for CoD — balanced weapons, iconic maps (Raid, Standoff, Hijacked, Nuketown 2025)
+  - **Split-screen support** expected (classic CoD feature) — perfect for lounge co-op
+  - Combined with CoD MW3 (free on PS Plus Jul 7) and CoD MW4 (Oct 23), PS VIBE will have the BEST CoD lineup possible — classic era + modern era!
+  - **Promotional opportunity:** "Play the greatest Call of Duty games ever made — Black Ops 1 & 2, finally on PlayStation — only at PS VIBE!"
+  - These are nostalgia POWERHOUSES — gamers who grew up with BO1/BO2 are now 25-35 (prime lounge demographic)
+  - ⭐⭐⭐⭐⭐ lounge value — legendary CoD games, co-op Zombies, competitive MP, nostalgia factor
+
+### ⚔️ Onimusha: Way of the Sword — Release Date MOVED FORWARD to September 4! (DATE CHANGE!)
+
+- Capcom announced the release date has been **moved forward by 3 weeks** — from September 25 to **September 4, 2026**
+- Reason: To avoid the ultra-crowded late September window (which has Control Resonant, Silent Hill Townfall, Dune Awakening, and Ace Combat 8 all packed into Sep 22-28)
+- All other details unchanged — demo still available on PS Store, pre-order bonuses active
+- Sources: Capcom official, VideoGamesChronicle, NintendoLife, PureXbox (all July 2026)
+- **💡 Lounge Impact:** Earlier release = earlier lounge addition! Now launches BEFORE the crazy Sep 22-28 window rather than in the middle of it. Updated September calendar:
+
+| Date | Game | Status |
+|------|------|--------|
+| **Sep 4** | ⚔️ Onimusha: Way of the Sword | MOVED from Sep 25! 🆕 |
+| **Sep 15** | 🔥 RuneScape: Dragonwilds | DAY ONE PS Plus Extra! FREE! |
+| **Sep 15** | 🐺 Marvel's Wolverine | PS5 exclusive! Pre-orders LIVE! |
+| **Sep 22** | 🏜️ Dune: Awakening | PS5 launch + single-player mode! |
+| **Sep 24** | 🔥 Control Resonant + 👻 Silent Hill: Townfall | Double drop day! |
+| **Sep 28** | ✈️ Ace Combat 8 (Deluxe EA) | Early Access starts! |
+| **Oct 2** | ✈️ Ace Combat 8 (Full) | Global release! |
+
+### 🛒 July Savings Sale — End Date CONFIRMED: July 15, 2026
+- Previously noted as "LIVE" without confirmed end date — now confirmed: **July 15, 2026**
+- Over 3,000 PS5/PS4 games discounted up to 75%
+- Key lounge deals still active: EA Sports FC 26 $13.99 (80% off!), TEKKEN 8 $39.99, Forza Horizon 5 $29.99
+- **💡 Lounge Action:** 13 days remaining! Grab EA FC 26 at 80% off for ALL lounge consoles before July 15!
+
+### 📊 Quick Status Check (July 2 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **NEW! 🆕** | July 2026! Classic CoD campaign+MP+Zombies! |
+| ⚔️ Onimusha: Way of the Sword | **DATE CHANGE! 🆕** | Moved to Sep 4 (from Sep 25)! 3 weeks earlier! |
+| 🛒 July Savings Sale | **Ends Jul 15 🆕** | End date confirmed! 13 days left! |
+| 🔥🔥🔥 PS Plus Essential July | **REVEALED!** | CoD MW3 + For the King II + CrossCode! Jul 7 - Aug 3! |
+| 🚨🚨🚨 Physical Discs Ending | **JAN 2028!** | ALL new games digital-only after Jan 2028! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | Grounded, Nick Brawl 2, WH40K Darktide — 5 days! CLAIM NOW! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 26 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 8 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 7 days! Full remake! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | 5 days! Chain Spear + new campaign! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! 93% Steam positive! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Beta Jul 2-5! Pre-orders live! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9 + 7 more! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 14 days away! |
+| 🔥🔥🔥🔥🔥 God of War: Laufey | Early 2027! | Faye protagonist! ONE OF LAST PHYSICAL GAMES! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 2 - 11:30 UTC):
+1. **🔥🔥 MONITOR for CoD Black Ops 1 & 2 PS5 exact release date!** Classic CoD peak + legendary Zombies = DAY ONE lounge purchase!
+2. **🚨🚨🚨 PHYSICAL DISCS ENDING JAN 2028!** Prioritize physical purchases for ALL key lounge games in next 18 months!
+3. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD for FREE with PS Plus! Campaign + MP + Zombies!
+4. **CLAIM June PS Plus Essential games BEFORE July 7** — Grounded, Nick All-Star Brawl 2, WH40K Darktide! Last 5 days!
+5. **🛒 July Savings Sale — ENDS JUL 15!** EA Sports FC 26 $13.99 (80% off!) + TEKKEN 8 $39.99! 13 days left!
+6. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! FIRST HALO ON PLAYSTATION!
+7. **PALWORLD 1.0 — July 10! Only 8 days!** Pre-order! 25M+ player phenomenon!
+8. **AC Black Flag Resynced — July 9! Only 7 days!** Pre-order! Best AC game remade!
+9. **Onimusha: Way of the Sword date updated — Sep 4 (3 weeks earlier!)** Update lounge calendar!
+10. **Mark July 15** — PS Plus Extra/Premium July reveal + July Savings Sale ends!
+11. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
+12. **Start digital license strategy** — post-2028, all games will be digital. Plan ahead!
 
 ---
 
