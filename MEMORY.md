@@ -175,6 +175,7 @@ Kora now manages **9 projects** with full coordination tool support.
 63. **PyMySQL `%%` escape for literal `%`** — `DATE_FORMAT(col, '%Y-%m')` fails because PyMySQL's `cur.execute()` treats `%Y`, `%m` as format placeholders. Must escape as `%%Y`, `%%m` in SQL strings. (#63)
 64. **Check existing scripts before building new features** — The no-show auto-cancel script and cron job already existed. Always grep/inspect crontab and scripts/ folder first before planning work. (#64)
 65. **Dashboard timer change must sync 3 layers** — DB (done), API timer (`schedule_session_timer`), Bot state (`_SESSION_END_TIMES`). Missing any one → reminder fires at wrong time. (#65)
+66. **MySQL queries: ALWAYS Python pymysql, NEVER shell quoting** — docker exec + bash heredocs with nested quotes fails silently (5+ failed attempts for one query today). Python pymysql handles all quoting automatically and is 3x faster. Pattern: `python3 -c 'import pymysql; ...'` for ALL MySQL queries. (#66)
 
 ## Memory (2026-07-02)
 
