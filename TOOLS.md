@@ -39,7 +39,7 @@ python3 /root/coordination/onboard_project.py mybot "My Bot" /root/my-custom-bot
 | Discord Bot | — | `psvibe-discord-bot.service` |
 | Kora Host API | — | `kora-host-api.service` |
 | Kora Voice | — | `kora-voice.service` |
-| ACM Wallet Bot | `/opt/acm-personal-wallet/` | `acm-personal-wallet.service` |
+| ACM Wallet Bot | `/root/ACM-Personal-Wallet/` | `acm-personal-wallet.service` |
 
 ## Research Agent
 ```bash
@@ -103,3 +103,33 @@ python3 /root/coordination/dashboard.py --port 9090
 > **Full detail:** See `memory/tools-commands.md` for all commands + coordination tool tables
 > **Contacts:** See `memory/contacts.md`
 > **Infrastructure:** See `memory/infrastructure.md`
+
+
+## Kora Memory System (MongoDB v2.0)
+```bash
+# Unified CLI — all memory operations
+kora_memory.py trace "<name>"        # Trace function/endpoint/table connections
+kora_memory.py impact "<file>"       # What breaks if this changes
+kora_memory.py search "<query>"      # Full-text search with relevance scoring
+kora_memory.py query --project psvibe --type bug --status open  # Filtered query
+kora_memory.py code-stats            # Code graph statistics
+kora_memory.py enhance               # Run all memory optimizations
+kora_memory.py auto-classify         # Auto-detect types/tags
+kora_memory.py dedup                 # Find duplicate entries
+kora_memory.py quality --apply       # Score entry completeness
+
+# Quality & Sync Pipeline
+kora_memory_pipeline.py enhance      # Quality + ghosts + sync (all-in-one)
+kora_memory_pipeline.py quality      # Flag low-score entries
+kora_memory_pipeline.py ghosts       # Scan for orphan .md references
+kora_memory_pipeline.py sync         # Bi-directional .md ↔ MongoDB sync
+kora_memory_pipeline.py monthly      # Monthly quality report
+
+# Backup
+kora_backup.py                       # MongoDB dump + Drive upload
+kora_backup.py --local-only          # Dump only (no upload)
+
+# Code Graph Maintenance
+kora_code_graph_refresh.py incremental  # Scan changed files
+kora_code_graph_refresh.py full         # Full rebuild
+```

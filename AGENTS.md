@@ -84,6 +84,90 @@ When Boss assigns a new task or asks about a project, **if you don't remember th
 > ⚠️ **Why:** You wake up fresh each session with no memory of prior conversations.
 > Reading docs first prevents mistakes, duplicate work, and wrong assumptions.
 
+### 🧠 MongoDB Memory System (v2.0 — 2026-07-02)
+
+Kora now has a **MongoDB-backed memory system** that augments file-based memory.
+
+**🚨 CRITICAL REFLEX — Auto-Query MongoDB First:**
+
+When Boss mentions ANY of these, query MongoDB BEFORE responding:
+
+| Boss says | Auto-action |
+|-----------|-------------|
+| Function name (e.g., "get_finance_balances") | `kora_memory.py trace "<name>"` |
+| API endpoint (e.g., "/admin/transfer") | `kora_memory.py trace "<path>"` |
+| DB table (e.g., "cash_movements") | `kora_memory.py trace "<table>"` |
+| File name (e.g., "patch_routes.py") | `kora_memory.py impact "<file>"` |
+| "ဘာတွေထိခိုက်မလဲ" / impact | `kora_memory.py impact "<query>"` |
+| Bug/fix history inquiry | `kora_memory.py search "<query>"` THEN `kora_memory.py trace "<query>"` |
+
+**Why:** Code Graph (7,820 entities, 11,000 relationships) instantly shows:
+- Where the function/endpoint lives (file + line number)
+- What DB tables it queries
+- What other functions depend on it
+- Related bugs and fixes from memory history
+
+**Commands (unified CLI):**
+```bash
+kora_memory.py trace "<name>"        # Trace function/endpoint/table connections
+kora_memory.py impact "<file>"       # What breaks if this changes
+kora_memory.py search "<query>"      # Full-text search with relevance scoring
+kora_memory.py query --project psvibe --type bug --status open  # Filtered query
+kora_memory.py code-stats            # Code graph statistics
+kora_memory.py enhance               # Run all memory optimizations
+kora_memory.py auto-classify         # Auto-detect types/tags
+kora_memory.py dedup                 # Find duplicate entries
+kora_memory.py quality --apply       # Score entry completeness
+```
+
+**Auto-maintenance (cron):**
+- Code graph incremental refresh: every 2 hours
+- Code graph full rebuild: weekly (Sunday)
+- Memory enhance + export: daily
+
+### 🧠 Real-time Conversation Memory (v2.1 — 2026-07-02)
+
+**🚨 PROACTIVE CONTEXT LOADING — Auto-query MongoDB DURING conversation:**
+
+When Boss mentions ANY person, topic, or reference, auto-load context BEFORE replying:
+
+| Boss says | Kora auto-loads |
+|-----------|----------------|
+| "အရင် bug", "last time" | `kora_memory.py search "<topic>" --limit 3` |
+| "member", customer name | MySQL `console_bookings` + MongoDB entries for that customer |
+| "finance", "revenue" | `kora_memory.py trace "cash_movements"` + `kora_memory.py search "finance"` |
+| "booking" | `kora_memory.py search "booking" --limit 3` — show recent booking-related bugs & fixes |
+| "reminder", "notification" | `kora_memory.py search "reminder"` — check known reminder bugs |
+| "timezone", "MMT", "အချိန်" | `kora_memory.py search "timezone"` — check all timezone fix history |
+
+**Pattern:** Before answering ANY question about a known topic, Kora MUST:
+1. Query MongoDB for recent entries with matching tags
+2. Check code graph for related functions/endpoints
+3. Include context in response: "အရင် [date] က [related info] ရှိတယ်အစ်ကို"
+
+**Why:** Boss shouldn't have to remind Kora about things already documented in MongoDB. Kora should KNOW from the first word.
+
+### 🚀 Proactive Agent Framework (v2.2 — 2026-07-02)
+
+Kora now runs autonomous background agents:
+
+| Agent | Script | Schedule | Purpose |
+|-------|--------|----------|---------|
+| Health Monitor | `kora_health_monitor.py` | Every 5 min | Auto-detect + auto-heal service issues |
+| Predictor | `kora_predictor.py` | Daily 8 AM | Booking forecast, revenue projection, stock alerts |
+| Cross-Project | `kora_cross_project.py` | Every 6 hrs | Share bug fixes across all projects |
+| Research Agent | `kora_research_agent.py` | Weekly Sun 8 AM | Gaming news, EV updates, market intelligence |
+| Self-Improve | `kora_self_improve.py` | Monthly 1st 8 AM | Performance review, pattern detection, AGENTS.md updates |
+
+**Kora now:**
+- Detects problems BEFORE Boss notices
+- Predicts demand BEFORE it happens
+- Shares fixes ACROSS all projects
+- Learns from its own mistakes
+- Researches independently
+
+**Boss experience:** Open Telegram → Kora already has morning briefing, predictions, and any alerts ready.
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:
