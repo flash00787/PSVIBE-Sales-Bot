@@ -1,6 +1,85 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-02 11:30 UTC
+> Last updated: 2026-07-02 17:31 UTC
+
+---
+
+## ⚡ UPDATE (July 2, 2026 - 17:31 UTC) — EA Sports College Football 27 This Month! + Blood of Dawnwalker Sep 3! + PS Plus Price Hike Alert!
+
+> **Summary:** Thursday evening sweep (6 hours since last update). THREE notable items discovered: **EA Sports College Football 27** launches July 9 (7 days!) — completely missed from tracker despite being a major sports title! **The Blood of Dawnwalker** — dark fantasy vampire RPG from ex-CD Projekt Red devs (Rebel Wolves) locked for September 3, 2026. Plus: **PS Plus subscription prices quietly increased May 20** for new members across all tiers (monthly/quarterly only, annual unchanged).
+
+### 🏈 EA Sports College Football 27 — July 9, 2026! MVP+ Early Access LIVE NOW! (COMPLETELY MISSED!)
+
+- **EA Sports** releases the latest entry in the revived College Football series on **July 9, 2026** on PS5, Xbox Series X|S, and PC
+- **Deluxe Edition / MVP Bundle owners:** Early Access starts **July 6** (4 days away!)
+- **MVP+ Members:** Early Access is **LIVE NOW** (started July 2 — TODAY!)
+- The College Football revival (CF25/CF26) was a massive commercial hit after a decade-long hiatus — this series has a rabid fanbase
+- Sources: EA official FAQ, Wikipedia, GameRant, Steam
+- **💡💡💡 Lounge Impact:**
+  - EA Sports College Football is HUGE in the US and has growing international appeal
+  - Sports games = extended lounge sessions + group play (competitive matches, tournaments)
+  - July 9 — same day as AC Black Flag Resynced + Granblue Fantasy Relink expansion = triple-drop day!
+  - ⭐⭐⭐⭐ lounge value — major sports franchise, local multiplayer, competitive scene
+
+### 🧛 The Blood of Dawnwalker — September 3, 2026! Ex-CD Projekt Red Devs' Dark Fantasy RPG! (COMPLETELY MISSED!)
+
+- **Rebel Wolves** (founded by former The Witcher 3 & Cyberpunk 2077 developers) + **Bandai Namco**
+- **Release date: September 3, 2026** on PS5, Xbox Series X|S, and PC
+- **Genre:** Dark fantasy open-world action RPG set in 14th-century Europe
+- **Unique mechanic:** Protagonist Coen is **human by day, vampire by night** — combat shifts between swordplay/magic (day) and claw-based vampiric abilities (night)
+- **"Narrative sandbox"** — player choices & consequences within a 30-day in-game time limit to save Coen's family
+- New gameplay footage dropped TODAY (July 2) showcasing tomb raiding + investigative gameplay
+- Sources: Official PS Blog (Apr 28), Bandai Namco, IGN Summer of Gaming (Jun 5), GamingBolt (Jul 2)
+- **💡💡💡 Lounge Impact:**
+  - Ex-Witcher 3 devs = pedigree is exceptional. This is one of the most anticipated RPGs of 2026
+  - Day/night vampire mechanic is genuinely unique — spectacle value for lounge screens
+  - September 3 adds to the already INSANE Sep 2026 lineup (Wolverine Sep 15, Dune Sep 22, Control/SH Townfall Sep 24, Onimusha Sep 4)
+  - ⭐⭐⭐⭐ lounge value — Witcher 3 DNA, unique mechanics, dark fantasy spectacle
+
+### 💰 PS Plus Subscription Price Increase — Effective May 20, 2026 for New Members! (NOT PREVIOUSLY TRACKED!)
+
+- Sony quietly increased PS Plus prices for **new members on May 20, 2026** across all tiers
+- **Only affects monthly & quarterly plans** — annual subscriptions unchanged
+- **Existing subscribers EXEMPT** unless they let their membership lapse or cancel
+- **Price changes (USD):**
+  | Tier | Plan | Old Price | New Price | Increase |
+  |------|------|-----------|-----------|----------|
+  | Essential | 1-Month | $9.99 | **$10.99** | +10% |
+  | Essential | 3-Month | $24.99 | **$27.99** | +12% |
+  | Extra | 1-Month | $14.99 | **$17.99** | +20% |
+  | Extra | 3-Month | $39.99 | **$43.99** | +10% |
+  | Premium | 1-Month | $17.99 | **$19.99** | +11% |
+  | Premium | 3-Month | $49.99 | **$54.99** | +10% |
+- Sony cited "ongoing market conditions" as the reason
+- Sources: CNET, IGN, PushSquare (May 2026)
+- **💡 Lounge Impact:** If PS VIBE currently has active PS Plus subscriptions on lounge consoles, **DO NOT let them lapse** — renewing at old annual rate locks in the lower price. New short-term subscriptions cost more. Annual plans are now the best value by far. Extra 1-month jumped 20% — that's the biggest hike!
+
+### 📊 Quick Status Check (July 2 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🏈 EA Sports College Football 27 | **NEW! 🆕** | Jul 9! 7 days! MVP+ EA LIVE NOW! Major sports title! |
+| 🧛 The Blood of Dawnwalker | **NEW! 🆕** | Sep 3! Ex-Witcher 3 devs! Vampire RPG! |
+| 💰 PS Plus Price Hike | **NEW! 🆕** | May 20! New members pay more! Don't let subs lapse! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | July 2026! | Classic CoDs finally on PlayStation! Date TBD! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE Jul 7!** | CoD MW3 + For the King II + CrossCode! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 13 days! EA FC 26 $13.99! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | ALL new games digital-only after Jan 2028! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 26 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 8 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 7 days! Full remake! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 5 days! CLAIM NOW! |
+
+### 🚨 Priority Lounge Actions (July 2 - 17:31 UTC):
+1. **🏈 Pre-order EA Sports College Football 27** — Jul 9! Only 7 days! Major sports draw!
+2. **🔥🔥 MONITOR CoD Black Ops 1 & 2 exact date** — legendary CoDs finally on PS5!
+3. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD FREE with PS Plus!
+4. **CLAIM June PS Plus Essential BEFORE July 7** — Grounded, Nick Brawl 2, WH40K Darktide! 5 days!
+5. **🛒 July Savings Sale — ENDS JUL 15!** EA FC 26 $13.99! 13 days!
+6. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+7. **PALWORLD 1.0 — July 10! Only 8 days!** Pre-order!
+8. **AC Black Flag Resynced — July 9! Only 7 days!** Pre-order!
+9. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+10. **Wishlist The Blood of Dawnwalker** — Sep 3! Ex-Witcher 3 devs!
 
 ---
 

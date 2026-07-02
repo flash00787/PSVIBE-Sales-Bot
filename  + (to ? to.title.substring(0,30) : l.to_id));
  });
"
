@@ -1,0 +1,4 @@
+✅ Linked: auto_verify --[extends]--> transfer_page
+
+=== Verify links ===
+bash: -c: line 7: unexpected EOF while looking for matching `"'

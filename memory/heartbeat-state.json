@@ -1,7 +1,5 @@
 {
-  "last_consolidation": "2026-07-02T15:30:00Z",
-  "status": "complete",
-  "daily_file": "memory/2026-07-02.md",
-  "new_additions_to_memory": [],
-  "notes": "All significant events and lessons from today already present in MEMORY.md. No new additions needed. Lessons #61-65 match between daily memory and MEMORY.md. Stale checkin cleanup ran with 0 results."
+  "lastHeartbeat": "2026-07-02T17:34:04Z",
+  "stuckTasks": [],
+  "pendingTasks": []
 }
