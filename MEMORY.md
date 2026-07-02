@@ -172,6 +172,30 @@ Kora now manages **9 projects** with full coordination tool support.
 - **📁 New project onboarding (2026-06-25):** Every new project MUST include: (1) `README.md` at project root, (2) `memory/projects/<slug>/state.md`, (3) Daily memory section, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit
 - **Sub-agent timeout:** 300s default
 
+63. **PyMySQL `%%` escape for literal `%`** — `DATE_FORMAT(col, '%Y-%m')` fails because PyMySQL's `cur.execute()` treats `%Y`, `%m` as format placeholders. Must escape as `%%Y`, `%%m` in SQL strings. (#63)
+64. **Check existing scripts before building new features** — The no-show auto-cancel script and cron job already existed. Always grep/inspect crontab and scripts/ folder first before planning work. (#64)
+65. **Dashboard timer change must sync 3 layers** — DB (done), API timer (`schedule_session_timer`), Bot state (`_SESSION_END_TIMES`). Missing any one → reminder fires at wrong time. (#65)
+
+## Memory (2026-07-02)
+
+### July 2 Sprint — 6 Features Delivered
+- Console Swap: staff permission + booking ID/phone/notes detail cards
+- Timer Duration Change: Hybrid fix — API timer reschedule + Bot auto-sync from DB every reminder fire
+- ConsoleTimer: Custom minutes input ("✏️ Custom mins..." + Enter key support)
+- Business Overview: All-time cumulative dashboard (8 sections, new CumulativeStats.vue)
+- Cancel Flow: Admin group notification on cancel + customer self-cancel reminder cleanup
+- Confirmed existing: Customer Bot confirmation, No-show auto-cancel (cron), Food Menu import
+
+### All-Time Numbers (Jul 2)
+- Total Revenue: ~13.3M Ks (Gaming 12.3M + Food 1.05M + Topup 450K)
+- Total Bookings: 1,053 | Unique Members: 19
+
+### Key Files Changed
+- Dashboard: AppLayout.vue, SwapView.vue, ConsoleTimer.vue, CumulativeStats.vue (NEW), router/index.ts
+- API: dashboard_routes.py (+timer reschedule, +cumulative endpoint)
+- Sales Bot: session_reminder.py (+_sync_duration_from_db), booking_flow.py (+admin notify)
+- Customer Bot: handlers.py (+reminder cancel)
+
 ## Memory (2026-07-01)
 ## Memory (2026-06-29)
 ## Memory (2026-06-28)
