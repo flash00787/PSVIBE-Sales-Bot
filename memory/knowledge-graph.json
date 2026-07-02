@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-29T05:33:05Z",
+  "updated": "2026-07-02T06:26:23Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -600,6 +600,12 @@
     },
     {
       "source": "google-sheets",
+      "target": "oauth2",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "google-sheets",
       "target": "python",
       "relation": "depends_on",
       "weight": 5
@@ -857,6 +863,12 @@
       "weight": 5
     },
     {
+      "source": "oauth2",
+      "target": "python",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
       "source": "openclaw",
       "target": "boot-protocol",
       "relation": "related_to",
@@ -937,6 +949,12 @@
     {
       "source": "ps-vibe",
       "target": "google-drive-api",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "ps-vibe",
+      "target": "google-sheets",
       "relation": "uses",
       "weight": 5
     },
@@ -1045,6 +1063,12 @@
     {
       "source": "sales-tele-bot",
       "target": "docker",
+      "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "sales-tele-bot",
+      "target": "github",
       "relation": "uses",
       "weight": 5
     },
@@ -4854,12 +4878,6 @@
     },
     {
       "source": "google-sheets",
-      "target": "oauth2",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "google-sheets",
       "target": "openclaw",
       "relation": "depends_on",
       "weight": 3
@@ -6324,12 +6342,6 @@
     },
     {
       "source": "oauth2",
-      "target": "python",
-      "relation": "depends_on",
-      "weight": 3
-    },
-    {
-      "source": "oauth2",
       "target": "session-summary",
       "relation": "related_to",
       "weight": 3
@@ -7002,12 +7014,6 @@
     },
     {
       "source": "ps-vibe",
-      "target": "google-sheets",
-      "relation": "uses",
-      "weight": 3
-    },
-    {
-      "source": "ps-vibe",
       "target": "grok",
       "relation": "uses",
       "weight": 3
@@ -7250,12 +7256,6 @@
       "source": "sales-tele-bot",
       "target": "git-backup",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "sales-tele-bot",
-      "target": "github",
-      "relation": "uses",
       "weight": 3
     },
     {
