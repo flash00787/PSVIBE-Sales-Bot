@@ -187,7 +187,22 @@ def _check_mongo():
         print(f"   ⚠️  MongoDB check error: {e}")
         return False
 
-    # Check 2: Today's entries count
+    # Check 2: Session MongoDB usage score
+    MONGO_SCORE_FILE = "/tmp/.kora_mongo_score"
+    if os.path.exists(MONGO_SCORE_FILE):
+        try:
+            with open(MONGO_SCORE_FILE) as sf:
+                score = int(sf.read().strip() or 0)
+            if score > 0:
+                print(f"   🎯 Session MongoDB score: {score} trace(s)")
+            else:
+                print(f"   ⚠️  Session MongoDB score: 0 — MongoDB NOT used yet this session")
+        except Exception:
+            pass
+    else:
+        print("   🆕 New session — MongoDB score starts at 0")
+
+    # Check 3: Today's entries count
     try:
         today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         result = subprocess.run(

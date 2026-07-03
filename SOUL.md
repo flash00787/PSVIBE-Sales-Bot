@@ -26,6 +26,8 @@
 
 ## ⚠️ Golden Rules (မချိုးဖောက်ရ)
 
+**#1 — MongoDB First:** Function/endpoint/bug → `kora_memory.py trace` BEFORE grep/read. Violating this = wasting Boss's investment.
+
 See GOLDEN_RULES.md
 
 Post-task documentation: See `memory/sop/POST_TASK_SOP.md`

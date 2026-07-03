@@ -2,6 +2,28 @@
 
 This folder is home. Treat it that way.
 
+## 🚨 Rule #0: MongoDB First. ALWAYS. (2026-07-03)
+
+> **THE ONE RULE YOU CANNOT BREAK.** Violating this = you wasted Boss's time and money building MongoDB.
+
+**Before ANY of these actions → MongoDB query FIRST, tool action SECOND:**
+
+| You're about to... | STOP and do this FIRST |
+|--------------------|------------------------|
+| `grep` for a function/endpoint name | `kora_memory.py trace "<name>"` |
+| `read` a source file to find something | `kora_memory.py trace "<thing>"` |
+| `journalctl` to check logs | `kora_memory.py search "<symptom>"` |
+| Start debugging a bug | `kora_memory.py search "<symptom>"` THEN `trace` |
+| Fix code in any file | `kora_memory.py impact "<file>"` |
+| Answer Boss about project state | `kora_memory.py search "<topic>" --limit 5` |
+| Spawn sub-agent for code work | Include MongoDB trace output in task description |
+
+**Self-Audit (every response):** Did I use grep/read/journalctl before MongoDB? If YES → STOP, delete that response, start over with MongoDB.
+
+**Consequence:** Every minute spent grepping = wasted time. Code Graph (7,858 entities, 197K relations) answers in 3 seconds.
+
+**Boot protocol now includes auto MongoDB health check.** If MongoDB is down → tell Boss immediately.
+
 ## First Run
 
 If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
@@ -55,10 +77,11 @@ Do not manually reread startup files unless:
 
 ### ⚡ Session Startup: Auto-Run Steps
 At the START of every session, BEFORE replying to user, execute these steps:
-1. **Run boot protocol:** `python3 /root/.openclaw/workspace/memory/boot_protocol.py --no-fail` (check for incomplete tasks — exit code 0 = all clear)
-2. **Load latest context:** Search memory for today's date: `memory_search("$(date -u +%Y-%m-%d)")` 
-3. **Check pending:** Read `memory/active_tasks.json` for in-progress tasks
-4. **Proceed normally** — continue with the user's request
+1. **Run boot protocol:** `python3 /root/.openclaw/workspace/memory/boot_protocol.py --no-fail` (MongoDB health + incomplete tasks + stale locks)
+2. **Load MongoDB context:** `python3 /root/coordination/kora_memory.py query --date-from "$(date -u +%Y-%m-%d)" --limit 5` (today's memory entries)
+3. **Load latest context:** Search memory for today's date: `memory_search("$(date -u +%Y-%m-%d)")` 
+4. **Check pending:** Read `memory/active_tasks.json` for in-progress tasks
+5. **Proceed normally** — continue with the user's request
 
 ### 📖 Project Context — Read First Before Starting a Task
 
@@ -86,30 +109,20 @@ When Boss assigns a new task or asks about a project, **if you don't remember th
 
 ### 🧠 MongoDB Memory System (v2.0 — 2026-07-02)
 
+> ⚠️ **This is Rule #0 repeated for emphasis.** See top of AGENTS.md for the binding rule.
+
 Kora now has a **MongoDB-backed memory system** that augments file-based memory.
 
-**🚨 CRITICAL REFLEX — Auto-Query MongoDB First:**
+**Commands (unified CLI):**
+```bash
+kora_memory.py trace "<name>"        # Trace function/endpoint/table connections
+kora_memory.py impact "<file>"       # What breaks if this changes
+kora_memory.py search "<query>"      # Full-text search with relevance scoring
+kora_memory.py query --project psvibe --type bug --status open  # Filtered query
+kora_memory.py code-stats            # Code graph statistics
+```
 
-> ⚠️ **HARD RULE (2026-07-03):** Bug တစ်ခုခု debug လုပ်တော့မယ်ဆိုရင် **grep/read/logs မလုပ်ခင်** MongoDB ကို အရင် query လုပ်ရမယ်။
-> `grep` → `read` → `journalctl` အစီအစဉ်ကို တန်းမသုံးနဲ့။ အရင် `kora_memory.py trace` နဲ့ function/file ဘယ်မှာလဲဆိုတာကြည့်၊ ပြီးမှ targeted grep လုပ်။
-
-**When Boss mentions ANY of these → query MongoDB BEFORE responding:**
-
-| Boss says | Auto-action |
-|-----------|-------------|
-| Function name (e.g., "get_finance_balances") | `kora_memory.py trace "<name>"` |
-| API endpoint (e.g., "/admin/transfer") | `kora_memory.py trace "<path>"` |
-| DB table (e.g., "cash_movements") | `kora_memory.py trace "<table>"` |
-| File name (e.g., "patch_routes.py") | `kora_memory.py impact "<file>"` |
-| "ဘာတွေထိခိုက်မလဲ" / impact | `kora_memory.py impact "<query>"` |
-| Bug/fix history inquiry | `kora_memory.py search "<query>"` THEN `kora_memory.py trace "<query>"` |
-| **ANY error/bug report from Boss** | `kora_memory.py search "<symptom>"` to check for prior patterns |
-
-**🚫 VIOLATIONS (do NOT repeat):**
-- 2026-07-03: Console status bug — went grep→read→journalctl, skipped MongoDB trace. Should've done `kora_memory.py trace fetch_console_status` first → would've found file/DB/callers in 3 seconds.
-- Every minute spent grepping blindly = wasted time MongoDB could've saved.
-
-**Why:** Code Graph (7,840 entities, 103K relationships) instantly shows:
+**Why:** Code Graph (7,858 entities, 197K relationships) instantly shows:
 - Where the function/endpoint lives (file + line number)
 - What DB tables it queries
 - What other functions depend on it
@@ -247,6 +260,13 @@ Before responding to Boss with ANY complex analysis, run this mental checklist:
 ## 🔀 Hybrid Spawning Rules
 
 ## 🔀 Hybrid Spawning Rules
+
+**🚨 MONGO GUARD (Rule #0 for sub-agents):**
+Before spawning ANY sub-agent for code/debug work:
+1. Run `kora_memory.py trace "<function_name>"` for the relevant function
+2. Run `kora_memory.py search "<topic>" --limit 3` for related bugs
+3. **Include the MongoDB trace output in the sub-agent task description**
+4. If MongoDB is down → tell Boss, then fallback to grep/docs
 
 See `memory/SPAWN_PROTOCOL.md` for full spawn protocol.
 
