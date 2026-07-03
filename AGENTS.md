@@ -90,7 +90,10 @@ Kora now has a **MongoDB-backed memory system** that augments file-based memory.
 
 **🚨 CRITICAL REFLEX — Auto-Query MongoDB First:**
 
-When Boss mentions ANY of these, query MongoDB BEFORE responding:
+> ⚠️ **HARD RULE (2026-07-03):** Bug တစ်ခုခု debug လုပ်တော့မယ်ဆိုရင် **grep/read/logs မလုပ်ခင်** MongoDB ကို အရင် query လုပ်ရမယ်။
+> `grep` → `read` → `journalctl` အစီအစဉ်ကို တန်းမသုံးနဲ့။ အရင် `kora_memory.py trace` နဲ့ function/file ဘယ်မှာလဲဆိုတာကြည့်၊ ပြီးမှ targeted grep လုပ်။
+
+**When Boss mentions ANY of these → query MongoDB BEFORE responding:**
 
 | Boss says | Auto-action |
 |-----------|-------------|
@@ -100,8 +103,13 @@ When Boss mentions ANY of these, query MongoDB BEFORE responding:
 | File name (e.g., "patch_routes.py") | `kora_memory.py impact "<file>"` |
 | "ဘာတွေထိခိုက်မလဲ" / impact | `kora_memory.py impact "<query>"` |
 | Bug/fix history inquiry | `kora_memory.py search "<query>"` THEN `kora_memory.py trace "<query>"` |
+| **ANY error/bug report from Boss** | `kora_memory.py search "<symptom>"` to check for prior patterns |
 
-**Why:** Code Graph (7,820 entities, 11,000 relationships) instantly shows:
+**🚫 VIOLATIONS (do NOT repeat):**
+- 2026-07-03: Console status bug — went grep→read→journalctl, skipped MongoDB trace. Should've done `kora_memory.py trace fetch_console_status` first → would've found file/DB/callers in 3 seconds.
+- Every minute spent grepping blindly = wasted time MongoDB could've saved.
+
+**Why:** Code Graph (7,840 entities, 103K relationships) instantly shows:
 - Where the function/endpoint lives (file + line number)
 - What DB tables it queries
 - What other functions depend on it

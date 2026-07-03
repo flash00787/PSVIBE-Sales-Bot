@@ -1,6 +1,103 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-02 17:31 UTC
+> Last updated: 2026-07-03 05:30 UTC
+
+---
+
+## ⚡ UPDATE (July 3, 2026 - 05:30 UTC) — Moss: The Forgotten Relic Jul 16! + DualSense Icon Blue! + PS Plus Departures Expanded!
+
+> **Summary:** Early Friday morning sweep (12 hours since last update). THREE new items discovered: **Moss: The Forgotten Relic** launches July 16 — the beloved VR-exclusive Moss games combined into a non-VR edition for traditional PS5 play! **DualSense "Icon Blue Special Edition"** announced for August 6 (Japan-exclusive but may reach other regions). **PS Plus July departure list expanded** from 8 to 12 confirmed titles — 4 additional games now confirmed leaving July 21. Plus: Forbes weighs in on Sony's disc decision calling it "the biggest scandal in 20 years" — public backlash growing.
+
+### 🐭 Moss: The Forgotten Relic — July 16, 2026 on PS5! Acclaimed VR Games Now Playable Without VR! (NEW!)
+
+- **Polyarc Games** brings **Moss: The Forgotten Relic** to PS5 on **July 16, 2026** — combines Moss (2018) and Moss: Book II (2022) into a single enhanced edition for traditional play (no VR required!)
+- **Also on:** Xbox Series X|S, Nintendo Switch, and PC (Steam)
+- **Key enhancements for non-VR:**
+  - Improved visuals and performance
+  - New handcrafted cutscenes (replacing VR-specific storytelling)
+  - Smart Follow camera system optimized for traditional screens
+  - All "Twilight Garden" additional content included
+  - **Option to skip combat** for players who want to focus on exploration/story
+- The original Moss games were critical darlings — Moss Book II has 85 Metacritic; both were considered VR's finest narrative adventures
+- Sources: Gematsu (Jun 2026), IGN, Polyarc Games
+- **💡💡 Lounge Impact:**
+  - Moss has a beautiful storybook aesthetic — protagonist Quill the mouse is universally charming
+  - Family-friendly + accessible gameplay = broad lounge appeal (kids + adults)
+  - Now playable WITHOUT PSVR2 — much wider audience for a gaming lounge
+  - Skip combat option makes it accessible for casual players
+  - July 16 — nice mid-month addition between Palworld (Jul 10) and Planet Crafter (Jul 21)
+  - ⭐⭐⭐ lounge value — family-friendly, accessible, acclaimed storytelling
+
+### 🎮 DualSense "Icon Blue Special Edition" — August 6, 2026! Japan-Exclusive (Minor Hardware News)
+
+- Sony revealed the **DualSense Wireless Controller — Icon Blue Special Edition** featuring a two-tone blue/navy color scheme
+- Inspired by the signature "PlayStation Blue" from the PS4 era
+- Glossy touchpad with PlayStation icons, katakana "PlayStation" text on back (Japan version)
+- **Release: August 6, 2026** — pre-orders live in Japan now (~¥12,480 / ~$77 USD)
+- Currently Japan-exclusive but previously released in other regions (was a Walmart exclusive in the US earlier)
+- Sources: ScreenRant, IGN India (June 2026)
+- **💡 Lounge Note:** If Boss wants to collect special edition controllers for lounge display/use — this is a nice piece. But minimal business impact. ⭐ lounge relevance.
+
+### 📤 PS Plus July 2026 Departures — EXPANDED to 12 Confirmed Titles (July 21)
+
+- Earlier tracker had 8 titles — now confirmed **12 titles** leaving PS Plus Extra/Premium on **July 21**:
+  | Game | Platform |
+  |------|----------|
+  | 🎮 **The Jackbox Party Pack 9** | PS4/PS5 |
+  | 🎮 **Risk of Rain 2** | PS4 |
+  | 🏝️ **Tropico 6** | PS4 |
+  | 👾 **Source of Madness** | PS5 |
+  | ⛳ **Cursed to Golf** | PS4/PS5 |
+  | 🍷 **Hundred Days – Winemaking Simulator** | PS4/PS5 |
+  | 🔍 **Get Even** | PS4 |
+  | ⛳ **Infinite Minigolf** | PS4 |
+  | 🗡️ **Clash: Artifacts of Chaos** | PS5 |
+  | 🧌 **Roki** | PS4/PS5 |
+  | 👹 **Onechanbara Origin** | PS4 |
+  | ✈️ **Bomber Crew + Space Crew: Legendary Edition** | PS4 |
+- Sources: IGN, PlayStation Lifestyle, NotebookCheck (June-July 2026)
+- **💡 Lounge Action:** Jackbox Party Pack 9 is still the most lounge-relevant departure. Risk of Rain 2 also has co-op value.
+
+### 📰 Sony Disc Decision Backlash Growing
+
+- Forbes (July 2, 2026): Published a scathing op-ed titled **"Sony's PlayStation Disc Decision Is Its Biggest Scandal In 20 Years"** by Paul Tassi
+- Hackaday, ExtremeTech also published critical coverage on July 2
+- Public sentiment is increasingly negative about the Jan 2028 digital-only cutoff
+- **💡 Lounge Note:** The backlash could potentially cause Sony to adjust their timeline, but don't count on it. The physical-disc-collection-as-unique-asset strategy for PS VIBE remains solid. If anything, the controversy increases awareness of the coming change — more customers will want to play physical games while they still can.
+
+### 📊 Quick Status Check (July 3 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🐭 Moss: The Forgotten Relic | **NEW! 🆕** | Jul 16! Acclaimed VR games now non-VR! Family-friendly! |
+| 🎮 DualSense Icon Blue | **NEW! 🆕** | Aug 6! Japan-exclusive! Minor lounge relevance! |
+| 📤 PS Plus July Departures | **EXPANDED 🆕** | Now 12 titles (up from 8)! Jul 21! |
+| 📰 Sony Disc Backlash | **GROWING 🆕** | Forbes: "Biggest scandal in 20 years"! |
+| 🔥🔥 🔥🔥 PS Plus Essential July | **LIVE Jul 7!** | CoD MW3 + For the King II + CrossCode! 4 days! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 12 days! EA FC 26 $13.99! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | ALL new games digital-only after Jan 2028! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 25 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 7 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 6 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 6 days! Major sports title! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 4 days! CLAIM NOW! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | July 2026! | Classic CoDs finally on PlayStation! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 13 days away! |
+
+### 🚨 Priority Lounge Actions (July 3 - 05:30 UTC):
+1. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD FREE with PS Plus! Only 4 days!
+2. **🔥🔥 MONITOR CoD Black Ops 1 & 2 exact date** — legendary CoDs finally on PS5!
+3. **CLAIM June PS Plus Essential BEFORE July 7** — Grounded, Nick Brawl 2, WH40K Darktide! 4 days left!
+4. **🛒 July Savings Sale — ENDS JUL 15!** EA FC 26 $13.99! 12 days left!
+5. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+6. **PALWORLD 1.0 — July 10! Only 7 days!** Pre-order!
+7. **AC Black Flag Resynced — July 9! Only 6 days!** Pre-order!
+8. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 6 days! Major sports draw!
+9. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+10. **Mark July 16** — Moss: The Forgotten Relic! Family-friendly addition!
+11. **Mark July 21** — PS Plus departures + Planet Crafter!
 
 ---
 

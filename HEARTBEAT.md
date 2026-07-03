@@ -31,7 +31,17 @@ python3 /root/coordination/task_bridge.py list pending
 bash /root/.openclaw/workspace/memory/cleanup_session_locks.sh
 ```
 
+## 🧠 MongoDB Self-Audit (Every heartbeat)
+```bash
+# Check if MongoDB is being actively used (not just accumulating data)
+python3 /root/coordination/kora_memory.py stats 2>&1 | head -5
+python3 /root/coordination/kora_memory.py quality 2>&1 | grep -E "Needs Improvement|entries need"
+# Recent entries written (should be >0 for active sessions)
+python3 /root/coordination/kora_memory.py query --date-from $(date -u +%Y-%m-%d) --limit 5 2>&1 | head -5
+```
+
 ## ✅ Heartbeat Checklist
+- [ ] **MongoDB check:** stats + quality + today's entries (above)
 - [ ] Run kora_status.py (all projects health)
 - [ ] Run health monitor: `python3 /root/coordination/kora_health_monitor.py --all --json`
 - [ ] Check cross-project auto-healer: `python3 /root/coordination/auto_healer.py --all 2>&1 | tail -5`
