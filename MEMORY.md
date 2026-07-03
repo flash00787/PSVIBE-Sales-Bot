@@ -228,3 +228,28 @@ Full audit of all notification paths when a customer creates a booking via Custo
 - Notification gaps #1-7 from audit above — Boss to prioritize which to fix
 - VPS health monitor: unreachable status still investigating
 
+
+## Memory (2026-07-03)
+
+### Critical Fixes — 4 Race Condition & Error Handling Bugs Fixed ✅
+- **C2: Checkin Race Condition** — Added `SELECT ... FOR UPDATE` lock on `console_status` inside booking transaction. Prevents two concurrent checkins from both becoming Active on same console.
+- **L1: Dead GSheet Code** — Created `_GsheetRemoved` singleton class mimicking gspread interface. GSheet stubs now raise `RuntimeError('GSheet backend has been removed')` instead of returning `None` and crashing callers with `AttributeError`.
+- **H8: Empty member_id** — 4-level fallback resolution: payload memberId → phone → telegram_chat_id → customer_bot_users → auto-create. Fixes analytics gaps when phone→member lookup fails.
+- **M5: ConsoleStatusError** — `fetch_console_status()` now raises `ConsoleStatusError` instead of returning `[]` on API failure. Prevents misleading "no free consoles" message when API is down.
+
+### Key Lessons Added
+- **#68: Auto-Verify After Every Sub-Agent Task** — Always run `verify_subagent_output.py` after sub-agent code changes. Sub-agents make 3 common mistakes: import chain breaks, missing imports in split modules, function name mismatches.
+- **#69: MongoDB Query First, grep Second** — Always query `kora_memory.py trace/search` BEFORE grepping logs when debugging. Code Graph (7,840 entities, 103K relations) shows file location + DB tables + callers instantly.
+- **#70: Telegram Markdown — Always Escape User Data** — All dynamic text (member names, game names, custom input) displayed with `parse_mode='Markdown'` MUST be escaped. Underscores in food names/extended game hours get interpreted as italic markup.
+
+### Updated Lessons
+67. **Sub-agent verification is mandatory** — Every sub-agent code change needs 4-layer verification: syntax check → import chain validation → endpoint registration → integration test. (#67)
+68. **MongoDB memory system is the first stop for debugging** — Code Graph traces function→file→DB→callers in seconds. grep/read only after MongoDB doesn't have the answer. (#68)
+69. **MySQL queries: ALWAYS Python pymysql, NEVER shell quoting** — docker exec + bash heredocs with nested quotes fails silently. Python pymysql handles all quoting automatically and is 3x faster. (#69)
+70. **Telegram Markdown escape ALL user-facing data** — `_ * [ ] ( ) ~` in member names, game names, food items, or any user input will corrupt Markdown rendering. Use `escape_markdown()` utility. Affects: food items with underscores, extended game hours with parentheses. (#70)
+
+### Files Modified
+- `/root/psvibe_api_server/routes/booking_routes.py` — FOR UPDATE lock (#68)
+- `/root/psvibe-sales-bot/bot/gsheet_stubs.py` — _GsheetRemoved singleton (#69)
+- `/root/psvibe_api_server/routes/booking_routes.py` — 4-level member_id fallback (#70)
+- `/root/psvibe-sales-bot/bot/handlers/console.py` — ConsoleStatusError (#71)
