@@ -8,3 +8,5 @@
 2026-06-22 18:34:47,731 [WARNING] API fetch_console_status failed, no fallback
 2026-06-22 18:34:47,731 [WARNING] API_BASE_URL is not set – skipping API call GET fetch_console_status
 2026-06-22 18:34:47,731 [ERROR] api_fetch_console_status() returned None after all retries — API server may be down
+2026-07-03 04:05:21,117 [WARNING] API_BASE_URL is not set – skipping API call GET fetch_console_status
+2026-07-03 04:05:21,118 [WARNING] API fetch_console_status failed, no fallback
