@@ -1,6 +1,83 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-03 05:30 UTC
+> Last updated: 2026-07-03 17:33 UTC
+
+---
+
+## ⚡ UPDATE (July 3, 2026 - 17:33 UTC) — PS5 Firmware Details Corrected! + PS3/Vita Store Closure Timeline!
+
+> **Summary:** Friday afternoon sweep (12 hours since last update). The July 1 firmware update was previously described as "minor stability only" — now corrected with full patch notes: **PSSR enhancements for PS5 Pro, Welcome Hub Showcase/Slideshow modes, new emoji support**. Also: **PS3 & PS Vita Store phased closure timeline** now fully detailed, and new details about Sony's disc factory impact. No critical breaking news — everything else already well-tracked.
+
+### 🔧 PS5 System Software v26.04-13.42.00 — NOT Just "Stability"! (CORRECTION)
+
+- Previous tracker entries described this as "standard maintenance, no new features" — **this was wrong.**
+- Full patch notes reveal notable improvements beyond stability:
+  - **PSSR (PlayStation Spectral Super Resolution) enhancements** for PS5 Pro — improved upscaling quality
+  - **Welcome Hub additions:** Showcase Mode + Slideshow Mode (new customization options)
+  - **New emoji support** added to system keyboard
+  - System performance & stability (yes, that too — but not JUST that)
+- Rollout began July 1, completing by July 3
+- Sources: GameRant, PlayStation Lifestyle (July 1-2)
+- **💡 Lounge Note:** If lounge has PS5 Pro consoles, the PSSR enhancement matters for upscaled game quality. Welcome Hub changes are cosmetic. Low urgency but worth noting the update is slightly more significant than initially reported.
+
+### 🏪 PS3 & PS Vita PlayStation Store — Phased Closure Timeline Detailed
+
+- Sony confirmed a **phased regional shutdown** for PS3 and PS Vita PlayStation Stores:
+  | Phase | Date | Regions |
+  |-------|------|---------|
+  | **Phase 1** | Aug 2026 | Mexico, Honduras, Nicaragua (PS3 only) |
+  | **Phase 2** | Late 2026 | Additional Latin America + Middle East countries |
+  | **Phase 3 (Global)** | **July 2027** | All remaining countries including **US & UK** (PS3 + PS Vita) |
+- Previously purchased content remains downloadable "for the foreseeable future" post-closure
+- PS5 Store is **NOT affected**
+- Sources: Official PS Blog (Jul 1), GamesIndustry.biz, VGChartz
+- **💡 Lounge Note:** No direct PS5 impact. However, combined with the Jan 2028 physical disc cutoff, this paints a clear picture of Sony's all-digital future. The PS3/Vita store closure is separate from PS5 but reinforces the long-term digital strategy.
+
+### 🏭 Disc Factory Impact — New Details
+
+- Sony's disc production plant in **Thalgau, Austria** produces ~**600,000 discs daily**
+- PS5 games account for roughly **half** of daily output (~300K discs)
+- Staff will be **reassigned** as production winds down toward January 2028
+- Sources: IGN (Jul 2), Engadget, Hackaday
+- **💡 Lounge Note:** The scale of Sony's physical disc operation — 300K PS5 discs per day — underscores how massive this transition is. The physical collector's market after Jan 2028 will be significant.
+
+### 📊 Quick Status Check (July 3 - 17:33 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔧 PS5 Firmware v26.04 | **CORRECTED 🆕** | PSSR Pro + Welcome Hub + emoji! Not just stability! |
+| 🏪 PS3/Vita Store Timeline | **DETAILED 🆕** | Phased closure Aug 2026 → Jul 2027! |
+| 🏭 Disc Factory Impact | **NEW CONTEXT 🆕** | 600K discs/day in Austria! |
+| 🐭 Moss: The Forgotten Relic | Jul 16! | 13 days! Acclaimed VR games now non-VR! |
+| 🎮 DualSense Icon Blue | Aug 6! | Japan-exclusive! Minor lounge relevance! |
+| 📤 PS Plus July Departures | **Jul 21!** | 12 titles! Jackbox 9 + 11 more! |
+| 📰 Sony Disc Backlash | Growing! | Forbes: "Biggest scandal in 20 years"! |
+| 🔥🔥 🔥🔥 PS Plus Essential July | **LIVE Jul 7!** | CoD MW3 + For the King II + CrossCode! 4 days! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 12 days! EA FC 26 $13.99! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | ALL new games digital-only after Jan 2028! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 25 days! FIRST HALO ON PLAYSTATION! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 7 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 6 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 6 days! Major sports title! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 4 days! CLAIM NOW! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | July 2026! | Exact date STILL TBD! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 13 days away! |
+
+### 🚨 Priority Lounge Actions (July 3 - 17:33 UTC):
+1. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD FREE with PS Plus! Only 4 days!
+2. **🔥🔥 MONITOR CoD Black Ops 1 & 2 exact date** — still TBD for July!
+3. **CLAIM June PS Plus Essential BEFORE July 7** — Grounded, Nick Brawl 2, WH40K Darktide! 4 days left!
+4. **🛒 July Savings Sale — ENDS JUL 15!** EA FC 26 $13.99! 12 days left!
+5. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+6. **PALWORLD 1.0 — July 10! Only 7 days!** Pre-order!
+7. **AC Black Flag Resynced — July 9! Only 6 days!** Pre-order!
+8. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 6 days! Major sports draw!
+9. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+10. **Mark July 16** — Moss: The Forgotten Relic! Family-friendly addition!
+11. **Install latest PS5 firmware** on lounge consoles — especially PS5 Pro units (PSSR improvements)!
+12. **Mark July 21** — PS Plus departures + Planet Crafter!
 
 ---
 

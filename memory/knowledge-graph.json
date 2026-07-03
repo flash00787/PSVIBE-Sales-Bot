@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-02T06:26:23Z",
+  "updated": "2026-07-03T17:32:28Z",
   "nodes": [
     {
       "id": "agent-coordination",
@@ -348,6 +348,12 @@
     },
     {
       "source": "boss",
+      "target": "sales-tele-bot",
+      "relation": "owns",
+      "weight": 5
+    },
+    {
+      "source": "boss",
       "target": "smart-pruning",
       "relation": "implements",
       "weight": 5
@@ -485,12 +491,6 @@
       "weight": 5
     },
     {
-      "source": "deepseek",
-      "target": "gemini-api",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
       "source": "docker",
       "target": "google-drive-api",
       "relation": "depends_on",
@@ -499,6 +499,12 @@
     {
       "source": "docker",
       "target": "mysql",
+      "relation": "depends_on",
+      "weight": 5
+    },
+    {
+      "source": "docker",
+      "target": "python",
       "relation": "depends_on",
       "weight": 5
     },
@@ -577,12 +583,6 @@
     {
       "source": "gmail-api",
       "target": "oauth2",
-      "relation": "depends_on",
-      "weight": 5
-    },
-    {
-      "source": "gmail-api",
-      "target": "openclaw",
       "relation": "depends_on",
       "weight": 5
     },
@@ -756,13 +756,13 @@
     },
     {
       "source": "mysql",
-      "target": "n8n",
-      "relation": "depends_on",
+      "target": "memory-upgrade",
+      "relation": "related_to",
       "weight": 5
     },
     {
       "source": "mysql",
-      "target": "openclaw",
+      "target": "n8n",
       "relation": "depends_on",
       "weight": 5
     },
@@ -854,12 +854,6 @@
       "source": "nova",
       "target": "ye-yint-oo",
       "relation": "related_to",
-      "weight": 5
-    },
-    {
-      "source": "oauth2",
-      "target": "openclaw",
-      "relation": "depends_on",
       "weight": 5
     },
     {
@@ -1124,6 +1118,12 @@
       "source": "synergy-hub",
       "target": "mysql",
       "relation": "uses",
+      "weight": 5
+    },
+    {
+      "source": "vps",
+      "target": "heartbeat-routine",
+      "relation": "related_to",
       "weight": 5
     },
     {
@@ -2148,12 +2148,6 @@
     },
     {
       "source": "boss",
-      "target": "sales-tele-bot",
-      "relation": "owns",
-      "weight": 3
-    },
-    {
-      "source": "boss",
       "target": "session-summary",
       "relation": "implements",
       "weight": 3
@@ -3396,6 +3390,12 @@
     },
     {
       "source": "deepseek",
+      "target": "gemini-api",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "deepseek",
       "target": "git-backup",
       "relation": "related_to",
       "weight": 3
@@ -3758,12 +3758,6 @@
       "source": "docker",
       "target": "priority-memory",
       "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "docker",
-      "target": "python",
-      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -4543,6 +4537,12 @@
     {
       "source": "gmail-api",
       "target": "n8n",
+      "relation": "depends_on",
+      "weight": 3
+    },
+    {
+      "source": "gmail-api",
+      "target": "openclaw",
       "relation": "depends_on",
       "weight": 3
     },
@@ -5544,13 +5544,13 @@
     },
     {
       "source": "mysql",
-      "target": "memory-upgrade",
-      "relation": "related_to",
+      "target": "oauth2",
+      "relation": "depends_on",
       "weight": 3
     },
     {
       "source": "mysql",
-      "target": "oauth2",
+      "target": "openclaw",
       "relation": "depends_on",
       "weight": 3
     },
@@ -6314,6 +6314,12 @@
       "source": "oauth2",
       "target": "memory-upgrade",
       "relation": "related_to",
+      "weight": 3
+    },
+    {
+      "source": "oauth2",
+      "target": "openclaw",
+      "relation": "depends_on",
       "weight": 3
     },
     {
@@ -7915,12 +7921,6 @@
     {
       "source": "vps",
       "target": "git-backup",
-      "relation": "related_to",
-      "weight": 3
-    },
-    {
-      "source": "vps",
-      "target": "heartbeat-routine",
       "relation": "related_to",
       "weight": 3
     },

@@ -155,6 +155,60 @@ def build_json_output(running, partial, orphans, stale):
     return result
 
 
+def _check_mongo():
+    """
+    Phase 4: Quick MongoDB availability + stats check.
+    Returns True if MongoDB is reachable and has data.
+    """
+    import subprocess
+    MEMORY_CLI = "/root/coordination/kora_memory.py"
+    mongo_available = False
+
+    # Check 1: Code graph stats (fast, validates connection + data)
+    try:
+        result = subprocess.run(
+            [sys.executable, MEMORY_CLI, "code-stats"],
+            capture_output=True, text=True, timeout=15
+        )
+        if result.returncode == 0:
+            for line in result.stdout.strip().split("\n"):
+                if "Entities:" in line or "Relations:" in line:
+                    print(f"   {line.strip()}")
+            mongo_available = True
+        else:
+            print(f"   ⚠️  code-stats failed (exit {result.returncode})")
+    except FileNotFoundError:
+        print(f"   ⚠️  kora_memory.py not found at {MEMORY_CLI}")
+        return False
+    except subprocess.TimeoutExpired:
+        print("   ⚠️  MongoDB timeout — connection issue")
+        return False
+    except Exception as e:
+        print(f"   ⚠️  MongoDB check error: {e}")
+        return False
+
+    # Check 2: Today's entries count
+    try:
+        today_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        result = subprocess.run(
+            [sys.executable, MEMORY_CLI, "query", "--date-from", today_utc, "--limit", "1"],
+            capture_output=True, text=True, timeout=10
+        )
+        # Count entries by counting numbered lines (each entry starts with "N.")
+        entry_count = 0
+        for line in result.stdout.strip().split("\n"):
+            if line.strip() and (line.strip()[0].isdigit() and "." in line[:3]):
+                entry_count += 1
+        if entry_count > 0:
+            print(f"   📝 Today's entries: {entry_count}")
+        else:
+            print("   📝 No entries today yet")
+    except Exception:
+        pass  # Non-critical, skip silently
+
+    return mongo_available
+
+
 def check_project_state():
     """Check project state for session handoff context."""
     projects = []
@@ -209,6 +263,15 @@ def main():
     print("🔔 HELPER REFLEX: Task arrives → check: \"Is there a helper for this?\"")
     print("   HEARTBEAT.md → helpers | OPS_REFERENCE.md → triggers | SOUL.md → decision tree")
     print("   NEVER SSH / read code / grep manually. Always spawn agents.")
+    print()
+
+    # 🧠 Phase 4: MongoDB Memory System Check (Rule #69)
+    print("🧠 MONGO REFLEX: Bug/function/endpoint/table → kora_memory.py trace FIRST, grep SECOND")
+    mongo_ok = _check_mongo()
+    if mongo_ok:
+        print("   ✅ MongoDB available — use kora_memory.py trace/search BEFORE grep/read")
+    else:
+        print("   ⚠️  MongoDB unavailable — fallback to grep (report to Boss)")
     print()
     
     if projects:
