@@ -1,6 +1,96 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-03 17:33 UTC
+> Last updated: 2026-07-04 11:30 UTC
+
+---
+
+## ⚡ UPDATE (July 4, 2026 - 11:30 UTC) — CoD Black Ops PS5 Imminent This Week! + PS Plus Backlash Intensifies + More Sale Deals Found
+
+> **Summary:** Saturday morning sweep (18 hours since last update). ONE significant new development: **CoD Black Ops 1 & 2 backend patches v1.02/v1.03 pushed July 2-3** — a classic pre-release signal on PlayStation. v1.03 is typically the FINAL version before going live, suggesting a release as early as **THIS WEEK (week of July 6)**. Also: **PS Plus subscriber backlash intensifying** — mass cancellations, "Don't Kill the Disc" petitions gaining thousands of signatures, and game companies expressing "profound disappointment" at Sony's all-digital shift. Plus: additional July Savings Sale deals discovered.
+
+### 🔥🔥 CoD Black Ops 1 & 2 PS5 — RELEASE IMMINENT! Backend Patches Signal This Week! (URGENT UPDATE!)
+
+- Both Black Ops 1 and Black Ops 2 received **backend patches on PlayStation on July 2-3, 2026**:
+  - **v1.02** pushed July 2 — initial certification build
+  - **v1.03** pushed July 3 — **typically the FINAL pre-launch version** on PlayStation
+- Industry pattern: when a game hits v1.03 on PS backend, it's usually days (not weeks) from release
+- Strongest theory: **week of July 6** (THIS week! Possibly Jul 7-10 window)
+- Secondary theory: after July 9 when older-gen BO1/BO2 sales conclude
+- Iron Galaxy handling ports — full Campaign, Multiplayer, AND Zombies included
+- Sources: PushSquare, NotebookCheck (Jul 3-4), PlayStation backend trackers
+- **💡💡💡 Lounge Impact — ESCALATED:**
+  - This could drop literally ANY DAY NOW. Monitor PS Store DAILY for the listing!
+  - If it drops during July 7-10 window, it creates a MASSIVE CoD convergence: **MW3 FREE on PS Plus (Jul 7) + Black Ops 1 & 2 ports (Jul 6-10?)** = PS VIBE becomes THE ultimate CoD destination overnight!
+  - Combined: MW3 (latest CoD), BO1, BO2 (classic peak CoD), all Zombies modes — unprecedented CoD lineup under one roof
+  - **Prepare promotional messaging NOW** — this could hit with no advance notice!
+  - Budget ~$40 each ($80 total for both) — digital only
+  - ⭐⭐⭐⭐⭐ lounge value — legendary CoDs, imminent shadow-drop risk
+
+### 📰 PS Plus Subscriber Backlash GROWING — Mass Cancellations + Petitions (Escalated)
+
+- Significant numbers of PS Plus subscribers are **cancelling memberships in protest** of Sony's physical disc phaseout
+- Social media flooded with cancellation screenshots — #DontKillTheDisc trending on X
+- Multiple online petitions launched (Change.org "Don't Kill the Disc" gaining thousands of signatures)
+- **Game companies also "profoundly disappointed"** per GamesIndustry.biz — industry pushback beyond just consumers
+- Sources: Express UK, TheGamer, PushSquare, GamesIndustry.biz, NeoGAF (Jul 2-4)
+- **💡💡 Lounge Note:**
+  - The backlash is real and growing — could potentially pressure Sony to soften the timeline or offer concessions
+  - Combined with PS Plus price hike (May 2026), subscriber sentiment is at a multi-year low
+  - For PS VIBE: reinforces the strategy of building a physical disc library as a unique asset
+  - If mass cancellations continue, Sony may respond with retention offers — watch for deals
+  - The controversy itself is free marketing for the physical disc experience — lean into it!
+
+### 🛒 July Savings Sale — Additional Lounge-Friendly Deals Found (Ends Jul 15)
+
+Previously tracked: EA FC 26 $13.99, TEKKEN 8 $39.99, Forza Horizon 5 $29.99. Additional deals discovered:
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 👻 **Alone in the Dark** | **$19.99** | 50% off | ⭐⭐⭐ — Survival horror, atmospheric! |
+| 👾 **Aliens: Dark Descent** | **$13.99** | 65% off | ⭐⭐⭐ — Tactical squad shooter, Alien IP! |
+| 🔫 **CoD Modern Warfare (2019)** | **$14.99** | 75% off | ⭐⭐⭐⭐ — Still active MP, classic MW reboot! |
+| ⚔️ **Castle Crashers Remastered** | **$4.49** | 70% off | ⭐⭐⭐⭐ — 4-player couch co-op! PERFECT lounge party game! |
+| 🏹 **Horizon Forbidden West** | **$19.99** | 50% off | ⭐⭐⭐⭐⭐ — Guerrilla's masterpiece! Free PS5 upgrade! |
+| 🧟 **Amnesia Collection** | **$8.99** | 70% off | ⭐⭐⭐ — Horror classic bundle! |
+- **💡 Lounge Action:** Castle Crashers at $4.49 is an INSTANT BUY for all lounge consoles — 4-player couch co-op, hilarious, perfect for casual groups! Horizon Forbidden West at $19.99 is also incredible value for one of PS5's best exclusives.
+
+### 📊 Quick Status Check (July 4 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT! 🆕** | Backend patches Jul 2-3! v1.03 = final build! Week of Jul 6 likely! |
+| 📰 PS Plus Backlash | **ESCALATED 🆕** | Mass cancellations! Petitions! Industry pushback! |
+| 🛒 July Savings Deals | **EXPANDED 🆕** | Castle Crashers $4.49! Horizon FW $19.99! 6 new deals! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE Jul 7!** | CoD MW3 + For the King II + CrossCode! 3 days! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 3 days! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 11 days! Castle Crashers $4.49! EA FC 26 $13.99! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 6 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 5 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 5 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 5 days! Endless Ragnarok! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | 3 days! Chain Spear + new campaign! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 24 days! FIRST HALO ON PLAYSTATION! |
+| 🐭 Moss: The Forgotten Relic | Jul 16! | 12 days! Family-friendly! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 12 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 12 days away! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! Petitions live! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 4 - 11:30 UTC):
+1. **🔥🔥 MONITOR PS STORE DAILY! CoD Black Ops 1 & 2 could shadow-drop THIS WEEK!** Backend v1.03 = imminent!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** AAA CoD FREE with PS Plus! Only 3 days!
+3. **CLAIM June PS Plus Essential BEFORE July 7** — Grounded, Nick Brawl 2, WH40K Darktide! 3 days left!
+4. **🛒 BUY Castle Crashers Remastered $4.49** — 4-player couch co-op STEAL for ALL lounge consoles!
+5. **🛒 Horizon Forbidden West $19.99** — 50% off! One of PS5's best exclusives!
+6. **🛒 EA Sports FC 26 $13.99** — 80% off! Ends Jul 15! Buy for ALL consoles!
+7. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+8. **PALWORLD 1.0 — July 10! Only 6 days!** Pre-order!
+9. **AC Black Flag Resynced — July 9! Only 5 days!** Pre-order!
+10. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 5 days! MVP+ EA already LIVE!
+11. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates! Backlash may lead to retention offers — watch for deals!
+12. **Mark July 21** — PS Plus departures + Planet Crafter!
+13. **Lean into the physical disc narrative** — PS VIBE's disc library is a unique asset!
 
 ---
 
