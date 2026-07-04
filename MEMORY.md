@@ -61,105 +61,47 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### Key Operations
 - **Staff Salary System (June 27)**: Full payroll auto-generation with leave tracking, shop-wide food commission (PNL formula), game bonus tiers (1500/1800/2000hr), attendance rules. See `memory/2026-06-27.md` for full details.
-
-### Key Operations (General)
 - **Staff Salary**: Auto-generate via `POST /salary/generate` — formula: base + transport + food_allowance + att_bonus + food_com + game_bonus − advances − leave_penalty
-
-### Key Operations (General)
 - **Member balance:** Column H of Card_wallet Google Sheet (legacy) → MySQL `member_wallets` (primary)
 - **Receipts:** Burmese footer text must be removed
 - **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-### Python Patterns
-### API & Database Patterns
-### System Patterns
-28. **Never edit minified Vue build output directly** — Always edit source `.vue` files and rebuild. Single-character name conflicts break entire components. Project: `/root/psvibe-dashboard/`. (#28)
-29. **Vite builds replace all hashes** — Every rebuild generates new content hash filenames. Old files must be cleaned to avoid stale cached versions. (#29)
-30. **JS object key sorting trap** — String keys that look like integers (e.g., "848") are sorted numerically by V8, not by insertion order. `.reverse()` on `Object.values()` doesn't reverse insertion order when keys are numeric strings. (#30)
-31. **Lane stacking is wrong UX for timeline overlaps** — Boss prefers natural overlap + tap-to-select popup. Don't force lane splitting; it makes blocks too small. (#31)
-32. **`window` object not available in Vue `<template>`** — Must use computed properties or method-returned style objects instead of inline `window.innerWidth` references. (#32)
-33. **SQLite FOREIGN KEY enforcement** — Must enable `PRAGMA foreign_keys = ON` per connection; not default. (#33)
-34. **FastAPI query params vs path params** — Path params auto-convert types; query params are strings. Must validate/convert manually. (#34)
-35. **CORS middleware ordering** — Must be added BEFORE route registration in FastAPI; order matters. (#35)
-36. **FIFO matching complexity** — Multi-currency FIFO with charges requires careful tracking of remaining quantities per lot. Test thoroughly with partial sales. (#36)
-61. **transfer_out stored as negative in cash_movements** — `SUM(amount)` for `transfer_out` returns negative. Use `+ SUM(transfer_out)` (adding a negative = subtracting), NOT `- SUM(transfer_out)` which double-counts. (#61)
-62. **Cashflow opener/closing should use cumulative queries** — Don't compute `closing = opener + monthly_sections` when cash_movements aren't captured in sections. Use the same cumulative SQL formula for both opener (up to `_start`) and closing (up to `_end`). Sections provide breakdown but may not sum to net_change. (#62)
-37. **JS Date(YYYY-MM-DDTHH:MM:SS) is LOCAL time** — Without Z/timezone suffix, interpreted in browser timezone. Always append Z for UTC DB timestamps. (#37)
-38. **Server-side filter > client-side** — For time-based filtering, MySQL NOW() - INTERVAL is more reliable than browser JS Date parsing. (#38)
-56. **Vue pages need `<AppLayout>` wrapper** — Pages rendered via router-view don't auto-inherit sidebar/nav. Must wrap in `<AppLayout title="...">` component or sidebar disappears. (#56)
-57. **Dashboard uses JWT not x-api-key** — Dashboard authenticates via `apiClient` (axios with Bearer token from localStorage), not raw `x-api-key` header. Use `apiClient.get()` not `fetch()` with manual headers. (#57)
-58. **Rebook logic: same phone + date + game → Done** — When a cancelled booking has a matching Done booking by same user on same date for same game, it's a rebook (not a failure). Exclude from cancellation count to get accurate success rate. (#58)
-59. **Console breakdown excludes empty console_id** — Some bookings (especially early ones) have no console assigned. `console_id != ''` filter causes mismatch between total booking count and console breakdown sum. Document this delta, don't "fix" it — it's by design. (#59)
-60. **ALL timestamps MUST be MMT (UTC+6:30)** — MySQL server runs on UTC, so `NOW()` and `CURRENT_TIMESTAMP` return UTC. For DATETIME columns: use `DATE_ADD(NOW(), INTERVAL 390 MINUTE)` in defaults and INSERTs. For TIMESTAMP columns: convert to DATETIME or set session `time_zone='+06:30'`. Never store UTC without conversion. Boss doesn't want to see 7:08 AM when it's really 1:38 PM. Tables affected: food_cart, sales_daily (fixed Jun 29), plus 50+ TIMESTAMP columns across all tables. (#60)
-61. **Double conversion trap — check all 3 layers** — Fixing timezone on INSERT (storing MMT) without removing conversion from SELECT & API causes double-conversion (data ends up +13hrs ahead). Always check: (a) INSERT query, (b) SELECT/WHERE/GROUP BY queries, (c) API response formatting. Migrate old rows BEFORE removing SELECT conversions. One fix = all 3 layers. (#61)  
-62. **Function truncation during replacement** — When using Python scripts to replace functions, verify boundaries with exact marker (`async def next_func`) and check that the closing block (comment_kb, edit_message_text, error handling) is present. Missing closing code = silent hang with no error log. (#62)
+72. **Pydantic Optional[int] rejects empty string ""** — Before the function body even runs, Pydantic type coercion fails on empty strings for Optional[int] fields. Must add `@field_validator(mode="before")` to convert `""` → `None` for all Optional numeric/barcode fields. (#72)
+73. **Logout: router.push + 401 interceptor = race condition** — When logout clears token and navigates, mounted pages still fire API calls → 401 → interceptor redirect → clash with in-progress navigation. Solution: interceptor skips 401 on /login path; logout uses full `window.location.href` for clean page reload. (#73)
+74. **Old transactions need manual backfill after fix deployment** — Transactions created before a fix is deployed won't have the corrected data. Always check and backfill historical records after fixing payment/balance logic. (#74)
 
 *(Trimmed: keeping only 3 most recent lessons)*
 
-48. **Food profit = reuse PNL logic** — don't recalculate from sales_daily alone. PNL already has stock_out revenue + FIFO COGS = net profit. Same formula for salary commission. (#48)
-49. **Rename carefully — check all code paths** — `food_charges`→`food_allowance` changed meaning from deduction to addition. Must update: SELECT query, variable names, deductions→additions, frontend labels, form fields. (#49)
-50. **Gmail OAuth tokens expire** — refresh_token can be revoked after time. Need re-auth flow. Device flow not supported for "installed" type — use desktop redirect flow with Boss clicking link. (#50)
-
 ## Major Projects & Milestones
-
-### Grand Opening (June 6, 2026)
-- Data reset: All tables cleared except 4 confirmed bookings
-- 10+ critical bugs fixed in 2 days leading up (coupon, wallet, booking, sales)
-- All services active and stable
-
-### Food Cart Feature (June 14)
-- Phase 1 deployed: Staff can add food to active sessions via Console → Food Sale
-- Food items auto-loaded into sale voucher at session end
-- Phase 2 pending: Customer Bot self-ordering
-
-### Finance System (June 15)
-- PNL & Balance Sheet endpoints fixed (were broken stubs)
-- Auto-depreciation script deployed (monthly cron, 1st of month)
-- Auto-amortization for prepaid rent (monthly cron)
-
-### Discord Bot (June 15-16)
-- 35 slash commands across gaming, account, community, staff modules
-- Auto-mod, birthday cron, LFG system, suggestion system
-- Full integration with web dashboard feedback tab
-
-### Suggestion System (June 17)
-- Full pipeline: Discord → API → Dashboard
-- Staff approve/reject with embed updates
 
 ### Console Timer & Booking System Overhaul (June 22)
 - Console Timers page: live elapsed/remaining with 30s refresh, timer adjust dropdown
 - Timeline AM/PM format + frozen console column
 - No Timer support: "∞ Open End" display, 8hr conflict window
-- Re-book cancelled bookings with date/time/duration modal
-- Booking soft-delete (no physical deletions, 30-day cleanup)
-- Auto-cancel disabled; manual-only end policy
-- Customer Feedback dashboard page with stats, 14-day trend, full table
+- Booking soft-delete, auto-cancel disabled; manual-only end policy
 
 ### Dashboard UX & Timeline Overhaul (June 26)
-- Food Orders: timezone fix (UTC→MMT via CONVERT_TZ), sorting by Active-first + recency
-- Sale Daily: added Time column between Date and Console
+- Food Orders: timezone fix (UTC→MMT), sorting by Active-first + recency
 - Timeline: lane-based stacking rejected → tap-to-select popup approach (final)
-- Cashflow: identified 2 bugs (month filter not applied ✅ fixed Jul 1, asset double-counting — still pending)
-- Key lessons: #28-32 (minified JS edits, Vite hashes, JS key sorting, lane stacking UX, window in templates)
 - See `memory/2026-06-26.md` for full details
 
 ### Staff Salary System & Customer Notifications (June 27)
-- Salary: full payroll auto-generation with leave tracking, shop-wide food commission (PNL FIFO COGS), game bonus tiers (1500/1800/2000hr), attendance rules per Boss policy
-- Customer Noti: fixed staff Check-In & Staff Booking flows missing `_notify_customer()` calls
-- Cancelled bookings: 2-hour timeline filter with server-side MySQL + frontend JS double-layer
-- Gmail: OAuth token refreshed, salary structure emails sent to 2 staff
-- Key lessons: #37-38 (JS Date parsing, server-side time filters), #47-50 (leave policy, food PNL reuse, rename checks, Gmail OAuth expiry)
+- Salary: full payroll auto-generation with leave tracking, PNL FIFO COGS, game bonus tiers
+- Customer Noti: fixed staff Check-In & Staff Booking flows
+- See `memory/2026-06-27.md` for full details
+
+### Financial Statement July Fixes — 8 Bugs Fixed ✅
+- PNL `m` param + Finance Balances + Balance Sheet date filters + Cashflow cumulative fixes
+- BS Member Liability undefined `ym` variable + transfer_out sign fix
+- **Verification:** June 2026 PNL 11.7M, Topup 450K; CF opening 300M → closing 11.32M
+- **Files:** `dashboard_routes.py`, `patch_routes.py`
 
 ## ⚠️ Known Issues (Persistent)
 
 | Issue | Severity | Status |
 |-------|----------|--------|
-| Cashflow month filter not applied (Jun 26) | Medium | 🟢 Fixed Jul 1 |
-| Cashflow asset deduction double-count (Jun 26) | Medium | 🟢 Fixed Jul 1 — cumulative queries + transfer_out sign fix |
-| PNL m-param ignored; Balance Sheet no date filter (Jul 1) | High | 🟢 Fixed Jul 1 |
-| BS Member Liability = 0 (Jul 1) | High | 🟢 Fixed Jul 1 — undefined `ym` variable |
 | VPS health monitor unreachable (Jun 28) | Low | 🟡 Investigating |
 
 ## Working Preferences
@@ -169,87 +111,44 @@ Kora now manages **9 projects** with full coordination tool support.
 - **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do.
 - **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code fix
 - **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md
-- **📁 New project onboarding (2026-06-25):** Every new project MUST include: (1) `README.md` at project root, (2) `memory/projects/<slug>/state.md`, (3) Daily memory section, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit
+- **📁 New project onboarding:** Every new project MUST include: (1) `README.md`, (2) `memory/projects/<slug>/state.md`, (3) Daily memory, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit
 - **Sub-agent timeout:** 300s default
 
-63. **PyMySQL `%%` escape for literal `%`** — `DATE_FORMAT(col, '%Y-%m')` fails because PyMySQL's `cur.execute()` treats `%Y`, `%m` as format placeholders. Must escape as `%%Y`, `%%m` in SQL strings. (#63)
-64. **Check existing scripts before building new features** — The no-show auto-cancel script and cron job already existed. Always grep/inspect crontab and scripts/ folder first before planning work. (#64)
-65. **Dashboard timer change must sync 3 layers** — DB (done), API timer (`schedule_session_timer`), Bot state (`_SESSION_END_TIMES`). Missing any one → reminder fires at wrong time. (#65)
-66. **MySQL queries: ALWAYS Python pymysql, NEVER shell quoting** — docker exec + bash heredocs with nested quotes fails silently (5+ failed attempts for one query today). Python pymysql handles all quoting automatically and is 3x faster. Pattern: `python3 -c 'import pymysql; ...'` for ALL MySQL queries. (#66)
-
-## Memory (2026-07-02)
-
-### July 2 Sprint — 6 Features Delivered
-- Console Swap: staff permission + booking ID/phone/notes detail cards
-- Timer Duration Change: Hybrid fix — API timer reschedule + Bot auto-sync from DB every reminder fire
-- ConsoleTimer: Custom minutes input ("✏️ Custom mins..." + Enter key support)
-- Business Overview: All-time cumulative dashboard (8 sections, new CumulativeStats.vue)
-- Cancel Flow: Admin group notification on cancel + customer self-cancel reminder cleanup
-- Confirmed existing: Customer Bot confirmation, No-show auto-cancel (cron), Food Menu import
-
-### All-Time Numbers (Jul 2)
-- Total Revenue: ~13.3M Ks (Gaming 12.3M + Food 1.05M + Topup 450K)
-- Total Bookings: 1,053 | Unique Members: 19
-
-### Key Files Changed
-- Dashboard: AppLayout.vue, SwapView.vue, ConsoleTimer.vue, CumulativeStats.vue (NEW), router/index.ts
-- API: dashboard_routes.py (+timer reschedule, +cumulative endpoint)
-- Sales Bot: session_reminder.py (+_sync_duration_from_db), booking_flow.py (+admin notify)
-- Customer Bot: handlers.py (+reminder cancel)
-
-## Memory (2026-07-01)
-## Memory (2026-06-29)
-## Memory (2026-06-28)
-## Memory (2026-06-27)
-## Memory (2026-06-26)
-## Memory (2026-06-25)
-## Memory (2026-07-01)
-
-### Financial Statement July Fixes — 8 Bugs Fixed ✅
-- **Morning session (4 bugs):** PNL `m` param ignored → parse year/month from `m`, replace `mmt.year/month` hardcodes. Finance Balances + Balance Sheet had no date filters → added year/month query params + WHERE clauses. Cashflow missing total_inflows/outflows → added computed fields.
-- **Afternoon session (4 bugs):** BS Member Liability always 0 → undefined `ym` variable silently caught by `except:` catching. Cashflow investing section cumulative (no month filter) → added WHERE on all 4 asset/advance queries. Cashflow closing wrong (-19M) → formula missed capital + injects; changed to cumulative SQL queries. Cashflow closing 30M too high → `transfer_out` stored negative, `-SUM()` double-subtracted → changed to `+SUM()`.
-- **Verification:** June 2026 PNL 11.7M, Topup 450K; CF opening 300M → net -288.7M → closing 11.32M; BS Member Liability 256,500 Ks. July 2026 all zeros (correct — no data yet).
-- **Files:** `dashboard_routes.py`, `patch_routes.py`
-
-### Customer Bot Notification Audit — 7 Paths Audited, 7 Gaps Found 🔍
-Full audit of all notification paths when a customer creates a booking via Customer Bot.
-
-| # | Critical Gap | Severity |
-|---|-------------|----------|
-| 1 | **Customer receives NO confirmation after booking creation** — No "သင်၏ Booking ကို အတည်ပြုပြီးပါပြီ" message | 🔴 High |
-| 2 | **No proactive no-show auto-cancel** — No background job auto-cancels bookings when time passes without checkin | 🔴 High |
-| 3 | **Inconsistent admin notifications on cancel** — `cmd_cancel_booking` and `_do_cancel_booking` don't notify admin group | 🟡 Medium |
-| 4 | **`_text_cancel_booking` doesn't cancel reminders** — Uses different endpoint that doesn't trigger reminder cancellation | 🟡 Medium |
-| 5 | **`_sbk_advance_reminder` sends at 30 min, not 10 min** — Docstring says 10 min, code uses `timedelta(minutes=30)` | ⚠️ Low |
-| 6 | **Hardcoded admin chat ID** — `_notify_booking_received` uses hardcoded `-1003686032747` instead of env var | ⚠️ Low |
-| 7 | **Double reminder on approve** — Both n8n webhook AND `_sbk_advance_reminder` schedule 30-min reminders | ⚠️ Low |
-
-### Ongoing Work
-- Notification gaps #1-7 from audit above — Boss to prioritize which to fix
-- VPS health monitor: unreachable status still investigating
-
+66. **MySQL queries: ALWAYS Python pymysql, NEVER shell quoting** — docker exec + bash heredocs with nested quotes fails silently. Python pymysql handles all quoting automatically and is 3x faster. Pattern: `python3 -c 'import pymysql; ...'` for ALL MySQL queries. (#66)
 
 ## Memory (2026-07-03)
 
 ### Critical Fixes — 4 Race Condition & Error Handling Bugs Fixed ✅
-- **C2: Checkin Race Condition** — Added `SELECT ... FOR UPDATE` lock on `console_status` inside booking transaction. Prevents two concurrent checkins from both becoming Active on same console.
-- **L1: Dead GSheet Code** — Created `_GsheetRemoved` singleton class mimicking gspread interface. GSheet stubs now raise `RuntimeError('GSheet backend has been removed')` instead of returning `None` and crashing callers with `AttributeError`.
-- **H8: Empty member_id** — 4-level fallback resolution: payload memberId → phone → telegram_chat_id → customer_bot_users → auto-create. Fixes analytics gaps when phone→member lookup fails.
-- **M5: ConsoleStatusError** — `fetch_console_status()` now raises `ConsoleStatusError` instead of returning `[]` on API failure. Prevents misleading "no free consoles" message when API is down.
+- **C2: Checkin Race Condition** — Added `SELECT ... FOR UPDATE` lock on `console_status` inside booking transaction
+- **L1: Dead GSheet Code** — Created `_GsheetRemoved` singleton; GSheet stubs now raise `RuntimeError` instead of `None`
+- **H8: Empty member_id** — 4-level fallback: payload memberId → phone → telegram_chat_id → customer_bot_users → auto-create
+- **M5: ConsoleStatusError** — `fetch_console_status()` now raises `ConsoleStatusError` instead of returning `[]` on API failure
+- Key lessons: #67-70 (sub-agent verification, MongoDB debugging, pymysql over shell, Telegram markdown escape)
+- Files: booking_routes.py, gsheet_stubs.py, console.py
 
-### Key Lessons Added
-- **#68: Auto-Verify After Every Sub-Agent Task** — Always run `verify_subagent_output.py` after sub-agent code changes. Sub-agents make 3 common mistakes: import chain breaks, missing imports in split modules, function name mismatches.
-- **#69: MongoDB Query First, grep Second** — Always query `kora_memory.py trace/search` BEFORE grepping logs when debugging. Code Graph (7,840 entities, 103K relations) shows file location + DB tables + callers instantly.
-- **#70: Telegram Markdown — Always Escape User Data** — All dynamic text (member names, game names, custom input) displayed with `parse_mode='Markdown'` MUST be escaped. Underscores in food names/extended game hours get interpreted as italic markup.
+## Memory (2026-07-04)
 
-### Updated Lessons
-67. **Sub-agent verification is mandatory** — Every sub-agent code change needs 4-layer verification: syntax check → import chain validation → endpoint registration → integration test. (#67)
-68. **MongoDB memory system is the first stop for debugging** — Code Graph traces function→file→DB→callers in seconds. grep/read only after MongoDB doesn't have the answer. (#68)
-69. **MySQL queries: ALWAYS Python pymysql, NEVER shell quoting** — docker exec + bash heredocs with nested quotes fails silently. Python pymysql handles all quoting automatically and is 3x faster. (#69)
-70. **Telegram Markdown escape ALL user-facing data** — `_ * [ ] ( ) ~` in member names, game names, food items, or any user input will corrupt Markdown rendering. Use `escape_markdown()` utility. Affects: food items with underscores, extended game hours with parentheses. (#70)
+### New Project: AKT Clothing Shop ERP (BKK Fashion Shop) 👕
+- **Path:** `/opt/kora-projects/akt_clothing/code/`
+- **Stack:** FastAPI + Vue 3 + SQLite | **Links:** `/akt-clothing-shop/`
 
-### Files Modified
-- `/root/psvibe_api_server/routes/booking_routes.py` — FOR UPDATE lock (#68)
-- `/root/psvibe-sales-bot/bot/gsheet_stubs.py` — _GsheetRemoved singleton (#69)
-- `/root/psvibe_api_server/routes/booking_routes.py` — 4-level member_id fallback (#70)
-- `/root/psvibe-sales-bot/bot/handlers/console.py` — ConsoleStatusError (#71)
+### Critical Fixes Delivered
+1. **Account Balance — payment_transactions Not Recorded 🐛→✅:** `record_payment_transaction()` name lookup mismatch ("Cash"→"Cash Register", "Bank Transfer"→"Bank Account"). Added mapping + type fallback. Backfilled historical.
+2. **Add Product — Empty String Crash 🐛→✅:** Pydantic `Optional[int]` rejected `""`. Added `@field_validator` converting `""` → `None`.
+3. **Logout Glitch 🐛→✅:** `router.push("/login")` + mounted-page API calls → 401 interceptor race. Fixed: skip 401 on /login; logout uses `window.location.href`.
+4. **SSD Return — Game Auto Re-add 🐛→✅:** PS VIBE `step_ssd_ret_game` now re-adds game to source SSD after removing from console.
+5. **C2: Checkin Race Condition (Jul 3) 🐛→✅:** `SELECT ... FOR UPDATE` lock on `console_status` inside booking transaction.
+
+*(Trimmed: keeping only 5 most recent fixes)*
+
+### Features Added
+- Logo + Favicon (BKK), product image upload, UX improvements (optional labels, red *, larger buttons)
+
+### New Lessons
+71. **Payment method labels ≠ account names** — Always add name mapping layer or account_type fallback for payment_transactions. (#71)
+72. **Pydantic Optional[int] rejects empty string ""** — Must use `@field_validator(mode="before")` to convert `""` → `None`. (#72)
+73. **Logout: router.push + 401 interceptor = race condition** — Skip 401 on /login; use `window.location.href` for clean logout. (#73)
+74. **Old transactions need manual backfill after fix deployment** — Always check and backfill historical records after fixing payment/balance logic. (#74)
+
+### Code Graph Maintenance
+- MongoDB code graph full rebuild: 7,858 entities, 103K relations (weekly maintenance)
