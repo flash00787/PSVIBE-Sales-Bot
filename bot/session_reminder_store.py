@@ -19,6 +19,7 @@ Usage:
     app.post_init = restore_reminders_async
 """
 
+import asyncio
 import json
 import logging
 import os
@@ -73,9 +74,15 @@ def persist_reminder(
     message_thread_id: int = 0,
     total_plan_mins: int = 0,
 ) -> None:
-    """Save / update a single reminder entry to the JSON store."""
+    """Save / update a single reminder entry to the JSON store.
+    Cleans old entries for the same cid to prevent duplicate _remind_loop spawning."""
     key = remind_key(cid, chat_id)
     store = _read_store()
+    # Remove ALL old entries for the same console (different chat_ids = duplicates)
+    stale_keys = [k for k in store if store[k].get("cid") == cid and k != key]
+    for sk in stale_keys:
+        logger.info("reminder_store dedup: removing stale %s (replaced by %s)", sk, key)
+        del store[sk]
     store[key] = {
         "cid":               cid,
         "chat_id":           chat_id,
@@ -227,6 +234,13 @@ def _parse_end_iso(end_dt_iso: str, end_t: str, now) -> Optional[datetime]:
     return None
 
 
+
+def _remove_key_from_store(key: str) -> None:
+    """Remove a single key from the reminder store without full rewrite."""
+    store = _read_store()
+    if store.pop(key, None) is not None:
+        _write_store(store)
+
 # ── Periodic background cleanup ────────────────────────────────────────────
 
 async def cleanup_stale_reminders_async(app) -> None:
@@ -299,5 +313,106 @@ async def cleanup_stale_reminders_async(app) -> None:
             logger.error("cleanup_stale: %s", e, exc_info=True)
 
 
-# Import asyncio at module level for the restore function
-import asyncio
+async def sync_api_reminders_async(app) -> None:
+    """Background task: every 30 seconds, scan session_reminders.json for
+    entries that don't have a running _remind_loop, and spawn one.
+
+    This bridges the gap where sessions started via API/Dashboard don't
+    get bot-side reminders (with Extend/End keyboard).
+
+    Runs until the bot shuts down.
+    """
+    from bot import STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, now_mmt
+    from bot.handlers.booking_flow import (
+        _remind_loop, _REMIND_TASKS, _remind_key,
+        _NO_TIMER_CONSOLES, _is_session_active,
+        _SESSION_TOTAL_MINS,
+    )
+
+    while True:
+        try:
+            await asyncio.sleep(30)  # poll every 30s
+
+            store = _read_store()
+            if not store:
+                continue
+
+            bot_ref = app.bot
+            target_chat = int(STAFF_NOTIFY_CHAT) if STAFF_NOTIFY_CHAT else 0
+            now = now_mmt()
+            spawned = 0
+
+            for key, entry in list(store.items()):
+                cid = entry.get("cid", "")
+                chat_id = entry.get("chat_id", target_chat)
+                member_id = entry.get("member_id", "Guest")
+                planned = int(entry.get("planned_mins", 0))
+                end_t = entry.get("end_t", "")
+                _mtid = entry.get("message_thread_id", 0)
+                total_plan = entry.get("total_plan_mins", planned)
+
+                # ── Skip if already running (same key or same console) ───
+                rk = _remind_key(cid, chat_id)
+                if rk in _REMIND_TASKS and not _REMIND_TASKS[rk].done():
+                    continue
+                # Also skip if ANY task exists for this console (different chat_id = duplicate)
+                dup_running = any(
+                    k.startswith(cid + "|") and k in _REMIND_TASKS and not _REMIND_TASKS[k].done()
+                    for k in _REMIND_TASKS
+                )
+                if dup_running:
+                    logger.info("sync_api_reminders: removing duplicate store entry %s (task already running)", key)
+                    _remove_key_from_store(key)
+                    continue
+
+                # ── Skip invalid ───
+                if not cid or cid in _NO_TIMER_CONSOLES or planned <= 0:
+                    continue
+
+                # ── Verify session is still active ──
+                try:
+                    still_active = await _is_session_active(cid)
+                except Exception:
+                    continue
+
+                if not still_active:
+                    continue
+
+                # ── Calculate delay ──
+                end_dt = _parse_end_from_end_t(end_t, now)
+                if not end_dt:
+                    end_dt = _parse_end_iso(entry.get("end_dt_iso", ""), end_t, now)
+                if not end_dt:
+                    continue
+
+                seconds_left = (end_dt - now).total_seconds()
+                # If already more than 15 min past end, skip (session probably ended)
+                if seconds_left < -900:
+                    continue
+
+                if chat_id == 0:
+                    chat_id = target_chat
+                if chat_id == 0:
+                    continue
+
+                delay = max(0, int(seconds_left - 300))
+
+                logger.info(
+                    "sync_api_reminders: spawning _remind_loop for %s | %s | end=%s | delay=%ds",
+                    cid, member_id, end_t, delay,
+                )
+                task = asyncio.get_event_loop().create_task(
+                    _remind_loop(bot_ref, chat_id, cid, member_id,
+                                 planned, end_t, delay, _mtid)
+                )
+                _REMIND_TASKS[rk] = task
+                _SESSION_TOTAL_MINS[rk] = total_plan
+                spawned += 1
+
+            if spawned > 0:
+                logger.info("sync_api_reminders: %d new reminder loops spawned", spawned)
+
+        except asyncio.CancelledError:
+            break
+        except Exception as e:
+            logger.error("sync_api_reminders: %s", e, exc_info=True)

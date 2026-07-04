@@ -787,7 +787,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 return (
                     f"❌ {console_type} တွင် ထိုအချိန်၌ console အားလုံး မရနိုင်ပါ。\n\n"
                     "အခြားအချိန် သို့မဟုတ် အခြား console အမျိုးအစားကို ထပ်ရွေးပါ။\n"
-                    "🔄 /start — ပြန်ကြိုးစားရန်"
+                    "🔄 /start — ပြန်ကြိုးစားရန်\n\n📲 Admin သို့ ဆက်သွယ်ရန်: https://t.me/psvibeofficial"
                 ), False, False
         except Exception as e:
             logging.warning("_submit_booking: _get_available_consoles failed — %s", e)
@@ -852,7 +852,7 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 "❌ Booking မအောင်မြင်ပါ\n"
                 f"Console {console_id} ({console_type}) သည် ထိုအချိန်တွင် မရနိုင်ပါ။\n\n"
                 "အခြားအချိန် သို့မဟုတ် အခြား console ကို ထပ်ရွေးပါ။\n"
-                "🔄 /start — ပြန်ကြိုးစားရန်"
+                "🔄 /start — ပြန်ကြိုးစားရန်\n\n📲 Admin သို့ ဆက်သွယ်ရန်: https://t.me/psvibeofficial"
             ), False, False
     except ValueError as e:
         # API returned HTTP error (e.g., 409 Conflict) — treat as booking failure, not crash
@@ -889,10 +889,10 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 f"{next_info}\n"
                 f"Duration ပြန်ရွေးပါ 👇"
             ), False, True
-        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False, False
+        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ\n📲 Admin သို့ ဆက်သွယ်ရန်: https://t.me/psvibeofficial", False, False
     except Exception as e:
         logger.error("Booking submission failed (unexpected): %s", e)
-        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ သို့မဟုတ် Admin ကို ဆက်သွယ်ပါ", False, False
+        return "❌ Booking တင်မရပါ — ခဏနေ ပြန်ကြိုးစားပါ\n📲 Admin သို့ ဆက်သွယ်ရန်: https://t.me/psvibeofficial", False, False
 
 
 async def _cleanup_and_end(update: Update, context: ContextTypes.DEFAULT_TYPE, msg: str = "❌ Booking ဖျက်လိုက်ပါပြီ"):

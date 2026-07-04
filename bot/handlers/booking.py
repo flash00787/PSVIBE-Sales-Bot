@@ -35,6 +35,7 @@ from bot import (
     _psvibe_get_async, _psvibe_patch_async, _psvibe_post_async,
     add_console_game, add_console_game_async, _delete_session_game,     calc_duration,
     check_disc_session_conflict, cmd_cancel, create_booking, create_booking_async,
+    ConsoleStatusError,
     fetch_console_games, fetch_console_games_async, fetch_console_status, fetch_console_status_async, fetch_games, fetch_games_async,
     fetch_members, fetch_staff, get_consoles_with_game, get_consoles_with_game_async,
     get_games_on_console, get_games_on_console_async, now_mmt, show_admin_menu, show_console_menu,
@@ -77,8 +78,10 @@ async def _sbk_console_kb(date_str: str = None, time_slot: str = None) -> list:
     """
     try:
         consoles = fetch_console_status()
-        if not consoles:
-            return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
+    except ConsoleStatusError:
+        logging.warning("Staff booking: fetch_console_status failed — API server may be down")
+        # Fall back to all consoles without live status indicators
+        return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
     except Exception as e:
         logging.warning("Failed to fetch console status (staff booking): %s", e)
         return [[c] for c in sorted(VALID_CONSOLES)] + [[BTN_BACK, BTN_CANCEL]]
@@ -1598,11 +1601,22 @@ async def step_book_mins(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await prompt_book_game(update, context)
 
     planned_mins = 0
+    MAX_SESSION_MINS = 1440  # 24 hours
     if text != BTN_SKIP_TIMER:
         try:
             planned_mins = int(text)
         except ValueError:
             await update.message.reply_text("⚠️ ဂဏန်းသာ ထည့်ပါ သို့ keyboard မှ ရွေးပါ")
+            context.user_data["bk_member"] = member_id
+            context.user_data["bk_staff"]  = staff
+            return await prompt_book_mins(update, context)
+        if planned_mins < 1:
+            await update.message.reply_text(f"⚠️ အနည်းဆုံး ၁ မိနစ် ထည့်ပါ")
+            context.user_data["bk_member"] = member_id
+            context.user_data["bk_staff"]  = staff
+            return await prompt_book_mins(update, context)
+        if planned_mins > MAX_SESSION_MINS:
+            await update.message.reply_text(f"⚠️ အများဆုံး {MAX_SESSION_MINS} မိနစ် (၂၄ နာရီ) သာ ခွင့်ပြုပါတယ်")
             context.user_data["bk_member"] = member_id
             context.user_data["bk_staff"]  = staff
             return await prompt_book_mins(update, context)

@@ -65,6 +65,15 @@ async def _send_feedback_to_customer(chat_id: str, booking_id: str):
 
 
 
+def _escape_md(text: str) -> str:
+    """Escape special characters for Telegram Markdown (legacy) mode."""
+    if not text:
+        return ""
+    for ch in r"_*[]()~`>#+-=|{}.!":
+        text = text.replace(ch, "\\" + ch)
+    return text
+
+
 async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show live console status — uses API (Sheet + PostgreSQL reservations)."""
     await update.message.reply_text("⏳ Console status ဆွဲနေသည်…", parse_mode="Markdown")
@@ -147,7 +156,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             detail = "Free"
         elif live == "Reserved":
             icon      = "🟡"
-            rsv_who   = c.get("reservedFor") or c.get("member") or "Guest"
+            rsv_who   = _escape_md(c.get("reservedFor") or c.get("member") or "Guest")
             rsv_at    = c.get("reservedAt") or c.get("startTime") or "—"
             # Calculate end time (only if we have a valid start time)
             dur = c.get("reservedDuration") or c.get("durationMins") or 60
@@ -182,7 +191,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
             detail = f"Reserved {time_range} — {rsv_who}"
         else:
             icon   = "🔴"
-            mbr    = c.get("member") or "Guest"
+            mbr    = _escape_md(c.get("member") or "Guest")
 
             # ── Timer calculation ──
             timer_str = ""
@@ -224,7 +233,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         rsv_for = c.get("reserved_for") or c.get("reservedFor")
         rsv_at = c.get("reserved_at") or c.get("reservedAt")
         if live in ("Active", "Scheduled") and rsv_at and rsv_at != "—":
-            detail += f"  🟡 {rsv_at} → {rsv_for or 'Booking'}"
+            detail += f"  🟡 {rsv_at} → {_escape_md(rsv_for or 'Booking')}"
 
         # For Active consoles, show current session game only
         game_str = ""
@@ -236,7 +245,7 @@ async def cmd_console_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 and r.get("game_title")
             ]
             if session_games:
-                game_str = "\n    🎮 " + session_games[0]
+                game_str = "\n    🎮 " + _escape_md(session_games[0])
 
         lines.append(f"{icon} *{cid}*{ctype_str}: {detail}{game_str}")
 

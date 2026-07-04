@@ -406,8 +406,15 @@ async def _do_booking_action(bk_id: int, action: str, staff_name: str, reply_fn,
         customer_console = (bk_info.get("consoleId") or bk_info.get("console_id") or "").strip()
 
         if console_type:
-            from bot import fetch_console_status
-            consoles_tmp = fetch_console_status()
+            from bot import fetch_console_status, ConsoleStatusError
+            try:
+                consoles_tmp = fetch_console_status()
+            except ConsoleStatusError:
+                logger.error("Approve BK#%d: fetch_console_status failed — API server down", bk_id)
+                await update.callback_query.edit_message_text(
+                    "⚠️ API server နဲ့ ချိတ်ဆက်မရပါ — ခဏစောင့်ပြီး ထပ်ကြိုးစားပါ"
+                )
+                return
             consoles = [{"id":c["id"],"type":c.get("type",""),"liveStatus":c.get("status","Free")} for c in consoles_tmp]
             free = [c for c in consoles
                     if c.get("type", "").strip() == console_type

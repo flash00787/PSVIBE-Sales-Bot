@@ -17,6 +17,13 @@ _API_KEY = os.environ.get("API_KEY", "")
 
 
 import functools
+
+
+class ConsoleStatusError(Exception):
+    """Raised when the console-status API (fetch_console_status) fails.
+    Callers should catch this and show a user-friendly API-down message."""
+
+
 # ── API Client for READ operations ──
 try:
     from bot.api_client import (
@@ -388,7 +395,7 @@ def fetch_console_status() -> list[dict]:
                     deduped.append(item)
             return deduped
         logging.error("api_fetch_console_status() returned None after all retries — API server may be down")
-    return []
+    raise ConsoleStatusError("Console status unavailable — API server may be down. Please try again later.")
 def create_booking(console_id: str, member_id: str, staff: str, notes: str = "", planned_end: str = "") -> str:
     """Append a row to Console_Booking and return the BookingID.
     planned_end: optional planned end time (HH:MM) stored in col F so the
@@ -480,10 +487,10 @@ def fetch_console_games() -> list[dict]:
                     "row":          i + 2,
                     "console_id":   g.get("console_id", ""),
                     "game_title":   g.get("game_title", ""),
-                    "install_type": g.get("status", ""),
+                    "install_type": g.get("install_type", g.get("status", "")),
                     "status":       g.get("status", ""),
                     "date":         g.get("created_at", "") or "",
-                    "notes":        "",
+                    "notes":        g.get("notes", ""),
                 })
             return mapped
         logging.warning("API call failed")
@@ -1426,12 +1433,12 @@ BTN_FIN_ADVPAY       = "💵 Advance"
 BTN_FIN_SETTLE_ADVPAY= "✅ Settle Adv"
 BTN_FIN_BACK         = "⬅️ Finance Menu"
 
-def _delete_session_game(console_id: str) -> None:
+async def _delete_session_game(console_id: str) -> None:
     """Remove any 'Session' type entry for a console via API."""
     try:
         import urllib.parse
         _cid_enc = urllib.parse.quote(console_id, safe="")
-        result = _psvibe_delete(f"delete_session_game/{_cid_enc}")
+        result = await asyncio.to_thread(_psvibe_delete, f"delete_session_game/{_cid_enc}")
         if result and result.get("success"):
             global _CGAME_ROWS, _CGAME_TS
             _CGAME_TS = 0
@@ -2750,41 +2757,71 @@ async def _psvibe_put_async(path: str, payload: dict = None, timeout: int = 10) 
 def fetch_payment_methods():
     return list(PAY_METHODS)
 
+# ── GSheet Removed Fallback ──
+class _GsheetRemoved:
+    """Fake GSheet object that raises clear errors instead of AttributeError on None.
+
+    All GSheet stubs return this singleton so that when the API is down and code falls
+    through to the GSheet fallback path, callers get a meaningful RuntimeError instead
+    of an opaque AttributeError on None.
+    """
+    _MSG = "GSheet backend has been removed — API is the only data source."
+
+    def get(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def append_row(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def update(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def update_cell(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def col_values(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def delete_rows(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def cell(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    def worksheet(self, *args, **kwargs):
+        raise RuntimeError(self._MSG)
+
+    # Catch-all for any other attribute access (e.g. .title, .value)
+    def __getattr__(self, name):
+        raise RuntimeError(f"{self._MSG} (accessed: {name})")
+
+
+_GS = _GsheetRemoved()  # singleton
+
 def get_salary_adv_sh():
-    return None
+    return _GS
 
 def get_input_log_sh():
-    return None
+    return _GS
 
-stock_sh = None
-stock_in_sh = None
-inv_sh = None
+stock_sh = _GS
+stock_in_sh = _GS
+inv_sh = _GS
+sales_sh = _GS
+topup_sh = _GS
+member_sh = _GS
+setting_sh = _GS
 
-def fetch_payment_methods():
-    return list(PAY_METHODS)
-
-def get_salary_adv_sh():
-    return None
-
-def get_input_log_sh():
-    return None
-
-stock_sh = None
-stock_in_sh = None
-inv_sh = None
-sales_sh = None
-topup_sh = None
-member_sh = None
-setting_sh = None
 def get_att_sh():
-    return None
+    return _GS
 
 def get_booking_sh():
-    return None
+    return _GS
 
 def get_console_games_sh():
-    return None
+    return _GS
 
 def get_game_lib_sh():
-    return None
-wb = None  # GSheet removed
+    return _GS
+
+wb = _GS  # GSheet removed

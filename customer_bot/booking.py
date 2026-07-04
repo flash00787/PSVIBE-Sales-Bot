@@ -135,7 +135,7 @@ async def cmd_mybookings(update, context):
         for b in expired[:5]:
             lines.append(_format_booking_line(b, is_expired=True))
 
-    lines.append("\n\nAdmin ကို ဆက်သွယ်ရန်: @psvibeofficial")
+    lines.append("\n\nAdmin ကို ဆက်သွယ်ရန်: https://t.me/psvibeofficial")
     await update.message.reply_text("".join(lines), )
 
 

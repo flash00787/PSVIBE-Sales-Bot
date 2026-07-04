@@ -510,8 +510,10 @@ def main():
     _tasks.append(loop.create_task(_bg_cache_refresh()))
     _tasks.append(loop.create_task(input_logger_batcher()))
     # Start periodic stale-reminder cleanup (every 15 min)
-    from bot.session_reminder_store import cleanup_stale_reminders_async
+    from bot.session_reminder_store import cleanup_stale_reminders_async, sync_api_reminders_async
     _tasks.append(loop.create_task(cleanup_stale_reminders_async(app)))
+    # Start API-session reminder sync (every 30s — bridges Dashboard-started sessions)
+    _tasks.append(loop.create_task(sync_api_reminders_async(app)))
 
     logging.info("PS Vibe Bot is running...")
     try:

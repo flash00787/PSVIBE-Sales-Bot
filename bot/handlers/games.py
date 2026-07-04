@@ -338,11 +338,14 @@ async def step_game_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                          reply_markup=ReplyKeyboardMarkup(kb, resize_keyboard=True))
         return GAME_MENU
 
-    # ── Game selection from keyboard (e.g., "1. GameName · Genre") ──
+    # ── Game selection from keyboard (e.g., "✅ 1. GameName · Genre") ──
     if game_list:
-        for i, g in enumerate(game_list, 1):
-            prefix = f"{i}. "
-            if choice.startswith(prefix):
+        # Extract number after optional emoji/icon prefix
+        m = re.match(r'^.*?(\d+)\.\s', choice)
+        if m:
+            idx = int(m.group(1))
+            if 1 <= idx <= len(game_list):
+                g = game_list[idx - 1]
                 await _show_game_detail(update, g)
                 # Re-show the same page
                 total_pages = max(1, (len(game_list) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE)
@@ -489,10 +492,13 @@ async def step_game_detail_pick(update: Update, context: ContextTypes.DEFAULT_TY
 
     # ── Game selection ──
     if game_list:
-        for i, g in enumerate(game_list, 1):
-            prefix = f"{i}. "
-            if text.startswith(prefix):
-                target = g
+        # Extract number after optional emoji/icon prefix
+        m = re.match(r'^.*?(\d+)\.\s', text)
+        if m:
+            idx = int(m.group(1))
+            if 1 <= idx <= len(game_list):
+                target = game_list[idx - 1]
+                g = target
                 game_name = target.get("title", "").strip()
                 solo_multi = target.get("solo_multi", "").strip()
                 genre = target.get("genre", "").strip()

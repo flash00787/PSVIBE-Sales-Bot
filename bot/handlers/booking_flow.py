@@ -257,6 +257,25 @@ async def _do_cancel_booking(query_or_msg, bk_id: int, staff_name: str, reason: 
         logger.error("_do_cancel_booking: %s", e, exc_info=True)
         pass
 
+    # Notify admin group about cancellation (fix: was only showing in staff's chat)
+    if STAFF_NOTIFY_CHAT:
+        admin_msg = (
+            f"🚫 <b>Booking #{bk_id} Cancelled</b>\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"👤 {_pre_cust or '?'}  📅 {_pre_date or '?'}\n"
+            f"⏰ {_pre_time or '?'}  🎮 {_pre_console or '?'}\n"
+            f"📝 {reason}\n"
+            f"👮 {staff_name}"
+        )
+        try:
+            if hasattr(query_or_msg, 'message'):
+                kwargs = {"chat_id": int(STAFF_NOTIFY_CHAT), "text": admin_msg, "parse_mode": "HTML"}
+                if STAFF_NOTIFY_THREAD:
+                    kwargs["message_thread_id"] = STAFF_NOTIFY_THREAD
+                await query_or_msg.message.bot.send_message(**kwargs)
+        except Exception as _ane:
+            logger.debug("_do_cancel_booking: admin notify failed: %s", _ane)
+
     # Notify customer if they have Telegram (use pre-fetched data)
     if _pre_tg_chat and CUSTOMER_BOT_TOKEN:
         cust_msg = (

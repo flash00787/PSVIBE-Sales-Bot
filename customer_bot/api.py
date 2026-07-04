@@ -310,6 +310,9 @@ async def _fetch_members() -> dict:
     members: dict = {}
     try:
         data = await _api_get("fetch_members")
+        # Unwrap "members" key if present (API returns {success, data: {members: [...]}})
+        if isinstance(data, dict) and "members" in data:
+            data = data["members"]
         if not isinstance(data, list) or len(data) == 0:
             if not isinstance(data, list):
                 logging.warning("fetch_members: unexpected response type %s", type(data))

@@ -63,7 +63,7 @@ def _register_handlers(app: Application) -> None:
             "🚫 <b>Access Denied</b>\n\n"
             "သင့်အနေဖြင့် PS VIBE Customer Bot ကို အသုံးပြုခွင့် <b>ပိတ်ထားပါသည်</b>။\n\n"
             "အကြောင်းအရင်း သိရှိလိုပါက Admin ကို ဆက်သွယ်မေးမြန်းပါ။\n"
-            "📲 <b>Contact Admin:</b> @psvibeofficial",
+            "📲 <b>Contact Admin:</b> <a href='https://t.me/psvibeofficial'>@psvibeofficial</a>",
             parse_mode="HTML",
         )
     app.add_handler(MessageHandler(_blocked_user_filter, _block_user), group=-1)

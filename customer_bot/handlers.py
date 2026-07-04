@@ -796,34 +796,39 @@ async def cb_feedback_rating(update: Update, context: ContextTypes.DEFAULT_TYPE)
     tg_id  = str(user.id)
     uname  = user.username or ""
 
-    if rating >= 4:
-        asyncio.create_task(_api._api_post("feedback/submit", {
-            "tg_id": tg_id, "username": uname, "booking_id": bk_id,
-            "rating": rating, "comment": "", "console_id": "",
-        }))
-        thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nPS VIBE မှာ ဆော့ပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်! 🎮\nနောက်တစ်ကြိမ်လည်း ကြိုဆိုပါတယ်! 🙌"
-        try:
-            await query.edit_message_text(thank_msg, parse_mode="HTML")
-        except Exception as e:
-            logging.exception("handlers: suppressed exception: %s", e)
-    else:
-        context.user_data["_fb_rating"] = rating
-        context.user_data["_fb_bk_id"]  = bk_id
-        context.user_data["_fb_tg_id"]  = tg_id
-        context.user_data["_fb_uname"]  = uname
-        if rating == 3:
-            thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nပိုကောင်းအောင် ကြိုးစားပါမည် 💪"
-        else:
-            thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nဝမ်းနည်းပါတယ် 😔 ဘာပြဿနာ ရှိခဲ့လဲ ပြောပေးပါ"
-        comment_kb = InlineKeyboardMarkup([[
-            InlineKeyboardButton("💬 Comment ထည့်မည်", callback_data=f"fbc:{rating}:{bk_id}"),
-            InlineKeyboardButton("✅ OK ပြီပြီ",        callback_data="fbskip"),
-        ]])
-        try:
-            await query.edit_message_text(thank_msg, parse_mode="HTML", reply_markup=comment_kb)
-        except Exception as e:
-            logging.exception("handlers: suppressed exception: %s", e)
+    # Save rating context for comment flow (ALL ratings now go through comment prompt)
+    context.user_data["_fb_rating"] = rating
+    context.user_data["_fb_bk_id"]  = bk_id
+    context.user_data["_fb_tg_id"]  = tg_id
+    context.user_data["_fb_uname"]  = uname
 
+    # Thank you message based on rating
+    if rating >= 4:
+        thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nPS VIBE မှာ ဆော့ပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်! 🎮"
+    elif rating == 3:
+        thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nပိုကောင်းအောင် ကြိုးစားပါမည် 💪"
+    else:
+        thank_msg = f"{stars} <b>ကျေးဇူးတင်ပါတယ်!</b>\n\nဝမ်းနည်းပါတယ် 😔 ဘာပြုသ္နာ ရှိခဲ့လဲ ပြောပေးပါ"
+
+    # Add comment prompt with Burmese text
+    thank_msg += (
+        "\n\n━━━━━━━━━━━━━━━━━━\n"
+        "<i>ဒီ Feedback လေးတွေက ဆိုင်ရှင်ဆီကို\n"
+        "တိုက်ရိုက်ရောက်ရှိမှာ ဖြစ်တဲ့အတွက်\n"
+        "လိုအပ်တာ၊ အဆင်မပြေတာလေးတွေ ရှိခဲ့ရင်\n"
+        "အားမနာဘဲ အကြံပြုချက်လေးတွေ\n"
+        "ချန်ထားပေးခဲ့နိုင်ပါတယ်ခင်ဗျာ။</i>\n\n"
+        "<i>အားပေးမှုအတွက် အထူးပဲ ကျေးဇူးတင်ရှိပါတယ်</i> 🙏"
+    )
+
+    comment_kb = InlineKeyboardMarkup([[
+        InlineKeyboardButton("💬 အကြံပြုချက် ရေးမည်", callback_data=f"fbc:{rating}:{bk_id}"),
+        InlineKeyboardButton("✅ OK ပြီပြီ",           callback_data="fbskip"),
+    ]])
+    try:
+        await query.edit_message_text(thank_msg, parse_mode="HTML", reply_markup=comment_kb)
+    except Exception as e:
+        logging.exception("handlers: suppressed exception: %s", e)
 
 async def cb_feedback_comment_prompt(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -1027,6 +1032,12 @@ async def _text_cancel_booking(update: Update, context: ContextTypes.DEFAULT_TYP
             _req = urllib.request.Request(webhook_url, data=_payload,
                 headers={"Content-Type": "application/json"})
             urllib.request.urlopen(_req, timeout=5)
+        except Exception:
+            pass
+        # Also cancel bot-based advance reminder (fix: was missing)
+        try:
+            from bot.handlers.booking import _cancel_advance_reminder
+            _cancel_advance_reminder(booking_id)
         except Exception:
             pass
 

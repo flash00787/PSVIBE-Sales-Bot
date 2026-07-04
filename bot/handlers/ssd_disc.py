@@ -410,9 +410,7 @@ async def step_ssd_xfer_game(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 await update.message.reply_text("❌ Transfer မှတ်မရပါ — ထပ်ကြိုးစားပါ")
         context.user_data.pop("ssd_return_to_session", None)
         context.user_data.pop("ssd_xfer_target_cons", None)
-        # Determine return flow: booking vs game-change
-        if context.user_data.pop("ssd_xfer_from_game_change", False):
-            return await prompt_game_change_cons(update, context)
+        # Return to booking game-selection (game-change mid-session not yet implemented)
         return await prompt_book_game(update, context)
     # ── Normal flow: ask which console ──────────────────────────────────────
     consoles = get_consoles_from_setting()
@@ -491,15 +489,43 @@ async def step_ssd_ret_cons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return SSD_RET_GAME
 
 async def step_ssd_ret_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Remove 'SSD Transfer' entry from console (game returned to SSD)."""
+    """Remove 'SSD Transfer' entry from console and re-add game to source SSD."""
     text = update.message.text.strip()
     cid  = context.user_data.get("ssd_ret_cons", "")
     if text == BTN_BACK:
         return await show_ssd_menu(update, context)
+
+    # ── Look up source SSD from notes before deleting ────────────────────
+    existing = await fetch_console_games_async()
+    source_ssd_id = ""
+    for r in existing:
+        if (r["console_id"].replace(" ", "").upper() == cid.replace(" ", "").upper()
+                and r["game_title"].strip().lower() == text.strip().lower()):
+            notes = r.get("notes", "")
+            # notes format: "From Samsung T1 Shield" → reverse-map to SSD ID
+            for sid, sname in SSD_NAMES.items():
+                if sname in notes:
+                    source_ssd_id = sid
+                    break
+            break
+
     ok = await remove_console_game_async(cid, text)
     if ok:
+        # ── Re-add game to source SSD ───────────────────────────────────
+        ssd_msg = ""
+        if source_ssd_id:
+            # Check duplicate before adding back
+            already = any(
+                r["console_id"].strip().upper() == source_ssd_id.upper()
+                and r["game_title"].strip().lower() == text.strip().lower()
+                for r in await fetch_console_games_async()
+            )
+            if not already:
+                await add_console_game_async(source_ssd_id, text, "SSD Copy")
+            ssd_msg = f"\n📀 <b>{SSD_NAMES.get(source_ssd_id, source_ssd_id)}</b> ထဲ ပြန်ထည့်ပြီ"
+
         await update.message.reply_text(
-            f"✅ <b>\"{text}\"</b> — 🕹️ <b>{cid}</b> မှ SSD ပြန်ရွေ့ပြီ ✔️",
+            f"✅ <b>\"{text}\"</b> — 🕹️ <b>{cid}</b> မှ SSD ပြန်ရွေ့ပြီ ✔️{ssd_msg}",
             parse_mode="HTML",
         )
     else:

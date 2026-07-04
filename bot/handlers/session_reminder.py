@@ -26,6 +26,7 @@ _SESSION_END_TIMES: dict[str, str] = {}
 _LAST_REMINDER_SENT: Dict[str, float] = {}
 _SESSION_TOTAL_MINS: dict[str, int] = {}  # accumulated total plan (original + all extends)
 _NO_TIMER_CONSOLES: set[str] = set()  # consoles that should never fire reminders
+_SESSION_AUTO_ENDED: dict[str, bool] = {}  # tracks sessions already auto-ended (prevents duplicate end)
 
 
 def _extend_timer_kb(cid: str, member_id: str, chat_id: int) -> InlineKeyboardMarkup:
@@ -116,6 +117,62 @@ async def _is_session_active(cid: str) -> bool:
         return True
     return False
 
+
+async def _sync_duration_from_db(cid: str, key: str, chat_id: int) -> bool:
+    """Query API for current session duration; update in-memory state if changed.
+    Returns True if state was updated (duration changed from dashboard).
+
+    This fixes the gap where dashboard timer changes don't notify the bot.
+    The bot auto-corrects its state by checking DB before each reminder fire.
+    """
+    try:
+        data = await _psvibe_get_async("fetch_console_status")
+        consoles = []
+        if isinstance(data, list):
+            consoles = data
+        elif isinstance(data, dict):
+            consoles = data.get("consoles", data.get("data", []))
+
+        for c in (consoles or []):
+            if not isinstance(c, dict):
+                continue
+            if c.get("console_id", "").strip() != cid or c.get("status", "").strip() != "Active":
+                continue
+
+            db_dur = c.get("duration_mins") or c.get("actual_duration_mins")
+            if not db_dur:
+                continue
+            db_dur = int(db_dur)
+            current_plan = _SESSION_TOTAL_MINS.get(key, 0)
+
+            if db_dur != current_plan:
+                logger.info(
+                    "_sync_duration_from_db: %s duration mismatch — in-memory=%d, DB=%d — auto-correcting",
+                    cid, current_plan, db_dur
+                )
+                _SESSION_TOTAL_MINS[key] = db_dur
+                # Recalculate end time from start_time + new duration
+                start_ts = c.get("start_time") or c.get("start_time_dt")
+                if start_ts:
+                    from dateutil.parser import parse as _parse_ts
+                    try:
+                        start_dt = _parse_ts(str(start_ts))
+                        new_end = start_dt + timedelta(minutes=db_dur)
+                        new_end_t = new_end.strftime("%H:%M")
+                        _SESSION_END_TIMES[key] = new_end_t
+                        # Persist updated state
+                        persist_reminder(cid, chat_id,
+                            c.get("current_member", "") or c.get("staff_name", ""),
+                            db_dur, new_end_t, new_end.isoformat(), 0,
+                            total_plan_mins=db_dur)
+                        return True
+                    except Exception:
+                        pass
+            break
+    except Exception as e:
+        logger.debug("_sync_duration_from_db: %s", e)
+    return False
+
 async def _remind_loop(
     bot, chat_id: int, cid: str, member_id: str,
     planned_mins: int, end_t: str, initial_delay: int, message_thread_id: int = 0,):
@@ -124,6 +181,9 @@ async def _remind_loop(
     IMPORTANT: The FIRST fire always sends (no active-check) so that edge cases
     like an interrupted session-end flow (status briefly "Ended") still deliver
     the inline-keyboard Extend/Done prompt.  Subsequent fires check the sheet.
+
+    🐛 Fix (Jul 2): Dynamic initial sleep — polls DB every 30s so dashboard timer
+    changes take effect before the next reminder fires.
     """
     key = _remind_key(cid, chat_id)
     _REMIND_TASKS[key] = asyncio.current_task()   # type: ignore[assignment]
@@ -162,7 +222,30 @@ async def _remind_loop(
         return
     try:
         max_fires = 10  # ⚠️ Auto-stop after 10 fires (50 min overdue) to prevent infinite spam
-        await asyncio.sleep(initial_delay)
+
+        # ── Dynamic initial sleep: poll DB every 30s so dashboard timer changes take effect ──
+        remaining_delay = initial_delay
+        while remaining_delay > 0:
+            chunk = min(remaining_delay, 30)  # sleep 30s at a time
+            await asyncio.sleep(chunk)
+            remaining_delay -= chunk
+            # Check if duration changed from dashboard
+            if remaining_delay > 30:  # Only sync if meaningful time remains
+                changed = await _sync_duration_from_db(cid, key, chat_id)
+                if changed:
+                    # Recalculate initial_delay based on new end time
+                    new_end_t = _SESSION_END_TIMES.get(key, end_t)
+                    try:
+                        _eh2, _em2 = map(int, new_end_t.split(":"))
+                        _new_end = now_mmt().replace(hour=_eh2, minute=_em2, second=0, microsecond=0)
+                        new_delay = max(0, int((_new_end - now_mmt()).total_seconds()) - 5 * 60)
+                        if new_delay != remaining_delay:
+                            logger.info("_remind_loop: %s duration changed — recalculating delay %d→%ds",
+                                       cid, remaining_delay, new_delay)
+                            remaining_delay = new_delay
+                    except (ValueError, AttributeError):
+                        pass
+
         fire_count = 0
         while True:
             # Always check if session is still active before firing any reminder
@@ -173,9 +256,18 @@ async def _remind_loop(
             if not still_active:
                 break
             fire_count += 1
-            
+
+            # ── Sync duration from DB (fix: dashboard timer changes don't update bot state) ──
+            _duration_changed = await _sync_duration_from_db(cid, key, chat_id)
+            if _duration_changed:
+                # Duration changed (e.g. dashboard extend) — reset fire_count
+                # so auto-end uses new end time, not old one
+                logger.info("_remind_loop: %s duration changed — resetting fire_count", cid)
+                fire_count = 0  # reset; will become 1 after fire_count+=1 next loop
+                _SESSION_AUTO_ENDED.pop(key, None)  # clear auto-end flag too
+
             # ⚠️ Max-fire guard: auto-stop after max_fires (50+ min overdue)
-            if fire_count > max_fires:
+            if False and fire_count > max_fires:  # DISABLED per Boss request (2026-07-02)
                 overdue_mins = (fire_count - 1) * 5
                 logger.warning(
                     f"⚠️ Auto-stopping _remind_loop for {cid} after {max_fires} fires "
@@ -201,6 +293,15 @@ async def _remind_loop(
                 except Exception as _final_err:
                     logger.error("_remind_loop final-warning send failed: %s", _final_err)
                 break
+
+            # Auto-end session DISABLED per Boss request (2026-07-02)
+            # Reminders will continue past end time until staff manually ends session
+            if fire_count >= 3 and not _SESSION_AUTO_ENDED.get(key, False):
+                overdue_mins = (fire_count - 2) * 5
+                logger.info("_remind_loop: %s is %d min overdue — auto-end DISABLED, continuing reminders", cid, overdue_mins)
+                _SESSION_AUTO_ENDED[key] = True
+                # No break — continue reminder loop indefinitely
+
             try:
                 # fire_count == 1 → "5 min ကျန်တော့သည်" (initial_delay fires 5 min before end)
                 # fire_count == 2 → session end time reached (0 min overdue)
