@@ -1,34 +1,42 @@
 {
-  "checked_at": "2026-07-03T13:31:01.124614+00:00",
+  "checked_at": "2026-07-04T07:01:18.027673+00:00",
+  "total": 30,
+  "unread": 30,
+  "promo_skipped": 11,
   "nova_count": 0,
   "wallet_count": 0,
-  "important_count": 5,
-  "total_unread": 6,
+  "important_count": 4,
+  "nova_emails": [],
+  "wallet_emails": [],
   "important_emails": [
     {
-      "from": "PEXX <no-reply@pexx.com>",
-      "subject": "USA, Canada, or Mexico? One eSIM for the whole World Cup \ud83c\udf0e",
-      "date": "Fri, 03 Jul 2026 12:30:10 +0000 (UTC)"
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Wed, 01 Jul 2026 07:36:24 +0000",
+      "is_unread": true,
+      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  Update your payment method to keep using\r\nPlus  =\r\n\r\n \r\n          Update payment          Please update your payment method to keep\r\naccess to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reasoning models\r\n"
     },
     {
-      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
-      "subject": "\ud83e\udd9e AI Inequality Warning",
-      "date": "Fri, 3 Jul 2026 20:02:00 +0800 (CST)"
+      "from": "Accounting - Hetzner Online GmbH <billing@hetzner.com>",
+      "subject": "Hetzner Online GmbH - Invoice 081000981551 (K0520370026)",
+      "date": "Thu, 02 Jul 2026 02:59:43 +0200",
+      "is_unread": true,
+      "body_preview": "\r\nDear Mr Aung Myint,\r\n\r\nEnclosed you will find your current invoice 081000981551 in PDF format.\r\n\r\nThe open invoice amount of $ 66.59 will soon be debited from your credit\r\ncard.\r\n\r\nWe bill for our services on a retrospective basis. This means that the\r\nbilling period for this invoice is the previous month.\r\n\r\nFor more information, please refer to the following article:\r\nhttps://docs.hetzner.com/"
     },
     {
-      "from": "Ivan at Notion <ivan@mail.notion.so>",
-      "subject": "Notion 3.6: Bring agents like Claude & Cursor into Notion",
-      "date": "Fri, 03 Jul 2026 10:38:10 +0000"
+      "from": "chanmyint123456789@gmail.com",
+      "subject": "📊 Executive Asset & Financial Report: 2026-05",
+      "date": "Thu, 02 Jul 2026 18:13:01 +0000",
+      "is_unread": true,
+      "body_preview": "📊 Executive Dashboard Summary\r\n\r\nFinancial Report for 2026-05 (Base: MMK)\r\n\r\n\r\n🏆 True Net Worth\r\n\r\n1,706,675,608\r\n\r\n\r\n📈 Total Receivable\r\n\r\n+19,340,000\r\n\r\n\r\n📉 Total Payable\r\n\r\n-13,400,000\r\n\r\n\r\n💰 Total Liquidity\r\n\r\n547,031,608\r\n\r\n\r\n⚖️ Month's Net Income\r\n\r\n+10,550,816\r\n\r\n\r\n💼 Business Performance Detail\r\n\r\n\r\n\r\n💼 PS VIBE Value: 100,000,000\r\n\r\n\r\n\r\nRev: 0 Exp: 0 Net: 0\r\n\r\n\r\nInvest: 100,000,000 | ROI: 0"
     },
     {
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Fri, 3 Jul 2026 14:51:56 +0630"
-    },
-    {
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Fri, 3 Jul 2026 12:52:47 +0630"
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Thu, 02 Jul 2026 14:36:37 +0000",
+      "is_unread": true,
+      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  Update your payment method to keep using\r\nPlus  =\r\n\r\n \r\n          Update payment          Please update your payment method to keep\r\naccess to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reasoning models\r\n"
     }
-  ]
+  ],
+  "result": "IMPORTANT_FOUND"
 }
