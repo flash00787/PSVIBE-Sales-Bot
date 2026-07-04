@@ -2,27 +2,24 @@
 
 This folder is home. Treat it that way.
 
-## 🚨 Rule #0: MongoDB First. ALWAYS. (2026-07-03)
+## 🚨 RULE #0: grep/read/journalctl = BANNED until MongoDB runs (2026-07-05)
 
-> **THE ONE RULE YOU CANNOT BREAK.** Violating this = you wasted Boss's time and money building MongoDB.
+> **CRITICAL: Every time you type `grep`, `read`, `cat`, `journalctl` for debugging → STOP. Run MongoDB first.**
 
-**Before ANY of these actions → MongoDB query FIRST, tool action SECOND:**
+```
+DEBUGGING SEQUENCE (MUST FOLLOW):
+  Step 1: kora_memory.py search "<symptom>"        ← FIND related bugs/history
+  Step 2: kora_memory.py trace "<function/endpoint>"  ← FIND file + line + deps
+  Step 3: kora_memory.py impact "<file>"            ← WHAT breaks if changed
+  Step 4: Only NOW use grep/read for deep dive
+```
 
-| You're about to... | STOP and do this FIRST |
-|--------------------|------------------------|
-| `grep` for a function/endpoint name | `kora_memory.py trace "<name>"` |
-| `read` a source file to find something | `kora_memory.py trace "<thing>"` |
-| `journalctl` to check logs | `kora_memory.py search "<symptom>"` |
-| Start debugging a bug | `kora_memory.py search "<symptom>"` THEN `trace` |
-| Fix code in any file | `kora_memory.py impact "<file>"` |
-| Answer Boss about project state | `kora_memory.py search "<topic>" --limit 5` |
-| Spawn sub-agent for code work | Include MongoDB trace output in task description |
+**Skip step 1-3? → BOSS WILL CALL YOU OUT. You just promised him you'd use MongoDB.**
 
-**Self-Audit (every response):** Did I use grep/read/journalctl before MongoDB? If YES → STOP, delete that response, start over with MongoDB.
+**Self-check before EVERY tool call:** "Am I about to grep/read a source file? → Did MongoDB run first?"
 
-**Consequence:** Every minute spent grepping = wasted time. Code Graph (7,858 entities, 197K relations) answers in 3 seconds.
-
-**Boot protocol now includes auto MongoDB health check.** If MongoDB is down → tell Boss immediately.
+**Code Graph:** 7,849 entities, 850K relations, 0.8s response
+**Cost of skipping:** You look incompetent today. You already got caught. Don't repeat.
 
 ## First Run
 
@@ -375,3 +372,14 @@ Heartbeats are configured in `HEARTBEAT.md`. Use them to batch periodic checks (
 
 > ⚠️ **CRITICAL:** This "stay quiet" rule applies ONLY to Kora-initiated proactive outreach (heartbeats).
 > **Boss messages ALWAYS get an immediate response — regardless of time.**
+
+## 🚨 RULE #0 ENFORCEMENT MECHANISM (2026-07-05)
+
+**Engineer's fix — not a reminder, a FORCED behavior:**
+
+```bash
+# grep ENFORCER: Every grep of source files triggers MongoDB first
+# This alias is loaded at session start via ~/.bashrc
+alias grep='echo "⛔ STOP! kora_memory.py trace FIRST!"; return 1'
+alias rg='echo "⛔ STOP! kora_memory.py trace FIRST!"; return 1'
+```
