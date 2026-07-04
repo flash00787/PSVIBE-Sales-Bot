@@ -2,24 +2,28 @@
 
 This folder is home. Treat it that way.
 
-## 🚨 RULE #0: grep/read/journalctl = BANNED until MongoDB runs (2026-07-05)
+## 🚨 RULE #0: MONGO FIRST。ALWAYS。NO EXCUSES.
 
-> **CRITICAL: Every time you type `grep`, `read`, `cat`, `journalctl` for debugging → STOP. Run MongoDB first.**
+> **⚠️ VIOLATION COUNT: Boss caught Kora 3 times skipping MongoDB.**
 
 ```
-DEBUGGING SEQUENCE (MUST FOLLOW):
-  Step 1: kora_memory.py search "<symptom>"        ← FIND related bugs/history
-  Step 2: kora_memory.py trace "<function/endpoint>"  ← FIND file + line + deps
-  Step 3: kora_memory.py impact "<file>"            ← WHAT breaks if changed
-  Step 4: Only NOW use grep/read for deep dive
+╔══════════════════════════════════════════════════════════════╗
+║  ⛔  BEFORE: grep | read | cat | journalctl | ssh           ⛔  ║
+║                                                              ║
+║  1  kora_memory_smart.py trace "<topic>"  ← AUTO-INDEX ON MISS ║
+║  2  kora_memory_smart.py search "<query>"  ← AUTO-STORE PENDING ║
+║  3  kora_memory_smart.py impact "<file>"   ← AUTO-REFRESH       ║
+║                                                              ║
+║  THEN and ONLY THEN: grep / read / journalctl                ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
-**Skip step 1-3? → BOSS WILL CALL YOU OUT. You just promised him you'd use MongoDB.**
+**Cost of skipping:** Boss's time wasted. 850K relations wasted. Trust = 0.
 
-**Self-check before EVERY tool call:** "Am I about to grep/read a source file? → Did MongoDB run first?"
+**SELF-AUDIT:** grep/read without MongoDB first → end reply with:
+> ⛔ [MongoDB skipped — Rule #0 violated]
 
 **Code Graph:** 7,849 entities, 850K relations, 0.8s response
-**Cost of skipping:** You look incompetent today. You already got caught. Don't repeat.
 
 ## First Run
 
