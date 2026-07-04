@@ -1,6 +1,95 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-04 11:30 UTC
+> Last updated: 2026-07-04 17:32 UTC
+
+---
+
+## ⚡ UPDATE (July 4, 2026 - 17:32 UTC) — Ghost of Tsushima $29.39 FOUND! + Yakuza Pirate $14.99! + More July Savings Hidden Gems! + PS Plus Departures Split Confirmed
+
+> **Summary:** Saturday evening sweep (6 hours since last update). The PushSquare July Savings deep-dive revealed SEVERAL significant lounge deals previously missed — most notably **Ghost of Tsushima Director's Cut at $29.39 (58% off)** was previously listed at $69.99 in tracker! **Like a Dragon: Pirate Yakuza in Hawaii at $14.99** is an INCREDIBLE deal for a major SEGA title. **Cult of the Lamb: Cultist Edition $7.49** — party couch co-op gold. Also: PS Plus departure list clarified — only 8 leave July 21, 5 more leave August 18. No new CoD Black Ops exact date yet — still imminent in July.
+
+### 🛒 July Savings Sale — MAJOR Price Correction + 15+ New Lounge-Relevant Deals Found!
+
+PushSquare and ComicBook.com published comprehensive July Savings breakdowns. Ghost of Tsushima was previously listed at $69.99 in tracker — actual sale price is FAR lower. PLUS many new lounge gems discovered:
+
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 🗡️ **Ghost of Tsushima Director's Cut** | **$29.39** | 58% off! | ⭐⭐⭐⭐⭐ PRICE CORRECTED from $69.99! Samurai masterpiece! |
+| 🏴‍☠️ **Like a Dragon: Pirate Yakuza in Hawaii** | **$14.99** | ~75% off! | ⭐⭐⭐⭐ SEGA action spectacular! RGG Studio gold! |
+| 🐑 **Cult of the Lamb: Cultist Edition** | **$7.49** | ~75% off! | ⭐⭐⭐⭐ 2-player couch co-op! Rogue-lite + base building! |
+| 🔍 **Judgment (PS5)** | **$9.99** | ~75% off! | ⭐⭐⭐⭐ Yakuza-style detective action thriller! |
+| 📸 **Content Warning** | **$7.99** | ~60% off! | ⭐⭐⭐⭐⭐ Viral co-op horror! Content creator gold! PERFECT lounge party game! |
+| 🎣 **Dave the Diver – Dave & Ichiban Bundle** | **$11.89** | ~60% off! | ⭐⭐⭐⭐ Indie phenomenon! Casual + deep! |
+| 🧛 **Blasphemous 2 – Mea Culpa Edition** | **$9.49** | ~70% off! | ⭐⭐⭐ Gothic metroidvania! Spectacle combat! |
+| 🌴 **The Forest** | **$5.99** | 70% off! | ⭐⭐⭐⭐ Co-op survival horror! Up to 4 players! |
+| 🗡️ **Ghost of Tsushima PS4** | **$19.79** | 67% off! | ⭐⭐⭐⭐⭐ FREE PS5 upgrade! Cheaper way to get PS5 version! |
+| ☠️ **One Piece Odyssey Deluxe** | **$14.99** | 75% off! | ⭐⭐⭐ Anime JRPG! Broad fan appeal! |
+| 🔫 **Wolfenstein II: The New Colossus** | **$5.99** | ~70% off! | ⭐⭐⭐ Classic FPS! Action spectacle! |
+| 👾 **XCOM 2** | **$2.99** | ~90% off! | ⭐⭐⭐ Tactical strategy classic! |
+| 🛹 **OlliOlli World – Rad Edition** | **$4.49** | ~75% off! | ⭐⭐⭐ Skateboarding arcade! Chill lounge game! |
+| 🧩 **Chants of Sennaar** | **$9.99** | ~50% off! | ⭐⭐⭐ BAFTA-winning language puzzle! Unique! |
+| 🎮 **God of War (2018)** | **$9.99** | ~50% off! | ⭐⭐⭐⭐⭐ PlayStation essential! If not already owned! |
+| 👻 **A Monster's Expedition** | **$6.99** | ~60% off! | ⭐⭐⭐ Chill puzzle game! |
+| 🎮 **Super Meat Boy Forever** | **$0.49** | ~90% off! | ⭐⭐⭐ Brutal platformer! 49¢ = impulse buy! |
+
+- Sources: PushSquare (Jul 2026), ComicBook.com, PSU
+- **💡💡💡 Lounge Action:**
+  - **Ghost of Tsushima Director's Cut $29.39** — previously thought to be $69.99! This is $40+ cheaper than we reported! A PS5 masterpiece at this price is a MUST-buy for lounge!
+  - **Ghost of Tsushima PS4 $19.79 + free PS5 upgrade** — even CHEAPER way to get the full PS5 version!
+  - **Like a Dragon: Pirate Yakuza $14.99** — SEGA/RGG Studio quality for the price of lunch. These games are content-rich, hilarious, and AMAZING lounge spectacles.
+  - **Content Warning $7.99** — viral co-op horror where you film scary content. PERFECT lounge party game! Groups will be screaming and laughing. Buy for ALL consoles!
+  - **Cult of the Lamb $7.49** — 2-player co-op, cute-meets-cult aesthetic. Broad appeal!
+  - **Dave the Diver $11.89** — one of the most beloved indie games of the decade. Casual + deep.
+  - **The Forest $5.99** — 4-player co-op survival horror. Established classic!
+  - **Judgment $9.99** — from the Yakuza creators. Cinematic detective action!
+
+### 📤 PS Plus July/August Departures — Clarified Split
+
+- Previous tracker listed 12 titles leaving July 21. Clarification:
+  - **8 titles leave July 21:** Jackbox Party Pack 9, Risk of Rain 2, Tropico 6, Source of Madness, Cursed to Golf, Hundred Days, Get Even, Infinite Minigolf
+  - **5 titles leave August 18:** Clash: Artifacts of Chaos, Onee Chanbara Origin, Space Crew: Legendary Edition, Bomber Crew, Roki
+- **💡 Lounge Note:** More time for Clash + Onee Chanbara than we thought! Good news!
+
+### 📊 Quick Status Check (July 4 - 17:32 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 July Savings Deals | **MASSIVELY EXPANDED 🆕** | Ghost Tsushima $29.39! Yakuza Pirate $14.99! Content Warning $7.99! 15+ NEW lounge deals! |
+| 📤 PS Plus Departures Split | **CLARIFIED 🆕** | 8 Jul 21, 5 Aug 18! More time for some titles! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | Backend patches Jul 2-3! v1.03 = final! This week likely! |
+| 📰 PS Plus Backlash | **ESCALATED** | Mass cancellations! Petitions! Industry pushback! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE Jul 7!** | CoD MW3 + For the King II + CrossCode! 3 days! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 3 days! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 11 days! 15+ new lounge deals found! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 6 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 5 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 5 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 5 days! Endless Ragnarok! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | 3 days! Chain Spear + new campaign! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 24 days! FIRST HALO ON PLAYSTATION! |
+| 🐭 Moss: The Forgotten Relic | Jul 16! | 12 days! Family-friendly! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 12 days away! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! Petitions live! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 4 - 17:32 UTC):
+1. **🔥🔥 MONITOR PS STORE DAILY! CoD Black Ops 1 & 2 could shadow-drop THIS WEEK!**
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting July 7!** 3 days!
+3. **🛒🛒🛒 Ghost of Tsushima Director's Cut $29.39!** PRICE CORRECTED — 58% off! Buy physical for lounge!
+4. **🛒🛒 Ghost of Tsushima PS4 $19.79 + FREE PS5 upgrade!** Even cheaper way to get it!
+5. **🛒🛒 Like a Dragon: Pirate Yakuza in Hawaii $14.99** — INCREDIBLE deal! RGG Studio gold!
+6. **🛒🛒 Content Warning $7.99** — BUY for ALL consoles! Viral co-op horror = PERFECT lounge party game!
+7. **🛒🛒 Cult of the Lamb $7.49** — 2-player co-op! Cute-meets-cult aesthetic!
+8. **🛒 Dave the Diver bundle $11.89** — indie phenomenon! Casual lounge gem!
+9. **🛒 Judgment $9.99** — Yakuza-style detective action! Spectacle value!
+10. **🛒 The Forest $5.99** — 4-player co-op survival horror! Established classic!
+11. **CLAIM June PS Plus Essential BEFORE July 7** — 3 days left!
+12. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+13. **Lean into the physical disc narrative** — PS VIBE's disc library is a unique asset!
+14. **Buy physical Ghost of Tsushima** — one of the great PS exclusives to own on disc before Jan 2028!
 
 ---
 
