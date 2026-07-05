@@ -152,3 +152,14 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### Code Graph Maintenance
 - MongoDB code graph full rebuild: 7,858 entities, 103K relations (weekly maintenance)
+
+## Memory (2026-07-05)
+
+### Critical Fixes
+1. **Caddy 502 Bad Gateway 🐛→✅:** UFW DENY rule on port 8000 blocked Docker bridge traffic (172.17.0.0/16). DROP rule was inserted before ACCEPT rule causing order mismatch with Docker iptables. Fix: removed UFW DENY for internal service ports (8000/9090/9091). Cloudflare Tunnel restored to direct API routing afterward.
+
+### Infrastructure Hardening
+2. **VPS Security Hardening 🛡️:** SSH port reverted from 80/443 back to 22 (ports 80/443 needed by Caddy). UFW configured with 12 common attack ports blocked. fail2ban expanded to 4 jails (sshd, caddy, nginx, custom). HSTS + security headers active via Caddy. All services validated healthy post-hardening.
+
+### New Lessons
+75. **UFW rule ordering is critical for Docker** — Docker inserts ACCEPT rules into iptables FORWARD chain, but UFW user rules (DENY) take precedence in INPUT chain. Never put DENY/UFS rules on ports that Docker containers need to reach on the host (e.g., Caddy → host:8000). If port security is needed, use `ufw allow from 172.17.0.0/16 to any port 8000` instead of DENY. (#75)

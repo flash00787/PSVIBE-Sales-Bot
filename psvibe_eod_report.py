@@ -62,10 +62,10 @@ import pymysql
 from pymysql.cursors import DictCursor
 
 MYSQL_CFG = {
-    "host": "127.0.0.1",
-    "user": "psvibe_user",
-    "password": "PsVibe@2026_Rotated!",
-    "database": "psvibe_api",
+    "host": os.environ.get("MYSQL_HOST", "127.0.0.1"),
+    "user": os.environ.get("MYSQL_USER", "psvibe_user"),
+    "password": os.environ.get("MYSQL_PASSWORD", ""),
+    "database": os.environ.get("MYSQL_DATABASE", "psvibe_api"),
     "charset": "utf8mb4",
     "cursorclass": DictCursor,
 }
@@ -220,7 +220,7 @@ total_members = int(total_members_raw or 0)
 
 # 9. New members today
 new_members_raw = sql_one(
-    f"SELECT COUNT(*) FROM member_wallets WHERE DATE(created_at) = '{today_str}'"
+    f"SELECT COUNT(*) FROM member_wallets WHERE join_date = '{today_str}'"
 )
 new_members = int(new_members_raw or 0)
 
