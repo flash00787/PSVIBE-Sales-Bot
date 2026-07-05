@@ -1,6 +1,166 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-04 17:32 UTC
+> Last updated: 2026-07-05 17:31 UTC
+
+---
+
+## ⚡ UPDATE (July 5, 2026 - 17:31 UTC) — MARVEL Tōkon: Fighting Souls Aug 6 MISSED! + 25+ New July Savings Lounge Deals! + Kemuri & Lost Wild 2027!
+
+> **Summary:** Sunday evening sweep (24 hours since last update). ONE MAJOR DISCOVERY: **MARVEL Tōkon: Fighting Souls** — a PS5 console exclusive 2.5D tag-team fighting game by **Arc System Works** (Guilty Gear, Dragon Ball FighterZ devs) launching **August 6, 2026** — COMPLETELY absent from tracker! Arc System Works + Marvel characters = guaranteed quality fighting game. ALSO: **25+ new lounge-relevant July Savings deals** found including Back 4 Blood at $8.99 (90% off!), Devil May Cry 5 at $4.49, Deep Rock Galactic at $16.49, and a 3-game Assassin's Creed Ezio Collection for $1.99! Plus: **Kemuri** (Ikumi Nakamura's yokai action game, 2027) and **The Lost Wild** (dinosaur survival horror, 2027) added to future tracker. RuneScape Dragonwilds confirmed for Sep 15 as PS Plus Extra day-one title. Onimusha: Dawn of Dreams coming to PS Plus Premium Classics in August. CoD Black Ops 1 & 2 still no exact date — hype at peak ahead of expected shadow-drop this week.
+
+### 🥊🔥 MARVEL Tōkon: Fighting Souls — August 6, 2026! Arc System Works × Marvel! PS5 Console Exclusive! (COMPLETELY MISSED!)
+
+- **Arc System Works** (legendary fighting game devs behind Guilty Gear, Dragon Ball FighterZ, BlazBlue) × **Sony Interactive Entertainment**
+- **Release: August 6, 2026** (Aug 7 in Japan/Australia/NZ/Korea) on **PS5 and PC** — PS5 console exclusive!
+- **Genre:** 2.5D tag-team fighting game featuring an ensemble of Marvel Comics characters
+- Announced June 2025, release date confirmed at February 12, 2026 State of Play
+- Arc System Works is universally recognized as making the BEST anime-style fighting games — their games are competitive staples
+- Pre-orders LIVE on PS Store now!
+- Sources: PS Blog (Feb 12), Wikipedia, Marvel.com, PS Store
+- **💡💡💡💡 Lounge Impact — MAJOR:**
+  - Arc System Works fighting games are LOUNGE GOLD — Dragon Ball FighterZ was one of the most-requested lounge games ever
+  - Marvel IP = MASSIVE casual appeal. Everyone knows Spider-Man, Iron Man, Wolverine, etc.
+  - Tag-team mechanics = easier for casuals to pick up, deep enough for competitive players
+  - Fighting games = perfect lounge genre: quick matches, spectator-friendly, high energy
+  - PS5 console exclusive — can ONLY be played on PlayStation (and PC)
+  - August 6 — slots in perfectly between July's packed schedule and September's mega-month
+  - ⭐⭐⭐⭐⭐ lounge value — Arc System Works quality + Marvel characters + accessible tag-team format
+
+### 🛒 July Savings Sale — 25+ NEW Lounge-Relevant Deals Found! (Ends Jul 15 — 10 Days Left!)
+
+Comprehensive sweep of the July Savings Sale (5,000+ titles) revealed MANY lounge gems not in previous tracker updates:
+
+**🔥 TOP TIER Lounge Deals (⭐⭐⭐⭐⭐):**
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 🧟 **Back 4 Blood Deluxe Edition** | **$8.99** | **90% off!** | ⭐⭐⭐⭐⭐ 4-player co-op zombie FPS! Left 4 Dead spiritual successor! STEAL! |
+| ⛏️ **Deep Rock Galactic Ultimate** | **$16.49** | 70% off | ⭐⭐⭐⭐⭐ Legendary 4-player co-op! Dwarves in space! ROCK AND STONE! |
+| 😈 **Devil May Cry 5 + Vergil** | **$4.49** | **85% off!** | ⭐⭐⭐⭐⭐ One of the greatest action games ever! Spectacle combat! |
+| 🗡️ **Assassin's Creed Ezio Collection** | **$1.99** | 70% off | ⭐⭐⭐⭐⭐ **THREE AC games for $2!** AC2 + Brotherhood + Revelations! |
+| 🦔 **Sonic Superstars** | **$17.99** | — | ⭐⭐⭐⭐⭐ **4-player couch co-op platformer!** PERFECT lounge family game! |
+| ⚔️ **Diablo IV Standard** | **$29.99** | 40% off | ⭐⭐⭐⭐⭐ Blizzard's ARPG! Couch co-op! Endless replayability! |
+
+**🥊 Fighting & Party Games:**
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 🥊 **Dragon Ball FighterZ Legendary** | **$27.49** | 75% off | ⭐⭐⭐⭐⭐ Arc System Works! Ultimate DBZ fighting game! |
+| 🤼 **AEW Fight Forever** | **$13.99** | 65% off | ⭐⭐⭐⭐ Wrestling party game! Arcade-style fun! |
+| 🐢 **TMNT Splintered Fate** | **$7.49** | 75% off | ⭐⭐⭐⭐ Turtle power co-op! |
+| 🕵️ **Among Us** | **$2.99** | 40% off | ⭐⭐⭐⭐ Viral social deduction! Cross-play party game! |
+| 🛹 **Tony Hawk Pro Skater 3+4 Cross-Gen** | **$29.99** | — | ⭐⭐⭐⭐ Skateboarding classic! Local multiplayer! |
+
+**🎭 Story & Spectacle:**
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 🎬 **The Quarry Deluxe Edition** | **$7.99** | — | ⭐⭐⭐⭐⭐ Interactive horror movie! PERFECT group watch/play! |
+| 🔍 **Lost Judgment** | **$11.99** | — | ⭐⭐⭐⭐ Yakuza spin-off detective thriller! |
+| 🧛 **Devil May Cry HD Collection + 4SE** | **$8.99** | **80% off!** | ⭐⭐⭐⭐ Classic action bundle! |
+| 🐉 **Yakuza Kiwami 1 & 2 Bundle** | **$17.99** | — | ⭐⭐⭐⭐ Where the Yakuza saga began! |
+| 👽 **Destroy All Humans! Jumbo Pack** | **$19.99** | 75% off | ⭐⭐⭐⭐ Fun alien chaos! |
+| 🏰 **AC Valhalla Complete** | **$34.99** | 75% off | ⭐⭐⭐⭐ Massive Viking RPG! 100+ hours! |
+
+**🌾 Casual & Indie:**
+| Game | Sale Price | Discount | Lounge Value |
+|------|-----------|----------|-------------|
+| 🌾 **Stardew Valley** | **$7.49** | 50% off | ⭐⭐⭐⭐⭐ Legendary farming sim! Co-op! Relaxing lounge staple! |
+| 🧹 **PowerWash Simulator** | **$9.99** | — | ⭐⭐⭐⭐ Relaxing co-op! Surprisingly addictive! |
+| ⚡ **Harry Potter Quidditch Champions Deluxe** | **$5.99** | — | ⭐⭐⭐⭐ Harry Potter IP! Sports + magic! |
+| 🦖 **Dead Island Definitive** | **$2.99** | **85% off!** | ⭐⭐⭐ Co-op zombie action! |
+| 🧟 **Dead Cells Return to Castlevania** | **$18.89** | 40% off | ⭐⭐⭐⭐ Roguelite masterpiece! |
+
+**🗡️ More Hidden Gems:**
+- **Unicorn Overlord** — $18 (critically acclaimed strategy RPG)
+- **Atomfall Deluxe** — $31.99 (60% off, 2026 release!)
+- **Darkest Dungeon II** — $12.39 (69% off)
+- **Slitterhead** — $17.49
+- **Two Point Museum** — $20.99
+- **Fantasian Neo Dimension** — $19.99
+- **The Rogue Prince of Persia** — $14.99
+- **Batman Arkham Knight** — $4.99
+- **BioShock 2 Remastered** — $4.99 (75% off)
+- **Bayonetta** — $6.24 (75% off)
+- **CARRION** — $4.99 (reverse horror!)
+- **Biomutant** — $9.99 (75% off)
+- **Directive 8020** — $39.99 (2026 release already on sale!)
+- **Oregon Trail** — $11.99 (60% off)
+- **SpongeBob Cosmic Shake** — $22
+- **Legacy of Kain Soul Reaver 1 & 2 Remastered** — $13.49
+- **Darkest Dungeon** — $3.74 (85% off)
+- **As Dusk Falls** — $8.99 (70% off) — narrative co-op for up to 8 players!
+- **Evil Within 2** — $7.99
+- **Outlast Trinity** — $9.99
+- **Battlefield V** — $11.99 (70% off)
+- **Anno 117: Pax Romana** — $41.99 (30% off, 2026 release)
+- **Age of Empires II Definitive** — $38.99
+- **Grounded** — $19.99 (in case not claimed via PS Plus)
+
+- Sources: PushSquare (Jul 2026), ComicBook.com, Reddit r/PS5
+- **💡💡💡 Lounge Action:**
+  - **Back 4 Blood Deluxe $8.99 (90% off!)** — BUY for ALL lounge consoles! 4-player co-op zombie shooter, spiritual successor to Left 4 Dead! This is the #1 NEW deal!
+  - **Deep Rock Galactic Ultimate $16.49** — legendary 4-player co-op! One of the highest-rated co-op games ever! ROCK AND STONE!
+  - **DMC5 + Vergil $4.49** — absolute STEAL for one of the best action games ever made!
+  - **Sonic Superstars $17.99** — 4-player couch co-op! Family-friendly! MUST-BUY!
+  - **The Quarry Deluxe $7.99** — interactive horror movie, PERFECT for group play! A whole group can watch one person play!
+  - **AC Ezio Collection $1.99** — THREE classic AC games for $2! Insane value!
+  - **Stardew Valley $7.49** — essential lounge casual game with co-op!
+
+### 🎮 MARVEL Tōkon PS5 Date + RuneScape Dragonwilds PS Plus Confirmed + 2027 Games
+
+**Already tracked but date confirmed/refined:**
+- **RuneScape: Dragonwilds** — September 15, 2026. Confirmed as **DAY ONE PS Plus Extra/Premium title**. Open-world survival crafting + dragons. Cross-play with PC and Xbox. First RuneScape console game in 25-year franchise history. Jagex-developed. ⭐⭐⭐ lounge value.
+- **Onimusha: Dawn of Dreams** — PS Plus Premium Classic for **August 2026**. PS2 classic joins the Classics Catalog.
+
+**New 2027 titles discovered (future reference):**
+- **Kemuri** (Unseen Inc. / Ikumi Nakamura) — Yokai-possession action game, 3-player online co-op, manga-stylized visuals. 2027 on PS5 + PC. From the creative mind behind Ghostwire: Tokyo. ⭐⭐⭐ lounge value.
+- **The Lost Wild** (Great Ape Games / Annapurna) — Dinosaur survival horror. 2027 on PS5 + PC. Jurassic Park vibes! ⭐⭐⭐ lounge value.
+
+### 📊 Quick Status Check (July 5 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🥊 MARVEL Tōkon: Fighting Souls | **MISSED! 🆕** | Aug 6! Arc System Works × Marvel! PS5 exclusive! PRE-ORDER! |
+| 🛒 July Savings — 25+ New Deals | **EXPANDED 🆕** | Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49! Sonic SS! |
+| 🎮 Kemuri + Lost Wild (2027) | **NEW FUTURE 🆕** | Yokai action + dino horror! |
+| 🎮 Onimusha: Dawn of Dreams | **NEW PREMIUM 🆕** | PS Plus Premium Classic — August 2026! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE TOMORROW!** | CoD MW3 + For the King II + CrossCode! July 7! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | Backend patches Jul 2-3! This week likely! Still no exact date! |
+| 🎮 June PS Plus Essential | **Expires Jul 7!** | 2 days! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 10 days! 25+ new lounge deals found! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 5 days! 25M+ player phenomenon! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 4 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 4 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 4 days! Endless Ragnarok! |
+| 🔥 DOOM TDA Revelations DLC | Jul 7! | 2 days! Chain Spear + new campaign! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 23 days! FIRST HALO ON PLAYSTATION! |
+| 🐭 Moss: The Forgotten Relic | Jul 16! | 11 days! Family-friendly! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 11 days away! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! Petitions live! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+| 🥊 MARVEL Tōkon: Fighting Souls | **Aug 6!** | NEW! Pre-order NOW! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🔥 God of War: Laufey | Early 2027! | Faye protagonist! |
+
+### 🚨 Priority Lounge Actions (July 5 - 17:31 UTC):
+1. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** Arc System Works × Marvel! PS5 exclusive! Fighting game LOUNGE GOLD!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s starting TOMORROW July 7!** FREE with PS Plus!
+3. **🔥🔥 MONITOR PS STORE DAILY! CoD Black Ops 1 & 2 could shadow-drop THIS WEEK!**
+4. **CLAIM June PS Plus Essential BEFORE July 7** — Grounded, Nick Brawl 2, WH40K Darktide! 2 days!
+5. **🛒🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — BUY for ALL consoles! 4-player co-op zombie shooter!
+6. **🛒🛒 Deep Rock Galactic $16.49** — legendary 4-player co-op! MUST-BUY!
+7. **🛒🛒 DMC5 + Vergil $4.49** — STEAL for one of the best action games ever!
+8. **🛒🛒 Sonic Superstars $17.99** — 4-player couch co-op family game! Buy for ALL consoles!
+9. **🛒🛒 The Quarry Deluxe $7.99** — perfect group interactive horror movie!
+10. **🛒 AC Ezio Collection $1.99** — THREE games for $2! Insane!
+11. **🛒 Stardew Valley $7.49** — essential casual lounge game! Co-op!
+12. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+13. **PALWORLD 1.0 — July 10! Only 5 days!** Pre-order!
+14. **AC Black Flag Resynced — July 9! Only 4 days!** Pre-order!
+15. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+16. **Mark Aug 6** — MARVEL Tōkon: Fighting Souls launch!
+17. **Mark Sep 15** — RuneScape Dragonwilds FREE on PS Plus Extra!
 
 ---
 
