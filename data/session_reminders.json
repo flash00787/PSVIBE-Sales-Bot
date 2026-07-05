@@ -1,1 +1,112 @@
-{}
+{
+  "C-09|1003686032747": {
+    "cid": "C-09",
+    "chat_id": -1003686032747,
+    "member_id": "Bhone Thant Kyaw",
+    "planned_mins": 180,
+    "end_t": "15:42",
+    "end_dt_iso": "2026-07-05T15:42:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-05T06:12:27.755037+00:00"
+  },
+  "C-05|1003686032747": {
+    "cid": "C-05",
+    "chat_id": -1003686032747,
+    "member_id": "Nyan Lin htut",
+    "planned_mins": 180,
+    "end_t": "16:59",
+    "end_dt_iso": "2026-07-05T16:59:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-05T07:29:33.301495+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Mungboih",
+    "planned_mins": 120,
+    "end_t": "16:03",
+    "end_dt_iso": "2026-07-05T16:03:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-05T07:33:09.229016+00:00"
+  },
+  "C-08|1003686032747": {
+    "cid": "C-08",
+    "chat_id": -1003686032747,
+    "member_id": "Khant Nyein Zaw",
+    "planned_mins": 90,
+    "end_t": "15:35",
+    "end_dt_iso": "2026-07-05T15:35:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 90,
+    "updated_at": "2026-07-05T07:35:26.253251+00:00"
+  },
+  "C-06|1003686032747": {
+    "cid": "C-06",
+    "chat_id": -1003686032747,
+    "member_id": "Aung Pyae Sone",
+    "planned_mins": 180,
+    "end_t": "17:05",
+    "end_dt_iso": "2026-07-05T17:05:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-05T07:35:28.904983+00:00"
+  },
+  "C-07|1003686032747": {
+    "cid": "C-07",
+    "chat_id": -1003686032747,
+    "member_id": "Aung Pyae Sone2",
+    "planned_mins": 180,
+    "end_t": "17:05",
+    "end_dt_iso": "2026-07-05T17:05:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-05T08:00:05.517270+00:00"
+  },
+  "C-02|1003686032747": {
+    "cid": "C-02",
+    "chat_id": -1003686032747,
+    "member_id": "Min khant",
+    "planned_mins": 120,
+    "end_t": "16:31",
+    "end_dt_iso": "2026-07-05T16:31:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-05T08:01:26.141168+00:00"
+  },
+  "C-01|1003686032747": {
+    "cid": "C-01",
+    "chat_id": -1003686032747,
+    "member_id": "Than Htun Aung",
+    "planned_mins": 120,
+    "end_t": "17:22",
+    "end_dt_iso": "2026-07-05T17:22:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-05T08:52:26.708670+00:00"
+  },
+  "C-10|1003686032747": {
+    "cid": "C-10",
+    "chat_id": -1003686032747,
+    "member_id": "Than Htun aung3",
+    "planned_mins": 120,
+    "end_t": "17:22",
+    "end_dt_iso": "2026-07-05T17:22:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-05T08:52:46.845312+00:00"
+  },
+  "C-04|1003686032747": {
+    "cid": "C-04",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "16:22",
+    "end_dt_iso": "2026-07-05T16:22:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-05T08:52:53.199262+00:00"
+  }
+}
