@@ -44,3 +44,8 @@ get_bot_token.js
 token_search_b.sh
 *.token
 *.secret
+check_apikey.js
+find_api_key.js
+ssh_key.js
+test_api_key.js
+mysql_creds.js
