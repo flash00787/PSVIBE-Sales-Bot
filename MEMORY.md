@@ -192,3 +192,22 @@ Kora now manages **9 projects** with full coordination tool support.
 76. **Gateway kill loop = model timeout trigger** — When primary model API hangs (DeepSeek V4 Pro 180s timeout), OpenClaw health monitor sends SIGTERM → restart → next cron job hits same timeout → another SIGTERM. Fix: switch default model to stable alternative (V4 Flash). Always check provider stability before blaming infrastructure. (#76)
 
 77. **MongoDB Rule #0 reinforced by Boss** — Bug hunting / code tracing / endpoint debugging → `kora_memory.py trace` BEFORE any grep or file read. No exceptions. Violation count will be tracked. (#77)
+
+## Memory (2026-07-06)
+
+### Critical Fixes — System Stability Overhaul ✅
+
+1. **Subagent V4 Pro Timeout Cascade 🐛→✅:** Subagent model was deepseek/deepseek-v4-pro (180s+ timeout). Changed to V4 Flash as primary, V4 Pro as fallback. (#80)
+2. **Session DB 450MB/500MB (89%) 🐛→✅:** 7,337 session files filling up. Cleaned 2,424 files → 282MB. pruneAfter 7d→3d, archive 2d→1d. (#79)
+
+### Preventive Safeguards Installed 🛡️
+- **session-usage-monitor** (every 1h): Alerts if sessions DB >80%
+- **cron-health-checker** (every 6h): Detects stuck/error cron jobs
+- **session pruning**: 3d retention, 1d archive (auto-maintain)
+- **subagent model lock**: V4 Flash primary enforced
+
+### New Lessons
+79. **Session DB full = response delays** — When sessions DB reaches 90% of maxDiskBytes, write lock contention causes response drops. Monitor at 80%. (#79)
+80. **V4 Pro subagent timeout blocks main session** — Subagent model MUST be V4 Flash (stable 500-700ms) with V4 Pro as fallback only. (#80)
+81. **Gateway restart cuts conversation thread** — Always warn Boss before applying changes that need restart. (#81)
+82. **Preventive safeguards for Kora stability** — Installed: session-monitor (1h), cron-health-checker (6h), prune 3d, subagent V4 Flash primary. (#82)
