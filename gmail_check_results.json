@@ -1,10 +1,346 @@
 {
-  "checked_at": "2026-07-04T19:03:49.992739+00:00",
-  "total_unread": 0,
+  "checked_at": "2026-07-06T20:52:31.408289+00:00",
+  "total_unread": 30,
   "nova_found": false,
-  "nova_count": 0,
-  "important_count": 0,
   "nova_emails": [],
-  "important_emails": [],
-  "all_emails": []
+  "important_emails": [
+    {
+      "id": "19f39314863d78ba",
+      "threadId": "19f39314863d78ba",
+      "from": "GitHub <support@github.com>",
+      "subject": "[GitHub] GitHub Personal Access Token found in commit",
+      "date": "Mon, 06 Jul 2026 13:49:18 -0700",
+      "snippet": "Action needed: GitHub Personal Access Token found in commit, any app using this secret may be affected Your GitHub Personal Access Token has been revoked A recent scan found a valid GitHub Personal",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f392dd659fb3d2",
+      "threadId": "19f392dd659fb3d2",
+      "from": "GitHub <noreply@github.com>",
+      "subject": "[GitHub] A new public key was added to flash00787/PSVIBE-Sales-Bot",
+      "date": "Mon, 06 Jul 2026 13:45:32 -0700",
+      "snippet": "The following SSH key was added to the flash00787/PSVIBE-Sales-Bot repository by flash00787: Kora SHA256:aCFvLaxZrNVbzaKGef6F++eNqOM94VRLH8aN0oTsjsE If you believe this key was added in error, you can",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f37594d084d87b",
+      "threadId": "19f37594d084d87b",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Phan Rang – Tháp Chàm (Ninh Thuận), selected for you!",
+      "date": "Mon, 06 Jul 2026 12:13:45 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Phan Rang – Tháp Chàm (Ninh Thuận) Your journey",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f32ecad5eaed81",
+      "threadId": "19f32ecad5eaed81",
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Sun, 05 Jul 2026 15:36:38 +0000",
+      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limits on messaging, file uploads, and voice mode More",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "185640ecebbcbb00",
+      "threadId": "185640ecebbcbb00",
+      "from": "noreply@cbbank.com.mm",
+      "subject": "\"Alert notification \"A/c Credited",
+      "date": "Fri, 30 Dec 2022 23:52:47 +0630 (MMT)",
+      "snippet": "&quot;Dear: &quot;U AUNG CHAN MYINT &quot;We have the following &quot;&quot;Alert notification &quot;&quot;for you : &quot; A/c Credited &quot;Account Number : &quot;XXXX-XXXX-XXXX-3549 &quot;",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "17449b4f8d4bee25",
+      "threadId": "17449b4f8d4bee25",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] UnHackMe 11.9 Free Download",
+      "date": "Tue, 1 Sep 2020 12:47:10 +0000",
+      "snippet": "Muhammad posted: &quot;Download UnHackMe 11.9 free latest full version direct link one-click standalone offline installation setup for Windows 32-bit and 64-bit. UnHackMe 2020 is a powerful application",
+      "unread": true,
+      "important": true
+    }
+  ],
+  "all_emails": [
+    {
+      "id": "19f3931651788338",
+      "threadId": "19f3931651788338",
+      "from": "google-cloud-compliance@google.com",
+      "subject": "Immediate Action Required on agri-eco-accounting",
+      "date": "Mon, 06 Jul 2026 13:49:23 -0700",
+      "snippet": "MY CONSOLE Policy Violation Immediate action required: Resources associated with your Google Cloud Platform / API project agri-eco-accounting are being restricted Dear Developer, We detected and will",
+      "unread": true
+    },
+    {
+      "id": "19f39314863d78ba",
+      "threadId": "19f39314863d78ba",
+      "from": "GitHub <support@github.com>",
+      "subject": "[GitHub] GitHub Personal Access Token found in commit",
+      "date": "Mon, 06 Jul 2026 13:49:18 -0700",
+      "snippet": "Action needed: GitHub Personal Access Token found in commit, any app using this secret may be affected Your GitHub Personal Access Token has been revoked A recent scan found a valid GitHub Personal",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f392dd659fb3d2",
+      "threadId": "19f392dd659fb3d2",
+      "from": "GitHub <noreply@github.com>",
+      "subject": "[GitHub] A new public key was added to flash00787/PSVIBE-Sales-Bot",
+      "date": "Mon, 06 Jul 2026 13:45:32 -0700",
+      "snippet": "The following SSH key was added to the flash00787/PSVIBE-Sales-Bot repository by flash00787: Kora SHA256:aCFvLaxZrNVbzaKGef6F++eNqOM94VRLH8aN0oTsjsE If you believe this key was added in error, you can",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f3924f84d111a0",
+      "threadId": "19f3924f84d111a0",
+      "from": "PlayStation <email@email.playstation.com>",
+      "subject": "Welcome to Horizon Forbidden West, Rev-Flash007!",
+      "date": "Mon, 06 Jul 2026 14:35:33 -0600",
+      "snippet": "Rise Above Our Ruin | Tips and tricks to get you started ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+      "unread": true
+    },
+    {
+      "id": "19f375997cc73088",
+      "threadId": "19f375997cc73088",
+      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
+      "subject": "🦞 AI CapEx Tops Defense",
+      "date": "Mon, 6 Jul 2026 20:01:53 +0800 (CST)",
+      "snippet": "Plus: Humanlike AI Got Expensive, Agents Take Freelance Work ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+      "unread": true
+    },
+    {
+      "id": "19f37594d084d87b",
+      "threadId": "19f37594d084d87b",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Phan Rang – Tháp Chàm (Ninh Thuận), selected for you!",
+      "date": "Mon, 06 Jul 2026 12:13:45 +0000 (UTC)",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best of Phan Rang – Tháp Chàm (Ninh Thuận) Your journey",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f32ecad5eaed81",
+      "threadId": "19f32ecad5eaed81",
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Sun, 05 Jul 2026 15:36:38 +0000",
+      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limits on messaging, file uploads, and voice mode More",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "185640ecebbcbb00",
+      "threadId": "185640ecebbcbb00",
+      "from": "noreply@cbbank.com.mm",
+      "subject": "\"Alert notification \"A/c Credited",
+      "date": "Fri, 30 Dec 2022 23:52:47 +0630 (MMT)",
+      "snippet": "&quot;Dear: &quot;U AUNG CHAN MYINT &quot;We have the following &quot;&quot;Alert notification &quot;&quot;for you : &quot; A/c Credited &quot;Account Number : &quot;XXXX-XXXX-XXXX-3549 &quot;",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "177d79536ffda27f",
+      "threadId": "177d79536ffda27f",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Reallusion iClone Pro 7.72.3818.1 with Resources Pack Free Download",
+      "date": "Thu, 25 Feb 2021 05:06:55 +0000",
+      "snippet": "Muhammad posted: &quot;Download Reallusion iClone Pro 7.72.3818.1 with Resources Pack and Plugins full version offline setup free for Windows 64-bit. Reallusion iClone Pro 7.7 is one of the fastest",
+      "unread": true
+    },
+    {
+      "id": "177cceb45ef77c5f",
+      "threadId": "177cceb45ef77c5f",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] InnovMetric PolyWorks Metrology Suite 2020 IR7 Free Download",
+      "date": "Tue, 23 Feb 2021 03:25:06 +0000",
+      "snippet": "Muhammad posted: &quot;Download InnovMetric PolyWorks Metrology Suite 2020 IR7 free latest version offline setup for Windows 32-bit and 64-bit. InnovMetric PolyWorks Metrology Suite 2020 IR7 is a",
+      "unread": true
+    },
+    {
+      "id": "176f0a7f3af05191",
+      "threadId": "176f0a7f3af05191",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] VovSoft Text Edit Plus 8.2 Free Download",
+      "date": "Mon, 11 Jan 2021 08:55:06 +0000",
+      "snippet": "Muhammad posted: &quot;Download VovSoft Text Edit Plus 8.2 free latest full version direct download link complete standalone offline installer for Windows 32-bit and 64-bit. VovSoft Text Edit Plus 8.2",
+      "unread": true
+    },
+    {
+      "id": "176dc1df62c1d34b",
+      "threadId": "176dc1df62c1d34b",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Mindjet MindManager 2021 v21.0 Free Download",
+      "date": "Thu, 7 Jan 2021 09:11:59 +0000",
+      "snippet": "Muhammad posted: &quot;Download Mindjet MindManager 2021 v21.0 free latest version offline setup for Windows 32-bit and 64-bit. Mindjet MindManager 2021 v21.0 is a professional application for",
+      "unread": true
+    },
+    {
+      "id": "176d271a2cfce698",
+      "threadId": "176d271a2cfce698",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] NCH DrawPad Pro 6.58 Free Download",
+      "date": "Tue, 5 Jan 2021 12:07:10 +0000",
+      "snippet": "Muhammad posted: &quot;Download NCH DrawPad Pro 6.58 free latest full version direct download link complete standalone offline installer for Windows 32-bit and 64-bit. NCH DrawPad Pro 2021 v6.58 is a",
+      "unread": true
+    },
+    {
+      "id": "176a928ff3bd1d13",
+      "threadId": "176a928ff3bd1d13",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] NCH Prism Plus 6.91 Free Download",
+      "date": "Mon, 28 Dec 2020 11:43:24 +0000",
+      "snippet": "Muhammad posted: &quot;Download NCH Prism Plus 6.91 free latest full version direct download link complete standalone offline installer for Windows 32-bit and 64-bit. NCH Prism Plus 2020 v6.91 is a",
+      "unread": true
+    },
+    {
+      "id": "17690e8b1b389443",
+      "threadId": "17690e8b1b389443",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Disk Pulse 13.3.18 Free Download",
+      "date": "Wed, 23 Dec 2020 18:42:16 +0000",
+      "snippet": "Muhammad posted: &quot;Download Disk Pulse 13.3.18 free latest full version direct download link one-click standalone offline installer for Windows 32-bit and 64-bit. Disk Pulse 13.3.18 is a very",
+      "unread": true
+    },
+    {
+      "id": "1768b763fdff1d65",
+      "threadId": "1768b763fdff1d65",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Chris-PC RAM Booster 5.12 Free Download",
+      "date": "Tue, 22 Dec 2020 17:19:10 +0000",
+      "snippet": "Muhammad posted: &quot;Download Chris-PC RAM Booster 5.12 free latest full version direct download link complete standalone offline installer for Windows 32-bit and 64-bit. Chris-PC RAM Booster 2020 v5",
+      "unread": true
+    },
+    {
+      "id": "17676e4a6f68f979",
+      "threadId": "17676e4a6f68f979",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Smart Game Booster 5 Free Download",
+      "date": "Fri, 18 Dec 2020 17:27:44 +0000",
+      "snippet": "Muhammad posted: &quot;Download Smart Game Booster 5.0 free latest full version direct download link one-click standalone setup for Windows 32-bit and 64-bit. Smart Game Booster Pro 2020 v5.0 is a",
+      "unread": true
+    },
+    {
+      "id": "1767095a82c427ee",
+      "threadId": "1767095a82c427ee",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Viddly YouTube Downloader Plus 5.0 Free Download",
+      "date": "Thu, 17 Dec 2020 12:03:44 +0000",
+      "snippet": "Muhammad posted: &quot;Download Viddly YouTube Downloader Plus 5.0 free latest full version direct download link one-click standalone offline installer for Windows 32-bit and 64-bit. Viddly YouTube",
+      "unread": true
+    },
+    {
+      "id": "1757e26620d1acc4",
+      "threadId": "1757e26620d1acc4",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Broadgun pdfMachine Ultimate 15.42 Free Download",
+      "date": "Sat, 31 Oct 2020 10:14:05 +0000",
+      "snippet": "Muhammad posted: &quot;Download Broadgun pdfMachine Ultimate 15.42 free latest full version direct download link one-click standalone offline installer for Windows 32-bit and 64-bit. Broadgun",
+      "unread": true
+    },
+    {
+      "id": "1752c6a269d70899",
+      "threadId": "1752c6a269d70899",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Native Instruments Replika XT 1.1 Free Download",
+      "date": "Thu, 15 Oct 2020 13:19:15 +0000",
+      "snippet": "Muhammad posted: &quot;Download Native Instruments Replika XT 1.1 free latest full version direct download link one -click standalone offline installer for Windows 32-bit and 64-bit. Native Instruments",
+      "unread": true
+    },
+    {
+      "id": "174e47377bb23901",
+      "threadId": "174e47377bb23901",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Ahnenblatt 3.16 Free Download",
+      "date": "Thu, 1 Oct 2020 13:56:46 +0000",
+      "snippet": "Muhammad posted: &quot;Download Ahnenblatt 3.16 free latest full version direct link one-click standalone offline installer for Windows 32-bit and 64-bit. Ahnenblatt 2020 v3.1 is a powerful application",
+      "unread": true
+    },
+    {
+      "id": "174d4a8a9047bd1a",
+      "threadId": "174d4a8a9047bd1a",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] WonderFox DVD Video Converter 21.0 Free Download",
+      "date": "Mon, 28 Sep 2020 12:20:56 +0000",
+      "snippet": "Muhammad posted: &quot;Download WonderFox DVD Video Converter 21.0 free latest full version one-click direct download link offline installer for Windows x86 and x64 architecture. DVD Video Converter",
+      "unread": true
+    },
+    {
+      "id": "174d4a5c1ba0315c",
+      "threadId": "174d4a5c1ba0315c",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] WonderFox DVD Ripper Pro 16.0 Free Download",
+      "date": "Mon, 28 Sep 2020 12:17:46 +0000",
+      "snippet": "Muhammad posted: &quot;Download WonderFox DVD Ripper Pro 16.0 free latest full version direct download link one-click standalone offline installer for Windows 32-bit and 64-bit. WonderFox DVD Ripper",
+      "unread": true
+    },
+    {
+      "id": "174a094ed25e6e4f",
+      "threadId": "174a094ed25e6e4f",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Advanced SystemCare Pro 13.7 Free Download",
+      "date": "Fri, 18 Sep 2020 09:39:08 +0000",
+      "snippet": "Muhammad posted: &quot;Download Advanced SystemCare Pro 13.7 free latest full version direct download link one-click standalone offline installer for Windows 32-bit and 64-bit. Advanced SystemCare Pro",
+      "unread": true
+    },
+    {
+      "id": "1744da54a6af6e43",
+      "threadId": "1744da54a6af6e43",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] IObit Smart Defrag Pro 6.6 Free Download",
+      "date": "Wed, 2 Sep 2020 07:08:32 +0000",
+      "snippet": "Muhammad posted: &quot;Download IObit Smart Defrag Pro 6.6 free latest full version direct link one-click standalone setup for Windows 32-bit and 64-bit. IObit Smart Defrag Professional 2020 v6.6 is a",
+      "unread": true
+    },
+    {
+      "id": "17449b4f8d4bee25",
+      "threadId": "17449b4f8d4bee25",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] UnHackMe 11.9 Free Download",
+      "date": "Tue, 1 Sep 2020 12:47:10 +0000",
+      "snippet": "Muhammad posted: &quot;Download UnHackMe 11.9 free latest full version direct link one-click standalone offline installation setup for Windows 32-bit and 64-bit. UnHackMe 2020 is a powerful application",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "1741077bdc06b723",
+      "threadId": "1741077bdc06b723",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Smart Driver Manager 5.2.451 Free Download",
+      "date": "Fri, 21 Aug 2020 10:01:56 +0000",
+      "snippet": "Muhammad posted: &quot;Download Smart Driver Manager 5.2.451 free latest full version standalone one-click download for Windows 32-bit and 64-bit. Smart Driver Manager 2020 v5.2 is a professional",
+      "unread": true
+    },
+    {
+      "id": "1740ad2f1b9c8bf4",
+      "threadId": "1740ad2f1b9c8bf4",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Wise Care 365 Pro 5.5.6 Free Download",
+      "date": "Thu, 20 Aug 2020 07:43:50 +0000",
+      "snippet": "Muhammad posted: &quot;Download Wise Care 365 Pro 5.5.6 free latest full version one-click standalone offline setup for Windows 32-bit and 64-bit. Wise Care 365 Pro 2020 v5.5.6 is a professional",
+      "unread": true
+    },
+    {
+      "id": "173df45d5abeb2cf",
+      "threadId": "173df45d5abeb2cf",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] DAEMON Tools Pro 2020 Free Download",
+      "date": "Tue, 11 Aug 2020 20:46:02 +0000",
+      "snippet": "Muhammad posted: &quot;Download DAEMON Tools Pro 2020 v8.3 free latest full version standalone one-click installer for Windows 32-bit and 64-bit. DAEMON Tools Pro 8.3 free download is a powerful",
+      "unread": true
+    },
+    {
+      "id": "173c394aa38b398d",
+      "threadId": "173c394aa38b398d",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] ZookaWare Pro 2020 Free Download",
+      "date": "Thu, 6 Aug 2020 11:42:46 +0000",
+      "snippet": "Muhammad posted: &quot;Download ZookaWare Pro 2020 v5.2 free latest full version standalone one-click installation setup for Windows 32-bit and 64-bit. ZookaWare Pro 5.2 is a professional application",
+      "unread": true
+    }
+  ]
 }

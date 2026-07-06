@@ -86,7 +86,7 @@ function workspaceCommit(message) {
 }
 
 function workspacePush() {
-  const { stdout } = run('git push origin kora-workspace 2>&1');
+  const { stdout } = run('git push origin HEAD:kora-workspace 2>&1');
   return stdout;
 }
 
