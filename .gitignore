@@ -23,3 +23,24 @@ mysql_creds.js
 .secrets_map.json
 email_auto_reply.py
 
+
+# === SENSITIVE FILES (ADDED 2026-07-06) ===
+token.json
+secret.json
+client_secret.json
+credentials.json
+secrets_map.json
+gmail_token.json
+gmail_token_v2.json
+gmail_token_v2.json
+audit-tokens.js
+audit-tokens2.js
+audit-tokens3.js
+audit-tokens4.js
+audit-tokens5.js
+check_token_error.js
+find_bot_token.js
+get_bot_token.js
+token_search_b.sh
+*.token
+*.secret
