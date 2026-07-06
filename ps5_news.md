@@ -1,6 +1,170 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-05 17:31 UTC
+> Last updated: 2026-07-06 05:39 UTC
+
+---
+
+## ⚡ UPDATE (July 6, 2026 - 05:39 UTC) — MARVEL Tōkon Open Beta Jul 24-26! FREE for All PS5!
+
+> **Summary:** Early Monday morning sweep (55 min since last update). ONE new discovery: **MARVEL Tōkon: Fighting Souls** will have a **FREE open beta July 24-26 on PS5 and PC** — no sign-ups, no pre-orders required! 20 characters across 5 teams including Blade, Loki, Deadpool, Ghost Rider. This was missing from tracker — the beta is a perfect free trial event for the lounge ahead of the Aug 6 launch!
+
+### 🥊🔥 MARVEL Tōkon: Fighting Souls — FREE Open Beta July 24-26! (NEW DISCOVERY!)
+
+- **Arc System Works × Sony Interactive Entertainment** — free open beta on **PS5 and PC**
+- **Dates: July 24-26, 2026** — no registration, no pre-order required! Just download and play!
+- **Full Details:**
+  - 20 playable characters across 5 teams
+  - Confirmed playable in beta: **Blade, Loki, Deadpool, Ghost Rider** ("Samurai Outriders" team)
+  - 4v4 tag-team fighting — Arc System Works quality (Guilty Gear, Dragon Ball FighterZ devs)
+  - PS5 console exclusive at full launch (Aug 6)
+- Sources: IGN, Softonic, Insider Gaming, PlayStation Lifestyle (Jun 28-29), PS Blog
+- **💡💡💡 Lounge Impact — SIGNIFICANT:**
+  - **FREE open beta = FREE lounge event!** No cost to install on all lounge PS5s! Three full days of gameplay!
+  - **Marketing opportunity:** "Try the new Arc System Works × Marvel fighting game BEFORE release — only at PS VIBE!"
+  - Fighting game betas are MASSIVE draws — players travel to try new fighters before launch
+  - Arc System Works + Marvel = guaranteed crowd. DB FighterZ beta was a lounge phenomenon
+  - Generate pre-launch hype for Aug 6 full release — players who try the beta are likely to return for the full game
+  - **Download on ALL lounge PS5s starting July 24!** Three-day event — plan weekend promotions around it!
+  - ⭐⭐⭐⭐⭐ lounge value — free ArcSys × Marvel fighting game beta, no barriers to entry
+
+### 📊 Quick Status Check (July 6 - 05:39 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🥊 MARVEL Tōkon Open Beta | **NEW! 🆕** | Jul 24-26! FREE on PS5! No sign-up! ArcSys × Marvel! |
+| 🚨 June PS Plus Essential | **EXPIRES TOMORROW! 🚨** | TODAY is last full day! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE TOMORROW! 🔥** | CoD MW3 + For the King II + CrossCode! Jul 7 - Aug 3! |
+| 🔥 DOOM TDA Revelations DLC | **TOMORROW! 🔥** | Jul 7! Chain Spear + new campaign! |
+| 🌙 Moonlight Peaks | **NEW! 🆕** | Jul 7! Vampire cozy farming sim! |
+| ⚾ Backyard Baseball | **NEW! 🆕** | PC Jul 9! PS5 ~Aug 2026! Nostalgic sports revival! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | v1.03 backend! Still no exact date! Week of Jul 6 likely! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 3 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 3 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 3 days! Endless Ragnarok! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 4 days! 25M+ player phenomenon! |
+| 🥊 MARVEL Tōkon: Fighting Souls | Aug 6! | Arc System Works × Marvel! PS5 exclusive! PRE-ORDER! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 9 days! Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 10 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 22 days! FIRST HALO ON PLAYSTATION! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! Petitions live! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 6 - 05:39 UTC):
+1. **🚨🚨🚨 CLAIM JUNE PS PLUS ESSENTIAL TODAY!** Grounded, Nick Brawl 2, WH40K Darktide — GONE after tomorrow! Last full day!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s TOMORROW July 7!** AAA CoD FREE with PS Plus!
+3. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s! ArcSys × Marvel! Hype event!
+4. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop THIS WEEK! v1.03 = final build!
+5. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** Arc System Works × Marvel! PS5 exclusive! Fighting game LOUNGE GOLD!
+6. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings! Buy for ALL consoles!
+7. **🛒 Deep Rock Galactic $16.49** — legendary 4-player co-op! July Savings!
+8. **🛒 DMC5 + Vergil $4.49** — STEAL! Buy for ALL consoles!
+9. **🛒 Sonic Superstars $17.99** — 4-player couch co-op family game!
+10. **PALWORLD 1.0 — July 10! Only 4 days!** Pre-order!
+11. **AC Black Flag Resynced — July 9! Only 3 days!** Pre-order!
+12. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 3 days!
+13. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+14. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+15. **Wishlist Backyard Baseball** — nostalgic sports revival! PS5 date TBD!
+
+---
+
+## ⚡ UPDATE (July 6, 2026 - 04:44 UTC) — 🚨 TODAY IS LAST DAY! June PS Plus Expires TOMORROW! + Moonlight Peaks & Backyard Baseball Found!
+
+> **Summary:** Early Monday morning sweep (11 hours since last update). **TODAY (July 6) is the FINAL DAY to claim June PS Plus Essential games** — Grounded, Nick All-Star Brawl 2, and WH40K Darktide are GONE after tomorrow! **Tomorrow (July 7) is a MASSIVE day** — PS Plus Essential July goes LIVE (CoD MW3 FREE!), DOOM TDA Revelations DLC drops, June Essential expires. Two new games discovered: **Moonlight Peaks** (vampire cozy farming sim, Jul 7) and **Backyard Baseball** (nostalgic sports revival, PS5 date Aug 18 tentative).
+
+### 🚨🚨🚨 JUNE PS PLUS ESSENTIAL — EXPIRES TOMORROW JULY 7! TODAY IS THE LAST FULL DAY!
+
+- **⚠️⚠️⚠️ Grounded, Nickelodeon All-Star Brawl 2, and Warhammer 40K: Darktide** will be GONE after July 7!
+- Today (Monday July 6) is the **LAST FULL DAY** to claim these 3 games on all lounge PS5s!
+- **💡 Lounge Action — CRITICAL:**
+  - **CLAIM ALL 3 on EVERY lounge PS5 TODAY!** Don't wait until tomorrow — July 7 is the switch-over day!
+  - Grounded = 4-player co-op survival (Obsidian quality, ⭐⭐⭐⭐)
+  - Nick All-Star Brawl 2 = platform fighter with Nickelodeon characters (⭐⭐⭐)
+  - WH40K Darktide = 4-player co-op FPS (Left 4 Dead meets Warhammer, ⭐⭐⭐)
+  - These cost ZERO to claim — just need active PS Plus Essential!
+
+### 🔥🔥🔥 JULY 7 — TRIPLE THREAT DAY! CoD MW3 + DOOM DLC + June Expiry!
+
+Tomorrow (Tuesday July 7) sees THREE major events converge:
+1. **🔥 PS Plus Essential July goes LIVE** — CoD MW3 + For the King II + CrossCode are claimable!
+2. **🔥 DOOM: The Dark Ages — Revelations DLC** drops! Chain Spear weapon + new campaign!
+3. **⚠️ June PS Plus Essential EXPIRES** — last chance to claim Grounded, Nick Brawl 2, WH40K Darktide!
+
+- **💡 Lounge Action:** Claim CoD MW3 on ALL lounge PS5s as soon as it goes live tomorrow! AAA blockbuster for FREE!
+
+### 🌙 Moonlight Peaks — July 7, 2026! Vampire Cozy Farming Sim! (NEW!)
+
+- **Developer:** Little Chicken Game Company — **cozy farming/life sim with a vampire twist**
+- **Release: July 7, 2026** on PS5, Xbox, Switch, and PC
+- **Genre:** Stardew Valley meets vampires — farm, date, and build your vampire life in a supernatural world
+- Part of the booming "cozy game" trend that's exploded in lounges (Stardew Valley, Animal Crossing-adjacent)
+- Sources: IGN release calendar, GameGator, GamesRadar
+- **💡 Lounge Impact:**
+  - Cozy games are SURPRISING lounge hits — players stay for hours, relaxed atmosphere
+  - Vampire theme gives it edge over standard farming sims — appeals to broader audience
+  - July 7 — same day as CoD MW3 + DOOM DLC = busy day!
+  - ⭐⭐⭐ lounge value — cozy genre staple, broad casual appeal
+
+### ⚾ Backyard Baseball (2026) — Nostalgic Sports Revival! PS5 Date TBD! (NEW!)
+
+- **Developer:** Mega Cat Studios / Playground Productions — revival of the beloved **Backyard Sports** franchise!
+- **PC (Steam): July 9, 2026** — PS5 version targeting **Summer 2026** (tentatively Aug 18 per PS Store listing)
+- **Features:** 30 original Backyard Kids, 24 customizable teams, 11 remastered stadiums, 6 game modes, online + local co-op multiplayer (first in franchise history!)
+- **NO microtransactions** confirmed — refreshing for a modern sports game
+- The original Backyard Baseball '97 is already on PS5
+- Sources: IGN, GameSpot, PushSquare, PS Store listing
+- **💡 Lounge Impact:**
+  - Backyard Sports is a MASSIVE nostalgia franchise — millennials grew up on these games
+  - Local multiplayer = perfect lounge sports title (kids + adults)
+  - No microtransactions = no ongoing costs, family-friendly
+  - 25-40 demographic (prime lounge age) has deep nostalgia for Backyard Baseball
+  - PS5 date uncertain but worth wishlisting now — likely Aug 2026
+  - ⭐⭐⭐ lounge value (when PS5 date confirmed) — nostalgic sports + local co-op
+
+### 📊 Quick Status Check (July 6 - 04:44 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 June PS Plus Essential | **EXPIRES TOMORROW! 🚨** | TODAY is last full day! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE TOMORROW! 🔥** | CoD MW3 + For the King II + CrossCode! Jul 7 - Aug 3! |
+| 🔥 DOOM TDA Revelations DLC | **TOMORROW! 🔥** | Jul 7! Chain Spear + new campaign! |
+| 🌙 Moonlight Peaks | **NEW! 🆕** | Jul 7! Vampire cozy farming sim! |
+| ⚾ Backyard Baseball | **NEW! 🆕** | PC Jul 9! PS5 ~Aug 2026! Nostalgic sports revival! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | v1.03 backend! Still no exact date! Week of Jul 6 likely! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 3 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 3 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 3 days! Endless Ragnarok! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 4 days! 25M+ player phenomenon! |
+| 🥊 MARVEL Tōkon: Fighting Souls | Aug 6! | Arc System Works × Marvel! PS5 exclusive! PRE-ORDER! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 9 days! Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 10 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 22 days! FIRST HALO ON PLAYSTATION! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! Petitions live! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 6 - 04:44 UTC):
+1. **🚨🚨🚨 CLAIM JUNE PS PLUS ESSENTIAL TODAY!** Grounded, Nick Brawl 2, WH40K Darktite — GONE after tomorrow! Last full day!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s TOMORROW July 7!** AAA CoD FREE with PS Plus!
+3. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop THIS WEEK! v1.03 = final build!
+4. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** Arc System Works × Marvel! PS5 exclusive! Fighting game LOUNGE GOLD!
+5. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings! Buy for ALL consoles!
+6. **🛒 Deep Rock Galactic $16.49** — legendary 4-player co-op! July Savings!
+7. **🛒 DMC5 + Vergil $4.49** — STEAL! Buy for ALL consoles!
+8. **🛒 Sonic Superstars $17.99** — 4-player couch co-op family game!
+9. **PALWORLD 1.0 — July 10! Only 4 days!** Pre-order!
+10. **AC Black Flag Resynced — July 9! Only 3 days!** Pre-order!
+11. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 3 days!
+12. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+13. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+14. **Wishlist Backyard Baseball** — nostalgic sports revival! PS5 date TBD!
 
 ---
 

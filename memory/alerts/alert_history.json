@@ -1,5 +1,56 @@
 [
   {
+    "type": "sales_gap",
+    "severity": "warning",
+    "message": "📉 Today's sales (10000 MMK) are below 60% of target (50000 MMK)",
+    "currentSales": 10000,
+    "target": 50000,
+    "gapPercent": "80.0",
+    "timestamp": "2026-07-06T04:44:36.064Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-09 last updated 12.8h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-07-06T04:44:36.061Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 16.1h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-06T04:44:36.056Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 16.7h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-07-06T04:44:36.052Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 15.1h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-06T04:44:36.048Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 15.0h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-06T04:44:36.045Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 16.2h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-07-06T04:44:36.042Z"
+  },
+  {
     "type": "stale_console",
     "severity": "info",
     "message": "📡 Console C-10 last updated 5.8h ago",
