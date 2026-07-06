@@ -1,6 +1,60 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-06 05:39 UTC
+> Last updated: 2026-07-06 11:30 UTC
+
+---
+
+## ⚡ UPDATE (July 6, 2026 - 11:30 UTC) — All Clear! CoD Black Ops Still No Date + Digimon Free Update Jul 9
+
+> **Summary:** Midday Monday sweep (6 hours since last update). No new critical developments. CoD Black Ops 1 & 2 still no exact date (v1.03 backend = imminent but silent). One minor discovery: **Digimon Story: Time Stranger** (released Oct 2025) gets a **free content update on July 9** with new playable character, photo mode, and graphics options. PS Plus Essential July goes LIVE TOMORROW — all previously-tracked dates verified and unchanged.
+
+### 🎮 Digimon Story: Time Stranger — Free Update July 9! (Minor)
+
+- Free update for existing PS5 owners drops **July 9, 2026** (same day as Switch 2 launch)
+- New features: **Terriermon Assistant** as playable character, **Photo Mode**, Digivolution condition screen, **Graphics Mode** options
+- Game originally released Oct 3, 2025 — update adds notable QoL + content
+- **💡 Lounge Note:** If PS VIBE owns Digimon Story: Time Stranger, this free update adds fresh content at zero cost. Otherwise, low priority — not a new release. ⭐⭐ lounge value.
+
+### 📊 Quick Status Check (July 6 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | v1.03 backend! STILL no exact date! Monitor PS Store daily! |
+| 🚨 June PS Plus Essential | **LAST DAY! 🚨** | TODAY is the FINAL day! CLAIM NOW! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE TOMORROW! 🔥** | CoD MW3 + For the King II + CrossCode! Jul 7! |
+| 🔥 DOOM TDA Revelations DLC | **TOMORROW! 🔥** | Jul 7! Chain Spear + new campaign! |
+| 🥊 MARVEL Tōkon Open Beta | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🌙 Moonlight Peaks | Jul 7! | Vampire cozy farming sim! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 2 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 2 days! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 2 days! |
+| 🎮 Digimon Story: Time Stranger Free Update | **Jul 9! 🆕** | Minor free update! |
+| 🔥🔥🔥 Palworld 1.0 PS5 | Jul 10! | 3 days! 25M+ player phenomenon! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 8 days! Back 4 Blood $8.99! DMC5 $4.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 10 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 22 days! |
+| 🥊 MARVEL Tōkon: Fighting Souls | Aug 6! | Arc System Works × Marvel! PRE-ORDER! |
+| 🔥 RuneScape Dragonwilds PS Plus | Sep 15! | Day 1 Extra! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 6 - 11:30 UTC):
+1. **🚨🚨🚨 CLAIM JUNE PS PLUS ESSENTIAL TODAY!** Grounded, Nick Brawl 2, WH40K Darktide — LAST FULL DAY! GONE after tomorrow!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s TOMORROW July 7!** AAA CoD FREE with PS Plus!
+3. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY! v1.03 = final build!
+4. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
+5. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel! PS5 exclusive!
+6. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings! Buy for ALL consoles!
+7. **🛒 Deep Rock Galactic $16.49** — legendary 4-player co-op!
+8. **🛒 DMC5 + Vergil $4.49** — STEAL! Buy for ALL consoles!
+9. **PALWORLD 1.0 — July 10! Only 3 days!** Pre-order!
+10. **AC Black Flag Resynced — July 9! Only 2 days!** Pre-order!
+11. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 2 days!
+12. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+13. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!**
 
 ---
 
