@@ -1,4 +1,0 @@
-2414:@app.post("/api/inventory/stock-out", tags=["Inventory"])
-2447:@app.post("/api/inventory/stock-in", tags=["Inventory"])
-2781:@app.post("/api/stock/in", tags=["Stock"])
-2811:@app.post("/api/stock/out", tags=["Stock"])

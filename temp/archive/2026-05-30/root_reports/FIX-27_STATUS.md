@@ -1,1 +1,0 @@
-FIX-27 | Logging Config | DONE | Added `logging.basicConfig()` to `/root/psvibe-sale-bot/main.py` with `INFO` level, timestamped format, `FileHandler` to `bot_status.log`, and `StreamHandler` to stdout. Inserted after imports, before `if __name__ == "__main__":` guard. Syntax verified with `py_compile`.

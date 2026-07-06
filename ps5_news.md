@@ -1,6 +1,107 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-06 11:30 UTC
+> Last updated: 2026-07-06 17:31 UTC
+
+---
+
+## ⚡ UPDATE (July 6, 2026 - 17:31 UTC) — 🚨 MAJOR MISS! Echoes of Aincrad (SAO) Jul 10! + Saros Free Trial for Premium! + PS Plus 50% Retention Discount!
+
+> **Summary:** Monday evening sweep (6 hours since last update). ONE MAJOR DISCOVERY: **Echoes of Aincrad — Sword Art Online** (Bandai Namco, high-budget SAO action RPG) drops **July 10** — SAME DAY as Palworld 1.0! This was completely missing from the tracker! Also: **Saros** (Housemarque, 87 MC, PS5 exclusive) gets a **2.5-hour free trial on PS Plus Premium** with progress carryover, and Sony is reportedly offering **50% off 3-month PS Plus** to members who attempt to cancel over the all-digital backlash.
+
+### 🎮🔥 Echoes of Aincrad (Sword Art Online) — July 10, 2026! MAJOR MISS! 🔥
+
+- **Developer:** Game Studio Inc. / **Publisher:** Bandai Namco Entertainment
+- **Release: July 10, 2026** on PS5, Xbox Series X|S, and PC (Steam)
+- **Genre:** High-budget action RPG set in the **Sword Art Online** universe — iconic floating castle of Aincrad
+- **Key Features:**
+  - **Custom avatar creation** — first SAO game with full character creator (appearance, gear, combat style)
+  - **Real-time action combat** — dodges, parries, well-timed attacks
+  - **AI partner synergy system** — build dynamic team with AI companion
+  - Expansive world: diverse cities, plains, perilous dungeons
+  - Leveling + stat customization (speed, strength, endurance)
+- **Multiple Editions:** Standard ($59.99), Deluxe, Ultimate ($99.99), Aincrad Edition
+- **Ultimate Edition extras:** Expansion DLC, Starter Pack, early Death Game Mode access, exclusive "Unanswered//butterfly" anime (18-min preview released Jul 2026), digital artbook + soundtrack, exclusive Armor Pack
+- **ESRB T (Teen)** — accessible to younger lounge audiences
+- Sources: Bandai Namco, PushSquare, Gematsu, Radio Times
+- **💡💡💡💡💡 Lounge Impact — MASSIVE for Anime Fans:**
+  - **Sword Art Online is one of the most popular anime IPs globally** — huge crossover with gaming lounge audience
+  - **Custom avatar + real-time action combat** = high spectator appeal + player engagement
+  - **July 10 = DOUBLE MEGA-DROP DAY!** Echoes of Aincrad + Palworld 1.0 on the SAME DAY! This makes July 10 the single biggest release day of the month!
+  - Anime fighting game / action RPG crowd is a dedicated lounge demographic — SAO fans will travel to play
+  - Multiple editions with exclusive anime content drives collector interest
+  - Family-friendly Teen rating = broad audience
+  - **Buy the Standard or Deluxe edition for lounge PS5s** — anime fans will book sessions just for this!
+  - ⭐⭐⭐⭐⭐ lounge value — major anime IP, action RPG spectacle, huge fanbase
+
+### 🎮 Saros (Housemarque) — 2.5-Hour Free Trial on PS Plus Premium 🆕
+
+- **Saros** (Housemarque's 2026 PS5 exclusive, released April 30) — **Metacritic 87/100**
+- **PS Plus Premium** subscribers get a **2.5-hour full game trial** — progress AND trophies carry over to full purchase
+- Full game: $69.99 (no current sale)
+- "Bullet ballet combat" — neon-infused projectile action with Rahul Kohli voicing protagonist Arjun Devraj
+- **💡 Lounge Note:** If PS VIBE has PS Plus Premium on any lounge console, this is a free 2.5-hour sampler for customers. Not critical, but a nice bonus for Premium subscribers. ⭐⭐ lounge value
+
+### 💰 PS Plus 50% Retention Discount — Targeting Cancelers During Disc Backlash 🆕
+
+- Some PlayStation Plus subscribers attempting to cancel are being offered **50% off an additional 3 months** of PS Plus as a retention incentive
+- This appears to be a **targeted promotion** in direct response to mass cancellations over the all-digital/physical disc phaseout
+- Not universally available — part of the customer retention flow for canceling members
+- Source: Gaming Bible, LADBible (Jul 6, 2026)
+- **💡💡 Lounge Impact:**
+  - If PS VIBE's PS Plus subscriptions are managed through a personal account that could appear as a "canceling" member, the 50% discount could save real money
+  - **Strategy:** If a lounge PS Plus sub is up for renewal, try initiating a cancel to see if the 50% retention offer pops up! Worst case, you just don't cancel
+  - This confirms the disc backlash is hitting Sony's subscription revenue — they're fighting to retain members
+  - The 50% offer makes 3-month plans much cheaper than annual — worth exploring before renewing any annual plan
+  - ⭐⭐⭐⭐ lounge value — potential cost savings!
+
+### 📊 Quick Status Check (July 6 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮🔥 Echoes of Aincrad (SAO) | **MAJOR MISS! 🆕🔥🔥🔥** | Jul 10! Same day as Palworld! Anime IP! Custom avatar! |
+| 🎮 Saros PS Plus Premium Trial | **NEW! 🆕** | 2.5h free! Housemarque 87 MC! Progress carries over! |
+| 💰 PS Plus 50% Retention Discount | **NEW! 🆕** | Sony offering 50% off! Disc backlash cancellations trigger it! |
+| 🥊 MARVEL Tōkon Open Beta | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🚨 June PS Plus Essential | **LAST DAY! 🚨** | TODAY is final day! CLAIM: Grounded, Nick Brawl 2, WH40K Darktide! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE TOMORROW! 🔥** | CoD MW3 + For the King II + CrossCode! Jul 7! |
+| 🔥 DOOM TDA Revelations DLC | **TOMORROW! 🔥** | Jul 7! Chain Spear + new campaign! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | v1.03 backend! Still no exact date! |
+| 🌙 Moonlight Peaks | Jul 7! | Vampire cozy farming sim! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | Jul 9! | 2 days! Full remake! |
+| 🏈 EA Sports College Football 27 | Jul 9! | 2 days! MVP+ EA LIVE NOW! |
+| ⚔️ Granblue Fantasy Relink Expansion | Jul 9! | 2 days! Endless Ragnarok! |
+| 🎮🔥 Palworld 1.0 PS5 | **Jul 10! 3 days!** | 25M+ player phenomenon! |
+| 🥊 MARVEL Tōkon: Fighting Souls | Aug 6! | Arc System Works × Marvel! PS5 exclusive! PRE-ORDER! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 8 days! Back 4 Blood $8.99! DMC5 $4.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 10 days away! |
+| 📤 PS Plus July Departures | **Jul 21** | 8 titles! Jackbox 9! |
+| 🪐 Planet Crafter | Jul 21! | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | Jul 23! | Pre-orders live! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | Jul 28! | 22 days! FIRST HALO ON PLAYSTATION! |
+| 🔥 RuneScape Dragonwilds PS Plus | Sep 15! | Day 1 Extra! Cross-play! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Backlash growing! 50% retention offers appearing! |
+| 🔥 GTA 6 Pre-Orders | LIVE NOW! | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 6 - 17:31 UTC):
+1. **🚨🚨🚨 CLAIM JUNE PS PLUS ESSENTIAL TODAY!** Grounded, Nick Brawl 2, WH40K Darktide — LAST FULL DAY! GONE after tomorrow!
+2. **🔥🔥🔥 PRE-ORDER ECHOES OF AINCRAD!** Sword Art Online anime IP! Custom avatar! Jul 10! BUY for lounge PS5s!
+3. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s TOMORROW July 7!** AAA CoD FREE with PS Plus!
+4. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+5. **💸 TRY THE PS PLUS RETENTION DISCOUNT TRICK!** Initiate cancel on a lounge PS Plus sub → 50% off 3 months possible!
+6. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
+7. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel! PS5 exclusive!
+8. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings! Buy for ALL consoles!
+9. **🛒 Deep Rock Galactic $16.49** — legendary 4-player co-op!
+10. **🛒 DMC5 + Vergil $4.49** — STEAL! Buy for ALL consoles!
+11. **PALWORLD 1.0 — July 10! Only 3 days!** Pre-order!
+12. **AC Black Flag Resynced — July 9! Only 2 days!** Pre-order!
+13. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 2 days!
+14. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
+15. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+
+---
+
+## ⚡ UPDATE (July 6, 2026 - 11:30 UTC) — All Clear! CoD Black Ops Still No Date + Digimon Free Update Jul 9
 
 ---
 

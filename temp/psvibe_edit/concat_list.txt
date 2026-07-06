@@ -1,6 +1,0 @@
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/3b159a83-0fdd-4b29-b895-02a641de9f62.mp4'
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/7df7a7a8-5b28-4665-8b5b-63f97b672039.mp4'
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/8ad7e467-cd85-4b78-8d7d-e5e27acedcdc.mp4'
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/a84631e8-5a96-467c-b01c-7b2f0480753b.mp4'
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/d89cfea4-20c6-4d83-adbb-d0e73b506b8a.mp4'
-file '/home/node/.openclaw/workspace/temp/psvibe_edit/e84522e6-b317-4d4f-b618-30c74fd0edcc.mp4'

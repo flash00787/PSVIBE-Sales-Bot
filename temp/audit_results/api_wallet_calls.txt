@@ -1,4 +1,0 @@
-bot/api_client.py:734:async def api_wallet_deduct_async(data: dict) -> dict | None:
-bot/api_client.py:736:    return await _api_call_async("POST", "wallet/deduct", json_data=data)
-bot/api_client.py:739:async def api_wallet_bonus_async(data: dict) -> dict | None:
-bot/api_client.py:741:    return await _api_call_async("POST", "wallet/bonus", json_data=data)
