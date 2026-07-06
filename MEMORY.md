@@ -211,3 +211,15 @@ Kora now manages **9 projects** with full coordination tool support.
 80. **V4 Pro subagent timeout blocks main session** — Subagent model MUST be V4 Flash (stable 500-700ms) with V4 Pro as fallback only. (#80)
 81. **Gateway restart cuts conversation thread** — Always warn Boss before applying changes that need restart. (#81)
 82. **Preventive safeguards for Kora stability** — Installed: session-monitor (1h), cron-health-checker (6h), prune 3d, subagent V4 Flash primary. (#82)
+
+## Memory (2026-07-06)
+
+### Critical Fix — Balance Sheet 102.5M Gap ✅
+- **Problem:** KBZ Bank cash balance excluded all "Advance settled" injects (102.5M) from calculation, while the same amount wasn't in retained earnings either. Auto-balancer was silently inflating retained earnings to compensate.
+- **Fix:** Removed `AND note NOT LIKE '%Advance settled%'` from inject query; added `advance_recovery_reserve` (102.5M) as separate equity line in `finance_routes.py`. Auto-balancer threshold: only adjusts gaps < 50K; gaps ≥ 50K log warning and skip.
+- **Patch fix:** Fixed duplicate `api_finance_balance_sheet` function in `patch_routes.py` (route pointed to empty one, returning null).
+- **Files:** finance_routes.py, patch_routes.py
+- **Verified:** KBZ Bank: 104,293,306 Ks (advance settled 102.5M included ✅) | Retained Earnings: -13,597,554 Ks (not inflated ✅) | Advance Recovery Reserve: 102,500,000 Ks (separate equity ✅) | Residual gap: 152,313 Ks (0.04%) — transparent, left visible.
+
+### New Lessons
+78. **Advance settled injects must be accounted as equity, not cash exclusion** — Removing advance settled records from cash queries hides 102.5M from both cash balance AND retained earnings simultaneously. Create a separate equity line (`advance_recovery_reserve`) and let cash queries include all records. Auto-balancer should warn, not silently fix large gaps. (#78)
