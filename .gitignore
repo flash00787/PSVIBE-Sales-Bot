@@ -49,3 +49,17 @@ find_api_key.js
 ssh_key.js
 test_api_key.js
 mysql_creds.js
+
+# === AUTH/CREDENTIAL FILES ===
+*.bak
+token.json.bak
+.secrets_map.json
+check_auth*.js
+fix_auth*.js
+*auth*.py
+ssh_auth*.js
+test_ssh*.js
+gmail_reauth.py
+interactive_auth.py
+reauth_drive.py
+# IDENTITY.md is fine in git (not sensitive)
