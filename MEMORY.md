@@ -1,4 +1,31 @@
 # 🧠 Kora's Long-Term Memory
+
+## 🚨 RULE #0 — MONGO DB FIRST (2026-07-05 Reinforced)
+
+> **Boss's direct order — NEVER skip this again.**
+
+```
+╔══════════════════════════════════════════════════════════╗
+║  Bug ရှာရင်/Code trace လုပ်ရင်/Endpoint စစ်ရင်:        ║
+║  STEP 1: kora_memory.py trace "<name>"  ← MANDATORY   ║
+║  STEP 2: kora_memory.py search "<query>"               ║
+║  STEP 3: THEN grep/read/journalctl                      ║
+╚══════════════════════════════════════════════════════════╝
+```
+
+**Violation = Boss's trust broken. 850K relations wasted. No excuses.**
+
+## 🤖 Model Configuration (2026-07-05)
+
+| Role | Model | Cost (Input/Output) |
+|------|-------|:---:|
+| **Default (Kora)** | `deepseek/v4-flash` | $0.28/$1.10 |
+| **Coding/Complex** | `deepseek/v4-pro` | $0.55/$2.19 |
+| **Fallback #1** | `google/gemini-2.5-flash` | $0.15/$0.60 |
+| **Fallback #2** | `google/gemini-3.5-flash` | free |
+
+**Rule:** Normal work → Flash (cheap, stable). Coding/analysis → Boss says "use pro" or sub-agents auto-use pro.
+
 ## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)
 
 Kora now manages **9 projects** with full coordination tool support.
@@ -162,4 +189,6 @@ Kora now manages **9 projects** with full coordination tool support.
 2. **VPS Security Hardening 🛡️:** SSH port reverted from 80/443 back to 22 (ports 80/443 needed by Caddy). UFW configured with 12 common attack ports blocked. fail2ban expanded to 4 jails (sshd, caddy, nginx, custom). HSTS + security headers active via Caddy. All services validated healthy post-hardening.
 
 ### New Lessons
-75. **UFW rule ordering is critical for Docker** — Docker inserts ACCEPT rules into iptables FORWARD chain, but UFW user rules (DENY) take precedence in INPUT chain. Never put DENY/UFS rules on ports that Docker containers need to reach on the host (e.g., Caddy → host:8000). If port security is needed, use `ufw allow from 172.17.0.0/16 to any port 8000` instead of DENY. (#75)
+76. **Gateway kill loop = model timeout trigger** — When primary model API hangs (DeepSeek V4 Pro 180s timeout), OpenClaw health monitor sends SIGTERM → restart → next cron job hits same timeout → another SIGTERM. Fix: switch default model to stable alternative (V4 Flash). Always check provider stability before blaming infrastructure. (#76)
+
+77. **MongoDB Rule #0 reinforced by Boss** — Bug hunting / code tracing / endpoint debugging → `kora_memory.py trace` BEFORE any grep or file read. No exceptions. Violation count will be tracked. (#77)
