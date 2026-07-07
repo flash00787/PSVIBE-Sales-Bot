@@ -94,18 +94,11 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-72. **Pydantic Optional[int] rejects empty string ""** — Before the function body even runs, Pydantic type coercion fails on empty strings for Optional[int] fields. Must add `@field_validator(mode="before")` to convert `""` → `None` for all Optional numeric/barcode fields. (#72)
-73. **Logout: router.push + 401 interceptor = race condition** — When logout clears token and navigates, mounted pages still fire API calls → 401 → interceptor redirect → clash with in-progress navigation. Solution: interceptor skips 401 on /login path; logout uses full `window.location.href` for clean page reload. (#73)
-74. **Old transactions need manual backfill after fix deployment** — Transactions created before a fix is deployed won't have the corrected data. Always check and backfill historical records after fixing payment/balance logic. (#74)
-75. **GitHub deploy key = SSH public key in repo settings** — When git push fails with "Permission denied (publickey)", generate/add an SSH public key as a GitHub Deploy Key (Settings → Deploy keys → Add). One key works for both VPS and workspace push. Use separate GitHub branches for different codebases (e.g., `kora-workspace` vs `master`). (#75)
-76. **Gemini 2 Flash model not yet available** — gemini-2.0-flash-exp, gemini-2.5-flash-preview-04-17 not found. Use gemini-2.0-flash-lite for fallback. (#76)
-77. **MongoDB first: use kora_memory.py trace/grep BEFORE any code read** — Boss caught Kora skipping MongoDB and investigating files directly multiple times. 850K relations wasted. Rule #0. (#77)
-78. **Advance settled injects must be accounted as equity** — Removing advance settled records from cash queries hides 102.5M from both cash and retained earnings. Use separate equity line. (#78)
-79. **Session DB full causes response delays** — When sessions DB reaches 90% maxDiskBytes, write lock contention occurs. Monitor at 80%. (#79)
-80. **V4 Pro subagent timeout blocks main session** — Subagent model MUST be V4 Flash (stable). (#80)
-81. **Gateway restart cuts conversation thread** — Warn Boss before applying changes needing restart. (#81)
-82. **Preventive safeguards for Kora stability** — Installed session-monitor, cron-health-checker, prune 3d. (#82)
-83. **CRITICAL: Never commit token/secret/credential files to git** — Workspace repo had `token.json`, `gmail_token.json`, `secret.json`, `secrets_map.json` tracked and pushed to GitHub. Always check `git ls-files | grep -i token\|secret\|key\|cred` before push. Add ALL sensitive patterns to `.gitignore` AND install a pre-commit hook. Repo was private, but still exposed. HARD LESSON. (#83)
+96. **SESSION_TOKEN must be static** — Random session token names per restart break all existing cookies. Use a fixed name and persistent file storage. (#96)
+97. **Sessions must persist to disk** — In-memory SESSION_STORE is lost on every server restart. JSON file preserves sessions across restarts. (#97)
+98. **Auth check must come after public path handlers** — Login page, static files, and QR codes must be served BEFORE auth check, otherwise infinite redirect loops occur. (#98)
+99. **Cloudflare caches even dynamic pages** — Without explicit `no-store` headers, Cloudflare caches error pages. Always set `Cache-Control: no-store, no-cache` on auth-required pages. (#99)
+100. **Double-click protection on form buttons** — Laggy connections cause duplicate form submissions. Use `onclick="this.disabled=true"` on Create/Submit buttons. (#100)
 
 *(Trimmed: keeping only 3 most recent lessons)*
 
