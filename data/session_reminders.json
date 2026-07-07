@@ -1,24 +1,13 @@
 {
-  "C-01|1003686032747": {
-    "cid": "C-01",
+  "C-04|1003686032747": {
+    "cid": "C-04",
     "chat_id": -1003686032747,
-    "member_id": "shine",
-    "planned_mins": 60,
-    "end_t": "14:48",
-    "end_dt_iso": "2026-07-07T14:48:00+06:30",
+    "member_id": "Kyaw Soe Lwin",
+    "planned_mins": 120,
+    "end_t": "20:24",
+    "end_dt_iso": "2026-07-07T20:24:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-07T07:18:39.596974+00:00"
-  },
-  "C-09|1003686032747": {
-    "cid": "C-09",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "15:05",
-    "end_dt_iso": "2026-07-07T15:05:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-07T07:35:18.821660+00:00"
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-07T11:54:32.330790+00:00"
   }
 }
