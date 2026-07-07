@@ -1,9 +1,39 @@
 {
-  "checked_at": "2026-07-06T20:52:31.408289+00:00",
+  "checked_at": "2026-07-07T01:41:36.075798+00:00",
   "total_unread": 30,
   "nova_found": false,
   "nova_emails": [],
   "important_emails": [
+    {
+      "id": "19f3935d2e1db5b0",
+      "threadId": "19f3935d2e1db5b0",
+      "from": "xAI <noreply@x.ai>",
+      "subject": "Introducing the Voice Agent Builder",
+      "date": "Mon, 06 Jul 2026 20:54:16 +0000 (UTC)",
+      "snippet": "Create a personalized voice agent in under 2 minutes. Free phone number included. Introducing the Voice Agent Builder Hi Aung Chan, Voice Agent Builder is now live in beta: a no-code platform for",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f3935372f735fc",
+      "threadId": "19f3935372f735fc",
+      "from": "GitGuardian Team <support@gitguardian.com>",
+      "subject": "flash00787/PSVIBE-Sales-Bot - 1 internal incident detected",
+      "date": "Mon, 06 Jul 2026 20:53:35 +0000 (UTC)",
+      "snippet": "1 internal secret incident detected! Telegram Bot Token 2026-07-06 08:53:19 PM (UTC) See on GitGuardian flash00787/​PSVIBE-Sales-B… (commit 07fa4e9) See on GitHub GitGuardian is an automated secrets",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f393408c9899cc",
+      "threadId": "19f393408c9899cc",
+      "from": "GitGuardian Team <support@gitguardian.com>",
+      "subject": "flash00787/PSVIBE-Sales-Bot - 88 internal incidents detected",
+      "date": "Mon, 06 Jul 2026 20:52:16 +0000 (UTC)",
+      "snippet": "88 internal secret incidents detected! Google Cloud OAuth2 Access Token 2026-06-17 01:37:49 AM (UTC) See on GitGuardian flash00787/​PSVIBE-Sales-B… (commit e784c8d) See on GitHub flash00787/​PSVIBE-",
+      "unread": true,
+      "important": true
+    },
     {
       "id": "19f39314863d78ba",
       "threadId": "19f39314863d78ba",
@@ -66,6 +96,36 @@
     }
   ],
   "all_emails": [
+    {
+      "id": "19f3935d2e1db5b0",
+      "threadId": "19f3935d2e1db5b0",
+      "from": "xAI <noreply@x.ai>",
+      "subject": "Introducing the Voice Agent Builder",
+      "date": "Mon, 06 Jul 2026 20:54:16 +0000 (UTC)",
+      "snippet": "Create a personalized voice agent in under 2 minutes. Free phone number included. Introducing the Voice Agent Builder Hi Aung Chan, Voice Agent Builder is now live in beta: a no-code platform for",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f3935372f735fc",
+      "threadId": "19f3935372f735fc",
+      "from": "GitGuardian Team <support@gitguardian.com>",
+      "subject": "flash00787/PSVIBE-Sales-Bot - 1 internal incident detected",
+      "date": "Mon, 06 Jul 2026 20:53:35 +0000 (UTC)",
+      "snippet": "1 internal secret incident detected! Telegram Bot Token 2026-07-06 08:53:19 PM (UTC) See on GitGuardian flash00787/​PSVIBE-Sales-B… (commit 07fa4e9) See on GitHub GitGuardian is an automated secrets",
+      "unread": true,
+      "important": true
+    },
+    {
+      "id": "19f393408c9899cc",
+      "threadId": "19f393408c9899cc",
+      "from": "GitGuardian Team <support@gitguardian.com>",
+      "subject": "flash00787/PSVIBE-Sales-Bot - 88 internal incidents detected",
+      "date": "Mon, 06 Jul 2026 20:52:16 +0000 (UTC)",
+      "snippet": "88 internal secret incidents detected! Google Cloud OAuth2 Access Token 2026-06-17 01:37:49 AM (UTC) See on GitGuardian flash00787/​PSVIBE-Sales-B… (commit e784c8d) See on GitHub flash00787/​PSVIBE-",
+      "unread": true,
+      "important": true
+    },
     {
       "id": "19f3931651788338",
       "threadId": "19f3931651788338",
@@ -313,33 +373,6 @@
       "subject": "[New post] Smart Driver Manager 5.2.451 Free Download",
       "date": "Fri, 21 Aug 2020 10:01:56 +0000",
       "snippet": "Muhammad posted: &quot;Download Smart Driver Manager 5.2.451 free latest full version standalone one-click download for Windows 32-bit and 64-bit. Smart Driver Manager 2020 v5.2 is a professional",
-      "unread": true
-    },
-    {
-      "id": "1740ad2f1b9c8bf4",
-      "threadId": "1740ad2f1b9c8bf4",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] Wise Care 365 Pro 5.5.6 Free Download",
-      "date": "Thu, 20 Aug 2020 07:43:50 +0000",
-      "snippet": "Muhammad posted: &quot;Download Wise Care 365 Pro 5.5.6 free latest full version one-click standalone offline setup for Windows 32-bit and 64-bit. Wise Care 365 Pro 2020 v5.5.6 is a professional",
-      "unread": true
-    },
-    {
-      "id": "173df45d5abeb2cf",
-      "threadId": "173df45d5abeb2cf",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] DAEMON Tools Pro 2020 Free Download",
-      "date": "Tue, 11 Aug 2020 20:46:02 +0000",
-      "snippet": "Muhammad posted: &quot;Download DAEMON Tools Pro 2020 v8.3 free latest full version standalone one-click installer for Windows 32-bit and 64-bit. DAEMON Tools Pro 8.3 free download is a powerful",
-      "unread": true
-    },
-    {
-      "id": "173c394aa38b398d",
-      "threadId": "173c394aa38b398d",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] ZookaWare Pro 2020 Free Download",
-      "date": "Thu, 6 Aug 2020 11:42:46 +0000",
-      "snippet": "Muhammad posted: &quot;Download ZookaWare Pro 2020 v5.2 free latest full version standalone one-click installation setup for Windows 32-bit and 64-bit. ZookaWare Pro 5.2 is a professional application",
       "unread": true
     }
   ]
