@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-06 17:31 UTC
+> Last updated: 2026-07-07 05:30 UTC
 
 ---
 
@@ -2626,3 +2626,98 @@ The tracker previously noted August 18 departures partially. Full confirmed list
 
 ### 🛒 Prime Day 2026 — CONFIRMED PS5 Game Deals (June 23-26)
 - Spider-Man 2 $29.99, God of War Ragnarök $32.43, NBA 2K26 $19.91 (all-time low!), EA Sports FC 26 $29.83, Astro Bot $39.00, and more
+
+---
+
+## ⚡ UPDATE (July 7, 2026 - 05:30 UTC) — ⭐ Dune: Awakening PS5 Sep 22 (NEW!) + 🔥 Microsoft 3200 Layoffs, Studios Leaving Xbox! + Palworld 1.0 Launch Times!
+
+> **Summary:** Tuesday morning sweep (12 hours since last update). **⭐ Dune: Awakening** — the survival MMO on Arrakis — confirmed for **Sept 22 on PS5** with new single-player mode! Pre-orders live! **🔥 INDUSTRY SHATTERING — Microsoft lays off 3200, 4+ studios leave Xbox!** Double Fine & Compulsion go independent (keep all games!), Ninja Theory & Undead Labs find new owners, Arkane Lyon negotiating exit, ZeniMax pivots to Fallout/TES/Doom/Quake/Wolfenstein. **Palworld 1.0** gets launch time confirmed (Jul 10 ~4:30am BST).
+
+### ⭐ Dune: Awakening — September 22, 2026 on PS5! (NEW DISCOVERY!)
+
+- **Developer:** Funcom / **Publisher:** Sony Interactive Entertainment (digital), Bandai Namco (EU retail)
+- **Release: September 22, 2026** on PS5 — already available on PC since 2025
+- **Genre:** Open-world survival MMO set on the planet **Arrakis** from Frank Herbert's Dune universe
+- **Premise:** Alternate timeline — what if Paul Atreides was never born? Fight for control between House Atreides and House Harkonnen
+- **⭐ Single-Player Mode (PS5 EXCLUSIVE FEATURE!):** The biggest new addition — not available on PC! Full single-player campaign with simulated faction competition, sandworm encounters, and difficulty customization (including disabling sandworms entirely)
+- **PS5 Technical Specs:**
+  - Base PS5: Performance Mode 60fps (with frame-gen) at upscaled 4K
+  - PS5 Pro: Performance Mode 60fps (NO frame-gen) at upscaled 4K — smooth native-feel performance
+  - Quality Mode: 30fps on both
+- **Physical Edition CONFIRMED!** — Bandai Namco handling EU/AUS/NZ retail, Solutions 2 GO for Americas
+  - Timed perfectly as a holiday gift alongside Dune: Part 3 (December 2026 theatrical release)
+- **Accessible survival design** — easier onboarding than typical survival games, strong narrative guidance
+- Pre-orders and wishlists live on PS Store NOW! Check PS Store → Dune: Awakening
+- Source: Official PlayStation Blog (Jul 2, 2026), Funcom
+- **💡💡💡 Lounge Impact — SIGNIFICANT:**
+  - Dune is one of the biggest sci-fi IPs in the world — the Villeneuve films were massive cultural events
+  - **Physical edition = buy for lounge disc library!** One of the last major physical releases before Jan 2028
+  - Single-player mode means lounge customers can enjoy without needing to manage MMO accounts
+  - Spectator value: sandworm encounters, base building, Arrakis desert visuals are BEAUTIFUL to watch
+  - PS5 Pro enhanced — showcase for Pro consoles in the lounge
+  - September 22 is AFTER the late-summer lull — perfect timing for booking push
+  - Dune: Part 3 in December = organic marketing hook: "Play Dune before the movie!"
+  - ⭐⭐⭐⭐ lounge value — major IP, physical edition, single-player mode, stunning visuals
+
+### 🔥🔥🔥 INDUSTRY: Microsoft Lays Off 3200 — 4+ Studios Leaving Xbox! (Jul 6, 2026)
+
+- **Microsoft announced ~20% workforce reduction (3200 jobs)** in the "most significant Xbox restructuring in history"
+- **Four studios leave Xbox ownership:**
+  - **Double Fine Productions** (Psychonauts 2, Keeper) → **Independent again!** Retains ALL game IP! After 7 years with Xbox
+  - **Compulsion Games** (South of Midnight, We Happy Few) → **Independent again!** Retains all 3 games! After 9 years since acquisition
+  - **Ninja Theory** (Hellblade series) → Under new ownership (TBD)
+  - **Undead Labs** (State of Decay) → Under new ownership (TBD)
+- **Arkane Lyon** (Deathloop, Dishonored) — **negotiating to leave Xbox**
+- **ZeniMax/Bethesda facing "significant overhaul"** — no studio closures but heavy cuts and refocus on proven IP: **Fallout, The Elder Scrolls, Doom, Quake, Wolfenstein**
+  - Smaller IPs like **Prey, Deathloop, Dishonored** likely abandoned
+  - Bethesda Game Studios: more Starfield DLC + TES VI pressure + possible Fallout 3 remaster
+  - id Software: reportedly facing cuts despite just delivering DOOM TDA Revelations DLC — Quake revival possible
+  - MachineGames: reportedly working on new Wolfenstein (potential TV show tie-in)
+- **Asha Sharma (Xbox CEO):** "It is neither possible nor desirable to own every great independent studio... in a typical year, we lost 64 cents for every dollar we invested"
+- Sources: Eurogamer (Jul 6, 2026), Bloomberg (Schreier), Microsoft internal memo
+- **💡💡 Lounge Context — INDIRECT BUT IMPORTANT:**
+  - Double Fine and Compulsion going independent means their future games **could come to PS5**! Previously Xbox-exclusive
+  - Ninja Theory (Hellblade) potentially freed from Xbox exclusivity — Hellblade 2 on PS5 would be HUGE for lounges
+  - Arkane Lyon leaving Xbox → future Arkane games could go multi-platform
+  - The Xbox contraction means **fewer locked-down exclusives** → more games potentially coming to PS5
+  - ZeniMax focusing on TES VI + Fallout = likely stays Xbox/PC but quality focus is welcome
+  - ⭐⭐⭐⭐ industry relevance — impacts future PS5 game availability
+
+### 🎮 Palworld 1.0 — Launch Times Confirmed!
+
+- **Exact launch:** 12:30pm JST, **Friday July 10, 2026**
+- **Global time conversion:**
+  - July 9: 8:30pm PT / 11:30pm ET
+  - **July 10: 4:30am BST / 5:30am CEST / 1:30pm AEST**
+  - Myanmar Time (MMT): **July 10 ~10:00am**
+- **Save files:** Continue existing saves OR start fresh (devs recommend fresh start for best 1.0 experience)
+- **1.0 additions:** Overhauled raids, new base building shapes/items, completely revamped story, new locations, reworked Tower Bosses, Wildlife Sanctuary ecosystems
+- Source: Pocketpair official, Eurogamer (Jul 6)
+- **💡 Lounge Note:** Install on lounge consoles BEFORE opening July 10 so it's ready! Save wipe optional.
+
+### 🎮 PS Store June 2026 Top Downloads (Jul 3)
+
+- PlayStation Blog published June 2026's top downloaded games on PS Store
+- Check blog for trending lounge games: https://blog.playstation.com/2026/07/03/playstation-store-june-2026s-top-downloads/
+
+### 📊 Quick Status Check — TODAY is the Big Day! (July 7, 2026 - 05:30 UTC):
+
+| ⚡ TODAY! | What's Happening | Lounge Action |
+|-----------|-----------------|---------------|
+| 🔥🔥🔥 **PS Plus Essential July GOES LIVE!** | CoD MW3 + For the King II + CrossCode | **CLAIM on ALL lounge PS5s TODAY!** AAA CoD FREE! |
+| 🔥 **DOOM TDA Revelations DLC** | New campaign + Chain Spear! | **DOWNLOAD if owning DOOM TDA** |
+| 🚨 **June PS Plus EXPIRES!** | Grounded, Nick Brawl 2, WH40K Darktide GONE! | **CLAIM ASAP if not done!** LAST HOURS! |
+| 🌙 **Moonlight Peaks** | Vampire cozy farming sim launches! | Consider for casual lounge console |
+
+### 🚨 Priority Lounge Actions (July 7 - 05:30 UTC):
+1. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s RIGHT NOW!** PS Plus Essential July is LIVE! AAA CoD FREE!
+2. **🚨 CHECK June PS Plus claim status** — Grounded, Nick Brawl 2, WH40K Darktide are GONE if not!
+3. **🔥🔥 DOWNLOAD DOOM TDA Revelations DLC** if lounge has DOOM: The Dark Ages!
+4. **⭐⭐ PRE-ORDER Dune: Awakening!** Physical edition! Sep 22! Single-player mode!
+5. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
+6. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+7. **PALWORLD 1.0 — July 10!** Install before opening! Save wipe optional but recommended!
+8. **PRE-ORDER Echoes of Aincrad (SAO)** — Jul 10! Anime IP lounge gold!
+9. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings ends Jul 15! Buy for ALL!
+10. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! First Halo on PlayStation!
+11. **Monitor Microsoft/Xbox studio shakeup** — more PS5 games likely from freed studios!
