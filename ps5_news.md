@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-07 05:30 UTC
+> Last updated: 2026-07-07 17:31 UTC
 
 ---
 
@@ -98,6 +98,140 @@
 13. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 2 days!
 14. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
 15. **💰 DON'T LET PS PLUS SUBSCRIPTIONS LAPSE!** New members pay higher rates!
+
+---
+
+## ⚡ UPDATE (July 7, 2026 - 17:31 UTC) — Palworld 1.0 Exact Release Time Confirmed! + 'Don't Kill the Disc' Petition 115K! + PS Store June Charts Revealed! + PlayStation's First Post-Disc Tweet Met With Fury!
+
+> **Summary:** Tuesday evening sweep (12 hours since last update). **TODAY IS THE DAY!** July 7 triple-threat in full effect: PS Plus Essential July is LIVE (CoD MW3!), DOOM TDA Revelations DLC drops, and June Essential expires TONIGHT. Fresh news: **Palworld 1.0 exact launch time confirmed** — 12:30pm JST (10:00am MMT on July 10)! **'Don't Kill the Disc' petition hits 115,000+ signatures!** **PlayStation's first tweet since disc announcement** — a fight stick promo — gets absolutely flooded with backlash! **PS Store June 2026 top downloads revealed** — Escape the Backrooms dominates! **Blood of Dawnwalker** (Rebel Wolves/Bandai Namco, 2027) detailed on PS Blog today!
+
+### 🎮🔥 PALWORLD 1.0 — EXACT RELEASE TIME CONFIRMED! July 10 at 12:30pm JST / 10:00am MMT! 🔥
+
+- **Developer Pocketpair** narrowed release timing: **12:30pm Japan Time on July 10**
+- **Global release times:** July 9 at 8:30pm PT / 11:30pm ET / July 10 at 4:30am UK — **Myanmar: 10:00am MMT on July 10!**
+- **27-page patch notes** promised by communications director "Bucky" — massive changes and additions
+- **Data wipe NOT required but STRONGLY RECOMMENDED** — "due to the large number of changes to the game, including overhauls to mechanics and new content, we believe that starting a new character will give you the best experience"
+- Nintendo/Pokémon Company patent lawsuit still pending — judgment expected later this year
+- Sources: IGN (Jul 6), Discord/Pocketpair
+- **💡💡💡💡💡 Lounge Impact — ESCALATED:**
+  - **Exact timing means lounge can plan around it!** 10:00am MMT = perfect opening time on July 10
+  - **DATA WIPE RECOMMENDED** — existing PS VIBE save files for Palworld will work but the devs STRONGLY suggest fresh starts. If lounge has active Palworld saves, players may want to finish up before July 10 or be okay starting over
+  - **27 pages of patch notes** = essentially a new game. Massive marketing opportunity: "Come experience Palworld 1.0 on launch day at PS VIBE!"
+  - July 10 = **DOUBLE MEGA-DROP: Palworld 1.0 + Echoes of Aincrad (SAO)** — the biggest day of July!
+
+### 📰 'Don't Kill the Disc' Petition — 115,000+ Signatures! Disc Backlash ESCALATING! 🆕
+
+- **PNP Games** (Canadian independent retailer) launched a **change.org** petition titled "Don't Kill the Disc" — **115,471 signatures at time of reporting**
+- Petition highlights: ownership, preservation, thousands of industry jobs at risk (retailers, distributors, manufacturing, pre-owned market)
+- **Sony's first post-announcement tweet** on July 7 promoted a **FlexStrike wireless fight stick** — replies OVERWHELMINGLY flooded with disc backlash, mockery, demands for Sony to address the controversy
+- IGN analysis: Sony share price went UP after the announcement (market favors it), and analyst Robin Zhu (Bernstein) told Financial Times: "If gamers and preservationists had bought more physical games, Sony wouldn't have seen the digital sales ratios that justify this decision."
+- Sony still hasn't addressed the backlash directly — every future tweet may be overwhelmed by disc complaints
+- Sources: IGN (Jul 6-7), Change.org, Financial Times, X/Twitter
+- **💡💡💡 Lounge Impact — REINFORCED:**
+  - The backlash is getting LOUDER, not quieter. Sony's silence + first tweet disaster = PR nightmare
+  - PS VIBE's physical disc library becomes an even stronger unique selling proposition
+  - The fight stick tweet disaster is itself newsworthy — shows Sony is tone-deaf on this issue
+  - ⭐⭐⭐⭐ lounge value — reinforces disc library strategy
+
+### 📊 PS Store June 2026 Top Downloads — Escape the Backrooms #1! (NEW)
+
+Official PlayStation Blog (Jul 3) revealed June 2026's top PS5 downloads:
+
+**PS5 Top 5 (US/Canada):**
+1. 🪑 **Escape the Backrooms** (INDIE BACKROOMS HORROR #1!)
+2. 🕵️ **007 First Light** (James Bond! Io Interactive!)
+3. 🥊 **UFC 6**
+4. ⚽ **EA Sports FC 26**
+5. 🏀 **NBA 2K26**
+
+**PS5 Top 5 (EU):**
+1. 🪑 **Escape the Backrooms**
+2. 🕵️ **007 First Light**
+3. ⚽ **EA Sports FC 26**
+4. 🥊 **UFC 6**
+5. 🏀 **NBA 2K26**
+
+**Notable entries:** Minecraft (#6 US/#6 EU), GTA V (#7 US/#7 EU), Gothic 1 Remake (#8 EU!), LEGO Batman: Legacy of the Dark Knight (#10 US/#11 EU), Resident Evil 4 (#9 EU), Forza Horizon 5 (#11 US/#12 EU)
+
+**PS VR2:** I Am Cat #1 (US+EU!), Beat Saber #2, Job Simulator #4
+
+**Free to Play:** Fortnite #1 US, Goals #1 EU; Roblox #2 both regions
+
+- Sources: PlayStation Blog (Jul 3, 2026)
+- **💡💡 Lounge Impact:**
+  - **Escape the Backrooms at #1** in BOTH US and EU confirms the backrooms/liminal space horror trend is MASSIVE right now — viral content generator for lounge streams
+  - 007 First Light at #2 shows Io Interactive's Bond game is a genuine hit
+  - UFC 6 + EA FC 26 + NBA 2K26 = sports trifecta dominant as usual
+  - **If PS VIBE doesn't have Escape the Backrooms, BUY IT** — it's the hottest game right now
+  - ⭐⭐⭐⭐ lounge value — charts confirm what customers actually want to play
+
+### 🎮 Blood of Dawnwalker — Rebel Wolves × Bandai Namco! New Details on PS Blog Today! (NEW FUTURE TRACKING)
+
+- **Developer:** Rebel Wolves (ex-CD Projekt Red devs — Witcher 3 veterans)
+- **Publisher:** Bandai Namco Entertainment Europe
+- **Platforms:** PS5, Xbox Series X|S, PC — **targeting 2027**
+- **New details today (Jul 7):** Unique **time-driven quest system** — the game's prologue takes place over a single day divided into 8 time segments. Player choices move time forward, and you CANNOT do everything — some events are mutually exclusive on a single playthrough
+- Full narrative sandbox by Rebel Wolves, Coen (protagonist) awakened as half-vampire after the "Blood Mass"
+- A 30-day in-game countdown adds urgency to the main quest
+- Not tracked before — early preview level info
+- Sources: PS Blog (Jul 7, 2026)
+- **💡 Lounge Note:** Very early (2027 release), but from EX-CD PROJEKT RED devs. Worth tracking for future. ⭐⭐ preliminary lounge value.
+
+### 🏴‍☠️ AC Black Flag Resynced — Steam Pre-orders Beat Skull & Bones' LIFETIME Sales! 🆕
+
+- Analyst claims Steam pre-orders for AC Black Flag Resynced have already surpassed **Skull & Bones' entire lifetime sales** — a brutal comparison given Ubisoft spent years on the latter
+- Global release/preload times confirmed: launches **July 9** (Wednesday)
+- Source: IGN (Jul 7, 2026)
+- **💡💡 Lounge Note:** Not directly impactful on its own but confirms the INSANE hype for this remake. The pre-order data shows it's one of the most anticipated games of the year. ⭐⭐⭐ lounge value.
+
+### 📊 Quick Status Refresh (July 7 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮🔥 **Palworld 1.0 EXACT TIME** | **CONFIRMED! 🆕** | 12:30pm JST Jul 10 = **10:00am MMT!** 27-page patch notes! Devs RECOMMEND wiping saves! |
+| 📰 **'Don't Kill the Disc' Petition** | **115K+ SIGNS 🆕** | PNP Games started it! Sony's first tweet = fight stick promo → FLOODED with backlash! |
+| 📊 **PS Store June Top Downloads** | **REVEALED 🆕** | Escape the Backrooms #1 US+EU! 007 First Light #2! UFC 6, EA FC 26, NBA 2K26! |
+| 🎮 **Blood of Dawnwalker** | **NEW FUTURE 🆕** | Rebel Wolves (ex-CDPR) × Bandai Namco! Time-driven quest system! 2027! |
+| 🏴‍☠️ **AC Black Flag Resynced** | **HYPE 🆕** | Steam pre-orders > Skull & Bones LIFETIME sales! Jul 9! |
+| 🔥 **PS Plus Essential July** | **LIVE TODAY! 🔥** | **CoD MW3 FREE!** For the King II + CrossCode! CLAIM NOW on ALL lounge PS5s! |
+| 🔥 **DOOM TDA Revelations DLC** | **LIVE TODAY! 🔥** | Chain Spear + new campaign! Jul 7! |
+| 🚨 **June PS Plus Essential** | **EXPIRES TONIGHT! 🚨** | Grounded, Nick Brawl 2, WH40K Darktide — CLAIM NOW if not done! |
+| 🎮🔥 **Echoes of Aincrad (SAO)** | **Jul 10! 3 days!** | Bandai Namco! Custom avatar! MASSIVE anime IP! Buy for lounge! |
+| 🌙 **Moonlight Peaks** | **LIVE TODAY!** | Vampire cozy farming sim! Jul 7! |
+| 🔥🔥 **CoD Black Ops 1 & 2 PS5** | **IMMINENT!** | v1.03 backend! Still no exact date! Monitor daily! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | **Jul 9! 2 days!** | Pre-orders beating S&B lifetime! |
+| 🏈 EA Sports College Football 27 | **Jul 9! 2 days!** | Major sports draw! |
+| ⚔️ Granblue Fantasy Relink Expansion | **Jul 9! 2 days!** | Endless Ragnarok! |
+| 🎮 Digimon Story: Time Stranger Free Update | **Jul 9! 2 days!** | Minor free update! |
+| 🥊 MARVEL Tōkon Open Beta | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 8 days! Back 4 Blood $8.99! DMC5 $4.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 9 days away! |
+| 🐭 Moss: The Forgotten Relic | **Jul 16!** | VR games now non-VR! Family-friendly! |
+| 📤 PS Plus July Departures | **Jul 21** | 12 titles! Jackbox 9! |
+| 🪐 Planet Crafter | **Jul 21!** | Terraforming co-op! |
+| 🥋 Avatar Legends Fighting Game | **Jul 23!** | Pre-orders live! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | **Jul 28!** | 21 days! FIRST HALO ON PLAYSTATION! |
+| 🥊 MARVEL Tōkon: Fighting Souls | **Aug 6!** | ArcSys × Marvel! PS5 exclusive! PRE-ORDER! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Petition 115K+! Backlash escalating! |
+| 🔥 GTA 6 Pre-Orders | **LIVE NOW!** | $79.99 Standard / $99.99 Ultimate |
+
+### 🚨 Priority Lounge Actions (July 7 - 17:31 UTC):
+1. **🚨🚨🚨 CLAIM JUNE PS PLUS ESSENTIAL NOW!** Grounded, Nick Brawl 2, WH40K Darktide — **EXPIRES TONIGHT!** Last few hours!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s TODAY!** July PS Plus Essential is LIVE! AAA blockbuster FREE with PS Plus!
+3. **🔥🔥 CLAIM DOOM TDA Revelations DLC!** FREE if you own DOOM TDA! Chain Spear weapon! New campaign!
+4. **🛒 BUY Escape the Backrooms** — #1 PS Store download June 2026! Hottest game right now!
+5. **🎮 PALWORLD 1.0 — July 10 at 10:00am MMT!** 27-page patch notes! Dev recommends fresh saves! Plan launch event!
+6. **🎮🔥 PRE-ORDER ECHOES OF AINCRAD (SAO)!** Same day as Palworld! July 10! Anime IP = MASSIVE lounge draw!
+7. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+8. **🏴‍☠️ AC Black Flag Resynced — July 9! 2 days!** Pre-order!
+9. **🏈 Pre-order EA Sports College Football 27** — Jul 9! 2 days!
+10. **💰 TRY THE PS PLUS RETENTION DISCOUNT TRICK!** Initiate cancel on lounge PS Plus → 50% off 3 months possible!
+11. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
+12. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel!
+13. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — Buy for ALL consoles!
+14. **🛒 Deep Rock Galactic Ultimate $16.49** — legendary 4-player co-op!
+15. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW!
 
 ---
 

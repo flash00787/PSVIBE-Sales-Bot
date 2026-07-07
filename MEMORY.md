@@ -220,3 +220,61 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### New Lessons
 78. **Advance settled injects must be accounted as equity, not cash exclusion** — Removing advance settled records from cash queries hides 102.5M from both cash balance AND retained earnings simultaneously. Create a separate equity line (`advance_recovery_reserve`) and let cash queries include all records. Auto-balancer should warn, not silently fix large gaps. (#78)
+
+---
+
+## Memory (2026-07-07) — Major VPN System Build Day 🔥
+
+### AKT Clothing Shop — SPA Route & Cloudflare Fixes 🔧
+- **SPA Route Order Bug 🐛→✅:** Generic catch-all `@app.get('/{full_path:path}')` registered BEFORE AKT-specific route. Fixed: moved AKT catch-all first. FastAPI matches first-registered route. (#85)
+- **Product Image URL Cloudflare Fix 🐛→✅:** Upload endpoint returned `/uploads/products/{filename}` but Cloudflare path prefix required `/akt-clothing-shop/uploads/products/{filename}`. (#86)
+- **Cloudflare DNS Records Issue (⚠️ Ongoing):** `ps-vibe.com` stopped resolving — Cloudflare tunnel remote config version 10 lost route.
+
+### Outline VPN → Xray REALITY Migration (Sessions 2-7)
+- **Port 443 redirect (Outline):** iptables DNAT to Shadowsocks port 995 as initial DPI bypass.
+- **Xray REALITY installed (v26.3.27):** VLESS+REALITY protocol, port 443, target `8.8.8.8:443`/`dns.google`. Replaced Outline as primary VPN. (#90)
+- **Xray Web UI built:** Integrated into `outline-web` Python server (port 9356) — Xray key CRUD + QR code generation + expiry management.
+- **7 fix sessions:** Fixed mobile session loss (persistent file-based sessions), Cloudflare cache poisoning, white-on-white light theme CSS bug, mobile button double-submit, backslash escape breakage from binary replacement.
+- **Final state:** 12 active VPN keys (11 Xray + 1 Outline), 4-tab web UI (Dashboard/Xray/Outline/Analytics), persistent sessions across restarts.
+
+### New Lessons (#85-#108)
+85. FastAPI route ORDER matters — generic catch-alls after specific path handlers
+86. Cloudflare Tunnel proxies HTTP/HTTPS only — VPN IP never hidden
+87. iptables DNAT works when Docker owns a port with no service listening
+88. Ubuntu 24.04+: `netfilter-persistent`, not `iptables-persistent`
+89. iptables comment syntax: `-m comment --comment "label"` BEFORE jump target
+90. REALITY target must be simple TLS endpoint (e.g., `8.8.8.8`)
+91. Xray, Outline DNAT, Docker Caddy cannot share port 443
+92. QR codes in HTML: `data:image/png;base64` + `|safe` filter
+93. Xray SIGHUP reload for config changes
+94. QR image endpoint must be auth-free for mobile cookie consistency
+95. Mobile POST→redirect fragility — use GET links instead
+96. SESSION_TOKEN must be static, not random per restart
+97. Sessions must persist to disk (JSON file)
+98. Auth check must come after public path handlers
+99. Cloudflare caches even dynamic pages — set `no-store` headers
+100. Double-click protection on form buttons
+101. Single invalid CSS property kills entire rule block (silent)
+102. Cache-busting timestamp must be request-time, not boot-time
+103. Light theme needs solid hardcoded colors, not variable stacks
+104. `this.disabled=true` on submit buttons blocks mobile form submission
+105. Binary replacement of Python source can break backslash escapes
+106. `confirm()` inside f-string onclick: use HTML entities or different quotes
+107. `this.form.submit()` in onclick on `type="submit"` causes double-submission
+108. CSS light theme: solid hardcoded colors, no backdrop-filter/glassmorphism
+
+### Infrastructure State (End of Day)
+| Port | Service |
+|:----:|---------|
+| 443 | Xray REALITY (primary VPN) |
+| 80 | Caddy (Docker) |
+| 995 | Outline Shadowsocks (fallback) |
+| 8000 | PS VIBE API |
+| 8010 | AKT Clothing Shop API |
+| 9356 | VPN Web UI (Xray + Outline mgmt) |
+
+### Known Issues
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Cloudflare DNS records for ps-vibe.com | 🔴 | User needs to check dashboard |
+| AKT product image not displaying in edit form | 🟡 | Bug logged |
