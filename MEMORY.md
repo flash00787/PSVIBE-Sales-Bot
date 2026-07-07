@@ -1,5 +1,4 @@
 # 🧠 Kora's Long-Term Memory
-
 ## 🚨 RULE #0 — MONGO DB FIRST (2026-07-05 Reinforced)
 
 > **Boss's direct order — NEVER skip this again.**
@@ -126,7 +125,6 @@ Kora now manages **9 projects** with full coordination tool support.
 ### Staff Salary System & Customer Notifications (June 27)
 - Salary: full payroll auto-generation with leave tracking, PNL FIFO COGS, game bonus tiers
 - Customer Noti: fixed staff Check-In & Staff Booking flows
-- See `memory/2026-06-27.md` for full details
 
 ### Financial Statement July Fixes — 8 Bugs Fixed ✅
 - PNL `m` param + Finance Balances + Balance Sheet date filters + Cashflow cumulative fixes
@@ -173,7 +171,6 @@ Kora now manages **9 projects** with full coordination tool support.
 2. **Add Product — Empty String Crash 🐛→✅:** Pydantic `Optional[int]` rejected `""`. Added `@field_validator` converting `""` → `None`.
 3. **Logout Glitch 🐛→✅:** `router.push("/login")` + mounted-page API calls → 401 interceptor race. Fixed: skip 401 on /login; logout uses `window.location.href`.
 4. **SSD Return — Game Auto Re-add 🐛→✅:** PS VIBE `step_ssd_ret_game` now re-adds game to source SSD after removing from console.
-5. **C2: Checkin Race Condition (Jul 3) 🐛→✅:** `SELECT ... FOR UPDATE` lock on `console_status` inside booking transaction.
 
 *(Trimmed: keeping only 5 most recent fixes)*
 
@@ -216,10 +213,8 @@ Kora now manages **9 projects** with full coordination tool support.
 - **subagent model lock**: V4 Flash primary enforced
 
 ### New Lessons
-79. **Session DB full = response delays** — When sessions DB reaches 90% of maxDiskBytes, write lock contention causes response drops. Monitor at 80%. (#79)
 80. **V4 Pro subagent timeout blocks main session** — Subagent model MUST be V4 Flash (stable 500-700ms) with V4 Pro as fallback only. (#80)
 81. **Gateway restart cuts conversation thread** — Always warn Boss before applying changes that need restart. (#81)
-82. **Preventive safeguards for Kora stability** — Installed: session-monitor (1h), cron-health-checker (6h), prune 3d, subagent V4 Flash primary. (#82)
 
 ## Memory (2026-07-06)
 
