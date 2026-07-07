@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-07T01:41:36.075798+00:00",
+  "checked_at": "2026-07-07T07:15:37.486645+00:00",
   "total_unread": 30,
   "nova_found": false,
   "nova_emails": [],
@@ -96,6 +96,15 @@
     }
   ],
   "all_emails": [
+    {
+      "id": "19f3b1ff743b6e22",
+      "threadId": "19f3b1ff743b6e22",
+      "from": "\"Trip.com\" <Trip.com@newsletter.trip.com>",
+      "subject": "⚡ The Summer Mega Sale Starts Now",
+      "date": "Tue, 7 Jul 2026 05:49:37 +0000",
+      "snippet": "Save 50% on Flights, Hotels &amp; More Flights Hotels Trains Attractions &amp; Tours ⚡ The Summer Mega Sale Starts Now Our biggest sale of the season is officially here. Enjoy limited-time savings on",
+      "unread": true
+    },
     {
       "id": "19f3935d2e1db5b0",
       "threadId": "19f3935d2e1db5b0",
@@ -365,15 +374,6 @@
       "snippet": "Muhammad posted: &quot;Download UnHackMe 11.9 free latest full version direct link one-click standalone offline installation setup for Windows 32-bit and 64-bit. UnHackMe 2020 is a powerful application",
       "unread": true,
       "important": true
-    },
-    {
-      "id": "1741077bdc06b723",
-      "threadId": "1741077bdc06b723",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] Smart Driver Manager 5.2.451 Free Download",
-      "date": "Fri, 21 Aug 2020 10:01:56 +0000",
-      "snippet": "Muhammad posted: &quot;Download Smart Driver Manager 5.2.451 free latest full version standalone one-click download for Windows 32-bit and 64-bit. Smart Driver Manager 2020 v5.2 is a professional",
-      "unread": true
     }
   ]
 }
