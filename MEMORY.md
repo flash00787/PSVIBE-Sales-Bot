@@ -278,3 +278,39 @@ Kora now manages **9 projects** with full coordination tool support.
 |-------|----------|--------|
 | Cloudflare DNS records for ps-vibe.com | 🔴 | User needs to check dashboard |
 | AKT product image not displaying in edit form | 🟡 | Bug logged |
+
+---
+
+## Memory (2026-07-08) — VPN Agent System Phase 1 🔥
+
+### VPN Agent System — Phase 1 Complete
+- **Agent Portal (Port 9357):** Agent-only server with full isolation from admin routes. Caddy subdomain `agent.outline.ps-vibe.com` → port 9357 (DNS pending). Fallback `/agent/*` path working.
+- **Agent Features:** Login/Logout (hashed password, JSON sessions), Dashboard (stats, pricing, key creation), Key Creation (Xray only, per-rank limits, trial caps, duration pricing), Commission Auto-Record (20% flat, pending on creation), Sing-box Config Generator, QR Code Generator.
+- **Admin UI (Port 9356):** New Agents tab with inline pricing editor and commissions table.
+- **Database:** New tables `agents`, `pricing`, `commissions`, `agent_logs`. VPN keys migrated with `agent_id`, `auto_rotate` columns.
+
+### Agent Ranks & Pricing
+- **Ranks:** Basic (50 keys/3 trial), Silver (100/10), Gold (200/25), Diamond (unlimited)
+- **Pricing:** 3d (free trial), 30d (5,000 Ks), 90d (15,000 Ks), 180d (30,000 Ks), 1yr (50,000 Ks)
+- **Test Agent:** `demo_agent` / `testagent123` (Gold rank)
+
+### Mobile Crash Debugging — Critical Lessons
+| # | Lesson |
+|:-:|--------|
+| 109 | **Xray restart blocks HTTP response** — `os.system()` with `&` still blocks. Fix: `subprocess.Popen()`. |
+| 110 | **Xray config save must be background thread** — `threading.Thread(daemon=True)` for non-blocking HTTP response. |
+| 111 | **`btn.disabled=true` on onsubmit blocks mobile browsers** — Use `data-submitted` flag + CSS only. |
+| 112 | **Cloudflare + mobile + POST = fragile** — Content-Length + flush + fast response (<200ms) essential. |
+
+### Open Issues
+- Mobile "this site can't be reached" — user not yet confirmed fix (6 fixes applied)
+- Cloudflare DNS for `agent.outline.ps-vibe.com` — user deferred
+
+### Infrastructure State
+| Port | Service |
+|:----:|---------|
+| 9356 | Admin server (full) |
+| 9357 | Agent-only server |
+| 443 | Xray REALITY |
+| 995 | Outline Shadowsocks (fallback) |
+- **Backup:** `/opt/outline-web/backups/pre-agent-system-20260708_060348/`
