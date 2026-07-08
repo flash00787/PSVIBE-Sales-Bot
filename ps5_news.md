@@ -1,6 +1,90 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-07 23:30 UTC
+> Last updated: 2026-07-08 05:30 UTC
+
+---
+
+## ⚡ UPDATE (July 8, 2026 - 05:30 UTC) — 🚨 PS3/PS Vita Store Closing July 2027! + Marvel's Wolverine Pre-orders GO LIVE ($69.99, Sep 15)! 
+
+> **Summary:** Early Wednesday morning sweep (6 hours since last update). TWO notable discoveries: **Marvel's Wolverine pre-orders are NOW LIVE** — Insomniac's PS5 exclusive launches **September 15, 2026**! Standard $69.99 / Digital Deluxe $79.99 with exclusive suits! **PS3 & PS Vita PlayStation Stores shutting down permanently by July 2027** — players compiling cross-buy lists for PS5/PS4-compatible titles.
+
+### 🔥🔥🔥 MARVEL'S WOLVERINE — Pre-orders GO LIVE! September 15, 2026! Insomniac's PS5 Exclusive! (NEW!)
+
+- **Developer:** Insomniac Games (Spider-Man studio) / **Publisher:** Sony Interactive Entertainment
+- **Release: September 15, 2026** on PS5
+- **Genre:** Third-person action-adventure — semi-open world — one of the most anticipated PS5 exclusives of 2026
+- **Editions:**
+  - **Standard Edition — $69.99** (Physical + Digital)
+  - **Digital Deluxe Edition — $79.99** (PS Store exclusive — 5 exclusive suits, 5 exclusive claw variants, 3 bonus Technique Points)
+- **Pre-order Bonuses (ALL editions):** Classic Brown Suit, Reflective Claws, 4 PlayStation Avatars, +1 Technique Point
+- **Deluxe Edition exclusive suits:** Incredible, Savage, Age of Apocalypse, Night Hunt, New Leather
+- **Deluxe Edition exclusive claws:** Smooth-Edged, Hollow Blade, Thick Claws, Serrated Spine, Tapered Claws
+- **$10 Deluxe upgrade** available separately if you buy standard edition cheaper elsewhere
+- **Sources:** Eurogamer (Jul 7, 2026), PlayStation Blog, PS Store
+- **💡💡💡💡💡 LOUNGE IMPACT — MAXIMUM:
+  - **Insomniac Games = Spider-Man quality.** Marvel's Spider-Man was PS VIBE's most-booked game for months. Wolverine will be even bigger — darker, grittier, more mature
+  - **September 15 is a DOUBLE MEGA-DROP DAY!** Wolverine + RuneScape Dragonwilds (PS Plus Extra) on the SAME DAY! Halo (Jul 28) → Dune: Awakening (Sep 22) → Wolverine (Sep 15) → GTA 6 (Nov 19) → CoD MW4 (Oct 23) = PS VIBE has back-to-back blockbusters all fall
+  - **$69.99 Standard = buy 1-2 copies for lounge consoles on day one.** Digital Deluxe for the main showcase console only (save $10 on others)
+  - **Physical edition exists!** Buy physical for disc library — one of the last major PS5 physical releases (disc phaseout Jan 2028!)
+  - **Pre-order ALL copies NOW** to get Classic Brown Suit pre-order bonus
+  - **Spectator value:** Wolverine's combat (claws, rage mode, fast traversal) is PEAK spectacle gaming — players will draw crowds watching
+  - ⭐⭐⭐⭐⭐ lounge value — Insomniac Marvel game, massive IP, physical edition, fall blockbuster
+
+### 🚨 PS3 & PS Vita PlayStation Store — SHUTTING DOWN PERMANENTLY by July 2027 (CRITICAL PRESERVATION NEWS!)
+
+- **Sony officially announced** the PS3 and PS Vita PlayStation Stores will close permanently in all regions by **July 2027**
+- **Sony's statement:** "PS3 and PS Vita are no longer able to support these updates at the level required... We know this news may be disappointing to PS3 and PS Vita players who hold a special place in their hearts for this generation of gaming."
+- **Deadline:** Players have until July 2027 to purchase games not yet delisted
+- **Cross-Buy Opportunity:** Some PS1/PSP classics purchased on PS3/Vita can be downloaded for FREE on PS5/PS4
+  - Reddit community compiling cross-buy lists
+  - Digital PS3 games offering cross-buy on PS4 (playable on PS5 via BC)
+- **Sources:** PlayStationLifestyle (Jul 7, 2026), Sony Interactive Entertainment, Reddit
+- **💡💡💡 Lounge Impact:
+  - **Not urgent for operations** (closure is 12 months away), but worth noting for preservation strategy
+  - PS VIBE likely doesn't rely on PS3/Vita store, but the shutdown signals Sony's accelerating move away from legacy support
+  - If the lounge has any PS3-era classics on wishlist with PS4/PS5 cross-buy, buy them before July 2027
+  - Cross-buy games = cheap additions to the PS5 digital library at no ongoing cost
+  - ⭐⭐ lounge value — preservation awareness, low urgency.
+
+### 📊 Quick Status Refresh (July 8, 2026 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥🔥🔥 **Marvel's Wolverine Pre-orders** | **LIVE! 🆕** | Sep 15! $69.99! Insomniac! Physical edition exists! PRE-ORDER! |
+| 🚨 **PS3/PS Vita Store Closing** | **ANNOUNCED 🆕** | By July 2027! Cross-buy lists compiling! |
+| 📰 'Don't Kill the Disc' Petition | **170K+ SIGNS** | Up from 115K in 6 hours! Escalating! |
+| 🔥🔥🔥 PS Plus Essential July | **LIVE!** | CoD MW3 FREE! Claim on ALL lounge PS5s! |
+| 🔥🔥 CoD Black Ops 1 & 2 PS5 | **IMMINENT!** | Still no exact date! Monitor daily! |
+| 🏴‍☠️🔥 AC Black Flag Resynced | **TOMORROW! Jul 9!** | Pre-orders beating Skull & Bones lifetime! |
+| 🏈 EA Sports College Football 27 | **TOMORROW! Jul 9!** | Major sports draw! |
+| ⚔️ Granblue Fantasy Relink Expansion | **TOMORROW! Jul 9!** | Endless Ragnarok! |
+| 🎮🔥 Palworld 1.0 PS5 | **Jul 10 (2 days)!** | 10:00am MMT! 27-page patch notes! |
+| 🎮🔥 Echoes of Aincrad (SAO) | **Jul 10 (2 days)!** | Same day as Palworld! Anime IP! |
+| 🔥 DOOM TDA Revelations DLC | **LIVE!** | Chain Spear + new campaign! |
+| 🥊 MARVEL Tōkon Open Beta | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🛒 July Savings Sale | **Ends Jul 15** | 7 days! Back 4 Blood $8.99! DMC5 $4.49! |
+| 📅 PS Plus Extra/Premium July Reveal | **Jul 15** | Games available Jul 21 |
+| 🛒 Summer Sale 2026 | **Jul 16 - Aug 1** | 8 days away! |
+| 🟢🟢🟢 Halo: Campaign Evolved PS5 | **Jul 28!** | 20 days! FIRST HALO ON PLAYSTATION! |
+| 🥊 MARVEL Tōkon: Fighting Souls | **Aug 6!** | ArcSys × Marvel! PS5 exclusive! PRE-ORDER! |
+| ⭐ Dune: Awakening | **Sep 22!** | Physical edition! Single-player mode! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🔥 RuneScape Dragonwilds PS Plus | **Sep 15!** | Day 1 Extra! Cross-play! |
+| 🔥 GTA 6 | **Nov 19!** | Pre-orders LIVE! $79.99 / $99.99 |
+| 🔥🔥 CoD MW4 | **Oct 23!** | Pre-orders LIVE! Current-gen only! |
+| 🚨 Physical Discs Ending | **JAN 2028!** | Petition 170K+! Backlash escalating! |
+
+### 🚨 Priority Lounge Actions (July 8 - 05:30 UTC):
+1. **🔥🔥🔥 PRE-ORDER MARVEL'S WOLVERINE!** Sep 15! Insomniac! Physical edition! Pre-order ALL lounge copies NOW for Classic Brown Suit bonus!
+2. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s!** PS Plus Essential July — AAA CoD FREE!
+3. **🏴‍☠️ AC Black Flag Resynced drops TOMORROW Jul 9!** Pre-order!
+4. **🏈 Pre-order EA Sports College Football 27** — Jul 9! Tomorrow!
+5. **🎮 PALWORLD 1.0 — Jul 10 at 10:00am MMT!** Install ahead! Save wipe recommended!
+6. **🎮🔥 PRE-ORDER ECHOES OF AINCRAD (SAO)!** Jul 10! Anime IP = massive lounge draw!
+7. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+8. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
+9. **🛒 July Savings ends Jul 15 — Back 4 Blood $8.99! DMC5 $4.49!** BUY NOW!
+10. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! First Halo on PlayStation!
+11. **📋 Note PS3/Vita Store closure Jul 2027** — not urgent but worth watching for cross-buy deals
 
 ---
 
