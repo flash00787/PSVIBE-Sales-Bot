@@ -1,24 +1,24 @@
 {
-  "C-09|1003686032747": {
-    "cid": "C-09",
+  "C-07|1003686032747": {
+    "cid": "C-07",
     "chat_id": -1003686032747,
-    "member_id": "Thi Ha Aung",
-    "planned_mins": 420,
-    "end_t": "17:14",
-    "end_dt_iso": "2026-07-08T17:14:00",
-    "message_thread_id": 0,
-    "total_plan_mins": 420,
-    "updated_at": "2026-07-08T05:32:36.398039+00:00"
-  },
-  "C-04|1003686032747": {
-    "cid": "C-04",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
+    "member_id": "Nyi Thu ta",
     "planned_mins": 120,
-    "end_t": "13:14",
-    "end_dt_iso": "2026-07-08T13:14:00+06:30",
+    "end_t": "19:30",
+    "end_dt_iso": "2026-07-08T19:30:00+06:30",
     "message_thread_id": 125192,
     "total_plan_mins": 120,
-    "updated_at": "2026-07-08T06:10:06.240234+00:00"
+    "updated_at": "2026-07-08T11:00:42.913048+00:00"
+  },
+  "C-01|1003686032747": {
+    "cid": "C-01",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "19:09",
+    "end_dt_iso": "2026-07-08T19:09:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-08T11:39:33.360966+00:00"
   }
 }
