@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-07 17:31 UTC
+> Last updated: 2026-07-07 23:30 UTC
 
 ---
 
@@ -1250,6 +1250,80 @@ After weeks of waiting and zero credible leaks, Sony officially dropped the July
 12. **Mark July 21** — Planet Crafter! 93% positive terraforming co-op!
 13. **Assess PS5 console inventory** — shortages predicted ahead of GTA 6!
 14. **Start digital license strategy** — post-2028, all games will be digital. Plan ahead!
+
+---
+
+## ⚡ UPDATE (July 7, 2026 - 23:30 UTC) — 'Don't Kill the Disc' Petition SURGES to 170K+! + id Software SLAUGHTERED (95/185 laid off) on DOOM DLC Launch Day! + Xbox Mass Layoffs 3200!
+
+> **Summary:** Late Tuesday night sweep (6 hours since last update). Two MAJOR developments not in the tracker: **1) "Don't Kill the Disc" petition has EXPLODED to 170,000+ signatures** (up from 115K just 6 hours ago — +55K in half a day!). **2) MASSIVE Xbox layoffs hitting id Software HARD** — ~95 out of 185 staff laid off on the EXACT same day DOOM: The Dark Ages Revelations DLC launched, including most coders. This is directly relevant to PS5/gaming landscape. Also: Xbox cutting 3200 jobs, Obsidian losing 25% of staff, ZeniMax/Bethesda in turmoil.
+
+### 📰 'Don't Kill the Disc' Petition SURGES — 170,000+ Signatures! (+55K in 6 Hours!) 🆕
+
+- **Change.org petition** launched by Canadian retailer **PNP Games** has reached **170,000+ signatures** — up from 115,471 reported 6 hours ago
+- That's a **+55,000 signature surge in just ~6 hours** — the backlash is ACCELERATING, not slowing down!
+- Eurogamer (Jul 7) published full story highlighting the petition's core arguments:
+  - Sony's 2013 E3 presentation where they mocked Microsoft's restrictive policies — "the irony is hard to miss"
+  - Eroding consumer ownership, enabling less market choice
+  - Devastating to game preservation
+  - "When the market leader ends the disc, the rest of the industry follows"
+- **Sony STILL hasn't acknowledged the petition or backlash** — PlayStation's first tweet since the announcement was the FlexStrike fight stick promo, which got FLOODED with disc complaints
+- Financial analysts defend Sony's move: Bernstein analyst told Financial Times that "If gamers and preservationists had bought more physical games, Sony wouldn't have seen the digital sales ratios that justify this decision"
+- **Industry experts interviewed by Eurogamer confirm Sony stands to gain significantly more control over the market** by eliminating discs
+- Source: Eurogamer (Jul 7, 2026), Change.org
+- **💡💡💡💡💡 Lounge Impact — ESCALATING: The petition jumping 55K signatures in 6 hours shows the backlash is GROWING, not fading. Sony still hasn't responded. This is becoming a genuine PR crisis. PS VIBE's physical disc library is an increasingly valuable differentiator as the industry shifts.**
+
+### 🔥🔥🔥 MASSIVE XBOX LAYOFFS: id Software Hit HARD on DOOM DLC Launch Day! (CRITICAL GAMING INDUSTRY NEWS) 🆕
+
+- **Xbox is cutting 3200 jobs** between now and end of FY2027
+- **id Software (DOOM creators) hit particularly hard — ~95 of 185 staff laid off** (about 51% of the studio!), on the SAME DAY DOOM: The Dark Ages Revelations DLC launched!
+- **Ex-Bethesda project lead Jeff Gardiner reported the numbers on X**
+- **Most of the studio's coders were laid off** — this is devastating for id Tech, widely considered the best FPS engine in the industry
+- **Apogee/3D Realms founder Scott Miller confirmed** "including most (if not all) coders"
+- **Digital Foundry's John Linneman:** "The disappointment here is off the charts"
+- **Colin Geller (principal concept artist, 12+ years, laid off):** worked on every DOOM since 2016
+- **Other studios affected:** Obsidian losing ~25% of staff, Undead Labs (State of Decay 3) going independent, ZeniMax entire division facing major cuts
+- **Possible outcome:** id Software may move to Unreal Engine instead of id Tech — would be a creative and technological catastrophe
+- **Marvel's Blade (Arkane Lyon):** fate unclear in the wake of Xbox's "reset"
+- **State of Decay 3:** may no longer launch on Game Pass
+- **Xbox Game Pass subscriptions** reportedly "well below" where Microsoft wants them
+- Sources: Eurogamer (Jul 7, 2026), X/Twitter, LinkedIn
+- **💡💡💡💡 Lounge Impact — INDIRECT BUT SIGNIFICANT:**
+  - DOOM TDA is a major PS5 title — if id Software is gutted, future DOOM/Quake content could be affected
+  - DOOM Revelations DLC just launched TODAY — this is the DLC we told you to claim! It's now bittersweet knowing the devs were laid off the same day
+  - The Xbox turmoil could benefit PlayStation in the long term — talent migration, studio closures = PlayStation gains
+  - Proves that even the most legendary studios are not safe — industry contraction continues
+  - ⭐⭐⭐⭐ lounge value — important industry context for understanding the gaming landscape
+
+### 📊 Quick Status Refresh (July 7 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📰 **'Don't Kill the Disc' Petition** | **↗️ SURGED to 170K+! 🆕** | +55K in 6 hours! Sony still silent! Backlash ACCELERATING! |
+| 🔥 **id Software Layoffs (DOOM devs)** | **CRITICAL! 🆕🔥** | ~95/185 laid off on DOOM DLC launch day! Most coders cut! id Tech at risk! |
+| 🔥 **Xbox 3200 Job Cuts** | **MASSIVE 🆕** | Obsidian -25%! ZeniMax turmoil! Game Pass below targets! Undead Labs independent! |
+| 🔥 **PS Plus Essential July** | **LIVE 🔥** | **CoD MW3 FREE!** For the King II + CrossCode! CLAIM on ALL lounge PS5s! |
+| 🔥 **DOOM TDA Revelations DLC** | **LIVE TODAY 🔥** | Launched same day id Software gutted! Chain Spear + new campaign! |
+| 🚨 **June PS Plus Essential** | **EXPIRED 🚨** | Grounded, Nick Brawl 2, WH40K Darktide — GONE! |
+| 🎮🔥 **Palworld 1.0 EXACT TIME** | **CONFIRMED** | 12:30pm JST Jul 10 = **10:00am MMT!** 27-page patch notes! |
+| 🎮🔥 **Echoes of Aincrad (SAO)** | **Jul 10! 3 days!** | Bandai Namco! Custom avatar! MASSIVE anime IP! |
+| 🏴‍☠️🔥 **AC Black Flag Resynced** | **Jul 9! 2 days!** | Pre-orders > Skull & Bones LIFETIME sales! |
+| 🏈 **EA Sports College Football 27** | **Jul 9! 2 days!** | Major sports draw! |
+| 🔥🔥 **CoD Black Ops 1 & 2 PS5** | **IMMINENT!** | v1.03 backend! Still shadow-dropping any day! |
+| 🥊 **MARVEL Tōkon Open Beta** | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🟢🟢🟢 **Halo: Campaign Evolved PS5** | **Jul 28! 21 days!** | FIRST HALO ON PLAYSTATION! |
+| 🥊 **MARVEL Tōkon: Fighting Souls** | **Aug 6!** | ArcSys × Marvel! PS5 exclusive! |
+| 🚨 **Physical Discs Ending** | **JAN 2028!** | Petition 170K+! Backlash ACCELERATING! |
+
+### 🚨 Priority Lounge Actions (July 7 - 23:30 UTC):
+1. **🔥🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s!** July PS Plus Essential is LIVE! AAA blockbuster FREE with PS Plus!
+2. **🔥🔥 CLAIM DOOM TDA Revelations DLC!** FREE if you own DOOM TDA! Launched today — bittersweet given id Software layoffs
+3. **💿 LEAN INTO PHYSICAL DISC NARRATIVE** — petition at 170K+! PS VIBE's disc library is a UNIQUE SELLING POINT more than ever!
+4. **🎮 PALWORLD 1.0 — July 10 at 10:00am MMT!** 27-page patch notes! Plan launch event!
+5. **🎮🔥 PRE-ORDER ECHOES OF AINCRAD (SAO)!** Same day as Palworld! July 10! Anime IP!
+6. **🔥🔥 MONITOR PS STORE DAILY!** CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+7. **🏴‍☠️ AC Black Flag Resynced — July 9! Tomorrow!** Pre-order NOW!
+8. **🏈 Pre-order EA Sports College Football 27 — Jul 9!** Pre-order NOW!
+9. **💸 TRY PS PLUS RETENTION DISCOUNT TRICK** — Initiate cancel on lounge PS Plus → 50% off possible!
+10. **🥊 MARK JUL 24-26 — MARVEL Tōkon FREE OPEN BETA!** Download on ALL lounge PS5s!
 
 ---
 
