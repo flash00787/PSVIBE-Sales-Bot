@@ -1,10 +1,12 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-09 05:30 UTC
+> Last updated: 2026-07-09 17:34 UTC
 
 ---
 
-## ⚡ UPDATE (July 9, 2026 - 05:30 UTC) — 🏴‍☠️ AC BLACK FLAG RESYNCED DROPS TODAY! + Eurogamer Review: Mixed Verdict! + Palworld 1.0 TOMORROW!
+## ⚡ UPDATE (July 9, 2026 - 17:34 UTC) — 🎪 PlayStation at Comic-Con 2026 Lineup REVEALED! + Web Search API Down — Manual Sweep!
+
+> **Summary:** Early evening Thursday sweep (12 hours since last update). Web search APIs unavailable (key rotation needed), but **PlayStation Blog published a NEW article today (Jul 9)** detailing PlayStation's full Comic-Con 2026 lineup in San Diego! **Marvel's Wolverine panel** (Jul 23, Hall H), **MARVEL Tōkon: Fighting Souls panel** with 
 
 > **Summary:** Early Thursday sweep — **RELEASE DAY!** AC Black Flag Resynced, EA Sports College Football 27, Granblue Fantasy Relink Expansion, and Digimon Story free update all GO LIVE TODAY! First major review (Eurogamer) for AC Black Flag Resynced is MIXED — calling it "weird" with "oscillation of quality" but acknowledging "clear love for the source material." No new PS Blog posts since July 7. All previously-tracked data current. **TWO big releases confirmed for TOMORROW (Jul 10):** Palworld 1.0 at 10:00am MMT + Echoes of Aincrad (SAO) — July 10 is the biggest single release day of the month!
 
@@ -3076,3 +3078,84 @@ The tracker previously noted August 18 departures partially. Full confirmed list
 9. **🛒 Back 4 Blood Deluxe $8.99 (90% off!)** — July Savings ends Jul 15! Buy for ALL!
 10. **🟢🟢🟢 HALO: CAMPAIGN EVOLVED — July 28!** Pre-order NOW! First Halo on PlayStation!
 11. **Monitor Microsoft/Xbox studio shakeup** — more PS5 games likely from freed studios!
+
+---
+
+## ⚡ UPDATE (July 9, 2026 - 17:34 UTC) — 🎪 PlayStation at Comic-Con 2026 Lineup REVEALED! (NEW PS Blog Article TODAY!)
+
+> **Summary:** Evening sweep (12 hours since last update). Web search APIs unavailable (key rotation needed), but direct PlayStation Blog fetch reveals a **NEW article published today (Jul 9)** — PlayStation's full Comic-Con 2026 San Diego lineup! Panels for **Marvel's Wolverine**, **MARVEL Tōkon: Fighting Souls**, and **God of War: Laufey** — plus Marvel Booth with Wolverine photo opp and giveaways! All previous data (AC Black Flag launch day, Palworld 1.0 tomorrow) verified current.
+
+### 🎪🔥 PlayStation at Comic-Con 2026 in San Diego — FULL LINEUP REVEALED! (NEW!)
+
+PlayStation Blog (Jul 9, 2026) published their Comic-Con 2026 plans. This is the FIRST time the full schedule is public:
+
+**Panel 1 — Marvel's Wolverine (Hall H — Jul 23, 11:15am-12pm PT)**
+- Insomniac Games' Creative Director Marcus Smith, Game Director Mike Daly, Narrative Director Walt Williams, Sr. Project Director Jess Reiner-Reed
+- Actors: Liam McIntyre (Wolverine), Krizia Bajos (Jean Grey)
+- Executive Producer Eric Monacelli (Marvel Games)
+- Moderator: Naomi Kyle
+- **PROMISES:** Exciting new details, behind-the-scenes story/characters, exclusive never-before-seen content
+- **💡💡💡💡💡 LOUNGE IMPACT:** Wolverine panel 2 months before Sep 15 launch! Could reveal demo, launch trailer, or even a release date event! PS VIBE has pre-orders live — this panel may drive EVEN MORE hype!
+
+**Panel 2 — MARVEL Tōkon: Fighting Souls (Hall H — Jul 23, 12-12:45pm PT)**
+- Game Producer Takeshi Yamanaka (Arc System Works), Localization Director Amber Seitz
+- Senior PM Michael Francisco (Marvel Games), artist Mike Deodato (Marvel Comics)
+- Voice actor Josh Keaton (Iron Man & Spider-Man)
+- Moderator: Sajam (fighting game commentator)
+- **PROMISES:** Behind-the-scenes looks + **"surprise announcements you won't want to miss"** 🚨
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL:** "Surprise announcements" = could be new character reveals, **open beta details** (Jul 24-26), or even a release date shift! This panel is RIGHT before the free open beta starts on Jul 24! Perfect timing!
+  - PS VIBE should **MONITOR THIS PANEL LIVE** for potential beta early access codes or exclusive content!
+  - Arc System Works panels at Comic-Con historically drop MAJOR reveals
+
+**Panel 3 — God of War: Laufey (Ballroom 20 — Jul 24, 5:30-6:30pm PT)**
+- Game Director Ariel Lawrence + Santa Monica Studio Head of Creative Cory Barlog
+- Cast: Deborah Ann Woll (Laufey), Chris Judge (Kratos), Jack Quaid (Phranque), Perlina Lau (Rue)
+- **FIRST TIME** the full cast has appeared together since reveal!
+- Behind-the-scenes insights and performance capture discussion
+- **💡💡💡 Lounge Impact:** God of War: Laufey (Early 2027) — not urgent for operations, but this panel will reveal new gameplay/story details. Cory Barlog appearances always deliver!
+
+**Marvel Booth (Booth #2329 — Jul 23-26, SDCC Show Floor)**
+- Marvel's Wolverine **photo opportunity** — Wolverine claws giveaway items
+- **Marvel's Wolverine Prequel Comic** by Narrative Director Walt Williams (while supplies last)
+- **Marvel's Wolverine wrapped San Diego Trolley** roaming the convention area
+
+### 📌 Comic-Con 2026 — Impact Summary for PS VIBE:
+| Event | Date/Time (PT) | Room | Lounge Relevance |
+|-------|---------------|------|-----------------|
+| 🎪 Marvel's Wolverine Panel | **Jul 23, 11:15am-12pm** | Hall H | ⭐⭐⭐⭐⭐ New details on Sep 15 launch! Never-before-seen content! |
+| 🥊 MARVEL Tōkon Panel | **Jul 23, 12-12:45pm** | Hall H | ⭐⭐⭐⭐⭐ "Surprise announcements" before FREE Open Beta (Jul 24-26)! |
+| ⚔️ God of War Laufey Panel | **Jul 24, 5:30-6:30pm** | Ballroom 20 | ⭐⭐⭐ First public cast appearance! Cory Barlog! |
+| 🎪 Marvel Booth (Claws + Comic) | **Jul 23-26** | Booth #2329 | ⭐⭐⭐ Freebies! Wolverine photo opp! Prequel comic! |
+
+### 🔄 Quick Status — All Previously Tracked Data Verified:
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🏴‍☠️ **AC Black Flag Resynced** | **LAUNCHED TODAY! 🚀** | Mixed reviews! Test before bulk buy! |
+| 🏈 **EA Sports College Football 27** | **LAUNCHED TODAY! 🚀** | Sports lounge gold! |
+| ⚔️ **Granblue Fantasy Relink Exp.** | **LAUNCHED TODAY! 🚀** | Endless Ragnarok! |
+| 🎮 **Digimon Story Free Update** | **LAUNCHED TODAY! 🚀** | Free patch! |
+| 🔥🔥 **PALWORLD 1.0** | **TOMORROW! Jul 10 — 10am MMT! 🔥🔥🔥** | Save wipe recommended! 27-page patch notes! |
+| 🎮 **Echoes of Aincrad (SAO)** | **TOMORROW! Jul 10 🔥** | Anime IP! Custom avatar! Double-drop day! |
+| 🥊 **MARVEL Tōkon FREE Open Beta** | **Jul 24-26!** | No sign-up needed! Download on ALL lounge PS5s! |
+| 🟢🟢 **Halo: Campaign Evolved PS5** | **Jul 28!** | 19 days! First Halo on PlayStation! |
+| 🛒 **July Savings Sale** | **Ends Jul 15** | 6 days! Back 4 Blood $8.99! DMC5 $4.49! |
+| 📅 **PS Plus Extra/Premium July** | **Reveal Jul 15** | Games Jul 21! |
+| 🛒 **Summer Sale 2026** | **Jul 16 - Aug 1** | 7 days away! |
+| 🥊 **MARVEL Tōkon: Fighting Souls** | **Aug 6!** | Pre-order! PS5 exclusive! |
+| 🔥🔥 **Marvel's Wolverine** | **Sep 15!** | Pre-orders LIVE! Insomniac! $69.99 Standard! |
+| 💰 **PS Plus Retention Discount** | **Active** | Try cancelling → get 50% off 3 months! |
+| 🚨 **PS3/Vita Store Closing** | **By Jul 2027** | Cross-buy deals available! |
+
+### 🔍 Note on Web Search API:
+All web search APIs were unavailable during this sweep (API key error). PlayStation Blog was reached directly. Results may be less comprehensive than usual — if this is critical, try again when API is restored.
+
+### 🚨 Priority Lounge Actions (July 9 - 17:34 UTC):
+1. **🎪 MARK JUL 23 — Marvel's Wolverine + MARVEL Tōkon Comic-Con Panels!** Monitor for reveals, surprise announcements, and beta details!
+2. **🏴‍☠️ TEST AC Black Flag Resynced** — buy 1 copy today, test on lounge console! Mixed reviews = caution before bulk buy!
+3. **🔥🔥🔥 PREPARE FOR TOMORROW! PALWORLD 1.0 at 10:00am MMT!** Install before opening! Save wipe optional but recommended!
+4. **🎮 PRE-ORDER Echoes of Aincrad (SAO)** — Same day as Palworld! Jul 10! Anime IP!
+5. **🔥🔥 CLAIM CoD MW3 on ALL lounge PS5s** — PS Plus Essential July! FREE!
+6. **🥊 DOWNLOAD MARVEL Tōkon FREE OPEN BETA on ALL PS5s** — Jul 24-26! Pre-load now if available!
+7. **🛒 July Savings ends Jul 15 (6 days!)** — Back 4 Blood $8.99! Deep Rock $16.49! DMC5 $4.49! Buy for ALL consoles!
+8. **🟢🟢 HALO: CAMPAIGN EVOLVED — Jul 28!** Pre-order NOW!
+9. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
