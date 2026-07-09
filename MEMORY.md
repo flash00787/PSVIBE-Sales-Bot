@@ -317,6 +317,24 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ---
 
+## Memory (2026-07-09) — VPN UI Fixes + Advance System Audit 🔧
+
+### Advance Payment System — Root Cause Fix ✅
+- **Problem:** 7 advance payments (104.8M) were recorded in `finance_advances` but NEVER recorded as `cash_movements` eject. Only the settlement injects (102.5M) were recorded → KBZ Bank overstated by 102.5M.
+- **Fix 1:** Backfilled 7 missing eject entries in `cash_movements` for KBZ Bank (104.8M total)
+- **Fix 2:** Removed advance settled filter from `get_finance_balances()` (was excluding 102.5M inject as a workaround)
+- **Fix 3:** Removed `ded_advances` from KBZ capital deduction in both `get_finance_balances()` and `get_balance_sheet()` — pending advances (2.3M) were being double-deducted after backfill
+- **Files:** `finance_routes.py` — lines ~406-412 (filter removed), ~428-429 (ded_adv disabled), ~694-696 (BS ded_adv disabled)
+- **DB:** 7 INSERTs into `cash_movements` (KBZ Bank, eject, 104.8M)
+- **Verified:** KBZ balance 1,793,306 (correct) — advance net -2.3M (all settled advances cancel with eject, only pending remains)
+
+### New Lessons
+| # | Lesson |
+|:-:|--------|
+| 137 | **Advance eject must be recorded** — finance_advances + inject entries without eject entries overstate bank balance.
+| 138 | **ded_adv = double-count after backfill** — Once eject entries exist for all advances, pending advance deduction causes double-counting.
+| 139 | **Filter as workaround ≠ fix** — The advance settled filter was a workaround for missing eject data. Always fix the data, not the filter.
+
 ## Memory (2026-07-09) — VPN UI Fixes (Osmo Feedback) 🔧
 
 ### 3 Bugs Fixed ✅
