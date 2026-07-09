@@ -2,6 +2,69 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-09 last updated 18.2h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-07-09T04:44:10.373Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 17.8h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-09T04:44:10.370Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 15.9h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-07-09T04:44:10.367Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 17.7h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-09T04:44:10.362Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 19.0h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-09T04:44:10.359Z"
+  },
+  {
+    "type": "console_status",
+    "severity": "warning",
+    "message": "⚠️ Console C-05 has unusual status: \"Reserved\"",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-09T04:44:10.355Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 14.6h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-07-09T04:44:10.350Z"
+  },
+  {
+    "type": "console_status",
+    "severity": "warning",
+    "message": "⚠️ Console C-03 has unusual status: \"Reserved\"",
+    "consoleId": "C-03",
+    "timestamp": "2026-07-09T04:44:10.347Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 17.2h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-07-09T04:44:10.343Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 14.0h ago",
     "consoleId": "C-10",
     "timestamp": "2026-07-08T04:44:13.174Z"
@@ -3449,68 +3512,5 @@
     "message": "📡 Console C-04 last updated 20.6h ago",
     "consoleId": "C-04",
     "timestamp": "2026-06-11T10:46:24.526Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 42.9h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T10:46:24.525Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-02 last updated 24.1h ago",
-    "consoleId": "C-02",
-    "timestamp": "2026-06-11T10:46:24.525Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-01 last updated 20.6h ago",
-    "consoleId": "C-01",
-    "timestamp": "2026-06-11T10:46:24.524Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-08 last updated 49.7h ago",
-    "consoleId": "C-08",
-    "timestamp": "2026-06-11T10:44:09.291Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-07 last updated 28.5h ago",
-    "consoleId": "C-07",
-    "timestamp": "2026-06-11T10:44:09.291Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 20.5h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T10:44:09.290Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 49.7h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T10:44:09.290Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-04 last updated 20.5h ago",
-    "consoleId": "C-04",
-    "timestamp": "2026-06-11T10:44:09.290Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 42.8h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T10:44:09.289Z"
   }
 ]
