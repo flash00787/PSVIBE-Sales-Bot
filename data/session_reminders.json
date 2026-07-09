@@ -1,15 +1,4 @@
 {
-  "C-08|1003686032747": {
-    "cid": "C-08",
-    "chat_id": -1003686032747,
-    "member_id": "Coe coe",
-    "planned_mins": 120,
-    "end_t": "16:09",
-    "end_dt_iso": "2026-07-09T16:09:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-09T07:39:06.019392+00:00"
-  },
   "C-09|1003686032747": {
     "cid": "C-09",
     "chat_id": -1003686032747,
@@ -21,17 +10,6 @@
     "total_plan_mins": 120,
     "updated_at": "2026-07-09T07:50:16.055911+00:00"
   },
-  "C-03|1003686032747": {
-    "cid": "C-03",
-    "chat_id": -1003686032747,
-    "member_id": "Eaint Thiri Hlaing",
-    "planned_mins": 64,
-    "end_t": "16:04",
-    "end_dt_iso": "2026-07-09T16:04:00+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 240,
-    "updated_at": "2026-07-09T08:29:11.272394+00:00"
-  },
   "C-06|1003686032747": {
     "cid": "C-06",
     "chat_id": -1003686032747,
@@ -42,5 +20,38 @@
     "message_thread_id": 125192,
     "total_plan_mins": 60,
     "updated_at": "2026-07-09T08:52:28.937505+00:00"
+  },
+  "C-04|1003686032747": {
+    "cid": "C-04",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 73,
+    "end_t": "17:14",
+    "end_dt_iso": "2026-07-09T17:14:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 73,
+    "updated_at": "2026-07-09T09:31:37.079312+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 240,
+    "end_t": "20:06",
+    "end_dt_iso": "2026-07-09T20:06:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 240,
+    "updated_at": "2026-07-09T09:36:21.583619+00:00"
+  },
+  "C-08|1003686032747": {
+    "cid": "C-08",
+    "chat_id": -1003686032747,
+    "member_id": "Coe coe",
+    "planned_mins": 62,
+    "end_t": "17:09",
+    "end_dt_iso": "2026-07-09T17:09:00+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-09T09:36:53.513047+00:00"
   }
 }
