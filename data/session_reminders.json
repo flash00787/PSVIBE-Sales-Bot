@@ -1,48 +1,4 @@
 {
-  "C-09|1003686032747": {
-    "cid": "C-09",
-    "chat_id": -1003686032747,
-    "member_id": "nyi\u201dhtun",
-    "planned_mins": 120,
-    "end_t": "16:20",
-    "end_dt_iso": "2026-07-09T16:20:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-09T07:50:16.055911+00:00"
-  },
-  "C-06|1003686032747": {
-    "cid": "C-06",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "16:22",
-    "end_dt_iso": "2026-07-09T16:22:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-09T08:52:28.937505+00:00"
-  },
-  "C-04|1003686032747": {
-    "cid": "C-04",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 73,
-    "end_t": "17:14",
-    "end_dt_iso": "2026-07-09T17:14:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 73,
-    "updated_at": "2026-07-09T09:31:37.079312+00:00"
-  },
-  "C-03|1003686032747": {
-    "cid": "C-03",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 240,
-    "end_t": "20:06",
-    "end_dt_iso": "2026-07-09T20:06:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 240,
-    "updated_at": "2026-07-09T09:36:21.583619+00:00"
-  },
   "C-08|1003686032747": {
     "cid": "C-08",
     "chat_id": -1003686032747,
@@ -53,5 +9,38 @@
     "message_thread_id": null,
     "total_plan_mins": 180,
     "updated_at": "2026-07-09T09:36:53.513047+00:00"
+  },
+  "C-06|1003686032747": {
+    "cid": "C-06",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 62,
+    "end_t": "17:22",
+    "end_dt_iso": "2026-07-09T17:22:00+06:30",
+    "message_thread_id": null,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-09T09:49:27.906880+00:00"
+  },
+  "C-09|1003686032747": {
+    "cid": "C-09",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 120,
+    "end_t": "18:21",
+    "end_dt_iso": "2026-07-09T18:21:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-09T09:51:19.530888+00:00"
+  },
+  "C-10|1003686032747": {
+    "cid": "C-10",
+    "chat_id": -1003686032747,
+    "member_id": "hay thi",
+    "planned_mins": 180,
+    "end_t": "19:24",
+    "end_dt_iso": "2026-07-09T19:24:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 180,
+    "updated_at": "2026-07-09T09:54:46.536713+00:00"
   }
 }
