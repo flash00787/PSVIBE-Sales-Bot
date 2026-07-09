@@ -1,37 +1,4 @@
 {
-  "C-08|1003686032747": {
-    "cid": "C-08",
-    "chat_id": -1003686032747,
-    "member_id": "Coe coe",
-    "planned_mins": 62,
-    "end_t": "17:09",
-    "end_dt_iso": "2026-07-09T17:09:00+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 180,
-    "updated_at": "2026-07-09T09:36:53.513047+00:00"
-  },
-  "C-06|1003686032747": {
-    "cid": "C-06",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 62,
-    "end_t": "17:22",
-    "end_dt_iso": "2026-07-09T17:22:00+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-09T09:49:27.906880+00:00"
-  },
-  "C-09|1003686032747": {
-    "cid": "C-09",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 120,
-    "end_t": "18:21",
-    "end_dt_iso": "2026-07-09T18:21:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-09T09:51:19.530888+00:00"
-  },
   "C-10|1003686032747": {
     "cid": "C-10",
     "chat_id": -1003686032747,
@@ -41,6 +8,50 @@
     "end_dt_iso": "2026-07-09T19:24:00+06:30",
     "message_thread_id": 125192,
     "total_plan_mins": 180,
-    "updated_at": "2026-07-09T09:54:46.536713+00:00"
+    "updated_at": "2026-07-09T10:05:07.326179+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "Kyaw Bhone Thant",
+    "planned_mins": 120,
+    "end_t": "18:38",
+    "end_dt_iso": "2026-07-09T18:38:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-09T10:08:34.668940+00:00"
+  },
+  "C-09|1003686032747": {
+    "cid": "C-09",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 90,
+    "end_t": "18:34",
+    "end_dt_iso": "2026-07-09T18:34:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 90,
+    "updated_at": "2026-07-09T10:34:11.095680+00:00"
+  },
+  "C-04|1003686032747": {
+    "cid": "C-04",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "18:10",
+    "end_dt_iso": "2026-07-09T18:10:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-09T10:40:03.128185+00:00"
+  },
+  "C-08|1003686032747": {
+    "cid": "C-08",
+    "chat_id": -1003686032747,
+    "member_id": "Aung Khant Phyo",
+    "planned_mins": 90,
+    "end_t": "19:29",
+    "end_dt_iso": "2026-07-09T19:29:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 90,
+    "updated_at": "2026-07-09T11:30:06.249328+00:00"
   }
 }
