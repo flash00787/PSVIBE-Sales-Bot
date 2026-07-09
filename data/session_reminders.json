@@ -21,39 +21,6 @@
     "total_plan_mins": 120,
     "updated_at": "2026-07-09T07:50:16.055911+00:00"
   },
-  "C-02|1003686032747": {
-    "cid": "C-02",
-    "chat_id": -1003686032747,
-    "member_id": "Htet Wai Yan",
-    "planned_mins": 60,
-    "end_t": "15:23",
-    "end_dt_iso": "2026-07-09T15:23:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-09T07:53:23.067494+00:00"
-  },
-  "C-01|1003686032747": {
-    "cid": "C-01",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "15:24",
-    "end_dt_iso": "2026-07-09T15:24:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-09T07:54:23.878103+00:00"
-  },
-  "C-05|1003686032747": {
-    "cid": "C-05",
-    "chat_id": -1003686032747,
-    "member_id": "-",
-    "planned_mins": 60,
-    "end_t": "15:50",
-    "end_dt_iso": "2026-07-09T15:50:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-09T08:20:29.826088+00:00"
-  },
   "C-03|1003686032747": {
     "cid": "C-03",
     "chat_id": -1003686032747,
@@ -64,5 +31,16 @@
     "message_thread_id": null,
     "total_plan_mins": 240,
     "updated_at": "2026-07-09T08:29:11.272394+00:00"
+  },
+  "C-06|1003686032747": {
+    "cid": "C-06",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "16:22",
+    "end_dt_iso": "2026-07-09T16:22:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-09T08:52:28.937505+00:00"
   }
 }
