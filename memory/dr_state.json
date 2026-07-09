@@ -1,14 +1,6 @@
 {
   "backups": [
     {
-      "timestamp": "2026-06-11T09-40-21-730Z",
-      "date": "2026-06-11",
-      "items": 6,
-      "total": 6,
-      "size": 6935517,
-      "path": "/home/node/.openclaw/workspace/backups/2026-06-11"
-    },
-    {
       "timestamp": "2026-06-11T10-50-08-937Z",
       "date": "2026-06-11",
       "items": 6,
@@ -239,7 +231,15 @@
       "total": 6,
       "size": 8484599,
       "path": "/root/.openclaw/workspace/backups/2026-07-08"
+    },
+    {
+      "timestamp": "2026-07-09T19-30-35-461Z",
+      "date": "2026-07-09",
+      "items": 6,
+      "total": 6,
+      "size": 8540421,
+      "path": "/root/.openclaw/workspace/backups/2026-07-09"
     }
   ],
-  "lastCheck": "2026-07-08T19-30-24-463Z"
+  "lastCheck": "2026-07-09T19-30-35-461Z"
 }
