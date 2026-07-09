@@ -13,3 +13,28 @@
   - 💡 Decisions: 1 item (GENERAL)
   - 📝 Notes: 1 item (BUG)
 - **Digest**: memory/digests/2026-07-06-digest.md
+
+## 2026-07-09 Daily Digest Summary
+
+Generated 18:45 UTC — 17 sections categorized
+
+### 💼 Business (3)
+- LESSON, FIX, SUMMARY (Final — End of Day)
+
+### 🛠️ Tech (6)
+- FEATURE, 2 SUMMARIES
+- **FIX (5) — API Keys Leaked / Revoked by Google**
+- **FIX (6) — Outline Web Crash on Expire/Delete**
+- LESSON (5)
+
+### 🎯 Pending (5)
+- LESSON (4)
+- **FIX (2) — Expiry Checker: Data Limit Auto-Expiry**
+- LESSON (2)
+- **FIX (3) — VPN Admin Page Speed Optimization: Metrics Cache + Pre-fetch**
+- **FIX (4) — Test Agent Cleanup (OsmoConfirmed)**
+
+### 📝 Notes (3)
+- BUG (2), FIX (1), BUG (2)
+
+🔗 Full digest: `digests/2026-07-09-digest.md`
