@@ -314,3 +314,28 @@ Kora now manages **9 projects** with full coordination tool support.
 | 443 | Xray REALITY |
 | 995 | Outline Shadowsocks (fallback) |
 - **Backup:** `/opt/outline-web/backups/pre-agent-system-20260708_060348/`
+
+---
+
+## Memory (2026-07-09) — VPN UI Fixes (Osmo Feedback) 🔧
+
+### 3 Bugs Fixed ✅
+1. **Recent Keys မပေါ်တာ 🐛→✅:** `{key_rows}` placeholder `.replace()` မေ့နေ။ Agent keys page empty. Fix: added `.replace("{key_rows}", key_rows)`.
+2. **Outline Keys Data Usage Added ✅:** Agent + Admin keys listing တွင် **Usage** column အသစ်။ Outline → progress bar (green/yellow/red), Xray → "—".
+3. **Sub-tab Layout ပြင်ဆင် ✅:** Osmo request — Xray/Outline sub-tab nav ကို Payment Summary အောက်ကို ရွှေ့။
+
+### New Layout Order
+`Header Card → Stat Grid → 💳 Payment Summary → [☪ Xray] [👻 Outline] → Create Form → Recent Keys`
+
+### New Lessons (#134-#136)
+| # | Lesson |
+|:-:|--------|
+| 134 | **Payment Summary > Sub-tab Nav** — Users expect financial summary above protocol tabs.
+| 135 | **`{placeholder}` replace must be verified** — new template pages need .replace() check.
+| 136 | **Data usage display differs by protocol** — Outline = progress bar, Xray = "—" (no tracking).
+
+### MongoDB Updated ✅
+- Fix entry: VPN UI Fixes — Recent Keys, Data Usage, Sub-tab Layout
+- Lesson entry: Osmo VPN UI Feedback — Layout Order & Data Display Standards
+- Daily memory auto-exported
+- auto_doc_updater.py committed
