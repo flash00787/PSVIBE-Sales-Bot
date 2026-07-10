@@ -1,5 +1,18 @@
-=== Lock Monitor Run: 2026-07-10 06:57 UTC ===
-Status: No stale locks found
-Cleaned: 0 locks, 0 files, 0 KB freed
-Warnings: 0
+[LOCK_MONITOR] Run at 2026-07-10 07:57:45 UTC
+
+[LOCK_MONITOR] OK: no locks found
+
+========== Session Disk Usage ==========
+  Main .jsonl files:            0 files,          0 KB
+  .trajectory.jsonl files:      0 files,          0 KB
+  .checkpoint.*.jsonl files:    0 files,          0 KB
+  .lock files:                  0 files
+  ------------------------------------------
+  TOTAL:                                        0 KB
+==========================================
+
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+==================================================
 === RESULT: OK ===
