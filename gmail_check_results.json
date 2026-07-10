@@ -1,12 +1,26 @@
 {
-  "checked_at": "2026-07-09T01:49:00.581505+00:00",
+  "checked_at": "2026-07-10T13:32:10.793734+00:00",
   "total_unread": 30,
-  "total_processed": 48,
+  "total_processed": 49,
   "nova_found": 0,
-  "important_found": 6,
-  "promotional_skipped": 10,
+  "important_found": 4,
+  "promotional_skipped": 8,
   "nova_emails": [],
   "important_emails": [
+    {
+      "id": "19f4a13f9c63ed4f",
+      "threadId": "19f4a13f9c63ed4f",
+      "from": "foodpanda <contact@info.foodpanda.com.mm>",
+      "to": "chanmyint123456789@gmail.com",
+      "subject": "\u1014\u1031\u102c\u1000\u103a\u1021\u1031\u102c\u103a\u1012\u102b\u1019\u103e\u102c 2000 MMK off \u1014\u1032\u1037\u1019\u103e\u102c\u1005\u102c\u1038\u1015\u102b\ud83c\udf5c",
+      "date": "2026-07-10 03:30 UTC",
+      "is_unread": true,
+      "snippet": "\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u101e\u1004\u1037\u103a\u1010\u102c\u101c\u1031\u1038\u1010\u103d\u1031 \u1005\u102c\u1038\u1001\u103b\u1004\u103a\u1010\u102c \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u1001\u103b\u102d\u1014\u103a\u1010\u1014\u103a\u1015\u103c\u102e\u104b Seoul K 7-Levels Korean Spicy Noodle (Kantharyar Center) \u1000 \u1021\u1019\u102d\u102f\u1000\u103a\u1005\u102c\u1038\u1019\u102e\u1014\u1030\u1038\u1010\u103d\u1031\u1000\u102d\u102f \u101a\u1030\u1037\u1019\u103e\u102c\u101b\u103e\u102d\u1010\u1032\u1037 2000 MMK \u1010\u1014\u103a\u1018\u1031\u102c\u1000\u103a\u1001\u103b\u102c\u101c\u1031\u1038\u1014\u1032\u1037",
+      "body_preview": "\r\n\r\n\r\n\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nfoodpanda    * { font-family: Arial, sans-serif !important;\r\n}                96                        ( # )\r\n( \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nhttps://bhpz.adj.st/?c=mm&adjust_t=5whn9n_sw8vui&adjust_campaign=crm_bra_mix_aut_2003XX_APAC_FP_CH_MultiVoutopia_Messaging_MM Email - D 5_7ee6c980-0dd5-4399-b865-fd10d2cf6b4b&adjust_adgroup=CRM&adj",
+      "keywords": [
+        "important"
+      ]
+    },
     {
       "id": "19f440640fca06d5",
       "threadId": "19f440640fca06d5",
@@ -14,7 +28,7 @@
       "to": "chanmyint123456789@gmail.com",
       "subject": "You shared some Google Account data with Web3Auth",
       "date": "2026-07-08 23:18 UTC",
-      "is_unread": true,
+      "is_unread": false,
       "snippet": "Keep track of your Google Account data chanmyint123456789@gmail.com You&#39;re receiving this email because you used Sign in with Google to sign in to Web3Auth on July 9 at 5:48 AM. This email",
       "body_preview": "Keep track of your Google Account data\r\n\r\n\r\n\r\nchanmyint123456789@gmail.com\r\n\r\n\u200a\r\n\r\n<!--[if !mso]><!-->\r\n\r\n<!--[if false]><!-->\r\n\r\n\r\nYou're receiving this email because you used Sign in with Google to sign in  \r\nto\r\n\r\n\r\n<https://c.gle/AOPyDKT36SKjJms68mRbZ1OapzYAs_0X7uCNDhYzMnZvvFzMZ9zkDIq-kxoa5mPiXEwFw4JpRvpu-VXbhvUhrFY2N5BZ3xkhodjXBWNTcB0FTjw>Web3Auth\r\n\r\n\r\non July 9 at 5:48\u202fAM .\r\n\r\nThis email summarizes the info you shared. There\u2019s nothing you need to do  \r\nright now.\r\n\r\n\r\n<!--[if !mso]><!-->\r\n",
       "keywords": [
@@ -49,50 +63,6 @@
       "body_preview": "",
       "keywords": [
         "account"
-      ]
-    },
-    {
-      "id": "19f3f160dd5b6e5e",
-      "threadId": "19f3f160dd5b6e5e",
-      "from": "Binance <do-not-reply@ses.binance.com>",
-      "to": "chanmyint123456789@gmail.com",
-      "subject": "[Binance] Information Required to Maintain Account Access - 2026-07-08 00:17:15 (UTC)",
-      "date": "2026-07-08 00:17 UTC",
-      "is_unread": false,
-      "snippet": "[Binance] Information Required to Maintain Account Access Dear User, We require additional due diligence information from you. Your account might be restricted if you do not respond with the relevant",
-      "body_preview": "",
-      "keywords": [
-        "account"
-      ]
-    },
-    {
-      "id": "19f3935372f735fc",
-      "threadId": "19f3935372f735fc",
-      "from": "GitGuardian Team <support@gitguardian.com>",
-      "to": "chanmyint123456789@gmail.com",
-      "subject": "flash00787/PSVIBE-Sales-Bot - 1 internal incident detected",
-      "date": "2026-07-06 20:53 UTC",
-      "is_unread": false,
-      "snippet": "1 internal secret incident detected! Telegram Bot Token 2026-07-06 08:53:19 PM (UTC) See on GitGuardian flash00787/\u200bPSVIBE-Sales-B\u2026 (commit 07fa4e9) See on GitHub GitGuardian is an automated secrets",
-      "body_preview": "",
-      "keywords": [
-        "tele",
-        "bot",
-        "telegram"
-      ]
-    },
-    {
-      "id": "19f393408c9899cc",
-      "threadId": "19f393408c9899cc",
-      "from": "GitGuardian Team <support@gitguardian.com>",
-      "to": "chanmyint123456789@gmail.com",
-      "subject": "flash00787/PSVIBE-Sales-Bot - 88 internal incidents detected",
-      "date": "2026-07-06 20:52 UTC",
-      "is_unread": false,
-      "snippet": "88 internal secret incidents detected! Google Cloud OAuth2 Access Token 2026-06-17 01:37:49 AM (UTC) See on GitGuardian flash00787/\u200bPSVIBE-Sales-B\u2026 (commit e784c8d) See on GitHub flash00787/\u200bPSVIBE-",
-      "body_preview": "",
-      "keywords": [
-        "bot"
       ]
     }
   ]

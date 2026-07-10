@@ -1,13 +1,25 @@
 {
-  "checked_at": "2026-07-10T01:51:21.310808+00:00",
-  "total": 56,
+  "checked_at": "2026-07-10T19:18:25.667735+00:00",
+  "total": 47,
   "unread": 30,
-  "promo": 11,
+  "promo": 17,
   "nova": 0,
   "important": 3,
-  "normal": 45,
+  "normal": 30,
   "nova_emails": [],
   "important_emails": [
+    {
+      "id": "19f4a13f9c63ed4f",
+      "from": "foodpanda <contact@info.foodpanda.com.mm>",
+      "subject": "\u1014\u1031\u102c\u1000\u103a\u1021\u1031\u102c\u103a\u1012\u102b\u1019\u103e\u102c 2000 MMK off \u1014\u1032\u1037\u1019\u103e\u102c\u1005\u102c\u1038\u1015\u102b\ud83c\udf5c",
+      "date": "Fri, 10 Jul 2026 03:30:49 +0000 (UTC)",
+      "unread": true,
+      "snippet": "\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u101e\u1004\u1037\u103a\u1010\u102c\u101c\u1031\u1038\u1010\u103d\u1031 \u1005\u102c\u1038\u1001\u103b\u1004\u103a\u1010\u102c \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u1001\u103b\u102d\u1014\u103a\u1010\u1014\u103a\u1015\u103c\u102e\u104b Seoul K 7-Levels Korean Spicy Noodle (Kantharyar Center) \u1000 \u1021\u1019\u102d\u102f\u1000\u103a\u1005\u102c\u1038\u1019\u102e\u1014",
+      "body_preview": "\r\n\r\n\r\n\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nfoodpanda    * { font-family: Arial, sans-serif !important;\r\n}                96                        ( # )\r\n( \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nhttps://bhpz.adj.st/?c=mm&adjust_t=5whn9n_sw8vui&adjust_campaign=crm_bra_mix_aut_2003XX_APAC_FP_C",
+      "keywords": [
+        "important"
+      ]
+    },
     {
       "id": "19f4404e20b56fa5",
       "from": "CypherHQ <hello@cypherd.io>",
@@ -33,68 +45,77 @@
       "keywords": [
         "account"
       ]
-    },
-    {
-      "id": "19f3f160dd5b6e5e",
-      "from": "Binance <do-not-reply@ses.binance.com>",
-      "subject": "[Binance] Information Required to Maintain Account Access - 2026-07-08 00:17:15 (UTC)",
-      "date": "Wed, 8 Jul 2026 00:17:17 +0000",
-      "unread": false,
-      "snippet": "[Binance] Information Required to Maintain Account Access Dear User, We require additional due diligence information from you. Your account might be r",
-      "body_preview": "",
-      "keywords": [
-        "account"
-      ]
     }
   ],
   "promo_emails": [
     {
-      "id": "19f4950a0e8bc806",
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Thu, 09 Jul 2026 16:57:28 -0700",
-      "unread": true,
-      "snippet": "Google Cloud Platform &amp; APIs Payment received Your payment of THB 1000.00 (reference CLOUD CHX38M on Visa \u2022 \u2022 \u2022 \u2022 3567) was applied to Google Clou",
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB\u00a01,000.00 (reference CLOUD CHX38M on Visa\u00a0\u00a0\u2022\u2006\u2022\u2006\u2022\u2006\u2022\u20063567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 9, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/contac"
-    },
-    {
-      "id": "19f494db3ef86e2d",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Fri, 10 Jul 2026 06:24:09 +0630",
-      "unread": true,
-      "snippet": "Dear Valued Customer, Recurring transaction was posted to your card 455085******3567 on 2026/07/10 at 06:24:08 with amount of THB1,000.00 from GOOGLE*",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/07/10 at 06:24:08 with amount of THB1,000.00 from GOOGLE*CLOUD CHX38M. Please call 01-2317777 bank if you have any query about the transaction.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\n"
-    },
-    {
-      "id": "19f32ecad5eaed81",
+      "id": "19f4cacaab996e29",
       "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Your Plus access will end soon",
-      "date": "Sun, 05 Jul 2026 15:36:38 +0000",
+      "subject": "Final reminder: Your Plus access ends soon",
+      "date": "Fri, 10 Jul 2026 15:36:51 +0000",
       "unread": true,
-      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limit",
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  Update your payment method to keep using\r\nPlus  =\r\n\r\n \r\n          Update payment          Please update your payment method to keep\r\naccess to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reasoning models\r\n"
+      "snippet": "ChatGPT You&#39;ll lose access to Plus on Jul 14, 2026 Update payment Please update your payment method by Jul 14, 2026 to keep access to Plus benefit",
+      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  You\u2019ll lose access to Plus on Jul 14,\r\n2026  =\r\n\r\n \r\n          Update payment          Please update your payment method by Jul\r\n14, 2026 to keep access to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reaso"
     },
     {
-      "id": "185640ecebbcbb00",
-      "from": "noreply@cbbank.com.mm",
-      "subject": "\"Alert notification \"A/c Credited",
-      "date": "Fri, 30 Dec 2022 23:52:47 +0630 (MMT)",
+      "id": "19f4c7372599f41d",
+      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, top price drops in Cebu, selected for you!",
+      "date": "Fri, 10 Jul 2026 14:34:21 +0000 (UTC)",
       "unread": true,
-      "snippet": "&quot;Dear: &quot;U AUNG CHAN MYINT &quot;We have the following &quot;&quot;Alert notification &quot;&quot;for you : &quot; A/c Credited &quot;Account",
+      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best ",
       "body_preview": ""
     },
     {
-      "id": "19f440640fca06d5",
-      "from": "Google <noreply-accounts@google.com>",
-      "subject": "You shared some Google Account data with Web3Auth",
-      "date": "Wed, 08 Jul 2026 16:18:08 -0700",
-      "unread": false,
-      "snippet": "Keep track of your Google Account data chanmyint123456789@gmail.com You&#39;re receiving this email because you used Sign in with Google to sign in to",
-      "body_preview": "Keep track of your Google Account data\r\n\r\n\r\n\r\nchanmyint123456789@gmail.com\r\n\r\n\u200a\r\n\r\n<!--[if !mso]><!-->\r\n\r\n<!--[if false]><!-->\r\n\r\n\r\nYou're receiving this email because you used Sign in with Google to sign in  \r\nto\r\n\r\n\r\n<https://c.gle/AOPyDKT36SKjJms68mRbZ1OapzYAs_0X7uCNDhYzMnZvvFzMZ9zkDIq-kxoa5mPiXEwFw4JpRvpu-VXbhvUhrFY2N5BZ3xkhodjXBWNTcB0FTjw>Web3Auth\r\n\r\n\r\non July 9 at 5:48\u202fAM .\r\n\r\nThis email sum"
+      "id": "19f4bdee043997a7",
+      "from": "Steam <noreply@steampowered.com>",
+      "subject": "Voyagers of Nera from your Steam wishlist is now on sale!",
+      "date": "Fri, 10 Jul 2026 04:52:05 -0700",
+      "unread": true,
+      "snippet": "Steam 1 GAME YOU&#39;VE WISHED FOR IS ON SALE! Voyagers of Nera -34% $29.99 $19.79 USD SPECIAL PROMOTION! Offer ends 23 Jul 11:00pm +0630 Voyagers of ",
+      "body_preview": ""
+    },
+    {
+      "id": "19f4bc8775475f75",
+      "from": "Google Payments <payments-noreply@google.com>",
+      "subject": "Google Cloud Platform & APIs: Payment received",
+      "date": "Fri, 10 Jul 2026 04:27:36 -0700",
+      "unread": true,
+      "snippet": "Google Cloud Platform &amp; APIs Payment received Your payment of THB 1000.00 (reference CLOUD VZBT6T on Visa \u2022 \u2022 \u2022 \u2022 3567) was applied to Google Clou",
+      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB\u00a01,000.00 (reference CLOUD VZBT6T on Visa\u00a0\u00a0\u2022\u2006\u2022\u2006\u2022\u2006\u2022\u20063567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 10, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
+    },
+    {
+      "id": "19f4bc53c6ae9b7b",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Fri, 10 Jul 2026 17:53:59 +0630",
+      "unread": true,
+      "snippet": "Dear Valued Customer, Recurring transaction was posted to your card 455085******3567 on 2026/07/10 at 17:53:57 with amount of THB1,000.00 from GOOGLE*",
+      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/07/10 at 17:53:57 with amount of THB1,000.00 from GOOGLE*CLOUD VZBT6T. Please call 01-2317777 bank if you have any query about the transaction.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\n"
     }
   ],
   "normal_emails": [
+    {
+      "id": "19f4a13f9c63ed4f",
+      "from": "foodpanda <contact@info.foodpanda.com.mm>",
+      "subject": "\u1014\u1031\u102c\u1000\u103a\u1021\u1031\u102c\u103a\u1012\u102b\u1019\u103e\u102c 2000 MMK off \u1014\u1032\u1037\u1019\u103e\u102c\u1005\u102c\u1038\u1015\u102b\ud83c\udf5c",
+      "date": "Fri, 10 Jul 2026 03:30:49 +0000 (UTC)",
+      "unread": true,
+      "snippet": "\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u101e\u1004\u1037\u103a\u1010\u102c\u101c\u1031\u1038\u1010\u103d\u1031 \u1005\u102c\u1038\u1001\u103b\u1004\u103a\u1010\u102c \u1015\u103c\u1014\u103a\u1019\u103e\u102c\u1005\u102c\u1038\u1001\u103b\u102d\u1014\u103a\u1010\u1014\u103a\u1015\u103c\u102e\u104b Seoul K 7-Levels Korean Spicy Noodle (Kantharyar Center) \u1000 \u1021\u1019\u102d\u102f\u1000\u103a\u1005\u102c\u1038\u1019\u102e\u1014",
+      "body_preview": "\r\n\r\n\r\n\u1005\u102c\u1038\u1000\u1031\u102c\u1004\u103a\u1038\u1010\u102c\u101c\u1031\u1038\u1019\u103e\u102c\u1019\u101c\u102c\u1038\ud83d\udcde\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nfoodpanda    * { font-family: Arial, sans-serif !important;\r\n}                96                        ( # )\r\n( \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nhttps://bhpz.adj.st/?c=mm&adjust_t=5whn9n_sw8vui&adjust_campaign=crm_bra_mix_aut_2003XX_APAC_FP_C",
+      "keywords": [
+        "important"
+      ]
+    },
+    {
+      "id": "19f4a11b87257a20",
+      "from": "PlayStation <email@email.playstation.com>",
+      "subject": "Assassin's Creed Black Flag Resynced \ud83c\udff4\u200d\u2620\ufe0f Out now",
+      "date": "Thu, 09 Jul 2026 21:26:28 -0600",
+      "unread": true,
+      "snippet": "The iconic pirate adventure, reimagined \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c ",
+      "body_preview": "\r\n"
+    },
     {
       "id": "19f491791f5ce6dd",
       "from": "Samsung Electronics Australia <samsungelectronics@au.email.samsung.com>",
@@ -121,24 +142,6 @@
       "unread": true,
       "snippet": "Muhammad posted: &quot;Download Reallusion iClone Pro 7.72.3818.1 with Resources Pack and Plugins full version offline setup free for Windows 64-bit. ",
       "body_preview": "Post       : Reallusion iClone Pro 7.72.3818.1 with Resources Pack Free Download\nURL        : https://allpcworld.com/iclone-pro-7-with-resources-pack-free-download/\nPosted     : February 25, 2021 at 5:02 am\nAuthor     : Muhammad\nTags       : Download Reallusion iClone Pro 7.72.3818.1 with Resources Pack, Latest Reallusion iClone Pro 7.72.3818.1 with Resources Pack, Reallusion iClone Pro 7 Complete"
-    },
-    {
-      "id": "177cceb45ef77c5f",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] InnovMetric PolyWorks Metrology Suite 2020 IR7 Free Download",
-      "date": "Tue, 23 Feb 2021 03:25:06 +0000",
-      "unread": true,
-      "snippet": "Muhammad posted: &quot;Download InnovMetric PolyWorks Metrology Suite 2020 IR7 free latest version offline setup for Windows 32-bit and 64-bit. InnovM",
-      "body_preview": "Post       : InnovMetric PolyWorks Metrology Suite 2020 IR7 Free Download\r\nURL        : https://allpcworld.com/innovmetric-polyworks-metrology-suite-v2020-free-download/\r\nPosted     : February 23, 2021 at 3:19 am\r\nAuthor     : Muhammad\r\nTags       : PolyWorks Metrology Suite 2020 IR7 Complete Program Download, PolyWorks Metrology Suite 2020 IR7 For 32bit Free Download, PolyWorks Metrology Suite 20"
-    },
-    {
-      "id": "176f0a7f3af05191",
-      "from": "ALL PC World <donotreply@wordpress.com>",
-      "subject": "[New post] VovSoft Text Edit Plus 8.2 Free Download",
-      "date": "Mon, 11 Jan 2021 08:55:06 +0000",
-      "unread": true,
-      "snippet": "Muhammad posted: &quot;Download VovSoft Text Edit Plus 8.2 free latest full version direct download link complete standalone offline installer for Win",
-      "body_preview": "Post       : VovSoft Text Edit Plus 8.2 Free Download\r\nURL        : https://allpcworld.com/vovsoft-text-edit-plus-free-download/\r\nPosted     : January 11, 2021 at 8:53 am\r\nAuthor     : Muhammad\r\nTags       : Download VovSoft Text Edit Plus 8.2, VovSoft Text Edit Plus 8.2 Direct Download Link, VovSoft Text Edit Plus 8.2 for Windows, VovSoft Text Edit Plus 8.2 Free Download, VovSoft Text Edit Plus 8"
     }
   ]
 }
