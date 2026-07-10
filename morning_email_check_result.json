@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-07-09T19:07:24.543285+00:00",
-  "total": 45,
+  "checked_at": "2026-07-10T01:51:21.310808+00:00",
+  "total": 56,
   "unread": 30,
-  "promo": 13,
+  "promo": 11,
   "nova": 0,
   "important": 3,
-  "normal": 32,
+  "normal": 45,
   "nova_emails": [],
   "important_emails": [
     {
@@ -49,96 +49,96 @@
   ],
   "promo_emails": [
     {
+      "id": "19f4950a0e8bc806",
+      "from": "Google Payments <payments-noreply@google.com>",
+      "subject": "Google Cloud Platform & APIs: Payment received",
+      "date": "Thu, 09 Jul 2026 16:57:28 -0700",
+      "unread": true,
+      "snippet": "Google Cloud Platform &amp; APIs Payment received Your payment of THB 1000.00 (reference CLOUD CHX38M on Visa \u2022 \u2022 \u2022 \u2022 3567) was applied to Google Clou",
+      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB\u00a01,000.00 (reference CLOUD CHX38M on Visa\u00a0\u00a0\u2022\u2006\u2022\u2006\u2022\u2006\u2022\u20063567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 9, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/contac"
+    },
+    {
+      "id": "19f494db3ef86e2d",
+      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
+      "subject": "TRANSACTION NOTIFICATION",
+      "date": "Fri, 10 Jul 2026 06:24:09 +0630",
+      "unread": true,
+      "snippet": "Dear Valued Customer, Recurring transaction was posted to your card 455085******3567 on 2026/07/10 at 06:24:08 with amount of THB1,000.00 from GOOGLE*",
+      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/07/10 at 06:24:08 with amount of THB1,000.00 from GOOGLE*CLOUD CHX38M. Please call 01-2317777 bank if you have any query about the transaction.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\n"
+    },
+    {
+      "id": "19f32ecad5eaed81",
+      "from": "OpenAI <noreply@tm.openai.com>",
+      "subject": "Your Plus access will end soon",
+      "date": "Sun, 05 Jul 2026 15:36:38 +0000",
+      "unread": true,
+      "snippet": "ChatGPT Update your payment method to keep using Plus Update payment Please update your payment method to keep access to Plus benefits: Extended limit",
+      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  Update your payment method to keep using\r\nPlus  =\r\n\r\n \r\n          Update payment          Please update your payment method to keep\r\naccess to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reasoning models\r\n"
+    },
+    {
+      "id": "185640ecebbcbb00",
+      "from": "noreply@cbbank.com.mm",
+      "subject": "\"Alert notification \"A/c Credited",
+      "date": "Fri, 30 Dec 2022 23:52:47 +0630 (MMT)",
+      "unread": true,
+      "snippet": "&quot;Dear: &quot;U AUNG CHAN MYINT &quot;We have the following &quot;&quot;Alert notification &quot;&quot;for you : &quot; A/c Credited &quot;Account",
+      "body_preview": ""
+    },
+    {
       "id": "19f440640fca06d5",
       "from": "Google <noreply-accounts@google.com>",
       "subject": "You shared some Google Account data with Web3Auth",
       "date": "Wed, 08 Jul 2026 16:18:08 -0700",
-      "unread": true,
+      "unread": false,
       "snippet": "Keep track of your Google Account data chanmyint123456789@gmail.com You&#39;re receiving this email because you used Sign in with Google to sign in to",
       "body_preview": "Keep track of your Google Account data\r\n\r\n\r\n\r\nchanmyint123456789@gmail.com\r\n\r\n\u200a\r\n\r\n<!--[if !mso]><!-->\r\n\r\n<!--[if false]><!-->\r\n\r\n\r\nYou're receiving this email because you used Sign in with Google to sign in  \r\nto\r\n\r\n\r\n<https://c.gle/AOPyDKT36SKjJms68mRbZ1OapzYAs_0X7uCNDhYzMnZvvFzMZ9zkDIq-kxoa5mPiXEwFw4JpRvpu-VXbhvUhrFY2N5BZ3xkhodjXBWNTcB0FTjw>Web3Auth\r\n\r\n\r\non July 9 at 5:48\u202fAM .\r\n\r\nThis email sum"
-    },
-    {
-      "id": "19f434756b6169aa",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION NOTIFICATION",
-      "date": "Thu, 9 Jul 2026 02:19:32 +0630",
-      "unread": true,
-      "snippet": "Dear Valued Customer, There was a transaction on your card 455085******3567 at DEEPSEEK with amount 53.00USD on 2026/07/09 at 02:19:31. Please call 01",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nThere was a transaction on your card 455085******3567 at DEEPSEEK with amount 53.00USD on 2026/07/09 at 02:19:31. Please call 01-2317777 if you have any query.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\nThis message contains confidential information and is i"
-    },
-    {
-      "id": "19f4346a82e9579f",
-      "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
-      "subject": "TRANSACTION OTP",
-      "date": "Thu, 9 Jul 2026 02:18:39 +0630",
-      "unread": true,
-      "snippet": "Please enter OTP: 934389. Amount: 53.00 USD. Merchant: DeepSeek. The OTP will expire within 5 minutes. This message contains confidential information ",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body>\r\nPlease enter OTP: 934389. Amount: 53.00 USD. Merchant: DeepSeek. The OTP will expire within 5 minutes. This message contains confidential information and is intended for the use of individual or entity to whom they are addressed. If you are not the intended\r\n recipient you are notified that dis"
-    },
-    {
-      "id": "19f42620774f8fd2",
-      "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Final reminder: Your Plus access ends soon",
-      "date": "Wed, 08 Jul 2026 15:39:08 +0000",
-      "unread": true,
-      "snippet": "ChatGPT You&#39;ll lose access to Plus on Jul 14, 2026 Update payment Please update your payment method by Jul 14, 2026 to keep access to Plus benefit",
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  You\u2019ll lose access to Plus on Jul 14,\r\n2026  =\r\n\r\n \r\n          Update payment          Please update your payment method by Jul\r\n14, 2026 to keep access to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reaso"
-    },
-    {
-      "id": "19f4223780f93200",
-      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
-      "subject": "Aung Chan, top price drops in Sapa, selected for you!",
-      "date": "Wed, 08 Jul 2026 14:30:47 +0000 (UTC)",
-      "unread": true,
-      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best ",
-      "body_preview": ""
     }
   ],
   "normal_emails": [
     {
-      "id": "19f483280c93d5da",
-      "from": "\"Trip.com\" <Trip.com@newsletter.trip.com>",
-      "subject": "\ud83d\udea8 Last Chance: Save $200 on Your Next Trip",
-      "date": "Thu, 9 Jul 2026 18:44:56 +0000",
+      "id": "19f491791f5ce6dd",
+      "from": "Samsung Electronics Australia <samsungelectronics@au.email.samsung.com>",
+      "subject": "Sign up. Get offers.",
+      "date": "Thu, 09 Jul 2026 22:32:40 GMT",
       "unread": true,
-      "snippet": "50% Off Trains &amp; Cars, New BOGO Attractions + Disney &amp; Universal Savings Flights Hotels Trains Attractions &amp; Tours Final hours: save $200 ",
-      "body_preview": ""
+      "snippet": "Max your offers for Galaxy Unpacked \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f ",
+      "body_preview": "Max your offers for Galaxy Unpacked \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007\u034f \u2007"
     },
     {
-      "id": "19f46cc371299df1",
-      "from": "MyClaw Newsletter <MyClaw@aisecret.us>",
-      "subject": "\ud83e\udd9e Agent Joins Patient Intake",
-      "date": "Thu, 9 Jul 2026 20:02:09 +0800 (CST)",
+      "id": "19f4870e682c4ae1",
+      "from": "\"Assassin's Creed Black Flag Resynced\" <news@updates.ubisoft.com>",
+      "subject": "Available now!",
+      "date": "Thu, 09 Jul 2026 13:53:02 -0600",
       "unread": true,
-      "snippet": "Plus: Robinhood Bets On Agent Traders, Bank Agents Cut Complaint Admin \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f",
-      "body_preview": "<!doctype html>\r\n<html lang=\"en-gb\" dir=\"ltr\">\r\n <head>\r\n  <meta name=\"viewport\" content=\"width=device-width\">\r\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->\r\n  <title>\ud83e\udd9e Agent Joins Patient Intake</title>\r\n  <style>\r\n@media only screen "
+      "snippet": "Embark on Captain Edward Kenway&#39;s adventures across the emerald Caribbean seas. \u200c \u200c \u200c \u200c \u200c \u200c\u200c \u200c \u200c \u200c \u200c \u200c\u200c \u200c \u200c \u200c \u200c \u200c\u200c \u200c \u200c \u200c \u200c \u200c\u200c \u200c \u200c \u200c \u200c \u200c\u200c \u200c \u200c \u200c \u200c \u200c",
+      "body_preview": "Available now!\r\n \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj"
     },
     {
-      "id": "19f44f8b6641e6ee",
-      "from": "PlayStation <email@email.playstation.com>",
-      "subject": "Earn the number with the 007 First Light DualSense controller",
-      "date": "Wed, 08 Jul 2026 21:42:49 -0600",
+      "id": "177d79536ffda27f",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] Reallusion iClone Pro 7.72.3818.1 with Resources Pack Free Download",
+      "date": "Thu, 25 Feb 2021 05:06:55 +0000",
       "unread": true,
-      "snippet": "Q has something special for you, Rev-Flash007 \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c ",
-      "body_preview": "\r\n"
+      "snippet": "Muhammad posted: &quot;Download Reallusion iClone Pro 7.72.3818.1 with Resources Pack and Plugins full version offline setup free for Windows 64-bit. ",
+      "body_preview": "Post       : Reallusion iClone Pro 7.72.3818.1 with Resources Pack Free Download\nURL        : https://allpcworld.com/iclone-pro-7-with-resources-pack-free-download/\nPosted     : February 25, 2021 at 5:02 am\nAuthor     : Muhammad\nTags       : Download Reallusion iClone Pro 7.72.3818.1 with Resources Pack, Latest Reallusion iClone Pro 7.72.3818.1 with Resources Pack, Reallusion iClone Pro 7 Complete"
     },
     {
-      "id": "19f439cdab766a5d",
-      "from": "\"Trip.com\" <Trip.com@newsletter.trip.com>",
-      "subject": "\ud83d\udea8 $100 Flight + $100 Hotel Coupons",
-      "date": "Wed, 8 Jul 2026 21:23:00 +0000",
+      "id": "177cceb45ef77c5f",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] InnovMetric PolyWorks Metrology Suite 2020 IR7 Free Download",
+      "date": "Tue, 23 Feb 2021 03:25:06 +0000",
       "unread": true,
-      "snippet": "Save 40% in Zhangjiajie + 50% Off Car Rentals Flights Hotels Trains Attractions &amp; Tours Today&#39;s Mega Deals Are Waiting Explore new deals every",
-      "body_preview": ""
+      "snippet": "Muhammad posted: &quot;Download InnovMetric PolyWorks Metrology Suite 2020 IR7 free latest version offline setup for Windows 32-bit and 64-bit. InnovM",
+      "body_preview": "Post       : InnovMetric PolyWorks Metrology Suite 2020 IR7 Free Download\r\nURL        : https://allpcworld.com/innovmetric-polyworks-metrology-suite-v2020-free-download/\r\nPosted     : February 23, 2021 at 3:19 am\r\nAuthor     : Muhammad\r\nTags       : PolyWorks Metrology Suite 2020 IR7 Complete Program Download, PolyWorks Metrology Suite 2020 IR7 For 32bit Free Download, PolyWorks Metrology Suite 20"
     },
     {
-      "id": "19f41efb0bf15ecb",
-      "from": "MEXC <news@info.mexc.com>",
-      "subject": "Your Exclusive Futures Bonus is Here! Share a 200,000 USDT Prize Pool",
-      "date": "Wed, 8 Jul 2026 19:45:09 +0800 (CST)",
+      "id": "176f0a7f3af05191",
+      "from": "ALL PC World <donotreply@wordpress.com>",
+      "subject": "[New post] VovSoft Text Edit Plus 8.2 Free Download",
+      "date": "Mon, 11 Jan 2021 08:55:06 +0000",
       "unread": true,
-      "snippet": "Deposit, trade &amp; check-in to win exclusive rewards Share a 200000 USDT Prize Pool Deposit, trade &amp; check-in to win exclusive rewards Join Now ",
-      "body_preview": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n <head> \r\n  <style> * { margin: 0; padding: 0; box-sizing: border-box; } </style> \r\n  <meta charset=\"UTF-8\" /> \r\n  <title></title> \r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0;\" /> \r\n </head> \r\n <body>\r\n  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> \r\n   <tbody> \r\n    <tr> \r\n     <td height=\"0\" style=\"font-size:0px; line-height:0p"
+      "snippet": "Muhammad posted: &quot;Download VovSoft Text Edit Plus 8.2 free latest full version direct download link complete standalone offline installer for Win",
+      "body_preview": "Post       : VovSoft Text Edit Plus 8.2 Free Download\r\nURL        : https://allpcworld.com/vovsoft-text-edit-plus-free-download/\r\nPosted     : January 11, 2021 at 8:53 am\r\nAuthor     : Muhammad\r\nTags       : Download VovSoft Text Edit Plus 8.2, VovSoft Text Edit Plus 8.2 Direct Download Link, VovSoft Text Edit Plus 8.2 for Windows, VovSoft Text Edit Plus 8.2 Free Download, VovSoft Text Edit Plus 8"
     }
   ]
 }

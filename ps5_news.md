@@ -1,6 +1,55 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-09 17:34 UTC
+> Last updated: 2026-07-09 23:30 UTC
+
+---
+
+## 🚨🚨🚨 BREAKING (July 9, 2026 - 23:30 UTC) — Sony CEO Sold 56% of Stock AFTER Disc Announcement! Analysts Say Won't Reverse! Antitrust Escalating!
+
+> **💰🔥 Sony President & CEO Hiroki Totoki sold ~56% of his Sony holdings on July 3, 2026 (~$4.7M) — just TWO DAYS after the disc phaseout announcement.** Multiple analysts agree Sony WILL NOT reverse course. Digital sales now 80% of PlayStation purchases. Antitrust lawsuit intensifies. PS3 store phased closure begins August 2026 in select markets.
+
+### 💰🔥 Sony CEO Stock Sale — 56% Sold! July 3! $4.7M! Timing Raises Eyebrows!
+
+- **Sony President & CEO Hiroki Totoki** sold ~56% of his Sony stock on **July 3, 2026** — two days after the disc phaseout announcement (Jul 1)
+- **Value:** Approximately $4.7 million
+- **Other Sony executives** also reportedly sold shares during the same period
+- **Timing:** The sales occurred right as backlash erupted — fan outrage, petition signatures, PS Plus cancellations
+- **Legal scrutiny:** Timing "raised eyebrows" amid the antitrust lawsuit context
+- Sources: 247WallSt (Jul 9, 2026), TechRadar, Insider Gaming
+- **💡💡💡💡 LOUNGE IMPACT — SIGNIFICANT:**
+  - CEO selling over half his stake RIGHT AFTER the most controversial PlayStation announcement in years is NOT a good sign
+  - Could indicate executives themselves lack confidence in the all-digital transition
+  - However, analysts say timing may be coincidence — Totoki's net worth was heavily tied up in Sony stock
+  - **Worth monitoring** — if more executives sell, it signals deeper trouble
+
+### 📊 Analyst Consensus: Sony Will NOT Reverse Disc Decision — "Too Lucrative"
+
+- **Multiple analyst firms** (Bernstein, TechRadar, GamesRadar) agree: Sony will NOT reverse the disc phaseout
+- **Key data point:** Digital sales are **54% more profitable** for first-party titles than physical — eliminating discs cuts manufacturing, shipping, retail, and used-game losses
+- **Digital sales now ~80% of PlayStation game purchases** — physical market already minority
+- Analyst Robin Zhu (Bernstein): "If gamers and preservationists had bought more physical games, Sony wouldn't have seen the digital sales ratios that justify this decision"
+- GamesRadar analyst: "Sony knew what the online reaction would look like and they are now waiting for this storm to pass"
+- CEO stock sale + analyst consensus = disc phaseout almost certainly happening Jan 2028
+- Sources: TechRadar (Jul 9), GamesRadar (Jul 9), Insider Gaming (Jul 9), Financial Times
+- **💡💡💡💡💡 LOUNGE IMPACT — STRATEGIC (CRITICAL):**
+  - **PS VIBE's PHYSICAL DISC LIBRARY becomes more valuable every day.** Once Jan 2028 hits, the lounge's disc collection is a LEGACY ASSET no new lounge can replicate
+  - Don't expect Sony to reverse course — plan operations around an all-digital future
+  - **Consider expanding physical library NOW** while discs are still being produced (18 months left)
+
+### ⚖️ Antitrust Lawsuit Intensifies Over Digital-Only Transition (NEW)
+
+- Consumer rights groups argue disc phaseout **strengthens PlayStation's alleged monopolistic control** over PS Store & digital pricing
+- Existing antitrust lawsuit now incorporates disc phaseout as new evidence
+- Argument: Without physical competition, Sony can charge whatever it wants on PS Store with no retail alternative
+- Sources: LevelUp (Jul 9, 2026), TechDirt (Jul 8)
+- **💡💡💡 Lounge Note:** If antitrust action succeeds, it could affect PS Store pricing long-term — potentially good for lounge operating costs. Low probability but high impact.
+
+### 📅 PS3 Store Phased Closure — Begins August 2026 in Select Markets (New Detail)
+
+- Previously reported: PS3 & PS Vita stores close globally by July 2027
+- **New detail:** PS3 store will begin closing in **select markets starting August 2026** — just weeks away!
+- After closure: Still able to download previously purchased content
+- **💡💡 Lounge Note:** If PS VIBE has any PS3-era purchases with PS4/PS5 cross-buy, redeem/buy them NOW. Low urgency but good to know.
 
 ---
 
@@ -45,11 +94,12 @@ All four July 9 releases confirmed launching today:
 - **🟢🟢🟢 Halo: Campaign Evolved — Jul 28** (19 days! First Halo on PlayStation!)
 
 ### 🚨 Today's Priority Lounge Actions:
-1. **🔥 BUY 1 COPY of AC Black Flag Resynced** — test on lounge console before buying for all. Mixed reviews = caution!
-2. **🔥 TEST College Football 27** — if sports players are in the lounge today, this is a must-have
-3. **🎮 TOMORROW is PALWORLD 1.0 DAY + ECHOES OF AINCRAD DAY!** — PRE-LOAD NOW! 10:00am MMT!
-4. **🛒 Grab July Savings deals before Jul 15** — Back 4 Blood $8.99! DMC5 $4.49!
-5. **🔥 CoD Black Ops 1 & 2 — still MONITORING** (v1.03 backend confirmed, no exact date yet)
+1. **📊💰 BREAKING — Sony CEO sold 56% of stock ($4.7M)! Analysts: No reversal!** Read BREAKING section above! Expands physical library while 18 months left of disc production! Discs = legacy asset!
+2. **🔥 BUY 1 COPY of AC Black Flag Resynced** — test on lounge console before buying for all. Mixed reviews = caution!
+3. **🔥 TEST College Football 27** — if sports players are in the lounge today, this is a must-have
+4. **🎮 TOMORROW is PALWORLD 1.0 DAY + ECHOES OF AINCRAD DAY!** — PRE-LOAD NOW! 10:00am MMT!
+5. **🛒 Grab July Savings deals before Jul 15** — Back 4 Blood $8.99! DMC5 $4.49!
+6. **🔥 CoD Black Ops 1 & 2 — still MONITORING** (v1.03 backend confirmed, no exact date yet)
 
 ---
 
