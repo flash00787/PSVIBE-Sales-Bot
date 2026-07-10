@@ -1,24 +1,57 @@
 {
-  "C-01|1003686032747": {
-    "cid": "C-01",
+  "C-06|1003686032747": {
+    "cid": "C-06",
     "chat_id": -1003686032747,
-    "member_id": "Myat Bhone Kyaw",
-    "planned_mins": 120,
-    "end_t": "15:11",
-    "end_dt_iso": "2026-07-10T15:11:00+06:30",
+    "member_id": "Thet Htar Oo",
+    "planned_mins": 60,
+    "end_t": "15:14",
+    "end_dt_iso": "2026-07-10T15:14:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-10T06:41:26.874798+00:00"
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-10T07:44:43.991841+00:00"
   },
-  "C-09|1003686032747": {
-    "cid": "C-09",
+  "C-07|1003686032747": {
+    "cid": "C-07",
     "chat_id": -1003686032747,
-    "member_id": "\u1019\u1031\u102c\u1004\u103a\u1011\u1030\u1038\u1021\u1031\u102c\u1004\u103a\u101c\u103d\u1004\u103a",
-    "planned_mins": 75,
-    "end_t": "14:58",
-    "end_dt_iso": "2026-07-10T14:58:00+06:30",
+    "member_id": "Thet Htar Oo",
+    "planned_mins": 60,
+    "end_t": "15:14",
+    "end_dt_iso": "2026-07-10T15:14:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 75,
-    "updated_at": "2026-07-10T07:20:06.172816+00:00"
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-10T07:44:51.269036+00:00"
+  },
+  "C-08|1003686032747": {
+    "cid": "C-08",
+    "chat_id": -1003686032747,
+    "member_id": "Thet Htar Oo",
+    "planned_mins": 60,
+    "end_t": "15:14",
+    "end_dt_iso": "2026-07-10T15:14:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-10T07:50:08.513374+00:00"
+  },
+  "C-04|1003686032747": {
+    "cid": "C-04",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "15:48",
+    "end_dt_iso": "2026-07-10T15:48:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-10T08:18:57.765174+00:00"
+  },
+  "C-03|1003686032747": {
+    "cid": "C-03",
+    "chat_id": -1003686032747,
+    "member_id": "M",
+    "planned_mins": 60,
+    "end_t": "16:02",
+    "end_dt_iso": "2026-07-10T16:02:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-10T08:32:57.770017+00:00"
   }
 }
