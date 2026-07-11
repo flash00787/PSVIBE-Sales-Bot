@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-07-10T19:18:25.667735+00:00",
-  "total": 47,
+  "checked_at": "2026-07-11T01:32:17.670512+00:00",
+  "total": 42,
   "unread": 30,
-  "promo": 17,
+  "promo": 22,
   "nova": 0,
   "important": 3,
-  "normal": 30,
+  "normal": 20,
   "nova_emails": [],
   "important_emails": [
     {
@@ -49,49 +49,49 @@
   ],
   "promo_emails": [
     {
-      "id": "19f4cacaab996e29",
-      "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Final reminder: Your Plus access ends soon",
-      "date": "Fri, 10 Jul 2026 15:36:51 +0000",
-      "unread": true,
-      "snippet": "ChatGPT You&#39;ll lose access to Plus on Jul 14, 2026 Update payment Please update your payment method by Jul 14, 2026 to keep access to Plus benefit",
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  You\u2019ll lose access to Plus on Jul 14,\r\n2026  =\r\n\r\n \r\n          Update payment          Please update your payment method by Jul\r\n14, 2026 to keep access to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reaso"
-    },
-    {
-      "id": "19f4c7372599f41d",
-      "from": "Agoda Price Alerts <no-reply@sg.newsletter.agoda-emails.com>",
-      "subject": "Aung Chan, top price drops in Cebu, selected for you!",
-      "date": "Fri, 10 Jul 2026 14:34:21 +0000 (UTC)",
-      "unread": true,
-      "snippet": "Check out today&#39;s top price drops on Agoda! Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Aung Chan, experience the best ",
-      "body_preview": ""
-    },
-    {
-      "id": "19f4bdee043997a7",
-      "from": "Steam <noreply@steampowered.com>",
-      "subject": "Voyagers of Nera from your Steam wishlist is now on sale!",
-      "date": "Fri, 10 Jul 2026 04:52:05 -0700",
-      "unread": true,
-      "snippet": "Steam 1 GAME YOU&#39;VE WISHED FOR IS ON SALE! Voyagers of Nera -34% $29.99 $19.79 USD SPECIAL PROMOTION! Offer ends 23 Jul 11:00pm +0630 Voyagers of ",
-      "body_preview": ""
-    },
-    {
-      "id": "19f4bc8775475f75",
+      "id": "19f4e3d7c6ac7e14",
       "from": "Google Payments <payments-noreply@google.com>",
       "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Fri, 10 Jul 2026 04:27:36 -0700",
+      "date": "Fri, 10 Jul 2026 15:54:40 -0700",
       "unread": true,
-      "snippet": "Google Cloud Platform &amp; APIs Payment received Your payment of THB 1000.00 (reference CLOUD VZBT6T on Visa \u2022 \u2022 \u2022 \u2022 3567) was applied to Google Clou",
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB\u00a01,000.00 (reference CLOUD VZBT6T on Visa\u00a0\u00a0\u2022\u2006\u2022\u2006\u2022\u2006\u2022\u20063567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 10, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
+      "snippet": "Google Cloud Platform &amp; APIs Payment received Your payment of THB 1000.00 (reference CLOUD X3xH7B on Visa \u2022 \u2022 \u2022 \u2022 3567) was applied to Google Clou",
+      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB\u00a01,000.00 (reference CLOUD X3xH7B on Visa\u00a0\u00a0\u2022\u2006\u2022\u2006\u2022\u2006\u2022\u20063567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 10, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
     },
     {
-      "id": "19f4bc53c6ae9b7b",
+      "id": "19f4e3cdbf0ab629",
       "from": "\"Card Notification (No Reply)\" <noreply.securetransaction@ayabank.com>",
       "subject": "TRANSACTION NOTIFICATION",
-      "date": "Fri, 10 Jul 2026 17:53:59 +0630",
+      "date": "Sat, 11 Jul 2026 05:23:52 +0630",
       "unread": true,
-      "snippet": "Dear Valued Customer, Recurring transaction was posted to your card 455085******3567 on 2026/07/10 at 17:53:57 with amount of THB1,000.00 from GOOGLE*",
-      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/07/10 at 17:53:57 with amount of THB1,000.00 from GOOGLE*CLOUD VZBT6T. Please call 01-2317777 bank if you have any query about the transaction.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\n"
+      "snippet": "Dear Valued Customer, Recurring transaction was posted to your card 455085******3567 on 2026/07/11 at 05:23:51 with amount of THB1,000.00 from GOOGLE*",
+      "body_preview": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n</head>\r\n<body>\r\nDear Valued Customer,<br>\r\n<br>\r\nRecurring transaction was posted to your card 455085******3567 on 2026/07/11 at 05:23:51 with amount of THB1,000.00 from GOOGLE*CLOUD X3XH7B. Please call 01-2317777 bank if you have any query about the transaction.<br>\r\n<br>\r\nBest Regards,<br>\r\nAYA Bank<br>\r\n<br>\r\n"
+    },
+    {
+      "id": "19f4e156b2b2b084",
+      "from": "Agoda Deals <no-reply@sg.newsletter.agoda-emails.com>",
+      "subject": "Aung Chan, pack your bags - new deals just landed!",
+      "date": "Fri, 10 Jul 2026 22:10:53 +0000 (UTC)",
+      "unread": true,
+      "snippet": "Psst\u2026exclusive deals inside. Don&#39;t leave them stranded. Agoda.com Hotels &amp; Homes Flights Deals Airport Transfer Activities Get all your deals ",
+      "body_preview": ""
+    },
+    {
+      "id": "19f4dd99a69f8af0",
+      "from": "PlayStation <email@email.playstation.com>",
+      "subject": "Your early access to our Summer Sale is here, Rev-Flash007",
+      "date": "Fri, 10 Jul 2026 15:05:31 -0600",
+      "unread": true,
+      "snippet": "Early access ends July 15 \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c ",
+      "body_preview": "\r\n"
+    },
+    {
+      "id": "19f4d9ca783e047f",
+      "from": "Google Business Profile <businessprofile-noreply@google.com>",
+      "subject": "PS VIBE, are you open on Martyrs' Day?",
+      "date": "Fri, 10 Jul 2026 12:58:59 -0700",
+      "unread": true,
+      "snippet": "Keep your listing up to date \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d \u200d",
+      "body_preview": "Jul\r\n\r\n19\r\n\r\nLet customers know your holiday hours for July\r\n\r\nWhen your business has an irregular schedule, like holidays or special  \r\nevents, you can enter special hours in advance to let customers know when  \r\nyou\u2019re open. Here\u2019s what customers see when they view your business on  \r\nGoogle.\r\n\r\nUpdate my holiday hours  \r\n<http://business.google.com/n/9834080693527179285/profile/info/edit/specia"
     }
   ],
   "normal_emails": [

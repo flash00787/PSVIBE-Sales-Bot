@@ -1,27 +1,58 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-10 11:30 UTC
+> Last updated: 2026-07-10 23:30 UTC
 
 ---
 
-## ⚡ UPDATE (July 10, 2026 - 11:30 UTC) — 🎮🔥 PALWORLD 1.0 LAUNCH DAY! + Echoes of Aincrad Out Today! + 3 New Discoveries for Late July!
+## ⚡ EVENING UPDATE (July 10, 2026 - 23:30 UTC) — 🎮🔥 PALWORLD 1.0 LAUNCH DAY WRAP-UP! 373K Peak Players! 96% Positive Reviews! IGN Reviews! + PowerWash Sim 2 Star Wars DLC Jul 16! + PS Account Deletion Policy Re-Surfaced!
 
-> **Summary:** Friday midday sweep (12 hours since last update). **PALWORLD 1.0 GOES LIVE TODAY at 10:00am MMT!** 27-page patch notes! 287 total Pals! Water-based building! Reworked bosses! Condensation reduced (116→48 Pals to max)! 40M players across Early Access! **SAME DAY: Echoes of Aincrad (SAO) also launches!** Double mega-drop day! Three new games discovered for late July: **Disgaea Mayhem** (Jul 23) — real-time action Disgaea demo NOW AVAILABLE! **Mistfall Hunter** (Jul 29-30) — dark fantasy extraction ARPG! Plus: Ratatan DELAYED to Oct 15, Star Wars: Galactic Racer (Oct 6) PS Blog hands-on published, and PS5 Pro enhancements confirmed for AC Black Flag Resynced!
+> **Summary:** Evening wrap-up (12 hours since last update). **PALWORLD 1.0 LAUNCH DAY WAS A MASSIVE SUCCESS!** 302K+ concurrent Steam players (24h peak 373,570!) — biggest spike since record-breaking EA launch! 96% positive reviews on Steam! IGN review published! Level cap raised to 85! **Plus NEW FIND:** PowerWash Simulator 2 Star Wars Pack DLC (Jul 16, $9.99) — clean Millennium Falcon! And PlayStation's 3-year inactive account deletion policy resurfaces — potential concern for lounge setup.
 
-### 🎮🔥 PALWORLD 1.0 — LAUNCH DAY! July 10! 10:00am MMT! 🔥🔥🔥
+### 🎮🔥🔥 PALWORLD 1.0 — LAUNCH DAY RESULTS! July 10! MASSIVE NUMBERS! 🔥🔥🔥
 
-- **GOES LIVE TODAY** at 10:00am Myanmar Time (12:30pm JST)
-- **40 MILLION+ players** across Early Access (upgraded from previously tracked 25M)
-- **287 total Pals** (72 new + 20+ from 1.0 update alone!)
-- **New areas:** World Tree (story central), Sky Islands (expanded map significantly)
-- **Reworked Tower Bosses and Wildlife Sanctuaries** — more dynamic and engaging
-- **New Building Tools:** Long-awaited **water-based building** options
-- **Story Expansion:** Significant new story content integrated
-- **Condensation adjusted:** 116→48 Pals needed to max rank (huge QoL improvement)
-- **New Active Skills:** Many new skills for both new and existing Pals
-- **Improved melee controls, status effects, dodging**
-- **Save compatible but devs RECOMMEND new save** for best 1.0 experience
-- Sources: Pocketpair, IGN, Shacknews, GreenManGaming
+- **🚀 LAUNCH DAY TOTALS: 302K+ concurrent Steam players (24h peak 373,570)** — biggest player spike since the record-breaking Early Access launch in 2024! Pre-1.0 daily base was only 30K-70K
+- **96% positive reviews on Steam** — critics calling it "better than even Pokémon"
+- **IGN Review published** — praises smooth technical performance, streamlined progression, fully realized story with NPCs/quests, and proper ending
+- **Level cap raised to 85** (new detail — previously unconfirmed)
+- **40 MILLION+ total players** across all platforms
+- **Price remained same** as EA period, with limited-time promotional discount post-launch
+- **72 new Pals** (287 total), new areas (Sunreach + World Tree), reworked story + main missions
+- **Devs recommended fresh saves** for best experience — confirmed by post-launch community
+- **Biggest gaming story of the day** — Forbes, IGN, GamesRadar, ComicBook all covered launch
+- Sources: GamesRadar, Forbes, IGN, ComicBook, SteamDB (Jul 10, 2026)
+- **💡💡💡💡💡 LOUNGE IMPACT: Palworld 1.0 is a PHENOMENAL success.** If the lounge installed it on all consoles, customers will be booking sessions just for Palworld. 96% reviews = everyone wants to play. Level cap 85 means HUNDREDS of hours of content.
+
+### 🧼🔥 NEW FIND: PowerWash Simulator 2 Star Wars Pack — July 16! $9.99! 🆕
+
+- **Developer:** FuturLab / **Publisher:** Square Enix Collective
+- **Release: July 16, 2026** on PS5, Xbox Series X|S, Nintendo Switch 2, PC
+- **Price:** ~$9.99 / €9.99 / £7.99
+- **Content:** 6 Star Wars cleaning jobs playing as P0-W2 (class V labor droid):
+  - Lars' Homestead (Tatooine)
+  - Mos Eisley Cantina
+  - AT-AT Walker
+  - Super Star Destroyer Bridge
+  - X-Wing Fighter
+  - Millennium Falcon
+- **Star Wars IP** — broad cross-generational appeal
+- Sources: PushSquare (Jun 2026), IGN, GamesHub
+- **💡💡💡 Lounge Impact:** PowerWash Simulator is a surprisingly popular casual lounge game — relaxing, satisfying, low barrier to entry. Star Wars IP adds massive appeal. At $9.99 it's a cheap lounge addition. ⭐⭐⭐ lounge value — Star Wars + casual co-op = good weekday fill.
+
+### 📋 PlayStation's 3-Year Inactive Account Deletion Policy — Re-Surfaced Concern 🆕
+
+- **Policy has existed since December 2019** but re-surfaced in gaming news July 2026
+- PS+ Terms: If a PSN account is **inactive for 36 consecutive months**, Sony "may" close it
+- **Before deletion:** Sony sends email notification → user has **6 months** to log in or contact support
+- **After deletion:** ALL digital purchases (games, DLC) are **permanently lost** — irreversible
+- Policy applies in UK, Europe, and other regions
+- Sources: Inshorts, LevelUp, Consequence (Jul 5-7, 2026)
+- **💡💡💡💡 LOUNGE IMPACT — POTENTIALLY CRITICAL:**
+  - **If PS VIBE has lounge accounts that rotate or sit dormant for 3+ years, they risk losing ALL digital game purchases!**
+  - **Action needed:** Audit all lounge PSN accounts — ensure each one has been logged into within the last 3 years. Set a recurring reminder to log into each account annually
+  - This affects digital libraries, NOT physical discs — yet another argument for expanding the physical disc collection
+  - If the lounge uses a single master account with PS Plus, make sure someone logs into it at least once a year
+  - **Low urgency** (3-year window, 6-month notice) but **high severity** if forgotten
+  - ⭐⭐⭐⭐ lounge value — important operational awareness
 
 ### 🎮🔥 ECHOES OF AINCRAD (SAO) — LAUNCH DAY! July 10!
 
@@ -85,17 +116,19 @@
 - If PS VIBE has PS5 Pro units, they'll get enhanced visuals on this major remake
 - Noted as trending PlayStation Blog story in July 2026
 
-### 📋 Updated Priority Lounge Actions (July 10 - 11:30 UTC):
-1. **🎮🔥🔥🔥 PALWORLD 1.0 IS HERE!** 10:00am MMT! Install on ALL lounge consoles! 287 Pals! Water building! New story! 27-page patch notes!
+### 📋 Updated Priority Lounge Actions (July 10 - 23:30 UTC):
+1. **🎮🔥🔥🔥 PALWORLD 1.0 EXCEEDS EXPECTATIONS!** 373K peak players! 96% reviews! Level cap 85! If not installed yet — DO IT NOW! This is THE game of the month!
 2. **🎮🔥 ECHOES OF AINCRAD (SAO) IS HERE!** Same day! Custom avatar! Anime IP! BIG lounge draw!
-3. **🎮 TRY Disgaea Mayhem DEMO on PS Store** — free demo available NOW! Test before Jul 23 purchase!
-4. **🛒 July Savings Sale ends Jul 15** (5 days left!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
-5. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** Mark calendars! 3-day lounge event!
-6. **🟢🟢🟢 Halo: Campaign Evolved — Jul 28!** 18 days! Pre-order NOW! First Halo on PlayStation!
-7. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel!
-8. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
-9. **🔥 CLAIM CoD MW3 on ALL lounge PS5s** — PS Plus Essential July! Free until Aug 3!
-10. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
+3. **🧼🏎️ PowerWash Simulator 2 Star Wars Pack — Jul 16! $9.99!** Pre-order! 6 Star Wars cleaning jobs! Millennium Falcon!
+4. **🎮 TRY Disgaea Mayhem DEMO on PS Store** — free demo available NOW! Test before Jul 23 purchase!
+5. **🛒 July Savings Sale ends Jul 15** (5 days left!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
+6. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** Mark calendars! 3-day lounge event!
+7. **🟢🟢🟢 Halo: Campaign Evolved — Jul 28!** 18 days! Pre-order NOW! First Halo on PlayStation!
+8. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel!
+9. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+10. **🔥 CLAIM CoD MW3 on ALL lounge PS5s** — PS Plus Essential July! Free until Aug 3!
+11. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
+12. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk! Log into each account at least annually!
 
 ---
 
