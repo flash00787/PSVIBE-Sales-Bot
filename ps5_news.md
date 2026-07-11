@@ -3545,4 +3545,91 @@ All web search APIs were unavailable during this sweep (API key error). PlayStat
 11. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk!
 
 ---
-*Last updated: 2026-07-11 11:30 UTC*
+
+## ⚡ UPDATE (July 11, 2026 - 17:31 UTC) — 🚨🔥 CoD Black Ops 1 & 2 SHADOW DROPPED on PS5 Jul 9! $40 Each! PS Plus Discount! + Palworld 1.0 472K Peak CCU! 96% Positive! Even Bigger! + AC Black Flag Resynced Sells 2M on Day 1! + 'Don't Kill the Disc' Petition Hits 286K! + Summer Sale Early Access LIVE! + Halo Premium 5-Day Early Access Jul 23!
+
+> **Summary:** Saturday evening sweep (18 hours since last update). MAJOR developments since Jul 10 evening wrap-up! **CoD Black Ops 1 & 2 FINALLY shadow-dropped on PS5 on July 9!** Native PS5 ports at $40 each, but PS Plus gets $20 each until Aug 6! **Palworld 1.0 hit 472,769 peak concurrent on Steam** — even bigger than the initial 373K reported! 96% positive reviews confirmed! **AC Black Flag Resynced sold 2 MILLION copies on launch day!** 'Don't Kill the Disc' petition now at 286,000+ signatures! **Summer Sale 2026 PS Plus early access started Jul 10!** Halo Campaign Evolved Premium Edition offers 5-day early access starting Jul 23! Plus PS5 firmware update 26.04-13.42.00 went live with GTA VI overlay!
+
+### 🚨🔥🔥🔥 CoD Black Ops 1 & 2 — SHADOW DROPPED July 9 on PS5! NATIVE PORTS! 🚨🔥🔥🔥
+
+- **FINAL ARRIVAL!** The long-rumored PS5 native ports finally appeared on the PlayStation Store on **July 9, 2026** — no announcement, just a shadow drop!
+- **What's included:** Campaign, Multiplayer, AND Zombies modes from both games
+- **Pricing:**
+  - Base games: **$39.99 each** (standard price)
+  - DLC packs: **$29.99 per game** (all zombie maps + multiplayer DLC)
+  - **🔥 PS Plus discount: $19.99 per game / $9.00 per Season Pass** — available until **August 6, 2026**
+- **NOT remasters** — these are native PS5 ports with upscaled 4K resolution but NO 120fps support, NO crossplay (even between PS4/PS5 versions), and NO ray tracing
+- **Missing features from originals:** Wager Matches (BO1), Theater Mode (BO1), League Play (BO2), and combat training — confirmed by Eurogamer
+- **Trophies included:** Full trophy lists for both games — some are new
+- Sources: IGN, Kotaku, Eurogamer, PS Store, PushSquare (Jul 9-10)
+- **💡💡💡💡💡💡 LOUNGE IMPACT — CRITICAL (THIS IS WHAT THE TRACKER WAS WAITING FOR!):**
+  - **CoD Zombies is one of the most popular lounge experiences ever.** Having BO1 and BO2 Zombies natively on PS5 is HUGE
+  - **Buy at PS Plus discounted price: $19.99 each (until Aug 6)** — $40 regular is steep for simple ports. $20 each = great value
+  - **NO 120fps** — disappointing for competitive multiplayer but acceptable for Zombies/campaign
+  - **Install on ALL lounge PS5s!** Black Ops 1+2 are legendary. Customers who grew up on these will book sessions just for nostalgia
+  - **CoD Zombies = HOURS of content per session** — high retention, great for lounge revenue
+  - **Combine with CoD MW3 (PS Plus July)** — PS VIBE now has 3 CoD games in rotation!
+  - ⭐⭐⭐⭐⭐ lounge value — iconic CoD at discounted price, MUST BUY for Zombies alone
+
+### 🎮🔥🔥 PALWORLD 1.0 — LAUNCH DAY FINAL NUMBERS: 472,769 Peak CCU! 96% Positive! EVEN BIGGER THAN INITIALLY REPORTED! 🔥🔥
+
+- **Previous report (Jul 10 23:30 UTC):** 302K+ CCU, 24h peak 373,570
+- **FINAL confirmed numbers:** Peak of **472,769 concurrent players on Steam** as of 11:00 PM JST on July 10 — heading toward 500K!
+- Placed **#4 most-played on Steam** behind only Counter-Strike 2, PUBG, and Dota 2
+- **More than 10x increase** over pre-1.0 player counts (30K-70K)
+- **96% positive reviews** on Steam from hundreds of July 10 ratings — "better than even Pokémon"
+- IGN published review — praises smooth technical performance, streamlined progression, fully realized story
+- Sources: Forbes, GamesRadar, IGN, TwistedVoxel, SteamDB (Jul 10-11)
+- **💡💡💡💡💡 CORRECTED LOUNGE IMPACT:** Palworld 1.0 is the BIGGEST launch of July 2026, bar none. 472K peak is higher than many AAA games. 96% positive = customer magnet. If not installed on ALL lounge PS5s yet, DO IT NOW.
+
+### 🏴‍☠️🔥 AC Black Flag Resynced — LAUNCH HUGE SUCCESS! 2 Million Sold Day 1! Reviews Mostly Positive! 🔥
+
+- **UPDATE from previous mixed review (Eurogamer):** Full review consensus is MUCH more positive than the early Eurogamer take suggested
+- **2 MILLION copies sold on launch day (July 9)** — massive commercial success
+- **General critical consensus:** "A triumph" — "Better version of Black Flag in every possible way" — "The ultimate pirate fantasy modernized"
+- Rebuilt from ground up in Anvil engine with ray tracing, dynamic weather, improved parkour, stealth, and combat
+- New content: Exclusive storylines for Blackbeard and Stede Bonnet
+- Sources: IGN, TheSixthAxis, Neowin, Wikipedia, Ubisoft (Jul 10-11)
+- **💡💡💡💡 CORRECTED LOUNGE IMPACT:** Despite Eurogamer's mixed take, the broader review consensus is strongly positive. 2 million day-1 sales = the remake is a HIT. PS VIBE should buy for lounge — enhanced sailing, sea shanties, pirate theme = peak spectator appeal. Upgrade from ⭐⭐⭐ (test first) back to ⭐⭐⭐⭐ lounge value.
+
+### 📰 'Don't Kill the Disc' Petition — 286,000+ Signatures and CLIMBING! 🆕
+
+- **Jump from 170K+ (Jul 10 23:30 UTC) to 286,000+ signatures (Jul 11)** — nearly doubled!
+- Petition by PNP Games on Change.org continues to gain momentum
+- Sony remains publicly silent on the disc phaseout backlash
+- Sources: GameSpot, Forbes, Change.org, PushSquare (Jul 10-11)
+- **💡💡💡💡 Continued lounge relevance:** The momentum is NOT dying down. Every new signature strengthens the case that physical discs matter to gamers. PS VIBE's disc library = unique asset.
+
+### 🛒 Summer Sale 2026 — PS Plus EARLY ACCESS STARTED July 10! General Access Jul 15! 🆕
+
+- **PS Plus members got EARLY ACCESS** to select PS5/PS4 deals starting **July 10, 2026**
+- **General Summer Sale goes live July 15** for all users (runs through Aug 1)
+- This means active PS Plus subscribers can START buying deals NOW — 5 days early!
+- **July Savings Sale still active** (ends Jul 15) — Back 4 Blood $8.99, DMC5 $4.49, Deep Rock $16.49
+- Sources: PushSquare, Reddit (Jul 10)
+- **💡💡 Lounge Note:** If PS VIBE has PS Plus on lounge accounts, check the Summer Sale early access deals NOW before general access opens.
+
+### 🟢🟢🟢 Halo: Campaign Evolved — Premium Edition Offers 5-Day Early Access Starting July 23! 🆕
+
+- **Premium Edition** tier confirmed: Pays extra for early access
+- **Early access starts July 23** — 5 full days before the July 28 official launch
+- Premium also includes Alpha Halo Armory Pack, digital artbook, digital short story
+- Campaign rebuilt in Unreal Engine 5 — enhanced visuals, refined controls
+- 2-player split-screen co-op (console) + 4-player online co-op with cross-play/cross-progression
+- **💡💡💡💡 LOUNGE IMPACT (NEW DETAIL):** Premium Edition early access from Jul 23 means PS VIBE could have Halo running on lounge consoles 5 days before the general public! If the lounge holds regular customers who are Halo fans (and there are many who never owned Xbox), this is a marketing opportunity: "Play Halo on PlayStation at PS VIBE — 5 days early!"
+
+### 📋 Updated Priority Lounge Actions (July 11 - 17:31 UTC):
+1. **🚨🔥🔥🔥 BUY CoD Black Ops 1 & 2 on ALL lounge PS5s!** Shadow-dropped Jul 9! $20 each with PS Plus (until Aug 6)! MUST HAVE for Zombies mode!
+2. **🎮🔥🔥🔥 PALWORLD 1.0 CONFIRMED: 472K PEAK CCU!** Even bigger than reported! If not installed — DO IT NOW!
+3. **🏴‍☠️🔥 BUY AC Black Flag Resynced for lounge!** 2M sold day 1! Strong reviews! Pirate theme = peak spectator appeal!
+4. **🧼 PowerWash Sim 2 Star Wars Pack — Jul 16 (5 days!) $9.99!** Pre-order! 6 Star Wars jobs!
+5. **🛒 Summer Sale PS Plus early access is LIVE!** Check deals on lounge accounts NOW!
+6. **🟢🟢🟢 Halo Campaign Evolved — Premium Edition Jul 23 early access!** 12 days! Marketing: "First Halo on PS, 5 days early at PS VIBE!"
+7. **🛒 July Savings Sale ends Jul 15** (4 days!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
+8. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** Download on ALL lounge PS5s!
+9. **🎪 PlayStation at Comic-Con Jul 23-26** — panels for Wolverine, MARVEL Tōkon, God of War Laufey!
+10. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
+11. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk!
+
+---
+*Last updated: 2026-07-11 17:31 UTC*

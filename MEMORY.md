@@ -226,3 +226,30 @@ Kora now manages **9 projects** with full coordination tool support.
 | `/opt/outline-web/server.py` | Expired display fix, ThreadingHTTPServer, async backup |
 | `auth-profiles.json` | OpenRouter Gemini provider added |
 | `gateway.systemd.env` | OPENROUTER_API_KEY added |
+
+---
+
+## Memory (2026-07-11) — Outline VPN Thread Deadlock + Performance Fixes 🔧
+
+### Outline VPN Thread Deadlock — Root Cause Fix ✅
+- **Problem:** outline-web.service had 17 threads stuck in `futex_wait_queue`. Root cause: `_form_idempotency_lock` contention when `render_keys()` called concurrently. Multiple requests holding locks while waiting for Prometheus queries.
+- **Fix:** Replaced threaded handler logic with async/non-blocking approach for `render_keys()`
+- **File:** `/opt/outline-web/server.py`
+
+### Slow Dashboard — Per-key Prometheus Queries 🚀
+- **Problem:** `get_key_metrics()` queried Prometheus once per active Outline key via `docker exec shadowbox curl` (7 keys × 300ms = 2.1s). Remake page loading slow.
+- **Fix:** Added `batch_get_metrics()` — single Prometheus query `sum(shadowsocks_data_` to collect all key metrics in one call.
+- **File:** `/opt/outline-web/server.py`
+
+### ERR_CONNECTION_CLOSED on Key Delete/Expire/Renew 🐛→✅
+- **Problem:** After key operations, server rendered full dashboard (1.2s) before responding. Cloudflare closed connection → `ERR_CONNECTION_CLOSED`
+- **Fix:** Changed delete/expire/renew handlers to use 302 redirect (8ms) instead of full page render.
+- **File:** `/opt/outline-web/server.py`
+
+### New Lessons (#152-#155)
+| # | Lesson |
+|:-:|--------|
+| 152 | **Thread locks + concurrent HTTP + Prometheus = deadlock** — Never hold form idempotency locks across slow I/O (Prometheus queries). Batch or cache metrics. |
+| 153 | **Prometheus queries per-key are slow** — Use `sum()` aggregator for single-query batch metrics instead of N individual queries. |
+| 154 | **Post-mutation redirect beats full render** — After write operations (delete/expire), 302 redirect ~8ms vs full dashboard render ~1.2s. Avoid Cloudflare 100s timeout.
+155 | **POST mutating handlers → 302 redirect** — Rename handler used `send_html(render_keys(...))` (~1.2s). Changed to `send_redirect_admin()` (~8ms). All POST handlers that mutate data must use redirect, never full page render. |
