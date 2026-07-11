@@ -3337,3 +3337,87 @@ All web search APIs were unavailable during this sweep (API key error). PlayStat
 7. **🛒 July Savings ends Jul 15 (6 days!)** — Back 4 Blood $8.99! Deep Rock $16.49! DMC5 $4.49! Buy for ALL consoles!
 8. **🟢🟢 HALO: CAMPAIGN EVOLVED — Jul 28!** Pre-order NOW!
 9. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+
+---
+
+## ⚡ EARLY MORNING UPDATE (July 11, 2026 - 05:30 UTC) — 🚨 PS5 FIRMWARE 26.04 BREAKS PLAYTIME TRACKER FOR PHYSICAL GAMES! + Summer Sale Early Access LIVE Now! + Sony DELETING 551 Purchased Movies from Libraries!
+
+> **Summary:** Early Saturday sweep (6 hours since last update). THREE major new findings: **(1) 🚨 PS5 firmware 26.04 bug REMOVES playtime tracker from disc-based games only** — digital games unaffected. Sony acknowledges bug, investigating. Bad timing with disc phaseout debate. **(2) 🛒 PS Store Summer Sale EARLY ACCESS is LIVE NOW for PS Plus members** (started Jul 10 through Jul 14) — God of War Ragnarok, Elden Ring, Baldur's Gate 3, Astro Bot, Ghost of Tsushima, and more on sale! Public access from Jul 15. **(3) 🚨🚨 Sony DELETING 551 purchased movie/TV titles from European/UK libraries on Sep 1 with NO refunds!** — Terminator 2, Apocalypse Now, Paddington, Hot Fuzz, Rambo gone. Proof digital ownership is an illusion.
+
+### 🚨🚨🚨 CRITICAL BUG: PS5 Firmware 26.04 — Playtime Tracker BROKEN for Physical (Disc) Games ONLY! 🆕
+
+- **Firmware version:** 26.04-13.42.00 — rolled out July 1, 2026
+- **The Bug:** Playtime tracker showing **0 hours played** for disc-based games. Digital games LARGELY UNAFFECTED.
+- **Related issue:** "Recently Played" feature has been broken since June 15 — games not registering correctly. Firmware 26.04 did NOT fix this despite official patch notes mentioning only "improved system software performance and stability."
+- **Root cause:** Linked to a mid-June bug where random/incorrect titles appeared in libraries. Sony's cleanup fix apparently damaged the playtime tracking data for physical games.
+- **Sony's response:** PlayStation Support acknowledges the bug, engineering team investigating. NO ETA for fix as of July 11.
+- **Workaround:** Some users report temporary fix by deleting and reinstalling affected games. Cosmetic bug — save data and trophies unaffected.
+- Sources: PushSquare (Jul 2026), GamingBible, NotebookCheck, Reddit
+- **💡💡💡💡 LOUNGE IMPACT — OPERATIONAL: 🚨**
+  - If PS VIBE uses playtime tracking for customer billing or session management, **disc-based games will show 0 hours played** until Sony fixes this
+  - The timing is HIGHLY sensitive given Sony's disc phaseout announcement — conspiracy theorists already claiming it's intentional sabotage of physical media
+  - **Recommendation:** Do NOT install firmware 26.04 on lounge consoles yet if possible! Wait for a fix. If already installed, monitor affected consoles — you won't see accurate playtimes for physical games
+  - "Recently Played" being broken also affects how customers see what games are being played — may impact lounge atmosphere if the feature helps customers discover games
+  - ⭐⭐⭐⭐⭐ lounge value — critical operational bug for any lounge using playtime features
+
+### 🛒🔥 PS Store Summer Sale 2026 — PS Plus EARLY ACCESS Started JULY 10! LIVE NOW! 🆕
+
+- **EARLY ACCESS for PS Plus members: July 10-14, 2026** (STARTED YESTERDAY! Ends in 3 days!)
+- **Public Access: July 15 - August 1, 2026** (matches previously known Summer Sale window)
+- **Major PS5 games reported on sale:**
+  - God of War Ragnarok
+  - Ghost of Tsushima Director's Cut
+  - The Last of Us Part I
+  - Elden Ring
+  - Cyberpunk 2077
+  - Astro Bot
+  - Returnal
+  - Baldur's Gate 3
+  - Black Myth: Wukong
+  - It Takes Two
+  - Star Wars Jedi: Survivor
+  - Hogwarts Legacy
+  - Final Fantasy XVI
+- Sources: PushSquare (Jul 10, 2026), Reddit r/ps5deals
+- **💡💡💡💡💡 LOUNGE IMPACT — BUYING OPPORTUNITY 🆕:**
+  - **This was NOT previously tracked!** The tracker only had "Summer Sale Jul 16 - Aug 1" without the early access detail
+  - **PS Plus early access started YESTERDAY (Jul 10)!** If the lounge has PS Plus on any account, LOG IN NOW to get early access discounts through Jul 14
+  - Astro Bot, It Takes Two, Baldur's Gate 3 on sale = massive lounge staples at discount prices
+  - Recommend buying lounge staples (Astro Bot, It Takes Two, Baldur's Gate 3) during early access while availability is best
+  - Public access starts Jul 15 but popular titles may have stock concerns (if digital) — early access is the time to buy
+  - ⭐⭐⭐⭐⭐ lounge value — immediate buying opportunity, essential lounge titles on sale
+
+### 🚨🚨 551 MOVIES/TV SHOWS DELETED FROM PURCHASED PS LIBRARIES — Sep 1, 2026! No Refunds! 🆕
+
+- **What's happening:** Sony is removing 551 film and TV titles from PlayStation Store in **Europe and UK** starting **September 1, 2026** — titles customers **PURCHASED** are being removed from their libraries
+- **Reason:** Expiring content licensing agreements with StudioCanal
+- **No refunds:** Sony cites terms of use — purchases do not constitute ownership
+- **Major titles deleted:** Terminator 2: Judgment Day, Apocalypse Now, Paddington, Hot Fuzz, Rambo: First Blood, Mulholland Drive, and hundreds more
+- **Not the first time:** Similar removals happened in 2022 and 2023. Sony stopped selling movies/shows on PS Store entirely in 2021.
+- Sources: CyberNews, XDA Developers, Nerdist, Tom's Hardware, Collider (Jun 26, 2026)
+- **💡💡💡💡💡 LOUNGE IMPACT — STRATEGIC (CRITICAL):**
+  - **This is the PERFECT example of why physical media matters.** People who BOUGHT these movies digitally are losing them with ZERO compensation — and Sony says that's allowed
+  - **Directly reinforces PS VIBE's physical disc library strategy.** When a lounge buys a game on disc, it CANNOT be remotely deleted. When Sony removes digital licenses, there is ZERO recourse
+  - **Marketing opportunity:** PS VIBE can leverage this story to promote its physical library: "Your digital purchases can be deleted. Your PS VIBE disc collection can't."
+  - Affects Europe/UK only now, but sets a dangerous precedent for other regions
+  - ⭐⭐⭐⭐⭐ lounge value — perfect ammunition for physical vs digital argument, strengthens disc library positioning
+
+### 📋 Quick Status — New Items Only (July 11 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 PS5 Firmware 26.04 Bug | **CRITICAL 🆕** | Playtime tracker broken for PHYSICAL games! Sony investigating! Don't update yet! |
+| 🛒 Summer Sale EARLY ACCESS | **LIVE NOW 🆕** | Jul 10-14 for PS Plus! God of War Ragnarok, Elden Ring, Astro Bot on sale! |
+| 🚨 551 Movies Deleted | **SEP 1 🆕** | Purchased libraries wiped! No refunds! Terminator 2, Paddington, etc! |
+| 🎪 PlayStation at Comic-Con | **Jul 23-26 🆕** | PS Blog post Jul 9 confirmed panels: Wolverine, MARVEL Tōkon, God of War Laufey! |
+| 🏟️ Tokyo Game Show 2026 | **Sep 17-21 🆕** | PlayStation confirmed booth — expected to show Wolverine! |
+
+### 🚨 Updated Priority Lounge Actions (July 11 - 05:30 UTC):
+1. **🚨🚨 DO NOT INSTALL firmware 26.04 on lounge consoles if possible!** Playtime tracker broken for physical games! Wait for Sony fix!
+2. **🚨🚨 IF ALREADY UPDATED** — monitor playtime tracking for disc games. Use manual tracking for physical game sessions if needed.
+3. **🛒🔥🔥 SUMMER SALE EARLY ACCESS ENDS JUL 14!** Log into PS Plus account NOW! Buy Astro Bot, Baldur's Gate 3, It Takes Two, Elden Ring, Ghost of Tsushima while early!
+4. **🏆 USE the 551 movie deletion as PHYSICAL MEDIA MARKETING** — PS VIBE's disc collection can't be remotely wiped!
+5. **🎮 PALWORLD 1.0 + ECHOES OF AINCRAD — DAY 2!** Check engagement metrics from yesterday's launch!
+6. **🎪 Comic-Con starts Jul 23** — PlayStation panels confirmed for Wolverine, MARVEL Tōkon, God of War Laufey!
+
+---
+*Last updated: 2026-07-11 05:30 UTC*
