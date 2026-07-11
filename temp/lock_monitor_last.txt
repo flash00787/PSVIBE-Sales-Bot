@@ -1,4 +1,3 @@
-[LOCK_MONITOR] Run at 2026-07-11 08:06:37 UTC
-✓ No stale locks found
-✓ 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
-=== RESULT: OK ===
+[LOCK_MONITOR] Run at 2026-07-11 08:57:57 UTC
+[LOCK_MONITOR] Result: OK - no locks found, 0 cleaned, 0 KB freed
+=== RESULT: OK ||| ERROR: <none> ===
