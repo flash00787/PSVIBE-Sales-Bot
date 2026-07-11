@@ -3420,4 +3420,129 @@ All web search APIs were unavailable during this sweep (API key error). PlayStat
 6. **🎪 Comic-Con starts Jul 23** — PlayStation panels confirmed for Wolverine, MARVEL Tōkon, God of War Laufey!
 
 ---
-*Last updated: 2026-07-11 05:30 UTC*
+
+## ⚡ MIDDAY UPDATE (July 11, 2026 - 11:30 UTC) — 🛒🔥 SUMMER SALE DEALS REVEALED! Astro Bot on Sale! Dead Space $10.49! Elden Ring! BG3! + The Sinking City 2 Aug 18! + Minecraft Dungeons 2 Sep 29! + Palworld 1.0 Day 2 — PvP LIVE! Level Cap 80!
+
+> **Summary:** Midday Saturday sweep (6 hours since last update). **PlayStation Store Summer Sale early access details now available!** Massive deals including **Astro Bot (GOTY) FINALLY on sale!**, Dead Space Remake $10.49, Elden Ring, Baldur's Gate 3, God of War Ragnarok at lowest price ever, Ghost of Tsushima Director's Cut, Spider-Man 2, It Takes Two, and more! **Two NEW game announcements:** The Sinking City 2 (Aug 18, $49.99) from Frogwares and Minecraft Dungeons 2 (Sep 29). **Palworld 1.0 Day 2:** PvP confirmed LIVE, level cap clarified at 80 (minor discrepancy from earlier 85 reports), World Tree endgame zone activated.
+
+### 🛒🔥🔥 PLAYSTATION STORE SUMMER SALE — FULL DEAL DETAILS! Early Access LIVE Now for PS Plus! Ends Jul 14 (members) / Full sale Jul 16 - Aug 1!
+
+- **PS Plus members have EARLY ACCESS NOW** — early access discounts end **July 14** (only 3 days left!)
+- **Full sale opens to ALL users July 15 - August 1, 2026**
+- **💡 STRATEGY:** Buy your must-haves NOW during early access — some deals may sell out by full launch. The Best of 2026 deals are available NOW for PS Plus members.
+
+**🔴 CRITICAL LOUNGE DEALS — BUY FOR ALL CONSOLES:**
+| Game | Price | Lounge Value |
+|------|-------|-------------|
+| 🎮 **Astro Bot** (GOTY 2025!) | On Sale 🆕🔥 | ⭐⭐⭐⭐⭐ — family-friendly GOTY, perfect lounge demo game |
+| 🧟 **Dead Space Remake** | **$10.49** 🔥 | ⭐⭐⭐⭐⭐ — AAA survival horror, STEAL at this price |
+| 🐉 **Elden Ring** | On Sale | ⭐⭐⭐⭐⭐ — still the most-played open world RPG |
+| 🧙 **Baldur's Gate 3** | On Sale | ⭐⭐⭐⭐⭐ — GOTY 2023, hundreds of hours |
+| 🕷️ **Spider-Man 2** | On Sale | ⭐⭐⭐⭐⭐ — Insomniac's finest, always booked |
+| ⚔️ **God of War Ragnarok** | Lowest Price Ever 🆕🔥 | ⭐⭐⭐⭐⭐ — peak PS5 exclusive |
+| 👻 **Ghost of Tsushima Director's Cut** | Lowest Price Ever | ⭐⭐⭐⭐⭐ — open world samurai masterpiece |
+| 🌌 **Returnal** | On Sale | ⭐⭐⭐⭐ — PS5 showcase, bullet heaven |
+| 💑 **It Takes Two** | On Sale | ⭐⭐⭐⭐⭐ — BEST co-op game ever, MUST have for lounge pair sessions |
+| 🤖 **Lies of P** | **$29.99 (50% off!)** | ⭐⭐⭐⭐ — Bloodborne-like soulslike |
+| 🌌 **Star Wars Outlaws Ultimate** | **$32.49** | ⭐⭐⭐⭐ — open world Star Wars |
+| 🦇 **Gotham Knights** | **$6.99** | ⭐⭐⭐ — cheap co-op filler |
+| 🌿 **Avatar Frontiers of Pandora** | **$17.99 (40% off)** | ⭐⭐⭐⭐ — gorgeous open world |
+| 🏯 **Ghost of Tsushima** | Lowest Price Ever | ⭐⭐⭐⭐⭐ |
+| 🧠 **Persona 3 Reload** | **$21** | ⭐⭐⭐⭐ — 100h RPG |
+| 🟢 **Cyberpunk 2077** | On Sale | ⭐⭐⭐⭐⭐ — fully redeemed, Phantom Liberty expansion |
+| ⚔️ **Black Myth Wukong** | On Sale | ⭐⭐⭐⭐⭐ — action RPG hit |
+| 📖 **Final Fantasy XVI** + Expansions | On Sale | ⭐⭐⭐⭐ — epic PS5 exclusive |
+| ⛪ **Kingdom Come 1 & 2 Bundle** (w/ DLC) | **~$40** 🆕 | ⭐⭐⭐⭐ — two massive RPGs |
+| 🎪 **Hogwarts Legacy** | On Sale | ⭐⭐⭐⭐⭐ — massive IP, always draws Harry Potter fans |
+| 🪐 **Star Wars Jedi Survivor** | On Sale | ⭐⭐⭐⭐⭐ — great action adventure |
+| 🏏 **Harry Potter: Quidditch Champions Deluxe** | **$5.99** 🆕 | ⭐⭐⭐ — cheap sports game |
+
+**Additional notable deals (2026 releases):**
+- Super Meat Boy 3D - $19.99
+- Call of the Elder Gods - $19.99
+- Cult of the Lamb: The One Who Waits - $29.99
+- Directive 8020 - $39.99
+- Like a Dragon: Pirate Yakuza in Hawaii - $14.99 🆕
+- Pathologic 3 - $24.99
+- Content Warning - $7.99
+- RollerCoaster Tycoon Classic - $18.74
+- Neva: Prologue - $2.09
+- Luna Abyss - $23.99
+
+- **Sources:** PushSquare, IGN, Reddit PS5Deals, ComicBook (Jul 10-11, 2026)
+- **💡💡💡💡💡 LOUNGE IMPACT — MAXIMUM:**
+  - **Astro Bot on sale for the FIRST TIME in Summer Sale!** This is THE lounge demo game — every customer should try it! BUY FOR ALL CONSOLES!
+  - **Dead Space Remake at $10.49 is a CRIME — buy 10 copies!** AAA survival horror at indie game price
+  - **God of War Ragnarok at lowest price ever** — if lounge doesn't have it, NOW is the time
+  - **It Takes On Sale** — best co-op game = perfect for duo lounge bookings
+  - **Baldur's Gate 3 + Elden Ring on sale** — these never go on deep discount. Buy NOW
+  - **Total spend: ~$50-100 per console for this batch = massive value increase for lounge library**
+  - **Early access ends JUL 14 — only 3 days left for member pricing!**
+
+### 🧟 NEW FIND: The Sinking City 2 — August 18, 2026! $49.99! 🆕
+
+- **Developer:** Frogwares (original The Sinking City, Sherlock Holmes series)
+- **Release: August 18, 2026** on PS5, Xbox Series X|S, PC
+- **Price:** Standard Edition **$49.99** — notably cheaper than $69.99 standard for most AAA games
+- **Premium Edition:** $59.99 — includes **24-hour early access** + bonus content
+- **Genre:** Lovecraftian survival horror — returning to the flooded, nightmare-infested city of Arkham
+- **Accessibility focus:** Frogwares specifically noted they want to make the game accessible to a wider audience this time
+- **Sources:** PushSquare (Jul 11), Frogwares
+- **💡💡💡 Lounge Impact:**
+  - **$49.99 price point is REFRESHING** — $20 cheaper than most PS5 new releases. Cheaper to buy multiple copies
+  - Lovecraftian horror = niche but dedicated audience — strong for themed nights
+  - August 18 fills the gap between MARVEL Tōkon (Aug 6) and Wolverine (Sep 15)
+  - ⭐⭐⭐ lounge value — horror niche, but cheaper price point makes multi-console buying easier
+
+### ⛏️ NEW FIND: Minecraft Dungeons 2 — September 29, 2026! 🆕🔥
+
+- **Developer:** Mojang Studios / Double Eleven
+- **Release: September 29, 2026** on PS5, Xbox, Switch, PC
+- **Genre:** Dungeon crawler / Diablo-lite — family-friendly co-op action RPG
+- **Minecraft IP** — one of the single biggest gaming IPs on the planet
+- **Original Minecraft Dungeons (2020)** was a massive hit — 25M+ players
+- **Sources:** AltChar, Game Rant (Jul 10-11, 2026)
+- **💡💡💡💡💡 LOUNGE IMPACT — MASSIVE:**
+  - **MINECRAFT IP = instant family/lounge draw.** Kids, teens, parents ALL know Minecraft
+  - **4-player co-op dungeon crawling** = PERFECT lounge format. Quick sessions, team play, spectator-friendly
+  - September 29 sits between Wolverine (Sep 15) and GTA 6 (Nov 19) — fills mid-fall gap perfectly
+  - **Family-friendly** — no age restrictions, broadest possible lounge audience
+  - First game + DLC had 25M+ players — sequel hype will be huge
+  - ⭐⭐⭐⭐⭐ lounge value — Minecraft IP + co-op dungeon crawling = lounge gold
+
+### 🎮 PALWORLD 1.0 — DAY 2 FOLLOW-UP! PvP CONFIRMED LIVE! Level Cap 80! 🆕
+
+- **PvP combat CONFIRMED LIVE** in 1.0 — battle other players with Pals, weapons, and mounts!
+- **Level cap clarified: 80** (sources vary — earlier tracker noted 85, current reports say 80)
+- **World Tree confirmed as endgame zone** — high-level enemies, main story finale, Pal Awakening mechanics
+- **Sunreach Sky Islands** — new explorable floating islands zone
+- **Player count still elevated** — 100K+ concurrent on Steam on Day 2 (down from 373K peak but healthy retention)
+- **96% positive reviews holding** — no review-bombing or backlash detected
+- **Sources:** PushSquare, GreenManGaming, VGChronicle, Pixelkin (Jul 10-11)
+- **💡💡💡 Lounge Note:**
+  - PvP = lounge TOURNAMENT POTENTIAL! Palworld 1.0 PvP battles on the big screen
+  - Level cap discrepancy (80 vs 85) — verify in-game before updating lounge promotions
+  - Day 2 retention is strong — Palworld isn't a flash-in-the-pan; it has staying power
+  - Monitor whether PlayStation players adopt it as heavily as Steam players
+
+### 🆕 PS5 Emulation Projects Reach Milestones — Tech News (Minor)
+
+- Two experimental PS5 emulation projects hit new milestones: one running a commercial game, another booting a PS5 exclusive to loading screen
+- Very early stage — not usable for gameplay
+- **💡 Lounge Note:** Not operationally relevant. PS5 emulation is 5+ years from being usable. Just interesting tech progress. ⭐
+
+### 📋 Updated Priority Lounge Actions (July 11 - 11:30 UTC):
+1. **🛒🔥🔥🔥 SUMMER SALE EARLY ACCESS — 3 DAYS LEFT!** Buy THIS WEEKEND: Astro Bot (GOTY!), Dead Space $10.49, Elden Ring, BG3, God of War Ragnarok, It Takes Two! Log into PS Plus account NOW!
+2. **🎮🔥 PALWORLD 1.0 DAY 2 — PvP IS LIVE!** Level cap 80! Check engagement! Consider tournament event!
+3. **🎮🔥 ECHOES OF AINCRAD DAY 2** — Check engagement from yesterday's anime launch!
+4. **🧟 WISHLIST The Sinking City 2** — Aug 18, $49.99! Budget-friendly horror!
+5. **⛏️ WISHLIST Minecraft Dungeons 2** — Sep 29! Minecraft IP + co-op = lounge GOLD!
+6. **🛒 July Savings Sale ends Jul 15** (4 days!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
+7. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** 13 days! Download on ALL lounge PS5s!
+8. **🎪 PlayStation at Comic-Con Jul 23-26** — panels for Wolverine, MARVEL Tōkon, God of War Laufey!
+9. **🟢🟢🟢 Halo: Campaign Evolved — Jul 28!** 17 days! Pre-order NOW! First Halo on PlayStation!
+10. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
+11. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk!
+
+---
+*Last updated: 2026-07-11 11:30 UTC*
