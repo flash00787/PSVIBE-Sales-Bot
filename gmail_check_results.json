@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-07-10T13:32:10.793734+00:00",
+  "checked_at": "2026-07-11T13:31:23.418793+00:00",
   "total_unread": 30,
-  "total_processed": 49,
+  "total_processed": 40,
   "nova_found": 0,
   "important_found": 4,
-  "promotional_skipped": 8,
+  "promotional_skipped": 12,
   "nova_emails": [],
   "important_emails": [
     {
