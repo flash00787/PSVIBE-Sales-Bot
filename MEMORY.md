@@ -239,12 +239,10 @@ Kora now manages **9 projects** with full coordination tool support.
 ### Slow Dashboard — Per-key Prometheus Queries 🚀
 - **Problem:** `get_key_metrics()` queried Prometheus once per active Outline key via `docker exec shadowbox curl` (7 keys × 300ms = 2.1s). Remake page loading slow.
 - **Fix:** Added `batch_get_metrics()` — single Prometheus query `sum(shadowsocks_data_` to collect all key metrics in one call.
-- **File:** `/opt/outline-web/server.py`
 
 ### ERR_CONNECTION_CLOSED on Key Delete/Expire/Renew 🐛→✅
 - **Problem:** After key operations, server rendered full dashboard (1.2s) before responding. Cloudflare closed connection → `ERR_CONNECTION_CLOSED`
 - **Fix:** Changed delete/expire/renew handlers to use 302 redirect (8ms) instead of full page render.
-- **File:** `/opt/outline-web/server.py`
 
 ### New Lessons (#152-#155)
 | # | Lesson |
@@ -253,3 +251,35 @@ Kora now manages **9 projects** with full coordination tool support.
 | 153 | **Prometheus queries per-key are slow** — Use `sum()` aggregator for single-query batch metrics instead of N individual queries. |
 | 154 | **Post-mutation redirect beats full render** — After write operations (delete/expire), 302 redirect ~8ms vs full dashboard render ~1.2s. Avoid Cloudflare 100s timeout.
 155 | **POST mutating handlers → 302 redirect** — Rename handler used `send_html(render_keys(...))` (~1.2s). Changed to `send_redirect_admin()` (~8ms). All POST handlers that mutate data must use redirect, never full page render. |
+
+---
+
+## Memory (2026-07-12) — AKT Clothing Bugs + Gemini Audit + Deposit Design 🔧
+
+### Bugs Fixed: AKT Clothing Payment System (Osmo) 🐛→✅
+1. **Double-Negation Bug:** Purchase payment passed negative `paid_amount` → `_record_payment_transaction_mongo()` applied `-amount` again → balance INCREASED instead of decreased (#153)
+2. **Missing Account Dropdown:** Single-payment purchase form had no account selection — fixed: added payment account dropdown (#154)
+3. **Edit Purchase Not Recording Transactions:** `delete_many()` used wrong field names (`ref_type`/`ref_id` vs `reference_type`/`reference_id`); frontend didn't send `payment_breakdown` on single-payment edit (#155)
+4. **R/P Pay Supplier — Redundant Method:** Had both Payment Method dropdown AND Transfer Account dropdown — replaced with single accounts list (#156)
+
+### Gemini API Key (AIzaSy…CM2E) Cost Investigation 🔍
+- **Who used it:** OpenClaw Gateway (fallback from backup config before Jul 9) + Customer Bot `ai.py`
+- **Action:** Removed CM2E from `/etc/psvibe/secrets.env`, restarted customer bot
+- **Lesson:** Google revokes leaked keys — always audit which services use which keys (#147-148)
+
+### Deposit Flow Design (PS VIBE) 📋
+- Deposit = **30%** of session fee (was 50%)
+- Methods: KPay / WavePay / AYA Pay
+- Lifecycle: `none → pending → paid → verified → redeemed/refunded/forfeited`
+- 5 API endpoints designed, plan to start at 8pm MMT
+
+### VPN Redirect Fix 🔧
+- Outline `/admin` route → redirect to `/login` (root page)
+- Agent Portal `/agent` → redirect to `/agent/login`
+
+### Weekly Code Quality Scan ✅
+- PS VIBE Sales Bot scanned and cleaned (Jul 12, 01:30 UTC)
+- No critical issues found
+
+### Key Lesson (#157)
+157. Payment account dropdown replaces payment method dropdown — account name + type (cash/bank/mobile_wallet) contains all needed info to derive method

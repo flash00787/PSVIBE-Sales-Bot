@@ -1,9 +1,11 @@
 {
-  "checked_at": "2026-07-11T19:08:00Z",
+  "checked_at": "2026-07-12T19:09:00Z",
   "status": "auth_failed",
-  "error": "Gmail OAuth tokens expired/revoked - needs re-authorization",
+  "error": "Gmail OAuth tokens expired/revoked - re-auth needed",
   "last_successful_check": "2026-07-11T13:31:00Z",
-  "notes": "Both gmail_token.json and gmail_token_v2.json tokens are invalid. Refresh tokens rejected with 'invalid_grant'. User needs to re-authorize via OAuth flow.",
   "nova_from_last_check": 0,
-  "important_from_last_check": 4
+  "important_from_last_check": 4,
+  "result": "NO_REPLY",
+  "action_taken": "Notified Boss via Telegram with re-auth URL",
+  "reauth_url_generated": true
 }

@@ -1,6 +1,122 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-12 11:30 UTC
+> Last updated: 2026-07-12 17:31 UTC
+
+---
+
+## ⚡ EVENING UPDATE (July 12, 2026 - 17:31 UTC) — 🚨🚨🚨 CoD Black Ops 1 & 2 SHADOW-DROPPED on PS5! 50% Off for PS Plus! + PSN 2FA Bypass Exploit CRITICAL! + God of War Laufey Comic-Con Confirmed! + Sinking City 2 $49.99! + Once Human Aug 25!
+
+> **Summary:** Sunday evening sweep (6 hours since last update). **🚨 CRITICAL MISS: CoD Black Ops 1 & 2 FINALLY SHADOW-DROPPED on PS5/PS4!** After weeks of monitoring, Activision silently released both titles on PlayStation Store! PS Plus members get 50% off until Aug 6! BUT — ports are "barebones" (no 120 FPS, no FOV sliders). **🚨 CRITICAL SECURITY: PSN 2FA bypass exploit still UNPATCHED** — hackers use Sony support social engineering to steal accounts even with 2FA enabled! **MUST READ for lounge PSN account security!** Also: God of War Laufey confirmed for Comic-Con panel Jul 24, The Sinking City 2 priced at $49.99 with pre-orders live, Once Human PS5 launch Aug 25 confirmed, Sony hires Senior Fraud Strategists, EU says it can't block disc phaseout.
+
+### 🚨🚨🚨 CoD Black Ops 1 & 2 — SHADOW-DROPPED on PS5/PS4! July 12! FINALLY HERE! 🚨🚨🚨
+
+- **Activision shadow-dropped Call of Duty: Black Ops and Black Ops 2** on PlayStation Store — available NOW on PS5 and PS4!
+- **PS Plus members get 50% discount** until August 6, 2026
+- **⚠️ CAVEAT:** Ports are described as "barebones" — reviewers note **NO 120 FPS support** and **NO FOV sliders**
+- These are distinct from older Xbox backward-compatible versions (which reportedly are affected by hackers)
+- **CoD Backwards Compatibility** on PS5 means BO1 + BO2 PS4 versions playable on PS5
+- Sources: PlayStation Store, pushsquare.com, smartcdkeys.com
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR RELEASE:**
+  - After WEEKS of daily monitoring, they're FINALLY here! These are two of the most beloved Call of Duty campaigns ever
+  - **Buy them NOW with the PS Plus 50% discount** before Aug 6 — $10-15 each is a steal
+  - BO1/BO2 Campaigns + Zombies = MASSIVE nostalgia draw for lounge customers
+  - **BUT barebones ports mean no 120 FPS** — consider this before dedicating premium 120Hz stations
+  - ⭐⭐⭐⭐⭐ lounge value — two legendary CoD titles FINALLY on PS5!
+
+### 🚨 PSN 2FA Bypass Exploit — CRITICAL SECURITY WARNING! Still UNPATCHED! 🚨
+
+- **Active exploit since ~November 2025 — still NOT patched as of July 2026!**
+- **How it works:** Hackers use social engineering on Sony's customer support — they only need a PSN ID + one piece of purchase info (transaction ID, purchase date, price) to trick support into transferring account ownership
+- **Once transferred:** Existing passwords, 2FA, and passkeys are ALL bypassed — the hacker gets FULL account control
+- **⚠️ 2FA DOES NOT PROTECT YOU** — this bypasses 2FA entirely through the support channel
+- **High-profile cases:** French tech journalist Nicolas Lellouche hacked twice! Podcaster Colin Moriarty's account hijacked May 2026!
+- **Sony's response:** NO public acknowledgment, NO patch timeline, NO official statement — but **hired Senior Fraud Strategists** in San Mateo and London (June 2026) for quiet remediation
+- Sources: shattered.io, PlayStationLifestyle, TheGamer, PC Mag, PushSquare
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL SECURITY:**
+  - **⚠️⚠️⚠️ PS VIBE has MULTIPLE PSN accounts for lounge consoles!** Any single account with purchase history is vulnerable!
+  - **DO NOT share purchase screenshots or transaction IDs publicly** — even seemingly innocent info can be weaponized
+  - **Action plan for lounge:**
+    1. Audit ALL lounge PSN accounts — ensure recovery email + phone are up to date
+    2. **NEVER post purchase receipts/screenshots** on social media
+    3. Train staff: do NOT share PSN account purchase info over phone or chat
+    4. Consider using **separate PSN sub-accounts** with limited purchase history for customer-facing consoles
+    5. Monitor lounge PSN accounts for suspicious login attempts
+  - ⭐⭐⭐⭐⭐ security value — this is an ACTIVE, UNPATCHED vulnerability affecting ALL PSN accounts!
+
+### 🎪 God of War Laufey — Confirmed for San Diego Comic-Con! Jul 24 Panel! 🆕
+
+- **PlayStation at Comic-Con 2026** officially announced — major presence with dedicated panels and playable demos
+- **God of War Laufey panel — July 24** (alongside playable demos)
+- **Marvel's Wolverine panel — July 23** (Hall H)
+- **Marvel Tōkon: Fighting Souls panel — July 23**
+- Sources: pushsquare.com, PlayStation Blog
+- **💡💡💡 Lounge Note:** Comic-Con coverage will generate massive hype for all three titles — especially God of War Laufey (the next mainline God of War) and Marvel's Wolverine. If PS VIBE follows gaming news, these panels will dominate social media Jul 23-24. ⭐⭐⭐ lounge value
+
+### 🎮 The Sinking City 2 — $49.99 on PS5! Pre-orders Live! 🆕
+
+- **Developer:** Frogwares — Lovecraftian open-world detective horror
+- **Price confirmed: $49.99 on PS5** — less than standard $69.99 AAA pricing!
+- **Pre-orders now available** on PlayStation Store
+- **💡 Lounge Note:** Frogwares' Lovecraftian games have a dedicated niche following. At $49.99 it's a lower-cost lounge addition — good for horror-game regulars. ⭐⭐ lounge value
+
+### 🧬 Once Human — PS5 Launch Confirmed: August 25, 2026! 🆕
+
+- **Developer:** Starry Studio / NetEase — free-to-play open-world survival MMO
+- **PS5 launch date: August 25, 2026**
+- Already a major hit on PC (Steam) with its bizarre, post-apocalyptic, cosmic-horror survival sandbox
+- **Free-to-play** = zero cost to add to lounge PS5s
+- Sources: pushsquare.com, smartcdkeys.com
+- **💡💡💡 Lounge Note:** Free-to-play survival MMO with strong PC following. Zero acquisition cost = minimal risk to try on lounge consoles. Aug 25 fills late-August gap nicely. ⭐⭐⭐ lounge value
+
+### 📰 Disc Phaseout Update — EU Can't Block Sony! + Former PS Boss Sad 😢 🆕
+
+- **EU statement:** The European Union says it **cannot legally prevent Sony** from transitioning to digital-only — companies are free to decide distribution models
+- **Former PlayStation boss Shawn Layden** expressed sadness over the disc phaseout — notable because former Sony execs rarely critique the company publicly
+- **Petition 'Don't Kill the Disc'** — still growing
+- Sources: Nordic IGN, Kotaku
+- **💡💡 Lounge Note:** EU being powerless means the disc phaseout is essentially locked in for Jan 2028. Reinforces the strategy of building PS VIBE's physical disc library NOW while production continues. ⭐⭐⭐ strategic value
+
+### 📋 Quick Status Refresh (July 12 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **CoD BO1 & BO2 on PS5** | **SHADOW-DROPPED! 🆕** | Available NOW! PS Plus 50% off until Aug 6! Barebones ports (no 120fps/FOV)! |
+| 🚨 **PSN 2FA Bypass Exploit** | **UNPATCHED! 🆕** | Active since Nov 2025! Support social engineering bypasses 2FA! AUDIT lounge accounts! |
+| 🎪 **God of War Laufey Comic-Con** | **CONFIRMED 🆕** | Panel Jul 24! Playable demo! |
+| 🎮 **Sinking City 2** | **$49.99 🆕** | Pre-orders live! Frogwares Lovecraftian horror! |
+| 🧬 **Once Human PS5** | **Aug 25 🆕** | Free-to-play survival MMO! Zero cost for lounge! |
+| 📰 **EU on Disc Phaseout** | **CAN'T BLOCK 🆕** | EU powerless! Shawn Layden sad! Phaseout locked for Jan 2028! |
+| 🚀🚀 **PALWORLD 1.0** | **725K+ PEAK!** | Steam top 15 all-time! Still 568K+ live! INSTALL ON ALL CONSOLES! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28! 16 days!** | Premium early access Jul 23 (5 days early!) |
+| 🥊 **MARVEL Tōkon Open Beta** | **Jul 24-26!** | FREE! No sign-up! ArcSys × Marvel! |
+| 🥊 **MARVEL Tōkon: Fighting Souls** | **Steam PSN req 🆕** | Requires PSN — blocked in 132 countries! |
+| 🚨 **PS Plus Essential July** | **LIVE!** | CoD MW3 FREE! Claim on ALL lounge PS5s! |
+| 🛒 **Summer Sale 2026** | **Jul 16 - Aug 1** | Early access for PS Plus members ALREADY LIVE! |
+| 📅 **PS Plus Extra/Premium July** | **Jul 15 reveal! 3 days!** | Psi-Ops confirmed! Full lineup Jul 15! |
+| 🏴‍☠️ **AC Black Flag Resynced** | **LIVE!** | Mixed reviews! Test before multi-buy! |
+| 🏈 **College Football 27** | **LIVE!** | Major sports draw! |
+| 🎮 **Echoes of Aincrad (SAO)** | **LIVE!** | Anime IP! Custom avatar! |
+| 🎮🔥 **Disgaea Mayhem** | **Jul 23!** | Demo on PS Store! Free demo! |
+| 🥋 **Avatar Legends Fighting Game** | **Jul 23!** | Pre-orders live! |
+| 🧼 **PowerWash Sim 2 Star Wars Pack** | **Jul 16!** | $9.99! Clean Millennium Falcon! |
+| 🔥 **GTA 6** | **Nov 19!** | Pre-orders LIVE! $79.99 / $99.99 |
+| 🔥 **CoD MW4** | **Oct 23!** | Pre-orders LIVE! Current-gen only! |
+| 🚨 **Physical Disc Phaseout** | **JAN 2028!** | EU can't block! Build disc library NOW! |
+
+### 🚨 Priority Lounge Actions (July 12 - 17:31 UTC):
+1. **🚨🚨🚨 BUY CoD BO1 & BO2 on PS Store NOW!** Shadow-dropped! PS Plus 50% off until Aug 6! Two legendary CoD titles finally on PS5!
+2. **🚨 SECURITY: AUDIT all lounge PSN accounts!** 2FA bypass exploit unpatched! NEVER share purchase screenshots! Update recovery info!
+3. **🚀🚀🚀 PALWORLD 1.0 on ALL consoles!** 725K+ peak! Dedicated stations recommended!
+4. **🔥 CLAIM CoD MW3 on ALL lounge PS5s!** PS Plus Essential July — FREE!
+5. **🟢 PRE-ORDER Halo: Campaign Evolved Premium Edition!** Early access Jul 23 (5 days early)!
+6. **🥊 DOWNLOAD MARVEL Tōkon Open Beta Jul 24-26!** FREE on all PS5s! 3-day lounge event!
+7. **🧼 BUY PowerWash Sim 2 Star Wars Pack — Jul 16! $9.99!** Clean Millennium Falcon!
+8. **🎮 TRY Disgaea Mayhem FREE demo on PS Store!** Test before Jul 23!
+9. **🛒 Summer Sale early access ALREADY LIVE for PS Plus members!** Check PS Store!
+10. **💰 TRY PS Plus retention discount trick!** Initiate cancel → 50% off 3 months!
+11. **📋 PS Plus Extra/Premium July reveal Jul 15 (3 days!)** Psi-Ops + full lineup!
+12. **🔐 Audit lounge PSN accounts for 3-year inactivity** — account deletion risk!
+13. **📦 Build physical disc library NOW** — only 18 months of disc production left!
+14. **🏴‍☠️ Test AC Black Flag Resynced** — mixed reviews, buy 1 copy first!
 
 ---
 
