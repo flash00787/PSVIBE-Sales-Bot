@@ -1,22 +1,9 @@
 {
-  "checked_at": "2026-07-09T13:33:36.437774Z",
-  "total_unread": 15,
+  "checked_at": "2026-07-12T13:32:00Z",
+  "status": "TOKEN_EXPIRED",
+  "total_unread": "unknown",
   "nova_found": 0,
   "wallet_handover_reply": false,
-  "important_found": 3,
-  "promotional_skipped": 10,
-  "nova_emails": [],
-  "transaction_alerts": [
-    {
-      "subject": "AYA Card Transaction - DeepSeek $53.00",
-      "date": "2026-07-09 02:19 UTC",
-      "type": "card_spending"
-    },
-    {
-      "subject": "OpenAI Plus ending Jul 14 (Final reminder)",
-      "date": "2026-07-08 15:39 UTC",
-      "type": "subscription"
-    }
-  ],
+  "error": "invalid_grant - Both Gmail refresh tokens expired. Re-auth needed.",
   "result": "NO_REPLY"
 }
