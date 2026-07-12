@@ -1,0 +1,362 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deposit — Payment Method &amp; Redemption Flow</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b;
+    --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe;
+    --storage: #99f6e4; --external: #fde68a; --risk: #fecaca; --success: #bbf7d0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a; --fg: #e5e7eb; --muted: #a3adbd; --line: #94a3b8;
+      --neutral: #334155; --input: #1d4ed8; --process: #4338ca;
+      --storage: #0f766e; --external: #92400e; --risk: #991b1b; --success: #166534;
+    }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.5 ui-sans-serif, system-ui, sans-serif; }
+  main { max-width: 960px; margin: 24px auto; padding: 0 20px; }
+  h1 { font-size: 21px; }
+  h2 { font-size: 17px; border-bottom: 1px solid var(--line); padding-bottom: 4px; margin: 28px 0 8px; }
+  h3 { font-size: 15px; margin: 20px 0 6px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 13px; }
+  td, th { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+  th { background: var(--neutral); font-weight: 600; }
+  code { background: var(--neutral); padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  pre { background: var(--neutral); padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+  .box { border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+  .box-warn { border-color: var(--risk); background: color-mix(in srgb, var(--risk) 20%, transparent); }
+  .box-ok { border-color: #166534; background: color-mix(in srgb, var(--success) 20%, transparent); }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-db { background: var(--storage); }
+  .tag-api { background: var(--process); }
+  .tag-bot { background: var(--input); }
+</style>
+<main>
+
+<h1>📋 Deposit Flow — Payment Method Tracking + Redemption</h1>
+<p class="small">ထည့်သွင်းစဥ်းစားထားတဲ့ အချက်တွေ: (၁) ငွေသွင်းတဲ့ method အတိုင်း မှတ်တမ်းတင်ခြင်း (၂) ဆိုင်ရောက်လို့ ဂိမ်းဆော့တဲ့အခါ deposit ပြန်နှုတ်ပေးရတဲ့ flow</p>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 1: PAYMENT METHOD TRACKING -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Section 1 — Payment Method Tracking</h2>
+
+<h3>Problem</h3>
+<p>Customer က WavePay နဲ့ deposit ပေးတယ်။ ဒီငွေက <strong>WavePay account</strong> ထဲကိုဝင်တယ်။
+ဒါပေမယ့် BS မှာ account balance တွေကိုခွဲမှတ်တဲ့အခါ "deposit method အတိုင်း မှတ်ထားမှ BS ကိုက်မယ်"</p>
+
+<h3>Solution: deposit_method + cash_movements</h3>
+
+<p><span class="tag tag-db">DB</span> <code>bookings.deposit_method</code> + <code>cash_movements</code> နဲ့ အောက်ပါအတိုင်း သေချာခွဲမှတ်မယ်:</p>
+
+<table>
+  <tr><th>Customer Pays Via</th><th>deposit_method</th><th>cash_movements → Account</th><th>sales_daily PM</th></tr>
+  <tr><td>KBZ Bank Transfer</td><td><code>bank_kbz</code></td><td>KBZ Bank (+deposit)</td><td><code>KBZ:7500</code></td></tr>
+  <tr><td>AYA Bank Transfer</td><td><code>bank_aya</code></td><td>AYA Bank (+deposit)</td><td><code>AYA:7500</code></td></tr>
+  <tr><td>WavePay</td><td><code>wavepay</code></td><td>WavePay (+deposit)</td><td><code>WavePay:7500</code></td></tr>
+  <tr><td>KPay</td><td><code>kpay</code></td><td>KPay (+deposit)</td><td><code>KPay:7500</code></td></tr>
+  <tr><td>Cash (ဆိုင်လာမှ)</td><td><code>cash</code></td><td>Cash Register (+deposit)</td><td><code>Cash:7500</code></td></tr>
+</table>
+
+<div class="box box-ok">
+  <strong>✅ Key rule:</strong> Deposit method ကို bot မှာ customer ကိုရွေးခိုင်းမယ်။ Customer ရွေးတဲ့ အတိုင်း deposit_method + cash_movements account ကိုမှတ်မယ်။
+</div>
+
+<h3>Bot Flow — Method Selection</h3>
+<p><span class="tag tag-bot">bot</span> BK_DEPOSIT_INFO state မှာ deposit ပမာဏပြပြီး payment method ကိုပါရွေးခိုင်းမယ်:</p>
+
+<pre>
+💰 **Deposit Required: 7,500 Ks**
+ကျေးဇူးပြုပြီး အောက်ပါအကောင့်များသို့ ငွေလွှဲပေးပါ။
+ပြီးပါက Transaction Ref No. (သို့) Screenshot ပို့ပေးပါ။
+
+🏦 KBZ Bank:      0123 456 789 012 (PS VIBE GL)
+🏦 AYA Bank:      987 654 321 (PS VIBE GL)
+📱 WavePay:       09-773355915 (PS VIBE)
+📱 KPay:          လာမည်
+💵 Cash:          ဆိုင်လာမှ ပေးပါမည်
+
+**သင်ဘယ်လိုပေးချေမလဲ?**
+[ 🏦 KBZ ] [ 🏦 AYA ] [ 📱 WavePay ] [ 💵 Cash ]
+</pre>
+
+<p>Customer က method ရွေး → အဲ့အတိုင်း DB မှာ သိမ်း → cash_movements မှာ account သတ်မှတ်</p>
+
+<pre>
+-- Example: Customer pays via WavePay
+INSERT INTO cash_movements (account, movement_type, amount, note, created_at)
+VALUES ('WavePay', 'inject', 7500, 'Booking #212 deposit (WavePay)', NOW());
+
+UPDATE bookings SET
+  deposit_status = 'paid',
+  deposit_method = 'wavepay',
+  deposit_amount = 7500
+WHERE id = 212;
+</pre>
+
+<div class="box box-warn">
+  <strong>⚠️ Balance Sheet Impact:</strong><br/>
+  Deposit received = ဆိုင်မှာ liability အနေနဲ့ရှိတယ် (customer က မလာရင် ပြန်ပေးရနိုင်)။<br/>
+  BS မှာ <code>deposit_pending</code> ဆိုတဲ့ liability line ထည့်မယ် — ဒါမှ asset side ကိုမထိခိုက်စေဘူး။
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 2: REDEMPTION FLOW -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Section 2 — Deposit Redemption Flow (ဆိုင်ရောက်လို့ ပြန်နှုတ်)</h2>
+
+<h3>Complete Lifecycle: "Deposit → Play → Settle"</h3>
+
+<div style="overflow-x:auto">
+<table>
+  <tr><th>#</th><th>Step</th><th>Who</th><th>deposit_status</th><th>Booking Status</th><th>Financial</th></tr>
+  <tr>
+    <td>1</td><td>Booking confirm + deposit info</td><td>Bot</td>
+    <td><code>pending</code></td><td><code>pending</code></td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>2</td><td>Customer transfers + sends proof</td><td>Bot</td>
+    <td><code>paid</code></td>
+    <td><code>pending</code></td>
+    <td>cash_movements inject (WavePay, +7,500)<br/>→ BS Asset ↑, Liability (deposit) ↑</td>
+  </tr>
+  <tr>
+    <td>3</td><td>Staff verifies deposit ✅</td><td>Staff Bot</td>
+    <td><code>verified</code></td>
+    <td><code>confirmed</code></td>
+    <td>Liability confirmed (still pending)</td>
+  </tr>
+  <tr>
+    <td>4</td><td>Customer checks in at counter 🎮</td><td>Staff</td>
+    <td><code>verified</code></td>
+    <td><code>checked_in</code></td>
+    <td>Console timer starts normally</td>
+  </tr>
+  <tr>
+    <td>5</td><td>Session ends — Staff settles</td><td>Staff</td>
+    <td><code>redeemed</code></td>
+    <td><code>done</code></td>
+    <td style="background:color-mix(in srgb, var(--success) 20%, transparent)">
+      <strong>CRITICAL STEP</strong> 👇
+    </td>
+  </tr>
+</table>
+</div>
+
+<h3>Step 5 Detail — Session Settlement မှာ Deposit ကိုဘယ်လိုကိုင်တွယ်မလဲ</h3>
+
+<p>ဥပမာ: Booking #212 — PS5 2hr = <strong>10,000 Ks</strong>, Deposit 7,500 Ks (WavePay)</p>
+
+<pre>
+┌─────────────────────────────────────────────────────┐
+│    Session Settlement Form (Staff Dashboard)        │
+├─────────────────────────────────────────────────────┤
+│  Console: C-01  |  Duration: 2hr                    │
+│  Session Fee: 10,000 Ks                             │
+│                                                      │
+│  💰 Deposit Already Paid: 7,500 Ks (WavePay) ✅    │
+│  Remaining: 2,500 Ks                                │
+│                                                      │
+│  Customer pays remaining via:                       │
+│  [ 💵 Cash: 2,500 ]                                 │
+│                                                      │
+│  ┌──────────────────────────────────────────┐       │
+│  │  [ 🔄 Settle — Redeem Deposit ]          │       │
+│  └──────────────────────────────────────────┘       │
+└─────────────────────────────────────────────────────┘
+</pre>
+
+<h3>Financial Recording (Settlement Moment)</h3>
+
+<p><span class="tag tag-db">DB</span> Settlement button နှိပ်တာနဲ့ တစ်ပြိုင်နက် —</p>
+
+<pre>
+-- 1. Record full sale in sales_daily
+--    PM shows original deposit method + remaining payment
+INSERT INTO sales_daily (total, payment_method, ...)
+VALUES (10000, 'WavePay:7500(DepositRedeemed)|Cash:2500', ...);
+
+-- 2. Record remaining payment as cash_movements inject
+--    (deposit portion ALREADY in WavePay — no new inject needed)
+INSERT INTO cash_movements (account, movement_type, amount, note)
+VALUES ('Cash', 'inject', 2500, 'Game revenue #212 (remainder)');
+
+-- 3. Clear deposit liability
+--    Eject from deposit_pending tracking
+INSERT INTO cash_movements (account, movement_type, amount, note, category)
+VALUES ('WavePay', 'deposit_eject', 7500, 'Booking #212 deposit redeemed', 'deposit_redemption');
+
+-- 4. Update booking status
+UPDATE bookings SET deposit_status = 'redeemed', status = 'done' WHERE id = 212;
+</pre>
+
+<h3>Cash Flow Diagram (Visual)</h3>
+
+<pre>
+  💰 CUSTOMER pays 7,500 Ks via WavePay
+          │
+          ▼
+  ┌─────────────────┐     ┌─────────────────────────────┐
+  │ WavePay Account │ ←── │ cash_movements inject       │
+  │ Balance: +7,500 │     │ category = "deposit_pending" │
+  └────────┬────────┘     └─────────────────────────────┘
+           │
+           ▼  (Customer comes to play, session = 10,000 Ks)
+  ┌──────────────────────────────────────────────────┐
+  │              SESSION SETTLEMENT                   │
+  │                                                    │
+  │  7,500 Ks (already in WavePay) → REVENUE          │
+  │            ↳ No new cash movement, just            │
+  │              reclassify: liability → revenue       │
+  │                                                    │
+  │  2,500 Ks (new Cash from customer) → CASH REGISTER│
+  │            ↳ cash_movements inject (Cash)          │
+  └────────────────────────┬─────────────────────────┘
+                           │
+              ┌────────────┴────────────┐
+              ▼                         ▼
+    ┌─────────────────┐     ┌──────────────────────┐
+    │ WavePay: 7,500  │     │ Cash: 2,500          │
+    │ → sales_daily   │     │ → cash_movements     │
+    │ → deposit_eject │     │ → sales_daily        │
+    │   (liability    │     │                      │
+    │    cleared)     │     │                      │
+    └─────────────────┘     └──────────────────────┘
+</pre>
+
+<div class="box box-ok">
+  <strong>✅ Net Effect on Balance Sheet:</strong><br/>
+  <table>
+    <tr><th>Account</th><th>Before</th><th>After Settlement</th><th>Change</th></tr>
+    <tr><td>WavePay (Asset)</td><td>+7,500</td><td>+7,500</td><td>— (money already there)</td></tr>
+    <tr><td>Cash (Asset)</td><td>0</td><td>+2,500</td><td>↑2,500</td></tr>
+    <tr><td>Deposit Liability</td><td>+7,500</td><td>0</td><td>↓7,500</td></tr>
+    <tr><td>Retained Earnings</td><td>0</td><td>+10,000</td><td>↑10,000</td></tr>
+    <tr><td style="font-weight:600">BS Check</td><td></td><td></td><td>✅ Balanced</td></tr>
+  </table>
+  <br/>
+  <strong>Assets ↑2,500 = Liabilities ↓7,500 + Equity ↑10,000 ✓</strong>
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 3: NO-SHOW / CANCELLATION -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Section 3 — No-Show / Cancellation</h2>
+
+<table>
+  <tr><th>Situation</th><th>deposit_status</th><th>Financial</th><th>Note</th></tr>
+  <tr>
+    <td>No-show (timeout)</td>
+    <td><code>forfeited</code></td>
+    <td>7,500 Ks → Booking Revenue (No-Show Fee)<br/>cash_movements: category → "no_show_revenue"</td>
+    <td>PNL မှာ separate line: "No-Show Deposit Revenue"</td>
+  </tr>
+  <tr>
+    <td>Shop cancels (verified deposit)</td>
+    <td><code>refunded</code></td>
+    <td>7,500 Ks → Reverse the inject<br/>cash_movements: eject (refund)</td>
+    <td>Customer gets money back</td>
+  </tr>
+  <tr>
+    <td>Customer cancels before verify</td>
+    <td><code>none</code></td>
+    <td>No financial impact</td>
+    <td>Just cancel booking</td>
+  </tr>
+</table>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- SECTION 4: BS CALCULATION UPDATE -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Section 4 — Balance Sheet Update</h2>
+
+<p><span class="tag tag-api">API</span> <code>finance_routes.py</code> BS function ကို deposit အတွက် update လုပ်မယ်:</p>
+
+<pre>
+# --- NEW: Deposit Liability ---
+# Fetch all bookings with verified deposits not yet redeemed
+deposit_liability = db.query("""
+    SELECT COALESCE(SUM(deposit_amount), 0)
+    FROM bookings
+    WHERE deposit_status IN ('verified', 'paid')
+      AND status IN ('confirmed', 'checked_in')
+""").fetchone()[0]
+
+# --- Modify Retained Earnings ---
+# Already-verified deposits should NOT count as revenue yet
+# Only deposits that were redeemed (played) count as revenue
+deposit_played = db.query("""
+    SELECT COALESCE(SUM(deposit_amount), 0)
+    FROM bookings
+    WHERE deposit_status = 'redeemed'
+      AND MONTH(created_at) = :m AND YEAR(created_at) = :y
+""").fetchone()[0]
+
+# Revenue from sales_daily already includes deposit portion
+# via payment_method parsing
+retained_earnings = (sales_total - opex - cogs - dep)
+                 + deposit_played  # forfeited deposits
+                 - deposit_outstanding  # unplayed deposits (liability)
+</pre>
+
+<div class="box box-warn">
+  <strong>⚠️ This is critical for BS accuracy!</strong><br/>
+  ဒီ logic မပါရင် လက်ရှိ 184K gap လိုမျိုး ထပ်ဖြစ်လိမ့်မယ်။ Deposit ကို liability အနေနဲ့ သီးသန့်ခွဲမှတ်မှ BS ကကိုက်မယ်။
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- SUMMARY: ALL DB COLUMNS + CASH MOVEMENTS CATEGORIES -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Summary — New DB Columns &amp; Cash Movement Categories</h2>
+
+<h3>New booking columns (already planned)</h3>
+<pre>
+deposit_amount      DECIMAL(12,0)
+deposit_status      ENUM('none','pending','paid','verified','redeemed','refunded','forfeited')
+deposit_method      ENUM('bank_kbz','bank_aya','wavepay','kpay','cash')
+deposit_ref         VARCHAR(255)         -- Ref no / screenshot path
+deposit_ref_type    ENUM('text','image','both')
+deposit_verified_by VARCHAR(64)
+deposit_verified_at DATETIME
+deposit_redeemed_at DATETIME             -- NEW: when deposit was applied to session
+</pre>
+
+<h3>New cash_movements category values</h3>
+<pre>
+'deposit_pending'    → Inject: customer paid deposit (liability)
+'deposit_redemption' → Eject: deposit applied to session (liability cleared)
+'deposit_refund'     → Eject: shop refunded the deposit
+'deposit_forfeit'    → Inject (category change): no-show, deposit becomes revenue
+</pre>
+
+<h3>New sales_daily PM prefix</h3>
+<pre>
+DepositRedeemed:7500   → ဆိုလိုတာက "ဒီငွေက deposit ကနေ redeem လုပ်ထားတာ"
+                       → BS က account matching လုပ်တဲ့အခါ deposit eject နဲ့ ကိုက်အောင်
+</pre>
+
+<h3>Files to modify (updated list)</h3>
+<table>
+  <tr><th>File</th><th>What's new</th></tr>
+  <tr><td><code>booking_routes.py</code></td><td>+7 columns, new endpoints, settlement logic</td></tr>
+  <tr><td><code>finance_routes.py</code></td><td>Deposit liability in BS, deposit forfeit in PNL</td></tr>
+  <tr><td><code>customer_bot/booking_handlers.py</code></td><td>BK_DEPOSIT_INFO (method selection), BK_DEPOSIT_UPLOAD</td></tr>
+  <tr><td><code>customer_bot/data/bank_accounts.py</code></td><td>NEW: bank account config</td></tr>
+  <tr><td><code>customer_bot/api.py</code></td><td>deposit_submit API call</td></tr>
+  <tr><td><code>bot/handlers/admin_bookings.py</code></td><td>verify/reject + settlement form</td></tr>
+  <tr><td><code>psvibe-dashboard</code></td><td>Settlement UI: deposit redeem + remainder payment</td></tr>
+</table>
+
+<div class="box box-ok">
+  <strong>🚀 Ready to start? "Start Phase 1" လို့ပြောရင် DB migration + API endpoints စရေးပါမယ်။</strong>
+</div>
+
+</main></html>

@@ -1,0 +1,463 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Booking Deposit — Implementation Plan</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --success: #bbf7d0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+      --input: #1d4ed8;
+      --process: #4338ca;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+      --success: #166534;
+    }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.5 ui-sans-serif, system-ui, sans-serif; }
+  main { max-width: 960px; margin: 24px auto; padding: 0 20px; }
+  h1 { font-size: 22px; margin-top: 0; }
+  h2 { font-size: 17px; margin: 28px 0 10px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  h3 { font-size: 15px; margin: 20px 0 8px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  td, th { border: 1px solid var(--line); padding: 6px 10px; text-align: left; font-size: 13px; }
+  th { background: var(--neutral); font-weight: 600; }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-api { background: var(--process); }
+  .tag-db { background: var(--storage); }
+  .tag-bot { background: var(--input); }
+  .tag-risk { background: var(--risk); }
+  .tag-success { background: var(--success); }
+  code { background: var(--neutral); padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  pre { background: var(--neutral); padding: 10px 14px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+  .box { border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; margin: 12px 0; }
+  .box-note { border-color: var(--external); background: color-mix(in srgb, var(--external) 20%, transparent); }
+  .box-warn { border-color: var(--risk); background: color-mix(in srgb, var(--risk) 20%, transparent); }
+  .box-ok { border-color: #166534; background: color-mix(in srgb, var(--success) 20%, transparent); }
+</style>
+<main>
+
+<h1>📋 PS VIBE Customer Bot — Booking Deposit Plan</h1>
+<p class="small" style="margin-top:-8px">Option 3: Bank Transfer + Staff Verify — Implementation Roadmap</p>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- PHASE OVERVIEW -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📌 Phase Overview</h2>
+
+<table>
+  <tr><th>Phase</th><th>Scope</th><th>Timing</th></tr>
+  <tr><td><strong>1. Core</strong></td><td>DB schema + API endpoints + Staff notification</td><td>High Priority</td></tr>
+  <tr><td><strong>2. Bot Flow</strong></td><td>Customer Bot booking_handlers.py changes</td><td>Alongside Phase 1</td></tr>
+  <tr><td><strong>3. Dashboard</strong></td><td>Deposit verification UI for staff</td><td>Nice to have</td></tr>
+  <tr><td><strong>4. Automation</strong></td><td>Auto-timeout / No-show forfeit / Reporting</td><td>Post-launch</td></tr>
+</table>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- PHASE 1: CORE -->
+<!-- ════════════════════════════════════════════ -->
+<h2>🛠️ Phase 1: Core Infrastructure</h2>
+
+<h3>1A — Database Schema</h3>
+
+<p><span class="tag tag-db">MySQL</span> <code>bookings</code> table မှာ column အသစ် ၇ ခု ထည့်မယ်:</p>
+
+<pre>
+-- Deposit columns for bookings table
+ALTER TABLE bookings
+  ADD COLUMN deposit_amount      DECIMAL(12,0)   DEFAULT 0       COMMENT 'Deposit amount in Ks',
+  ADD COLUMN deposit_status      ENUM('none','pending','paid','verified','refunded','forfeited')
+                                                            DEFAULT 'none',
+  ADD COLUMN deposit_method      VARCHAR(32)     DEFAULT NULL    COMMENT 'kpay|wavepay|bank_transfer|wallet',
+  ADD COLUMN deposit_ref         VARCHAR(128)    DEFAULT NULL    COMMENT 'Customer reference no / screenshot file path',
+  ADD COLUMN deposit_ref_type    ENUM('text','image','both')     DEFAULT NULL,
+  ADD COLUMN deposit_verified_by VARCHAR(64)     DEFAULT NULL    COMMENT 'Staff who verified',
+  ADD COLUMN deposit_verified_at DATETIME        DEFAULT NULL;
+</pre>
+
+<div class="box box-note">
+  <strong>💡 deposit_status states:</strong><br/>
+  <code>none</code> → (deposit not required for this booking / legacy)<br/>
+  <code>pending</code> → (waiting for customer to pay & upload proof)<br/>
+  <code>paid</code> → (customer uploaded proof, waiting for staff verify)<br/>
+  <code>verified</code> → (staff confirmed deposit received → booking confirmed)<br/>
+  <code>refunded</code> → (booking cancelled by shop after verified — deposit returned)<br/>
+  <code>forfeited</code> → (no-show / booking cancelled after deposit — deposit kept)
+</div>
+
+<h3>1B — API Endpoints</h3>
+
+<table>
+  <tr><th>Method</th><th>Path</th><th>Purpose</th><th>Auth</th></tr>
+  <tr>
+    <td><code>GET</code></td>
+    <td><code>/api/deposit/schedule</code></td>
+    <td>Return deposit amount for a given (console_type, duration, day, time)</td>
+    <td>Public (for bot)</td>
+  </tr>
+  <tr>
+    <td><code>POST</code></td>
+    <td><code>/api/bookings/{id}/deposit/submit</code></td>
+    <td>Customer submits ref no / image path after paying</td>
+    <td>Customer API key</td>
+  </tr>
+  <tr>
+    <td><code>PATCH</code></td>
+    <td><code>/api/bookings/{id}/deposit/verify</code></td>
+    <td>Staff marks deposit as verified → booking confirmed</td>
+    <td>Staff auth</td>
+  </tr>
+  <tr>
+    <td><code>PATCH</code></td>
+    <td><code>/api/bookings/{id}/deposit/reject</code></td>
+    <td>Staff rejects deposit proof, asks to resubmit</td>
+    <td>Staff auth</td>
+  </tr>
+  <tr>
+    <td><code>GET</code></td>
+    <td><code>/api/bookings/pending-deposits</code></td>
+    <td>List all bookings with deposit_status = 'paid' (pending verification)</td>
+    <td>Staff auth</td>
+  </tr>
+</table>
+
+<h3>1C — Deposit Schedule Logic</h3>
+
+<p><span class="tag tag-api">API</span> <code>/api/deposit/schedule</code> မှာ အောက်ပါအတိုင်း တွက်မယ်:</p>
+
+<pre>
+def calc_deposit(console_type: str, duration_mins: int, day_of_week: int, hour: int) -> int:
+    """Calculate deposit amount. Returns Ks."""
+    base = 5000  # base deposit: 5000 Ks
+
+    # Duration multiplier
+    if duration_mins <= 60:       mult = 1.0
+    elif duration_mins <= 120:    mult = 1.5    # 7,500 Ks
+    elif duration_mins <= 180:    mult = 2.0    # 10,000 Ks
+    else:                         mult = 2.5    # 12,500 Ks
+
+    # Premium console
+    if console_type.lower() == "ps5 pro":   mult *= 1.3
+
+    # Peak hours (Fri-Sun 18:00-21:00) = +50%
+    if day_of_week >= 5 and 18 <= hour < 21:  mult *= 1.5
+
+    # Cap: min 3000, max 15000
+    amount = max(3000, min(15000, int(base * mult)))
+    return amount
+</pre>
+
+<div style="overflow-x:auto">
+<table>
+  <tr><th>Booking</th><th>Normal</th><th>Peak (+50%)</th></tr>
+  <tr><td>PS5 1hr</td><td>5,000 Ks</td><td>7,500 Ks</td></tr>
+  <tr><td>PS5 2hr</td><td>7,500 Ks</td><td>11,250 Ks</td></tr>
+  <tr><td>PS5 3hr</td><td>10,000 Ks</td><td>15,000 Ks</td></tr>
+  <tr><td>PS5 Pro 1hr</td><td>6,500 Ks</td><td>9,750 Ks</td></tr>
+  <tr><td>PS5 Pro 2hr</td><td>9,750 Ks</td><td>14,625 Ks</td></tr>
+</table>
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- PHASE 2: BOT FLOW -->
+<!-- ════════════════════════════════════════════ -->
+<h2>🤖 Phase 2: Customer Bot Flow</h2>
+
+<h3>2A — Booking Flow Update</h3>
+
+<p><span class="tag tag-bot">bot</span> <code>/root/psvibe-sales-bot/customer_bot/booking_handlers.py</code></p>
+
+<p>လက်ရှိ booking flow ရဲ့ <strong>BK_CONFIRM state (ခလုတ်နှိပ်ပြီးနောက်)</strong> မှာ deposit step ထည့်မယ်:</p>
+
+<pre>
+# Current flow (BK_CONFIRM):
+#   Customer clicks "✅ Confirm Booking"
+#   → _submit_booking() → status: "pending" → done
+
+# NEW flow (BK_CONFIRM):
+#   Customer clicks "✅ Confirm Booking"
+#   → calc_deposit(console_type, duration, day, hour) → deposit_amount
+#   → Show: "Deposit {N} Ks လိုပါတယ် — KBZ/AYA/WavePay သို့လွှဲပါ"
+#   → Show bank account details
+#   → "ငွေလွှဲပြီးပါက transaction ref no သို့မဟုတ် screenshot ပို့ပေးပါ"
+#   → User sends ref / image
+#   → POST /bookings/{id}/deposit/submit → deposit_status: "paid"
+#   → "Staff မှ အတည်ပြုချက်စောင့်ဆိုင်းပေးပါ ✅"
+#   → NOTIFY staff group: "New deposit from {name} — {amount} Ks"
+</pre>
+
+<h3>2B — Bank Details Display</h3>
+
+<p>အကောင့်အချက်အလက်တွေကို <code>config</code> ထဲမှာ သိမ်းမယ်:</p>
+
+<pre>
+# customer_bot/data/bank_accounts.py
+BANK_ACCOUNTS = {
+    "kbz": {
+        "name": "KBZ Bank",
+        "account_name": "PS VIBE Gaming Lounge",
+        "account_no": "123 456 789 012",
+        "icon": "🏦",
+    },
+    "aya": {
+        "name": "AYA Bank",
+        "account_name": "PS VIBE Gaming Lounge",
+        "account_no": "987 654 321",
+        "icon": "🏦",
+    },
+    "wavepay": {
+        "name": "WavePay",
+        "account_name": "PS VIBE",
+        "account_no": "09-773355915",
+        "icon": "📱",
+    },
+}
+</pre>
+
+<h3>2C — Staff Notification</h3>
+
+<p><span class="tag tag-bot">bot</span> Deposit ပေးပြီးတာနဲ့ Staff Group ကို inline keyboard နဲ့ notify လုပ်မယ်:</p>
+
+<table>
+  <tr><th>Staff Group Message</th><th>Inline Buttons</th></tr>
+  <tr>
+    <td style="font-size:13px">
+      💰 <b>Deposit Pending — Verify</b><br/>
+      👤 Ko Aung (09-773355915)<br/>
+      📅 2026-07-13 ⏰ 14:00<br/>
+      🎮 PS5 ⏱ 2hr (7,500 Ks)<br/>
+      🕹 FC25 🆔 #212<br/>
+      <br/>
+      📎 <i>screenshot.jpg</i><br/>
+      💵 <b>Deposit: 7,500 Ks (WavePay)</b>
+    </td>
+    <td style="font-size:13px; white-space:nowrap">
+      ✅ Verify Deposit<br/>
+      ❌ Reject<br/>
+      👤 View Booking
+    </td>
+  </tr>
+</table>
+
+<h3>2D — Conversation States to Add</h3>
+
+<p><span class="tag tag-bot">bot</span> လက်ရှိ booking handler states (BK_MEMBER_CHECK, BK_NAME, BK_PHONE, BK_DATE, BK_TIME, BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONFIRM) ပြီးရင် state အသစ် <strong>၂ ခု</strong> ထည့်မယ်:</p>
+
+<pre>
+# New states for deposit flow
+BK_DEPOSIT_INFO    = 97   # Show bank details + ask customer to pay
+BK_DEPOSIT_UPLOAD  = 98   # Wait for customer to send ref/image
+BK_DEPOSIT_WAIT    = 99   # Waiting for staff verification
+</pre>
+
+<div class="box box-ok">
+<strong>▶ Booking flow after changes:</strong><br/>
+<code>BK_MEMBER_CHECK</code> → <code>BK_NAME</code> / <code>BK_PHONE_VERIFY</code> → <code>BK_DATA_CONFIRM</code> → <code>BK_NAME</code> → <code>BK_PHONE</code> → <code>BK_DATE</code> → <code>BK_TIME</code> → <code>BK_CONSOLE</code> → <code>BK_DURATION</code> → <code>BK_GAME</code> → <code>BK_CONFIRM</code> → <strong style="color:#c2410c">BK_DEPOSIT_INFO → BK_DEPOSIT_UPLOAD → BK_DEPOSIT_WAIT</strong> → ✅ Done
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- PHASE 3: STAFF DASHBOARD -->
+<!-- ════════════════════════════════════════════ -->
+<h2>🖥️ Phase 3: Staff Dashboard</h2>
+
+<h3>3A — Sale Bot Deposit Handlers</h3>
+
+<p><span class="tag tag-bot">bot</span> <code>/root/psvibe-sales-bot/bot/handlers/</code> — Staff Sale Bot မှာ command အသစ်တွေ:</p>
+
+<table>
+  <tr><th>Command</th><th>Action</th></tr>
+  <tr><td><code>/pending_deposits</code></td><td>List all bookings waiting for deposit verification</td></tr>
+  <tr><td><code>/verifydeposit_&lt;id&gt;</code></td><td>Verify deposit for booking #ID</td></tr>
+  <tr><td><code>/rejectdeposit_&lt;id&gt;</code></td><td>Reject deposit for booking #ID (with reason)</td></tr>
+</table>
+
+<h3>3B — Web Dashboard</h3>
+
+<table>
+  <tr><th>Page</th><th>Route</th><th>Content</th></tr>
+  <tr>
+    <td>Deposit Verification</td>
+    <td><code>/deposits/pending</code></td>
+    <td>Card list of bookings with deposit_status="paid", each with Verify/Reject buttons + screenshot preview</td>
+  </tr>
+  <tr>
+    <td>Deposit History</td>
+    <td><code>/deposits/history</code></td>
+    <td>Filterable table (date, method, status, amount), exportable</td>
+  </tr>
+</table>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- PHASE 4: AUTOMATION -->
+<!-- ════════════════════════════════════════════ -->
+<h2>⚙️ Phase 4: Post-Launch Automation</h2>
+
+<table>
+  <tr><th>Feature</th><th>How</th><th>File</th></tr>
+  <tr>
+    <td>Auto-timeout</td>
+    <td>deposit_status="pending" for >4hr → auto-cancel booking</td>
+    <td><code>scripts/auto_cancel_no_shows.py</code> update</td>
+  </tr>
+  <tr>
+    <td>No-show forfeit</td>
+    <td>After session expired + no check-in → deposit_status="forfeited" → cash_movements (booking_deposit income)</td>
+    <td>Booking routes patch</td>
+  </tr>
+  <tr>
+    <td>Deposit-to-payment</td>
+    <td>When session ends normally → deposit converts to session payment</td>
+    <td>Console end handler</td>
+  </tr>
+  <tr>
+    <td>Reporting</td>
+    <td>PNL includes "Deposit Revenue (Forfeited)" line item</td>
+    <td><code>patch_routes.py</code></td>
+  </tr>
+</table>
+
+<div class="box box-warn">
+  <strong>⚠️ Financial Handling:</strong><br/>
+  <ul style="margin:4px 0">
+    <li>Deposit received → <code>cash_movements (inject, deposit_pending)</code> — liability</li>
+    <li>Deposit verified → booking confirmed, but still liability until session</li>
+    <li>Session completed → deposit converts → <code>cash_movements eject (deposit) + sales_daily</code></li>
+    <li>No-show → <code>cash_movements (inject, deposit_forfeit)</code> → PNL income</li>
+  </ul>
+</div>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- FILES TO TOUCH -->
+<!-- ════════════════════════════════════════════ -->
+<h2>📂 Files to Modify / Create</h2>
+
+<table>
+  <tr><th>File</th><th>Change</th><th>Priority</th></tr>
+  <tr><td><code>psvibe_api_server/routes/booking_routes.py</code></td><td>Add deposit columns to DB, new endpoints</td><td>🔴 P1</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/booking_handlers.py</code></td><td>Add BK_DEPOSIT_INFO, BK_DEPOSIT_UPLOAD, BK_DEPOSIT_WAIT states</td><td>🔴 P1</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/data/bank_accounts.py</code></td><td><strong>CREATE</strong> — Bank account config</td><td>🔴 P1</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/api.py</code></td><td>Add deposit_submit API call</td><td>🔴 P1</td></tr>
+  <tr><td><code>psvibe-sales-bot/bot/handlers/admin_bookings.py</code></td><td>Add /pending_deposits, verify/reject handlers</td><td>🟡 P2</td></tr>
+  <tr><td><code>psvibe_api_server/routes/finance_routes.py</code></td><td>Deposit revenue in PNL, BS tracking</td><td>🟡 P2</td></tr>
+  <tr><td><code>psvibe_api_server/scripts/auto_cancel_no_shows.py</code></td><td>Deposit timeout + forfeit logic</td><td>🟢 P3</td></tr>
+  <tr><td><code>psvibe-dashboard</code> (frontend)</td><td>Deposit verification page</td><td>🟢 P3</td></tr>
+</table>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- FULL FLOW DIAGRAM (text) -->
+<!-- ════════════════════════════════════════════ -->
+<h2>🔁 Complete Customer Flow</h2>
+
+<pre>
+┌──────────────────────────────────────────┐
+│ 1. Customer goes through booking flow    │
+│    (name → phone → date → time → console │
+│     → duration → game → confirm)         │
+└──────────────────┬───────────────────────┘
+                   ▼
+┌──────────────────────────────────────────┐
+│ 2. System: calc_deposit()                │
+│    "Deposit {N} Ks လိုပါတယ်"            │
+│    → Show KBZ / AYA / WavePay accounts   │
+│    → "ငွေလွှဲပြီးရင် ref no ပို့ပါ"     │
+│    → BK_DEPOSIT_INFO state                │
+└──────────────────┬───────────────────────┘
+                   ▼
+┌──────────────────────────────────────────┐
+│ 3. Customer transfers + sends proof      │
+│    3a. Text: Ref no. "123ABC"            │
+│    3b. Image: Screenshot upload          │
+│    → BK_DEPOSIT_UPLOAD state             │
+│    → deposit_status → "paid"             │
+└──────────────────┬───────────────────────┘
+                   ▼
+┌──────────────────────────────────────────┐
+│ 4. Bot sends notification to Staff Group │
+│    "💰 New Deposit Pending — 7,500 Ks   │
+│     👤 Ko Aung — 🆔 #212"              │
+│    → Inline buttons: ✅ Verify / ❌ Reject│
+│    → BK_DEPOSIT_WAIT state              │
+└──────────────────┬───────────────────────┘
+                   ▼
+        ┌──────────┴──────────┐
+        ▼                     ▼
+┌─────────────────┐  ┌─────────────────────┐
+│ 5a. Staff ✅    │  │ 5b. Staff ❌ or     │
+│ Verify Deposit │  │ Auto-Timeout (4hr)  │
+│ deposit_status │  │ deposit_status      │
+│ → "verified"   │  │ → "pending"(retry)  │
+│ → booking      │  │ → "cancelled"       │
+│   "confirmed"  │  │                     │
+│ → Notify       │  │ → Notify customer   │
+│   customer ✅  │  │   "ငွေလွှဲပုံမပေါ်   │
+└────────┬───────┘  │   ပါ — retry ပါ"    │
+         │          └─────────────────────┘
+         ▼
+┌─────────────────┐
+│ 6. Customer     │
+│ checks in at    │
+│ counter.        │
+│ Deposit → pay   │
+└────────┬───────┘
+         │
+    ┌────┴────┐
+    ▼         ▼
+┌────────┐ ┌──────────┐
+│ No-show│ │ Played ✅│
+│Deposit │ │ Deposit  │
+│→ income│ │→ payment │
+│ (forfeit│ │(counter  │
+│)       │ │ settle)  │
+└────────┘ └──────────┘
+</pre>
+
+<br/>
+<!-- ════════════════════════════════════════════ -->
+<!-- IMPLEMENTATION ORDER -->
+<!-- ════════════════════════════════════════════ -->
+<h2>✅ Implementation Checklist</h2>
+
+<form>
+<label><input type="checkbox" disabled/> <strong>Step 1:</strong> MySQL — ALTER TABLE bookings (add 7 columns)</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 2:</strong> API — create <code>/api/deposit/schedule</code> endpoint</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 3:</strong> API — create <code>POST /bookings/{id}/deposit/submit</code></label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 4:</strong> API — create <code>PATCH /bookings/{id}/deposit/verify|reject</code></label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 5:</strong> Bot — create <code>data/bank_accounts.py</code></label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 6:</strong> Bot — add BK_DEPOSIT_INFO, BK_DEPOSIT_UPLOAD, BK_DEPOSIT_WAIT states</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 7:</strong> Bot — staff notification with inline verify/reject buttons</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 8:</strong> Bot — add <code>/pending_deposits</code> command for staff</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 9:</strong> Finance — add deposit tracking in cash_movements</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 10:</strong> Automation — no-show forfeit + timeout (later)</label><br/>
+<label><input type="checkbox" disabled/> <strong>Step 11:</strong> Dashboard — deposit verification UI (later)</label><br/>
+</form>
+
+<div class="box box-ok">
+  <strong>🚀 စလုပ်ဖို့အဆင်သင့်ဖြစ်ရင် "Start Phase 1" လို့ပြောပါ။</strong><br/>
+  Phase 1 (DB + API) ကို ဦးဆုံးလုပ်ပါမယ်။ ပြီးရင် Bot flow ကို ဆက်လုပ်မယ်။
+</div>
+
+</main></html>

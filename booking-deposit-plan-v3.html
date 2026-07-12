@@ -1,0 +1,407 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deposit Flow v2 — KPay / Wave / AYA Pay</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b; --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe; --storage: #99f6e4; --external: #fde68a; --risk: #fecaca; --success: #bbf7d0; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f172a; --fg: #e5e7eb; --muted: #a3adbd; --line: #94a3b8; --neutral: #334155; --input: #1d4ed8; --process: #4338ca; --storage: #0f766e; --external: #92400e; --risk: #991b1b; --success: #166534; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.5 ui-sans-serif, system-ui, sans-serif; }
+  main { max-width: 960px; margin: 24px auto; padding: 0 20px; }
+  h1 { font-size: 21px; }
+  h2 { font-size: 17px; border-bottom: 1px solid var(--line); padding-bottom: 4px; margin: 28px 0 8px; }
+  h3 { font-size: 15px; margin: 20px 0 6px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 13px; }
+  td, th { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+  th { background: var(--neutral); font-weight: 600; }
+  code { background: var(--neutral); padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  pre { background: var(--neutral); padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+  .box { border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+  .box-warn { border-color: var(--risk); background: color-mix(in srgb, var(--risk) 20%, transparent); }
+  .box-ok { border-color: #166534; background: color-mix(in srgb, var(--success) 20%, transparent); }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-db { background: var(--storage); }
+  .tag-api { background: var(--process); }
+  .tag-bot { background: var(--input); }
+</style>
+<main>
+
+<h1>📋 Deposit Flow v2 — KPay / Wave / AYA Pay</h1>
+<p class="small">Deposit လက်ခံနည်း ၃ မျိုး: KPay · WavePay · AYA Pay | Redemption Settlement Flow</p>
+
+<!-- ════════════════════════════════ -->
+<!-- 1. DEPOSIT METHOD -->
+<!-- ════════════════════════════════ -->
+<h2>📌 1. Deposit Payment Methods</h2>
+
+<table>
+  <tr><th>deposit_method</th><th>အကောင့်အမည်</th><th>cash_movements Account</th></tr>
+  <tr><td><code>kpay</code></td><td>KPay — PS VIBE</td><td>KPay</td></tr>
+  <tr><td><code>wavepay</code></td><td>WavePay — PS VIBE (09-xxxxxxxxx)</td><td>WavePay</td></tr>
+  <tr><td><code>aya_pay</code></td><td>AYA Pay — PS VIBE (09-xxxxxxxxx)</td><td>AYA Pay</td></tr>
+</table>
+
+<h3>Bot — Method Selection</h3>
+
+<pre>
+💰 **Deposit Required: 7,500 Ks**
+
+ကျေးဇူးပြုပြီး အောက်ပါအကောင့်များသို့ ငွေလွှဲပေးပါ။
+ပြီးပါက Transaction Ref No. (သို့) Screenshot ပို့ပေးပါ။
+
+📱 KPay:      [KPay Account No]
+📱 WavePay:   [WavePay Account No]
+📱 AYA Pay:   [AYA Pay Account No]
+
+**သင်ဘယ်လိုပေးချေမလဲ?**
+[ 📱 KPay ]   [ 📱 WavePay ]   [ 📱 AYA Pay ]
+</pre>
+
+<h3>Customer Flow</h3>
+
+<pre>
+1. Customer က method ရွေး (ဥပမာ KPay)
+2. Bot က KPay account details ပြ
+3. Customer က KPay ကနေ ငွေလွှဲ
+4. Transaction Ref No ရိုက် / Screenshot ပို့
+5. Bot က staff group ကို notify
+6. Staff verify → booking confirmed
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 2. DATABASE -->
+<!-- ════════════════════════════════ -->
+<h2>📌 2. DB Schema</h2>
+
+<p><span class="tag tag-db">MySQL</span> <code>bookings</code> table မှာ —</p>
+
+<pre>
+ALTER TABLE bookings
+  ADD COLUMN deposit_amount      DECIMAL(12,0)   DEFAULT 0,
+  ADD COLUMN deposit_status      ENUM('none','pending','paid','verified','redeemed','refunded','forfeited')
+                                                              DEFAULT 'none',
+  ADD COLUMN deposit_method      ENUM('kpay','wavepay','aya_pay') DEFAULT NULL,
+  ADD COLUMN deposit_ref         VARCHAR(255)    DEFAULT NULL,
+  ADD COLUMN deposit_ref_type    ENUM('text','image','both') DEFAULT NULL,
+  ADD COLUMN deposit_verified_by VARCHAR(64)     DEFAULT NULL,
+  ADD COLUMN deposit_verified_at DATETIME        DEFAULT NULL,
+  ADD COLUMN deposit_redeemed_at DATETIME        DEFAULT NULL;
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 3. REDEMPTION FLOW -->
+<!-- ════════════════════════════════ -->
+<h2>📌 3. Redemption Flow (ဆိုင်ရောက်လို့ ပြန်နှုတ်)</h2>
+
+<h3>Scenario: Booking #212 — PS5 2hr = 10,000 Ks, Deposit 7,500 Ks (KPay)</h3>
+
+<h3>Step-by-Step</h3>
+
+<table>
+  <tr><th>#</th><th>Step</th><th>deposit_status</th><th>Booking</th><th>Financial</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Customer books PS5 2hr → deposit 7,500 Ks (KPay)</td>
+    <td><code>pending</code></td>
+    <td><code>pending</code></td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Customer transfer 7,500 Ks via KPay → sends ref no</td>
+    <td><code>paid</code></td>
+    <td><code>pending</code></td>
+    <td style="font-size:12px">
+      cash_movements: inject (KPay, +7,500, deposit_pending)<br/>
+      KPay balance ↑7,500 — BS liability ↑7,500
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Staff verifies deposit ✅</td>
+    <td><code>verified</code></td>
+    <td><code>confirmed</code></td>
+    <td style="font-size:12px">Still liability (not yet revenue)</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Customer arrives → checks in → plays PS5 2hr</td>
+    <td><code>verified</code></td>
+    <td><code>checked_in</code></td>
+    <td style="font-size:12px">Timer starts normally</td>
+  </tr>
+  <tr style="background:color-mix(in srgb, var(--success) 15%, transparent)">
+    <td><strong>5</strong></td>
+    <td><strong>Session ends → Staff settles</strong></td>
+    <td><code>redeemed</code></td>
+    <td><code>done</code></td>
+    <td style="font-size:12px;"><strong>3 things happen at once 👇</strong></td>
+  </tr>
+</table>
+
+<h3>Step 5 — Settlement Detail</h3>
+
+<pre>
+┌─────────────── SESSION SETTLEMENT ───────────────┐
+│                                                   │
+│  Console: C-01  |  Duration: 2hr                  │
+│  Session Fee: 10,000 Ks                           │
+│                                                   │
+│  💰 Deposit (KPay): 7,500 Ks ✅                   │
+│     ↳ Already in KPay account — no new movement   │
+│     ↳ Reclassify: liability → revenue             │
+│                                                   │
+│  💵 Remaining:                                    │
+│     Customer pays → [ KPay: 2,500 ]               │
+│                      [ WavePay: ___ ]             │
+│                      [ Cash: ___ ]                │
+│                                                   │
+│  ┌──────────────────────────────────────┐         │
+│  │  [ ✅ Settle — Redeem Deposit ]      │         │
+│  └──────────────────────────────────────┘         │
+└───────────────────────────────────────────────────┘
+</pre>
+
+<h3>Behind the scenes (one click)</h3>
+
+<pre>
+-- ① Record full sale in sales_daily
+-- PM shows: original deposit method (KPay) + remaining payment method
+INSERT INTO sales_daily (total, payment_method, ...)
+VALUES (10000, 'KPay:7500(DepositRedeemed)|KPay:2500', ...);
+
+-- ② Record remaining payment into cash_movements
+--    (deposit 7,500 already in KPay — NO new inject needed)
+INSERT INTO cash_movements (account, movement_type, amount, note)
+VALUES ('KPay', 'inject', 2500, 'Game revenue #212 (remainder)');
+
+-- ③ Clear deposit liability
+--    deposit_redemption eject = mark liability as settled
+UPDATE bookings SET
+  deposit_status = 'redeemed',
+  deposit_redeemed_at = NOW(),
+  status = 'done'
+WHERE id = 212;
+</pre>
+
+<h3>Cash Flow Summary</h3>
+
+<pre>
+DEPOSIT RECEIVED:                  SETTLEMENT:
+┌─────────────┐                   ┌──────────────────────┐
+│ KPay Account│                   │  Revenue: 10,000 Ks  │
+│ +7,500      │ ← deposit_pending │  ┌──────────────────┐│
+│ (liability) │                   │  │ KPay: 7,500 (was ││
+└─────────────┘                   │  │   deposit) ✅    ││
+                                  │  ├──────────────────┤│
+CUSTOMER PLAYS                     │  │ KPay: 2,500 (new)││
+  → deposit liability cleared      │  └──────────────────┘│
+  → 7,500 becomes revenue          └──────────────────────┘
+  → Customer pays 2,500 more
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 4. SCENARIOS -->
+<!-- ════════════════════════════════ -->
+<h2>📌 4. Edge Cases</h2>
+
+<h3>4A — No-Show (Booking timeout without check-in)</h3>
+<pre>
+deposit_status → "forfeited"
+
+Financial: 7,500 Ks → No-Show Revenue
+cash_movements: no new movement (money already in KPay)
+BS: liability (-7,500) + revenue (+7,500) ✅
+PNL: separate line "No-Show Deposit Revenue"
+
+Customer notified: "သင်၏ deposit 7,500 Ks ကို no-show အတွက်
+သိမ်းလိုက်ပါသည်"
+</pre>
+
+<h3>4B — Shop Cancels (booking cancelled by staff after deposit verified)</h3>
+<pre>
+deposit_status → "refunded"
+
+Financial: 7,500 Ks → Refund to customer
+cash_movements: eject (KPay, -7,500, deposit_refund)
+BS: KPay balance ↓7,500, liability ↓7,500 ✅
+
+Customer notified: "စတိုးဆိုင်ကိစ္စကြောင့် Booking ကို
+ပယ်ဖျက်ပါသည် — သင်၏ deposit 7,500 Ks ကိုပြန်အမ်းပါမည်"
+</pre>
+
+<h3>4C — Customer Cancels Before Paying</h3>
+<pre>
+deposit_status → "none" (was still "pending")
+No financial impact. Just cancel booking.
+</pre>
+
+<h3>4D — Customer Pays Less Than Deposit</h3>
+<pre>
+Keep checking: deposit_amount = calculated amount (non-negotiable)
+If customer sends wrong amount → Staff rejects → "ငွေလွှဲပမာဏမှားနေပါသည်
+— 7,500 Ks အတိအကျလွှဲပေးပါ"
+</pre>
+
+<h3>4E — Deposit Method ≠ Session Payment Method</h3>
+<pre>
+Example: Deposit via KPay (7,500 Ks), remaining paid via Cash (2,500 Ks)
+sales_daily PM: "KPay:7500(DepositRedeemed)|Cash:2500"
+→ BS can trace deposit method AND remaining payment method separately
+→ No confusion
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 5. BALANCE SHEET -->
+<!-- ════════════════════════════════ -->
+<h2>📌 5. Balance Sheet Update</h2>
+
+<p><span class="tag tag-api">API</span> <code>finance_routes.py</code> BS function မှာ —</p>
+
+<pre>
+# ── NEW: Deposit Liability ──
+# Bookings with deposit_status = 'verified' or 'paid' = still liability
+deposit_liability = db.query("""
+    SELECT COALESCE(SUM(deposit_amount), 0)
+    FROM bookings
+    WHERE deposit_status IN ('verified', 'paid')
+      AND status IN ('confirmed', 'checked_in')
+""").fetchone()[0]
+
+# ── Modify Equity Calculation ──
+# Revenue from deposits redeemed this month
+deposit_redeemed = db.query("""
+    SELECT COALESCE(SUM(deposit_amount), 0)
+    FROM bookings
+    WHERE deposit_status = 'redeemed'
+      AND deposit_redeemed_at IS NOT NULL
+      AND MONTH(deposit_redeemed_at) = :m
+      AND YEAR(deposit_redeemed_at) = :y
+""").fetchone()[0]
+
+# Revenue from forfeited deposits
+deposit_forfeited = db.query("""
+    SELECT COALESCE(SUM(deposit_amount), 0)
+    FROM bookings
+    WHERE deposit_status = 'forfeited'
+      AND MONTH(updated_at) = :m AND YEAR(updated_at) = :y
+""").fetchone()[0]
+
+# Adjusted retained earnings
+retained = sales_total - opex - cogs - dep
+         + deposit_forfeited    # forfeited = income
+         - deposit_outstanding  # not yet played = liability
+
+# ── NEW: Add deposit_liability to Liabilities side
+liabilities = member_liability + deposit_liability + ... 
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 6. API ENDPOINTS -->
+<!-- ════════════════════════════════ -->
+<h2>📌 6. API Endpoints</h2>
+
+<table>
+  <tr><th>Method</th><th>Path</th><th>Purpose</th></tr>
+  <tr><td><code>GET</code></td><td><code>/api/deposit/schedule?console=PS5&dur=120&date=2026-07-13&time=14:00</code></td><td>Return deposit amount</td></tr>
+  <tr><td><code>POST</code></td><td><code>/api/bookings/{id}/deposit/submit</code></td><td>Customer: method + ref + screenshot → deposit_status="paid"</td></tr>
+  <tr><td><code>PATCH</code></td><td><code>/api/bookings/{id}/deposit/verify</code></td><td>Staff: verify → deposit_status="verified", booking="confirmed"</td></tr>
+  <tr><td><code>PATCH</code></td><td><code>/api/bookings/{id}/deposit/reject</code></td><td>Staff: reject deposit → ask resubmit</td></tr>
+  <tr><td><code>GET</code></td><td><code>/api/bookings/pending-deposits</code></td><td>List pending (deposit_status="paid")</td></tr>
+  <tr><td><code>PATCH</code></td><td><code>/api/bookings/{id}/settle</code></td><td><strong>NEW:</strong> Session settle → redeem deposit + record remaining pm</td></tr>
+</table>
+
+<h3>Settle Endpoint Payload</h3>
+
+<pre>
+PATCH /api/bookings/212/settle
+{
+  "total_fee": 10000,          // ကြိုတင်တွက်ထားတဲ့ session fee
+  "remaining_method": {
+    "kpay": 2500,              // Customer ကကျန်တဲ့ငွေကို KPay နဲ့ထပ်ပေး
+    "cash": 0,
+    "wavepay": 0
+  }
+}
+
+// Response:
+{
+  "success": true,
+  "deposit_components": {
+    "deposit_amount": 7500,
+    "deposit_method": "kpay",
+    "deposit_status": "redeemed",
+    "remaining_payment": 2500
+  },
+  "sales_daily_id": 456
+}
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 7. STAFF BOT FLOW -->
+<!-- ════════════════════════════════ -->
+<h2>📌 7. Staff Bot — Deposit + Settlement Commands</h2>
+
+<table>
+  <tr><th>Command</th><th>Example</th><th>Action</th></tr>
+  <tr><td><code>/pending_deposits</td><td><code>/pending_deposits</code></td><td>Show all bookings with deposit_status="paid"</td></tr>
+  <tr><td><code>/verifydeposit_{id}</code></td><td><code>/verifydeposit_212</code></td><td>Verify deposit, booking → confirmed</td></tr>
+  <tr><td><code>/rejectdeposit_{id}</code></td><td><code>/rejectdeposit_212</code></td><td>Reject deposit with reason</td></tr>
+  <tr><td><code>/settle_{id}</code></td><td><code>/settle_212</code></td><td>Session settle — interactive form</td></tr>
+</table>
+
+<h3>Settle Interactive Flow</h3>
+
+<pre>
+Staff types: /settle_212
+
+Bot replies:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Booking #212 — Session Settlement
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Ko Aung | 🎮 PS5 2hr
+💰 Deposit: 7,500 Ks (KPay) ✅
+
+Session Fee: 10,000 Ks
+Deposit: -7,500 Ks
+───────────────
+Remaining: 2,500 Ks
+
+Customer pays remaining via?
+[ 💵 Cash ] [ 📱 KPay ] [ 📱 WavePay ] [ 📱 AYA Pay ]
+
+Staff clicks method → amount entered
+→ Bot: "Remaining 2,500 Ks via Cash ✅"
+→ [ ✅ Confirm Settlement ]
+→ Done. Booking #212 → "redeemed" ✅
+</pre>
+
+<br/>
+<!-- ════════════════════════════════ -->
+<!-- 8. FILES -->
+<!-- ════════════════════════════════ -->
+<h2>📌 8. Files to Modify</h2>
+
+<table>
+  <tr><th>File</th><th>What</th></tr>
+  <tr><td><code>psvibe_api_server/routes/booking_routes.py</code></td><td>+7 columns, 5 new endpoints, settle logic</td></tr>
+  <tr><td><code>psvibe_api_server/routes/finance_routes.py</code></td><td>Deposit liability in BS, forfeit in PNL</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/booking_handlers.py</code></td><td>3 new states + deposit method selection</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/data/bank_accounts.py</code></td><td>CREATE: KPay/Wave/AYA account config</td></tr>
+  <tr><td><code>psvibe-sales-bot/customer_bot/api.py</code></td><td>deposit_submit API call</td></tr>
+  <tr><td><code>psvibe-sales-bot/bot/handlers/admin_bookings.py</code></td><td>/pending_deposits, /verifydeposit, /settle</td></tr>
+</table>
+
+<div class="box box-ok">
+  <strong>🚀 သုံးမျိုးပဲ — KPay · WavePay · AYA Pay ✅</strong><br/>
+  Redemption flow ကလည်း ရှင်းသွားပြီ — deposit ကို liability အနေနဲ့ သိမ်း → session ပြီးမှ redeem → revenue ပြောင်း။<br/><br/>
+  <strong>"Start Phase 1"</strong> လို့ပြောရင် DB migration code ကစရေးပါမယ်။
+</div>
+
+</main></html>
