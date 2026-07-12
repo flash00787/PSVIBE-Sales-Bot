@@ -1,6 +1,67 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-11 23:30 UTC
+> Last updated: 2026-07-12 05:30 UTC
+
+---
+
+## ⚡ EARLY MORNING UPDATE (July 12, 2026 - 05:30 UTC) — 🚀🔥 PALWORLD 1.0 WEEKEND NUMBERS EXPLODE! 725K+ CONCURRENT STEAM PLAYERS!!! Steam Top 15 ALL-TIME! Popularity MORE THAN DOUBLED! + Psi-Ops Premium Confirmed! + Halo Jul 23 Early Access for Premium! + PS Plus Jul Departures Detailed!
+
+> **Summary:** Sunday morning sweep (6 hours since last update). **PALWORLD 1.0 WEEKEND NUMBERS ARE ABSOLUTELY INSANE!** Concurrent players SURGED to **725,000+** on Steam over the weekend — nearly **DOUBLE** the launch day peak of 373K! Forbes reporting it's in Steam's top 15 highest concurrent peaks EVER. As of this writing, 568K+ still playing live. Palworld is THE defining game of July 2026 and PS VIBE must have it on ALL consoles. Also: **Psi-Ops: The Mindgate Conspiracy** confirmed for PS Plus Premium Jul 15 reveal, **Halo: Campaign Evolved** Premium/Collector Edition gets **5-day early access starting Jul 23** (before official Jul 28 launch), and PS Plus July departures detailed (Risk of Rain 2, Tropico 6 leaving Jul 21).
+
+### 🚀🚀🚀🚀🚀 PALWORLD 1.0 — WEEKEND EXPLOSION! 725K+ CONCURRENT! STEAM TOP 15 ALL-TIME! 🚀🚀🚀🚀🚀
+
+- **📈 NEW PEAK: 725,212 concurrent players on Steam** (Jul 11-12 weekend) — up from 373K launch day!
+- **Forbes reports:** Palworld 1.0 is in **Steam's Top 15 highest concurrent peaks of ALL TIME!** — alongside CS2, PUBG, Lost Ark, Dota 2, Cyberpunk 2077
+- **Live now (Jul 12 05:30 UTC):** 568,274 concurrent players still gaming — SUSTAINED MASSIVE engagement!
+- **Launch day (Jul 10):** 472,769 concurrent — then DOUBLED over the weekend as word-of-mouth spread
+- **96% positive reviews** remain — critics and players unanimously love 1.0
+- **40 million+ total players** across all platforms (Steam + Xbox + PS5)
+- **💡💡💡💡💡💡 LOUNGE IMPACT — ULTRA CRITICAL:**
+  - These numbers are PHENOMENAL. Palworld 1.0 is not just a hit — it's a **cultural phenomenon** rivaling Elden Ring and Baldur's Gate 3 launches
+  - **If PS VIBE hasn't installed Palworld 1.0 on ALL consoles — THIS IS THE WEEKEND TO DO IT!** Customers will be searching for Palworld sessions
+  - The 725K peak proves Palworld has **legs** — this isn't a flash-in-the-pan trend. Players are coming back for the full 1.0 experience
+  - Recommend: **Dedicated Palworld stations** if the lounge has the space. This game will be the #1 most-requested title for the rest of July
+  - ⭐⭐⭐⭐⭐⭐⭐ Lounge value — PALWORLD 1.0 IS THE BIGGEST GAME OF THE MONTH, PERIOD
+- Sources: Forbes (Jul 11-12), SteamDB, Tracker Network
+
+### 🎮 Psi-Ops: The Mindgate Conspiracy — Confirmed for PS Plus Premium! (Jul 15 Reveal) 🆕
+
+- **Confirmed:** The classic Mindgate Conspiracy is coming to **PS Plus Premium** catalog as part of the July 2026 lineup
+- **Full Extra/Premium July lineup** will be officially revealed on **July 15, 2026** (3 days away)
+- Psi-Ops is a beloved PS2-era third-person action game with telekinetic combat — nostalgia draw for older gamers
+- **💡 Lounge Note:** Free addition to Premium catalog — if PS VIBE has Premium on any console, this is a zero-cost addition. Minor nostalgia value. ⭐⭐ lounge value
+- Sources: GameRant (Jul 11), PlayStation Lifestyle
+
+### 🟢 Halo: Campaign Evolved — Premium/Collector Edition Early Access JULY 23! (+5 days!) 🆕
+
+- **New detail confirmed:** Premium Edition ($79.99) and Collector's Edition buyers get **5-day early access** starting **July 23** — official launch is July 28
+- This means Halo arrives on PS5 for premium buyers **just 5 days from now!** (Jul 23)
+- **Pre-order still available** — Foundry Armory Pack (Classic 2001 Mark V Armor + Assault Rifle skins) for ALL editions
+- **Physical disc confirmed** — includes PS5 disc! One of the few remaining physical releases before Jan 2028 phaseout
+- Support 2-player split-screen + 4-player online co-op with cross-play/cross-progression
+- **💡💡💡💡 LOUNGE IMPACT:**
+  - If PS VIBE orders Premium Edition, they get Halo **5 full days before standard launch** — exclusive bragging rights!
+  - Jul 23 is also **Disgaea Mayhem launch day** + **Avatar Legends Fighting Game** — Jul 23 is becoming a HUGE day!
+  - Split-screen co-op = PERFECT lounge gameplay
+  - Physical disc version = add to the lounge's growing physical library
+  - Sources: PlayStation Store, Xbox Wire, Halo Waypoint, GameSpot
+
+### 📋 PS Plus July Departures — Details Confirmed (Leaving Jul 21) 🆕
+
+- **Key departures from PS Plus Extra/Premium on July 21:**
+  - 🎮 **Risk of Rain 2** — acclaimed roguelike third-person shooter, high replayability
+  - 🏝️ **Tropico 6** — city-building/management sim
+  - ⚔️ **Clash: Artifacts of Chaos** — Zeno Clash universe action-adventure
+  - ❄️ **Roki** — atmospheric adventure game
+- **💡 Lounge Note:** If lounge regulars are enjoying any of these titles on PS Plus, play/binge before they leave the service Jul 21. Not critical, but good awareness for customer questions. ⭐ lounge value
+- Sources: IGN (Jul 11), GameSpot
+
+### 🛒 Summer Sale 2026 — PS Plus Members May Get EARLY ACCESS Starting Jul 15! 🆕
+
+- New reports that **PS Plus members** may get **early access to select deals** as early as **July 15** — one day before the general Summer Sale (Jul 16 - Aug 1)
+- Historically one of PlayStation's biggest discount events of the year — hundreds of games expected
+- **💡 Lounge Note:** If PS Plus early access is confirmed on Jul 15, the lounge can snag deals a full day early. Worth checking PS Store on Jul 15! ⭐⭐ lounge value
+- Sources: PushSquare, PlatPrices, Reddit r/PS5Deals
 
 ---
 
@@ -116,19 +177,20 @@
 - If PS VIBE has PS5 Pro units, they'll get enhanced visuals on this major remake
 - Noted as trending PlayStation Blog story in July 2026
 
-### 📋 Updated Priority Lounge Actions (July 10 - 23:30 UTC):
-1. **🎮🔥🔥🔥 PALWORLD 1.0 EXCEEDS EXPECTATIONS!** 373K peak players! 96% reviews! Level cap 85! If not installed yet — DO IT NOW! This is THE game of the month!
-2. **🎮🔥 ECHOES OF AINCRAD (SAO) IS HERE!** Same day! Custom avatar! Anime IP! BIG lounge draw!
-3. **🧼🏎️ PowerWash Simulator 2 Star Wars Pack — Jul 16! $9.99!** Pre-order! 6 Star Wars cleaning jobs! Millennium Falcon!
-4. **🎮 TRY Disgaea Mayhem DEMO on PS Store** — free demo available NOW! Test before Jul 23 purchase!
-5. **🛒 July Savings Sale ends Jul 15** (5 days left!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
-6. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** Mark calendars! 3-day lounge event!
-7. **🟢🟢🟢 Halo: Campaign Evolved — Jul 28!** 18 days! Pre-order NOW! First Halo on PlayStation!
-8. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel!
-9. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
-10. **🔥 CLAIM CoD MW3 on ALL lounge PS5s** — PS Plus Essential July! Free until Aug 3!
-11. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
-12. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk! Log into each account at least annually!
+### 📋 Updated Priority Lounge Actions (July 12 - 05:30 UTC) — WEEKEND NUMBERS UPDATE!:
+1. **🚀🚀🚀🚀🚀 PALWORLD 1.0 HIT 725K+ CONCURRENT PLAYERS!** STEAM TOP 15 ALL-TIME! Nearly DOUBLE launch day! **INSTALL ON ALL CONSOLES NOW!** Dedicated stations recommended!
+2. **🔥 PS Plus Extra/Premium Jul 15 reveal in 3 DAYS!** Psi-Ops Premium confirmed + Summer Sale early access for PS Plus members! Check PS Store!
+3. **🟢 Halo Premium Edition EARLY ACCESS Jul 23!** 5 days early! Pre-order Premium NOW for Jul 23 play!
+4. **🎮🔥 ECHOES OF AINCRAD (SAO) IS HERE!** Custom avatar! Anime IP! BIG lounge draw!
+5. **🧼🏎️ PowerWash Simulator 2 Star Wars Pack — Jul 16! $9.99!** Pre-order! Millennium Falcon! 6 Star Wars jobs!
+6. **🎮 TRY Disgaea Mayhem DEMO on PS Store** — free demo available! Test before Jul 23!
+7. **🛒 July Savings Sale ends Jul 15** (3 days left!) — Back 4 Blood $8.99! DMC5 $4.49! Deep Rock $16.49!
+8. **🥊 MARVEL Tōkon FREE OPEN BETA — Jul 24-26!** Mark calendars! 3-day lounge event!
+9. **🥊 PRE-ORDER MARVEL Tōkon: Fighting Souls — Aug 6!** ArcSys × Marvel!
+10. **🔥🔥 MONITOR PS STORE** — CoD Black Ops 1 & 2 could shadow-drop ANY DAY!
+11. **🔥 CLAIM CoD MW3 on ALL lounge PS5s** — PS Plus Essential July! Free until Aug 3!
+12. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
+13. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk!
 
 ---
 
