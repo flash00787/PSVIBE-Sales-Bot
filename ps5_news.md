@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-12 05:30 UTC
+> Last updated: 2026-07-12 11:30 UTC
 
 ---
 
@@ -46,22 +46,32 @@
   - Physical disc version = add to the lounge's growing physical library
   - Sources: PlayStation Store, Xbox Wire, Halo Waypoint, GameSpot
 
-### 📋 PS Plus July Departures — Details Confirmed (Leaving Jul 21) 🆕
+### 📋 PS Plus July Departures — Full List Confirmed (13 Titles Leaving Jul 21) 🆕
 
-- **Key departures from PS Plus Extra/Premium on July 21:**
+- **Full departures from PS Plus Extra/Premium on July 21:**
   - 🎮 **Risk of Rain 2** — acclaimed roguelike third-person shooter, high replayability
   - 🏝️ **Tropico 6** — city-building/management sim
   - ⚔️ **Clash: Artifacts of Chaos** — Zeno Clash universe action-adventure
   - ❄️ **Roki** — atmospheric adventure game
-- **💡 Lounge Note:** If lounge regulars are enjoying any of these titles on PS Plus, play/binge before they leave the service Jul 21. Not critical, but good awareness for customer questions. ⭐ lounge value
-- Sources: IGN (Jul 11), GameSpot
+  - 🎤 **The Jackbox Party Pack 9** — party game staple
+  - 🏏 **Bomber Crew** — strategic bomber management
+  - 🚀 **Space Crew: Legendary Edition** — space crew management sequel
+  - 🧟 **Source of Madness** — Lovecraftian roguelite
+  - ⛳ **Cursed to Golf** — golf roguelite
+  - 🍷 **Hundred Days — Winemaking Simulator** — indie sim
+  - 🔫 **Get Even** — dark thriller FPS
+  - 🎯 **Infinite Minigolf** — casual minigolf
+  - ⚔️ **Onee Chanbara Origin** — hack-and-slash action
+- **💡 Lounge Note:** If lounge regulars are enjoying any of these titles on PS Plus, play/binge before they leave the service Jul 21. Not critical, but good awareness for customer questions. Jackbox Party Pack 9 is the most notable departure for lounge use. ⭐⭐ lounge value
+- Sources: IGN (Jul 11), GameSpot, Military.com, Notebookcheck
 
-### 🛒 Summer Sale 2026 — PS Plus Members May Get EARLY ACCESS Starting Jul 15! 🆕
+### 🛒 Summer Sale 2026 — PS Plus Early Access STARTED Jul 10! (Correction)
 
-- New reports that **PS Plus members** may get **early access to select deals** as early as **July 15** — one day before the general Summer Sale (Jul 16 - Aug 1)
-- Historically one of PlayStation's biggest discount events of the year — hundreds of games expected
-- **💡 Lounge Note:** If PS Plus early access is confirmed on Jul 15, the lounge can snag deals a full day early. Worth checking PS Store on Jul 15! ⭐⭐ lounge value
-- Sources: PushSquare, PlatPrices, Reddit r/PS5Deals
+- **⚠️ CORRECTION (Jul 12):** PS Plus members got **early access to Summer Sale deals starting July 10** — not July 15 as previously speculated
+- PS Plus members can already browse deals before the official Summer Sale opens for all on **Jul 16**
+- Sale runs **Jul 16 - Aug 1** for all users
+- **💡 Lounge Note:** Early access is ALREADY LIVE for PS Plus members! Check PS Store now! ⭐⭐ lounge value
+- Sources: Reddit r/PS5Deals, GameWatcher
 
 ---
 
