@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-10 23:30 UTC
+> Last updated: 2026-07-11 23:30 UTC
 
 ---
 
@@ -3631,5 +3631,44 @@ All web search APIs were unavailable during this sweep (API key error). PlayStat
 10. **💰 Don't let PS Plus lapse** — try cancel trick for 50% retention discount!
 11. **🔐 AUDIT lounge PSN accounts** — 3-year inactivity = account deletion risk!
 
+### 🎮 PS5 System Update (26.04-13.42.00) — July 2026 🆕
+
+- Released July 2026 with focus on system performance and stability
+- **Notable:** GTA 6 overlay now appearing in PS5 Welcome Hub and PS Store search bar — Rockstar/Sony marketing ramping up ahead of Nov 19 launch
+- "Recently Played" section still reportedly broken for many users
+- Source: PushSquare, AltChar, OpenCritic (Jul 2026)
+- ⭐⭐ lounge value — minor operational note, GTA 6 prep signal
+
+### 📤 PS Plus Extra Departures — July 21, 2026 (Detailed List) 🆕
+
+Leaving the Extra/Premium Game Catalog on July 21:
+- Risk of Rain 2 (PS4/PS5)
+- Tropico 6 (PS4/PS5)
+- The Jackbox Party Pack 9
+- Source of Madness
+- Cursed to Golf
+- Hundred Days
+- Get Even
+- Infinite Minigolf
+- Bomber Crew, Space Crew: Legendary Edition (dates vary by region)
+- Source: IGN, TheGamer (Jul 2026)
+- **💡 Lounge Note:** Risk of Rain 2 and Jackbox 9 are the biggest losses — claim them if not already in the lounge library
+
+### 🆕 Industry Poll: 45% of PlayStation Enthusiasts "Seriously Considering" PC Switch 🆕
+
+- July 2026 poll indicates significant sentiment shift due to:
+  - Disc phaseout announcement (Jan 2028)
+  - Potential PS6 price of ~$1,000 (RAM market crisis speculation)
+- Only 23% planning to stay loyal to PlayStation
+- **💡💡 Lounge Impact:** If lounge customers migrate to PC, demand may shift. However, PS VIBE provides the SOCIAL experience that PC can't replicate — gathering, couches, big screens, food. The lounge model is resilient. ⭐⭐ awareness note
+
+### 🆕 Upcoming: Once Human — PS5 Release August 25, 2026 🆕
+
+- Free-to-play open-world survival game (post-apocalyptic)
+- Already popular on PC (Steam) — coming to PS5 and Xbox Series X|S
+- Release: August 25, 2026
+- Source: ixbt.games (Jul 11, 2026)
+- **💡 Lounge Note:** Free-to-play = zero cost to install on lounge consoles. Could bring in survival game fans. ⭐⭐ lounge value
+
 ---
-*Last updated: 2026-07-11 17:31 UTC*
+*Last updated: 2026-07-11 23:30 UTC*
