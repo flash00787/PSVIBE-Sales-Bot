@@ -97,8 +97,13 @@ Kora now manages **9 projects** with full coordination tool support.
 98. **Auth check must come after public path handlers** — Login page, static files, and QR codes must be served BEFORE auth check, otherwise infinite redirect loops occur. (#98)
 99. **Cloudflare caches even dynamic pages** — Without explicit `no-store` headers, Cloudflare caches error pages. Always set `Cache-Control: no-store, no-cache` on auth-required pages. (#99)
 100. **Double-click protection on form buttons** — Laggy connections cause duplicate form submissions. Use `onclick="this.disabled=true"` on Create/Submit buttons. (#100)
+158. **Booking flows must differentiate guest vs member** — Guest-specific optimizations (like skipping wallet checks) must be guarded by `if not is_guest:`. (#158)
+159. **Circular imports solved by lazy wrappers** — Any function in handler A called by handler B needs `_get_handler()` wrapper + explicit import in `bot/__init__.py`. (#159)
+160. **GSheet is fully deprecated, replaced by API** — `save_referral_code`, `step_nm_referral` uniqueness check, `fetch_members` GSheet fallbacks all migrated to API. API returns snake_case fields. (#160)
+161. **Session-end handlers must pass `booking_id` to `launch_session_sale`** — All session-end callers of `launch_session_sale` must forward `booking_id` or deposit deduction is skipped. (#161)
+162. **ALL POST mutating handlers must use redirect, not full render** — CREATE handlers for Xray/Outline keys used full-page render (1-2s), causing Cloudflare 526/524 timeouts. Fixed by switching to `send_redirect_admin()` (~8ms). (#162)
 
-*(Trimmed: keeping only 3 most recent lessons)*
+*(Trimmed: keeping only 5 most recent lessons)*
 
 ## Major Projects & Milestones
 
@@ -298,3 +303,33 @@ Kora now manages **9 projects** with full coordination tool support.
 | # | Lesson |
 |:-:|--------|
 | 158 | **Booking flows must differentiate guest vs member** — Guest-specific optimizations (like skipping wallet checks) must be guarded by `if not is_guest:`. A blanket `if booking_id:` block accidentally skips critical validation for all members. |
+
+### Deposit Deduction Verified ✅ (Jul 13, 19:00 UTC)
+- Full flow traced end-to-end: 3 session-end callers all pass `booking_id` to `launch_session_sale`
+- 6 bookings redeemed today (BK#1618-BK#1646), all correctly deducted
+- BK#1614 (test) and BK#1650 (test) deleted from MySQL
+
+### Outline VPN Key Create Timeout Fixed 🐛→✅ (Jul 13, 19:23 UTC)
+- **Root Cause:** Xray/Outline key CREATE handlers rendered full dashboard (1-2s) instead of 302 redirect (~8ms). Cloudflare returned 526/524 errors.
+- **Fix:** Changed both Xray and Outline CREATE handlers from `send_html(render_keys(...))` to `send_redirect_admin(...)` — Lesson #155 applied to CREATE (was previously only on delete/expire/renew)
+- **File:** `/opt/outline-web/server.py`
+
+### Referral Code Fixes 🐛→✅
+3 issues fixed:
+1. **BTN_ASSIGN_REFERRAL circular import** — Added lazy wrappers (`show_mm_menu`, `prompt_mm_lookup`, `prompt_referral_code`) in `bot/__init__.py` + imports in `members.py`/`referral.py`
+2. **save_referral_code GSheet→API** — `bot/__init__.py` now uses API with 409 conflict check; GSheet path removed from `referral.py`
+3. **fetch_members() dict vs string list** — API returns `{"members": [{id, name, ...}], total, ...}` but callers expected string list. Fixed by extracting `id` strings from `result["members"]`.
+- **Files:** `bot/__init__.py`, `members.py`, `referral.py`, `member_routes.py`
+- **Lessons:** #158 (guest/member), #159 (circular import wrappers), #160 (GSheet deprecated)
+
+### Game Selection Button Changed 🐛→✅ (Jul 13, 19:40 UTC)
+- **Text:** `"🤷 မရွေးတတ်ပါ"` → `"🏪 ဆိုင်ရောက်မှ ရွေးမယ်"`
+- **Position:** Moved from bottom of game list to TOP
+- **Files:** `customer_bot/booking_handlers.py`, `customer_bot/handlers.py`
+- **Service:** `psvibe-customer-bot` restarted
+
+### Garbled Unicode Removed from Deposit Verify Notification 🐛→✅ (Jul 13, 19:44 UTC)
+- **Removed:** `"📲 Booking ခိလ ရေရာက်းထားပဲ့နှင့် ရှင့် ကိုဆက်သန္ဓိရားပါ။"`
+- **Cause:** Buried Unicode escape sequences encoding garbled Burmese text
+- **File:** `booking_routes.py:2264-2266`
+- **Service:** `psvibe-api` restarted
