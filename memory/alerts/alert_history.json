@@ -2,6 +2,76 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-10 last updated 12.8h ago",
+    "consoleId": "C-10",
+    "timestamp": "2026-07-13T04:44:10.163Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-09 last updated 14.0h ago",
+    "consoleId": "C-09",
+    "timestamp": "2026-07-13T04:44:10.160Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 16.8h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-13T04:44:10.157Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 17.1h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-07-13T04:44:10.154Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 15.0h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-13T04:44:10.149Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 18.0h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-13T04:44:10.146Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 17.1h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-07-13T04:44:10.142Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 17.1h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-07-13T04:44:10.139Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 17.9h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-07-13T04:44:10.135Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 17.8h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-07-13T04:44:10.132Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 15.4h ago",
     "consoleId": "C-10",
     "timestamp": "2026-07-12T04:44:19.539Z"
@@ -3439,78 +3509,5 @@
     "message": "📡 Console C-07 last updated 30.8h ago",
     "consoleId": "C-07",
     "timestamp": "2026-06-11T13:00:32.700Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 22.8h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T13:00:32.699Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 52.0h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T13:00:32.698Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-04 last updated 22.8h ago",
-    "consoleId": "C-04",
-    "timestamp": "2026-06-11T13:00:32.697Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 45.1h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T13:00:32.697Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-02 last updated 26.3h ago",
-    "consoleId": "C-02",
-    "timestamp": "2026-06-11T13:00:32.696Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-01 last updated 22.8h ago",
-    "consoleId": "C-01",
-    "timestamp": "2026-06-11T13:00:32.696Z"
-  },
-  {
-    "type": "balance_drop",
-    "severity": "critical",
-    "message": "🚨 Balance drop for Aung Thurein Oo: 562m → 322m (42.7% drop, -240m)",
-    "memberId": "PSV_A_004",
-    "memberName": "Aung Thurein Oo",
-    "dropPercent": 42.704626334519574,
-    "dropAbsolute": 240,
-    "timestamp": "2026-06-11T13:00:32.695Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-07 last updated 30.3h ago",
-    "consoleId": "C-07",
-    "timestamp": "2026-06-11T12:30:28.173Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 22.3h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T12:30:28.171Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 51.5h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T12:30:28.171Z"
   }
 ]
