@@ -18,6 +18,7 @@ from bot import (
     fetch_base_rate_async,
     fetch_member_tier_async,
     fetch_balance_mins_async,
+    prompt_referral_code,
 )
 
 try:

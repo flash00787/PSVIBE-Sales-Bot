@@ -5,6 +5,7 @@ from bot import (
     cmd_cancel, fetch_members, fetch_referral_code, member_sh,
     save_referral_code,
     fetch_members_async,
+    prompt_mm_lookup, show_mm_menu,
 )
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -98,27 +99,7 @@ async def step_referral_code(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
         return REFERRAL_CODE
 
-    # Check uniqueness across all members
-    try:
-        all_rows = await asyncio.to_thread(member_sh.get_all_values)
-        for row in all_rows[1:]:
-            if len(row) > 16 and row[16].strip().upper() == text.upper():
-                existing_owner = row[1].strip() if len(row) > 1 else "?"
-                if existing_owner != member_id:
-                    await update.message.reply_text(
-                        f"⚠️ Code *{text}* ကို *{existing_owner}* မှာ သုးနေပြီး\n"
-                        f"တခ်ခာ Code ရိုက်ပါ -",
-                        parse_mode="Markdown",
-                        reply_markup=ReplyKeyboardMarkup(
-                            [["❌ ဖျက်မည် (Remove Code)"], [BTN_BACK, BTN_CANCEL]],
-                            resize_keyboard=True,
-                        ),
-                    )
-                    return REFERRAL_CODE
-    except Exception as e:
-        logging.warning("Referral uniqueness check failed: %s", e)
-
-    # Save the code
+    # Save the code via API (uniqueness check handled by API)
     ok = await asyncio.get_event_loop().run_in_executor(
         None, save_referral_code, member_id, text
     )
@@ -135,7 +116,7 @@ async def step_referral_code(update: Update, context: ContextTypes.DEFAULT_TYPE)
         )
     else:
         await update.message.reply_text(
-            "❌ Code သိမ်မှ မအောင်မြင်ပါ — ထပ်ကြိုးစာပါ",
+            "❌ Code သိမ်းမရပါ — Code ထပ်နေသည် သို့မဟုတ် မမှန်ကန်ပါ။ ထပ်ကြိုးစားပါ",
             reply_markup=ReplyKeyboardMarkup([[BTN_BACK_MAIN]], resize_keyboard=True),
         )
     return MM_MENU

@@ -705,7 +705,8 @@ async def _end_single_session_and_launch(update, context, active: dict, m_id: st
 
     context.user_data.clear()
     return await launch_session_sale(update, context,
-                                     session_cid, m_id, total_mins, session_staff)
+                                     session_cid, m_id, total_mins, session_staff,
+                                     booking_id=bk_id)
 
 @log_duration("sales:step_ds_member_in_session")
 async def step_ds_member_in_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -847,7 +848,8 @@ async def step_ds_console_in_session(update: Update, context: ContextTypes.DEFAU
                                         reply_markup=ReplyKeyboardRemove())
         context.user_data.clear()
         return await launch_session_sale(update, context,
-                                         session_cid, session_mbr, total_mins, session_staff)
+                                         session_cid, session_mbr, total_mins, session_staff,
+                                         booking_id=bk_id)
 
     # Unrecognised — re-show prompt
     return await _check_console_in_session(update, context,

@@ -44,6 +44,7 @@ try:
         api_fetch_console_status_async, api_fetch_rank_thresholds_async,
         api_fetch_bonus_table_async, api_fetch_new_member_defaults_async,
         api_next_member_id, api_next_member_row_no, api_fetch_referral_code,
+        api_save_referral_code,
         api_fetch_console_status,
         # ── WRITE operations  ──
         api_create_booking, api_end_booking, api_cancel_booking,
@@ -1512,19 +1513,32 @@ def next_voucher():
     return "V-001"
 
 def fetch_members():
+    """Return list of member ID strings."""
     if _HAS_API:
         result = api_fetch_members()
         if result is not None:
+            if isinstance(result, dict):
+                members = result.get("members", [])
+                # API returns [{id, name, phone, ...}, ...] — extract id strings
+                if members and isinstance(members[0], dict):
+                    return [m.get("id", "").strip() for m in members if m.get("id")]
+                return members
             return result
         logging.warning("API call failed")
     raw = member_sh.col_values(2)[1:]
     return [m.strip() for m in raw if m.strip()]
 
 async def fetch_members_async():
-    """Async version - hot-path: called on every sales flow and member management."""
+    """Async version - hot-path: called on every sales flow and member management.
+    Returns list of member ID strings."""
     if _HAS_API:
         result = await api_client.api_fetch_members_async()
         if result is not None:
+            if isinstance(result, dict):
+                members = result.get("members", [])
+                if members and isinstance(members[0], dict):
+                    return [m.get("id", "").strip() for m in members if m.get("id")]
+                return members
             return result
         logging.warning("API call failed")
     return await asyncio.to_thread(fetch_members)
@@ -2052,20 +2066,28 @@ def fetch_referral_code(member_id: str) -> str:
     return ""
 
 def save_referral_code(member_id: str, code: str) -> bool:
-    """Write referral code to Card_Wallet col Q (1-based col 17) for the given member. Returns True on success."""
-    try:
-        rows = member_sh.get("A:Q")  # OPT: range-restricted read (A=row_no through Q=referral_code)
-        for i, row in enumerate(rows[1:], start=2):  # 1-based, skip header
-            if len(row) > 1 and row[1].strip() == member_id.strip():
-                # Ensure header exists
-                if len(rows[0]) < 17 or not rows[0][16].strip():
-                    member_sh.update_cell(1, 17, "Referral_Code")
-                member_sh.update_cell(i, 17, code.strip())
+    """Save/update a member's referral code via API. Falls back to GSheet only if no API."""
+    if _HAS_API:
+        try:
+            result = api_save_referral_code(member_id, code)
+            if result and isinstance(result, dict) and "member_id" in result:
                 global _MBR_TS
                 _MBR_TS = 0.0  # invalidate cache
                 return True
+            logging.warning("API save_referral_code returned unsuccessful: %s", result)
+        except Exception as e:
+            logging.exception("API save_referral_code failed: %s", e)
+        return False  # API enabled but failed — don't fall back to removed GSheet
+    try:
+        rows = member_sh.get("A:Q")
+        for i, row in enumerate(rows[1:], start=2):
+            if len(row) > 1 and row[1].strip() == member_id.strip():
+                if len(rows[0]) < 17 or not rows[0][16].strip():
+                    member_sh.update_cell(1, 17, "Referral_Code")
+                member_sh.update_cell(i, 17, code.strip())
+                _MBR_TS = 0.0
+                return True
     except Exception as e:
-        import logging
         logging.error("save_referral_code failed for %s: %s", member_id, e)
     return False
 
@@ -2513,6 +2535,15 @@ def prompt_end_session(*args, **kwargs):
     return _get_handler("booking").prompt_end_session(*args, **kwargs)
 def show_stock_menu(*args, **kwargs):
     return _get_handler("stock").show_stock_menu(*args, **kwargs)
+
+def show_mm_menu(*args, **kwargs):
+    return _get_handler("members").show_mm_menu(*args, **kwargs)
+
+def prompt_mm_lookup(*args, **kwargs):
+    return _get_handler("members").prompt_mm_lookup(*args, **kwargs)
+
+def prompt_referral_code(*args, **kwargs):
+    return _get_handler("referral").prompt_referral_code(*args, **kwargs)
 
 # ═══════════════════════════════════════════════
 #  ASYNC API HELPERS (True async, no thread pool)
