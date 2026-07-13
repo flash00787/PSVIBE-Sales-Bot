@@ -1784,9 +1784,11 @@ async def launch_session_sale(
     if booking_id:
         try:
             bk = await get_booking_async(booking_id)
-            if bk and bk.get("success") and bk.get("booking"):
-                deposit_amount = int(bk["booking"].get("deposit_amount", 0) or 0)
-                deposit_status = bk["booking"].get("deposit_status", "") or ""
+            if bk and bk.get("success"):
+                bk_data = bk.get("data", {})
+                if bk_data.get("booking"):
+                    deposit_amount = int(bk_data["booking"].get("deposit_amount", 0) or 0)
+                    deposit_status = bk_data["booking"].get("deposit_status", "") or ""
         except Exception as e:
             logger.warning("launch_session_sale: failed to fetch booking deposit: %s", e)
     context.user_data["deposit_amount"] = deposit_amount

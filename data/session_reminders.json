@@ -10,17 +10,6 @@
     "total_plan_mins": 180,
     "updated_at": "2026-07-13T08:08:12.095515+00:00"
   },
-  "C-09|1003686032747": {
-    "cid": "C-09",
-    "chat_id": -1003686032747,
-    "member_id": "Ko Aung Ko Htet",
-    "planned_mins": 120,
-    "end_t": "17:21",
-    "end_dt_iso": "2026-07-13T17:21:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-13T08:51:57.775540+00:00"
-  },
   "C-05|1003686032747": {
     "cid": "C-05",
     "chat_id": -1003686032747,
@@ -41,39 +30,17 @@
     "end_dt_iso": "2026-07-13T17:27:00+06:30",
     "message_thread_id": 125192,
     "total_plan_mins": 90,
-    "updated_at": "2026-07-13T09:27:46.063110+00:00"
+    "updated_at": "2026-07-13T10:09:31.939748+00:00"
   },
-  "C-01|1003686032747": {
-    "cid": "C-01",
-    "chat_id": -1003686032747,
-    "member_id": "Pyae Sone",
-    "planned_mins": 90,
-    "end_t": "17:29",
-    "end_dt_iso": "2026-07-13T17:29:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 90,
-    "updated_at": "2026-07-13T09:29:31.960552+00:00"
-  },
-  "C-02|1003686032747": {
-    "cid": "C-02",
+  "C-09|1003686032747": {
+    "cid": "C-09",
     "chat_id": -1003686032747,
     "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "17:18",
-    "end_dt_iso": "2026-07-13T17:18:00+06:30",
+    "planned_mins": 80,
+    "end_t": "18:00",
+    "end_dt_iso": "2026-07-13T18:00:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-13T09:48:40.416337+00:00"
-  },
-  "C-08|1003686032747": {
-    "cid": "C-08",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "17:18",
-    "end_dt_iso": "2026-07-13T17:18:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-13T09:48:48.376970+00:00"
+    "total_plan_mins": 80,
+    "updated_at": "2026-07-13T10:10:45.479237+00:00"
   }
 }
