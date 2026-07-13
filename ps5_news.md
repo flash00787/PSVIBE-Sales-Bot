@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-12 17:31 UTC
+> Last updated: 2026-07-13 05:30 UTC
 
 ---
 
@@ -3860,3 +3860,57 @@ Leaving the Extra/Premium Game Catalog on July 21:
 
 ---
 *Last updated: 2026-07-11 23:30 UTC*
+
+---
+
+## ⚡ EARLY MORNING UPDATE (July 13, 2026 - 05:30 UTC) — 🏴‍☠️ AC Black Flag Resynced $85 DLC Backlash! Ubisoft Responds! + 100K Steam Peak Record! + Players' Choice June Winner!
+
+> **Summary:** Monday morning sweep (12 hours since last update). No CRITICAL new breaking news since CoD shadow-drop yesterday, but **AC Black Flag Resynced microtransactions controversy escalates** — $60 game arrives with $85 of day-one DLC, Ubisoft issues statement. Game still smashes AC franchise Steam concurrent record (100K peak). Also: The Adventures of Elliot: The Millennium Tales voted June's top new game.
+
+### 🏴‍☠️💸 AC Black Flag Resynced — $85 Day-One DLC Backlash! Ubisoft Responds! 🆕
+
+- **Controversy:** Players furious that the $60/€70 remake launched with **$85 worth of day-one DLC packs** — 8 cosmetic packs at $10 each ($4.99 for a map pack that highlights all collectibles)
+- **Deluxe Edition buyers** particularly upset — paid premium but still missing $84.91 of extra content
+- **Ubisoft's response (Steam):** "The standard edition is the full, complete experience... The additional packs are entirely optional extras for players who want them, never a requirement to enjoy or complete the game."
+- **Steam reviews turn negative** — scathing feedback on store page despite critics praising the remake
+- 🏆 **But also: AC Black Flag Resynced smashed the franchise's Steam concurrent player record** with ~100,000 peak — over 1/3 higher than AC Shadows! Sales are strong despite the backlash
+- **IGN review:** 9/10 — despite microtransaction controversy, the remake itself is critically acclaimed
+- Sources: IGN (Jul 10-12, 2026), Steam, Ubisoft
+- **💡💡💡 LOUNGE IMPACT — MODERATE:**
+  - **BUY STRATEGY STANDS: Buy 1 copy, test before multi-buy.** The game is a hit (100K Steam peak!) but microtransaction backlash could sour customer goodwill
+  - **Standard Edition is sufficient for lounge** — all gameplay content is included, DLC is cosmetic only
+  - $85 in cosmetic DLC means lounge can **ignore the add-ons completely** without missing gameplay
+  - The 100K Steam record proves the game has MASSIVE audience — customers WILL want to play it
+  - **Rebuy recommendation:** BUY Standard Edition for 1-2 lounge consoles. Hold off on multi-buy until player sentiment stabilizes
+  - ⭐⭐⭐ lounge value (downgraded from ⭐⭐⭐⭐ due to microtransaction controversy, but sales numbers still strong)
+
+### 🏆 Players' Choice June 2026 — The Adventures of Elliot: The Millennium Tales Wins! 🆕
+
+- **The Adventures of Elliot: The Millennium Tales** voted by PlayStation community as **June 2026's top new game**
+- Not covered before — indie title from the PS Blog's monthly Players' Choice poll
+- Source: PlayStation Blog (Jul 2, 2026)
+- **💡 Lounge Note:** Minor recognition — indie title won community vote. Low direct lounge value but good awareness. ⭐ awareness note
+
+### 📋 Quick Status Refresh (July 13 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🏴‍☠️💸 **AC Black Flag $85 DLC Backlash** | **ESCALATING 🆕** | Ubisoft responded! 100K Steam peak record still! Standard Ed. = full game! |
+| 🏆 **Players' Choice June Winner** | **Elliot 🆕** | The Adventures of Elliot: The Millennium Tales wins! Indie title! |
+| 🚨 **CoD BO1 & BO2 on PS5** | **SHADOW-DROPPED** | Available NOW! PS Plus 50% off until Aug 6! Barebones ports! |
+| 🚨 **PSN 2FA Bypass Exploit** | **UNPATCHED** | AUDIT lounge accounts! Never share purchase info! |
+| 🚀🚀 **PALWORLD 1.0** | **725K+ PEAK!** | Steam top 15 all-time! Install on all consoles! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28! 15 days!** | Premium early access Jul 23 (10 days!) |
+| 🥊 **MARVEL Tōkon Open Beta** | **Jul 24-26! 11 days!** | FREE! No sign-up! |
+| 📅 **PS Plus Extra/Premium July** | **Jul 15 reveal! 2 days!** | Psi-Ops confirmed! |
+| 🛒 **Summer Sale 2026** | **Jul 16 - Aug 1** | Early access for PS Plus ALREADY LIVE! |
+| 🧼 **PowerWash Sim 2 Star Wars Pack** | **Jul 16! 3 days!** | $9.99! Clean Millennium Falcon! |
+| 🔥 **GTA 6** | **Nov 19!** | Pre-orders LIVE! $79.99 / $99.99 |
+
+### 🚨 Priority Lounge Actions (July 13 - 05:30 UTC):
+1. **🛒 SUMMER SALE EARLY ACCESS ALREADY LIVE for PS Plus!** Check PS Store! Full sale starts Jul 16!
+2. **🔥 BUY Standard Edition of AC Black Flag Resynced for 1-2 consoles** — skip the $85 DLC (cosmetic only)! 100K Steam peak = customers want it!
+3. **🚨 SECURITY: AUDIT all lounge PSN accounts!** 2FA bypass still unpatched!
+4. **🚀 PALWORLD 1.0 on ALL consoles!** 725K+ peak! Dedicated stations!
+5. **🔥 CLAIM CoD MW3 + CoD BO1/BO2 with PS Plus 50% off!** Before Aug 6!
+6. **🟢 Halo Premium Edition PRE-ORDER!** Jul 23 early access (10 days!) |
+7. **🧼 PowerWash Sim 2 Star Wars Pack pre-order!** Jul 16! $9.99!
