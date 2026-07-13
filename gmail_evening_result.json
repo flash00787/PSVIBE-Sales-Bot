@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-07-12T13:32:00Z",
+  "checked_at": "2026-07-13T13:30:00Z",
   "status": "TOKEN_EXPIRED",
   "total_unread": "unknown",
   "nova_found": 0,
   "wallet_handover_reply": false,
-  "error": "invalid_grant - Both Gmail refresh tokens expired. Re-auth needed.",
+  "error": "Both Gmail refresh tokens expired/revoked. Re-auth needed.",
   "result": "NO_REPLY"
 }

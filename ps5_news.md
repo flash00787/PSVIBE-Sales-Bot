@@ -1,6 +1,87 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-13 05:30 UTC
+> Last updated: 2026-07-13 11:30 UTC
+
+---
+
+## ⚡ MORNING UPDATE (July 13, 2026 - 11:30 UTC) — 🎪🔥 God of War Laufey Disc CONFIRMED! 2027 Release Window! + Palworld 1.0 Hits NEW PEAK 855K! + AC Black Flag Resynced OFFLINE MODE FAILS! + Marvel Tōkon Kieron Gillen!
+
+> **Summary:** Monday morning sweep (18 hours since last update at 17:31 UTC Jul 12). **🎪🔥🎪🔥 God of War Laufey gets DISC CONFIRMATION + 2027 release window hinted!** Santa Monica Studio explicitly tweeted "We can confirm God of War Laufey will be available on disc" — directly responding to disc phaseout backlash! Jason Schreier suggests 2027 target. **🎮🔥 Palworld 1.0 hits NEW HIGH: 855,525 one-day peak!** Even bigger than previously reported 725K! Dota 2 pushed to #3! **🏴‍☠️🚨 AC Black Flag Resynced OFFLINE MODE FAILS during Ubisoft Connect outage** — despite claiming offline support, game was unplayable for an hour! 15K+ Reddit upvotes. **🖊️ Marvel Tōkon: Fighting Souls Episode Modes written by legendary comic writer Kieron Gillen!**
+
+### 🎪🔥 God of War Laufey — Disc CONFIRMED! + 2027 Release Window Hinted! 🆕🔥
+
+- **Santa Monica Studio officially confirmed** via tweet (Jul 10): **"We can confirm God of War Laufey will be available on disc"** — a direct response to the Sony disc phaseout backlash
+- **2027 release window strongly hinted** — per Jason Schreier (Bloomberg) and Eurogamer analysis: if it's available "on disc" before Jan 2028 phaseout, a 2027 launch is the logical timeframe
+- **Comic-Con panel Jul 24** (already tracked) — game director Ariel Lawrence, Cory Barlog, and cast confirmed
+- **Also confirmed:** NO PC port planned — Sony is no longer bringing non-live-service games to PC
+- Sources: Eurogamer (Jul 12), Santa Monica Studio/Twitter (Jul 10), Jason Schreier/Bluesky
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR:**
+  - **This is a BIG deal for disc phaseout narrative!** At least one more AAA Sony exclusive physical release before Jan 2028
+  - God of War Laufey on disc = **add to PS VIBE's growing physical library** — will be a collector's item post-phaseout
+  - 2027 release means it arrives alongside GTA 6 (Nov 2026), CoD MW4 (Oct 2026), Wolverine (Sep 2026) — **back-to-back blockbuster era continues**
+  - If the lounge invests in physical discs, GoW Laufey is a MUST-BUY physical title
+  - ⭐⭐⭐⭐⭐ lounge value — Sony's flagship franchise, physical edition confirmed, pre-phaseout release
+
+### 🏴‍☠️🚨 AC Black Flag Resynced — Ubisoft Connect Outage BLOCKS Offline Mode! Even with Physical Disc! 🆕🚨
+
+- **Ubisoft Connect servers went down** over the weekend — the game's DRM/social layer suffered an outage lasting ~1 hour
+- **Despite having an "offline mode"** the game was COMPLETELY UNPLAYABLE — the offline capability failed to work
+- **15,000+ upvotes** on a Reddit thread about the issue; players flooded Steam Forums
+- **This affects ALL platforms** — not just PC. The Ubisoft Connect dependency exists on PS5 too
+- Ubisoft has NOT addressed the issue on social channels
+- This is also on top of the cosmetic microtransactions controversy (steam review bombing at launch)
+- Sources: Eurogamer (Jul 13), Reddit r/gaming, Steam Forums
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL OPERATIONAL:**
+  - **⚠️⚠️⚠️ Even with a PHYSICAL DISC, AC Black Flag Resynced REQUIRES Ubisoft Connect for authentication**
+  - If the lounge's internet goes down OR Ubisoft servers have issues, customers CANNOT play this game
+  - **Risk mitigation:** Keep AC Black Flag Resynced on consoles with stable internet connections ONLY
+  - **For lounge testing:** Before buying on multiple consoles, test with the lounge's connectivity setup
+  - This is a PERFECT argument for why the all-digital future is problematic — even "offline" games have online DRM hooks
+  - Also: **2 million sales on launch day** — massive commercial success despite all the controversy
+  - ⭐⭐⭐⭐⭐ operational value — a critical real-world example of DRM failure affecting game availability
+
+### 🎮🔥 Palworld 1.0 — NEW PEAK! 855,525 Concurrent! Dota 2 Pushed Aside! 🆕📈
+
+- **NEW ONE-DAY PEAK: 855,525 concurrent players on Steam** (Jul 13) — EVEN HIGHER than previously reported 725K!
+- **Currently live:** 489,007 players — #2 on Steam behind only Counter-Strike 2
+- **Dota 2 pushed to #3** — a premium (paid) title outperforming Valve's free-to-play juggernaut
+- **Asian markets** are particularly boosting numbers during off-peak US/Europe hours per Forbes
+- **30% launch discount** still active — helped drive the surge
+- Sources: Eurogamer (Jul 13), Forbes (Jul 12), SteamDB
+- **💡💡💡💡💡 LOUNGE REINFORCEMENT:** Already tracked at 725K, but this new peak confirms Palworld 1.0 momentum is INCREASING, not fading. Day-after-day growth is extremely rare for a re-launch. If any lounge console doesn't have Palworld yet — it's URGENT.
+
+### 🖊️ Marvel Tōkon: Fighting Souls — Kieron Gillen Writing Episode Modes! 🆕
+
+- **Legendary comic writer Kieron Gillen** (Uncanny X-Men, Immortal X-Men, Journey into Mystery, Die) is writing the single-player Episode Modes
+- This is a massive get — Gillen is one of Marvel's most acclaimed current writers
+- **Aug 6 release** remains locked — 24 days away
+- Sources: Eurogamer (Jul 12)
+- **💡💡💡 Lounge Note:** Kieron Gillen's involvement elevates the narrative quality significantly. Fighting game + top-tier Marvel writing = likely better story mode than typical. Worth tracking for story-focused lounge regulars. ⭐⭐⭐ lounge value.
+
+### 🗿 Tomb Raider: Legacy of Atlantis — Recording Wraps! (Future Tracking) 🆕
+
+- Voice actor confirms: "On the last official session" of recording — production advancing
+- Developer/publisher still unconfirmed
+- Sources: Eurogamer (Jul 12)
+- **💡 Lounge Note:** Very early, but Tomb Raider is a massive IP. Worth keeping on the future radar. ⭐⭐ preliminary value.
+
+### 🌌 Warframe: Tau Update — TennoCon Reveal! Blade Runner + Sopranos + Film Noir! 🆕
+
+- **TennoCon 2026** revealed Warframe's next major update: **Tau** — a brand new solar system
+- **Aesthetic influences:** Blade Runner, The Sopranos, film noir — "Rainy days ahead"
+- Coming later this year to all platforms including PS5
+- Sources: Eurogamer (Jul 11)
+- **💡 Lounge Note:** Warframe is a massive free-to-play game with an incredibly dedicated player base. Tau could be the biggest Warframe expansion yet. Free = zero cost lounge addition. ⭐⭐ lounge value.
+
+### 📋 Updated Priority Lounge Actions (July 13 — 11:30 UTC):
+1. **🎪🔥 PRE-ORDER God of War Laufey physical disc when available!** Disc confirmed! 2027 target! Last major Sony exclusive on physical media!
+2. **🚨 TEST AC Black Flag Resynced offline mode at the lounge!** Ubisoft Connect outage proved offline mode DOESN'T work! Don't rely on it!
+3. **🎮🔥 PALWORLD 1.0 HIT 855K NEW PEAK!** #2 on Steam behind only CS2! Dota 2 pushed out! Install on EVERY console!
+4. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
+5. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW! Two legendary titles!
+6. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+7. **📋 PS Plus Extra/Premium July lineup reveal — Jul 15 (2 DAYS!)** Psi-Ops confirmed!
+8. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium for 5-day early access!
 
 ---
 

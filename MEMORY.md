@@ -283,3 +283,18 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### Key Lesson (#157)
 157. Payment account dropdown replaces payment method dropdown — account name + type (cash/bank/mobile_wallet) contains all needed info to derive method
+
+---
+
+## Memory (2026-07-13) — Wallet Check Skip Fix 🔧
+
+### Bug Fixed: Wallet Insufficient Check Skipped for Member Bookings 🐛→✅
+- **Problem:** `launch_session_sale` in `sales.py` had an `if booking_id:` block that unconditionally set `wallet_mins=None` for ALL bookings (guest + member), skipping the wallet balance check entirely for members.
+- **Root cause:** The booking_id block was a guest-specific optimization (guests have no wallet) but was applied to all booking flows regardless of membership status.
+- **Fix:** Added `if not is_guest:` check inside the booking_id block so members still get their wallet balance checked.
+- **Importance:** Without this fix, members could book sessions even with insufficient wallet balance — leading to unpaid sessions and balance tracking issues.
+
+### New Lesson (#158)
+| # | Lesson |
+|:-:|--------|
+| 158 | **Booking flows must differentiate guest vs member** — Guest-specific optimizations (like skipping wallet checks) must be guarded by `if not is_guest:`. A blanket `if booking_id:` block accidentally skips critical validation for all members. |

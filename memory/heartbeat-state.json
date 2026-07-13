@@ -1,5 +1,11 @@
 {
-  "lastHeartbeat": "2026-07-13T09:32:16Z",
-  "stuckTasks": [],
-  "pendingTasks": []
+  "type": "daily_consolidation",
+  "date_utc": "2026-07-13",
+  "timestamp_utc": "2026-07-13T15:32:00Z",
+  "consolidator_ran": true,
+  "daily_file_read": true,
+  "new_lessons_added": 1,
+  "new_lesson_numbers": [158],
+  "added_sections": ["Wallet Check Skip Fix"],
+  "status": "ok"
 }
