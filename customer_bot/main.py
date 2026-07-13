@@ -31,6 +31,7 @@ from customer_bot.handlers import (
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
     BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT, BK_END,
+    BK_DEPOSIT_METHOD, BK_DEPOSIT_CONFIRM,
     cmd_start, cmd_menu, cmd_today, cmd_rate, cmd_myid,
     cmd_contact, cmd_promotions, cmd_help, cmd_refresh,
     cmd_balance, cmd_game_library, cmd_console_status, cmd_location,
@@ -46,6 +47,7 @@ from customer_bot.booking_handlers import (
     bk_name_entry, bk_phone_entry, bk_date_select, bk_time_select,
     bk_console_select, bk_duration_select, bk_game_select, bk_console_pref,
     bk_confirm, bk_dup_warn, bk_disc_warn, bk_con_conflict, bk_end_handler,
+    bk_deposit_method, bk_deposit_confirm,
     bk_time_text_input,
 )
 
@@ -179,6 +181,15 @@ def _register_handlers(app: Application) -> None:
             BK_CON_CONFLICT: [
                 CallbackQueryHandler(bk_con_conflict, pattern=r"^(bk_warn:|bk_ok:)"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, bk_con_conflict),
+            ],
+            # BK_DEPOSIT_METHOD — deposit payment method selection
+            BK_DEPOSIT_METHOD: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_deposit_method),
+            ],
+            # BK_DEPOSIT_CONFIRM — accept photo / ref text
+            BK_DEPOSIT_CONFIRM: [
+                MessageHandler(filters.PHOTO, bk_deposit_confirm),
+                MessageHandler(filters.TEXT & ~filters.COMMAND, bk_deposit_confirm),
             ],
             # BK_END — Fallback text handler
             BK_END: [

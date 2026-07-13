@@ -1137,6 +1137,7 @@ def api_add_sales_record(data: dict) -> dict | None:
         "notes": data.get("notes", ""),
         "coupon_code": data.get("coupon_code", ""),
         "wallet_deduct": data.get("wallet_deduct", 0),
+        "booking_id": data.get("booking_id", ""),
     }
     return _api_call("POST", "sales/record", json_data=mapped)
 

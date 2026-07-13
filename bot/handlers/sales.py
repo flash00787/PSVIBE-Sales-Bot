@@ -1542,6 +1542,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "payment_method": _pm_str,
                     "wallet_deduct": _w_deduct,
                     "staff": staff_name,
+                    "booking_id": booking_id,
                     "type": "food_only" if (_m_id == "-" and play_mins == 0) else "standard",
                 })
                 _sales_api_ok = _result and _result.get("success")

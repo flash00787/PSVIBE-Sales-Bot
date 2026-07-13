@@ -37,7 +37,8 @@ from .faq_auto_reply import match_faq as _match_faq
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
     BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
-) = range(16)
+    BK_DEPOSIT_METHOD, BK_DEPOSIT_CONFIRM,
+) = range(18)
 # BK_SPECIFIC_CONSOLE removed — unused state
 
 WL_PREF, WL_NAME, WL_PHONE, WL_CONFIRM = range(100, 104)
@@ -473,7 +474,9 @@ async def cmd_food_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 emoji = cat_emoji.get(cat, "\U0001f372")
                 lines.append(f"\n\n{emoji} **{cat}**")
                 for name, price in items.items():
-                    lines.append(f"\n  - {name} = **{price:,} Ks**")
+                    # Escape Markdown special chars: _, *, `, [
+                    safe_name = name.replace('_', '\\_').replace('*', '\\*').replace('`', '\\`').replace('[', '\\[')
+                    lines.append(f"\n  - {safe_name} = **{price:,} Ks**")
         msg = "".join(lines)
         await update.message.reply_text(
             msg,

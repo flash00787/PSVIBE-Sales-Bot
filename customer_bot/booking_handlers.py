@@ -20,12 +20,14 @@ from .handlers import (
     BK_NAME, BK_PHONE, BK_DATE, BK_TIME,
     BK_CONSOLE, BK_DURATION, BK_GAME, BK_CONSOLE_PREF, BK_CONFIRM,
     BK_DUP_WARN, BK_DISC_WARN, BK_CON_CONFLICT,
+    BK_DEPOSIT_METHOD, BK_DEPOSIT_CONFIRM,
     BK_END, MAIN_MENU_KB, CONSOLE_TYPES, DURATION_OPTS,
     BTN_BOOK_ANYWAY, BTN_BOOK_GOBACK,
     BTN_DISC_GAME, BTN_DISC_TIME,
     _bk_intercept_menu,
 )
 from .data.prompts import today_mmt, OPEN_HOUR, CLOSE_HOUR
+from .data.bank_accounts import DEPOSIT_ACCOUNTS, DEPOSIT_FEE_RATIO
 
 logger = logging.getLogger(__name__)
 
@@ -824,8 +826,8 @@ async def _submit_booking(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                 f"🕹️ Console: {_console_display}\n"
                 f"⏱️ {payload['durationMins']} mins  🎮 {payload['gameName']}\n"
                 "━━━━━━━━━━━━━━━━━━━\n"
-                "⏳ Staff မှ အတည်ပြုချက် စောင့်ဆိုင်းပေးပါ။\n"
-                "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨\n"
+                f"💰 Deposit အာမခံငွေ 30% သွင်းရန်လိုအပ်ပါတယ်။\n"
+                "⬇️ အောက်တွင် ဆက်လက်ဆောင်ရွက်ပါ။\n"
                 "Play The Game. Share The VIBE!"
             )
             asyncio.create_task(_api.track_usage(user, "booking_created"))
@@ -2363,9 +2365,9 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             msg, ok = result[0], result[1]
             go_back = len(result) > 2 and result[2]
             if ok:
-                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=MAIN_MENU_KB)
-                context.user_data.clear()
-                return ConversationHandler.END
+                await update.message.reply_text(msg, parse_mode="Markdown")
+                # ── Deposit flow ──
+                return await _bk_start_deposit(update, context)
             if go_back:
                 max_dur = context.user_data.pop("_bk_max_duration", 0)
                 await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_make_duration_keyboard(max_dur))
@@ -2442,7 +2444,7 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
-                await query.message.reply_text("🎮", reply_markup=MAIN_MENU_KB)
+                return await _bk_start_deposit(update, context)
             elif go_back:
                 await query.edit_message_text(msg, parse_mode="Markdown")
                 max_dur = context.user_data.pop("_bk_max_duration", 0)
@@ -2488,7 +2490,8 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             msg, ok = result[0], result[1]
             go_back = len(result) > 2 and result[2]
             if ok:
-                await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=MAIN_MENU_KB)
+                await update.message.reply_text(msg, parse_mode="Markdown")
+                return await _bk_start_deposit(update, context)
             elif go_back:
                 max_dur = context.user_data.pop("_bk_max_duration", 0)
                 await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_make_duration_keyboard(max_dur))
@@ -2513,7 +2516,7 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
-                await query.message.reply_text("🎮", reply_markup=MAIN_MENU_KB)
+                return await _bk_start_deposit(update, context)
             elif go_back:
                 await query.edit_message_text(msg, parse_mode="Markdown")
                 max_dur = context.user_data.pop("_bk_max_duration", 0)
@@ -2661,6 +2664,276 @@ async def bk_con_conflict(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return BK_CON_CONFLICT
 
     return BK_CON_CONFLICT
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Deposit Flow — BK_DEPOSIT_METHOD (state 16) / BK_DEPOSIT_CONFIRM (state 17)
+#  Inserted after booking confirmation, before checkout
+# ══════════════════════════════════════════════════════════════════════════════
+
+BTN_DEPOSIT_KPAY = "KPay"
+BTN_DEPOSIT_WAVEPAY = "WavePay"
+BTN_DEPOSIT_AYAPAY = "AYA Pay"
+BTN_DEPOSIT_SKIP = "⏭️ Deposit မလုပ်ပါ"
+
+DEPOSIT_METHOD_MAP = {
+    "kpay":    {"btn": "KPay",    "key": "kpay"},
+    "wavepay": {"btn": "WavePay", "key": "wavepay"},
+    "aya_pay": {"btn": "AYA Pay", "key": "aya_pay"},
+}
+
+
+def _deposit_method_keyboard() -> ReplyKeyboardMarkup:
+    """Build deposit method selection keyboard."""
+    return _rp_kb([
+        [BTN_DEPOSIT_KPAY, BTN_DEPOSIT_WAVEPAY],
+        [BTN_DEPOSIT_AYAPAY],
+        [BTN_DEPOSIT_SKIP, BTN_CANCEL],
+    ])
+
+
+async def _calc_deposit_amount(context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Calculate 30% deposit via API (uses actual console rates).
+    Returns amount in MMK.
+    """
+    import asyncio
+    from . import api as _api
+    
+    console_id = context.user_data.get("bk_specific_console_id", "")
+    if not console_id:
+        # Fallback: guess from bk_console type
+        console_type = context.user_data.get("bk_console", "PS5")
+        console_id = "C-01" if "pro" not in console_type.lower() else "C-09"
+    
+    dur_mins = context.user_data.get("bk_duration_mins", 60)
+    date_str = context.user_data.get("bk_date", "")
+    time_str = context.user_data.get("bk_time", "")
+    
+    try:
+        path = f"deposit/schedule?console={console_id}&duration_mins={dur_mins}&date={date_str}&time={time_str}"
+        data = await _api._api_get(path, timeout=10)
+        # data is already unwrapped (inner payload) by _api_get via unwrap_response
+        if isinstance(data, dict) and data.get("deposit_amount"):
+            return max(1000, int(data["deposit_amount"]))
+    except Exception as e:
+        logger.warning(f"_calc_deposit_amount API failed: {e}")
+    
+    # Fallback: hardcoded calculation
+    hours = max(1, round(dur_mins / 60))
+    console_type = context.user_data.get("bk_console", "PS5")
+    # Fallback rates match console actual pricing
+    if console_type and "pro" in console_type.lower():
+        rate_per_hour = 12000  # PS5 Pro = 12,000 Ks/hr
+    elif console_type and "ps4" in console_type.lower():
+        rate_per_hour = 3000   # PS4 = 3,000 Ks/hr
+    else:
+        rate_per_hour = 4000   # Standard PS5 = 4,000 Ks/hr
+    session_fee = rate_per_hour * hours
+    deposit = round(session_fee * DEPOSIT_FEE_RATIO)
+    deposit = round(deposit / 500) * 500
+    return max(1000, deposit)
+
+
+async def _bk_start_deposit(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Entry point: show deposit payment method screen.
+    Called after successful booking submission."""
+    booking_id = context.user_data.get("_bk_last_id", "?")
+    deposit_amount = await _calc_deposit_amount(context)
+    context.user_data["_bk_deposit_amount"] = deposit_amount
+
+    msg = (
+        f"💰 အပ်ငွေ (Deposit) အနေနဲ့ *{deposit_amount:,} ကျပ်* \n"
+        f"(စုစုပေါင်းခန့်မှန်းခြေရဲ့ {int(DEPOSIT_FEE_RATIO * 100)}%) \n"
+        f"အာမခံအနေနဲ့ သွင်းပေးရန်လိုအပ်ပါတယ်။\n\n"
+        "ကျေးဇူးပြုပြီး ငွေလွှဲမည့် နည်းလမ်းကို ရွေးချယ်ပါ 👇"
+    )
+    if update.callback_query:
+        await update.callback_query.message.reply_text(msg, parse_mode="Markdown", reply_markup=_deposit_method_keyboard())
+    elif update.message:
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=_deposit_method_keyboard())
+    return BK_DEPOSIT_METHOD
+
+
+async def bk_deposit_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle BK_DEPOSIT_METHOD — user picks KPay / WavePay / AYA Pay."""
+    text = (update.message.text or "").strip() if update.message else ""
+
+    if not update.callback_query and text:
+        menu_result = await _bk_intercept_menu(text, update, context)
+        if menu_result:
+            return menu_result
+
+        if text == BTN_CANCEL:
+            return await _cleanup_and_end(update, context)
+
+        if text == BTN_DEPOSIT_SKIP:
+            # Skip deposit — go to end
+            msg = (
+                "✅ Booking confirmed!\n\n"
+                "⏳ Staff က verify လုပ်ပါလိမ့်မယ်။\n"
+                "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨"
+            )
+            if update.message:
+                await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+            context.user_data.clear()
+            return ConversationHandler.END
+
+        # Map button text to account key
+        method_key = None
+        for key, info in DEPOSIT_METHOD_MAP.items():
+            if text == info["btn"]:
+                method_key = key
+                break
+
+        if method_key is None:
+            await update.message.reply_text(
+                "ကျေးဇူးပြုပြီး အောက်ပါ ငွေလွှဲနည်းလမ်းများမှ ရွေးချယ်ပါ 👇",
+                reply_markup=_deposit_method_keyboard(),
+            )
+            return BK_DEPOSIT_METHOD
+
+        # Store selected method
+        context.user_data["_bk_deposit_method"] = method_key
+        account = DEPOSIT_ACCOUNTS.get(method_key, {"name": "—", "number": "—"})
+        deposit_amount = context.user_data.get("_bk_deposit_amount", 3000)
+
+        account_info = (
+            f"💳 *{account['name']}*\n"
+            f"📱 အကောင့်နံပါတ်: `{account['number']}`\n\n"
+            f"💰 *Deposit Amount:* {deposit_amount:,} ကျပ်\n\n"
+            "ငွေလွဲပြီးရင် screenshot လေး ပို့ပေးပါခင်ဗျ 🙏"
+        )
+        await update.message.reply_text(account_info, parse_mode="Markdown")
+        return BK_DEPOSIT_CONFIRM
+
+    return BK_DEPOSIT_METHOD
+
+
+async def bk_deposit_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle BK_DEPOSIT_CONFIRM — accept photo/ref from customer."""
+    booking_id = context.user_data.get("_bk_last_id", "")
+    deposit_method = context.user_data.get("_bk_deposit_method", "") or context.user_data.get("_bk_deposit_method", "")
+    deposit_amount = context.user_data.get("_bk_deposit_amount", 0)
+
+    # Determine deposit_ref and ref_type
+    deposit_ref = ""
+    deposit_ref_type = "text"
+
+    if update.message.photo:
+        # User sent a photo — use the largest file_id
+        photo = update.message.photo[-1]
+        deposit_ref = photo.file_id
+        deposit_ref_type = "image"
+    elif update.message.text:
+        text = update.message.text.strip()
+
+        menu_result = await _bk_intercept_menu(text, update, context)
+        if menu_result:
+            return menu_result
+
+        if text == BTN_CANCEL:
+            return await _cleanup_and_end(update, context)
+
+        if text == BTN_BACK:
+            # Go back to deposit method selection
+            await update.message.reply_text(
+                "ငွေလွှဲမည့် နည်းလမ်းကို ပြန်ရွေးပါ 👇",
+                reply_markup=_deposit_method_keyboard(),
+            )
+            return BK_DEPOSIT_METHOD
+
+        # Text-only input not allowed — require screenshot
+        await update.message.reply_text(
+            "❌ ကျေးဇူးပြုပြီး screenshot (ပုံ) ကိုသာ ပို့ပေးပါခင်ဗျ။\n"
+            "ငွေလွှဲပြီးရင် screenshot လေး ပို့ပေးပါ 🙏"
+        )
+        return BK_DEPOSIT_CONFIRM
+
+    if not deposit_ref:
+        await update.message.reply_text(
+            "❌ ငွေလွှဲပြီးရင် screenshot (ပုံ) လေး ပို့ပေးပါခင်ဗျ။\n"
+            "မရှိရင် /cancel ရိုက်ပြီး ထွက်နိုင်ပါတယ်။"
+        )
+        return BK_DEPOSIT_CONFIRM
+
+    # Call API: POST /api/bookings/{id}/deposit/submit
+    try:
+        payload = {
+            "deposit_method": deposit_method,
+            "deposit_ref": deposit_ref,
+            "deposit_ref_type": deposit_ref_type,
+            "deposit_amount": deposit_amount,
+        }
+        result = await _api._api_post(f"bookings/{booking_id}/deposit/submit", payload)
+        if not result or (isinstance(result, dict) and result.get("__status__", 200) >= 400):
+            logger.warning("deposit submit API error for booking %s: %s", booking_id, result)
+            await update.message.reply_text(
+                "⚠️ Deposit မှတ်တမ်းတင်ရာမှာ error ဖြစ်သွားပါတယ်။\n"
+                "Admin ကို ဆက်သွယ်ပါ။\n\n"
+                f"📲 https://t.me/psvibeofficial",
+                reply_markup=MAIN_MENU_KB,
+            )
+            context.user_data.clear()
+            return ConversationHandler.END
+    except Exception as e:
+        logger.error("Deposit submit API exception: %s", e)
+        # Non-critical — still acknowledge
+        pass
+
+    # Send confirmation to customer
+    method_label = DEPOSIT_ACCOUNTS.get(deposit_method, {}).get("name", deposit_method.upper())
+    confirm_msg = (
+        f"✅ Deposit လက်ခံရရှိပါပြီ!\n\n"
+        f"📌 Booking #{booking_id}\n"
+        f"💳 {method_label}\n"
+        f"💰 {deposit_amount:,} ကျပ်\n\n"
+        "⏳ Staff မှ အတည်ပြုပြီးပါက သင်၏ Booking အတည်ဖြစ်ပါမည်။\n"
+        "Play The Game. Share The VIBE! 🤖"
+    )
+    await update.message.reply_text(confirm_msg, parse_mode="Markdown", reply_markup=MAIN_MENU_KB)
+
+    # Notify staff group
+    try:
+        staff_chat = _api.STAFF_NOTIFY_CHAT
+        if staff_chat:
+            customer_name = context.user_data.get("bk_name", "—")
+            phone = context.user_data.get("bk_phone", "—")
+            tg_user = update.effective_user
+            tg_link = f"tg://user?id={tg_user.id}" if tg_user else "—"
+
+            staff_msg = (
+                f"🔔 *Deposit Received*\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"🆔 Booking #{booking_id}\n"
+                f"👤 {customer_name} ([link]({tg_link}))\n"
+                f"📞 {phone}\n"
+                f"💳 {method_label}\n"
+                f"💰 {deposit_amount:,} ကျပ်\n"
+                f"📎 Ref: {deposit_ref[:30] if len(deposit_ref) > 30 else deposit_ref}\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"👉 Verify လုပ်ရန် Dashboard သို့သွားပါ"
+            )
+            await _api._tg_send({
+                "chat_id": staff_chat,
+                "text": staff_msg,
+                "parse_mode": "Markdown",
+            })
+            # If screenshot, forward the image to staff group too
+            if deposit_ref_type == "image" and hasattr(update.message, "photo") and update.message.photo:
+                photo = update.message.photo[-1]
+                file_id = photo.file_id
+                await _api._http_request(
+                    "POST",
+                    f"https://api.telegram.org/bot{_api.CUSTOMER_BOT_TOKEN}/sendPhoto",
+                    body={"chat_id": staff_chat, "photo": file_id,
+                          "caption": f"📸 Deposit SS — Booking #{booking_id}"},
+                    timeout=15, api_key=False,
+                )
+    except Exception as e:
+        logger.warning("Staff notification failed for deposit: %s", e)
+
+    context.user_data.clear()
+    return ConversationHandler.END
 
 
 # ── State 7 (text): BK_TIME_TEXT — Custom time text entry ─────────────────────
