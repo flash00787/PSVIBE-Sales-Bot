@@ -53,7 +53,7 @@ BTN_MEM_YES = "ရှိပါတယ်"
 BTN_MEM_NO = "မရှိဘူး (Guest)"
 BTN_CONFIRM_YES = "✅ မှန်ပါသည်"
 BTN_CONFIRM_NO = "❌ မဟုတ်ပါ"
-BTN_NOT_SURE = "🤷 မရွေးတတ်ပါ"
+BTN_NOT_SURE = "🏪 ဆိုင်ရောက်မှ ရွေးမယ်"
 BTN_CONFIRM_BOOK = "✅ Confirm Booking"
 BTN_SKIP = "⏭️ Skip"
 BTN_TRY_AGAIN = "🔄 ထပ်ကြိုးစားမည်"
@@ -218,7 +218,7 @@ def _make_game_keyboard(games: list[str], page: int = 0, per_page: int = 6) -> R
         nav_row.append("Next ▶️")
     if nav_row:
         rows.append(nav_row)
-    rows.append([BTN_NOT_SURE])
+    rows = [[BTN_NOT_SURE]] + rows
     rows.append([BTN_BACK, BTN_CANCEL])
     return _rp_kb(rows)
 
