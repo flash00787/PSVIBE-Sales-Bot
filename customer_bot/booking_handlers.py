@@ -2366,6 +2366,15 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await update.message.reply_text(msg, parse_mode="Markdown")
+                if context.user_data.get("bk_member_id", ""):
+                    msg = (
+                        "✅ Booking confirmed!\n\n"
+                        "⏳ Staff က verify လုပ်ပါလိမ့်မယ်။\n"
+                        "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨"
+                    )
+                    await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+                    context.user_data.clear()
+                    return ConversationHandler.END
                 # ── Deposit flow ──
                 return await _bk_start_deposit(update, context)
             if go_back:
@@ -2444,6 +2453,15 @@ async def bk_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
+                if context.user_data.get("bk_member_id", ""):
+                    msg = (
+                        "✅ Booking confirmed!\n\n"
+                        "⏳ Staff က verify လုပ်ပါလိမ့်မယ်။\n"
+                        "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨"
+                    )
+                    await query.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+                    context.user_data.clear()
+                    return ConversationHandler.END
                 return await _bk_start_deposit(update, context)
             elif go_back:
                 await query.edit_message_text(msg, parse_mode="Markdown")
@@ -2491,6 +2509,15 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await update.message.reply_text(msg, parse_mode="Markdown")
+                if context.user_data.get("bk_member_id", ""):
+                    msg = (
+                        "✅ Booking confirmed!\n\n"
+                        "⏳ Staff က verify လုပ်ပါလိမ့်မယ်။\n"
+                        "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨"
+                    )
+                    await update.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+                    context.user_data.clear()
+                    return ConversationHandler.END
                 return await _bk_start_deposit(update, context)
             elif go_back:
                 max_dur = context.user_data.pop("_bk_max_duration", 0)
@@ -2516,6 +2543,15 @@ async def bk_dup_warn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             go_back = len(result) > 2 and result[2]
             if ok:
                 await query.edit_message_text(msg, parse_mode="Markdown")
+                if context.user_data.get("bk_member_id", ""):
+                    msg = (
+                        "✅ Booking confirmed!\n\n"
+                        "⏳ Staff က verify လုပ်ပါလိမ့်မယ်။\n"
+                        "PS Vibe မှ ကျေးဇူးတင်ပါသည်! ✨"
+                    )
+                    await query.message.reply_text(msg, reply_markup=MAIN_MENU_KB)
+                    context.user_data.clear()
+                    return ConversationHandler.END
                 return await _bk_start_deposit(update, context)
             elif go_back:
                 await query.edit_message_text(msg, parse_mode="Markdown")
@@ -2688,7 +2724,7 @@ def _deposit_method_keyboard() -> ReplyKeyboardMarkup:
     return _rp_kb([
         [BTN_DEPOSIT_KPAY, BTN_DEPOSIT_WAVEPAY],
         [BTN_DEPOSIT_AYAPAY],
-        [BTN_DEPOSIT_SKIP, BTN_CANCEL],
+        [BTN_CANCEL],
     ])
 
 

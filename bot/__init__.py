@@ -55,7 +55,7 @@ try:
         api_fetch_balance_mins_async, api_fetch_member_tier_async,
         api_get_consoles_with_game_async, api_get_games_on_console_async,
         api_add_console_game_async, api_remove_console_game_async,
-        api_end_booking_async, api_cancel_booking_async, api_create_booking_async,
+        api_get_booking_async, api_end_booking_async, api_cancel_booking_async, api_create_booking_async,
         api_fetch_promotions_cached_async,
         api_fetch_games_async, api_fetch_game_library_async,
         api_fetch_console_games_async, api_set_game_disc_count_async,
@@ -65,6 +65,7 @@ try:
     # Re-export API functions as simple names for handler backward compat
     create_booking_async = api_create_booking_async
     end_booking_async = api_end_booking_async
+    get_booking_async = api_get_booking_async
     cancel_booking_async = api_cancel_booking_async
     fetch_console_status_async = api_fetch_console_status_async
     fetch_games_async = api_fetch_games_async

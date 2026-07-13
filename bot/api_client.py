@@ -745,6 +745,11 @@ async def api_add_console_to_setting_async(
     )
 
 
+async def api_get_booking_async(booking_id: str) -> dict | None:
+    """Async: Fetch single booking details including deposit info."""
+    return await _api_call_async("GET", f"bookings/{booking_id}")
+
+
 async def api_end_booking_async(booking_id: str) -> dict | None:
     """Async: Mark a booking as Done and record the end time."""
     return await _api_call_async("PUT", f"end_booking/{booking_id}")

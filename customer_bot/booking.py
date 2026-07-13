@@ -175,7 +175,7 @@ def _format_booking_line(b: dict, is_expired: bool = False) -> str:
     if phone:
         parts.append(f"\n📞 {phone}")
     if status == "pending" and not is_expired:
-        parts.append(f"\n❌ Cancel: /cancelbooking_{bk_id}")
+        parts.append(f"\n❌ Cancel: /cancelbooking {bk_id}")
     parts.append("\n" + "\u2500" * 20)
     return "".join(parts)
 

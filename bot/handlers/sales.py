@@ -8,7 +8,7 @@ from bot import (
     FOOD_QTY, MEMBER, MINS, NAV_ROW, PAY_AMOUNT, PAY_METHOD,
     SALE_CONFIRM, SESSION_SHORTFALL, STAFF_NOTIFY_CHAT, STAFF_NOTIFY_THREAD, VALID_CONSOLES,
           calc_duration, cmd_cancel,
-    end_booking, end_booking_async, fetch_base_rate, fetch_bonus_table,
+    end_booking, end_booking_async, get_booking_async, fetch_base_rate, fetch_bonus_table,
     fetch_console_multiplier, fetch_console_status_async, fetch_food_costs,
     fetch_food_prices, fetch_payment_methods, fetch_member_data, fetch_members,
     fetch_rank_thresholds, fetch_wallet_mins, get_receipt_kb,
@@ -1331,6 +1331,12 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     discount = d.get("discount", 0)
 
+    # Deduct deposit from net_total if booking has deposit
+    deposit_amount = d.get("deposit_amount", 0) or 0
+    deposit_status = d.get("deposit_status", "") or ""
+    if deposit_amount > 0 and deposit_status in ("paid", "verified"):
+        net_total = max(0, net_total - deposit_amount)
+
     # ── Pre-compute (lightweight sync) ────────────────────────────
     staff_name = d.get("staff", "")
     food_costs = await fetch_food_costs_async()
@@ -1471,7 +1477,9 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
 
-    _receipt_end = f"{coupon_line}\n{wallet_bal_line}" if coupon_code else f"{wallet_bal_line}"
+    deposit_line = f"\n💳 *Deposit:* -{_r50(deposit_amount):,} Ks" if deposit_amount > 0 else ""
+
+    _receipt_end = f"{deposit_line}\n{wallet_bal_line}" + (f"\n{coupon_line}" if coupon_code else "")
     # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
     await update.message.reply_text(
         f"✅ *{v_no} သိမ်းဆည်းပြီးပါပြီ!*\n"
@@ -1769,6 +1777,20 @@ async def launch_session_sale(
         "from_session":     bool(total_mins > 0 and cid),
         "booking_id":       booking_id,
     })
+
+    # Fetch deposit info for this booking
+    deposit_amount = 0
+    deposit_status = ""
+    if booking_id:
+        try:
+            bk = await get_booking_async(booking_id)
+            if bk and bk.get("success") and bk.get("booking"):
+                deposit_amount = int(bk["booking"].get("deposit_amount", 0) or 0)
+                deposit_status = bk["booking"].get("deposit_status", "") or ""
+        except Exception as e:
+            logger.warning("launch_session_sale: failed to fetch booking deposit: %s", e)
+    context.user_data["deposit_amount"] = deposit_amount
+    context.user_data["deposit_status"] = deposit_status
 
     if booking_id:
         try:
