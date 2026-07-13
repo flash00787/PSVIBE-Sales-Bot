@@ -1827,8 +1827,26 @@ async def launch_session_sale(
     # (booking_id is tracking only; game charge is based on actual play time)
     if booking_id:
         logger.info("launch_session_sale: booking_id path — total_mins=%s rate=%s mult=%s → game_amt=%s", total_mins, base_rate, multiplier, round((total_mins * base_rate * multiplier) / 60))
+        # Member with booking — must check wallet balance
+        if not is_guest:
+            try:
+                wallet_balance = await fetch_wallet_mins_async(member_id) or 0
+            except Exception as e:
+                logger.error("launch_session_sale: %s", e, exc_info=True)
+                wallet_balance = 0
+            context.user_data["wallet_mins"] = wallet_balance
+            effective_cost_mins = pre_effective_mins if pre_effective_mins > 0 else round(total_mins * multiplier)
+            context.user_data["effective_cost_mins"] = effective_cost_mins
+            if wallet_balance < effective_cost_mins:
+                shortfall_wallet_mins = effective_cost_mins - wallet_balance
+                shortfall_ks = round(shortfall_wallet_mins * base_rate / 60)
+                context.user_data["shortfall_mins"] = shortfall_wallet_mins
+                context.user_data["shortfall_ks"] = shortfall_ks
+                return await prompt_session_shortfall(update, context)
+        else:
+            # Guest with booking — no wallet check needed
+            context.user_data["wallet_mins"] = None
         game_amt = round((total_mins * base_rate * multiplier) / 60)
-        context.user_data["wallet_mins"] = None
         context.user_data["game_amt"] = game_amt
         if (context.user_data.get("from_session")
                 and context.user_data.get("c_id")
