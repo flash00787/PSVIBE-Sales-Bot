@@ -1,6 +1,35 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-13 23:30 UTC
+> Last updated: 2026-07-14 05:30 UTC
+
+---
+
+## ⚡ OVERNIGHT UPDATE (July 14, 2026 - 05:30 UTC) — 🚨 Halo Project Ekur CANCELLED! No Multiplayer for Halo: Campaign Evolved? + All Clear Otherwise
+
+> **Summary:** Overnight sweep (6 hours since last update). No new PS Blog posts. But **🚨 BREAKING: Halo Studios reportedly cancels Project Ekur** — the standalone multiplayer Halo project developed by Certain Affinity! Large-scale battles with customizable Spartans/Elites now dead. **This raises a critical question: will Halo: Campaign Evolved on PS5 have ANY competitive multiplayer?** It has co-op, but no competitive modes confirmed. Also: Ubisoft removed controversial "microtransactions make games more fun" claim from financial report. All other previously tracked data remains current.
+
+### 🚨 Halo Project Ekur — CANCELLED! Multiplayer Future Uncertain for PS5 Halo! 🆕🔥
+
+- **Halo Studios has reportedly cancelled Project Ekur**, a standalone multiplayer Halo project developed by Certain Affinity
+- **What it was:** Large-scale player battles with customizable Spartans AND Elites — Halo 5 Warzone-style "super big-team-battle" mode
+- **Why cancelled:** "Major development problems" with Halo: Campaign Evolved reportedly sucked resources away from Ekur
+- **Confirmed by:** Rebs Gaming (YouTube, from multiple Halo Studios employees) + Windows Central's Jez Corden ("100 percent true")
+- **History:** Ekur was the successor to cancelled battle royale Halo project "Tatanka" — Certain Affinity had been prototyping since Sep 2023
+- **Source:** Eurogamer (Jul 13, 2026), Rebs Gaming, Windows Central
+- **💡💡💡💡 LOUNGE IMPACT — SIGNIFICANT FOR HALO STRATEGY:**
+  - **Halo: Campaign Evolved** (Jul 28 / Premium early access Jul 23) has co-op but **NO confirmed competitive multiplayer**
+  - Project Ekur cancellation means there may NOT be a dedicated multiplayer component for Halo on PS5 for the foreseeable future
+  - This reduces the **long-term replay value** of Halo at the lounge — without multiplayer, players finish the campaign and move on
+  - **BUT** the campaign itself is reportedly excellent (Eurogamer preview says "I want full remakes of the original trilogy and Reach")
+  - **Recommendation:** Buy 1 copy of Halo: Campaign Evolved for the campaign experience, but don't invest in multi-console copies expecting a multiplayer scene
+  - ⭐⭐⭐ lounge value (downgraded from ⭐⭐⭐⭐⭐ due to no multiplayer confirmation)
+
+### 📋 Ubisoft Removes "Microtransactions Make Games More Fun" — Quiet Backtrack? 🆕
+
+- **Ubisoft's latest financial report** has silently removed the widely-mocked claim (from their Jan 2025 report) that microtransactions "make games more fun"
+- This comes amid the AC Black Flag Resynced microtransaction backlash and store review-bombing
+- Source: Eurogamer (Jul 13)
+- **💡 Lounge Note:** Not directly impactful, but signals Ubisoft is feeling the heat from the Black Flag Resynced microtransaction controversy. Minor positive signal for consumers. ⭐ lounge value.
 
 ---
 
