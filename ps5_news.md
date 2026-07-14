@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-14 11:30 UTC
+> Last updated: 2026-07-14 17:32 UTC
 
 ---
 
@@ -4111,3 +4111,71 @@ Leaving the Extra/Premium Game Catalog on July 21:
 5. **🔥 CLAIM CoD MW3 + CoD BO1/BO2 with PS Plus 50% off!** Before Aug 6!
 6. **🟢 Halo Premium Edition PRE-ORDER!** Jul 23 early access (10 days!) |
 7. **🧼 PowerWash Sim 2 Star Wars Pack pre-order!** Jul 16! $9.99!
+
+---
+
+## ⚡ AFTERNOON UPDATE (July 14, 2026 - 17:32 UTC) — 🛒 CORRECTION: Summer Sale Starts JULY 15 (Not Jul 16)! Runs Through Aug 12! + Big Watch Confirmed PS Plus Monthly! + PS Blog '19 Unmissable' Roundup!
+
+> **Summary:** Afternoon sweep (6 hours since 11:30 UTC). **🛒 CORRECTION: PlayStation Store Summer Sale starts TOMORROW (July 15), not July 16 as previously tracked!** PS Blog published official article TODAY confirming Jul 15 start through **August 12** (not Aug 1 as previously tracked). Also: **🎮 Big Walk** (from Untitled Goose Game dev House House) confirmed for **Aug 4 with PS Plus Monthly Games at launch!** PS Blog published "19 unmissable PS5 games still releasing in 2026" roundup. No PS Plus Extra/Premium July lineup reveal yet (expected tomorrow Jul 15). All other previously tracked data remains current.
+
+### 🛒 CORRECTION: Summer Sale 2026 Starts JULY 15 — One Day Earlier! Runs Through Aug 12! 🆕
+
+- **🔄 DATE CORRECTION:** PS Blog published official Summer Sale 2026 article TODAY (Jul 14)
+- **🛒 Sale runs: July 15 through August 12, 2026** (previously tracked as Jul 16-Aug 1)
+- **Up to 75% off** across hundreds of PS5, PS4, and PS VR2 titles
+- **Notable games spotted in the list:** ASTRO BOT, Armored Core VI, Assassin's Creed Shadows, Battlefield 6, Borderlands 4, Clair Obscur: Expedition 33, Cyberpunk 2077 + Phantom Liberty, ELDEN RING NIGHTREIGN, F1 25, Final Fantasy VII Rebirth, FFX/X-2 HD Remaster, HADES II, Hogwarts Legacy, Like a Dragon: Infinite Wealth, Marvel's Spider-Man 2, Metaphor: ReFantazio, Monster Hunter Wilds, Palworld 1.0 (30% off!), Ratchet & Clank: Rift Apart, STALKER 2, Star Wars Outlaws + Wild Card, The Last of Us Part I & II Remastered, The Witcher 3, Tomb Raider I-III Remastered
+- **Full list goes live** when sale starts tomorrow at PlayStation Store
+- Source: [PlayStation Blog](https://blog.playstation.com/2026/07/14/playstation-stores-summer-sale-arrives-on-july-15/) (Jul 14, 2026)
+- **💡💡💡 LOUNGE IMPACT:**
+  - Sale starts **TOMORROW** — one day earlier than expected!
+  - **Palworld 1.0 at 30% off** — if the lounge hasn't bought it yet for all consoles, this is the time!
+  - **ASTRO BOT on sale** — excellent casual lounge title (short play sessions, high fun factor)
+  - **Elden Ring Nightreign on sale** — despite mixed reception, it's FromSoftware
+  - **Cyberpunk 2077 + Phantom Liberty** — mature content but one of the best games of the generation
+  - **Check the full sale list tomorrow** for any other lounge-worthy deals
+  - ⭐⭐⭐ lounge value — Summer Sale price drops are worth checking for lounge expansion titles
+
+### 🎮 Big Walk (House House) — Aug 4! PS Plus Monthly Games at Launch! 🆕
+
+- **Developer:** House House (creators of Untitled Goose Game)
+- **Release: August 4, 2026** on PS5, PC
+- **Genre:** Co-op puzzle adventure — up to 12 players!
+- **PS Plus Monthly Games at launch** — FREE for PS Plus Essential subscribers!
+- **Communication via:** Singing, codes, and gesturing (L2/R2 arm movements) — no traditional voice/text chat
+- **Source:** PS Blog (Jul 14, 2026)
+- **💡💡💡 LOUNGE IMPACT:**
+  - From the beloved Goose Game devs — instant curiosity factor
+  - **12-player co-op** is UNIQUE for lounge play — group sessions!
+  - **Free on PS Plus Essential** — zero cost to add to lounge consoles
+  - Communication system (singing, gesturing) = hilarious spectator experience
+  - ⭐⭐⭐ lounge value — free, unique co-op, great for groups
+
+### 📰 PS Blog: "19 Unmissable PS5 Games Still Releasing in 2026" — Official Sony Roundup 🆕
+
+- **PS Blog published** a curated list of 19 upcoming PS5 games for the rest of 2026
+- **Games highlighted include (notable ones):** Halo: Campaign Evolved (Jul 28), Beast of Reincarnation (Game Freak, Aug 4), Big Walk (Aug 4), MARVEL Tōkon: Fighting Souls (Aug 6), Tomb Raider: Legacy of Atlantis (2027), Persona 4 Revival (2027)
+- **Source:** [PS Blog](https://blog.playstation.com/2026/07/14/19-unmissable-ps5-games-still-releasing-in-2026/) (Jul 14, 2026)
+- **💡💡 Lounge Note:** Official Sony endorsement of the release calendar. No new unannounced games revealed, but confirms Halo, Big Walk, MARVEL Tōkon, and Tomb Raider as officially promoted titles. ⭐⭐ reference value
+
+### 📋 Quick Status Refresh (July 14 - 17:32 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 **Summer Sale 2026** | **CORRECTED: Jul 15 - Aug 12 🆕** | Starts TOMORROW (not Jul 16)! Palworld 30% off! ASTRO BOT! |
+| 🎮 **Big Walk (House House)** | **Aug 4! PS Plus Monthly! 🆕** | 12-player co-op! FREE! Zero-cost lounge addition! |
+| 📰 **PS Blog 19 games roundup** | **PUBLISHED 🆕** | Official Sony promo — confirms Halo, Beast of Reincarnation, Big Walk, MARVEL Tōkon, Tomb Raider |
+| 📅 **PS Plus Extra/Premium July** | **Still PENDING** | Expected reveal Jul 15 (TOMORROW)! |
+| 🐉 **Dragon's Dogma 2: Dark Arisen** | **New director confirmed** | Kenta Kinoshita takes over after Itsuno |
+| All other previously tracked data | **CURRENT** | No changes |
+
+### 📋 Updated Priority Lounge Actions (July 14 - 17:32 UTC):
+1. **🛒🛒🛒 SUMMER SALE STARTS TOMORROW (Jul 15)!** Palworld 1.0 30% off! Check for lounge expansion deals!
+2. **📋 TOMORROW Jul 15 — PS Plus Extra/Premium July lineup reveal!** Psi-Ops confirmed! Watch for additions!
+3. **🎮 Big Watch — Aug 4! Free on PS Plus Monthly!** Mark calendar for 12-player co-op!
+4. **🚨🔥 JULY 23 IS 9 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game! PREPARE ALL CONSOLES! PRE-LOAD UPDATES!
+5. **🎪🔥 God of War Laufey physical disc — PRE-ORDER when available!** Disc confirmed! 2027 target!
+6. **🚨 TEST AC Black Flag Resynced offline at lounge!** Ubisoft outage proved offline mode fails!
+7. **🎮🔥 PALWORLD 1.0 855K+ PEAK!** On ALL consoles! Dedicated stations!
+8. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
+9. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW despite barebones ports!
+10. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+11. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium!

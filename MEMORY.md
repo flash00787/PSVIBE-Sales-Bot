@@ -102,6 +102,7 @@ Kora now manages **9 projects** with full coordination tool support.
 160. **GSheet is fully deprecated, replaced by API** — `save_referral_code`, `step_nm_referral` uniqueness check, `fetch_members` GSheet fallbacks all migrated to API. API returns snake_case fields. (#160)
 161. **Session-end handlers must pass `booking_id` to `launch_session_sale`** — All session-end callers of `launch_session_sale` must forward `booking_id` or deposit deduction is skipped. (#161)
 162. **ALL POST mutating handlers must use redirect, not full render** — CREATE handlers for Xray/Outline keys used full-page render (1-2s), causing Cloudflare 526/524 timeouts. Fixed by switching to `send_redirect_admin()` (~8ms). (#162)
+163. **RLock NOT Lock when render_keys() is called inside a with-block** — `_form_idempotency_lock` used `threading.Lock()` (non-reentrant). POST handlers calling `send_html(render_keys(...))` INSIDE a `with _form_idempotency_lock:` block cause reentrant deadlock when `render_keys()` tries to acquire same lock. Fix: change to `RLock()` OR move `send_html()` outside the lock block. Also fix same pattern in `_admin_create_lock` and `_agent_create_lock`. (#163)
 
 *(Trimmed: keeping only 5 most recent lessons)*
 
@@ -196,6 +197,18 @@ Kora now manages **9 projects** with full coordination tool support.
 | 9357 | Agent Portal | ✅ |
 
 ---
+
+## Memory (2026-07-14) — VPN Admin Lock Deadlock Fix 🔧
+
+### Reentrant Lock Deadlock — Root Cause Fix ✅
+- **Problem:** `_form_idempotency_lock` (threading.Lock) caused deadlock when POST `/create` handler called `self.send_html(render_keys(...))` INSIDE `with _form_idempotency_lock:` block. `render_keys()` also acquires same lock → reentrant deadlock. 10 handler threads stuck in `futex_wait_queue`.
+- **Fix 1:** Changed `_form_idempotency_lock` to `threading.RLock()`
+- **Fix 2:** Moved `self.send_html(render_keys(...))` OUTSIDE all lock blocks in both Handler (port 9356) and AgentOnlyHandler (port 9357)
+- **Fix 3:** Same pattern fixed for `_admin_create_lock` and `_agent_create_lock` — `render_keys()` called while rate-limit lock held
+- **Locations:** 5 total across 2 handler classes
+- **Verification:** 5 concurrent requests → 287-373ms each, 0 deadlocked threads, 3 normal threads only
+- **File:** `/opt/outline-web/server.py`
+- **Lesson:** #163
 
 ## Memory (2026-07-10) — VPN UI Fixes + Server Performance Overhaul 🔧
 
