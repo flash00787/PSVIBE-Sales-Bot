@@ -1,6 +1,58 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-13 11:30 UTC
+> Last updated: 2026-07-13 23:30 UTC
+
+---
+
+## ⚡ EVENING UPDATE (July 13, 2026 - 23:30 UTC) — 🚨🔥 CoD Black Ops 7 & Warzone Season 5 Announced! JULY 23! Full Details! + July 23 is Now the BIGGEST Day of July! 🚨🔥
+
+> **Summary:** Monday evening sweep (12 hours since last update at 11:30 UTC). **🚨BREAKING: PlayStation Blog published CoD Black Ops 7 & Warzone Season 05 full details TODAY (Jul 13)!** Season launches **July 23** — same day as Halo Campaign Evolved Premium early access, Disgaea Mayhem, Avatar Legends Fighting Game, AND Marvel's Wolverine Comic-Con panel! **July 23 is now PACKED — the single biggest day of the month!** New maps, Zombies survival map (Eidskallen Lighthouse), new Warzone POI (Drone Labs), new weapons (FG42, Gremlin SMG, Mammoth LMG), new Battle Pass with Spectre, and BlackCell with Cipher Operator. No other major new developments found.
+
+### 🚨🔥 CoD Black Ops 7 & Warzone Season 5 — FULL DETAILS REVEALED! July 23! 🆕🔥
+
+- **PlayStation Blog published full Season 05 details TODAY (July 13)** — this is fresh information not previously tracked!
+- **Launch: July 23, 2026** for both Black Ops 7 and Warzone
+- **New Maps:**
+  - **Jubilee (New)** — Rural Japanese town festival turned conflict zone
+  - **Frequency (Remastered)** — Mountain listening station in Hunan
+  - **Dig (Remastered)** — Avalon archaeological dig site ruins
+  - **Turbo Tilt (New, Mid-Season)** — Pinball machine map inspired by Nuketown! Shrink down!
+  - **Freerun: Descent (New, Mid-Season)** — Obstacle course
+- **New Zombies Content:**
+  - **Eidskallen Lighthouse** — New survival map on Beacon Island! Round-based survival!
+  - **Kowakujō Directed Mode + Starting Room** drop-in
+  - **Rogue Run: Astra Malorum** — Three new roguelite Zombies playlists
+  - **Mid-Season:** Round-Based Zombies finale + Widow's Wine Perk + new GobbleGum + Legacy Weapons
+- **Warzone Changes:**
+  - **New POI: Drone Labs** — East of TV Station, south of Quarry. Armed JLTV vehicle on site!
+  - **HKDs Killstreak** — Guild drone tech for Resurgence and Battle Royale
+  - **Quickdrop Kit (Mid-Season)** — Stackable reward for faster redeployment
+  - **Resurgence Ranked Play** returns
+- **New Weapons (Battle Pass):** FG42 Assault Rifle, Gremlin dual-wield SMG. Events: Mammoth LMG + Mace Melee
+- **Battle Pass:** Spectre operator headlines. BlackCell: Cipher Operator + Mastercraft Weapon Blueprint
+- **Also: Burn Run assignment** — bomb-rigged vehicle race against the clock in Black Ops 7 Endgame
+- **Overdrive Domination & Gauntlet Rush** — new Limited Time Modes
+- **Cranked Moshpit returns** Mid-Season
+- **🔴 CRITICAL for PS VIBE:**
+  - **CoD is THE #1 franchise at gaming lounges!** Every new season = massive player influx
+  - **July 23 is now INSANE:** CoD Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game + Marvel's Wolverine Comic-Con panel ALL on the same day!
+  - **Prepare console updates in advance** — ensure all lounge PS5s have BO7 installed and updated BEFORE Jul 23
+  - **New Warzone POI + weapons** = content creators/streamers will be glued to Warzone on Jul 23
+  - **BlackCell Battle Pass** worth considering for the main lounge account if you want premium cosmetics for customers
+  - **Zombies fans get a new survival map** — Eidskallen Lighthouse is round-based classic style
+  - ⭐⭐⭐⭐⭐ lounge value — SEASON 05 IS THE BIGGEST CONTENT DROP OF THE MONTH
+
+### 📋 Updated Priority Lounge Actions (July 13 - 23:30 UTC):
+1. **🚨🔥 JULY 23 IS THE BIGGEST DAY OF JULY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game! PREPARE ALL CONSOLES!
+2. **🔄 UPDATE ALL PS5s before Jul 23** — CoD BO7 Season 5 update will be LARGE. Pre-load/pre-update to avoid day-of congestion!
+3. **🎪🔥 PRE-ORDER God of War Laufey physical disc when available!** Disc confirmed! 2027 target!
+4. **🚨 TEST AC Black Flag Resynced offline mode at the lounge!** Offline mode DOESN'T work!
+5. **🎮🔥 PALWORLD 1.0 855K PEAK!** #2 on Steam! Install on EVERY console!
+6. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
+7. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW!
+8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+9. **📋 PS Plus Extra/Premium July lineup reveal — Jul 15 (2 DAYS!)** Psi-Ops confirmed!
+10. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium!
 
 ---
 
