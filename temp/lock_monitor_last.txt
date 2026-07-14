@@ -1,4 +1,4 @@
-[LOCK_MONITOR] Run at 2026-07-14 18:17:52 UTC
+[LOCK_MONITOR] Run at 2026-07-14 19:57:53 UTC
 
 [LOCK_MONITOR] OK: no locks found
 
@@ -16,5 +16,4 @@
 [LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
 ==================================================
 === RESULT: OK ===
-
-=== RESULT: OK ||| ERROR: <none> ===
+=== RESULT: OK ||| ERROR: <reason> ===
