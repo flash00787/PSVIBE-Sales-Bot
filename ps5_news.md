@@ -1,12 +1,47 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-14 05:30 UTC
+> Last updated: 2026-07-14 11:30 UTC
 
 ---
 
 ## ⚡ OVERNIGHT UPDATE (July 14, 2026 - 05:30 UTC) — 🚨 Halo Project Ekur CANCELLED! No Multiplayer for Halo: Campaign Evolved? + All Clear Otherwise
 
 > **Summary:** Overnight sweep (6 hours since last update). No new PS Blog posts. But **🚨 BREAKING: Halo Studios reportedly cancels Project Ekur** — the standalone multiplayer Halo project developed by Certain Affinity! Large-scale battles with customizable Spartans/Elites now dead. **This raises a critical question: will Halo: Campaign Evolved on PS5 have ANY competitive multiplayer?** It has co-op, but no competitive modes confirmed. Also: Ubisoft removed controversial "microtransactions make games more fun" claim from financial report. All other previously tracked data remains current.
+
+---
+
+## ⚡ MORNING UPDATE (July 14, 2026 - 11:30 UTC) — 🐉 Dragon's Dogma 2: Dark Arisen New Director Confirmed! Series Continues Past Itsuno! + No Other Critical Changes
+
+> **Summary:** Morning sweep (6 hours since last update at 05:30 UTC). No new PS Blog posts. **🆕 Dragon's Dogma 2: Dark Arisen gets new director confirmed** — Kenta Kinoshita (series veteran since the original DD) takes the helm after Hideaki Itsuno's departure. Capcom confirms the series is in good hands. All other previously tracked data remains current. **TOMORROW (Jul 15): PS Plus Extra/Premium July lineup reveal!** Psi-Ops confirmed!
+
+### 🐉 Dragon's Dogma 2: Dark Arisen — New Director Confirmed! Series Continues After Itsuno! 🆕
+
+- **Dragon's Dogma 2: Dark Arisen expansion** is being directed by **Kenta Kinoshita** — not Hideaki Itsuno (who left Capcom in 2024 after 30 years)
+- **Kinoshita's credentials:** Director of the original DD Dark Arisen (2013), main planner on DD1, worked on DD2 and Japan-only Dragon's Dogma Online — **has worked on ALL four DD titles**
+- **Producer Naoto Oyama:** "Capcom has always structured ourselves so that we aren't absolutely reliant on a single person… we still know what it takes to make a great Dragon's Dogma game"
+- **Kinoshita says:** "I've seen the whole series through to date… I'd like to believe I have what it takes to continue the series' legacy"
+- **Quality-of-life improvements** confirmed for the expansion
+- Source: Eurogamer (Jul 14, 2026), Capcom
+- **💡💡 Lounge Note:** Dragon's Dogma 2 was a major RPG hit in 2024. This expansion (Dark Arisen — same name as the original DD expansion) is the next major content drop. Itsuno's departure was concerning for fans, but the new director is a series veteran with deep DD experience. For lounge customers who love RPGs, this expansion is worth tracking. ⭐⭐ lounge value
+
+### 📌 Tomorrow's Key Event: PS Plus Extra/Premium July Lineup Reveal — Jul 15!
+
+- **PS Plus Extra/Premium July 2026 full lineup** reveals TOMORROW (July 15)
+- **Already confirmed:** Psi-Ops: The Mindgate Conspiracy (PS Premium — classic PS2 title)
+- **Departures Jul 21:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9, and 10 other titles
+- **Games arriving Jul 21** — full list revealed tomorrow
+- **💡 Lounge Note:** Jackbox Party Pack 9 leaving Jul 21 — if the lounge uses it, play before then!
+
+### 📋 Updated Priority Lounge Actions (July 14 - 11:30 UTC):
+1. **📋 TOMORROW Jul 15 — PS Plus Extra/Premium July lineup reveal!** Psi-Ops confirmed! Watch for additions!
+2. **🚨🔥 JULY 23 IS 9 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game! PREPARE ALL CONSOLES! PRE-LOAD UPDATES!
+3. **🎪🔥 God of War Laufey physical disc — PRE-ORDER when available!** Disc confirmed! 2027 target!
+4. **🚨 TEST AC Black Flag Resynced offline at lounge!** Ubisoft outage proved offline mode fails!
+5. **🎮🔥 PALWORLD 1.0 855K+ PEAK!** On ALL consoles! Dedicated stations!
+6. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
+7. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW despite barebones ports!
+8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+9. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium!
 
 ### 🚨 Halo Project Ekur — CANCELLED! Multiplayer Future Uncertain for PS5 Halo! 🆕🔥
 
