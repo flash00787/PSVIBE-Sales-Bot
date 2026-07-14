@@ -1333,9 +1333,29 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     discount = d.get("discount", 0)
 
-    # Deposit info for receipt display (deduction handled by API /admin/sales/record)
+    # Deposit info for receipt display
     deposit_amount = d.get("deposit_amount", 0) or 0
     deposit_status = d.get("deposit_status", "") or ""
+
+    # ── Deposit Pre-Redeem: deduct from net_total BEFORE receipt ──────────
+    booking_id = d.get("booking_id", "")
+    deposit_pre_deducted = False
+    if booking_id and deposit_status == "verified" and deposit_amount > 0:
+        try:
+            from bot.api_client import api_post
+            pre_result = await asyncio.to_thread(
+                api_post, f"bookings/{booking_id}/deposit/pre-redeem", {}
+            )
+            if pre_result and isinstance(pre_result, dict):
+                _data = pre_result.get("data") or pre_result
+                if _data.get("deposit_status") == "redeemed":
+                    deposit_pre_deducted = True
+                    net_total = max(0, net_total - deposit_amount)
+                    d["net_total"] = net_total
+                    d["deposit_pre_deducted"] = True
+                    logger.info("Deposit pre-redeemed: BK#%s deposit=%s → net_total=%s", booking_id, deposit_amount, net_total)
+        except Exception as _e:
+            logger.warning("Deposit pre-redeem failed for BK#%s: %s", booking_id, _e)
 
     # ── Pre-compute (lightweight sync) ────────────────────────────
     staff_name = d.get("staff", "")
@@ -1477,7 +1497,13 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     coupon_line = f"🎫 *CashBack Coupon:* {coupon_code} — *{coupon_mins} mins*" if coupon_code else ""
 
-    deposit_line = f"\n💳 *Deposit:* -{_r50(deposit_amount):,} Ks" if deposit_amount > 0 else ""
+    if deposit_amount > 0:
+        if deposit_pre_deducted:
+            deposit_line = f"\n💳 *Deposit Deducted:* -{_r50(deposit_amount):,} Ks ✅"
+        else:
+            deposit_line = f"\n💳 *Deposit:* -{_r50(deposit_amount):,} Ks"
+    else:
+        deposit_line = ""
 
     _receipt_end = f"{deposit_line}\n{wallet_bal_line}" + (f"\n{coupon_line}" if coupon_code else "")
     # ── RECEIPT — sent BEFORE sheet writes ────────────────────────
@@ -1553,7 +1579,11 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "booking_id": booking_id,
                     "type": "food_only" if (_m_id == "-" and play_mins == 0) else "standard",
                 })
-                _sales_api_ok = _result and _result.get("success")
+                if _result and _result.get("success"):
+                    _sales_api_ok = True
+                else:
+                    _err_msg = _result.get("error", str(_result)) if isinstance(_result, dict) else str(_result)
+                    logging.warning("Sales API returned error: %s", _err_msg)
             except Exception as e:
                 logging.warning("Sales API failed: %s", e)
 
