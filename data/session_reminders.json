@@ -1,57 +1,24 @@
 {
-  "C-06|1003686032747": {
-    "cid": "C-06",
+  "C-04|1003686032747": {
+    "cid": "C-04",
     "chat_id": -1003686032747,
     "member_id": "Guest",
-    "planned_mins": 120,
-    "end_t": "13:36",
-    "end_dt_iso": "2026-07-15T13:36:00+06:30",
+    "planned_mins": 251,
+    "end_t": "00:44",
+    "end_dt_iso": "2026-07-15T00:44:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-15T05:06:57.929968+00:00"
-  },
-  "C-09|1003686032747": {
-    "cid": "C-09",
-    "chat_id": -1003686032747,
-    "member_id": "PSV_A_010",
-    "planned_mins": 180,
-    "end_t": "15:15",
-    "end_dt_iso": "2026-07-15T15:15:00+06:30",
-    "message_thread_id": 0,
-    "total_plan_mins": 180,
-    "updated_at": "2026-07-15T06:17:42.156758+00:00"
-  },
-  "C-05|1003686032747": {
-    "cid": "C-05",
-    "chat_id": -1003686032747,
-    "member_id": "Barry",
-    "planned_mins": 120,
-    "end_t": "14:59",
-    "end_dt_iso": "2026-07-15T14:59:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-15T06:29:15.002519+00:00"
+    "total_plan_mins": 251,
+    "updated_at": "2026-07-15T14:03:50.737364+00:00"
   },
   "C-03|1003686032747": {
     "cid": "C-03",
     "chat_id": -1003686032747,
-    "member_id": "Ko Nyan Kyaw Zaw",
-    "planned_mins": 120,
-    "end_t": "15:00",
-    "end_dt_iso": "2026-07-15T15:00:00+06:30",
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "21:52",
+    "end_dt_iso": "2026-07-15T21:52:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-15T06:30:50.087385+00:00"
-  },
-  "C-01|1003686032747": {
-    "cid": "C-01",
-    "chat_id": -1003686032747,
-    "member_id": "Myat Bhone Khant",
-    "planned_mins": 120,
-    "end_t": "15:14",
-    "end_dt_iso": "2026-07-15T15:14:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-15T06:44:36.770212+00:00"
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-15T14:22:56.773699+00:00"
   }
 }

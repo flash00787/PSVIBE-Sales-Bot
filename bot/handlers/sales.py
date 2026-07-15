@@ -395,7 +395,7 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info("confirm_summary: mins=%s is_guest=%s booking_id=%s game_amt_in_context=%s", mins, d.get("m_id") == "0 (Guest)", d.get("booking_id","none"), d.get("game_amt",0))
     base_rate = await fetch_base_rate_async()
     d["base_rate"] = base_rate
-    is_guest  = d["m_id"].strip() == "0 (Guest)"
+    is_guest  = d["m_id"].strip() in ("0 (Guest)", "") or d.get("wallet_mins") is None
 
     food_lines, food_total = [], 0
     for item in d["food_items"]:
@@ -513,20 +513,20 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @log_duration("sales:prompt_kpay")
 async def prompt_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show dynamic payment method buttons from Setting!Y + Done button.
-    
+
     Deducts verified deposit from net_total so staff only collects remaining amount.
     """
     d = context.user_data
     net = d.get("net_total", 0)
     deposit_amount = int(d.get("deposit_amount", 0) or 0)
     deposit_status = d.get("deposit_status", "") or ""
-    
+
     # ── Deduct deposit from display total ──
     deposit_deduct_line = ""
     if deposit_amount > 0 and deposit_status == "verified":
         net = max(0, net - deposit_amount)
         deposit_deduct_line = f"💳 Deposit: -{deposit_amount:,} Ks ✅\n"
-    
+
     m_id = d.get("m_id", "-")
     c_id = d.get("c_id", "-")
     label = "Guest" if m_id.strip() == "0 (Guest)" else m_id
@@ -1799,7 +1799,7 @@ async def launch_session_sale(
     sessions where each console may have a different multiplier).
     booking_id: if set, link this sale to the customer booking for tracking.
     """
-    is_guest = member_id in ("Guest", "0 (Guest)", "")
+    is_guest = member_id in ("Guest", "0 (Guest)", "") or (member_id and " " in member_id.strip())
     logger.info("launch_session_sale: cid=%s member=%s is_guest=%s total_mins=%s booking_id=%s", cid, member_id[:20] if member_id else "empty", is_guest, total_mins, booking_id or "none")
 
     # Clear stale Food Note flags that would short-circuit the end-session sales flow
@@ -1833,6 +1833,14 @@ async def launch_session_sale(
 
     m_id = "0 (Guest)" if is_guest else member_id
 
+    # If session_staff is empty or looks like a customer name (not a real staff), try fallback
+    _staff_for_sale = session_staff
+    if not _staff_for_sale or _staff_for_sale in (m_id, "Guest", "0 (Guest)"):
+        # Try to get the actual staff name from Telegram user
+        _eff_user = update.effective_user
+        if _eff_user and _eff_user.full_name:
+            _staff_for_sale = _eff_user.full_name
+
     context.user_data.update({
         "m_id":             m_id,
         "c_id":             cid,
@@ -1844,7 +1852,7 @@ async def launch_session_sale(
         "food_items":       [],
         "food_prices":      food_prices,
         "food_stock_map":   stock_map,
-        "staff":            session_staff,
+        "staff":            _staff_for_sale,
         # from_session flag: True when this sale originated from an active session
         # end/launch flow. Enables the +/-10 min time-adjust step so staff can
         # fine-tune recorded play time before proceeding to the food menu.
@@ -1856,6 +1864,7 @@ async def launch_session_sale(
     # Fetch deposit info for this booking
     deposit_amount = 0
     deposit_status = ""
+    deposit_method = ""
     if booking_id:
         try:
             bk = await get_booking_async(booking_id)

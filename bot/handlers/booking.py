@@ -1648,6 +1648,9 @@ async def _do_create_booking(update, context, cid: str, member_id: str,
             "duration_mins": planned_mins if planned_mins > 0 else 0,
             "booking_date": now_mmt().strftime("%Y-%m-%d"),
         }
+        # Pass the actual staff name so console_sessions.staff_name is correct
+        if staff:
+            payload["staff_name"] = staff
         # If linked to a checked-in booking, pass the ID to transition it to Active
         if _linked_cust_bk:
             payload["linked_booking_id"] = int(_linked_cust_bk)
