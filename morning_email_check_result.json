@@ -1,11 +1,8 @@
 {
-  "checked_at": "2026-07-12T19:09:00Z",
+  "checked_at": "2026-07-15T19:09:00Z",
   "status": "auth_failed",
   "error": "Gmail OAuth tokens expired/revoked - re-auth needed",
   "last_successful_check": "2026-07-11T13:31:00Z",
-  "nova_from_last_check": 0,
-  "important_from_last_check": 4,
-  "result": "NO_REPLY",
   "action_taken": "Notified Boss via Telegram with re-auth URL",
   "reauth_url_generated": true
 }
