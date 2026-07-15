@@ -1,5 +1,47 @@
 [
   {
+    "type": "console_status",
+    "severity": "warning",
+    "message": "⚠️ Console C-10 has unusual status: \"Reserved\"",
+    "consoleId": "C-10",
+    "timestamp": "2026-07-15T04:44:20.795Z"
+  },
+  {
+    "type": "console_status",
+    "severity": "warning",
+    "message": "⚠️ Console C-09 has unusual status: \"Reserved\"",
+    "consoleId": "C-09",
+    "timestamp": "2026-07-15T04:44:20.792Z"
+  },
+  {
+    "type": "console_status",
+    "severity": "warning",
+    "message": "⚠️ Console C-08 has unusual status: \"Reserved\"",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-15T04:44:20.789Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 16.1h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-07-15T04:44:20.786Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 14.9h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-15T04:44:20.782Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 16.2h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-07-15T04:44:20.778Z"
+  },
+  {
     "type": "sales_gap",
     "severity": "warning",
     "message": "📉 Today's sales (12000 MMK) are below 60% of target (50000 MMK)",
@@ -3478,47 +3520,5 @@
     "message": "📡 Console C-04 last updated 24.4h ago",
     "consoleId": "C-04",
     "timestamp": "2026-06-11T14:37:44.974Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 46.7h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T14:37:44.974Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-02 last updated 27.9h ago",
-    "consoleId": "C-02",
-    "timestamp": "2026-06-11T14:37:44.973Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-01 last updated 24.4h ago",
-    "consoleId": "C-01",
-    "timestamp": "2026-06-11T14:37:44.972Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-10 last updated 2.5h ago",
-    "consoleId": "C-10",
-    "timestamp": "2026-06-11T14:07:44.386Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-07 last updated 31.9h ago",
-    "consoleId": "C-07",
-    "timestamp": "2026-06-11T14:07:44.386Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 23.9h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T14:07:44.386Z"
   }
 ]
