@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-14 17:32 UTC
+> Last updated: 2026-07-14 23:30 UTC
 
 ---
 
@@ -32,14 +32,14 @@
 - **Games arriving Jul 21** — full list revealed tomorrow
 - **💡 Lounge Note:** Jackbox Party Pack 9 leaving Jul 21 — if the lounge uses it, play before then!
 
-### 📋 Updated Priority Lounge Actions (July 14 - 11:30 UTC):
-1. **📋 TOMORROW Jul 15 — PS Plus Extra/Premium July lineup reveal!** Psi-Ops confirmed! Watch for additions!
-2. **🚨🔥 JULY 23 IS 9 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game! PREPARE ALL CONSOLES! PRE-LOAD UPDATES!
-3. **🎪🔥 God of War Laufey physical disc — PRE-ORDER when available!** Disc confirmed! 2027 target!
-4. **🚨 TEST AC Black Flag Resynced offline at lounge!** Ubisoft outage proved offline mode fails!
-5. **🎮🔥 PALWORLD 1.0 855K+ PEAK!** On ALL consoles! Dedicated stations!
-6. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
-7. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW despite barebones ports!
+### 📋 Updated Priority Lounge Actions (July 14 - 23:30 UTC):
+1. **🚨 CRITICAL: CoD BO1 & BO2 PORTS INFESTED WITH HACKERS!** Don't use for multiplayer! Activision disabled Ground War & Domination then re-enabled with server-side fix! Hackers using modded PS4 save files! Buy for CAMPAIGN/ZOMBIES only or play offline!
+2. **📋 TODAY Jul 15 — PS Plus Extra/Premium July lineup reveal!** Psi-Ops confirmed! Summer Sale also starts today! Watch for announcements!
+3. **🚨🔥 JULY 23 IS 9 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends Fighting Game! PREPARE ALL CONSOLES! PRE-LOAD UPDATES!
+4. **🎪🔥 God of War Laufey physical disc — PRE-ORDER when available!** Disc confirmed! 2027 target!
+5. **🚨 TEST AC Black Flag Resynced offline at lounge!** Ubisoft outage proved offline mode fails!
+6. **🎮🔥 PALWORLD 1.0 855K+ PEAK!** On ALL consoles! Dedicated stations!
+7. **🖊️ Marvel Tōkon: Fighting Souls — Aug 6!** Kieron Gillen writing! Pre-order!
 8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
 9. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium!
 
@@ -4179,3 +4179,79 @@ Leaving the Extra/Premium Game Catalog on July 21:
 9. **🔥 CoD BO1 & BO2 50% off PS Plus until Aug 6!** Buy NOW despite barebones ports!
 10. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
 11. **🟢 Halo: Campaign Evolved Premium early access Jul 23!** Pre-order Premium!
+
+---
+
+## ⚡ EVENING UPDATE (July 14, 2026 - 23:30 UTC) — 🚨 CoD BO1 & BO2 Ports INFESTED With Hackers! Activision Disabled Playlists! + Sony Mexico Antitrust Complaint! + Summer Sale Arrives Jul 15! 🆕
+
+> **Summary:** Evening sweep (12 hours since last update at 11:30 UTC). **🚨 CRITICAL: Call of Duty Black Ops 1 & 2 PS4/PS5 ports are RIDDLED with hackers already!** Activision had to disable Ground War & Domination playlists on Monday, then re-enabled Tuesday with a server-side fix (boosted all players to level 20). Hackers use modified PS4 save files to cheat on both PS4 AND PS5 — instant max prestige, wallhacks, demoting other players. **🆕 Sony faces NEW antitrust complaint in MEXICO** — Federal Representatives filing with Mexico's National Antitrust Commission over disc phaseout. **🆕 PS Blog: Summer Sale officially arrives July 15** (runs through Aug 12) — up to 75% off hundreds of titles. **🆕 PS Blog: "19 unmissable PS5 games still releasing in 2026"** article published. No PS Plus Extra/Premium July announcement yet — expected tomorrow.
+
+### 🚨🔥 CoD BO1 & BO2 PS4/PS5 — INFESTED WITH HACKERS! Activision Disables and Fixes! 🆕
+
+- **Just days after shadow-drop (Jul 12), hackers have already infested** the new Call of Duty Black Ops 1 & 2 PS4/PS5 ports
+- **What hackers can do:** Instantly reach max prestige, demote other players to sub-level 1, give themselves 'Pro' Perks, wallhacks, see through walls
+- **Most affected playlists:** Ground War and Domination — Activision **disabled both playlists on Monday** then **re-enabled Tuesday** with a server-side fix
+- **The fix:** Boosts all affected players to level 20; more fixes promised
+- **How hacking works:** Hackers use PS4 save files → upload to dodgy website for modification → download modded save → upload back to PSN. PS5 also affected since PS4 saves can be transferred up
+- **PS5 can't directly export save files to USB**, but PS4-modified saves can still be used on PS5 through PSN sync
+- Sources: Eurogamer (Jul 14, 2026), Reddit r/CallOfDuty, Activision/CODUpdates
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL REVISION TO EXISTING RECOMMENDATION:**
+  - **⚠️ DO NOT rely on BO1/BO2 multiplayer for lounge sessions!** Hackers are everywhere! Players WILL encounter cheaters in Ground War & Domination!
+  - **Still worth buying for CAMPAIGN ONLY + ZOMBIES MODE** — both are legendary offline experiences unaffected by hackers
+  - **50% PS Plus discount is still active** until Aug 6 — buy for the campaigns, which are some of the best in CoD history
+  - **Play offline mode** to avoid hackers entirely — campaign + zombies work perfectly
+  - **Recommended lounge strategy:** Buy 1-2 copies for campaign/zombies stations. Do NOT dedicate multiplayer stations expecting clean lobbies
+  - ⭐⭐⭐ lounge value (DOWNGRADED from ⭐⭐⭐⭐⭐ due to hacker infestation in multiplayer)
+
+### ⚖️🆕 Sony Faces ANTITRUST Complaint in MEXICO Over Disc Phaseout! 🆕
+
+- **NEW legal front:** Federal Representative Iraís Reyes and Senator Luis Donaldo Colosio (Movimiento Ciudadano party, filing as private citizens) are preparing a formal complaint with Mexico's National Antitrust Commission
+- **They argue:** Sony's disc phaseout is anti-competitive and anti-consumer
+- **Reyes:** "If discs disappear, anyone who owns a PlayStation will no longer be able to choose where to buy their games and will be forced to purchase them exclusively through Sony's store"
+- **Colosio:** "Retailers such as Liverpool, Sanborns, and GamePlanet would no longer compete to sell new video games, and the second-hand and game trading markets — which are massive — would also disappear"
+- **Legal basis:** Alleged violation of Mexico's Federal Economic Competition Law — monopolistic practices
+- Sources: Eurogamer (Jul 14), LevelUp
+- **💡💡💡 Lounge Note:** Mexico is the THIRD legal/regulatory front (EU, US, now Mexico). While the EU said it can't block the phaseout, Mexico's antitrust action is a separate legal system with different laws. Worth watching — if Mexico succeeds, it could create precedent. ⭐⭐ lounge value
+
+### 🛒🔥 New: PlayStation Store Summer Sale OFFICIALLY Starts July 15! 🆕
+
+- **PS Blog published today (Jul 14):** Summer Sale officially begins **Wednesday, July 15** and runs through **August 12**
+- **Previously tracked:** Early access for PS Plus members may have already started Jul 10
+- **Up to 75% off** on thousands of PS5, PS4, PS VR2 games and add-ons
+- **Notable titles on sale (partial list):**
+  - ASTRO BOT / ASTRO BOT Digital Deluxe Edition
+  - Assassin's Creed Shadows / Premium Edition
+  - Cyberpunk 2077 / Phantom Liberty
+  - Clair Obscur: Expedition 33 / Deluxe Edition Upgrade
+  - Armored Core VI Fires of Rubicon / Deluxe Edition
+  - Call of Duty: Black Ops III — Zombies Chronicles Edition
+  - Control: Ultimate Edition
+  - Death Stranding Director's Cut
+  - Crash Bandicoot 4: It's About Time
+  - Batman: Arkham Collection / Return to Arkham
+  - Borderlands 4 / Super Deluxe Edition
+  - Battlefield 6
+  - Cities: Skylines — Remastered
+  - DayZ / Frostline
+  - And hundreds more
+- **💡💡💡 Lounge Note:** Summer Sale with up to 75% off is the BEST time to expand the lounge's digital library. ASTRO BOT, Cyberpunk 2077, Armored Core VI, and Clair Obscur are all excellent lounge titles at discounted prices. If PS VIBE needs to fill out its game catalog, this sale is the opportunity. ⭐⭐⭐ lounge value
+
+### 📰 New: PlayStation Blog — "19 Unmissable PS5 Games Still Releasing in 2026" 🆕
+
+- PS Blog published a roundup article today highlighting 19 major PS5 games still to come in 2026
+- Covers remaining 2026 lineup including God of War Laufey, Marvel's Wolverine, Halo: Campaign Evolved, GTA 6, CoD MW4, and more
+- **💡 Lounge Note:** Worth a quick skim for any titles the tracker might have missed. Minor reference value. ⭐ lounge value
+
+### 📋 Quick Status Updates (Jul 14, 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨🔥 **CoD BO1 & BO2 Hackers** | **CONFIRMED 🆕** | Infested! Disabled then fixed playlists! Campaign/Zombies only! |
+| ⚖️ **Mexico Antitrust Complaint** | **FILING 🆕** | New legal front vs Sony disc phaseout! |
+| 🛒 **Summer Sale** | **Jul 15 - Aug 12 🆕** | Up to 75% off! ASTRO BOT, CP2077, AC Shadows, more! |
+| 📰 **PS Blog 19 Games Article** | **PUBLISHED 🆕** | "19 unmissable PS5 games still releasing in 2026" |
+| 🐉 **DD2 Dark Arisen Director** | **CONFIRMED** | Kenta Kinoshita! Still tracked! |
+| 🚨 **Halo Ekur Cancellation** | **CONFIRMED** | No MP for Halo on PS5! Still tracked! |
+| 📋 **PS Plus Extra/Premium July** | **EXPECTED Jul 15** | Full lineup reveal today! Psi-Ops confirmed! |
+| 🎮🔥 **Palworld 1.0** | **855K+ PEAK** | Still dominating! Install on ALL consoles! |
+| 🔐 **PSN 2FA Bypass Exploit** | **UNPATCHED** | Still active! AUDIT lounge accounts! |
+| 🎪 **God of War Laufey Disc** | **CONFIRMED** | 2027 target! Pre-order when available! |

@@ -252,7 +252,6 @@ Kora now manages **9 projects** with full coordination tool support.
 ### Outline VPN Thread Deadlock — Root Cause Fix ✅
 - **Problem:** outline-web.service had 17 threads stuck in `futex_wait_queue`. Root cause: `_form_idempotency_lock` contention when `render_keys()` called concurrently. Multiple requests holding locks while waiting for Prometheus queries.
 - **Fix:** Replaced threaded handler logic with async/non-blocking approach for `render_keys()`
-- **File:** `/opt/outline-web/server.py`
 
 ### Slow Dashboard — Per-key Prometheus Queries 🚀
 - **Problem:** `get_key_metrics()` queried Prometheus once per active Outline key via `docker exec shadowbox curl` (7 keys × 300ms = 2.1s). Remake page loading slow.
@@ -325,7 +324,6 @@ Kora now manages **9 projects** with full coordination tool support.
 ### Outline VPN Key Create Timeout Fixed 🐛→✅ (Jul 13, 19:23 UTC)
 - **Root Cause:** Xray/Outline key CREATE handlers rendered full dashboard (1-2s) instead of 302 redirect (~8ms). Cloudflare returned 526/524 errors.
 - **Fix:** Changed both Xray and Outline CREATE handlers from `send_html(render_keys(...))` to `send_redirect_admin(...)` — Lesson #155 applied to CREATE (was previously only on delete/expire/renew)
-- **File:** `/opt/outline-web/server.py`
 
 ### Referral Code Fixes 🐛→✅
 3 issues fixed:
