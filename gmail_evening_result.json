@@ -1,91 +1,11 @@
 {
-  "checked_at": "2026-07-14T13:31:54.275595+00:00",
-  "total": 37,
-  "unread": 37,
-  "promo_skipped": 9,
-  "nova_count": 0,
-  "wallet_count": 0,
-  "important_count": 11,
-  "nova_emails": [],
-  "wallet_emails": [],
-  "important_emails": [
-    {
-      "from": "Google Business Profile <businessprofile-noreply@google.com>",
-      "subject": "PS VIBE, are you open on Martyrs' Day?",
-      "date": "Fri, 10 Jul 2026 12:58:59 -0700",
-      "is_unread": true,
-      "body_preview": "Jul\r\n\r\n19\r\n\r\nLet customers know your holiday hours for July\r\n\r\nWhen your business has an irregular schedule, like holidays or special  \r\nevents, you can enter special hours in advance to let customers know when  \r\nyou’re open. Here’s what customers see when they view your business on  \r\nGoogle.\r\n\r\nUpdate my holiday hours  \r\n<http://business.google.com/n/9834080693527179285/profile/info/edit/specia"
-    },
-    {
-      "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Final reminder: Your Plus access ends soon",
-      "date": "Mon, 13 Jul 2026 15:37:03 +0000",
-      "is_unread": true,
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  You’ll lose access to Plus on Jul 14,\r\n2026  =\r\n\r\n \r\n          Update payment          Please update your payment method by Jul\r\n14, 2026 to keep access to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reaso"
-    },
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Sat, 11 Jul 2026 14:25:39 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD 2V7SXX on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 11, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    },
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Sat, 11 Jul 2026 02:53:45 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD HWvN37 on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 11, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    },
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Sun, 12 Jul 2026 01:26:12 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD 6X6C7Q on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 12, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Sun, 12 Jul 2026 20:19:08 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on NX809J\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a NX809J device. If this\r\nwas you, you don’t need to do anything. If not, we’ll help you secure your\r\naccount.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1783887548000?rfn%3"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Sun, 12 Jul 2026 08:28:50 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nNew sign-in to your account\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account. If this was you, you don’t\r\nneed to do anything. If not, we’ll help you secure your account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1783844930000?rfn%3D325%26rfnc%3D1%"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Sun, 12 Jul 2026 08:26:20 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on NX809J\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a NX809J device. If this\r\nwas you, you don’t need to do anything. If not, we’ll help you secure your\r\naccount.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1783844780000?rfn%3"
-    },
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Fri, 10 Jul 2026 15:54:40 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD X3xH7B on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 10, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    },
-    {
-      "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Your Plus access will end soon",
-      "date": "Sun, 05 Jul 2026 15:36:38 +0000",
-      "is_unread": true,
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  Update your payment method to keep using\r\nPlus  =\r\n\r\n \r\n          Update payment          Please update your payment method to keep\r\naccess to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reasoning models\r\n"
-    },
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Sun, 12 Jul 2026 12:58:02 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD FCB2xB on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 12, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    }
+  "checked_at": "2026-07-15T13:30:00Z",
+  "status": "TOKEN_EXPIRED",
+  "message": "All Gmail refresh tokens have expired/been revoked. Re-authentication needed.",
+  "tokens_tested": [
+    "gmail_token.json (refresh_token) - invalid_grant: Token has been expired or revoked",
+    "gmail_token_v2.json (refresh_token) - invalid_grant: Bad Request",
+    "token.json.bak (refresh_token) - invalid_grant: Token has been expired or revoked"
   ],
-  "result": "IMPORTANT_FOUND"
+  "last_successful_check": "2026-07-11T13:31:23"
 }

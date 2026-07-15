@@ -94,25 +94,14 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-98. **Auth check must come after public path handlers** — Login page, static files, and QR codes must be served BEFORE auth check, otherwise infinite redirect loops occur. (#98)
-99. **Cloudflare caches even dynamic pages** — Without explicit `no-store` headers, Cloudflare caches error pages. Always set `Cache-Control: no-store, no-cache` on auth-required pages. (#99)
-100. **Double-click protection on form buttons** — Laggy connections cause duplicate form submissions. Use `onclick="this.disabled=true"` on Create/Submit buttons. (#100)
-158. **Booking flows must differentiate guest vs member** — Guest-specific optimizations (like skipping wallet checks) must be guarded by `if not is_guest:`. (#158)
-159. **Circular imports solved by lazy wrappers** — Any function in handler A called by handler B needs `_get_handler()` wrapper + explicit import in `bot/__init__.py`. (#159)
-160. **GSheet is fully deprecated, replaced by API** — `save_referral_code`, `step_nm_referral` uniqueness check, `fetch_members` GSheet fallbacks all migrated to API. API returns snake_case fields. (#160)
-161. **Session-end handlers must pass `booking_id` to `launch_session_sale`** — All session-end callers of `launch_session_sale` must forward `booking_id` or deposit deduction is skipped. (#161)
-162. **ALL POST mutating handlers must use redirect, not full render** — CREATE handlers for Xray/Outline keys used full-page render (1-2s), causing Cloudflare 526/524 timeouts. Fixed by switching to `send_redirect_admin()` (~8ms). (#162)
-163. **RLock NOT Lock when render_keys() is called inside a with-block** — `_form_idempotency_lock` used `threading.Lock()` (non-reentrant). POST handlers calling `send_html(render_keys(...))` INSIDE a `with _form_idempotency_lock:` block cause reentrant deadlock when `render_keys()` tries to acquire same lock. Fix: change to `RLock()` OR move `send_html()` outside the lock block. Also fix same pattern in `_admin_create_lock` and `_agent_create_lock`. (#163)
-
-### New Lessons (2006-07-15)
+### Most Recent Lessons (2026-07-15)
 | # | Lesson |
 |:-:|--------|
-| 164 | **Pre-redeem must NOT change status** — Leave deposit_status as "verified" for sales record to handle deduction and status change. |
-| 165 | **Payment_method must show deposit method** — Staff and finance need to know the original deposit payment method (KPay, WavePay, etc.) not just the session-end collection method. |
 | 166 | **Cash_movements needs session-end payments** — Deposit injects are only half the picture. The actual revenue collection at session end must also be recorded in cash_movements. |
 | 167 | **Auto-cancel MUST skip active bookings** — Without `AND cs.id IS NULL`, the cron cancels bookings that have already been checked in, forfeiting legitimate deposits. |
+| 168 | **(dep) suffix breaks finance balance calculation** — `float("6000 (dep)")` raises ValueError in Python, triggering fallback that splits net evenly across payment parts instead of using actual amounts. Always strip ` (dep)` before float conversion in `get_finance_balances()` and `get_balance_sheet()`. |
 
-*(Trimmed: keeping only 5 most recent lessons)*
+*(Trimmed: keeping only 3 most recent lessons)*
 
 ## Major Projects & Milestones
 

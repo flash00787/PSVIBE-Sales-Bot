@@ -1,12 +1,12 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-15 05:30 UTC
+> Last updated: 2026-07-15 11:30 UTC
 
 ---
 
 ## ⚡ JULY 15 UPDATE (July 15, 2026 - 05:30 UTC) — 🛒 SUMMER SALE STARTS TODAY! (Date Correction!) + PlayStation Blog's 19 Unmissable Games List! + Mexico Antitrust Complaint! + PS Plus Lineup Reveal PENDING!
 
-> **Summary:** Morning sweep — 6 hours since last update. **🛒 CORRECTION: Summer Sale starts TODAY (Jul 15), not Jul 16 as previously tracked!** Runs Jul 15 - Aug 12 (not Aug 1)! Official PS Blog post published Jul 14. **🎮 PlayStation Blog published '19 unmissable PS5 games still releasing in 2026'** — official Sony curation confirming 5+ games not yet in tracker. **⚖️ Sony faces antitrust complaint in Mexico** over disc phaseout — lawmakers filing with National Antitrust Commission. **📋 PS Plus Extra/Premium July full lineup reveal PENDING** — not yet published as of 05:30 UTC today. Also: Eurogamer confirms CoD BO1/BO2 PS5 ports are infested with hacked lobbies. Disc petition surges to 310K signatures.
+> **Summary:** Midday sweep — 6 hours since last update at 05:30 UTC. **🛒 Summer Sale is NOW LIVE!** Check PS Store. **📋 PS Plus Extra/Premium July lineup reveal STILL PENDING** as of 11:30 UTC — not yet published on PS Blog (verified via direct check). Web search API down — verified via PS Blog. All other previously tracked data remains current.
 
 ### 🛒 CORRECTION: PlayStation Store Summer Sale — STARTS TODAY (Jul 15)! Previously Tracked Jul 16 was WRONG! 🆕🔥
 
@@ -73,7 +73,7 @@
 | Topic | Status | Notes |
 |-------|--------|-------|
 | 🛒 **Summer Sale 2026** | **STARTS TODAY 🆕** | Jul 15 - Aug 12! Previously tracked Jul 16! CORRECTION! Up to 75% off! |
-| 📋 **PS Plus Extra/Premium Jul** | **REVEAL PENDING** | Not yet published as of 05:30 UTC. Check later today! |
+| 📋 **PS Plus Extra/Premium Jul** | **STILL PENDING 🕐** | Not yet published as of 11:30 UTC. Still expected later today! |
 | ⚖️ **Mexico Antitrust Complaint** | **FILING 🆕** | Sony faces international antitrust escalation over disc phaseout! 310K petition! |
 | 🎮 **PS Blog 19 Unmissable Games** | **PUBLISHED 🆕** | Big Walk, Beast of Reincarnation, MGS Vol 2, Resonance, Star Wars Zero Company NEW! |
 | 🐉 **DD2 Dark Arisen Director** | **CONFIRMED** | Kenta Kinoshita! Series veteran! |
@@ -86,9 +86,9 @@
 | 🥊 **Marvel Tōkon: Fighting Souls** | **Aug 6!** | Kieron Gillen writing! |
 | 🎮 **Palworld 1.0** | **855K peak!** | On ALL consoles! |
 
-### 📋 Updated Priority Lounge Actions (Jul 15 - 05:30 UTC):
-1. **🛒🛒🛒 CHECK SUMMER SALE — STARTS TODAY!** Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds, etc! Expand lounge library!
-2. **📋 CHECK PS STORE for PS Plus Extra/Premium July lineup reveal** — full list coming today! Psi-Ops confirmed!
+### 📋 Updated Priority Lounge Actions (Jul 15 - 11:30 UTC):
+1. **🛒🛒🛒 CHECK SUMMER SALE — NOW LIVE!** Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds, etc! Expand lounge library! Sale ends Aug 12!
+2. **📋 PS Plus Extra/Premium July lineup STILL PENDING** — keep checking PS Blog today! Psi-Ops confirmed. Full list drops any hour!
 3. **⚖️ MONITOR Mexico antitrust complaint** — disc phaseout facing international legal pressure!
 4. **🎮 ADD new tracked games:** Big Walk (Aug 4, PS Plus!), Beast of Reincarnation (Aug 4), MGS Collection Vol 2 (Aug 27), Resonance: Plague Tale (Aug 27), Star Wars Zero Company (Aug 27)!
 5. **🔥 JULY 23 PREPARATION — 8 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD UPDATES!
