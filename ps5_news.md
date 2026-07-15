@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-15 11:30 UTC
+> Last updated: 2026-07-15 17:31 UTC
 
 ---
 
@@ -4351,3 +4351,119 @@ Leaving the Extra/Premium Game Catalog on July 21:
 | 🎮🔥 **Palworld 1.0** | **855K+ PEAK** | Still dominating! Install on ALL consoles! |
 | 🔐 **PSN 2FA Bypass Exploit** | **UNPATCHED** | Still active! AUDIT lounge accounts! |
 | 🎪 **God of War Laufey Disc** | **CONFIRMED** | 2027 target! Pre-order when available! |
+
+---
+
+## ⚡ AFTERNOON UPDATE (July 15, 2026 - 17:31 UTC) — 🚨 PS PLUS EXTRA/PREMIUM JULY LINEUP REVEALED! Rise of the Ronin Available TODAY! + Indigo Prophecy Classic! + Ratchet & Clank Mobile Hero Shooter Announced! + Moss: The Forgotten Relic Arrives Tomorrow! 🆕🔥
+
+> **Summary:** Late-afternoon sweep (6 hours since last update at 11:30 UTC). **🚨🚨 BREAKING: PlayStation Blog FINALLY published the PS Plus Extra/Premium July lineup!** (Previously tracked as "STILL PENDING"). **Rise of the Ronin** is available to play **TODAY** (Jul 15) for US/UK subscribers! **Avatar: Frontiers of Pandora** joins Jul 21! **Indigo Prophecy** revealed as a second Premium classic alongside Psi-Ops! Plus: **Ratchet & Clank: Ranger Rumble** — free-to-play mobile hero shooter pre-registration open! **Moss: The Forgotten Relic** lands on PS5 tomorrow (Jul 16, non-VR)! **CoD MW4 Kill Block mode** detailed! **Arknights: Endfield PS5 Pro PSSR upgrade** launches!
+
+### 🚨🔥 PS Plus Extra/Premium July 2026 — FULL LINEUP REVEALED! Rise of the Ronin TODAY! 🆕🔥
+
+> **Previously tracked as "STILL PENDING" as of 11:30 UTC — NOW FINALLY PUBLISHED!** (Jul 15, PlayStation Blog)
+
+- **PS Blog published the full lineup** on July 15, 2026 — 6 hours after our last scan!
+- **IMPORTANT:** Select markets (US, UK, Japan) get staggered release dates. Global Jul 21 for most titles.
+
+#### 🎮 New to PS Plus EXTRA (Game Catalog):
+
+| Game | Platform | Available |
+|------|----------|-----------|
+| 🎯 **Rise of the Ronin** — Team Ninja open-world action RPG! 19th-century Japan! | **PS5** | **TODAY Jul 15 (US/UK)** / Jul 16 (Japan) |
+| 🌍 **Avatar: Frontiers of Pandora** — Massive open-world Na'vi adventure | **PS5** | Jul 21 (global) |
+| 🔥 **Firefighting Simulator: Ignite** — UE5 firefighting sim! Co-op! | **PS5** | Jul 21 (global) |
+| 🦎 **Mighty Morphin Power Rangers: Rita's Rewind** — 2D brawler! | **PS5, PS4** | Jul 28 (US/UK/JP) |
+| 🧟 **Dying Light** — First-person zombie survival classic | **PS4** | Jul 28 (US/UK/JP) |
+| 🚀 **Citizen Sleeper 2: Starward Vector** — Acclaimed tabletop-inspired RPG | **PS5** | Jul 28 (US/UK/JP) |
+| ⛄ **Snow Bros. Wonderland** — 3D isometric revival of classic arcade | **PS5** | Jul 28 (US/UK/JP) |
+
+#### 📀 New to PS Plus PREMIUM (Classics):
+
+| Game | Platform | Available |
+|------|----------|-----------|
+| 🧠 **Psi-Ops: The Mindgate Conspiracy** (Previously tracked ✓) | PS5, PS4 | Jul 21 (global) |
+| 👁️ **Indigo Prophecy** 🆕 — Quantic Dream's paranormal thriller! **NOT previously tracked!** | PS5, PS4 | Jul 21 (global) |
+
+- **Indigo Prophecy** (also known as Fahrenheit outside NA) — Quantic Dream's first interactive drama! Paranormal murder conspiracy! Heavy Rain / Beyond: Two Souls predecessor!
+- **Rise of the Ronin** from Team Ninja (Nioh, Ninja Gaiden) = **MASSIVE get** for Extra catalog! Open world action RPG, critically acclaimed!
+- **Avatar: Frontiers of Pandora** = Ubisoft's beautiful but overlooked open world — great for lounge ambiance!
+- **Power Rangers: Rita's Rewind** = nostalgia brawler, perfect party game for younger customers!
+- **Dying Light** = classic zombie parkour survival — still holds up!
+
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR:**
+  - **Rise of the Ronin is available TODAY!** Best new Extra addition in months! Team Ninja quality = instant lounge draw!
+  - **Avatar: Frontiers of Pandora** (Jul 21) = stunning visual showcase for lounge PS5s! Great for newer consoles!
+  - **Indigo Prophecy** (Premium) — classic narrative experience, unique addition
+  - **Power Rangers: Rita's Rewind** (Jul 28) — perfect for younger customers at the lounge!
+  - **Departures Jul 21:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 — binge before then!
+  - ⭐⭐⭐⭐⭐ lounge value — Rise of the Ronin alone is worth the Extra subscription this month!
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 🔫 Ratchet & Clank: Ranger Rumble — Free-to-Play Mobile Hero Shooter! Pre-Registration OPEN! 🆕🆕🆕
+
+- **Developer:** Oh Bibi + PlayStation Studios + **Insomniac Games**
+- **Platform:** Mobile (iOS + Android) — Free-to-Play
+- **Genre:** Hero shooter — real-time PvP arena battles + PvE elements
+- **12 heroes at launch** — brand-new characters including NEW Lombaxes designed with original Insomniac developers!
+- **6 game modes:** Team PvP, PvE waves, battle royale-inspired mode, football-inspired showdown, and more
+- **Exclusive pre-registration reward:** Clank Suit skin for Widget
+- **Global pre-registration NOW OPEN** on App Store and Google Play
+- **Already soft-launched** in Canada, Nordics, France, and Asia — refined through player feedback
+- Source: PlayStation Blog (Jul 15, 2026)
+- **💡💡 Lounge Note:** Not directly a lounge game (mobile), but interesting as a PlayStation IP expansion into mobile gaming. New Lombax characters from Insomniac = could tie into future Ratchet & Clank console games. ⭐⭐
+
+### 🐭 Moss: The Forgotten Relic — Launches TOMORROW (Jul 16) on PS5! NON-VR! 🆕
+
+- **Developer:** Polyarc
+- **Release: July 16, 2026** on PS5 — **TOMORROW!**
+- **Content:** Reimagined collection of Moss + Moss: Book II + Twilight Garden expansion — ALL in one package!
+- **NO VR headset required!** First time Moss is playable without PS VR1/PS VR2
+- **Gameplay:** Action-adventure puzzle game starring Quill, a courageous mouse hero. You become the "Reader" — a mysterious spirit companion who helps Quill
+- **Unique mechanic:** Quill SEES you — she looks to you for reassurance, high-fives you, celebrates with you
+- **Handcrafted diorama-style environments** — like a living storybook
+- **💡💡💡💡 Lounge Impact:** Moss was one of the most beloved PS VR exclusives. Now non-VR = accessible to ALL customers. Charming, family-friendly, puzzle-focused. Great for casual/lighter sessions. ⭐⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 🪖 CoD MW4 — Ever-Changing "Kill Block" Multiplayer Mode Detailed! 🆕
+
+- **PlayStation Blog published** a deep dive on Modern Warfare 4's "Kill Block" multiplayer mode
+- **Described as:** An ever-changing mode — specific gameplay details on PS Blog
+- Source: PlayStation Blog (Jul 15, 2026)
+- **💡 Casual note:** Not critical, but CoD MW4 (Oct 23) continues to build hype pre-launch.
+
+### 🔮 Arknights: Endfield on PS5 Pro — PSSR Upgrade Launches with Version 1.4! 🆕
+
+- **Hypergryph** announced PS5 Pro upgraded PSSR (PlayStation Spectral Super Resolution) for Arknights: Endfield
+- **Launches with Version 1.4** — enhanced visuals for PS5 Pro console owners
+- **💡 Lounge Note:** If PS VIBE has PS5 Pro units, Arknights: Endfield will look better. Niche. ⭐
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 📋 Updated Priority Lounge Actions (Jul 15 - 17:30 UTC):
+1. **🛒🛒🛒 SUMMER SALE IS LIVE!** Up to 75% off! Check PS Store NOW! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds! Sale ends Aug 12!
+2. **🚨🔥 RISE OF THE RONIN AVAILABLE TODAY on PS Plus Extra!** Install on lounge PS5s IMMEDIATELY! Team Ninja open world RPG! FREE with Extra membership!
+3. **📋 PS Plus Extra/Premium July lineup FINALLY REVEALED!** See above! Avatar: Frontiers of Pandora (Jul 21), Power Rangers: Rita's Rewind (Jul 28), Indigo Prophecy (Premium)!
+4. **🐭 Moss: The Forgotten Relic launches TOMORROW (Jul 16)!** Non-VR! Family-friendly puzzle adventure!
+5. **🔥 JULY 23 PREPARATION — 8 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD UPDATES!
+6. **⚖️ MONITOR Mexico antitrust complaint** — disc phaseout facing international legal pressure!
+7. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+8. **🎪 Pre-order God of War Laufey physical disc when available!** 2027 target!
+9. **🚨 TEST AC Black Flag Resynced at lounge** — offline mode failures confirmed!
+10. **🎮🔥 PALWORLD 1.0 855K PEAK!** Install on EVERY console!
+
+### 📋 Quick Status Update (Jul 15 - 17:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📋 **PS Plus Extra/Premium Jul** | **REVEALED 🆕🔥** | Rise of the Ronin TODAY! Avatar Jul 21! Indigo Prophecy! |
+| 🛒 **Summer Sale 2026** | **LIVE! 🛒** | Jul 15 - Aug 12! Up to 75% off! |
+| 🐭 **Moss: The Forgotten Relic PS5** | **TOMORROW 🆕** | Jul 16! Non-VR! |
+| 🔫 **Ratchet & Clank: Ranger Rumble** | **PRE-REG OPEN 🆕** | Mobile hero shooter! |
+| ⚖️ **Mexico Antitrust Complaint** | **FILING** | Sony faces international escalation! |
+| 🎮 **PS Blog 19 Unmissable Games** | **PUBLISHED** | Big Walk, MGS Vol 2, Star Wars Zero Company! |
+| 🐉 **DD2 Dark Arisen Director** | **CONFIRMED** | Kenta Kinoshita! |
+| 🚨 **Halo Project Ekur** | **CANCELLED** | No standalone multiplayer for PS5 Halo! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28! 13 days!** | Premium early access Jul 23! |
+| 🚨 **CoD BO1 & BO2 PS5 Ports** | **LIVE! HACKED!** | Campaign/zombies only! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 8 days!** | Prepare all consoles! |
+| 🎪 **God of War Laufey** | **Disc confirmed! 2027!** | Comic-Con panel Jul 24! |
+| 🥊 **Marvel Tōkon Free Beta** | **Jul 24-26!** | FREE on all PS5s! |
+| 🎮 **Palworld 1.0** | **855K peak!** | On ALL consoles! |
