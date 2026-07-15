@@ -13,7 +13,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 from telegram.constants import ParseMode
 
 # ── Blocked Users ──
-BLOCKED_IDS = {"7158675982", "8383666570"}
+BLOCKED_IDS = {"7158675982", "8383666570", "8806200022"}
 
 def _is_blocked(update: Update) -> bool:
     """Check if the user is blocked from using the bot."""
