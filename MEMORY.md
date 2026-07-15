@@ -104,6 +104,14 @@ Kora now manages **9 projects** with full coordination tool support.
 162. **ALL POST mutating handlers must use redirect, not full render** — CREATE handlers for Xray/Outline keys used full-page render (1-2s), causing Cloudflare 526/524 timeouts. Fixed by switching to `send_redirect_admin()` (~8ms). (#162)
 163. **RLock NOT Lock when render_keys() is called inside a with-block** — `_form_idempotency_lock` used `threading.Lock()` (non-reentrant). POST handlers calling `send_html(render_keys(...))` INSIDE a `with _form_idempotency_lock:` block cause reentrant deadlock when `render_keys()` tries to acquire same lock. Fix: change to `RLock()` OR move `send_html()` outside the lock block. Also fix same pattern in `_admin_create_lock` and `_agent_create_lock`. (#163)
 
+### New Lessons (2006-07-15)
+| # | Lesson |
+|:-:|--------|
+| 164 | **Pre-redeem must NOT change status** — Leave deposit_status as "verified" for sales record to handle deduction and status change. |
+| 165 | **Payment_method must show deposit method** — Staff and finance need to know the original deposit payment method (KPay, WavePay, etc.) not just the session-end collection method. |
+| 166 | **Cash_movements needs session-end payments** — Deposit injects are only half the picture. The actual revenue collection at session end must also be recorded in cash_movements. |
+| 167 | **Auto-cancel MUST skip active bookings** — Without `AND cs.id IS NULL`, the cron cancels bookings that have already been checked in, forfeiting legitimate deposits. |
+
 *(Trimmed: keeping only 5 most recent lessons)*
 
 ## Major Projects & Milestones

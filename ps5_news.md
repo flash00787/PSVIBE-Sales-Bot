@@ -1,6 +1,102 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-14 23:30 UTC
+> Last updated: 2026-07-15 05:30 UTC
+
+---
+
+## ⚡ JULY 15 UPDATE (July 15, 2026 - 05:30 UTC) — 🛒 SUMMER SALE STARTS TODAY! (Date Correction!) + PlayStation Blog's 19 Unmissable Games List! + Mexico Antitrust Complaint! + PS Plus Lineup Reveal PENDING!
+
+> **Summary:** Morning sweep — 6 hours since last update. **🛒 CORRECTION: Summer Sale starts TODAY (Jul 15), not Jul 16 as previously tracked!** Runs Jul 15 - Aug 12 (not Aug 1)! Official PS Blog post published Jul 14. **🎮 PlayStation Blog published '19 unmissable PS5 games still releasing in 2026'** — official Sony curation confirming 5+ games not yet in tracker. **⚖️ Sony faces antitrust complaint in Mexico** over disc phaseout — lawmakers filing with National Antitrust Commission. **📋 PS Plus Extra/Premium July full lineup reveal PENDING** — not yet published as of 05:30 UTC today. Also: Eurogamer confirms CoD BO1/BO2 PS5 ports are infested with hacked lobbies. Disc petition surges to 310K signatures.
+
+### 🛒 CORRECTION: PlayStation Store Summer Sale — STARTS TODAY (Jul 15)! Previously Tracked Jul 16 was WRONG! 🆕🔥
+
+- **PlayStation Blog published** the Summer Sale announcement on **Jul 14** — starts **TOMORROW = TODAY (Jul 15)**
+- **Previously tracked as Jul 16 - Aug 1** — THIS WAS WRONG. Corrected dates:
+  - **Start:** Jul 15 (today!), not Jul 16 ❌
+  - **End:** Aug 12, not Aug 1 ❌
+- **Up to 75% off** across hundreds of PS5, PS4, PS VR2 titles
+- **Notable sale titles for lounge:**
+  - 🎮 **ASTRO BOT** (must-have PS5 showcase)
+  - ⚔️ **Elden Ring Nightreign**
+  - 🗡️ **FF7 Rebirth** 
+  - 🎯 **Hogwarts Legacy**
+  - 👑 **Kingdom Come: Deliverance II**
+  - 🦖 **Monster Hunter Wilds**
+  - 🐲 **Palworld** (further discount? check!)
+  - 🏡 **House Flipper 2 + Scooby-Doo DLC**
+  - 🎪 **Gran Turismo 7**
+  - 🧩 **It Takes Two**
+  - 🐱 **Stray**
+  - 🤖 **ASTRO BOT**
+- **Full list** goes live on PS Store when sale starts today
+- **💡💡💡💡 LOUNGE IMPACT:** Summer Sale starts TODAY! Check PS Store immediately! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II and Monster Hunter Wilds on sale = massive savings opportunity for lounge library expansion! ⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 14, 2026)
+
+### 🎮 PlayStation Blog: 19 Unmissable PS5 Games Still Releasing in 2026! — Official Sony Guide! 🆕🔥
+
+- **PlayStation Blog published** an official Sony-curated list of 19 upcoming PS5 games (Jul 14)
+- **New games to add to tracker (NOT previously tracked):**
+
+  - **🎮 Big Walk (Aug 4)** — From House House (Untitled Goose Game dev)! Open-world co-op puzzle adventure! Up to 12 players! Communication via singing, codes, arm gesturing! **Will be PS Plus Monthly Games at launch!** 🔥🔥
+  - **🎮 Beast of Reincarnation (Aug 4)** — Game Freak's mythology/sci-fi action RPG! Set in 4026 Japan! Real-time + turn-based hybrid combat! First non-Pokémon Game Freak AAA?
+  - **🎮 Metal Gear Solid: Collection Master Vol. 2 (Aug 27)** — MGS4: Guns of the Patriots, MGS: Peace Walker, MG: Ghost Babel! MGS4 FINALLY on modern consoles!
+  - **🎮 Resonance: A Plague Tale Legacy (Aug 27)** — Asobo Studio's third Plague Tale! 15 years before Requiem! New protagonist Sophia! Mythological/dark fantasy twist!
+  - **🎮 Star Wars Zero Company (Aug 27)** — Bit Reactor & Respawn! Turn-based tactics! Clone Wars era! Original story! Jedi + scoundrel archetypes!
+  - **Also featured but already tracked:** Halo: Campaign Evolved (Jul 28), MARVEL Tōkon: Fighting Souls (Aug 6), The Blood of Dawnwalker (Sep 3), Onimusha: Way of the Sword (Sep 4), Marvel's Wolverine (Sep 15)
+  - **Coming 2027:** Tomb Raider: Legacy of Atlantis, Persona 4 Revival
+
+- **💡💡💡💡 LOUNGE IMPACT:** Official Sony curation confirms 5+ new titles worth tracking. **Big Walk** (Aug 4) is the standout — Party game from acclaimed dev, PS Plus at launch = free for lounge! MGS4 on modern PS5 finally = nostalgia draw. Star Wars Zero Company (Aug 27) = tactics fans + Star Wars IP. ⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 14, 2026)
+
+### ⚖️ 🆕 Sony Faces ANTITRUST COMPLAINT in MEXICO Over Disc Phaseout! 310K Petition Signatures!
+
+- **Federal Representative Iraís Reyes and Senator Luis Donaldo Colosio** (Movimiento Ciudadano party) preparing to file complaint with **Mexico's National Antitrust Commission**
+- **Key argument:** Sony becoming sole game distributor on PlayStation = anti-competitive, anti-consumer behavior
+  - "If discs disappear, players will be forced to buy exclusively through Sony's store"
+  - Retailers (Liverpool, Sanborns, GamePlanet) would no longer compete
+  - Second-hand and game trading markets would disappear
+- **Cited Sony's removal of 500+ movies/TV shows from users' accounts** (without refund) as example of full platform control dangers
+- **Petition 'Don't Kill the Disc' now at ~310,000 signatures** — up from ~170K in previous tracking
+- **First antitrust escalation since CEO Totoki sold 56% of Sony stock** (previously tracked Jul 9)
+- **💡💡💡💡 LOUNGE IMPACT:** This is a SEPARATE escalation from the existing US antitrust lawsuit. Mexico is now formally challenging Sony's disc phaseout on anti-competition grounds. While unlikely to block phaseout, it adds international pressure. Build disc library NOW. ⭐⭐⭐⭐
+- Sources: Eurogamer (Jul 14, 2026), LevelUp
+
+### 🏴‍☠️ Eurogamer Confirms: CoD BO1 & BO2 PS4/PS5 Ports Riddled with Hackers! But Activison Responding! 🆕
+
+- **Eurogamer confirmed** the hacked lobby reports — hacked players, modded save files and aimbots plaguing online multiplayer
+- **Activision is doing SOMETHING** — disabled Ground War & Domination then re-enabled with server-side fixes
+- **Already tracked** in previous updates but Eurogamer's confirmation (Jul 14) adds credibility
+- **⚠️ Already covered:** Buy for CAMPAIGN/ZOMBIES only, not multiplayer!
+- Sources: Eurogamer (Jul 14)
+
+### 📋 🔄 Quick Status Check (Jul 15 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🛒 **Summer Sale 2026** | **STARTS TODAY 🆕** | Jul 15 - Aug 12! Previously tracked Jul 16! CORRECTION! Up to 75% off! |
+| 📋 **PS Plus Extra/Premium Jul** | **REVEAL PENDING** | Not yet published as of 05:30 UTC. Check later today! |
+| ⚖️ **Mexico Antitrust Complaint** | **FILING 🆕** | Sony faces international antitrust escalation over disc phaseout! 310K petition! |
+| 🎮 **PS Blog 19 Unmissable Games** | **PUBLISHED 🆕** | Big Walk, Beast of Reincarnation, MGS Vol 2, Resonance, Star Wars Zero Company NEW! |
+| 🐉 **DD2 Dark Arisen Director** | **CONFIRMED** | Kenta Kinoshita! Series veteran! |
+| 🚨 **Halo Project Ekur** | **CANCELLED** | No standalone multiplayer for PS5 Halo! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28! 13 days!** | Premium early access Jul 23! |
+| 🚨 **CoD BO1 & BO2 PS5 Ports** | **LIVE! HACKED!** | Buy for campaigns/zombies only! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 8 days!** | Prepare all consoles! |
+| 🎪 **God of War Laufey** | **Disc confirmed! 2027!** | Comic-Con panel Jul 24! |
+| 🥊 **Marvel Tōkon Free Beta** | **Jul 24-26!** | FREE on all PS5s! |
+| 🥊 **Marvel Tōkon: Fighting Souls** | **Aug 6!** | Kieron Gillen writing! |
+| 🎮 **Palworld 1.0** | **855K peak!** | On ALL consoles! |
+
+### 📋 Updated Priority Lounge Actions (Jul 15 - 05:30 UTC):
+1. **🛒🛒🛒 CHECK SUMMER SALE — STARTS TODAY!** Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds, etc! Expand lounge library!
+2. **📋 CHECK PS STORE for PS Plus Extra/Premium July lineup reveal** — full list coming today! Psi-Ops confirmed!
+3. **⚖️ MONITOR Mexico antitrust complaint** — disc phaseout facing international legal pressure!
+4. **🎮 ADD new tracked games:** Big Walk (Aug 4, PS Plus!), Beast of Reincarnation (Aug 4), MGS Collection Vol 2 (Aug 27), Resonance: Plague Tale (Aug 27), Star Wars Zero Company (Aug 27)!
+5. **🔥 JULY 23 PREPARATION — 8 DAYS AWAY!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD UPDATES!
+6. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+7. **🚨 TEST AC Black Flag Resynced at lounge** — Ubisoft Connect outage proved offline mode fails!
+8. **🎪 Pre-order God of War Laufey physical disc when available!** 2027 target!
+9. **🔴 CoD BO1 & BO2 — buy for CAMPAIGN/ZOMBIES only!** Multiplayer HACKED!
+10. **🎮🔥 PALWORLD 1.0 855K PEAK!** Install on EVERY console!
 
 ---
 
