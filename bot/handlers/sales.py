@@ -411,6 +411,12 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         d.update(game_amt=game_amt, food_total=food_total,
                  net_total=net_total, remaining_mins=None, multiplier=multiplier)
 
+        # Deposit deduction display
+        _dep_amt = int(d.get("deposit_amount", 0) or 0)
+        _dep_st = d.get("deposit_status", "") or ""
+        _dep_line = f"\n💳 Deposit: -{_dep_amt:,} Ks ✅" if (_dep_amt > 0 and _dep_st == "verified") else ""
+        _net_disp = max(0, net_total - _dep_amt) if _dep_amt > 0 and _dep_st == "verified" else net_total
+
         body = (
             f"🕹️ Console: *{d.get('c_id', '-')}*\n"
             f"📊 Rate Multiplier: *{mult_display}x*\n"
@@ -418,7 +424,8 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"🍔 Food & Drink:\n{food_sec}\n"
             f"━━━━━━━━━━━━━━━━━━\n"
             f"💰 Food Total: *{food_total:,} Ks*\n"
-            f"✅ *Net Payable: {net_total:,} Ks*"
+            f"{_dep_line}\n"
+            f"✅ *Net Payable: {_net_disp:,} Ks*"
         )
         title = "📋 *စာရင်းအချုပ် — Guest*"
 
@@ -505,9 +512,21 @@ async def prompt_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @log_duration("sales:prompt_kpay")
 async def prompt_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show dynamic payment method buttons from Setting!Y + Done button."""
+    """Show dynamic payment method buttons from Setting!Y + Done button.
+    
+    Deducts verified deposit from net_total so staff only collects remaining amount.
+    """
     d = context.user_data
     net = d.get("net_total", 0)
+    deposit_amount = int(d.get("deposit_amount", 0) or 0)
+    deposit_status = d.get("deposit_status", "") or ""
+    
+    # ── Deduct deposit from display total ──
+    deposit_deduct_line = ""
+    if deposit_amount > 0 and deposit_status == "verified":
+        net = max(0, net - deposit_amount)
+        deposit_deduct_line = f"💳 Deposit: -{deposit_amount:,} Ks ✅\n"
+    
     m_id = d.get("m_id", "-")
     c_id = d.get("c_id", "-")
     label = "Guest" if m_id.strip() == "0 (Guest)" else m_id
@@ -533,7 +552,9 @@ async def prompt_kpay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         step_hdr(6, 6, "Payment — Method") +
         f"👤 *{label}*  |  🕹️ *{c_id}*\n"
-        f"💰 Total: *{net:,} Ks*\n\n"
+        f"💰 Gross Total: *{d.get('net_total', 0):,} Ks*\n"
+        f"{deposit_deduct_line}"
+        f"✅ Net Payable: *{net:,} Ks*\n\n"
         f"{payment_status}"
         f"💳 Payment Method ရွေးပါ -",
         parse_mode="Markdown",
@@ -1064,6 +1085,11 @@ async def step_pay_method(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     d = context.user_data
     net = d.get("net_total", 0)
+    # Account for deposit in display
+    deposit_amount = int(d.get("deposit_amount", 0) or 0)
+    deposit_status = d.get("deposit_status", "") or ""
+    if deposit_amount > 0 and deposit_status == "verified":
+        net = max(0, net - deposit_amount)
 
     if text == BTN_CANCEL:
         return await cmd_cancel(update, context)
@@ -1121,6 +1147,11 @@ async def step_pay_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     d = context.user_data
     net = d.get("net_total", 0)
+    # Account for deposit in display
+    deposit_amount = int(d.get("deposit_amount", 0) or 0)
+    deposit_status = d.get("deposit_status", "") or ""
+    if deposit_amount > 0 and deposit_status == "verified":
+        net = max(0, net - deposit_amount)
     method = d.get("current_pay_method", "")
 
     if text == BTN_CANCEL:
@@ -1211,6 +1242,13 @@ async def _show_payment_review(update: Update, context: ContextTypes.DEFAULT_TYP
     d = context.user_data
     payments = d.get("payments", {})
     net = d.get("net_total", 0)
+    # Account for deposit in display
+    deposit_amount = int(d.get("deposit_amount", 0) or 0)
+    deposit_status = d.get("deposit_status", "") or ""
+    deposit_deduct_line = ""
+    if deposit_amount > 0 and deposit_status == "verified":
+        net = max(0, net - deposit_amount)
+        deposit_deduct_line = f"💳 Deposit: -{deposit_amount:,} Ks ✅\n"
     m_id = d.get("m_id", "-")
     c_id = d.get("c_id", "-")
     play_mins = d.get("mins", 0)
@@ -1251,6 +1289,7 @@ async def _show_payment_review(update: Update, context: ContextTypes.DEFAULT_TYP
         f"🧾 Game: *{game_amt:,} Ks*  |  Food: *{food_total:,} Ks*\n"
         f"{'💰 Gross: *' + f'{gross:,}' + ' Ks*  →  ' if discount > 0 else ''}"
         f"{disc_ln}"
+        f"{deposit_deduct_line}"
         f"💰 Net Payable: *{net:,} Ks*\n"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"💳 Payments:\n{pay_section}\n\n"
@@ -1336,10 +1375,12 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Deposit info for receipt display
     deposit_amount = d.get("deposit_amount", 0) or 0
     deposit_status = d.get("deposit_status", "") or ""
+    deposit_method = d.get("deposit_method", "") or ""
 
     # ── Deposit Pre-Redeem: deduct from net_total BEFORE receipt ──────────
     booking_id = d.get("booking_id", "")
     deposit_pre_deducted = False
+    _original_net = net_total  # save original before deposit deduction (for sales record)
     if booking_id and deposit_status == "verified" and deposit_amount > 0:
         try:
             from bot.api_client import api_post
@@ -1348,7 +1389,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             if pre_result and isinstance(pre_result, dict):
                 _data = pre_result.get("data") or pre_result
-                if _data.get("deposit_status") == "redeemed":
+                if _data.get("deposit_amount", 0) > 0:
                     deposit_pre_deducted = True
                     net_total = max(0, net_total - deposit_amount)
                     d["net_total"] = net_total
@@ -1552,6 +1593,10 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             try:
                 # Build payment_method from ALL payment methods
                 _pm_parts = []
+                # Prepend deposit payment method if deposit was redeemed
+                if deposit_pre_deducted and deposit_amount > 0:
+                    _dep_label = {"kpay": "KPay", "wavepay": "WavePay", "aya_pay": "AYA Pay", "kbz": "KBZ Pay"}.get(deposit_method, deposit_method.capitalize())
+                    _pm_parts.append(f"{_dep_label}:{deposit_amount} (dep)")
                 if kpay > 0:
                     _pm_parts.append(f"KPay:{kpay}")
                 if cash > 0:
@@ -1570,7 +1615,7 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "game_amount": game_amt,
                     "food_total": food_total,
                     "discount": _disc,
-                    "net_total": net_total,
+                    "net_total": _original_net,
                     "kpay": kpay,
                     "cash": cash,
                     "payment_method": _pm_str,
@@ -1819,10 +1864,12 @@ async def launch_session_sale(
                 if booking_data:
                     deposit_amount = int(booking_data.get("deposit_amount", 0) or 0)
                     deposit_status = booking_data.get("deposit_status", "") or ""
+                    deposit_method = booking_data.get("deposit_method", "") or ""
         except Exception as e:
             logger.warning("launch_session_sale: failed to fetch booking deposit: %s", e)
     context.user_data["deposit_amount"] = deposit_amount
     context.user_data["deposit_status"] = deposit_status
+    context.user_data["deposit_method"] = deposit_method
 
     if booking_id:
         try:
