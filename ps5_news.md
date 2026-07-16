@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-16 05:30 UTC
+> Last updated: 2026-07-16 17:32 UTC
 
 ---
 
@@ -4599,3 +4599,71 @@ Leaving the Extra/Premium Game Catalog on July 21:
 | 🎪 **God of War Laufey** | **Disc confirmed! 2027!** | Comic-Con panel Jul 24! |
 | 🥊 **Marvel Tōkon Free Beta** | **Jul 24-26!** | FREE on all PS5s! |
 | 🎮 **Palworld 1.0** | **855K peak!** | On ALL consoles! |
+
+---
+
+## ⚡ JULY 16 AFTERNOON (July 16, 2026 - 17:32 UTC) — 🆕 Hellraiser: Revival Announced! Oct 8! Digital + Physical! 🆕 AC Black Flag Resynced NG+ Confirmed! 🆕 Pro Jank Footy Aug 12! + No Breaking News
+
+> **Summary:** Afternoon sweep (12 hours since last update at 05:30 UTC). **🆕 PlayStation Blog published new articles today (Jul 16):** Clive Barker's Hellraiser: Revival announced (Saber Interactive, Oct 8, PS5, digital + physical), Pro Jank Footy arcade football game (Aug 12), and full Marvel Tōkon Open Beta coverage (Jul 24-26). **🆕 Eurogamer: AC Black Flag Resynced New Game Plus officially in development!** All previously tracked data remains current. No breaking/CRITICAL alerts. All games from Jul 16 launched as expected (Moss: The Forgotten Relic NON-VR, Heave Ho 2, PowerWash Sim 2 Star Wars Pack).
+
+### 🆕 Clive Barker's Hellraiser: Revival — ANNOUNCED! Oct 8, 2026! PS5! Digital + Physical! (Jul 16)
+
+- **Developer:** Saber Interactive — first-person survival horror in the Hellraiser universe
+- **Release: October 8, 2026** on PS5 — both **digital AND physical disc** confirmed!
+- **Protagonist:** Aidan Lynch — his girlfriend Sunny activates the Genesis Configuration puzzle box, gets torn in half by Cenobites. Aidan discovers he can still save Sunny's soul
+- **Enemies:**
+  - **Scarlet Church cultists** — led by Marlowe, seeking to create a debauched paradise
+  - **The Unworthy** — Hell's rejects drawn to the Genesis Configuration, seeking redemption
+- **Combat:** Dual-wield weapons (R2) + Genesis Configuration powers (L1)
+- **Stealth mechanic:** Turn off flashlight (R3) to hide from Cenobites + quick 180° turn (Left Stick + L3) to escape
+- **Physical disc confirmed** — one of the final physical releases before Jan 2028 phaseout!
+- **💡 Lounge Value:** ⭐⭐ — Niche horror IP. Hellraiser has a dedicated cult following but is not mainstream. Good for horror-game regulars in October (Halloween season timing is perfect!). Physical disc = potential collector value post-phaseout.
+- Source: PlayStation Blog (Jul 16, 2026)
+
+### 🆕 AC Black Flag Resynced — New Game Plus Confirmed in Development! (Jul 16)
+
+- **Game director Richard Knight** confirmed in an interview with YouTuber JorRaptor: **"Yes, we're working on that right now. It's one of the first things."**
+- **Inspired by Assassin's Creed Shadows' NG+** — Ubisoft already built NG+ for Shadows, making this "low-risk" to implement
+- **No ETA** — Knight says details are still being finalized but called it "such a natural thing"
+- **2 million sales** on launch day likely driving the decision
+- **💡 Lounge Value:** ⭐⭐ — NG+ extends replayability for the 2M+ player base. If lounge customers enjoy the game, NG+ gives them reason to replay.
+- Source: Eurogamer (Jul 16, 2026), JorRaptor interview, GamesRadar+
+
+### 🆕 Pro Jank Footy — Arcade Football Game Announced! August 12! (Jul 16)
+
+- **Developer:** Powerbomb Games — "classic arcade chaos" football
+- **Release: August 12, 2026** on PS5
+- **Creative director David Ashby** (PS Blog post) — arcade-style, over-the-top football action
+- **💡 Lounge Value:** ⭐ — Small indie arcade sports game. If the lounge has sports gamers, could be a fun casual side game.
+- Source: PlayStation Blog (Jul 16, 2026)
+
+### 🆕 GTA 6 Console-Only Launch — Former Rockstar Dev Explains Why (Jul 16)
+
+- **Former Rockstar developer** (unnamed) suggests GTA 6 launches console-first because consoles have "constraints" — devs can optimize for fixed hardware
+- PC version presumably later
+- **💡 Lounge Note:** Already known — GTA 6 console-only at launch (Nov 19) is standard Rockstar strategy. Not new info, just developer insight on reasons.
+- Source: Eurogamer (Jul 16, 2026)
+
+### 🆕 Marvel Tōkon: Fighting Souls — Full Open Beta Coverage! (Jul 16)
+
+- **PlayStation Blog published** "Everything You Need to Know" guide for the Jul 24-26 Open Beta
+- **Already tracked:** Beta runs Jul 24-26, FREE on all PS5s, no sign-up needed
+- **💡 Lounge Reminder:** DOWNLOAD on ALL lounge PS5s! This is a free 3-day event!
+- Source: PlayStation Blog (Jul 16, 2026)
+
+### 📋 Today's Releases Status — ALL LAUNCHED OK
+| Game | Status | Notes |
+|------|--------|-------|
+| 🐭 **Moss: The Forgotten Relic** | **📌 LAUNCHED** | NON-VR collection! Great for lounge! |
+| 🎪 **Heave Ho 2** | **📌 LAUNCHED** | Party game sequel! |
+| 🧼 **PowerWash Sim 2 Star Wars Pack** | **📌 LAUNCHED** | $9.99! 6 Star Wars jobs! |
+
+### 📋 Updated Priority Lounge Actions (July 16 - 17:32 UTC):
+1. **🎪 DOWNLOAD MARVEL TŌKON OPEN BETA Jul 24-26!** FREE! "Everything You Need to Know" guide now on PS Blog! All lounge PS5s!
+2. **🐭🔥 BUY Moss: The Forgotten Relic!** NON-VR! Launched TODAY! Must-have for 1-2 lounge consoles!
+3. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning! Launched today!
+4. **🎮 Claim Rise of the Ronin on PS Plus!** FREE! Install on lounge PS5s!
+5. **👻 TRACK Hellraiser: Revival (Oct 8)** — Halloween-timed horror for October lounge events!
+6. **📋 AC Black Flag Resynced NG+ coming** — wait for feature before re-engaging on this title
+7. **🔥 JULY 23 PREPARATION — 7 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
+8. **🛒🛒🛒 CHECK SUMMER SALE!** Jul 15 - Aug 12! Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, MH Wilds!
