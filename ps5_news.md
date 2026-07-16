@@ -1,12 +1,60 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-15 23:30 UTC
+> Last updated: 2026-07-16 05:30 UTC
 
 ---
 
-## ⚡ JULY 15 LATE NIGHT UPDATE (July 15, 2026 - 23:30 UTC) — 🆕🔥 PS PLUS EXTRA/PREMIUM JULY LINEUP REVEALED! Rise of the Ronin Drops TODAY! + Avatar Frontiers of Pandora! + Indigo Prophecy Classic! + CoD MW4 Kill Block Deep Dive! + Ratchet Mobile Game! + Arknights PSSR! + Moss VR Tomorrow!
+## ⚡ JULY 16 EARLY MORNING (July 16, 2026 - 05:30 UTC) — 📌 LAUNCH DAY: Moss: The Forgotten Relic, Heave Ho 2, PowerWash Sim 2 Star Wars Pack! 🚨 MOS IS NOT VR-ONLY! Non-VR Reimagined Collection + Today's Releases Go Live! + No New Breaking News
 
-> **Summary:** Evening sweep (6 hours since last update at 17:31 UTC). **🆕🔥 PS Plus Extra/Premium July lineup FINALLY REVEALED!** PlayStation Blog published the full lineup today! **Rise of the Ronin available TODAY (Jul 15)!** Avatar: Frontiers of Pandora confirmed! Plus: CoD MW4 Kill Block multiplayer deep dive, Ratchet & Clank MOBILE hero shooter announced, Arknights: Endfield PS5 Pro PSSR upgrade, Moss: The Forgotten Relic VR launches tomorrow, The Mound: Omen of Cthulhu released today, and Heave Ho 2 tomorrow!
+> **Summary:** Morning sweep — 6 hours since last update. **🆕 CORRECTION: Moss: The Forgotten Relic is NOT a VR-only game!** PS Blog confirmed it's a **reimagined collection bringing Moss, Moss: Book II, and the Twilight Garden expansion together WITHOUT requiring a VR headset!** This makes it MUCH more lounge-accessible! **📌 Today's releases go live: Heave Ho 2, PowerWash Sim 2 Star Wars Pack ($9.99, 6 Star Wars jobs), and Moss: The Forgotten Relic.** No new PS Blog posts since yesterday's batch. All previously tracked data remains current.
+
+### 🧊 CORRECTION: Moss: The Forgotten Relic — NOT VR-Only! NON-VR Reimagined Collection Launching TODAY (Jul 16)! 🆕⚠️
+
+- **Previously tracked as:** "PS5 VR Launch" — THIS WAS INCOMPLETE!
+- **What it actually is:** A **reimagined collection** that brings **Moss, Moss: Book II, and the Twilight Garden expansion** together into one handcrafted fantasy adventure for PS5 — **WITHOUT the requirement of a VR headset!** 🆕
+- **Polyarc** confirmed: "Moss: The Forgotten Relic is a reimagined collection… without the requirement of a VR headset"
+- **This is HUGE for the lounge!** Previously, the acclaimed Moss series was locked behind PS VR2 hardware. Now it's playable on ANY PS5 — no VR gear needed!
+- **Same handcrafted world, same adorable hero Quill** — just accessible to everyone
+- The game also still supports **PS VR2** if the lounge has headsets
+- **💡💡💡💡💡 LOUNGE IMPACT UPGRADED:** ⭐⭐⭐⭐⭐ (was ⭐⭐)! This went from a niche VR title to a must-try charming action-adventure that works on any lounge console. Perfect for casual/solo sessions, gorgeous diorama-style visuals, and a heartwarming story. **Add to at least 1-2 lounge PS5s immediately!**
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 📌 TODAY'S RELEASES — JULY 16 — All Go Live!
+
+| Game | Platform | Type | Lounge Value |
+|------|----------|------|-------------|
+| 🐭 **Moss: The Forgotten Relic** | PS5 (Non-VR + VR2) | Reimagined Collection | ⭐⭐⭐⭐⭐ 🔥 NEW CORRECTION! |
+| 🎪 **Heave Ho 2** | PS5, PS4 | Physics Party Game | ⭐⭐ |
+| 🧼 **PowerWash Sim 2: Star Wars Pack** | PS5, PS4 | DLC ($9.99) | ⭐⭐⭐ |
+
+- **Heave Ho 2** — Chaos physics co-op party game sequel. Good casual lounge filler!
+- **PowerWash Simulator 2 Star Wars Pack ($9.99)** — 6 cleaning jobs: Lars' Homestead, Mos Eisley Cantina, AT-AT, Super Star Destroyer Bridge, X-Wing, Millennium Falcon! Low lounge investment for high IP appeal.
+
+### 📋 Quick Status Refresh (Jul 16 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📌 **Moss: The Forgotten Relic** | **LAUNCHING TODAY 🆕** | Non-VR collection! NOT just VR! Buy for ANY lounge PS5! |
+| 📌 **Heave Ho 2** | **LAUNCHING TODAY 🆕** | Party game sequel! |
+| 📌 **PowerWash Sim 2 Star Wars Pack** | **LAUNCHING TODAY 🆕** | $9.99! 6 Star Wars jobs! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 📋 **PS Plus Extra/Premium Jul** | **PUBLISHED 🆕** | Rise of the Ronin, Avatar: Frontiers of Pandora! |
+| 🎮 **PS Blog 19 Unmissable Games** | **PUBLISHED** | Big Watch, MGS Vol 2, more! |
+| 🚨 **CoD BO1 & BO2 PS5** | **LIVE!** | 50% off PS Plus until Aug 6! HACKED multiplayer! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 7 days!** | Prepare all consoles! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | Premium early access Jul 23! |
+| 🎪 **God of War Laufey** | **Disc confirmed! 2027!** | Comic-Con panel Jul 24! |
+
+### 📋 Updated Priority Lounge Actions (Jul 16 - 05:30 UTC):
+1. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** Non-VR collection! Full Moss saga in one package! Gorgeous diorama visuals!
+2. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning job! Low cost, high nostalgia!
+3. **🎪 TRY Heave Ho 2** — Chaotic party game, good for casual sessions!
+4. **🛒🛒🛒 CHECK SUMMER SALE — NOW LIVE!** Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, MH Wilds!
+5. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
+6. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free! Install on lounge consoles!
+7. **🔥 JULY 23 PREPARATION — 7 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
+8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+
+> **Summary:** Evening sweep (6 hours since last update at 17:31 UTC). **🆕🔥 PS Plus Extra/Premium July lineup FINALLY REVEALED!** PlayStation Blog published the full lineup today! **Rise of the Ronin available TODAY (Jul 15)!** Avatar: Frontiers of Pandora confirmed! Plus: CoD MW4 Kill Block multiplayer deep dive, Ratchet & Clank MOBILE hero shooter announced, Arknights: Endfield PS5 Pro PSSR upgrade, Moss: The Forgotten Relic launches tomorrow (NON-VR reimagined collection! — corrected Jul 16), The Mound: Omen of Cthulhu released today, and Heave Ho 2 tomorrow!
 
 ### 📋 🆕🔥 PS PLUS EXTRA/PREMIUM JULY LINEUP — REVEALED! (Jul 15) — FINALLY CONFIRMED!
 
