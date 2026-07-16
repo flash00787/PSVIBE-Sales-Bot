@@ -94,12 +94,12 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-### Most Recent Lessons (2026-07-15)
+### Most Recent Lessons (2026-07-16)
 | # | Lesson |
 |:-:|--------|
-| 166 | **Cash_movements needs session-end payments** — Deposit injects are only half the picture. The actual revenue collection at session end must also be recorded in cash_movements. |
-| 167 | **Auto-cancel MUST skip active bookings** — Without `AND cs.id IS NULL`, the cron cancels bookings that have already been checked in, forfeiting legitimate deposits. |
-| 168 | **(dep) suffix breaks finance balance calculation** — `float("6000 (dep)")` raises ValueError in Python, triggering fallback that splits net evenly across payment parts instead of using actual amounts. Always strip ` (dep)` before float conversion in `get_finance_balances()` and `get_balance_sheet()`. |
+| 169 | **fire_count reset mid-loop sends bogus fire=0 message** — `_sync_duration_from_db()` was called AFTER `fire_count+=1` but BEFORE sending the message. Duration change reset `fire_count=0`, causing overdue calculation `(0-2)*5 = -10 min`. Fix: move sync BEFORE increment, recalculate fire_count from remaining time. |
+| 170 | **`_remind_key` vs `remind_key` key mismatch** — `_remind_key()` (session_reminder.py) returned `f"{cid}|{chat_id}"` (no abs), while `remind_key()` (store) returned `f"{cid}|{abs(chat_id)}"`. This caused `sync_api_reminders_async()` dedup to fail for duplicate store entries with chat_id=0. Fix: add `abs()` to `_remind_key`. |
+| 171 | **`extend-duration` API didn't sync bot's session_reminders.json** — Web dashboard duration change only updated MySQL, not the bot's persistent reminder store. Old `_remind_loop` kept running with stale end_t. Fix: API now updates session_reminders.json with new end_t when extend-duration is called. |
 
 *(Trimmed: keeping only 3 most recent lessons)*
 
