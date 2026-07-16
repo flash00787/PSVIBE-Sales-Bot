@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-07-16 11:59 UTC",
+  "results": [
+    {
+      "agent": "Main Kora",
+      "DeepSeek": "\ud83d\udfe2 Working",
+      "Gemini": "\ud83d\udd34 Invalid Key",
+      "OpenRouter": "\ud83d\udfe2 Working",
+      "status": "\ud83d\udfe2"
+    },
+    {
+      "agent": "oc-coco",
+      "DeepSeek": "\ud83d\udfe2 Working",
+      "Gemini": "\ud83d\udd34 Invalid Key",
+      "OpenRouter": "\u26aa None",
+      "status": "\ud83d\udfe1"
+    },
+    {
+      "agent": "oc-gayzoelay",
+      "DeepSeek": "\u26aa Disabled",
+      "Gemini": "\u26aa Disabled",
+      "OpenRouter": "\u26aa Disabled",
+      "status": "\u26aa"
+    },
+    {
+      "agent": "oc-nova",
+      "DeepSeek": "\ud83d\udd34 402 Insuf Bal",
+      "Gemini": "\ud83d\udd34 Invalid Key",
+      "OpenRouter": "\u26aa None",
+      "status": "\ud83d\udd34"
+    }
+  ],
+  "has_issues": true
+}
