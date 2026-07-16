@@ -43,7 +43,7 @@ def _extend_timer_kb(cid: str, member_id: str, chat_id: int) -> InlineKeyboardMa
     ])
 
 def _remind_key(cid: str, chat_id: int) -> str:
-    return f"{cid}|{chat_id}"
+    return f"{cid}|{abs(chat_id)}"
 
 def add_no_timer_console(cid: str) -> None:
     """Mark a console as No Timer - reminders will never be scheduled for it."""
@@ -255,16 +255,28 @@ async def _remind_loop(
             still_active = await _is_session_active(cid)
             if not still_active:
                 break
-            fire_count += 1
-
-            # ── Sync duration from DB (fix: dashboard timer changes don't update bot state) ──
+            # ── Sync duration from DB BEFORE fire_count increment ──
+            # If duration changed (web dashboard extend), recalculate fire_count based on remaining time.
+            # Must be BEFORE fire_count+=1 so the reset doesn't send a bogus fire=0 message.
             _duration_changed = await _sync_duration_from_db(cid, key, chat_id)
             if _duration_changed:
-                # Duration changed (e.g. dashboard extend) — reset fire_count
-                # so auto-end uses new end time, not old one
-                logger.info("_remind_loop: %s duration changed — resetting fire_count", cid)
-                fire_count = 0  # reset; will become 1 after fire_count+=1 next loop
+                # Recalculate fire_count from remaining seconds instead of hard reset to 0
+                _current_end_t = _SESSION_END_TIMES.get(key, end_t)
+                try:
+                    _eh3, _em3 = map(int, _current_end_t.split(":"))
+                    _now3 = now_mmt()
+                    _end_dt3 = _now3.replace(hour=_eh3, minute=_em3, second=0, microsecond=0)
+                    _secs_left = (_end_dt3 - _now3).total_seconds()
+                    # fire_count=1 → 5min-before-end; fire_count=2 → end; >=3 → overdue
+                    _new_fc = max(1, 2 - int(_secs_left / 300)) if _secs_left > -1 else 3 + int(abs(_secs_left) / 300)
+                    fire_count = _new_fc
+                    logger.info("_remind_loop: %s duration changed — recalculated fire_count=%d", cid, fire_count)
+                except Exception as _fc_err:
+                    logger.warning("_remind_loop: fire_count recalculation failed: %s", _fc_err)
+                    fire_count = 0  # fallback — will become 1 after fire_count+=1
                 _SESSION_AUTO_ENDED.pop(key, None)  # clear auto-end flag too
+
+            fire_count += 1
 
             # ⚠️ Max-fire guard: auto-stop after max_fires (50+ min overdue)
             if False and fire_count > max_fires:  # DISABLED per Boss request (2026-07-02)
