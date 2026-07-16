@@ -1,8 +1,92 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-15 17:31 UTC
+> Last updated: 2026-07-15 23:30 UTC
 
 ---
+
+## ⚡ JULY 15 LATE NIGHT UPDATE (July 15, 2026 - 23:30 UTC) — 🆕🔥 PS PLUS EXTRA/PREMIUM JULY LINEUP REVEALED! Rise of the Ronin Drops TODAY! + Avatar Frontiers of Pandora! + Indigo Prophecy Classic! + CoD MW4 Kill Block Deep Dive! + Ratchet Mobile Game! + Arknights PSSR! + Moss VR Tomorrow!
+
+> **Summary:** Evening sweep (6 hours since last update at 17:31 UTC). **🆕🔥 PS Plus Extra/Premium July lineup FINALLY REVEALED!** PlayStation Blog published the full lineup today! **Rise of the Ronin available TODAY (Jul 15)!** Avatar: Frontiers of Pandora confirmed! Plus: CoD MW4 Kill Block multiplayer deep dive, Ratchet & Clank MOBILE hero shooter announced, Arknights: Endfield PS5 Pro PSSR upgrade, Moss: The Forgotten Relic VR launches tomorrow, The Mound: Omen of Cthulhu released today, and Heave Ho 2 tomorrow!
+
+### 📋 🆕🔥 PS PLUS EXTRA/PREMIUM JULY LINEUP — REVEALED! (Jul 15) — FINALLY CONFIRMED!
+
+- **PlayStation Blog published the full July 2026 Game Catalog lineup TODAY (Jul 15)** — the big pending announcement from the previous update is NOW LIVE!
+- **Full Extra/Premium lineup confirmed:**
+
+  | Game | Platform | Availability Date | Lounge Value |
+  |------|----------|-------------------|-------------|
+  | 🎮 **Rise of the Ronin** (Team Ninja) | PS5 | **Jul 15 US/UK (TODAY!)**, Jul 16 Japan | ⭐⭐⭐⭐⭐🔥 |
+  | 🌌 **Avatar: Frontiers of Pandora** (Massive Entertainment) | PS5 | Jul 21 global | ⭐⭐⭐⭐⭐🔥 |
+  | 🔥 **Firefighting Simulator: Ignite** | PS5 | Jul 21 global | ⭐⭐ |
+  | ⚡ **Mighty Morphin Power Rangers: Rita's Rewind** | PS5, PS4 | Jul 28 US/UK/Japan | ⭐⭐⭐ |
+  | 🧟 **Dying Light** (Techland) | PS4 | Jul 28 US/UK/Japan | ⭐⭐⭐ |
+  | 🚀 **Citizen Sleeper 2: Starward Vector** | PS5 | Jul 28 US/UK/Japan | ⭐⭐⭐ |
+  | ❄️ **Snow Bros. Wonderland** | PS5 | Jul (TBC) | ⭐⭐ |
+  | 🧠 **Psi-Ops: The Mindgate Conspiracy** (PS2 — Premium) | PS5, PS4 | Jul 21 | ⭐⭐ |
+  | 🔮 **Indigo Prophecy** (PS2 — Premium) 🆕 | PS5, PS4 | Jul 21 | ⭐⭐ |
+
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR:**
+  - **RISE OF THE RONIN DROPS TODAY!** Team Ninja's open-world samurai epic is available RIGHT NOW for US/UK PS Plus subscribers! This is a $69.99 game coming FREE to PS Plus — MASSIVE value! Install on lounge consoles immediately! ⭐⭐⭐⭐⭐
+  - **AVATAR: FRONTIERS OF PANDORA — PS Plus FREE!** This is Massive Entertainment's gorgeous open-world Avatar game. Incredible visual showcase for PS5 — perfect for lounge display. Arrives Jul 21. ⭐⭐⭐⭐⭐
+  - **Indigo Prophecy (Fahrenheit)** joins Premium classics — unexpected but nostalgic PS2-era pick
+  - **Departures reminder:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 leave Jul 21 — binge before then!
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 🎯 CoD Modern Warfare 4 — Kill Block Multiplayer Mode Deep Dive! PS Blog Published! 🆕
+
+- **PlayStation Blog published** a dedicated article on **Kill Block**, MW4's new dynamic multiplayer mode (Oct 23 launch)
+- **What it is:** West Bridge Training Facility — modular battleground with concrete "Slabs" (2 End Slabs + 1 Central Slab) that reconfigure between matches, creating **500+ unique configurations**
+- **Modes:** 3v3 Gunfight + new **10v10 Gunfight** — the latter is a first for the format!
+- **Slab inspirations:** Crash, Storage Town, Shoot House — iconic Modern Warfare locations
+- **Play area:** Roughly the size of Shoot House from MW (2019)
+- **💡 Lounge Note:** 10v10 Gunfight on a dynamic map = high chaos, high spectator appeal. For a lounge, this mode has massive potential — quick matches, ever-changing action. ⭐⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 📱 NEW: Ratchet & Clank: Ranger Rumble — MOBILE Hero Shooter Announced! 🆕
+
+- **PlayStation Blog published** details on a new Ratchet & Clank game — but it's a **MOBILE hero shooter** (not console)
+- **Developer:** OH BIBI (studio, not Insomniac)
+- **Platform:** Mobile devices — this is Sony's first major franchise expansion to mobile gaming
+- **CEO Stanislas Dewavrin:** Details on gameplay mechanics, heroes, and more
+- **💡 Lounge Note:** Not directly lounge-impactful (mobile game), but signals Sony expanding its IP beyond console. Could mean more Ratchet & Clank on console in future. ⭐ lounge value
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### ⚙️ NEW: Arknights: Endfield v1.4 — PS5 Pro PSSR Upgrade Launches! 🆕
+
+- **Hypergryph's** open-world sci-fi RPG gets **PSSR (PlayStation Spectral Super Resolution)** upgrade on PS5 Pro
+- Version 1.4 brings significantly improved upscaling for Pro users
+- **💡 Lounge Note:** If PS VIBE has PS5 Pro units, this is a noteworthy visual upgrade for a free-to-play game. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 🧊 NEW RELEASE: Moss: The Forgotten Relic — PS5 VR Launch TOMORROW (Jul 16)! 🆕
+
+- **Polyarc's** Moss series continues — cute mouse warrior Quill returns in VR
+- **Launch:** Tomorrow, July 16, 2026 on PS5 (PS VR2)
+- **💡 Lounge Note:** If the lounge has PS VR2 headsets, this is a quality addition. Moss is one of the most acclaimed VR series. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 👁️ NEW RELEASE: The Mound: Omen of Cthulhu — OUT TODAY (Jul 15)! 🆕
+
+- **Lovecraftian horror game** released today on PS5 and other platforms
+- Based on H.P. Lovecraft's "The Mound" — deep cosmic horror
+- **💡 Lounge Note:** Niche horror title — good for horror game regulars but not a mainstream draw. ⭐ lounge value
+- Source: Eurogamer (Jul 15, 2026)
+
+### 🎮 NEW RELEASE: Heave Ho 2 — Tomorrow (Jul 16)! 🆕
+
+- **Party game sequel** to the popular physics-based co-op game
+- Perfect for casual lounge play — chaotic, hilarious, easy to pick up
+- **💡💡 Lounge Note:** The original Heave Ho was a cult party game. Sequel could be good lounge filler for casual sessions. ⭐⭐ lounge value
+- Source: Eurogamer (Jul 15, 2026)
+
+### 📋 Updated Priority Lounge Actions (Jul 15 — 23:30 UTC):
+1. **🔥🔥🔥 RISE OF THE RONIN IS ON PS PLUS NOW!** Install on lounge consoles TODAY! $69.99 value — FREE! Team Ninja open-world samurai!
+2. **🌌 AVATAR: FRONTIERS OF PANDORA coming Jul 21!** PS Plus free! Gorgeous open-world showcase!
+3. **🛒🛒🛒 SUMMER SALE IS LIVE!** Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds! Expand library! Ends Aug 12!
+4. **🔮 INDIgo Prophecy joins PS Plus Premium** — nostalgic PS2 classic!
+5. **📱 Ratchet & Clank mobile game announced** — Sony IP expansion to mobile
+6. **⚠️ July 21 departures:** Risk of Rain 2, Jackbox Party Pack 9 leave PS Plus — play before then!
+7. **🔥 JULY 23 PREPARATION — 8 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
 
 ## ⚡ JULY 15 UPDATE (July 15, 2026 - 05:30 UTC) — 🛒 SUMMER SALE STARTS TODAY! (Date Correction!) + PlayStation Blog's 19 Unmissable Games List! + Mexico Antitrust Complaint! + PS Plus Lineup Reveal PENDING!
 
