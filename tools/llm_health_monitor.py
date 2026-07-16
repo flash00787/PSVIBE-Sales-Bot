@@ -217,7 +217,7 @@ def main():
     # Print table (skip if --json)
     if "--json" not in sys.argv:
         print(f"\n{'Agent':<15s} {'DeepSeek':<20s} {'Gemini/GDrive':<20s} {'OpenRouter':<20s} {'Status':<8s}")
-        print(f"{\\u2500'*15} {\─'*20} {\─'*20} {\─'*20} {\─'*8}")
+        print(f"{"─"*15} {"─"*20} {"─"*20} {"─"*20} {"─"*8}")
     has_issues = False
     for r in results:
         ds = r["DeepSeek"]
