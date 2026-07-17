@@ -1,6 +1,82 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-16 23:30 UTC
+> Last updated: 2026-07-17 11:30 UTC
+
+---
+
+## ⚡ JULY 17 MORNING (July 17, 2026 - 11:30 UTC) — 🆕 Castlevania: Belmont's Curse HANDS-ON REPORT PUBLISHED! October 15! Evil Empire! + Marvel Tōkon Beta Full Details!
+
+> **Summary:** Morning sweep — 12 hours since last update. **🆕 NEW PS BLOG POST TODAY (Jul 17):** Castlevania: Belmont's Curse gets a full hands-on report! Evil Empire (Dead Cells) developing. Rose Belmont (Trevor's daughter) is the protagonist. **October 15 release** — perfect Halloween timing! Also: Marvel Tōkon: Fighting Souls Open Beta full details published (Jul 16 — after last refresh), confirming 15 playable characters, Episode Mode preview, open lobby with avatars, and no PS Plus required. No critical firmware, price changes, or major console announcements.
+
+### 🧊 NEW: Castlevania: Belmont's Curse — Hands-On Report Published! Oct 15 Release! 🆕
+
+- **PlayStation Blog published a full hands-on report today (Jul 17)** — major new coverage!
+- **Developer:** Evil Empire (the team behind Dead Cells) in collaboration with **Konami**
+- **Release: October 15, 2026** on PS5 — exactly two weeks before Halloween! 🎃
+- **Protagonist:** **Rose Belmont** — brand new character! Daughter of Trevor Belmont, set after Castlevania III: Dracula's Curse
+- **Setting:** 1499 Paris — burning, ravaged, on the brink of Dracula's resurrection
+- **Genre:** Modern-yet-classic Castlevania action-adventure (NOT a roguelite — Evil Empire deliberately avoided permadeath/procedural generation)
+- **Game Director:** Emmanuel Nouaille (Evil Empire), Producer: Tsutomu Taniguchi (Konami)
+- **Combat:** Snappy, fluid — Rose's Arcana Whip (R2 grapple + attack), 7 weapon types (longsword, cestus gauntlets, etc.), dodge + slide with invincibility frames, Arcana tarot deck system
+- **Relics system:** Equip up to 3 Relics for combat/exploration bonuses (e.g., Crypt Key restores health/mana on chest open)
+- **Arcana/Tarot mechanics:** Defeating bosses turns them into Arcana cards — unlock spells, skills, special traversal abilities. Each Arcana has up to 3 "Works of Mercy" challenges + Blessings
+- **Bosses previewed:** The Fallen (Holy Cross attack), Joan of Arc (flaming sword, backstabs, fireballs — rooftop battle!)
+- **Difficulty:** Classic Castlevania — punishing but fair, pattern learning, I-frame dodging essential
+- **Music:** Gothic organs and synths — classic Castlevania vibes
+- **Konami Producer on design:** "We really wanted to capture the essence of the series… go back to its core"
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR HALLOWEEN ATTRACTION:**
+  - Castlevania is a LEGENDARY gaming IP — huge name recognition across all age groups
+  - Evil Empire has stellar reputation (Dead Cells, best-in-class indie action) ⭐⭐⭐⭐⭐
+  - **October 15 release = perfect for Halloween season at the lounge!** Two weeks before Halloween = prime timing for horror-themed sessions
+  - Classic action-adventure format (NOT roguelite) = broad appeal, accessible for all skill levels
+  - Rose Belmont is a fresh protagonist — new story for newcomers, respects canon for veterans
+  - **Highly recommend PRE-ORDERING and installing on lounge consoles before October 15**
+  - Combined with Hellraiser: Revival (Oct 8) — **October is shaping up to be HALLOWEEN MONTH at PS VIBE!** 🔥🔥🔥
+  - ⭐⭐⭐⭐⭐ lounge value — must-track for Halloween programming
+- Source: PlayStation Blog (Jul 17, 2026)
+
+### 🥊 UPDATE: MARVEL Tōkon: Fighting Souls — Open Beta Full Details Published! (Jul 16 PS Blog) 🆕
+
+- **PlayStation Blog published** comprehensive Open Beta guide (Jul 16 — after last update)
+- **Beta: July 24 (12am PT) — July 26 (11:59pm PT) — 72 hours** (already tracked)
+- **No PS Plus required!** Just internet + PSN account (already tracked — confirmed)
+- **Pre-downloads available 2 hours before** the beta goes live
+- **15 playable characters confirmed** (out of 20 launch roster):
+  - **Fighting Avengers:** Captain America, Iron Man, Black Panther
+  - **Unbreakable X-Men:** Storm, Magik, Wolverine, Danger
+  - **Amazing Guardians:** Spider-Man, Ms. Marvel, Star-Lord, Peni Parker
+  - **Samurai Outriders:** Ghost Rider, **Blade** (first time playable!)
+  - **Knights of Doom:** Doctor Doom, Magneto
+- **6 stages:** Marvel's New York (Day), Savage Land, X-Mansion, Knowhere, Wakanda, Marvel's New York (Night)
+- **Episode Mode preview:** First 3 chapters of Amazing Guardians storyline (motion-comic storytelling!)
+- **Open Lobby:** 16 unique avatars (4 color variants each), free chat, stamps, emotes, arcade cabinet matchmaking
+- **Training Mode + Start Up Battle tutorial** for beginners
+- **Local Versus Mode** confirmed — practice vs CPU or local multiplayer on same system
+- **Sources:** PlayStation Blog (Jul 16, 2026)
+- **💡💡💡 LOUNGE NOTE:** Open Beta runs Jul 24-26 — same weekend as Comic-Con! No PS Plus needed = EVERY lounge PS5 can participate. Pre-download 2 hours before. 15 characters to try. **Recommend: Install beta on at least 2-3 lounge consoles for customer testing.** ⭐⭐⭐
+
+### 📋 Quick Status Refresh (Jul 17 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🧊 **Castlevania: Belmont's Curse** | **HANDS-ON REPORT 🆕** | Oct 15! Evil Empire! Rose Belmont! Halloween timing! |
+| 🥊 **Marvel Tōkon Open Beta Details** | **FULL DETAILS 🆕** | 15 chars! Episode Mode! No PS Plus! Jul 24-26! |
+| 🧊 **Hellraiser: Revival** | **ANNOUNCED** | Oct 8! Saber Interactive! PS5! |
+| 🐭 **Moss: The Forgotten Relic** | **LAUNCHED YESTERDAY 🔥** | Non-VR collection! Buy for lounge! |
+| 🧼 **PowerWash Sim 2 Star Wars Pack** | **LAUNCHED YESTERDAY** | $9.99! Millennium Falcon job! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 6 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | Premium early access in 6 days! |
+
+### 📋 Updated Priority Lounge Actions (Jul 17 - 11:30 UTC):
+1. **🧊🔥 BUY Castlevania: Belmont's Curse — PRE-ORDER!** Oct 15 release! Evil Empire! Halloween timing! Pre-order for lounge PS5s!
+2. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! Install on 2-3 lounge consoles!
+3. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** Non-VR collection! Launched yesterday!
+4. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning job!
+5. **🛒🛒🛒 CHECK SUMMER SALE — LIVE!** Up to 75% off! Ends Aug 12!
+6. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
+7. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free!
+8. **🔥 JULY 23 PREPARATION — 6 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
+9. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
 
 ---
 
