@@ -168,6 +168,19 @@ Kora now manages **9 projects** with full coordination tool support.
 - Cashflow opening formula: removed `finance_advances` double-count from SQL (opening: -93.4M → 11.4M ✅)
 - Cash OPEX (935,400 Ks) backfilled: added opex query to till endpoints, 7 daily_till records backfilled
 
+## Memory (2026-07-17) — SEL Equity System + PS VIBE Return 🔄
+
+### SEL Exchange - Equity/Shareholder System Built ✅
+- **Shareholders (3):** Myat Ei, Shwe Eain Lin, Aung Chan Myint
+- **Dynamic Share %** based on net capital (inject - eject) per shareholder
+- **Inject THB** creates equity_tx + FIFO buy tx
+- **Eject THB** creates equity_tx + FIFO sell tx (FIFO consumed)
+- **Dividend MMK** auto-distributes by current share %
+- **Dashboard:** New 📋 Equity tab with modals
+- **DB:** 2 new tables (shareholders, equity_transactions)
+- **API:** 8 new equity endpoints
+- **Files:** db.py, app.py, dashboard/index.html, docs/EQUITY_API.md
+
 ### Key Lessons (#137-#148)
 137. Advance eject must be recorded in cash_movements for ALL advances
 138. Filter as workaround ≠ real fix
@@ -193,54 +206,6 @@ Kora now manages **9 projects** with full coordination tool support.
 | 9356 | Outline Admin UI | ✅ (fast now) |
 | 9357 | Agent Portal | ✅ |
 
----
-
-## Memory (2026-07-14) — VPN Admin Lock Deadlock Fix 🔧
-
-### Reentrant Lock Deadlock — Root Cause Fix ✅
-- **Problem:** `_form_idempotency_lock` (threading.Lock) caused deadlock when POST `/create` handler called `self.send_html(render_keys(...))` INSIDE `with _form_idempotency_lock:` block. `render_keys()` also acquires same lock → reentrant deadlock. 10 handler threads stuck in `futex_wait_queue`.
-- **Fix 1:** Changed `_form_idempotency_lock` to `threading.RLock()`
-- **Fix 2:** Moved `self.send_html(render_keys(...))` OUTSIDE all lock blocks in both Handler (port 9356) and AgentOnlyHandler (port 9357)
-- **Fix 3:** Same pattern fixed for `_admin_create_lock` and `_agent_create_lock` — `render_keys()` called while rate-limit lock held
-- **Locations:** 5 total across 2 handler classes
-- **Verification:** 5 concurrent requests → 287-373ms each, 0 deadlocked threads, 3 normal threads only
-- **File:** `/opt/outline-web/server.py`
-- **Lesson:** #163
-
-## Memory (2026-07-10) — VPN UI Fixes + Server Performance Overhaul 🔧
-
-### Expired Display Fix — VPN Admin UI (Osmo) 🐛→✅
-- **Bug:** Data-limit expired keys (`is_active=0` but `expires_at` unchanged/future) showed `"-5d ago"` → fixed to show `"🔴 Revoked"`
-- **File:** `/opt/outline-web/server.py` (~line 1398)
-
-### Server Performance Fix — ThreadingHTTPServer 🚀
-- **Problem:** Python `HTTPServer` single-threaded → Cloudflare 504 → "this site can't be reached"
-- **Fix:** `HTTPServer` → `ThreadingHTTPServer` (Python 3.7+ native, per-request threads)
-- **Result:** Admin page 1.4s→0.2s (cached), key create no longer blocks
-
-### Server Performance Fix #2 — Async Backup 🚀
-- **Problem:** `backup_before_write()` called `subprocess.run(timeout=30)` synchronously, called TWICE per Xray operation → blocked HTTP up to 30s
-- **Fix:** Background thread via `_do_backup()`, returns <1ms
-- **Result:** Admin page 1.4s→0.15s, Key create ~1.5s (non-blocking)
-
-### OpenRouter Gemini Configured ✅
-- `auth-profiles.json`: Added `openrouter:default` provider
-- `gateway.systemd.env`: Added `OPENROUTER_API_KEY`
-- Model: `openrouter/google/gemini-2.5-flash-lite` for image analysis
-
-### New Lessons (#149-#151)
-| # | Lesson |
-|:-:|--------|
-| 149 | **Data-limit expired keys may have future expires_at** — Handle negative `(now - exp).days` with "Revoked" label. |
-| 150 | **Single-threaded HTTP server blocks all requests** — Use `ThreadingHTTPServer` for concurrent capacity. |
-| 151 | **Backup subprocess.run blocks HTTP response** — Always background subprocess calls in HTTP handlers. |
-
-### Key Files Modified
-| File | Change |
-|------|--------|
-| `/opt/outline-web/server.py` | Expired display fix, ThreadingHTTPServer, async backup |
-| `auth-profiles.json` | OpenRouter Gemini provider added |
-| `gateway.systemd.env` | OPENROUTER_API_KEY added |
 
 ---
 
@@ -265,6 +230,7 @@ Kora now manages **9 projects** with full coordination tool support.
 | 153 | **Prometheus queries per-key are slow** — Use `sum()` aggregator for single-query batch metrics instead of N individual queries. |
 | 154 | **Post-mutation redirect beats full render** — After write operations (delete/expire), 302 redirect ~8ms vs full dashboard render ~1.2s. Avoid Cloudflare 100s timeout.
 155 | **POST mutating handlers → 302 redirect** — Rename handler used `send_html(render_keys(...))` (~1.2s). Changed to `send_redirect_admin()` (~8ms). All POST handlers that mutate data must use redirect, never full page render. |
+
 
 ---
 
@@ -297,6 +263,7 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### Key Lesson (#157)
 157. Payment account dropdown replaces payment method dropdown — account name + type (cash/bank/mobile_wallet) contains all needed info to derive method
+
 
 ---
 
@@ -2817,3 +2784,53 @@ Kora now manages **9 projects** with full coordination tool support.
 - *auto-bug* | `id:5d01b4ca`
 - *auto-bug* | `id:8f292bd6`
 - *auto-bug* | `id:e7ecb19d`
+
+---
+
+## Memory (2026-07-14) — VPN Admin Lock Deadlock Fix 🔧
+
+### Reentrant Lock Deadlock — Root Cause Fix ✅
+- **Problem:** `_form_idempotency_lock` (threading.Lock) caused deadlock when POST `/create` handler called `self.send_html(render_keys(...))` INSIDE `with _form_idempotency_lock:` block. `render_keys()` also acquires same lock → reentrant deadlock. 10 handler threads stuck in `futex_wait_queue`.
+- **Fix 1:** Changed `_form_idempotency_lock` to `threading.RLock()`
+- **Fix 2:** Moved `self.send_html(render_keys(...))` OUTSIDE all lock blocks in both Handler (port 9356) and AgentOnlyHandler (port 9357)
+- **Fix 3:** Same pattern fixed for `_admin_create_lock` and `_agent_create_lock` — `render_keys()` called while rate-limit lock held
+- **Locations:** 5 total across 2 handler classes
+- **Verification:** 5 concurrent requests → 287-373ms each, 0 deadlocked threads, 3 normal threads only
+- **File:** `/opt/outline-web/server.py`
+- **Lesson:** #163
+
+## Memory (2026-07-10) — VPN UI Fixes + Server Performance Overhaul 🔧
+
+### Expired Display Fix — VPN Admin UI (Osmo) 🐛→✅
+- **Bug:** Data-limit expired keys (`is_active=0` but `expires_at` unchanged/future) showed `"-5d ago"` → fixed to show `"🔴 Revoked"`
+- **File:** `/opt/outline-web/server.py` (~line 1398)
+
+### Server Performance Fix — ThreadingHTTPServer 🚀
+- **Problem:** Python `HTTPServer` single-threaded → Cloudflare 504 → "this site can't be reached"
+- **Fix:** `HTTPServer` → `ThreadingHTTPServer` (Python 3.7+ native, per-request threads)
+- **Result:** Admin page 1.4s→0.2s (cached), key create no longer blocks
+
+### Server Performance Fix #2 — Async Backup 🚀
+- **Problem:** `backup_before_write()` called `subprocess.run(timeout=30)` synchronously, called TWICE per Xray operation → blocked HTTP up to 30s
+- **Fix:** Background thread via `_do_backup()`, returns <1ms
+- **Result:** Admin page 1.4s→0.15s, Key create ~1.5s (non-blocking)
+
+### OpenRouter Gemini Configured ✅
+- `auth-profiles.json`: Added `openrouter:default` provider
+- `gateway.systemd.env`: Added `OPENROUTER_API_KEY`
+- Model: `openrouter/google/gemini-2.5-flash-lite` for image analysis
+
+### New Lessons (#149-#151)
+| # | Lesson |
+|:-:|--------|
+| 149 | **Data-limit expired keys may have future expires_at** — Handle negative `(now - exp).days` with "Revoked" label. |
+| 150 | **Single-threaded HTTP server blocks all requests** — Use `ThreadingHTTPServer` for concurrent capacity. |
+| 151 | **Backup subprocess.run blocks HTTP response** — Always background subprocess calls in HTTP handlers. |
+
+### Key Files Modified
+| File | Change |
+|------|--------|
+| `/opt/outline-web/server.py` | Expired display fix, ThreadingHTTPServer, async backup |
+| `auth-profiles.json` | OpenRouter Gemini provider added |
+| `gateway.systemd.env` | OPENROUTER_API_KEY added |
+

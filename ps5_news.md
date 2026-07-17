@@ -1,6 +1,76 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-16 17:32 UTC
+> Last updated: 2026-07-16 23:30 UTC
+
+---
+
+## ⚡ JULY 16 LATE NIGHT CHECK (July 16, 2026 - 23:30 UTC) — 🆕 Hellraiser: Revival Announced! October 8! + Pro Jank Footy Aug 12! + AC Black Flag Resynced NG+ Confirmed! + Zenimax Layoffs (379 Cut)!
+
+> **Summary:** Late night sweep (6 hours since last update at 17:32 UTC). **🆕 NEW PS BLOG POSTS TODAY (Jul 16):** Clive Barker's Hellraiser: Revival officially announced for October 8 from Saber Interactive! Pro Jank Footy (arcade Aussie Rules) coming August 12! Also: Ubisoft confirms NG+ for AC Black Flag Resynced in early development, and Zenimax Online Studios hit with 379 layoffs amid Xbox cuts. No critical new firmware, price changes, or major console announcements.
+
+### 🧊 NEW: Clive Barker's Hellraiser: Revival — Announced! October 8, 2026! 🆕
+
+- **Developer:** Saber Interactive
+- **Release: October 8, 2026** on PS5
+- **First-person horror** based on Clive Barker's iconic Hellraiser franchise
+- **Protagonist:** Aidan Lynch — girlfriend Sunny torn in half by Cenobites after activating the Genesis Configuration (puzzle box)
+- **Enemies:** The Scarlet Church cult led by Marlowe, seeking to create a "debauched paradise" for themselves
+- **Cenobites portrayed as:** "Explorers in the further regions of experience. Demons to some, angels to others" — morally ambiguous villains
+- **Key hook:** Save Sunny's soul by navigating the Cenobite realm
+- **💡 Lounge Note:** Horror game releasing **one month before Halloween** — perfect seasonal timing! Hellraiser is a major horror IP with strong name recognition. If quality holds, this could be a solid Halloween lounge attraction. Saber Interactive has a solid track record (World War Z, Evil Dead). ⭐⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 16, 2026)
+
+### 🏉 NEW: Pro Jank Footy — Arcade Aussie Rules! August 12! 🆕
+
+- **Developer:** Powerbomb Games (Creative Director David Ashby)
+- **Release: August 12, 2026** on PS5
+- **Genre:** Arcade sports — Australian Rules Football with **150+ power-ups**
+- **Style:** NBA Jam / NHL '94-style high-energy arcade sensibility
+- **Core mechanic:** Score a goal → opponent chooses a random power-up. Power-ups range from team buffs, debuffs, to rule changes — rewards losing players to keep matches close
+- **Vibe:** Chaotic, irreverent, fast-paced — "pure unhinged janky chaos"
+- **💡 Lounge Note:** Arcade sports with party-game power-ups = good casual lounge potential. BUT Aussie Rules is niche globally — stronger appeal if the lounge has Australian/expat customers. Power-ups system creates comeback mechanics = balanced matches regardless of skill. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 16, 2026)
+
+### 🏴‍☠️ AC Black Flag Resynced — New Game Plus CONFIRMED in Early Development! 🆕
+
+- **Game Director Richard Knight** confirmed in interview with JorRaptor: "Yes, we're working on that right now"
+- **Early development** — no release date promised
+- **Inspired by** Assassin's Creed Shadows' NG+ implementation
+- **Knight on the feature:** "It's just such a natural thing"
+- **💡 Lounge Note:** Not immediate but confirms Ubisoft is supporting Black Flag Resynced post-launch. NG+ extends replayability — good long-term for lounge. ⭐ lounge value
+- Source: Eurogamer (Jul 16, 2026), GamesRadar+
+
+### 👔 Zenimax Online Studios — 379 Staff Laid Off! Leadership Fired! ESO Concerns! 🆕
+
+- **Xbox cuts hit Zenimax Online Studios** — 379 developers impacted
+- **Leadership fired** — studio head (Matt Firor) and other senior leaders included
+- **Concerns around Elder Scrolls Online's longevity** persist after leadership shakeup
+- **💡 Lounge Note:** Not directly PS5-impactful, but ESO is available on PS5. If the lounge has ESO regulars, service continuity may eventually be affected. Track this for potential ESO sunsetting down the road. ⭐ lounge value
+- Source: Eurogamer (Jul 16, 2026)
+
+### 📋 Quick Status Refresh (Jul 16 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🧊 **Hellraiser: Revival** | **ANNOUNCED 🆕** | Oct 8! Saber Interactive! PS5! |
+| 🏉 **Pro Jank Footy** | **ANNOUNCED 🆕** | Aug 12! Arcade Aussie Rules! 150+ power-ups! |
+| 🏴‍☠️ **AC Black Flag Resynced NG+** | **EARLY DEV 🆕** | Confirmed! No ETA! |
+| 👔 **Zenimax/ESO Layoffs** | **379 CUT 🆕** | Leadership fired! ESO concerns! |
+| 📌 **Moss: The Forgotten Relic** | **LAUNCHED TODAY 🔥** | Non-VR collection! Buy for lounge! |
+| 📌 **Heave Ho 2** | **LAUNCHED TODAY** | Party game! |
+| 📌 **PowerWash Sim 2 Star Wars Pack** | **LAUNCHED TODAY** | $9.99! Star Wars jobs! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 7 days!** | Prepare all consoles! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | Premium early access Jul 23! |
+
+### 📋 Priority Lounge Actions (Jul 16 - 23:30 UTC):
+1. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** LAUNCHED TODAY! Non-VR collection!
+2. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning job!
+3. **🛒🛒🛒 CHECK SUMMER SALE — NOW LIVE!** Up to 75% off! Ends Aug 12!
+4. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
+5. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free!
+6. **🔥 JULY 23 PREPARATION — 7 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
+7. **🧊 WATCH Hellraiser: Revival (Oct 8)** — Potential Halloween lounge attraction!
+8. **🕒 TRACK AC Black Flag Resynced NG+** — extends replayability!
 
 ---
 

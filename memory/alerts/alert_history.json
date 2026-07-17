@@ -2,6 +2,65 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-08 last updated 14.0h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-17T04:44:18.392Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 14.5h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-17T04:44:18.390Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 15.6h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-17T04:44:18.386Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 17.2h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-07-17T04:44:18.384Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-03 last updated 17.3h ago",
+    "consoleId": "C-03",
+    "timestamp": "2026-07-17T04:44:18.381Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 14.0h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-07-17T04:44:18.377Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 15.3h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-07-17T04:44:18.374Z"
+  },
+  {
+    "type": "balance_drop",
+    "severity": "critical",
+    "message": "🚨 Balance drop for Htet Wai Yan: 600m → 175m (70.8% drop, -425m)",
+    "memberId": "PSV_A_012",
+    "memberName": "Htet Wai Yan",
+    "dropPercent": 70.83333333333334,
+    "dropAbsolute": 425,
+    "timestamp": "2026-07-17T04:44:18.371Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-10 last updated 16.9h ago",
     "consoleId": "C-10",
     "timestamp": "2026-07-16T04:44:27.572Z"
@@ -3467,61 +3526,5 @@
     "message": "📡 Console C-07 last updated 33.4h ago",
     "consoleId": "C-07",
     "timestamp": "2026-06-11T15:37:45.647Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 25.4h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T15:37:45.646Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 54.6h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T15:37:45.645Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-04 last updated 25.4h ago",
-    "consoleId": "C-04",
-    "timestamp": "2026-06-11T15:37:45.645Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 47.7h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T15:37:45.643Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-02 last updated 28.9h ago",
-    "consoleId": "C-02",
-    "timestamp": "2026-06-11T15:37:45.642Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-01 last updated 25.4h ago",
-    "consoleId": "C-01",
-    "timestamp": "2026-06-11T15:37:45.642Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-10 last updated 3.5h ago",
-    "consoleId": "C-10",
-    "timestamp": "2026-06-11T15:07:45.288Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-09 last updated 2.4h ago",
-    "consoleId": "C-09",
-    "timestamp": "2026-06-11T15:07:45.287Z"
   }
 ]
