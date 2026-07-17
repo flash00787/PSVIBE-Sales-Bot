@@ -32,28 +32,6 @@
     "total_plan_mins": 180,
     "updated_at": "2026-07-17T11:40:56.082847+00:00"
   },
-  "C-08|1003686032747": {
-    "cid": "C-08",
-    "chat_id": -1003686032747,
-    "member_id": "PSV_A_012",
-    "planned_mins": 124,
-    "end_t": "20:17",
-    "end_dt_iso": "2026-07-17T20:17:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 124,
-    "updated_at": "2026-07-17T11:43:24.229958+00:00"
-  },
-  "C-03|1003686032747": {
-    "cid": "C-03",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 90,
-    "end_t": "19:51",
-    "end_dt_iso": "2026-07-17T19:51:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 90,
-    "updated_at": "2026-07-17T11:51:40.530442+00:00"
-  },
   "C-06|1003686032747": {
     "cid": "C-06",
     "chat_id": -1003686032747,
@@ -64,16 +42,5 @@
     "message_thread_id": 125192,
     "total_plan_mins": 90,
     "updated_at": "2026-07-17T11:54:43.559058+00:00"
-  },
-  "C-01|1003686032747": {
-    "cid": "C-01",
-    "chat_id": -1003686032747,
-    "member_id": "PSV_A_013",
-    "planned_mins": 177,
-    "end_t": "21:22",
-    "end_dt_iso": "2026-07-17T21:22:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 177,
-    "updated_at": "2026-07-17T11:55:02.808361+00:00"
   }
 }
