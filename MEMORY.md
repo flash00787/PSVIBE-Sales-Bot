@@ -309,3 +309,46 @@ Kora now manages **9 projects** with full coordination tool support.
 - **File:** `booking_routes.py:2264-2266`
 - **Service:** `psvibe-api` restarted
 
+
+### PS VIBE Customer Bot — 6+ Bugs Fixed 🔧
+
+1. **Booking Route Conflict — `POST /api/bookings` Duplicate Handlers 🐛** — Two `@router.post("/bookings")` handlers in booking_routes.py; merged into single `api_bookings_create` with format detection. Lesson #159.
+2. **MySQL Password Mismatch 🔑** — Fixed `ALTER USER` for `psvibe_user@172.17.0.1` to match env.
+3. **Booking Visibility — Verified Deposits Disappearing 👻** — `search-bookings` filter only checked `deposit_status='paid'`. Fixed: `IN ('paid','verified')`. Lesson #160.
+4. **Merged Handler Format Detection Bug 🐛** — `is_web_format` check moved before bot branch.
+5. **Wallet Insufficient Check Skipped for Members 🐛** — Added `if not is_guest:` guard. Lesson #158.
+6. **Garbled Unicode + Referral Code Fixes** — Removed garbled Burmese text; fixed circular imports + GSheet→API migration.
+
+### SEL Exchange Dashboard — Modal & JS Fix
+1. **Modal Auto-Show Fix ✅** — Added `style="display:none"` to 4 equity modal overlays.
+2. **Modal Open/Close Logic ✅** — Created `openEquityModal(id)`; updated `closeModal()` for string ID args.
+3. **⭐ CRITICAL: `esc()` Syntax Error** — Double brace `{ {` in `esc()` killed entire JS. Pre-existing bug. Fix: removed extra `{`. Lesson #161.
+
+### SEL Exchange — Internal Account Transfer Feature ✅
+- **API:** `POST /api/accounts/transfer` with rate param for cross-currency
+- **Frontend:** Transfer modal with live conversion preview, account balance display, auto-exclude same account
+- **Tests:** same-currency ✓ cross-currency ✓ error cases ✓
+
+### Outline VPN — "database is locked" Fix 🔧
+- **Root cause:** SQLite default busy_timeout=0ms → immediate failure on concurrent writes in ThreadingHTTPServer.
+- **Fix:** Added `PRAGMA busy_timeout=5000` to `get_db()` in `/opt/outline-web/server.py`.
+- **Lesson #162:** SQLite in ThreadingHTTPServer needs busy_timeout — default 0ms = concurrent writes fail immediately.
+
+### Outline VPN — Agent Total Keys Column ✅
+- Added 🔑 Keys column to admin agents table (before unpaid slots).
+- File: `/opt/outline-web/server.py` `render_keys()`.
+
+### Outline VPN — Trial Key Count Root Cause + Fix ✅
+- **Bug:** `record_commission()` guarded by `if base_price > 0:` — trial keys (base_price=0) never created commission records → trial count always 0 → max_trial_keys effectively infinite.
+- **Fix:** Removed guard; trial keys now create commission records with `duration_days=3`, `commission_amount=0`.
+- **Lesson #163:** Guards on commission-record filters must match creation flow — can't count records that don't exist.
+
+### New Lessons #158–#163
+| # | Lesson |
+|:-:|--------|
+| 158 | Booking flows must differentiate guest vs member — guest optimizations need `if not is_guest:` guard. |
+| 159 | Duplicate route decorators = first registered wins — Starlette doesn't merge or warn. |
+| 160 | When adding new status transitions, audit ALL existing filters — `deposit_status='verified'` was invisible to filters only checking `'paid'`. |
+| 161 | Always `node --check` after HTML/JS edits — One extra `{` kills ENTIRE script execution. |
+| 162 | SQLite + ThreadingHTTPServer needs busy_timeout — default 0ms = "database is locked" on concurrent writes. |
+| 163 | Guards on commission-record filters must match creation flow — can't count records that don't exist. |

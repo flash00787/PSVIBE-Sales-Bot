@@ -1,8 +1,36 @@
 {
-  "checked_at": "2026-07-15T19:09:00Z",
-  "status": "auth_failed",
-  "error": "Gmail OAuth tokens expired/revoked - re-auth needed",
-  "last_successful_check": "2026-07-11T13:31:00Z",
-  "action_taken": "Notified Boss via Telegram with re-auth URL",
-  "reauth_url_generated": true
+  "checked_at": "2026-07-17T19:07:00Z",
+  "status": "success",
+  "method": "IMAP",
+  "total_recent_2d": 19,
+  "total_recent_7d": 69,
+  "unread": 19,
+  "nova_emails": 0,
+  "wallet_related": 0,
+  "important": 2,
+  "other_non_promo": 8,
+  "important_emails": [
+    {
+      "from": "Google <no-reply@accounts.google.com>",
+      "subject": "Security alert",
+      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
+      "is_unread": true,
+      "detail": "New sign-in on Windows device for chanmyint123456789@gmail.com"
+    },
+    {
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Credit Card Repayment Successful",
+      "date": "Fri, 17 Jul 2026 15:48:45 +0000",
+      "is_unread": true,
+      "detail": "Repaid 1,634,856.82 MMK to VISA CREDIT CARD"
+    }
+  ],
+  "notable_other": [
+    {
+      "from": "ino bird <inobird.mm@gmail.com>",
+      "subject": "Invitation: PS Vibe - InoBird Creative Solutions (Briefing Meeting)",
+      "date": "Thu, 16 Jul 2026 10:58:44 +0000",
+      "detail": "Meeting scheduled Fri Jul 17, 2026 10:30am - 11:30am (GMT+6:30)"
+    }
+  ]
 }
