@@ -1,49 +1,8 @@
 {
-  "checked_at": "2026-07-16T13:32:07.710076+00:00",
-  "total": 30,
-  "unread": 30,
-  "promo_skipped": 11,
-  "nova_count": 0,
-  "wallet_count": 0,
-  "important_count": 5,
-  "nova_emails": [],
-  "wallet_emails": [],
-  "important_emails": [
-    {
-      "from": "Google Payments <payments-noreply@google.com>",
-      "subject": "Google Cloud Platform & APIs: Payment received",
-      "date": "Sun, 12 Jul 2026 12:58:02 -0700",
-      "is_unread": true,
-      "body_preview": "Google Cloud Platform & APIs\r\n\r\n\r\nPayment received\r\n\r\nYour payment of THB 1,000.00 (reference CLOUD FCB2xB on Visa  • • • • 3567)  \r\nwas applied to Google Cloud Platform & APIs on Jul 12, 2026.\r\n\r\n\r\n------------------------------------------------------------------------------------\r\n\r\nHelp center<https://support.google.com/cloud/#topic=6288636>\r\n\r\nContact us<https://support.google.com/cloud/conta"
-    },
-    {
-      "from": "ino bird <inobird.mm@gmail.com>",
-      "subject": "Invitation from an unknown sender: PS Vibe - InoBird Creative\r\n Solutions (Briefing Meeting)  @ Fri Jul 17, 2026 10:30am - 11:30am (GMT+6:30) (chanmyint123456789@gmail.com)",
-      "date": "Thu, 16 Jul 2026 10:58:44 +0000",
-      "is_unread": true,
-      "body_preview": "This event isn't in your calendar yet\r\nYou haven't interacted with inobird.mm@gmail.com before. Do you want to  \r\nautomatically add this and future invitations from them to your calendar?\r\nAdd to calendar  \r\nhttps://calendar.google.com/calendar/marksenderasknown?mark_sender_as_known=ChxjaGFubXlpbnQxMjM0NTY3ODlAZ21haWwuY29tEj9NVzF6T1d4c2Jtb3dPV0l3ZEdsaWJHRmlOR1JsZG14aGMyTWdZMmhoYm0xNWFXNTBNVEl6TkRV"
-    },
-    {
-      "from": "OpenAI <noreply@tm.openai.com>",
-      "subject": "Final reminder: Your Plus access ends soon",
-      "date": "Mon, 13 Jul 2026 15:37:03 +0000",
-      "is_unread": true,
-      "body_preview": " <https://chatgpt.com>             \r\n      \r\n                              =  You’ll lose access to Plus on Jul 14,\r\n2026  =\r\n\r\n \r\n          Update payment          Please update your payment method by Jul\r\n14, 2026 to keep access to Plus benefits:\r\n\r\n   - Extended limits on messaging, file uploads, and voice mode\r\n  - More image and video generation\r\n  - Extended access to deep research and reaso"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on Windows\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a Windows device. If\r\nthis was you, you don’t need to do anything. If not, we’ll help you secure\r\nyour account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784183796000?rfn"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Sun, 12 Jul 2026 20:19:08 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on NX809J\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a NX809J device. If this\r\nwas you, you don’t need to do anything. If not, we’ll help you secure your\r\naccount.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1783887548000?rfn%3"
-    }
-  ],
-  "result": "IMPORTANT_FOUND"
+  "checked_at": "2026-07-17T13:30:00Z",
+  "status": "auth_failed",
+  "error": "Gmail OAuth tokens still expired/revoked (same since July 11)",
+  "last_successful_check": "2026-07-11T13:31:00Z",
+  "previously_reported": true,
+  "result": "NO_REPLY"
 }
