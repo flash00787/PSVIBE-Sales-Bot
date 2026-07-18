@@ -1,7 +1,6 @@
-[LOCK_MONITOR] Run at 2026-07-17 22:57:52 UTC (cron trigger)
+[LOCK_MONITOR] Run at 2026-07-18 03:07:15 UTC (cron: lock-monitor-cleanup)
 
-[LOCK_MONITOR] OK: no locks found
-
-Session Disk Usage: 0 KB total
-SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
-=== RESULT: OK ||| ERROR: <none> ===
+Status: OK — no stale lock files found.
+Session disk usage: 0 KB across 0 files.
+Locks cleaned: 0 | Files removed: 0 | KB freed: 0 | Warnings: 0
+=== RESULT: OK ||| ERROR: (none) ===
