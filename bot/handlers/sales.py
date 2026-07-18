@@ -1050,12 +1050,12 @@ async def _save_food_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.error("food-cart save failed: %s", e)
         # Hold stock for these items
         if hold_items:
+            context.user_data["_stock_held"] = True  # 🆕 Always set — release handles no-hold case on API side
             try:
                 await asyncio.to_thread(api_post, "food-cart/hold", {"booking_id": str(booking_id), "items": hold_items})
-                context.user_data["_stock_held"] = True
             except Exception as he:
                 from bot import logger
-                logger.warning("food-cart hold failed: %s", he)
+                logger.warning("food-cart hold failed (non-critical): %s", he)
         total = sum(i["subtotal"] for i in items)
         await update.message.reply_text("\u2705 " + str(len(items)) + " items added = " + str(total) + " Ks\nWill be charged at session end", parse_mode="Markdown")
     else:
@@ -1696,19 +1696,19 @@ async def step_sale_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
             logging.error("sale_bg_write: %s", _e)
         # Release held food_cart items: stock-out + release hold
         bk_id = _linked_bk_id
-        if bk_id and (_food_cart_loaded_flag or _stock_held_flag):
+        # Build held_items first — used by both flag-guarded and unconditional release
+        held_items = [{"item_name": i["name"], "quantity": i["qty"], "unit_price": i.get("unit_price", 0)} for i in food_sold if i.get("from_cart")]
+        if bk_id and held_items:
             try:
                 from bot.api_client import api_post
-                held_items = [{"item_name": i["name"], "quantity": i["qty"], "unit_price": i.get("unit_price", 0)} for i in food_sold if i.get("from_cart")]
-                if held_items:
-                    await asyncio.to_thread(api_post, "food-cart/release", {
-                        "booking_id": str(bk_id),
-                        "items": held_items,
-                        "staff_name": staff_name
-                    })
-                    logging.info("Food cart released: booking=%s items=%d", bk_id, len(held_items))
+                await asyncio.to_thread(api_post, "food-cart/release", {
+                    "booking_id": str(bk_id),
+                    "items": held_items,
+                    "staff_name": staff_name
+                })
+                logging.info("Food cart released: booking=%s items=%d", bk_id, len(held_items))
             except Exception as fulfil_e:
-                logging.warning("Food cart release failed: %s", fulfil_e)
+                logging.warning("Food cart release failed (non-critical): %s", fulfil_e)
     asyncio.create_task(_sale_bg())
     # ── Mark linked booking as completed ─────────────────────────────────────
     _linked_bk_id = booking_id
