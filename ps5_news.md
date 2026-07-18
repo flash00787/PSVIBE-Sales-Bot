@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-17 11:30 UTC
+> Last updated: 2026-07-18 11:30 UTC
 
 ---
 
@@ -77,6 +77,129 @@
 7. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free!
 8. **🔥 JULY 23 PREPARATION — 6 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
 9. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+
+---
+
+## ⚡ JULY 18 MORNING (July 18, 2026 - 11:30 UTC) — 🚨🔥 FALLOUT 3 & NEW VEGAS REMASTERS CONFIRMED! Fallout 5 Pre-Production! Fallout 76 Raven Rock Expansion! + Battlefield 6 Season 4 — Carrier Strike + Top Gun Collab! Jul 21! + KOTOR Remake ALIVE (2028) + GTA 6 Pre-Order Record!
+
+> **Summary:** Morning sweep — 24 hours since last update. **🚨🔥 BREAKING: Bethesda drops MULTIPLE FALLOUT BOMBS!** Fallout 3 & New Vegas remasters are OFFICIALLY REAL! Fallout 5 in pre-production! Fallout 76 getting massive "Raven Rock" expansion (2027)! Also: Battlefield 6 Season 4 — Carrier Strike + Top Gun collab launches Jul 21! KOTOR Remake ALIVE with 2028 release window! Marvel's Wolverine cinematic trailer released (swarmed by disc outrage). GTA 6 — strongest pre-order campaign ever recorded. No critical firmware, price changes, or major console announcements.
+
+### 🚨🔥 FALLOUT 3 & NEW VEGAS REMASTERS CONFIRMED! + Fallout 5 Pre-Production! + Fallout 76 Raven Rock Expansion! (Jul 17) 🆕🔥
+
+- **BETHESDA DROPPED A STATEMENT (Jul 17)** with MULTIPLE major Fallout announcements!
+- **Fallout 3 Remaster — OFFICIALLY REAL!** Long-rumoured remaster finally confirmed by Bethesda
+- **Fallout: New Vegas Remaster — OFFICIALLY REAL!** One of the most requested remasters of all time!
+- **No dates yet** — Bethesda not announcing dates, just confirming they're working on them
+- **Fallout 5 — Now in Pre-Production!** Bethesda's next mainline Fallout game has entered pre-production
+  - Todd Howard notes: "Fallout 5 remains our long-range destination"
+  - Massive celebration planned for **Fallout Day 2027 (Oct 23)** — expect movement around then
+- **Fallout 76 — "Raven Rock" Expansion (2027)!** Major expansion described as a prequel story to Fallout 3
+  - Native PS5/Xbox Series X/S versions also being tested (improved graphics/performance)
+- **Mystery Obsidian Fallout project** — Obsidian moved onto a new Fallout game (costing them an Avowed sequel)
+  - Studio lost ~25% staff in Xbox's latest 3200-person layoffs
+- **Fallout 4** just crossed **35 million copies sold**, celebrating 10-year anniversary
+- Source: Eurogamer (Jul 17, 2026), Bethesda official statement
+- **💡💡💡💡💡 LOUNGE IMPACT — MASSIVE:**
+  - Fallout is one of the most popular RPG franchises of all time! Huge name recognition!
+  - Fallout 3 and New Vegas remasters = **legendary games, modernized** — perfect for lounge sessions
+  - No dates yet, but official confirmation means they're coming — likely late 2027/2028
+  - **Recommendation:** Track these closely. When released, they'll be major lounge attractions. Fallout's broad appeal spans ages 20-45+
+  - Fallout 76's Raven Rock expansion + native PS5 upgrade = good for lounge regulars who play ESO/Fallout 76
+  - ⭐⭐⭐⭐⭐ lounge value — Fallout is a MEGA IP
+
+### 🚨 KOTOR Remake — ALIVE! Saber Interactive Confirms 2028 Release Window! (Jul 17) 🆕
+
+- **Saber Interactive's Chief Business Officer** confirmed the long-in-limbo Star Wars: Knights of the Old Republic Remake is **still in active development**
+- **Targeting a 2028 release window** — after years of uncertainty, this is the first solid timeframe
+- The KOTOR Remake was originally announced in 2021, then faced multiple delays and developer changes
+- Aspyr was originally developing, then Saber Interactive took over
+- Source: Eurogamer (Jul 17, 2026), Saber Interactive
+- **💡💡💡💡 Lounge Note:** KOTOR is one of the most beloved RPGs of all time. A 2028 window puts it alongside Fallout remasters and GTA 6 — the late-decade lineup is stacked! ⭐⭐⭐⭐ lounge value
+
+### 🎖️ Battlefield 6 Season 4 — "Pacific Front" Launches Jul 21! Carrier Strike + Top Gun Collab! 🆕
+
+- **Season 4: "Pacific Front"** launches **July 21, 2026** on PS5 — just 3 days away!
+- **Tsuru Reef map** — single biggest map in BF6 yet! First to feature naval combat!
+- **New water vehicles:** RCB-90 Patrol Boat + RHIB light transport boat
+- **New weapons:** Bren 3 Carbine, EF88 Assault Rifle, VSSM DMR (full-auto capable)
+- **Carrier Strike (Phase Two — Aug 18):** Evolved Carrier Assault mode from BF4! Sink enemy aircraft carrier using land, air AND sea warfare! **Limited-time mode!**
+- **Top Gun Collaboration! (Phase Two — Aug 18):** 
+  - **Two-seater jets!** F-14 Tomcat (F-74A Seacat) + F/A-18 Super Hornet (F/A-81F Super Spectre)
+  - First two-seater jets in Battlefield since BF2!
+  - Wake Island remake (based on BF5 version)
+  - Characters and voice-overs from the films!
+  - Fighter Sweep mission — air-only Gauntlet mode (free-to-play Redsec)
+  - Desert Tech HTI sniper — longest-range in BF6
+- **Phase Three (Sep 15):** Tidal Strike — most mysterious
+- **Custom lobbies + Portal pre-lobby screen** for community events
+- **💡💡💡💡 LOUNGE IMPACT:** Battlefield 6 Season 4 with Top Gun collaboration = MAJOR hype! Two-seater jets with a friend = perfect lounge co-op! Carrier Strike mode brings BF4 nostalgia! Jul 21 launch! ⭐⭐⭐⭐
+- Sources: Eurogamer (Jul 17, 2026), EA/Battlefield Studios
+
+### 🎬 Marvel's Wolverine — Cinematic Trailer Released! Swarmed by Disc Outrage Comments! 🆕
+
+- **PlayStation released a new Marvel's Wolverine cinematic trailer** (Jul 17)
+- The trailer was **swarmed by PlayStation fans** still angry at Sony's disc phaseout — 122+ comments on Eurogamer
+- Story trailer shows more of the game's narrative and tone
+- **Sep 15 release** still locked (previously tracked)
+- **💡 Lounge Note:** The disc phaseout anger is still VERY much alive in the PlayStation community. Marvel's Wolverine is coming Sep 15 — one of this year's biggest titles. ⭐⭐⭐ lounge value
+- Source: Eurogamer (Jul 17, 2026)
+
+### 🩸 Blood of Dawnwalker — CONFIRMED for Physical Disc Release! (Jul 18) 🆕
+
+- **Bandai Namco and Rebel Wolves confirm:** The full Blood of Dawnwalker game will be released on disc
+- Blood of Dawnwalker is the dark fantasy RPG from former Witcher 3 devs (previously tracked: Sep 3 release)
+- This is notable because it's yet another AAA title confirming physical release **despite** Sony's disc phaseout
+- **💡 Lounge Note:** Another disc-title to add to the lounge's physical library! ⭐⭐ lounge value
+- Source: Eurogamer (Jul 18, 2026), Bandai Namco
+
+### 🎭 God of War TV Series — Kratos Actor Ryan Hurst INJURED on Set! Needs Recast! 🆕
+
+- **Kratos actor Ryan Hurst** (Sons of Anarchy, Remember the Titans) was **badly injured on set** of the live-action God of War TV series for Amazon
+- Production suffered a **huge setback** — Hurst needs to be recast
+- This is separate from the God of War Laufey game (2027, Santa Monica Studio)
+- 36 comments on Eurogamer — fans are invested
+- **💡 Lounge Note:** Not directly game-impacting, but a major setback for the TV adaptation. The God of War franchise has massive crossover appeal — a successful TV show would drive new customers to the lounge. ⭐ lounge value
+- Source: Eurogamer (Jul 17, 2026)
+
+### 💰 GTA 6 — Strongest Pre-Order Campaign EVER Recorded! (Jul 17) 🆕
+
+- **Analyst firm corrects earlier claims** — calls the claims of GTA 6 pre-orders being "absurd" incorrect
+- **BUT confirms:** GTA 6 has had the **"strongest pre-order campaign ever recorded"**
+- This reinforces the already-tracked data — GTA 6 (Nov 19) is the most anticipated game of the decade
+- **💡 Lounge Reinforcement:** Already tracked. GTA 6 Nov 19 launch remains the single biggest event for PS VIBE in 2026. ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 17, 2026)
+
+### 📋 Quick Status Refresh (Jul 18 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **Fallout 3 & NV Remasters** | **CONFIRMED 🆕** | OFFICIALLY REAL! No dates yet! |
+| 🚨 **Fallout 5** | **PRE-PRODUCTION 🆕** | Long-range! Fallout Day 2027 expectations! |
+| 🚨 **Fallout 76 Raven Rock** | **2027 EXPANSION 🆕** | Native PS5 upgrade being tested! |
+| 🚨 **KOTOR Remake** | **ALIVE! 2028 🆕** | Saber Interactive confirms! First timeframe! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **JUL 21! 3 DAYS! 🆕** | Tsuru Reef! Carrier Strike! Top Gun Collab! |
+| 🎬 **Marvel's Wolverine Trailer** | **RELEASED 🆕** | Sep 15! Swarmed by disc outrage! |
+| 🩸 **Blood of Dawnwalker Disc** | **CONFIRMED 🆕** | Physical release! Sep 3! |
+| 🎭 **GoW TV Series** | **ACTOR INJURED 🆕** | Ryan Hurst recast needed! |
+| 💰 **GTA 6 Pre-Orders** | **STRONGEST EVER 🆕** | Nov 19! Unmatched demand! |
+| 🧊 **Castlevania: Belmont's Curse** | **HANDS-ON REPORT** | Oct 15! Evil Empire! Pre-order! |
+| 🥊 **Marvel Tōkon Open Beta** | **Jul 24-26! 6 DAYS!** | No PS Plus needed! Pre-download! |
+| 🧊 **Hellraiser: Revival** | **Oct 8** | Track for Halloween! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 5 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | 5-day early access! |
+
+### 📋 Updated Priority Lounge Actions (Jul 18 - 11:30 UTC):
+1. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Halloween timing! Pre-order for lounge PS5s!
+2. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! Install on 2-3 lounge consoles!
+3. **🎖️🔥 PREPARE for Battlefield 6 Season 4 — Jul 21!** 3 days away! Top Gun carrier strike! Install updates!
+4. **🔥🔥🔥 JULY 23 PREPARATION — 5 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD ALL UPDATES!
+5. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** Non-VR collection! Launched!
+6. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning!
+7. **🛒🛒🛒 CHECK SUMMER SALE — LIVE!** Up to 75% off! Ends Aug 12!
+8. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
+9. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free!
+10. **📋 TRACK Fallout 3 & NV Remasters** — Monitor for release dates! Mega IP!
+11. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
 
 ---
 
