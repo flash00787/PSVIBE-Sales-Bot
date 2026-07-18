@@ -219,67 +219,16 @@ Kora now manages **9 projects** with full coordination tool support.
 - **Problem:** After key operations, server rendered full dashboard (1.2s) before responding. Cloudflare closed connection → `ERR_CONNECTION_CLOSED`
 - **Fix:** Changed delete/expire/renew handlers to use 302 redirect (8ms) instead of full page render.
 
-### New Lessons (#152-#155)
-| # | Lesson |
-|:-:|--------|
-| 152 | **Thread locks + concurrent HTTP + Prometheus = deadlock** — Never hold form idempotency locks across slow I/O (Prometheus queries). Batch or cache metrics. |
-| 153 | **Prometheus queries per-key are slow** — Use `sum()` aggregator for single-query batch metrics instead of N individual queries. |
-| 154 | **Post-mutation redirect beats full render** — After write operations (delete/expire), 302 redirect ~8ms vs full dashboard render ~1.2s. Avoid Cloudflare 100s timeout.
-155 | **POST mutating handlers → 302 redirect** — Rename handler used `send_html(render_keys(...))` (~1.2s). Changed to `send_redirect_admin()` (~8ms). All POST handlers that mutate data must use redirect, never full page render. |
-
-
----
-
-## Memory (2026-07-12) — AKT Clothing Bugs + Gemini Audit + Deposit Design 🔧
-
-### Bugs Fixed: AKT Clothing Payment System (Osmo) 🐛→✅
-1. **Double-Negation Bug:** Purchase payment passed negative `paid_amount` → `_record_payment_transaction_mongo()` applied `-amount` again → balance INCREASED instead of decreased (#153)
-2. **Missing Account Dropdown:** Single-payment purchase form had no account selection — fixed: added payment account dropdown (#154)
-3. **Edit Purchase Not Recording Transactions:** `delete_many()` used wrong field names (`ref_type`/`ref_id` vs `reference_type`/`reference_id`); frontend didn't send `payment_breakdown` on single-payment edit (#155)
-4. **R/P Pay Supplier — Redundant Method:** Had both Payment Method dropdown AND Transfer Account dropdown — replaced with single accounts list (#156)
-
-### Gemini API Key (AIzaSy…CM2E) Cost Investigation 🔍
-- **Who used it:** OpenClaw Gateway (fallback from backup config before Jul 9) + Customer Bot `ai.py`
-- **Action:** Removed CM2E from `/etc/psvibe/secrets.env`, restarted customer bot
-- **Lesson:** Google revokes leaked keys — always audit which services use which keys (#147-148)
-
-### Deposit Flow Design (PS VIBE) 📋
-- Deposit = **30%** of session fee (was 50%)
-- Methods: KPay / WavePay / AYA Pay
-- Lifecycle: `none → pending → paid → verified → redeemed/refunded/forfeited`
-- 5 API endpoints designed, plan to start at 8pm MMT
-
-### VPN Redirect Fix 🔧
-- Outline `/admin` route → redirect to `/login` (root page)
-- Agent Portal `/agent` → redirect to `/agent/login`
-
-### Weekly Code Quality Scan ✅
-- PS VIBE Sales Bot scanned and cleaned (Jul 12, 01:30 UTC)
-- No critical issues found
-
-### Key Lesson (#157)
-157. Payment account dropdown replaces payment method dropdown — account name + type (cash/bank/mobile_wallet) contains all needed info to derive method
-
-
----
-
 ## Memory (2026-07-13) — Wallet Check Skip Fix 🔧
 
 ### Bug Fixed: Wallet Insufficient Check Skipped for Member Bookings 🐛→✅
 - **Problem:** `launch_session_sale` in `sales.py` had an `if booking_id:` block that unconditionally set `wallet_mins=None` for ALL bookings (guest + member), skipping the wallet balance check entirely for members.
 - **Root cause:** The booking_id block was a guest-specific optimization (guests have no wallet) but was applied to all booking flows regardless of membership status.
 - **Fix:** Added `if not is_guest:` check inside the booking_id block so members still get their wallet balance checked.
-- **Importance:** Without this fix, members could book sessions even with insufficient wallet balance — leading to unpaid sessions and balance tracking issues.
-
-### New Lesson (#158)
-| # | Lesson |
-|:-:|--------|
-| 158 | **Booking flows must differentiate guest vs member** — Guest-specific optimizations (like skipping wallet checks) must be guarded by `if not is_guest:`. A blanket `if booking_id:` block accidentally skips critical validation for all members. |
 
 ### Deposit Deduction Verified ✅ (Jul 13, 19:00 UTC)
 - Full flow traced end-to-end: 3 session-end callers all pass `booking_id` to `launch_session_sale`
 - 6 bookings redeemed today (BK#1618-BK#1646), all correctly deducted
-- BK#1614 (test) and BK#1650 (test) deleted from MySQL
 
 ### Outline VPN Key Create Timeout Fixed 🐛→✅ (Jul 13, 19:23 UTC)
 - **Root Cause:** Xray/Outline key CREATE handlers rendered full dashboard (1-2s) instead of 302 redirect (~8ms). Cloudflare returned 526/524 errors.
@@ -287,65 +236,61 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### Referral Code Fixes 🐛→✅
 3 issues fixed:
-1. **BTN_ASSIGN_REFERRAL circular import** — Added lazy wrappers (`show_mm_menu`, `prompt_mm_lookup`, `prompt_referral_code`) in `bot/__init__.py` + imports in `members.py`/`referral.py`
-2. **save_referral_code GSheet→API** — `bot/__init__.py` now uses API with 409 conflict check; GSheet path removed from `referral.py`
-3. **fetch_members() dict vs string list** — API returns `{"members": [{id, name, ...}], total, ...}` but callers expected string list. Fixed by extracting `id` strings from `result["members"]`.
-- **Files:** `bot/__init__.py`, `members.py`, `referral.py`, `member_routes.py`
-- **Lessons:** #158 (guest/member), #159 (circular import wrappers), #160 (GSheet deprecated)
+1. **BTN_ASSIGN_REFERRAL circular import** — Added lazy wrappers in `bot/__init__.py`
+2. **save_referral_code GSheet→API** — `bot/__init__.py` now uses API with 409 conflict check
+3. **fetch_members() dict vs string list** — Fixed by extracting `id` strings from `result["members"]`.
 
 ### Game Selection Button Changed 🐛→✅ (Jul 13, 19:40 UTC)
 - **Text:** `"🤷 မရွေးတတ်ပါ"` → `"🏪 ဆိုင်ရောက်မှ ရွေးမယ်"`
 - **Position:** Moved from bottom of game list to TOP
-- **Files:** `customer_bot/booking_handlers.py`, `customer_bot/handlers.py`
-- **Service:** `psvibe-customer-bot` restarted
 
 ### Garbled Unicode Removed from Deposit Verify Notification 🐛→✅ (Jul 13, 19:44 UTC)
-- **Removed:** `"📲 Booking ခိလ ရေရာက်းထားပဲ့နှင့် ရှင့် ကိုဆက်သန္ဓိရားပါ။"`
-- **Cause:** Buried Unicode escape sequences encoding garbled Burmese text
-- **File:** `booking_routes.py:2264-2266`
-- **Service:** `psvibe-api` restarted
+- **Removed garbled Burmese text** from `booking_routes.py:2264-2266`
 
+### Outline VPN Fixes
+- **"database is locked"** — Added `PRAGMA busy_timeout=5000` to SQLite.
+- **Trial Key Count** — Removed `if base_price > 0:` guard so trial keys create commission records.
 
-### PS VIBE Customer Bot — 6+ Bugs Fixed 🔧
+---
 
-1. **Booking Route Conflict — `POST /api/bookings` Duplicate Handlers 🐛** — Two `@router.post("/bookings")` handlers in booking_routes.py; merged into single `api_bookings_create` with format detection. Lesson #159.
-2. **MySQL Password Mismatch 🔑** — Fixed `ALTER USER` for `psvibe_user@172.17.0.1` to match env.
-3. **Booking Visibility — Verified Deposits Disappearing 👻** — `search-bookings` filter only checked `deposit_status='paid'`. Fixed: `IN ('paid','verified')`. Lesson #160.
-4. **Merged Handler Format Detection Bug 🐛** — `is_web_format` check moved before bot branch.
-5. **Wallet Insufficient Check Skipped for Members 🐛** — Added `if not is_guest:` guard. Lesson #158.
-6. **Garbled Unicode + Referral Code Fixes** — Removed garbled Burmese text; fixed circular imports + GSheet→API migration.
+## Memory (2026-07-18) — Stock Out Pipeline Fix + COGS Verification 🔧
 
-### SEL Exchange Dashboard — Modal & JS Fix
-1. **Modal Auto-Show Fix ✅** — Added `style="display:none"` to 4 equity modal overlays.
-2. **Modal Open/Close Logic ✅** — Created `openEquityModal(id)`; updated `closeModal()` for string ID args.
-3. **⭐ CRITICAL: `esc()` Syntax Error** — Double brace `{ {` in `esc()` killed entire JS. Pre-existing bug. Fix: removed extra `{`. Lesson #161.
+### Stock Out / Hold Pipeline Fix — 5 Issues Resolved ✅
+- **Fix:** Stock out pipeline had 5 issues (stock_out, stock_hold, food_cart) — all resolved. Verified at 2026-07-18 04:58 UTC.
+- **Files:** patch_routes.py
+- **Status:** Verified ✅
 
-### SEL Exchange — Internal Account Transfer Feature ✅
-- **API:** `POST /api/accounts/transfer` with rate param for cross-currency
-- **Frontend:** Transfer modal with live conversion preview, account balance display, auto-exclude same account
-- **Tests:** same-currency ✓ cross-currency ✓ error cases ✓
+### COGS & Food Profit Logic — Full Pipeline Verified ✅
+- **Audit:** Full pipeline audit of COGS and food profit logic completed. All items verified with zero discrepancies.
+- **Key metrics:** Food Profit: 922,040 Ks (38.8% margin) for July 2026 ✅
+- **Double-count check:** Release path vs Voucher path — zero dupes ✅
+- **All sold items have stock_in matching** — zero "no_stock_in" items ✅
+- **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅
+- **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅
 
-### Outline VPN — "database is locked" Fix 🔧
-- **Root cause:** SQLite default busy_timeout=0ms → immediate failure on concurrent writes in ThreadingHTTPServer.
-- **Fix:** Added `PRAGMA busy_timeout=5000` to `get_db()` in `/opt/outline-web/server.py`.
-- **Lesson #162:** SQLite in ThreadingHTTPServer needs busy_timeout — default 0ms = concurrent writes fail immediately.
+### Stock Out / Hold Full Flow Audit 🔍
+- **Scope:** Complete audit of stock_out, stock_hold, and food_cart integration
+- **Status:** Open — findings documented in MongoDB
 
-### Outline VPN — Agent Total Keys Column ✅
-- Added 🔑 Keys column to admin agents table (before unpaid slots).
-- File: `/opt/outline-web/server.py` `render_keys()`.
-
-### Outline VPN — Trial Key Count Root Cause + Fix ✅
-- **Bug:** `record_commission()` guarded by `if base_price > 0:` — trial keys (base_price=0) never created commission records → trial count always 0 → max_trial_keys effectively infinite.
-- **Fix:** Removed guard; trial keys now create commission records with `duration_days=3`, `commission_amount=0`.
-- **Lesson #163:** Guards on commission-record filters must match creation flow — can't count records that don't exist.
-
-### New Lessons #158–#163
+### New Lesson (#193)
 | # | Lesson |
 |:-:|--------|
-| 158 | Booking flows must differentiate guest vs member — guest optimizations need `if not is_guest:` guard. |
-| 159 | Duplicate route decorators = first registered wins — Starlette doesn't merge or warn. |
-| 160 | When adding new status transitions, audit ALL existing filters — `deposit_status='verified'` was invisible to filters only checking `'paid'`. |
-| 161 | Always `node --check` after HTML/JS edits — One extra `{` kills ENTIRE script execution. |
-| 162 | SQLite + ThreadingHTTPServer needs busy_timeout — default 0ms = "database is locked" on concurrent writes. |
-| 163 | Guards on commission-record filters must match creation flow — can't count records that don't exist.
-| 192 | **Deposit restore on reactivation** — auto-cancel sets deposit=forfeited, but reactivation paths (start-session, check-in, status update) must restore to 'verified'. Added to console_routes.py (2 paths) + booking_routes.py (2 paths). |
+| 193 | **Stock-out pipeline audit must verify both release AND voucher paths** — two separate code paths can diverge, creating phantom inventory. Always cross-check COGS against both paths. |
+
+---
+
+## Memory (2026-07-18) — Bugs: Briefing Prediction + Response Spike
+
+### BUG (3)
+- `[open [low]]` **Prediction: Morning Briefing — 2026-07-18 (စနေနေ့) (×2)**
+  *auto-bug* | `id:f996bc4a, id:71fbcbe4`
+  > **Bug detected:** Prediction text for morning briefing duplicated/auto-generated. Low severity, cosmetic.
+
+- `[open [warning]]` **[WARNING] Response Time Spike — 1109.7ms (18.7× baseline 59.4ms)**
+  *auto-bug* | `id:08a15936`
+  > **Bug detected:** Response time 1109.7ms vs 59.4ms baseline. Monitor for recurrence.
+
+### New Lessons
+| # | Lesson |
+|:-:|--------|
+| — | No new lessons from bugs — both are auto-generated monitor alerts. |
