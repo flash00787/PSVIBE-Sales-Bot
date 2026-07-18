@@ -1,90 +1,57 @@
 {
-  "C-08|1003686032747": {
-    "cid": "C-08",
+  "C-10|1003686032747": {
+    "cid": "C-10",
     "chat_id": -1003686032747,
-    "member_id": "Hein Htet Aung",
-    "planned_mins": 120,
-    "end_t": "14:56",
-    "end_dt_iso": "2026-07-18T14:56:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-18T06:26:49.484797+00:00"
-  },
-  "C-01|1003686032747": {
-    "cid": "C-01",
-    "chat_id": -1003686032747,
-    "member_id": "09975496123",
+    "member_id": "Khant Htal",
     "planned_mins": 180,
-    "end_t": "16:04",
-    "end_dt_iso": "2026-07-18T16:04:00+06:30",
+    "end_t": "18:08",
+    "end_dt_iso": "2026-07-18T18:08:00+06:30",
     "message_thread_id": 125192,
     "total_plan_mins": 180,
-    "updated_at": "2026-07-18T06:34:11.695039+00:00"
+    "updated_at": "2026-07-18T08:38:22.818699+00:00"
   },
   "C-04|1003686032747": {
     "cid": "C-04",
     "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 60,
-    "end_t": "14:48",
-    "end_dt_iso": "2026-07-18T14:48:00+06:30",
+    "member_id": "09985244869",
+    "planned_mins": 90,
+    "end_t": "16:45",
+    "end_dt_iso": "2026-07-18T16:45:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-18T07:18:41.324462+00:00"
+    "total_plan_mins": 90,
+    "updated_at": "2026-07-18T08:45:04.528312+00:00"
   },
-  "C-09|1003686032747": {
-    "cid": "C-09",
+  "C-08|1003686032747": {
+    "cid": "C-08",
     "chat_id": -1003686032747,
-    "member_id": "\u1000\u102d\u102f\u1011\u1000\u103a",
-    "planned_mins": 60,
-    "end_t": "14:50",
-    "end_dt_iso": "2026-07-18T14:50:00+06:30",
+    "member_id": "09985244869",
+    "planned_mins": 90,
+    "end_t": "16:45",
+    "end_dt_iso": "2026-07-18T16:45:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 60,
-    "updated_at": "2026-07-18T07:20:09.036350+00:00"
-  },
-  "C-03|1003686032747": {
-    "cid": "C-03",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 120,
-    "end_t": "16:13",
-    "end_dt_iso": "2026-07-18T16:13:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-18T07:43:33.010462+00:00"
-  },
-  "C-06|1003686032747": {
-    "cid": "C-06",
-    "chat_id": -1003686032747,
-    "member_id": "Guest",
-    "planned_mins": 120,
-    "end_t": "16:23",
-    "end_dt_iso": "2026-07-18T16:23:00+06:30",
-    "message_thread_id": 125192,
-    "total_plan_mins": 120,
-    "updated_at": "2026-07-18T08:00:06.332396+00:00"
-  },
-  "C-07|1003686032747": {
-    "cid": "C-07",
-    "chat_id": -1003686032747,
-    "member_id": "myat thura",
-    "planned_mins": 64,
-    "end_t": "15:36",
-    "end_dt_iso": "2026-07-18T15:36:00+06:30",
-    "message_thread_id": null,
-    "total_plan_mins": 180,
-    "updated_at": "2026-07-18T08:01:09.309627+00:00"
+    "total_plan_mins": 90,
+    "updated_at": "2026-07-18T08:45:12.156260+00:00"
   },
   "C-05|1003686032747": {
     "cid": "C-05",
     "chat_id": -1003686032747,
-    "member_id": "PSV_A_009",
-    "planned_mins": 73,
-    "end_t": "15:49",
-    "end_dt_iso": "2026-07-18T15:49:00+06:30",
+    "member_id": "Hlaing min khant",
+    "planned_mins": 120,
+    "end_t": "17:33",
+    "end_dt_iso": "2026-07-18T17:33:00+06:30",
     "message_thread_id": 125192,
-    "total_plan_mins": 73,
-    "updated_at": "2026-07-18T08:06:10.883037+00:00"
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-18T09:03:10.278417+00:00"
+  },
+  "C-07|1003686032747": {
+    "cid": "C-07",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 60,
+    "end_t": "16:40",
+    "end_dt_iso": "2026-07-18T16:40:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 60,
+    "updated_at": "2026-07-18T09:10:23.506768+00:00"
   }
 }
