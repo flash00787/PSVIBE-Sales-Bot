@@ -144,29 +144,25 @@ Kora now manages **9 projects** with full coordination tool support.
 
 *(Trimmed: oldest fix history removed — keeping only 5 most recent fixes)*
 
-## Recent Memory (2026-07-09 to 2026-07-10)
+## Memory (2026-07-18) — COGS Audit + Deposit Restore Fix 🔧
 
----
+### COGS & Food Profit Pipeline — Full Audit ✅
+- **Food Revenue:** stock_out SUM(total) per month — correct ✅
+- **COGS:** FIFO (stock_in cost matched to stock_out qty) — correct ✅
+- **Food Profit:** 922,040 Ks (38.8% margin) for July 2026 ✅
+- **Double-count check:** Release path vs Voucher path — zero dupes ✅
+- **All sold items have stock_in matching** — zero "no_stock_in" items ✅
+- **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅
+- **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅
 
-## Memory (2026-07-09) — Advance Payment Root Cause + VPN UI Fixes 🔧
-
-### Advance Payment System — Root Cause Fix ✅
-- **Problem:** 7 advance payments (104.8M) recorded in `finance_advances` but NEVER recorded as `cash_movements` eject. Only settlement injects (102.5M) recorded → KBZ Bank overstated by 102.5M.
-- **Fix 1:** Backfilled 7 missing eject entries in `cash_movements` for KBZ Bank (104.8M total)
-- **Fix 2:** Removed advance settled filter from `get_finance_balances()`
-- **Fix 3:** Removed `ded_advances` from KBZ capital deduction in both balance functions
-- **Files:** `finance_routes.py`
-- **DB:** 7 INSERTs into `cash_movements` (KBZ Bank, eject, 104.8M)
-
-### VPN UI Fixes (Osmo) 🐛→✅
-1. **Recent Keys မပေါ်တာ:** `{key_rows}` placeholder `.replace()` မေ့နေ။ Fix: added `.replace()`.
-2. **Outline Keys Data Usage Added:** Usage column with progress bar (Outline) / "—" (Xray).
-3. **Sub-tab Layout moved:** Payment Summary above Xray/Outline sub-tabs.
-4. **Outline VPN Expiry Checker — Data Limit Auto-Expiry:** Added Prometheus data usage vs `data_limit_bytes` check. (#141-142)
-
-### Cash Flow & OPEX Fixes 🔧
-- Cashflow opening formula: removed `finance_advances` double-count from SQL (opening: -93.4M → 11.4M ✅)
-- Cash OPEX (935,400 Ks) backfilled: added opex query to till endpoints, 7 daily_till records backfilled
+### Deposit Restore on Reactivation — 4 Paths Fixed 🐛→✅
+- **Problem:** Booking #1760 auto-cancelled at 12:15 MMT (5 min before 12:20 booking). deposit_status became 'forfeited'. Staff reactivated session but deposit stayed forfeited.
+- **Fix 1:** `api_start_console_session()` — deposit restore after commit (console_routes.py:391)
+- **Fix 2:** `api_sessions_start()` — deposit restore for linked bookings (console_routes.py:606)
+- **Fix 3:** `api_booking_checkin()` — deposit restore on check-in (booking_routes.py:329)
+- **Fix 4:** `api_update_booking_status()` — added cancelled→Active transition + deposit restore (booking_routes.py:832, 923)
+- **Immediate:** Booking #1760 deposit restored from 'forfeited' → 'verified' manually
+- **Lesson #192:** When adding forfeit/deposit logic to cancel flows, audit ALL reactivation paths to ensure deposit restoration.
 
 ## Memory (2026-07-17) — SEL Equity System + PS VIBE Return 🔄
 
@@ -181,7 +177,7 @@ Kora now manages **9 projects** with full coordination tool support.
 - **API:** 8 new equity endpoints
 - **Files:** db.py, app.py, dashboard/index.html, docs/EQUITY_API.md
 
-### Key Lessons (#137-#148)
+### Key Lessons (#137-#192)
 137. Advance eject must be recorded in cash_movements for ALL advances
 138. Filter as workaround ≠ real fix
 139. finance_advances + cash_movements eject = double-count once backfilled
@@ -351,4 +347,5 @@ Kora now manages **9 projects** with full coordination tool support.
 | 160 | When adding new status transitions, audit ALL existing filters — `deposit_status='verified'` was invisible to filters only checking `'paid'`. |
 | 161 | Always `node --check` after HTML/JS edits — One extra `{` kills ENTIRE script execution. |
 | 162 | SQLite + ThreadingHTTPServer needs busy_timeout — default 0ms = "database is locked" on concurrent writes. |
-| 163 | Guards on commission-record filters must match creation flow — can't count records that don't exist. |
+| 163 | Guards on commission-record filters must match creation flow — can't count records that don't exist.
+| 192 | **Deposit restore on reactivation** — auto-cancel sets deposit=forfeited, but reactivation paths (start-session, check-in, status update) must restore to 'verified'. Added to console_routes.py (2 paths) + booking_routes.py (2 paths). |
