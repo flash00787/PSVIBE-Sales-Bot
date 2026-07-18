@@ -1,1 +1,13 @@
-{}
+{
+  "C-05|1003686032747": {
+    "cid": "C-05",
+    "chat_id": -1003686032747,
+    "member_id": "Guest",
+    "planned_mins": 120,
+    "end_t": "11:23",
+    "end_dt_iso": "2026-07-18T11:23:00+06:30",
+    "message_thread_id": 125192,
+    "total_plan_mins": 120,
+    "updated_at": "2026-07-18T02:53:39.232507+00:00"
+  }
+}
