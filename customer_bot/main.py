@@ -59,7 +59,7 @@ def _register_handlers(app: Application) -> None:
     """Register all command and callback handlers."""
 
     # ── Blocked users — inform and ignore ──
-    _blocked_user_filter = filters.User(user_id=7158675982) | filters.User(user_id=8383666570)
+    _blocked_user_filter = filters.User(user_id=7158675982) | filters.User(user_id=8383666570) | filters.User(user_id=8806200022)
     async def _block_user(update, context):
         await update.message.reply_text(
             "🚫 <b>Access Denied</b>\n\n"
