@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-19T13:32:19.175881+00:00",
+  "checked_at": "2026-07-19T19:10:58.706564+00:00",
   "total": 28,
   "unread": 28,
   "promo_skipped": 10,
@@ -9,6 +9,13 @@
   "nova_emails": [],
   "wallet_emails": [],
   "important_emails": [
+    {
+      "from": "Google <no-reply@accounts.google.com>",
+      "subject": "Security alert",
+      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
+      "is_unread": true,
+      "body_preview": "[image: Google]\r\nA new sign-in on Windows\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a Windows device. If\r\nthis was you, you don’t need to do anything. If not, we’ll help you secure\r\nyour account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784183796000?rfn"
+    },
     {
       "from": "AYA Bank <ibanking@ayainnovation.com>",
       "subject": "Credit Card Repayment Successful ",
@@ -22,13 +29,6 @@
       "date": "Thu, 16 Jul 2026 10:58:44 +0000",
       "is_unread": true,
       "body_preview": "This event isn't in your calendar yet\r\nYou haven't interacted with inobird.mm@gmail.com before. Do you want to  \r\nautomatically add this and future invitations from them to your calendar?\r\nAdd to calendar  \r\nhttps://calendar.google.com/calendar/marksenderasknown?mark_sender_as_known=ChxjaGFubXlpbnQxMjM0NTY3ODlAZ21haWwuY29tEj9NVzF6T1d4c2Jtb3dPV0l3ZEdsaWJHRmlOR1JsZG14aGMyTWdZMmhoYm0xNWFXNTBNVEl6TkRV"
-    },
-    {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on Windows\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a Windows device. If\r\nthis was you, you don’t need to do anything. If not, we’ll help you secure\r\nyour account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784183796000?rfn"
     }
   ],
   "result": "IMPORTANT_FOUND"
