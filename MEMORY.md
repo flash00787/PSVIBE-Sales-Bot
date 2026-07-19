@@ -290,3 +290,23 @@ Kora now manages **9 projects** with full coordination tool support.
 | # | Lesson |
 |:-:|--------|
 | — | No new lessons from bugs — both are auto-generated monitor alerts. |
+
+---
+
+## Memory (2026-07-19) — Ko Toe Ban & English Group TTS Fix 🔧
+
+### 🎙️ English With Kora — TTS Voice Auto-Generate Fix
+- **Problem:** Group session was responding with text corrections only, no TTS voice audio
+- **Root Cause:** AGENTS.md didn't have TTS instructions — group auto-responder skipped `tts` tool
+- **Fix:** Added `## 🎙️ English With Kora Group — TTS Voice Rules` to AGENTS.md
+- **Status:** ✅ Fixed
+
+### 🚫 Ko Toe (8806200022) — Permanent Ban
+- **Background:** Booking #1862 (C-09, 19:00-03:00) and #1864 (C-10, 20:00-04:00) — both cancelled with history of 6 cancellations (Jul 8-19)
+- **Ban Applied:** 3-layer blocking (handlers.py BLOCKED_IDS + main.py _blocked_user_filter + DB is_active=0)
+- **Lesson #194:** Dual-layer blocking required — PTB framework filter (group=-1) catches ALL message types before ConversationHandler
+
+### New Lessons
+| # | Lesson |
+|:-:|--------|
+| 194 | **Banning a customer bot user requires dual-layer blocking** — MUST update BOTH `BLOCKED_IDS` (handlers.py code-level check) AND `_blocked_user_filter` (main.py PTB framework-level filter at group=-1). IMPORTANT: CallbackQuery flows are NOT caught by MessageHandler filters — verify bot uses ReplyKeyboardMarkup (text messages), or add a separate CallbackQuery handler for blocked users. |
