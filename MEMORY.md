@@ -94,9 +94,10 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-### Most Recent Lessons (2026-07-16)
+### Most Recent Lessons (2026-07-19)
 | # | Lesson |
 |:-:|--------|
+| 194 | **Banning a customer bot user requires dual-layer blocking** — MUST update BOTH `BLOCKED_IDS` (handlers.py code-level check) AND `_blocked_user_filter` (main.py PTB framework-level filter at group=-1). The handlers.py check only catches code paths that explicitly call `_is_blocked()`, while main.py filter catches ALL messages at the framework level (runs before ConversationHandler). IMPORTANT: CallbackQuery flows (inline buttons) are NOT caught by MessageHandler filters — verify the bot uses ReplyKeyboardMarkup (text messages) instead, or add a separate CallbackQuery handler for blocked users. Handle inline button flows separately from message flows. |
 | 169 | **fire_count reset mid-loop sends bogus fire=0 message** — `_sync_duration_from_db()` was called AFTER `fire_count+=1` but BEFORE sending the message. Duration change reset `fire_count=0`, causing overdue calculation `(0-2)*5 = -10 min`. Fix: move sync BEFORE increment, recalculate fire_count from remaining time. |
 | 170 | **`_remind_key` vs `remind_key` key mismatch** — `_remind_key()` (session_reminder.py) returned `f"{cid}|{chat_id}"` (no abs), while `remind_key()` (store) returned `f"{cid}|{abs(chat_id)}"`. This caused `sync_api_reminders_async()` dedup to fail for duplicate store entries with chat_id=0. Fix: add `abs()` to `_remind_key`. |
 | 171 | **`extend-duration` API didn't sync bot's session_reminders.json** — Web dashboard duration change only updated MySQL, not the bot's persistent reminder store. Old `_remind_loop` kept running with stale end_t. Fix: API now updates session_reminders.json with new end_t when extend-duration is called. |
