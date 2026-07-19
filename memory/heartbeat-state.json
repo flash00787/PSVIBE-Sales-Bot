@@ -1,12 +1,5 @@
 {
-  "type": "daily-consolidation",
-  "timestamp_utc": "2026-07-19T15:33:00Z",
-  "date": "2026-07-19",
-  "consolidator_run": "success",
-  "today_memory_read": true,
-  "MEMORY_md_read": true,
-  "new_events_found": 0,
-  "new_events_appended": 0,
-  "status": "ok",
-  "note": "All July 19 content already reflected in MEMORY.md — TTS Voice Fix, Ko Toe Ban, Lesson #194 were previously consolidated."
+  "lastHeartbeat": "2026-07-19T17:36:45Z",
+  "stuckTasks": [],
+  "pendingTasks": []
 }

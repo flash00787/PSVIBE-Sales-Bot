@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-18 23:30 UTC
+> Last updated: 2026-07-19 17:31 UTC
 
 ---
 
@@ -4990,3 +4990,83 @@ Leaving the Extra/Premium Game Catalog on July 21:
 3. **🎖️🔥 PREPARE for Battlefield 6 Season 4 — Jul 21!** 3 days! Top Gun carrier strike!
 4. **🔥🔥🔥 JULY 23 PREPARATION — 5 DAYS!** CoD BO7 Season 5 + Halo Premium early access! PRE-LOAD ALL UPDATES!
 5. **🧓 TRACK ES6** — Bethesda reassurance confirms active dev. Future lounge mega-hit!
+
+---
+
+## ⚡ WEEKEND CHECK (July 19, 2026 - 17:30 UTC) — 🎮🔥 PALWORLD NEARING 1M CONCURRENT AGAIN! + CoD Movie Confirmed in Modern Warfare Universe! + BO1/BO2 Ports Critically Panned! + ES6 Reassurance! + GoT RTS Delayed to 2027!
+
+> **Summary:** Weekend sweep — ~18 hours since last update at 23:30 UTC Jul 18. **🎮🔥 Palworld approaching 1M concurrent players AGAIN** for the second weekend in a row! **🎬 CoD movie CONFIRMED** in Modern Warfare universe (Jun 30, 2028). **🎮 BO1 & BO2 PS4/PS5 ports critically panned** by Digital Foundry as "low effort" — $40 each, no 4K, no 120Hz, no FOV sliders — but still became PS Store bestsellers. **🧓 ES6 reassurance** already covered in last update. **🐉 GoT: War for Westeros RTS** delayed to 2027. **Marathon director** leaves Bungie after 4 months. No critical firmware, price changes, or major console announcements.
+
+### 🎮🔥 Palworld 1.0 — APPROACHING 1M CONCURRENT AGAIN! Second Weekend in a Row! (Jul 19) 🆕📈
+
+- **Palworld is nearing ~1 million concurrent players on Steam** this weekend (Jul 19) — UPDATE to previously tracked 855K peak!
+- **Second weekend in a row** knocking Dota 2 to #3 on Steam charts, behind only Counter-Strike 2
+- Only 3 games have ever had 2M+ concurrent on Steam: PUBG, Black Myth: Wukong, and Palworld
+- Only 5 others have breached 1M: CS2, Monster Hunter Wilds, Lost Ark, Dota 2, Cyberpunk 2077
+- Palworld is a PAID game outperforming multiple free-to-play juggernauts
+- **💡💡💡💡💡 LOUNGE REINFORCEMENT:** Momentum is INCREASING, not fading! If ANY lounge PS5 doesn't have Palworld yet — it's URGENT. Remarkable staying power for version 1.0.
+- Source: Eurogamer (Jul 19, 2026), SteamDB
+
+### 🎬 NEW: Call of Duty Movie — Set in Modern Warfare Universe! June 30, 2028! (Jul 19) 🆕🎥
+
+- **Director Peter Berg** confirmed at Fanatics Fest this weekend: the upcoming Call of Duty movie will be set in the **Modern Warfare universe**
+- **Release date:** June 30, 2028 (already previously announced)
+- **Producer Rob Kostich** (Head of Activision): "We were only going to make a movie if it's right" — emphasis on authenticity and epic scope
+- Movie was first announced earlier in 2026
+- **💡💡💡 LOUNGE IMPACT:** CoD is the #1 franchise at gaming lounges! A Modern Warfare movie with Peter Berg (Lone Survivor, Friday Night Lights) directing = massive hype potential. Movie ticket/cross-promotion opportunities in 2028. ⭐⭐⭐ lounge value
+- Source: Eurogamer (Jul 19, 2026), Fanatics Fest
+
+### 🎮 UPDATE: CoD BO1 & BO2 PS4/PS5 Ports — Digital Foundry Critically Panned! BUT Became PS Store Bestsellers! (Jul 18-19) 🆕
+
+- **Digital Foundry** called the Black Ops ports **"low effort"** — barely any improvement over Xbox backward compatibility
+- **Price criticism:** $40 each for a basic 1080p upgrade — no 4K, no 120Hz, no FOV slider, no separate sensitivity settings
+- **DLC sold separately:** $30 per season pass = $140 total for both games with all DLC (without PS Plus discount)
+- **BUT — they became the MOST POPULAR games on PS Store** despite the criticism
+- **PS Plus discount still active:** $20 each, $10 per season pass until Aug 6
+- **Hackers already infecting lobbies** — as previously tracked, this is an ongoing issue
+- **💡💡💡💡 LOUNGE NOTE:** Despite critical panning, the sales prove massive nostalgia demand. Buy with PS Plus discount for CAMPAIGN/ZOMBIES only. The hacker situation makes competitive multiplayer unreliable.
+- Source: Eurogamer (Jul 18, 2026), Digital Foundry
+
+### 🐉 NEW: Game of Thrones: War for Westeros RTS — Delayed to Early 2027 (Jul 19) 🆕
+
+- **PlaySide Studios** announced delay from 2026 to **early 2027** "to ensure the game reaches the high level of quality we are aiming for"
+- RTS featuring House Stark, Lannister, Targaryen, and Night King's Army
+- Heroes with leveling and abilities — iconic characters can turn the tide of battle
+- **💡 Lounge Note:** Low immediate lounge impact. Track for 2027 release. ⭐ lounge value
+- Source: Eurogamer (Jul 19, 2026), PlaySide Studios
+
+### 🎮 Marathon Director Joe Ziegler Leaves Bungie — 4 Months After Launch! (Jul 19) 🆕
+
+- **Joe Ziegler** (former Riot 12-year veteran) announced his departure from Bungie, effective Jul 17
+- Passed game director torch to **Del Chafe III** and **Creative Director Julia Nardin**
+- Only 4 months after Marathon's launch — surprising timing
+- Bungie continues to face challenges after recent layoffs
+- **💡 Lounge Note:** Not directly lounge-impactful, but Marathon is a PS5/PC title. Leadership change mid-stream could affect the game's future direction. ⭐ low lounge value
+- Source: Eurogamer (Jul 19, 2026), Ziegler/Twitter
+
+### 📋 Quick Status Refresh (Jul 19 - 17:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮🔥 **Palworld 1.0** | **~1M CONCURRENT 🆕📈** | Second weekend in a row! Dota 2 pushed to #3! |
+| 🎬 **CoD Movie** | **MW UNIVERSE 🆕** | Peter Berg directing! Jun 30, 2028! |
+| 🎮 **BO1/BO2 PS5 Ports** | **CRITICALLY PANNED 🆕** | Digital Foundry: "low effort" — but PS Store bestsellers! |
+| 🐉 **GoT: War for Westeros** | **DELAYED to 2027 🆕** | Early 2027 release! |
+| 🎮 **Marathon Director** | **LEAVES BUNGIE 🆕** | 4 months after launch! New leadership! |
+| 🧊 **Castlevania: Belmont's Curse** | **HANDS-ON REPORT** | Oct 15! Evil Empire! Pre-order! |
+| 🥊 **Marvel Tōkon Open Beta** | **Jul 24-26! 5 DAYS!** | No PS Plus needed! Pre-download! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **JUL 21! 2 DAYS! 🚨** | Top Gun Carrier Strike! Pre-load updates! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 4 DAYS! 🚨** | Prepare all consoles! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | 4-day early access! |
+| 🌌 **Avatar: Frontiers of Pandora (PS Plus)** | **JUL 21! 2 DAYS!** | Free on PS Plus! Install on lounge consoles! |
+
+### 📋 Updated Priority Lounge Actions (Jul 19 - 17:30 UTC):
+1. **⚠️⚠️ TOMORROW IS JULY 20 — 1 DAY UNTIL JUL 21 CRUNCH!** BF6 Season 4 + Avatar: Frontiers of Pandora + Psi-Ops all arrive Jul 21! PRE-LOAD NOW!
+2. **🔥🔥🔥 JULY 23 PREPARATION — 4 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + God of War Comic-Con panel! PRE-LOAD ALL UPDATES!
+3. **🎖️🔥 PRE-LOAD Battlefield 6 Season 4 update — launches Jul 21!** Top Gun Carrier Strike! Tsuru Reef map!
+4. **🌌 INSTALL Avatar: Frontiers of Pandora on lounge PS5s — FREE on PS Plus Jul 21!** Gorgeous visual showcase!
+5. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! Install on 2-3 consoles!
+6. **🎮🔥 PALWORLD almost at 1M concurrent!** If ANY console doesn't have it — INSTALL NOW!
+7. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Halloween timing!
+8. **🎮 BO1/BO2 — BUY with PS Plus 50% discount before Aug 6!** Campaign/Zombies only!
+9. **🛒🛒🛒 CHECK SUMMER SALE — LIVE until Aug 12!** Up to 75% off!
+10. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched! Do NOT share purchase info publicly!
