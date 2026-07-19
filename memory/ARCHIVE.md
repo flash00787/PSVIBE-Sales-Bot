@@ -17,3 +17,12 @@
 
 (dedup) - **File:** `/opt/outline-web/server.py`
   (dedup) - **File:** `/opt/outline-web/server.py`
+
+# Archived Memory Entries
+*Archived: 2026-07-19 13:33 UTC*
+
+(dedup) - **Key metrics:** Food Profit: 922,040 Ks (38.8% margin) for July 2026 ✅
+  (dedup) - **Double-count check:** Release path vs Voucher path — zero dupes ✅
+  (dedup) - **All sold items have stock_in matching** — zero "no_stock_in" items ✅
+  (dedup) - **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅
+  (dedup) - **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅

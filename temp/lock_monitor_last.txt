@@ -1,9 +1,18 @@
-[LOCK_MONITOR] Run at 2026-07-19 13:08:53 UTC
-Source: cron:808644b7-695c-4077-bcd4-8f14ea19d2a0 lock-monitor-cleanup
+[LOCK_MONITOR] Run at 2026-07-19 13:27:57 UTC
 
 [LOCK_MONITOR] OK: no locks found
 
-Session Disk Usage: 0 files, 0 KB total
+========== Session Disk Usage ==========
+  Main .jsonl files:            0 files,          0 KB
+  .trajectory.jsonl files:      0 files,          0 KB
+  .checkpoint.*.jsonl files:    0 files,          0 KB
+  .lock files:                  0 files
+  ------------------------------------------
+  TOTAL:                                        0 KB
+==========================================
 
-SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+==================================================
 === RESULT: OK ===

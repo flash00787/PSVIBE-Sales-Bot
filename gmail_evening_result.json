@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-07-18T13:32:03.802907+00:00",
-  "total": 24,
-  "unread": 24,
-  "promo_skipped": 12,
+  "checked_at": "2026-07-19T13:32:19.175881+00:00",
+  "total": 28,
+  "unread": 28,
+  "promo_skipped": 10,
   "nova_count": 0,
   "wallet_count": 0,
   "important_count": 3,
@@ -17,18 +17,18 @@
       "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou repaid 1,634,856.82 MMK to VISA CREDIT CARD\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nCredit Card Repayment\r\nTransaction No.\r\n269648323753\r\nTransaction Date\r\n17 Jul 2026 10:18 PM\r\nPaid By\r\nAccount Holder Name\r\nAUNG CHAN MYINT\r\nAccount Number\r\n40037046561\r\nBranch Code\r\n0211\r\nCard Details\r\nCard Holder Name\r\nAUNG CHAN MYINT\r\nCard Number\r\n4550 **** *"
     },
     {
-      "from": "Google <no-reply@accounts.google.com>",
-      "subject": "Security alert",
-      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
-      "is_unread": true,
-      "body_preview": "[image: Google]\r\nA new sign-in on Windows\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a Windows device. If\r\nthis was you, you don’t need to do anything. If not, we’ll help you secure\r\nyour account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784183796000?rfn"
-    },
-    {
       "from": "ino bird <inobird.mm@gmail.com>",
       "subject": "Invitation from an unknown sender: PS Vibe - InoBird Creative\r\n Solutions (Briefing Meeting)  @ Fri Jul 17, 2026 10:30am - 11:30am (GMT+6:30) (chanmyint123456789@gmail.com)",
       "date": "Thu, 16 Jul 2026 10:58:44 +0000",
       "is_unread": true,
       "body_preview": "This event isn't in your calendar yet\r\nYou haven't interacted with inobird.mm@gmail.com before. Do you want to  \r\nautomatically add this and future invitations from them to your calendar?\r\nAdd to calendar  \r\nhttps://calendar.google.com/calendar/marksenderasknown?mark_sender_as_known=ChxjaGFubXlpbnQxMjM0NTY3ODlAZ21haWwuY29tEj9NVzF6T1d4c2Jtb3dPV0l3ZEdsaWJHRmlOR1JsZG14aGMyTWdZMmhoYm0xNWFXNTBNVEl6TkRV"
+    },
+    {
+      "from": "Google <no-reply@accounts.google.com>",
+      "subject": "Security alert",
+      "date": "Thu, 16 Jul 2026 06:36:36 GMT",
+      "is_unread": true,
+      "body_preview": "[image: Google]\r\nA new sign-in on Windows\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a Windows device. If\r\nthis was you, you don’t need to do anything. If not, we’ll help you secure\r\nyour account.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784183796000?rfn"
     }
   ],
   "result": "IMPORTANT_FOUND"

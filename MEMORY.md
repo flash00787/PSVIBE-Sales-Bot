@@ -263,11 +263,6 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ### COGS & Food Profit Logic — Full Pipeline Verified ✅
 - **Audit:** Full pipeline audit of COGS and food profit logic completed. All items verified with zero discrepancies.
-- **Key metrics:** Food Profit: 922,040 Ks (38.8% margin) for July 2026 ✅
-- **Double-count check:** Release path vs Voucher path — zero dupes ✅
-- **All sold items have stock_in matching** — zero "no_stock_in" items ✅
-- **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅
-- **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅
 
 ### Stock Out / Hold Full Flow Audit 🔍
 - **Scope:** Complete audit of stock_out, stock_hold, and food_cart integration
