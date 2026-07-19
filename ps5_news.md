@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-18 11:30 UTC
+> Last updated: 2026-07-18 23:30 UTC
 
 ---
 
@@ -4936,3 +4936,57 @@ Leaving the Extra/Premium Game Catalog on July 21:
 6. **📋 AC Black Flag Resynced NG+ coming** — wait for feature before re-engaging on this title
 7. **🔥 JULY 23 PREPARATION — 7 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD!
 8. **🛒🛒🛒 CHECK SUMMER SALE!** Jul 15 - Aug 12! Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, MH Wilds!
+
+---
+
+## ⚡ JULY 18 LATE NIGHT (July 18, 2026 - 23:30 UTC) — 🧓 Elder Scrolls 6 Reassurance! Bethesda: "Loving How It Looks, Playing It Every Day" + 007 First Light Ensemble Origin + ZA/UM Layoffs
+
+> **Summary:** Late night sweep — 12 hours since last update at 11:30 UTC. No new PS Blog posts today. Key finds: Bethesda officially reassures fans on Elder Scrolls 6 development, IO Interactive reveals 007 First Light was originally an ensemble piece, and ZA/UM (Disco Elysium) hit by another round of layoffs. No critical firmware, price changes, or major console announcements.
+
+### 🧓 Elder Scrolls 6 — Bethesda Reassures Fans! "Loving How It Looks, Playing It Every Day" (Jul 18) 🆕
+
+- **Bethesda Game Studios published an official statement** (Jul 18) calming concerns after Xbox layoffs hit Zenimax Online
+- **Key reassurance:** "The next chapter is on the way. We're where we planned to be, loving how it looks, and playing it every day."
+- **Development focus:** "TES6 is our primary development focus today, with the majority of our team currently working on the next chapter of the franchise."
+- **Engine:** Built on **Creation Engine 3** — same engine Starfield was built on, and same engine Fallout 5 will use
+- **Zenimax Online partnership:** ZOS will "partner closely with Bethesda Game Studios on The Elder Scrolls franchise" in addition to working on TESO — teams being brought "closer together"
+- **Todd Howard to Bloomberg:** Sharing this roadmap now to "help players understand what we're doing and why"
+- **Skyrim note:** "Over 65 million copies sold, players still exploring Skyrim 15 years later"
+- **💡💡 Lounge Note:** TES6 is one of the most anticipated games of the decade. This reassurance is significant — confirms development is active, team is happy with progress, and engine is finalized. For lounge customers who love RPGs, TES6 will be a MASSIVE draw when it releases (likely 2027+). ⭐⭐ current value, ⭐⭐⭐⭐⭐ future value
+- Source: Bethesda (Jul 18, 2026), Eurogamer
+
+### 🕵️ 007 First Light — Originally an Ensemble Piece, Says IO Interactive (Jul 18) 🆕
+
+- **Game's main writer Michael Vogt** reveals: 007 First Light was originally envisioned as more of an ensemble game — multiple double-O agents working together
+- **The shift:** Training sequence "makes a false promise" — rug pulled when most agents die, Bond emerges as "the last man standing"
+- **Survivor's guilt** becomes a key character beat for Bond's maturity arc
+- **Tonal shift:** Originally more serious (influenced by Daniel Craig era), shifted to more action-adventure
+- **💡 Lounge Note:** Interesting behind-the-scenes details on one of the year's biggest games. Not new-release critical. ⭐ lounge value
+- Source: Eurogamer (Jul 18, 2026), IO Interactive
+
+### 👔 ZA/UM (Disco Elysium) — Another Large Round of Layoffs (Jul 18) 🆕
+
+- **ZA/UM**, the studio behind Disco Elysium and the recently released spiritual successor **Zero Parades**, is laying off a "large chunk" of staff again
+- **Reason:** Spiritual successor Zero Parades' sales not enough "to maintain a studio of our current size" despite critical acclaim
+- This is the latest in a long-running saga of turmoil at the studio since the original Disco Elysium team largely departed
+- **💡 Lounge Note:** Not directly PS5-impactful. Disco Elysium is available on PS4/PS5 (one of the best-written games ever), but Zero Parades was PC-only. Sad industry news. ⭐ lounge value
+- Source: Eurogamer (Jul 18, 2026)
+
+### 📋 Quick Status Refresh (Jul 18 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🧓 **Elder Scrolls 6** | **REASSURANCE 🆕** | "Loving it, playing it daily" — Bethesda official! |
+| 🕵️ **007 First Light Design** | **ENSEMBLE ORIGIN 🆕** | Originally multiple agents, then pivoted |
+| 👔 **ZA/UM Layoffs** | **ANOTHER ROUND 🆕** | Zero Parades sales not enough |
+| 🧊 **Castlevania: Belmont's Curse** | **HANDS-ON REPORT** | Oct 15! Evil Empire! Pre-order! |
+| 🥊 **Marvel Tōkon Open Beta** | **Jul 24-26! 6 DAYS!** | No PS Plus needed! Pre-download! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **JUL 21! 3 DAYS!** | Top Gun Carrier Strike! |
+| 🔥 **CoD BO7 Season 5** | **Jul 23! 5 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | 5-day early access! |
+
+### 📋 Updated Priority Lounge Actions (Jul 18 - 23:30 UTC):
+1. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Halloween timing!
+2. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus!
+3. **🎖️🔥 PREPARE for Battlefield 6 Season 4 — Jul 21!** 3 days! Top Gun carrier strike!
+4. **🔥🔥🔥 JULY 23 PREPARATION — 5 DAYS!** CoD BO7 Season 5 + Halo Premium early access! PRE-LOAD ALL UPDATES!
+5. **🧓 TRACK ES6** — Bethesda reassurance confirms active dev. Future lounge mega-hit!
