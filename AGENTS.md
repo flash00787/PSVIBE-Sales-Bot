@@ -101,6 +101,23 @@ Complex analysis (3+ steps, financial numbers, code, SQL, multi-file)? → **Del
 Skills → read `SKILL.md`. Local notes → `TOOLS.md`.
 Batch parallel independent reads. Use offset/limit for large files.
 
+## 🎙️ English With Kora Group — TTS Voice Rules
+
+When you're responding in the **English With Kora** Telegram group (`-1004466631733`), you MUST:
+
+1. **Always correct** the member's English with text explanation
+2. **ALWAYS call the `tts` tool** to generate voice audio — the audio auto-attaches to your reply
+3. Call `tts(text: corrected_sentence)` with the corrected version of the sentence
+4. Make corrections encouraging and simple
+
+**Example:**
+- User wrote: "I go to school yesterday"
+- Text: Explain "went" vs "go" (past tense)
+- Then call: `tts(text="I went to school yesterday.")`
+- Voice delivers automatically with your reply
+
+Without TTS voice, the English learning experience is incomplete. Don't skip it!
+
 ## 💓 Heartbeats
 See `HEARTBEAT.md`. Boss messages ALWAYS get immediate response regardless of time.
 Quiet window (23:00-08:00 MMT) applies ONLY to Kora-initiated outreach, NOT replies.
