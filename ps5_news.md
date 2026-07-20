@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-19 17:31 UTC
+> Last updated: 2026-07-19 23:30 UTC
 
 ---
 
@@ -5070,3 +5070,60 @@ Leaving the Extra/Premium Game Catalog on July 21:
 8. **🎮 BO1/BO2 — BUY with PS Plus 50% discount before Aug 6!** Campaign/Zombies only!
 9. **🛒🛒🛒 CHECK SUMMER SALE — LIVE until Aug 12!** Up to 75% off!
 10. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched! Do NOT share purchase info publicly!
+
+---
+
+## ⚡ LATE NIGHT CHECK (July 19, 2026 - 23:30 UTC) — 📈 Palworld Almost Hits 1M! + CoD Movie Confirmed Modern Warfare Universe! + GoT RTS Delayed!
+
+> **Summary:** Late night sweep (6 hours since last update at 17:31 UTC). **📈 Palworld almost hits 1 MILLION concurrent players this weekend** — second weekend in a row surpassing 855K! **🎬 CoD movie confirmed set in Modern Warfare universe** (June 30, 2028). **🐉 Game of Thrones: War for Westeros RTS delayed to early 2027.** No critical firmware, price changes, or major console announcements. All previously tracked data remains current.
+
+### 📈 Palworld Almost Hits 1 Million Concurrent Players AGAIN! (Jul 19) 🆕
+
+- **Palworld 1.0 continues its DOMINANCE**, clocking up **almost 1 MILLION concurrent players** on Steam this weekend
+- Second weekend in a row surpassing the previously tracked 855K peak — momentum is STILL building!
+- Dota 2 knocked into THIRD PLACE again — Palworld has claimed #2 spot behind CS2 for the second consecutive weekend
+- Only 5 games in Steam history have ever breached 1M concurrent (CS2, MH Wilds, Lost Ark, Dota 2, Cyberpunk 2077)
+- Palworld previously peaked at 2.1M concurrent in early 2024 (its original launch) — 1.0 release is bringing players BACK
+- Source: Eurogamer (Jul 19, 2026), SteamDB
+- **💡💡💡💡💡 LOUNGE REINFORCEMENT:** Already tracked as 855K peak — now confirmed ALMOST 1 MILLION! Palworld 1.0 is the comeback story of 2026. **If ANY lounge console still doesn't have Palworld — INSTALL NOW. This is non-negotiable.** ⭐⭐⭐⭐⭐
+
+### 🎬 Call of Duty Movie — Set in Modern Warfare Universe! Director Confirms! (Jul 19) 🆕
+
+- **Director Peter Berg** confirmed at Fanatics Fest this weekend: The CoD movie takes place in the **Modern Warfare** universe
+- **Release date:** Still targeting **June 30, 2028** (previously announced)
+- **Producer Rob Kostich:** "We want to make sure the authenticity is captured on a human level"
+- **Studio:** David Ellison producing
+- **Source:** Eurogamer (Jul 19, 2026), Fanatics Fest
+- **💡💡 Lounge Note:** Modern Warfare is the most recognizable CoD sub-franchise — this setting makes sense. Movie is still ~2 years away but builds brand awareness for CoD, which is already the #1 lounge franchise. ⭐⭐ lounge value
+
+### 🐉 Game of Thrones: War for Westeros RTS — Delayed to Early 2027 (Jul 19) 🆕
+
+- **PlaySide Studios** delays the GoT RTS from original 2026 to **early 2027**
+- **Reason:** "Time needed to ensure the game reaches the high level of quality we are aiming for"
+- Four playable Houses: Stark, Lannister, Targaryen, Night King's Army
+- **💡 Lounge Note:** Low immediate impact — RTS games are niche for lounge play. But GoT IP has massive crossover appeal. Track for 2027. ⭐ lounge value
+
+### 📋 Quick Status Refresh (Jul 19 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📈 **Palworld 1.0** | **ALMOST 1M CONCURRENT 🆕** | Second weekend dominating! Almost 1M! |
+| 🎬 **CoD Movie** | **MW UNIVERSE CONFIRMED 🆕** | June 30, 2028! Peter Berg directing! |
+| 🐉 **GoT: War for Westeros** | **DELAYED TO 2027 🆕** | RTS pushed! |
+| 🎖️ **BF6 Season 4** | **JUL 21! 2 DAYS!** | Pacific Front! Top Gun! Carrier Strike! |
+| 🌌 **Avatar: Frontiers of Pandora** | **JUL 21! 2 DAYS!** | Free on PS Plus! Install! |
+| 🔥 **JULY 23 MEGA-DAY** | **4 DAYS AWAY!** | CoD S5 + Halo Premium + More! PRE-LOAD! |
+| 🥊 **Marvel Tōkon Open Beta** | **Jul 24-26! 5 DAYS!** | No PS Plus! Pre-download! |
+| 🧊 **Castlevania: Belmont's Curse** | **PRE-ORDER!** | Oct 15! Halloween! Evil Empire! |
+| 🚨 **Fallout 3 & NV Remasters** | **CONFIRMED** | No dates! Monitor! |
+| 🛒 **Summer Sale** | **LIVE until Aug 12!** | Up to 75% off! |
+
+### 📋 Priority Lounge Actions Update (Jul 19 - 23:30 UTC):
+1. **⚠️⚠️ JUL 21 IS IN 2 DAYS!** BF6 Season 4 + Avatar: Frontiers of Pandora + Psi-Ops! PRE-LOAD NOW!
+2. **🔥🔥🔥 JULY 23 PREPARATION — 4 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem! PRE-LOAD ALL UPDATES!
+3. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! Install on 2-3 consoles!
+4. **📈🔥 PALWORLD ALMOST 1M CONCURRENT!** If ANY console doesn't have it — INSTALL NOW!
+5. **🎮 BUY BO1/BO2 with PS Plus 50% discount before Aug 6!** Campaign/Zombies only!
+6. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Halloween! Evil Empire!
+7. **🛒 CHECK SUMMER SALE — LIVE until Aug 12!** Up to 75% off!
+8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+
