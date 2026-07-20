@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-19 23:30 UTC
+> Last updated: 2026-07-20 17:33 UTC
 
 ---
 
@@ -80,9 +80,97 @@
 
 ---
 
-## ⚡ JULY 18 MORNING (July 18, 2026 - 11:30 UTC) — 🚨🔥 FALLOUT 3 & NEW VEGAS REMASTERS CONFIRMED! Fallout 5 Pre-Production! Fallout 76 Raven Rock Expansion! + Battlefield 6 Season 4 — Carrier Strike + Top Gun Collab! Jul 21! + KOTOR Remake ALIVE (2028) + GTA 6 Pre-Order Record!
+## ⚡ JULY 20 MONDAY CHECK (July 20, 2026 - 11:30 UTC) — 🔥 AC Black Flag Resynced 3M First Week! + Palworld Almost 1M Concurrents Again! + CoD Movie Confirmed! + Marathon Director Leaves Bungie! + TES6 Reassurance!
 
-> **Summary:** Morning sweep — 24 hours since last update. **🚨🔥 BREAKING: Bethesda drops MULTIPLE FALLOUT BOMBS!** Fallout 3 & New Vegas remasters are OFFICIALLY REAL! Fallout 5 in pre-production! Fallout 76 getting massive "Raven Rock" expansion (2027)! Also: Battlefield 6 Season 4 — Carrier Strike + Top Gun collab launches Jul 21! KOTOR Remake ALIVE with 2028 release window! Marvel's Wolverine cinematic trailer released (swarmed by disc outrage). GTA 6 — strongest pre-order campaign ever recorded. No critical firmware, price changes, or major console announcements.
+> **Summary:** Monday check — ~48 hours since last update (Jul 18 11:30 UTC). **🆕 NEW ITEMS:** 🔥 AC Black Flag Resynced hits **3 MILLION first-week sales** (up from 2M)! NG+ officially announced! 🔥 Palworld **almost 1M concurrents AGAIN** — second weekend in a row! 🎬 CoD movie confirmed for **Modern Warfare universe** (Jun 30, 2028). ⚠️ Marathon director Joe Ziegler leaves Bungie just 4 months after launch. 🎮 Bethesda reassures TES6 is "on the way" — "loving how it looks, playing it every day". ZA/UM (Zero Parades) hit with major layoffs. Game of Thrones: War for Westeros RTS delayed to 2027. No new PS Blog posts since Jul 17. All previously tracked data below remains current.
+
+### 🔥 AC Black Flag Resynced — 3 MILLION First-Week Sales! NG+ OFFICIALLY Announced! (Jul 20) 🆕📈
+
+- **Ubisoft announced** AC Black Flag Resynced sold **over 3 million units in its first week** across all platforms
+- **Up from 2 million tracked previously!** — strong momentum, could become best-selling AC game
+- **NEW GAME PLUS officially announced** alongside the sales milestone (was previously "early development")
+- The game was review-bombed on Steam at launch over microtransactions, but rating has since recovered
+- Ubisoft also rumored to be working on a Resynced version of the **original Assassin's Creed** (possibly late 2027 for 20th anniversary)
+- **💡💡💡 Lounge Note:** 3M first week confirms massive commercial success. NG+ official announcement means extended replayability for lounge customers who bought it. The AC franchise remains a MEGA draw. ⭐⭐⭐
+- Source: Eurogamer (Jul 20, 2026), Ubisoft
+
+### 🎮🔥 Palworld — Almost 1M Concurrents AGAIN! Second Weekend Dominating Steam! (Jul 19) 🆕📈
+
+- **Palworld 1.0** almost hits **1 million concurrent players** on Steam this weekend — second weekend in a row!
+- Knocked **Dota 2 into #3** on Steam — remarkable for a premium (paid) title beating free-to-play giants
+- Only behind Counter-Strike 2
+- Previous peak tracked at 855K — now approaching **1M concurrents**
+- **💡💡💡💡💡 Lounge Reinforcement:** Palworld's momentum is INCREASING, not fading. Second consecutive weekend near 1M concurrents. If ANY lounge PS5 doesn't have Palworld installed yet — it's URGENT. This is a lounge ESSENTIAL. ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 19, 2026), SteamDB
+
+### 🎬 Call of Duty Movie — Confirmed for Modern Warfare Universe! June 30, 2028! (Jul 19) 🆕
+
+- **Director Peter Berg** confirmed at Fanatics Fest: The upcoming Call of Duty movie will be **set in the Modern Warfare universe**
+- Release date: **June 30, 2028**
+- Head of Activision Rob Kostich: "We were only going to make a movie if it's right"
+- **💡 Lounge Note:** Not urgent for lounge ops, but CoD movie in MW universe = increased brand visibility. Good for the #1 lounge franchise. ⭐ lounge value
+- Source: Eurogamer (Jul 19, 2026), Fanatics Fest
+
+### ⚠️ Marathon Director Joe Ziegler Leaves Bungie — Just 4 Months After Launch! (Jul 19) 🆕
+
+- **Joe Ziegler** (ex-Riot, 12 years) announced Jul 17 was his last day at Bungie
+- Passing game director role to **Del Chafe III** and **Julia Nardin**
+- This follows **292 Bungie layoffs last month** (17% of workforce) — most of Destiny 2 team affected
+- Ex-Marathon director Chris Barrett also settled $200M wrongful dismissal lawsuit with Sony/Bungie earlier this month
+- **💡 Lounge Note:** Bungie is in continued turmoil. Marathon has had a rocky start. Destiny 2's final update was June 2026. Not directly lounge-impacting but signals instability at a major PlayStation studio. ⭐
+- Source: Eurogamer (Jul 19, 2026)
+
+### 🎮 Bethesda Reassures: Elder Scrolls 6 "On the Way" — "Loving How It Looks" (Jul 17) 🆕
+
+- After Xbox cuts affected Zenimax/Bethesda, **Bethesda Game Studios published a note** calming fan concerns
+- TES6: "Our primary development focus today… **on the way.** We're where we planned to be, **loving how it looks, and playing it every day**"
+- Built on **Creation Engine 3** (same engine as Starfield & Fallout 5)
+- Zenimax Online Studios (ESO) will partner closely on the franchise
+- 65M+ Skyrim copies sold — 15 years later
+- **💡 Lounge Note:** TES6 is still years away, but this reassurance is significant after morale concerns. One of the most anticipated games ever. ⭐⭐ lounge value
+- Source: Eurogamer (Jul 17, 2026), Bethesda.net
+
+### 👔 ZA/UM (Zero Parades) — Major Layoffs! Spiritual Successor Sales Not Enough! (Jul 18) 🆕
+
+- **ZA/UM Studio** (Disco Elysium, Zero Parades) laying off "large chunk of staff"
+- Zero Parades (spiritual successor) sales are critically acclaimed but "not enough to maintain a studio of our current size"
+- 42 comments on Eurogamer — community deeply invested
+- **💡 Lounge Note:** Not directly PS5-impacting but Disco Elysium's legacy means this matters to narrative-game fans. Zero Parades was published on PS5. ⭐
+- Source: Eurogamer (Jul 18, 2026)
+
+### 🐉 Game of Thrones: War for Westeros RTS — Delayed to 2027! (Jul 19) 🆕
+
+- The Game of Thrones RTS game delayed from 2026 to 2027
+- Developer: "We remain unwavering in our mission to deliver a high quality RTS set in Westeros"
+- **💡 Lounge Note:** Minor delay — not a major lounge attraction but GoT is a massive IP. Worth tracking for 2027. ⭐
+- Source: Eurogamer (Jul 19, 2026)
+
+### 🕵️ 007 First Light — Originally More of an Ensemble Piece, Says IO Interactive (Jul 18) 🆕
+
+- IO Interactive reveals **Project 007 (First Light)** was originally conceived as more of an ensemble game
+- "During the training sequence, we make a false promise" — suggesting narrative complexity
+- **💡 Lounge Note:** Interesting development tidbit. 007 First Light is a major upcoming title but still no release date. ⭐
+- Source: Eurogamer (Jul 18, 2026)
+
+### 📋 Quick Status Refresh (Jul 20 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 **AC Black Flag Resynced 3M Sales** | **🆕 3M FIRST WEEK** | Up from 2M! NG+ officially announced! |
+| 🎮 **Palworld Almost 1M Concurrents** | **🆕 AGAIN!** | Second weekend in a row! Dota 2 knocked to #3! |
+| 🎬 **CoD Movie Modern Warfare** | **🆕 CONFIRMED** | Jun 30, 2028! Director Peter Berg! |
+| ⚠️ **Marathon Director Leaves Bungie** | **🆕 ZIEGLER OUT** | 4 months post-launch! Bungie turmoil! |
+| 🎮 **TES6 Reassurance** | **🆕 "ON THE WAY"** | "Loving how it looks, playing it every day" |
+| 👔 **ZA/UM Layoffs** | **🆕 MASSIVE CUTS** | Zero Parades studio! |
+| 🐉 **Game of Thrones RTS** | **🆕 DELAYED TO 2027** | Not a major lounge game |
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 TOMORROW! JUL 21!** | Top Gun! Carrier Strike! Install updates! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 TOMORROW! JUL 21!** | FREE! Install on lounge consoles! |
+| 🔥 **CoD BO7 Season 5** | **🔥 JUL 23! 3 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo Premium Early Access** | **🔥 JUL 23! 3 DAYS!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download 2h before! |
+| 🧊 **Castlevania: Belmont's Curse** | **Oct 15** | Evil Empire! Rose Belmont! PRE-ORDER! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! CHECK NOW! |
+| 🚨 **Fallout 3 & NV Remasters** | **CONFIRMED** | No dates yet! Late 2027/2028 expected! |
+| 🚨 **KOTOR Remake** | **ALIVE! 2028** | Saber Interactive! First timeframe! |
 
 ### 🚨🔥 FALLOUT 3 & NEW VEGAS REMASTERS CONFIRMED! + Fallout 5 Pre-Production! + Fallout 76 Raven Rock Expansion! (Jul 17) 🆕🔥
 
@@ -188,18 +276,49 @@
 | 🔥 **CoD BO7 Season 5** | **Jul 23! 5 DAYS!** | Prepare all consoles! Pre-load! |
 | 🟢 **Halo: Campaign Evolved** | **Jul 28 / Premium Jul 23!** | 5-day early access! |
 
-### 📋 Updated Priority Lounge Actions (Jul 18 - 11:30 UTC):
-1. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Halloween timing! Pre-order for lounge PS5s!
-2. **🥊 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! Install on 2-3 lounge consoles!
-3. **🎖️🔥 PREPARE for Battlefield 6 Season 4 — Jul 21!** 3 days away! Top Gun carrier strike! Install updates!
-4. **🔥🔥🔥 JULY 23 PREPARATION — 5 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD ALL UPDATES!
-5. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** Non-VR collection! Launched!
-6. **🧼 BUY PowerWash Sim 2 Star Wars Pack ($9.99)** — Millennium Falcon cleaning!
-7. **🛒🛒🛒 CHECK SUMMER SALE — LIVE!** Up to 75% off! Ends Aug 12!
-8. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
-9. **🌌 PREPARE for Avatar: Frontiers of Pandora Jul 21** — PS Plus free!
+### 📋 Updated Priority Lounge Actions (Jul 20 - 11:30 UTC):
+1. **🔥🔥🔥 JULY 21 TOMORROW!** BF6 Season 4 Pacific Front + Top Gun collab launches! Also Avatar: Frontiers of Pandora FREE on PS Plus! INSTALL updates tonight!
+2. **🔥🔥🔥 JULY 23 — 3 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! PRE-LOAD ALL UPDATES NOW!
+3. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before launch! No PS Plus needed! Install on 2-3 lounge consoles! THIS WEEKEND!
+4. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Rose Belmont! Halloween timing!
+5. **🛒🛒🛒 CHECK SUMMER SALE — LIVE NOW!** Ends Aug 12! Up to 75% off! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II, Monster Hunter Wilds!
+6. **🎮🔥 PALWORLD 1.0 — ALMOST 1M CONCURRENT!** Second weekend in a row! Install on EVERY lounge PS5!
+7. **🎮 INSTALL Rise of the Ronin on lounge PS5s!** FREE on PS Plus! $69.99 value!
+8. **🐭🔥 BUY Moss: The Forgotten Relic for 1-2 lounge PS5s!** Non-VR collection! Charming action-adventure!
+9. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit still UNPATCHED! Don't share purchase screenshots!
 10. **📋 TRACK Fallout 3 & NV Remasters** — Monitor for release dates! Mega IP!
-11. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
+11. **📋 MONITOR AC Black Flag Resynced** — 3M first week! NG+ official!
+
+
+### 🆕 NEW PS Blog Post Today (Jul 20): MARVEL Tōkon Beginner's Guide Published!
+
+- **PlayStation Blog published** a beginner's guide for MARVEL Tōkon: Fighting Souls today (Jul 20)
+- Covers character selection (EASE OF USE ratings), basic controls (Light □, Medium △, Heavy ○), combos, and team mechanics
+- **Beginner-friendly characters highlighted:** Captain America, Ms. Marvel, Wolverine, Iron Man, Spider-Man
+- **Advanced characters:** Storm, Danger
+- Startup Battle tutorial mode recommended for newcomers
+- **💡 Lounge Note:** Good resource for lounge customers trying the Open Beta this weekend (Jul 24-26). Consider printing a quick reference or having this page bookmarked on lounge browsers. ⭐ lounge value
+- Source: PlayStation Blog (Jul 20, 2026)
+
+### 📦 GTA 6 Physical Edition = CODE IN A BOX! No Disc Even for Physical! (Jul 20) 🆕
+
+- **Eurogamer confirms:** GTA 6 physical edition is essentially **a code in a box**, not an actual disc!
+- Standard edition: **$79.99 / £69.99**
+- Physical buyers can **pre-load a week early** (Nov 12) so game is ready for Nov 19 launch
+- Take-Two CEO Strauss Zelnick previously shot down digital-only rumors — turns out physical is technically a box with a code
+- Reason cited: preventing leaks
+- **⚠️💡💡 CRITICAL LOUNGE NOTE:** If PS VIBE planned to buy physical GTA 6 copies for the lounge library, **this changes everything!** There is NO disc — just a code. This means:
+  - No second-hand/resale value for lounge
+  - No ability to share across multiple consoles with one disc
+  - Must buy digital per-console or use primary account sharing
+  - **Recommendation:** Plan GTA 6 lounge rollout strategy NOW — either buy digital copies per console or use a single primary PSN account with console sharing enabled
+  - ⭐⭐⭐⭐⭐ operational impact — this affects HOW the lounge acquires the biggest game of 2026
+- Source: Eurogamer (Jul 20, 2026)
+
+### 📋 Updated Priority Lounge Actions (Jul 20 - 17:33 UTC):
+1. **📦⚠️ GTA 6 physical = CODE IN A BOX, not disc!** Plan digital rollout strategy! Nov 19 launch!
+2. **🥊 Bookmark MARVEL Tōkon Beginner's Guide** for lounge customers during Open Beta Jul 24-26!
+3. **[All Jul 20 11:30 UTC actions remain current]**
 
 ---
 

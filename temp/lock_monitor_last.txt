@@ -1,5 +1,7 @@
-[LOCK_MONITOR] Run at 2026-07-20 05:59:13 UTC
-Status: OK — no stale locks found, 0 cleaned, 0 KB freed
+[LOCK_MONITOR] Run at 2026-07-20 23:17:53 UTC
+
+[LOCK_MONITOR] OK: no locks found
+
 ========== Session Disk Usage ==========
   Main .jsonl files:            0 files,          0 KB
   .trajectory.jsonl files:      0 files,          0 KB
@@ -8,4 +10,8 @@ Status: OK — no stale locks found, 0 cleaned, 0 KB freed
   ------------------------------------------
   TOTAL:                                        0 KB
 ==========================================
-=== RESULT: OK ||| No stale locks detected ===
+
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+==================================================

@@ -1,159 +1,146 @@
 #!/usr/bin/env python3
-"""Trim MEMORY.md: keep 3 most recent Critical Lessons, 5 most recent fixes, trim old entries."""
+"""Trim MEMORY.md: keep 3 most recent Critical Lessons, 5 most recent daily Memory entries."""
 import re
 
-with open('/root/.openclaw/workspace/MEMORY.md', 'r') as f:
+MEMORY_PATH = "/root/.openclaw/workspace/MEMORY.md"
+
+with open(MEMORY_PATH, "r") as f:
     content = f.read()
+    lines = content.splitlines()
 
-lines = content.split('\n')
-
-# Find section boundaries
-section_starts = {}
+# ── 1. Find all section boundaries ──────────────────────────────────
+# Lines that are "## Memory (YYYY-MM-DD...)" entries
+memory_section_re = re.compile(r"^## Memory \((\d{4}-\d{2}-\d{2})\)")
+memory_lines = []  # list of (line_idx, date_str)
 for i, line in enumerate(lines):
-    if line.startswith('## '):
-        title = line.strip()
-        section_starts[title] = i
+    m = memory_section_re.match(line)
+    if m:
+        memory_lines.append((i, m.group(1)))
 
-# 1. Find Critical Lessons section (line 73 = index 72)
-cles_title = '## 🧠 Critical Lessons Learned (Cumulative)'
-cles_start = section_starts.get(cles_title)
-if cles_start is None:
-    print("ERROR: Critical Lessons section not found")
-    exit(1)
+print(f"Total daily memory sections: {len(memory_lines)}")
 
-# Next section after Critical Lessons
-cles_end = None
-for title, idx in sorted(section_starts.items(), key=lambda x: x[1]):
-    if idx > cles_start:
-        cles_end = idx
+# ── 2. Find the Critical Lessons section ────────────────────────────
+# It's between "## 🧠 Critical Lessons Learned (Cumulative)" and "## Major Projects & Milestones"
+crit_lessons_start = None
+crit_lessons_end = None
+for i, line in enumerate(lines):
+    if line.startswith("## 🧠 Critical Lessons Learned"):
+        crit_lessons_start = i
+    if crit_lessons_start and line.startswith("## Major Projects"):
+        crit_lessons_end = i
         break
-if cles_end is None:
-    cles_end = len(lines)
 
-# Extract Critical Lessons content and find individual lessons
-cles_lines = lines[cles_start:cles_end]
-# Find lessons by their numbers (#XX)
-lesson_boundaries = []
-for i, line in enumerate(cles_lines):
-    m = re.match(r'^\d+\.\s+\*\*', line.strip())
-    if m:
-        lesson_boundaries.append(i)
+print(f"Critical Lessons section: lines {crit_lessons_start}-{crit_lessons_end}")
 
-print(f"Found {len(lesson_boundaries)} lessons in Critical Lessons section")
-# Keep the last 3 lessons
-if len(lesson_boundaries) >= 3:
-    keep_from = lesson_boundaries[-3]
-    # Keep the section header + sub-headers + last 3 lessons
-    # Find the last sub-header before keep_from
-    last_subheader = 0
-    for i, line in enumerate(cles_lines[:keep_from]):
-        if line.startswith('### '):
-            last_subheader = i
+# ── 3. Trim Critical Lessons: keep only 3 most recent ──────────────
+# Find lesson entries inside the section
+if crit_lessons_start and crit_lessons_end:
+    crit_section = lines[crit_lessons_start:crit_lessons_end]
+    # Find lesson table rows with lesson numbers
+    lesson_rows = []
+    inside_table = False
+    for j, cl in enumerate(crit_section):
+        if cl.strip().startswith("|") and "|" in cl.strip()[1:]:
+            cells = [c.strip() for c in cl.split("|")[1:-1]]
+            if len(cells) >= 2 and cells[0].isdigit():
+                lesson_rows.append((j, int(cells[0]), cl))
     
-    # Build new Critical Lessons section
-    new_cles = cles_lines[:last_subheader]  # Keep header + first sub-headers
-    # Add a note
-    new_cles.append('')
-    new_cles.append('*(Trimmed: keeping only 3 most recent lessons)*')
-    new_cles.append('')
-    new_cles.extend(cles_lines[keep_from:])
-    new_cles_section = '\n'.join(new_cles)
-else:
-    new_cles_section = '\n'.join(cles_lines)
+    print(f"Found {len(lesson_rows)} lesson rows in Critical Lessons")
+    for lr in lesson_rows:
+        print(f"  Lesson #{lr[1]} at offset {lr[0]}: {lr[2][:80]}")
+    
+    # Keep only 3 most recent (highest lesson numbers)
+    if len(lesson_rows) > 3:
+        lesson_rows.sort(key=lambda x: -x[1])  # sort by lesson# desc
+        keep_numbers = set(lr[1] for lr in lesson_rows[:3])
+        print(f"Keeping lessons: {sorted(keep_numbers)}")
+        
+        # Find the table header rows (| # | Lesson | etc.)
+        table_start = None
+        table_end = None
+        for j, cl in enumerate(crit_section):
+            if cl.strip().startswith("| :-: |") or cl.strip().startswith("|---"):
+                table_start = j - 1  # include header row
+            # Find where table ends (first non-pipe line after table)
+        
+        # Identify rows to keep (header + separator + 3 lessons + trim note)
+        new_crit_lines = []
+        for j, cl in enumerate(crit_section):
+            # Skip the cumulative lessons list - we'll replace it
+            stripped = cl.strip()
+            if stripped.startswith("|") and "|" in stripped[1:]:
+                cells = [c.strip() for c in cl.split("|")[1:-1]]
+                if len(cells) >= 2 and cells[0].isdigit():
+                    row_num = int(cells[0])
+                    if row_num not in keep_numbers:
+                        continue  # skip this lesson row
+            new_crit_lines.append(cl)
+        
+        # Replace the section
+        lines[crit_lessons_start:crit_lessons_end] = new_crit_lines
+        print(f"Trimmed Critical Lessons to {len(keep_numbers)} lessons")
 
-# 2. There is no "FIX HISTORY" section. Look for the most recent fix-related content.
-# The "## 🆕 June 23, 2026 — Major Bug Fixes & Features" is one. But there's no explicit FIX HISTORY.
-# Instead, trim old Memory sections - keep only the 5 most recent.
-
-# All Memory sections are date-based: ## Memory (YYYY-MM-DD)
-memory_sections = []
-for title, idx in section_starts.items():
-    m = re.match(r'## Memory \((\d{4}-\d{2}-\d{2})\)', title)
-    if m:
-        memory_sections.append((m.group(1), idx, title))
-
-# Sort by date descending
-memory_sections.sort(key=lambda x: x[0], reverse=True)
-print(f"Found {len(memory_sections)} Memory sections")
-for date, idx, title in memory_sections:
-    print(f"  {date} at line {idx+1}")
-
-# Keep the 5 most recent Memory sections
-keep_dates = set(ms[0] for ms in memory_sections[:5])
-print(f"Keeping Memory sections: {sorted(keep_dates)}")
-
-# Now rebuild the file
-# Strategy: keep architecture, people, business, trimmed critical lessons, 
-# major projects, known issues, working preferences, and only the 5 most recent Memory sections
-
-sections_to_keep_titles = [
-    '## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)',
-    '## People',
-    '## Business: PS VIBE - PS5 Gaming Lounge',
-    '## Major Projects & Milestones',
-    '## ⚠️ Known Issues (Persistent)',
-    '## Working Preferences',
-]
-
-# Build new file
-new_lines = []
-current_section_title = None
-skip_until_next_section = False
-in_memory_section = False
-current_memory_date = None
-
+# ── 4. Keep only 5 most recent daily memory entries ────────────────
+# Group memory sections by unique date, keep 5 most recent
+# First re-scan because line indices may have shifted
+memory_section_re2 = re.compile(r"^## Memory \((\d{4}-\d{2}-\d{2})\)")
+memory_entries = []  # (line_idx, date_str)
 for i, line in enumerate(lines):
-    if line.startswith('## '):
-        current_section_title = line.strip()
-        
-        # Check if this is a Memory section
-        m = re.match(r'## Memory \((\d{4}-\d{2}-\d{2})\)', line.strip())
+    m = memory_section_re2.match(line)
+    if m:
+        memory_entries.append((i, m.group(1)))
+
+print(f"\nMemory entries after lesson trim: {len(memory_entries)}")
+
+# Get unique dates sorted desc
+unique_dates = sorted(set(d for _, d in memory_entries), reverse=True)
+print(f"Unique dates: {unique_dates}")
+keep_dates = set(unique_dates[:5])
+print(f"Keeping only 5 most recent dates: {sorted(keep_dates)}")
+
+if len(unique_dates) > 5:
+    # Build new content: keep everything up to first memory entry
+    # then only include entries with dates in keep_dates
+    
+    first_mem_idx = memory_entries[0][0]
+    new_lines = lines[:first_mem_idx]
+    
+    # For each memory section in original order, include if date is in keep_dates
+    i = first_mem_idx
+    while i < len(lines):
+        m = memory_section_re2.match(lines[i])
         if m:
-            current_memory_date = m.group(1)
-            if current_memory_date in keep_dates:
-                in_memory_section = True
-                new_lines.append(line)
+            date = m.group(1)
+            if date in keep_dates:
+                # Include this section
+                new_lines.append(lines[i])
+                i += 1
+                # Continue until next ## Memory or end
+                while i < len(lines) and not memory_section_re2.match(lines[i]):
+                    new_lines.append(lines[i])
+                    i += 1
             else:
-                in_memory_section = False
-            continue
-        
-        in_memory_section = False
-        current_memory_date = None
-        
-        # Check if this is a section we want to keep
-        if current_section_title in sections_to_keep_titles:
-            skip_until_next_section = False
-            new_lines.append(line)
-        elif current_section_title == cles_title:
-            skip_until_next_section = False
-            new_lines.append(new_cles_section)
-            # Skip original lines until next section
-            skip_until_next_section = True
-        elif current_section_title == '## 🆕 June 23, 2026 — Major Bug Fixes & Features':
-            # Skip this section - it's not a formal FIX HISTORY
-            skip_until_next_section = True
+                # Skip this section
+                i += 1
+                while i < len(lines) and not memory_section_re2.match(lines[i]):
+                    i += 1
         else:
-            skip_until_next_section = True
-        continue
+            new_lines.append(lines[i])
+            i += 1
     
-    if skip_until_next_section:
-        continue
-    
-    if in_memory_section:
-        new_lines.append(line)
-        continue
-    
-    # For sections we're keeping
-    new_lines.append(line)
+    lines = new_lines
+    print(f"Trimmed away {len(unique_dates) - 5} old daily memory sections")
 
-result = '\n'.join(new_lines)
+# ── 5. Ensure the "(Trimmed: ...)" notes are accurate ──────────────
+# Update the trimmed notes if present
 
-# Clean up excessive blank lines (more than 2 consecutive)
-result = re.sub(r'\n{3,}', '\n\n', result)
+new_content = "\n".join(lines)
+# Make sure file ends with newline
+if not new_content.endswith("\n"):
+    new_content += "\n"
 
-with open('/root/.openclaw/workspace/MEMORY.md', 'w') as f:
-    f.write(result)
+with open(MEMORY_PATH, "w") as f:
+    f.write(new_content)
 
-new_size = len(result.encode('utf-8'))
-print(f"New size: {new_size} bytes (was {len(content.encode('utf-8'))})")
-print("Done trimming")
+new_size = len(new_content.encode("utf-8"))
+print(f"\nNew file size: {new_size} bytes")
