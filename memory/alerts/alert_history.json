@@ -2,6 +2,79 @@
   {
     "type": "stale_console",
     "severity": "info",
+    "message": "📡 Console C-10 last updated 15.1h ago",
+    "consoleId": "C-10",
+    "timestamp": "2026-07-20T04:44:11.201Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-08 last updated 12.5h ago",
+    "consoleId": "C-08",
+    "timestamp": "2026-07-20T04:44:11.198Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-07 last updated 16.8h ago",
+    "consoleId": "C-07",
+    "timestamp": "2026-07-20T04:44:11.194Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-06 last updated 15.8h ago",
+    "consoleId": "C-06",
+    "timestamp": "2026-07-20T04:44:11.192Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-05 last updated 17.1h ago",
+    "consoleId": "C-05",
+    "timestamp": "2026-07-20T04:44:11.188Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-04 last updated 13.0h ago",
+    "consoleId": "C-04",
+    "timestamp": "2026-07-20T04:44:11.184Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-02 last updated 16.6h ago",
+    "consoleId": "C-02",
+    "timestamp": "2026-07-20T04:44:11.180Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
+    "message": "📡 Console C-01 last updated 16.9h ago",
+    "consoleId": "C-01",
+    "timestamp": "2026-07-20T04:44:11.177Z"
+  },
+  {
+    "type": "balance_drop",
+    "severity": "critical",
+    "message": "🚨 Balance drop for Min Thant Ko Ko: 158m → 11m (93.0% drop, -147m)",
+    "memberId": "PSV_A_013",
+    "memberName": "Min Thant Ko Ko",
+    "dropPercent": 93.0379746835443,
+    "dropAbsolute": 147,
+    "timestamp": "2026-07-20T04:44:11.174Z"
+  },
+  {
+    "type": "low_balance",
+    "severity": "warning",
+    "message": "⚠️ 1 members have low balance (<30 min): Min Thant Ko Ko (11m)",
+    "count": 1,
+    "timestamp": "2026-07-20T04:44:11.170Z"
+  },
+  {
+    "type": "stale_console",
+    "severity": "info",
     "message": "📡 Console C-09 last updated 15.9h ago",
     "consoleId": "C-09",
     "timestamp": "2026-07-19T04:44:13.743Z"
@@ -3464,75 +3537,5 @@
     "message": "📡 Console C-01 last updated 26.4h ago",
     "consoleId": "C-01",
     "timestamp": "2026-06-11T16:37:45.038Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-10 last updated 4.5h ago",
-    "consoleId": "C-10",
-    "timestamp": "2026-06-11T16:07:44.131Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-09 last updated 3.4h ago",
-    "consoleId": "C-09",
-    "timestamp": "2026-06-11T16:07:44.131Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-08 last updated 3.4h ago",
-    "consoleId": "C-08",
-    "timestamp": "2026-06-11T16:07:44.130Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-07 last updated 33.9h ago",
-    "consoleId": "C-07",
-    "timestamp": "2026-06-11T16:07:44.129Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 25.9h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T16:07:44.128Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 55.1h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T16:07:44.127Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-04 last updated 25.9h ago",
-    "consoleId": "C-04",
-    "timestamp": "2026-06-11T16:07:44.126Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 48.2h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T16:07:44.124Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-02 last updated 29.4h ago",
-    "consoleId": "C-02",
-    "timestamp": "2026-06-11T16:07:44.123Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-01 last updated 25.9h ago",
-    "consoleId": "C-01",
-    "timestamp": "2026-06-11T16:07:44.122Z"
   }
 ]
