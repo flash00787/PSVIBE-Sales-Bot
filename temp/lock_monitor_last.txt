@@ -1,5 +1,18 @@
-[LOCK_MONITOR] Run at 2026-07-21 15:57:47 UTC
+[LOCK_MONITOR] Run at 2026-07-21 16:57:51 UTC
+
 [LOCK_MONITOR] OK: no locks found
-Session Disk: 0 KB total
-Cleanup: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+
+========== Session Disk Usage ==========
+  Main .jsonl files:            0 files,          0 KB
+  .trajectory.jsonl files:      0 files,          0 KB
+  .checkpoint.*.jsonl files:    0 files,          0 KB
+  .lock files:                  0 files
+  ------------------------------------------
+  TOTAL:                                        0 KB
+==========================================
+
+
+==================================================
+[LOCK_MONITOR] SUMMARY: 0 locks cleaned, 0 files removed, 0 KB freed, 0 warnings
+==================================================
 === RESULT: OK ===
