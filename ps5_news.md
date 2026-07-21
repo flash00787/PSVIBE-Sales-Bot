@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-20 17:33 UTC
+> Last updated: 2026-07-20 23:30 UTC
 
 ---
 
@@ -171,6 +171,9 @@
 | 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! CHECK NOW! |
 | 🚨 **Fallout 3 & NV Remasters** | **CONFIRMED** | No dates yet! Late 2027/2028 expected! |
 | 🚨 **KOTOR Remake** | **ALIVE! 2028** | Saber Interactive! First timeframe! |
+| 🎯 **MW4 Gameplay Debut** | **🆕 FIRST FOOTAGE** | Fanatics Fest! Movement speed debate! Beta incoming! |
+| 🎮 **Todd Howard Reddit** | **🆕 LURKER RETURNS** | Thanked fans after Fallout/TES announcements |
+| ⚙️ **id Software Controversy** | **🆕 EMPLOYEES DISAGREE** | Hugo Martin vs current/former devs on layoff impact |
 
 ### 🚨🔥 FALLOUT 3 & NEW VEGAS REMASTERS CONFIRMED! + Fallout 5 Pre-Production! + Fallout 76 Raven Rock Expansion! (Jul 17) 🆕🔥
 
@@ -300,6 +303,42 @@
 - **💡 Lounge Note:** Good resource for lounge customers trying the Open Beta this weekend (Jul 24-26). Consider printing a quick reference or having this page bookmarked on lounge browsers. ⭐ lounge value
 - Source: PlayStation Blog (Jul 20, 2026)
 
+### 🎯 Modern Warfare 4 — FIRST GAMEPLAY DEBUT AT FANATICS FEST! Movement Speed Controversy Erupts! (Jul 20) 🆕🔥
+
+- **First raw multiplayer gameplay** of Modern Warfare 4 debuted at **Fanatics Fest NYC (Jul 16-19)**
+- Footage came from select creators streaming the new **Kill Block mode** live from the event
+- **Hunger for MW4 gameplay was so intense** that Twitch streamers/YouTubers were livestreaming themselves watching the 2-3 creators who got to play
+- **Movement speed controversy erupts:** Reddit community deeply divided
+  - Clip showing a character covering massive distance with a jump + extended slide went viral
+  - "Why do they keep doing this?" — Reddit user f2pmyass
+  - Critics say CoD can't step away from "overly dramatic sliding and overly dramatic momentum"
+  - Supporters love the fluid movement: "I love everything I see already"
+  - Some suggest: "Keep the fluidity, slow the pace"
+  - Others feel alienated: "Are we too old for COD or do developers only care about cracked movement?"
+- **Call of Duty community manager responded:** The long slide visual is an **alpha build bug** — "supposed to see the sliding player pop up between those two slides" — will be corrected for the beta
+- **💡💡💡💡 LOUNGE IMPACT:** MW4 community discourse is HEATING UP — first gameplay footage always drives hype. The movement debate means hardcore vs casual players are arguing, but ANY buzz around CoD is good for the lounge. Kill Block mode (ever-changing arena) was the demo focus — high spectator appeal. **Beta is coming** — watch for beta announcement to prepare lounge consoles. ⭐⭐⭐⭐ lounge value
+- Source: Eurogamer (Jul 20, 2026), Reddit r/modernwarfare4, Twitch/YouTube
+
+### 🎮 Todd Howard Returns to Reddit — "Professional Lurker" Thanks Fans After Fallout/Elder Scrolls Announcements! (Jul 20) 🆕
+
+- **Todd Howard reappeared on internet forums** following Bethesda's massive Fallout and Elder Scrolls announcements last week
+- Posted to thank fans for their support: "We're constantly listening"
+- Described as a "professional lurker" by Eurogamer — rare public interaction
+- **💡 Lounge Note:** Minor feel-good story but shows Bethesda engagement with their community post-announcements. Much-needed positivity after the layoffs. ⭐
+- Source: Eurogamer (Jul 20, 2026), Reddit
+
+### ⚙️ id Software Layoffs Controversy — Hugo Martin's Optimism Contradicted by Current/Former Employees! (Jul 20) 🆕
+
+- **Hugo Martin** (Doom/The Dark Ages director) had pushed back against claims that id Software was gutted by Microsoft's 3,200 Xbox layoffs
+- **NOW, "current and former employees" are disputing his optimism**
+- **Game Developer reports:** ~**two-thirds of those left at id who worked on Doom (2016) were laid off**
+- Anonymous source: "I don't agree with Hugo's statement and many who were laid off were upset… seeing it as viewing their contributions as insignificant"
+- **Key quote:** "In truth the Doom team is half here, half thrown away"
+- Doom 2016 survivors who put in "unsafe number of hours" of crunch were also laid off
+- Xbox leadership reportedly is "very interested in more Doom and Quake games" despite cuts
+- **💡 Lounge Note:** Doom: The Dark Ages recently launched with Revelations DLC. id being hollowed out raises concerns about future DOOM/Quake quality. Not urgent for lounge ops but worth tracking — DOOM is a major FPS franchise. ⭐ lounge value
+- Source: Eurogamer (Jul 20, 2026), Game Developer
+
 ### 📦 GTA 6 Physical Edition = CODE IN A BOX! No Disc Even for Physical! (Jul 20) 🆕
 
 - **Eurogamer confirms:** GTA 6 physical edition is essentially **a code in a box**, not an actual disc!
@@ -315,10 +354,11 @@
   - ⭐⭐⭐⭐⭐ operational impact — this affects HOW the lounge acquires the biggest game of 2026
 - Source: Eurogamer (Jul 20, 2026)
 
-### 📋 Updated Priority Lounge Actions (Jul 20 - 17:33 UTC):
-1. **📦⚠️ GTA 6 physical = CODE IN A BOX, not disc!** Plan digital rollout strategy! Nov 19 launch!
-2. **🥊 Bookmark MARVEL Tōkon Beginner's Guide** for lounge customers during Open Beta Jul 24-26!
-3. **[All Jul 20 11:30 UTC actions remain current]**
+### 📋 Updated Priority Lounge Actions (Jul 20 - 23:30 UTC):
+1. **🎯🔥 MW4 GAMEPLAY DEBUT!** First raw multiplayer footage at Fanatics Fest! Movement speed debate! Beta incoming!
+2. **📦⚠️ GTA 6 physical = CODE IN A BOX, not disc!** Plan digital rollout strategy! Nov 19 launch!
+3. **🥊 Bookmark MARVEL Tōkon Beginner's Guide** for lounge customers during Open Beta Jul 24-26!
+4. **[All Jul 20 11:30 UTC actions remain current]**
 
 ---
 
