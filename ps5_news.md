@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-21 05:30 UTC
+> Last updated: 2026-07-21 17:31 UTC
 
 ---
 
@@ -5395,3 +5395,79 @@ Leaving the Extra/Premium Game Catalog on July 21:
 7. **🛒 CHECK SUMMER SALE — LIVE until Aug 12!** Up to 75% off!
 8. **🔐 AUDIT all lounge PSN accounts** — 2FA bypass exploit unpatched!
 
+
+---
+
+## ⚡ JULY 21 EVENING CHECK (July 21, 2026 - 17:31 UTC) — 🆕 Order of the Sinking Star (Thekla/Jonathan Blow) Hands-On Report Published! + Avatar & BF6 Pacific Front LAUNCH DAY! + Splatoon Raiders Launch Jul 23! + Crimson Desert 1.13.00!
+
+> **Summary:** Evening sweep — ~12 hours since last update. **🆕 NEW PS BLOG POST TODAY (Jul 21):** Order of the Sinking Star hands-on report from Thekla (Jonathan Blow's studio — creator of Braid, The Witness)! 900+ puzzles, multiple endings, PS5 release later this year. **🔥 CONFIRMED LAUNCHES TODAY (Jul 21):** BF6 Season 4 Pacific Front + Top Gun collab goes LIVE! Avatar: Frontiers of Pandora FREE on PS Plus Extra/Premium! **🆕 NEW:** Splatoon Raiders launches tomorrow (Jul 23 alongside Halo/CoD)! Crimson Desert Update 1.13.00 adds new equipment! Summer Games Done Quick 2026 raises $2.4M for Doctors Without Borders! **All previous data remains current.** No critical firmware, price changes, or console announcements.
+
+### 🧩 NEW: Order of the Sinking Star — Hands-On Report Published! PS5 Later This Year! 🆕
+
+- **PlayStation Blog published a hands-on report today (Jul 21)** for Order of the Sinking Star
+- **Developer:** Thekla — independent studio by **Jonathan Blow** (legendary creator of **Braid** and **The Witness**)
+- **Genre:** Massive puzzle-adventure — Sokoban-style grid-based puzzle game
+- **Scope:** **900+ levels, multiple endings**, hundreds of hours of gameplay planned
+- **Development:** 10 years in the making by a team of ~20 people
+- **Story:** More explicit than Braid or The Witness — talkative characters, voice narration, unfolding narrative
+- **Characters & Worlds:**
+  - **The Queen** — main protagonist, lost in a strange palace
+  - **The Hearty Heroes of Hauling** — Valens (pushes), Tif (pulls), Isidore (magic swap) + a druid who transmutes blocks
+  - **The Promise** — explorer in a maze-like mine using colored gem beams
+  - **Mirror Isles** — wealthy trader using mirror-reflection swapping to navigate an archipelago
+  - **Skipping Stones to Lonely Homes** — fourth area, marooned sailor redirecting rivers
+- **Key mechanics:** Rewind/undo, monsters that can be charmed/killed (no combat), characters from different worlds eventually **interact across realms** as the game progresses
+- **💡 Lounge Note:** Niche appeal — pure puzzle game from an acclaimed developer. Not a mainstream lounge draw, but Thekla/Blow games have a passionate cult following. If the lounge has customers who love intellectual puzzle games (The Witness fans), this is a must-buy. Limited mass appeal. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 21, 2026)
+
+### 🆕 Splatoon Raiders — Launches Tomorrow (Jul 23)! Eurogamer Review Published! 🆕
+
+- **Splatoon Raiders** launches **tomorrow, July 23, 2026** on PS5
+- **Eurogamer review published** alongside its release window
+- Genre: Third-person shooter/action in the Splatoon universe (spin-off, not mainline Nintendo)
+- **💡 Lounge Note:** Splatoon has strong casual multiplayer appeal. Launching Jul 23 = same day as CoD BO7 Season 5 and Halo Premium — packed day! ⭐⭐ lounge value
+- Source: Eurogamer (Jul 21, 2026)
+
+### 📦 Crimson Desert — Update 1.13.00 LIVE! New Equipment! 🆕
+
+- **Crimson Desert Update 1.13.00** released — adds dozens of new equipment pieces
+- New equipment obtainable through quests, achievements, shops, and other sources
+- **💡 Lounge Note:** Crimson Desert has been a major lounge attraction. This update extends replayability. ⭐⭐ lounge value
+- Source: Eurogamer (Jul 21, 2026)
+
+### 🎮 Summer Games Done Quick 2026 — $2.4M Raised! 🆕
+
+- **Summer Games Done Quick 2026** raised over **$2.4 million** for Doctors Without Borders
+- Speedrunning charity marathon continues to be a massive fundraising success
+- **💡 Lounge Note:** Feel-good gaming community news. ⭐
+- Source: Eurogamer (Jul 21, 2026)
+
+### 📋 Quick Status Refresh (Jul 21 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🧩 **Order of the Sinking Star** | **🆕 HANDS-ON REPORT** | Thekla/Blow! 900+ puzzles! PS5 later this year! |
+| 🐙 **Splatoon Raiders** | **🆕 REVIEW PUBLISHED** | Launches Jul 23! Eurogamer review live! |
+| 📦 **Crimson Desert 1.13.00** | **🆕 UPDATE LIVE** | New equipment added! |
+| 🎮 **SGDQ 2026** | **🆕 $2.4M RAISED** | Speedrunning charity! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 LAUNCHED TODAY!** | Top Gun collab! Install on all consoles! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 FREE TODAY!** | Install on lounge consoles! $69.99 value! |
+| 🔥 **CoD BO7 Season 5** | **🔥 JUL 23! 2 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo Premium Early Access** | **🔥 JUL 23! 2 DAYS!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download! |
+| 🧊 **Castlevania: Belmont's Curse** | **Oct 15** | Evil Empire! PRE-ORDER for Halloween! |
+| 📦 **GTA 6 Code-in-a-Box** | **Pre-orders LIVE** | Nov 19! Plan digital rollout strategy! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 🔐 **PSN 2FA Bypass** | **UNPATCHED** | Audit accounts! No share screenshots! |
+
+### 📋 Priority Lounge Actions (Jul 21 - 17:31 UTC):
+1. **🎖️🔥🔥 TODAY! INSTALL BF6 SEASON 4 PACIFIC FRONT UPDATE!** Top Gun collab! Two-seater jets! Pair-play!
+2. **🌌🔥🔥 INSTALL AVATAR: FRONTIERS OF PANDORA!** FREE on PS Plus TODAY! Stunning PS5 showcase! 2+ consoles!
+3. **⏰ PLAY BEFORE DEPARTURE:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 leave PS Plus TODAY!
+4. **🔥🔥🔥 JUL 23 — 2 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Splatoon Raiders! PRE-LOAD ALL NOW!
+5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND!
+6. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Halloween timing!
+7. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+8. **🎮🔥 PALWORLD 1.0 — Install on EVERY lounge PS5!** Near 1M concurrents two weekends in a row!
+9. **📦 PLAN GTA 6 DIGITAL ROLLOUT STRATEGY!** Code-in-a-box confirmed! No disc! Need per-console plan!
+10. **⚠️ CONSIDER buying extra PS5 units BEFORE potential price hikes!** Component crisis worsening!
+11. **🔐 AUDIT ALL lounge PSN accounts** — 2FA bypass exploit UNPATCHED!
