@@ -1,6 +1,115 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-20 23:30 UTC
+> Last updated: 2026-07-21 05:30 UTC
+
+---
+
+## ⚡ JULY 21 EARLY MORNING (July 21, 2026 - 05:30 UTC) — 🎖️🔥 BF6 SEASON 4 PACIFIC FRONT + AVATAR FRONTIERS OF PANDORA PS PLUS LAUNCH TODAY! + Steam $11.1B Record Revenue! + UK Game Retailer in Administration! + Component Prices Still Rising!
+
+> **Summary:** Early morning sweep — ~6 hours since last update. **🔥 TODAY'S LAUNCHES:** BF6 Season 4 Pacific Front with Top Gun collab goes live! Avatar: Frontiers of Pandora FREE on PS Plus Extra/Premium! **🆕 NEW ITEMS:** Steam generated $11.1Bn in H1 2026 — record-breaking, while PlayStation/Xbox struggle. UK retailer Game enters administration owing £16M. Valve engineer warns component prices still rising — Xbox raising prices Aug 1, could affect PS5 pricing. Kingdom Hearts Missing-Link footage leaks online. Jennifer English (BG3 actor) leaves Tides of Annihilation. No new PS Blog posts since Jul 20.
+
+### 🎖️🔥 TODAY — BF6 Season 4 "Pacific Front" & Top Gun Collab Go LIVE! (Jul 21) 🆕✅
+
+- **As tracked:** Battlefield 6 Season 4: Pacific Front launches today, July 21, 2026!
+- **Tsuru Reef map** — single biggest map in BF6 yet! First naval combat!
+- **New vehicles:** RCB-90 Patrol Boat, RHIB light transport
+- **New weapons:** Bren 3 Carbine, EF88 Assault Rifle, VSSM DMR
+- **Phase Two (Aug 18):** Carrier Strike mode + Top Gun collab! Two-seater jets!
+- **💡💡💡💡 LOUNGE ACTION:** **INSTALL BF6 UPDATE ON ALL LOUNGE CONSOLES TODAY!** Top Gun collab = MAJOR customer draw. Two-seater jets = pair-play sessions! ⭐⭐⭐⭐
+- Source: EA/Battlefield Studios (tracked Jul 17)
+
+### 🌌✅ TODAY — Avatar: Frontiers of Pandora FREE on PS Plus! (Jul 21) 🆕✅
+
+- **As tracked:** Avatar: Frontiers of Pandora (Massive Entertainment) arrives on PS Plus Extra/Premium TODAY!
+- **Gorgeous open-world** Avatar game — incredible visual showcase for PS5
+- **$69.99 value** — FREE for PS Plus subscribers
+- **Also arriving today:** Psi-Ops: The Mindgate Conspiracy (PS2 — Premium), Indigo Prophecy (PS2 — Premium)
+- **Departures today:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 leaving PS Plus — binge before they're gone!
+- **💡💡💡💡💡 LOUNGE ACTION:** **INSTALL AVATAR ON AT LEAST 2 LOUNGE CONSOLES!** Stunning PS5 showcase game. Perfect for first-time visitors! ⭐⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 15, 2026)
+
+### 🔥 Steam Record Revenue — $11.1B in H1 2026! PlayStation and Xbox Flounder! 🆕📈
+
+- **Valve's Steam** generated a record **$11.1 billion** in revenue in the first half of 2026 — its highest-ever H1 result
+- **Nearly quintupled** (5x) Steam's revenue since 2017
+- **Key drivers:** Massive Chinese market (50% of all Steam users), higher game prices, third-party publishers returning to Steam
+- **Biggest sellers H1 2026 on Steam:**
+  - Forza Horizon 6: **$197.7M** (under 2 months)
+  - Resident Evil Requiem: **$194.5M** (3.4M Steam sales, $1.3M from cosmetics alone)
+  - Crimson Desert: **$190M** (new franchise!)
+  - Slay the Spire 2: **$141.7M**
+  - Subnautica 2: **$133.6M**
+- **Meanwhile, PlayStation struggles:** First-party sales declining since 2020, PC exclusives pivot reversed, consumer sentiment tanked over disc phaseout
+- **Xbox also down:** Gaming revenue down 7% YoY, massive layoffs
+- **💡 Lounge Note:** Not directly actionable but significant context — the PC gaming market is booming while console platforms face headwinds. Steam's growth driven by Chinese market and strong indie scene. PlayStation's mounting challenges (declining exclusive sales, disc controversy) are worth monitoring. ⭐⭐⭐ industry context
+- Source: Eurogamer (Jul 20, 2026), Alinea Analytics
+
+### 💷 UK Games Retailer Game — Enters Administration Owing £16M! 🆕
+
+- **UK high street retailer Game** entered administration (February 2026) owing **£15.8M**
+- **Causes:** Changing consumer behavior (physical → digital), **"uncertainty associated with Brexit"**, fierce competition, no major console releases since 2020
+- **300 stores in 2012** → complete collapse by 2026
+- **Report notes:** GTA 6 physical being code-in-a-box + Sony ending discs in 2028 = even less reason to visit physical retailers
+- **Next-gen consoles (PS6? Xbox Helix?)** — no release dates, component shortages raise affordability concerns
+- **💡 Lounge Note:** This signals the ACCELERATING death of physical game retail. For PS VIBE, this reinforces the strategic importance of digital PSN account management. Physical disc collecting may have nostalgia value but the industry is moving decisively digital. The GTA 6 code-in-a-box model will become the norm. ⭐⭐ industry context
+- Source: Eurogamer (Jul 20, 2026), KR8 Advisory Report
+
+### ⚠️ Component Prices "Still Getting Worse" — Valve Engineer Warns! More Console Price Hikes Incoming? 🆕
+
+- **Valve engineer Yazan Aldehayyat:** "Honestly, it's still getting worse" — component prices still rising even after Steam Machine launch
+- **Retail prices lagging bulk pricing by 3-6 months** — implies further price increases coming
+- **Microsoft already raising Xbox prices** effective **August 1, 2026** — and expects RAM/prices to **double by autumn 2027**
+- **Sony has already raised PS5 prices multiple times** — Nintendo Switch 2 getting price hike Sep 1
+- **AI datacenter-driven RAM shortage** is the root cause — no end in sight
+- **💡💡 LOUNGE NOTE:** If PS5 prices rise again, this affects lounge expansion plans. The component crisis shows no signs of easing through 2027. **Recommendation:** If PS VIBE plans to buy additional PS5 units, consider purchasing BEFORE further price increases hit. Monitor Sony for potential PS5 price announcements. ⭐⭐⭐
+- Source: Eurogamer (Jul 20, 2026), Bloomberg, Microsoft
+
+### 📱 Kingdom Hearts Missing-Link — Cancelled Game Footage Leaks Online! 🆕
+
+- **Footage of the cancelled** Kingdom Hearts Missing-Link mobile game has leaked online
+- Shows Keyblade-wielding astronauts and other bizarre concepts
+- The game was announced then cancelled — now fans can see what could have been
+- **💡 Lounge Note:** Not directly impactful but Kingdom Hearts is a beloved Square Enix IP. Missing-Link's cancellation and now leak are notable for KH fans. ⭐ fan interest
+- Source: Eurogamer (Jul 20, 2026)
+
+### 🎭 Jennifer English (Baldur's Gate 3) — Withdraws from Tides of Annihilation for Mental Health! 🆕
+
+- **Jennifer English** (Shadowheart in Baldur's Gate 3, also Clair Obscur: Expedition 33) has withdrawn from **Tides of Annihilation** voice role
+- Reason: "To look after my mental and physical health"
+- Development team has hired an "incredibly talented performer" as replacement
+- **💡 Lounge Note:** Tides of Annihilation is an upcoming action game — this casting change affects development but won't delay the game significantly. ⭐
+- Source: Eurogamer (Jul 19, 2026)
+
+### 📋 Quick Status Refresh (Jul 21 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 LAUNCHES TODAY!** | Top Gun collab! Tsuru Reef! Install now! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 FREE TODAY!** | Install on lounge consoles! $69.99 value! |
+| 🔥 **Steam $11.1B Revenue H1 2026** | **🆕 RECORD!** | PlayStation/Xbox struggling in contrast! |
+| 💷 **UK Game Retailer Administration** | **🆕 £16M OWED** | Physical retail dying! Digital future confirmed! |
+| ⚠️ **Component Prices Still Rising** | **🆕 WORSENING** | Xbox Aug 1 price hike! PS5 may follow! |
+| 📱 **KH Missing-Link Leak** | **🆕 FOOTAGE LEAKED** | Cancelled mobile game! |
+| 🎭 **Jennifer English Leaves Tides** | **🆕 HEALTH REASON** | Recast in progress! |
+| 🔥 **CoD BO7 Season 5** | **🔥 JUL 23! 2 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo Premium Early Access** | **🔥 JUL 23! 2 DAYS!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download! |
+| 📦 **GTA 6 Code-in-a-Box** | **Pre-orders LIVE** | Nov 19! Plan digital rollout strategy! |
+| 🧊 **Castlevania: Belmont's Curse** | **Oct 15** | Evil Empire! PRE-ORDER for Halloween! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+| 🔐 **PSN 2FA Bypass** | **UNPATCHED** | Audit accounts! No share screenshots! |
+
+### 📋 Priority Lounge Actions (Jul 21 - 05:30 UTC):
+1. **🎖️🔥🔥 TODAY! INSTALL BF6 SEASON 4 PACIFIC FRONT UPDATE!** Top Gun collab! Two-seater jets! Pair-play!
+2. **🌌🔥🔥 INSTALL AVATAR: FRONTIERS OF PANDORA!** FREE on PS Plus TODAY! Stunning PS5 showcase! 2+ consoles!
+3. **⠕ PLAYLIST BEFORE DEPARTURE:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 leave PS Plus today!
+4. **🔥🔥🔥 JUL 23 — 2 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem! PRE-LOAD ALL NOW!
+5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND!
+6. **🧊🔥 PRE-ORDER Castlevania: Belmont's Curse!** Oct 15! Evil Empire! Halloween timing!
+7. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+8. **🎮🔥 PALWORLD 1.0 — Install on EVERY lounge PS5!** Near 1M concurrents two weekends in a row!
+9. **📦 PLAN GTA 6 DIGITAL ROLLOUT STRATEGY!** Code-in-a-box confirmed! No disc! Need per-console plan!
+10. **⚠️ CONSIDER buying extra PS5 units BEFORE potential price hikes!** Component crisis worsening!
+11. **🔐 AUDIT ALL lounge PSN accounts** — 2FA bypass exploit UNPATCHED!
 
 ---
 
