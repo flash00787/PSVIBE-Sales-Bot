@@ -1,12 +1,14 @@
 {
-  "checked_at": "2026-07-22T01:43:00+00:00",
-  "method": "API (token expired - reauth needed)",
+  "checked_at": "2026-07-22T13:32:00+00:00",
+  "method": "IMAP",
   "nova_count": 0,
   "wallet_count": 0,
-  "important_count": 0,
-  "total_recent_2d": 0,
-  "promo_skipped": 0,
-  "other_non_promo": 0,
-  "result": "REAUTH_REQUIRED",
-  "note": "Gmail API refresh token expired. Re-authentication link sent to Telegram. User needs to visit auth URL and provide code."
+  "important_count": 1,
+  "total_recent_2d": 23,
+  "total_recent_7d": 54,
+  "unread": 23,
+  "promo_skipped": 7,
+  "other_non_promo": 16,
+  "result": "IMPORTANT_FOUND",
+  "note": "Google security alert: new sign-in on NX809J device (unrecognized?) - Boss should review"
 }
