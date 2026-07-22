@@ -1,5 +1,8 @@
 {
-  "lastHeartbeat": "2026-07-22T13:33:10Z",
+  "lastHeartbeat": "2026-07-22T15:32:00Z",
+  "lastConsolidation": "2026-07-22T15:32:00Z",
   "stuckTasks": [],
-  "pendingTasks": []
+  "pendingTasks": [],
+  "consolidationStatus": "completed",
+  "consolidationSummary": "No new significant events to merge. Jul 22: only auto-generated bugs (morning briefing prediction duplicates x2, low severity/cosmetic). MEMORY.md unchanged."
 }
