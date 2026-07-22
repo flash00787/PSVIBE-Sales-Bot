@@ -1,6 +1,85 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-22 05:30 UTC
+> Last updated: 2026-07-22 11:30 UTC
+
+---
+
+## ⚡ JULY 22 NOON CHECK (July 22, 2026 - 11:30 UTC) — 🆕 MW4 BETA DATES ANNOUNCED! Aug 21-25 Closed + Aug 28-Sep 1 Open! + CoD: Next Returns Aug 21! + Mortal Shell 2 Revered Edition SOLD OUT! + DCKO Mobile Fighting Game Announced!
+
+> **Summary:** Noon sweep — 6 hours since early morning update. **🆕 CRITICAL:** MW4 beta dates FINALLY announced! Closed beta Aug 21-25 (pre-order), open beta Aug 28-Sep 1! CoD: Next returns Aug 21! MW4 launches Oct 23! **🆕** Mortal Shell 2 physical Revered Edition PS5 pre-orders completely SOLD OUT — ironic amidst Sony disc phaseout debate. **🆕** DCKO mobile fighting game announced (free-to-play, 2v2). **🆕** Xbox execs admit exclusivity strategy unclear, insist Gears: E-Day and Clockwork Revolution aren't the only exclusives. All previously tracked data below remains current.
+
+### 🎯🆕 CRITICAL: Modern Warfare 4 Beta Dates ANNOUNCED! CoD: Next Returns Aug 21! (Jul 21) 🆕🔥
+
+- **Activision announced** MW4 beta schedule and the return of **Call of Duty: Next** on **August 21** as a global online event
+- **Closed Beta (pre-order required):** August 21-25 on PC, PS5, Xbox Series X/S
+- **Open Beta (all players):** August 28 - September 1 (includes **Switch 2** for the first time!)
+- **Beta content:** 19 weapons, Kill Block mode, Search & Destroy, Training Mobility Course (teaches new movement mechanics)
+- **Switch 2 pre-orders** open August 26
+- **MW4 full release:** **October 23, 2026** on PC, PS5, Xbox Series X/S, Switch 2
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL PREPARATION NEEDED:**
+  - MW4 is the biggest FPS launch of the year for the lounge! Oct 23 release!
+  - **PRE-LOAD beta on ALL lounge PS5s by Aug 20!** Closed beta Aug 21-25 needs pre-order codes!
+  - Open beta Aug 28-Sep 1 = EVERY lounge PS5 should have it — no pre-order needed!
+  - CoD: Next event Aug 21 = hype event — consider promoting watch party or themed sessions!
+  - Training Mobility Course suggests new movement mechanics — customers will want time to learn before launch
+  - **Plan October launch strategy NOW** — MW4 on Oct 23 + Castlevania: Belmont's Curse Oct 15 + Hellraiser: Revival Oct 8 = stacked October! ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 21, 2026), Activision/Call of Duty Blog
+
+### 👻🆕 Mortal Shell 2 — Revered Edition PS5 Physical Pre-Orders COMPLETELY SOLD OUT! (Jul 22) 🆕
+
+- **Playstack announced** the PS5 Revered Edition of Mortal Shell 2 is **sold out** at retail — no guarantee of restock
+- **Aug 20 release** — one of the year's most anticipated Soulslikes
+- **PC beta** was downloaded over **500,000 times** — enormous demand
+- **Ironic timing:** Sony's disc phaseout (Jan 2028) makes this physical PS5 collector's item even more notable
+- PS5 is the **only platform** getting a physical Mortal Shell 2 disc
+- Standard Edition ($50) still available
+- **💡 Lounge Note:** Mortal Shell 2 (Aug 20) is a major Soulslike release for the lounge. The physical scarcity is ironic context for the disc debate. Not urgent for lounge ops but good to track for August releases. ⭐⭐
+- Source: Eurogamer (Jul 22, 2026), Playstack
+
+### 🦸🆕 DCKO — New DC Comics Fighting Game Announced for Mobile! (Jul 21) 🆕
+
+- **Warner Bros. announced DCKO** — a free-to-play 2v2 fighting game for mobile from indie developer Dropfake
+- Officially licensed DC game launching in 2027
+- Name hilariously similar to Riot's 2XKO — immediately became "DCKO/Dicko" meme online
+- No console/PC version confirmed — mobile-only for now
+- **💡 Lounge Note:** Not directly relevant to PS5 lounge ops. Mobile-only fighting game. Interesting that DC fans want Injustice 3 instead. ⭐
+- Source: Eurogamer (Jul 21, 2026)
+
+### 🎮🆕 Xbox Exclusivity Strategy — "Not Obvious" Even to Players, Says Xbox CSO (Jul 21) 🆕
+
+- Xbox chief strategy officer Matthew Ball and chief content officer Matt Booty spoke to GamesRadar
+- **Confirmed:** "Gears of War: E-Day and Clockwork Revolution are not the only exclusives we're planning"
+- **BUT admitted:** The current strategy may not be "obvious to all our players"
+- Ball cautioned not to "fixate on single-player" exclusivity — strategy not "carved in stone"
+- Context: Xbox did 3,200 layoffs in June, Halo coming to PS5
+- **💡 Lounge Note:** Industry context — Xbox/PlayStation exclusivity wars continue. Xbox's confusion benefits PlayStation as leading console platform for lounge operations. Not urgent but worth tracking. ⭐ industry context
+- Source: Eurogamer (Jul 21, 2026), GamesRadar
+
+### 📋 Quick Status Refresh (Jul 22 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎯 **MW4 Beta Dates Announced!** | **🆕 CRITICAL!** | Aug 21-25 closed, Aug 28-Sep 1 open! Oct 23 launch! Plan now! |
+| 👻 **Mortal Shell 2 PS5 Disc Sold Out** | **🆕 SOLD OUT** | Aug 20! Physical edition depleted! Ironic disc context! |
+| 🦸 **DCKO Mobile Fighting Game** | **🆕 ANNOUNCED** | 2027! Mobile-only! 2v2! Meme name! |
+| 🎮 **Xbox Exclusivity Confusion** | **🆕 ADMITTED** | Strategy not obvious even to players! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 LIVE!** | Top Gun collab! Two-seater jets! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 LIVE!** | FREE on PS Plus! |
+| 🔥 **CoD BO7 Season 5** | **🔥 TOMORROW! JUL 23!** | Pre-load all consoles NOW! |
+| 🟢 **Halo Premium Early Access** | **🔥 TOMORROW! JUL 23!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download! |
+| 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
+
+### 📋 Updated Priority Lounge Actions (Jul 22 - 11:30 UTC):
+1. **🎯🔥🔥🔥 CRITICAL: MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! PREPARE ALL CONSOLES! Oct 23 launch!
+2. **🔥🔥🔥 TOMORROW! JUL 23!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **PRE-LOAD ALL CONSOLES NOW!** 🚨🚨🚨
+3. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND! Install on 2-3 lounge consoles!
+4. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+5. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+6. **⛔ REMOVE Risk of Rain 2, Tropico 6, Jackbox Party Pack 9** from playlists — departed PS Plus!
+7. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+8. **🎮✅ PALWORLD 1.0 — Still near 1M concurrents!** Verify on EVERY lounge PS5!
+9. **🛡️ UPDATE Marathon on lounge PS5s** — Vault Breaker PvE mode ends Aug 4!
+10. **📊 GO FULL DIGITAL strategy confirmed** — Only 7 PS games >100K physical sales in US all year!
 
 ---
 
