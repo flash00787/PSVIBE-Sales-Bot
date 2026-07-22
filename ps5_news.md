@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-22 11:30 UTC
+> Last updated: 2026-07-22 17:32 UTC
 
 ---
 
@@ -55,9 +55,25 @@
 - **💡 Lounge Note:** Industry context — Xbox/PlayStation exclusivity wars continue. Xbox's confusion benefits PlayStation as leading console platform for lounge operations. Not urgent but worth tracking. ⭐ industry context
 - Source: Eurogamer (Jul 21, 2026), GamesRadar
 
-### 📋 Quick Status Refresh (Jul 22 - 11:30 UTC):
+### 🛩️🆕 Lou's Lagoon — Fresh Look & August 27 Release Date Confirmed! (Jul 22) 🆕
+
+- **PlayStation Blog published** a new gameplay walkthrough and Deluxe Edition reveal for **Lou's Lagoon** today (Jul 22)
+- **Developer:** Tiny Roar
+- **Release: August 27, 2026** on PS5
+- **Genre:** High-flying adventure — young pilot searching for missing Uncle Lou after a severe storm swept through the Limbo archipelago
+- **Key features:**
+  - **Character creator** — hairstyles, eyebrows, skin tone, facial hair, eye color, face markings
+  - **Seaplane customization** — earn parts and spray paints from aerial challenges
+  - **Home building/crafting** — build and design your own tropical paradise home
+  - **Charming characters** — meet the Charneys, Gorplins, and Vooi residents
+- **Deluxe Edition:** Exclusive Lifeguard outfit, bubble-engine upgrade for seaplane, cozy beachside items
+- **💡 Lounge Note:** This is a cozy adventure game in the vein of A Short Hike meets Animal Crossing. Not a blockbuster but solid for the lounge's diverse library. August 27 release — good mid-summer filler. Perfect for customers who want a relaxed, non-competitive experience. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 22, 2026)
+
+### 📋 Quick Status Refresh (Jul 22 - 17:32 UTC):
 | Topic | Status | Notes |
 |-------|--------|-------|
+| 🛩️ **Lou's Lagoon** | **🆕 FRESH LOOK!** | Aug 27! Tiny Roar! Cozy adventure! Character creator! |
 | 🎯 **MW4 Beta Dates Announced!** | **🆕 CRITICAL!** | Aug 21-25 closed, Aug 28-Sep 1 open! Oct 23 launch! Plan now! |
 | 👻 **Mortal Shell 2 PS5 Disc Sold Out** | **🆕 SOLD OUT** | Aug 20! Physical edition depleted! Ironic disc context! |
 | 🦸 **DCKO Mobile Fighting Game** | **🆕 ANNOUNCED** | 2027! Mobile-only! 2v2! Meme name! |
@@ -69,7 +85,7 @@
 | 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download! |
 | 🛒 **Summer Sale** | **LIVE!** | Jul 15 - Aug 12! Up to 75% off! |
 
-### 📋 Updated Priority Lounge Actions (Jul 22 - 11:30 UTC):
+### 📋 Updated Priority Lounge Actions (Jul 22 - 17:32 UTC):
 1. **🎯🔥🔥🔥 CRITICAL: MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! PREPARE ALL CONSOLES! Oct 23 launch!
 2. **🔥🔥🔥 TOMORROW! JUL 23!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **PRE-LOAD ALL CONSOLES NOW!** 🚨🚨🚨
 3. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND! Install on 2-3 lounge consoles!
@@ -157,6 +173,7 @@
 7. **🎮✅ PALWORLD 1.0 — Still near 1M concurrents!** Verify on EVERY lounge PS5!
 8. **🛡️ UPDATE Marathon on lounge PS5s** — Vault Breaker PvE mode live for 2 weeks!
 9. **📋📊 New data confirms: GO FULL DIGITAL strategy for lounge!** Only 7 PS games >100K physical sales in US all year. Discs are dead.
+10. **🛩️ TRACK Lou's Lagoon — Aug 27!** Tiny Roar! Cozy adventure! Character creator! Seaplane customization!
 
 ---
 
