@@ -1,6 +1,81 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-21 17:31 UTC
+> Last updated: 2026-07-21 23:30 UTC
+
+---
+
+## ⚡ JULY 21 EVENING CHECK (July 21, 2026 - 23:30 UTC) — 🆕 Jonathan Blow's 'Order of the Sinking Star' Announced for PS5! + KOTOR Remake May Be Re-Revealed This Year! + Ghost Recon Wildlands Definitive Edition Leaked for PS5!
+
+> **Summary:** Evening sweep — 6 hours since last update. **🆕 NEW PS BLOG POST TODAY (Jul 21):** Jonathan Blow's Thekla announces **Order of the Sinking Star** coming to PS5 later this year! Hands-on report published. **🆕 OTHER NEWS:** New report suggests Star Wars KOTOR Remake may be re-revealed this year. Ghost Recon Wildlands Definitive Edition for PS5/Xbox Series leaked. Former Forza Horizon 5 director says Game Pass "not enough people subscribed". **🔥 TODAY'S LAUNCHES** (already tracked, now live): BF6 Season 4 Pacific Front + Top Gun collab! Avatar: Frontiers of Pandora FREE on PS Plus! **All previously tracked data below remains current.**
+
+### 🆕 NEW: Order of the Sinking Star — Announced for PS5! Jonathan Blow's Thekla Returns! Hands-On Report Published! 🆕
+
+- **PlayStation Blog published** a full hands-on report today (Jul 21) for **Order of the Sinking Star**, the new game from **Jonathan Blow's independent studio Thekla** (creators of Braid and The Witness)
+- **Release:** "Later this year" on PS5 (exact date TBD)
+- **Genre:** Grid-based puzzle adventure with Sokoban-like mechanics, but with story, characters, and a stylish aesthetic
+- **Setting:** A mysterious world with a "glittering sky" — the Queen is lost in a strange palace before opening into an overworld
+- **Key mechanic:** Rewind/undo system — revert to earlier puzzle states if you get stuck
+- **Multiple characters, each with unique puzzle abilities:**
+  - **Valens** — pushes blocks
+  - **Tif (thief)** — pulls blocks
+  - **Isidore (wizard)** — magically swaps places with objects on line-of-sight
+  - **The Queen** — navigating the overworld
+  - **Explorer (The Promise area)** — uses gems to emit colored beams
+  - **Wealthy trader (Mirror Isles)** — swaps places with reflected projection
+- **Monsters (goblins)** can kill characters but there's NO combat — pure puzzle focus
+- **Narrative:** More explicit than Braid or The Witness — voice-over dialogue and narration, character-driven story
+- **💡 Lounge Note:** Jonathan Blow's previous games (Braid, The Witness) are considered masterpieces of the puzzle genre. Order of the Sinking Star is an ambitious follow-up with broader appeal (story + characters). Not a mainstream lounge draw, but excellent for puzzle enthusiasts and the cerebral gaming crowd. Worth picking up for the lounge's diverse library. ⭐⭐ lounge value
+- Source: PlayStation Blog (Jul 21, 2026)
+
+### 🚀 KOTOR Remake — May Be Re-Revealed This Year! New Report Suggests! (Jul 21) 🆕
+
+- **Eurogamer reports:** The long-in-limbo **Star Wars: Knights of the Old Republic Remake** "might be re-revealed this year"
+- Saber Interactive may show the game at a major event in 2026
+- This builds on the previously tracked confirmation that the remake is **alive with a 2028 release target**
+- **💡 Lounge Note:** KOTOR is one of the most beloved RPGs of all time. A 2026 re-reveal would generate massive hype. A 2028 release alongside Fallout remasters and GTA 6 makes the late-decade lineup incredible. ⭐⭐⭐ lounge value — track for potential reveal event.
+- Source: Eurogamer (Jul 21, 2026)
+
+### 🎖️ Ghost Recon Wildlands — PS5 Definitive Edition Leaked! (Jul 21) 🆕
+
+- **Eurogamer reports:** A **Tom Clancy's Ghost Recon Wildlands Definitive Edition** for PS5 and Xbox Series X/S has leaked
+- Unclear if this is a full remaster or a standard re-release with bundled DLC
+- Original Wildlands was a PS4/Xbox One title from 2017 — solid open-world tactical shooter
+- **💡 Lounge Note:** If this is a proper PS5 remaster (60fps, enhanced visuals), Wildlands is a solid co-op tactical shooter with broad appeal. Worth tracking for lounge library. ⭐⭐ lounge value
+- Source: Eurogamer (Jul 21, 2026)
+
+### 🎮 Industry Context: Xbox Game Pass "Not Enough People Subscribed" Says Former Forza Director (Jul 21) 🆕
+
+- **Former Forza Horizon 5 director** (name not disclosed in report) comments: Xbox Game Pass "was a good idea in theory" but "the reality is not enough people have subscribed"
+- "It's just a real shame" — the model couldn't sustain itself despite critical acclaim
+- This follows Microsoft's ongoing layoffs and revenue struggles
+- **💡 Lounge Note:** Not directly PS5-impacting, but validates the subscription model debate. PlayStation Plus is the alternative — its continued value (Rise of the Ronin, Avatar this month) is a competitive advantage for PS VIBE. ⭐ industry context
+- Source: Eurogamer (Jul 21, 2026)
+
+### 📋 Quick Status Refresh (Jul 21 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🆕 **Order of the Sinking Star** | **ANNOUNCED! 🆕** | Jonathan Blow! Thekla! PS5 later this year! |
+| 🚀 **KOTOR Remake Re-Reveal** | **RUMORED 2026 🆕** | May be shown this year! Saber Interactive! |
+| 🎖️ **Ghost Recon Wildlands PS5 DE** | **LEAKED 🆕** | Definitive Edition possible remaster! |
+| 🎮 **Xbox Game Pass Doubts** | **EX-DEVELOPER 🆕** | "Not enough subscribers" — subscription model question! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 LIVE NOW!** | Top Gun collab! Tsuru Reef! Install today! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 FREE TODAY!** | Install on lounge consoles! $69.99 value! |
+| 🔥 **CoD BO7 Season 5** | **🔥 JUL 23! 2 DAYS!** | Prepare all consoles! Pre-load! |
+| 🟢 **Halo Premium Early Access** | **🔥 JUL 23! 2 DAYS!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! 3 DAYS!** | No PS Plus needed! Pre-download! |
+
+### 📋 Updated Priority Lounge Actions (Jul 21 - 23:30 UTC):
+1. **🎖️🔥🔥 TODAY! INSTALL BF6 SEASON 4 PACIFIC FRONT UPDATE!** Top Gun collab LIVE NOW! Two-seater jets! Pair-play!
+2. **🌌🔥🔥 INSTALL AVATAR: FRONTIERS OF PANDORA!** FREE on PS Plus TODAY! Stunning PS5 showcase! 2+ consoles!
+3. **⛔ PLAYLIST CHECK:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 — departed PS Plus today! Remove from playlists!
+4. **🔥🔥🔥 JUL 23 — 2 DAYS!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem! PRE-LOAD ALL NOW!
+5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND!
+6. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+7. **🎮🔥 PALWORLD 1.0 — Install on EVERY lounge PS5!** Near 1M concurrents two weekends in a row!
+8. **⚠️ CONSIDER buying extra PS5 units BEFORE potential price hikes!** Component crisis worsening!
+9. **🔐 AUDIT ALL lounge PSN accounts** — 2FA bypass exploit UNPATCHED!
+10. **📋 TRACK Order of the Sinking Star** — New puzzle game from Jonathan Blow! PS5 later this year!
+11. **📋 TRACK KOTOR Remake re-reveal** — Possibly this year! Monitor major gaming events!
 
 ---
 

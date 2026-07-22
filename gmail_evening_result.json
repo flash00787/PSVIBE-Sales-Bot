@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-07-21T13:33:39.781101+00:00",
-  "method": "IMAP (API token expired)",
+  "checked_at": "2026-07-22T01:43:00+00:00",
+  "method": "API (token expired - reauth needed)",
   "nova_count": 0,
   "wallet_count": 0,
   "important_count": 0,
-  "total_recent_2d": 16,
-  "promo_skipped": 6,
-  "other_non_promo": 10,
-  "result": "NO_REPLY",
-  "note": "No Nova or wallet/handover related emails found. Gmail API token needs re-auth."
+  "total_recent_2d": 0,
+  "promo_skipped": 0,
+  "other_non_promo": 0,
+  "result": "REAUTH_REQUIRED",
+  "note": "Gmail API refresh token expired. Re-authentication link sent to Telegram. User needs to visit auth URL and provide code."
 }
