@@ -273,14 +273,9 @@ Kora now manages **9 projects** with full coordination tool support.
 - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 42 times**
 - *auto-bug* | `id:56f4ca90`
 - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 42 times
-- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times**
 - *auto-bug* | `id:a4d2f318`
-- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 8 times
-- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times**
 - *auto-bug* | `id:3692d7d1`
-- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 57 times
 - *auto-bug* | `id:3ad1a86e`
-- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့)
 - *auto-bug* | `id:4d45cf3d`
 - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━
 - *auto-bug* | `id:3d975344`
@@ -291,9 +286,7 @@ Kora now manages **9 projects** with full coordination tool support.
 - *auto-bug* | `id:5d01b4ca`
 - *auto-bug* | `id:8f292bd6`
 - *auto-bug* | `id:e7ecb19d`
-- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times**
 - *auto-bug* | `id:63355302`
-- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 17 times
 - *auto-bug* | `id:f5215a18`
 - *auto-bug* | `id:ec1e4062`
 - *auto-bug* | `id:3c4baf9b`
@@ -302,19 +295,14 @@ Kora now manages **9 projects** with full coordination tool support.
 ## Memory (2026-07-17)
 
 ### BUG (2)
-- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့)
 - *auto-bug* | `id:ac1a0b45`
-- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━
 - *auto-bug* | `id:c1d5448c`
 
 ## Memory (2026-07-18)
 
 ### BUG (5)
-- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့)
 - *auto-bug* | `id:f996bc4a`
-- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━
 - *auto-bug* | `id:71fbcbe4`
-- `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)**
 - *auto-bug* | `id:08a15936`
 - > **Bug detected:** [WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)
 - `[open [warning]]` **[WARNING] response_spike: Response time 608.9ms is 9.4x baseline (65.1ms)**
@@ -331,7 +319,6 @@ Kora now manages **9 projects** with full coordination tool support.
 - `[fixed [high]]` **Deposit restore on forfeited booking reactivation**
 - *deposit, forfeit, restore, auto-cancel, booking* | `id:18411e2c`
 - > Fixed 4 endpoints to restore deposit_status='verified' when a booking with forfeited deposit is reactivated (started, checked-in, or status changed to Active). Files: console_routes.py (api_start_cons
-- `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed**
 - *deposit, forfeit, booking, reactivation, fix* | `id:890e7a74`
 - > Fixed 2026-07-18 06:06 UTC
 
@@ -339,16 +326,13 @@ Kora now manages **9 projects** with full coordination tool support.
 - `[open [medium]]` **Stock Out / Hold Full Flow Audit**
 - *stock_out, stock_hold, audit, food_cart* | `id:b60c5d19`
 - > Audit 2026-07-18 05:00 UTC
-- `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅**
 - *cogs, food_profit, pnl, finance, audit* | `id:cdde07c2`
 - > Verified 2026-07-18 05:16 UTC
 
 ## Memory (2026-07-19)
 
 ### BUG (6)
-- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့)
 - *auto-bug* | `id:6a6783c5`
-- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━
 - *auto-bug* | `id:43a157c5`
 - `[open [warning]]` **[WARNING] response_spike: Response time 697.4ms is 18.7x baseline (37.2ms)**
 - *auto-bug* | `id:04ffd682`

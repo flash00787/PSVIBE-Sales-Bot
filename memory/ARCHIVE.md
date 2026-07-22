@@ -26,3 +26,23 @@
   (dedup) - **All sold items have stock_in matching** — zero "no_stock_in" items ✅
   (dedup) - **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅
   (dedup) - **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅
+
+# Archived Memory Entries
+*Archived: 2026-07-22 05:34 UTC*
+
+(dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times**
+  (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 8 times
+  (dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times**
+  (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 57 times
+  (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့)
+  (dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times**
+  (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 17 times
+  (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့)
+  (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━
+  (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့)
+  (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━
+  (dedup) - `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)**
+  (dedup) - `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed**
+  (dedup) - `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅**
+  (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့)
+  (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━
