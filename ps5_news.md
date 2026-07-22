@@ -1,6 +1,83 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-21 23:30 UTC
+> Last updated: 2026-07-22 05:30 UTC
+
+---
+
+## ⚡ JULY 22 EARLY MORNING (July 22, 2026 - 05:30 UTC) — 📊 Disc Phaseout VINDICATED by Data! Only 7 PlayStation Games >100K Physical Sales in US! + Marathon Vault Breaker PvE Launches! + FBI Arrests Steam Crypto Malware Suspect! + BF6 S4 & Avatar: Pandora NOW LIVE! 🚀
+
+> **Summary:** Morning sweep — 6 hours since last update. No new PS Blog posts since Jul 21. **🆕 KEY DATA REVEAL:** Circana analyst confirms only **7 PlayStation games** have sold >100K physical copies in US this year — validates Sony's disc phaseout decision despite online outrage. **🆕 Marathon** gets Vault Breaker PvE mode (timed roguelite, 2 weeks). **🆕 FBI arrests** 21-year-old for $220K Steam crypto malware theft. **✅ YESTERDAY'S LAUNCHES CONFIRMED:** BF6 Season 4 Pacific Front + Top Gun collab LIVE! Avatar: Frontiers of Pandora FREE on PS Plus! All previously tracked data below remains current.
+
+### 📊🆕 Sony Disc Phaseout VINDICATED — Only 7 Games >100K Physical Sales in US This Year! (Jul 21) 🆕
+
+- **Circana analyst Mat Piscatella** released striking data: Only **7 PlayStation games** have sold more than 100,000 physical copies in the US **year-to-date** (Jan 1 – Jul 21, 2026)
+- **Even more stark:** Only **2 PlayStation games** sold more than 10,000 physical copies in the US during the week ending July 11
+- This data was released in response to the **ongoing online outrage** at Sony's disc phaseout announcement (Jan 2028)
+- Despite thousands of angry comments flooding PS Blog posts (even Marvel's Wolverine trailer was swarmed):
+  - **Sony shows no sign of backing down** — the data proves the business case
+  - **EU cannot stop Sony** from selling games in whatever format it chooses
+  - Industry experts broadly agree with Sony's decision on business grounds, though consumer rights concerns remain
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR CONTEXT:**
+  - This data **VALIDATES the digital-first strategy** we've been planning for GTA 6 rollout
+  - Online outrage is a vocal MINORITY — **the market has already moved digital**
+  - For PS VIBE's operation (all console purchases, game acquisition) — **digital is the clear and inevitable future**
+  - Physical collection may have nostalgia/display value but **zero commercial significance** anymore
+  - GTA 6 code-in-a-box is just the beginning — by 2028, discs will be gone entirely
+  - **Recommendation:** Finalize digital PSN account strategy for lounge. No need to invest in physical copies for any future releases. ⭐⭐⭐⭐⭐ strategic insight
+- Source: Eurogamer (Jul 21, 2026), Circana/Mat Piscatella
+
+### 🛡️🆕 Marathon — Vault Breaker PvE Mode Launches TODAY! Timed Roguelite! (Jul 21) 🆕
+
+- **Bungie's Marathon** launched **Vault Breaker** — its first PvE mode — in Season 2's mid-season update (Jul 21)
+- **Timed availability:** 2 weeks only — ends August 4
+- **Format:** Roguelite mode — increase power between runs, raid Vaults, fight UESC enemies
+- **Supports:** Solo, duos, trios — anyone can join regardless of Runner level
+- **Map:** Cryo Archive
+- **Key mechanic:** Player-made loadouts NOT supported — use Sponsored Kits upgraded with Vault Data currency
+- **Extraction:** Gear cannot be used in normal PvP modes — keeps economy separate
+- **Bungie working on** a full PvE mode for Season 3
+- **💡 Lounge Note:** Marathon's PvE mode debut is significant as Bungie's first major content update after last month's 292 layoffs and Ziegler's departure. New PvE content could attract more players. Worth installing the update on any lounge PS5s running Marathon. ⭐⭐ lounge value
+- Source: Eurogamer (Jul 21, 2026)
+
+### 👮🆕 FBI Arrests 21-Year-Old for $220K Steam Crypto Malware Theft! (Jul 21) 🆕
+
+- **FBI arrested** a 21-year-old Florida man for allegedly stealing ~$220,000 in cryptocurrency using malware hidden inside Steam games
+- **Infected games** (since removed): Lunara, PirateFi, BlockBlasters, Lampy (infected post-update)
+- **Method:** Malware scraped passwords from victims' PCs → used to access crypto wallets
+- **Promoted via** social media bots targeting known crypto holders
+- **Caught because** they used stolen Bitcoin to buy UberEats gift cards
+- **FBI had announced investigation** earlier this year; this is the first arrest
+- **💡 Lounge Note:** Not directly PS5-related but important security context. The lounge operates on digital platforms (PSN, streaming, payment systems). Malware-ridden games on ANY platform is a reminder to **only download from official sources**. Reinforces PSN account security practices. ⭐ security awareness
+- Source: Eurogamer (Jul 21, 2026), FBI indictment
+
+### ✅ CONFIRMED LIVE: BF6 Season 4 Pacific Front + Avatar: Frontiers of Pandora PS Plus! (Jul 21) ✅
+
+- **BF6 Season 4 Pacific Front** with **Top Gun two-seater jet collab** is NOW LIVE as of yesterday!
+  - Tsuru Reef map, naval combat, new weapons
+  - Carrier Strike mode (Phase Two — Aug 18) coming soon
+  - **Install on ALL lounge consoles!**
+- **Avatar: Frontiers of Pandora** is **FREE on PS Plus Extra/Premium** as of yesterday!
+  - Stunning visual showcase — perfect for lounge display
+  - **Install on at least 2 lounge consoles!**
+- **Departures completed:** Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 left PS Plus — remove from playlists
+
+### 🔥 COUNTDOWN: CoD BO7 Season 5 + Halo Premium Early Access — TOMORROW Jul 23! 🚀
+
+- **T-1 DAY!** CoD BO7 Season 5 and Halo Premium early access launch **TOMORROW, July 23!**
+- **PRE-LOAD ALL CONSOLES NOW!** Don't wait until launch day!
+- **Also Jul 23:** Disgaea Mayhem, Avatar Legends
+- **Marvel Tōkon Open Beta** Jul 24-26 — pre-download 2 hours before! No PS Plus needed!
+
+### 📋 Updated Priority Lounge Actions (Jul 22 - 05:30 UTC):
+1. **🎖️✅ INSTALL BF6 SEASON 4 PACIFIC FRONT!** Top Gun collab LIVE! Two-seater jets! Already available!
+2. **🌌✅ INSTALL AVATAR: FRONTIERS OF PANDORA!** FREE on PS Plus! Stunning visual showcase!
+3. **⠕⚠️ REMOVE Risk of Rain 2, Tropico 6, Jackbox Party Pack 9 from playlists** — departed PS Plus!
+4. **🔥🔥🔥 TOMORROW! JUL 23!** CoD BO7 Season 5 + Halo Premium early access! PRE-LOAD ALL CONSOLES NOW!
+5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND!
+6. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+7. **🎮✅ PALWORLD 1.0 — Still near 1M concurrents!** Verify on EVERY lounge PS5!
+8. **🛡️ UPDATE Marathon on lounge PS5s** — Vault Breaker PvE mode live for 2 weeks!
+9. **📋📊 New data confirms: GO FULL DIGITAL strategy for lounge!** Only 7 PS games >100K physical sales in US all year. Discs are dead.
 
 ---
 
