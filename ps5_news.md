@@ -1,6 +1,89 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-22 17:32 UTC
+> Last updated: 2026-07-22 23:30 UTC
+
+---
+
+## ⚡ JULY 22 EVENING CHECK (July 22, 2026 - 23:30 UTC) — 🆕 Palworld 30M COPIES SOLD! $700M Gross Revenue! + $7.2Bn Used Game Market at Risk from Disc Phaseout! + Circana June Data: Industry Down 21%, Hardware -62%, Subs Grow 7%! + Darkest Dungeon Gets First DLC in Years!
+
+> **Summary:** Evening sweep — 6 hours since noon update. **🆕 Palworld hits 30.5M estimated sales!** $700M gross revenue! 64.9% Steam, 31.1% Xbox, only 4% PS5! Pocketpair teases skins, Fortnite survey hints at possible Palworld collab! **🆕** Sony disc phaseout could destroy $7.2Bn global used game market — analysts warn brick-and-mortar retail is doomed. **🆕** Circana June 2026 data: Industry spending -21% YoY ($4.5Bn), hardware -62%, only Xbox grew (from low base), subs grew 7% — only growing segment. **🆕** Darkest Dungeon gets 'The Fires Edge' DLC for 10th anniversary. **✅** All previously tracked data below remains current.
+
+### 📈🆕 Palworld Hits 30.5 MILLION Copies Sold! $700M Gross Revenue! Steam Dominates at 65%! (Jul 22) 🆕
+
+- **Alinea Analytics' Rhys Elliott** published an in-depth look at Palworld's post-1.0 performance
+- **Estimated sales:** ~30.5M units as of July 21, 2026 — massive milestone!
+- **Gross revenue:** ~$700M from copies sold alone (excluding Game Pass)
+- **Platform split:** 64.9% Steam, 31.1% Xbox, only **4% PS5** — most Palworld players are NOT on PlayStation!
+- **1.0 launch discount (30% off on Steam)** sold nearly 1.5M additional copies, adding $25M gross revenue
+- **Game Pass added ~10M players** on top of paid sales
+- **US and China** each hold ~27% of Steam player base as largest markets
+- **Pocketpair potentially teasing** new Pal skins (per Bucky, head of publishing)
+- **Fortnite survey** asking players about Palworld preferences — possible collab? Despite ongoing Nintendo legal battles
+- **💡💡💡💡 LOUNGE IMPACT:** Palworld 1.0 is a MEGA hit — 30M+ sales confirms it's among the biggest games of the year. BUT only 4% of players on PS5 means the lounge's Palworld PS5 setup is serving a niche audience. The PC/Steam dominance is overwhelming. Worth keeping on lounge consoles but don't overinvest — this is primarily a Steam phenomenon. ⭐⭐⭐⭐
+- Source: Eurogamer (Jul 22, 2026), Alinea Analytics/Rhys Elliott
+
+### 💿🆕 Sony Disc Phaseout — $7.2Bn Used Game Market at Risk! Analysts Warn Brick-and-Mortar Retail Doomed! (Jul 22) 🆕
+
+- **Dataintelo analysis via CNBC** (Jul 22): The global second-hand video game market is valued at **$7.2Bn** in 2025, covering pre-owned games, console hardware, accessories & peripherals
+- **North America dominates** at 36.8% ($2.65Bn) — 38% of US game transactions involve pre-owned games
+- **Europe:** 28.3%, **Asia Pacific:** 24.6%, **Latin America/Middle East/Africa:** 10.3%
+- **GameStop, Amazon, eBay** lead NA; **CEX** leads Europe
+- **Michael Pachter (Wedbush Securities):** "Realistically, at least one-third of games have been sold historically as used… Brick and mortar game retail is doomed"
+- **Kazunori Ito (Morningstar):** Expects the used market to "continue declining, before vanishing entirely"
+- **Key insight:** Games are almost always cheaper at retail than digital — removing discs removes consumer choice
+- **PS6 implications:** Strong indication PS6 won't have a disc drive
+- **Microsoft:** Reports suggest Project Helix (next Xbox) may also ditch the disc drive, but working on digitizing physical collections
+- **💡💡💡💡 LOUNGE CONTEXT:** This reinforces the digital transition narrative. For PS VIBE, the $7.2Bn used market destruction means: (1) No more trade-in value for lounge discs, (2) Customers can't buy cheap used games to bring to lounge, (3) Digital-first strategy is the ONLY future. Physical collection = nostalgia/display value only. ⭐⭐⭐⭐
+- Source: Eurogamer/CNBC (Jul 22, 2026), Dataintelo
+
+### 📊🆕 Circana June 2026 — Industry Spending Down 21%, Hardware -62%, Only Subs Growing! USA Market Report (Jul 22) 🆕
+
+- **Circana June 2026 US report:** Industry spending fell **21% YoY** to $4.5Bn (from $5.7Bn)
+- **Hardware spending** plunged **62% YoY** — but June 2025 was Switch 2 launch month (record high)
+- **Nintendo Switch 2** still best-selling platform (units & dollars), down 79% from launch month
+- **PS5** hardware spending down only **19% YoY** — much better than May's 58% decline
+- **Xbox** only platform with **growth** — spending "more than double" YoY — but coming off May's "lowest ever recorded"
+- **Content spending** down 12% YoY
+- **Subscriptions grew 7%** — only growing segment in Circana's tracking!
+- **Best-selling June new releases:** UFC 6, Meccha Chameleon (4M+ copies on Steam!), Star Fox
+- **H1 2026 pace:** Only 1% behind H1 2025 — room for optimism with GTA 6, Wolverine, MW4, and other big H2 titles
+- **💡💡💡 LOUNGE NOTE:** Industry slump in H1 2026 but subs growing 7% validates the subscription model. H2 2026 is stacked (GTA 6, MW4, Wolverine, Castlevania, Hellraiser) — expect a massive rebound. PS5 holding up better than May data suggested. ⭐⭐⭐ industry context
+- Source: Eurogamer (Jul 22, 2026), Circana
+
+### 🎮🆕 Darkest Dungeon — First DLC in Years! 'The Fires Edge' Announced for 10th Anniversary! (Jul 21) 🆕
+
+- **Darkest Dungeon** is getting its first dollop of DLC in several years — **'The Fires Edge'**
+- Celebrates the gloomy old RPG's **10th birthday** (original launch: January 2016)
+- **💡 Lounge Note:** Darkest Dungeon is a cult classic with a loyal following. Minor lounge impact but worth noting for RPG fans. ⭐
+- Source: Eurogamer (Jul 21, 2026)
+
+### 📋 Quick Status Refresh (Jul 22 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📈 **Palworld 30M Sales!** | **🆕 $700M GROSS!** | 30.5M sold! 65% Steam, 4% PS5! Skins teased! Fortnite collab rumors! |
+| 💿 **Used Game Market at Risk** | **🆕 $7.2Bn ANALYSIS** | Disc phaseout could destroy second-hand market! Brick retail doomed! |
+| 📊 **Circana June Data** | **🆕 INDUSTRY -21%** | Hardware -62%! Subs +7% only growth! PS5 -19% better than expected! |
+| 🎮 **Darkest Dungeon DLC** | **🆕 'FIRES EDGE'** | First DLC in years! 10th anniversary! |
+| 🛩️ **Lou's Lagoon** | **Fresh look today!** | Aug 27! Tiny Roar! Cozy adventure! |
+| 🎯 **MW4 Beta Dates Announced!** | **CRITICAL!** | Aug 21-25 closed, Aug 28-Sep 1 open! Oct 23 launch! |
+| 👻 **Mortal Shell 2 PS5 Disc Sold Out** | **SOLD OUT** | Aug 20! Physical edition depleted! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **🔥 LIVE!** | Top Gun collab! Two-seater jets! |
+| 🌌 **Avatar: Frontiers of Pandora PS Plus** | **🔥 LIVE!** | FREE on PS Plus! |
+| 🔥 **CoD BO7 Season 5** | **🔥 LAUNCHES TOMORROW JUL 23!** | Pre-load ALL consoles NOW! |
+| 🟢 **Halo Premium Early Access** | **🔥 TOMORROW! JUL 23!** | Pre-order Premium for 5-day early access! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26! THIS WEEKEND!** | No PS Plus needed! Pre-download! |
+
+### 📋 Updated Priority Lounge Actions (Jul 22 - 23:30 UTC):
+1. **🎯🔥🔥🔥 CRITICAL: MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! PREPARE ALL CONSOLES! Oct 23 launch!
+2. **🔥🔥🔥 TOMORROW! JUL 23!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **PRE-LOAD ALL CONSOLES NOW!** 🚨🚨🚨
+3. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND! Install on 2-3 lounge consoles!
+4. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+5. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+6. **📈✅ Palworld 30M sold!** Still on EVERY lounge PS5! Note: 96% of players on non-PS platforms — primarily Steam phenomenon!
+7. **⛔ REMOVE Risk of Rain 2, Tropico 6, Jackbox Party Pack 9** from playlists — departed PS Plus!
+8. **💿💿💿 Digital-first strategy FINALIZE!** $7.2Bn used market destruction incoming! No point investing in physical!
+9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ASTRO BOT, Elden Ring Nightreign, KC Deliverance II!
+10. **📊 H2 2026 is STACKED** — GTA 6 (Nov 19), MW4 (Oct 23), Wolverine (Sep 15), Castlevania (Oct 15), Hellraiser (Oct 8)!
 
 ---
 

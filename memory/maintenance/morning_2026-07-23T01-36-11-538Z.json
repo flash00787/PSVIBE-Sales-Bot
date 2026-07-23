@@ -1,0 +1,27 @@
+{
+  "date": "2026-07-23",
+  "type": "morning",
+  "timestamp": "2026-07-23T01:36:07.892Z",
+  "yesterdaySales": {
+    "txns": "16",
+    "total": "235100.00",
+    "gross": "262350.00",
+    "discounts": "100.00"
+  },
+  "yesterdayTopups": {
+    "count": "0",
+    "total": "0.00",
+    "mins": "NULL"
+  },
+  "activeMembers": "13",
+  "consoleStatus": "console_id\tstatus\tconsole_type\nC-01\tFree\tPS5\nC-02\tFree\tPS5\nC-03\tFree\tPS5\nC-04\tFree\tPS5\nC-05\tFree\tPS5\nC-06\tFree\tPS5\nC-07\tFree\tPS5\nC-08\tFree\tPS5\nC-09\tReserved\tPS5 Pro\nC-10\tFree\tPS5 Pro",
+  "systemHealth": {
+    "docker": "watchtower Up 16 hours (healthy)\naungchanmyint-n8n-1 Up 31 hours (healthy)\noc-coco Up 46 hours (healthy)\naungchanmyint-caddy-1 Up 32 hours (healthy)\naungchanmyint-grafana-1 Up 11 days (healthy)\nshadowbox Up 2 weeks\noc-nova Up 12 days (healthy)\noc-gayzoelay Up 12 days (healthy)\nkora-mongo Up 2 weeks\nconstruction_bot Up 2 weeks\npsvibe-mysql Up 2 weeks\n",
+    "cpu": "%Cpu(s):  2.8 us,  1.9 sy,  0.0 ni, 95.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+    "memoryPercent": "11.5",
+    "diskPercent": "43"
+  },
+  "dockerContainers": "watchtower: Up 16 hours (healthy)\naungchanmyint-n8n-1: Up 31 hours (healthy)\noc-coco: Up 46 hours (healthy)\naungchanmyint-caddy-1: Up 32 hours (healthy)\naungchanmyint-grafana-1: Up 11 days (healthy)\nshadowbox: Up 2 weeks\noc-nova: Up 12 days (healthy)\noc-gayzoelay: Up 12 days (healthy)\nkora-mongo: Up 2 weeks\nconstruction_bot: Up 2 weeks\npsvibe-mysql: Up 2 weeks",
+  "todayBookings": "0",
+  "overallStatus": "healthy"
+}
