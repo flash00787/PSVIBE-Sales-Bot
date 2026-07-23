@@ -1,6 +1,107 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-23 11:30 UTC
+> Last updated: 2026-07-23 17:32 UTC
+
+---
+
+## ⚡ JULY 23 EVENING CHECK (July 23, 2026 - 17:32 UTC) — 🔥🚨 EU APPROVES SAUDI ARABIA'S $55BN EA ACQUISITION! Largest Private Buyout in History! + DBZ Sparking Zero Neo DLC Jul 30! + CoD BO7 Gets THIRD Matchmaking System! + Hasbro $56M Write-Down, Games Scaled Back!
+
+> **Summary:** Evening sweep — ~12 hours since morning update. **🚨 CRITICAL INDUSTRY NEWS:** EU approves Saudi Arabia's $55bn acquisition of EA! Largest private leveraged buyout of all time! European Commission found no competition concerns. Deal also involves Silver Lake and Affinity Partners (Jared Kushner). **🆕** Dragon Ball: Sparking Zero gets **Super Limit-Breaking Neo DLC** out July 30 — new Limit Breaker Journey solo mode, characters, stages! **🆕** CoD BO7 Season 5 launches with a **THIRD matchmaking system** — Classic matchmaking inspired by BO1/BO2 ports! Now Standard, Open, AND Classic options! **🆕** Hasbro records $56M write-down, scaling back gaming ambitions — but Warlock (D&D) and Exodus (Mass Effect-like) are safe. **🆕** Bethesda Montreal union fights "smallest severance pay possible" after Xbox layoffs. **🆕** Xbox version of Avatar Legends: The Fighting Game delayed over a month — less than 24h before other platform launch. **🆕** Halo: Campaign Evolved PS Blog post — 13 ways it modernizes the iconic FPS. **✅** All morning data remains current — CoD BO7 Season 5, Halo Premium early access, and all tracked launches are LIVE NOW!
+
+### 🚨🔥 BREAKING: EU APPROVES SAUDI ARABIA'S $55BN ACQUISITION OF EA! Largest Private Buyout in History! (Jul 23) 🆕🚨
+
+- **European Commission approved** Saudi Arabia's Public Investment Fund (PIF), Silver Lake, and Affinity Partners' $55bn acquisition of Electronic Arts
+- **Announced via EU Commission bulletin** — normal merger review procedure found NO competition concerns
+- **Deal was approved by EA stakeholders** in December 2025; now only the US government remains as a potential blocker
+- **Players involved:** Saudi PIF, Silver Lake (private equity), **Affinity Partners (CEO = Jared Kushner, Donald Trump's son-in-law)**
+- **Controversy:** Human rights organizations criticize as "sportswashing" — Saudi Arabia's record includes Jamal Khashoggi killing
+- **Industry unions opposed:** Communications Workers of America pushed back, wrote to US FTC
+- **Implications:** If completed, this will be the **largest private leveraged buyout in history**
+- **💡💡💡💡💡 LOUNGE IMPACT — MAJOR INDUSTRY SHIFT:** EA owns Apex Legends, Battlefield, FC (FIFA), Madden, The Sims, Mass Effect, Dragon Age, Star Wars games. A Saudi-backed, privately-held EA changes the industry landscape dramatically. For PS VIBE: BF6 and future EA titles are lounge STAPLES. Monitor for any strategic shifts (exclusivity? pricing? platform strategy?) under new ownership structure. **THIS IS CRITICAL industry news that affects every PS5 lounge.** ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 23, 2026), European Commission
+
+### 🐉🆕 Dragon Ball: Sparking Zero — Super Limit-Breaking Neo DLC out July 30! New Solo Mode! (Jul 23) 🆕
+
+- **PlayStation Blog post today** announces major new DLC for Dragon Ball: Sparking Zero
+- **Release date: July 30, 2026** — one week away!
+- **New "Limit Breaker Journey" solo mode** — RPG-lite progression! Choose favorite character, develop them, allocate stats (6 stats), earn Battle Arts for special effects
+- **Interactive map** — select destinations to trigger events/battles
+- **New characters** and **new stages** (full list TBD)
+- **Game launched with 180+ characters in 2024**, now over 200 playable characters
+- **💡💡💡💡 LOUNGE VALUE:** Dragon Ball: Sparking Zero is one of the most popular fighting games on PS5 — huge anime draw! New DLC = reason for DBZ fans to book sessions. **PRE-LOAD DLC on lounge PS5s by July 30!** Great for weekend bookings! ⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 23, 2026)
+
+### 🎯🆕 CoD BO7 Season 5 Launches with THIRD Matchmaking System! "Classic" Mode Inspired by BO1/BO2! (Jul 23) 🆕
+
+- **Activision announced** Black Ops 7 is introducing a **Classic matchmaking system** — third option alongside Standard and Open
+- **Available today** with the Season 5 launch! In Quick Play, Party Games, and Black Ops Classic playlists
+- **Inspired by** the recently released Black Ops 1 and 2 PS4/PS5 ports — responding to community love for classic matchmaking
+- **Background:** BO7 launched with Standard (SBMM) and Open (minimal skill consideration). Now Classic joins the family — three systems total
+- **MW4 beta (Aug 21)** will also continue the Open + Standard tradition
+- **💡💡💡 LOUNGE NOTE:** More matchmaking options = better for lounge customers. Classic mode caters to nostalgia crowd who want BO1/BO2-style matching. Good differentiator — especially relevant for customers who loved the BO1/BO2 ports. ⭐⭐⭐
+- Source: Eurogamer (Jul 23, 2026), Activision/Treyarch
+
+### 📉🆕 Hasbro Scaling Back Gaming Ambitions — $56M Write-Down! Exodus & Warlock Safe! (Jul 23) 🆕
+
+- **Hasbro recorded $56M write-down** across its games portfolio through 2028 in Q2 2026 results
+- **CEO Chris Cocks:** Cancelled several games scheduled for 2028+ — shifting to focus on "franchises with clearest upside"
+- **Safe projects:** Mass Effect-like sci-fi RPG **Exodus** (Archetype Entertainment), **Warlock: D&D strategy game**, Magic: The Gathering Arena, Monopoly Go
+- **Unclear fate:** G.I. Joe Snake Eyes game (developer Atomic Arcade closed)
+- **Context:** Hasbro (Wizards of the Coast, D&D owner) had a major splurge after Baldur's Gate 3 success — now pulling back
+- **💡 Lounge Note:** Exodus (Mass Effect-like) and Warlock (D&D) remain in development — these are potential lounge attractions when they release. Good to track. ⭐⭐ industry context
+- Source: Eurogamer (Jul 23, 2026), Hasbro investor call
+
+### 🎮🆕 Bethesda Montreal Union Vows to Fight — "Smallest Severance Pay Possible" After Xbox Layoffs! (Jul 23) 🆕
+
+- **Bethesda Montreal union** (first game studio union in Canada) says laid-off employees got "the smallest severance pay possible" — bare minimum
+- Comes after Xbox layoffs that affected 3,200+ people (June 2026)
+- Union plans to challenge the payouts through legal process
+- **💡 Lounge Note:** Continued Xbox/Microsoft turmoil. Contrasts with Sony's relatively stable studio management. ⭐ industry context
+- Source: Eurogamer (Jul 23, 2026)
+
+### 🎮🆕 Xbox Version of Avatar Legends: The Fighting Game Delayed Over a Month! — Last-Minute Delay! (Jul 23) 🆕
+
+- **Xbox version** of Avatar Legends: The Fighting Game delayed by **over a month** — announced less than 24 hours before launch on other platforms
+- Xbox and Switch 2 versions both delayed; PS5 and PC launch as planned
+- **💡 Lounge Note:** PS5 is the platform to play Avatar Legends! Yet another win for PlayStation as lead platform. ⭐
+- Source: Eurogamer (Jul 23, 2026)
+
+### 🟢🆕 Halo: Campaign Evolved — PS Blog Publishes "13 Ways It Modernizes the Iconic FPS" (Jul 23) 🆕
+
+- **PlayStation Blog** published a detailed feature: 13 ways Halo: Campaign Evolved modernizes the classic FPS
+- Full remake of the original Halo: Combat Evolved campaign with improved gameplay, visuals, and QoL changes
+- **Premium early access launched today!** July 23 — 5-day head start before July 28 full launch
+- **Notable:** Halo content on the PlayStation Blog is a historic moment — former Xbox exclusive now officially promoted on PlayStation channels
+- **💡 Lounge NOTE:** Halo: Campaign Evolved is on PS5 for the first time in history! Premium early access LAUNCHED TODAY! Verify install on lounge consoles! ⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 23, 2026)
+
+### 📋 Quick Status Refresh (Jul 23 - 17:32 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **$55Bn Saudi EA Acquisition** | **🆕 EU APPROVED!** | Largest private buyout ever! US still can block! Massive industry shift! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🆕 JUL 30!** | New solo mode! Characters! Stages! RPG-lite! Install on lounge consoles! |
+| 🎯 **CoD BO7 Third Matchmaking** | **🆕 CLASSIC MODE!** | Standard + Open + Classic! BO1/BO2 inspired! Today! |
+| 📉 **Hasbro Gaming Scale-Back** | **🆕 $56M WRITE-DOWN** | Exodus & Warlock safe! Games 2028+ cancelled! |
+| 🎮 **Bethesda Montreal Union** | **🆕 FIGHTING SEVERANCE** | "Smallest pay possible" — Xbox layoffs aftermath! |
+| 🎮 **Avatar Legends Xbox Delay** | **🆕 DELAYED >1 MONTH** | PS5 version on time! Xbox/Switch 2 delayed! |
+| 🟢 **Halo Campaign Evolved PS Blog** | **🆕 TODAY'S POST** | 13 ways modernized! Premium early access LIVE! |
+| 🔥 **CoD BO7 Season 5** | **✅ LAUNCHED TODAY!** | Classic matchmaking! Three systems! LIVE! |
+| 🟢 **Halo Premium Early Access** | **✅ LAUNCHED TODAY!** | Jul 23! Full launch Jul 28! Premium early access LIVE! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26 THIS WEEKEND!** | Pre-download opens! No PS Plus needed! |
+| 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Closed + open! Oct 23 launch! |
+| 🛒 **Summer Sale** | **LIVE!** | Up to 75% off! Ends Aug 12! |
+
+### 📋 Updated Priority Lounge Actions (Jul 23 - 17:32 UTC):
+1. **🚨 TRACK Saudi EA acquisition** — Monitor for any EA strategic shifts (BF6, Apex, FC pricing/platform strategy). Critical long-term industry change.
+2. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
+3. **🎯🔥 CLASSIC MATCHMAKING now in CoD BO7!** Three systems! Test at lounge and promote to customers who love classic BO1/BO2 feel!
+4. **🔥🔥🔥 LAUNCH DAY CONFIRMED!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **VERIFY ALL CONSOLES UPDATED!** 🚀
+5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** THIS WEEKEND! 15 playable characters! No PS Plus! Install on 2-3 lounge consoles!
+6. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
+7. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+8. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+10. **📊 Monitor Hasbro/G.I. Joe Snake Eyes fate** — potential lounge game if released.
 
 ---
 
