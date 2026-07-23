@@ -1,14 +1,12 @@
 {
-  "checked_at": "2026-07-22T13:32:00+00:00",
+  "checked_at": "2026-07-23T13:30:00+00:00",
   "method": "IMAP",
+  "total_processed": 36,
+  "unread": 36,
+  "promo_skipped": 9,
   "nova_count": 0,
   "wallet_count": 0,
-  "important_count": 1,
-  "total_recent_2d": 23,
-  "total_recent_7d": 54,
-  "unread": 23,
-  "promo_skipped": 7,
-  "other_non_promo": 16,
+  "important_count": 5,
   "result": "IMPORTANT_FOUND",
-  "note": "Google security alert: new sign-in on NX809J device (unrecognized?) - Boss should review"
+  "note": "Google Security Alert (NX809J sign-in repeated), OpenRouter receipts $10.80x3, Binance notification. No Nova reply yet."
 }

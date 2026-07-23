@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-23 05:31 UTC
+> Last updated: 2026-07-23 11:30 UTC
 
 ---
 
@@ -5873,3 +5873,49 @@ Leaving the Extra/Premium Game Catalog on July 21:
 9. **📦 PLAN GTA 6 DIGITAL ROLLOUT STRATEGY!** Code-in-a-box confirmed! No disc! Need per-console plan!
 10. **⚠️ CONSIDER buying extra PS5 units BEFORE potential price hikes!** Component crisis worsening!
 11. **🔐 AUDIT ALL lounge PSN accounts** — 2FA bypass exploit UNPATCHED!
+
+---
+
+## ⚡ JULY 23 MIDDAY PULSE (July 23, 2026 - 11:30 UTC) — 🚨 Avatar Legends Xbox Version Delayed HOURS Before Launch! PS5 Version Still Ships! + Splatoon Raiders Launches Today on Switch 2!
+
+> **Summary:** Midday pulse — ~6 hours since early morning update. **🆕 TODAY'S BREAKING:** Avatar Legends: The Fighting Game Xbox version delayed to September 3, less than 24 hours before launch! Switch version launches but WITHOUT Deluxe Edition, crossplay, or localization beyond English! PS5 version launches as planned. **🆕** Splatoon Raiders launches today on Switch 2. **🆕** Stalker 2 developer refutes founder's Xbox exclusivity payment claims. All previously tracked data below remains current.
+
+### 🚨🆕 Avatar Legends: The Fighting Game — Xbox Version DELAYED to Sep 3! HOURS Before Launch! PS5 Ships on Time! (Jul 23) 🆕
+
+- **PM Studios announced** just hours before launch: Xbox version of Avatar Legends: The Fighting Game is **delayed to September 3**
+- **Reason:** "Unforeseen circumstances on a backend feature" — vague, suggests infrastructure/network issues
+- **Xbox impact:** Pre-orders NOT automatically cancelled — players must manually cancel if disappointed
+- **Switch impact:** Launches today BUT:
+  - ❌ No Deluxe Edition at launch
+  - ❌ No crossplay with other platforms
+  - ❌ No localization beyond English at launch
+  - Promised "as soon as possible"
+- **PS5 version launches as planned TODAY** — no delays for PlayStation!
+- **Community reaction:** Furious — players took off work for launch, communication described as "horrible"
+- **💡💡 LOUNGE NOTE:** PS5 version is UNAFFECTED — good news for lounge operations. Xbox delay doesn't impact PS VIBE. But this is a cautionary tale about last-minute delays that undermines customer trust. **Verify PS5 Avatar Legends is installed and working on lounge consoles today!** ⭐⭐
+- Source: Eurogamer (Jul 23, 2026), PM Studios/Twitter
+
+### 🦑🆕 Splatoon Raiders Launches Today on Switch 2! (Jul 23) 🆕
+
+- **Nintendo's Splatoon Raiders** launches today on Nintendo Switch 2
+- **Genre:** Solo/co-op looter shooter spin-off — NOT Splatoon 4
+- **Key feature:** Weapon progression, repeatable missions, horde-style Salmonid combat + boss fights
+- **Originally conceived** as a base defence game with traps — moved away from that as it "lost its Splatoon-ness"
+- **💡 Lounge Note:** Not relevant to PS5 lounge ops. Notable as a major Nintendo Switch 2 launch title. ⭐ cross-platform awareness
+- Source: Eurogamer/Nintendo (Jul 23, 2026), Ask the Developer Vol. 22
+
+### 🗣️🆕 Stalker 2 Developer Refutes Founder's Xbox Exclusivity Payment Claims (Jul 23) 🆕
+
+- GSC Game World developer pushes back against studio founder's claim that **Xbox paid more than the game's development cost** for timed exclusivity
+- "That is simply not true" — developer statement
+- **💡 Lounge Note:** Minor industry drama. No PS5 impact. ⭐
+- Source: Eurogamer (Jul 23, 2026)
+
+### 📋 Updated Priority Lounge Actions (Jul 23 - 11:30 UTC):
+1. **🔥🔥🔥 LAUNCH DAY CONFIRMED!** CoD BO7 Season 5 GOES LIVE! Halo Premium early access! Disgaea Mayhem! **VERIFY ALL UPDATES INSTALLED!** 🚀
+2. **✅ PS5 Avatar Legends LAUNCHES ON TIME!** Xbox delayed but PS5 fine! Install on lounge PS5s!
+3. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND! Install on 2-3 lounge consoles!
+4. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
+5. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+6. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+7. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
