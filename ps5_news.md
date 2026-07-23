@@ -1,6 +1,77 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-22 23:30 UTC
+> Last updated: 2026-07-23 05:31 UTC
+
+---
+
+## ⚡ JULY 23 EARLY MORNING (July 23, 2026 - 05:31 UTC) — 🔥 CoD BO7 SEASON 5 & HALO PREMIUM LAUNCH TODAY! + Xbox Announces Backward Compatibility on PC! + Xbox Game Pass July Wave 2 Revealed!
+
+> **Summary:** Early morning sweep — ~6 hours since Jul 22 evening update. **🔥 TODAY'S TRACKED LAUNCHES:** CoD BO7 Season 5 goes LIVE! Halo Premium early access goes LIVE! Marvel Tōkon pre-download opens! **🆕** Xbox announces Backward Compatibility on PC program — Blinx, Conker, Crimson Skies, Fuzion Frenzy first wave! **🆕** Xbox VP of Engineering Jared Palmer leaves after just 3 months. **🆕** Xbox Game Pass July Wave 2 adds Hell Is Us and Halo: Campaign Evolved. No new PS Blog posts since Jul 22 All previously tracked data below remains current.
+
+### 🎮🆕 Xbox Announces Backward Compatibility on PC Program! Blinx & Conker Lead First Wave! (Jul 22) 🆕
+
+- **Microsoft announced** a surprise Xbox Backward Compatibility on PC program via Xbox Wire (Jul 22)
+- First wave of games now available on PC and handhelds (ROG Ally):
+  - **Blinx: The Time Sweeper** — cult classic Xbox platformer
+  - **Conker: Live and Reloaded** — Rare's iconic adult-themed platformer
+  - **Crimson Skies: High Road to Revenge** — beloved aerial combat game
+  - **Fuzion Frenzy** — classic party game
+- **Features:** Up to 4x resolution upscaling, VSync, Fullscreen/Windowed, anisotropic filtering, enhanced anti-aliasing
+- **Pricing:** $9.99 each OR included with ALL Xbox Game Pass plans
+- Digital license carryover from console
+- **💡 Lounge Note:** Not directly PS5 news but competitive context — Microsoft expanding BC value proposition even amid layoffs and strategic confusion. Xbox Game Pass just got a nostalgia boost. PS VIBE's appeal remains better physical experience + broader audience. ⭐⭐
+- Source: Eurogamer/Xbox Wire (Jul 22, 2026)
+
+### 🆕 Xbox Game Pass July Wave 2 — Hell Is Us + Halo: Campaign Evolved! (Jul 22) 🆕
+
+- **Xbox announced** next batch of Game Pass titles:
+  - **The Planet Crafter** — Jul 21 (GP Ultimate, Premium, PC)
+  - **Shift at Midnight** — Jul 22
+  - **Hell Is Us** — **Jul 23** (GP Ultimate, Premium, PC)
+  - **Halo: Campaign Evolved** — **Jul 28** (GP Ultimate, PC)
+  - **Mistfall Hunter** — Jul 30
+  - **Corsair Cove** — Jul 31 (PC)
+  - **Heretic + Hexen** — classic titles coming soon
+- **💡 Lounge Note:** Hell Is Us is a notable release today alongside CoD BO7. Not directly PS5-lounge relevant but worth knowing competitive Game Pass lineup. ⭐
+- Source: Eurogamer/Xbox Wire (Jul 22, 2026)
+
+### 🆕 Xbox VP of Engineering Leaves After Just 3 Months! (Jul 22) 🆕
+
+- **Jared Palmer**, appointed Xbox VP of Engineering when Asha Sharma took over (Feb 2026), announced his departure
+- Leaves just 3 months after moving over from Microsoft's CoreAI team
+- Represents continued Xbox leadership instability following Phil Spencer's retirement and 3,200 job cuts
+- **💡 Lounge Note:** Signals ongoing Xbox organizational turmoil. Contrast with Sony's stable leadership. ⭐ industry context
+- Source: Eurogamer/Kotaku (Jul 22, 2026)
+
+### 🔥 LAUNCH DAY CONFIRMED — CoD BO7 Season 5 & Halo Premium Early Access GO LIVE TODAY! (Jul 23) ✅🔥
+
+- **As tracked:** CoD Black Ops 7 Season 5 launches TODAY, July 23! Pre-load completed? Install updates!
+- **Also today:** Halo Premium early access (5-day head start before Jul 28 full launch)
+- **Also today:** Disgaea Mayhem, Avatar Legends
+- **Also today:** Hell Is Us on Xbox Game Pass
+- **Pre-download opens:** Marvel Tōkon Open Beta (Jul 24-26) — 2 hours before beta launch! No PS Plus needed!
+
+### 📋 Quick Status Refresh (Jul 23 - 05:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔥 **CoD BO7 Season 5** | **✅ LAUNCH DAY! JUL 23!** | Go LIVE today! All consoles ready! |
+| 🟢 **Halo Premium Early Access** | **✅ LAUNCH DAY! JUL 23!** | 5-day early access! Pre-order Premium! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26 THIS WEEKEND!** | Pre-download opens! No PS Plus! |
+| 🆕 **Xbox BC on PC** | **🆕 ANNOUNCED** | Blinx! Conker! Crimson Skies! $9.99/each! |
+| 🎮 **Xbox Game Pass Jul Wave 2** | **🆕 DETAILED** | Hell Is Us + Halo: Campaign Evolved! |
+| 📉 **Xbox VP Engineering Departs** | **🆕 3 MONTHS IN** | More Xbox leadership instability! |
+| 📈 **Palworld 30M Sales!** | **$700M GROSS** | 65% Steam! 4% PS5! |
+| 💿 **Used Game Market at Risk** | **$7.2Bn ANALYSIS** | Disc phaseout looming! |
+| 📊 **Circana June Data** | **INDUSTRY -21%** | PS5 -19% better than expected! |
+
+### 📋 Updated Priority Lounge Actions (Jul 23 - 05:31 UTC):
+1. **🔥🔥🔥 LAUNCH DAY! JUL 23!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **VERIFY ALL CONSOLES UPDATED!** 🚀
+2. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** 2 hours before! No PS Plus! THIS WEEKEND! Install on 2-3 lounge consoles!
+3. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
+4. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+5. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+6. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+7. **📈✅ Palworld 30M sold!** Still on EVERY lounge PS5!
 
 ---
 

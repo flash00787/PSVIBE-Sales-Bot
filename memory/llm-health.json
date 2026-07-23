@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-23 04:59 UTC",
+  "timestamp": "2026-07-23 05:59 UTC",
   "results": [
     {
       "agent": "Main Kora",
@@ -24,7 +24,7 @@
     },
     {
       "agent": "oc-nova",
-      "DeepSeek": "\ud83d\udd34 402 Insuf Bal",
+      "DeepSeek": "\ud83d\udd34 Invalid Key",
       "Gemini": "\ud83d\udd34 Invalid Key",
       "OpenRouter": "\u26aa None",
       "status": "\ud83d\udd34"
