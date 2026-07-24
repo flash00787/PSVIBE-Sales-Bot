@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-24 05:30 UTC
+> Last updated: 2026-07-24 17:32 UTC
 
 ---
 
@@ -6206,3 +6206,70 @@ Leaving the Extra/Premium Game Catalog on July 21:
 9. **🌌✅ AVATAR: PANDORA — INSTALLED?** FREE on PS Plus! Visual showcase!
 10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
 11. **📊 Monitor Hasbro/G.I. Joe Snake Eyes fate.**
+
+---
+
+## ⚡ JULY 24 EVENING CHECK (July 24, 2026 - 17:32 UTC) — 🚨 GTA 6 PRE-ORDERS NOW LIVE! $79.99 Standard, $89.99 Ultimate! Pre-Load Nov 12, Launch Nov 19! + Cover Art Revealed! + Vintage Vice City Pre-Order Bonus!
+
+> **Summary:** Evening sweep — ~6 hours since noon update. **🚨 CRITICAL:** Grand Theft Auto 6 pre-orders are FINALLY LIVE across all digital storefronts! Cover art revealed! Pricing confirmed — $79.99 standard / $89.99 Ultimate! Pre-load begins Nov 12! Launch Nov 19! All noon data remains current. **🆕** Splatoon Raiders launched Jul 23 on Switch 2 (Nintendo exclusive — noted for competitive context).
+
+### 🚨🚨🚨 CRITICAL: GTA 6 Pre-Orders Are NOW LIVE! — Cover Art, Pricing, Editions & Bonuses Revealed! (Jul 24) 🆕🔥🔥🔥
+
+- **Rockstar Games** has finally opened pre-orders for **Grand Theft Auto 6** — arguably the biggest game release of the decade!
+- **Release Date:** November 19, 2026
+- **Platforms:** PlayStation 5, Xbox Series X|S
+- **Standard Edition:** **$79.99 / £69.99 / €79.99** — $10 increase over standard AAA pricing
+- **Ultimate Edition:** **£89.99 / €99.99** — includes exclusive premium vehicles, weapons, and more
+- **Physical Edition:** Code-in-a-box (no disc) — allegedly to prevent leaks — pre-load starts Nov 12
+- **Digital Edition:** Available now on PSN Store — full pre-load Nov 12
+- **Pre-Order Bonus: 'Vintage Vice City' Pack** (pre-order by Nov 20):
+  - '55 Vapid Stanier sedan & Shore Court Garage
+  - Ocean Beach outfit
+  - Jason & Lucia hairstyles
+  - Iconic weapon pattern
+- **Cover Art:** Revealed — classic GTA style with Vice City vibes
+- **💡💡💡💡💡 LOUNGE VALUE — ABSOLUTE PRIORITY #1:** GTA 6 is the **single biggest lounge opportunity of the decade!** Pre-orders being live means:
+  1. **PRE-ORDER DIGITAL COPIES NOW** on ALL lounge PS5s via PSN! $79.99 each — budget accordingly!
+  2. **Pre-load Nov 12** — game ready on Nov 19!
+  3. **November bookings** will EXPLODE — plan now for GTA 6 launch parties / all-night sessions!
+  4. **$79.99 is higher than typical games** — budget ~$80 per lounge PS5 copy needed!
+  5. **Vintage Vice City bonus** — pre-order by Nov 20 to get exclusive pre-order content!
+- **Urgency:** Pre-order NOW before supply constraints affect digital readiness. The lounge cannot afford to NOT have GTA 6 on Nov 19. ⭐⭐⭐⭐⭐
+- Source: Eurogamer / Rockstar Games (Jul 24, 2026)
+
+### 🦑 Splatoon Raiders — Launched Jul 23 on Nintendo Switch 2! (Noted) 🆕
+
+- **Nintendo** launched Splatoon Raiders on Switch 2 on **July 23, 2026**
+- Splatoon spin-off: faster-paced, action-focused, originally conceived as a base defense game
+- **EUROGAMER REVIEW:** Positive — "Salmon max"
+- **Platform:** Nintendo Switch 2 exclusive — **not available on PS5**
+- **💡 Lounge Note:** Not directly relevant to PS VIBE (Nintendo exclusive) but noted for competitive awareness. Switch 2 is not a competitive threat to PS5 lounge model. ⭐ competitive context
+- Source: Eurogamer (Jul 22-24, 2026)
+
+### 📋 Quick Status Refresh (Jul 24 - 17:32 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **GTA 6 PRE-ORDERS** | **🔥 LIVE NOW!** | $79.99 Std / $89.99 Ultimate! Pre-load Nov 12! Launch Nov 19! **PRE-ORDER ALL LOUNGE COPIES NOW!** |
+| 🦑 **Splatoon Raiders** | **🆕 JUL 23 LAUNCH** | Switch 2 exclusive! Noted for competitive context |
+| 🏴‍☠️ **AC Black Flag Resynced 3.5M** | **✅ CONFIRMED** | 3.5M in 14 days! Exceeded annual expectations! |
+| 🎮 **Sega President Disc Support** | **✅ NOTED** | "Still value physical" — industry context |
+| 💬 **Disgaea Creator Blast** | **✅ NOTED** | "Get rid of hardware too" — disc debate |
+| 🎬 **Xbox Ad-Supported Streaming** | **✅ NOTED** | Insider test — 1-hour free with pre-roll ads |
+| 🦸 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26!** | 16 chars! Green Goblin! No PS Plus! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 JUL 30!** | Pre-load! New solo mode! |
+| 🟢 **Halo Premium Early Access** | **✅ LIVE!** | Full launch Jul 28! |
+| 🔥 **CoD BO7 Season 5** | **✅ LIVE!** | Classic matchmaking! Three systems! |
+| 🎯 **MW4 Beta** | **CONFIRMED** | Aug 21-25 closed, Aug 28-Sep 1 open! |
+| 🛒 **PS Summer Sale** | **LIVE!** | Up to 75% off! Ends Aug 12! |
+
+### 📋 UPDATED Priority Lounge Actions (Jul 24 - 17:32 UTC):
+1. **🚨🚨🚨🔥🔥🔥 #1 PRIORITY: GTA 6 PRE-ORDERS NOW LIVE!** PRE-ORDER DIGITAL ON ALL LOUNGE PS5s IMMEDIATELY! $79.99 per copy. Pre-load Nov 12, launch Nov 19! **PLAN NOVEMBER GTA 6 LAUNCH PARTIES!** This is the biggest lounge opportunity of the DECADE! ⭐⭐⭐⭐⭐
+2. **🏴‍☠️🔥 INSTALL AC BLACK FLAG RESYNCED ON LOUNGE CONSOLES!** 3.5M in 14 days — massive hit! Pirate-themed! Perfect lounge atmosphere!
+3. **🥊🔥 MARVEL TŌKON OPEN BETA JUL 24-26!** TODAY! Promote to customers! 15 playable! No PS Plus! Pre-download NOW!
+4. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode!
+5. **🎯🔥 CLASSIC MATCHMAKING in CoD BO7!** Three systems! Test at lounge! Promote BO1/BO2 feel!
+6. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Plan now! Oct 23 launch!
+7. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify!
+8. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! 2+ consoles!
+9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+10. **🟢✅ HALO: CAMPAIGN EVOLVED — INSTALLED?** Premium early access LIVE! Full launch Jul 28! Historic PS5 launch!

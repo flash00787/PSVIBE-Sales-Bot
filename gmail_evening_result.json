@@ -1,12 +1,70 @@
 {
-  "checked_at": "2026-07-24T13:30:00+00:00",
-  "method": "IMAP",
-  "total_processed": 37,
-  "unread": 37,
-  "promo_skipped": 7,
+  "checked_at": "2026-07-24T19:08:32.175481+00:00",
+  "total": 44,
+  "unread": 44,
+  "promo_skipped": 9,
   "nova_count": 0,
   "wallet_count": 0,
-  "important_count": 1,
-  "result": "IMPORTANT_FOUND",
-  "note": "No Nova reply. Google Security Alert (NX809J). AYA transfer 25M MMK to TIN NYO NWET today. OpenRouter receipts $10.80x(multiple)."
+  "important_count": 8,
+  "nova_emails": [],
+  "wallet_emails": [],
+  "important_emails": [
+    {
+      "from": "\"OpenRouter, Inc\" <receipts@openrouter.ai>",
+      "subject": "Your OpenRouter, Inc receipt [#1251-9006]",
+      "date": "Thu, 23 Jul 2026 00:18:43 +0000",
+      "is_unread": true,
+      "body_preview": "Receipt from OpenRouter, Inc Receipt #1251-9006\r\nAmount paid\r\n$10.80\r\n\r\nDate paid\r\nJul 23, 2026, 12:17:23 AM\r\n\r\nPayment method\r\n- 3567\r\n\r\nSummary\r\n\r\n-   - OpenRouter Credits : $10.80\r\n\r\n- Amount paid : $10.80\r\n\r\n\r\nIf you have any questions, visit our support site at https://discord.gg/NDr7wpnGBT (https://discord.gg/NDr7wpnGBT), contact us at support@openrouter.zendesk.com (support@openrouter.zende"
+    },
+    {
+      "from": "\"OpenRouter, Inc\" <receipts@openrouter.ai>",
+      "subject": "Your OpenRouter, Inc receipt [#1432-7303]",
+      "date": "Fri, 24 Jul 2026 06:46:44 +0000",
+      "is_unread": true,
+      "body_preview": "Receipt from OpenRouter, Inc Receipt #1432-7303\r\nAmount paid\r\n$10.80\r\n\r\nDate paid\r\nJul 24, 2026, 6:45:23 AM\r\n\r\nPayment method\r\n- 3567\r\n\r\nSummary\r\n\r\n-   - OpenRouter Credits : $10.80\r\n\r\n- Amount paid : $10.80\r\n\r\n\r\nIf you have any questions, visit our support site at https://discord.gg/NDr7wpnGBT (https://discord.gg/NDr7wpnGBT), contact us at support@openrouter.zendesk.com (support@openrouter.zendes"
+    },
+    {
+      "from": "Binance <do_not_reply@smailer1.binance.com>",
+      "subject": "New Feature: Select Fiat Currency When Adding Payment Methods",
+      "date": "Wed, 22 Jul 2026 14:15:08 +0000",
+      "is_unread": true,
+      "body_preview": "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head> <title> </title> <!--[if !mso]><!--> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <!--<![endif]--> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style type=\"te"
+    },
+    {
+      "from": "\"OpenRouter, Inc\" <receipts@openrouter.ai>",
+      "subject": "Your OpenRouter, Inc receipt [#1335-5443]",
+      "date": "Fri, 24 Jul 2026 06:57:03 +0000",
+      "is_unread": true,
+      "body_preview": "Receipt from OpenRouter, Inc Receipt #1335-5443\r\nAmount paid\r\n$10.80\r\n\r\nDate paid\r\nJul 24, 2026, 6:55:43 AM\r\n\r\nPayment method\r\n- 3567\r\n\r\nSummary\r\n\r\n-   - OpenRouter Credits : $10.80\r\n\r\n- Amount paid : $10.80\r\n\r\n\r\nIf you have any questions, visit our support site at https://discord.gg/NDr7wpnGBT (https://discord.gg/NDr7wpnGBT), contact us at support@openrouter.zendesk.com (support@openrouter.zendes"
+    },
+    {
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Transfer Successful ",
+      "date": "Fri, 24 Jul 2026 05:39:24 +0000",
+      "is_unread": true,
+      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou sent 25,000,000 MMK to TIN NYO NWET\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nTransfer to other AYA Account\r\nTransaction No.\r\n270216562572\r\nTransaction Date\r\n24 Jul 2026 12:09 PM\r\nSend From\r\nAccount Holder Name\r\nAUNG CHAN MYINT\r\nAccount Number\r\n40037046561\r\nBranch Code\r\n0211 0211-Ygn(87)-JCI\r\nReceiver Details\r\nAccount Holder Name\r\nTIN NYO NWET\r\nA"
+    },
+    {
+      "from": "\"OpenRouter, Inc\" <receipts@openrouter.ai>",
+      "subject": "Your OpenRouter, Inc receipt [#1053-2348]",
+      "date": "Wed, 22 Jul 2026 03:36:36 +0000",
+      "is_unread": true,
+      "body_preview": "Receipt from OpenRouter, Inc Receipt #1053-2348\r\nAmount paid\r\n$10.80\r\n\r\nDate paid\r\nJul 22, 2026, 3:35:18 AM\r\n\r\nPayment method\r\n- 3567\r\n\r\nSummary\r\n\r\n-   - OpenRouter Credits : $10.80\r\n\r\n- Amount paid : $10.80\r\n\r\n\r\nIf you have any questions, visit our support site at https://discord.gg/NDr7wpnGBT (https://discord.gg/NDr7wpnGBT), contact us at support@openrouter.zendesk.com (support@openrouter.zendes"
+    },
+    {
+      "from": "Google <no-reply@accounts.google.com>",
+      "subject": "Security alert",
+      "date": "Tue, 21 Jul 2026 17:36:23 GMT",
+      "is_unread": true,
+      "body_preview": "[image: Google]\r\nA new sign-in on NX809J\r\n\r\n\r\nchanmyint123456789@gmail.com\r\nWe noticed a new sign-in to your Google Account on a NX809J device. If this\r\nwas you, you don’t need to do anything. If not, we’ll help you secure your\r\naccount.\r\nCheck activity\r\n<https://accounts.google.com/AccountChooser?Email=chanmyint123456789@gmail.com&continue=https://myaccount.google.com/alert/nt/1784655383659?rfn%3"
+    },
+    {
+      "from": "\"OpenRouter, Inc\" <receipts@openrouter.ai>",
+      "subject": "Your OpenRouter, Inc receipt [#1898-6067]",
+      "date": "Wed, 22 Jul 2026 04:40:30 +0000",
+      "is_unread": true,
+      "body_preview": "Receipt from OpenRouter, Inc Receipt #1898-6067\r\nAmount paid\r\n$10.80\r\n\r\nDate paid\r\nJul 22, 2026, 4:39:11 AM\r\n\r\nPayment method\r\n- 3567\r\n\r\nSummary\r\n\r\n-   - OpenRouter Credits : $10.80\r\n\r\n- Amount paid : $10.80\r\n\r\n\r\nIf you have any questions, visit our support site at https://discord.gg/NDr7wpnGBT (https://discord.gg/NDr7wpnGBT), contact us at support@openrouter.zendesk.com (support@openrouter.zendes"
+    }
+  ],
+  "result": "IMPORTANT_FOUND"
 }

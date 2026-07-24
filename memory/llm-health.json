@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-24 13:29 UTC",
+  "timestamp": "2026-07-24 18:59 UTC",
   "results": [
     {
       "agent": "Main Kora",
-      "DeepSeek": "\ud83d\udfe2 Working",
+      "DeepSeek": "\ud83d\udd34 HTTP 400",
       "Gemini": "\ud83d\udd34 Invalid Key",
       "OpenRouter": "\ud83d\udfe2 Working",
-      "status": "\ud83d\udfe2"
+      "status": "\ud83d\udfe1"
     },
     {
       "agent": "oc-coco",
-      "DeepSeek": "\ud83d\udfe2 Working",
+      "DeepSeek": "\ud83d\udd34 HTTP 400",
       "Gemini": "\ud83d\udd34 Invalid Key",
       "OpenRouter": "\u26aa None",
-      "status": "\ud83d\udfe1"
+      "status": "\ud83d\udd34"
     },
     {
       "agent": "oc-gayzoelay",
