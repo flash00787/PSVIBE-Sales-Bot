@@ -1,10 +1,51 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-23 23:30 UTC
+> Last updated: 2026-07-24 05:30 UTC
 
 ---
 
-## ⚡ JULY 23 EVENING CHECK (July 23, 2026 - 17:32 UTC) — 🔥🚨 EU APPROVES SAUDI ARABIA'S $55BN EA ACQUISITION! Largest Private Buyout in History! + DBZ Sparking Zero Neo DLC Jul 30! + CoD BO7 Gets THIRD Matchmaking System! + Hasbro $56M Write-Down, Games Scaled Back!
+## ⚡ JULY 24 EARLY MORNING CHECK (July 24, 2026 - 05:30 UTC) — 🆕 Phoenix Cyclops Confirmed as Marvel Tōkon Year 1 DLC! + Rockstar Union  — 🔥🚨 EU APPROVES SAUDI ARABIA'S $55BN EA ACQUISITION! Largest Private Buyout in History! + DBZ Sparking Zero Neo DLC Jul 30! + CoD BO7 Gets THIRD Matchmaking System! + Hasbro $56M Write-Down, Games Scaled Back!
+
+> **Summary:** Early morning sweep — ~6 hours since Jul 23 evening update. **🆕** Phoenix Cyclops confirmed as Marvel Tōkon first Year 1 DLC character at SDCC! Ray Chase voicing! **🆕** Rockstar Game Workers Union has 'more members than ever' — could force mandatory recognition. **🆕** Resident Evil movie gets new trailer. **🆕** Stalker 2 dev refutes exclusivity payout claims. All previously tracked data below remains current.
+
+### 🦸🆕 Phoenix Cyclops Confirmed as MARVEL Tōkon: Fighting Souls First Year 1 DLC Character! SDCC Reveal! (Jul 23) 🆕
+
+- **PlayStation Blog post (Jul 23)** from producer Takeshi Yamanaka (Arc System Works) at **San Diego Comic-Con**
+- **Phoenix Cyclops** (voiced by Ray Chase) will be the **first additional character** joining as part of Year 1 content
+- **Drawn from Phoenix Five incarnation** (Avengers vs. X-Men) — bold new look infused with Phoenix Force
+- **Combat:** Powerful Optic Blasts + exceptional hand-to-hand combat + **Phoenix Force powers** — "expect Scott Summers to bring the heat!"
+- **Anime opening revealed** at SDCC — produced by Japanese animation studio **Sanzigen** (2.5D expression)
+- **Opening theme song** features two iconic Japanese rock vocalists: **Keiko Terada** (SHOW-YA) and **mayu** (NEMOPHILA)
+- **💡💡 LOUNGE VALUE:** Phoenix Cyclops as Year 1 DLC = strong post-launch content commitment. Open Beta this weekend (Jul 24-26)! Get customers trying it NOW so they're invested for full launch and DLC! ⭐⭐⭐
+- Source: PlayStation Blog (Jul 23, 2026)
+
+### 🏢🆕 Rockstar Union Has 'More Members Than Ever' — Could Force Mandatory Recognition! (Jul 23) 🆕
+
+- **Rockstar Game Workers Union (RGWU)** — formed earlier this year in response to GTA 6 developer's controversial job cuts — now has **"more members than ever before"**
+- **Currently asking** Rockstar to voluntarily recognize the union
+- **If refused:** Path open for **statutory recognition** — could force the studio to recognize
+- Would become the **second and largest video game union in the UK** (currently #1 is ZA/UM's union)
+- **Alex Marshall (IWGB president):** First meeting expected soon — if Rockstar doesn't engage in good faith, union is "very happy to use different mechanisms"
+- **Background:** Rockstar fired ~30 developers last year, faced accusations of attempted union-busting (denied)
+- **Context:** GTA 6 launches **November 19** — union activity at Rockstar during the biggest game launch in history is significant
+- **💡 Lounge Note:** Industry labor context — Rockstar union strength is noteworthy for PS VIBE because GTA 6 (Nov 19) is the biggest lounge opportunity of the decade. Any labor disruption at Rockstar could theoretically affect post-launch support/updates. **Track this — low immediate impact, high long-term significance.** ⭐⭐
+- Source: Eurogamer / People Make Games (Jul 23, 2026)
+
+### 🎬🆕 New Resident Evil Movie Trailer! Spooky Hospital Setting & Game Reference! (Jul 23) 🆕
+
+- **New trailer dropped** for the upcoming Resident Evil movie — features a hospital setting
+- Includes a **fun game reference** for keen-eyed fans (per Eurogamer)
+- **💡 Lounge Note:** Resident Evil is a storied PS franchise — movie hype can drive interest in RE games at the lounge. Not critical but worth noting for horror fans. ⭐
+- Source: Eurogamer (Jul 23, 2026)
+
+### 🎯🆕 Stalker 2 Developer Refutes Founder's Xbox Exclusivity Payout Claim! (Jul 23) 🆕
+
+- GSC Game World refutes claims by studio founder that **Xbox paid more than game's development cost** to make Stalker 2 exclusive
+- Spokesperson: "That is simply not true"
+- **💡 Lounge Note:** Industry context — console exclusivity cost debates continue. ⭐
+- Source: Eurogamer (Jul 23, 2026)
+
+### 🔄 Previously tracked — all still current:
 
 > **Summary:** Evening sweep — ~12 hours since morning update. **🚨 CRITICAL INDUSTRY NEWS:** EU approves Saudi Arabia's $55bn acquisition of EA! Largest private leveraged buyout of all time! European Commission found no competition concerns. Deal also involves Silver Lake and Affinity Partners (Jared Kushner). **🆕** Dragon Ball: Sparking Zero gets **Super Limit-Breaking Neo DLC** out July 30 — new Limit Breaker Journey solo mode, characters, stages! **🆕** CoD BO7 Season 5 launches with a **THIRD matchmaking system** — Classic matchmaking inspired by BO1/BO2 ports! Now Standard, Open, AND Classic options! **🆕** Hasbro records $56M write-down, scaling back gaming ambitions — but Warlock (D&D) and Exodus (Mass Effect-like) are safe. **🆕** Bethesda Montreal union fights "smallest severance pay possible" after Xbox layoffs. **🆕** Xbox version of Avatar Legends: The Fighting Game delayed over a month — less than 24h before other platform launch. **🆕** Halo: Campaign Evolved PS Blog post — 13 ways it modernizes the iconic FPS. **✅** All morning data remains current — CoD BO7 Season 5, Halo Premium early access, and all tracked launches are LIVE NOW!
 
@@ -75,9 +116,12 @@
 - **💡 Lounge NOTE:** Halo: Campaign Evolved is on PS5 for the first time in history! Premium early access LAUNCHED TODAY! Verify install on lounge consoles! ⭐⭐⭐⭐
 - Source: PlayStation Blog (Jul 23, 2026)
 
-### 📋 Quick Status Refresh (Jul 23 - 17:32 UTC):
+### 📋 Quick Status Refresh (Jul 24 - 05:30 UTC):
 | Topic | Status | Notes |
 |-------|--------|-------|
+| 🦸 **Phoenix Cyclops Year 1 DLC** | **🆕 SDCC REVEAL! 🆕** | First Year 1 DLC! Phoenix Five! Ray Chase! Anime opening! |
+| 🏢 **Rockstar Union** | **🆕 MORE MEMBERS! 🆕** | Could force mandatory recognition! GTA 6 dev context! |
+| 🎬 **Resident Evil Movie Trailer** | **🆕 NEW TRAILER! 🆕** | Hospital setting! Game reference! |
 | 🚨 **$55Bn Saudi EA Acquisition** | **🆕 EU APPROVED!** | Largest private buyout ever! US still can block! Massive industry shift! |
 | 🐉 **DBZ Sparking Zero Neo DLC** | **🆕 JUL 30!** | New solo mode! Characters! Stages! RPG-lite! Install on lounge consoles! |
 | 🎯 **CoD BO7 Third Matchmaking** | **🆕 CLASSIC MODE!** | Standard + Open + Classic! BO1/BO2 inspired! Today! |
@@ -91,8 +135,9 @@
 | 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Closed + open! Oct 23 launch! |
 | 🛒 **Summer Sale** | **LIVE!** | Up to 75% off! Ends Aug 12! |
 
-### 📋 Updated Priority Lounge Actions (Jul 23 - 23:30 UTC):
-1. **🚨🔥🔥🔥 CRITICAL: MARVEL'S WOLVERINE STORY TRAILER DROPPED AT SDCC!** Sep 15 launch! Deathstrike villain! The Hand faction! David Fleming composer! **WATCH TRAILER, PROMOTE TO CUSTOMERS!** HUGE PS5 exclusive hype! ⭐⭐⭐⭐⭐
+### 📋 Updated Priority Lounge Actions (Jul 24 - 05:30 UTC):
+1. **🦸🔥🔥 Phoenix Cyclops Confirmed as Marvel Tōkon Year 1 DLC!** SDCC reveal! Open Beta Jul 24-26 (TODAY!) — promote to customers! 15+1 characters total! |
+3. **🚨🔥🔥🔥 CRITICAL: MARVEL'S WOLVERINE STORY TRAILER DROPPED AT SDCC!** Sep 15 launch! Deathstrike villain! The Hand faction! David Fleming composer! **WATCH TRAILER, PROMOTE TO CUSTOMERS!** HUGE PS5 exclusive hype! ⭐⭐⭐⭐⭐
 2. **🚨 TRACK Saudi EA acquisition** — Monitor for any EA strategic shifts (BF6, Apex, FC pricing/platform strategy). Critical long-term industry change.
 3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
 4. **🎯🔥 CLASSIC MATCHMAKING now in CoD BO7!** Three systems! Test at lounge and promote to customers who love classic BO1/BO2 feel!
