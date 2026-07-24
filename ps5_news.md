@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-23 17:32 UTC
+> Last updated: 2026-07-23 23:30 UTC
 
 ---
 
@@ -91,17 +91,18 @@
 | 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Closed + open! Oct 23 launch! |
 | 🛒 **Summer Sale** | **LIVE!** | Up to 75% off! Ends Aug 12! |
 
-### 📋 Updated Priority Lounge Actions (Jul 23 - 17:32 UTC):
-1. **🚨 TRACK Saudi EA acquisition** — Monitor for any EA strategic shifts (BF6, Apex, FC pricing/platform strategy). Critical long-term industry change.
-2. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
-3. **🎯🔥 CLASSIC MATCHMAKING now in CoD BO7!** Three systems! Test at lounge and promote to customers who love classic BO1/BO2 feel!
-4. **🔥🔥🔥 LAUNCH DAY CONFIRMED!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **VERIFY ALL CONSOLES UPDATED!** 🚀
-5. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** THIS WEEKEND! 15 playable characters! No PS Plus! Install on 2-3 lounge consoles!
-6. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
-7. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
-8. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
-9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
-10. **📊 Monitor Hasbro/G.I. Joe Snake Eyes fate** — potential lounge game if released.
+### 📋 Updated Priority Lounge Actions (Jul 23 - 23:30 UTC):
+1. **🚨🔥🔥🔥 CRITICAL: MARVEL'S WOLVERINE STORY TRAILER DROPPED AT SDCC!** Sep 15 launch! Deathstrike villain! The Hand faction! David Fleming composer! **WATCH TRAILER, PROMOTE TO CUSTOMERS!** HUGE PS5 exclusive hype! ⭐⭐⭐⭐⭐
+2. **🚨 TRACK Saudi EA acquisition** — Monitor for any EA strategic shifts (BF6, Apex, FC pricing/platform strategy). Critical long-term industry change.
+3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
+4. **🎯🔥 CLASSIC MATCHMAKING now in CoD BO7!** Three systems! Test at lounge and promote to customers who love classic BO1/BO2 feel!
+5. **🔥🔥🔥 LAUNCH DAY CONFIRMED!** CoD BO7 Season 5 + Halo Premium early access + Disgaea Mayhem + Avatar Legends! **VERIFY ALL CONSOLES UPDATED!** 🚀
+6. **🥊🔥 PRE-DOWNLOAD Marvel Tōkon Open Beta Jul 24!** THIS WEEKEND! **NOW 16 PLAYABLE CHARACTERS!** Green Goblin added! No PS Plus! Install on 2-3 lounge consoles! Phoenix Cyclops Year 1 DLC announced!
+7. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
+8. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
+9. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+11. **📊 Monitor Hasbro/G.I. Joe Snake Eyes fate** — potential lounge game if released.
 
 ---
 
@@ -6020,3 +6021,70 @@ Leaving the Extra/Premium Game Catalog on July 21:
 5. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
 6. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
 7. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+
+## ⚡ JULY 23 LATE NIGHT — SDCC EDITION (July 23, 2026 - 23:30 UTC) — 🚨🔥 MARVEL'S WOLVERINE STORY TRAILER DROPPED! + Phoenix Cyclops Tōkon DLC! + Green Goblin Added to Beta! + Rockstar Union Record Membership!
+
+> **Summary:** Late night sweep — 6 hours since evening update. **🚨 CRITICAL: MARVEL'S WOLVERINE STORY TRAILER RELEASED AT SDCC!** Huge new story details! Story trailer shows Logan confronting Jean Grey! The Hand revealed as enemy faction! **Deathstrike** confirmed as a main villain! Award-winning composer **David Fleming**! Soundtrack Aug 28! Digital prequel comic available! Pre-orders LIVE! **Cross-collab with MARVEL Tōkon** — Wolverine Battle Reborn suit in Tōkon free Sep 1! **🆕** Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls **Year 1 DLC**! **Green Goblin ADDED to Open Beta roster** — now 16 playable characters! Anime opening revealed! **🆕** Rockstar union record membership; Stalker 2 refutes Xbox claims; Steam wishlist update; RE movie trailer. **✅** All afternoon data remains current.
+
+### 🚨🔥 MARVEL'S WOLVERINE — STORY TRAILER DROPPED AT SDCC! Deathstrike, The Hand, Composer Revealed! (Jul 23) 🆕🚨
+
+- **Insomniac Games revealed the Story Trailer** at San Diego Comic-Con! Full panel with Creative Director Marcus Smith, Game Director Mike Daly, and cast Liam McIntyre (Logan) and Krizia Bajos (Jean Grey)
+- **Story trailer shows:** Logan confronting Jean Grey in an abrupt moment of vulnerability — sets up emotional core
+- **The Hand** revealed as a new enemy faction — Logan shares a history with them that players will uncover
+- **Deathstrike** confirmed as a main villain (Lady Deathstrike from Marvel comics)
+- **Composer: David Fleming** — award-winning composer crafting the music! Track available on Spotify/Apple/Amazon/YouTube
+- **Full game soundtrack releases August 28, 2026**
+- **Digital Prequel Comic** available now — written by Walt Williams (Narrative Director), art by Luke Ross. Available via Marvel Unlimited
+- **Cross-collab with MARVEL Tōkon:** Wolverine's Tōkon suit unlockable in Wolverine (Day 1 progression). Wolverine Battle Reborn suit in Tōkon **FREE Sep 1**
+- **Pre-orders LIVE now!** Standard ($69.99) and Digital Deluxe on PS Store
+- **Release: September 15, 2026** — PS5 exclusive
+- **💡💡💡💡💡 LOUNGE IMPACT — CRITICAL:** One of the BIGGEST PS5 exclusives of 2026! Sep 15 is **54 days away!** SDCC trailer generates MASSIVE hype. Insomniac track record = lounge STAPLE. **PRE-ORDER + PRE-LOAD on 3-4 consoles before Sep 15!** Cross-collab with Tōkon = smart marketing hook for weekend beta players. ⭐⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 23, 2026), SDCC Panel
+
+### 🦸🆕 Phoenix Cyclops Revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC! + Green Goblin Added to Beta! (Jul 23) 🆕
+
+- **SDCC Panel:** Phoenix Cyclops is the first Year 1 additional character — inspired by Phoenix Five (Avengers vs. X-Men)!
+- **Voiced by Ray Chase** — Optic Blasts + Phoenix Force power
+- **Anime opening revealed!** Produced by Sanzigen studio. Theme by Keiko Terada (SHOW-YA) + mayu (NEMOPHILA)
+- **Green Goblin ADDED to Open Beta** — roster now **16 characters** (up from 15)!
+- **Open Beta Jul 24-26** — No PS Plus needed! Pre-download 2h before
+- **💡💡💡💡 LOUNGE VALUE:** 16 characters beta THIS WEEKEND! Perfect lounge activity! ⭐⭐⭐⭐
+- Source: PlayStation Blog (Jul 23, 2026), SDCC
+
+### 🎮🆕 Rockstar Union Reaches Record Membership — Could Force Recognition! (Jul 23) 🆕
+
+- **Rockstar Game Workers Union** has "more members than ever" — seeking voluntary recognition
+- If denied, can pursue **statutory recognition** (legally forced!) — would be UK's largest game union
+- IWGB President Alex Marshall: First meeting expected soon
+- **💡 Industry:** Growing unionization at Rockstar could affect GTA 6 launch conditions. Monitor. ⭐
+- Source: Eurogamer (Jul 23, 2026)
+
+### 📋 Updated Quick Status (Jul 23 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **Wolverine Story Trailer** | **🆕 SDCC DROP!** | Sep 15! Deathstrike! The Hand! Fleming composer! PRE-ORDER! |
+| 🦸 **Phoenix Cyclops Tōkon DLC** | **🆕 YEAR 1!** | Phoenix Five! Green Goblin in beta! 16 chars! |
+| 🎮 **Rockstar Union Record** | **🆕 RECORD MEMBERS** | Could force recognition! Largest UK game union! |
+| 🎮 **Stalker 2 Xbox Claim Refuted** | **🆕 STATEMENT** | Founder's claims "not true" per GSC devs! |
+| 🎬 **RE Movie Trailer** | **🆕 SPOOKY!** | Game reference spotted! |
+| 🚨 **$55Bn Saudi EA Acquisition** | **✅ EU APPROVED** | US still can block! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **✅ JUL 30!** | New solo mode! Characters! |
+| 🎯 **CoD BO7 Classic Matchmaking** | **✅ LIVE TODAY!** | Three systems! Standard+Open+Classic! |
+| 🔥 **CoD BO7 Season 5** | **✅ LAUNCHED!** | LIVE NOW! |
+| 🟢 **Halo Premium Early Access** | **✅ LAUNCHED!** | Jul 23! Full Jul 28! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26!** | 16 chars! Green Goblin! No PS Plus! |
+| 🎯 **MW4 Beta** | **CONFIRMED** | Aug 21-25 closed, Aug 28-Sep 1 open! |
+| 🛒 **Summer Sale** | **LIVE!** | Up to 75% off! Ends Aug 12! |
+
+### 📋 Updated Priority Lounge Actions (Jul 23 - 23:30 UTC):
+1. **🚨🔥🔥🔥 CRITICAL: MARVEL'S WOLVERINE STORY TRAILER AT SDCC!** Sep 15! Deathstrike! The Hand! **WATCH TRAILER, PROMOTE CUSTOMERS! PRE-ORDER NOW!** ⭐⭐⭐⭐⭐
+2. **🚨 TRACK Saudi EA acquisition** — Monitor EA strategic shifts (BF6, Apex, FC). Critical long-term.
+3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New solo mode!
+4. **🎯🔥 CLASSIC MATCHMAKING in CoD BO7!** Three systems! Promote BO1/BO2 feel!
+5. **🔥🔥🔥 LAUNCH DAY!** CoD BO7 S5 + Halo Premium + Disgaea Mayhem + Avatar Legends! **VERIFY ALL UPDATED!** 🚀
+6. **🥊🔥 Tōkon Open Beta Jul 24-26!** **16 CHARS!** Green Goblin added! No PS Plus! Install on 2-3 consoles!
+7. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Plan now! Oct 23 launch!
+8. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets!
+9. **🌌✅ AVATAR: PANDORA — INSTALLED?** FREE on PS Plus! Visual showcase!
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+11. **📊 Monitor Hasbro/G.I. Joe Snake Eyes fate.**
