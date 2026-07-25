@@ -1,10 +1,67 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-24 17:32 UTC
+> Last updated: 2026-07-25 05:30 UTC
 
 ---
 
-## ⚡ JULY 24 NOON CHECK (July 24, 2026 - 11:33 UTC) — 🆕 AC Black Flag Resynced Sells 3.5M in 14 Days! Exceeds Annual Expectations! + Sega President Supports Physical Media! + Disgaea Creator: "Get Rid of Hardware Too" + Xbox Tests Ad-Supported Streaming!
+## ⚡ JULY 25 EARLY MORNING CHECK (July 25, 2026 - 05:30 UTC) — 🚨 PSN DOWN DURING MARVEL TŌKON BETA! Tens of Thousands Affected! + Tomb Raider Catalyst Delayed to 2028! + Halo 2 Remake Teased! + Kingdom Come Salvation Trademark Filed! + Ubisoft CEO Downplays Disc Phaseout Impact! + Atari Movie Universe Announced!
+
+> **Summary:** Early morning sweep — ~12 hours since Jul 24 noon update. **🚨 PSN went DOWN during Marvel Tōkon Fighting Souls Open Beta launch (Jul 24)!** Tens of thousands of players couldn't log in — Eurogamer reports huge queues. **🆕** Amazon delays Tomb Raider Catalyst to 2028 — a second Tomb Raider delay. **🆕** Halo 2 Remake strongly teased following Campaign Evolved's successful launch. **🆕** Warhorse files 'Kingdom Come Salvation' trademark — possible next medieval RPG with multiplayer. **🆕** Ubisoft CEO Yves Guillemot says disc phaseout won't "disturb" the industry much. **🆕** Microsoft uncancels Age of Empires 3 DLC. **🆕** Atari signs movie deal — Breakout, Pong, Asteroids heading to big screen. **🆕** Guild Wars 3 narrative & magic system details revealed. All previously tracked data below remains current.
+
+### 🚨🆕 PSN DOWN During Marvel Tōkon Fighting Souls Open Beta Launch! Tens of Thousands Affected! (Jul 24) 🆕🚨
+
+- **PlayStation Network experienced a major outage** on July 24 — coinciding with the **Marvel Tōkon Open Beta launch** (Jul 24-26)
+- **Eurogamer reports** tens of thousands of players couldn't log in — huge queues reported
+- Users reported being stuck in login loops, unable to access PSN store or online features
+- **Timing disaster:** The open beta is the biggest PS5 fighting game event this month — and PSN chose NOW to fail
+- **Context:** The open beta was heavily promoted by Sony (PS Blog, SDCC announcements) — this is a PR embarrassment
+- **💡💡💡💡💡 CRITICAL LOUNGE IMPACT — OPERATIONAL RISK:** 
+  - If PSN goes down during lounge hours, ALL online games become unplayable
+  - **Contingency plan needed:** Have offline/single-player games pre-loaded on EVERY console as backup
+  - **Checklist:** Physical disc games that work offline? Pre-downloaded single-player titles?
+  - Marvel Tōkon beta time is limited (Jul 24-26 only) — if PSN is flaky, lounge customers who came for the beta will be frustrated
+  - **Recommendation:** Verify all lounge PS5s have offline-capable games installed. Test offline boot procedure. ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 24, 2026)
+
+### 🏛️🆕 Tomb Raider Catalyst Delayed to 2028! Second Tomb Raider Delay by Amazon! (Jul 24) 🆕
+
+- **Amazon Games** has delayed **Tomb Raider Catalyst** to 2028 — Eurogamer confirms
+- This is the **second Tomb Raider delay** from Amazon — the first was the as-yet-unreleased Crystal Dynamics title
+- **Unclear which project** this refers to — Amazon has multiple Tomb Raider projects in development
+- **Context:** Amazon Games has struggled with game development (Crucible cancellation, New World decline, multiple Tomb Raider shifts)
+- **2028 window** means it's being targeted as a next-gen (PS6?) title
+- **💡💡💡 LOUNGE NOTE:** Tomb Raider is a storied PlayStation franchise but 2028 release means it won't impact near-term lounge strategy. Worth tracking for the PS6 era. The back-to-back delays raise questions about Amazon's game development execution. ⭐⭐⭐
+- Source: Eurogamer (Jul 24, 2026)
+
+### 🟢🆕 Halo 2 Remake Strongly Teased! "Is That Really a Surprise?" — Eurogamer (Jul 24) 🆕
+
+- **Following Halo: Campaign Evolved's successful PS5 launch** (premium early access Jul 23, full Jul 28), Eurogamer reports a **Halo 2 remake** is strongly teased
+- **Evidence:** The legendary ending of Halo: Campaign Evolved reportedly sets up Halo 2
+- **Context:** Halo: Campaign Evolved has been a cross-platform success — Xbox expanding BC on PC, Halo on PS5
+- **If confirmed:** This would bring the entire Master Chief saga to PlayStation for the first time
+- **💡💡💡💡 LOUNGE VALUE:** Halo 2 is widely considered the best Halo campaign. A full remake on PS5 would be a massive lounge draw. This follows the historic trend of Xbox exclusives going multi-platform. If the Halo series comes fully to PS5, it's a huge win for PlayStation lounge operations. ⭐⭐⭐⭐
+- Source: Eurogamer (Jul 24, 2026)
+
+### ⚔️🆕 Kingdom Come Salvation — Warhorse Files Trademark! Possible Medieval RPG Sequel with Multiplayer! (Jul 24) 🆕
+
+- **Warhorse Studios** has filed a trademark for **'Kingdom Come Salvation'** — likely the sequel to Kingdom Come: Deliverance II
+- **Key detail:** The filing suggests possible **multi-player functionality** — new for the series
+- **Context:** Kingdom Come: Deliverance II was a huge critical and commercial success on PS5
+- **💡 Lounge Note:** Kingdom Come: Deliverance II is already popular at PS VIBE for its immersive medieval world. A sequel with multiplayer would be a game-changer for the lounge — co-op medieval RPG sessions could be huge. Track this closely. ⭐⭐⭐
+- Source: Eurogamer (Jul 24, 2026)
+
+### 💬🆕 Ubisoft CEO: PlayStation Ditching Discs Won't "Disturb" the Industry Much! (Jul 24) 🆕
+
+- **Ubisoft CEO Yves Guillemot** commented on PlayStation's disc phaseout (Jan 2028)
+- **Quote:** Doesn't believe it will "disturb" the industry much
+- **Context:** This comes amidst AC Black Flag Resynced's massive success (3.5M in 14 days — mostly digital sales)
+- **Also noted:** Ubisoft's recent layoffs continue — Barcelona studio strike ongoing
+- **💡 Lounge Note:** Major publisher validation of Sony's digital-only direction. When Ubisoft (one of the biggest third-party publishers) says it won't be disruptive, it adds weight to the digital-first strategy for the lounge. ⭐⭐ industry context
+- Source: Eurogamer (Jul 24, 2026)
+
+### 🏗️🆕 Microsoft Uncancels Age of Empires 3 DLC! (Jul 24) 🆕
+
+- **Amidst the recent Xbox turmoil** (3,200 layoffs, leadership changes), Microsoft is  (July 24, 2026 - 11:33 UTC) — 🆕 AC Black Flag Resynced Sells 3.5M in 14 Days! Exceeds Annual Expectations! + Sega President Supports Physical Media! + Disgaea Creator: "Get Rid of Hardware Too" + Xbox Tests Ad-Supported Streaming!
 
 > **Summary:** Noon sweep — ~6 hours since early morning update. **🆕** Assassin's Creed Black Flag Resynced has sold 3.5M copies in 14 days, exceeding Ubisoft's annual expectations for the title! **🆕** Sega president Shuji Utsumi says Sega "still values the culture of physical media" amidst Sony's disc phaseout. **🆕** Disgaea creator Sohei Niikawa: If PS kills discs, "get rid of the hardware too." **🆕** Xbox tests ad-supported game streaming via Insider program. **🆕** Ubisoft Q1 results: €256M (down 9% YoY), more layoffs at Barcelona. All previously tracked data below remains current.
 
@@ -51,29 +108,34 @@
 - **💡 Lounge Note:** Competitor context — Microsoft exploring ad-supported streaming to address hardware affordability. If successful, could expand Xbox's addressable market. Not directly actionable for PS VIBE but signals industry trend toward ad-supported models. ⭐⭐ industry context
 - Source: Xbox Blog / Eurogamer (Jul 24, 2026)
 
-### 📋 Quick Status Refresh (Jul 24 - 11:33 UTC):
+### 📋 Quick Status Refresh (Jul 25 - 05:30 UTC):
 | Topic | Status | Notes |
 |-------|--------|-------|
-| 🏴‍☠️ **AC Black Flag Resynced 3.5M** | **🆕 3.5M IN 14 DAYS!** | Exceeded annual expectations! Hottest new release! |
-| 🎮 **Sega President Disc Support** | **🆕 "STILL VALUE PHYSICAL"** | Industry divided on disc phaseout! |
-| 💬 **Disgaea Creator Blast** | **🆕 "GET RID OF HARDWARE"** | Strong industry pushback! |
-| 🎬 **Xbox Ad-Supported Streaming** | **🆕 INSIDER TEST** | 1-hour free sessions with pre-roll ads! |
-| 🦸 **Phoenix Cyclops Year 1 DLC** | **SDCC REVEAL!** | First Year 1 DLC! Phoenix Five! Ray Chase! |
-| 🏢 **Rockstar Union** | **MORE MEMBERS!** | Could force mandatory recognition! GTA 6 context! |
-| 🚨 **$55Bn Saudi EA Acquisition** | **EU APPROVED!** | Largest private buyout ever! |
-| 🐉 **DBZ Sparking Zero Neo DLC** | **JUL 30!** | New solo mode! Characters! Stages! |
-| 🎯 **CoD BO7 Third Matchmaking** | **CLASSIC MODE!** | Standard + Open + Classic! |
-| 🟢 **Halo Campaign Evolved PS Blog** | **TODAY'S POST** | Premium early access LIVE! |
+| 🚨 **PSN DOWN During Marvel Tōkon Beta** | **🚨 MAJOR OUTAGE!** | Tens of thousands affected! Login queues! |
+| 🏛️ **Tomb Raider Catalyst** | **🆕 DELAYED TO 2028!** | Second Amazon TR delay! PS6 era title! |
+| 🟢 **Halo 2 Remake Teased** | **🆕 STRONG TEASE!** | After Campaign Evolved success! PS5 bound? |
+| ⚔️ **Kingdom Come Salvation** | **🆕 TRADEMARK FILED!** | Possible MP! Sequel to Deliverance II! |
+| 💬 **Ubisoft CEO Disc Comments** | **🆕 "WON'T DISTURB"** | Industry validation of digital-only! |
+| 🏗️ **Age of Empires 3 DLC** | **🆕 UNCANCELLED!** | Microsoft reversing course! |
+| 🎬 **Atari Movie Universe** | **🆕 BREAKOUT MOVIE!** | Pong, Asteroids heading to big screen! |
+| 🧙 **Guild Wars 3 Details** | **🆕 NARRATIVE REVEAL** | Magic system, signets, spirits! |
+| 🏴‍☠️ **AC Black Flag Resynced 3.5M** | **✅ STILL HOT** | 3.5M in 14 days! Hottest new release! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **JUL 30! 5 DAYS!** | New solo mode! Pre-load NOW! |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26 LIVE!** | Watch for PSN stability! |
 
-### 📋 Updated Priority Lounge Actions (Jul 24 - 11:33 UTC):
-1. **🏴‍☠️🔥🔥 INSTALL AC BLACK FLAG RESYNCED ON LOUNGE CONSOLES!** 3.5M in 14 days — massive hit! Pirate-themed = perfect lounge atmosphere! Great for groups!
-2. **🦸🔥🔥 MARVEL TŌKON OPEN BETA STARTS TODAY! Jul 24-26!** Promote to customers! 15 playable characters! No PS Plus needed! Pre-download NOW!
-3. **🥊🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
-4. **🎯🔥 CLASSIC MATCHMAKING now in CoD BO7!** Three systems! Test at lounge!
+### 📋 Updated Priority Lounge Actions (Jul 25 - 05:30 UTC):
+1. **🚨🚨🚨 PSN OUTAGE CONTINGENCY PLAN — ENACT NOW!** PSN went down during Marvel Tōkon beta! Verify ALL lounge PS5s have offline/single-player games installed as backup! Test offline boot procedure! Don't let a PSN outage ruin customer sessions! ⭐⭐⭐⭐⭐
+2. **🏴‍☠️🔥🔥 INSTALL AC BLACK FLAG RESYNCED ON LOUNGE CONSOLES!** 3.5M in 14 days — massive hit! Pirate-themed = perfect lounge atmosphere!
+3. **🦸🔥 MARVEL TŌKON OPEN BETA JUL 24-26!** Open beta LIVE now! BUT monitor PSN status! If PSN is stable, promote heavily! If not, have backup games ready!
+4. **🥊🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 5 DAYS AWAY! New Limit Breaker Journey solo mode! DBZ is a huge lounge draw!
 5. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
 6. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Top Gun collab! Two-seater jets! Verify on all consoles!
 7. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! Install on 2+ consoles!
 8. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
+
+---
+
+## ⚡ JULY 24 NOON CHECK
 
 ---
 
