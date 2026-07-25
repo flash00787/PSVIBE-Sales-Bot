@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-25 05:30 UTC
+> Last updated: 2026-07-25 17:31 UTC
 
 ---
 
@@ -6335,3 +6335,41 @@ Leaving the Extra/Premium Game Catalog on July 21:
 8. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Stunning visual showcase! 2+ consoles!
 9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
 10. **🟢✅ HALO: CAMPAIGN EVOLVED — INSTALLED?** Premium early access LIVE! Full launch Jul 28! Historic PS5 launch!
+
+---
+
+## ⚡ JULY 25 EVENING CHECK (July 25, 2026 - 17:31 UTC) — 🚨🔥 GOD OF WAR LAUFEY RELEASE DATE CONFIRMED! FEB 16, 2027! SDCC Reveal! + Faye Features as Protagonist! + PS5 Exclusive! + Disc Version Confirmed!
+
+> **Summary:** Evening sweep — ~12 hours since early morning update. **🚨 BREAKING: God of War Laufey has FINALLY received a release date! February 16, 2027!** Confirmed at San Diego Comic-Con earlier today (Jul 25). Cory Barlog presented — Faye (Laufey) is the protagonist, Deborah Ann Woll voicing. PS5 exclusive! Disc version confirmed by Santa Monica Studio (before Sony's Jan 2028 disc phaseout). All previously tracked data below remains current.
+
+### 🪓🚨🔥 CRITICAL: God of War Laufey Release Date FINALLY Announced! February 16, 2027! SDCC Reveal! (Jul 25) 🆕🚨
+
+- **Sony and Santa Monica Studio** confirmed the release date for **God of War Laufey** at San Diego Comic-Con today (July 25, 2026)
+- **Release Date: February 16, 2027** — exclusively on PS5
+- **Protagonist:** Faye (Laufey) — Kratos' wife, voiced by Deborah Ann Woll — the game is named after her Jötunn name
+- **Cory Barlog** (God of War 2018/Ragnarök director) presented at the SDCC panel: "I wanted to show an extension of this world where the characters you'll encounter are unexpected. Laufey is a continuation of what came before and to prepare and expand what comes next."
+- **Teaser trailer** shown at SDCC — "Enter the afterlife of the gods"
+- **Disc version confirmed!** Santa Monica Studio explicitly confirmed the game will be available on disc — seen as a move to quiet backlash over Sony's physical media phaseout (Jan 2028)
+- **Deborah Ann Woll** previously said she's "totally unbothered" by backlash around Faye as protagonist and is confident "it's great"
+- **No PC version planned** — Sony no longer releasing single-player games on PC (per recent policy shift)
+- **Context:** Originally revealed at Summer Game Fest / June 2026 State of Play which was a record-breaking most-watched event. The Faye/Laufey protagonist choice has generated both excitement and some backlash online, but the team remains confident
+- **💡💡💡💡💡 LOUNGE VALUE — ABSOLUTE CRITICAL!** God of War is the defining PlayStation exclusive franchise. Laufey launching Feb 2027 means:
+  1. **MAJOR HYPE BOOST** for early 2027! February lull becomes a blockbuster month!
+  2. **Plan lounge promotions for Feb 16 week!** God of War launch parties, themed sessions!
+  3. **Disc version confirmed!** Important for the lounge's physical collection before Sony's Jan 2028 cut-off
+  4. **This is THE PS5 exclusive for early 2027** — customers will want to play it at the lounge
+  5. **Perfect pairing with GTA 6 (Nov 2026)** — lounge has back-to-back blockbusters Nov-Feb! ⭐⭐⭐⭐⭐
+- Source: Eurogamer (Jul 25, 2026), San Diego Comic-Con
+
+### 📋 Updated Quick Status Additions (Jul 25 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🪓 **God of War Laufey** | **🚨🔥 FEB 16, 2027!** | Release date confirmed! PS5 exclusive! Disc version! Faye protagonist! |
+| 🚨 **PSN Outage (Jul 24)** | **✅ RESOLVED?** | Was down during Marvel Tōkon beta — monitor for reoccurrence |
+| 🥊 **Marvel Tōkon Open Beta** | **🔥 JUL 24-26** | Open beta weekend ongoing — PSN was flaky on Day 1 |
+| 🐉 **Sparking Zero Neo DLC** | **🔥 JUL 30! 5 DAYS!** | Pre-load NOW! New solo mode! |
+| 🔥 **GTA 6 Pre-Orders LIVE** | **✅ LIVE** | Pre-order all lounge copies! Nov 19 launch! |
+
+### 📋 Updated Priority Lounge Actions (Jul 25 - 17:31 UTC) — NEW ADDITIONS:
+1. **🪓🔥🔥🔥 GOD OF WAR LAUFEY RELEASE DATE FEB 16, 2027!** Start planning early 2027 strategy! This + GTA 6 (Nov) = back-to-back blockbusters!
+2. **📅 Mark calendars: Feb 16, 2027** — God of War Laufey launch day! Start thinking about pre-order timing for lounge copies (~late 2026)! FEB 2027 WILL BE MASSIVE!
