@@ -1,29 +1,19 @@
-# 📧 Email & Google
+# Email Check Log
 
-## Gmail API
-- **Protocol:** OAuth 2.0 (readonly + send), token.json + secret.json
-- **Sender Script:** `send_email_api.py` (urllib, HTTPS 443)
-- **Sender Address:** chanmyint123456789@gmail.com
-- **Refresh Token:** Auto-refresh via OAuth 2.0
+## 2026-07-26 (Morning)
 
-## Gmail Accounts
-| Account | Status | Purpose |
-|---------|--------|---------|
-| chanmyint123456789@gmail.com | ✅ Active | Primary |
-| aungchanmyint.psvibe@gmail.com | ⏳ Pending | PS VIBE business |
-| aungchanmyint.shs@gmail.com | ⏳ Pending | SHS business |
+### Summary
+- Check via IMAP (chanmyint123456789@gmail.com)
+- Recent 2d: 21 emails | Recent 7d: 63 emails
+- Nova (yeyintoo12345678@gmail.com) replies: ❌ None
+- Wallet/Handover related: ❌ None
+- Important: 0
 
-## Google Drive
-- **Service Account Key:** `kora_drive_sa.json`
-- **PS VIBE Drive Root:** `1V6ctTJpXaoRIDnrfxwhVO72I7jfD5GsS`
+### Notable Items
+1. **Hetzner Cloud Traffic Warning** — openClawAgent server at 75%+ of 3TB included traffic (Jul 25)
+2. **AYA Bank Transfer** — 25,000,000 MMK sent to Tin Nyo Nwet (Jul 24, already known)
+3. **2x OpenRouter Receipts** — $10.80 each (Jul 24, known charges)
+4. **UAB Bank** — Dormant Account announcement (Jul 25)
 
-## OAuth Token Status (Updated 2026-06-25)
-- **Scopes (token.json)**: drive.file only — Gmail API calls fail (scope mismatch)
-- **gmail_token.json**: gmail.readonly + gmail.send — refresh token expired/revoked (HTTP 400)
-- **Status**: ❌ BOTH tokens broken — needs full OAuth re-auth flow
-- **Workaround**: IMAP via app password (`knpeqhkhwbvhmwey`) — WORKING ✅
-  - IMAP script: `check_inbox_imap.py`
-  - Send email: `send_email.py` (uses SMTP with app password, also blocked by DO)
-  - Send email API may still work if token is refreshed — but needs re-auth first
-- **Last Refreshed**: 2026-06-10 ~16:42 UTC
-- **Drive Write**: Unknown (token expired, likely broken too)
+### Result
+Nothing urgent found. No Nova handover reply.
