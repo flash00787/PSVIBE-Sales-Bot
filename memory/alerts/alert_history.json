@@ -1,5 +1,41 @@
 [
   {
+    "type": "error",
+    "severity": "error",
+    "message": "Sales check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:20.364Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "Console check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:20.362Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "Balance check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:20.361Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "Sales check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:18.640Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "Console check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:18.639Z"
+  },
+  {
+    "type": "error",
+    "severity": "error",
+    "message": "Balance check failed: connect ECONNREFUSED 5.223.81.16:22",
+    "timestamp": "2026-07-26T04:44:18.637Z"
+  },
+  {
     "type": "service_starting",
     "severity": "warning",
     "message": "🟡 Docker container oc-nova is still starting",
@@ -3502,47 +3538,5 @@
     "message": "📡 Console C-09 last updated 6.4h ago",
     "consoleId": "C-09",
     "timestamp": "2026-06-11T19:07:44.376Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-08 last updated 6.4h ago",
-    "consoleId": "C-08",
-    "timestamp": "2026-06-11T19:07:44.376Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-07 last updated 36.9h ago",
-    "consoleId": "C-07",
-    "timestamp": "2026-06-11T19:07:44.375Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-06 last updated 28.9h ago",
-    "consoleId": "C-06",
-    "timestamp": "2026-06-11T19:07:44.374Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-05 last updated 58.1h ago",
-    "consoleId": "C-05",
-    "timestamp": "2026-06-11T19:07:44.374Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-04 last updated 28.9h ago",
-    "consoleId": "C-04",
-    "timestamp": "2026-06-11T19:07:44.373Z"
-  },
-  {
-    "type": "stale_console",
-    "severity": "info",
-    "message": "📡 Console C-03 last updated 51.2h ago",
-    "consoleId": "C-03",
-    "timestamp": "2026-06-11T19:07:44.373Z"
   }
 ]
