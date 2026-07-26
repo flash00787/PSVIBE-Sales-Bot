@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-26 08:59 UTC",
+  "timestamp": "2026-07-26 09:59 UTC",
   "results": [
     {
       "agent": "Main Kora",
       "DeepSeek": "\ud83d\udd34 HTTP 400",
       "Gemini": "\ud83d\udd34 Invalid Key",
-      "OpenRouter": "\ud83d\udfe2 Working",
-      "status": "\ud83d\udfe1"
+      "OpenRouter": "\ud83d\udd34 Invalid Key",
+      "status": "\ud83d\udd34"
     },
     {
       "agent": "oc-coco",
