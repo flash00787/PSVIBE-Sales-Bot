@@ -50,3 +50,17 @@ Generated 18:45 UTC — 17 sections categorized
 - BUG (2), FIX (1), BUG (2)
 
 🔗 Full digest: `digests/2026-07-09-digest.md`
+
+## 2026-07-26 (Sunday) — Daily Digest
+
+**Digest generated at 18:45 UTC** — 9 sections categorized (6 Business, 2 Tech, 1 Pending)
+
+### Key Items
+- **VPS /opt Restructure — Phase 1-2** ✅ completed
+- **Deposit Overview Dashboard** — enhanced ✅ (also still marked in-progress ⚠️ duplicate entries)
+- **Deposit Financial Flow Fixes (Post-Migration)** — active work
+- **Audit Session** (17:00-17:22 UTC)
+- **PNL Discount Fix + Sale Bot Inventory Root Cause** — pending investigation
+
+### Note
+Duplicate entries found in Business (2x VPS Restructure, 2x Dashboard) and Tech (2x Dashboard) sections. The digest script may need dedup logic review.
