@@ -1,6 +1,69 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-25 23:30 UTC
+> Last updated: 2026-07-26 17:31 UTC
+
+---
+
+## ⚡ JULY 26 EVENING CHECK (July 26, 2026 - 17:31 UTC) — 🎮 007 First Light Gets MASSIVE 23.84GB PS5 Patch! + Wuchang: Fallen Feathers Hits 5M Players Despite Dev Collapse! + Marvel Tōkon Beta ENDS TODAY!
+
+> **Summary:** Evening sweep — ~18 hours since Jul 25 evening update. **🆕 007 First Light Patch 1.1.0** is here — fixes 200+ issues! PS5 patch is a **whopping 23.84 GB** (vs 1.4-4 GB on other platforms). Adds 2 new TacSim missions, new weapons & outfits! **🆕 Wuchang: Fallen Feathers** surpasses 5 million players despite Leenzee's dev team being disbanded months ago! IP acquired by Digital Bros for €4M. **⚠️ Marvel Tōkon Open Beta ENDS TODAY (Jul 26)!** Last chance to play! All previously tracked data below remains current.
+
+### 🕶️🆕 007 First Light Patch 1.1.0 — MASSIVE 23.84 GB on PS5! Fixes 200+ Issues! New TacSim Content! (Jul 26) 🆕
+
+- **IO Interactive** released the first major post-launch update for **007 First Light** on July 26
+- **PS5 patch is a WHOPPING 23.84 GB** — compare to Steam (3.6 GB), Xbox Series (1.39 GB), Epic (3.99 GB)
+- **Fixes 200+ issues** including crash fixes, clipping issues, and infamous achievement unlock bugs
+- **2 new TacSim Escalation missions:** 'The Workshop' (stealth focus) and 'Extraction Avenues' (security layout puzzles)
+- **New rewards:** Stormberg 50'cal, DRX-2 Machine Pistol, DRS-7 Silenced SMG, 'Diamond in the Rough' outfit — earned via Intel currency & clearance levels
+- **Key fixes:** 'A Legacy of Spycraft' & 'For Your Eyes Only' achievement unlock bugs fixed; various crash fixes (especially Xbox Series S)
+- **IO Interactive:** 'More improvements and content updates already in development'
+- **💡💡 LOUNGE ALERT:** If Boss has 007 First Light installed on any lounge PS5s — START THIS DOWNLOAD NOW! 23.84 GB will take significant time (possibly 30-60 min on standard broadband)! Schedule update during off-hours! The patch is 17x larger than the Xbox Series version — unusual PS5 optimization issue. ⭐⭐
+- Source: Eurogamer / IO Interactive (Jul 26, 2026)
+
+### ⚔️🆕 Wuchang: Fallen Feathers — Surpasses 5 Million Players! Dev Team Disbanded Months Ago! (Jul 26) 🆕
+
+- **Wuchang: Fallen Feathers** (Wuxia/Soulslike action game by Leenzee) has surpassed **5 million players**
+- By March 2026, it had already **sold over 1 million copies** with a successful launch
+- **However:** Developer Leenzee's core team was **disbanded months ago** — key senior staff departed, remaining team refused to become a support studio
+- **No updates since November 20, 2025** — game has a 'Mixed' Steam score with no patches
+- **IP rights** acquired by Italian publisher/developer **Digital Bros** for ~€4 million in April 2026
+- **Producer & director Xia Siyuan** has since formed a new studio
+- **Eurogamer review:** 'Soulslike comfort food' — fun but 'few true surprises'
+- **💡💡 LOUNGE NOTE:** Wuchang: Fallen Feathers is a Soulslike that's clearly finding an audience despite its troubled dev history. Worth having on at least 1 lounge PS5 for Soulslike fans who've already played Elden Ring Nightreign. The 5M player milestone shows strong word-of-mouth traction. ⭐⭐
+- Source: Eurogamer (Jul 26, 2026)
+
+### ⚠️ REMINDER: Marvel Tōkon: Fighting Souls Open Beta ENDS TODAY! (Jul 26) ⚠️
+
+- **Last day** to play the **Marvel Tōkon Open Beta** (Jul 24-26)!
+- 16 playable characters (including Green Goblin, Phoenix Cyclops revealed as Year 1 DLC)
+- No PS Plus needed
+- **💡 Promote to walk-in customers TODAY!** If still available and PSN is stable — this is the final chance to try before full launch!
+
+### 📋 Quick Status Refresh (Jul 26 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🕶️ **007 First Light Patch 1.1.0** | **🆕 23.84 GB PS5 PATCH!** | Fixes 200+ issues! New TacSim missions! Schedule download! |
+| ⚔️ **Wuchang: Fallen Feathers 5M Players** | **🆕 MILESTONE!** | Dev team disbanded! Digital Bros acquired IP for €4M! |
+| 🥊 **Marvel Tōkon Open Beta** | **⚠️ ENDS TODAY! JUL 26!** | Last chance! 16 characters! No PS Plus needed! |
+| 🪓 **God of War Laufey Release Date** | **🔥 FEB 16, 2027!** | PS5 exclusive! Disc version! No PC! |
+| 👾 **Aliens: Fireteam Elite 2** | **🔥 AUG 25!** | 4-player co-op! Cross-platform! Pre-order! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 JUL 30! 4 DAYS!** | New Limit Breaker Journey solo mode! Pre-load NOW! |
+| 🏴‍☠️ **AC Black Flag Resynced** | **✅ STILL HOT** | 3.5M in 14 days! |
+| 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Plan pre-order strategy now! Oct 23 launch! |
+| 🎖️ **BF6 Season 4 Pacific Front** | **✅ LIVE** | Top Gun collab! Two-seater jets! Verify install! |
+| 🌌 **Avatar: Frontiers of Pandora** | **✅ FREE PS PLUS** | Stunning visual showcase! Install on 2+ consoles! |
+
+### 📋 Updated Priority Lounge Actions (Jul 26 - 17:31 UTC):
+1. **🕶️⚠️ START 007 FIRST LIGHT 23.84 GB PATCH DOWNLOAD NOW!** If installed on any lounge PS5, this is a massive update. Schedule during off-hours!
+2. **🥊⚠️ MARVEL TŌKON BETA ENDS TODAY!** Promote to walk-in customers for last-chance play!
+3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 4 days away! New solo mode!
+4. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! Perfect for lounge groups!
+5. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Plan now!
+6. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** Start planning holiday 2026 promotions leading to launch!
+7. **🏴‍☠️🔥 INSTALL AC BLACK FLAG RESYNCED ON LOUNGE CONSOLES!** Pirate-themed = perfect lounge atmosphere!
+8. **🎖️✅ BF6 SEASON 4 PACIFIC FRONT — INSTALLED?** Verify Top Gun collab content on all consoles!
+9. **🌌✅ AVATAR: FRONTIERS OF PANDORA — INSTALLED?** FREE on PS Plus! Install on 2+ consoles!
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12!
 
 ---
 
