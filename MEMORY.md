@@ -22,8 +22,11 @@
 | **Coding/Complex** | `deepseek/v4-pro` | $0.55/$2.19 |
 | **Fallback #1** | `google/gemini-2.5-flash` | $0.15/$0.60 |
 | **Fallback #2** | `google/gemini-3.5-flash` | free |
+| **OpenRouter (fixer)** | `Claude Sonnet 4` | pay-per-use |
 
 **Rule:** Normal work → Flash (cheap, stable). Coding/analysis → Boss says "use pro" or sub-agents auto-use pro.
+
+**🚫 Claude (OpenRouter) Rule (2026-07-26):** OpenRouter key (`sk-or-...`) က Claude Sonnet 4 ကို သုံးတယ်။ **Claude model ကို မသုံးခင် Boss approve ယူရမယ်** — last resort fixer အနေနဲ့ပဲ သုံးပြီး Boss ခွင့်ပြုချက်မပါဘဲ မသုံးရ။
 
 ## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)
 

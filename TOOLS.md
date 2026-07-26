@@ -25,6 +25,7 @@ python3 /root/coordination/onboard_project.py mybot "My Bot" /root/my-custom-bot
 ## API Keys
 - **Grok (xAI):** `xai-...` — Researcher (Grok 4.3)
 - **OpenRouter:** `sk-or-...` — Claude Sonnet 4 (last resort fixer)
+  ⚠️ **Claude model မသုံးခင် Boss approve ယူရန်** — 2026-07-26 Rule
 
 ## Bots & Services
 | Bot | Location | Service |
