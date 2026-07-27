@@ -1,6 +1,75 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-26 23:30 UTC
+> Last updated: 2026-07-27 11:30 UTC
+
+---
+
+## ⚡ JULY 27 MONDAY CHECK (July 27, 2026 - 11:30 UTC) — 🚨 PSBlackout PROTEST CALLED Aug 23-30! Power Down PS5 for a Week! Conflicts with MW4 Beta! + GTA 6 Region-Locked Codes Clarified! Full List Published!
+
+> **Summary:** Monday check — ~12 hours since Jul 26 late night update. **🆕🔥 CRITICAL:** A "PSBlackout" protest has been called for **August 23-30** — fans are being urged to unplug their PS5s for one full week to protest Sony's disc phaseout! Organizer 'Does It Play?' on Twitter/X calls for no logins, no play sessions, no purchases on any Sony platform. **⚠️⚠️⚠️ CRITICAL CONFLICT:** The blackout period (Aug 23-30) overlaps with BOTH MW4 Beta windows (Aug 21-25 closed AND Aug 28-Sep 1 open)! This could significantly impact lounge footfall! **🆕** Rockstar clarifies GTA 6 PS5 pre-order codes ARE region-locked (Xbox codes are not). Japan codes expire 170 days after printing. Full country list now available. All previously tracked data below remains current.
+
+### 🚨🆕 CRITICAL: "PSBlackout" Protest Called for August 23-30! Power Down Your PS5 for a Week! Conflicts with MW4 Beta! (Jul 27) 🆕🚨
+
+- **A PlayStation "blackout" protest** has been organized by Twitter/X user **'Does It Play?'** (@DoesItPlay1) calling for players to power down their PS5s for the week of **August 23-30, 2026**
+- **The demand:** No logins, no play sessions, no purchases on any Sony platform
+- **The protest message:** "For several years now, Sony Interactive Entertainment has continued to grow further apart from its fan base… Whether it's closing beloved studios like Bluepoint, pursuing a misguided live-service strategy, canceling fan events, leaving PSVR2 to die, or being completely out of touch with franchises players want to see return"
+- **Citing disc phaseout (Jan 2028)** as "the straw that broke the camel's back" — calls Sony a company that "mismanages the strong position it inherited from the PS4 era"
+- Also mentions forgotten franchises: Twisted Metal, SOCOM, Sly Cooper, Resistance
+- **Timing:** Sunday Aug 23, 7pm local time → Sunday Aug 30, 7pm local time
+- **⚠️⚠️⚠️⚠️⚠️ CRITICAL LOUNGE IMPACT — CONFLICTS WITH MW4 BETA!:**
+  - **MW4 Closed Beta: Aug 21-25** — overlaps with blackout (Aug 23-25)
+  - **MW4 Open Beta: Aug 28-Sep 1** — overlaps with blackout (Aug 28-30)
+  - If lounge customers participate in the protest, they may not show up for MW4 beta sessions
+  - **BOSS ACTION NEEDED:** Prepare messaging strategy. Options:
+    a) Stay neutral — don't mention protest, continue operations as normal
+    b) Acknowledge protest — offer "digital future" pricing or specials
+    c) Focus on Xbox/PC games during blackout week? (Halo, MW4 on Xbox?)
+  - **Risk:** Low if protest doesn't gain traction. High if it goes viral.
+  - **Monitor:** Check #PSBlackout trending and petition signatures over next 2 weeks ⭐⭐⭐⭐⭐
+- Source: Eurogamer / PushSquare / @DoesItPlay1 (Jul 27, 2026)
+
+### 🎮🆕 GTA 6 Pre-Order Codes — Region-Locked on PS5! Full Country List Published! Rockstar Clarifies! (Jul 27) 🆕
+
+- **Rockstar has updated** the GTA 6 support page with **full details on regional code restrictions**
+- **PS5 codes ARE region-locked** — code must match your PSN account region. **Xbox codes are NOT** region-locked — can be redeemed anywhere
+- **Japan-specific:** Codes purchased in Japan expire **170 days after printing** (due to local regulations). Assuming printed on Nov 19 launch → expires **May 8, 2027**
+- **Full region list:**
+  - Brazil: Brazil only
+  - LATAM: Argentina, Bolivia, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, Mexico, Nicaragua, Panama, Paraguay, Peru, Uruguay
+  - North America: Canada, United States
+  - Korea: South Korea
+  - Japan: Japan
+  - UK: United Kingdom
+  - Saudi Arabia & UAE: Saudi Arabia, United Arab Emirates
+  - Rest of Asia: Hong Kong, Indonesia, Malaysia, Singapore, Taiwan, Thailand
+  - Rest of EMEA & Asia: Australia, Austria, Belgium, Bulgaria, Croatia, Cyprus, Czechia, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, India, Ireland, Israel, Italy, Luxembourg, Malta, Netherlands, New Zealand, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, South Africa, Spain, Sweden, Switzerland, Turkey, Ukraine
+- **Recommendation:** "Buy a copy in a country that matches your platform account" — for the lounge: ensure any GTA 6 codes purchased match the PSN region of the lounge accounts
+- **PS5 digital pre-orders** are topping PlayStation Store charts worldwide
+- **💡💡💡💡 LOUNGE IMPACT:** If Boss plans to buy GTA 6 codes for lounge consoles, **ONLY buy from the region matching your PSN accounts**. A mismatch means the code won't redeem. Xbox codes are safe to buy from any region. Japan codes have a hard expiry date (May 8, 2027) — be aware if importing. **BEST ADVICE:** Buy GTA 6 digitally from the PlayStation Store to avoid region issues entirely. ⭐⭐⭐⭐
+- Source: Eurogamer / Rockstar Support (Jul 27, 2026)
+
+### 📋 Quick Status Refresh (Jul 27 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🚨 **PSBlackout Protest Aug 23-30!** | **🆕 CRITICAL!** | Power down PS5 week! Conflicts with MW4 Beta! Monitor! |
+| 🎮 **GTA 6 Region-Locked Codes** | **🆕 ROCKSTAR CLARIFIES!** | PS5 codes region-locked! Full list! Japan codes expire May 8, 2027! |
+| 🔴 **Marvel Tōkon PC Beta MESS** | **✅ TRACKED** | ArcSys apologized! PS5 version FINE! |
+| 🎮 **Sony Disc Backlash Guidelines** | **✅ TRACKED** | Strictest ever! Sony KNEW backlash coming! |
+| 🪓 **Next Kratos GoW Confirmed** | **✅ TRACKED** | Barlog confirms direct connection to Laufey! |
+| 🕶️ **007 First Light Patch 1.1.0** | **⚠️ SCHEDULE DOWNLOAD** | 23.84 GB! Fixes 200+ issues! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 JUL 30! 3 DAYS!** | Pre-load NOW! |
+| 👾 **Aliens: Fireteam Elite 2** | **🔥 AUG 25!** | 4-player co-op! Pre-order! |
+| 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **⚠️ CONFLICTS WITH BLACKOUT!** | PSBlackout overlaps both windows! |
+
+### 📋 Updated Priority Lounge Actions (Jul 27 - 11:30 UTC):
+1. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** Conflicts directly with MW4 Beta (Aug 21-25 closed, Aug 28-Sep 1 open)! Prepare contingency messaging for customers! ⭐⭐⭐⭐⭐
+2. **🛒✅ BUY GTA 6 digitally** from PlayStation Store for lounge consoles to avoid region-lock nightmares! If buying physical codes, ensure region matches PSN account region! ⭐⭐⭐⭐
+3. **🐉🔥🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 3 days away! New Limit Breaker Journey solo mode! ⭐⭐⭐⭐
+4. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! Perfect for lounge groups! ⭐⭐⭐⭐
+5. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** Pre-order for closed beta! Oct 23 launch! Monitor blackout impact! ⭐⭐⭐⭐
+6. **🕶️⚠️ START 007 FIRST LIGHT 23.84 GB PATCH DOWNLOAD!** Schedule during off-hours! ⭐⭐
+7. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** Start planning holiday 2026 promotions! ⭐⭐⭐⭐⭐
+8. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
 ---
 
