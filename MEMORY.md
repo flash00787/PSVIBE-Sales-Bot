@@ -97,9 +97,10 @@ Kora now manages **9 projects** with full coordination tool support.
 
 ## 🧠 Critical Lessons Learned (Cumulative)
 
-### Most Recent Lessons (2026-07-26)
+### Most Recent Lessons (2026-07-27)
 | # | Lesson |
 |:-:|--------|
+| 207 | **Validation script cumulative comparison** — PNL endpoint with no params defaults to June 2026 (single month). When comparing BS Retained (all-time) vs PNL, must SUM all months explicitly using `?year=&month=` params. Don't trust "Cumulative" label on data that's only a single month. |
 | 201 | **Pending 15min deposit timeout** — Pending bookings without deposit auto-cancel after 15 min, freeing time slots. The available-slots query checks `status NOT IN ('cancelled','done','rejected')`, so pending WITHOUT deposit was blocking slots. Refs were cancelled and status changed to 'cancelled'. Runs alongside existing no-show cron. |
 | 206 | **PNL Discount bug — `SUM(gross - net)` includes deposit redemption** — Inflated discounts by 1.06M Ks. Fixed: use `SUM(discount)` column instead. Changed in finance_routes.py (balance endpoint line 509, PNL endpoint lines 540, 546). |
 | 200 | **cancelled_at NULL → timeline showing endlessly** — 67 bookings had `cancelled_at = NULL` from old cancellations. Front-end 2-hour filter fell through to end_time fallback which incorrectly compared against today's wall clock. Fix: backfill with created_at, and hide bookings with no cancelled_at and no forfeited deposit. |

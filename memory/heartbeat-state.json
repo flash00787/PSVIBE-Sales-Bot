@@ -1,5 +1,8 @@
 {
-  "lastHeartbeat": "2026-07-27T13:34:11Z",
-  "stuckTasks": [],
-  "pendingTasks": []
+  "last_consolidation": "2026-07-27T15:30:00Z",
+  "status": "ok",
+  "today_summary": "Validation Script Fix — Cumulative P&L Comparison. Fixed: PNL endpoint now sums all months (June+July) instead of defaulting to June-only. 250K remaining diff analyzed (depreciation timing 183K, forfeited income 41K, COGS rounding 25K). Lesson #207 added to MEMORY.md.",
+  "consolidator_ran": true,
+  "lessons_added": 1,
+  "new_lesson_numbers": [207]
 }
