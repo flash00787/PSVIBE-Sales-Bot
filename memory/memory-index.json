@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-22T05:34:40.055557+00:00",
+  "updated": "2026-07-27T21:32:27.380978+00:00",
   "entries": [
     {
       "topic": "\"Free\"",
@@ -957,7 +957,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 17,
+          "line": 22,
           "context": "## 2026-07-06 - **Daily Digest**: Generated successfully — 4 sections categorized"
         }
       ]
@@ -967,7 +967,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 24,
+          "line": 29,
           "context": "## 2026-07-09 Daily Digest Summary"
         }
       ]
@@ -977,8 +977,38 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 10,
+          "line": 15,
           "context": "### 2026-07-14 - **Daily Digest**: Generated successfully — 5 sections categorized"
+        }
+      ]
+    },
+    {
+      "topic": "2026-07-23",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 10,
+          "context": "### 2026-07-23 - **Daily Digest**: Generated — 1 section categorized"
+        }
+      ]
+    },
+    {
+      "topic": "2026-07-26 (Morning)",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 3,
+          "context": "## 2026-07-26 (Morning)"
+        }
+      ]
+    },
+    {
+      "topic": "2026-07-26 (Sunday) — Daily Digest",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 54,
+          "context": "## 2026-07-26 (Sunday) — Daily Digest"
         }
       ]
     },
@@ -1009,6 +1039,16 @@
           "path": "memory/2026-06-22.md",
           "line": 20,
           "context": "- `[fixed]` **26. Phase 1 Branch Architecture — Silent Prep ✅ (18:00 MMT)** *finance, api, feedback, timezone* | `id:249690c0`"
+        }
+      ]
+    },
+    {
+      "topic": "2x OpenRouter Receipts",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 15,
+          "context": "3. **2x OpenRouter Receipts** — $10.80 each (Jul 24, known charges) 4. **UAB Bank** — Dormant Account announcement (Jul 25)"
         }
       ]
     },
@@ -1429,6 +1469,16 @@
           "path": "memory/finance-audit-2026-06.md",
           "line": 230,
           "context": "| **Total Liabilities** | **427,000** | **2,727,000** | **−2,300,000** | | Retained Earnings | 0 | ~2,715,785 | ❌ Missing |"
+        }
+      ]
+    },
+    {
+      "topic": "429 Rate Limit from 16 parallel API calls",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 357,
+          "context": "| 195 | **429 Rate Limit from 16 parallel API calls** — Combine + client-side filter | | 196 | **Refund ≠ Forfeited** — Three deposit states: paid, forfeited, refunded |"
         }
       ]
     },
@@ -1867,7 +1917,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 30,
+          "line": 33,
           "context": "Kora now manages **9 projects** with full coordination tool support."
         }
       ]
@@ -2151,9 +2201,9 @@
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times** *auto-bug* | `id:63355302`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 294,
-          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times** - *auto-bug* | `id:63355302`"
+          "path": "memory/ARCHIVE.md",
+          "line": 38,
+          "context": "(dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times** (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 17 times"
         }
       ]
     },
@@ -2164,6 +2214,16 @@
           "path": "memory/2026-07-15.md",
           "line": 233,
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 189 times** *auto-bug* | `id:56584b88`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] frequent_restarts: Service restarted 19 times",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 61,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 19 times** *auto-bug* | `id:69c37da3`"
         }
       ]
     },
@@ -2323,6 +2383,16 @@
       ]
     },
     {
+      "topic": "[WARNING] frequent_restarts: Service restarted 26 times",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 41,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 26 times** *auto-bug* | `id:9c51538b`"
+        }
+      ]
+    },
+    {
       "topic": "[WARNING] frequent_restarts: Service restarted 27 times",
       "files": [
         {
@@ -2434,11 +2504,6 @@
           "path": "memory/2026-07-16.md",
           "line": 31,
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 42 times** *auto-bug* | `id:56f4ca90`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 273,
-          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 42 times** - *auto-bug* | `id:56f4ca90`"
         }
       ]
     },
@@ -2494,6 +2559,16 @@
           "path": "memory/2026-07-16.md",
           "line": 57,
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 46 times** *auto-bug* | `id:ef200892`"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 53,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 46 times** *auto-bug* | `id:c7c550ae`"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 57,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 46 times** *auto-bug* | `id:05deb6d6`"
         }
       ]
     },
@@ -2574,6 +2649,21 @@
           "path": "memory/2026-07-16.md",
           "line": 19,
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 50 times** *auto-bug* | `id:ac04a78e`"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 49,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 50 times** *auto-bug* | `id:c949d791`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] frequent_restarts: Service restarted 51 times",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 45,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 51 times** *auto-bug* | `id:5912801e`"
         }
       ]
     },
@@ -2616,9 +2706,9 @@
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times** *auto-bug* | `id:3692d7d1`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 279,
-          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times** - *auto-bug* | `id:3692d7d1`"
+          "path": "memory/ARCHIVE.md",
+          "line": 35,
+          "context": "(dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times** (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 57 times"
         }
       ]
     },
@@ -2756,9 +2846,24 @@
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times** *auto-bug* | `id:a4d2f318`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 276,
-          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times** - *auto-bug* | `id:a4d2f318`"
+          "path": "memory/ARCHIVE.md",
+          "line": 33,
+          "context": "(dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times** (dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 8 times"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] frequent_restarts: Service restarted 88 times",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 73,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 88 times** *auto-bug* | `id:07b134a3`"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 11,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 88 times** *auto-bug* | `id:6f95cd92`"
         }
       ]
     },
@@ -2799,6 +2904,21 @@
           "path": "memory/2026-07-15.md",
           "line": 35,
           "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 93 times** *auto-bug* | `id:da17d370`"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 65,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 93 times** *auto-bug* | `id:48c4a484`"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 69,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 93 times** *auto-bug* | `id:8e8706f7`"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 7,
+          "context": "- `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 93 times** *auto-bug* | `id:caf00a47`"
         }
       ]
     },
@@ -2902,7 +3022,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 235,
+          "line": 239,
           "context": "- `[open [warning]]` **[WARNING] Response Time Spike — 1109.7ms (18.7× baseline 59.4ms)** *auto-bug* | `id:08a15936`"
         }
       ]
@@ -2946,9 +3066,19 @@
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)** *auto-bug* | `id:08a15936`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 317,
-          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)** - *auto-bug* | `id:08a15936`"
+          "path": "memory/ARCHIVE.md",
+          "line": 44,
+          "context": "(dedup) - `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms)** (dedup) - `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed**"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1110.7ms is 34.8x baseline (31.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 17,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1110.7ms is 34.8x baseline (31.9ms)** *auto-bug* | `id:64e81cd8`"
         }
       ]
     },
@@ -2969,6 +3099,36 @@
           "path": "memory/2026-07-11.md",
           "line": 29,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1117.4ms is 7.0x baseline (159.5ms)** *auto-bug* | `id:582d89a8`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1119.7ms is 35.0x baseline (32.0ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 21,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1119.7ms is 35.0x baseline (32.0ms)** *auto-bug* | `id:04547621`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1138.7ms is 24.3x baseline (46.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 65,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1138.7ms is 24.3x baseline (46.9ms)** *auto-bug* | `id:583908b5`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1143.3ms is 24.4x baseline (46.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 61,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1143.3ms is 24.4x baseline (46.9ms)** *auto-bug* | `id:cf53819a`"
         }
       ]
     },
@@ -2999,6 +3159,26 @@
           "path": "memory/2026-07-03.md",
           "line": 21,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1300.7ms is 32.8x baseline (39.6ms)** *auto-bug* | `id:103eba1a`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1307.3ms is 32.3x baseline (40.5ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 21,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1307.3ms is 32.3x baseline (40.5ms)** *auto-bug* | `id:e52d9255`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 1310.0ms is 32.3x baseline (40.6ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 17,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 1310.0ms is 32.3x baseline (40.6ms)** *auto-bug* | `id:992a6178`"
         }
       ]
     },
@@ -3063,6 +3243,26 @@
       ]
     },
     {
+      "topic": "[WARNING] response_spike: Response time 2045.7ms is 11.5x baseline (177.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 29,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2045.7ms is 11.5x baseline (177.9ms)** *auto-bug* | `id:9dcc39d9`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 2068.8ms is 20.0x baseline (103.2ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 25,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2068.8ms is 20.0x baseline (103.2ms)** *auto-bug* | `id:44c15fc2`"
+        }
+      ]
+    },
+    {
       "topic": "[WARNING] response_spike: Response time 2402.4ms is 13.6x baseline (177.0ms)",
       "files": [
         {
@@ -3072,7 +3272,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 359,
+          "line": 314,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2402.4ms is 13.6x baseline (177.0ms)** - *auto-bug* | `id:29171c4f`"
         }
       ]
@@ -3087,8 +3287,28 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 362,
+          "line": 317,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2445.5ms is 23.8x baseline (102.8ms)** - *auto-bug* | `id:1768ea22`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 2671.7ms is 31.0x baseline (86.1ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 33,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2671.7ms is 31.0x baseline (86.1ms)** *auto-bug* | `id:91a2c39a`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 2673.6ms is 31.1x baseline (86.1ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 37,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2673.6ms is 31.1x baseline (86.1ms)** *auto-bug* | `id:ef6d2291`"
         }
       ]
     },
@@ -3109,6 +3329,76 @@
           "path": "memory/2026-07-12.md",
           "line": 21,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2729.4ms is 21.2x baseline (128.7ms)** *auto-bug* | `id:472c3e50`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 2981.3ms is 8.5x baseline (352.3ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 57,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 2981.3ms is 8.5x baseline (352.3ms)** *auto-bug* | `id:788cfe70`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 3785.2ms is 6.8x baseline (558.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 21,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 3785.2ms is 6.8x baseline (558.9ms)** *auto-bug* | `id:6bd76a97`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 3787.2ms is 6.8x baseline (558.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 17,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 3787.2ms is 6.8x baseline (558.9ms)** *auto-bug* | `id:d91a24fc`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 3849.5ms is 22.1x baseline (173.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 25,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 3849.5ms is 22.1x baseline (173.9ms)** *auto-bug* | `id:71fe020f`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 3849.8ms is 22.1x baseline (173.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 29,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 3849.8ms is 22.1x baseline (173.9ms)** *auto-bug* | `id:af03569f`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 493.0ms is 4.9x baseline (99.6ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 45,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 493.0ms is 4.9x baseline (99.6ms)** *auto-bug* | `id:00568b90`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 507.2ms is 4.3x baseline (118.1ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 49,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 507.2ms is 4.3x baseline (118.1ms)** *auto-bug* | `id:2b867e54`"
         }
       ]
     },
@@ -3222,7 +3512,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 320,
+          "line": 279,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 608.9ms is 9.4x baseline (65.1ms)** - *auto-bug* | `id:28ede372`"
         }
       ]
@@ -3234,6 +3524,16 @@
           "path": "memory/2026-07-13.md",
           "line": 21,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 612.0ms is 11.5x baseline (53.3ms)** *auto-bug* | `id:c820cb34`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 613.4ms is 9.4x baseline (65.6ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 37,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 613.4ms is 9.4x baseline (65.6ms)** *auto-bug* | `id:fe15260b`"
         }
       ]
     },
@@ -3257,8 +3557,68 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 323,
+          "line": 282,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 619.9ms is 14.0x baseline (44.2ms)** - *auto-bug* | `id:526db242`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 620.0ms is 5.8x baseline (106.0ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 29,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 620.0ms is 5.8x baseline (106.0ms)** *auto-bug* | `id:9185fc2e`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 621.0ms is 3.6x baseline (170.4ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 25,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 621.0ms is 3.6x baseline (170.4ms)** *auto-bug* | `id:42f5e536`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 621.9ms is 5.7x baseline (109.2ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 53,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 621.9ms is 5.7x baseline (109.2ms)** *auto-bug* | `id:a417bfac`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 624.5ms is 8.3x baseline (74.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 37,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 624.5ms is 8.3x baseline (74.9ms)** *auto-bug* | `id:e8776368`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 625.1ms is 8.3x baseline (74.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 33,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 625.1ms is 8.3x baseline (74.9ms)** *auto-bug* | `id:78e9395b`"
+        }
+      ]
+    },
+    {
+      "topic": "[WARNING] response_spike: Response time 626.4ms is 5.9x baseline (105.6ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 41,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 626.4ms is 5.9x baseline (105.6ms)** *auto-bug* | `id:6b362f70`"
         }
       ]
     },
@@ -3293,6 +3653,16 @@
       ]
     },
     {
+      "topic": "[WARNING] response_spike: Response time 653.6ms is 3.5x baseline (186.8ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 33,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 653.6ms is 3.5x baseline (186.8ms)** *auto-bug* | `id:18da9e05`"
+        }
+      ]
+    },
+    {
       "topic": "[WARNING] response_spike: Response time 656.5ms is 13.6x baseline (48.1ms)",
       "files": [
         {
@@ -3323,6 +3693,16 @@
       ]
     },
     {
+      "topic": "[WARNING] response_spike: Response time 6802.3ms is 76.5x baseline (88.9ms)",
+      "files": [
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 17,
+          "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 6802.3ms is 76.5x baseline (88.9ms)** *auto-bug* | `id:1db1e5e2`"
+        }
+      ]
+    },
+    {
       "topic": "[WARNING] response_spike: Response time 688.5ms is 13.0x baseline (52.8ms)",
       "files": [
         {
@@ -3342,7 +3722,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 353,
+          "line": 308,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 697.4ms is 18.7x baseline (37.2ms)** - *auto-bug* | `id:04ffd682`"
         }
       ]
@@ -3357,7 +3737,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 356,
+          "line": 311,
           "context": "- `[open [warning]]` **[WARNING] response_spike: Response time 705.9ms is 13.4x baseline (52.7ms)** - *auto-bug* | `id:069bd827`"
         }
       ]
@@ -3697,7 +4077,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 69,
+          "line": 72,
           "context": "- **Address:** Yangon, Myanmar - **Opened:** June 6, 2026 (Saturday) 🎮"
         }
       ]
@@ -3927,7 +4307,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 154,
+          "line": 158,
           "context": "- **All sold items have stock_in matching** — zero \"no_stock_in\" items ✅ - **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅"
         }
       ]
@@ -4012,7 +4392,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 177,
+          "line": 181,
           "context": "- **API:** 8 new equity endpoints - **Files:** db.py, app.py, dashboard/index.html, docs/EQUITY_API.md"
         }
       ]
@@ -4202,7 +4582,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 215,
+          "line": 219,
           "context": "- **Audit:** Full pipeline audit of COGS and food profit logic completed. All items verified with zero discrepancies."
         }
       ]
@@ -4287,7 +4667,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 338,
+          "line": 296,
           "context": "### AUDIT (2) - `[open [medium]]` **Stock Out / Hold Full Flow Audit**"
         }
       ]
@@ -4359,6 +4739,16 @@
           "path": "memory/2026-06-29.md",
           "line": 190,
           "context": "- `[open]` **Audit Results (Jun 21+)** ** | `id:24969163`"
+        }
+      ]
+    },
+    {
+      "topic": "Audit Session",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 62,
+          "context": "- **Audit Session** (17:00-17:22 UTC) - **PNL Discount Fix + Sale Bot Inventory Root Cause** — pending investigation"
         }
       ]
     },
@@ -4498,11 +4888,21 @@
       ]
     },
     {
+      "topic": "AYA Bank Transfer",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 14,
+          "context": "2. **AYA Bank Transfer** — 25,000,000 MMK sent to Tin Nyo Nwet (Jul 24, already known) 3. **2x OpenRouter Receipts** — $10.80 each (Jul 24, known charges)"
+        }
+      ]
+    },
+    {
       "topic": "Background:",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 255,
+          "line": 259,
           "context": "- **Background:** Booking #1862 (C-09, 19:00-03:00) and #1864 (C-10, 20:00-04:00) — both cancelled with history of 6 cancellations (Jul 8-19) - **Ban Applied:** 3-layer blocking (handlers.py BLOCKED_I"
         }
       ]
@@ -4582,7 +4982,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 256,
+          "line": 260,
           "context": "- **Ban Applied:** 3-layer blocking (handlers.py BLOCKED_IDS + main.py _blocked_user_filter + DB is_active=0) - **Lesson #194:** Dual-layer blocking required — PTB framework filter (group=-1) catches "
         }
       ]
@@ -4592,12 +4992,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 100,
-          "context": "| 194 | **Banning a customer bot user requires dual-layer blocking** — MUST update BOTH `BLOCKED_IDS` (handlers.py code-level check) AND `_blocked_user_filter` (main.py PTB framework-level filter at g"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 262,
+          "line": 266,
           "context": "| 194 | **Banning a customer bot user requires dual-layer blocking** — MUST update BOTH `BLOCKED_IDS` (handlers.py code-level check) AND `_blocked_user_filter` (main.py PTB framework-level filter at g"
         }
       ]
@@ -4789,6 +5184,16 @@
           "path": "memory/2026-06-25.md",
           "line": 201,
           "context": "- `[open]` **Bonus** *api* | `id:249690fa`"
+        }
+      ]
+    },
+    {
+      "topic": "Booking #1969 Yaboku Refund",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 345,
+          "context": "| 4 | **Booking #1969 Yaboku Refund** | cash_movements #484/+9,000 → #487/-9,000 | | 5 | **Deposit SS Forwarding — Cross-bot file_id** | Use CUSTOMER_BOT_TOKEN for sendPhoto |"
         }
       ]
     },
@@ -5057,7 +5462,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 61,
+          "line": 64,
           "context": "- **Boss:** Ko Aung Chan Myint (ကိုအောင်ချမ်းမြင့်) — Founder of PS VIBE - PS5 Gaming Lounge. Call him \"Boss\" or \"အစ်ကို\" internally. - **Osmo:** Discord username `@kingkong00787` — helped set up PS V"
         }
       ]
@@ -5178,6 +5583,16 @@
       ]
     },
     {
+      "topic": "BranchStore 401",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 343,
+          "context": "| 2 | **BranchStore 401** | `axios.get()` → `apiClient.get()` (JWT Bearer) | | 3 | **Deposit Refund System 🆕** | `POST /api/bookings/{id}/refund`, 1hr rule, cash_movements eject |"
+        }
+      ]
+    },
+    {
       "topic": "Broadcast System Fix + Customer Bot Broadcast (17:22 UTC / 23:52 MMT)",
       "files": [
         {
@@ -5293,6 +5708,16 @@
       ]
     },
     {
+      "topic": "BUG (15)",
+      "files": [
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 5,
+          "context": "## BUG (15)"
+        }
+      ]
+    },
+    {
       "topic": "BUG (16)",
       "files": [
         {
@@ -5304,6 +5729,16 @@
           "path": "memory/2026-07-01.md",
           "line": 5,
           "context": "## BUG (16)"
+        }
+      ]
+    },
+    {
+      "topic": "BUG (17)",
+      "files": [
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 5,
+          "context": "## BUG (17)"
         }
       ]
     },
@@ -5336,9 +5771,9 @@
           "context": "## BUG (2)"
         },
         {
-          "path": "MEMORY.md",
-          "line": 304,
-          "context": "### BUG (2) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့)"
+          "path": "memory/2026-07-22.md",
+          "line": 5,
+          "context": "## BUG (2)"
         }
       ]
     },
@@ -5359,11 +5794,6 @@
           "path": "memory/2026-07-16.md",
           "line": 5,
           "context": "## BUG (24)"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 266,
-          "context": "### BUG (24) - *auto-bug* | `id:67c41636`"
         }
       ]
     },
@@ -5401,8 +5831,13 @@
           "context": "## BUG (3)"
         },
         {
+          "path": "memory/2026-07-24.md",
+          "line": 5,
+          "context": "## BUG (3)"
+        },
+        {
           "path": "MEMORY.md",
-          "line": 230,
+          "line": 234,
           "context": "### BUG (3) - `[open [low]]` **Prediction: Morning Briefing — 2026-07-18 (စနေနေ့) (×2)**"
         }
       ]
@@ -5454,6 +5889,11 @@
           "path": "memory/2026-07-20.md",
           "line": 5,
           "context": "## BUG (4)"
+        },
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 5,
+          "context": "## BUG (4)"
         }
       ]
     },
@@ -5482,8 +5922,8 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 312,
-          "context": "### BUG (5) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့)"
+          "line": 274,
+          "context": "### BUG (5) - *auto-bug* | `id:f996bc4a`"
         }
       ]
     },
@@ -5522,8 +5962,8 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 348,
-          "context": "### BUG (6) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့)"
+          "line": 305,
+          "context": "### BUG (6) - *auto-bug* | `id:6a6783c5`"
         }
       ]
     },
@@ -5542,6 +5982,11 @@
       "files": [
         {
           "path": "memory/2026-06-13.md",
+          "line": 5,
+          "context": "## BUG (8)"
+        },
+        {
+          "path": "memory/2026-07-27.md",
           "line": 5,
           "context": "## BUG (8)"
         }
@@ -6666,88 +7111,323 @@
           "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-21 (အင်္ဂါနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
-          "path": "MEMORY.md",
-          "line": 233,
-          "context": "> **Bug detected:** Prediction text for morning briefing duplicated/auto-generated. Low severity, cosmetic."
+          "path": "memory/2026-07-22.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-22.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 19,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1110.7ms is 34.8x baseline (31.9ms)"
+        },
+        {
+          "path": "memory/2026-07-23.md",
+          "line": 23,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1119.7ms is 35.0x baseline (32.0ms)"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 19,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 6802.3ms is 76.5x baseline (88.9ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 19,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 3787.2ms is 6.8x baseline (558.9ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 23,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 3785.2ms is 6.8x baseline (558.9ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 27,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 621.0ms is 3.6x baseline (170.4ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 31,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 620.0ms is 5.8x baseline (106.0ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 35,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 653.6ms is 3.5x baseline (186.8ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 39,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 613.4ms is 9.4x baseline (65.6ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 43,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 626.4ms is 5.9x baseline (105.6ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 47,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 493.0ms is 4.9x baseline (99.6ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 51,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 507.2ms is 4.3x baseline (118.1ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 55,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 621.9ms is 5.7x baseline (109.2ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 59,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 2981.3ms is 8.5x baseline (352.3ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 63,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1143.3ms is 24.4x baseline (46.9ms)"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 67,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1138.7ms is 24.3x baseline (46.9ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 19,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1310.0ms is 32.3x baseline (40.6ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 23,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 1307.3ms is 32.3x baseline (40.5ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 27,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 3849.5ms is 22.1x baseline (173.9ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 31,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 3849.8ms is 22.1x baseline (173.9ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 35,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 2671.7ms is 31.0x baseline (86.1ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 39,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 2673.6ms is 31.1x baseline (86.1ms)"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 43,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 26 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 47,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 51 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 51,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 50 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 55,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 46 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 59,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 46 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 63,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 19 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 67,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 93 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 71,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 93 times"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 75,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 88 times"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 9,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 93 times"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 13,
+          "context": "> **Bug detected:** [WARNING] frequent_restarts: Service restarted 88 times"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 18,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 23,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 27,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 2068.8ms is 20.0x baseline (103.2ms)"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 31,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 2045.7ms is 11.5x baseline (177.9ms)"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 35,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 625.1ms is 8.3x baseline (74.9ms)"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 39,
+          "context": "> **Bug detected:** [WARNING] response_spike: Response time 624.5ms is 8.3x baseline (74.9ms)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 34,
+          "context": "(dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 8 times (dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times**"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 36,
+          "context": "(dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 57 times (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 39,
+          "context": "(dedup) - > **Bug detected:** [WARNING] frequent_restarts: Service restarted 17 times (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့)"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 41,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━ (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စ"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 43,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ (dedup) - `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 48,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
           "path": "MEMORY.md",
           "line": 237,
+          "context": "> **Bug detected:** Prediction text for morning briefing duplicated/auto-generated. Low severity, cosmetic."
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 241,
           "context": "> **Bug detected:** Response time 1109.7ms vs 59.4ms baseline. Monitor for recurrence."
         },
         {
           "path": "MEMORY.md",
-          "line": 275,
-          "context": "- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 42 times - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 8 times**"
-        },
-        {
-          "path": "MEMORY.md",
           "line": 278,
-          "context": "- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 8 times - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 57 times**"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 281,
-          "context": "- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 57 times - *auto-bug* | `id:3ad1a86e`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 285,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:3d975344`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 296,
-          "context": "- > **Bug detected:** [WARNING] frequent_restarts: Service restarted 17 times - *auto-bug* | `id:f5215a18`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 307,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:c1d5448c`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 315,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:71fbcbe4`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 319,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 1109.7ms is 18.7x baseline (59.4ms) - `[open [warning]]` **[WARNING] response_spike: Response time 608.9ms is 9.4x baseline (65.1ms)**"
         },
         {
           "path": "MEMORY.md",
-          "line": 322,
+          "line": 281,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 608.9ms is 9.4x baseline (65.1ms) - `[open [warning]]` **[WARNING] response_spike: Response time 619.9ms is 14.0x baseline (44.2ms)**"
         },
         {
           "path": "MEMORY.md",
-          "line": 325,
+          "line": 284,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 619.9ms is 14.0x baseline (44.2ms)"
         },
         {
           "path": "MEMORY.md",
-          "line": 351,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:43a157c5`"
-        },
-        {
-          "path": "MEMORY.md",
-          "line": 355,
+          "line": 310,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 697.4ms is 18.7x baseline (37.2ms) - `[open [warning]]` **[WARNING] response_spike: Response time 705.9ms is 13.4x baseline (52.7ms)**"
         },
         {
           "path": "MEMORY.md",
-          "line": 358,
+          "line": 313,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 705.9ms is 13.4x baseline (52.7ms) - `[open [warning]]` **[WARNING] response_spike: Response time 2402.4ms is 13.6x baseline (177.0ms)**"
         },
         {
           "path": "MEMORY.md",
-          "line": 361,
+          "line": 316,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 2402.4ms is 13.6x baseline (177.0ms) - `[open [warning]]` **[WARNING] response_spike: Response time 2445.5ms is 23.8x baseline (102.8ms)**"
         },
         {
           "path": "MEMORY.md",
-          "line": 364,
+          "line": 319,
           "context": "- > **Bug detected:** [WARNING] response_spike: Response time 2445.5ms is 23.8x baseline (102.8ms)"
         }
       ]
@@ -7027,7 +7707,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 64,
+          "line": 67,
           "context": "## Business: PS VIBE - PS5 Gaming Lounge"
         }
       ]
@@ -7174,6 +7854,46 @@
           "path": "memory/2026-07-02.md",
           "line": 69,
           "context": "- `[open [low]]` **Cancel Flow Fixes** *customer-bot, reminder, booking* | `id:249691e7`"
+        }
+      ]
+    },
+    {
+      "topic": "Cancel → Auto-forfeit Deposit",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 350,
+          "context": "| 9 | **Cancel → Auto-forfeit Deposit** | deposit_status='forfeited' on cancel | | 10 | **Pending 15min Deposit Timeout** | Auto-cancel pending w/o deposit after 15min |"
+        }
+      ]
+    },
+    {
+      "topic": "cancelled_at Backfill",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 348,
+          "context": "| 7 | **cancelled_at Backfill** | 67 bookings → backfilled with created_at | | 8 | **Refund Button UI** | Timeline modal + Bookings Management |"
+        }
+      ]
+    },
+    {
+      "topic": "cancelled_at NULL",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 362,
+          "context": "| 200 | **cancelled_at NULL** — Backfill + front-end must handle missing timestamps | | 201 | **Pending deposit 15min timeout** — Auto-cancel & slot free |"
+        }
+      ]
+    },
+    {
+      "topic": "cancelled_at NULL → timeline showing endlessly",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 106,
+          "context": "| 200 | **cancelled_at NULL → timeline showing endlessly** — 67 bookings had `cancelled_at = NULL` from old cancellations. Front-end 2-hour filter fell through to end_time fallback which incorrectly c"
         }
       ]
     },
@@ -7468,6 +8188,16 @@
       ]
     },
     {
+      "topic": "Claude model ကို မသုံးခင် Boss approve ယူရမယ်",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 29,
+          "context": "**🚫 Claude (OpenRouter) Rule (2026-07-26):** OpenRouter key (`sk-or-...`) က Claude Sonnet 4 ကို သုံးတယ်။ **Claude model ကို မသုံးခင် Boss approve ယူရမယ်** — last resort fixer အနေနဲ့ပဲ သုံးပြီး Boss ခွ"
+        }
+      ]
+    },
+    {
       "topic": "Claude Sonnet 4:",
       "files": [
         {
@@ -7682,7 +8412,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 151,
+          "line": 155,
           "context": "- **COGS:** FIFO (stock_in cost matched to stock_out qty) — correct ✅ - **Food Profit:** 922,040 Ks (38.8% margin) for July 2026 ✅"
         }
       ]
@@ -7696,14 +8426,14 @@
           "context": "- `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅** *cogs, food_profit, pnl, finance, audit* | `id:cdde07c2`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 214,
-          "context": "### COGS & Food Profit Logic — Full Pipeline Verified ✅ - **Audit:** Full pipeline audit of COGS and food profit logic completed. All items verified with zero discrepancies."
+          "path": "memory/ARCHIVE.md",
+          "line": 46,
+          "context": "(dedup) - `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅** (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့)"
         },
         {
           "path": "MEMORY.md",
-          "line": 342,
-          "context": "- `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅** - *cogs, food_profit, pnl, finance, audit* | `id:cdde07c2`"
+          "line": 218,
+          "context": "### COGS & Food Profit Logic — Full Pipeline Verified ✅ - **Audit:** Full pipeline audit of COGS and food profit logic completed. All items verified with zero discrepancies."
         }
       ]
     },
@@ -7712,7 +8442,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 149,
+          "line": 153,
           "context": "### COGS & Food Profit Pipeline — Full Audit ✅ - **Food Revenue:** stock_out SUM(total) per month — correct ✅"
         }
       ]
@@ -7982,7 +8712,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 108,
+          "line": 112,
           "context": "### Console Timer & Booking System Overhaul (June 22) - Console Timers page: live elapsed/remaining with 30s refresh, timer adjust dropdown"
         }
       ]
@@ -8032,7 +8762,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 52,
+          "line": 55,
           "context": "### Context Detection: - Boss mentions project name/alias → Kora auto-detects"
         }
       ]
@@ -8172,7 +8902,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 93,
+          "line": 96,
           "context": "- **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B"
         }
       ]
@@ -8359,6 +9089,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 45,
           "context": "| 5 | **Cross-Bot Batching** | `batch_coordinator.py` | Different bots = always parallel. Cross-bot file edit + read-only = parallel. | | 6 | **Priority Scheduling** | `batch_coordinator.py` + `queue_"
+        }
+      ]
+    },
+    {
+      "topic": "Cross-bot file_id",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 361,
+          "context": "| 199 | **Cross-bot file_id** — Telegram file_ids are bot-specific | | 200 | **cancelled_at NULL** — Backfill + front-end must handle missing timestamps |"
         }
       ]
     },
@@ -8633,11 +9373,16 @@
         {
           "path": "memory/daily_log.md",
           "line": 11,
+          "context": "- **Daily Digest**: Generated — 1 section categorized - 📝 Notes: 1 item (BUG)"
+        },
+        {
+          "path": "memory/daily_log.md",
+          "line": 16,
           "context": "- **Daily Digest**: Generated successfully — 5 sections categorized - 💼 Business: 3 items (Project Health Dashboard, BUG, Notes)"
         },
         {
           "path": "memory/daily_log.md",
-          "line": 18,
+          "line": 23,
           "context": "- **Daily Digest**: Generated successfully — 4 sections categorized - 💼 Business: 2 items (LESSON, AUDIT)"
         }
       ]
@@ -8702,7 +9447,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 156,
+          "line": 160,
           "context": "- **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅"
         }
       ]
@@ -8762,7 +9507,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 114,
+          "line": 118,
           "context": "### Dashboard UX & Timeline Overhaul (June 26) - Food Orders: timezone fix (UTC→MMT), sorting by Active-first + recency"
         }
       ]
@@ -8777,7 +9522,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 175,
+          "line": 179,
           "context": "- **Dashboard:** New 📋 Equity tab with modals - **DB:** 2 new tables (shareholders, equity_transactions)"
         }
       ]
@@ -8962,7 +9707,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 176,
+          "line": 180,
           "context": "- **DB:** 2 new tables (shareholders, equity_transactions) - **API:** 8 new equity endpoints"
         }
       ]
@@ -9087,7 +9832,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 139,
+          "line": 143,
           "context": "- **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do. - **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code f"
         }
       ]
@@ -9163,12 +9908,42 @@
       ]
     },
     {
+      "topic": "Deposit Financial Flow Fixes (Post-Migration)",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 61,
+          "context": "- **Deposit Financial Flow Fixes (Post-Migration)** — active work - **Audit Session** (17:00-17:22 UTC)"
+        }
+      ]
+    },
+    {
+      "topic": "Deposit Overview Dashboard",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 60,
+          "context": "- **Deposit Overview Dashboard** — enhanced ✅ (also still marked in-progress ⚠️ duplicate entries) - **Deposit Financial Flow Fixes (Post-Migration)** — active work"
+        }
+      ]
+    },
+    {
       "topic": "Deposit pre-redeem must NOT change status",
       "files": [
         {
           "path": "memory/2026-07-15.md",
           "line": 303,
           "context": "- `[verified [high]]` **Deposit pre-redeem must NOT change status** *deposit, booking, pre-redeem, sales* | `id:70f1c223`"
+        }
+      ]
+    },
+    {
+      "topic": "Deposit Refund System 🆕",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 344,
+          "context": "| 3 | **Deposit Refund System 🆕** | `POST /api/bookings/{id}/refund`, 1hr rule, cash_movements eject | | 4 | **Booking #1969 Yaboku Refund** | cash_movements #484/+9,000 → #487/-9,000 |"
         }
       ]
     },
@@ -9182,7 +9957,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 331,
+          "line": 290,
           "context": "- `[fixed [high]]` **Deposit restore on forfeited booking reactivation** - *deposit, forfeit, restore, auto-cancel, booking* | `id:18411e2c`"
         }
       ]
@@ -9196,9 +9971,9 @@
           "context": "- `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed** *deposit, forfeit, booking, reactivation, fix* | `id:890e7a74`"
         },
         {
-          "path": "MEMORY.md",
-          "line": 334,
-          "context": "- `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed** - *deposit, forfeit, booking, reactivation, fix* | `id:890e7a74`"
+          "path": "memory/ARCHIVE.md",
+          "line": 45,
+          "context": "(dedup) - `[fixed [medium]]` **Deposit Restore on Reactivation — 4 Paths Fixed** (dedup) - `[verified [low]]` **COGS & Food Profit Logic — Full Pipeline Verified ✅**"
         }
       ]
     },
@@ -9207,8 +9982,18 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 158,
+          "line": 162,
           "context": "### Deposit Restore on Reactivation — 4 Paths Fixed 🐛→✅ - **Problem:** Booking #1760 auto-cancelled at 12:15 MMT (5 min before 12:20 booking). deposit_status became 'forfeited'. Staff reactivated sess"
+        }
+      ]
+    },
+    {
+      "topic": "Deposit SS Forwarding — Cross-bot file_id",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 346,
+          "context": "| 5 | **Deposit SS Forwarding — Cross-bot file_id** | Use CUSTOMER_BOT_TOKEN for sendPhoto | | 6 | **New Booking & Deposit Group** | `DEPOSIT_NOTIFY_CHAT=-1003611548363` |"
         }
       ]
     },
@@ -9247,13 +10032,28 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 15,
+          "line": 13,
+          "context": "- **Digest**: `digests/2026-07-23-digest.md`"
+        },
+        {
+          "path": "memory/daily_log.md",
+          "line": 20,
           "context": "- **Digest**: `digests/2026-07-14-digest.md`"
         },
         {
           "path": "memory/daily_log.md",
-          "line": 22,
+          "line": 27,
           "context": "- **Digest**: memory/digests/2026-07-06-digest.md"
+        }
+      ]
+    },
+    {
+      "topic": "Digest generated at 18:45 UTC",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 56,
+          "context": "**Digest generated at 18:45 UTC** — 9 sections categorized (6 Business, 2 Tech, 1 Pending)"
         }
       ]
     },
@@ -9322,7 +10122,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 72,
+          "line": 75,
           "context": "- **Discord:** Guild ID 1516119712411422942 | [Invite](https://discord.gg/EXEF7phbZF)"
         }
       ]
@@ -9342,7 +10142,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 174,
+          "line": 178,
           "context": "- **Dividend MMK** auto-distributes by current share % - **Dashboard:** New 📋 Equity tab with modals"
         }
       ]
@@ -9477,18 +10277,8 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 153,
+          "line": 157,
           "context": "- **Double-count check:** Release path vs Voucher path — zero dupes ✅ - **All sold items have stock_in matching** — zero \"no_stock_in\" items ✅"
-        }
-      ]
-    },
-    {
-      "topic": "Drive Write",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 29,
-          "context": "- **Drive Write**: Unknown (token expired, likely broken too)"
         }
       ]
     },
@@ -9507,7 +10297,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 171,
+          "line": 175,
           "context": "- **Dynamic Share %** based on net capital (inject - eject) per shareholder - **Inject THB** creates equity_tx + FIFO buy tx"
         }
       ]
@@ -9537,7 +10327,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 173,
+          "line": 177,
           "context": "- **Eject THB** creates equity_tx + FIFO sell tx (FIFO consumed) - **Dividend MMK** auto-distributes by current share %"
         }
       ]
@@ -9833,7 +10623,7 @@
         {
           "path": "MEMORY.md",
           "line": 24,
-          "context": "| **Fallback #2** | `google/gemini-3.5-flash` | free |"
+          "context": "| **Fallback #2** | `google/gemini-3.5-flash` | free | | **OpenRouter (fixer)** | `Claude Sonnet 4` | pay-per-use |"
         }
       ]
     },
@@ -10502,17 +11292,17 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 127,
+          "line": 131,
           "context": "- **Files:** `dashboard_routes.py`, `patch_routes.py`"
         },
         {
           "path": "MEMORY.md",
-          "line": 178,
+          "line": 182,
           "context": "- **Files:** db.py, app.py, dashboard/index.html, docs/EQUITY_API.md"
         },
         {
           "path": "MEMORY.md",
-          "line": 211,
+          "line": 215,
           "context": "- **Files:** patch_routes.py - **Status:** Verified ✅"
         }
       ]
@@ -10612,7 +11402,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 123,
+          "line": 127,
           "context": "### Financial Statement July Fixes — 8 Bugs Fixed ✅ - PNL `m` param + Finance Balances + Balance Sheet date filters + Cashflow cumulative fixes"
         }
       ]
@@ -10862,12 +11652,12 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 210,
+          "line": 214,
           "context": "- **Fix:** Stock out pipeline had 5 issues (stock_out, stock_hold, food_cart) — all resolved. Verified at 2026-07-18 04:58 UTC. - **Files:** patch_routes.py"
         },
         {
           "path": "MEMORY.md",
-          "line": 251,
+          "line": 255,
           "context": "- **Fix:** Added `## 🎙️ English With Kora Group — TTS Voice Rules` to AGENTS.md - **Status:** ✅ Fixed"
         }
       ]
@@ -10977,7 +11767,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 39,
+          "line": 44,
           "context": "- **FIX (2) — Expiry Checker: Data Limit Auto-Expiry** - LESSON (2)"
         }
       ]
@@ -11042,7 +11832,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 327,
+          "line": 286,
           "context": "### FIX (3) - `[verified [medium]]` **Stock Out / Hold Pipeline Fix — 5 Issues Resolved**"
         }
       ]
@@ -11052,7 +11842,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 41,
+          "line": 46,
           "context": "- **FIX (3) — VPN Admin Page Speed Optimization: Metrics Cache + Pre-fetch** - **FIX (4) — Test Agent Cleanup (OsmoConfirmed)**"
         }
       ]
@@ -11092,7 +11882,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 42,
+          "line": 47,
           "context": "- **FIX (4) — Test Agent Cleanup (OsmoConfirmed)**"
         }
       ]
@@ -11102,7 +11892,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 33,
+          "line": 38,
           "context": "- **FIX (5) — API Keys Leaked / Revoked by Google** - **FIX (6) — Outline Web Crash on Expire/Delete**"
         }
       ]
@@ -11132,7 +11922,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 34,
+          "line": 39,
           "context": "- **FIX (6) — Outline Web Crash on Expire/Delete** - LESSON (5)"
         }
       ]
@@ -11197,7 +11987,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 160,
+          "line": 164,
           "context": "- **Fix 1:** `api_start_console_session()` — deposit restore after commit (console_routes.py:391) - **Fix 2:** `api_sessions_start()` — deposit restore for linked bookings (console_routes.py:606)"
         }
       ]
@@ -11227,7 +12017,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 161,
+          "line": 165,
           "context": "- **Fix 2:** `api_sessions_start()` — deposit restore for linked bookings (console_routes.py:606) - **Fix 3:** `api_booking_checkin()` — deposit restore on check-in (booking_routes.py:329)"
         }
       ]
@@ -11267,7 +12057,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 162,
+          "line": 166,
           "context": "- **Fix 3:** `api_booking_checkin()` — deposit restore on check-in (booking_routes.py:329) - **Fix 4:** `api_update_booking_status()` — added cancelled→Active transition + deposit restore (booking_rou"
         }
       ]
@@ -11322,7 +12112,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 163,
+          "line": 167,
           "context": "- **Fix 4:** `api_update_booking_status()` — added cancelled→Active transition + deposit restore (booking_routes.py:832, 923) - **Immediate:** Booking #1760 deposit restored from 'forfeited' → 'verifi"
         }
       ]
@@ -11487,7 +12277,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 140,
+          "line": 144,
           "context": "- **Fix protocol:** `python3 /root/coordination/fix_protocol.py --start <file>` before any code fix - **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md"
         }
       ]
@@ -11657,7 +12447,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 152,
+          "line": 156,
           "context": "- **Food Profit:** 922,040 Ks (38.8% margin) for July 2026 ✅ - **Double-count check:** Release path vs Voucher path — zero dupes ✅"
         }
       ]
@@ -11667,7 +12457,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 150,
+          "line": 154,
           "context": "- **Food Revenue:** stock_out SUM(total) per month — correct ✅ - **COGS:** FIFO (stock_in cost matched to stock_out qty) — correct ✅"
         }
       ]
@@ -12198,36 +12988,6 @@
       ]
     },
     {
-      "topic": "Gmail Accounts",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 9,
-          "context": "## Gmail Accounts | Account | Status | Purpose |"
-        }
-      ]
-    },
-    {
-      "topic": "Gmail API",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 3,
-          "context": "## Gmail API - **Protocol:** OAuth 2.0 (readonly + send), token.json + secret.json"
-        }
-      ]
-    },
-    {
-      "topic": "gmail_token.json",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 22,
-          "context": "- **gmail_token.json**: gmail.readonly + gmail.send — refresh token expired/revoked (HTTP 400) - **Status**: ❌ BOTH tokens broken — needs full OAuth re-auth flow"
-        }
-      ]
-    },
-    {
       "topic": "Goal:",
       "files": [
         {
@@ -12279,16 +13039,6 @@
           "path": "memory/booking-fixes-checkin-implemented.md",
           "line": 54,
           "context": "**Goal:** Auto-cancel bookings if customer doesn't check in within 15 minutes of booking time."
-        }
-      ]
-    },
-    {
-      "topic": "Google Drive",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 16,
-          "context": "## Google Drive - **Service Account Key:** `kora_drive_sa.json`"
         }
       ]
     },
@@ -12573,6 +13323,16 @@
       ]
     },
     {
+      "topic": "Hetzner Cloud Traffic Warning",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 13,
+          "context": "1. **Hetzner Cloud Traffic Warning** — openClawAgent server at 75%+ of 3TB included traffic (Jul 25) 2. **AYA Bank Transfer** — 25,000,000 MMK sent to Tin Nyo Nwet (Jul 24, already known)"
+        }
+      ]
+    },
+    {
       "topic": "HI-1: Handle Approval Conflict in Admin Bookings ✅",
       "files": [
         {
@@ -12647,7 +13407,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 68,
+          "line": 71,
           "context": "- **Hours:** 9:00 AM - 9:00 PM daily - **Address:** Yangon, Myanmar"
         }
       ]
@@ -12737,7 +13497,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 164,
+          "line": 168,
           "context": "- **Immediate:** Booking #1760 deposit restored from 'forfeited' → 'verified' manually - **Lesson #192:** When adding forfeit/deposit logic to cancel flows, audit ALL reactivation paths to ensure depo"
         }
       ]
@@ -12877,7 +13637,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 66,
+          "line": 69,
           "context": "### Info - **Tagline:** \"Play The Game. Share The VIBE!\""
         }
       ]
@@ -12887,7 +13647,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 74,
+          "line": 77,
           "context": "### Infrastructure (bot-server-01: 5.223.81.16) | Service | Purpose |"
         }
       ]
@@ -12897,7 +13657,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 194,
+          "line": 198,
           "context": "### Infrastructure State (End of July 9) | Port | Service | Status |"
         }
       ]
@@ -12907,7 +13667,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 172,
+          "line": 176,
           "context": "- **Inject THB** creates equity_tx + FIFO buy tx - **Eject THB** creates equity_tx + FIFO sell tx (FIFO consumed)"
         }
       ]
@@ -12952,7 +13712,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 155,
+          "line": 159,
           "context": "- **Inventory drift:** 1 unit only (MaMa, rounding artifact) ✅ - **Dashboard manual stock-out (9 entries):** all properly deduct from inventory ✅"
         }
       ]
@@ -13272,7 +14032,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 45,
+          "line": 48,
           "context": "### Key Commands: - `kora_status.py` — All projects health dashboard"
         }
       ]
@@ -13343,6 +14103,16 @@
       ]
     },
     {
+      "topic": "Key Items",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 58,
+          "context": "### Key Items - **VPS /opt Restructure — Phase 1-2** ✅ completed"
+        }
+      ]
+    },
+    {
       "topic": "Key Lessons",
       "files": [
         {
@@ -13367,7 +14137,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 180,
+          "line": 184,
           "context": "### Key Lessons (#137-#192) 137. Advance eject must be recorded in cash_movements for ALL advances"
         }
       ]
@@ -13417,7 +14187,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 88,
+          "line": 91,
           "context": "### Key Operations - **Staff Salary System (June 27)**: Full payroll auto-generation with leave tracking, shop-wide food commission (PNL formula), game bonus tiers (1500/1800/2000hr), attendance rules"
         }
       ]
@@ -13751,24 +14521,79 @@
           "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-21 (အင်္ဂါနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
-          "path": "MEMORY.md",
-          "line": 285,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:3d975344`"
+          "path": "memory/2026-07-22.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
-          "path": "MEMORY.md",
-          "line": 307,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:c1d5448c`"
+          "path": "memory/2026-07-22.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
-          "path": "MEMORY.md",
-          "line": 315,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:71fbcbe4`"
+          "path": "memory/2026-07-23.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         },
         {
-          "path": "MEMORY.md",
-          "line": 351,
-          "context": "- > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ - *auto-bug* | `id:43a157c5`"
+          "path": "memory/2026-07-23.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 10,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 15,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 18,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 23,
+          "context": "> **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 41,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━━━━━━━━━━ (dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စ"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 43,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━━━━ (dedup) - `[open [warning]]` **[WARNING] response_spike: Response time 1109.7ms is 18"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 48,
+          "context": "(dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━━━━━━━━━━━"
         }
       ]
     },
@@ -13817,18 +14642,8 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 137,
+          "line": 141,
           "context": "- **Language:** Burmese primary, English for tech terms - **Timezone:** Asia/Yangon (UTC+6:30) — always convert for Boss"
-        }
-      ]
-    },
-    {
-      "topic": "Last Refreshed",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 28,
-          "context": "- **Last Refreshed**: 2026-06-10 ~16:42 UTC - **Drive Write**: Unknown (token expired, likely broken too)"
         }
       ]
     },
@@ -13987,7 +14802,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 165,
+          "line": 169,
           "context": "- **Lesson #192:** When adding forfeit/deposit logic to cancel flows, audit ALL reactivation paths to ensure deposit restoration."
         }
       ]
@@ -13997,7 +14812,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 257,
+          "line": 261,
           "context": "- **Lesson #194:** Dual-layer blocking required — PTB framework filter (group=-1) catches ALL message types before ConversationHandler"
         }
       ]
@@ -14342,7 +15157,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 106,
+          "line": 110,
           "context": "## Major Projects & Milestones"
         }
       ]
@@ -14412,7 +15227,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 91,
+          "line": 94,
           "context": "- **Member balance:** Column H of Card_wallet Google Sheet (legacy) → MySQL `member_wallets` (primary) - **Receipts:** Burmese footer text must be removed"
         }
       ]
@@ -14438,31 +15253,11 @@
       ]
     },
     {
-      "topic": "Memory (2026-07-16)",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 264,
-          "context": "## Memory (2026-07-16)"
-        }
-      ]
-    },
-    {
-      "topic": "Memory (2026-07-17)",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 302,
-          "context": "## Memory (2026-07-17)"
-        }
-      ]
-    },
-    {
       "topic": "Memory (2026-07-17) — SEL Equity System + PS VIBE Return 🔄",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 167,
+          "line": 171,
           "context": "## Memory (2026-07-17) — SEL Equity System + PS VIBE Return 🔄"
         }
       ]
@@ -14472,7 +15267,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 310,
+          "line": 272,
           "context": "## Memory (2026-07-18)"
         }
       ]
@@ -14482,7 +15277,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 228,
+          "line": 232,
           "context": "## Memory (2026-07-18) — Bugs: Briefing Prediction + Response Spike"
         }
       ]
@@ -14492,7 +15287,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 147,
+          "line": 151,
           "context": "## Memory (2026-07-18) — COGS Audit + Deposit Restore Fix 🔧"
         }
       ]
@@ -14502,7 +15297,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 207,
+          "line": 211,
           "context": "## Memory (2026-07-18) — Stock Out Pipeline Fix + COGS Verification 🔧"
         }
       ]
@@ -14512,7 +15307,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 346,
+          "line": 303,
           "context": "## Memory (2026-07-19)"
         }
       ]
@@ -14522,18 +15317,18 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 246,
+          "line": 250,
           "context": "## Memory (2026-07-19) — Ko Toe Ban & English Group TTS Fix 🔧"
         }
       ]
     },
     {
-      "topic": "Memory (2026-07-20)",
+      "topic": "Memory (2026-07-24) — Major Fixes Day 🔧",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 366,
-          "context": "## Memory (2026-07-20)"
+          "line": 337,
+          "context": "## Memory (2026-07-24) — Major Fixes Day 🔧"
         }
       ]
     },
@@ -14718,22 +15513,12 @@
       ]
     },
     {
-      "topic": "Morning Health",
+      "topic": "Most Recent Lessons (2026-07-27)",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 368,
-          "context": "### Morning Health - Time: 08:04 MMT (01:34 UTC)"
-        }
-      ]
-    },
-    {
-      "topic": "Most Recent Lessons (2026-07-19)",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 97,
-          "context": "### Most Recent Lessons (2026-07-19) | # | Lesson |"
+          "line": 100,
+          "context": "### Most Recent Lessons (2026-07-27) | # | Lesson |"
         }
       ]
     },
@@ -15033,6 +15818,16 @@
       ]
     },
     {
+      "topic": "New Booking & Deposit Group",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 347,
+          "context": "| 6 | **New Booking & Deposit Group** | `DEPOSIT_NOTIFY_CHAT=-1003611548363` | | 7 | **cancelled_at Backfill** | 67 bookings → backfilled with created_at |"
+        }
+      ]
+    },
+    {
       "topic": "New Clean Endpoints",
       "files": [
         {
@@ -15097,7 +15892,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 221,
+          "line": 225,
           "context": "### New Lesson (#193) | # | Lesson |"
         }
       ]
@@ -15122,13 +15917,33 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 239,
+          "line": 243,
           "context": "### New Lessons | # | Lesson |"
         },
         {
           "path": "MEMORY.md",
-          "line": 259,
+          "line": 263,
           "context": "### New Lessons | # | Lesson |"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 371,
+          "context": "### New Lessons | # | Lesson |"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 376,
+          "context": "### New Lessons"
+        }
+      ]
+    },
+    {
+      "topic": "New Lessons (Jul 21-23)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 378,
+          "context": "### New Lessons (Jul 21-23) | # | Lesson |"
         }
       ]
     },
@@ -15288,12 +16103,27 @@
       ]
     },
     {
+      "topic": "Notable Items",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 12,
+          "context": "### Notable Items 1. **Hetzner Cloud Traffic Warning** — openClawAgent server at 75%+ of 3TB included traffic (Jul 25)"
+        }
+      ]
+    },
+    {
       "topic": "Note:",
       "files": [
         {
           "path": "memory/2026-06-22.md",
           "line": 32,
           "context": "- `[open]` **Note:** *api, dashboard, sub-agent, finance* | `id:249690cb`"
+        },
+        {
+          "path": "memory/daily_log.md",
+          "line": 65,
+          "context": "### Note Duplicate entries found in Business (2x VPS Restructure, 2x Dashboard) and Tech (2x Dashboard) sections. The digest script may need dedup logic review."
         }
       ]
     },
@@ -15349,16 +16179,6 @@
           "path": "memory/2026-06-10.md",
           "line": 44,
           "context": "- `[open]` **Now Boss only needs to hard-refresh (Ctrl+F5 or Incognito)** *needs-review* | `id:24969033`"
-        }
-      ]
-    },
-    {
-      "topic": "OAuth Token Status (Updated 2026-06-25)",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 20,
-          "context": "## OAuth Token Status (Updated 2026-06-25) - **Scopes (token.json)**: drive.file only — Gmail API calls fail (scope mismatch)"
         }
       ]
     },
@@ -15427,7 +16247,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 70,
+          "line": 73,
           "context": "- **Opened:** June 6, 2026 (Saturday) 🎮 - **Socials:** [Facebook](https://www.facebook.com/ps5gamecenter) | [TikTok](https://www.tiktok.com/@ps.vibe.game.cent)"
         }
       ]
@@ -15439,6 +16259,16 @@
           "path": "memory/project-state.md",
           "line": 101,
           "context": "- **Opening Hours:** 9 AM - 9 PM (daily) - **Staff Training:** 04 June 2026 ✅ Completed"
+        }
+      ]
+    },
+    {
+      "topic": "OpenRouter (fixer)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 25,
+          "context": "| **OpenRouter (fixer)** | `Claude Sonnet 4` | pay-per-use |"
         }
       ]
     },
@@ -15467,7 +16297,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 62,
+          "line": 65,
           "context": "- **Osmo:** Discord username `@kingkong00787` — helped set up PS VIBE Discord server."
         }
       ]
@@ -15858,12 +16688,37 @@
       ]
     },
     {
+      "topic": "Pending 15min deposit timeout",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 104,
+          "context": "| 201 | **Pending 15min deposit timeout** — Pending bookings without deposit auto-cancel after 15 min, freeing time slots. The available-slots query checks `status NOT IN ('cancelled','done','rejected"
+        },
+        {
+          "path": "MEMORY.md",
+          "line": 351,
+          "context": "| 10 | **Pending 15min Deposit Timeout** | Auto-cancel pending w/o deposit after 15min | | 11 | **Refund Auto-tagging [Refund]** | Note format for easy querying |"
+        }
+      ]
+    },
+    {
       "topic": "Pending booking time slot holding",
       "files": [
         {
           "path": "memory/project-state.md",
           "line": 30,
           "context": "| 27 | **Pending booking time slot holding** — verified 3-layer conflict detection | ✅ | | 28 | **Sale Bot Approve crash** — `consoles_with_game` variable scope | ✅ |"
+        }
+      ]
+    },
+    {
+      "topic": "Pending deposit 15min timeout",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 363,
+          "context": "| 201 | **Pending deposit 15min timeout** — Auto-cancel & slot free |"
         }
       ]
     },
@@ -15892,7 +16747,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 59,
+          "line": 62,
           "context": "## People"
         }
       ]
@@ -16328,6 +17183,16 @@
       ]
     },
     {
+      "topic": "PNL Discount Fix + Sale Bot Inventory Root Cause",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 63,
+          "context": "- **PNL Discount Fix + Sale Bot Inventory Root Cause** — pending investigation"
+        }
+      ]
+    },
+    {
       "topic": "PNL Result (corrected, no sell charges)",
       "files": [
         {
@@ -16392,7 +17257,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 141,
+          "line": 145,
           "context": "- **Post-fix documentation:** Run `auto_doc_updater.py` + update daily memory + MEMORY.md - **📁 New project onboarding:** Every new project MUST include: (1) `README.md`, (2) `memory/projects/<slug>/s"
         }
       ]
@@ -16482,7 +17347,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 231,
+          "line": 235,
           "context": "- `[open [low]]` **Prediction: Morning Briefing — 2026-07-18 (စနေနေ့) (×2)** *auto-bug* | `id:f996bc4a, id:71fbcbe4`"
         }
       ]
@@ -16721,24 +17586,84 @@
           "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-21 (အင်္ဂါနေ့) ━━━━━━━━━━━━━━━**"
         },
         {
-          "path": "MEMORY.md",
-          "line": 283,
-          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့) - *auto-bug* | `id:4d45cf3d`"
+          "path": "memory/2026-07-22.md",
+          "line": 7,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━**"
         },
         {
-          "path": "MEMORY.md",
-          "line": 305,
-          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) - *auto-bug* | `id:ac1a0b45`"
+          "path": "memory/2026-07-22.md",
+          "line": 12,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-22 (ဗုဒ္ဓဟူးနေ့) ━━━━━━━━━━━━━**"
         },
         {
-          "path": "MEMORY.md",
-          "line": 313,
-          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) - *auto-bug* | `id:f996bc4a`"
+          "path": "memory/2026-07-23.md",
+          "line": 7,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━**"
         },
         {
-          "path": "MEMORY.md",
-          "line": 349,
-          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) - *auto-bug* | `id:6a6783c5`"
+          "path": "memory/2026-07-23.md",
+          "line": 12,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-23 (ကြာသပတေးနေ့) ━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 7,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-24.md",
+          "line": 12,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-24 (သောကြာနေ့) ━━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 7,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-25.md",
+          "line": 12,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-25 (စနေနေ့) ━━━━━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 7,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-26.md",
+          "line": 12,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-26 (တနင်္ဂနွေနေ့) ━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 15,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/2026-07-27.md",
+          "line": 20,
+          "context": "- `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-27 (တနင်္လာနေ့) ━━━━━━━━━━━━━━**"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 37,
+          "context": "(dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-16 (ကြာသပတေးနေ့) (dedup) - `[open [warning]]` **[WARNING] frequent_restarts: Service restarted 17 times**"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 40,
+          "context": "(dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-17 (သောကြာနေ့) ━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 42,
+          "context": "(dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-18 (စနေနေ့) ━━━━━━━━━━━━━━━━━━━"
+        },
+        {
+          "path": "memory/ARCHIVE.md",
+          "line": 47,
+          "context": "(dedup) - `[open [low]]` **Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) (dedup) - > **Bug detected:** Prediction: 🌅 **Kora Morning Briefing** — 2026-07-19 (တနင်္ဂနွေနေ့) ━━━━━━━"
         }
       ]
     },
@@ -16862,12 +17787,12 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 159,
+          "line": 163,
           "context": "- **Problem:** Booking #1760 auto-cancelled at 12:15 MMT (5 min before 12:20 booking). deposit_status became 'forfeited'. Staff reactivated session but deposit stayed forfeited. - **Fix 1:** `api_star"
         },
         {
           "path": "MEMORY.md",
-          "line": 249,
+          "line": 253,
           "context": "- **Problem:** Group session was responding with text corrections only, no TTS voice audio - **Root Cause:** AGENTS.md didn't have TTS instructions — group auto-responder skipped `tts` tool"
         }
       ]
@@ -16937,7 +17862,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 32,
+          "line": 35,
           "context": "### Project Registry: `/root/coordination/project_registry.json` | Slug | Project | Services |"
         }
       ]
@@ -16983,32 +17908,12 @@
       ]
     },
     {
-      "topic": "Protocol:",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 4,
-          "context": "- **Protocol:** OAuth 2.0 (readonly + send), token.json + secret.json - **Sender Script:** `send_email_api.py` (urllib, HTTPS 443)"
-        }
-      ]
-    },
-    {
       "topic": "PS VIBE Comprehensive System Scan",
       "files": [
         {
           "path": "memory/2026-07-06.md",
           "line": 49,
           "context": "- `[archived [low]]` **PS VIBE Comprehensive System Scan** *psvibe, scan, archive* | `id:940e5c52`"
-        }
-      ]
-    },
-    {
-      "topic": "PS VIBE Drive Root:",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 18,
-          "context": "- **PS VIBE Drive Root:** `1V6ctTJpXaoRIDnrfxwhVO72I7jfD5GsS`"
         }
       ]
     },
@@ -17182,7 +18087,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 92,
+          "line": 95,
           "context": "- **Receipts:** Burmese footer text must be removed - **Coupon codes:** Valid samples: CBQVUHYG, CBANN6LD, CBZVNW7O, CBB292MP, CB7U617B"
         }
       ]
@@ -17268,12 +18173,42 @@
       ]
     },
     {
-      "topic": "Refresh Token:",
+      "topic": "Refund 1hr rule",
       "files": [
         {
-          "path": "memory/emails.md",
-          "line": 7,
-          "context": "- **Refresh Token:** Auto-refresh via OAuth 2.0"
+          "path": "MEMORY.md",
+          "line": 359,
+          "context": "| 197 | **Refund 1hr rule** — Booking မတိုင်ခင် 1hr အလိုအထိသာ | | 198 | **Separate notification channels** — Deposit ops in dedicated group |"
+        }
+      ]
+    },
+    {
+      "topic": "Refund Auto-tagging [Refund]",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 352,
+          "context": "| 11 | **Refund Auto-tagging [Refund]** | Note format for easy querying |"
+        }
+      ]
+    },
+    {
+      "topic": "Refund Button UI",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 349,
+          "context": "| 8 | **Refund Button UI** | Timeline modal + Bookings Management | | 9 | **Cancel → Auto-forfeit Deposit** | deposit_status='forfeited' on cancel |"
+        }
+      ]
+    },
+    {
+      "topic": "Refund ≠ Forfeited",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 358,
+          "context": "| 196 | **Refund ≠ Forfeited** — Three deposit states: paid, forfeited, refunded | | 197 | **Refund 1hr rule** — Booking မတိုင်ခင် 1hr အလိုအထိသာ |"
         }
       ]
     },
@@ -17524,6 +18459,11 @@
           "path": "memory/2026-06-25.md",
           "line": 197,
           "context": "- `[open]` **Result** *dashboard* | `id:249690f5`"
+        },
+        {
+          "path": "memory/emails.md",
+          "line": 18,
+          "context": "### Result Nothing urgent found. No Nova handover reply."
         },
         {
           "path": "memory/lessons.md",
@@ -17887,7 +18827,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 250,
+          "line": 254,
           "context": "- **Root Cause:** AGENTS.md didn't have TTS instructions — group auto-responder skipped `tts` tool - **Fix:** Added `## 🎙️ English With Kora Group — TTS Voice Rules` to AGENTS.md"
         }
       ]
@@ -17927,7 +18867,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 26,
+          "line": 27,
           "context": "**Rule:** Normal work → Flash (cheap, stable). Coding/analysis → Boss says \"use pro\" or sub-agents auto-use pro."
         }
       ]
@@ -18122,18 +19062,8 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 218,
+          "line": 222,
           "context": "- **Scope:** Complete audit of stock_out, stock_hold, and food_cart integration - **Status:** Open — findings documented in MongoDB"
-        }
-      ]
-    },
-    {
-      "topic": "Scopes (token.json)",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 21,
-          "context": "- **Scopes (token.json)**: drive.file only — Gmail API calls fail (scope mismatch) - **gmail_token.json**: gmail.readonly + gmail.send — refresh token expired/revoked (HTTP 400)"
         }
       ]
     },
@@ -18322,7 +19252,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 169,
+          "line": 173,
           "context": "### SEL Exchange - Equity/Shareholder System Built ✅ - **Shareholders (3):** Myat Ei, Shwe Eain Lin, Aung Chan Myint"
         }
       ]
@@ -18338,22 +19268,12 @@
       ]
     },
     {
-      "topic": "Sender Address:",
+      "topic": "Separate notification channels",
       "files": [
         {
-          "path": "memory/emails.md",
-          "line": 6,
-          "context": "- **Sender Address:** chanmyint123456789@gmail.com - **Refresh Token:** Auto-refresh via OAuth 2.0"
-        }
-      ]
-    },
-    {
-      "topic": "Sender Script:",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 5,
-          "context": "- **Sender Script:** `send_email_api.py` (urllib, HTTPS 443) - **Sender Address:** chanmyint123456789@gmail.com"
+          "path": "MEMORY.md",
+          "line": 360,
+          "context": "| 198 | **Separate notification channels** — Deposit ops in dedicated group | | 199 | **Cross-bot file_id** — Telegram file_ids are bot-specific |"
         }
       ]
     },
@@ -18374,16 +19294,6 @@
           "path": "memory/2026-06-23.md",
           "line": 106,
           "context": "> - **Server:** VPS `5.223.81.16`, SSH key `/root/.ssh/id_boss` - **API server:** `/root/psvibe_api_server/`, service: `psvibe-api`"
-        }
-      ]
-    },
-    {
-      "topic": "Service Account Key:",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 17,
-          "context": "- **Service Account Key:** `kora_drive_sa.json` - **PS VIBE Drive Root:** `1V6ctTJpXaoRIDnrfxwhVO72I7jfD5GsS`"
         }
       ]
     },
@@ -18707,7 +19617,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 170,
+          "line": 174,
           "context": "- **Shareholders (3):** Myat Ei, Shwe Eain Lin, Aung Chan Myint - **Dynamic Share %** based on net capital (inject - eject) per shareholder"
         }
       ]
@@ -18777,7 +19687,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 71,
+          "line": 74,
           "context": "- **Socials:** [Facebook](https://www.facebook.com/ps5gamecenter) | [TikTok](https://www.tiktok.com/@ps.vibe.game.cent) - **Discord:** Guild ID 1516119712411422942 | [Invite](https://discord.gg/EXEF7p"
         }
       ]
@@ -18957,7 +19867,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 90,
+          "line": 93,
           "context": "- **Staff Salary**: Auto-generate via `POST /salary/generate` — formula: base + transport + food_allowance + att_bonus + food_com + game_bonus − advances − leave_penalty - **Member balance:** Column H"
         }
       ]
@@ -18967,7 +19877,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 119,
+          "line": 123,
           "context": "### Staff Salary System & Customer Notifications (June 27) - Salary: full payroll auto-generation with leave tracking, PNL FIFO COGS, game bonus tiers"
         }
       ]
@@ -18977,7 +19887,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 89,
+          "line": 92,
           "context": "- **Staff Salary System (June 27)**: Full payroll auto-generation with leave tracking, shop-wide food commission (PNL formula), game bonus tiers (1500/1800/2000hr), attendance rules. See `memory/2026-"
         }
       ]
@@ -19116,11 +20026,6 @@
           "context": "- **Status:** BLOCKED — `\"This server needs more boosts\"` (error 50101) - Requires **Level 2** boosting (currently Level 1)"
         },
         {
-          "path": "memory/emails.md",
-          "line": 23,
-          "context": "- **Status**: ❌ BOTH tokens broken — needs full OAuth re-auth flow - **Workaround**: IMAP via app password (`knpeqhkhwbvhmwey`) — WORKING ✅"
-        },
-        {
           "path": "memory/finance-audit-2026-06.md",
           "line": 36,
           "context": "| **Status** | **BROKEN — false profit** | **ACCURATE — comprehensive** |"
@@ -19187,17 +20092,17 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 212,
+          "line": 216,
           "context": "- **Status:** Verified ✅"
         },
         {
           "path": "MEMORY.md",
-          "line": 219,
+          "line": 223,
           "context": "- **Status:** Open — findings documented in MongoDB"
         },
         {
           "path": "MEMORY.md",
-          "line": 252,
+          "line": 256,
           "context": "- **Status:** ✅ Fixed"
         }
       ]
@@ -19302,7 +20207,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 339,
+          "line": 297,
           "context": "- `[open [medium]]` **Stock Out / Hold Full Flow Audit** - *stock_out, stock_hold, audit, food_cart* | `id:b60c5d19`"
         }
       ]
@@ -19312,7 +20217,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 217,
+          "line": 221,
           "context": "### Stock Out / Hold Full Flow Audit 🔍 - **Scope:** Complete audit of stock_out, stock_hold, and food_cart integration"
         }
       ]
@@ -19327,7 +20232,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 328,
+          "line": 287,
           "context": "- `[verified [medium]]` **Stock Out / Hold Pipeline Fix — 5 Issues Resolved** - *stock_out, stock_hold, food_cart, sales_bot, fix* | `id:cdc03453`"
         }
       ]
@@ -19337,7 +20242,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 209,
+          "line": 213,
           "context": "### Stock Out / Hold Pipeline Fix — 5 Issues Resolved ✅ - **Fix:** Stock out pipeline had 5 issues (stock_out, stock_hold, food_cart) — all resolved. Verified at 2026-07-18 04:58 UTC."
         }
       ]
@@ -19347,7 +20252,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 224,
+          "line": 228,
           "context": "| 193 | **Stock-out pipeline audit must verify both release AND voucher paths** — two separate code paths can diverge, creating phantom inventory. Always cross-check COGS against both paths. |"
         }
       ]
@@ -19417,7 +20322,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 143,
+          "line": 147,
           "context": "- **Sub-agent timeout:** 300s default"
         }
       ]
@@ -19459,6 +20364,11 @@
           "path": "memory/console-conflict-report-2026-06-18.md",
           "line": 244,
           "context": "## Summary"
+        },
+        {
+          "path": "memory/emails.md",
+          "line": 5,
+          "context": "### Summary - Check via IMAP (chanmyint123456789@gmail.com)"
         },
         {
           "path": "memory/security-audit-2026-06-13.md",
@@ -19637,7 +20547,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 67,
+          "line": 70,
           "context": "- **Tagline:** \"Play The Game. Share The VIBE!\" - **Hours:** 9:00 AM - 9:00 PM daily"
         }
       ]
@@ -19703,16 +20613,6 @@
       ]
     },
     {
-      "topic": "Tasks",
-      "files": [
-        {
-          "path": "MEMORY.md",
-          "line": 376,
-          "context": "### Tasks - VPS connection issue detected — check when Boss arrives at office"
-        }
-      ]
-    },
-    {
       "topic": "Telegram Admin:",
       "files": [
         {
@@ -19729,6 +20629,16 @@
           "path": "memory/ARCHIVED_LESSONS.md",
           "line": 43,
           "context": "| 3 | **Telegram Batch Notify** | `notifier.py` (UPGRADED) | `send-batch`, `batch-status`, `batch-summary`, `send-tg`, `batch-complete` | | 4 | **Smart Auto-Retry** | `batch_coordinator.py` (UPGRADED)"
+        }
+      ]
+    },
+    {
+      "topic": "Telegram cross-bot file_id incompatibility",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 107,
+          "context": "| 199 | **Telegram cross-bot file_id incompatibility** — File IDs generated by one bot (CUSTOMER_BOT_TOKEN) cannot be used to sendPhoto with another bot (BOT_TOKEN). Always use the originating bot's t"
         }
       ]
     },
@@ -20078,6 +20988,16 @@
       ]
     },
     {
+      "topic": "Timeline 429 Rate Limit",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 342,
+          "context": "| 1 | **Timeline 429 Rate Limit** | 16 parallel API calls → 1 call + JS `.filter()` | | 2 | **BranchStore 401** | `axios.get()` → `apiClient.get()` (JWT Bearer) |"
+        }
+      ]
+    },
+    {
       "topic": "Timeline bar:",
       "files": [
         {
@@ -20167,7 +21087,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 138,
+          "line": 142,
           "context": "- **Timezone:** Asia/Yangon (UTC+6:30) — always convert for Boss - **Delegation:** Always delegate complex tasks to sub-agents. Never do manually what a helper can do."
         }
       ]
@@ -20393,6 +21313,16 @@
       ]
     },
     {
+      "topic": "UAB Bank",
+      "files": [
+        {
+          "path": "memory/emails.md",
+          "line": 16,
+          "context": "4. **UAB Bank** — Dormant Account announcement (Jul 25)"
+        }
+      ]
+    },
+    {
       "topic": "UFW Status: ACTIVE",
       "files": [
         {
@@ -20528,6 +21458,16 @@
       ]
     },
     {
+      "topic": "Validation script cumulative comparison",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 103,
+          "context": "| 207 | **Validation script cumulative comparison** — PNL endpoint with no params defaults to June 2026 (single month). When comparing BS Retained (all-time) vs PNL, must SUM all months explicitly usi"
+        }
+      ]
+    },
+    {
       "topic": "Verdict: Manual End — NOT Auto-End ✅",
       "files": [
         {
@@ -20597,7 +21537,7 @@
         },
         {
           "path": "MEMORY.md",
-          "line": 126,
+          "line": 130,
           "context": "- **Verification:** June 2026 PNL 11.7M, Topup 450K; CF opening 300M → closing 11.32M - **Files:** `dashboard_routes.py`, `patch_routes.py`"
         }
       ]
@@ -20719,6 +21659,16 @@
           "path": "memory/2026-07-09.md",
           "line": 27,
           "context": "- `[fixed [medium]]` **VPN UI Fixes — Recent Keys, Data Usage, Sub-tab Layout (2026-07-09)** *vpn, outline, xray, ui, osmo* | `id:fa240e68`"
+        }
+      ]
+    },
+    {
+      "topic": "VPS /opt Restructure — Phase 1-2",
+      "files": [
+        {
+          "path": "memory/daily_log.md",
+          "line": 59,
+          "context": "- **VPS /opt Restructure — Phase 1-2** ✅ completed - **Deposit Overview Dashboard** — enhanced ✅ (also still marked in-progress ⚠️ duplicate entries)"
         }
       ]
     },
@@ -21038,16 +21988,6 @@
       ]
     },
     {
-      "topic": "Workaround",
-      "files": [
-        {
-          "path": "memory/emails.md",
-          "line": 24,
-          "context": "- **Workaround**: IMAP via app password (`knpeqhkhwbvhmwey`) — WORKING ✅ - IMAP script: `check_inbox_imap.py`"
-        }
-      ]
-    },
-    {
       "topic": "Workflow Engine",
       "files": [
         {
@@ -21062,7 +22002,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 135,
+          "line": 139,
           "context": "## Working Preferences"
         }
       ]
@@ -21392,7 +22332,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 129,
+          "line": 133,
           "context": "## ⚠️ Known Issues (Persistent)"
         }
       ]
@@ -21837,7 +22777,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 248,
+          "line": 252,
           "context": "### 🎙️ English With Kora — TTS Voice Auto-Generate Fix - **Problem:** Group session was responding with text corrections only, no TTS voice audio"
         }
       ]
@@ -21917,7 +22857,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 37,
+          "line": 42,
           "context": "### 🎯 Pending (5) - LESSON (4)"
         }
       ]
@@ -21967,7 +22907,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 28,
+          "line": 31,
           "context": "## 🏗️ Multi-Project Architecture (Phase 1-5 Complete — 2026-06-25)"
         }
       ]
@@ -22147,7 +23087,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 28,
+          "line": 33,
           "context": "### 💼 Business (3) - LESSON, FIX, SUMMARY (Final — End of Day)"
         }
       ]
@@ -22167,7 +23107,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 142,
+          "line": 146,
           "context": "- **📁 New project onboarding:** Every new project MUST include: (1) `README.md`, (2) `memory/projects/<slug>/state.md`, (3) Daily memory, (4) MEMORY.md entry, (5) `auto_doc_updater.py` commit - **Sub-"
         }
       ]
@@ -22253,6 +23193,16 @@
       ]
     },
     {
+      "topic": "📚 New Lessons (#195–#201)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 354,
+          "context": "### 📚 New Lessons (#195–#201) | # | Lesson |"
+        }
+      ]
+    },
+    {
       "topic": "📝 Notes",
       "files": [
         {
@@ -22277,7 +23227,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 44,
+          "line": 49,
           "context": "### 📝 Notes (3) - BUG (2), FIX (1), BUG (2)"
         }
       ]
@@ -22413,6 +23363,16 @@
       ]
     },
     {
+      "topic": "🔧 Fixes Deployed (11 Items)",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 339,
+          "context": "### 🔧 Fixes Deployed (11 Items) | # | Fix | Key Detail |"
+        }
+      ]
+    },
+    {
       "topic": "🔴 Bug: Booking Cancel → No Staff Notification",
       "files": [
         {
@@ -22543,6 +23503,16 @@
       ]
     },
     {
+      "topic": "🚀 Build Hash Timeline",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 365,
+          "context": "### 🚀 Build Hash Timeline | Bundle | Hashes | Change |"
+        }
+      ]
+    },
+    {
       "topic": "🚀 Hybrid Batch Execution (Archived 2026-05-30)",
       "files": [
         {
@@ -22583,11 +23553,21 @@
       ]
     },
     {
+      "topic": "🚫 Claude (OpenRouter) Rule (2026-07-26):",
+      "files": [
+        {
+          "path": "MEMORY.md",
+          "line": 29,
+          "context": "**🚫 Claude (OpenRouter) Rule (2026-07-26):** OpenRouter key (`sk-or-...`) က Claude Sonnet 4 ကို သုံးတယ်။ **Claude model ကို မသုံးခင် Boss approve ယူရမယ်** — last resort fixer အနေနဲ့ပဲ သုံးပြီး Boss ခွ"
+        }
+      ]
+    },
+    {
       "topic": "🚫 Ko Toe (8806200022) — Permanent Ban",
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 254,
+          "line": 258,
           "context": "### 🚫 Ko Toe (8806200022) — Permanent Ban - **Background:** Booking #1862 (C-09, 19:00-03:00) and #1864 (C-10, 20:00-04:00) — both cancelled with history of 6 cancellations (Jul 8-19)"
         }
       ]
@@ -22617,7 +23597,7 @@
       "files": [
         {
           "path": "memory/daily_log.md",
-          "line": 31,
+          "line": 36,
           "context": "### 🛠️ Tech (6) - FEATURE, 2 SUMMARIES"
         }
       ]
@@ -22787,7 +23767,7 @@
       "files": [
         {
           "path": "MEMORY.md",
-          "line": 95,
+          "line": 98,
           "context": "## 🧠 Critical Lessons Learned (Cumulative)"
         }
       ]
