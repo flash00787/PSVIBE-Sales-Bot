@@ -1,6 +1,61 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-26 17:31 UTC
+> Last updated: 2026-07-26 23:30 UTC
+
+---
+
+## ⚡ JULY 26 LATE NIGHT CHECK (July 26, 2026 - 23:30 UTC) — 🔴 Marvel Tōkon PC Open Beta is a MESS! ArcSys Apologizes! + Sony Issued "Strictest Social Media Guidelines Ever" for Disc Backlash! + Next Kratos GoW Will Connect to Laufey!
+
+> **Summary:** Late night sweep — ~6 hours since evening update. **🆕 Marvel Tōkon PC Open Beta** is a disaster — Arc System Works apologizes for "gameplay and performance issues". PC players report anti-cheat hammering single CPU thread, input buffering issues, poor optimization. PS5 version reportedly fine. **🆕 Sony Disc Phaseout Backlash** — former Santa Monica writer Alanah Pearce reveals Sony issued "the strictest social media guidelines they've ever seen issued" to first-party studios. This was NOT a surprise — they knew the backlash was coming. **🆕 God of War Laufey: Next Kratos Game Will Connect** — Cory Barlog confirms the next mainline Kratos GoW will follow Laufey's story. All previously tracked below remains current.
+
+### 🔴🆕 Marvel Tōkon: Fighting Souls PC Open Beta MESS! ArcSys Apologizes! "This Demo Performs Like a Retired Stripper!" (Jul 26) 🆕
+
+- **Arc System Works** has issued an apology and troubleshooting guidelines for the **Marvel Tōkon PC open beta** experiencing widespread performance and gameplay issues
+- **PC players report:** Game "hammers a single CPU thread because of anti-cheats and PS5 architecture", identifying "five Sony sub services running at all times"
+- **Input buffering issues:** Virtually nonexistent input buffering — combo inputs inconsistent, DP motion often reads as QCF
+- **One player says:** "My PC goes from running this game like it's a 2000's game to running this game on a 2000's PC"
+- **Reddit thread with infamous image:** "This demo performs like a retired stripper" — going viral
+- **PS5 version** reportedly runs fine — issue appears specific to PC port optimization
+- **💡💡💡 LOUNGE NOTE:** If walk-in customers played the Marvel Tōkon beta today and had a bad experience, reassure them — the PS5 version is NOT affected! This is purely a PC port issue. PS5 users get the smooth ArcSys fighter experience they expect. Also notable: the presence of "five Sony sub services" suggests aggressive DRM/anti-cheat integration — potential privacy concern for PC players but not an issue on console. ⭐⭐⭐
+- Source: Eurogamer / Kotaku / Reddit (Jul 26, 2026)
+
+### 🎮🆕 Sony Disc Phaseout — Strictest Social Media Guidelines Ever Issued! "This Is No Surprise to Them" (Jul 26) 🆕
+
+- **Alanah Pearce** (ex-Santa Monica Studio writer, left 2024) reveals in a YouTube video that Sony issued the **"strictest social media guidelines they've ever seen issued"** to first-party studios regarding the disc phaseout backlash
+- **Pearce:** "They would only have done this if they knew it was going to be an enormous PR issue. This is no surprise to them."
+- **Context:** Sony announced ending all physical media on PlayStation from January 2028 — including third-party games
+- **Pearce says** she was under strict guidelines during God of War Laufey announcement too, but disc phaseout guidelines were "the strictest I've ever seen"
+- **Key insight: Sony KNEW** the backlash was coming. This was a calculated decision. The data (only 7 PS games >100K physical sales in US all year) backs the business case.
+- **Lounge IMPACT:** Confirms what we already know — Sony is ALL-IN on digital. No going back. All lounge planning should assume zero physical game availability by 2028. ⭐⭐⭐ industry context
+- Source: Eurogamer (Jul 26, 2026), Alanah Pearce / InsiderGaming
+
+### 🪓🆕 God of War Laufey — Next Kratos Starring Game Will Connect Directly! Cory Barlog Confirms! (Jul 26) 🆕
+
+- **Cory Barlog** (Santa Monica Studio head of creative) confirmed at SDCC that the **next mainline Kratos God of War** will pick up after Laufey's story
+- **Key quote:** "Everything we are doing in the Faye game is a continuation of what came before and to set up and expand what comes next"
+- **More context:** "Faye is, while it's a different thing, it's still part of the larger tapestry of what we truly really want to explore"
+- **Confirmation:** "There's always going to be Kratos games, like, throughout the whole history"
+- **God of War Laufey** releases **February 16, 2027** (confirmed Jul 25 at SDCC)
+- **Lounge IMPACT:** The franchise is alive and well. Laufey (Feb 2027) is the lead-in to the next Kratos game. This means God of War is a multi-game commitment from Santa Monica Studio — fantastic for PlayStation's future. For the lounge, customers playing Laufey in 2027 will be primed and excited for the next Kratos game. ⭐⭐⭐
+- Source: Eurogamer / IGN / SDCC 2026 (Jul 26, 2026)
+
+### 📋 Quick Status Refresh (Jul 26 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🔴 **Marvel Tōkon PC Beta MESS** | **🆕 ARCSYS APOLOGIZES!** | PC port disaster! Anti-cheat CPU issues! PS5 version FINE! |
+| 🎮 **Sony Disc Backlash Guidelines** | **🆕 STRICTEST EVER!** | Sony KNEW backlash coming! Calculated decision! |
+| 🪓 **Next Kratos GoW Confirmed** | **🆕 LAUFEY → KRATOS!** | Barlog confirms direct connection! More Kratos games forever! |
+| 🕶️ **007 First Light Patch 1.1.0** | **23.84 GB PS5 PATCH!** | Fixes 200+ issues! New TacSim missions! |
+| ⚔️ **Wuchang: Fallen Feathers 5M Players** | **MILESTONE!** | Dev team disbanded! Digital Bros acquired IP! |
+| 🥊 **Marvel Tōkon Open Beta** | **⚠️ ENDED TODAY JUL 26!** | PC port issues! PS5 was fine! |
+
+### 📋 Updated Priority Lounge Actions (Jul 26 - 23:30 UTC):
+1. **🔴⚠️ Marvel Tōkon PC Beta Disaster — PS5 FINE!** If customers had bad beta experience, reassure them PS5 version is unaffected. PC port had optimization issues, not game quality issues.
+2. **🕶️⚠️ START 007 FIRST LIGHT 23.84 GB PATCH DOWNLOAD!** If installed on any lounge PS5 — still critical!
+3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 4 days away!
+4. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op!
+5. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 + Aug 28-Sep 1!** Pre-order for closed beta! Oct 23 launch!
+6. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027 + Next Kratos GoW!**
 
 ---
 
