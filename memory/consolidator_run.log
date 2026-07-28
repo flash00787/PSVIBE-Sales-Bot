@@ -1,2 +1,7 @@
-=== Consolidator Run: 2026-07-06 17:18 UTC ===
+=== Consolidator Run: 2026-07-28 02:28 UTC ===
+- *auto-bug* | `id:e8776368`
+- > **Bug detected:** [WARNING] response_spike: Response time 624.5ms is 8.3x baseline (74.9ms)
+
+---
+
 EXIT=0
