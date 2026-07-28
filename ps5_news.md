@@ -1,6 +1,98 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-27 23:30 UTC
+> Last updated: 2026-07-28 05:30 UTC
+
+---
+
+## ⚡ JULY 28 EARLY MORNING CHECK (July 28, 2026 - 05:30 UTC) — 📊 Steam H1 2026 Revenue Hits Record $11.1Bn! PlayStation & Xbox Both Struggling! + GTA 6 Pre-Orders Now LIVE with Vintage Vice City Bonus! + PS Plus August Games Expected Tomorrow! + Crimson Desert 1.13.00 Update!
+
+> **Summary:** Early morning sweep — ~6 hours since Jul 27 late night update. **🆕📊 Steam H1 2026 record revenue: $11.1Bn — highest ever! Nearly quintupled over a decade!** Key games: Forza Horizon 6 ($197.7M), Resident Evil Requiem ($194.5M), Crimson Desert ($190M). Meanwhile PlayStation and Xbox both struggling. **🆕 GTA 6 pre-orders are NOW officially live everywhere!** Pre-order bonus: Vintage Vice City pack (Vapid Stanier sedan, outfits for Jason & Lucia, weapon pattern). Standard $79.99/£69.99, Ultimate $99.99/£89.99. Physical edition = code-in-box (no disc). Pre-load from Nov 12, launch Nov 19. **⚠️ PS Plus August 2026 Essential games announcement expected tomorrow (Wed Jul 29)!** **🆕** Crimson Desert Update 1.13.00 live — 39+8 new equipment pieces, Oongka/Damiane can now enter Abyss, summoned pets sleep with you! All previously tracked data below remains current.
+
+### 📊🆕 Steam H1 2026 Revenue Hits Record $11.1Bn! PlayStation & Xbox Both Struggling! (Jul 28) 🆕
+
+- **Valve's Steam** recorded its **highest-ever half-year revenue: $11.1bn** in H1 2026, per Alinea Analytics
+- **Nearly quintupled** over the last decade compared to H1 2017
+- **Key drivers:** Chinese market dominance (50% of all Steam accounts Chinese-speaking), higher game prices, third-party publishers returning to Steam (Ubisoft abandoning own launcher)
+- **Biggest games on Steam H1 2026:**
+  - 🥇 **Forza Horizon 6** — $197.7M in under 2 months
+  - 🥈 **Resident Evil Requiem** — $194.5M (3.4M sales on Steam alone!)
+  - 🥉 **Crimson Desert** — $190M (brand new franchise!)
+  - **Slay the Spire 2** — $141.7M (indie)
+  - **Subnautica 2** — $133.6M (indie)
+- **Meanwhile PlayStation & Xbox are struggling:**
+  - **Microsoft gaming revenue down 7% YoY** — post-layoffs turmoil continues
+  - **PlayStation selling fewer exclusives** year over year since 2020
+  - **Both feeling the AI-fuelled RAM crisis** driving up hardware costs
+  - **Consumer sentiment tanked** after Sony's disc phaseout announcement (Jan 2028)
+  - **Sony reversed PC strategy** — no more single-player games on PC
+- **💡💡 LOUNGE CONTEXT:** The PC market is booming while console makers struggle. For PS VIBE, this means PlayStation needs to work HARDER to attract gamers — the lounge experience (social gaming, group play, tournament vibe) is exactly what can't be replicated on a solo PC setup at home. **The lounge's value proposition is stronger than ever** as consumers face rising console costs and digital-only uncertainty. ⭐⭐
+- Source: Eurogamer / Alinea Analytics (Jul 28, 2026)
+
+### 🎮🆕 GTA 6 Pre-Orders NOW LIVE! Vintage Vice City Pre-Order Bonus Revealed! (Jul 28) 🆕
+
+- **Rockstar has officially opened GTA 6 pre-orders** across all retailers!
+- **Pricing:** Standard Edition $79.99/£69.99, Ultimate Edition $99.99/£89.99
+- **Pre-order bonus (until Nov 20):** Vintage Vice City Pack
+  - '55 **Vapid Stanier** sedan + **Shore Court Garage**
+  - **Jason:** Linen suit in vintage pastel + period hairstyle
+  - **Lucia:** Red sequin mini dress + curls
+  - **Exclusive weapon pattern:** Tommy Vercetti's palm tree button-up pattern for guns
+  - Weapon locker for loadout customization + Fence for stolen goods
+- **Physical edition = code-in-box** (no disc — to prevent leaks)
+- **Pre-load:** November 12 (one week before launch)
+- **Sale confirmation:** Standard edition purchasers who pre-order between now and Nov 20 get the Vintage Vice City pack
+- **💡💡💡💡 LOUNGE ACTION:** GTA 6 pre-orders are NOW LIVE! **Boss should consider pre-ordering GTA 6 digitally** on at least 2-3 lounge PS5s from the PlayStation Store to avoid region-lock issues with physical codes. The Vintage Vice City pre-order bonus is time-limited (Nov 20 cutoff). ⭐⭐⭐⭐
+- Source: Eurogamer / Rockstar (Jul 28, 2026)
+
+### ⚠️🆕 PS Plus August 2026 Games — Announcement Expected Tomorrow (Wed Jul 29)! (Jul 28) 🆕
+
+- **PlayStation Plus Essential** August 2026 game lineup expected to be announced **tomorrow, Wednesday July 29** (last Wednesday of the month)
+- **What to watch for:** Could include major titles to boost subscriber sentiment amid disc phaseout backlash
+- **💡💡 LOUNGE NOTE:** If the August PS Plus titles include any multiplayer or co-op games, Boss should install them on lounge consoles immediately. Worth checking tomorrow's announcement!
+- Source: Standard PS Plus schedule timing (Jul 28, 2026)
+
+### ⚔️🆕 Crimson Desert Update 1.13.00 Now Live! New Equipment, Abyss Access for Oongka/Damiane! (Jul 28) 🆕
+
+- **Pearl Abyss** released **Crimson Desert Update 1.13.00** across all platforms
+- **New content:**
+  - **Oongka & Damiane** can now enter **the Abyss**
+  - **39 new equipment pieces** for Kliff/Oongka (including 5 boss armor sets)
+  - **8 new equipment pieces** for Damiane
+  - **New crafting recipes** for 4 types of carpets
+  - **'Hide Minimap and Status'** HUD option added
+  - **Summoned pets** now sleep with your character in bed!
+  - New **'Hunter's Sigil'** item for bird pets to retrieve prey
+  - Oongka can now equip most outfits available to Kliff
+  - Various **bug fixes and stability improvements**
+- **💡 LOUNGE NOTE:** Crimson Desert ($190M on Steam alone) remains one of 2026's biggest hits. If installed on lounge consoles, let the update download — the Abyss content and new equipment give returning players reasons to book sessions. ⭐
+- Source: Eurogamer / Pearl Abyss / Crimson Desert (Jul 28, 2026)
+
+### 📋 Quick Status Refresh (Jul 28 - 05:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📊 **Steam $11.1Bn H1 Record!** | **🆕 INDUSTRY CONTEXT!** | PS & Xbox struggling! PC booming! Lounge value proposition stronger! |
+| 🎮 **GTA 6 Pre-orders LIVE!** | **🆕 PRE-ORDER NOW!** | Vintage Vice City bonus! Standard $79.99! Ultimate $99.99! Code-in-box! |
+| ⚠️ **PS Plus August Announcement** | **🆕 TOMORROW! JUL 29!** | Last Wednesday of month! Watch for co-op/multiplayer titles! |
+| ⚔️ **Crimson Desert 1.13.00** | **🆕 UPDATE LIVE!** | 39+8 new equipment! Abyss for Oongka! Pets sleep with you! |
+| 🚨 **Xbox MAJOR OUTAGE!** | **✅ TRACKED** | Can't play ANY games! After PSN outage last week! |
+| 🎮 **Dan Houser Disc Stance** | **✅ TRACKED** | "If people want physical, companies should provide it" |
+| 🥊 **Marvel Tōkon: Magik #1!** | **✅ TRACKED** | Magik most popular in beta! Blade #2! Danger least! |
+| 🚨 **PSBlackout Protest Aug 23-30!** | **✅ TRACKED** | Conflicts with MW4 Beta! Monitor! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 JUL 30! 2 DAYS!** | Pre-load NOW! New Limit Breaker Journey solo mode! |
+| 👾 **Aliens: Fireteam Elite 2** | **🔥 AUG 25!** | 4-player co-op! Pre-order! |
+| 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Monitor blackout impact! |
+
+### 📋 Updated Priority Lounge Actions (Jul 28 - 05:30 UTC):
+1. **🛒🛒🛒 PRE-ORDER GTA 6 DIGITALLY** on at least 2-3 lounge PS5s from PlayStation Store! Vintage Vice City pre-order bonus ends Nov 20! Avoid region-lock code issues! ⭐⭐⭐⭐
+2. **⚠️ WATCH FOR PS PLUS AUGUST ANNOUNCEMENT TOMORROW (Jul 29)!** Install any multiplayer/co-op titles immediately! ⭐⭐⭐
+3. **🐉🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 2 DAYS AWAY! New Limit Breaker Journey solo mode! ⭐⭐⭐⭐
+4. **🚨🚨🚨 CRITICAL: XBOX OUTAGE PROVES THE RISK!** Test ALL lounge PS5s for FULL OFFLINE functionality! ⭐⭐⭐⭐⭐
+5. **🥊🔥🔥 Marvel Tōkon Beta Popularity Data — Magik #1!** Use in customer conversations! ⭐⭐
+6. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** ⭐⭐⭐⭐⭐
+7. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! ⭐⭐⭐⭐
+8. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 (closed) + Aug 28-Sep 1 (open)!** ⭐⭐⭐⭐
+9. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** ⭐⭐⭐⭐⭐
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
 ---
 
