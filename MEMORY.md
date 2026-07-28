@@ -100,6 +100,7 @@ Kora now manages **9 projects** with full coordination tool support.
 ### Most Recent Lessons (2026-07-27)
 | # | Lesson |
 |:-:|--------|
+| 208 | **_mysql_exec typo — deposit restore silently crashed** — `dashboard_routes.py:353` used `_mysql_exec` (not imported) instead of `_mysql_execute`. Deposit forfeit restore on rebook (cancelled→confirmed) threw NameError silently. Booking status changed successfully but deposit stayed forfeited. 3 bookings (BK#2083, 2084, 1898) affected, 13,000 Ks stuck. Fixed: s/_mysql_exec/_mysql_execute/. |
 | 207 | **Validation script cumulative comparison** — PNL endpoint with no params defaults to June 2026 (single month). When comparing BS Retained (all-time) vs PNL, must SUM all months explicitly using `?year=&month=` params. Don't trust "Cumulative" label on data that's only a single month. |
 | 201 | **Pending 15min deposit timeout** — Pending bookings without deposit auto-cancel after 15 min, freeing time slots. The available-slots query checks `status NOT IN ('cancelled','done','rejected')`, so pending WITHOUT deposit was blocking slots. Refs were cancelled and status changed to 'cancelled'. Runs alongside existing no-show cron. |
 | 206 | **PNL Discount bug — `SUM(gross - net)` includes deposit redemption** — Inflated discounts by 1.06M Ks. Fixed: use `SUM(discount)` column instead. Changed in finance_routes.py (balance endpoint line 509, PNL endpoint lines 540, 546). |
