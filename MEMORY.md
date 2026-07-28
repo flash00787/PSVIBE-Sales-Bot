@@ -380,3 +380,9 @@ Kora now manages **9 projects** with full coordination tool support.
 | # | Lesson |
 |:-:|--------|
 | — | No new lessons — all auto-bugs (cosmetic predictions + response spike warnings) |
+
+### New Lessons (2026-07-28)
+| # | Lesson |
+|:-:|--------|
+| 209 | **Gmail OAuth refresh token must be regularly re-authorized** — Refresh token expired/revoked ("invalid_grant") on 2026-07-28. Re-authorized via full OAuth flow and saved new token.json. Monitor for expiry pattern (~monthly). |
+| 210 | **Deposit Overview Net Position double-count** — `active_deposits_total` already excludes forfeited deposits (filtered by `deposit_status IN ('paid','verified')`), so subtracting `this_month_forfeited` again = double-count. Fixed by removing the subtraction. |

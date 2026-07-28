@@ -1,12 +1,12 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-28 05:30 UTC
+> Last updated: 2026-07-28 11:30 UTC
 
 ---
 
 ## ⚡ JULY 28 EARLY MORNING CHECK (July 28, 2026 - 05:30 UTC) — 📊 Steam H1 2026 Revenue Hits Record $11.1Bn! PlayStation & Xbox Both Struggling! + GTA 6 Pre-Orders Now LIVE with Vintage Vice City Bonus! + PS Plus August Games Expected Tomorrow! + Crimson Desert 1.13.00 Update!
 
-> **Summary:** Early morning sweep — ~6 hours since Jul 27 late night update. **🆕📊 Steam H1 2026 record revenue: $11.1Bn — highest ever! Nearly quintupled over a decade!** Key games: Forza Horizon 6 ($197.7M), Resident Evil Requiem ($194.5M), Crimson Desert ($190M). Meanwhile PlayStation and Xbox both struggling. **🆕 GTA 6 pre-orders are NOW officially live everywhere!** Pre-order bonus: Vintage Vice City pack (Vapid Stanier sedan, outfits for Jason & Lucia, weapon pattern). Standard $79.99/£69.99, Ultimate $99.99/£89.99. Physical edition = code-in-box (no disc). Pre-load from Nov 12, launch Nov 19. **⚠️ PS Plus August 2026 Essential games announcement expected tomorrow (Wed Jul 29)!** **🆕** Crimson Desert Update 1.13.00 live — 39+8 new equipment pieces, Oongka/Damiane can now enter Abyss, summoned pets sleep with you! All previously tracked data below remains current.
+> **Summary:** Early morning sweep — ~6 hours since Jul 27 late night update. **🆕📊 Steam H1 2026 record revenue: $11.1Bn — highest ever! Nearly quintupled over a decade!** Key games: Forza Horizon 6 ($197.7M), Resident Evil Requiem ($194.5M), Crimson Desert ($190M). Meanwhile PlayStation and Xbox both struggling. **🆕 GTA 6 pre-orders are NOW officially live everywhere!** Pre-order bonus: Vintage Vice City pack (Vapid Stanier sedan, outfits for Jason & Lucia, weapon pattern). Standard $79.99/£69.99, Ultimate $99.99/£89.99. Physical edition = code-in-box (no disc). Pre-load from Nov 12, launch Nov 19. **⚠️ PS Plus August 2026 Essential games announcement expected tomorrow (Wed Jul 29)!** **🆕** Crimson Desert Update 1.13.00 live — 39+8 new equipment pieces, Oongka/Damiane can now enter Abyss, summoned pets sleep with you! **🆕🆕 MIDDAY UPDATE: Capcom Q1 2026 Results — Pragmata 2.5M, RE Requiem 8M! + Xbox CTO Explains Outage Cause!** All previously tracked data below remains current.
 
 ### 📊🆕 Steam H1 2026 Revenue Hits Record $11.1Bn! PlayStation & Xbox Both Struggling! (Jul 28) 🆕
 
@@ -67,10 +67,40 @@
 - **💡 LOUNGE NOTE:** Crimson Desert ($190M on Steam alone) remains one of 2026's biggest hits. If installed on lounge consoles, let the update download — the Abyss content and new equipment give returning players reasons to book sessions. ⭐
 - Source: Eurogamer / Pearl Abyss / Crimson Desert (Jul 28, 2026)
 
+### 🏢🆕 MIDDAY UPDATE: Capcom Q1 2026 Financial Results! Pragmata 2.5M, RE Requiem 8M! + Xbox CTO Explains Outage Cause! (Jul 28 - 11:30 UTC) 🆕
+
+### 🏢🆕 Capcom Q1 2026 — Pragmata Sells 2.5M Units! Resident Evil Requiem Passes 8M! Monster Hunter 131M Lifetime! (Jul 28) 🆕
+
+- **Capcom's Q1 2026 financial report** released today (Jul 28) reveals strong performance for two PS5 titles
+- **Pragmata** (launched April 2026) has sold **over 2.5 million copies** — Capcom says it "performed well" with "robust promotional activities" building a strong fanbase
+- **Resident Evil Requiem** (launched February 2026) has now **passed 8 million sales worldwide** — continuing its momentum months after launch
+- **Lifetime series sales milestones:**
+  - 🌟 **Resident Evil** — 213M (crown jewel series)
+  - 🦖 **Monster Hunter** — 131M
+  - 🥊 **Street Fighter** — 60M
+- **Context:** Pragmata is a brand-new IP on PS5 — 2.5M in ~3 months is strong for a new franchise. RE Requiem continues to be one of 2026's biggest games ($194.5M on Steam alone per earlier report)
+- **Coming next:** Onimusha: Way of the Sword release date approaching
+- **💡💡💡 LOUNGE NOTE:** Pragmata at 2.5M and RE Requiem at 8M = both are proven hits worth having on lounge consoles. RE Requiem in particular is one of the year's biggest games — if not installed, add it. Capcom is on an absolute tear — even their new IPs are hitting big numbers. ⭐⭐⭐
+- Source: Eurogamer / Capcom IR (Jul 28, 2026)
+
+### ☁️🆕 Xbox CTO Scott Van Vliet Explains What Caused the Major Outage! Promises Changes! (Jul 28) 🆕
+
+- **Xbox CTO Scott Van Vliet** posted a lengthy explanation on X/Twitter about the Jul 27 Xbox outage
+- **Root cause:** "A licensing service that sits outside of Xbox, but which Xbox depends upon" — when this service failed, it caused sign-in failures AND blocked entitlement checks for ALL games (including disc-based)
+- **Restoration:** Services restored at 2:30pm PT (Jul 27) — full post-incident review ongoing
+- **CTO's key questions:** "Why a failure in one service was able to take down this much, why recovery took as long as it did, and what we change so a single point of failure can't ruin your night again"
+- **Action plan:** Hardening dependencies under sign-in/game launch, improving detection/containment, faster/clearer communication when things break
+- **Transparency promise:** More posts coming about Xbox services, platform, and improvements
+- **Context:** This comes just days after PSN also suffered a major outage (Jul 24) — both major console networks failing within the same week
+- **💡💡💡💡 LOUNGE NOTE:** The Xbox CTO's admission that "a SINGLE point of failure" in an external licensing service could take down the ENTIRE platform — including disc-based games — is a POWERFUL cautionary tale for the lounge. Sony's architecture has similar dependencies. **This reinforces the #1 lounge priority: ensure ALL PS5s have games that work fully offline!** PSN → offline backup → stable sessions. ⭐⭐⭐⭐
+- Source: Eurogamer / Scott Van Vliet on X (Jul 28, 2026)
+
 ### 📋 Quick Status Refresh (Jul 28 - 05:30 UTC):
 | Topic | Status | Notes |
 |-------|--------|-------|
 | 📊 **Steam $11.1Bn H1 Record!** | **🆕 INDUSTRY CONTEXT!** | PS & Xbox struggling! PC booming! Lounge value proposition stronger! |
+| 🏢 **Capcom Q1 2026 Results!** | **🆕 MIDDAY UPDATE!** | Pragmata 2.5M! RE Requiem 8M! MH 131M lifetime! Capcom killing it! |
+| ☁️ **Xbox CTO Outage Explanation** | **🆕 CAUSE REVEALED!** | "External licensing service" single point of failure! Full review ongoing! Stronger offline contingency lesson! |
 | 🎮 **GTA 6 Pre-orders LIVE!** | **🆕 PRE-ORDER NOW!** | Vintage Vice City bonus! Standard $79.99! Ultimate $99.99! Code-in-box! |
 | ⚠️ **PS Plus August Announcement** | **🆕 TOMORROW! JUL 29!** | Last Wednesday of month! Watch for co-op/multiplayer titles! |
 | ⚔️ **Crimson Desert 1.13.00** | **🆕 UPDATE LIVE!** | 39+8 new equipment! Abyss for Oongka! Pets sleep with you! |
