@@ -1,6 +1,78 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-28 11:30 UTC
+> Last updated: 2026-07-28 17:31 UTC
+
+---
+
+## ⚡ JULY 28 EVENING CHECK (July 28, 2026 - 17:31 UTC) — 🎮 PS Plus August Games ANNOUNCED EARLY! Dying Light 2 Reloaded (4-Player Co-op!), Big Walk & Signalis! + PS Plus MARVEL Tōkon Pack! + Ball x Pit Final Update Aug 6! + Flamecraft Demo Out Now!
+
+> **Summary:** Evening sweep — ~6 hours since early morning update. **🆕🎮 PS Plus August Monthly Games announced EARLY (today instead of tomorrow)!** Lineup: **Dying Light 2 Stay Human: Reloaded Edition** (PS4/PS5 — **4-player co-op!** ), **Big Walk** (PS5 — cooperative multiplayer adventure), **Signalis** (PS4 — psychological survival horror). Available **Aug 4 to Aug 31**. **🆕** Plus: **MARVEL Tōkon: Fighting Souls PlayStation Plus Pack** coming Aug 6 (5 avatars + 20 Result Screen Character Poses!). **🆕** **Ball x Pit** final update 'The Naturalist' arrives Aug 6! **🆕** **Flamecraft** coming to PS5 this year, **demo available today!** All previously tracked data below remains current.
+
+### 🎮🆕 PS Plus August 2026 Monthly Games ANNOUNCED! Dying Light 2 Reloaded Edition (4-Player Co-op!), Big Walk, Signalis! (Jul 28) 🆕
+
+- **Sony announced** the **PlayStation Plus August 2026 Monthly Games** today (Jul 28) — earlier than the expected Wednesday Jul 29 announcement!
+- **Lineup (Aug 4 - Aug 31):**
+  1. 🥇 **Dying Light 2 Stay Human: Reloaded Edition** (PS4/PS5) — Post-apocalyptic survival action-adventure with **up to 4-player co-op**! Play as Aiden Caldwell, fight zombies and rival factions, make choices that shape the city. Excellent for lounge groups!
+  2. **Big Walk** (PS5) — Cooperative multiplayer adventure about teamwork and talking. Open world full of challenges, puzzles, and discoveries. Requires communication tools — great for friends!
+  3. **Signalis** (PS4) — Classic psychological survival horror. Surreal retrotech world, cosmic dread, nightmarish creatures. Single-player only.
+- **💡💡💡💡💡 CRITICAL LOUNGE ACTION: Dying Light 2 Reloaded Edition is a HUGE win for the lounge!** It has **4-player co-op** — perfect for group sessions! PUBG-like zombie survival with parkour. **Install on ALL lounge consoles immediately on Aug 4!** ⭐⭐⭐⭐⭐
+- **💡💡 Big Walk** is also a co-op title — smaller indie but great for casual group play. Worth installing on 1-2 consoles. ⭐⭐
+- **📅 Note:** Announcement came a day early vs the expected Jul 29 date — Sony moved it up!
+- Source: PlayStation Blog (Jul 28, 2026)
+
+### 🦸🆕 MARVEL Tōkon: Fighting Souls PlayStation Plus Pack — Coming August 6! (Jul 28) 🆕
+
+- **Starting August 6**, all PS Plus members can claim a **MARVEL Tōkon: Fighting Souls PlayStation Plus Pack** from PlayStation Store
+- **Contents:**
+  - **5 Avatars:** Captain America, Storm, Spider-Man, Doctor Doom, Ghost Rider
+  - **20 Result Screen Character Poses:** Spider-Man, Ms. Marvel, Star-Lord, Peni Parker and more
+- **Availability:** Until August 6, 2027 (one full year)
+- **💡 LOUNGE NOTE:** If Boss has any PS Plus accounts on lounge consoles, claim this pack for in-game cosmetics. Not critical but nice for customers who enjoy Marvel Tōkon. ⭐
+- Source: PlayStation Blog (Jul 28, 2026)
+
+### ⚪🆕 Ball x Pit Final Update 'The Naturalist' — Arrives August 6! (Jul 28) 🆕
+
+- **Ball x Pit** (physics-based platformer) gets its **final update** 'The Naturalist' on August 6
+- New content including naturalist theme additions
+- Developer Kenny Sun announces this is the final update
+- **💡 Lounge Note:** Niche indie title — not a priority for lounge installs. ⭐
+- Source: PlayStation Blog (Jul 28, 2026)
+
+### 🐉🆕 Flamecraft Coming to PS5 — Demo Available Today! (Jul 28) 🆕
+
+- **Flamecraft** (cozy artisan fantasy game about dragon chefs) announced for PS5 release later this year
+- **Demo available NOW** on PlayStation Store!
+- Developed by Monster Couch
+- **💡 Lounge Note:** Cute casual game — potentially good for relaxed/cozy gaming sessions if popular. Demo worth checking. ⭐
+- Source: PlayStation Blog (Jul 28, 2026)
+
+### 📋 Quick Status Refresh (Jul 28 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮 **PS Plus August Games Announced!** | **🆕 ANNOUNCED EARLY!** | Dying Light 2 Reloaded (4P co-op!), Big Walk, Signalis! Install Aug 4! |
+| 🦸 **Marvel Tōkon PS Plus Pack** | **🆕 AUG 6!** | 5 avatars + 20 poses! Claim on lounge accounts! |
+| ⚪ **Ball x Pit Final Update** | **🆕 AUG 6!** | 'The Naturalist' — final update! |
+| 🐉 **Flamecraft PS5 + Demo** | **🆕 DEMO OUT NOW!** | Cozy dragon chef game! Full release later 2026! |
+| 📊 **Steam $11.1Bn H1 Record!** | **✅ TRACKED** | PS & Xbox struggling! PC booming! Lounge value stronger! |
+| 🏢 **Capcom Q1 2026 Results!** | **✅ TRACKED** | Pragmata 2.5M! RE Requiem 8M! |
+| ☁️ **Xbox CTO Outage Explanation** | **✅ TRACKED** | Single point of failure! Offline lesson! |
+| 🎮 **GTA 6 Pre-orders LIVE!** | **✅ TRACKED** | Vintage Vice City bonus! Pre-order digitally! |
+| ⚔️ **Crimson Desert 1.13.00** | **✅ TRACKED** | 39+8 new equipment! Abyss for Oongka! |
+| 🚨 **Xbox MAJOR OUTAGE!** | **✅ TRACKED** | Can't play ANY games! |
+| 🚨 **PSBlackout Protest Aug 23-30!** | **✅ TRACKED** | Conflicts with MW4 Beta! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 JUL 30! 2 DAYS!** | Pre-load NOW! |
+
+### 📋 Updated Priority Lounge Actions (Jul 28 - 17:31 UTC):
+1. **🛒🛒🛒🛒 INSTALL DYING LIGHT 2 RELOADED ON ALL CONSOLES ON AUG 4!** Free on PS Plus! 4-player co-op zombie survival = perfect lounge game! **HUGE VALUE!** ⭐⭐⭐⭐⭐
+2. **🛒🛒🛒 PRE-ORDER GTA 6 DIGITALLY** on at least 2-3 lounge PS5s! Vintage Vice City bonus ends Nov 20! ⭐⭐⭐⭐
+3. **🐉🔥🔥 PRE-LOAD Dragon Ball: Sparking Zero Neo DLC by Jul 30!** 2 DAYS AWAY! ⭐⭐⭐⭐
+4. **🎮✅ CLAIM Marvel Tōkon PS Plus Pack on Aug 6!** Free avatars + poses! ⭐
+5. **🚨🚨🚨 CRITICAL: Test ALL lounge PS5s for OFFLINE functionality!** ⭐⭐⭐⭐⭐
+6. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** ⭐⭐⭐⭐⭐
+7. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! ⭐⭐⭐⭐
+8. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 + Aug 28-Sep 1!** ⭐⭐⭐⭐
+9. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** ⭐⭐⭐⭐⭐
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
 ---
 
