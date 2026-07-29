@@ -1,15 +1,11 @@
 {
-  "checked_at": "2026-07-28T13:33:20.822962+00:00",
-  "status": "TOKEN_EXPIRED",
-  "error": "refresh_token invalid_grant - Gmail OAuth token needs re-authentication",
-  "total": 0,
-  "unread": 0,
-  "promo_skipped": 0,
-  "nova_count": 0,
-  "wallet_count": 0,
-  "important_count": 0,
-  "nova_emails": [],
-  "wallet_emails": [],
-  "important_emails": [],
-  "result": "TOKEN_EXPIRED"
+  "checked_at": "2026-07-29T13:32:43.574233+00:00",
+  "source": "evening_cron_api",
+  "total": 37,
+  "unread": 30,
+  "promo_skipped": 12,
+  "nova_found": 0,
+  "important_found": 2,
+  "result": "IMPORTANT_FOUND",
+  "summary": "Evening check complete. No Nova wallet handover reply. Notable: AYA Bank 30,000,000 MMK received from Kay Thwe Oo (today). Also Coco construction bot confirmation (already handled)."
 }

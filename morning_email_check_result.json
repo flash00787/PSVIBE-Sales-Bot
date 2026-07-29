@@ -1,10 +1,135 @@
 {
-  "checked_at": "2026-07-25T01:31:00+00:00",
-  "source": "morning_cron_imap",
-  "total_processed": 18,
-  "promo_skipped": 6,
-  "nova_found": 0,
-  "important_found": 3,
-  "result": "NO_URGENT",
-  "summary": "Morning check complete. No Nova wallet handover reply found. 3 important (AYA transfer notification already known, 2 OpenRouter receipts)."
+  "checked_at": "2026-07-29T13:32:43.574233+00:00",
+  "total": 37,
+  "unread": 30,
+  "promo": 12,
+  "nova": 0,
+  "important": 2,
+  "normal": 25,
+  "nova_emails": [],
+  "important_emails": [
+    {
+      "id": "19fac9f42dc9cf27",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Received Money",
+      "date": "Wed, 29 Jul 2026 06:45:45 +0000",
+      "unread": true,
+      "snippet": "Hello, AUNG CHAN MYINT You recieved 30000000 MMK From KAY THWE OO This transaction was made on AYA mBanking. Order for Payment Transfer to other AYA A",
+      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou recieved 30,000,000 MMK From KAY THWE OO\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nTransfer to other AYA Account\r\nTransaction No.\r\n270652544124\r\nTransaction Date\r\n29 Jul 2026 01:15 PM\r\nSend From\r\nAccount Holder Name\r\nKAY THWE OO\r\nAccount Number\r\n40036114975\r\nBranch Code\r\n0043 0043-Ygn (9) North Okkalapa\r\nReceiver Details\r\nAccount Holder Name\r\nAUN",
+      "keywords": [
+        "payment",
+        "account"
+      ]
+    },
+    {
+      "id": "19fa7d18a4b2d4a4",
+      "from": "chanmyint123456789@gmail.com",
+      "subject": "Re: [Coco] Construction Bot - Timber Material Added - Restart Needed",
+      "date": "Tue, 28 Jul 2026 03:22:35 -0500",
+      "unread": false,
+      "snippet": "Hi Coco, Thank you for adding Timber to the MATERIAL_TYPES array. \u2705 Timber confirmed in /opt/construction-bot/bot.js \u2705 Bot restarted successfully on T",
+      "body_preview": "Hi Coco,\n\nThank you for adding Timber to the MATERIAL_TYPES array.\n\n\u2705 Timber confirmed in /opt/construction-bot/bot.js\n\u2705 Bot restarted successfully on Three Brothers server\n\u2705 Bot is running and fetching data from Google Sheets normally\n\nEverything is working as expected!\n\nBest regards,\nKora\n(Ko Aung Chan Myint's Personal AI Assistant)",
+      "keywords": [
+        "confirm"
+      ]
+    }
+  ],
+  "promo_emails": [
+    {
+      "id": "19fad9d6a888e63d",
+      "from": "MyClaw Newsletter <newsletter@myclaw.ai>",
+      "subject": "\ud83e\udd9e Groceries Earn AI Agent Trust",
+      "date": "Wed, 29 Jul 2026 19:02:37 +0800 (CST)",
+      "unread": true,
+      "snippet": "Plus: Agent Swarms Hit Friction, OpenAI Agent Strikes Again \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f ",
+      "body_preview": "<!doctype html>\r\n<html lang=\"en-gb\" dir=\"ltr\">\r\n <head>\r\n  <meta name=\"viewport\" content=\"width=device-width\">\r\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->\r\n  <title>\ud83e\udd9e Groceries Earn AI Agent Trust</title>\r\n  <style>\r\n@media only scre"
+    },
+    {
+      "id": "19facd175791ea15",
+      "from": "Myanmar Airways International <marketing@maiair.com>",
+      "subject": "\ud835\udc04\ud835\udc31\ud835\udc1c\ud835\udc25\ud835\udc2e\ud835\udc2c\ud835\udc22\ud835\udc2f\ud835\udc1e \ud835\udc0e\ud835\udc1f\ud835\udc1f\ud835\udc1e\ud835\udc2b \ud835\udc09\ud835\udc2e\ud835\udc2c\ud835\udc2d \ud835\udc1f\ud835\udc28\ud835\udc2b \ud835\udc18\ud835\udc28\ud835\udc2e! \ud835\udc12\ud835\udc1e\ud835\udc1c\ud835\udc2e\ud835\udc2b\ud835\udc1e \ud835\udc18\ud835\udc28\ud835\udc2e\ud835\udc2b \ud835\udc13\ud835\udc22\ud835\udc1c\ud835\udc24\ud835\udc1e\ud835\udc2d \ud835\udc13\ud835\udc28\ud835\udc1d\ud835\udc1a\ud835\udc32",
+      "date": "Wed, 29 Jul 2026 07:40:05 +0000",
+      "unread": true,
+      "snippet": "Book now and enjoy special fares with MAI&#39;s Monsoon Specials. \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c \u034f \u200c ",
+      "body_preview": "https://maiair.com?utm_source=Myanmar+Airways+International&utm_campaign=cc5f548cca-EMAIL_CAMPAIGN_2026_07_28_08_40&utm_medium=email&utm_term=0_-cc5f548cca-604710636\r\nhttps://maiair.com?utm_source=Myanmar+Airways+International&utm_campaign=cc5f548cca-EMAIL_CAMPAIGN_2026_07_28_08_40&utm_medium=email&utm_term=0_-cc5f548cca-604710636\r\n\r\n\r\n** Save More & Travel More\r\n----------------------------------"
+    },
+    {
+      "id": "19fabbd2ac5c8587",
+      "from": "\"Trip.com\" <Trip.com@newsletter.trip.com>",
+      "subject": "Fly to Canada for $99 RT with WestJet",
+      "date": "Wed, 29 Jul 2026 02:38:48 +0000",
+      "unread": true,
+      "snippet": "Flash sale available now\u2014book before seats are gone Flights Hotels Trains Attractions &amp; Tours Fly to Canada for Less Enjoy round-trip flights to C",
+      "body_preview": ""
+    },
+    {
+      "id": "19fa9a956f22fcbf",
+      "from": "Google Health <google-health-noreply@google.com>",
+      "subject": "Your weekly progress report from Google Health",
+      "date": "Tue, 28 Jul 2026 09:57:54 -0700",
+      "unread": true,
+      "snippet": "Google Health Google Health Weekly stats Hi, Aung Chan M.! Here are your stats for Jul 18 - Jul 24 Sun Mon Tue Wed Thu Best day! 3604 Sat 17978 total ",
+      "body_preview": "Google Health Google Health\r\n\r\n\r\nWeekly stats\r\n\r\n\r\n\r\n\r\n\r\n\r\nUser avatar\r\n\r\n\r\nHi, Aung Chan M.!\r\n\r\n\r\n\r\nHere are your stats for Jul 18 - Jul 24\r\n\r\n\r\n\r\n\r\n\r\n\r\nGoal percentage Goal percentage Goal percentage Goal percentage Goal  \r\npercentage Best day Goal percentage\r\n\r\nSun Mon Tue Wed Thu Best day!\r\n3,604 Sat\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n17,978\r\n\r\ntotal steps\r\n\r\n\r\n\r\n\r\nbest day Best day \u00b7 3,604\r\n\r\nhourly activity Avg"
+    },
+    {
+      "id": "19fa99b17fbf2ca4",
+      "from": "Google Play <googleplay-noreply@google.com>",
+      "subject": "Backup payment method used on 28 Jul 2026 for Spotify: Music and Podcasts | Your Google Play order receipt",
+      "date": "Tue, 28 Jul 2026 09:42:20 -0700",
+      "unread": true,
+      "snippet": "Google Play Thank you Hello Aung Chan, We weren&#39;t able to use the Mastercard-9083 associated with your Premium Individual (Spotify: Music and Podc",
+      "body_preview": "Google Play\r\n\r\n\r\nThank you\r\n\r\n\r\nHello Aung Chan,\r\n\r\nWe weren't able to use the Mastercard-9083 associated with your Premium  \r\nIndividual (Spotify: Music and Podcasts) subscription.\r\n\r\nBecause you turned on backup payment methods, we charged your Visa-3567  \r\ninstead. You can review and update your backup payment methods at any time.  \r\nManage now\r\n\r\nIf you prefer to keep using your selected prima"
+    }
+  ],
+  "normal_emails": [
+    {
+      "id": "19fac9f42dc9cf27",
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Received Money",
+      "date": "Wed, 29 Jul 2026 06:45:45 +0000",
+      "unread": true,
+      "snippet": "Hello, AUNG CHAN MYINT You recieved 30000000 MMK From KAY THWE OO This transaction was made on AYA mBanking. Order for Payment Transfer to other AYA A",
+      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou recieved 30,000,000 MMK From KAY THWE OO\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nTransfer to other AYA Account\r\nTransaction No.\r\n270652544124\r\nTransaction Date\r\n29 Jul 2026 01:15 PM\r\nSend From\r\nAccount Holder Name\r\nKAY THWE OO\r\nAccount Number\r\n40036114975\r\nBranch Code\r\n0043 0043-Ygn (9) North Okkalapa\r\nReceiver Details\r\nAccount Holder Name\r\nAUN",
+      "keywords": [
+        "payment",
+        "account"
+      ]
+    },
+    {
+      "id": "19fabf0083ae300f",
+      "from": "Cloudflare <em@em1.cloudflare.com>",
+      "subject": "Architecting AI for Production | Connect 2026",
+      "date": "Wed, 29 Jul 2026 03:34:21 +0000",
+      "unread": true,
+      "snippet": "Hear from engineering teams at Ramp, Runway, Discord and more. The agenda for Cloudflare Connect 2026 is almost locked in. Connect Header Hear directl",
+      "body_preview": "Connect 2026_Email #6_Persona 4: Developers Hear from engineering teams at \nRamp, Runway, Discord and more. The agenda for Cloudflare Connect 2026 is \nalmost locked in. \n\n\n\n\n\n\n \n<https://www.cloudflare.com/connect/?utm_medium=email&utm_source=promo&utm_campaign=2026-fy-bnd-gbl-connectivity-ge-he-general-connectsf&utm_content=developer-agenda>\n\n\n\n\nHear directly from the engineering teams shipping c"
+    },
+    {
+      "id": "19faaa92e4ccffb6",
+      "from": "MEXC <news@info.mexc.com>",
+      "subject": "MUUSDT Reaches 823.23! Claim Your Free $250 Position Airdrop",
+      "date": "Wed, 29 Jul 2026 03:53:27 +0800 (CST)",
+      "unread": true,
+      "snippet": "Your $250 position airdrop is waiting Unlock Your Exclusive Rewards Now Start winning with a $250 position airdrop! Claim Now Exclusive Perks We&#39;v",
+      "body_preview": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n <head> \r\n  <style> * { margin: 0; padding: 0; box-sizing: border-box; } </style> \r\n  <meta charset=\"UTF-8\" /> \r\n  <title></title> \r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0;\" /> \r\n </head> \r\n <body>\r\n  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> \r\n   <tbody> \r\n    <tr> \r\n     <td height=\"0\" style=\"font-size:0px; line-height:0p"
+    },
+    {
+      "id": "19fa9d8ff8400ec7",
+      "from": "MEXC <news@info.mexc.com>",
+      "subject": "ETHUSDT Reaches 1,877.39! Claim Your Free $250 Position Airdrop",
+      "date": "Wed, 29 Jul 2026 00:55:39 +0800 (CST)",
+      "unread": true,
+      "snippet": "Your $250 position airdrop is waiting Unlock Your Exclusive Rewards Now Start winning with a $250 position airdrop! Claim Now Exclusive Perks We&#39;v",
+      "body_preview": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n <head> \r\n  <style> * { margin: 0; padding: 0; box-sizing: border-box; } </style> \r\n  <meta charset=\"UTF-8\" /> \r\n  <title></title> \r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0;\" /> \r\n </head> \r\n <body>\r\n  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> \r\n   <tbody> \r\n    <tr> \r\n     <td height=\"0\" style=\"font-size:0px; line-height:0p"
+    },
+    {
+      "id": "19fa9d48218fba60",
+      "from": "MEXC <news@info.mexc.com>",
+      "subject": "ETHUSDT Reaches 1,877.39! Claim Your Free $250 Position Airdrop",
+      "date": "Wed, 29 Jul 2026 00:36:45 +0800 (CST)",
+      "unread": true,
+      "snippet": "Your $250 position airdrop is waiting Unlock Your Exclusive Rewards Now Start winning with a $250 position airdrop! Claim Now Exclusive Perks We&#39;v",
+      "body_preview": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n <head> \r\n  <style> * { margin: 0; padding: 0; box-sizing: border-box; } </style> \r\n  <meta charset=\"UTF-8\" /> \r\n  <title></title> \r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0;\" /> \r\n </head> \r\n <body>\r\n  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> \r\n   <tbody> \r\n    <tr> \r\n     <td height=\"0\" style=\"font-size:0px; line-height:0p"
+    }
+  ]
 }
