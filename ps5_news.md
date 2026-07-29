@@ -1,6 +1,6 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-28 17:31 UTC
+> Last updated: 2026-07-29 11:30 UTC
 
 ---
 
@@ -6969,4 +6969,102 @@ Leaving the Extra/Premium Game Catalog on July 21:
 2. **🗣️🔥 USE DAN HOUSER'S COMMENTS in customer conversations** about GTA 6 being digital-only — even the GTA creator says physical media should be provided! Good talking point for customers questioning the digital-only GTA 6 launch! ⭐⭐
 3. **🥊💬 Marvel Tōkon Magik popularity — good conversation starter** for fighting game customers at the lounge this week! "Did you know Magik was the most popular character in the beta?" ⭐⭐
 4. **🎮✅ All previously tracked items remain current** — DBZ Sparking Zero Neo DLC (Jul 30), Aliens: Fireteam Elite 2 (Aug 25), MW4 Beta (Aug 21-Sep 1), Summer Sale (ends Aug 12), GTA 6 (Nov 19), God of War Laufey (Feb 16, 2027)!
+
+---
+
+## ⚡ JULY 29 MIDDAY CHECK (July 29, 2026 - 11:30 UTC) — 🆕 MH Wilds Patch 1.042 Makes Event Quests OFFLINE! + Pragmata Sequel CONFIRMED Likely! + Silent Hill Townfall Hands-On! + EA CEO $38.7M Bonus Amid Layoffs!
+
+> **Summary:** Midday sweep — ~18 hours since Jul 28 evening update. **🆕🔥 Monster Hunter Wilds Patch 1.042 (Aug 4) makes ALL 25 Event & Challenge Quests playable OFFLINE!** Critical for lounge ops given recent PSN/Xbox outages! Also: permanent price reduction Aug 6! **🆕 Capcom confirms Pragmata sequel is highly likely** — 2.5M sales exceeded expectations! Stock rose 19%! **🆕** Silent Hill: Townfall hands-on preview on PlayStation Blog! **🆕** EA CEO Andrew Wilson got $38.7M bonus after laying off Battlefield devs — industry controversy. **🆕** Double Fine hit with layoffs after exiting Xbox. **🆕** New Far Cry 'Kodiak' in development at Vantage Studios (AC Black Flag team). All previously tracked data below remains current.
+
+### 🎮🆕 CRITICAL: Monster Hunter Wilds Patch 1.042 — ALL Event & Challenge Quests Now Playable OFFLINE! (Jul 29) 🆕🔥
+
+- **Capcom announced** Monster Hunter Wilds **Patch 1.042** arriving **August 4** — and the headline feature is HUGE for lounge operations
+- **All 25 Event and Challenge Quests** that previously **REQUIRED an online connection** will now be **playable OFFLINE**! No PSN required to access weekly rotating content!
+- Event Quests are MH Wilds' live service content — rotating weekly with unique monster encounters and coveted gear/upgrade rewards
+- **Not changing:** Quests still rotate weekly — old ones cycle out, new ones come in. Everything always returns to rotation eventually.
+- **New quest added:** 'Just What the Doctor Ordered' quest also playable offline
+- **Also:** Prologue Demo save data transfer support included
+- **Permanent price reduction** on Monster Hunter Wilds — **August 6**! New editions consolidating add-ons!
+- **Context:** MH Wilds has had a bumpy ride — Mixed Steam reviews, lost players faster than any previous MH game post-launch. Capcom working hard to rebuild player sentiment ahead of **Ascendance expansion (2027)**
+- **💡💡💡💡💡💡 CRITICAL LOUNGE VALUE — OFFLINE CONTINGENCY GOLD!** This is DIRECTLY relevant to the lounge's offline contingency planning! After PSN outage (Jul 24) and Xbox outage (Jul 27) proved server failures can ruin sessions, **Monster Hunter Wilds is now FULLY playable offline including its event content!** If installed on lounge consoles, customers can enjoy even the rotating event quests without any internet dependency. **RECOMMEND: Install MH Wilds on at least 1-2 lounge consoles and grab the permanent price cut on Aug 6!** ⭐⭐⭐⭐⭐
+- Source: Eurogamer / Capcom (Jul 29, 2026)
+
+### 🏢🆕 Capcom: Pragmata Sequel is HIGHLY LIKELY! Stock Soars 19% on Record Quarter! (Jul 29) 🆕
+
+- **Capcom corporate officer Yoshikazu Shimauchi** stated that Pragmata's momentum "exceeded the company's internal expectations" and **"the likelihood of a sequel is high"** per Bloomberg
+- **Key factors:** Pre-release marketing success + **"the appeal of Pragmata's main character, Diana"** driving sales in local and international markets
+- **Capcom stock rose ~19%** after reporting operating profit of ¥41.1bn ($251M) for the quarter ended June
+- **Strong catalog sales** and "new title performance led to YoY growth in unit sales"
+- Pragmata at **2.5M sales** (~3 months after April 2026 launch) — strong for a brand-new IP
+- This follows earlier hints — director Yonghee Cho said in May he'd "of course" love a sequel
+- **💡💡 LOUNGE VALUE:** Pragmata is confirmed as a growing franchise on PS5. A sequel means continued PS5 relevance. If Boss hasn't installed Pragmata on lounge consoles yet, 2.5M sales suggest strong customer interest — worth adding. Capcom on a massive winning streak (Pragmata, RE Requiem, MH series). ⭐⭐
+- Source: Eurogamer / Bloomberg (Jul 29, 2026)
+
+### 🏚️🆕 Silent Hill: Townfall — First Hands-On Preview Published on PS Blog! (Jul 29) 🆕
+
+- **PlayStation Blog** published a **hands-on report** for **Silent Hill: Townfall** today
+- **Key takeaway:** "Sneaking and hiding are as important to survival as combat in this frightening, foggy town"
+- **Release date:** September 24, 2026 — coming to PS5 and PC
+- Written by PlayStation Blog contributor Phil Hornshaw
+- Follows Silent Hill f's critical acclaim — franchise revival continues strong
+- **💡 LOUNGE NOTE:** Townfall (Sept 24) is next month! Good for horror-themed lounge nights. Install on at least 1-2 consoles for Halloween season. ⭐⭐
+- Source: PlayStation Blog (Jul 29, 2026)
+
+### 💰🆕 EA CEO Andrew Wilson Got $38.7M Bonus After Laying Off Battlefield Devs — Industry Controversy! (Jul 29) 🆕
+
+- **EA's 10K report** reveals CEO Andrew Wilson received **$38,694,984 in stock awards and bonus payments** for FY2026
+- **Battlefield 6** "achieved meeting all milestones for a high-quality launch" — cited as key reason for executive bonuses
+- **CONTROVERSY:** This bonus came in the SAME financial year EA laid off staff across Criterion, DICE, Ripple Effect, and Motive Studios (March 2026)
+- Other exec bonuses: CFO Stuart Canfield ~$11.3M, president Laura Miele ~$13.7M
+- EA also executed "bold" AI strategy — AI called "the very core of the business"
+- **EU approved Saudi Arabian PIF buyout** of EA — once complete, EA will go private and no longer need to file 10K reports
+- **💡 Lounge Note:** Industry context only — not directly actionable for lounge ops but highlights the ongoing trend of publisher layoffs despite profitable years. ⭐ industry context
+- Source: Eurogamer / EA 10K Report (Jul 29, 2026)
+
+### 🏢🆕 Double Fine Hit with Layoffs After Exiting Xbox! (Jul 29) 🆕
+
+- **Double Fine Productions** (Psychonauts 2, Grim Fandango Remastered) has been hit with layoffs
+- This follows the studio **exiting Xbox** — no longer a first-party Microsoft studio
+- Statement: "The people we are losing were all important" — "These actions are not taken lightly."
+- **💡 Lounge Note:** More industry consolidation turbulence. Double Fine's output is more niche/Nintendo-like so limited direct PS5 lounge impact, but signals continued instability in the gaming job market. ⭐ industry context
+- Source: Eurogamer (Jul 29, 2026)
+
+### 🏴‍☠️🆕 New Far Cry 'Kodiak' in Development at Vantage Studios! (Jul 29) 🆕
+
+- **Ubisoft** reportedly has a new **Far Cry game** codenamed **'Kodiak'** in development
+- **Developer: Vantage Studios** — the same team behind AC Black Flag Resynced (3.5M in 14 days!)
+- Described as "not appearing to be in trouble" unlike other recent Ubisoft projects
+- **Context:** Vantage Studios is Ubisoft's new star studio after Black Flag Resynced's massive success
+- **💡 Lounge Note:** Far Cry is a proven franchise on PlayStation. If 'Kodiak' releases on PS5 (likely), it will be a strong lounge title given Far Cry's popularity for open-world single-player sessions. AC Black Flag Resynced's dev team working on Far Cry signals quality. Track for future release. ⭐
+- Source: Eurogamer (Jul 29, 2026)
+
+### 📋 Quick Status Refresh (Jul 29 - 11:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 🎮 **MH Wilds Patch 1.042 — OFFLINE!** | **🆕 CRITICAL!** | ALL event quests playable offline Aug 4! Price cut Aug 6! Lounge offline contingency! |
+| 🏢 **Pragmata Sequel Likely!** | **🆕 CONFIRMED!** | Diana's appeal driving sales! Capcom stock +19%! |
+| 🏚️ **Silent Hill Townfall Preview** | **🆕 HANDS-ON!** | Sept 24 release! Stealth-focused! PS Blog preview! |
+| 💰 **EA CEO $38.7M Bonus** | **🆕 CONTROVERSY!** | BF6 success bonuses + layoffs same year! |
+| 🏢 **Double Fine Layoffs** | **🆕 AFTER XBOX EXIT!** | More industry instability! |
+| 🏴‍☠️ **Far Cry 'Kodiak'** | **🆕 IN DEV!** | Vantage Studios (AC Black Flag team)! |
+| 🎮 **PS Plus August Games Announced!** | **✅ TRACKED** | Dying Light 2 Reloaded (4P co-op!), Big Walk, Signalis! Install Aug 4! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 TOMORROW! JUL 30!** | Pre-load NOW! New solo mode! |
+| 🦸 **Marvel Tōkon PS Plus Pack** | **✅ AUG 6!** | Free avatars + poses! Claim on lounge accounts! |
+| 🚨 **PSBlackout Protest Aug 23-30!** | **✅ TRACKED** | Conflicts with MW4 Beta! Monitor! |
+| 🎯 **MW4 Beta Aug 21-25 + Aug 28-Sep 1** | **CONFIRMED** | Oct 23 launch! |
+| 👾 **Aliens: Fireteam Elite 2** | **🔥 AUG 25!** | 4-player co-op! Pre-order! |
+| 🪓 **God of War Laufey** | **🔥 FEB 16, 2027!** | PS5 exclusive! Start planning! |
+
+### 📋 Updated Priority Lounge Actions (Jul 29 - 11:30 UTC):
+1. **🛒🛒🛒🛒🛒 INSTALL MONSTER HUNTER WILDS on 1-2 lounge consoles!** **CRITICAL:** Patch 1.042 (Aug 4) makes ALL event quests playable OFFLINE — perfect backup for PSN/Xbox-style outages! Permanent price cut Aug 6! ⭐⭐⭐⭐⭐
+2. **🛒🛒🛒🛒 INSTALL DYING LIGHT 2 RELOADED ON ALL CONSOLES ON AUG 4!** Free on PS Plus! 4-player co-op zombie survival = perfect lounge game! **HUGE VALUE!** ⭐⭐⭐⭐⭐
+3. **🐉🔥🔥🔥 TOMORROW! Pre-load Dragon Ball: Sparking Zero Neo DLC by Jul 30!** ⭐⭐⭐⭐
+4. **🛒🛒🛒 PRE-ORDER GTA 6 DIGITALLY** on at least 2-3 lounge PS5s! Vintage Vice City bonus ends Nov 20! ⭐⭐⭐⭐
+5. **🎮✅ CLAIM Marvel Tōkon PS Plus Pack on Aug 6!** Free avatars + poses! ⭐
+6. **🛒✅ CATCH MH WILDS PRICE CUT on Aug 6!** Permanent reduction! ⭐⭐
+7. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** ⭐⭐⭐⭐⭐
+8. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! ⭐⭐⭐⭐
+9. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 + Aug 28-Sep 1!** ⭐⭐⭐⭐
+10. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** ⭐⭐⭐⭐⭐
+11. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
