@@ -1,6 +1,53 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-29 11:30 UTC
+> Last updated: 2026-07-29 17:31 UTC
+
+---
+
+## ⚡ JULY 29 EVENING CHECK (July 29, 2026 - 17:31 UTC) — 📰 Silent Hill Townfall Hands-On Preview Goes Live! + DBZ Sparking Zero Neo DLC Drops TOMORROW! + No Breaking News Since Morning Update
+
+> **Summary:** Evening sweep — ~6 hours since midday update. **🆕📰 Silent Hill: Townfall hands-on preview published today on PlayStation Blog!** First-person survival horror set in Scottish town St. Amelia. Protagonist Simon searching for Zoe. Uses hand-held CRTV for puzzle-solving. Releases **September 24**. **🆕🐉 DBZ Sparking Zero Neo DLC drops TOMORROW (Jul 30)!** Pre-load should already be done! All previously tracked data below remains current.
+
+### 📰🆕 Silent Hill: Townfall Hands-On Preview Published on PlayStation Blog! (Jul 29) 🆕
+
+- **PlayStation Blog** published a detailed hands-on preview of **Silent Hill: Townfall** today (Jul 29)
+- **First-person survival horror** — the first Silent Hill with first-person combat
+- **Setting:** Scottish town of **St. Amelia** — foggy, abandoned, mysterious
+- **Protagonist:** **Simon** — responds to a letter asking him to return to St. Amelia
+- **Key gameplay item:** A **hand-held CRTV** — tune signals for puzzle hints, directly tied to character backstories
+- **Zoe:** A nurse who disappeared — Simon must find objects symbolizing her past failures
+- **Otherworld:** Red-hued underground structure, classic Silent Hill twisted reality
+- **Release:** **September 24, 2026** on PS5 and PC (already tracked)
+- **💡 LOUNGE NOTE:** Townfall is shaping up well based on early impressions. First-person horror is a unique angle for the series. Good candidate for horror-themed lounge nights in late September. Not critical but worth noting the positive preview buzz. ⭐
+- Source: PlayStation Blog (Jul 29, 2026)
+
+### 📋 Quick Status Refresh (Jul 29 - 17:31 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| 📰 **Silent Hill Townfall Hands-On** | **🆕 PREVIEW OUT!** | Positive early impressions! First-person horror! Sept 24! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 TOMORROW! JUL 30!** | Pre-load should be done! New Limit Breaker Journey! |
+| 🎮 **PS Plus August Games Announced!** | **✅ TRACKED** | Dying Light 2 Reloaded (4P co-op!), Big Walk, Signalis! Install Aug 4! |
+| 🦸 **Marvel Tōkon PS Plus Pack** | **✅ AUG 6!** | 5 avatars + 20 poses! Claim on lounge accounts! |
+| ⚪ **Ball x Pit Final Update** | **✅ AUG 6!** | 'The Naturalist' — final update! |
+| 🐉 **Flamecraft PS5 + Demo** | **✅ DEMO OUT NOW!** | Cozy dragon chef game! Full release later 2026! |
+| 📊 **Steam $11.1Bn H1 Record!** | **✅ TRACKED** | PS & Xbox struggling! PC booming! Lounge value stronger! |
+| 🏢 **Capcom Q1 2026 Results!** | **✅ TRACKED** | Pragmata 2.5M! RE Requiem 8M! |
+| ☁️ **Xbox CTO Outage Explanation** | **✅ TRACKED** | Single point of failure! Offline lesson! |
+| 🎮 **GTA 6 Pre-orders LIVE!** | **✅ TRACKED** | Vintage Vice City bonus! Pre-order digitally! |
+| ⚔️ **Crimson Desert 1.13.00** | **✅ TRACKED** | 39+8 new equipment! Abyss for Oongka! |
+| 🚨 **Xbox MAJOR OUTAGE!** | **✅ TRACKED** | Can't play ANY games! |
+| 🚨 **PSBlackout Protest Aug 23-30!** | **✅ TRACKED** | Conflicts with MW4 Beta! |
+
+### 📋 Priority Lounge Actions (Jul 29 - 17:31 UTC):
+1. **🐉🔥🔥 TOMORROW IS DBZ SPARKING ZERO NEO DLC DAY! MONITOR DOWNLOAD!** Ensure all lounge PS5s have pre-loaded the Neo DLC before Jul 30! DBZ is a huge lounge draw! ⭐⭐⭐⭐
+2. **🛒🛒🛒🛒 INSTALL DYING LIGHT 2 RELOADED ON ALL CONSOLES ON AUG 4!** Free on PS Plus! 4-player co-op zombie survival = perfect lounge game! ⭐⭐⭐⭐⭐
+3. **🛒🛒🛒 PRE-ORDER GTA 6 DIGITALLY** on at least 2-3 lounge PS5s! Vintage Vice City bonus ends Nov 20! ⭐⭐⭐⭐
+4. **🚨🚨🚨 CRITICAL: Test ALL lounge PS5s for OFFLINE functionality!** ⭐⭐⭐⭐⭐
+5. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** ⭐⭐⭐⭐⭐
+6. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! ⭐⭐⭐⭐
+7. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 + Aug 28-Sep 1!** ⭐⭐⭐⭐
+8. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** ⭐⭐⭐⭐⭐
+9. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
 ---
 
