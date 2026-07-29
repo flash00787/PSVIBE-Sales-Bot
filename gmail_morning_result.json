@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-07-29T19:06:52.803297+00:00",
+  "total": 21,
+  "unread": 21,
+  "promo_skipped": 7,
+  "nova_count": 0,
+  "wallet_count": 0,
+  "important_count": 1,
+  "nova_emails": [],
+  "wallet_emails": [],
+  "important_emails": [
+    {
+      "from": "AYA Bank <ibanking@ayainnovation.com>",
+      "subject": "Received Money",
+      "date": "Wed, 29 Jul 2026 06:45:45 +0000",
+      "is_unread": true,
+      "body_preview": "HELLO, AUNG CHAN MYINT\r\n\r\nYou recieved 30,000,000 MMK From KAY THWE OO\r\nThis transaction was made on AYA mBanking.\r\nOrder for Payment\r\nTransfer to other AYA Account\r\nTransaction No.\r\n270652544124\r\nTransaction Date\r\n29 Jul 2026 01:15 PM\r\nSend From\r\nAccount Holder Name\r\nKAY THWE OO\r\nAccount Number\r\n40036114975\r\nBranch Code\r\n0043 0043-Ygn (9) North Okkalapa\r\nReceiver Details\r\nAccount Holder Name\r\nAUN"
+    }
+  ]
+}
