@@ -1,6 +1,67 @@
 # PS5 & Gaming News Tracker
 > Auto-updated by cron job for PS VIBE - PS5 Gaming Lounge
-> Last updated: 2026-07-29 17:31 UTC
+> Last updated: 2026-07-29 23:30 UTC
+
+---
+
+## ⚡ JULY 29 LATE NIGHT CHECK (July 29, 2026 - 23:30 UTC) — 🆕 Wuchang Fallen Feathers Sequel Confirmed! + Halo CE Runs Best on PS5! + Subnautica 2 Hits 5M in 22 Days! + DBZ Neo DLC DROPS TOMORROW!
+
+> **Summary:** Late night sweep — ~6 hours since evening update. **🆕 Wuchang: Fallen Feathers sequel officially confirmed** — original creative director Xia Siyuan leads development at new studio Indolphinity, funded by 505 Games/Digital Bros! **🆕 Halo: Campaign Evolved performs BEST on PS5** — Digital Foundry confirms: PS5 & Series X nearly identical, but PS5 has NO cutscene stuttering! PS5 Pro with PSSR is the definitive experience! **🆕 Subnautica 2 surpasses 5M sales in 22 days** — Krafton pledges to turn it into a franchise IP! **🐉🔥 DBZ Sparking Zero Neo DLC drops TOMORROW Jul 30!** All previously tracked data below remains current.
+
+### ⚔️🆕 Wuchang: Fallen Feathers Sequel Officially Confirmed! Original Creative Director Returns! (Jul 29) 🆕
+
+- **505 Games** confirmed via socials that a **Wuchang: Fallen Feathers sequel** is in development
+- **Xia Siyuan** (original lead producer & director) is leading development at his new studio **Indolphinity** (Chengdu Recursive Dolphin Technology)
+- **505 Games** will fund and publish globally — "Future development will remain firmly rooted in China"
+- **Xia Siyuan:** "We listen closely to the real voices of players... striving to answer everyone's long-standing expectations with more polished quality"
+- **Context:** Original dev team Leenzee disbanded months ago. IP was acquired by Digital Bros for ~€4M in April. Game hit 5M players. Steam recent reviews are 'Very Positive'
+- **💡 Lounge Note:** Wuchang: Fallen Feathers is a Soulslike that found 5M players despite troubled development — sequel confirmation is good news for PS5 Soulslike fans. Not critical for immediate lounge action. ⭐
+- Source: Eurogamer / 505 Games (Jul 29, 2026)
+
+### 🟢🆕 Halo: Campaign Evolved Runs BEST on PlayStation 5! Digital Foundry Analysis! (Jul 29) 🆕
+
+- **Digital Foundry** tested Halo: Campaign Evolved across all platforms — surprising results for an Xbox tentpole release on PlayStation!
+- **PS5 vs Xbox Series X:** Experiences are "almost identical" across performance & quality modes — only minor shadow/detail differences
+- **CRITICAL DIFFERENCE:** **Cutscene stuttering** on Xbox Series X/S is **completely absent on PS5** — Digital Foundry says PS5 provides "a more cohesive experience"
+- **PS5 Pro** with PSSR provides the **best experience overall** — "noticeably sharper, cleaner image"
+- **Xbox Series S:** 720p internal resolution, consistent performance
+- **💡💡 LOUNGE VALUE:** This is a HUGE selling point for the lounge! One of Xbox's biggest IPs runs BETTER on PS5 than on Xbox! Customers who want the definitive Halo experience should play it at PS VIBE on a PS5! PS5 Pro is the ultimate Halo machine! ⭐⭐⭐
+- Source: Eurogamer / Digital Foundry (Jul 29, 2026)
+
+### 🌊🆕 Subnautica 2 Surpasses 5M Sales in Just 22 Days! Krafton Pledges Franchise IP Status! (Jul 29) 🆕
+
+- **Krafton** revealed in Q2 2026 earnings that **Subnautica 2** surpassed **5 million units sold** just **22 days** after its early access launch on May 14
+- **Subnautica series total H1 2026 revenue:** ¥232.5B KRW (~£121M) — including original, Below Zero, and Subnautica 2
+- **Krafton plans:** "Plans to maintain stable service through full launch and develop Subnautica into a franchise IP"
+- **Context:** Early access on Xbox Series X/S and PC only (no PS5 early access yet) — likely coming for full launch
+- **💡 Lounge Note:** Subnautica is not yet on PS5 (early access exclusive to Xbox/PC), but the series becoming a major franchise is good for the industry. Worth tracking for when the full 1.0 launch comes to PlayStation. ⭐
+- Source: Eurogamer (Jul 29, 2026)
+
+### 📋 Quick Status Refresh (Jul 29 - 23:30 UTC):
+| Topic | Status | Notes |
+|-------|--------|-------|
+| ⚔️ **Wuchang Fallen Feathers Sequel** | **🆕 CONFIRMED!** | Original director Xia Siyuan returns! 505 Games funding! |
+| 🟢 **Halo CE Best on PS5!** | **🆕 DF CONFIRMS!** | No cutscene stutter on PS5! PS5 Pro is best! |
+| 🌊 **Subnautica 2 5M in 22 Days** | **🆕 FRANCHISE PLANS!** | Krafton making it franchise IP! |
+| 📰 **Silent Hill Townfall Hands-On** | **✅ TRACKED** | Positive preview! Sept 24! |
+| 🐉 **DBZ Sparking Zero Neo DLC** | **🔥 TOMORROW! JUL 30!** | Pre-load should be done! New Limit Breaker Journey! |
+| 🎮 **PS Plus August Games Announced!** | **✅ TRACKED** | Dying Light 2 Reloaded (4P co-op!), Big Walk, Signalis! Install Aug 4! |
+| 🦸 **Marvel Tōkon PS Plus Pack** | **✅ AUG 6!** | 5 avatars + 20 poses! Claim on lounge accounts! |
+| 📊 **Steam $11.1Bn H1 Record!** | **✅ TRACKED** | PS & Xbox struggling! PC booming! Lounge value stronger! |
+| 🏢 **Capcom Q1 2026 Results!** | **✅ TRACKED** | Pragmata 2.5M! RE Requiem 8M! |
+| 🚨 **PSBlackout Protest Aug 23-30!** | **✅ TRACKED** | Conflicts with MW4 Beta! |
+
+### 📋 Priority Lounge Actions (Jul 29 - 23:30 UTC):
+1. **🐉🔥🔥🔥 TOMORROW IS DBZ SPARKING ZERO NEO DLC DAY! JUL 30!** Ensure all lounge PS5s have pre-loaded the Neo DLC! DBZ is a huge lounge draw! ⭐⭐⭐⭐
+2. **🟢💡 PROMOTE: Halo: Campaign Evolved runs BEST on PS5!** Tell customers who want the definitive Halo experience — PS5 has NO cutscene stuttering vs Xbox! ⭐⭐⭐
+3. **🛒🛒🛒🛒 INSTALL DYING LIGHT 2 RELOADED ON ALL CONSOLES ON AUG 4!** Free on PS Plus! 4-player co-op zombie survival = perfect lounge game! ⭐⭐⭐⭐⭐
+4. **🛒🛒🛒 PRE-ORDER GTA 6 DIGITALLY** on at least 2-3 lounge PS5s! Vintage Vice City bonus ends Nov 20! ⭐⭐⭐⭐
+5. **🚨🚨🚨 CRITICAL: Test ALL lounge PS5s for OFFLINE functionality!** ⭐⭐⭐⭐⭐
+6. **🚨🔥🔥🔥 MONITOR PSBlackout PROTEST (Aug 23-30)!** ⭐⭐⭐⭐⭐
+7. **👾🔥🔥 PRE-ORDER Aliens: Fireteam Elite 2 (Aug 25)!** 4-player co-op! ⭐⭐⭐⭐
+8. **🎯🔥🔥🔥 MW4 Beta Aug 21-25 + Aug 28-Sep 1!** ⭐⭐⭐⭐
+9. **🪓🔥🔥🔥 MARK CALENDARS: God of War Laufey Feb 16, 2027!** ⭐⭐⭐⭐⭐
+10. **🛒🛒🛒 CHECK SUMMER SALE — UP TO 75% OFF!** Ends Aug 12! ⭐⭐⭐
 
 ---
 
